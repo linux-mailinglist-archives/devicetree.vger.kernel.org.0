@@ -2,100 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1174FAE2F
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 16:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 877374FAE33
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 16:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239822AbiDJOTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 10:19:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46200 "EHLO
+        id S230221AbiDJOU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 10:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239809AbiDJOTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 10:19:36 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 685B34A3D3
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 07:17:26 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id bh17so25952534ejb.8
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 07:17:26 -0700 (PDT)
+        with ESMTP id S229534AbiDJOU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 10:20:57 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4389D4C78F;
+        Sun, 10 Apr 2022 07:18:47 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id b21so22455731lfb.5;
+        Sun, 10 Apr 2022 07:18:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jDP8OQWCZ1cApEjs6Ir/qYFwpOISQGD4DToqFNLbWwI=;
-        b=r9qjBUHUfWFDMYVuB0F1ZaXh7z7nJWY76ywnBJ+g/GEAle6Em6Sh509MmX5YpxZSgA
-         crcsjUHlrrIp+0JRp8C9JXhjyk0P8JZZXI9Q69rh4OHyGFbU8uMZfbfIz7ykgRdS0gfF
-         8NM3619gDS/DD8Qcav3ELp8GE/2dCYU/dc51Esyfq5xlGVIsZW0Z/p53tSQdCAuVBo+S
-         UPONE2lE2cMfAedkRYdZe64ubOwN2oyz6UvKC9ji5v9TmK+rq4gRHtWra0e8I8r6dtDl
-         CFcrUuLUztVpC9BLywqI37rT13PYG49SngXL7RZbbj4crjd+FQzOMvw4DE1KjFpkDH5q
-         O1dg==
+        bh=zu02Bp5Bmo69mY+ZzCrRwSJldwE8Eb/jrbse8/ezonE=;
+        b=BN33pqXNRLlK+TdFHmXv4pg7XkbnubNfhUkTZTJfzbTrpgHeXVV6OMhFl3RrepVGCF
+         h9cJ7+Ue69kNFWHB83p17QKKSbiLT0hqfbeChyf49YLQTbcii1sb49ImLIhCNNgFs7Rs
+         Ew31GUlnL0lgtgj/psjJd0RxZtmfunYu4fW6UGkzzhZweoKUGDhNM5hNq3jFee7bK7sH
+         qqSTC+6zTKKMAjJlqwu3D/cLU+a1ZDMFX6GRPT9MdUwBm4/tZ+hsyBPUgKeYLBvUSKoB
+         jtvAgg4NMgWuEH/K31HxGIzKmCLe5VLrdploKKpZjop00f/q1xx0uUqmMQgwXUPBkvnw
+         gd5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=jDP8OQWCZ1cApEjs6Ir/qYFwpOISQGD4DToqFNLbWwI=;
-        b=B8xG0ie0NNU2dJ1voYCg1OipNLO7FwpJgdnXYpLCOADt29QqoIYd7hw7vJzrelbJvL
-         uCwSFL0Img5YVw5JbH5lWLBUTviFnWsJteI5kIiWRewohwY1LgWt+/8liq5d8U56KCJx
-         YUdtpRNxREMAGlNiR8PSVjY2EEby90Ybxm7KsncCGuy3qKC64UJ6ajnhrvAPj3ol3yss
-         YxRskGjlrf43NLCbHnzPfufxpeq814c9Vr849OUkYE7wnGjoksCEDQGe2+dDF2/N5vkr
-         KpOQa+ZgqwevSIjuxFgRtIvD1xl3BJvg8Lfdm/6cZHjH1cxX5isGNd/c5yV6ffcF9/6g
-         nD9g==
-X-Gm-Message-State: AOAM530q4vfOXSNgiVlaK3FebFt4MKiwWYQZRUe26XitWUwZRPlIf+K5
-        H+CNIKcPwqKPHVfkQpm0XjjShA==
-X-Google-Smtp-Source: ABdhPJy7Y9rR1HtBTTpbaKcxUf6/EytDbPTH2s40DrF85ncNaJGiu4dq4FKFOQoIl6Ao2wclofDrMw==
-X-Received: by 2002:a17:906:3101:b0:6d6:5b64:906f with SMTP id 1-20020a170906310100b006d65b64906fmr26840864ejx.513.1649600244930;
-        Sun, 10 Apr 2022 07:17:24 -0700 (PDT)
-Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id e9-20020a17090618e900b006e8669f3941sm2283276ejf.209.2022.04.10.07.17.23
+        bh=zu02Bp5Bmo69mY+ZzCrRwSJldwE8Eb/jrbse8/ezonE=;
+        b=gGAdr6CofwCfB0ZtRMJYXBnvGcpQxrpv62qIE8NjcAbp/sOsl4PDXyxmVIbeTxvYO8
+         THS81z9g2QdJ2lhopIhaZpY4rPhTLZDKsAGvd6a/VHe6JwO1AQcyjptC+wEZ+jSqEy8X
+         aY6J6lDVldqJCqewOYWzBEQ7AikiVjFVjTEsTKjcrDQOVFOTfJ80gLnONoYuYT1YwGVX
+         qq+XuDzDxMYEL5l7ePTCBboknJWqGCg7o5Zc3BF7zwGhR8h9pul1sHYWDXlz3ABgBfkx
+         JMelmJRnFMoOes0w74VBOnRUYum8LcxXHoKl+/N/LTpWwNGYw9KkIFMpWARQHG5bE1oq
+         yiZQ==
+X-Gm-Message-State: AOAM5315nr9cddsuXFIfeIJg4qXoK15WPJPpMHq+8Ad/iRBN2hsA9cll
+        XP/yIpnRQznc0w8v0zEUe+c=
+X-Google-Smtp-Source: ABdhPJx9OUDwUGEFE2E7HRlKV6j0WftRq+v41puWGQp/JtNZ5oHd15avpwdi4RU/4iO0XEB0TBYpeQ==
+X-Received: by 2002:a05:6512:31cd:b0:44a:9e36:a9d with SMTP id j13-20020a05651231cd00b0044a9e360a9dmr19093278lfe.271.1649600325391;
+        Sun, 10 Apr 2022 07:18:45 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-138-167.dynamic.spd-mgts.ru. [109.252.138.167])
+        by smtp.googlemail.com with ESMTPSA id p7-20020a2e8047000000b0024aeee8607csm2862513ljg.27.2022.04.10.07.18.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 07:17:24 -0700 (PDT)
-Message-ID: <17c8f015-df02-1dcf-07c2-f57a1dfd3aa0@linaro.org>
-Date:   Sun, 10 Apr 2022 16:17:23 +0200
+        Sun, 10 Apr 2022 07:18:44 -0700 (PDT)
+Message-ID: <3bbbffff-6aa3-7068-6f0c-4372d53daf94@gmail.com>
+Date:   Sun, 10 Apr 2022 17:18:43 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: wkup-m3-ipc: Add vtt toggle gpio pin
- property
+ Thunderbird/91.5.0
+Subject: Re: [Patch v6 1/4] memory: tegra: Add memory controller channels
+ support
 Content-Language: en-US
-To:     Drew Fustini <dfustini@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220409211215.2529387-1-dfustini@baylibre.com>
- <20220409211215.2529387-2-dfustini@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220409211215.2529387-2-dfustini@baylibre.com>
+To:     Ashish Mhetre <amhetre@nvidia.com>, krzysztof.kozlowski@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220406052459.10438-1-amhetre@nvidia.com>
+ <20220406052459.10438-2-amhetre@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220406052459.10438-2-amhetre@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2022 23:12, Drew Fustini wrote:
-> Document Wakeup M3 IPC property that indicates a GPIO pin is connected
-> to the enable pin on DDR VTT regulator and can be toggled during low
-> power mode transitions.
-> 
-> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-> [dfustini: converted to YAML, removed unnecessary "ti,needs-vtt-toggle"]
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> ---
->  .../devicetree/bindings/soc/ti/wkup-m3-ipc.yaml     | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
+06.04.2022 08:24, Ashish Mhetre пишет:
+> +	num_dt_channels = of_property_count_elems_of_size(pdev->dev.of_node, "reg",
+> +							  reg_cells * sizeof(u32));
+> +	/*
+> +	 * On tegra186 onwards, memory controller support multiple channels.
+> +	 * Apart from regular memory controller channels, there is one broadcast
+> +	 * channel and one for stream-id registers.
+> +	 */
+> +	if (num_dt_channels < mc->soc->num_channels + 2) {
+> +		dev_warn(&pdev->dev, "MC channels are missing, please update memory controller DT node with MC channels\n");
+> +		return 0;
+> +	}
+> +
+> +	mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev, "mc-broadcast");
+> +	if (IS_ERR(mc->bcast_ch_regs))
+> +		return PTR_ERR(mc->bcast_ch_regs);
 
+Looks to me that you don't need to use of_property_count_elems_of_size()
+and could only check the "mc-broadcast" presence to decide whether this
+is an older DT.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev,
+"broadcast");
+if (IS_ERR(mc->bcast_ch_regs)) {
+	dev_warn(&pdev->dev, "Broadcast channel is missing, please update your
+device-tree\n");
+	return PTR_ERR(mc->bcast_ch_regs);
+}
