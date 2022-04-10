@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF5E4FACF0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 10:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 166C94FACF6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 10:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235538AbiDJIkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 04:40:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38970 "EHLO
+        id S233846AbiDJIxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 04:53:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231616AbiDJIkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 04:40:13 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A122CC93
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:38:03 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id r13so25138388ejd.5
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:38:02 -0700 (PDT)
+        with ESMTP id S231202AbiDJIxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 04:53:06 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB5F1135
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:50:55 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id z99so6139684ede.5
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:50:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gh/AAtf8cRdIoELrwepmpCDeMPbSdp9UytLl5DDKHr4=;
-        b=x77uAlufM1epd1LMPe9Z/2F2riMaIPZRMerJ87AO+zQtngB7ZoBqlLFePS3p1rpT/x
-         wxEByYkYLXXr9KJ213Y7HEVVxLJ2t8WN4e2+G9j2o5xKutWghtaoMr39E4GFqIi+FDXF
-         CXytZ5L1aYOQSRw8KIgTLBiRj516kpVXl62p6NLhPG7xTs2Si5PiQLpXZXb79m2YK7IU
-         Jk8ZXKC/KAJbCt6jeNhbDxJEtw+Y9I2EZ9/FUm1e7m55PueRHsYG5G+Aetsoywucp53d
-         61+WqRWfpmygyk5kav5wDrWA18af463WGbAB0XdhmZDjj0teluS/13ASd5wY3s6yzrJf
-         3iQg==
+        bh=qkHp9efjKo+08fg4LskoQ/kpJrLhjOIZ8+TDrahF3Nc=;
+        b=whfpqsmdhbXxm2NFs1rPzFdjVmFiFGG/u6K8P+UnrLlcsFHI6PhB4XWftpVXejHU0V
+         uacEetx+LlabE4EGeHqx86wBZprNiwDkX2Qj14UbdVPn6ziHf+tibbIOcubTi4GS0FmZ
+         2AiI43Ll7jitMle4hKna652Z1rY9koYNb0Egkjvi6Bn7+3yvq6h03nj/1Jnbrc6wynJU
+         YAexTJbLGoEwNwtZqpp9z8zkGAtFipbyfbiOBNLAbccQC7PaJaLilw6wuIaquddjj8ay
+         vATkmUy2c6Vn91IQjRqTOwQbPCBsN7bOq4ogjElkw0ajdYRWxNPIPsiyFb5uGnF384lX
+         Au5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gh/AAtf8cRdIoELrwepmpCDeMPbSdp9UytLl5DDKHr4=;
-        b=PFM/9M+yLSri8DYbz2mMiVSsniH+kYInS0bVN+ocBf/CmbJWGBYwSsZDmWBh865W9R
-         ++Mxuc1cA/JoJ7HVOWhMaLzBWy0wxka5/dP6HPBfSPtr0Z7dTtmGzo16hv61lfLnDbZs
-         7Ekz8VEbtb4dBdsL3kb3+zGtFw2I1jluPrfVRyPQa0nZl4lsBYW9k+ItTD+OrZZ8AAtP
-         RiUizn+vS8X3R0wPHIbfccCKUp8XfMAWQV+MNaNhu1e19G6tL7wH7rNSvfS6aKvAN7uw
-         y1oIyWFsBmlrG6mAvJvv4IqghFXiwbaGmN+oo512+5l+mw0hsessHnOns3nwI+HOBpFl
-         sPIg==
-X-Gm-Message-State: AOAM531N9vTJFdW+GBtGTEpGhQKLH+gGmrcrEUX2zBM/om4GWGWTWTxG
-        GM3lX5eV3/1RlwxQUuEHdgbHwg==
-X-Google-Smtp-Source: ABdhPJwWopm2EQV2ZJwh6NTf592QrsI18/yNtY37mQW+51gPPFLvkjJsgKAo0HfXO4jYgMRD1boAsA==
-X-Received: by 2002:a17:906:d552:b0:6e8:4edc:f2ee with SMTP id cr18-20020a170906d55200b006e84edcf2eemr10035344ejc.572.1649579881603;
-        Sun, 10 Apr 2022 01:38:01 -0700 (PDT)
+        bh=qkHp9efjKo+08fg4LskoQ/kpJrLhjOIZ8+TDrahF3Nc=;
+        b=5YJZzm6s3gtJHJbe1vREILaTunwVcqpwxe5nC9iJN5lq7hs0+OYfppa72K3NMFjIHG
+         rGW3RGDm0YI/3E5NL9aCRokIBNGWuLoagU6qic4/vs09wqr3rghMh0ewIDN5bXEaR1F3
+         ujHZRxiq2Qc+2sDSPTKPo11EjtyVkxvDekVYYx4uGgcJ7/GHd4B5vCECY5g0mL6mbmXW
+         F+OQO26Ai/7RcedyDQrcalT6ThCy3rUODLwKh2HSJvmfo/qOBZC6lDE6R7JeCbLOo9yA
+         KnkELVd3Ac8nzRt6u4ayEZ6mQwFTNvbUq0XPN2OtSrVYqiovtXiNTtdksUR6NRPHvXs1
+         tcaA==
+X-Gm-Message-State: AOAM532TazSdj+eKTmeIItz1UoxELyiobYATSGQXjh2MyxJykzJEyKKY
+        c3vwywMDwjZw55VpKjFuYeoXqYrcFiElMI3I
+X-Google-Smtp-Source: ABdhPJwmQFyxybmNZNePbemtfTxdJfcwWMw87mwBZWwVTxsc+wYfwvdNXJhYKjRILB9fx1SCwhm5Gw==
+X-Received: by 2002:a05:6402:c13:b0:41d:71e1:9b8c with SMTP id co19-20020a0564020c1300b0041d71e19b8cmr4006273edb.258.1649580654131;
+        Sun, 10 Apr 2022 01:50:54 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id s20-20020a056402015400b00418f9574a36sm13021400edu.73.2022.04.10.01.38.00
+        by smtp.gmail.com with ESMTPSA id i14-20020a50cfce000000b0041cbaba8743sm11363940edk.56.2022.04.10.01.50.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 01:38:00 -0700 (PDT)
-Message-ID: <4f20ad11-40c5-638e-7335-c68d2369373d@linaro.org>
-Date:   Sun, 10 Apr 2022 10:37:59 +0200
+        Sun, 10 Apr 2022 01:50:53 -0700 (PDT)
+Message-ID: <550e04f5-acd9-e50a-1aae-4e639951e35e@linaro.org>
+Date:   Sun, 10 Apr 2022 10:50:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2] dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
+Subject: Re: [PATCH] dt-bindings: firmware: convert Qualcomm SCM binding to
+ the yaml
 Content-Language: en-US
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht,
-        Caleb Connolly <caleb@connolly.tech>,
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Heidelberg <david@ixit.cz>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        ~okias/devicetree@lists.sr.ht, Andy Gross <andy.gross@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220111220026.102838-1-david@ixit.cz>
+References: <20211218194038.26913-1-david@ixit.cz>
+ <YfhT/ltPDhQZV0Bo@builder.lan>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220111220026.102838-1-david@ixit.cz>
+In-Reply-To: <YfhT/ltPDhQZV0Bo@builder.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,132 +78,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2022 23:00, David Heidelberg wrote:
-> Convert Qualcomm SPMI PMIC binding to yaml format.
+On 31/01/2022 22:26, Bjorn Andersson wrote:
+> On Sat 18 Dec 13:40 CST 2021, David Heidelberg wrote:
 > 
-> Additional changes:
->  - filled many missing compatibles
+>> Convert Qualcomm SCM firmware binding to the yaml format.
+>>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>> This patch comes with followup question -> since not all definitions
+>> follow `"qcom,scm-*chipset*", "qcom,scm"`, should I change them or adjust this
+>> binding to cover all cases?
+>>
 > 
-> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
+> I don't remember why some platforms has the generic "fallback" and
+> others doesn't. I don't have any objections to defining the binding as
+> you've done.
 
-Thank you for your patch. There is something to discuss/improve.
+Looking at the driver it seems that there some differences between
+certain versions and generic qcom,scm. For example they require bus
+clock which could mean they won't work without it on a "qcom,scm"
+compatible. That could mean that original "qcom,scm" also required that
+bus clock but it was for example always enabled. Or that clock was never
+needed on "qcom,scm".
 
-(...)
-
-> +
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,pm660
-> +          - qcom,pm660l
-> +          - qcom,pm6150
-> +          - qcom,pm6150l
-> +          - qcom,pm6350
-> +          - qcom,pm7325
-> +          - qcom,pm8004
-> +          - qcom,pm8005
-> +          - qcom,pm8009
-> +          - qcom,pm8019
-> +          - qcom,pm8110
-> +          - qcom,pm8150
-> +          - qcom,pm8150b
-> +          - qcom,pm8150l
-> +          - qcom,pm8226
-> +          - qcom,pm8350
-> +          - qcom,pm8350b
-> +          - qcom,pm8350c
-> +          - qcom,pm8841
-> +          - qcom,pm8909
-> +          - qcom,pm8916
-> +          - qcom,pm8941
-> +          - qcom,pm8950
-> +          - qcom,pm8994
-> +          - qcom,pm8998
-> +          - qcom,pma8084
-> +          - qcom,pmd9635
-> +          - qcom,pmi8950
-> +          - qcom,pmi8962
-> +          - qcom,pmi8994
-> +          - qcom,pmi8998
-> +          - qcom,pmk8350
-> +          - qcom,pmm8155au
-> +          - qcom,pmr735a
-> +          - qcom,pmr735b
-> +          - qcom,pms405
-> +          - qcom,pmx55
-> +          - qcom,smb2351
-> +      - const: qcom,spmi-pmic
-> +
-> +  reg: true
-
-maxItems
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +
-
-Just one blank line.
-
-> +patternProperties:
-> +  '^(labibb|([a-z][a-z0-9]+-)?regulators)$':
-> +    type: object
-> +
-
-This should be more specific, preferably by including schema for
-regulators (or any other children if applicable).
-
-> +    required:
-> +      - compatible
-
-unevaluatedProperties: false
-> +
-> +  '@[0-9a-f]+$':
-> +    type: object
-> +    description: >
-
-You don't need '>'.
-
-This also should be specified - what is expected to be here? Usually the
-children are exactly known.
-
-> +      Each child node of the PMIC represents a function of it.
-> +
-> +    properties:
-> +      reg: true
-
-maxItems
-
-> +
-> +      interrupts:
-> +        description: >
-
-No need for >
-
-> +          Interrupts are specified as a 4-tuple. For more information see
-> +          Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-> +
-> +    required:
-> +      - compatible
-> +
-> +    additionalProperties: true
-
-This will have to unevaluated or additional properties false, depending
-whether you include other schema or not.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
+I think this should be converted without generic fallback, IOW, the
+original bindings are not accurate and driver+DTS are better hints how
+it should work.
 
 
 Best regards,
