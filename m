@@ -2,381 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C1D4FAC28
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 07:13:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC404FAC76
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 08:54:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232564AbiDJFOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 01:14:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56814 "EHLO
+        id S231547AbiDJG4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 02:56:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiDJFOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 01:14:43 -0400
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5D258807;
-        Sat,  9 Apr 2022 22:12:33 -0700 (PDT)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-e2afb80550so2008360fac.1;
-        Sat, 09 Apr 2022 22:12:33 -0700 (PDT)
+        with ESMTP id S229476AbiDJG4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 02:56:53 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A774362BD5;
+        Sat,  9 Apr 2022 23:54:43 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id bg10so24924410ejb.4;
+        Sat, 09 Apr 2022 23:54:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HG7xcfqBGlzKRwp4NEEFV3WOMPmg/bdlcrlck/Cc0aY=;
-        b=N4NLii1dj1S2luA1gdk1+G1KMWMcoe1Gki/EIzfb6PQAvAdEmMRTGQBVqCJY4xnUG/
-         KDNdf+XLEVBNsAlZrVLXvyndufCVMW7jQ0ONAC4xfnfHca5NxjB/5o2KFPpsVqYb7MpS
-         e8FBeSpgjNRsmCE8Tw+rFihD6QpiYFEMLSakFDrhp7oB/kfNtJzpMvCVRFAGbisEU1X+
-         7JOOqexVMXuLVp+7FRmTFvjvj1QUqmQAfiSmwnmImDJKBa9eZQGpUgHF1Zjj++OwFq46
-         mYoR/7ZXOLvgN5sJPeEnqUeuUGV5SUv92YOkgLvr6Fjs/r5kxe3b2cFp4u432JEkjG36
-         ymCg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zauW37hZKPQj0zCz4NalU8xu3JjPbiaaA2uRWNB22gE=;
+        b=nnWkbWS3dszmsDv7aXEZLc+24lt3NcTuvsPM/VpE2pM2pyfGu8FkcqIEh1zz9poYcF
+         uzce3Z0ZNf6mTXqlplma1Mvtz8l/NPnStp4q+xp8qBoHl2UF/3bzCgAkPANrnnZk2LNY
+         URKv30tl+MhDqlGerhGd8ur5NBLIcd/E0qwM7wojZoqbyfVXQSwv+3pq6p3vQCrJ8npI
+         q7Hj5hcZjvzBKwdkqFI5fwRBCsc2reuoukyFOAMN30/ugvfB+KsHkPP+0f1VXyHRXzUS
+         RsOn3+scY6uukVR2vpMjhz7m6s0vXU16CK0gpc2frM/R4tfEgEVRDuhNdO/K+bWdnIc4
+         A6OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HG7xcfqBGlzKRwp4NEEFV3WOMPmg/bdlcrlck/Cc0aY=;
-        b=PfANTymffOoiEqfkBahrjos8h/msn3BvmJ72xdGYN5taJ6FqRBgHCtO8NbVcNNeOjP
-         iU0Di/QGzOEFg9HHvGPnxDJsxstoJf+X/VllBDNNCuiTpK3TPKcTCLmxKu+KaPOVUAim
-         FEyha7pY/b1MoJel1cTyY20IbitKdza91z8nryy6roWSCFqmurforv4R/1Zo5Tflo+Ne
-         J0DYB4dmI1SdL3jS0qi5xCXM24DRD9rfzqk6Kb10uq3JcyG7AEJmJT3KmyELtcRzGGh8
-         ypJ1gDTFGPdB3iSkpny+nwUWIy8TKA/BxgRbDCwKbR21E/PwrduQhKFIdScqYLhCobqd
-         ueuw==
-X-Gm-Message-State: AOAM532rYM4cu1uIUhLWEbXHnOcLkIRRsmQ5f+LwnYLEwoHxyO8mRBOp
-        r9cdHWUFPnoELoLoQ/jw/6LZvuH0/D+3cbr9jmU=
-X-Google-Smtp-Source: ABdhPJw6wZRHfpQKrvIGryczhYLHnDY6PIygXpCv+Wlvds9rTlxJbmB/DA/yfdDQp1qiTMdEW5mf7sy5fXnXIDx1GMk=
-X-Received: by 2002:a05:6870:5493:b0:e1:eb7a:2283 with SMTP id
- f19-20020a056870549300b000e1eb7a2283mr11814757oan.138.1649567553209; Sat, 09
- Apr 2022 22:12:33 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zauW37hZKPQj0zCz4NalU8xu3JjPbiaaA2uRWNB22gE=;
+        b=Tol9DVOgsLATg+srj+6e9zwxTb8sM/+WH738aSWbsj24jglrLbnGRDPpFKdhKbBc34
+         N4PDzB4PV7dnJ362ULt/jf4G9ucwB+JIFiW3oF4QC/vvtqBKKTfuMgoaqgKuFJk7q+nE
+         eHkVq3D8xriTQOswT9QI+gRA0ckEPd2V2yw2p8ysmCFumLe+A+e5ADk/0ncUzdXiwpo8
+         oQuVqucFUfKzSsdan6+cWAM583EDaiPyPkRiHLpNdvKp/WTelfRQqXpKZMRr/BIWdMvV
+         r6Li06jqK0RU3TTG6Z2eK5d+DmtzCjZMI3/Bj3fNPmggrxAC0nRUtSDlSDFvnuvm5TTo
+         rXbg==
+X-Gm-Message-State: AOAM5316uBViMoIVyRtp6FO6Moo3De3v0T9fp5yYM4eoqGk5LABVXfG0
+        t6WDvPIgJxlI/DrgQXw6d0c=
+X-Google-Smtp-Source: ABdhPJxnfdwJZ3HNLq21mnJgLRl21Pfs9epyk6/tcAjFMY+XD3RqknXCvsqQoBcWr6Zt8N8r9XsuGQ==
+X-Received: by 2002:a17:907:62a2:b0:6e0:e201:b94e with SMTP id nd34-20020a17090762a200b006e0e201b94emr25255567ejc.730.1649573681824;
+        Sat, 09 Apr 2022 23:54:41 -0700 (PDT)
+Received: from ?IPV6:2001:470:9898:9eac:f1cb:6e16:4fc0:c830? ([2a09:bac0:87::815:6e3d])
+        by smtp.gmail.com with ESMTPSA id m13-20020a50cc0d000000b0041d7329eaa2sm1229803edi.48.2022.04.09.23.54.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Apr 2022 23:54:41 -0700 (PDT)
+Message-ID: <6738687b-eeb2-c4e3-90c8-ee3aaa73f576@gmail.com>
+Date:   Sun, 10 Apr 2022 09:54:40 +0300
 MIME-Version: 1.0
-References: <20220324112620.46963-1-alexandru.tachici@analog.com>
- <20220324112620.46963-6-alexandru.tachici@analog.com> <CAGi-RUJLmT-jfjtaYvPjaNHX-QCohhkZ3rkXaHHbmOHk56jTaA@mail.gmail.com>
-In-Reply-To: <CAGi-RUJLmT-jfjtaYvPjaNHX-QCohhkZ3rkXaHHbmOHk56jTaA@mail.gmail.com>
-From:   Ramon Fried <rfried.dev@gmail.com>
-Date:   Sun, 10 Apr 2022 08:12:22 +0300
-Message-ID: <CAGi-RULmscYaKvRXPQSwJg5hZe0kuysxuijEZKo54Aya2=jHRw@mail.gmail.com>
-Subject: Re: [PATCH v5 5/7] net: phy: adin1100: Add initial support for
- ADIN1100 industrial PHY
-To:     alexandru.tachici@analog.com
-Cc:     andrew@lunn.ch, o.rempel@pengutronix.de, davem@davemloft.net,
-        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
-        LKML <linux-kernel@vger.kernel.org>, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for Sercomm
+ parser
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Karim <Karimdplay@gmail.com>,
+        NOGUCHI Hiroshi <drvlabo@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>, M <x1@disroot.org>,
+        linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20220406195557.1956-1-csharper2005@gmail.com>
+ <20220406195946.2019-1-csharper2005@gmail.com>
+ <1649339427.653492.795407.nullmailer@robh.at.kernel.org>
+ <9cf4e596-83d7-00cc-afcc-585309cb4852@gmail.com>
+ <aea5e032-5cd0-7480-13c1-2af924237532@linaro.org>
+From:   Mikhail Zhilkin <csharper2005@gmail.com>
+In-Reply-To: <aea5e032-5cd0-7480-13c1-2af924237532@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 10, 2022 at 8:11 AM Ramon Fried <rfried.dev@gmail.com> wrote:
->
-> On Fri, Mar 25, 2022 at 8:53 PM <alexandru.tachici@analog.com> wrote:
-> >
-> > From: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> >
-> > The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
-> > industrial Ethernet applications and is compliant with the IEEE 802.3cg
-> > Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
-> >
-> > Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> > ---
-> >  drivers/net/phy/Kconfig    |   7 ++
-> >  drivers/net/phy/Makefile   |   1 +
-> >  drivers/net/phy/adin1100.c | 247 +++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 255 insertions(+)
-> >  create mode 100644 drivers/net/phy/adin1100.c
-> >
-> > diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> > index ea7571a2b39b..bbbf6c07ea53 100644
-> > --- a/drivers/net/phy/Kconfig
-> > +++ b/drivers/net/phy/Kconfig
-> > @@ -83,6 +83,13 @@ config ADIN_PHY
-> >           - ADIN1300 - Robust,Industrial, Low Latency 10/100/1000 Gigabit
-> >             Ethernet PHY
-> >
-> > +config ADIN1100_PHY
-> > +       tristate "Analog Devices Industrial Ethernet T1L PHYs"
-> > +       help
-> > +         Adds support for the Analog Devices Industrial T1L Ethernet PHYs.
-> > +         Currently supports the:
-> > +         - ADIN1100 - Robust,Industrial, Low Power 10BASE-T1L Ethernet PHY
-> > +
-> >  config AQUANTIA_PHY
-> >         tristate "Aquantia PHYs"
-> >         help
-> > diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-> > index b2728d00fc9a..b82651b57043 100644
-> > --- a/drivers/net/phy/Makefile
-> > +++ b/drivers/net/phy/Makefile
-> > @@ -31,6 +31,7 @@ sfp-obj-$(CONFIG_SFP)         += sfp-bus.o
-> >  obj-y                          += $(sfp-obj-y) $(sfp-obj-m)
-> >
-> >  obj-$(CONFIG_ADIN_PHY)         += adin.o
-> > +obj-$(CONFIG_ADIN1100_PHY)     += adin1100.o
-> >  obj-$(CONFIG_AMD_PHY)          += amd.o
-> >  aquantia-objs                  += aquantia_main.o
-> >  ifdef CONFIG_HWMON
-> > diff --git a/drivers/net/phy/adin1100.c b/drivers/net/phy/adin1100.c
-> > new file mode 100644
-> > index 000000000000..23d1ae61e0ef
-> > --- /dev/null
-> > +++ b/drivers/net/phy/adin1100.c
-> > @@ -0,0 +1,247 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> > +/*
-> > + *  Driver for Analog Devices Industrial Ethernet T1L PHYs
-> > + *
-> > + * Copyright 2020 Analog Devices Inc.
-> > + */
-> > +#include <linux/kernel.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/init.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mii.h>
-> > +#include <linux/phy.h>
-> > +#include <linux/property.h>
-> > +
-> > +#define PHY_ID_ADIN1100                                0x0283bc81
-> > +
-> > +#define ADIN_FORCED_MODE                       0x8000
-> > +#define   ADIN_FORCED_MODE_EN                  BIT(0)
-> > +
-> > +#define ADIN_CRSM_SFT_RST                      0x8810
-> > +#define   ADIN_CRSM_SFT_RST_EN                 BIT(0)
-> > +
-> > +#define ADIN_CRSM_SFT_PD_CNTRL                 0x8812
-> > +#define   ADIN_CRSM_SFT_PD_CNTRL_EN            BIT(0)
-> > +
-> > +#define ADIN_AN_PHY_INST_STATUS                        0x8030
-> > +#define   ADIN_IS_CFG_SLV                      BIT(2)
-> > +#define   ADIN_IS_CFG_MST                      BIT(3)
-> > +
-> > +#define ADIN_CRSM_STAT                         0x8818
-> > +#define   ADIN_CRSM_SFT_PD_RDY                 BIT(1)
-> > +#define   ADIN_CRSM_SYS_RDY                    BIT(0)
-> > +
-> > +/**
-> > + * struct adin_priv - ADIN PHY driver private data
-> > + * @tx_level_2v4_able:         set if the PHY supports 2.4V TX levels (10BASE-T1L)
-> > + * @tx_level_2v4:              set if the PHY requests 2.4V TX levels (10BASE-T1L)
-> > + * @tx_level_prop_present:     set if the TX level is specified in DT
-> > + */
-> > +struct adin_priv {
-> > +       unsigned int            tx_level_2v4_able:1;
-> > +       unsigned int            tx_level_2v4:1;
-> > +       unsigned int            tx_level_prop_present:1;
-> > +};
-> > +
-> > +static int adin_read_status(struct phy_device *phydev)
-> > +{
-> > +       int ret;
-> > +
-> > +       ret = genphy_c45_read_status(phydev);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       ret = phy_read_mmd(phydev, MDIO_MMD_AN, ADIN_AN_PHY_INST_STATUS);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       if (ret & ADIN_IS_CFG_SLV)
-> > +               phydev->master_slave_state = MASTER_SLAVE_STATE_SLAVE;
-> > +
-> > +       if (ret & ADIN_IS_CFG_MST)
-> > +               phydev->master_slave_state = MASTER_SLAVE_STATE_MASTER;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int adin_config_aneg(struct phy_device *phydev)
-> > +{
-> > +       struct adin_priv *priv = phydev->priv;
-> > +       int ret;
-> > +
-> > +       if (phydev->autoneg == AUTONEG_DISABLE) {
-> > +               ret = genphy_c45_pma_setup_forced(phydev);
-> > +               if (ret < 0)
-> > +                       return ret;
-> > +
-> > +               if (priv->tx_level_prop_present && priv->tx_level_2v4) {
-> > +                       ret = phy_set_bits_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_B10L_PMA_CTRL,
-> > +                                              MDIO_PMA_10T1L_CTRL_2V4_EN);
-> > +                       if (ret < 0)
-> > +                               return ret;
-> > +               } else {
-> > +                       ret = phy_clear_bits_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_B10L_PMA_CTRL,
-> > +                                                MDIO_PMA_10T1L_CTRL_2V4_EN);
-> > +                       if (ret < 0)
-> > +                               return ret;
-> > +               }
-> > +
-> > +               /* Force PHY to use above configurations */
-> > +               return phy_set_bits_mmd(phydev, MDIO_MMD_AN, ADIN_FORCED_MODE, ADIN_FORCED_MODE_EN);
-> > +       }
-> > +
-> > +       ret = phy_clear_bits_mmd(phydev, MDIO_MMD_AN, ADIN_FORCED_MODE, ADIN_FORCED_MODE_EN);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       /* Request increased transmit level from LP. */
-> > +       if (priv->tx_level_prop_present && priv->tx_level_2v4) {
-> > +               ret = phy_set_bits_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_ADV_H,
-> > +                                      MDIO_AN_T1_ADV_H_10L_TX_HI |
-> > +                                      MDIO_AN_T1_ADV_H_10L_TX_HI_REQ);
-> > +               if (ret < 0)
-> > +                       return ret;
-> > +       }
-> > +
-> > +       /* Disable 2.4 Vpp transmit level. */
-> > +       if ((priv->tx_level_prop_present && !priv->tx_level_2v4) || !priv->tx_level_2v4_able) {
-> > +               ret = phy_clear_bits_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_ADV_H,
-> > +                                        MDIO_AN_T1_ADV_H_10L_TX_HI |
-> > +                                        MDIO_AN_T1_ADV_H_10L_TX_HI_REQ);
-> > +               if (ret < 0)
-> > +                       return ret;
-> > +       }
-> > +
-> > +       return genphy_c45_config_aneg(phydev);
-> > +}
-> > +
-> > +static int adin_set_powerdown_mode(struct phy_device *phydev, bool en)
-> > +{
-> > +       int ret;
-> > +       int val;
-> > +
-> > +       if (en)
-> > +               val = ADIN_CRSM_SFT_PD_CNTRL_EN;
-> > +       else
-> > +               val = 0;
-> > +
-> > +       ret = phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> > +                           ADIN_CRSM_SFT_PD_CNTRL, val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       return phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, ADIN_CRSM_STAT, ret,
-> > +                                        (ret & ADIN_CRSM_SFT_PD_RDY) == val,
-> > +                                        1000, 30000, true);
-> > +}
-> > +
-> > +static int adin_suspend(struct phy_device *phydev)
-> > +{
-> > +       return adin_set_powerdown_mode(phydev, true);
-> > +}
-> > +
-> > +static int adin_resume(struct phy_device *phydev)
-> > +{
-> > +       return adin_set_powerdown_mode(phydev, false);
-> > +}
-> > +
-> > +static int adin_set_loopback(struct phy_device *phydev, bool enable)
-> > +{
-> > +       if (enable)
-> > +               return phy_set_bits_mmd(phydev, MDIO_MMD_PCS, MDIO_PCS_10T1L_CTRL,
-> > +                                       BMCR_LOOPBACK);
-> > +
-> > +       /* PCS loopback (according to 10BASE-T1L spec) */
-> > +       return phy_clear_bits_mmd(phydev, MDIO_MMD_PCS, MDIO_PCS_10T1L_CTRL,
-> > +                                BMCR_LOOPBACK);
-> > +}
-> > +
-> > +static int adin_soft_reset(struct phy_device *phydev)
-> > +{
-> > +       int ret;
-> > +
-> > +       ret = phy_set_bits_mmd(phydev, MDIO_MMD_VEND1, ADIN_CRSM_SFT_RST, ADIN_CRSM_SFT_RST_EN);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       return phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, ADIN_CRSM_STAT, ret,
-> > +                                        (ret & ADIN_CRSM_SYS_RDY),
-> > +                                        10000, 30000, true);
-> > +}
-> > +
-> > +static int adin_get_features(struct phy_device *phydev)
-> > +{
-> > +       struct adin_priv *priv = phydev->priv;
-> > +       struct device *dev = &phydev->mdio.dev;
-> > +       int ret;
-> > +       u8 val;
-> > +
-> > +       ret = phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_PMA_10T1L_STAT);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       /* This depends on the voltage level from the power source */
-> > +       priv->tx_level_2v4_able = !!(ret & MDIO_PMA_10T1L_STAT_2V4_ABLE);
-> > +
-> > +       phydev_dbg(phydev, "PHY supports 2.4V TX level: %s\n",
-> > +                  priv->tx_level_2v4_able ? "yes" : "no");
-> > +
-> > +       priv->tx_level_prop_present = device_property_present(dev, "phy-10base-t1l-2.4vpp");
-> > +       if (priv->tx_level_prop_present) {
-> > +               ret = device_property_read_u8(dev, "phy-10base-t1l-2.4vpp", &val);
-> > +               if (ret < 0)
-> > +                       return ret;
-> > +
-> > +               priv->tx_level_2v4 = val;
-> > +               if (!priv->tx_level_2v4 && priv->tx_level_2v4_able)
-> > +                       phydev_info(phydev,
-> > +                                   "PHY supports 2.4V TX level, but disabled via config\n");
-> > +       }
-> > +
-> > +       linkmode_set_bit_array(phy_basic_ports_array, ARRAY_SIZE(phy_basic_ports_array),
-> > +                              phydev->supported);
-> > +
-> > +       return genphy_c45_pma_read_abilities(phydev);
-> > +}
-> > +
-> > +static int adin_probe(struct phy_device *phydev)
-> > +{
-> > +       struct device *dev = &phydev->mdio.dev;
-> > +       struct adin_priv *priv;
-> > +
-> > +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +       if (!priv)
-> > +               return -ENOMEM;
-> > +
-> > +       phydev->priv = priv;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static struct phy_driver adin_driver[] = {
-> > +       {
-> > +               PHY_ID_MATCH_MODEL(PHY_ID_ADIN1100),
-> > +               .name                   = "ADIN1100",
-> > +               .get_features           = adin_get_features,
-> > +               .soft_reset             = adin_soft_reset,
-> > +               .probe                  = adin_probe,
-> > +               .config_aneg            = adin_config_aneg,
-> > +               .read_status            = adin_read_status,
-> > +               .set_loopback           = adin_set_loopback,
-> > +               .suspend                = adin_suspend,
-> > +               .resume                 = adin_resume,
-> > +       },
-> > +};
-> > +
-> > +module_phy_driver(adin_driver);
-> > +
-> > +static struct mdio_device_id __maybe_unused adin_tbl[] = {
-> > +       { PHY_ID_MATCH_MODEL(PHY_ID_ADIN1100) },
-> > +       { }
-> > +};
-> > +
-> > +MODULE_DEVICE_TABLE(mdio, adin_tbl);
-> > +MODULE_DESCRIPTION("Analog Devices Industrial Ethernet T1L PHY driver");
-> > +MODULE_LICENSE("Dual BSD/GPL");
-> > --
-> > 2.25.1
-> >
-> Hi.
-> Got two submissions for both drivers in parallel.
-> https://patchwork.ozlabs.org/project/uboot/patch/20220408162814.227120-1-nate.d@variscite.com/
-> are you aware of each other ?
-Ignore last mail. I should go to sleep....
+On 4/9/2022 3:49 PM, Krzysztof Kozlowski wrote:
+
+> One? Apart of broken compilation, there were other mistakes. When you
+> run the tests, you will see all of them.
+
+I checked the first version again. It was:
+- One "FATAL ERROR" (missing '{' in dts example)
+- 5 warning / errors (severity not specified) "From schema"
+
+Fixed version is here (not a single warning):
+https://lore.kernel.org/linux-mtd/20220406195557.1956-1-csharper2005@gmail.com/T/#ma43afb59fd1f0fab8899951005ae9ce011fbb0cc
+
+Is it ok if I send it in PATCH v3?
+
+
+> This is not related to dt_binding_check. if you ask about checkpatch,
+> then no, this does not require fixing.
+
+
+Yeah, it's about checkpatch. Thanks.
+
+> Best regards,
+> Krzysztof
+
+ 
+Best regards,
+Mikhail
+
