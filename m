@@ -2,114 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F2D4FAE44
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 16:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02A1B4FAE47
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 16:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234678AbiDJOgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 10:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38972 "EHLO
+        id S237558AbiDJOi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 10:38:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235084AbiDJOgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 10:36:17 -0400
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4960260B
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 07:34:04 -0700 (PDT)
-Received: from [IPv6:2a02:a03f:eaf9:8401:af3b:b3fa:fe8b:2fa0] (unknown [IPv6:2a02:a03f:eaf9:8401:af3b:b3fa:fe8b:2fa0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 1EB232C4D0A;
-        Sun, 10 Apr 2022 16:34:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1649601242;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Pce3l0zcwsTkdWqwpwwdngjdSNwyjOaDkb7uabbF/s0=;
-        b=loe5+DVUFerHboZhovizrI0Xn9cvNo9rVpI+xwDSUEloPV3K1wHiuTbmyO9LXAenBGw5Dr
-        Non/1rNtjM+1xGYjGZgu7g8jRWZP+PjO+lHop0ZacBP7muIWWowgZCnok5dL6r2RzwxlJB
-        iC9OIymp6Jy1aZ3HQnltFoYU6CVrJXiQjOzL94AG3kgBE/yDTq5rSoIWPNCv1NeaggHj2d
-        VVWX9DBY4tPJy0ITmPvf4JxVIJBPHjB8ts7IGTtF3U43dy4uD/KvarQxQeLF2B6XaRFpLB
-        XnDIZM0nC8qbs9bjJkpdog1kgQhHRiKJiKpgAFVX18tOvNKY2+hspjpAJGESdA==
-Message-ID: <59e410997a35a511e34febfe923b1345a95afe00.camel@svanheule.net>
-Subject: Re: [PATCH v1 1/6] dt-bindings: gpio: realtek-otto: Add rtl9300
- compatible
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229673AbiDJOi5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 10:38:57 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A9444FC51;
+        Sun, 10 Apr 2022 07:36:47 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id w18so15262861edi.13;
+        Sun, 10 Apr 2022 07:36:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BKkGQ0Mvqi4FBstenNkXAi42Rt/g6fYjLkhfPoyt3WM=;
+        b=HkgsCSL58PnbdcUBEOhGnHm6bJa+DOxjnoSIAlawOv1amwFaBpH6xfy629c4kCnBby
+         WUoJLA/YSQIcw+yi/FA+hKHSdo3KYfxfCUD2jJoaaZX+Z4GNzz7/urKDCSBz4RrsdN3y
+         AkJiaTLVMJScsv258BEFIrZtfrdYd6jPnoPVYU9Cu/jcKLgBaM3zOHQq86qJTKBYy+jW
+         y1I9BsvJQAJaIJs81NIZ2zIYMNKVzIav0LtD7aMnebtNLgKkeZ2Cj7uF/utQfsT6NG6C
+         pFjqAAHVmA1af2uKYgsOm+Z6tiQqJtj48EtHBFYvIgNQVmzcPhmxGTJbIhHkPO2DaGJo
+         QOrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BKkGQ0Mvqi4FBstenNkXAi42Rt/g6fYjLkhfPoyt3WM=;
+        b=xm/sjEWFbZQsUMqPjbNDsuYAz1nm+4A+L4DNGDEAaZloyghKnSz+355oexTBRe9zux
+         C7wgK2rAXGwDp2pZyKL5nzBdOd0PUtLfw6zf5trL63AdpVsS/OMODANO+ea6B1C6muLe
+         PHqsuQ1WSlxJ9fiKJ8AbrdwXy6+UP5wJThEoWGF4J08xo9bgS6kSKNQB5UCSWNlaZKj0
+         DOA3Gzgyq4n2GmsAahX8tVxKBzats/mIY8d8672e87f0sqHG6dkjD24TeO/MYmlenYuc
+         0COu3Xc6fXYHFsi4TLGMzfewWQ9Wevwzw4luTl1YE8u8vsyF12qzsxJW5+Yi/gY5QRut
+         tczQ==
+X-Gm-Message-State: AOAM532TzQYU5yvSB2jDD/CXAyqzxLK/Ki5Io8NQR8xVzdkwm7DbSLtx
+        NamUG//l2jNh7I40X7RHXLQPwE24FGeHZFQOhfw=
+X-Google-Smtp-Source: ABdhPJzTDZ5SdBgHlmf6b0kuw1eJUXWFsZR/bspw3My95hu+0WpS5LLqUJLEvCUrOzoKmjYfdJiCVqH6U2RA+lZXSss=
+X-Received: by 2002:a05:6402:2142:b0:413:6531:bd9e with SMTP id
+ bq2-20020a056402214200b004136531bd9emr28703628edb.5.1649601405556; Sun, 10
+ Apr 2022 07:36:45 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220402193942.744737-1-aford173@gmail.com> <20220402193942.744737-2-aford173@gmail.com>
+ <a66f17c6-cec6-3eb8-92df-9990d74dd122@linaro.org>
+In-Reply-To: <a66f17c6-cec6-3eb8-92df-9990d74dd122@linaro.org>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Sun, 10 Apr 2022 09:36:34 -0500
+Message-ID: <CAHCN7x+mm_oXdkzXOTEQwjCFfDB99p2JG8zZzydbL5_pUVJqCQ@mail.gmail.com>
+Subject: Re: [PATCH V3 1/3] dt-bindings: mmc: imx-esdhc: Update compatible fallbacks
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bert Vermeulen <bert@biot.com>, linux-kernel@vger.kernel.org
-Date:   Sun, 10 Apr 2022 16:34:01 +0200
-In-Reply-To: <edfc1f7c-3083-7f0d-dc18-e9ab36c2dc9a@linaro.org>
-References: <cover.1649533972.git.sander@svanheule.net>
-         <7dfad6c63cea64ccd84907f1cf9f7c9c6d1ce3e9.1649533972.git.sander@svanheule.net>
-         <edfc1f7c-3083-7f0d-dc18-e9ab36c2dc9a@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof, 
-
-On Sun, 2022-04-10 at 16:16 +0200, Krzysztof Kozlowski wrote:
-> On 09/04/2022 21:55, Sander Vanheule wrote:
-> > Add the "realtek,rlt9300-gpio", "realtek,otto-gpio" compatible for GPIO
-> > nodes on the RTL930x SoC series. This SoC requires an extra register
-> > range, defining the interrupt CPU mapping registers.
-> > 
-> > Signed-off-by: Sander Vanheule <sander@svanheule.net>
+On Sat, Apr 2, 2022 at 3:12 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/04/2022 21:39, Adam Ford wrote:
+> > The SDHC controller in the imx8mn and imx8mp have the same controller
+> > as the imx8mm which is slightly different than that of the imx7d.
+> > Using the fallback of the imx8mm enables the controllers to support
+> > HS400-ES which is not available on the imx7d. After discussion with NXP,
+> > it turns out that the imx8qm should fall back to the imx8qxp, because
+> > those have some additional flags not present in the imx8mm.
+> >
+> > Suggested-by: haibo.chen@nxp.com
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
 > > ---
-> >  .../bindings/gpio/realtek,otto-gpio.yaml      | 33 +++++++++++++++++--
-> >  1 file changed, 31 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> > b/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> > index 100f20cebd76..3c511e9af377 100644
-> > --- a/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> > @@ -28,10 +28,10 @@ properties:
-> >        - enum:
-> >            - realtek,rtl8380-gpio
-> >            - realtek,rtl8390-gpio
-> > +          - realtek,rtl9300-gpio
-> >        - const: realtek,otto-gpio
-> >  
-> > -  reg:
-> > -    maxItems: 1
-> > +  reg: true
-> >  
-> >    "#gpio-cells":
-> >      const: 2
-> > @@ -50,6 +50,23 @@ properties:
-> >    interrupts:
-> >      maxItems: 1
-> >  
-> > +if:
-> 
-> You could put it under allOf:, so if you ever need to extend it, you
-> don't mess with the indentation, but it's fine as it is.
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > V3:  Marked the imx7d-usdhc as deprecated when there are better
+> >      fallback options or the fallback isn't needed.
+> >      Leave the deprecated fallback in the YAML to prevent errors
+> >      Remove Reviewed-by from Krzysztof Kozlowski due to the above
+> >
+> > V2:  Update the table per recomendation from Haibo.
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > index 7dbbcae9485c..11f039320d79 100644
+> > --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > @@ -34,23 +34,34 @@ properties:
+> >            - fsl,imx6ull-usdhc
+> >            - fsl,imx7d-usdhc
+> >            - fsl,imx7ulp-usdhc
+> > +          - fsl,imx8mm-usdhc
+> > +          - fsl,imx8qxp-usdhc
+> >            - fsl,imxrt1050-usdhc
+> >            - nxp,s32g2-usdhc
+> >        - items:
+> >            - enum:
+> >                - fsl,imx8mm-usdhc
+> > +              - fsl,imx8mq-usdhc
+> > +            # fsl,imx7d-usdhc fallback is deprecated for imx8mm-usdhc
+> > +          - const: fsl,imx7d-usdhc
+>
+> Instead of comment use (I think on the same level as items):
+>
+> deprecated: true
 
-Thanks for the review. I'll probably need to send a v2 of the series, so I'll update the
-indentation too. The commit messages have a typo ('rlt9300' and 'rlt9310') that needs to
-be fixed anyway.
+I have tried various combinations of where to place "deprecated" and
+whether or not to use a hyphen, but I always get syntax errors.  Do
+you have an example of this I can see?
 
-Best,
-Sander
-
+adam
+>
+> > +      - items:
+> > +          - enum:
+> >                - fsl,imx8mn-usdhc
+> >                - fsl,imx8mp-usdhc
+>
+> So if this is a deprecated list, where is a proper one? The list with
+> this enum + imx8mm?
+>
+> IOW, you need to list here:
+> 1. Old combinations with "deprecated: true"
+> 2. New combinations.
+>
+> > -              - fsl,imx8mq-usdhc
+> > -              - fsl,imx8qm-usdhc
+> > -              - fsl,imx8qxp-usdhc
+> > +          - const: fsl,imx8mm-usdhc
+> > +            # fsl,imx7d-usdhc fallback is deprecated
+> >            - const: fsl,imx7d-usdhc
+> >        - items:
+> >            - enum:
+> > -              - fsl,imx93-usdhc
+> >                - fsl,imx8ulp-usdhc
+> > +              - fsl,imx93-usdhc
+> >            - const: fsl,imx8mm-usdhc
+> > -
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,imx8qm-usdhc
+> > +          - const: fsl,imx8qxp-usdhc
+> > +            # fsl,imx7d-usdhc fallback is deprecated
+> > +          - const: fsl,imx7d-usdhc
+> >    reg:
+> >      maxItems: 1
+> >
+>
+>
+> Best regards,
+> Krzysztof
