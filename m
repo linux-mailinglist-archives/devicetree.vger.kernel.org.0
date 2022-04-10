@@ -2,55 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D56324FAB2D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 02:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0848B4FAB38
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 02:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbiDJAJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 20:09:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43066 "EHLO
+        id S229771AbiDJAre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 20:47:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233193AbiDJAJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 20:09:16 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FB85176D03;
-        Sat,  9 Apr 2022 17:07:05 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S233338AbiDJArd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 20:47:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36065E13;
+        Sat,  9 Apr 2022 17:45:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9B0AA834BC;
-        Sun, 10 Apr 2022 02:07:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1649549222;
-        bh=dpdIuchMh/sX1+3R2GnL2NcCcVnkZt0eIvZvcUYSsO4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZIfP49ovY7/62RcRdZ3lWbl+8ceT5jZKcDmDFzZL0AmKIZqeQZ0vNvpztTmKJV88a
-         XNnlNjQDX+ez/hYDov39dLEZJtBpE8t0gFhFsZKDmveg7q7mljsFYuZYtPPackDgF+
-         LQlUQj8wE67vJOJAWggCas4ggZklaEtN86ArrVtoiyxW5ApRrhw3zxiEK2/rCRsg8m
-         /Ux243dUlerMxrKcq3f8lo9tyUEMbUeoNElMNVouqjpdhgZuX883wX8gRL8VNWeQE5
-         ULM3uyElNwpFP7XXSrAL2q3jG1g6fD/3XkxxNJeYR8IUoFpv4w6GR9I9xdsGVmD96z
-         TKkIDM6C66ATA==
-Message-ID: <88e8194a-1657-c35d-7794-dd377289a77c@denx.de>
-Date:   Sun, 10 Apr 2022 02:07:02 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A32F60ABE;
+        Sun, 10 Apr 2022 00:45:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F4ECC385A4;
+        Sun, 10 Apr 2022 00:45:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649551523;
+        bh=ibGsfvoxyETUMsOBNUAGCCBYPkqHdtnM/rr3Q+QX1XA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K1rV7onQT8dM2y9Or9t5ccLspwi/uyRZ8+KZ7KC1E6gYXmHvkfy6ZEXZJvZ2Z+O4w
+         Egdmri5I8gBi598YO53X5692QK3xwF+I3hNNHod4FVl9V0/6ItrZRweODAfC6MCaUY
+         cH6/csfuaYlKXicm4Qyp9m23/HuRgcJdY7cRupjE9VWZcYqhO1tgPHz1bcQDUdtiQk
+         B1hxX3kgBWqSyid4LloP02tcJ9yAtx1R0SWOtVqYuqoAkDEObmbpiQx1enw1+rvh9T
+         sKcJyCQpn65PjfChUTJ+Aq/vGEtgB3J3lLzLLNLlT4mwlms1UVnTRkoPCeGblricuo
+         G/yK/qCzp8hyA==
+Date:   Sun, 10 Apr 2022 08:45:14 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Max Krummenacher <max.oss.09@gmail.com>
+Cc:     max.krummenacher@toradex.com,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Li Yang <leoyang.li@nxp.com>, Lucas Stach <dev@lynxeye.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 01/14] dt-bindings: arm: fsl: imx6dl-colibri: Drop
+ dedicated v1.1 bindings
+Message-ID: <20220410004514.GD129381@dragon>
+References: <20220314162958.40361-1-max.krummenacher@toradex.com>
+ <20220314162958.40361-2-max.krummenacher@toradex.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC][PATCH] kbuild: Generate symbols for DTO application in DTBs
-Content-Language: en-US
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220407110522.122393-1-marex@denx.de>
- <CAK7LNATp4_Hjte3tj_tqVLzJu30fidAowkrBgXkjC-68FwFzkQ@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAK7LNATp4_Hjte3tj_tqVLzJu30fidAowkrBgXkjC-68FwFzkQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220314162958.40361-2-max.krummenacher@toradex.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,53 +67,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/7/22 14:30, Masahiro Yamada wrote:
-> Hi Marek.
-> (+CC Rob, DT ML)
+On Mon, Mar 14, 2022 at 05:29:45PM +0100, Max Krummenacher wrote:
+> The dedicated device tree for V1.1 modules has been dropped. Remove
+> its bindings too.
+> 
+> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 
-Hi,
+Please fix your email client to avoid the checkpatch warning below.
 
-> On Thu, Apr 7, 2022 at 8:05 PM Marek Vasut <marex@denx.de> wrote:
->>
->> Emit symbols section in DTBs to permit symbol resolution when applying DTOs.
-> 
-> I CCed DT folks, but if I remember correctly, adding -@ globally
-> was NACKed because it would increase blob size for platforms that
-> do not need overlay.
-> 
-> 
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Masahiro Yamada <masahiroy@kernel.org>
->> ---
->> NOTE: I am sending this as RFC, because I suspect there is a better way how
->>        to pass extra flags to DTC during kernel build ?
->>        Maybe from shell environment somehow ?
-> 
-> 
-> For local use, yes, you can add -@ from the command line.
-> 
-> Try this:
-> 
->      DTC_FLAGS=-@  make ARCH=arm64 dtbs
-> 
-> 
-> This is undocumented tip, but it seems to work
-> for the current code.
+WARNING: From:/Signed-off-by: email address mismatch: 'From: Max Krummenacher <max.oss.09@gmail.com>' != 'Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>'
 
-This is real nice (and very much what I need), thank you.
+Shawn
 
->>        Or maybe b7e70391a5451 ("arm64: tegra: Enable device-tree overlay support")
->>        is the way to go about this ?
+> ---
 > 
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 8 --------
+>  1 file changed, 8 deletions(-)
 > 
-> Since commit 15d16d6dadf6947ac7f9a686c615995c5a426ce2,
-> adding -@ is automatic for platforms that support overlay.
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 97f6eebad76a..cf854203bfb1 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -411,7 +411,6 @@ properties:
+>                - technologic,imx6dl-ts4900
+>                - technologic,imx6dl-ts7970
+>                - toradex,colibri_imx6dl      # Colibri iMX6 Modules
+> -              - toradex,colibri_imx6dl-v1_1 # Colibri iMX6 V1.1 Modules
+>                - udoo,imx6dl-udoo          # Udoo i.MX6 Dual-lite Board
+>                - vdl,lanmcu                # Van der Laan LANMCU board
+>                - wand,imx6dl-wandboard     # Wandboard i.MX6 Dual Lite Board
+> @@ -492,13 +491,6 @@ properties:
+>            - const: toradex,colibri_imx6dl           # Colibri iMX6DL/S Module
+>            - const: fsl,imx6dl
+>  
+> -      - description: i.MX6DL Boards with Toradex Colibri iMX6DL/S V1.1 Modules
+> -        items:
+> -          - enum:
+> -              - toradex,colibri_imx6dl-v1_1-eval-v3 # Colibri iMX6DL/S V1.1 M. on Colibri Evaluation Board V3
+> -          - const: toradex,colibri_imx6dl-v1_1      # Colibri iMX6DL/S V1.1 Module
+> -          - const: fsl,imx6dl
+> -
+>        - description: i.MX6S DHCOM DRC02 Board
+>          items:
+>            - const: dh,imx6s-dhcom-drc02
+> -- 
+> 2.20.1
 > 
-> 
-> If  <platform>-dtbs exists, -@ is automatically added.
-> 
-> See arch/arm64/boot/dts/xilinx/Makefile
-> as an example code.
-
-Is it now allowed to start upstreaming DT overlays then ?
-That would be nice too.
