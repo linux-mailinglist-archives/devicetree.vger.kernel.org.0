@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A69E4FB038
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE2D4FB03C
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238989AbiDJUxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 16:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59766 "EHLO
+        id S233918AbiDJUxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 16:53:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233918AbiDJUxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 16:53:42 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498C454BFB
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:51:30 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id u19so8239490ljd.11
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:51:30 -0700 (PDT)
+        with ESMTP id S236047AbiDJUxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 16:53:43 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537065520C
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:51:31 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id m8so376403ljc.7
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XP78OVn+EySMYvkvHr42vemVzwzDRMsxq8nEH8XnqFY=;
-        b=eCYEcTF3sLOiVzrOT7pbB7jQqTPyqpYe/7jhAuP9sKK9ANMYEkpXrrXOFduoxkHaVC
-         2s+IJMKd+eJ1dzc4C2KkPytInjh3ClPAHW0vYHKg283/JPg3g/SnxEigKvIsyCPpDsM+
-         h1Q9AzohX4qP3yHJucd301KGPUHP6zGTYvaZ7YVSZSBHNlgkf1FnS+9LGswuHgjo7LLO
-         1+lyN1DpuYkuFi/ItLAPrXhZXol4TdvFTnWD/a4PPf8QvbwkzvLqaJkpCnwEFNhFs9ru
-         8HVLeeHGJpguQSdsijW0xM+utQDWK2E4OpeqavS+9k794hmtjknz3suWQV+2X4Q/TxbR
-         YMIQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=t69oCZEW/bMPYdVmTxc6rrv0zm/Oj37WLcE4owOEwKk=;
+        b=whMEjuK1zaCpm1IhGP7myyApuhE1pqdJuOvL49DwftSjGAnbq5cMof+tA1ywZz9+CP
+         rdlHLvozxoLMX5BiyNgNtoXRXq1vZr1x7YWJBXfQ0oScwaJ0FvcBLs6dYo1m6/UQc54E
+         CctMnLzGposyeVCNWAxN2j15NHtPaCVeWdQD9eJk5LJqBfygJQGH0kM6s4ceA6lhCYP/
+         0T4dnUwWzlREtFkLe1FzeLZ177E0AmaUM6rVh6cyIQpMRJBuCc2etVYzDp7BUhMGCvJj
+         5ocJTHYqGxA5ermkGD2XS79U9X0dAcyzYii1zX3OZcp1VBieT6h9qjU7wNLZ8R+IYmt/
+         td7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XP78OVn+EySMYvkvHr42vemVzwzDRMsxq8nEH8XnqFY=;
-        b=bQ1GN9ZAbi77HEQtG+xfZseKwyhIlYa4Pn1/tbLnGGVkLngBkGprPiWgjBbdN2jmSA
-         F2bqxyuBrm4Ej3kaRv/Ub1Br2ynzRnRUL+WXVOrmyChP2mxPZPmM2CGSeWGID+8W5wWM
-         sMVIbTs6XKHUXYCzc1WpniMHy31IXgtKYmkyY0PrEabQWKBKdE80kXsJI755bjMWEaOO
-         QsSvRnMqzE5Sk+mrm7JsmT8nNoqS+8xO496TGIBMoVCp0PnUSeokrR2m75twH4KM/x7E
-         KNbi6y1qV8eLHSTCoE4vMv8COuNdFnj8yaGI92Vclfvf+3Yp5HIlYdAFgQN1s034ieEw
-         Z7ZA==
-X-Gm-Message-State: AOAM5319NVOQzuPO5Ioa+RYWTeduVnGI/bqBfAKs36WEETTzDTh45SeM
-        uu1Fs3+ivbQpZOMYWwjbZjOWiw==
-X-Google-Smtp-Source: ABdhPJwr/IUolmG+Hnh/ET+ZaAkdk8RTwVJXtPdiTcl1Jkfw1tLts+55b1NXdP2x3rIkMs16aFxPJA==
-X-Received: by 2002:a05:651c:10b1:b0:24b:2139:471a with SMTP id k17-20020a05651c10b100b0024b2139471amr18337142ljn.12.1649623888532;
-        Sun, 10 Apr 2022 13:51:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=t69oCZEW/bMPYdVmTxc6rrv0zm/Oj37WLcE4owOEwKk=;
+        b=1NAArwXkhtjEURpoZAiVaSBCCX8Jm8B0TOqk5R3+OdzcPaxh49NCvoRXtKj+1e9Ac9
+         Zhb7PqR6XVmnOJC6MREQ9QrHn2gHBkHnnEkSF2M0QF3TXQFuf5ctCkc1nJoj4VSViITj
+         DK91HW9J5pDHZyibMvAAT+jj/uxPCwH7ipzn1Hf46pqlQu//dqUzBxJ9x3rXCQD1bvuJ
+         4JbXTOZ0s7JEUWPQ9Ie8UCa+iTdOLMJ+zrRGjIiCePot2KGtosGUFZ73NZd/UGUYWpvS
+         +at094+Sm66sRsudBOYeoBwsZgVxTHJrv2zMxR0j0D5Mto07S+BYzDP+0W1arJK9AQel
+         k/eA==
+X-Gm-Message-State: AOAM531N0pg8avsMQYc6m7UC7yKldsB6E9THhPQm1O94i4g7ceBNYsTP
+        THP6oEHlYaFeL2yAl1pxh9MWxQ==
+X-Google-Smtp-Source: ABdhPJy0Bs70ZJnB1BvoxHWUMNter25LRGbIqzLahFMZEmio1TP8zkycEvQM+QgAsFHgOh9/wQ7OYA==
+X-Received: by 2002:a05:651c:160b:b0:247:f955:1b18 with SMTP id f11-20020a05651c160b00b00247f9551b18mr18726414ljq.427.1649623889369;
+        Sun, 10 Apr 2022 13:51:29 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t15-20020a19910f000000b0046ba6b39d14sm85244lfd.10.2022.04.10.13.51.27
+        by smtp.gmail.com with ESMTPSA id t15-20020a19910f000000b0046ba6b39d14sm85244lfd.10.2022.04.10.13.51.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 13:51:27 -0700 (PDT)
+        Sun, 10 Apr 2022 13:51:28 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 0/2] arm64: dts: qcom: sm8450: add PMIC includes
-Date:   Sun, 10 Apr 2022 23:51:25 +0300
-Message-Id: <20220410205127.1670705-1-dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8450-qrd: add missing PMIC includes
+Date:   Sun, 10 Apr 2022 23:51:26 +0300
+Message-Id: <20220410205127.1670705-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220410205127.1670705-1-dmitry.baryshkov@linaro.org>
+References: <20220410205127.1670705-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -69,28 +72,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add includes for PMICs used on two SM8450-based platforms. These patches
-depend on the series at [1].
+Add includes for PMICs used on the SM8450-HDK. This makes GPIO blocks
+and thermal sensors available to the user of the platform.
 
-[1]: https://lore.kernel.org/linux-arm-msm/20220226205035.1826360-1-dmitry.baryshkov@linaro.org/
-
-Dmitry Baryshkov (2):
-  arm64: dts: qcom: sm8450-qrd: add missing PMIC includes
-  arm64: dts: qcom: sm8450-hdk: add missing PMIC includes
-
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 6 ++++++
+Co-developed-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 7 +++++++
- 2 files changed, 13 insertions(+)
+ 1 file changed, 7 insertions(+)
 
-
-base-commit: 3123109284176b1532874591f7c81f3837bbdc17
-prerequisite-patch-id: 435eb95d10af754e1f192cd8320bee260c3a46c4
-prerequisite-patch-id: a3e95931fb401248d550ff95a1030bb2e6f86d54
-prerequisite-patch-id: 5e13599495bd37b79c7fa870a440604892992f87
-prerequisite-patch-id: 3d92b9a5b685aa2aae132cc4de10411ce5ce6472
-prerequisite-patch-id: f36bb6107c1db6710a2766c623ecce5c5bf4f843
-prerequisite-patch-id: 73bdfb2f30b1225919dedc692e9a9ed0ae923b2f
-prerequisite-patch-id: f679f3592a872a3becab63912e735f9e4ecada1c
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+index 9526632d4029..b7ea92045bc4 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+@@ -7,6 +7,13 @@
+ 
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sm8450.dtsi"
++#include "pm8350.dtsi"
++#include "pm8350b.dtsi"
++#include "pm8350c.dtsi"
++#include "pm8450.dtsi"
++#include "pmk8350.dtsi"
++#include "pmr735a.dtsi"
++#include "pmr735b.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. SM8450 QRD";
 -- 
 2.35.1
 
