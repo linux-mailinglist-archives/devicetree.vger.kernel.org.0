@@ -2,95 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDCA44FAD17
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 11:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9484FAD9A
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 13:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231849AbiDJJtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 05:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
+        id S238185AbiDJLGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 07:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236522AbiDJJs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 05:48:57 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0902AE34;
-        Sun, 10 Apr 2022 02:46:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649583974; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=IVcX0fVbhg5OMdbn7yaaahvzH6Jk2UFXb6S57wQE6mF64PN465M9ikQr9DQOJX4N9SUNymMsaAmH02J1bKWBcOgOaffuK8jJwtakMfILGMoSSQ3wDk2XQ24OtIA7B64sISbYhtDNziyJWdbduZiQCOHwtWurbwgbxn5DsNjY0TU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649583974; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=7poOT/rw9kdWGl9YXFYkvmc3/pYXbV5NbQ/hwxad42M=; 
-        b=KlPTgF95iaPYLBCkM8ali76274TsIaK2wS0PTd2d8gK+LRaZ89eRkKGr8rWdxl3dYJlT+Hu/pF4ZeuFJtDDXubg1+4U+iMBb5rI8okd3pLQy6meSgYSnG5WZqWu3mIHHDwWbtRQZkuDiYcwR3579wO+EH7WxiHVkSZojF3eXPAg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649583974;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=7poOT/rw9kdWGl9YXFYkvmc3/pYXbV5NbQ/hwxad42M=;
-        b=N9gfTA2+3liFeCJtn3lIw243pbKnDgkmCdHkETOQoZmaJ1DM1QsnQI+EBblwQ/Zn
-        8xCojxGwoSFXwsHMC0kVtPMrwcUcktXLA/cmqYXf5ZEr/plM6dPTT7DJA1w4X9s5svq
-        AA9Ydhhpm9wqljShTE5pMbV+5y+UAA4cqgBZ/Y/g=
-Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649583972146345.7919696113951; Sun, 10 Apr 2022 02:46:12 -0700 (PDT)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-Subject: [PATCH] ARM: dts: BCM5301X: Disable gmac0 and enable port@8 on Asus RT-AC88U
-Date:   Sun, 10 Apr 2022 12:44:55 +0300
-Message-Id: <20220410094454.2788-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S238178AbiDJLGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 07:06:41 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3ECC443FF;
+        Sun, 10 Apr 2022 04:04:28 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id n9so11598086plc.4;
+        Sun, 10 Apr 2022 04:04:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Pj4wq9+LbeDRlRaJUHKgoygCg5/94JkoueAy/3cHRMU=;
+        b=qIO5/T0fVdupMRtS8+fLGpOvOKPDM4KAhTkm38bTErUgOQNCC5Mwlhxx3fytnZtrz2
+         I2uwyaRnweWl26gTX3UV0uE+gcJsrLsfn2F5VtLdo/YxCtRTZp0z8bWjR+pYeMxHgZHv
+         fkPODSnTKvqVBkYoQy/59iY/pyo3U3ip6un0/U/wOyF4PwvJ+6/UBIqjcDnIcx2aWAXS
+         MifOgafzXfijTC6BQ2GLWblXvbOIIGD/7YfV3aCx0UpAcLaecebWGlow/ijYEx5yStnC
+         ie7tco4Ww2PFb/OqjLYiy9woZfia8mft2yZZdiFP8/dBgcTowB5eTGn3Eo+oiP0xhBNN
+         9lcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Pj4wq9+LbeDRlRaJUHKgoygCg5/94JkoueAy/3cHRMU=;
+        b=6WljTXxLNkOP6+exs23XuX6UkMXPMTpNCezO+HBzPI88IrO2Oo+7ziqp4VbJ/xHzNf
+         zNVsW+Y5QbBm/LO6WRgDjfVoMlF6mJ8SqUo/MeK9v9VXdOlHiRX9dUYhst8R26xJ1AoO
+         gMg2M/BnqLUkkpCBUXKOSorOw0x/8DvN3loOdD0NwVTuJAf9bVq+v7tEwc7CYMD46RM/
+         C+FrS5gB1E1dcNLw/eeX6S9PSBfz13nFI5EjWBrlOP9Ts+YcnC/+Z9uqu99e4dVjJNm2
+         PbV8Zx9yOxTNPV5vSV1cl3V1WUbXRCGQVsHSUrhSqDKDg6XUMX1FPBaa9CG0npPemgrP
+         /lEw==
+X-Gm-Message-State: AOAM531WlAXNbGzrmwvZmG3JVOnEQ9U9XoYHQ93RAI2Y7gX1jNRT0sCq
+        oiBDUscIVmod7jKOR6dh5JA=
+X-Google-Smtp-Source: ABdhPJzujYvV7CWWoXSyGZ69+3TPkzbbvHelnSV378sOBT2+lmQjwvofcVYT2LoBFyWuE2vupzbLiw==
+X-Received: by 2002:a17:903:22c6:b0:154:4156:f397 with SMTP id y6-20020a17090322c600b001544156f397mr27570170plg.29.1649588668101;
+        Sun, 10 Apr 2022 04:04:28 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id m8-20020a056a00080800b004faa4e113bfsm33069670pfk.154.2022.04.10.04.04.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Apr 2022 04:04:27 -0700 (PDT)
+Date:   Sun, 10 Apr 2022 16:34:23 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/6] Covert Qcom BAM dma binding to json format
+Message-ID: <20220410110423.GA6249@9a2d8922b8f1>
+References: <20220409184115.15612-1-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220409184115.15612-1-singh.kuldeep87k@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Disable gmac0 which is not connected to any switch MAC. Enable port@8 of
-the Broadcom switch which is connected to gmac2.
+On Sun, Apr 10, 2022 at 12:11:09AM +0530, Kuldeep Singh wrote:
+> Patch 1,2,3,4,5 require generic node name for dma and 6/6 is actual
+> conversion change.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
-index 2f944d1c0330..d8503758342b 100644
---- a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
-+++ b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
-@@ -232,7 +232,6 @@ port@8 {
- 			reg = <8>;
- 			ethernet = <&gmac2>;
- 			label = "cpu";
--			status = "disabled";
- 
- 			fixed-link {
- 				speed = <1000>;
-@@ -242,6 +241,10 @@ fixed-link {
- 	};
- };
- 
-+&gmac0 {
-+	status = "disabled";
-+};
-+
- &gmac1 {
- 	nvmem-cells = <&et1macaddr>;
- 	nvmem-cell-names = "mac-address";
--- 
-2.25.1
-
+Need to add more dma-controller name for ip4019 and update in binding.
+I will send v2 with updates.
