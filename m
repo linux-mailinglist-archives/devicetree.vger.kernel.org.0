@@ -2,87 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 686244FAF90
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 20:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E51B14FAF97
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 20:43:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233036AbiDJSZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 14:25:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52686 "EHLO
+        id S234404AbiDJSpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 14:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbiDJSZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 14:25:31 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F693465F;
-        Sun, 10 Apr 2022 11:23:19 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bh17so26680427ejb.8;
-        Sun, 10 Apr 2022 11:23:19 -0700 (PDT)
+        with ESMTP id S229742AbiDJSpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 14:45:47 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC725006B
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 11:43:35 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id i27so26766080ejd.9
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 11:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dTlWD/+DNG8ntKC7giRASd1M2RQMGgWr/+DdcAwn+Oo=;
-        b=fTMuFY8NJsqQxEy1jImsyfghQ41FlphmGwdVAypDvJrGJG2TOyyBp3sU9/lk4Kc9Wa
-         xFgHQAGmcPPsFV6W11Q81eQ4wpQPF1dLb4D7RQmZjOYkAruuMeO3XDoWUxqp+nEuJvQh
-         KMz/x6PEMXjlOF+/ZlB5sDl+tvPVvflC8yZfWH0bqxAAKfGY94w8ltirJIz+QbcF2VJU
-         E+7Vxuws97vPnDn+UXE2RsRm4PGBAThfQ/b4xbSqTnw20vKKn83Le92BW5Xm9jX5QB5g
-         kN+66pwcJb2dlKsTN5NrTRH51kqBUenTm8K/8CmiCeY7tOZ4WQnqgF0/P3Ohs8c9i/3x
-         +9fA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wbYPtptec7QbAGJo1o9GOuV9jbyduIPyoXCbrV2QG9U=;
+        b=C0yU56vVruJLjN/r1qRQy3n0t+zw6JYGGe4rL9yp1wublbJ+f2ewWvD5ECc7z5eKcO
+         rY11zq0SaZQleBqXBM6hur8LI/C3j4FQOCONBrGhvcpZzocVi+tqfT8Di7f0fubEZqzT
+         sikx6Ry2g1mh3iDpWSrlWEQ+bg+d+Nlss+eRVIxiIYJEuyYCJHlTPDLlQ0RxeiQDfTQ5
+         0XX0j2pWARp238JFHnOX7ZZEww/PTkQr3Uu0aCfGd4bil/cFeHsVweKWx0H9NHzFp3tG
+         tvr5fXv48RofFdFCosCjurZdBlSaTkvfjc96DJEdFZdhscGldMd/wYcm6yvFzXxLDIGs
+         wqSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dTlWD/+DNG8ntKC7giRASd1M2RQMGgWr/+DdcAwn+Oo=;
-        b=nW879R4TszUWVsfpK5rBIFvB2CdCsBV37lKXhPwgQtV8rZ32fjpxKhF0svSt55Z84z
-         cnTl+ANSgnVTPYZYeAGJiog521QDMk02n8AZntK2s0cIYEU/MYnSm4nFVSyLWkK+wwYm
-         jKom//mHDoKkMtcXoGTk7WbpUghbN37JNEPG8ZKAtbTlJPioqCsjUSu/PSNrCc4NmH18
-         bxw+zW3Afgm5lGhAGIt6+9kqhgC5aJ4V3BdeNQlEjWof78/pHoRto/eBe2GTf51MO3Ye
-         zHpHRgu+8mmlns8p3wQdZ3nEIcW6gMGp1+hZcagTrjzK606HzW47M9Lb7y46YEGQ23YG
-         FGwg==
-X-Gm-Message-State: AOAM532VFwwgQSfjcHC09aNIpv5IUfKBi6Ln72e6KH69uIwxauwFojOu
-        QrZp8XE99agvFr8DtKp1e0w=
-X-Google-Smtp-Source: ABdhPJyWiHyfZYk23/sjFDvNph0NWHcmJxJcH7zcPzkJBZmYJp2g9edrzfKJENEPKt00hjEItaEJIw==
-X-Received: by 2002:a17:906:9743:b0:6d8:632a:a42d with SMTP id o3-20020a170906974300b006d8632aa42dmr27490055ejy.157.1649614998151;
-        Sun, 10 Apr 2022 11:23:18 -0700 (PDT)
-Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
-        by smtp.gmail.com with ESMTPSA id e22-20020a170906505600b006da7d71f25csm11054135ejk.41.2022.04.10.11.23.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 11:23:17 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Philip Rinn <rinni@inventati.org>, wens@csie.org,
-        Samuel Holland <samuel@sholland.org>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: Re: [PATCH v4] arm64: dts: allwinner: a64: olinuxino: Enable audio
-Date:   Sun, 10 Apr 2022 20:23:16 +0200
-Message-ID: <4727823.31r3eYUQgx@kista>
-In-Reply-To: <40976a35-2241-a2f0-c9be-dd32c1b51814@sholland.org>
-References: <4fc41278-c46c-6486-a336-f2a329bd6bd0@sholland.org> <20220407155145.10891-1-rinni@inventati.org> <40976a35-2241-a2f0-c9be-dd32c1b51814@sholland.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wbYPtptec7QbAGJo1o9GOuV9jbyduIPyoXCbrV2QG9U=;
+        b=72rWi+hNw7QyDRkQI6/B7/LEc+SiuASx5HweM3+z/jMaoKVMl0t6V84CgTbpzoyA+x
+         Z9ji66OXA8ll74hm9mN2PqaW7Rp8aZa9CkRzMDQwL7Qu5Y55N122UM6vbMyqOtMg2yTS
+         wVoaO3UpV5tFMtr4knDKO6neCIoCMVUVoa1/6Ewe2ZugNHrUWX5AWgPg9hUucaC8UKU9
+         1mSfipImCnI0hhMitLnHm3KydIyqAvQuhUBnetR33X4HPIzZypfgGWFl3BicpWAKaomm
+         X7UWLwPrLxaKuSY7pdSKQ82/3GXnTBpEHqSOn1aIU/o5I7nfztGsW8+5Y6eSwtI8uZfn
+         tEHg==
+X-Gm-Message-State: AOAM5327LoK0H6+IzyFogUsDqO4927CiPf6qyr7sA8ksynnoUR/ctEJu
+        uNCnbrym8v8h0Vlbv1Lr+4VI1w==
+X-Google-Smtp-Source: ABdhPJxT2XgWSSNcJhtRvtaK5QhQN+dRP6+Hs5AueHz+wAYQXMVba/vhkPX1D/pQA+9MZTDsLhZnVQ==
+X-Received: by 2002:a17:906:4313:b0:6b8:b3e5:a46 with SMTP id j19-20020a170906431300b006b8b3e50a46mr26605032ejm.417.1649616213825;
+        Sun, 10 Apr 2022 11:43:33 -0700 (PDT)
+Received: from [192.168.0.190] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id q2-20020a170906144200b006ceb8723de9sm11023704ejc.120.2022.04.10.11.43.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Apr 2022 11:43:33 -0700 (PDT)
+Message-ID: <d69346e0-77a0-13da-77b6-b343cfadd5c6@linaro.org>
+Date:   Sun, 10 Apr 2022 20:43:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RESEND PATCH 1/2] media: dt-bindings: imx412: Add regulator
+ descriptions
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
+        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20220410163553.3501938-1-bryan.odonoghue@linaro.org>
+ <20220410163553.3501938-2-bryan.odonoghue@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220410163553.3501938-2-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 08. april 2022 ob 00:06:01 CEST je Samuel Holland napisal(a):
-> On 4/7/22 10:51 AM, Philip Rinn wrote:
-> > Enable the audio hardware on the Olimex A64-OLinuXino board family.
-> > Tested on the A64-OLinuXino-2Ge8G-IND variant.
-> > 
-> > Signed-off-by: Philip Rinn <rinni@inventati.org>
+On 10/04/2022 18:35, Bryan O'Donoghue wrote:
+> The imx412 like many I2C camera sensors has three voltage rails which
+> depending on platform may be necessary to switch power onto directly.
 > 
-> Acked-by: Samuel Holland <samuel@sholland.org>
+> Add in as optional rails so as not to break anything for existing users.
 
-Applied to sunxi/dt-for-5.19. Thanks!
+Thank you for your patch. There is something to discuss/improve.
+
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../devicetree/bindings/media/i2c/sony,imx412.yaml   | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+> index afcf70947f7e..16869a91ec9a 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+> @@ -32,6 +32,18 @@ properties:
+>      description: Clock frequency 6MHz, 12MHz, 18MHz, 24MHz or 27MHz
+>      maxItems: 1
+>  
+> +  dovdd-supply:
+> +    description:
+> +      Definition of the regulator used as interface power supply.
+>
+
+You could shorten this to "interface power supply", because other parts
+of the sentence do not describe the hardware more detailed. Similarly in
+other properties. An any case, looks good:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Jernej
-
-
+Krzysztof
