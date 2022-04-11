@@ -2,41 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D00744FC45D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 20:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85AAE4FC4A8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 21:06:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349245AbiDKSwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 14:52:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
+        id S1349398AbiDKTI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 15:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231283AbiDKSwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 14:52:35 -0400
-Received: from out28-220.mail.aliyun.com (out28-220.mail.aliyun.com [115.124.28.220])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85D0A1B7;
-        Mon, 11 Apr 2022 11:50:17 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08682281|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.033697-0.000638791-0.965664;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047190;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=7;RT=7;SR=0;TI=SMTPD_---.NOg3L5G_1649703014;
-Received: from 192.168.30.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NOg3L5G_1649703014)
-          by smtp.aliyun-inc.com(33.40.23.6);
-          Tue, 12 Apr 2022 02:50:15 +0800
-Subject: Re: [PATCH v2] mips: dts: ingenic: x1000: Add PWM device tree node
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     paul@crapouillou.net, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220411155315.51769-1-aidanmacdonald.0x0@gmail.com>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <3ff9ad6b-1437-3789-c180-f7f1c0ab4eab@wanyeetech.com>
-Date:   Tue, 12 Apr 2022 02:50:13 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        with ESMTP id S1349742AbiDKTH6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 15:07:58 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AC9344E0
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:05:43 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id nt14-20020a17090b248e00b001ca601046a4so263387pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:05:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Q9OpvpGFcHyEQDuwBh0mOFthHPQfeFBWvLunUZ0CT6Q=;
+        b=bYzLuuoQ2KE/Xc7EHWUIpVEYne36m5pFCnuxbNPtDLnFGVbzgBg7/74myhcN8NNONL
+         X9L34ushUIDt//ofGyhcpuQtdar8WUBXaYOWrgRYUSsChZ/Z/OifDbPu0ErX+xz2Tpwt
+         hLr5pK/WcmA66lVTc2uOC5QFoslFvY7CRF/18=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Q9OpvpGFcHyEQDuwBh0mOFthHPQfeFBWvLunUZ0CT6Q=;
+        b=XrPOfqK7XUFJ9sfS59qvWg1/p908i6jfUyq2+saqvDhs71W2xOAOhVrUCOcKB1LIej
+         X9xsIkkb6Cjz3FEe/My+ouuSZLho5d4jts2tPqsVTh/ASVYaB5COUfkxIk1ESEjbf++X
+         p35RPe2vrCIpCuUnTp6nxm4Rm2Z0tH0Z8dih4ACnbikC+nAIqzqpHAuFXc6KcrXokfhK
+         eJCBv/4g58XGWBKUZ1yhk3e4bcf9XAF+XHqsIG/2aKMVA/GS9gRQApHGjDdIfBSsHIt4
+         JzOPyH+05HcGzhYDRInMp5J48nw0oAjEz41Rlz3sQFbleVrEZzXYX+dBSGUO1NnoIh2y
+         Nf0Q==
+X-Gm-Message-State: AOAM533zPWF1XDMk6IHOTwdp62ONxaH76A5sOC79/h/Tnko9yuC/MkHD
+        v6Q7bK/ntY9DpxYkAfxIH9E0ng==
+X-Google-Smtp-Source: ABdhPJzZVMvALaYDiTQB46/ytt4089vCc8d6zsVZ9GhHkHCgzjNev2FJfrbw1OgcQf8f8Bhkb2J6ng==
+X-Received: by 2002:a17:90b:1e0e:b0:1c7:5b03:1d8b with SMTP id pg14-20020a17090b1e0e00b001c75b031d8bmr673950pjb.121.1649703942634;
+        Mon, 11 Apr 2022 12:05:42 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:eb96:76ba:e2a1:2442])
+        by smtp.gmail.com with UTF8SMTPSA id oa16-20020a17090b1bd000b001c72b632222sm225458pjb.32.2022.04.11.12.05.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 12:05:42 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 12:05:38 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: sc7280: Add pinmux for I2S
+ speaker and Headset
+Message-ID: <YlR8Ai8Yv4j9fGAC@google.com>
+References: <1649685184-8448-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649685184-8448-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-In-Reply-To: <20220411155315.51769-1-aidanmacdonald.0x0@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1649685184-8448-2-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,45 +72,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aidan,
-
-On 2022/4/11 下午11:53, Aidan MacDonald wrote:
-> Copied from the jz4740 devicetree and trimmed to 5 timers, which
-> is what the hardware supports.
->
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-
-
-Tested-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-
-
+On Mon, Apr 11, 2022 at 07:23:03PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add pinmux nodes for primary and secondary I2S for SC7280 based platforms.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > ---
-> v2: Reduce regmap length since only the first 5 timers need to be accessed,
->      and don't wrap the clock-names at 80 columns.
->
->   arch/mips/boot/dts/ingenic/x1000.dtsi | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
->
-> diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/ingenic/x1000.dtsi
-> index 8bd27edef216..c2cdbf947264 100644
-> --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
-> @@ -127,6 +127,18 @@ wdt: watchdog@0 {
->   			clocks = <&tcu TCU_CLK_WDT>;
->   			clock-names = "wdt";
->   		};
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 14 +++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 41 ++++++++++++++++++++++++++++++++
+>  2 files changed, 55 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index ecbf2b8..4ba2274 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -462,6 +462,20 @@
+>  	drive-strength = <10>;
+>  };
+>  
+> +&mi2s1_data0 {
+> +	drive-strength = <6>;
+> +	bias-disable;
+> +};
 > +
-> +		pwm: pwm@40 {
-> +			compatible = "ingenic,x1000-pwm";
-> +			reg = <0x40 0x50>;
+> +&mi2s1_sclk {
+> +	drive-strength = <6>;
+> +	bias-disable;
+> +};
 > +
-> +			#pwm-cells = <3>;
+> +&mi2s1_ws {
+> +	drive-strength = <6>;
+> +};
 > +
-> +			clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
-> +				 <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_TIMER3>,
-> +				 <&tcu TCU_CLK_TIMER4>;
-> +			clock-names = "timer0", "timer1", "timer2", "timer3", "timer4";
-> +		};
->   	};
->   
->   	rtc: rtc@10003000 {
+
+With the new names the nodes should be inserted between 'dp_hot_plug_det' and
+'pm7325_gpios'.
+
+>  &tlmm {
+>  	bt_en: bt-en {
+>  		pins = "gpio85";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index f0b64be..8099c80 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3527,6 +3527,31 @@
+>  				function = "pcie1_clkreqn";
+>  			};
+>  
+> +			mi2s0_data0: mi2s0-data0 {
+
+Similar as above, the new nodes should be inserted between
+'edp_hot_plug_det' and 'pcie1_clkreq_n'.
+
+> +				pins = "gpio98";
+> +				function = "mi2s0_data0";
+> +			};
+> +
+> +			mi2s0_data1: mi2s0-data1 {
+> +				pins = "gpio99";
+> +				function = "mi2s0_data1";
+> +			};
+> +
+> +			mi2s0_mclk: mi2s0-mclk {
+> +				pins = "gpio96";
+> +				function = "pri_mi2s";
+> +			};
+> +
+> +			mi2s0_sclk: mi2s0-sclk {
+> +				pins = "gpio97";
+> +				function = "mi2s0_sck";
+> +			};
+> +
+> +			mi2s0_ws: mi2s0-ws {
+> +				pins = "gpio100";
+> +				function = "mi2s0_ws";
+> +			};
+> +
+>  			qspi_clk: qspi-clk {
+>  				pins = "gpio14";
+>  				function = "qspi_clk";
+> @@ -4261,6 +4286,22 @@
+>  				drive-strength = <2>;
+>  				bias-bus-hold;
+>  			};
+> +
+> +			mi2s1_data0: mi2s1-data0 {
+
+see above
+
+> +				pins = "gpio107";
+> +				function = "mi2s1_data0";
+> +			};
+> +
+> +			mi2s1_sclk: mi2s1-sclk {
+> +				pins = "gpio106";
+> +				function = "mi2s1_sck";
+> +			};
+> +
+> +			mi2s1_ws: mi2s1-ws {
+> +				pins = "gpio108";
+> +				function = "mi2s1_ws";
+> +			};
