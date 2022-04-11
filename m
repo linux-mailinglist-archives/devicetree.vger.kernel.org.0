@@ -2,77 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C64A4FBCD1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0C1F4FBCD4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243342AbiDKNNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 09:13:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56022 "EHLO
+        id S1346375AbiDKNNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 09:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243841AbiDKNNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:13:16 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2327533A24;
-        Mon, 11 Apr 2022 06:11:02 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id j9so18466223lfe.9;
-        Mon, 11 Apr 2022 06:11:02 -0700 (PDT)
+        with ESMTP id S1346306AbiDKNN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:13:29 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E75344F0;
+        Mon, 11 Apr 2022 06:11:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZurpZPH9/XvTV+q28AqNPKo8HpQJeOPWU72XXWgoA7I=;
-        b=mdHpR4mlvLLNHx2AIL60gDkyRDKy5lawfs1NMaLHX8JLolamJQ670QeeOLFjBXmM7F
-         oGS5bvQsOYzR/RxeqDPGkgnKHUggGHucVLLYQyLTpJHXwtxrBIepbd8wrnGNfRRcixGz
-         UHgcy25T8emd1g1/h7Woom8k2y05zOO3jUviDiY1/P9wDTVi2PiDNmclre/i3593JLAF
-         1hMhEkQy3FJDGQtlxnR70WhOaNjKr985UoolK6xKjwsWMCU933C6DYnxWwOKMoAAxRFY
-         IWe6cyCdVaWGIHCC9MVJbwGb2FLtXoVdy1YVy/RC/4xVo1sdpmYcCu6fPGWhump+dt+Y
-         LLlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZurpZPH9/XvTV+q28AqNPKo8HpQJeOPWU72XXWgoA7I=;
-        b=8Q6qpv4d8P0Tf9Ib7EgucmqN+njzjzE5Etpq/nbu8bJa919/JVhWhDNhWiD7yh3z2i
-         ddfODXr10MwFZfmRYyWeEyvYb+bXA77WmtoCddyWhN3UnZ8r4F4zVv5TUi9cZLjMdVQw
-         il1qBgwE+7s5K0xpVklkagQ74Ie4kqNvQR/jg66OU6y0NgclDy1cMh4pHzd3V9d3S6/S
-         ce819+l4saj2icwXwCdHVVfaWAxS3OaujjXWIgfpsIe5AmILnLfh+ubgzsMAKjt60hBx
-         mWw1cGZOixFCEbe4KVNeklXx4IVp0YRU0ag3QMH4+M7tMT3mgNrB3usmHlgaQc4RuVX7
-         ar0A==
-X-Gm-Message-State: AOAM531NKc6V8haW8Yfez1qDvakbzPo58cpazi2v4Vs5ajkWowrf4WtX
-        xKvkHOMomv2CcFtKBINoY1g=
-X-Google-Smtp-Source: ABdhPJzZE4i/TCOQCxwZeUhsIX3TA/RYQPovK58tHRtgSzjaf6SdwCbjKTbbB7guFXEa5oBIRKcdOw==
-X-Received: by 2002:a05:6512:2301:b0:44a:394e:2add with SMTP id o1-20020a056512230100b0044a394e2addmr21439210lfu.177.1649682659878;
-        Mon, 11 Apr 2022 06:10:59 -0700 (PDT)
-Received: from mobilestation ([95.79.134.149])
-        by smtp.gmail.com with ESMTPSA id c3-20020a2e9d83000000b0024b5382fef9sm982072ljj.71.2022.04.11.06.10.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 06:10:59 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 16:10:57 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 07/21] ata: libahci_platform: Sanity check the DT child
- nodes number
-Message-ID: <20220411131057.c62c3jrfcyc55del@mobilestation>
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-8-Sergey.Semin@baikalelectronics.ru>
- <ab7f2a2e-0ca9-ed97-e4ed-bf8ef0ed69a5@opensource.wdc.com>
- <d651ccef-1ba6-3063-66d8-410b5517cc3d@omp.ru>
- <a2597470-8998-92a4-8085-0503974ce237@opensource.wdc.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1649682673; x=1681218673;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=gkzYs04WI7cM9Rzze08QMS7di0acJurK5Szd69H/Kyw=;
+  b=ewVxkdbj9/kBf9Kuh/3jchXvnEqkjFPuLT8z82bvf4uMqPTj45TrVRwM
+   mnhlyfYX8PUpl/Y+FnIhtGZ5iDNjKcCkGPp7XaDyvDoRgqwCdpYWDGCdt
+   J37rmLPJUQP8WKQk0jKKFKOOnrZGXZda/hYyaA87OxG7EkOw2Ll9jSIgL
+   TuT5vtif+BaIIHF9OMl9je4cODDngTJb8NiTcv3fwI/tmh3yBUVN+Mt6s
+   GfjVRVMn3EGJWLse73wOXDviML05d/pafTZxFjwj3WWDu/0+3Ly+k98QU
+   3rEyLCL0gfF1oT7meg3PqVrWJXR/U7lUUJc6KLGpLl4W3BIAit+ReqjHd
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,251,1643670000"; 
+   d="scan'208";a="23223918"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 11 Apr 2022 15:11:11 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 11 Apr 2022 15:11:11 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 11 Apr 2022 15:11:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1649682671; x=1681218671;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=gkzYs04WI7cM9Rzze08QMS7di0acJurK5Szd69H/Kyw=;
+  b=g6VWTwV8nc8Ff9k1UsEB6DmSmTc+eCcNQt+rK+3KjVnvLo4k6d6D16hU
+   A3WkZ1eXvfOxay0jrideW7WOr3n5vFtiFOKxf4UzRnfPtAiiFe+V7I7dd
+   YHZWHffZosVMAtdt6hvSTErjrXV4n8Y7L/kNB6t3uJ1TFw/d1fp+DyjlJ
+   HEDRRcyvLx9bt/I7TnzfbXKRYEFI9NV3kspVDnjiVEYYx5XJmXGdQLuQ+
+   NDGY5fl26jntrkZ84JxSFf6dj3fC0/Nzv0UM8XQNCyEKmJ5EynPwGKDlc
+   CrKxjVvg235Kjyw/TUsucN8h5IqprUljLF9rd+dFkvjOCEDTz2LC22jI8
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,251,1643670000"; 
+   d="scan'208";a="23223917"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 11 Apr 2022 15:11:11 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3067A280070;
+        Mon, 11 Apr 2022 15:11:11 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fancy Fang <chen.fang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: Re: (EXT) [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
+Date:   Mon, 11 Apr 2022 15:11:10 +0200
+Message-ID: <7368756.EvYhyI6sBW@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220408162108.184583-1-jagan@amarulasolutions.com>
+References: <20220408162108.184583-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a2597470-8998-92a4-8085-0503974ce237@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,81 +100,250 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 05:13:45PM +0900, Damien Le Moal wrote:
-> On 3/24/22 17:12, Sergey Shtylyov wrote:
-> > On 3/24/22 4:40 AM, Damien Le Moal wrote:
-> > 
-> >>> Having greater than (AHCI_MAX_PORTS = 32) ports detected isn't that
-> >>> critical from the further AHCI-platform initialization point of view since
-> >>> exceeding the ports upper limit will cause allocating more resources than
-> >>> will be used afterwards. But detecting too many child DT-nodes doesn't
-> >>> seem right since it's very unlikely to have it on an ordinary platform. In
-> >>> accordance with the AHCI specification there can't be more than 32 ports
-> >>> implemented at least due to having the CAP.NP field of 4 bits wide and the
-> >>> PI register of dword size. Thus if such situation is found the DTB must
-> >>> have been corrupted and the data read from it shouldn't be reliable. Let's
-> >>> consider that as an erroneous situation and halt further resources
-> >>> allocation.
-> >>>
-> >>> Note it's logically more correct to have the nports set only after the
-> >>> initialization value is checked for being sane. So while at it let's make
-> >>> sure nports is assigned with a correct value.
-> >>>
-> >>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> >>> ---
-> >>>  drivers/ata/libahci_platform.c | 16 +++++++++++-----
-> >>>  1 file changed, 11 insertions(+), 5 deletions(-)
-> >>>
-> >>> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> >>> index 4fb9629c03ab..845042295b97 100644
-> >>> --- a/drivers/ata/libahci_platform.c
-> >>> +++ b/drivers/ata/libahci_platform.c
-> >>> @@ -470,15 +470,21 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >>>  		}
-> >>>  	}
-> >>>  
-> >>> -	hpriv->nports = child_nodes = of_get_child_count(dev->of_node);
-> >>> -
-> >>>  	/*
-> >>> -	 * If no sub-node was found, we still need to set nports to
-> >>> -	 * one in order to be able to use the
-> >>> +	 * Too many sub-nodes most likely means having something wrong with
-> >>> +	 * firmware. If no sub-node was found, we still need to set nports
-> >>> +	 * to one in order to be able to use the
-> >>>  	 * ahci_platform_[en|dis]able_[phys|regulators] functions.
-> >>>  	 */
+Hi Jagan,
 
-> >>> -	if (!child_nodes)
-> >>> +	child_nodes = of_get_child_count(dev->of_node);
-> >>> +	if (child_nodes > AHCI_MAX_PORTS) {
-> >>> +		rc = -EINVAL;
-> >>> +		goto err_out;
-> >>> +	} else if (!child_nodes) {
-> >>
-> >> No need for "else" after a return.
-> > 
-> >    You meant *goto*? :-)
-> 
-> Yes :) No need for the else after goto.
+thanks for picking this up again and sending a new version.
 
-Personally I prefer having the chained if-else-if-else-etc statement
-in such cases from readability and maintainability points of view (it
-makes the code reader to more easily perceive that all the variable
-value ranges are covered with no reference to the if-else clause
-statements). But in this particular case dropping the else word lets
-us to convert the afterwards statement into a single line
-+	hpriv->nports = child_nodes ?: 1;
-So why not. I'll drop 'else' from there then.
+Am Freitag, 8. April 2022, 18:20:57 CEST schrieb Jagan Teki:
+> This series supports common bridge support for Samsung MIPI DSIM
+> which is used in Exynos and i.MX8MM SoC's.
+> 
+> Previous RFC can be available here [1].
+> 
+> The final bridge supports both the Exynos and i.MX8MM DSI devices.
+> 
+> On, summary this patch-set break the entire DSIM driver into
+> - platform specific glue code for platform ops, component_ops.
+> - common bridge driver which handle platform glue init and invoke.
+> 
+> Patch 0000: 	Samsung DSIM bridge
+> 
+> Patch 0001: 	platform init flag via driver_data
+> 
+> Patch 0002/9:   bridge fixes, atomic API's
+> 
+> Patch 0010:	document fsl,imx8mm-mipi-dsim
+> 
+> Patch 0011:	add i.MX8MM DSIM support
+> 
+> Tested in Engicam i.Core MX8M Mini SoM.
+> 
+> Anyone interested, please have a look on this repo [2]
+> 
+> [2] https://github.com/openedev/kernel/tree/imx8mm-dsi-v1
+> [1]
+> https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/
+> T/
+> 
+> Any inputs?
 
--Sergey
+With the following patch I can use LVDS, connected via an LVDS bridge on my 
+TQMa8MxML + MBa8Mx. Unless I enable 4 MIPI-DSI lanes.
+Using "data-lanes = <1 2 3 4>;" instead show a flickering image, but the 
+"content" seems ok. On the downstream kernel MIPI-DSI is working, apparently 
+using 4-lanes. On the first glance a bigger difference to the downstream 
+kernel from NXP is that AFAICS they change the clocks depending on the 
+currently selected mode [1]. I tried playing with the clocks but I don't fully 
+grasp which clock has which effect, so I eventually had no results.
+Any ideas what might be wrong here?
 
-> 
-> > 
-> > [...]
-> > 
-> > MBR, Sergey
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+On a side note, might be completely unrelated to this series, I get the 
+following warning as well:
+> sn65dsi83 2-002d: Unsupported LVDS bus format 0x100a, please check output 
+bridge driver. Falling back to SPWG24.
+
+0x100a is MEDIA_BUS_FMT_RGB888_1X24 from 
+samsung_dsim_atomic_get_input_bus_fmts(). For some reason this is propagates 
+to the output_bus_cfg used in sn65dsi83_atomic_enable(). I would have expected 
+this is MEDIA_BUS_FMT_RGB888_1X7X4_SPWG from "tianma,tm070jvhg33" display.
+
+Best regards,
+Alexander
+
+[1] https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/gpu/drm/
+bridge/sec-dsim.c?h=lf-5.10.72-2.2.0#n1255
+
+Here is my patch for the DT
+--->8---
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/
+freescale/Makefile
+index 52ce0f798657..7dd280b45681 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -58,6 +58,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-nitrogen-r2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx.dtb
++
++tqma8mqml-mba8mx-imx327-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-
+mba8mx-imx327.dtbo
++tqma8mqml-mba8mx-lvds-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-
+mba8mx-lvds.dtbo
++dtb-$(CONFIG_ARCH_MXC) += tqma8mqml-mba8mx-imx327.dtb tqma8mqml-mba8mx-
+lvds.dtb
++
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds.dts b/
+arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds.dts
+new file mode 100644
+index 000000000000..8c743d291459
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds.dts
+@@ -0,0 +1,63 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++/*
++ * Copyright 2021-2022 TQ-Systems GmbH
++ */
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	compatible = "tq,imx8mm-tqma8mqml-mba8mx", "tq,imx8mm-tqma8mqml", 
+"fsl,imx8mm";
++};
++
++&backlight_lvds0 {
++	status = "okay";
++};
++
++&dsi {
++	status = "okay";
++
++	ports {
++		port@1 {
++			mipi_dsi_out: endpoint {
++				remote-endpoint = 
+<&lvds_bridge_in>;
++			};
++		};
++	};
++};
++
++&dsi_lvds_bridge {
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			lvds_bridge_in: endpoint {
++				data-lanes = <1 2 3>;
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
++};
++
++&expander0 {
++	dsi-mux-oe-hog {
++		gpio-hog;
++		gpios = <10 0>;
++		output-low;
++		line-name = "DSI_MUX_OE#";
++	};
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&panel0 {
++	compatible = "tianma,tm070jvhg33";
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/
+freescale/mba8mx.dtsi
+index c2f0f1a1566c..4b2cca3268eb 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -8,6 +8,16 @@
+ /* TQ-Systems GmbH MBa8Mx baseboard */
+ 
+ / {
++	backlight_lvds0: backlight0 {
++		compatible = "pwm-backlight";
++		pwms = <&pwm3 0 5000000>;
++		brightness-levels = <0 4 8 16 32 64 128 255>;
++		default-brightness-level = <7>;
++		power-supply = <&reg_12v>;
++		enable-gpios = <&expander2 2 GPIO_ACTIVE_HIGH>;
++		status = "disabled";
++	};
++
+ 	beeper {
+ 		compatible = "pwm-beeper";
+ 		pwms = <&pwm4 0 250000 0>;
+@@ -66,12 +76,31 @@ led2: led2 {
+ 		};
+ 	};
+ 
++	panel0: panel_lvds0 {
++		backlight = <&backlight_lvds0>;
++		status = "disabled";
++
++		port {
++			panel_in_lvds0: endpoint {
++				remote-endpoint = 
+<&lvds_bridge_out>;
++			};
++		};
++	};
++
+ 	pcie0_refclk: pcie0-refclk {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <100000000>;
+ 	};
+ 
++	reg_12v: regulator-12v {
++		compatible = "regulator-fixed";
++		regulator-name = "MBA8MX_12V";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-always-on;
++	};
++
+ 	reg_hub_vbus: regulator-hub-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "MBA8MX_HUB_VBUS";
+@@ -227,6 +256,27 @@ &i2c3 {
+ 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
++
++	dsi_lvds_bridge: dsi-lvds-bridge@2d {
++		compatible = "ti,sn65dsi83";
++		reg = <0x2d>;
++		enable-gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
++		vcc-supply = <&reg_sn65dsi83_1v8>;
++		status = "disabled";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@2 {
++				reg = <2>;
++
++				lvds_bridge_out: endpoint {
++					remote-endpoint = 
+<&panel_in_lvds0>;
++				};
++			};
++		};
++	};
+ };
+ 
+ &pwm3 {
+--->8---
+
+
+
+
+
