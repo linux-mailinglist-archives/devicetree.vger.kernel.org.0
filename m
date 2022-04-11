@@ -2,66 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADCD4FC7A8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 00:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C5564FC7AF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 00:28:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234159AbiDKW10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 18:27:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55408 "EHLO
+        id S1346047AbiDKWbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 18:31:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiDKW1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 18:27:25 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 340E2140F1
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 15:25:09 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id EEACF83ABE;
-        Tue, 12 Apr 2022 00:25:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1649715905;
-        bh=yW5zcwopKy57mZCpilVjn7JXDbDMso804yPPSKcRi0U=;
+        with ESMTP id S245082AbiDKWbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 18:31:01 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 783C01EEC9;
+        Mon, 11 Apr 2022 15:28:46 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 6D9F51F42D86
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649716125;
+        bh=j5s2z2+QvxX8/0HiqGbGTalMGZgMNOaInzlk8sVuvvM=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=0XMoCsUKhjFfDcCBDB2MMWWDrwIvVUh8SpnDtteGE2cs02qVxZP0M1A8AFU44PANl
-         HAOqlmaVeKbTPnJhkvSR8QsoHpYuBljX4n3sQ6ykImfWdFGakZyMQIZ8AkqGp0XEey
-         PeMa86Kr1AhvxK6YU8QQ07Q9f4E4UDONTkVrKd0e5H8J8QhedF2OjmNRROn1DqK7wW
-         oNeoOSb0mO8IajWMf1hL5BXAtJ1jzuyN5D78agC6j2p1Dhuaq1qP3xItywhPZ2wxBe
-         rgCH67PFWXS96EG1BXRBKj80BG9ApmpGjrcLrrBHn38KmK0NnJHbRi+/ubmVEeVoBb
-         ARgvTzLQspKaA==
-Message-ID: <87480099-7962-42a2-5e3b-0ac8f06a9aca@denx.de>
-Date:   Tue, 12 Apr 2022 00:25:04 +0200
+        b=VSTxe5yFQejREqnCxyn4xGFXtinl0bR2ufB4zz1SZaJ7usao6xS3L9wJHaZi3U2be
+         B4He3EWlN9+YA6N1fUAxEk47YLZ7Xe1kdkqvnaWuHnD+xYl05xH/GEOKFxGviNmEFx
+         L3WlaYw81uQSL/OG3BikLy6vE/SfxdHTJj+71yDfFw8yWpmHLmZOReEPFmEPxzk/tH
+         Vg62v3DLlk+b19XtRR9d1se5Lhr34X7aiCI2MQ5UsTSCsbIZkh3xnjPrjuvKnTrx2W
+         +q9CJ4HKiIH9ddHCukgLctCERfXuGWhBJBtObN9sVgk1YA8fkg7bokj3r854VdsYYO
+         n9uWKar0Gs93Q==
+Message-ID: <3c80282b-0d63-1e1f-1036-1c8e79f1cbbc@collabora.com>
+Date:   Tue, 12 Apr 2022 01:28:41 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 02/11] soc: imx: add i.MX8MP HSIO blk-ctrl
+Subject: Re: [Patch v6 3/4] dt-bindings: memory: Update reg maxitems for
+ tegra186
 Content-Language: en-US
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220406153402.1265474-1-l.stach@pengutronix.de>
- <20220406153402.1265474-3-l.stach@pengutronix.de>
- <e99520af-7b32-f1a4-7ebc-eb66611b850f@denx.de>
- <e60a4bcad472411a8f82546b57d8d375ed8cbda8.camel@pengutronix.de>
- <25744e36-63ee-7669-067a-a671a5f461d6@denx.de>
- <e60c0914467a16b01100db0af99aae47674b4fdc.camel@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <e60c0914467a16b01100db0af99aae47674b4fdc.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        krzysztof.kozlowski@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220406052459.10438-1-amhetre@nvidia.com>
+ <20220406052459.10438-4-amhetre@nvidia.com>
+ <3e044f9e-3200-bb26-897d-1977e3825c92@gmail.com>
+ <81686bc4-c580-862b-1c29-51b34e419154@nvidia.com>
+ <57825f4a-8cfa-ef00-6462-fea37cd4d7be@collabora.com>
+ <8930bbfe-2c33-ea90-c48d-c6a00005b6a5@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <8930bbfe-2c33-ea90-c48d-c6a00005b6a5@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,31 +62,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/22 18:46, Lucas Stach wrote:
-> Am Montag, dem 11.04.2022 um 00:11 +0200 schrieb Marek Vasut:
->> On 4/7/22 11:12, Lucas Stach wrote:
->>> Am Donnerstag, dem 07.04.2022 um 01:43 +0200 schrieb Marek Vasut:
->>>> On 4/6/22 17:33, Lucas Stach wrote:
->>>>
->>>> [...]
->>>>
->>>>> +static const struct imx8mp_blk_ctrl_data imx8mp_hsio_blk_ctl_dev_data = {
->>>>> +	.max_reg = 0x24,
->>>>
->>>> Doesn't the HSIO_BLK_CTL go up to 0x10c ?
->>>
->>> Technically yes, but there is already a driver for the USB glue
->>> (fsl,imx8mp-dwc3) that occupies the USB registers at and above 0x100.
+On 4/11/22 18:41, Ashish Mhetre wrote:
+> 
+> 
+> On 4/11/2022 8:59 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
 >>
->> Shouldn't that imx8mp-dwc3 glue code be switched to syscon and access
->> the registers through this driver then ?
+>>
+>> On 4/11/22 18:02, Ashish Mhetre wrote:
+>>>
+>>>
+>>> On 4/10/2022 7:51 PM, Dmitry Osipenko wrote:
+>>>> External email: Use caution opening links or attachments
+>>>>
+>>>>
+>>>> 06.04.2022 08:24, Ashish Mhetre пишет:
+>>>>>            memory-controller@2c00000 {
+>>>>>                compatible = "nvidia,tegra186-mc";
+>>>>> -            reg = <0x0 0x02c00000 0x0 0xb0000>;
+>>>>> +            reg = <0x0 0x02c00000 0x0 0x10000>,    /* MC-SID */
+>>>>> +                  <0x0 0x02c10000 0x0 0x10000>,    /* Broadcast
+>>>>> channel */
+>>>>> +                  <0x0 0x02c20000 0x0 0x10000>,    /* MC0 */
+>>>>> +                  <0x0 0x02c30000 0x0 0x10000>,    /* MC1 */
+>>>>> +                  <0x0 0x02c40000 0x0 0x10000>,    /* MC2 */
+>>>>> +                  <0x0 0x02c50000 0x0 0x10000>;    /* MC3 */
+>>>>> +            reg-names = "mc-sid", "mc-broadcast", "mc0", "mc1",
+>>>>> "mc2", "mc3";
+>>>>
+>>>> The "mc-" prefix feels redundant to me, I'd name the regs like this:
+>>>>
+>>>>     "sid", "broadcast", "ch0", "ch1", "ch2", "ch3"
+>>>>
+>>>>
+>>>> You should also add validation of the regs/reg-names to the yaml based
+>>>> on SoC version. I.e. it's not enough to only bump the maxItems.
+>>>
+>>> Okay, I will add validation of reg-names as following:
+>>>
+>>>    reg-names:
+>>>      minItems: 0
+>>>      maxItems: 6
+>>>      items:
+>>>        - const: sid
+>>>        - const: broadcast
+>>>        - const: ch0
+>>>        - const: ch1
+>>>        - const: ch2
+>>>        - const: ch3
+>>>
+>>>
+>>> We will have to keep minItems to 0 in order to make it compatible with
+>>> old DT, right?
+>>
+>> Bindings are about the latest DTs. In general older dtbs must be updated
+>> and you must get error from the schema checker for older DTs. It's only
+>> drivers that should care about older dtbs.
 > 
-> I don't see why this would be needed. Registers up to 0x24 are a mixed
-> bag of blk-ctrls, but the registers above 0x100 are only USB wakeup
-> related, I don't see the blk-ctrl ever wanting to touch them.
-> 
-> I think the current split is fine. Just because the RM lumps those
-> register regions together into the HSIO blk-ctrl description doesn't
-> mean we need to cover them all in a single syscon.
+> On v5 Krzysztof mentioned that old DTS will start failing with new
+> bindings https://lkml.org/lkml/2022/3/22/907.
+> So I just wanted to confirm whether it's fine if updated bindings
+> start to fail with old DTS?
 
-I guess we can also always fix this up later, OK.
+Since the older DT was incorrect, it's fine that the DT check will fail
+for it.
