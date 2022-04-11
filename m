@@ -2,143 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0AFF4FBC7E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73184FBC83
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:53:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346220AbiDKMyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:54:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60684 "EHLO
+        id S235616AbiDKMzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344540AbiDKMyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:54:44 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CA633365
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:52:29 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id i27so30639533ejd.9
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:52:29 -0700 (PDT)
+        with ESMTP id S231481AbiDKMzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:55:50 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E492733365
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:53:35 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id t1so5163441wra.4
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:53:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SWb+pp0NdRVJt1+up2FTo890NhhieJA9DisUGbn/ukA=;
-        b=edrRoCBY8ynKvUqq1HVfunEp09FZGqzcMUDWmMXq8eY85zgFlgHCMHl2cOAJiBW0Fq
-         BbEoJ7Axv5s2gTs1l+yvBd8kzO8emBhglWQE0sU4x/uHvEwO/ePvknqVoIO73jsGYdMo
-         2aXkEDSB/fE+Y9CNmW+CoRG/zjLjZZo74iOnw1t2fnoD3tN+PabbXtUBf5a3WunrdPk2
-         h+t0PbIRKZiTNOFddumdGqWSuJscnVVcZZAMcv2NnWOhuuhl0jotYwtruzE7zM8XP/Yy
-         tbBS4h5ZHZTO+eC3nE95sQzWzwY1A+5F8ks0A/O25Ojr4nI0z3W5SK0cybDkdKWLNE4x
-         wyjw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=H2Wa14/be/MapqwdEwUDQHMWBsanYigO3XT2Lr6Swoc=;
+        b=K++AZqOu12JXzZwEh27ZnzSiLauYhZ429z4DGGxRxtltLvCIIPB8hbzu20nV3Lf5IE
+         i50tR2SmPpo3vAyoivozenYAKfWdUATC1wpCrn14O4F/6thnVXiLB/4Eergew46a7BlP
+         lA1KhCgyXEtoi/0rmgyS7Aco5A3slPKfo5bhMEooe72KmRbJfBcm73Jd8YIfvHQIijJ6
+         Ea1xHzXEFjb0Ym+EufbtDsAKYApeaImPJiL0Rj7GYibVhA0jpveCDpOE+u8I5tJte2cU
+         fQFk96Ksyn6eLgR6UbCKb1HKxo+zjw1enMfdQVuIszqYUytCrzC9CbPKYI1xrDChKqml
+         cExw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SWb+pp0NdRVJt1+up2FTo890NhhieJA9DisUGbn/ukA=;
-        b=kALoLzg9BkyMzkvhJ0m4IypRfA6ETX2RDbbNnl8xisVeUqPzLIAy0hYKHbUNklPE/B
-         faTHIF7a7CUc8Wqde19b+sS+Nv1VwKjmIQ4fiK5ywk57RyCwwS1OM79JX/0hVGjGxT3V
-         W/sQvfkdxeQmfJQBrZ6KqyPaRvZNQGJBTrJwFl0CfRJ/t0KOKckUqMbx7//AMYDQQUlg
-         A4mGHVuDGWg265H/dtF4+xNs53UzvPUvmhP//GW7KqtjGnGEhJvQMcrbv0VbY64KTRQr
-         k2lvipRxgSNBp7NXCtwt38vgho8VoUj2jmV9FmvT6k29U5CEx6dotek/uVNMhaoXxxiu
-         yDYA==
-X-Gm-Message-State: AOAM530NmpfhejUpUviyvZp50SsX2FQ3+rQGkD2wonHZF/D1snmYxQu2
-        P2RLNizGJWsaA3UCKYB+sltNbg==
-X-Google-Smtp-Source: ABdhPJxFrpUfsoqogV21k6w5jkwaczBncmRsEXzPGyxIoh/3rZlEvpdoyBKbLQ0Ost46rXMXyDn5bQ==
-X-Received: by 2002:a17:906:e110:b0:6e6:75e0:946c with SMTP id gj16-20020a170906e11000b006e675e0946cmr29209146ejb.611.1649681548383;
-        Mon, 11 Apr 2022 05:52:28 -0700 (PDT)
-Received: from [192.168.0.192] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id v20-20020a056402349400b00419651e513asm15403271edc.45.2022.04.11.05.52.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 05:52:27 -0700 (PDT)
-Message-ID: <60402ff3-db73-5fc0-bc2a-942d664085ec@linaro.org>
-Date:   Mon, 11 Apr 2022 14:52:26 +0200
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=H2Wa14/be/MapqwdEwUDQHMWBsanYigO3XT2Lr6Swoc=;
+        b=ZTULDrcLWIbH0q6n1fzAwEQE/VfmvuSHBsUUI8YC5iw1eAydMOR7OcLst7WANaT/Fd
+         LkIzQVtCSc7ScKlMA4mUsRHLGzkaFxA0MrctYaVtbzluRUXxViLwNW70VCJ3FnplzoHQ
+         jvTjYGlCJf//dGYbGPp0drTz752urvyt/nBPm49LUyeX5JobU++fXk2GlHrneHrPXTw0
+         5N63Y9Z+sK7FqPisQE0CnJ9xinWVNcuDpoM5aYgCK5uMePTGE9ux0g9JOGp8I1w1OXep
+         7Krl+yHIlhANh/tvtDHNcgT9pzUhYs4UMNl9Jfb15l+mW/q5hvWdKXh1w4xuXd4QpvE9
+         fFYg==
+X-Gm-Message-State: AOAM532lPz9wW73Ti4RRWB6Zl6heLJ/gG0x43g6+zW+aQ6FNkrzJdlU6
+        6s0WE0ZuYx5YLfOEeDuv5s8kHQ==
+X-Google-Smtp-Source: ABdhPJyKHLzX422TghnhzNrWqsYIgexNfpxMzJ6eMiGfRQI2foPOm76YuWIKjNXyDCksYKZV0Ft/XQ==
+X-Received: by 2002:a5d:6b0b:0:b0:1ef:d826:723a with SMTP id v11-20020a5d6b0b000000b001efd826723amr25713546wrw.420.1649681614311;
+        Mon, 11 Apr 2022 05:53:34 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:d1:e096:d183:1bc5])
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b0038cb8b38f9fsm18613040wmq.21.2022.04.11.05.53.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 05:53:33 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson: alpa sort the board Makefile
+Date:   Mon, 11 Apr 2022 14:53:31 +0200
+Message-Id: <164968160694.932109.7341549191882617182.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220409064257.24453-1-christianshewitt@gmail.com>
+References: <20220409064257.24453-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
- haptics
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220408115311.237039-1-luca.weiss@fairphone.com>
- <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
- <CJ79EIW9Z89J.YZTZ6AU91TGE@otso>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CJ79EIW9Z89J.YZTZ6AU91TGE@otso>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 10:15, Luca Weiss wrote:
+Hi,
 
-(...)
-
->>> +  awinic,f0-detection-play-time:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: Drive waveform play times in the first period in the f0 detection
->>
->> Use standard unit suffixes for known units (e.g. time).
+On Sat, 9 Apr 2022 06:42:57 +0000, Christian Hewitt wrote:
+> Let's alpha-sort the board Makefile to keep things organised.
 > 
-> While the datasheet doesn't mention any time unit, the value is used to
-> calculate the f0_trace_ms variable (which is milliseconds) but the
-> result also depends on the awinic,f0-preset value, so it's not a raw
-> time value.
-
-I see, ok.
-
 > 
->>
->>> +
->>> +  awinic,f0-detection-wait-time:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: Waveform wait times in the f0 detection
->>
->> Ditto.
->>
->>> +
->>> +  awinic,f0-detection-repeat:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: Repeat times in the f0 detection
->>> +
->>> +  awinic,f0-detection-trace:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: Drive waveform play times in the second period and later in the f0 detection
->>> +
->>> +  awinic,boost-debug:
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    minItems: 3
->>> +    maxItems: 3
->>> +    description: Values for BSTDBG1-3 registers
->>
->> Do not encode device programming model (registers) into the binding. You
->> need to define it as a property related to hardware itself, not its
->> registers (e.g. boost value in mV).
-> 
-> Unfortunately I couldn't figure the meaning for this and the two values
-> below.
-> 
-> The datasheet doesn't mention these registers at all and the downstream
-> driver doesn't do anything meaningful with them (other than setting them)
-> nor has any comment to indicate what they do.
-> In the datasheet there's only BSTDBG4 mentioned where bits [5:1] mean
-> PVDD output voltage setting so for these registers it could really be
-> anthing :(
-> 
-> Maybe someone with more knowledge about LRAs might be able to decipher
-> what tset and r_spare is at least? I unfortunately didn't manage.
 
-Do you have to define them in such case in DT? Maybe it should be part
-of driver?
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
 
-Best regards,
-Krzysztof
+[1/1] arm64: dts: meson: alpa sort the board Makefile
+      https://git.kernel.org/amlogic/c/456733feb0da2dbb1288b9e8f5765df163620c2c
+
+-- 
+Neil
