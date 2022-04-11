@@ -2,164 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57C984FBF5E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161894FBF73
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347345AbiDKOmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 10:42:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56596 "EHLO
+        id S1347412AbiDKOrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 10:47:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347272AbiDKOmK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:42:10 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BB46F14;
-        Mon, 11 Apr 2022 07:39:56 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id v4so5204269edl.7;
-        Mon, 11 Apr 2022 07:39:56 -0700 (PDT)
+        with ESMTP id S1347417AbiDKOrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:47:09 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BA364FD
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:44:54 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id z14so2230776qto.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:44:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RGN9dUJYj47JXi0a+41k06MGWJnJyWFM/qMvB07kZsg=;
-        b=VxSsL0wEXbboLeOf2wmpHxXFgzdjwQ2liqKeQ0Wa8wPsAjiLD/84l8L8pNF/DdFI/P
-         nEYEQgVyTR4y+ZFDUa7G7+w1548IZWDT6rfrXZiv6VC5kPRXRvqkqzBuntY0f45Mz8nr
-         W8jV7goLTKnn2d9vYhj7DN1a6bxAMbkAFYfn+yNbCTDK8rwifQf0oKDBuj+sZoHEq59H
-         pWHO+IyqQWm9MJ+WPQx75yGSCc42GEo3yPgQ6Dcm1GDOdz7WgUI5n0i9CodaajRSUaFJ
-         PAduKSisg7qEozDjtk96LGac/tNitPOejdAFJAxgwlJ9WYQUST8JtCCbJnGgGbBjdzjD
-         U+lA==
+        d=prism19-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1UnSeorzrHp2ShcLAoDvVpITCICkDvr9NW1j4ZfpG8o=;
+        b=7v/UEtR1eSUjf3DjrG6u5oSFQ6lybW47MzaZKUelNTbLzOG1QvyInnxaSFl5rtC0CN
+         l6IhVaQowoZCAU10b9xsSe++yByur/nfWa2svgVxpuSOmtnlhWeBsxeTIN5+eHYLRADV
+         W5g1ztwzDF2fpR9ZSVvc6dAEw4Eg6QnaglPJlXLy54l8tKQ/mnIJi63ntzATYsP5W1kX
+         uPPEg9LdDHn+pPK0CobPaiosNuw/HsD67UlYcabR3d4d3e8Q5HtKLh8seKU/T2uYPViW
+         M8arc0GGwOL8I3syiQdJIpbu1fcNO1DsGU2vvjaTogVUuX6/hFOfmhK/YCqZ68IOTZcH
+         idjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RGN9dUJYj47JXi0a+41k06MGWJnJyWFM/qMvB07kZsg=;
-        b=1fFSB7z3EtFyYk7SUFaz4zQUYyRYzqfznibTTSQreFzOFI4s5NWHuyoCr8jpJALwuQ
-         HkLrNX402+e2okCVmGSLLar7XDhKh3pbbjghVS+bdQ4Ru1pz4fL1rDIATUDd3kYhu4/l
-         3jwhugHfqSYO1KHIVfAqWwxrFV0vu2oGQ9jANvKh/R8F9vGxYbJuICDAlLPkz6duj6PM
-         uK6593wGlSLohjN26xB/SrnaqM6CY+UpjTSamR12ofDOd7Qy7CvPYwjGv5xGOq1v5M1S
-         MYoEUhfzX9QQUIWahPHXfJzb0AR+mnB5vpyfLtLxEXyADV7kQn4ttjjpq0+00nFxGHLS
-         0+DQ==
-X-Gm-Message-State: AOAM5332adUbgycTB/9qXkZAEWwT30cvI2Dm+/EwPCMV53LlCJM2vXC9
-        IdknWDjLti3T0l7VcaZvIvwxiyR1qPDpRBoi/bY=
-X-Google-Smtp-Source: ABdhPJwwgcOrCgzva5OHLdgmGhUkVRkz1EOhBjroc03r3EyT8eRz+X7v727q27f23vS1qHhjpn/8fDRQ0xyrx+vrUSs=
-X-Received: by 2002:a05:6402:2142:b0:413:6531:bd9e with SMTP id
- bq2-20020a056402214200b004136531bd9emr33389701edb.5.1649687994494; Mon, 11
- Apr 2022 07:39:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <CGME20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3@eucas1p1.samsung.com>
- <20220408162108.184583-1-jagan@amarulasolutions.com> <4c693c6e-512b-a568-948a-4a1af6a1313a@samsung.com>
-In-Reply-To: <4c693c6e-512b-a568-948a-4a1af6a1313a@samsung.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 11 Apr 2022 09:39:43 -0500
-Message-ID: <CAHCN7xK_H-nLA5Z6hJW5V0Bpo8bDKPU6UpN05kMBkG+PXmwBBw@mail.gmail.com>
-Subject: Re: [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1UnSeorzrHp2ShcLAoDvVpITCICkDvr9NW1j4ZfpG8o=;
+        b=isEIJOk9iTvuAVk67fFuznE9nfAhjQIwvBYeLUlHsrQCDgdUpre9e/JO6cP8GL6Zhh
+         smPxSvQBQQK5KznUAKRQ9AbAYuHjSuUSXjzCpStipzPpARBTjCcdU1RgLCw8J7VQAdus
+         v7lcTx2AOdqYry6GdDoZ3Mduw3TE7TJXXnNt9Yk7Lti02o20/RjepUvVnQGTzVKL3raD
+         OZQAK+OyUy1tIrGEe7ZwDLOgbh+P+HrrOqJE/UIsQ/nEKpf+KRY7pclEf75/J+NmsnM+
+         aB8NMLs6AvmLo2W1fIZfWQUOfwAUslTmjJJ9sr1R2WYOjvnDwBtXOjo/CQ6Q6acSBu2B
+         sBFw==
+X-Gm-Message-State: AOAM5301wXhYEGAzT1GbneDe05EIPWxNVCtSO7Tr3RPkDUB9pvnkb9Dr
+        VHSP4oRqM+K9Cb+//H5dWixjmg==
+X-Google-Smtp-Source: ABdhPJx5N2Qv5BYEoOuxQsD/w2C/JE0G/XNbIZuMEzcNJoIliG30Af7PXQCTDUltVgUxF5mB8376mA==
+X-Received: by 2002:ac8:5906:0:b0:2e1:c1ef:2085 with SMTP id 6-20020ac85906000000b002e1c1ef2085mr25952476qty.170.1649688293019;
+        Mon, 11 Apr 2022 07:44:53 -0700 (PDT)
+Received: from RADIUM.localdomain (bras-base-mtrlpq2718w-grc-02-76-67-205-66.dsl.bell.ca. [76.67.205.66])
+        by smtp.googlemail.com with ESMTPSA id i65-20020a379f44000000b0069a0d9eed43sm8158749qke.33.2022.04.11.07.44.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 07:44:52 -0700 (PDT)
+From:   Guillaume Giraudon <ggiraudon@prism19.com>
+To:     kernel-dev@prism19.com
+Cc:     ggiraudon@prism19.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: meson-sm1-bananapi-m5: fix wrong GPIO pin labeling for CON1
+Date:   Mon, 11 Apr 2022 10:44:28 -0400
+Message-Id: <20220411144427.874-1-ggiraudon@prism19.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 8:56 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> On 08.04.2022 18:20, Jagan Teki wrote:
-> > This series supports common bridge support for Samsung MIPI DSIM
-> > which is used in Exynos and i.MX8MM SoC's.
-> >
-> > Previous RFC can be available here [1].
-> >
-> > The final bridge supports both the Exynos and i.MX8MM DSI devices.
-> >
-> > On, summary this patch-set break the entire DSIM driver into
-> > - platform specific glue code for platform ops, component_ops.
-> > - common bridge driver which handle platform glue init and invoke.
-> >
-> > Patch 0000:   Samsung DSIM bridge
-> >
-> > Patch 0001:   platform init flag via driver_data
-> >
-> > Patch 0002/9:   bridge fixes, atomic API's
-> >
-> > Patch 0010:   document fsl,imx8mm-mipi-dsim
-> >
-> > Patch 0011:   add i.MX8MM DSIM support
-> >
-> > Tested in Engicam i.Core MX8M Mini SoM.
-> >
-> > Anyone interested, please have a look on this repo [2]
-> >
-> > [2] https://protect2.fireeye.com/v1/url?k=930e329a-f28527b5-930fb9d5-74fe485cbfe7-b0c53e2d688ddbc5&q=1&e=e6aa727d-5ae2-4ca5-bff3-7f62d8fae87e&u=https%3A%2F%2Fgithub.com%2Fopenedev%2Fkernel%2Ftree%2Fimx8mm-dsi-v1
-> > [1] https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/T/
-> >
-> > Any inputs?
->
-> I wanted to test this on the Exynos, but I wasn't able to find what base
-> should I apply this patchset. I've tried linux-next as well as
-> 95a2441e4347 ("drm: exynos: dsi: Switch to atomic funcs").
->
-> Please note that pointing a proper base for the patchset is really
-> essential if you really want others to test it.
+The labels for lines 61 through 84 on the periphs-banks were offset by 2.
+2 lines are missing in the BOOT GPIO lines (contains 14, should be 16)
+Added 2 empty entries in BOOT to realigned the rest of GPIO labels
+to match the Banana Pi M5 schematics.
 
-Can you clone his repo and test that?  He posted it above.  I was
-going to clone it at some point this week to give it a try.
+(Thanks to Neil Armstrong for the heads up on the position of the missing pins)
 
-adam
->
->
-> > Jagan.
-> >
-> > Jagan Teki (11):
-> >    drm: bridge: Add Samsung DSIM bridge driver
-> >    drm: bridge: samsung-dsim: Handle platform init via driver_data
-> >    drm: bridge: samsung-dsim: Mark PHY as optional
-> >    drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
-> >    drm: bridge: samsung-dsim: Fix PLL_P (PMS_P) offset
-> >    drm: bridge: samsung-dsim: Add module init, exit
-> >    drm: bridge: samsung-dsim: Add atomic_check
-> >    drm: bridge: samsung-dsim: Add atomic_get_input_bus_fmts
-> >    drm: bridge: samsung-dsim: Add input_bus_flags
-> >    dt-bindings: display: exynos: dsim: Add NXP i.MX8MM support
-> >    drm: bridge: samsung-dsim: Add i.MX8MM support
-> >
-> >   .../bindings/display/exynos/exynos_dsim.txt   |    1 +
-> >   MAINTAINERS                                   |   12 +
-> >   drivers/gpu/drm/bridge/Kconfig                |   12 +
-> >   drivers/gpu/drm/bridge/Makefile               |    1 +
-> >   drivers/gpu/drm/bridge/samsung-dsim.c         | 1803 +++++++++++++++++
-> >   drivers/gpu/drm/exynos/Kconfig                |    1 +
-> >   drivers/gpu/drm/exynos/exynos_drm_dsi.c       | 1704 +---------------
-> >   include/drm/bridge/samsung-dsim.h             |   97 +
-> >   8 files changed, 1982 insertions(+), 1649 deletions(-)
-> >   create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.c
-> >   create mode 100644 include/drm/bridge/samsung-dsim.h
-> >
-> Best regards
-> --
-> Marek Szyprowski, PhD
-> Samsung R&D Institute Poland
->
+Fixes: 976e920183e4 ("arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts")
+
+Signed-off-by: Guillaume Giraudon <ggiraudon@prism19.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+index 5751c48620ed..84489525c75f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+@@ -437,6 +437,7 @@
+ 		"",
+ 		"eMMC_RST#", /* BOOT_12 */
+ 		"eMMC_DS", /* BOOT_13 */
++		"","",
+ 		/* GPIOC */
+ 		"SD_D0_B", /* GPIOC_0 */
+ 		"SD_D1_B", /* GPIOC_1 */
+-- 
+2.20.1
+
