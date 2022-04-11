@@ -2,121 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B05D54FC64A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 23:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B6494FC67E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 23:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350001AbiDKVHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 17:07:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54146 "EHLO
+        id S238851AbiDKVPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 17:15:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348801AbiDKVG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 17:06:59 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C4C2AC50
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:04:44 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id i11-20020a9d4a8b000000b005cda3b9754aso12108600otf.12
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=77PX79Y9IPAg5eHYXNxxfMPoxrPEosfgIY3QM8YJll8=;
-        b=HIkQz44wBum19qdatUG526f4XiRWheHtHVxCYhxfaqqiEtuH7WwWxZFamXzz+JtPju
-         0VL/DG2XsnoF8crLKPRzng22wuqnKv1jFHYcE0nfRina9YGLEziQigyZ9zgcapaUqWmL
-         tpcRMrF0WOTRhrxTDoN7wh/oDuu9PlXbRIDKDglMpud+OyWhQYPFRQbZiAz0HAD0RjPS
-         2ga8Qtn/MnguZjyUfG+OLq80Wb8tvC3z/qZ9dCNnjcnlRDXGPonmfx+aAA8zn/OmrzQi
-         KU0KwgwzX5DLw4bMxg1VAwSacniZGQH7EhWC6sJ89kog6hR2frMO5TByrUcHVWs28Dd9
-         ys2w==
+        with ESMTP id S230435AbiDKVPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 17:15:07 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B52682A739
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:12:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1649711571;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=n0gtWVG0aimnuoPQwNXoXZOG0mpWKStMnE3++TkqLKY=;
+        b=ERHTTA/9vs5a8UrmVCQMG+cGbGNIlvH1yfEvV7E4PNR/QSF2ve/7K3K/rxUbBAfrY+v26/
+        9njcoGv5EQ4O69mxr7Xy6j7aBc44WdZ7pKpbJiqBaIud18NbcCe8pDznLVqVIK5slZ3RZv
+        ykPVhpBoJTR6CbLHy+wNXerhA2EwqWk=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-112-ZnPTZVaQNLePGE_UTOcM1w-1; Mon, 11 Apr 2022 17:12:50 -0400
+X-MC-Unique: ZnPTZVaQNLePGE_UTOcM1w-1
+Received: by mail-wm1-f72.google.com with SMTP id j20-20020a05600c1c1400b0038eb5cb35ecso196745wms.9
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:12:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=77PX79Y9IPAg5eHYXNxxfMPoxrPEosfgIY3QM8YJll8=;
-        b=hAJ3FMdYQzIpjBGrV5gz7bQPxYJJgHOiAR/r+cPw1O/TGTuvIzu1jIoW9eNi4Fbbrx
-         j7UXeZYOgo3kuLMNBrqobXAdZ+I1XN82RhILbzDmkIj8vTIVj4fwMZavdvofPMsQ9WNL
-         LDNGsp98mzrHnhU+piZwDHxobCWq/2JuBI8sYX8335ePF4bSmXOk15YUnqUCglCag6yg
-         FR2p+Bh5m+A+RBd4n3d3mPkXZGHaArf2L6/eCP+CJ8uLA0/XHBu6BcGQiGou8ItJQy86
-         PrkqVBesfYdBQBiFKF0S/ClaQNGZZ4PDFjgd6FU5xjh2THCeXgPpZDemsPxcVFCZ5Ar7
-         kJuA==
-X-Gm-Message-State: AOAM5320QOfvz7q/KzWukIn9gTi6uI4vxgW1EUHRehfdPDjVKfKjs+H8
-        4a2D5HWZFE0gqK+MGwbrjFA37w==
-X-Google-Smtp-Source: ABdhPJzbt+6r3bUkdCzVZS8rMIyYxfN0BphKqVhmcZuHTHMoVlPWzuKcs4sx10u/Py/5hjORnkewrA==
-X-Received: by 2002:a05:6830:d8:b0:5b2:553d:2cf8 with SMTP id x24-20020a05683000d800b005b2553d2cf8mr12021675oto.156.1649711083390;
-        Mon, 11 Apr 2022 14:04:43 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id i28-20020a9d4a9c000000b005ce06a77de2sm13366637otf.48.2022.04.11.14.04.41
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n0gtWVG0aimnuoPQwNXoXZOG0mpWKStMnE3++TkqLKY=;
+        b=42UO2sA7Yw7QlQCbJ5Q6y6O9rVuJyRIo1JvOqs/HZ3nCgaroiYg8SPwiLvVbAE0XFe
+         mlAAG6+BOWo231Qz1WvNBfVauPj3TDQMqOhcyc1tCBvW6ve7ldokjKsLW2VMMLkNLg3o
+         VsJYysXKFSW/iq5ehKQTWl0VFS/9FvCWyeNvMZVjoVRsBrU60z3DcBuHk5kWwMFU+MxR
+         T5xYslIcaZQ6FWfuMzUTxekbD0XdExBUU2EFP7CUrO+XPLzkym9Aenr/zeFE4vea5scG
+         wG/a2m2bolOa1UQ1pp3vplSzaFaQDNFzdJ6Va00UOzGN25wUNBZv+ibhzdaWymIO64NG
+         LD7A==
+X-Gm-Message-State: AOAM531ww0ajev1GbCmvtGf4Q+DG03EBIJPoPKfwUWf0TGOTwvSrejYP
+        9gLHsvUyh+9SVUFVV+DCS9FoYhJ4fMS2Wtma48+EqnE1FnvtgW+ZBDX85JRvm/M2NWhSBk3UsTC
+        ndogDUbI40JWCzcUI1ieYOg==
+X-Received: by 2002:a05:600c:198f:b0:38c:a9e9:754a with SMTP id t15-20020a05600c198f00b0038ca9e9754amr985267wmq.146.1649711569444;
+        Mon, 11 Apr 2022 14:12:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzIG64xz0G/zDMtKH809CxNshjqiDFUCpZN0F0DuF+gDgN8/smhV2a82KJnAYzO7uRz0AUIkA==
+X-Received: by 2002:a05:600c:198f:b0:38c:a9e9:754a with SMTP id t15-20020a05600c198f00b0038ca9e9754amr985248wmq.146.1649711569194;
+        Mon, 11 Apr 2022 14:12:49 -0700 (PDT)
+Received: from minerva.home ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id l9-20020a5d6d89000000b00203d62072c4sm28723722wrs.43.2022.04.11.14.12.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 14:04:42 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 16:04:40 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sai Teja Aluvala <quic_saluvala@quicinc.com>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, mka@chromium.org,
-        linux-bluetooth@vger.kernel.org, quic_hemantg@quicinc.com,
-        quic_bgodavar@quicinc.com, quic_rjliao@quicinc.com,
-        mcchou@chromium.org
-Subject: Re: [RESEND v3] arm64: dts: qcom: sc7280: Add IO regulator handler
- in SC7280 CRD platforms
-Message-ID: <YlSX6AvqoZafn2Kn@builder.lan>
-References: <1647937864-25661-1-git-send-email-quic_saluvala@quicinc.com>
+        Mon, 11 Apr 2022 14:12:48 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Chen-Yu Tsai <wens@csie.org>, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] drm/solomon: Add SSD130x OLED displays SPI support
+Date:   Mon, 11 Apr 2022 23:12:38 +0200
+Message-Id: <20220411211243.11121-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1647937864-25661-1-git-send-email-quic_saluvala@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 22 Mar 03:31 CDT 2022, Sai Teja Aluvala wrote:
+Hello,
 
-> Add IO regulator handler in SC7280 CRD based platforms.
-> As IO regulator varies in different SC7280 platforms
-> updating this handler in individual platform bluetooth node.
-> 
+This series adds a ssd130x-spi driver that provides a 4-wire SPI transport
+support for SSD130x OLED controllers that can be accessed through a SPI.
 
-To me a significant part of this change is "bluetooth", yet it's not
-mentioned until the very end of the commit message.
+The driver is quite similar to existing ssd130x-i2c driver that is used by
+I2C controllers, but there is a difference in the protocol used by SSD130x
+depending on the transport used. The details are in patch #4 description.
 
-Please update your $subject to be more to the point and to include
-"bluetooth", and please don't repeat $subject as the first line in your
-commit message.
+Patch #1 just makes the current ssd130x-i2c compatible strings in the DT
+binding to be deprecated, and add new ones that don't have an "fb-i2c".
 
-Thanks,
-Bjorn
+Patch #2 extends the DT binding with the properties needed to support SPI.
 
-> Signed-off-by: Sai Teja Aluvala <quic_saluvala@quicinc.com>
-> ---
-> v3: Updated commit text to reflect the change
-> v2: updated reviewer comments.
-> v1: intial patch
-> ---
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> index cd2755c..53ea3b4 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -23,6 +23,10 @@
->  	};
->  };
->  
-> +&bluetooth {
-> +	vddio-supply = <&vreg_l18b_1p8>;
-> +};
-> +
->  ap_tp_i2c: &i2c0 {
->  	status = "okay";
->  	clock-frequency = <400000>;
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc.
-> 
+Patch #3 adds the new compatible strings to the OF device ID table in the
+ssd130x-i2c DRM driver and deprecate the old ones.
+
+Patch #4 moves the device info for the different SSD130x variants from
+the ssd130x-i2c transport driver to the ssd130x core driver.
+
+Finally patch #5 adds the ssd130x-spi DRM driver for the OLED controllers
+that come with a 4-wire SPI interface, instead of an I2C interface.
+
+This is a v2 that addresses the issues pointed out in v1.
+
+Best regards,
+Javier
+
+Changes in v2:
+- Drop the -i2c suffixes from the compatible strings too (Geert Uytterhoeven).
+- Don't add compatible strings with an "-spi" suffix (Geert Uytterhoeven).
+- Drop ssd13x_variant_to_info() and just use the array index (Neil Armstrong).
+- Add Mark Brown's Acked-by tag to all patches.
+
+Javier Martinez Canillas (5):
+  dt-bindings: display: ssd1307fb: Deprecate "-i2c" compatible strings
+  dt-bindings: display: ssd1307fb: Extend schema for SPI controllers
+  drm/solomon: Add ssd130x new compatible strings and deprecate old
+    ones.
+  drm/solomon: Move device info from ssd130x-i2c to the core driver
+  drm/solomon: Add SSD130x OLED displays SPI support
+
+ .../bindings/display/solomon,ssd1307fb.yaml   |  74 +++++--
+ drivers/gpu/drm/solomon/Kconfig               |   9 +
+ drivers/gpu/drm/solomon/Makefile              |   1 +
+ drivers/gpu/drm/solomon/ssd130x-i2c.c         |  64 +++---
+ drivers/gpu/drm/solomon/ssd130x-spi.c         | 184 ++++++++++++++++++
+ drivers/gpu/drm/solomon/ssd130x.c             |  45 ++++-
+ drivers/gpu/drm/solomon/ssd130x.h             |  12 ++
+ 7 files changed, 332 insertions(+), 57 deletions(-)
+ create mode 100644 drivers/gpu/drm/solomon/ssd130x-spi.c
+
+-- 
+2.35.1
+
