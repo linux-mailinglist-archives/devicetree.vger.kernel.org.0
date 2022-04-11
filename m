@@ -2,67 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3954FBAF0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F014FBB05
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243182AbiDKLdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 07:33:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42188 "EHLO
+        id S1344467AbiDKLfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 07:35:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345736AbiDKLdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:33:18 -0400
-Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B0CC4578F;
-        Mon, 11 Apr 2022 04:31:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1649676665; x=1681212665;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=gugPxkZRoxMXAphUXKAPVO6SK72+rb+7kZN6teQ7Gwk=;
-  b=Zkyhyzv4p1U84NEwsOQa5GX3OVm2asMwuLEcjLxx5ii2FYAoIXFNqC5i
-   O5mZ88DoNUO8+EZu87C8Bb9CtFnKgUOlPDEJhziNfONk7JCJ0KCgjaKfA
-   i9cWHEjyA7oA4qngy3lPxzghCpc3WCLJthXqPLV25MvVlhlQxoR/GcJiL
-   U=;
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="289851380"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643670000"; 
-   d="scan'208";a="289851380"
-Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
-  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 13:30:55 +0200
-Received: from MUCSE819.infineon.com (MUCSE819.infineon.com [172.23.29.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
-        Mon, 11 Apr 2022 13:30:54 +0200 (CEST)
-Received: from [10.160.241.183] (172.23.8.247) by MUCSE819.infineon.com
- (172.23.29.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 11 Apr
- 2022 13:30:54 +0200
-Message-ID: <52cfa5fc-9fc5-dee4-6d53-70d241510269@infineon.com>
-Date:   Mon, 11 Apr 2022 13:30:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 4/4] tpm: Add YAML schema for the TPM TIS I2C options
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <peterhuewe@gmx.de>, <jarkko@kernel.org>, <jgg@ziepe.ca>,
-        <linux-integrity@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <amirmizi6@gmail.com>
-References: <20220404081835.495-1-johannes.holland@infineon.com>
- <20220404081835.495-4-johannes.holland@infineon.com>
- <YksaVw74Eotowyse@robh.at.kernel.org>
-From:   Johannes Holland <johannes.holland@infineon.com>
-In-Reply-To: <YksaVw74Eotowyse@robh.at.kernel.org>
+        with ESMTP id S1344167AbiDKLf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:35:29 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABD4845783;
+        Mon, 11 Apr 2022 04:33:14 -0700 (PDT)
+X-UUID: ec7307cde0af4b17830cd361f74d2b89-20220411
+X-UUID: ec7307cde0af4b17830cd361f74d2b89-20220411
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1482752981; Mon, 11 Apr 2022 19:33:12 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 11 Apr 2022 19:33:11 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 Apr 2022 19:33:11 +0800
+Message-ID: <0fad4560d167ed7f063e3e597b772bd440791b43.camel@mediatek.com>
+Subject: Re: [PATCH V2 06/15] cpufreq: mediatek: Record previous target
+ vproc value
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <rafael@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
+Date:   Mon, 11 Apr 2022 19:33:10 +0800
+In-Reply-To: <20220411032654.5tqqivmstqkojfj5@vireshk-i7>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+         <20220408045908.21671-7-rex-bc.chen@mediatek.com>
+         <20220411032654.5tqqivmstqkojfj5@vireshk-i7>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE816.infineon.com (172.23.29.42) To
- MUCSE819.infineon.com (172.23.29.45)
-X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,108 +60,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.04.2022 18:18, Rob Herring wrote:
-> On Mon, Apr 04, 2022 at 10:18:35AM +0200, Johannes Holland wrote:
->> Add a YAML schema to support device tree bindings for the generic I2C
->> physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
->> Specification for TPM 2.0 v1.04 Revision 14.
->
-> Bindings are for devices. A protocol layer does not make a device.
+On Mon, 2022-04-11 at 08:56 +0530, Viresh Kumar wrote:
+> On 08-04-22, 12:58, Rex-BC Chen wrote:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > We found the buck voltage may not be exactly the same with what we
+> > set
+> > because CPU may share the same buck with other module.
+> > Therefore, we need to record the previous desired value instead of
+> > reading
+> > it from regulators.
+> > 
+> > Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > ---
+> >  drivers/cpufreq/mediatek-cpufreq.c | 31 +++++++++++++++++++-------
+> > ----
+> >  1 file changed, 20 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index dc4a87e68940..472f4de29e5f 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> > @@ -40,6 +40,7 @@ struct mtk_cpu_dvfs_info {
+> >  	struct list_head list_head;
+> >  	int intermediate_voltage;
+> >  	bool need_voltage_tracking;
+> > +	int old_vproc;
+> 
+> I like prev_vproc better somehow, but it is up to you to name it :)
 
-Agreed. I will change this in my next patch.
+Hello Viresh,
 
->
->>
->> Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
->> ---
->>  .../bindings/security/tpm/tpm-tis-i2c.yaml    | 48 +++++++++++++++++++
->>  1 file changed, 48 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
->
-> We already have a binding for I2C TPM. That one should be converted.
+Thanks for your review.
+I will modify this as prev_vproc in next version.
 
-Will do. There are two required properties which are in fact not needed
-by any I2C driver. If that is ok with you, I would like to turn them
-optional.
+> 
+> >  };
+> >  
+> >  static LIST_HEAD(dvfs_info_list);
+> > @@ -190,11 +191,17 @@ static int
+> > mtk_cpufreq_voltage_tracking(struct mtk_cpu_dvfs_info *info,
+> >  
+> >  static int mtk_cpufreq_set_voltage(struct mtk_cpu_dvfs_info *info,
+> > int vproc)
+> >  {
+> > +	int ret;
+> > +
+> >  	if (info->need_voltage_tracking)
+> > -		return mtk_cpufreq_voltage_tracking(info, vproc);
+> > +		ret = mtk_cpufreq_voltage_tracking(info, vproc);
+> >  	else
+> > -		return regulator_set_voltage(info->proc_reg, vproc,
+> > -					     vproc + VOLT_TOL);
+> > +		ret = regulator_set_voltage(info->proc_reg, vproc,
+> > +					    MAX_VOLT_LIMIT);
+> > +	if (!ret)
+> > +		info->old_vproc = vproc;
+> > +
+> > +	return ret;
+> >  }
+> >  
+> >  static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
+> > @@ -211,15 +218,7 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >  
+> >  	inter_vproc = info->intermediate_voltage;
+> >  
+> > -	old_freq_hz = clk_get_rate(cpu_clk);
+> > -	old_vproc = regulator_get_voltage(info->proc_reg);
+> > -	if (old_vproc < 0) {
+> > -		pr_err("%s: invalid Vproc value: %d\n", __func__,
+> > old_vproc);
+> > -		return old_vproc;
+> > -	}
+> > -
+> 
+> Why did you move it down from here? I think it was fine to error out
+> early if voltage isn't available.
 
-- linux,sml-base
-- linux,sml-size
+I will move them to original position in next version.
 
->>>
->> diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
->> new file mode 100644
->> index 000000000000..7948867ff3f7
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: I2C PTP based TPM Device Tree Bindings
->> +
->> +maintainers:
->> +  - Johannes Holland <johannes.holland@infineon.com>
->> +
->> +description:
->> +  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          # Infineon's Trusted Platform Module (TPM) (SLB9673)
->> +          - infineon,slb9673
->> +          # Nuvoton's Trusted Platform Module (TPM) (NPCT75x)
->> +          - nuvoton,npct75x
->
-> I see this is already used, but in general wildcards should not be used
-> in device compatibles.
+Thanks!
 
-Ok, I took this over from a previous patch. Since I am not familiar with
-Nuvoton products, so I am going to remove this for now.
+BRs,
+Rex
 
->
->> +      - const: tcg,tpm-tis-i2c
->
-> Pretty sure I killed this off when originally reviewing the TPM I2C
-> binding.
->
+> 
+> >  	freq_hz = freq_table[index].frequency * 1000;
+> > -
+> >  	opp = dev_pm_opp_find_freq_ceil(cpu_dev, &freq_hz);
+> >  	if (IS_ERR(opp)) {
+> >  		pr_err("cpu%d: failed to find OPP for %ld\n",
+> > @@ -229,6 +228,16 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >  	vproc = dev_pm_opp_get_voltage(opp);
+> >  	dev_pm_opp_put(opp);
+> >  
+> > +	old_freq_hz = clk_get_rate(cpu_clk);
+> > +	old_vproc = info->old_vproc;
+> > +	if (old_vproc == 0)
+> > +		old_vproc = regulator_get_voltage(info->proc_reg);
+> > +	if (old_vproc < 0) {
+> > +		dev_err(cpu_dev, "%s: invalid Vproc value: %d\n",
+> > +			__func__, old_vproc);
+> > +		return old_vproc;
+> > +	}
+> > +
+> >  	/*
+> >  	 * If the new voltage or the intermediate voltage is higher
+> > than the
+> >  	 * current voltage, scale up voltage first.
+> > -- 
+> > 2.18.0
+> 
+> 
 
-Sorry, I did not see any discussion related to this.
-
-IMHO, the TPM is a open standard device. That should allow for plug
-and play, regardless of the manufacturer. For SPI, we also have
-tcg,tpm_tis-spi. However, if you want it removed, I can do that.
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupt:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      tpm@2e {
->> +        compatible = "infineon,slb9673", "nuvoton,npct75x", "tcg,tpm-tis-i2c";
->> +        reg = <0x2e>;
->> +      };
->> +    };
->> +...
->> --
->> 2.31.1.windows.1
->>
->>
