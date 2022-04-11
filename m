@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D564FB258
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 05:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B3C4FB25D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 05:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244558AbiDKD3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 23:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39544 "EHLO
+        id S241839AbiDKDbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 23:31:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244557AbiDKD3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 23:29:15 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D602F024
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 20:26:57 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id w7so13407179pfu.11
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 20:26:57 -0700 (PDT)
+        with ESMTP id S244539AbiDKDbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 23:31:39 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C0B32EE4
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 20:29:25 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id n8so12753780plh.1
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 20:29:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=iePzAY4s9oNe9r1gZgKsDyZfLq/xq3Wu66mTe2SS1a8=;
-        b=cz2urYf9dwqT9+3vV4unBRv44lrda5K2NgGGJn4QFKGmycwHI0lX7CAWFGlSTGL9rL
-         OS5fKMUOfs5PnPiPLC/5Z/VnUHIz9oxxdWbBFX9GiK5KFhzeJ0KWDTpxXy3Roj7JDKdC
-         JmqiKdOmnmX6dQc4/pkvI+tfj7bMmwGDFjIuPuLS72FmeMk5Yv+cn7rMXGnkVA5LjBAe
-         x1o7U2a9JLUPC9brFZGJAnUW1o7504pH7MES2SsFkuDbViqIw9n+Pk7I91+fQEbqEYz+
-         bhXhQctiOrrQxVvLNuDmKsQqZpDo99D6u7fxoKouWxtGTcmH5SRGgVtxouIKlOtsH1c1
-         jTDA==
+        bh=glLri0Q5hoPnF9CltB+t3SBRTbSb2KsDjT5cGpcgnl4=;
+        b=Lor8cKaxWULoOS+gC8IfE1E+zWobSXFdYdQ9MXCEDM5Br0l/Tc33DpFnB6jfVj9xyD
+         RUrlBC9h+YNKwOeF4Bx2uUT3fsAHfeYHJlYDwZWkPQscuKVkwGUionPVKQp3py42IdhN
+         sXRAd2yNMYUk+s7wECCWeXGm9ITePH7DEKtMqoIUdqiK1T3VpVkmLMtlSWTT/lr9567F
+         b/SXpYq2KVpDDRTy+d6vpGkwepq/NWVmIgGMoQPOEAqw31oMVfCjq5rIzRfaevRaxCKB
+         eV037276lxgv3hAQPHBHDPjExa/mKjVtAc4voYESLlWIS9ldT4c6DkVHoQ3Y75V7d87W
+         Z95A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=iePzAY4s9oNe9r1gZgKsDyZfLq/xq3Wu66mTe2SS1a8=;
-        b=rPIP38pNY9y0mDJzLEtXmkjW7kPiKVy1TSqUGKFoCssBozgBzy3V9+y1R83CLsWc58
-         5Uf0qrN6e6GuUpSA4o//e0UbxvhPhu7WdCLa8rzNYgjQwiaxQqwUJ2Rv8pA/FHyt3jMl
-         kpD4T4DxS1XKbGg1iDuI1KlmmeEPUnheIshJXYg4PBbSfUKW6YSj9VFepeca9kR3P2nH
-         yzYQIrAvVpuqvOG1mttpxzkcFa43ZlNYGrX7AK/3nLVZ5fooxmnN86+9qIwfyH1M+HqS
-         UZskhmKYgtvPZAiOjWJ8bbQTYY5SRYQFbxRUSIf+H+irowwZzzo2e6l4BBXT9a3mIDPF
-         JhvQ==
-X-Gm-Message-State: AOAM530sV08di4OzzNoPctr95yhw+X4Z4bhpPLwb9VuuInhOVPMFWZ4z
-        Zk0nUxl/wIbLqGyQg9YuvTra1A==
-X-Google-Smtp-Source: ABdhPJy7iOPr39nrGVdmH8I35PUMwel6TcCkay2LmFP7c9ln6hx9kug3RyhDMEv5UH3EOIemmlc0zA==
-X-Received: by 2002:a63:2a92:0:b0:398:a420:4faa with SMTP id q140-20020a632a92000000b00398a4204faamr24765350pgq.222.1649647617063;
-        Sun, 10 Apr 2022 20:26:57 -0700 (PDT)
+        bh=glLri0Q5hoPnF9CltB+t3SBRTbSb2KsDjT5cGpcgnl4=;
+        b=eiq5zgN3AWxfOT7iS798qf+XHozs20oKcHHWlq/opp18c0nle6CP0JUmgePdlml7pk
+         5IVFx4vYntEV9KJrzDtjmTjF+knMFy9/i5j6+l22VG9Ci0TPzUiwJqKKWTC6S3V/F8R8
+         9gjd+GxTGdahfQsjEk0tO9z2lta6nYjqT7g7s8jpeN+ZIut68imrIQ0dLIQefp1QmS4t
+         /j2o5itijyv60rEz5rQIzb2Nb7SaS/F/+jese/Qg8zXuMzUwx84R45kbGMy4+lVWHpyK
+         wcIRy8v7GjURGeh3H39wUkW3dXWWAkWV+BSkZDKJRmk6lTewFq9oTry75/7adD7lARc3
+         taIg==
+X-Gm-Message-State: AOAM531s7bsTP4U/0H+hWQIfVFnePhEUxF5bVbQN0At2Ko400kkvawcq
+        f8skxGso3Ox2YDcInwliBJesXQ==
+X-Google-Smtp-Source: ABdhPJzTnmE6XXA7umU2v3xHJBcEhDF7Ru93TRyQrYWdHHOoifJtCYP/hQCVMVgRLXA7Zb4apPNhYw==
+X-Received: by 2002:a17:90a:8405:b0:1bc:d521:b2c9 with SMTP id j5-20020a17090a840500b001bcd521b2c9mr34455774pjn.119.1649647764750;
+        Sun, 10 Apr 2022 20:29:24 -0700 (PDT)
 Received: from localhost ([223.184.83.228])
-        by smtp.gmail.com with ESMTPSA id u5-20020a17090a3fc500b001cb3fec230bsm8849985pjm.14.2022.04.10.20.26.56
+        by smtp.gmail.com with ESMTPSA id s3-20020a056a00194300b004f6664d26eesm35381725pfk.88.2022.04.10.20.29.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 20:26:56 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 08:56:54 +0530
+        Sun, 10 Apr 2022 20:29:24 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 08:59:22 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
 Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
@@ -56,17 +56,15 @@ Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
-Subject: Re: [PATCH V2 06/15] cpufreq: mediatek: Record previous target vproc
- value
-Message-ID: <20220411032654.5tqqivmstqkojfj5@vireshk-i7>
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V2 15/15] cpufreq: mediatek: Use device print to show logs
+Message-ID: <20220411032922.yj4p42is5ky6bgau@vireshk-i7>
 References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
- <20220408045908.21671-7-rex-bc.chen@mediatek.com>
+ <20220408045908.21671-16-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220408045908.21671-7-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220408045908.21671-16-rex-bc.chen@mediatek.com>
 User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -78,95 +76,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-04-22, 12:58, Rex-BC Chen wrote:
-> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+On 08-04-22, 12:59, Rex-BC Chen wrote:
+> Replace pr_* with dev_* to show logs.
 > 
-> We found the buck voltage may not be exactly the same with what we set
-> because CPU may share the same buck with other module.
-> Therefore, we need to record the previous desired value instead of reading
-> it from regulators.
-> 
-> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
-> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
->  drivers/cpufreq/mediatek-cpufreq.c | 31 +++++++++++++++++++-----------
->  1 file changed, 20 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/mediatek-cpufreq.c b/drivers/cpufreq/mediatek-cpufreq.c
-> index dc4a87e68940..472f4de29e5f 100644
-> --- a/drivers/cpufreq/mediatek-cpufreq.c
-> +++ b/drivers/cpufreq/mediatek-cpufreq.c
-> @@ -40,6 +40,7 @@ struct mtk_cpu_dvfs_info {
->  	struct list_head list_head;
->  	int intermediate_voltage;
->  	bool need_voltage_tracking;
-> +	int old_vproc;
+>  drivers/cpufreq/mediatek-cpufreq.c | 41 +++++++++++++++++-------------
+>  1 file changed, 23 insertions(+), 18 deletions(-)
 
-I like prev_vproc better somehow, but it is up to you to name it :)
+One should always arrange the patches in this form:
 
->  };
->  
->  static LIST_HEAD(dvfs_info_list);
-> @@ -190,11 +191,17 @@ static int mtk_cpufreq_voltage_tracking(struct mtk_cpu_dvfs_info *info,
->  
->  static int mtk_cpufreq_set_voltage(struct mtk_cpu_dvfs_info *info, int vproc)
->  {
-> +	int ret;
-> +
->  	if (info->need_voltage_tracking)
-> -		return mtk_cpufreq_voltage_tracking(info, vproc);
-> +		ret = mtk_cpufreq_voltage_tracking(info, vproc);
->  	else
-> -		return regulator_set_voltage(info->proc_reg, vproc,
-> -					     vproc + VOLT_TOL);
-> +		ret = regulator_set_voltage(info->proc_reg, vproc,
-> +					    MAX_VOLT_LIMIT);
-> +	if (!ret)
-> +		info->old_vproc = vproc;
-> +
-> +	return ret;
->  }
->  
->  static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
-> @@ -211,15 +218,7 @@ static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
->  
->  	inter_vproc = info->intermediate_voltage;
->  
-> -	old_freq_hz = clk_get_rate(cpu_clk);
-> -	old_vproc = regulator_get_voltage(info->proc_reg);
-> -	if (old_vproc < 0) {
-> -		pr_err("%s: invalid Vproc value: %d\n", __func__, old_vproc);
-> -		return old_vproc;
-> -	}
-> -
+- Fix bugs first (since they need to be applied first and need to go
+  to stable kernels too).
 
-Why did you move it down from here? I think it was fine to error out
-early if voltage isn't available.
+- Trivial fixes next, like this one which you chose to be present at
+  15/15. I would have applied this one right away, if it wasn't he
+  last one, because of which we have conflicts now.
 
->  	freq_hz = freq_table[index].frequency * 1000;
-> -
->  	opp = dev_pm_opp_find_freq_ceil(cpu_dev, &freq_hz);
->  	if (IS_ERR(opp)) {
->  		pr_err("cpu%d: failed to find OPP for %ld\n",
-> @@ -229,6 +228,16 @@ static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
->  	vproc = dev_pm_opp_get_voltage(opp);
->  	dev_pm_opp_put(opp);
->  
-> +	old_freq_hz = clk_get_rate(cpu_clk);
-> +	old_vproc = info->old_vproc;
-> +	if (old_vproc == 0)
-> +		old_vproc = regulator_get_voltage(info->proc_reg);
-> +	if (old_vproc < 0) {
-> +		dev_err(cpu_dev, "%s: invalid Vproc value: %d\n",
-> +			__func__, old_vproc);
-> +		return old_vproc;
-> +	}
-> +
->  	/*
->  	 * If the new voltage or the intermediate voltage is higher than the
->  	 * current voltage, scale up voltage first.
-> -- 
-> 2.18.0
+- Non-trivial patches later, so reviews on them don't affect other
+  patches.
 
 -- 
 viresh
