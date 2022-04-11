@@ -2,49 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2924FB13D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 03:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E80EF4FB147
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 03:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235113AbiDKBGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 21:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60938 "EHLO
+        id S238942AbiDKBQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 21:16:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiDKBGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 21:06:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B555B02;
-        Sun, 10 Apr 2022 18:04:39 -0700 (PDT)
+        with ESMTP id S234340AbiDKBQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 21:16:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE93B5D;
+        Sun, 10 Apr 2022 18:14:23 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2FEEF60F2B;
-        Mon, 11 Apr 2022 01:04:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D70BC385A4;
-        Mon, 11 Apr 2022 01:04:37 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C326960FBD;
+        Mon, 11 Apr 2022 01:14:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23366C385A4;
+        Mon, 11 Apr 2022 01:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649639078;
-        bh=7QJJSZyCBpHfoYkNWrOMYRfkaDkXvb2Tgsoch+Pp1DA=;
+        s=k20201202; t=1649639662;
+        bh=HC3vxkm/3Jsop/jfg4WypoMzrI/j5nLhe4nVJNe90bA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qSt4mL6CVa4I1dtd8eO0FqmPiNHjgvwFYPubmbrnIU93EesV7BRlLbDqF6L/iz4fY
-         NkwgX/QIeWqOx0QXMPKXQ5tpTET32b2BmmTUdMXNOyoXx8MaEYhWoTsseGfnXiFo4y
-         oW9FOqqL7rWDQONH51IeX7DNU5Cm/5hc0nboZBkQzKJ4O+l9N4kj6RquAD34k5CIq3
-         ur+H4VRd12LkLLTiFhaNuNBrFIH80yRdJ7o8aGir7rvncvVhir9L1svYJZ2Bz0Eulg
-         6wV0TRbIB7gfaK6gwBhnW3h6+FPjTTc1a53uAh0V3YQqhUemCptGEQY6nRoiESmPk2
-         MnOlJ9ikzLVsQ==
-Date:   Mon, 11 Apr 2022 09:04:33 +0800
+        b=Fe1Rh2Nij7J56owKvkjLV8h1VGQ97S3nWE101/tJPQFYXv3/FeJbtAtgbpmgFIp3J
+         m9B/lF3NvmqV8c0mkM31fzXCYohiBNMxzGiK2M8dWmvkF2GkM1XhPWvJqy3CJHFpFE
+         o4H6RDlGcJ5xetkWERuMLO7V60sV0eFrKGqhwNzIzJpgbUi7HOaqKnCrCPQ7jNTi5+
+         sqnDZx2QP+3gGpGSK0qO5e8GKK3g+MKQ7R5Y6OR7t4NFxF3JfUGlG46Lo2YVD+euH7
+         NBQy3wI5LLhe8PibcUMtOA5zloQdgIMkLE3Nf7xP45la9Whk+GDwzPHu5QYfsKwgtg
+         6u1QDYWTRsbVA==
+Date:   Mon, 11 Apr 2022 09:14:15 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: lx2160a: Update can node property
-Message-ID: <20220411010433.GY129381@dragon>
-References: <20220402190855.35530-1-singh.kuldeep87k@gmail.com>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: imx8mm-venice-gw{71xx,72xx,73xx}: fix OTG
+ controller OC mode
+Message-ID: <20220411011415.GA129381@dragon>
+References: <20220405193509.8231-1-tharvey@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220402190855.35530-1-singh.kuldeep87k@gmail.com>
+In-Reply-To: <20220405193509.8231-1-tharvey@gateworks.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -55,11 +59,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 03, 2022 at 12:38:55AM +0530, Kuldeep Singh wrote:
-> fsl,clk-source property is of type uint8 and need to be defined as
-> "/bits/ 8 <0>". Simply setting value to 0 raise warning:
-> can@2180000: fsl,clk-source:0: [0, 0, 0, 0] is too long
+On Tue, Apr 05, 2022 at 12:35:09PM -0700, Tim Harvey wrote:
+> The GW71xx, GW72xx and GW73xx boards have USB1 routed to a USB OTG
+> connectors and USB2 routed to a USB hub.
 > 
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> The OTG connector has a over-currently protection with an active-low
+> pin and the USB1 to HUB connection has no over-current protection (as
+> the HUB itself implements this for its downstream ports).
+> 
+> Add proper dt nodes to specify the over-current pin polarity for USB1
+> and disable over-current protection for USB2.
+> 
+> Fixes: 6f30b27c5ef5 ("arm64: dts: imx8mm: Add Gateworks i.MX 8M Mini Development Kits")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+> v2: add gw71xx as well
 
-Applied, thanks!
+Okay, applied v2 instead.
