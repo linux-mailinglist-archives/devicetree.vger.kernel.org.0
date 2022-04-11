@@ -2,90 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 491844FBF17
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3E84FBF1E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347030AbiDKOaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 10:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
+        id S1344351AbiDKOfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 10:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234619AbiDKOaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:30:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B767A3AA4B;
-        Mon, 11 Apr 2022 07:28:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 44DFB61238;
-        Mon, 11 Apr 2022 14:28:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DF5EC385A4;
-        Mon, 11 Apr 2022 14:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1649687288;
-        bh=qSBNhWoQB+3rDttEgS4S8bh557Ou5x/3FESdJViNRA0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fv4O5VPdfgN338yYjBkgj+Hzf6G22hCT+GJOhztdSUgwDvdZRHGUP65w0R61kP8hQ
-         9ugCeGOl9ED3uyuck9QGOKnBD8UcNLcVqWoika/kdAVL08VGbU9YSft8p6n17svGTp
-         CeaFWGDBL+1Kp83crTpgSYwBH7XizDFkZyRy9MCE=
-Date:   Mon, 11 Apr 2022 16:28:06 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH v6 1/5] device property: Allow error pointer to be passed
- to fwnode APIs
-Message-ID: <YlQ69jMduq/evgTt@kroah.com>
-References: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
- <YlQyEz3/J0rb2Hew@smile.fi.intel.com>
+        with ESMTP id S240433AbiDKOfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:35:53 -0400
+Received: from out28-146.mail.aliyun.com (out28-146.mail.aliyun.com [115.124.28.146])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446D0245BA;
+        Mon, 11 Apr 2022 07:33:37 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1603941|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0169187-0.00675149-0.97633;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.NOa6aYH_1649687597;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NOa6aYH_1649687597)
+          by smtp.aliyun-inc.com(33.40.31.76);
+          Mon, 11 Apr 2022 22:33:33 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, reimu@sudomaker.com
+Subject: [PATCH v4 0/3] Add SMP/SMT support for Ingenic sysost driver.
+Date:   Mon, 11 Apr 2022 22:33:14 +0800
+Message-Id: <1649687597-74219-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YlQyEz3/J0rb2Hew@smile.fi.intel.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 04:50:11PM +0300, Andy Shevchenko wrote:
-> On Fri, Apr 08, 2022 at 09:48:40PM +0300, Andy Shevchenko wrote:
-> > Some of the fwnode APIs might return an error pointer instead of NULL
-> > or valid fwnode handle. The result of such API call may be considered
-> > optional and hence the test for it is usually done in a form of
-> > 
-> > 	fwnode = fwnode_find_reference(...);
-> > 	if (IS_ERR(fwnode))
-> > 		...error handling...
-> > 
-> > Nevertheless the resulting fwnode may have bumped the reference count
-> > and hence caller of the above API is obliged to call fwnode_handle_put().
-> > Since fwnode may be not valid either as NULL or error pointer the check
-> > has to be performed there. This approach uglifies the code and adds
-> > a point of making a mistake, i.e. forgetting about error point case.
-> > 
-> > To prevent this, allow an error pointer to be passed to the fwnode APIs.
-> 
-> Rafael and Greg, if this okay for you, can the first three patches be
-> applied, so we will have at least the fix in and consider constification
-> a further work?
+1.On the hardware of X2000 SoC, the OST has been split into
+  two parts, two 32bit timers for clockevent and one 64bit
+  timer for clocksource (with different addresses), so it
+  not appropriate to use only one "ingenic,x2000-ost", just
+  remove it, then introduce "ingenic,x2000-ost32" and
+  "ingenic,x2000-ost64".
+2.The OST in Ingenic XBurst®2 SoCs has a global timer and
+  up to 16 event timers, add support for the event timers.
+3.Add dt-bindings and compatible strings for the X1600 SoC,
+  the X1700 SoC, the X1830 SoC, the X2000 SoC, the X2500 SoC.
 
-Give us a chance, you sent this on friday and are asking about it first
-thing Monday morning?
+周琰杰 (Zhou Yanjie) (3):
+  dt-bindings: timer: Remove unreasonable binding.
+  dt-bindings: timer: Add bindings for new Ingenic SoCs.
+  clocksource: Ingenic: Add SMP/SMT support for sysost driver.
 
-Please go and review other patches sent on the list to help us catch up.
+ .../devicetree/bindings/timer/ingenic,sysost.yaml  |   8 +-
+ drivers/clocksource/ingenic-sysost.c               | 405 ++++++++++++++++-----
+ 2 files changed, 313 insertions(+), 100 deletions(-)
 
-greg k-h
+-- 
+2.7.4
+
