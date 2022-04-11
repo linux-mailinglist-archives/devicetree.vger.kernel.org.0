@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 455CF4FB487
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1D1B4FB4A9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbiDKHXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 03:23:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46636 "EHLO
+        id S245372AbiDKH1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 03:27:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245298AbiDKHXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:23:00 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6D733880;
-        Mon, 11 Apr 2022 00:20:47 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id bk12so9928797qkb.7;
-        Mon, 11 Apr 2022 00:20:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=q6vyTc8/oFhCp1GfrwTsSBr2He1wLigdJcEnNoAKosg=;
-        b=kwCqakyaFMN+byP2t+Fi2f2Y8uhWZmz9S0Ct/eCDBkoFz8Dnogv9u9+TeMdc0/32Pg
-         3D6ewWycN2/q5Bzsntz6u0B464UNJ/O7UcTzdIIO1QvYSlQXWIeghFKDaB5j0fnEylfJ
-         hpWhEX7nMtY9rmJ7oTdcerfZByrIetauv2buhWp/sXb4oK/v172PdHAqWedr1p9vvvmJ
-         INAswljoglFGcyD08cUgw1s+6dvMqNamizvEgk1qff0LHYEHY9WkLc38TE0oyX4p4xWS
-         SUxq0e+9z+VU/Q3yQN3/j6bJwwp6V0xIbsuMaw9/wv4iV8yr8ozPz78Eq8bJ933WcEeM
-         iksQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=q6vyTc8/oFhCp1GfrwTsSBr2He1wLigdJcEnNoAKosg=;
-        b=DSe26mI+Tq1k6qg8IvkpxOWed0OkcM1vgUQmH7/UKSAyz9JB/QOa8CU18IC4UhSQS8
-         Duf7vuGqLwNSirMLUmwRGdJdvaF6OpzTzPfrwJ5Kh5lbge3l3cWO457jOvgpP2UyXlQv
-         9DI+5U9P2Q95PeiCqkBSTB93TW8iqXsxt3kyvOjsGuASpSz5sQOktkIgrJ9yCoBwSimp
-         s3isbMRMheo9prbVI6BXB+0B6BIIF0P+lPxCsbhTbfyoCqwlxnZ9N37HK4UA0NM7gRkm
-         bMqDMHIcLAlJWjGn6Eikg6DXyW5UnbyUhZR68UWsKNFc2LYfcezLQQ3rVBbc1XGx2HBv
-         kINA==
-X-Gm-Message-State: AOAM5319t2A6PW8PtiSAgTH852I2GDaGPeGSjZsJUf/pY8Tkd0qAEeSf
-        L6NPTSYZnlUTKhCSQOGmSZCNFjfGU/ObtlCMOgY=
-X-Google-Smtp-Source: ABdhPJy7b/4YKAfADpzu2413Pe5i9Ft/m1HUzLmUGqxmdCWzkWDl2RhjuZg0gzWj7i3qjJUq9TRPuqm5259eUn7bhtI=
-X-Received: by 2002:a05:620a:bd5:b0:67d:15ed:2fcd with SMTP id
- s21-20020a05620a0bd500b0067d15ed2fcdmr21094484qki.81.1649661647007; Mon, 11
- Apr 2022 00:20:47 -0700 (PDT)
+        with ESMTP id S245366AbiDKH1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:27:15 -0400
+Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AC8E39BBB;
+        Mon, 11 Apr 2022 00:24:52 -0700 (PDT)
+Received: from email.seznam.cz
+        by email-smtpc7a.ng.seznam.cz (email-smtpc7a.ng.seznam.cz [10.23.10.195])
+        id 0d4e80be5640d4d70ce74ce0;
+        Mon, 11 Apr 2022 09:24:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1649661869; bh=B8UfqYhtDAANtycvzPyjICoFKFyGu9U+8xDMD/CjZMg=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding:X-szn-frgn:X-szn-frgc;
+        b=EuPGSr/E4vPmBSfC5K44HZvO4mod0eCfPeIrHiSU5oLF6M4oI9rksmg9rPw8tRhJ0
+         UPEs2gtLIcZqbTj6PFiXcaqRXKR3dGP89k01qUAR7dAqZ3eIPMU5+gD8RyzVVD5jwJ
+         o23CtccflugTbGUEh2dbjL7EFxFcXJkfiMfOBfY0=
+Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
+        by email-relay18.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
+        Mon, 11 Apr 2022 09:24:22 +0200 (CEST)  
+From:   michael.srba@seznam.cz
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Michael Srba <Michael.Srba@seznam.cz>
+Subject: [RESEND v9 0/5] enable use of resources on the SSC bus on (some) qcom SoCs
+Date:   Mon, 11 Apr 2022 09:21:51 +0200
+Message-Id: <20220411072156.24451-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220410203138.22513-1-arinc.unal@arinc9.com> <20220410203138.22513-2-arinc.unal@arinc9.com>
-In-Reply-To: <20220410203138.22513-2-arinc.unal@arinc9.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Mon, 11 Apr 2022 09:20:36 +0200
-Message-ID: <CAMhs-H8Jheq4wttOXbdHsspkQtZvOauKiK5kxezz7sDDC_Zdhw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] mips: dts: mt7621: mux phy4 to gmac1 for GB-PC1
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-szn-frgn: <6611fa77-a821-48c8-bb11-57a3bfa1e278>
+X-szn-frgc: <0>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 10, 2022 at 10:32 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
-c9.com> wrote:
->
-> Mux the MT7530 switch's phy4 to the SoC's gmac1 on the GB-PC1 devicetree.
-> This achieves 2 Gbps total bandwidth to the CPU using the second RGMII.
->
-> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> ---
->  .../boot/dts/ralink/mt7621-gnubee-gb-pc1.dts   | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
+From: Michael Srba <Michael.Srba@seznam.cz>
 
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+NOTE: previous versions of this series didn't use a cover letter,
+it's added in this resend in order to not upset the kernel bot.
 
-Thanks,
-    Sergio Paracuellos
+This series adds necessary changes for accessing recources in the SSC block
+on msm8998 (though it should be possible to extend this to support other
+SoCs).
+
+In order to make use of these changes, Linux (HLOS in qcom's terms) needs
+to be allowed to access the relevant address ranges by the SMMU
+configuration.
+
+For a simple way to modify an existing (closed source) qcom hypervisor
+image to change the static SMMU configuration, see [1].
+
+If you lack ownership of your device, it should alternatively be possible
+to change the SMMU configuration at a later point, provided you manage to
+get code execution in the hypervisor by way of an exploit.
+
+[1] https://michael-srba.cz/mainline4life/msm8998_hypervisor_patch.html
+
+Michael Srba (5):
+  dt-bindings: clock: gcc-msm8998: Add definitions of SSC-related clocks
+  clk: qcom: gcc-msm8998: add SSC-related clocks
+  dt-bindings: bus: add device tree bindings for qcom,ssc-block-bus
+  drivers: bus: add driver for initializing the SSC bus on (some) qcom
+    SoCs
+  arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
+
+ .../bindings/bus/qcom,ssc-block-bus.yaml      | 147 +++++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  15 +
+ drivers/bus/Kconfig                           |  11 +
+ drivers/bus/Makefile                          |   1 +
+ drivers/bus/qcom-ssc-block-bus.c              | 391 ++++++++++++++++++
+ drivers/clk/qcom/gcc-msm8998.c                |  56 +++
+ include/dt-bindings/clock/qcom,gcc-msm8998.h  |   4 +
+ 7 files changed, 625 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
+ create mode 100644 drivers/bus/qcom-ssc-block-bus.c
+
+-- 
+2.35.1
+
