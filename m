@@ -2,48 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11BE24FB92B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 12:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 968C74FB940
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 12:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245756AbiDKKQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 06:16:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55754 "EHLO
+        id S1345215AbiDKKUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 06:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345176AbiDKKQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 06:16:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8ECC42A26;
-        Mon, 11 Apr 2022 03:13:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F2F0613F5;
-        Mon, 11 Apr 2022 10:13:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D741AC385A3;
-        Mon, 11 Apr 2022 10:13:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649672025;
-        bh=oG1NBLa6Pa4sLeuqHrZskjNq1N1hcQVmn0kQO/mGzI4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=fCKWZH1pcefEFpALbSsH9D4XaBY/NJ0mDIAtrwPMSgCb+eC6z9kZD2FQ/8v7Lz7gl
-         qWp4gWt0Rt5VXDGlcNhXdJCK4MI6eSbplcgBmVJAT7Ix6wY9UhCNLdyldpr7Jh+N8f
-         X1ii0gY1OSOaq3FMVmF7y09nmq8i+EB1KLsYQCBbNsXNV65meVt50vF6zVyrJU0QY3
-         1zQvXCTTuG+RKr1umF8oN84PIg18ykyc68bUCX4lt6atm8y3bRRwrC2iEw+PKXRchz
-         Tj/PW3JWJFRoNlO8RGFBs5X3jo8qwXtcqzfy944bIu9jpPDxbe/k0TX23UTpBcKjzG
-         hQFhcSMpYqqZQ==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     netdev@vger.kernel.org
-Cc:     lorenzo.bianconi@redhat.com, davem@davemloft.net, kuba@kernel.org,
-        pabeni@redhat.com, robh@kernel.org, devicetree@vger.kernel.org,
-        nbd@nbd.name
-Subject: [PATCH net-next] net: ethernet: mtk_eth_soc: use standard property for cci-control-port
-Date:   Mon, 11 Apr 2022 12:13:25 +0200
-Message-Id: <40598de79a6317fdd3a44dfe29ce4223e1e0d3ed.1649671814.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S241685AbiDKKUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 06:20:24 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E1C32628
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 03:18:10 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id p189so9570116wmp.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 03:18:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=BphwVBJjBpMqmQLv0M0byMqAM4KgSCASp8z4utuZbwA=;
+        b=prJsemH7plzs4ZQ+OhsYhu3hT7608gElhw5ZhxOppzBLIPiUA/FHeCJ9bMNPT828kA
+         HO2w1JR08WeCaWzfqHGhUwDdHfm6oVVNy53yh81nwhWALEgljzC6TBFyBpRePN4IOoNT
+         CKFIRKZyBP+Y7RzqTLEZrsBH+UxwB7ISprZJjbNjTnCZdu1KPOw07grHfREEM41U5M6R
+         aKm7rUxlUyuFkG1dSXHr98G0caTRvffUNR2w2eREwzqKMzGt0Lr9LW8oeAvL0FInGvz2
+         wTJEBzjSFw7Dfex71IJ1c7D9m5hgY/Y80YPwVLoaoch5EAbDoM9yDM8ZutnTVg5eQt/V
+         n7rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=BphwVBJjBpMqmQLv0M0byMqAM4KgSCASp8z4utuZbwA=;
+        b=e7sNsjHy6zpnFp/7YJpYZkwJtuLagf2xuBsgq9M/JUOjxSeLGRxuJYwzpGYpOP7+KP
+         ovj/ZNOjObNuMCy1vdIpThTR6lgpnzUSlmAx5t8EosAfRnEkIrQAiB2tf2Y7WpohQoNu
+         3LysOhB1xsOslmzAboAiLEsxCy2AcTFhGLqH0jtSqUCBmAL9xkckAXJ/TyvHrcXk3c5j
+         Fbv1454BYf/hEh7/HyFXZ78+o2o/ySc9YaWE+L/plFxqgcnmRQI9DVk2cGORY1TILgSm
+         KLrOhS9o1ASwY1NYYWvJ/cP3LqTWIvqZIHnqH4Mfz5tL/9UqJq96Dgque6EtwsOvFyDd
+         4uTA==
+X-Gm-Message-State: AOAM531QNrrMh3cNH7uirulbU50v7xUpStH9jZJn+PoVustl9nGSLWyC
+        my5VfmFkq+hmikpTO638Sgz5Mw==
+X-Google-Smtp-Source: ABdhPJzLlIIfsP2MNbFjOiMDPDX20Kmp7YVg8hJTZYwtZDw7RHhIvSOtAcSltl2it9wRa9TqtX2bAA==
+X-Received: by 2002:a05:600c:2258:b0:38e:bbdc:426 with SMTP id a24-20020a05600c225800b0038ebbdc0426mr3669276wmm.184.1649672288935;
+        Mon, 11 Apr 2022 03:18:08 -0700 (PDT)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id l3-20020a05600002a300b00207902922cesm9662617wry.15.2022.04.11.03.18.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 03:18:08 -0700 (PDT)
+Message-ID: <5c423482-03ee-ab05-b7fa-abac9b37ebb2@linaro.org>
+Date:   Mon, 11 Apr 2022 11:18:07 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] nvmem: add driver handling U-Boot environment
+ variables
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20220406143225.28107-1-zajec5@gmail.com>
+ <20220406143225.28107-2-zajec5@gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220406143225.28107-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,42 +80,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rely on standard cci-control-port property to identify CCI port
-reference.
-Update mt7622 dts binding.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/boot/dts/mediatek/mt7622.dtsi    | 2 +-
- drivers/net/ethernet/mediatek/mtk_eth_soc.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 47d223e28f8d..f232f8baf4e8 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -970,7 +970,7 @@ eth: ethernet@1b100000 {
- 		power-domains = <&scpsys MT7622_POWER_DOMAIN_ETHSYS>;
- 		mediatek,ethsys = <&ethsys>;
- 		mediatek,sgmiisys = <&sgmiisys>;
--		mediatek,cci-control = <&cci_control2>;
-+		cci-control-port = <&cci_control2>;
- 		mediatek,wed = <&wed0>, <&wed1>;
- 		mediatek,pcie-mirror = <&pcie_mirror>;
- 		mediatek,hifsys = <&hifsys>;
-diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-index 209d00f56f62..18eebcaa6a76 100644
---- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-+++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -3149,7 +3149,7 @@ static int mtk_probe(struct platform_device *pdev)
- 		struct regmap *cci;
- 
- 		cci = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
--						      "mediatek,cci-control");
-+						      "cci-control-port");
- 		/* enable CPU/bus coherency */
- 		if (!IS_ERR(cci))
- 			regmap_write(cci, 0, 3);
--- 
-2.35.1
+On 06/04/2022 15:32, Rafał Miłecki wrote:
+> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> index 555aa77a574d..17a78b1ba077 100644
+> --- a/drivers/nvmem/Kconfig
+> +++ b/drivers/nvmem/Kconfig
+> @@ -324,4 +324,16 @@ config NVMEM_SUNPLUS_OCOTP
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called nvmem-sunplus-ocotp.
+>   
+> +config NVMEM_U_BOOT_ENV
+> +	tristate "U-Boot environment variables support"
+> +	depends on ARCH_BCM4908 || COMPILE_TEST
 
+This nvmem provider seems more generic, so why ARCH_BCM4908 dependency here?
+
+
+--srini
+> +	depends on OF && MTD
+> +	select CRC32
+> +	help
+> +	  U-Boot stores its setup as environment variables. This driver adds
+> +	  support for verifying & exporting such data. It also exposes variables
+> +	  as NVMEM cells so they can be referenced by other drivers.
+> +
+> +	  If compiled as module it will be called nvmem_u-boot-env.
+> +
+>   endif
