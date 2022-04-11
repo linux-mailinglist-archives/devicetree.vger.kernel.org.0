@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC3564FB499
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F07C4FB4C1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:28:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245348AbiDKH0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 03:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S245366AbiDKHaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 03:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245328AbiDKH0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:26:34 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 071F115A15;
-        Mon, 11 Apr 2022 00:24:18 -0700 (PDT)
-X-UUID: 493af11560844203903c37df24f89464-20220411
-X-UUID: 493af11560844203903c37df24f89464-20220411
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 823411995; Mon, 11 Apr 2022 15:24:08 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 11 Apr 2022 15:24:07 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Apr 2022 15:24:06 +0800
-From:   Moudy Ho <moudy.ho@mediatek.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        <tfiga@chromium.org>, <drinkcat@chromium.org>,
-        <pihsun@chromium.org>, <hsinyi@google.com>,
-        "Benjamin Gaignard" <benjamin.gaignard@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
-        <randy.wu@mediatek.com>, <moudy.ho@mediatek.com>,
-        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v14 6/6] soc: mediatek: mutex: add functions that operate registers by CMDQ
-Date:   Mon, 11 Apr 2022 15:24:03 +0800
-Message-ID: <20220411072403.24016-7-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220411072403.24016-1-moudy.ho@mediatek.com>
-References: <20220411072403.24016-1-moudy.ho@mediatek.com>
+        with ESMTP id S245328AbiDKHaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:30:06 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC30F3CFDD
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 00:27:52 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id ll10so6000562pjb.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 00:27:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dPQb2XUhCwirAl6RZqcjJK++gcgif/8kvwh+CadUz3I=;
+        b=vk8tSK2SuBtu1pR68M+NpcoBAAxowa3wJlU3AMOY72md1Hscl+QNeJNVcx10ejkuuV
+         NKZxxgnF1yldlX2MkwYMlndhvYLdVpauINzM1OJe7Gm4Ja0ONJJ+moREvoB2tju7IFxG
+         S2uciJD12fnvlOYAOjli/Oc0252AsxXr19m7FjVkfEfVt7d+4W8EhVfPiayUUIK55VO2
+         1OYinPvHp8r7yCmeTFS6M61kgx9Sby11bwnsIxYHeJC71r9vlPUoCggPbNqj876PY8KC
+         MZ55RMC5eFxv0ZOnQF7zxi+0Nfwm8wE7DR3hGUQhMy9kF/pIKmngY7NXMpyUPOcxegs5
+         ID2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dPQb2XUhCwirAl6RZqcjJK++gcgif/8kvwh+CadUz3I=;
+        b=UvUq6kFSaspcoyczcu8KUz2kA/O694VhtcAydiKHMnJ/+dOI/DfnHkhKssHkDCFmHz
+         j4MMSXVZHKfCb4wtRzlZ63OOnJHHnV2B3Ybee8VjsvuhenF0fDMoGHGET/LqKsK6fZyV
+         z+hOsADtXyyexPV1fHkP0Yz5xO8puej+CIwFr1m7PJgc2DbT4JGpkvtagCOeFwWISHDu
+         vKWLf9W1N/LdGqWomOqAHT/OtLDIW8d+wsKSkoMkfGPdxZ0s58HXwK+LC0vkWH9Zrzdf
+         J1x/cFiG3frUrInl7B3wr4wWbIRzQHiFU3OVDWPV518Fd72ymjik2Svh8dMbI2ECcFZA
+         0Egg==
+X-Gm-Message-State: AOAM532R1apHXQj2U/1KigS6QIOOsg5XVKvoY0Vs65tMBGYKm8hftV36
+        xdfaU2oNsehK3ph0ykT1qM/KUO//8gI2
+X-Google-Smtp-Source: ABdhPJwfZOmz7bn126D73jA4tU3ELBxulz6f/9h9UuNvv751oKovp9R+buhc7tnYmqMckMjra91bgA==
+X-Received: by 2002:a17:902:f68e:b0:154:6518:69ba with SMTP id l14-20020a170902f68e00b00154651869bamr31399663plg.60.1649662072219;
+        Mon, 11 Apr 2022 00:27:52 -0700 (PDT)
+Received: from thinkpad ([117.217.182.106])
+        by smtp.gmail.com with ESMTPSA id m1-20020a17090ade0100b001cb3feaddfcsm8828185pjv.2.2022.04.11.00.27.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 00:27:51 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 12:57:43 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, ulf.hansson@linaro.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 0/7] SDX65 devicetree updates
+Message-ID: <20220411072743.GA24975@thinkpad>
+References: <1649660143-22400-1-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1649660143-22400-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,117 +74,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to HW limitations, MDP3 is necessary to enable MUTEX in each frame
-for SOF triggering and cooperate with CMDQ control to reduce the amount
-of interrupts generated(also, reduce frame latency).
+On Mon, Apr 11, 2022 at 12:25:36PM +0530, Rohit Agarwal wrote:
+> Hello,
+> 
+> This series adds devicetree nodes for SDX65. It adds
+> reserved memory nodes, SDHCI, smmu and tcsr mutex support.
+> 
 
-In response to the above situation, a new interface
-"mtk_mutex_enable_by_cmdq" has been added to achieve the purpose.
+Please CC me to all SDX65 related patches as I'd like to review them.
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
----
- drivers/soc/mediatek/mtk-mutex.c       | 42 +++++++++++++++++++++++++-
- include/linux/soc/mediatek/mtk-mutex.h |  2 ++
- 2 files changed, 43 insertions(+), 1 deletion(-)
+Thanks,
+Mani
 
-diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-index fc9ba2749946..1811beaf399d 100644
---- a/drivers/soc/mediatek/mtk-mutex.c
-+++ b/drivers/soc/mediatek/mtk-mutex.c
-@@ -7,10 +7,12 @@
- #include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/of_address.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/soc/mediatek/mtk-mmsys.h>
- #include <linux/soc/mediatek/mtk-mutex.h>
-+#include <linux/soc/mediatek/mtk-cmdq.h>
- 
- #define MT2701_MUTEX0_MOD0			0x2c
- #define MT2701_MUTEX0_SOF0			0x30
-@@ -176,6 +178,9 @@ struct mtk_mutex_ctx {
- 	void __iomem			*regs;
- 	struct mtk_mutex		mutex[10];
- 	const struct mtk_mutex_data	*data;
-+	phys_addr_t			addr;
-+	struct cmdq_client_reg		cmdq_reg;
-+	bool				has_gce_client_reg;
- };
- 
- static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-@@ -618,6 +623,28 @@ void mtk_mutex_enable(struct mtk_mutex *mutex)
- }
- EXPORT_SYMBOL_GPL(mtk_mutex_enable);
- 
-+void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex, void *pkt)
-+{
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-+						 mutex[mutex->id]);
-+	struct cmdq_pkt *cmdq_pkt = (struct cmdq_pkt *)pkt;
-+
-+	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-+
-+	if (!mtx->has_gce_client_reg) {
-+		dev_dbg(mtx->dev, "mediatek,gce-client-reg hasn't been set in dts");
-+		return;
-+	}
-+
-+	cmdq_pkt_write(cmdq_pkt, mtx->cmdq_reg.subsys,
-+		       mtx->addr + DISP_REG_MUTEX_EN(mutex->id), 1);
-+#else
-+	dev_err(mtx->dev, "Not support for enable MUTEX by CMDQ");
-+#endif
-+}
-+EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
-+
- void mtk_mutex_disable(struct mtk_mutex *mutex)
- {
- 	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-@@ -656,7 +683,7 @@ static int mtk_mutex_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct mtk_mutex_ctx *mtx;
--	struct resource *regs;
-+	struct resource *regs, addr;
- 	int i;
- 
- 	mtx = devm_kzalloc(dev, sizeof(*mtx), GFP_KERNEL);
-@@ -677,6 +704,19 @@ static int mtk_mutex_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	if (of_address_to_resource(dev->of_node, 0, &addr) < 0)
-+		mtx->addr = 0L;
-+	else
-+		mtx->addr = addr.start;
-+
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	ret = cmdq_dev_get_client_reg(dev, &mtx->cmdq_reg, 0);
-+	if (ret)
-+		dev_dbg(dev, "No mediatek,gce-client-reg!\n");
-+	else
-+		mtx->has_gce_client_reg = true;
-+#endif
-+
- 	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	mtx->regs = devm_ioremap_resource(dev, regs);
- 	if (IS_ERR(mtx->regs)) {
-diff --git a/include/linux/soc/mediatek/mtk-mutex.h b/include/linux/soc/mediatek/mtk-mutex.h
-index 200f4365c950..17eea55b6809 100644
---- a/include/linux/soc/mediatek/mtk-mutex.h
-+++ b/include/linux/soc/mediatek/mtk-mutex.h
-@@ -33,6 +33,8 @@ void mtk_mutex_set_mod(struct mtk_mutex *mutex,
- void mtk_mutex_set_sof(struct mtk_mutex *mutex,
- 		       enum mtk_mutex_table_index idx);
- void mtk_mutex_enable(struct mtk_mutex *mutex);
-+void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-+			      void *pkt);
- void mtk_mutex_disable(struct mtk_mutex *mutex);
- void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
- 			   enum mtk_ddp_comp_id id);
--- 
-2.18.0
-
+> Thanks,
+> Rohit.
+> 
+> Rohit Agarwal (7):
+>   ARM: dts: qcom: sdx65: Add reserved memory nodes
+>   dt-bindings: mmc: sdhci-msm: Document the SDX65 compatible
+>   ARM: dts: qcom: sdx65: Add support for SDHCI controller
+>   dt-bindings: arm-smmu: Add binding for SDX65 SMMU
+>   ARM: dts: qcom: sdx65: Enable ARM SMMU
+>   ARM: dts: qcom: sdx65: Add support for TCSR Mutex
+>   ARM: dts: qcom: sdx65: Add Shared memory manager support
+> 
+>  .../devicetree/bindings/iommu/arm,smmu.yaml        |   1 +
+>  .../devicetree/bindings/mmc/sdhci-msm.txt          |   1 +
+>  arch/arm/boot/dts/qcom-sdx65-mtp.dts               |  21 ++++
+>  arch/arm/boot/dts/qcom-sdx65.dtsi                  | 110 +++++++++++++++++++++
+>  4 files changed, 133 insertions(+)
+> 
+> -- 
+> 2.7.4
+> 
