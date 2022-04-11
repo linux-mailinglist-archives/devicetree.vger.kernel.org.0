@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C302D4FB3D5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 08:38:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B070B4FB3E7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 08:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235101AbiDKGki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 02:40:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46454 "EHLO
+        id S245029AbiDKGpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 02:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244987AbiDKGkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 02:40:37 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A292315F
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:38:23 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 21so3869429edv.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:38:23 -0700 (PDT)
+        with ESMTP id S245020AbiDKGo6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 02:44:58 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C354D289A1
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:42:45 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id bg10so28785250ejb.4
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:42:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2WmKSNoZ9cWKL6JDASWnjI9NvSq7+tORNGnSjM+acks=;
-        b=ODfe/DkGj1RuBxSc5J0EXQFnY/vL7RySjU4xh9bzSJOuWwZ4VAsC9/m4/eaLQ6CJl9
-         QyrdjToejG5d1Qb/An1jX6vmjM2PDYFSJ9r+/5+rBxbn27zdhA/UNDf4zatsjZb2NBUh
-         AbnvBXsf3y7KxVV7kVCuECnSxjbsZrs2szLVjgo8CohvcUfKrDT83QYnDYXfXQyaqJlH
-         E33P1hJJjjxMEloiqUY9gxOFUCSsABl4hT7x7CUdyDYHqJD4eG9lJegQSh04Fwur0G4B
-         8KGgJu0DtZN1p/FreHJOKXR9EhlgXXQ/wvLc4s5uuw5HufDXrQhq46vZWpzlqJu60raR
-         Vbgg==
+        bh=oeGY+i1594VzqaZYPeCwfNtowmuuBm84SvUo17g7pww=;
+        b=UxJIcbi+k0bsNmAhFdx5LRRsGrLtn1cxDTlmkQ6rEecQxLd3ZlQzxbbXpBXlqGMqW2
+         mcunz3PDYykTTMlJMvdGv4Pf0VZ+tO4dhzuj3cMkad/CJAfyQhY44MenyyiMs4zO9B4i
+         GgLx+x1mfFRfOJwLXHFGacQUj38rWDNNamcoR+5tizxZXj1+kbnd3Qmg0bDStwp2AELF
+         QqXJYc0ZMuaOkHcF+9nCkY+rzYgeOnqB7VcYdHcQu8MS2yal6THrzsFfHG3elJfIqqwH
+         8iYXRWblSPgVH+ym5mLkJORVDKtpdrp6EtblUZ8AZZJcoxXKvneyiS38Xhy4kI7VZY80
+         ABHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2WmKSNoZ9cWKL6JDASWnjI9NvSq7+tORNGnSjM+acks=;
-        b=tcyPzxQlNSnR2c9W+EAd6qELN9M7+J8JQByUgDTQudp0nmJnTI7nHw+kEh/0mlIjPi
-         3WpfSo3MJlHOx8Wi1GjGGFZ2EIeYOOy0ah/ge43teDsDZUPxTxwUbL9RJKRK7crq1FBl
-         ih87FjzTGoMOijDPy7lc73+YdxAGupu4S/tDPWo/W69n72GAkqSoWfeHk8l3frEGsFMB
-         fiPnU9uaXh1d4FonfgzPotyQim/7l/+uYVXlYHd8sE2Imp2YSyVcbwV4qG3cwIkzezpA
-         yhzbTB1SJVayotVnmjQ3VozGsiixzd//NG9pXyQQBFoGjWHlla6B4pYRhWviwSbYUPbN
-         QYUg==
-X-Gm-Message-State: AOAM532xJ8SHR5nx4rRagDo3MVPTyzdNhbHEmGzsBcCfgPalbN9Npi0c
-        XPUgwQRPJbcrJ6zMlYzb5cvySw==
-X-Google-Smtp-Source: ABdhPJzXMCIHpbGK3+ThRU7zl6dOmK1ntfsv7TgaQBc60TypCniiSSzMFXl5kMoMEEbKtARXkujolQ==
-X-Received: by 2002:a05:6402:ca9:b0:41d:76b5:d17a with SMTP id cn9-20020a0564020ca900b0041d76b5d17amr6338713edb.259.1649659102201;
-        Sun, 10 Apr 2022 23:38:22 -0700 (PDT)
+        bh=oeGY+i1594VzqaZYPeCwfNtowmuuBm84SvUo17g7pww=;
+        b=t9k1INajadKSG0hRTR5BCruF2vlUkzvVJb5EO1yoLIyeharkoHPAgiybhFFnMVbTgt
+         99Kt4oHcAQJbI0jrJQYj/PUmojTZTq5UJ73oZ2/Vvjehm3guaY4Ck94NW79DT5KQ/rpn
+         l5aAut3pyhrIogJG8WoZtjmeesv6MX+AyAmvnYcoukbW7pNVsqyLczSHDNKPPq1K3QSE
+         fz7z2hExN+eSY17vCMn68RYhIar3FlQxPGQshvAkHGmQgETEEXAMHgoFGbdKD5R8KVIN
+         qG0l1M5x1B0OLOoAeUIcSulKpJaaKLdsY5Bp0a47UxRaTwWreRk94sXGyVSrH/Ej8cHj
+         F2VA==
+X-Gm-Message-State: AOAM533wHsBG111x/P4Gx/+zRxpXjDzFWHFy+/Pb60yWT/X2KK+hUAHl
+        2NkRgEWPwkEZkgWJDqghnG5gAa8/YB8PMOTQ
+X-Google-Smtp-Source: ABdhPJxWQegr0c/5XL0ZzwCad1TzFMKBUFGyQOBP0ER/rivBmSCr6Xyxq34fdHrUvtNT/lD5OtP94w==
+X-Received: by 2002:a17:907:9705:b0:6e4:b769:286f with SMTP id jg5-20020a170907970500b006e4b769286fmr27845750ejc.728.1649659364246;
+        Sun, 10 Apr 2022 23:42:44 -0700 (PDT)
 Received: from [192.168.0.191] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id o18-20020a1709064f9200b006e7f229b332sm8337293eju.36.2022.04.10.23.38.21
+        by smtp.gmail.com with ESMTPSA id r29-20020a50c01d000000b00415fb0dc793sm14810681edb.47.2022.04.10.23.42.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 23:38:21 -0700 (PDT)
-Message-ID: <2693ad68-c31f-1151-88fd-0b18a4249bd3@linaro.org>
-Date:   Mon, 11 Apr 2022 08:38:20 +0200
+        Sun, 10 Apr 2022 23:42:43 -0700 (PDT)
+Message-ID: <6c4b6eac-86d8-eb93-37a5-d0fa9bf2a7d2@linaro.org>
+Date:   Mon, 11 Apr 2022 08:42:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 02/10] dt-bindings: display: Add D1 display engine
- compatibles
+Subject: Re: [PATCH V4 1/3] dt-bindings: mmc: imx-esdhc: Update compatible
+ fallbacks
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220411043423.37333-1-samuel@sholland.org>
- <20220411043423.37333-3-samuel@sholland.org>
+To:     Adam Ford <aford173@gmail.com>, linux-mmc@vger.kernel.org
+Cc:     aford@beaconembedded.com, haibo.chen@nxp.com,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220410193544.1745684-1-aford173@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220411043423.37333-3-samuel@sholland.org>
+In-Reply-To: <20220410193544.1745684-1-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,13 +83,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 06:34, Samuel Holland wrote:
-> Allwinner D1 contains a display engine 2.0. It features two mixers, a
-> TCON TOP (with DSI and HDMI), one TCON LCD, and one TCON TV.
+On 10/04/2022 21:35, Adam Ford wrote:
+> The SDHC controller in the imx8mn and imx8mp have the same controller
+> as the imx8mm which is slightly different than that of the imx7d.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
+> Using the fallback of the imx8mm enables the controllers to support
+> HS400-ES which is not available on the imx7d. After discussion with NXP,
+> it turns out that the imx8qm should fall back to the imx8qxp, because
+> those have some additional flags not present in the imx8mm.
 > 
+> Mark the current state of the fallbacks as deprecated, and add the
+> proper fallbacks so in the future, the deprecated combination can be
+> removed and prevent any future devices from using the wrong fallback.
+> 
+> Suggested-by: haibo.chen@nxp.com
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
