@@ -2,133 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FAEA4FBBF5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11A524FBBFE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:25:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243864AbiDKMZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:25:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39490 "EHLO
+        id S230080AbiDKM1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:27:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235625AbiDKMZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:25:33 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF3542EDD;
-        Mon, 11 Apr 2022 05:23:19 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id bg10so30507150ejb.4;
-        Mon, 11 Apr 2022 05:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=p3K7UtkaAmdhk912uS6+rgvTEva2rfQRiBVV1ZuGdMU=;
-        b=HuRiT0ANWZP6UjYHsieS+X9qE6PsH2PKM2SYytRq+JFCv0R5RmnbZtuIb92jaMAoA1
-         CU1bYkB3vNDTzZhz5mTVdtOwAz/kBMmW2V0WjEB9KnIF7nsso4pHx5fe6Cf+2yas0d3p
-         12eO3FxEv3QPW+wOKls+pOMVwIyanCa3i8T7cECKjMQdHGPXPSppHr9Ujv3eoq4Qnn4i
-         vjK2BWfvTsuxFdfa/au0BoitJtj8X4J+WNwPbS9JyHoZm6goW06I2+5LHI6YzJn+AFJO
-         Ro1+PhAntdQIxLZyVewl/V4cB2fXIAysnGi1g3KAJMTD+SWNbYmxOsapExdpoPprZ8uJ
-         fWRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=p3K7UtkaAmdhk912uS6+rgvTEva2rfQRiBVV1ZuGdMU=;
-        b=lOa3EowOwoWWlB/J221Brj2P3UM53mFSyXxXlYXKZBKpLt+0ayqZntI8j5rAIPmcdw
-         j61yoBVRiL7lAhXumhJF28WOd8+MUXRF7oKodsHKAfl8TKMCTfyZnm2+dgp0qMyXFo7h
-         qu2xsvdgq1XmNHZTOzLdL62lCBNK/Hy7TiRAVHZ0zUy6L972q43PjFiIE92M2oUJU2Oz
-         2yus5QlYeS8+dPk+/8Sy9rkkB/NZcsQ+ois7EiJkZNVs41Tm5IMPksX4LpZSgri75xMR
-         1l9yLvVrNWzMrSOc2nOmOQdsuymUj4BoEx4YXSjDFlF/SU5lZvE1Hl0Jnv7iX5m99ckd
-         cgGA==
-X-Gm-Message-State: AOAM533hTset1y/Rgm/QEJHdynpQrwoJi56i/HMbL9uQgChoRx62TTuH
-        K0Ywwu+AsbbX5OSM+c2joxClauWB/iEJkRUgk7w=
-X-Google-Smtp-Source: ABdhPJzsx8ixnvvwZcOQCCytMaslcnBviduIWhYCyNcWaDzDXQGHfmdS2Pi2TSFE/QDGHSZVNBuOgw3JW5mhtnvztq0=
-X-Received: by 2002:a17:907:7b8b:b0:6e8:9dd9:59ac with SMTP id
- ne11-20020a1709077b8b00b006e89dd959acmr1655923ejc.588.1649679797613; Mon, 11
- Apr 2022 05:23:17 -0700 (PDT)
+        with ESMTP id S235275AbiDKM1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:27:25 -0400
+Received: from esa2.hgst.iphmx.com (esa2.hgst.iphmx.com [68.232.143.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E88813DD9
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:25:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1649679911; x=1681215911;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=PrDQ1E16Pyv12c8+jc/Pe47PY10PhBUx1qaK2gNFohg=;
+  b=Y00WI4qNoua2o2hj0NXrpGC8tKsOY1NwU+b9x7zagpt7JMgn2XZm0y9n
+   AhHm/xH7wby1JBxZrS9GELvss/oFGmFwHYncOx3Z8ueCmNr35WRiIkR6V
+   3LJIxqL4PuFEZHB4RoTxsQ3/lssLIwSiT/0gKNfflyqIjMH03OV4ObEC9
+   Vp03D3bOJ0cHlbTbIGXL8wKRVldr+aEDBWxMi3Ae8ozpPVbe5wM6pCXmo
+   SOZXkclKwYL2T8JWNhwtWAW84tpPPXT3wCk1B2CVfMB5hhHc3yMleHh9O
+   lInDU3fbUTDzmj02P6al2NWsVwdQKDmp88qPNfdjyheP7aoYmE97NjSJr
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,251,1643644800"; 
+   d="scan'208";a="301806128"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 11 Apr 2022 20:25:09 +0800
+IronPort-SDR: gap6BM5U+nmhwvwTKtvlhS4m+vciW2dLgEDY9eIubfS4uP0XEVCgtRL77cw3DT9Dc+BehpK4YG
+ zXU5ckmFH96QKfP+G2f1dG/HHOrWvOcm4/PJEcnZ56JTQbz6HNsdqRkI8gAcwm3h1vr2rnuh3G
+ ZK+W7GJZkUf9ZcaRi2ceaNbrA3YXe+K5uKZAqyX7blByyRqdmXk4LnWf/OtlC09XnSCM7abKOG
+ nrZ2v325WguI/ycQUTwZbML2T+cQoG5QPs04cenTzDpBbyL5HTCdh1mN2eTD/uyV65+xKbwLGg
+ ezBPS9mWcjktRY2KBV3BYNaU
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 04:56:26 -0700
+IronPort-SDR: wANpqRSLJiDc2fA9gfFhktmUufe/7rdpQOe9smBcA//vbjNZFucyMcCYNggedect4xkjlsyisg
+ kLPKzOZZGGBqpHPVZDmh3ll39/0Ni7bybS9mdDrrN+nqfUWTkgspkF7kI5xAvL2iFkN+8oFomD
+ o+fkCiV4nX3ewfAp9Xx8FUe4G8ZZj042uXl+pa3DLmo3RjzSJhsOLlVOiWEdaF1m2ISCN2KbPi
+ rGFFJdQaw+v4s9Nza+bbflRCy4ThJW7rbXJKDZQKK0ZaVVv2LmqfeVw8FOxv+0ryno23TBWokw
+ AGU=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 05:25:09 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KcSjc3kk4z1SVp1
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:25:08 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1649679907; x=1652271908; bh=PrDQ1E16Pyv12c8+jc/Pe47PY10PhBUx1qa
+        K2gNFohg=; b=AsOILDiePXK8tNjJN/VxCcqRIcSCnsCBY/W+Foflr5sAVoZCayD
+        C5fUF64ivVxC6P/nGWPYkvINiVsj4cXxoLRGh0mlij7WVErVJKBsUu3uJllhFtwX
+        DVA1QCNuESLKLWq16xfgyEJXGePZKRyun8lbiVgSP7+f210XP/R76m+L9GosP8lo
+        +b9weqvbW8qrjpcGx7y56S9JoLz17yfRe9lkXhG53J0TLVk+J4LYfgozj2Y3Xo0L
+        h9wwG3+FQVawyqn8OGNr07tPVfeVac/TOuNNB5W9BUCPo4+CIjfgook6xCebFVPc
+        NDCSLWlxcEyU1OCwz6MXJYeF7juwR2BeUBA==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id DTeEWDNC4mMq for <devicetree@vger.kernel.org>;
+        Mon, 11 Apr 2022 05:25:07 -0700 (PDT)
+Received: from [10.225.163.9] (unknown [10.225.163.9])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KcSjY19FGz1Rvlx;
+        Mon, 11 Apr 2022 05:25:04 -0700 (PDT)
+Message-ID: <bde34952-e244-a1c3-fc33-251d618d2bb4@opensource.wdc.com>
+Date:   Mon, 11 Apr 2022 21:25:03 +0900
 MIME-Version: 1.0
-References: <20220408162108.184583-1-jagan@amarulasolutions.com> <20220408162108.184583-5-jagan@amarulasolutions.com>
-In-Reply-To: <20220408162108.184583-5-jagan@amarulasolutions.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 11 Apr 2022 07:23:06 -0500
-Message-ID: <CAHCN7xJmiEBsbZRepsM0FLd8YDSQj8GUwwyYm4M_ViJFPoU8FQ@mail.gmail.com>
-Subject: Re: [PATCH 04/11] drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 12/21] ata: libahci: Discard redundant force_port_map
+ parameter
+Content-Language: en-US
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324001628.13028-13-Sergey.Semin@baikalelectronics.ru>
+ <b06a8382-d5c1-e3a5-8577-692fa82cb3c1@opensource.wdc.com>
+ <20220411121151.vm6wmtalbl2lgtgo@mobilestation>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20220411121151.vm6wmtalbl2lgtgo@mobilestation>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 8, 2022 at 11:22 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> Host transfer() in DSI master will invoke only when the DSI commands
-> are sent from DSI devices like DSI Panel or DSI bridges and this
-> host transfer wouldn't invoke for I2C-based-DSI bridge drivers.
->
-> Handling DSI host initialization in transfer calls misses the
-> controller setup for I2C configured DSI bridges.
->
-> This patch adds the DSI initialization from transfer to bridge
-> pre_enable as the bridge pre_enable API is invoked by core as
-> it is common across all classes of DSI device drivers.
->
-> v1:
-> * keep DSI init in host transfer
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  drivers/gpu/drm/bridge/samsung-dsim.c | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-> index ff05c8e01cff..3e12b469dfa8 100644
-> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
-> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-> @@ -1290,6 +1290,13 @@ static void samsung_dsim_atomic_pre_enable(struct drm_bridge *bridge,
->         }
->
->         dsi->state |= DSIM_STATE_ENABLED;
-> +
-> +       if (!(dsi->state & DSIM_STATE_INITIALIZED)) {
-> +               ret = samsung_dsim_init(dsi);
-> +               if (ret)
-> +                       return;
-> +               dsi->state |= DSIM_STATE_INITIALIZED;
+On 4/11/22 21:11, Serge Semin wrote:
+> On Thu, Mar 24, 2022 at 11:05:58AM +0900, Damien Le Moal wrote:
+>> On 3/24/22 09:16, Serge Semin wrote:
+>>> Currently there are four port-map-related fields declared in the
+>>> ahci_host_priv structure and used to setup the HBA ports mapping. First
+>>> the ports-mapping is read from the PI register and immediately stored in
+>>> the saved_port_map field. If forced_port_map is initialized with non-zero
+>>> value then its value will have greater priority over the value read from
+>>> PI, thus it will override the saved_port_map field. That value will be then
+>>> masked by a non-zero mask_port_map field and after some sanity checks it
+>>> will be stored in the ahci_host_priv.port_map field as a final port
+>>> mapping.
+>>>
+>>> As you can see the logic is a bit too complicated for such a simple task.
+>>> We can freely get rid from at least one of the fields with no change to
+>>> the implemented semantic. The force_port_map field can be replaced with
+>>> taking non-zero saved_port_map value into account. So if saved_port_map is
+>>> pre-initialized by the glue-driver/platform-specific code then it will
+>>
+> 
+>> glue-driver == LLDD (low level device driver), for the entire series please.
+> 
+> Why? It's a normal term and well known amongst developers. I've used it
+> in a plenty of my patches before and none of them has been questioned in that
+> part so far.
 
-Out of curiosity, is there a reason that  dsi->state cannot add
-DSIM_STATE_INITIALIZED inside the samsung_dsim_init function call?  It
-seems to me that if samsung_dsim_init returns successfully, it should
-set that flag.  I don't know if it's called from other places or not.
+This term is not used in libata, nor do I remember seeing it used in SCSI
+or block subsystem either. We always talk about mid-layer (ahci platform)
+and LLDD (adapter driver).
 
-adam
-> +       }
->  }
->
->  static void samsung_dsim_atomic_enable(struct drm_bridge *bridge,
-> --
-> 2.25.1
->
+> 
+> -Sergey
+> 
+>>
+>>> have greater priority over the value read from PI register and will be
+>>> used as actual HBA ports mapping later on. Thus the ports map forcing task
+>>> will be just transferred from the force_port_map to saved_port_map field.
+>>>
+>>> This modification will perfectly fit into the feature of having OF-based
+>>> initialization of the HW-init HBA CSR fields we are about to introduce in
+>>> the next commit.
+>>>
+>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+>>> ---
+>>>  drivers/ata/ahci.c             |  2 +-
+>>>  drivers/ata/ahci.h             |  1 -
+>>>  drivers/ata/libahci.c          | 10 ++++++----
+>>>  drivers/ata/libahci_platform.c |  2 +-
+>>>  4 files changed, 8 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/ata/ahci.c b/drivers/ata/ahci.c
+>>> index ab5811ef5a53..8ce0d166cc8d 100644
+>>> --- a/drivers/ata/ahci.c
+>>> +++ b/drivers/ata/ahci.c
+>>> @@ -654,7 +654,7 @@ static void ahci_pci_save_initial_config(struct pci_dev *pdev,
+>>>  {
+>>>  	if (pdev->vendor == PCI_VENDOR_ID_JMICRON && pdev->device == 0x2361) {
+>>>  		dev_info(&pdev->dev, "JMB361 has only one port\n");
+>>> -		hpriv->force_port_map = 1;
+>>> +		hpriv->saved_port_map = 1;
+>>>  	}
+>>>  
+>>>  	/*
+>>> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
+>>> index 04690b4168a3..519d148ecaea 100644
+>>> --- a/drivers/ata/ahci.h
+>>> +++ b/drivers/ata/ahci.h
+>>> @@ -329,7 +329,6 @@ struct ahci_port_priv {
+>>>  struct ahci_host_priv {
+>>>  	/* Input fields */
+>>>  	unsigned int		flags;		/* AHCI_HFLAG_* */
+>>> -	u32			force_port_map;	/* force port map */
+>>>  	u32			mask_port_map;	/* mask out particular bits */
+>>>  
+>>>  	void __iomem *		mmio;		/* bus-independent mem map */
+>>> diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
+>>> index 0ed484e04fd6..011175e82174 100644
+>>> --- a/drivers/ata/libahci.c
+>>> +++ b/drivers/ata/libahci.c
+>>> @@ -453,7 +453,6 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
+>>>  	 * reset.  Values without are used for driver operation.
+>>>  	 */
+>>>  	hpriv->saved_cap = cap = readl(mmio + HOST_CAP);
+>>> -	hpriv->saved_port_map = port_map = readl(mmio + HOST_PORTS_IMPL);
+>>>  
+>>>  	/* CAP2 register is only defined for AHCI 1.2 and later */
+>>>  	vers = readl(mmio + HOST_VERSION);
+>>> @@ -517,10 +516,13 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
+>>>  		cap &= ~HOST_CAP_SXS;
+>>>  	}
+>>>  
+>>> -	if (hpriv->force_port_map && port_map != hpriv->force_port_map) {
+>>> +	/* Override the HBA ports mapping if the platform needs it */
+>>> +	port_map = readl(mmio + HOST_PORTS_IMPL);
+>>> +	if (hpriv->saved_port_map && port_map != hpriv->saved_port_map) {
+>>>  		dev_info(dev, "forcing port_map 0x%x -> 0x%x\n",
+>>> -			 port_map, hpriv->force_port_map);
+>>> -		port_map = hpriv->force_port_map;
+>>> +			 port_map, hpriv->saved_port_map);
+>>> +		port_map = hpriv->saved_port_map;
+>>> +	} else {
+>>>  		hpriv->saved_port_map = port_map;
+>>>  	}
+>>>  
+>>> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+>>> index febad33aa43c..5cbc2c42164d 100644
+>>> --- a/drivers/ata/libahci_platform.c
+>>> +++ b/drivers/ata/libahci_platform.c
+>>> @@ -539,7 +539,7 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+>>>  	}
+>>>  
+>>>  	of_property_read_u32(dev->of_node,
+>>> -			     "ports-implemented", &hpriv->force_port_map);
+>>> +			     "ports-implemented", &hpriv->saved_port_map);
+>>>  
+>>>  	if (child_nodes) {
+>>>  		for_each_child_of_node(dev->of_node, child) {
+>>
+>>
+>> -- 
+>> Damien Le Moal
+>> Western Digital Research
+
+
+-- 
+Damien Le Moal
+Western Digital Research
