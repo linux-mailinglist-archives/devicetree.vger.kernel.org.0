@@ -2,51 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8A174FB126
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 02:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 506A54FB12C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 02:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235107AbiDKAxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 20:53:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
+        id S237000AbiDKA4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 20:56:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233951AbiDKAxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 20:53:34 -0400
+        with ESMTP id S237530AbiDKA4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 20:56:49 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDBD35A97;
-        Sun, 10 Apr 2022 17:51:21 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0161572D;
+        Sun, 10 Apr 2022 17:54:36 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 68E8BB80E61;
-        Mon, 11 Apr 2022 00:51:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BC1BC385A4;
-        Mon, 11 Apr 2022 00:51:17 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 63168B80ED5;
+        Mon, 11 Apr 2022 00:54:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF8EC385A4;
+        Mon, 11 Apr 2022 00:54:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649638279;
-        bh=Ycpdp14bx0RRRmkHQGJeM0fAdXUvQ5hx27l91yFjGWg=;
+        s=k20201202; t=1649638474;
+        bh=rHmqtbKujz1oumBfQyH6US6UQG40oo7hEHJvzLUxX4w=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qq6FBQoH1aujh0fWe2tsMZONWLf9KZrbhAhp/3wTmsmvIMrtlTX4nKE7eicbjbyDA
-         GcamPLVUcd+CAWeDJ3pbPkzr3EiNp5rozkNss0KOeBmjuxxNNlqNdl4c3drxlaOYHW
-         UBFg7tB5Eo6xBzyT/3WR9m3UQau6WMPqiwhAXGEYKJVbpA0du2v0/wWSErlzH5sSzi
-         JDr2C0I5xUteky1jYxUuWPSx+k+CTaw/4/3h7a0rGkINphs91pVrMwVieqd/34bxoA
-         9YSkai0iNTRWMf0BslM2dqaGRQ1SCkyWuNl21atyzdMjuB1t5hqmGQZKSl3Uk94nJS
-         Ujbj2YJTyu5Rg==
-Date:   Mon, 11 Apr 2022 08:51:12 +0800
+        b=Qqw1DzrX8HDF4Z8nDWHUPix5K+JLU8m7wz3curLSEb8A6dPWFanpmUvRALJzJ4rwb
+         eLrQPp195BXch5ljoCiN+7mTFo3itcQFSlsucNmTopPdeGElp/PIvPHaVwTvPG68ll
+         sqAeCYSJ7QU6fZnLCNu8mTvVZoNbC3KeSS7uxTo4ZbuiXGSHbAnfVL4oJh2Fah/d+e
+         dgBNCVgBUaQ/GukWqW8wA5lZoy2lsQ90OO4Tt0z9hhj++Bj3T1THztmdoz7uE1M2zS
+         A3aQ39OwkZwksmEtjN8+wLlk8hZQ5hF2MSfJfS0LnkjHx9klG/OYA42qwdSGeb3hb3
+         Bs5zFMFf7ziXQ==
+Date:   Mon, 11 Apr 2022 08:54:28 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Michael Walle <michael@walle.cc>
 Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: ls1028a: sl28: use ocelot-8021q tagging by
- default
-Message-ID: <20220411005112.GU129381@dragon>
-References: <20220330113329.3402438-1-michael@walle.cc>
+Subject: Re: [PATCH] arm64: dts: ls1028a: default to OTG mode for USB
+Message-ID: <20220411005428.GV129381@dragon>
+References: <20220330113442.3402940-1-michael@walle.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220330113329.3402438-1-michael@walle.cc>
+In-Reply-To: <20220330113442.3402940-1-michael@walle.cc>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -57,14 +55,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 01:33:29PM +0200, Michael Walle wrote:
-> Enable the ocelot-8021q tagger by default which supports ethernet flow
-> control.
+On Wed, Mar 30, 2022 at 01:34:42PM +0200, Michael Walle wrote:
+> At the moment, the dtsi will force the dr_mode to host. This is
+> problematic because it will always turn on the Vbus voltage regardless
+> if the port is host or device. This might lead to a "shortcut" between
+> the two USB endpoints because both might have their Vbus supplies
+> enabled. Therefore, the default should be "otg" for any ports which
+> aren't host only (from a SoC point of view) and have a user of the dtsi
+> file overwrite that explicitly.
 > 
-> The new default is set in the common board dtsi. The actual switch
-> node is enabled on a per board variant basis. Because of this we
-> set the new tagger default for both internal ports and a particular
-> variant is free to choose among the two port.
+> Move the 'dr_mode = "host";' into the board dts. Now that the dtsi
+> doesn't set the dr_mode anymore, we can also drop the 'dr_mode = "otg";'
+> in the board dts because that is the default value if dr_mode is not
+> set.
 > 
 > Signed-off-by: Michael Walle <michael@walle.cc>
 
