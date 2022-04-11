@@ -2,174 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C8D44FB63F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3FA24FB657
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343933AbiDKIoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:44:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
+        id S239653AbiDKIxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbiDKIoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:44:44 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231243EAAF
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:42:31 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id v2so8197643wrv.6
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:42:31 -0700 (PDT)
+        with ESMTP id S239400AbiDKIxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:53:19 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396F22AD3
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:51:05 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso9549361wml.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=8C/eYgaWADBmXGolQTtkrHTLecaGjlBMq7BNuIlcZ8Q=;
-        b=xeJcy/KGJE8E9dTJtbqIY8xwk3sT+9zWBdf3lwNQ3wiHwbo4fFi8C+BojzWUb7Nts5
-         YPHs4k4QJ+0sAnvMgpBPi22mDZOONbSIFtlnjK/F59s/8G5mPCd2VtQv5dvyliQPsxYp
-         KmY7lSTcYSkZjPO7nyfaPW2MGED205fey3U79yIsgipqxg9s588DuLwxZoS624dnuMgM
-         MHMyVZLpuUay/uFgMoPsgbusEwXdLTEqSSHSIgL/tziKq/jixkyvnP9IpacQh9Y4GqEV
-         Rm3sXKIwUpMR9FpWp1I6M9UhCnaMeQFSP4Q/dXQ3qck3BCxgik8RLUyCr26oF7Q4kt7N
-         JBRw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=m6Rr8Q+wNYGD2XdkMJAOXQ4QLeHTvBKuFe3IakxIc9o=;
+        b=2gVvFevmuFI4scv9tPcT0ePc8WClLdpec0D+yRT76NvO+/jTUBuB7nKNKaEFf3CxdE
+         CGbQ95TQ/n2nlj8YRwk4C9VCNtLpzQCq3aTdJX0v/dcXGrha8M6VKP9w6E7RQPdgpIsh
+         kGNtFSEet6RuGe6lEIJDpOJJyElFcJyoUugHM6G2aASpuVUwHdE5CdhruhL/q76Mr3X+
+         KcVlCtjv97fQvopOKNhnYs6MSyeQnfejmbQKu6rKu6ewpVbnMid8Iw7AOn1izrVfVUqe
+         DjUK2fNVVlLU6tLTBGSYgeTxiIqQQfFCLaHGooEwdL9OBhA3zn9eqv1yBOJEt81WKSBp
+         Crvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=8C/eYgaWADBmXGolQTtkrHTLecaGjlBMq7BNuIlcZ8Q=;
-        b=RNhXJV80o+JFV8zFHbBGBYkCjuDplzjjmTEbZVL+9nuA1Ptqnam0S636lRmE+kmLu0
-         DJ3n8x9rQgmA8uzNGFS3NjV23ssIFJgT+X6m+nhRV0WGiRSU4Gt09NviBk4SRA/DBw5j
-         4KXOue2T12sNyKFwuEuthJl7j5MF1nNAKEdpAulqy7ei1mfbc5RSHw/hzgOUocVPg9fA
-         fX1u5qAYoZSQOYF5blrC1r0NgqTf9FtuS6jxk5smxBf8BuVMB99CAN1YTqniBqGlousf
-         tQ1YZgUPWyX02vV+9pt9amvq5+rhcwf9sq+zmRyduuG/UXfSrR75tfNvtUqLqn+p6P/a
-         in+g==
-X-Gm-Message-State: AOAM533+dqxH3NQ7x4xIv4EI08SXOVBtyS5SIpwB+gOiTFpZnLLaVnVP
-        brlmsrQslAGy+WdJ3LXqPtC6HQ==
-X-Google-Smtp-Source: ABdhPJwj2GX5sxFvKfF2plvDXxPFsbnq+9QtCMe/UP3BTx6ywnM8X9ZtvNekIgx0mHUmfcedMxPk8Q==
-X-Received: by 2002:a5d:5406:0:b0:205:a2c2:3530 with SMTP id g6-20020a5d5406000000b00205a2c23530mr23927622wrv.587.1649666549614;
-        Mon, 11 Apr 2022 01:42:29 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id c4-20020a056000184400b00207a55f712asm3337327wri.37.2022.04.11.01.42.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 01:42:29 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 10:42:26 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     John Keeping <john@metanate.com>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 06/33] crypto: rockchip: add fallback for cipher
-Message-ID: <YlPp8rkH7B742TZM@Red>
-References: <20220401201804.2867154-1-clabbe@baylibre.com>
- <20220401201804.2867154-7-clabbe@baylibre.com>
- <YkrV1z5GPVXc+d/X@donbot>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=m6Rr8Q+wNYGD2XdkMJAOXQ4QLeHTvBKuFe3IakxIc9o=;
+        b=GCzFWggYedjUCK4AmftqnCxjUfYdigWVNzfxer+EGZoWDaO9jwMkePFWwo97vA+hfP
+         qldIlb3TzJzJT3aKF/y73qnnOXJ7avt2UbpIWZ470LA6Ewrg4Oc9Xai3guIACY+Ou3oo
+         rXVUkwM/vkipUB3xIXenO29WPulXwY63+nnMV3QbyajSDpEMmAxGUJGEuVnzy0O5MaLQ
+         XfEmv0MLND2AMsFuMyE51fA11TkL2u58qkc2GBl3Yng4Uhez2uCNNBxLpTOWJPfdUtZI
+         L/b31X0Gsq/HMVis7EyVKwk3oGy15TL+L5p9cMXlCgXcTQrH5YNwf+Uq2BG9RHC+cY7i
+         404g==
+X-Gm-Message-State: AOAM530VlBaX62J06ktg1LSeOf+ddS9Ph13V+yQEEp9zplhbQU47ygqB
+        NuVccwpRVkYWLfSNfOi4UMY9kQ==
+X-Google-Smtp-Source: ABdhPJxWXrwR4K9SIIL0U56pGlKvwNYLYLRcg+MDZygJPCmSwC0yOOXBgd65Dx2bXtovwHAtjIDEig==
+X-Received: by 2002:a05:600c:2306:b0:38e:bf1a:a669 with SMTP id 6-20020a05600c230600b0038ebf1aa669mr1381664wmo.11.1649667063694;
+        Mon, 11 Apr 2022 01:51:03 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:d1:e096:d183:1bc5? ([2001:861:44c0:66c0:d1:e096:d183:1bc5])
+        by smtp.gmail.com with ESMTPSA id n2-20020adfb742000000b00205eda3b3c1sm27276509wre.34.2022.04.11.01.51.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 01:51:03 -0700 (PDT)
+Message-ID: <d6ef87bd-8721-effd-8d26-13cd6d674cce@baylibre.com>
+Date:   Mon, 11 Apr 2022 10:51:02 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YkrV1z5GPVXc+d/X@donbot>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: meson-sm1-bananapi-m5: fix wrong GPIO pin
+ labeling for CON1
+Content-Language: en-US
+To:     Guillaume Giraudon <ggiraudon@prism19.com>, kernel-dev@prism19.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220410205624.14295-1-ggiraudon@prism19.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220410205624.14295-1-ggiraudon@prism19.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, Apr 04, 2022 at 12:26:15PM +0100, John Keeping a écrit :
-> On Fri, Apr 01, 2022 at 08:17:37PM +0000, Corentin Labbe wrote:
-> > The hardware does not handle 0 size length request, let's add a
-> > fallback.
-> > Furthermore fallback will be used for all unaligned case the hardware
-> > cannot handle.
-> > 
-> > Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> > diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
-> > index bbd0bf52bf07..c6b601086c04 100644
-> > --- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
-> > +++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
-> > @@ -13,6 +13,71 @@
-> >  
-> >  #define RK_CRYPTO_DEC			BIT(0)
-> >  
-> > +static int rk_cipher_need_fallback(struct skcipher_request *req)
-> > +{
-> > +	struct scatterlist *sgs, *sgd;
-> > +	unsigned int todo, len;
-> > +	unsigned int bs = crypto_skcipher_blocksize(tfm);
-> > +
-> > +	if (!req->cryptlen)
-> > +		return true;
-> > +
-> > +	len = req->cryptlen;
-> > +	sgs = req->src;
-> > +	while (sgs) {
-> > +		if (!IS_ALIGNED(sgs->offset, sizeof(u32))) {
-> > +			return true;
-> > +		}
-> > +		todo = min(len, sgs->length);
-> > +		if (todo % bs) {
-> > +			return true;
-> > +		}
-> > +		len -= todo;
-> > +		sgs = sg_next(sgs);
-> > +	}
-> > +	len = req->cryptlen;
-> > +	sgd = req->dst;
-> > +	while (sgd) {
-> > +		if (!IS_ALIGNED(sgd->offset, sizeof(u32))) {
-> > +			return true;
-> > +		}
-> > +		todo = min(len, sgd->length);
-> > +		if (todo % bs) {
-> > +			return true;
-> > +		}
-> > +		len -= todo;
-> > +		sgd = sg_next(sgd);
-> > +	}
-> > +	sgs = req->src;
-> > +	sgd = req->dst;
-> > +	while (sgs && sgd) {
-> > +		if (sgs->length != sgd->length)
-> 
-> This check still seems to be triggering the fallback when it is not
-> needed.
-> 
-> I've done some testing with fscrypt and the series is working great, but
-> the stats show the fallback triggering more than I'd expect.  With some
-> extra logging here I see output like:
-> 
-> 	sgs->length=32 sgd->length=255 req->cryptlen=16
-> 
-> In this case sgs and sgd are both the first (and only) entries in the
-> list.  Should this take account of req->cryptlen as well?
-> 
-> In fact, can't this whole function be folded into one loop over src and
-> dst at the same time, since all the checks must be the same?  Something
-> like this (untested):
-> 
-> 	while (sgs && sgd) {
-> 		if (!IS_ALIGNED(sgs->offset, sizeof(u32)) ||
-> 		    !IS_ALIGNED(sgd->offset, sizeof(u32)))
-> 			return true;
-> 
-> 		todo = min(len, sgs->length);
-> 		if (todo % bs)
-> 			return true;
-> 
-> 		if (sgd->length < todo)
-> 			return true;
-> 
-> 		len -= todo;
-> 		sgs = sg_next(sgs);
-> 		sgd = sg_next(sgd);
-> 	}
-> 
-> 	if (len)
-> 		return true;
-> 
+Hi,
 
-Thanks, for this hint, I will use it.
+On 10/04/2022 22:56, Guillaume Giraudon wrote:
+> The labels for lines 61 through 84 on the periphs-banks were offset by 2.
+> Realigned them to match the Banana Pi M5 schematics.
+> 
+> Signed-off-by: Guillaume Giraudon <ggiraudon@prism19.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> index 5751c48620ed..754c3d43ef0b 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> @@ -448,7 +448,7 @@
+>   		"",
+>   		/* GPIOA */
+>   		"", "", "", "", "", "", "", "",
+> -		"", "", "", "", "", "",
+> +		"", "", "", "", "", "", "", "",
+>   		"CON1-P27", /* GPIOA_14 */
+>   		"CON1-P28", /* GPIOA_15 */
+>   		/* GPIOX */
 
-Regards
+Can you repost with a Fixes tag ?
+
+Thanks,
+Neil
