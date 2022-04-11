@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E8B64FB4B2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 469474FB48C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:22:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245382AbiDKH1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 03:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57116 "EHLO
+        id S234053AbiDKHYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 03:24:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245394AbiDKH1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:27:17 -0400
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA33C3A5D6;
-        Mon, 11 Apr 2022 00:24:56 -0700 (PDT)
-Received: from email.seznam.cz
-        by email-smtpc27a.ng.seznam.cz (email-smtpc27a.ng.seznam.cz [10.23.18.38])
-        id 6cf7735d37f927346d5ebf03;
-        Mon, 11 Apr 2022 09:24:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1649661871; bh=o414pkHhgL9vMorRestr4vWHbQMDn+w/yudCwqqpe8M=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=UFq9wfRe5qfzDyn8C407aykGQdhfYFrlzvbzlNdQXdK3EGj/SvUhYNWPzB/Z/RaAF
-         jIBe37GUzpoeNgdGxcGXoabM+sEauLnMxAhcfmiTyNfwEfWBcxOKgtlu1vnEE+m5E6
-         QC1G8vPneRA+ROasFSWapHEFBDnHvY6erKIyjPMU=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay18.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Mon, 11 Apr 2022 09:24:25 +0200 (CEST)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <michael.srba@seznam.cz>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [RESEND v9 5/5] arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
-Date:   Mon, 11 Apr 2022 09:21:56 +0200
-Message-Id: <20220411072156.24451-6-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220411072156.24451-1-michael.srba@seznam.cz>
-References: <20220411072156.24451-1-michael.srba@seznam.cz>
+        with ESMTP id S230194AbiDKHYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:24:22 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB27038BFF;
+        Mon, 11 Apr 2022 00:22:08 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id 75so7108329qkk.8;
+        Mon, 11 Apr 2022 00:22:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Cle8K5S6vVtn1JXrhhTeWuHVXYaRfpQzQC3UXOxjSXQ=;
+        b=Y6h0WBWvhdDrbLDKkIlt6BolxlUasB2v7HT2X+21KUGqBKjhk1WZuiBYUSN8BfVhOp
+         GaqIaIM8k3tsr4V0pLaDITzBcEuIq6aCgmETg4vEt4ivazuNeB+lGHrgekpApesOOFQy
+         NnMjkWHqqW05oMFKsnFutvWZD9q9T0JZi9YDUFddgGk7h2L4teMediK1sFIGpXJqguLH
+         Jp9V/NxmQ5x4HfvZrjzL6RsyKWVBLjZKmA5vbu2uDu9eyUkKNP84a8XhyW2JBv0vIS8M
+         3/l4Qvg9LXXmyZayEaK0PH9PiN1+OUGeei5LRrVjGw2kYr9S1vXTIlMB59DTEokwdXw+
+         brbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Cle8K5S6vVtn1JXrhhTeWuHVXYaRfpQzQC3UXOxjSXQ=;
+        b=jSgeqyNcm9zP7OuHgHakvr1s0M9B1g7AR0JbPTd08/j/J6ulUrC48QmruoR6KoNMDX
+         rCzBxKIQnHEb+uyizraiFa0P/6hH5LD50/jcMOHBW659+LbaMuOclL5QtsYCQCp8FApj
+         yfcV5AeXOCSM0j3N6noW32rpDXw46cRBIHyL4YH99FFdNq0snmDgL+8vWa5u8XEMEtyV
+         38I+WvOnTDC6KRskOwO9vvRXqnXB5ZfgHrS9eMsFGxaocQnY+z3fLsG5cAmOchMqAmAt
+         qOoDq7whxX7j5u2PNCDDBPh8buwAGNNCF5mpYZjE/sgXeWRy1J9nG3o5kJEkpwJUYOXp
+         1vkg==
+X-Gm-Message-State: AOAM532s/L1gkcO1rFAvi/zBpBEDwC3E/zrTP5s6S/bXhupmfHPZCJUY
+        qY/m705HZav6FDv2H/ldO7sGqAV8CJx3T04xQNI=
+X-Google-Smtp-Source: ABdhPJxLRWIxX+ylSeHh5gNn/W0febTp1WSbgiRGPMA2M0haLGbHDuacQuJmqW/SsTB2vLUtNxHD7kryu35rr91PuUU=
+X-Received: by 2002:a05:620a:bd5:b0:67d:15ed:2fcd with SMTP id
+ s21-20020a05620a0bd500b0067d15ed2fcdmr21096563qki.81.1649661728137; Mon, 11
+ Apr 2022 00:22:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <57c7363e-9df6-4d40-904b-3b8167d4d3c3>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220410203138.22513-1-arinc.unal@arinc9.com> <20220410203138.22513-3-arinc.unal@arinc9.com>
+In-Reply-To: <20220410203138.22513-3-arinc.unal@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 11 Apr 2022 09:21:57 +0200
+Message-ID: <CAMhs-H9yu-DS_7jHitHg4=0qQusQMN0LqA++k0nJFt0q7z-GzA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] mips: dts: mt7621: remove binding for defining gpio
+ function for pin groups
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <michael.srba@seznam.cz>
+On Sun, Apr 10, 2022 at 10:32 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
+c9.com> wrote:
+>
+> All pin groups function as gpio unless set otherwise. Therefore, remove
+> this unnecessary binding.
+>
+> Tested on UniElec U7621-06-16M on OpenWrt.
+>
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> ---
+>  arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts | 12 ------------
+>  arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts | 12 ------------
+>  2 files changed, 24 deletions(-)
 
-With the gcc driver now being more complete and describing clocks which
-might not always be write-accessible to the OS, conservatively specify
-all such clocks as protected in the SoC dts.
-The board dts - or even user-supplied dts - can override this property
-to reflect the actual configuration.
+Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
----
- CHANGES:
- - v2: add this patch
- - v3: fix missing Signed-off-by
- - v4: add a proper explanation as per review, (hopefully) fix the subject and commit message
- - v5: none
- - v6: none
- - v7: none
- - v8: none
- - v9: none
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 2fda21e810c9..4a84de6cee1e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -815,6 +815,21 @@ gcc: clock-controller@100000 {
- 
- 			clock-names = "xo", "sleep_clk";
- 			clocks = <&xo>, <&sleep_clk>;
-+
-+			/*
-+			 * The hypervisor typically configures the memory region where these clocks
-+			 * reside as read-only for the HLOS. If the HLOS tried to enable or disable
-+			 * these clocks on a device with such configuration (e.g. because they are
-+			 * enabled but unused during boot-up), the device will most likely decide
-+			 * to reboot.
-+			 * In light of that, we are conservative here and we list all such clocks
-+			 * as protected. The board dts (or a user-supplied dts) can override the
-+			 * list of protected clocks if it differs from the norm, and it is in fact
-+			 * desired for the HLOS to manage these clocks
-+			 */
-+			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-+					   <SSC_XO>,
-+					   <SSC_CNOC_AHBS_CLK>;
- 		};
- 
- 		rpm_msg_ram: sram@778000 {
--- 
-2.35.1
-
+Thanks,
+   Sergio Paracuellos
