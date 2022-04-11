@@ -2,98 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 668484FB9E4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 12:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C5514FBA15
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 12:49:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241365AbiDKKqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 06:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59496 "EHLO
+        id S242556AbiDKKvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 06:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239248AbiDKKqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 06:46:14 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B3242EE4;
-        Mon, 11 Apr 2022 03:44:00 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d15so13473918pll.10;
-        Mon, 11 Apr 2022 03:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PU0V5WuDYq0cmOiaa5TapdoxjKoeqSQh5yP9ORlY1MU=;
-        b=RdlxXKGvVTJmMX1d/hCHNs5BN+F2sHVyVWWuIsO7x9sVpRW3cLyy+llM5td5P1uQHs
-         wWi26tkD4Ae87M4PgJx+LtawV3LYB1FQXOU3qPefn5FuvQhMN5lwAnb2+OhUhJzesr3o
-         SX4ObxbRvQV+vwpBEaNRo1M7CFxGLNjJPmkKy4F8gkaBlNDF7Q44qk91kCeIb1z16D81
-         Tlg0VcLYcGgp/YrDoi+0JI7jKMIx3EC0s6cJbkxq1vmbqwlXa5bIXz9B3xj+v90dWVn7
-         wnbUF79G0+l+B4xb851gQrZSsZyvPcOSjhmdvUzo/iKqgCEeS3h8/V2YnUU5AKMwWL9Y
-         BdNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PU0V5WuDYq0cmOiaa5TapdoxjKoeqSQh5yP9ORlY1MU=;
-        b=AUxDBgmmIGVydW+xk9wRAl+e/ALR8fjHjqy1WaFzWwudXNkMJsF5eXrdQ1TfyVZq3v
-         I0tix4IVZ3yONA1qA5uXhKE9Zw4WVxQGUoOvSb1uSIXS97tYWQojJLBRte0ayA3m/Rfh
-         ThTcQJDflwNILdDwYBqAzU2qcMAlxSyL+S0py0CQQlkOxYtggNjQIDQAqOZAaZoOFCc9
-         eUwyYObbQMo/vNNLwlEWMp/ZwfJjTBjUVp8fmSaeJ9tGjCDDfmDbS1unBwaM5wmrDOlU
-         vTA2qUZX+EuTZs81WbYkfvbf0SFC8qBKlStDVL1/GbYvM6A1TKm/eUDDE0wAQxYNtN0J
-         At5w==
-X-Gm-Message-State: AOAM533u6lzq+8jIrvgFVkIq7QJet7vq5c9Et7i7hVRILHKkLhxf+nqE
-        eAKXbfjVFid2dU1QFpb+hxw=
-X-Google-Smtp-Source: ABdhPJwD3BHuZXB4MdexFeBhJDjISaadQa4h09XyfyNQsOUzxYg4D2VGuhqYTbbx5OUKGBn8dZaJuw==
-X-Received: by 2002:a17:902:c94b:b0:158:7729:97c3 with SMTP id i11-20020a170902c94b00b00158772997c3mr1020940pla.167.1649673839863;
-        Mon, 11 Apr 2022 03:43:59 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id mu1-20020a17090b388100b001c77e79531bsm20499455pjb.50.2022.04.11.03.43.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 03:43:59 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 16:13:54 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        with ESMTP id S239480AbiDKKvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 06:51:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E614443EE0;
+        Mon, 11 Apr 2022 03:48:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 79AAD61518;
+        Mon, 11 Apr 2022 10:48:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04C2CC385A3;
+        Mon, 11 Apr 2022 10:48:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649674133;
+        bh=PYoKjVNaZaP85+VTrMLYd0+rrD4W9IKBqmtGHK94kPQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HvadtOZf2dSKdYcMt3y9aytIYryVH5LRSa5Fg3QzHVo7zMhoMIbIoWHUw0D2Q6cTR
+         lFpn6Pd6Tfvy787XXpjYzoQ5jPr7tkKYUJ5u//qj2oylMh4c4SpP4EmkiHzMfgXEU2
+         vE0+1Ky6rrslhjr+I/OVminEeEwR5ZJoE/xN0etO+JP3RS9mpR2NxiOp8Zpf8cehIC
+         xZsZ9TyuAxN04MOn5YleIngCXUbax5qRVXIYuyCBlf7dq/TOMou09benIqN+vCTx+p
+         i8GAfm8ToTMmhlz+Ov/cZImsojQ9mdLJv5u8xmJHuIWRqPl6MpWuyVFUIiTis5V2zy
+         lFU4EgDZDEP3Q==
+Date:   Mon, 11 Apr 2022 16:18:49 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Zong Li <zong.li@sifive.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] ARM: dts: qcom: apq8064: User generic node name
- for DMA
-Message-ID: <20220411104354.GA33220@9a2d8922b8f1>
-References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
- <20220410175056.79330-2-singh.kuldeep87k@gmail.com>
- <f3736e95-a712-50cd-1cbe-83ced609cd4c@linaro.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v8 0/4] Determine the number of DMA channels by
+ 'dma-channels' property
+Message-ID: <YlQHkeZhHvC/n0G5@matsya>
+References: <cover.1648461096.git.zong.li@sifive.com>
+ <YlA1DwdIMoQ1dXZS@matsya>
+ <CANXhq0ramPvr=CL2oPsPAnWiF9X0eYVt8HGAVWPE9mZ5PfhG7A@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f3736e95-a712-50cd-1cbe-83ced609cd4c@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CANXhq0ramPvr=CL2oPsPAnWiF9X0eYVt8HGAVWPE9mZ5PfhG7A@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 10, 2022 at 09:08:53PM +0200, Krzysztof Kozlowski wrote:
-> On 10/04/2022 19:50, Kuldeep Singh wrote:
-> > Qcom BAM DT spec expects generic DMA controller node name as
-> > "dma-controller" to enable validations.
-> > 
-> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > 
+On 11-04-22, 10:51, Zong Li wrote:
+> On Fri, Apr 8, 2022 at 9:13 PM Vinod Koul <vkoul@kernel.org> wrote:
+> >
+> > On 28-03-22, 17:52, Zong Li wrote:
+> > > The PDMA driver currently assumes there are four channels by default, it
+> > > might cause the error if there is actually less than four channels.
+> > > Change that by getting number of channel dynamically from device tree.
+> > > For backwards-compatible, it uses the default value (i.e. 4) when there
+> > > is no 'dma-channels' information in dts.
+> >
+> > Applied patch 1 & 4 to dmaengine-next, thanks
 > 
-> All arm changes could be one commit, it's a lot of churn for just name
-> renaming, but anyway:
+> Hi Vinod,
+> Thanks for your help and review. For patch 2 and 3, does it mean that
+> we should go through the riscv tree?
 
-Ok. Since changes were in different file that's why i kept them
-separate.
+Yes
 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Thanks!
+-- 
+~Vinod
