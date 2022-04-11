@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AFB44FB3BC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 08:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1CA4FB3C2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 08:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244545AbiDKGcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 02:32:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55300 "EHLO
+        id S244928AbiDKGgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 02:36:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244879AbiDKGcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 02:32:02 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6354C66
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:29:47 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id ks6so4076145ejb.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:29:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0yUNK3ZCKYDcOn5ZrB3/FxJrrtfEl7Fw4Ni9+59C8dU=;
-        b=jjzMGMubAeZ1lFmTxBh6mg17L9CLxZ6L/8g7R9OSx4TYbz/WOdXtuowKx72IFtfsqu
-         QzoJr3HWFtca8HIdbDFbdTZXW82MRdZMT2Ar6jcdDHsAnJGMC89ngSfFGQuCYwpDE14S
-         Ug6W90bCGgUXsKgnl7hZnmTtNIW8V6ndulmmzFdJt7rPureVDtky2zIP/53RouKx+KBx
-         6OtU8iOho9QoqPGcRqBrB7pmeU25YiRt5DMgy5Nea6yaNPRCUn1rUqGCMvt6qK9hPjh3
-         zx7MTwE56Sj806SWtRi5tsNGl9f73YQGm9ftjcgtWKXlyQ9Z4B8cJtBr1bvPk8UiAFBB
-         HhsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0yUNK3ZCKYDcOn5ZrB3/FxJrrtfEl7Fw4Ni9+59C8dU=;
-        b=7zAd2h7r82RWhDBY950IxMUPdMaey30pT55V9hz7aOWdRaSb3gXX9toY+JL7k+gBTT
-         ZWCBOjt84C4kcU+5TdQgfqi0SahjKKoFNEza+9V5LbrqzIoaHD5e2aIhI0qUfAwnx43B
-         wUlhFg/8zFOi/mkTm+5k+Td/0kPgd+Cu6MCkRvufaRCaxeXQIDxmCR6nxDDehnxcPVE0
-         gqI+CpOw5JZiCF5ChTLls/VkDIH8JNgk1ZeHL8wAgGbcIQh9XlpkfzAB864Fa1WGJ9Mk
-         mvHVae2ccuHW9seBnS+GpmyGzMaXpyG/T4i82oFG4bGvmQ/Kj3FZrAHsmC/e49gWEzhJ
-         aUHQ==
-X-Gm-Message-State: AOAM531/hnOXBPRzF13IFr3wQuGlM4W5V0Ojo4YorJijzJtZySif4ygR
-        RzWA5XWXtUfExurMkJdz7S6rrg==
-X-Google-Smtp-Source: ABdhPJwwVLHMPhdrjMNvxkSMXTsMCzYn4URc8/tDzb9b69Ns+YnUQjJlGNFB2RHrq+LZwSrM92Us2g==
-X-Received: by 2002:a17:907:b98:b0:6e8:9335:1fca with SMTP id ey24-20020a1709070b9800b006e893351fcamr2990034ejc.123.1649658586482;
-        Sun, 10 Apr 2022 23:29:46 -0700 (PDT)
-Received: from [192.168.0.191] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id o3-20020a170906774300b006e79ea98369sm9276137ejn.151.2022.04.10.23.29.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 23:29:45 -0700 (PDT)
-Message-ID: <1f688a08-1e3f-363a-1442-4c6dd9251f11@linaro.org>
-Date:   Mon, 11 Apr 2022 08:29:44 +0200
+        with ESMTP id S244109AbiDKGgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 02:36:05 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690DD5F57;
+        Sun, 10 Apr 2022 23:33:52 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id DB7D81F4107B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649658830;
+        bh=u3uQuEDnE9EX2L4+tIGDl0Cqo3qLuBHUkok5AGR5HKE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=E4SbbvgsRYSjlYEcyx+QlzecVo8btv1iWtsyV18q/LB5p/7rOdWIsF38Z/9ozTjVM
+         iO9jXi51hf3mFHqka7QGjl/NSjfeK2C8HqZlxEHXD9JtBYbGOUFigIjv/0qTtkQFah
+         3fftiVGZTEgSicTKgwaLIaws6gZ3rg951Nv+XpLX1q3UXK93tIQyEaBqKb8hD06vBD
+         uRIxgrytEmT1JzrbwsvnH0xusNOXedyBKhyZgB38KuAfEOsxTTGP/PVM2N7yeQemTq
+         OCWCFbedOc2PcaO1kEBqVPOlZ4bUfILziWv1hZg7mXklLxC+m2Z8AGQ6k5+qFjAx37
+         MNZiZAMcITjxA==
+Message-ID: <0ce65e42-6567-9fd5-d959-3bc5aa0457eb@collabora.com>
+Date:   Mon, 11 Apr 2022 09:33:46 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: clock: Add compatible for D1 DE2 clocks
+Subject: Re: [Patch v6 1/4] memory: tegra: Add memory controller channels
+ support
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20220411044002.37579-1-samuel@sholland.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220411044002.37579-1-samuel@sholland.org>
+To:     Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        krzysztof.kozlowski@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220406052459.10438-1-amhetre@nvidia.com>
+ <20220406052459.10438-2-amhetre@nvidia.com>
+ <3bbbffff-6aa3-7068-6f0c-4372d53daf94@gmail.com>
+ <ba28886f-be5d-9ab2-41d0-942609934263@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <ba28886f-be5d-9ab2-41d0-942609934263@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,18 +60,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 06:40, Samuel Holland wrote:
-> Allwinner D1 contains a display engine 2.0. Its clock controller
-> matches the layout of the H5 DE2 clocks (2 mixers, no rotation engine,
-> and separate resets), so use that compatible as a fallback.
+
+On 4/11/22 09:05, Ashish Mhetre wrote:
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
 > 
+> On 4/10/2022 7:48 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> 06.04.2022 08:24, Ashish Mhetre пишет:
+>>> +     num_dt_channels =
+>>> of_property_count_elems_of_size(pdev->dev.of_node, "reg",
+>>> +                                                       reg_cells *
+>>> sizeof(u32));
+>>> +     /*
+>>> +      * On tegra186 onwards, memory controller support multiple
+>>> channels.
+>>> +      * Apart from regular memory controller channels, there is one
+>>> broadcast
+>>> +      * channel and one for stream-id registers.
+>>> +      */
+>>> +     if (num_dt_channels < mc->soc->num_channels + 2) {
+>>> +             dev_warn(&pdev->dev, "MC channels are missing, please
+>>> update memory controller DT node with MC channels\n");
+>>> +             return 0;
+>>> +     }
+>>> +
+>>> +     mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev,
+>>> "mc-broadcast");
+>>> +     if (IS_ERR(mc->bcast_ch_regs))
+>>> +             return PTR_ERR(mc->bcast_ch_regs);
+>>
+>> Looks to me that you don't need to use of_property_count_elems_of_size()
+>> and could only check the "mc-broadcast" presence to decide whether this
+>> is an older DT.
+>>
+> Now that we are using reg-names in new DT, yes it'd be fine to just
+> check mc-broadcast to decide it's a new or old DT.
+> 
+>> mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev,
+>> "broadcast");
+>> if (IS_ERR(mc->bcast_ch_regs)) {
+>>          dev_warn(&pdev->dev, "Broadcast channel is missing, please
+>> update your
+>> device-tree\n");
+>>          return PTR_ERR(mc->bcast_ch_regs);
+>> }
+> 
+> return 0;
+> 
+> to avoid DT ABI break, right?
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Yes, it should be "return 0".
