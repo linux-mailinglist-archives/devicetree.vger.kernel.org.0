@@ -2,132 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2798B4FC504
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 21:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FFF84FC513
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 21:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349588AbiDKT1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 15:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49824 "EHLO
+        id S1349443AbiDKT2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 15:28:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233165AbiDKT1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 15:27:05 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA60ADF2B
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:24:48 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id k22so5948986wrd.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:24:48 -0700 (PDT)
+        with ESMTP id S1349627AbiDKT13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 15:27:29 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB89F140EB;
+        Mon, 11 Apr 2022 12:25:13 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id o2so6777068lfu.13;
+        Mon, 11 Apr 2022 12:25:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dAY/HDr2OeDTCS6+sRG3x2tQWGxxS70z/3Rn/qr2aK8=;
-        b=xHhS8pvte1T6tfxc46+ld57g/HMp/HtV6ELqazOcDyQWg58ef+5ighPb52lBAHJl/6
-         NNMNeECu/NZ4qUQ7+HT4BOGrotWvk0mN44tWDtDNiwHRj6CYa31eJSaQjxUUiqR16gKx
-         H4oIbRSwUD0+NkYaoJBvZ97UsH/6ZoyIx+bFacXTdIIC8AbUMrTm1+bOU3Z02CZIWfma
-         nueK2YyQAcoQ/unIBh/WFo+UJGpDV9W+nLOj9DX+fd+HG6+3tupdLQBVBqXWb3EutkrW
-         MnxMhGuzuvAYkNdN5mqV5hPgLwnRgveZxb0RfD+JZrKynrBToKmjrOlxb8D6M2227Ecr
-         bWYQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=UOaY0dvj8Jn2enDiXoZlQyItDDBhGi0Z21ViX26p86o=;
+        b=U6kjZXIbUv4b7puIl3hY+AHHqCRrcLP/bQOpqdVlTrqNd5ke6pZelqt6KH5sxiL/xh
+         qYdpdzV97YmJLaUUGeBYO8oYSqUcvVrNr8ZDz/i3aFSQtcXtQngT0zZt/G3zSKBtiNOG
+         UvyCAsu/NwHmTmMjjqyscuZXLFv/sijhPs3bLZGRwATOnoRbfm1TlNykjwd1+7prXJFJ
+         A4mRSnVmKAzM7tRpsCbuaxXyU8iVofSCCoSrlETtaCjAkRE7L8CTaQlQVUsArXR6mUTP
+         aNyfhDFLDdkT9og3qXJ/aDaV2z+FkgfhJDXVyR/tUBUNOS4qC2TCeWXT/f68LaLEcLtA
+         FF9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dAY/HDr2OeDTCS6+sRG3x2tQWGxxS70z/3Rn/qr2aK8=;
-        b=CiKfngNfwa0r46Y2Tj9ZJIHQB/cg9E5CsFLnXSvACRROfg/iCYi6fqZzUljvkWFEhC
-         ygVVQFk2GtA9n1CqLwXj4YmU/eLhfZGDC4TD5qXA7gv32uOAQFXPCfQ/D5pyk2Qa6KvP
-         6jI2CdvTCBoOCbSGv2RvVWFw6EtfkBCv637+KvMarLHd/QwOrH+j59hMH9aiqXGFmk3h
-         ZfN0Tn+eAF0ZE/6LFTYtW7fiJchdLwqxUfJbrb9jHCvAyoHgcLNZ3JCZdcAZs2JqAKFp
-         86tnEP0NwA9cArq7y8jcx5xU5mR/MaURGgNYoUjw/KuNA3CZk7ISWwYMvsRmqt3UyF88
-         z/hA==
-X-Gm-Message-State: AOAM532KnOgqqx5xM4yZpYAZwfg08v9yPSeKchicNTvz6Ub3zVwcl9OJ
-        s4JWtJBtQGTBtJ8v9xJsJIcwrA==
-X-Google-Smtp-Source: ABdhPJwg+3g2Bo4WXSUK6cfl1Nnw8dm8b0XLkTInSMP4K3NvYIKMXpcaaV5U1NJ38Xnjh8HsC1Tw5w==
-X-Received: by 2002:adf:c547:0:b0:207:9abc:cfa1 with SMTP id s7-20020adfc547000000b002079abccfa1mr12648661wrf.390.1649705087372;
-        Mon, 11 Apr 2022 12:24:47 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id k13-20020a7bc40d000000b0038e9edf5e73sm725177wmi.3.2022.04.11.12.24.45
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UOaY0dvj8Jn2enDiXoZlQyItDDBhGi0Z21ViX26p86o=;
+        b=5DAxOgoHwQMs7VG+YwOT1U3bXPHchGMYo9ANs8MHXgEGCqP33V+zGC/6XcVLl6Y24h
+         WyiCDQ2O5fvqEdyt2GqIuDAKIRMM25PJcunN4NZBN0XA4mUAnhRhFcL5uND0VQHqmgao
+         4L4tvHvM6ObKzE3J87yiKQ/YGw/ILzYI+o2U/1/IpjNX7DxWYxwWTcG/Xza7ZkaEtDFm
+         06I6E+DqUxndMW08/xw1v/K4pFYEpqfT1SqunEn5YQ8TAZgErVu0t+u5bnzYCWiYfZ1D
+         XrfWmIqiL7w4FszwDnORRDogjIV1bOuWZSF3hzlNpFegclQfBsAiB/GmSL0H8CKrQzKm
+         X7tw==
+X-Gm-Message-State: AOAM532MFOWgGMs/NvObKKnVzGp8NV6NNmmUU3ipEdN3G+p8oObbBJBR
+        jP4N/jYYQ1rdZWXq8rqyF9k=
+X-Google-Smtp-Source: ABdhPJy4eqh2ZkmCD78meCjWFsinmbRWaCH5CMTmE9vvWebzuCAVfufD3H1i2eU8do0lH/TsVTWDnA==
+X-Received: by 2002:ac2:5922:0:b0:46a:2396:f575 with SMTP id v2-20020ac25922000000b0046a2396f575mr13092449lfi.654.1649705111898;
+        Mon, 11 Apr 2022 12:25:11 -0700 (PDT)
+Received: from mobilestation ([95.79.134.149])
+        by smtp.gmail.com with ESMTPSA id u2-20020a2e8542000000b0024b4b8dd24dsm1211010ljj.140.2022.04.11.12.25.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 12:24:46 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     krzysztof.kozlowski+dt@linaro.org, pavel@ucw.cz, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4] leds: remove ide-disk trigger
-Date:   Mon, 11 Apr 2022 19:24:34 +0000
-Message-Id: <20220411192434.3386384-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        Mon, 11 Apr 2022 12:25:11 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 22:25:09 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/21] dt-bindings: ata: sata: Extend number of SATA ports
+Message-ID: <20220411192509.odx6vn7kxnfs6mxo@mobilestation>
+References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324001628.13028-2-Sergey.Semin@baikalelectronics.ru>
+ <92699f07-0efc-e471-d886-c7d6c83f352e@opensource.wdc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <92699f07-0efc-e471-d886-c7d6c83f352e@opensource.wdc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No user of ide-disk remains, so remove this deprecated trigger.
-Only a few platforms used this and were fixed in 2016.
+On Tue, Mar 29, 2022 at 05:15:12PM +0900, Damien Le Moal wrote:
+> On 3/24/22 09:16, Serge Semin wrote:
+> > The denoted in the description upper limit only concerns the Port
+> > Multipliers, but not the actual SATA ports. It's an external device
+> > attached to a SATA port in order to access more than one SATA-drive. So
+> > when it's attached to a SATA port it just extends the port capability
+> > while the number of actual SATA ports stays the same. For instance on AHCI
+> > controllers the number of actual ports is determined by the CAP.NP field
+> > and the PI (Ports Implemented) register. AFAICS in general the maximum
+> > number of SATA ports depends on the particular controller implementation.
+> > Generic AHCI controller can't have more than 32 ports (since CAP.NP is of
+> > 5 bits wide and PI register is 32-bits size), while DWC AHCI SATA
+> > controller can't be configured with more than 8 ports activated. So let's
+> > discard the SATA ports reg-property restrictions and just make sure that
+> > it consists of a single reg-item.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > ---
+> >  Documentation/devicetree/bindings/ata/sata-common.yaml | 7 +++----
+> >  1 file changed, 3 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ata/sata-common.yaml b/Documentation/devicetree/bindings/ata/sata-common.yaml
+> > index 7ac77b1c5850..c619f0ae72fb 100644
+> > --- a/Documentation/devicetree/bindings/ata/sata-common.yaml
+> > +++ b/Documentation/devicetree/bindings/ata/sata-common.yaml
+> > @@ -41,11 +41,10 @@ patternProperties:
+> >      properties:
+> >        reg:
+> >          minimum: 0
+> > -        maximum: 14
+> 
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- remove also DEFINE_LED_TRIGGER(ledtrig_ide)
-Changes since v2:
-- Added the fact that few platforms used this and it was fixed old ago.
-- Added Rob's ack
-Change since v3:
-- Rebase on top of latest next
- Documentation/devicetree/bindings/leds/common.yaml | 3 ---
- drivers/leds/trigger/ledtrig-disk.c                | 4 ----
- 2 files changed, 7 deletions(-)
+> Why remove this ? Since AHCI can have up to 32 ports, then change the
+> value to 31. As the comment at the top of the file says, this is not
+> intended to be a device tree binding spec, but defines properties common
+> to most adapters.
 
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 344a6492ba36..1d1f79238a32 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -91,9 +91,6 @@ properties:
-       - disk-activity
-       - disk-read
-       - disk-write
--        # LED indicates IDE disk activity (deprecated), in new implementations
--        # use "disk-activity"
--      - ide-disk
-         # LED flashes at a fixed, configurable rate
-       - timer
-         # LED alters the brightness for the specified duration with one software
-diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/ledtrig-disk.c
-index 0741910785bb..0b7dfbd04273 100644
---- a/drivers/leds/trigger/ledtrig-disk.c
-+++ b/drivers/leds/trigger/ledtrig-disk.c
-@@ -16,7 +16,6 @@
- DEFINE_LED_TRIGGER(ledtrig_disk);
- DEFINE_LED_TRIGGER(ledtrig_disk_read);
- DEFINE_LED_TRIGGER(ledtrig_disk_write);
--DEFINE_LED_TRIGGER(ledtrig_ide);
- 
- void ledtrig_disk_activity(bool write)
- {
-@@ -24,8 +23,6 @@ void ledtrig_disk_activity(bool write)
- 
- 	led_trigger_blink_oneshot(ledtrig_disk,
- 				  &blink_delay, &blink_delay, 0);
--	led_trigger_blink_oneshot(ledtrig_ide,
--				  &blink_delay, &blink_delay, 0);
- 	if (write)
- 		led_trigger_blink_oneshot(ledtrig_disk_write,
- 					  &blink_delay, &blink_delay, 0);
-@@ -40,7 +37,6 @@ static int __init ledtrig_disk_init(void)
- 	led_trigger_register_simple("disk-activity", &ledtrig_disk);
- 	led_trigger_register_simple("disk-read", &ledtrig_disk_read);
- 	led_trigger_register_simple("disk-write", &ledtrig_disk_write);
--	led_trigger_register_simple("ide-disk", &ledtrig_ide);
- 
- 	return 0;
- }
--- 
-2.35.1
+Right, but the schema determines the common !SATA! controllers properties,
+while you are referring to the AHCI-specific limit. As I said in the patch
+log AFAICS in general the SATA controllers may have any number of ports.
+The number is determined by the hardware designers needs only. Thus the
+actual constraints needs to be specified in the controller-specific
+YAML-schema (the one which will $ref to sata-common.yaml).
 
+Though I couldn't find any ATA device driver in the kernel which would
+handle a device with even 32 ports, not to mention a greater number.
+So replacing it with 31 might be reasonable after all. But me failing
+to find any such device doesn't me it can't exist. Thus I've decided to
+drop the upper limit completely.
+
+> 
+> >          description:
+> > -          The ID number of the drive port SATA can potentially use a port
+> > -          multiplier making it possible to connect up to 15 disks to a single
+> > -          SATA port.
+> > +          The ID number of the SATA port. Aside with being directly used
+> > +          each port can have a Port Multiplier attached thus allowing to
+> > +          access more than one drive by means of a single channel.
+> 
+
+> Please add a comma after "Aside with being directly used", otherwise the
+> sentence is hard to understand. And replace "channel" with "SATA port" to
+> stick with the terms defined here.
+
+Ok.
+
+-Sergey
+
+> 
+> >  
+> >  additionalProperties: true
+> >  
+> 
+> 
+> -- 
+> Damien Le Moal
+> Western Digital Research
