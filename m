@@ -2,75 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D30A4FB1A3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 04:15:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E03814FB1A9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 04:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243530AbiDKCRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 22:17:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
+        id S243538AbiDKCaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 22:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238514AbiDKCRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 22:17:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4500760E2;
-        Sun, 10 Apr 2022 19:15:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BD86A61034;
-        Mon, 11 Apr 2022 02:15:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27AAAC385A4;
-        Mon, 11 Apr 2022 02:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649643318;
-        bh=HrfWFfTOe6j154rTRQZaqm2rUNiKm4IP07T469feT/M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nFFEDTg+4TToywMjDQAyVK4Sm6uES5N8uq0ECkFg/s59aFORXQIraYALz/8TEzIVj
-         2LKpDmWyJX42tlLPtiEr4I9Gt7yc8yDIt2EpwKTHQeBbNsU7KdDZeZZi1ca7j9kMub
-         PxnufUDnVkOkQrq5Mn/IPKAHohFINKwiLsBCovPwYGff4p+9BC9gYT6aoiszmeqs5N
-         I9UvPgOZrkmmfwUpWQ7ZY0q0j+Hqhj9j5absFY6WL+NJAE5eiDI6x1Xguwt+BLW+ev
-         RuUGzJhoennVgSVLYmMDdytVCXjQZNkwzgRDQGK6xoe7TVO/ShrPZA9M31BFLyoxT6
-         b1iA6lN9O98IQ==
-Date:   Mon, 11 Apr 2022 10:15:07 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marcel Ziswiler <marcel@ziswiler.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heiko Schocher <hs@denx.de>, Jacky Bai <ping.bai@nxp.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        with ESMTP id S231731AbiDKCaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 22:30:17 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959063878D;
+        Sun, 10 Apr 2022 19:28:04 -0700 (PDT)
+X-UUID: f309404746e246b4a03a226ae0e23382-20220411
+X-UUID: f309404746e246b4a03a226ae0e23382-20220411
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 63912116; Mon, 11 Apr 2022 10:27:57 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 11 Apr 2022 10:27:55 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 Apr 2022 10:27:55 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Olof Johansson <olof@lixom.net>, Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Reinhold Mueller <reinhold.mueller@emtrion.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] arm64: prepare and add verdin imx8m plus support
-Message-ID: <20220411021507.GG129381@dragon>
-References: <20220408145725.812566-1-marcel@ziswiler.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Henry Chen <henryc.chen@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Subject: [PATCH v14 0/2] Add basic SoC support for mediatek mt8195
+Date:   Mon, 11 Apr 2022 10:27:22 +0800
+Message-ID: <20220411022724.11005-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408145725.812566-1-marcel@ziswiler.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,34 +59,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 08, 2022 at 04:57:22PM +0200, Marcel Ziswiler wrote:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> 
-> Add DMA properties to uart2 node of the base i.MX 8M Plus device tree,
-> add toradex,verdin-imx8mp et al. to dt-bindings and finally, add
-> initial support for Verdin iMX8M Plus.
-> 
-> Changes in v3:
-> - Add missing audio codec todo on development board as well.
-> - Actually define scl/sda-gpios for Verdin I2C_2_DSI aka i2c2. Also
->   pointed out by Laurent. Thanks!
-> - Update PMIC LDO4 and I2C level shifter enablement comment.
-> - Fix USDHC2_VSELECT sleep pinctrl value and add a comment.
-> - Add comment about lowering frequency on Verdin I2C_2_DSI as suggested
->   by Laurent.
-> - Re-based on top of Shawn's latest for-next based on 5.18-rc1.
-> 
-> Changes in v2:
-> - Add Laurent's reviewed-by tag.
-> - Add Krzysztof's reviewed-by tag.
-> - Fix capitalisation of verdin in comments as reported by Laurent.
-> - Add/modify todo comments as suggested by Laurent.
-> - Add Laurent's reviewed- and tested-by tags.
-> 
-> Marcel Ziswiler (3):
->   arm64: dts: imx8mp: add uart2 dma
->   dt-bindings: arm: fsl: add toradex,verdin-imx8mp et al.
->   arm64: dts: freescale: add initial support for verdin imx8m plus
+This series adds basic SoC support for Mediatek's SoC MT8195.
 
-Applied all, thanks!
+---
+Changes in v14:
+  - update pwrap dt-bindings 
+    this patch is picked from 20220411014121.15015-2-zhiyong.tao@mediatek.com 
+  - enable u3phy2 and u3phy3 in evb dts 
+Changes in v13:
+  - add more description of reg items in mtk-sd.yaml
+Changes in v12:
+  - update mtk-sd.yaml to extend reg property and fix yamllint error
+  - add xhci nodes and move xhci3 property (usb2-lpm-disable) to evb.dts
+Changes in v11:
+  - rebase on 5.17-rc4
+Changes in v10:
+  - clean CC list
+Changes in v9:
+  - remove duplicated cpus dt-bindings patch in v8
+Changes in v8:
+  - v7 mediatek,spi-mtk-nor.yaml patch is applied in branch for-5.17 at 
+    kernel/git/broonie/spi.git
+  - v7 pinctrl-mt8195.yaml patch is applied in branch for-next at 
+    kernel/git/linusw/linux-pinctrl.git
+  - add cortex-a78 compatible to cpus dt-bindings
+  - add mediatek,drive-strength-adv property to pinctrl dt-bindings
+  - fix evb dts
+    - remove i2c nodes with disabled status from dts
+    - fix pin properties not match pinctrl dt-bindings
+    - remove unnecessary u3port*
+  - fix dtsi
+    - fix node format
+    - reorder oscillator* nodes 
+    - fix node name of cpu idle nodes
+    - remove clock-frequency property in the timer node
+    - reorder clock and clock names in usb nodes
+Changes in v7:
+  - refine title of spi-nor dt-bindings patch
+  - refine commit message of pinctrl dt-bindings patch
+  - update pinctrl-mt8195.yaml
+    - change property pattern from 'pins' to '^pins'
+    - update examples with new property in descriptions
+    - add new example
+  - drop '_' from node names of pinctrl subnodes in mt8195-evb.dts
+Changes in v6:
+  - rebase on 5.16-rc1
+  - add new clock name to spi-nor dt-bindings
+  - add "pins" property in pinctrl dt-bindings
+  - fix fails of dtbs_checks
+    - remove "arm,armv8" not matched in yaml from cpu compatile
+    - fix node name of xhci
+    - remvoe xhci upstreaming wakeup properties
+    - remove xhci unused properties address-cells and size-cells
+    - fix node name of ufs-phy 
+    - fix node name of spi-nor
+    - fix node name and sub-nodes of pinctrl
+    - fix mmc compatible
+Changes in v5:
+  - enable basic nodes in mt8195-evb.dts
+  - remove dedicated clock nodes
+  - add mmc2 node
+  - fix interrupt number of pinctrl node
+  - update clock nodes to apply internal fixes
+  - add dt-bindings for perficfg node
+
+v4 thread:
+https://lore.kernel.org/all/20210922093303.23720-2-seiya.wang@mediatek.com/
+v3 thread:
+https://lore.kernel.org/all/20210601075350.31515-2-seiya.wang@mediatek.com/
+v2 thread:
+https://lore.kernel.org/all/20210319023427.16711-10-seiya.wang@mediatek.com/
+v1 thread:
+https://lore.kernel.org/all/20210316111443.3332-11-seiya.wang@mediatek.com/
+---
+
+Tinghan Shen (1):
+  arm64: dts: Add mediatek SoC mt8195 and evaluation board
+
+Zhiyong.Tao (1):
+  dt-bindings: pwrap: mediatek: fix pwrap document for mt8195
+
+ .../bindings/soc/mediatek/pwrap.txt           |   10 +-
+ arch/arm64/boot/dts/mediatek/Makefile         |    1 +
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  181 +++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 1045 +++++++++++++++++
+ 4 files changed, 1232 insertions(+), 5 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
+
+-- 
+2.18.0
+
