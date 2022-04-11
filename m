@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 265664FBBE3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82E454FBBED
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244808AbiDKMTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:19:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56586 "EHLO
+        id S230290AbiDKMXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:23:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233946AbiDKMTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:19:13 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1046C27CD9;
-        Mon, 11 Apr 2022 05:16:59 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id c15so19824671ljr.9;
-        Mon, 11 Apr 2022 05:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SwlzXZe5gV8+pFvJZHXYo05mqSjtl8vaF4Cm8yRdmF4=;
-        b=EqhE4evILFPuJAW/tZZdb5l3kkuSl2VPpas+U7WJiRz3rePHdobkUXUUfYoD7zRd3N
-         bfy2xD7eyepIebPuUZ+mGgZhMtsGj/oeb+Pv/QeVgZ8d4E7oyc+G5bCUBrs3NtNvGGCA
-         VdpmI4zBJXWbkbj6gIaDXn8vNPBIOXnLp7pcMpDoeNAo35LXkgqCBPDiFLsvV3Hlllkc
-         AQJtERViwG8Dku/9f0jDfltR6zaXtoTJuWH8cZ6PsBhK7XlLUa+T8+p+r1KJBpj+klrd
-         +ggN6mklstQiE+q/TltyHMq4fp868htmvnuKvmtiF4Y0k3iKYfwEKfYyvOKj6MAO9ZKe
-         1QiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SwlzXZe5gV8+pFvJZHXYo05mqSjtl8vaF4Cm8yRdmF4=;
-        b=QubnabigrAHdsVwkBkbDGQKSUy//i0sXgZLOEqhy0J/ZyqE5JjB9v4GEV1WgmDadXq
-         q0qT+cquQW6tV2dxoSCQoTClDHuS8HPOq5FXryoCuaDLxTiJm91iCiQJfltwHJSWKbso
-         0AEBRAvK2v1mEAHhCnG80Ge1e+4A+wCTRMDVHIuUpDktZ1WuFyNIuHmGSJDEeUiTUKGB
-         uWRvPcjvG/n9jwkMkTPSekK8dR3kqFonzGfmOvj5neFRd0Lrk1h1a2xUGW0GAnlk1qej
-         D7csVOTWPieaH1LDxbx4zKgUS28Ujfi+mAARb1/5QtE3lRYfR6N7zqQPE0EeY7pQFVFZ
-         yUIQ==
-X-Gm-Message-State: AOAM531U3tq/OsD+WuSy6ZcYLJ3QlhD7UqvKXckKZjssWOV8l3UqB2zZ
-        dawEE+xojerGw6/fKqbbgExlPF78NCimZg==
-X-Google-Smtp-Source: ABdhPJz9nwi9knLMn0iSU+PoTmNxSzwRTgJoB66bIKUM2XJsrtI/A0vEgQCLxsVPNP+zsHSxx1KxLQ==
-X-Received: by 2002:a05:651c:54c:b0:249:9d06:24ef with SMTP id q12-20020a05651c054c00b002499d0624efmr20279739ljp.331.1649679417317;
-        Mon, 11 Apr 2022 05:16:57 -0700 (PDT)
-Received: from mobilestation ([95.79.134.149])
-        by smtp.gmail.com with ESMTPSA id g36-20020a0565123ba400b0044a2a1ccd99sm3314311lfv.20.2022.04.11.05.16.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 05:16:56 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 15:16:55 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 21/21] MAINTAINERS: Add maintainers for DWC AHCI SATA
- driver
-Message-ID: <20220411121655.l5ft7r6bywg2nxcp@mobilestation>
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-22-Sergey.Semin@baikalelectronics.ru>
- <eb79ee49-53aa-57eb-94af-90997aa6cbed@opensource.wdc.com>
+        with ESMTP id S1346104AbiDKMWy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:22:54 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0686542A0D
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:20:38 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1ndt1s-0004DP-Bg; Mon, 11 Apr 2022 14:20:24 +0200
+Message-ID: <f2fc68f6c2034546009c96658da0e63f191978d1.camel@pengutronix.de>
+Subject: Re: [PATCH v0 07/10] phy: freescale: add Samsung HDMI PHY
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
+Date:   Mon, 11 Apr 2022 14:20:22 +0200
+In-Reply-To: <20220411115922.luv2gyutdecvsxa3@houat>
+References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+         <20220406160123.1272911-8-l.stach@pengutronix.de>
+         <20220411115922.luv2gyutdecvsxa3@houat>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <eb79ee49-53aa-57eb-94af-90997aa6cbed@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 11:17:12AM +0900, Damien Le Moal wrote:
-> On 3/24/22 09:16, Serge Semin wrote:
-> > Add myself as a maintainer of the new DWC AHCI SATA driver and
-> > its DT-bindings schema.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  MAINTAINERS | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index cd0f68d4a34a..19c9ea0758cc 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -10919,6 +10919,15 @@ F:	drivers/ata/ahci_platform.c
-> >  F:	drivers/ata/libahci_platform.c
-> >  F:	include/linux/ahci_platform.h
-> >  
-> > +LIBATA SATA AHCI SYNOPSYS DWC CONTROLLER DRIVER
-> > +M:	Serge Semin <fancer.lancer@gmail.com>
-> > +L:	linux-ide@vger.kernel.org
-> > +S:	Maintained
-> > +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/axboe/linux-block.git
+Hi Maxime,
+
+Am Montag, dem 11.04.2022 um 13:59 +0200 schrieb Maxime Ripard:
+> Hi Lucas,
 > 
-
-> Wrong tree. This should be libata tree.
-
-Got it. Thanks.
-
--Sergey
-
-> 
-> > +F:	Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-> > +F:	Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> > +F:	drivers/ata/ahci_dwc.c
+> On Wed, Apr 06, 2022 at 06:01:20PM +0200, Lucas Stach wrote:
+> > +static unsigned long phy_clk_recalc_rate(struct clk_hw *hw,
+> > +					 unsigned long parent_rate)
+> > +{
+> > +	struct fsl_samsung_hdmi_phy *phy = to_fsl_samsung_hdmi_phy(hw);
 > > +
-> >  LIBATA SATA PROMISE TX2/TX4 CONTROLLER DRIVER
-> >  M:	Mikael Pettersson <mikpelinux@gmail.com>
-> >  L:	linux-ide@vger.kernel.org
+> > +	if (!phy->cur_cfg)
+> > +		return 0;
+> > +
+> > +	return phy->cur_cfg->clk_rate;
+> > +}
 > 
+> This means that the clock will return 0 at initialization, which will
+> throw the rate accounting in the CCF off.
 > 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+> Returning 0 here isn't valid. Surely that phy has a default
+> configuration at boot that you could use to initialize a rate?
+> 
+> See https://lore.kernel.org/linux-clk/20220408091037.2041955-1-maxime@cerno.tech/
+
+Thanks for the hint. I don't know the full history of this and surely I
+can use the register reset defaults to initialize the clock rate, but
+it still seems odd. A powered down clock generator, like the PLL in
+this PHY, is not actually putting out a clock at any rate, so 0 for the
+rate seems natural, so it's kind of a bad pitfall if the CCF can't deal
+with that.
+
+Regards,
+Lucas
+
