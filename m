@@ -2,288 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85BC14FC23A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 18:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59F134FC27F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 18:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347985AbiDKQ2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 12:28:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56590 "EHLO
+        id S1348538AbiDKQiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 12:38:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235406AbiDKQ2O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 12:28:14 -0400
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73EAEF2E
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 09:25:57 -0700 (PDT)
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20220411162555euoutp0120da229bee8060fd41f806bc8d13de36~k5EaslV9L1093210932euoutp012
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 16:25:55 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20220411162555euoutp0120da229bee8060fd41f806bc8d13de36~k5EaslV9L1093210932euoutp012
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1649694355;
-        bh=ZOnGPhjP4eRpgyBsRrE8QlSFuiADHoafOGxxHXTYx3g=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=sunlE+xlX2ybO+fxpdMZbJE30RBzD/ba7VfhCOizVQWhKP+ZEiZXhZDCHEJup38WO
-         usiR+XloRomLkhh2tNijm0P7TtEj+/QQ0BdP30+bwPvo7er/k7KkP+D/ZpXr5DIE3n
-         5geHjIAzdjub3o5ZwbHUSuS4zhn7NWsw58zchtoA=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20220411162555eucas1p13050dc751a7cb24c5f403b2443de8134~k5EaQMzd_2029820298eucas1p1P;
-        Mon, 11 Apr 2022 16:25:55 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id DD.3F.10260.39654526; Mon, 11
-        Apr 2022 17:25:55 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220411162554eucas1p2e709930ca43903efc00946c82569fbcd~k5EZHuEtr1498214982eucas1p2J;
-        Mon, 11 Apr 2022 16:25:54 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220411162554eusmtrp1599df90e266d55b8e845bf0c9f10c62b~k5EZGyuf_3205632056eusmtrp1I;
-        Mon, 11 Apr 2022 16:25:54 +0000 (GMT)
-X-AuditID: cbfec7f5-bddff70000002814-6a-625456930ed3
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 1F.76.09404.19654526; Mon, 11
-        Apr 2022 17:25:53 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220411162552eusmtip2b225e68f44319f6f4121cad07f2f83e0~k5EX-w10z0970309703eusmtip2V;
-        Mon, 11 Apr 2022 16:25:52 +0000 (GMT)
-Message-ID: <bde95ab4-38d8-5249-053c-57fb58d1a200@samsung.com>
-Date:   Mon, 11 Apr 2022 18:25:52 +0200
+        with ESMTP id S1348290AbiDKQis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 12:38:48 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 431E62DAB8;
+        Mon, 11 Apr 2022 09:36:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1649694991; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=JKIdiPCa6AdKy3aeZWJmLncBvmV88ceUe5XNIR3UBxQ=;
+        b=pzqHrTBTxMmTIZ2GuBCvRERJgNhDuydhqoWEJh9pjC/YFx/WdQ2znC6qX+HJ4MkXnZdJQJ
+        /7Tnsvmm9KSay0Z3MifEH9QGPldSI3yD30YYVDzv4N/mXkxXRA6/ld2KpqKHfMybdo9XWa
+        bDvgPhryvUsMzLNiOkoSikXrus7yb10=
+Date:   Mon, 11 Apr 2022 17:36:21 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v4 2/2] clk: ingenic-tcu: Fix missing TCU clock for X1000
+ SoCs
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Message-Id: <LSO6AR.0DFDW2C6UEWT@crapouillou.net>
+In-Reply-To: <YlRSiUkdFkNoPMaH@localhost>
+References: <20220411154241.50834-1-aidanmacdonald.0x0@gmail.com>
+        <20220411154241.50834-3-aidanmacdonald.0x0@gmail.com>
+        <FKM6AR.T3U5W4W42W2R3@crapouillou.net> <YlRSiUkdFkNoPMaH@localhost>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
-        Gecko/20100101 Thunderbird/91.7.0
-Subject: Re: [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
-Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <CAHCN7xK_H-nLA5Z6hJW5V0Bpo8bDKPU6UpN05kMBkG+PXmwBBw@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0xbZRjO13N6enGth46Fb2yy2EV0Jiubw+UTFKfO5RiMKYm34K2lHIEM
-        CmmHTueFYcqlAiljzl6IaMqgwihYytgcm6HiqoN1VFmlK6xsa5wUGLbADBCqtIcp/573ed/n
-        fZ73y8fFRDVEIrdAeYhWKeWFYoKPn7646NrZ8OrLObsumXhozDeIIb95DkdTPguBmgZcbDSy
-        MEug2pOr6Jhfh6N5m45Af1534+hy+TQHVdc3c1Cr7gKBbLc8bKRd+hZD+isXWOjSUQ2OHHVv
-        oLDxBoY05wc4SN8wSSD3z2Fs3yaqI+RnU7OjGg7lqhknqLPGcQ5lqjKwKXPfJIuytVUT1MBV
-        M5sa8/QRlP9zJ4vqbv6U+u7OGRZVZ28D1JwtSSrM5j+ZSxcWvEerUjJk/HxfVzlR4k09PH9O
-        XgY0O7WAx4VkKnR8UcnWAj5XRFoAvGxrZzHFPIAG3XGcKeYAnA4M4/ckf1Tr1hqtAJ6yj60V
-        IQCt585zolMCMgNarv3GimKcfAieCC0TDB8HfzEEYps2kTmwvbc9xm8k98MeTySmxcgEeC3Q
-        FNPGk2I4PrQCogYYuUjAit+1INogyN1QO6ONiXlkFnRf/RJjxNvgZz0mLCqAZDkfum4HCSb3
-        fmiucq7hjTDotHMYvBUONtSsJuKu4mK4ot/D0IehZ+oUxuB0OOZaIqIjGLkDdn6fwkw/A1uu
-        ZzNQCEdn4pgAQnjsdDRMlBbAqgoRsyMZGp3W/yz7h3/FdEBsXPcmxnW3G9edYvzf9muAt4EE
-        ulRdlEer9yjp9yVqeZG6VJknURQX2cDqhx2MOBfOAEswJHEAFhc4AORi4ngBypHmiAS58g8+
-        pFXF76hKC2m1A2zh4uIEgaKgSy4i8+SH6IM0XUKr7nVZXF5iGeu55gmFs0svaZp/5ea+RFnT
-        5hcowLaAHZG7ujjXg9n1E4HKDrV0OfJa5wMtlTc1haP1jVlJ96fGjxCC2wl1ew2zd+ci/qAq
-        q0whvjIj5T3sVdCf2KWtgwvdb524yDvS+Pqdnqe923/AD/7YLc/nL/YPeJ8Nd8IbHwnLXrRO
-        y2o3P7YtLdPkufX2WXplr+er7A0FYe/Jf/TuZT1PN0Qubf8mN3zgzY87ZtN6OobMf7stU4YN
-        Jdy0QKMHSuwtmZW9I8p0X0V8ZuJP1VuO5rUkZVh3pQjTWcWy3uQjByZrHu97hC2bkIY8puTE
-        YU1n8Hn2X9aX2p8Yf7f+qa39Pk7tfanpYlydL9/9KKZSy/8F5o+vnB8EAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrEKsWRmVeSWpSXmKPExsVy+t/xe7oTw0KSDE70W1jcuX2a2eL+4s8s
-        Fq9vr2CzmH/kHKvFla/v2Sx6lwJZk+5PYLH4smkCm8WLexdZLM42vWG36Jy4hN1i+YR9bBab
-        Hl9jtej6tZLZYsb5fUwWpxpbWSwO9UVbfJr1kNmide8RdosZk1+yWVw88YnZQdRj7cf7rB7v
-        b7Sye5zrucvmsXPWXXaP2R0zWT0W73nJ5LFpVSebx5Gri1k97lzbw+Zxv/s4k8fmJfUeG9/t
-        YPLo27KK0ePzJrkAvig9m6L80pJUhYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07m5TU
-        nMyy1CJ9uwS9jNsbmtgKbppUfNmd2MDYqtvFyMkhIWAi8axzAksXIxeHkMBSRokLvxcxQyRk
-        JE5Oa2CFsIUl/lzrYoMoes8osbvpBViCV8BOYsWty0wgNouAqsS0j7/ZIOKCEidnPmEBsUUF
-        kiQudbUzgtjCAi4SW6/9YwexmQXEJW49mQ/WKyKgJHH3zF9GkAXMAv/ZJNofrWKE2DaBSWL6
-        qU9g29gEDCW63naBbeAUCJS4eHU6M8QkM4murV2MELa8RPPW2cwTGIVmITlkFpKFs5C0zELS
-        soCRZRWjSGppcW56brGRXnFibnFpXrpecn7uJkZgYtl27OeWHYwrX33UO8TIxMF4iFGCg1lJ
-        hNciKSBJiDclsbIqtSg/vqg0J7X4EKMpMDQmMkuJJucDU1teSbyhmYGpoYmZpYGppZmxkjiv
-        Z0FHopBAemJJanZqakFqEUwfEwenVAOTrIp1f0ryiwNdW6RzplpoKt6o3P6CTcWpefPWnzvj
-        ud42n6jpf5LJd2l5xOXUR14qpcWM/94s/7jub9Xzbxl5F3fdyNYpYOESb7zmckbs0PEjE94y
-        33rW6aHalyd1TWLTTt+PR/gkDubOP75Y9PFd/t12S6q9+aWebNrhnVC5MTNqOsOtTnmryv1R
-        N6t4sm2l/U6JvBLcfa7JNn7LqS+96t2rJizo+BvB0779flS38UffS88lmSvrItwljC4uvhJh
-        Hae4tJEnmPfZM7E1a2M/TnoTO8Vd5vceVwVja4XlTh/fzzx7lVn7xvu/ba+EoreZ+CmnHnhs
-        yuqTsLLx2XXNkn17Is/+c+9pEtn2anGeEktxRqKhFnNRcSIAJQb2QbUDAAA=
-X-CMS-MailID: 20220411162554eucas1p2e709930ca43903efc00946c82569fbcd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3
-References: <CGME20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3@eucas1p1.samsung.com>
-        <20220408162108.184583-1-jagan@amarulasolutions.com>
-        <4c693c6e-512b-a568-948a-4a1af6a1313a@samsung.com>
-        <CAHCN7xK_H-nLA5Z6hJW5V0Bpo8bDKPU6UpN05kMBkG+PXmwBBw@mail.gmail.com>
-X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.04.2022 16:39, Adam Ford wrote:
-> On Mon, Apr 11, 2022 at 8:56 AM Marek Szyprowski
-> <m.szyprowski@samsung.com> wrote:
->> On 08.04.2022 18:20, Jagan Teki wrote:
->>> This series supports common bridge support for Samsung MIPI DSIM
->>> which is used in Exynos and i.MX8MM SoC's.
->>>
->>> Previous RFC can be available here [1].
->>>
->>> The final bridge supports both the Exynos and i.MX8MM DSI devices.
->>>
->>> On, summary this patch-set break the entire DSIM driver into
->>> - platform specific glue code for platform ops, component_ops.
->>> - common bridge driver which handle platform glue init and invoke.
->>>
->>> Patch 0000:   Samsung DSIM bridge
->>>
->>> Patch 0001:   platform init flag via driver_data
->>>
->>> Patch 0002/9:   bridge fixes, atomic API's
->>>
->>> Patch 0010:   document fsl,imx8mm-mipi-dsim
->>>
->>> Patch 0011:   add i.MX8MM DSIM support
->>>
->>> Tested in Engicam i.Core MX8M Mini SoM.
->>>
->>> Anyone interested, please have a look on this repo [2]
->>>
->>> [2] https://protect2.fireeye.com/v1/url?k=930e329a-f28527b5-930fb9d5-74fe485cbfe7-b0c53e2d688ddbc5&q=1&e=e6aa727d-5ae2-4ca5-bff3-7f62d8fae87e&u=https%3A%2F%2Fgithub.com%2Fopenedev%2Fkernel%2Ftree%2Fimx8mm-dsi-v1
->>> [1] https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/T/
->>>
->>> Any inputs?
->> I wanted to test this on the Exynos, but I wasn't able to find what base
->> should I apply this patchset. I've tried linux-next as well as
->> 95a2441e4347 ("drm: exynos: dsi: Switch to atomic funcs").
->>
->> Please note that pointing a proper base for the patchset is really
->> essential if you really want others to test it.
-> Can you clone his repo and test that?  He posted it above.  I was
-> going to clone it at some point this week to give it a try.
+Hi Aidan,
 
-Okay, my fault. I've missed that.
+Le lun., avril 11 2022 at 17:08:41 +0100, Aidan MacDonald=20
+<aidanmacdonald.0x0@gmail.com> a =E9crit :
+> On Mon, Apr 11, 2022 at 04:48:15PM +0100, Paul Cercueil wrote:
+>>  Hi Aidan,
+>>=20
+>>  Le lun., avril 11 2022 at 16:42:41 +0100, Aidan MacDonald
+>>  <aidanmacdonald.0x0@gmail.com> a =E9crit :
+>>  > The TCU clock gate on X1000 wasn't requested by the driver and=20
+>> could
+>>  > be gated automatically later on in boot, which prevents timers=20
+>> from
+>>  > running and breaks PWM.
+>>  >
+>>  > Add a workaround to support old device trees that don't specify=20
+>> the
+>>  > "tcu" clock gate. In this case the kernel will print a warning and
+>>  > attempt to continue without the clock, which is wrong, but it=20
+>> could
+>>  > work if "clk_ignore_unused" is in the kernel arguments.
+>>  >
+>>  > Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+>>  > ---
+>>  >  drivers/clk/ingenic/tcu.c | 38=20
+>> ++++++++++++++++++++++++++------------
+>>  >  1 file changed, 26 insertions(+), 12 deletions(-)
+>>  >
+>>  > diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
+>>  > index 77acfbeb4830..ce8c768db997 100644
+>>  > --- a/drivers/clk/ingenic/tcu.c
+>>  > +++ b/drivers/clk/ingenic/tcu.c
+>>  > @@ -31,6 +31,7 @@ struct ingenic_soc_info {
+>>  >  	unsigned int num_channels;
+>>  >  	bool has_ost;
+>>  >  	bool has_tcu_clk;
+>>  > +	bool allow_missing_tcu_clk;
+>>  >  };
+>>  >
+>>  >  struct ingenic_tcu_clk_info {
+>>  > @@ -320,7 +321,8 @@ static const struct ingenic_soc_info
+>>  > jz4770_soc_info =3D {
+>>  >  static const struct ingenic_soc_info x1000_soc_info =3D {
+>>  >  	.num_channels =3D 8,
+>>  >  	.has_ost =3D false, /* X1000 has OST, but it not belong TCU */
+>>  > -	.has_tcu_clk =3D false,
+>>  > +	.has_tcu_clk =3D true,
+>>  > +	.allow_missing_tcu_clk =3D true,
+>>  >  };
+>>  >
+>>  >  static const struct of_device_id __maybe_unused
+>>  > ingenic_tcu_of_match[] __initconst =3D {
+>>  > @@ -354,15 +356,27 @@ static int __init ingenic_tcu_probe(struct
+>>  > device_node *np)
+>>  >  	if (tcu->soc_info->has_tcu_clk) {
+>>  >  		tcu->clk =3D of_clk_get_by_name(np, "tcu");
+>>  >  		if (IS_ERR(tcu->clk)) {
+>>  > -			ret =3D PTR_ERR(tcu->clk);
+>>  > -			pr_crit("Cannot get TCU clock\n");
+>>  > -			goto err_free_tcu;
+>>  > -		}
+>>  > -
+>>  > -		ret =3D clk_prepare_enable(tcu->clk);
+>>  > -		if (ret) {
+>>  > -			pr_crit("Unable to enable TCU clock\n");
+>>  > -			goto err_put_clk;
+>>  > +			/*
+>>  > +			 * Old device trees for some SoCs did not include the
+>>  > +			 * TCU clock because this driver (incorrectly) didn't
+>>  > +			 * use it. In this case we complain loudly and attempt
+>>  > +			 * to continue without the clock, which might work if
+>>  > +			 * booting with workarounds like "clk_ignore_unused".
+>>  > +			 */
+>>=20
+>>  Why not unconditionally enable it instead? Then it would boot=20
+>> without
+>>  clk_ignore_unused.
+>>=20
+>>  Cheers,
+>>  -Paul
+>=20
+> I could, but why add essentially dead code to the kernel? Maintaining=20
+> the
+> old behavior has the "advantage" that it remains broken in the same=20
+> way as
+> before, so any workarounds anyone was using will continue to work the=20
+> same.
+> And if they were not using workarounds and got a broken kernel, this=20
+> patch
+> will not make anything *more* broken, in fact it will not cause any=20
+> change
+> in behavior in that case (aside from the warning message).
 
-There is a trivial compilation issue, 
-drivers/gpu/drm/exynos/exynos_drm_dsi.c lacks "#include 
-<linux/gpio/consumer.h>" after conversion. Besides that, it simply nukes 
-on the simplest Exynos setup (exynos4210-trats) during the initialization:
+OK.
 
-[drm] Exynos DRM: using 11c00000.fimd device for DMA mapping operations
-exynos-drm exynos-drm: bound 11c00000.fimd (ops fimd_component_ops)
-8<--- cut here ---
-Unable to handle kernel NULL pointer dereference at virtual address 00000048
-[00000048] *pgd=00000000
-Internal error: Oops: 5 [#1] PREEMPT SMP ARM
-Modules linked in:
-CPU: 0 PID: 1 Comm: swapper/0 Not tainted 
-5.17.0-rc2-00577-g22e968113668-dirty #11635
-Hardware name: Samsung Exynos (Flattened Device Tree)
-PC is at exynos_dsi_bind+0x14/0x3c
-LR is at component_bind_all+0x130/0x290
-pc : [<c06924e0>]    lr : [<c06b0f6c>]    psr: 60000113
-sp : c1cafcb8  ip : 00000002  fp : c0f4a53c
-r10: c135e6a8  r9 : c1efd800  r8 : 00000000
-r7 : c26d2100  r6 : c2c69fc0  r5 : 00000018  r4 : 00000000
-r3 : c06924cc  r2 : 00000002  r1 : 00000000  r0 : c1efd800
-Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-Control: 10c5387d  Table: 4000404a  DAC: 00000051
-Register r0 information: slab kmalloc-2k start c1efd800 pointer offset 0 
-size 2048
-Register r1 information: NULL pointer
-Register r2 information: non-paged memory
-Register r3 information: non-slab/vmalloc memory
-Register r4 information: NULL pointer
-Register r5 information: non-paged memory
-Register r6 information: slab kmalloc-64 start c2c69fc0 pointer offset 0 
-size 64
-Register r7 information: slab kmalloc-64 start c26d2100 pointer offset 0 
-size 64
-Register r8 information: NULL pointer
-Register r9 information: slab kmalloc-2k start c1efd800 pointer offset 0 
-size 2048
-Register r10 information: non-slab/vmalloc memory
-Register r11 information: non-slab/vmalloc memory
-Register r12 information: non-paged memory
-Process swapper/0 (pid: 1, stack limit = 0x(ptrval))
-Stack: (0xc1cafcb8 to 0xc1cb0000)
-...
-  exynos_dsi_bind from component_bind_all+0x130/0x290
-  component_bind_all from exynos_drm_bind+0xe8/0x194
-  exynos_drm_bind from try_to_bring_up_master+0x208/0x2d0
-  try_to_bring_up_master from component_master_add_with_match+0xd0/0x104
-  component_master_add_with_match from exynos_drm_platform_probe+0xe8/0x118
-  exynos_drm_platform_probe from platform_probe+0x80/0xc0
-  platform_probe from really_probe+0xfc/0x440
-  really_probe from __driver_probe_device+0xa4/0x204
-  __driver_probe_device from driver_probe_device+0x34/0xd4
-  driver_probe_device from __driver_attach+0x114/0x184
-  __driver_attach from bus_for_each_dev+0x64/0xb0
-  bus_for_each_dev from bus_add_driver+0x170/0x20c
-  bus_add_driver from driver_register+0x78/0x10c
-  driver_register from exynos_drm_init+0xe0/0x14c
-  exynos_drm_init from do_one_initcall+0x6c/0x3a4
-  do_one_initcall from kernel_init_freeable+0x1c4/0x214
-  kernel_init_freeable from kernel_init+0x18/0x12c
-  kernel_init from ret_from_fork+0x14/0x2c
-Exception stack(0xc1caffb0 to 0xc1cafff8)
-ffa0:                                     00000000 00000000 00000000 
-00000000
-ffc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
-00000000
-ffe0: 00000000 00000000 00000000 00000000 00000013 00000000
-Code: e5904040 e1a00002 e3a02002 e1a01004 (e5945048)
----[ end trace 0000000000000000 ]---
-Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
-CPU1: stopping
-CPU: 1 PID: 0 Comm: swapper/1 Tainted: G      D 
-5.17.0-rc2-00577-g22e968113668-dirty #11635
-Hardware name: Samsung Exynos (Flattened Device Tree)
-  unwind_backtrace from show_stack+0x10/0x14
-  show_stack from dump_stack_lvl+0x58/0x70
-  dump_stack_lvl from do_handle_IPI+0x2ec/0x36c
-  do_handle_IPI from ipi_handler+0x18/0x20
-  ipi_handler from handle_percpu_devid_irq+0xd0/0x394
-  handle_percpu_devid_irq from generic_handle_domain_irq+0x44/0x88
-  generic_handle_domain_irq from gic_handle_irq+0x88/0xac
-  gic_handle_irq from generic_handle_arch_irq+0x58/0x78
-  generic_handle_arch_irq from __irq_svc+0x54/0x88
-Exception stack(0xc1cd1f48 to 0xc1cd1f90)
-1f40:                   00000001 c0eff5a4 00000001 c011ca80 c1208f0c 
-c1353420
-1f60: 00000000 c1d8d000 00000000 c0f34234 c1d8d000 00000000 c0eeee98 
-c1cd1f98
-1f80: c0109144 c0109148 20000013 ffffffff
-  __irq_svc from arch_cpu_idle+0x40/0x44
-  arch_cpu_idle from default_idle_call+0x74/0x2c4
-  default_idle_call from do_idle+0x1cc/0x284
-  do_idle from cpu_startup_entry+0x18/0x1c
-  cpu_startup_entry from 0x401018b4
----[ end Kernel panic - not syncing: Attempted to kill init! 
-exitcode=0x0000000b ]---
+-Paul
 
+> But if you think it's best to just enable the clock anyway, let me=20
+> know
+> and I'll send a new patch.
+>=20
+> Regards,
+> Aidan
+>=20
+>>=20
+>>  > +			if (tcu->soc_info->allow_missing_tcu_clk &&
+>>  > +			    PTR_ERR(tcu->clk) =3D=3D -EINVAL) {
+>>  > +				pr_warn("TCU clock missing from device tree, please update=20
+>> your
+>>  > device tree\n");
+>>  > +				tcu->clk =3D NULL;
+>>  > +			} else {
+>>  > +				pr_crit("Cannot get TCU clock from device tree\n");
+>>  > +				goto err_free_tcu;
+>>  > +			}
+>>  > +		} else {
+>>  > +			ret =3D clk_prepare_enable(tcu->clk);
+>>  > +			if (ret) {
+>>  > +				pr_crit("Unable to enable TCU clock\n");
+>>  > +				goto err_put_clk;
+>>  > +			}
+>>  >  		}
+>>  >  	}
+>>  >
+>>  > @@ -432,10 +446,10 @@ static int __init ingenic_tcu_probe(struct
+>>  > device_node *np)
+>>  >  			clk_hw_unregister(tcu->clocks->hws[i]);
+>>  >  	kfree(tcu->clocks);
+>>  >  err_clk_disable:
+>>  > -	if (tcu->soc_info->has_tcu_clk)
+>>  > +	if (tcu->clk)
+>>  >  		clk_disable_unprepare(tcu->clk);
+>>  >  err_put_clk:
+>>  > -	if (tcu->soc_info->has_tcu_clk)
+>>  > +	if (tcu->clk)
+>>  >  		clk_put(tcu->clk);
+>>  >  err_free_tcu:
+>>  >  	kfree(tcu);
+>>  > --
+>>  > 2.35.1
+>>  >
+>>=20
+>>=20
 
-I will try to take a look into this later in the evening.
-
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
 
