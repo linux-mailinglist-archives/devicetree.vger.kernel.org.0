@@ -2,128 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5234FB562
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97B1B4FB56A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237098AbiDKH4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 03:56:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45170 "EHLO
+        id S245695AbiDKH6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 03:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbiDKH4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:56:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE6ABC09
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 00:54:10 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1ndos4-00080i-BK; Mon, 11 Apr 2022 09:54:00 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1ndos1-0007qZ-Jk; Mon, 11 Apr 2022 09:53:57 +0200
-Date:   Mon, 11 Apr 2022 09:53:57 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v10 12/24] drm/rockchip: dw_hdmi: drop mode_valid hook
-Message-ID: <20220411075357.GQ4012@pengutronix.de>
-References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
- <20220408112238.1274817-13-s.hauer@pengutronix.de>
- <8fac5d72-c635-521c-e7d1-a3980a4ed719@gmail.com>
+        with ESMTP id S245614AbiDKH6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:58:45 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E5723148;
+        Mon, 11 Apr 2022 00:56:30 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id x17so15991073lfa.10;
+        Mon, 11 Apr 2022 00:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=QSB6c+wqSkjWB7X1hlshGuzqfkl/JFQbMqvRhf61Ikk=;
+        b=cnsb0XDPevnl+CdN2zl7O4FihnoMRRdgozseneDM7/l9auwEHLXVI+XexLoq1sdoZe
+         B/LF+GY9t4eykkHFU5vXsK+2gJI5VKXcqwP/qGxcFcgLr0TZssOrEfzLxwTGDRKlYiDo
+         w+5z5Oa2PG/5S0y0S5fA70fM94+5HxpKcUakfDAIxX1SHuHx99Pz5/SGPpCcQPx/vsmv
+         SNSMEM9p1ImfIPXz40dEjEM1ng9l+3SLEO3NJRVBPdzvFLkM/ZPvDIM/qd0hD2kii+cg
+         dK4oX6+55xEiilJf/Rf8dmzR8bf8HdcHElV+3d3HcDd/ZWWl3KHIP+dXTWf4u3SVMQgv
+         r5AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=QSB6c+wqSkjWB7X1hlshGuzqfkl/JFQbMqvRhf61Ikk=;
+        b=3uYikEr6U9MsuAvF49oUXmGk8E+PkpObZdq6CJmrhODc8lve++fIs9d5pHcd2Jj2Pq
+         YIK/I2R6zN76TQnn06yt8rGTMGgVNH0m7B7IbTIREZPV0fpGsS7COe1Z7pMQmu54tRMz
+         ym/7iGDzlaaEBEH2/v1keBiDYVPn0U4gJOb3M8lJ1nCFm8RsN5gu7F/ZnR3WaN8wUVKz
+         7fLj7L18S7RzG8ebxpKW9KorDisvxIkU1Y9Q4aHqo5Z93VAjkubkZzDA3o3W/4lHCsdb
+         4UWekezuMvKuwnN2dEAiqzkJPB5+YAukZcOsE5SljzgcvbJP4oQiaS1Nkey8OuKUO+vG
+         MIXA==
+X-Gm-Message-State: AOAM53042+KxhYNV8vYlMzb5IfaNqdWgTKiScZvz2NRlk0kL5QtIBRxU
+        0Zrn3IUJM+VYxEgMF5VYN0pM1S/zvZMFIi0UTbI=
+X-Google-Smtp-Source: ABdhPJyoSa5YN1edYG0/ySQxYWx6ytJWo+VEosBgI6Mj0Js0n5VKDL2SjoMGrj9+CzPh3R7W7GBQqmhK3OHSZFL/piM=
+X-Received: by 2002:a05:6512:3191:b0:45d:cb50:f575 with SMTP id
+ i17-20020a056512319100b0045dcb50f575mr20776471lfe.48.1649663788912; Mon, 11
+ Apr 2022 00:56:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8fac5d72-c635-521c-e7d1-a3980a4ed719@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:14:52 up 11 days, 19:44, 70 users,  load average: 0.07, 0.26,
- 0.26
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220322030152.19018-1-ctcchien@nuvoton.com> <20220322030152.19018-2-ctcchien@nuvoton.com>
+ <c73bf178-f5bd-01c6-209d-051706112877@molgen.mpg.de>
+In-Reply-To: <c73bf178-f5bd-01c6-209d-051706112877@molgen.mpg.de>
+From:   Medad Young <medadyoung@gmail.com>
+Date:   Mon, 11 Apr 2022 15:56:17 +0800
+Message-ID: <CAHpyw9ckLUNe8biEFSjHBndG_WD-7O-QsHO8Rr0eoXbROH0dUQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] ARM: dts: nuvoton: Add memory controller node
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 10, 2022 at 01:31:23PM +0200, Alex Bee wrote:
-> Am 08.04.22 um 13:22 schrieb Sascha Hauer:
-> > The driver checks if the pixel clock of the given mode matches an entry
-> > in the mpll config table. The frequencies in the mpll table are meant as
-> > a frequency range up to which the entry works, not as a frequency that
-> > must match the pixel clock. The downstream Kernel also does not have
-> > this check, so drop it to allow for more display resolutions.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Dear Paul,
+
+thanks for your comments
+
+Paul Menzel <pmenzel@molgen.mpg.de> =E6=96=BC 2022=E5=B9=B44=E6=9C=889=E6=
+=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=881:57=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Dear Medad,
+>
+>
+> Thank you for the patch.
+>
+> Am 22.03.22 um 04:01 schrieb Medad CChien:
+> > ECC must be configured in the BootBlock header.
+>
+> bootblock
+>
+> I search for *bootblock* in Linux and the git commit messages, and does
+> not seem to be a common term. Is that term used in the datasheet?
+
+Yes, bootblock is a bootloader of our SOC
+
+>
+> > Then, you can read error counts via
+> > the EDAC kernel framework.
+>
+> Please reflow for 75 characters per line. (Also, there is no need to
+> break lines after a sentence, unless 75 characters are reached or a new
+> paragraph starts.)
+>
+> Tested on what board?
+
+I tested this on Nuvoton's BMC board
+
+>
+> > Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+>
+> Out of curiosity, is the first C in CChien the letter of your middle
+> name, or the last name really spelled with two capital letters in the
+> beginning?
+
+this is a special last name in chinese.
+my last name does really spell with two capitak letters in the begining.
+
+>
 > > ---
-> > 
-> You're correct: That frequency is meant to be greater or equal. But I'm
-> not sure if it makes sense to completely drop it - what happens for
-> clocks rates > 600 MHz which might be supported by later generation
-> sinks (HDMI 2.1 or later)?
-> As these are not supported by the IPs/PHYs currently supported by that
-> driver a reason a simple
-> 
->         int i;
-> 
-> 
-> 
->         for (i = 0; mpll_cfg[i].mpixelclock != (~0UL); i++) {
-> 
-> -               if (pclk == mpll_cfg[i].mpixelclock) {
-> 
-> +               if (pclk >= mpll_cfg[i].mpixelclock) {
+> >   arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 7 +++++++
+> >   1 file changed, 7 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/b=
+oot/dts/nuvoton-common-npcm7xx.dtsi
+> > index 3696980a3da1..ba542b26941e 100644
+> > --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> > +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> > @@ -106,6 +106,13 @@
+> >               interrupt-parent =3D <&gic>;
+> >               ranges;
+> >
+> > +             mc: memory-controller@f0824000 {
+> > +                     compatible =3D "nuvoton,npcm750-memory-controller=
+";
+> > +                     reg =3D <0x0 0xf0824000 0x0 0x1000>;
+>
+> Is f0824000 from some datasheet?
+>
+> > +                     interrupts =3D <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status =3D "disabled";
+> > +             };
+> > +
+> >               rstc: rstc@f0801000 {
+> >                       compatible =3D "nuvoton,npcm750-reset";
+> >                       reg =3D <0xf0801000 0x70>;
+>
+>
+> Kind regards,
+>
+> Paul
 
-Should be <=
-
-No other user currently in the tree has this check.
-hdmi_phy_configure_dwc_hdmi_3d_tx() has this:
-
-> 	/* PLL/MPLL Cfg - always match on final entry */
-> 	for (; mpll_config->mpixelclock != ~0UL; mpll_config++)
-> 		if (mpixelclock <= mpll_config->mpixelclock)
-> 			break;
-> 
-> 	for (; curr_ctrl->mpixelclock != ~0UL; curr_ctrl++)
-> 		if (mpixelclock <= curr_ctrl->mpixelclock)
-> 			break;
-> 
-> 	for (; phy_config->mpixelclock != ~0UL; phy_config++)
-> 		if (mpixelclock <= phy_config->mpixelclock)
-> 			break;
-> 
-> 	if (mpll_config->mpixelclock == ~0UL ||
-> 	    curr_ctrl->mpixelclock == ~0UL ||
-> 	    phy_config->mpixelclock == ~0UL)
-> 		return -EINVAL;
-
-This means we already have this check and others already in the generic
-part of the dw-hdmi driver. Should we maybe do the above in
-dw_hdmi_bridge_mode_valid() instead of doing it in the users?
-
-Sascha
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+B.R.
+Medad
