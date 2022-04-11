@@ -2,101 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9781A4FC06E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8EFC4FC0AB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347878AbiDKPZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:25:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46274 "EHLO
+        id S1347734AbiDKP3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347871AbiDKPZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:25:06 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291593BF82;
-        Mon, 11 Apr 2022 08:22:51 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id bk12so10882473qkb.7;
-        Mon, 11 Apr 2022 08:22:51 -0700 (PDT)
+        with ESMTP id S1348001AbiDKP2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:28:38 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 566D53D1CE;
+        Mon, 11 Apr 2022 08:26:23 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v2so9879344wrv.6;
+        Mon, 11 Apr 2022 08:26:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=RWQkTK3rSopa+8qydH4cKynBwojuwyz5cLnIhJAViHI=;
+        b=GRiTgBcRca6sECMacftvFpl+a0/eMYsWuTLi5kdaEw2MYVFiv/5dqE79gmrDQKHwDj
+         58ekxBYj4TauMYafu44BJOZgNuo5mVwdSkSMSFyCSsU9Wyu4SyXWHtCuKcLVFp16FKB7
+         D5cMqscqt2nHnXo77ZDFytCC9+fnpBpa90B5BGXEMhClQ+syz3b3P80bRbCdW8D8Di5t
+         YeotdxshhBo7GP4D1bzzUNA4IAYPTAO/RXFm8cL+eFsn/008Q/KWXMeqpm0f7y593NM+
+         CNhQsNbee7+21aSpHWz/ycVM3JETUX09vnxZvEQqsI/4zpebhFsy1qu3ecPyfS3NI9C8
+         DqAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lku+hoHFzt1e28Ahk8UaGKlfUPzqGYonqFhWJ98wq7g=;
-        b=q9YbdKAiqR/XTl7eW7yU7a41tsT4j2VSefLRDxK62445GPhgpZgKifcQwUVJgojpx/
-         YSHZQvPkxHGr0N3qVB9I+7jbys5gUJ0MsWx5CABRCEfSIMzlRe5AKZ1Ws2Ax8dM5EVdU
-         cKmJEy+pGV79sEN9ffDXs3PtiBfisNDqh4y7k1oMdRpRq+qANp5kfGJLMyvna2aYvHl+
-         J5PotLDYU+m/6CnAzVtC1rMhCKtldX6QwM4MzcnfHEJfftGNtbrlOzGGhzcR+hIYpZId
-         vEsp6OwtByzIJ0mof+OXVwUTMqJuJG50PMDhHMgiYOm5KGbFEkKqZ19NlMidcT9+aVTY
-         dhdg==
-X-Gm-Message-State: AOAM533bhOQ1YYxWtzbNsdaepwQWIEdvjciFIpQOmGxoLA4QGWaqRb//
-        SoSDv028H/O3scSVtowRHtU/GhFJvnCKkg==
-X-Google-Smtp-Source: ABdhPJwWX3jRX6WeAgI6DT2YEK/BcXC0KeDlUdI2hg0VMxJZkToU49DQOVAyYQGhTMxMUNi0WbPqRw==
-X-Received: by 2002:a05:620a:44d3:b0:680:9eb3:e7ad with SMTP id y19-20020a05620a44d300b006809eb3e7admr21753851qkp.376.1649690569408;
-        Mon, 11 Apr 2022 08:22:49 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id c10-20020ac87dca000000b002e1db1b7b10sm25337271qte.25.2022.04.11.08.22.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 08:22:49 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2ebf3746f87so74612727b3.6;
-        Mon, 11 Apr 2022 08:22:48 -0700 (PDT)
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr26340123ywb.132.1649690568687; Mon, 11
- Apr 2022 08:22:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220405184716.1578385-1-miquel.raynal@bootlin.com> <20220405184716.1578385-7-miquel.raynal@bootlin.com>
-In-Reply-To: <20220405184716.1578385-7-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 11 Apr 2022 17:22:37 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVQFXYKBiqN0eZTVH4VCf6WuVLWezWj4CCzhkYkt2WMeA@mail.gmail.com>
-Message-ID: <CAMuHMdVQFXYKBiqN0eZTVH4VCf6WuVLWezWj4CCzhkYkt2WMeA@mail.gmail.com>
-Subject: Re: [PATCH 6/7] MAINTAINERS: Add myself as maintainer of the RZN1 RTC driver
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=RWQkTK3rSopa+8qydH4cKynBwojuwyz5cLnIhJAViHI=;
+        b=HiGsVafaDCAladdQIpg6pGMhDwcZ04OLTr/oBbB7o+1/dFuhIryv7rat4n0EfyLwrC
+         q42ylD28G2pOeIXARWvMHjskf54pTk8KCnDAxn3uh24HI0f/b4+8gcsj5hxSuUYgdKuw
+         Vp/nlJ1oo8XtIHFROWCJRpAE67Za+fKycA7BsauZQ/fUgt8Mrazh1BggrukJ0CAfEXvH
+         rHn9wXLv0XALuD0h1dHZ+X53jARZDfou/+9VJQuJ/tSIV7fUxfK7aYA7qqNhxwXc0loR
+         0g48xuJ/he/CVDi2UJteGGJOfzYjEnLxcZih/cLcdnBdXwhxNxahA9gM9cB1s9sMnRDw
+         PwwQ==
+X-Gm-Message-State: AOAM531mt9iPwiWerhv17O2i0O1t7Fn707kOZZ9UjY0yMxJCySS81PIy
+        ZTab/AYcWV2CV6hNEtx6xAg=
+X-Google-Smtp-Source: ABdhPJwKM1YG/JgnOOVdHFFtRjVMNl3v2yETrecwEBgXJy9DyzKjATELxoXpvLb+SDzu5iGVkC3UJA==
+X-Received: by 2002:a5d:588b:0:b0:204:1c1a:965d with SMTP id n11-20020a5d588b000000b002041c1a965dmr25246909wrf.669.1649690781695;
+        Mon, 11 Apr 2022 08:26:21 -0700 (PDT)
+Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
+        by smtp.gmail.com with ESMTPSA id c8-20020a056000184800b002040e925afasm31421816wri.59.2022.04.11.08.26.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 08:26:21 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH] dt-bindings: clock: Add compatible for D1 DE2 clocks
+Date:   Mon, 11 Apr 2022 17:26:19 +0200
+Message-ID: <1811990.tdWV9SEqCh@kista>
+In-Reply-To: <20220411044002.37579-1-samuel@sholland.org>
+References: <20220411044002.37579-1-samuel@sholland.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 5, 2022 at 8:47 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> After contributing it, I'll volunteer to maintain it.
+Dne ponedeljek, 11. april 2022 ob 06:40:01 CEST je Samuel Holland napisal(a):
+> Allwinner D1 contains a display engine 2.0. Its clock controller
+> matches the layout of the H5 DE2 clocks (2 mixers, no rotation engine,
+> and separate resets), so use that compatible as a fallback.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Thanks a lot!
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Best regards,
+Jernej
 
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> 
+>  .../bindings/clock/allwinner,sun8i-a83t-de2-clk.yaml           | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun8i-a83t-
+de2-clk.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun8i-a83t-
+de2-clk.yaml
+> index e79eeac5f086..17caf78f0ccf 100644
+> --- a/Documentation/devicetree/bindings/clock/allwinner,sun8i-a83t-de2-
+clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/allwinner,sun8i-a83t-de2-
+clk.yaml
+> @@ -28,6 +28,9 @@ properties:
+>        - items:
+>            - const: allwinner,sun8i-r40-de2-clk
+>            - const: allwinner,sun8i-h3-de2-clk
+> +      - items:
+> +          - const: allwinner,sun20i-d1-de2-clk
+> +          - const: allwinner,sun50i-h5-de2-clk
+>  
+>    reg:
+>      maxItems: 1
+> -- 
+> 2.35.1
+> 
+> 
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
