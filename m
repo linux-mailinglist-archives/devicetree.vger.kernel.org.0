@@ -2,126 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12AAC4FBE72
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C86F94FBEE5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:18:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346992AbiDKOP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 10:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41836 "EHLO
+        id S1347291AbiDKOUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 10:20:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346991AbiDKOPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:15:55 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0776632EC0
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:13:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1649686420;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0SNHqyoujE1GhBLe1zLEQWUOV0WCvLfbwgxIMJwWNvQ=;
-        b=astPBDoaJp8UrYrIt7UiJrfIwYMoyOaC4dELHbh81X6BmRDpME9Yhnd7wByer4n5URgaWX
-        CqwWPrcR7JU5t3kWvWNR5e7QWCSqcXx0PEoxVT5V4qvTCzWfKrYyt138di0TgICcLeaFfT
-        N5ppr00h2iZ3TPNbzfHMQAeuY1IIjUI=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-256-NFH-JRRiPgCha0eetP7WKQ-1; Mon, 11 Apr 2022 10:13:38 -0400
-X-MC-Unique: NFH-JRRiPgCha0eetP7WKQ-1
-Received: by mail-wr1-f71.google.com with SMTP id 65-20020adf8147000000b00207982c3692so1627833wrm.15
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:13:38 -0700 (PDT)
+        with ESMTP id S1347246AbiDKOUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:20:17 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5F23C70D
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:16:41 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id a16-20020a17090a6d9000b001c7d6c1bb13so16984376pjk.4
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=PEy8tcuAlYMkke8TgkqlERlPb3pgNji4PY+pUmrLkGw=;
+        b=ba3DOkmeZn+E8A5KDowz0PVE8A/k/2CKwNw/vzkLyewBUijiIBiJEiGQ6afqFcRWjh
+         Nfojqv+YnMXxh56e+umrMkU6vHvE2A9GggflBHqwkTrcdR2RaayFZPlNZ+pufiU9lWVh
+         PJA+PLUnkxtb72q5owBrb97lqqmccgiw490GZY4LlV8x4tUqvPEoQ56bjNlR2mN5Amu5
+         h+JXvVFEG5qfDb/VOoKJQBuINLTjqcAVbbRGeS6yAJHlc9d295rWvfyzVyMwNOIuFmT4
+         GY270XgjD4KqejIH1sJ+8R5s0Ow5XXBOTvGxhDxOTPEFnW6S5RmfLcEK4JOJ5mzajPLB
+         R08g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0SNHqyoujE1GhBLe1zLEQWUOV0WCvLfbwgxIMJwWNvQ=;
-        b=efvBVgs/vqMyVA0mZg8KYZS47ot/FdEuwbzpRb8L5DyMWXFQS0xFLDSECtWyO9qKCx
-         ZV5hgG+ps8YAh5f6vfY8SsArEuUR7KosvGfPMhLW1QHEfUbJ3NoGZ8A3zVuuuOp3j0Om
-         pY1xBL3RIhrSOmvPLuySPklbHr8Vl7uqdt0ikUuccRb39ZQdjVeFTNPPAyxTY+DrFsem
-         sh3d1RyMpFRAEcFn2wA7Um15uGeX56R1q2dcKvSrU4GpQCwmNhh5AOTGF/VXsmhFw55D
-         txqtBOznolFXKxWuZ3AvFww7X3ajk7UCZy6Yso6D2gyp9ZvZZr/LkiGGpIvMDdsV6q+v
-         RBqw==
-X-Gm-Message-State: AOAM530eleuPjU693f4XGF4J+halqgNKZTjbchRPfWPp6g8VDfSdZHRi
-        V01CHO/snaOPb4qHUc/fpIxCNBiDDFI7LpywhXbkRco0FdHyGjLHFiH7hxogKQ0NoTHvzUIacHF
-        TnbYO4tZA1CxeXb8qKFkitQ==
-X-Received: by 2002:a1c:721a:0:b0:38e:c24d:7b8d with SMTP id n26-20020a1c721a000000b0038ec24d7b8dmr1682795wmc.83.1649686416938;
-        Mon, 11 Apr 2022 07:13:36 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJypN8mGgqi50Hob/p+VhbodRxqFTy9Fb8P7XpksOj9p2Bu5RgSHmeLyVffabHvq+u9lP8hzqA==
-X-Received: by 2002:a1c:721a:0:b0:38e:c24d:7b8d with SMTP id n26-20020a1c721a000000b0038ec24d7b8dmr1682771wmc.83.1649686416724;
-        Mon, 11 Apr 2022 07:13:36 -0700 (PDT)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id q17-20020adff951000000b00205c1b97ac4sm26117938wrr.20.2022.04.11.07.13.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 07:13:36 -0700 (PDT)
-Message-ID: <5c00d6cf-ab0c-850b-821c-36413d894773@redhat.com>
-Date:   Mon, 11 Apr 2022 16:13:34 +0200
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=PEy8tcuAlYMkke8TgkqlERlPb3pgNji4PY+pUmrLkGw=;
+        b=CTPQb24H6dMGzMQjNyG1JpPmmffKsMlqgrnJe3HaYXw2BTOnCEaEydbrublqrYqflm
+         VxZtE6r4GIve6sWeoBqrAILk5CUEyEJgbbRflMRb3n5AEGrPNfDpjFIaNjiVvDsMxRdA
+         eSaMYDjWsVWtI7YtsN5ldSdZhr51+VC3QOgWGC/VtHAibpBP1rn+tTLl4Cu0qXx+/4FW
+         QuC3DVwyXbqlwpNOXKaCv/GzV4VDkFPyZukYj1dTz3uJ6j/guVX1o8T7Rjfvgzgwgfhq
+         yy5CPCOQFa6ghb3lXXvgfCLbrmmXp4UIXQDA2U/uXg1Ri94U4Re3qHMez79/iu/v8WlS
+         k5OQ==
+X-Gm-Message-State: AOAM533HNfb3xF1aAybgeTLxQkiGmQB3TRftdVXQLr6dB5sqCzauj6EG
+        2zIxwOVvm6US08oBonDSxN4O+EfiXLq11/blpkU=
+X-Google-Smtp-Source: ABdhPJzAvoU9yv1wtrwVonotG/yycegrvA9ucVnJT5t4E9tE3obRikZ4HXfVrpIMLWfx9yy/txpGfeGa0i/PUCnLfVk=
+X-Received: by 2002:a17:90b:4a82:b0:1c7:8a44:e0c9 with SMTP id
+ lp2-20020a17090b4a8200b001c78a44e0c9mr37235479pjb.102.1649686600075; Mon, 11
+ Apr 2022 07:16:40 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: display: ssd1307fb: Add entry for
- SINO WEALTH SH1106
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Chen-Yu Tsai <wens@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220406172956.3953-1-wens@kernel.org>
- <20220406172956.3953-3-wens@kernel.org>
- <CAMuHMdUMc35MrWwbDXvsRNx9qSRf1bACNrhsGpeFcLCETsL4dw@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAMuHMdUMc35MrWwbDXvsRNx9qSRf1bACNrhsGpeFcLCETsL4dw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Sender: engineertonymorphy@gmail.com
+Received: by 2002:a05:6a10:9142:0:0:0:0 with HTTP; Mon, 11 Apr 2022 07:16:39
+ -0700 (PDT)
+From:   Aisha Gaddafi <gaisha851@gmail.com>
+Date:   Mon, 11 Apr 2022 07:16:39 -0700
+X-Google-Sender-Auth: a2SNg5bRbeC3jaTV7YSgd0IfEtg
+Message-ID: <CANN0nC7og+CQuwbECJ-vvP8zrRVJkegMsJT1FQipVT4fLKkqTQ@mail.gmail.com>
+Subject: Your attention needed,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,LOTS_OF_MONEY,
+        MILLION_HUNDRED,MILLION_USD,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_MONEY,URG_BIZ autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Geert,
+        Aisha  Gaddafi,
 
-On 4/11/22 15:35, Geert Uytterhoeven wrote:
-> Hi Chen-Yu,
 
-[snip]
+        Assalamu Alaikum,
 
->> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
->> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
->> @@ -13,6 +13,7 @@ maintainers:
->>  properties:
->>    compatible:
->>      enum:
->> +      - sinowealth,sh1106-i2c
-> 
-> Please don't introduce new compatible values including the bus type.
-> There is no need for that, and this will only lead to more deprecated
-> compatible values soon...
-> 
-> Oops, this is already commit 97a40c23cda5d64a ("dt-bindings:
-> display: ssd1307fb: Add entry for SINO WEALTH SH1106") in
-> drm-misc/for-linux-next...
-> 
+        Greetings from Aisha  Gaddafi,
 
-Yeah, too late :/ I didn't think it would be controversial at the time.
+        May i  use this medium to open a mutual communication with you
+seeking your acceptance towards investing in your country under your
+management as my partner, My name is Aisha  Gaddafi and presently
+living in Oman, i am a Widow and single Mother with three Children,
+the only biological Daughter of late Libyan President (Late Colonel
+Muammar Gaddafi) and presently i am under political asylum protection
+by the Omani Government.
 
--- 
-Best regards,
+        I have funds worth " Seven Million Five Hundred Thousand
+United State Dollars" -USD$7M.500.000.00 US Dollars which I want to
+entrust to you for investment projects in your country. If you are
+willing to handle this project on my behalf, kindly reply urgent to
+enable me provide you more details to start the transfer process, I
+shall appreciate your urgent response through my email..
 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+        You can know more through the BBC news links below:
 
+        http://www.bbc.com/news/world-africa-19966059
+
+
+        Thanks
+        Yours Truly Aisha
