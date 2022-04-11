@@ -2,156 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8EE4FC7D3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 00:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11AD14FC7E9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 00:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244228AbiDKWvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 18:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33498 "EHLO
+        id S232559AbiDKXAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 19:00:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233867AbiDKWvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 18:51:12 -0400
-Received: from esa2.hgst.iphmx.com (esa2.hgst.iphmx.com [68.232.143.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 289EF2ED77
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 15:48:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1649717337; x=1681253337;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=sU/ZOAq3Zhx+cNy7Kisbffx9HGFTvONOYugeUf6D9Wg=;
-  b=DH0o0xauecXhV6PGFkWtVNbNOeuMVy9jLXkTD4nU+AyM2bnhrkIhARvy
-   H/otNkJUIdZBg9NjIWzl2W+QK/VSoMPY2DQqt+hV/Ie9mErmzU2JR5VBS
-   pLA5NAV5iAuDSOlHOsFmh1bwNBHxTnCN4tA3Zn0ZWEAj0HhVBqYD6Jxjp
-   h3eQcVzcT3Visx6kQxXlHdaZ+rtF4m0NcZP/RMokPhau5iAyZ8DXBs3Oe
-   dmGPL68XPY/f+QWH0ESdMr1NUxPGi8bgLI6DZi7Cjv8ZiyHyeyW3wzCeE
-   vETAesCdEa1GdDAo2HydxGowCrkWh/8l360D/HO3ucdOKw06j+nMNQrBU
+        with ESMTP id S232006AbiDKXAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 19:00:39 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D2A1A39E;
+        Mon, 11 Apr 2022 15:58:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649717903; x=1681253903;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u42J75qB4lknUofiHM409aSW/A8cShqmdeuKFIraw5A=;
+  b=dkL5SIuTjOxi1Z3pxf0+T/suDibtw6hyjXB+KCqD2MyWS3I4blowvwym
+   bZmWKnwjF3hQ4ZY+ziQy6trXa8y/feiTzbFiMrv1PBEEhXADp2GbEUTgp
+   1Bx3BUUpJOG4sJuDEnjWhT8ejl3nxnB28nvQr3xfEvMUjM8lOEukGt5Tl
+   It+gEaP5Vwbr5PAQOtSPJlP/H255Nx18ypciq2Ona21dX74mw5OQLqyj2
+   3fotgbrVog5efi1DC8v5nJyjqC61o2GrkMDBwjItLjk2X8zhU52xWAbLW
+   4CcqG0O6F2aGC9Jl4VTybfu9GsNbi6tfQoLxdoh73sLaJ+fQsfs+TFy0+
    Q==;
-X-IronPort-AV: E=Sophos;i="5.90,252,1643644800"; 
-   d="scan'208";a="301849853"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 12 Apr 2022 06:48:54 +0800
-IronPort-SDR: 05DBiKz0GVCdWiNX1T4/U0Z+gcKLBSPEQ8b7YPRxkgKSsW0CcbAN42jy9FDHv3bgAn5evI4Zdz
- F98EabeeWuhG7y2RAzD4Rq843/qNyhGTRUadWbFAtHO3WQ6PfR1Sqy/ctDDMBN9+i7RgFu/r9k
- xtG7C4vkS0ung90xnQ4qd9zGf+Amt4G2D6qb/4s72fYVH6/6rMup6RWBSXSpSnR3MSjn7geXCF
- ssSrDhhnvFLa/nKcx9h7i8KoA7bdcjpinNpa8K185Ii8iATpG4mot7t2NPt44orcb9NxfVK4/X
- rV463UUxljbYV+xErCpk5aLB
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 15:20:11 -0700
-IronPort-SDR: hyBntGC7WZvsdt+XZzNHdQg+M37LaLpSYH2udcPDPeQwBVQ2iPLzPTAfTd1sXZ3na1CI/RFf50
- vTuJ8oaJ86WprPLFtYDOkM6u+Uj3/TgrrPDDhYSKUEVMqPW2j5SsE/14GjBVnbyJ35Qei+Kv3h
- A0mPpVSfrwxI9aOtC61SOaFLKxM5tu0y/bo327FQ1BHNPxBzrQvxdp8yVJmuHX2W3I7br265nh
- q2ujA4JGbkHpUU7tPiitJMZuTemeFp6nlMkCXr5Q6XEAKi/Ve5XIt/I7z9Pf29M9u9e+YSYuMk
- lqk=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 15:48:55 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KckYL1x07z1SVnx
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 15:48:54 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1649717333; x=1652309334; bh=sU/ZOAq3Zhx+cNy7Kisbffx9HGFTvONOYug
-        eUf6D9Wg=; b=qidKUV31MocT0RrE1UOp/tosJ2pgPBI2P560GwpOnx1onGII2de
-        AtWCsMkU2Nc7TwtY8JIu/OCMJ3cAWmOQmH+fIgAUNbucueZ6VvbLrb010Vh5TP4k
-        BtO91/UuoP9Q43Z2UGZ/tSqGZ7frsRl1ut+CI8mf23geVHoYWVbVQutbDsjR4IuU
-        d3YBFM79XkmwXRCB41+97BckNrhBLo2kjZUO+pqMFndYEZOgaJa9A9uOOSqs3SRa
-        CGt8n1asXGK1w2mdW5dzycc1HDiey8CLDgDiqp1c6PYV3+aOkQV1eLkGT6GPKLQx
-        kS8MkuRJTSMd+UKUeOroDFk0gdKsWeVAu7g==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id sHILBwYAk2hm for <devicetree@vger.kernel.org>;
-        Mon, 11 Apr 2022 15:48:53 -0700 (PDT)
-Received: from [10.225.163.9] (unknown [10.225.163.9])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KckYH5f7Rz1Rvlx;
-        Mon, 11 Apr 2022 15:48:51 -0700 (PDT)
-Message-ID: <5ae5764f-ca51-9c2d-c13f-cfe855bda45e@opensource.wdc.com>
-Date:   Tue, 12 Apr 2022 07:48:50 +0900
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="322677613"
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; 
+   d="scan'208";a="322677613"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 15:58:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; 
+   d="scan'208";a="611186540"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 11 Apr 2022 15:58:19 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1ne2zC-0002I7-B7;
+        Mon, 11 Apr 2022 22:58:18 +0000
+Date:   Tue, 12 Apr 2022 06:57:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Qin Jian <qinjian@cqplus1.com>, krzysztof.kozlowski@linaro.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de,
+        maz@kernel.org, p.zabel@pengutronix.de, linux@armlinux.org.uk,
+        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, Qin Jian <qinjian@cqplus1.com>
+Subject: Re: [PATCH v13 5/9] clk: Add Sunplus SP7021 clock driver
+Message-ID: <202204120632.PVpfb7QH-lkp@intel.com>
+References: <c66c84f1c834a16ca0cba6272b73644946a4d09b.1649659095.git.qinjian@cqplus1.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 12/21] ata: libahci: Discard redundant force_port_map
- parameter
-Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-13-Sergey.Semin@baikalelectronics.ru>
- <b06a8382-d5c1-e3a5-8577-692fa82cb3c1@opensource.wdc.com>
- <20220411121151.vm6wmtalbl2lgtgo@mobilestation>
- <bde34952-e244-a1c3-fc33-251d618d2bb4@opensource.wdc.com>
- <20220411205205.p5vnqvscgfb2siej@mobilestation>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20220411205205.p5vnqvscgfb2siej@mobilestation>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c66c84f1c834a16ca0cba6272b73644946a4d09b.1649659095.git.qinjian@cqplus1.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/12/22 05:52, Serge Semin wrote:
-> On Mon, Apr 11, 2022 at 09:25:03PM +0900, Damien Le Moal wrote:
->> On 4/11/22 21:11, Serge Semin wrote:
->>> On Thu, Mar 24, 2022 at 11:05:58AM +0900, Damien Le Moal wrote:
->>>> On 3/24/22 09:16, Serge Semin wrote:
->>>>> Currently there are four port-map-related fields declared in the
->>>>> ahci_host_priv structure and used to setup the HBA ports mapping. First
->>>>> the ports-mapping is read from the PI register and immediately stored in
->>>>> the saved_port_map field. If forced_port_map is initialized with non-zero
->>>>> value then its value will have greater priority over the value read from
->>>>> PI, thus it will override the saved_port_map field. That value will be then
->>>>> masked by a non-zero mask_port_map field and after some sanity checks it
->>>>> will be stored in the ahci_host_priv.port_map field as a final port
->>>>> mapping.
->>>>>
->>>>> As you can see the logic is a bit too complicated for such a simple task.
->>>>> We can freely get rid from at least one of the fields with no change to
->>>>> the implemented semantic. The force_port_map field can be replaced with
->>>>> taking non-zero saved_port_map value into account. So if saved_port_map is
->>>>> pre-initialized by the glue-driver/platform-specific code then it will
->>>>
->>>
->>>> glue-driver == LLDD (low level device driver), for the entire series please.
->>>
->>> Why? It's a normal term and well known amongst developers. I've used it
->>> in a plenty of my patches before and none of them has been questioned in that
->>> part so far.
->>
-> 
->> This term is not used in libata, nor do I remember seeing it used in SCSI
->> or block subsystem either. We always talk about mid-layer (ahci platform)
->> and LLDD (adapter driver).
-> 
-> Great, do we need to learn the subsystem-specific dictionary now
-> before submitting the patches for it? =)
-> Really, you are asking me to change one term to its synonym just
-> because it's mainly unused here. Now you know what it means, the
-> others can easily google it and get to learn something new. Win-win.)
+Hi Qin,
 
-I already knew what it meant, but it was unclear if my idea of what you
-meant was actually the same as yours. Sticking with the vocabulary already
-used since *a long time ago* makes life easier for reviewers and avoids
-confusion.
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on pza/reset/next]
+[also build test WARNING on clk/clk-next tip/irq/core linus/master v5.18-rc2 next-20220411]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220411-145949
+base:   https://git.pengutronix.de/git/pza/linux reset/next
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220412/202204120632.PVpfb7QH-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c6e83f560f06cdfe8aa47b248d8bdc58f947274b)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/813495df844458a19418ac2d6ac45894c68dcb39
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220411-145949
+        git checkout 813495df844458a19418ac2d6ac45894c68dcb39
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/clk/ drivers/gpu/drm/sun4i/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/clk/clk-sp7021.c:325:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg  = HWM_FIELD_PREP(MASK_SEL_FRA, clk->p[SEL_FRA]);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:326:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg |= HWM_FIELD_PREP(MASK_SDM_MOD, clk->p[SDM_MOD]);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:327:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg |= HWM_FIELD_PREP(MASK_PH_SEL, clk->p[PH_SEL]);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:328:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg |= HWM_FIELD_PREP(MASK_NFRA, clk->p[NFRA]);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:331:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg  = HWM_FIELD_PREP(MASK_DIVR, clk->p[DIVR]);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:334:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg  = HWM_FIELD_PREP(MASK_DIVN, clk->p[DIVN] - 1);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:335:9: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           reg |= HWM_FIELD_PREP(MASK_DIVM, clk->p[DIVM] - 1);
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:53:14: note: expanded from macro 'HWM_FIELD_PREP'
+           (m << 16) | FIELD_PREP(m, value);       \
+                       ^~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+>> drivers/clk/clk-sp7021.c:557:16: warning: no previous prototype for function 'sp_pll_register' [-Wmissing-prototypes]
+   struct clk_hw *sp_pll_register(struct device *dev, const char *name,
+                  ^
+   drivers/clk/clk-sp7021.c:557:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   struct clk_hw *sp_pll_register(struct device *dev, const char *name,
+   ^
+   static 
+   8 warnings generated.
+
+
+vim +325 drivers/clk/clk-sp7021.c
+
+   320	
+   321	static void plltv_set_rate(struct sp_pll *clk)
+   322	{
+   323		u32 reg;
+   324	
+ > 325		reg  = HWM_FIELD_PREP(MASK_SEL_FRA, clk->p[SEL_FRA]);
+   326		reg |= HWM_FIELD_PREP(MASK_SDM_MOD, clk->p[SDM_MOD]);
+   327		reg |= HWM_FIELD_PREP(MASK_PH_SEL, clk->p[PH_SEL]);
+   328		reg |= HWM_FIELD_PREP(MASK_NFRA, clk->p[NFRA]);
+   329		writel(reg, clk->reg);
+   330	
+   331		reg  = HWM_FIELD_PREP(MASK_DIVR, clk->p[DIVR]);
+   332		writel(reg, clk->reg + 4);
+   333	
+   334		reg  = HWM_FIELD_PREP(MASK_DIVN, clk->p[DIVN] - 1);
+   335		reg |= HWM_FIELD_PREP(MASK_DIVM, clk->p[DIVM] - 1);
+   336		writel(reg, clk->reg + 8);
+   337	}
+   338	
 
 -- 
-Damien Le Moal
-Western Digital Research
+0-DAY CI Kernel Test Service
+https://01.org/lkp
