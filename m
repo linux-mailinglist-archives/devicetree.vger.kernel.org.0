@@ -2,144 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841B34FC552
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 21:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDE04FC559
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 22:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349748AbiDKTz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 15:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43220 "EHLO
+        id S238175AbiDKUCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 16:02:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349744AbiDKTzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 15:55:55 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5D536E03
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:53:36 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id s137so12383852pgs.5
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:53:36 -0700 (PDT)
+        with ESMTP id S243241AbiDKUCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 16:02:50 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE535FB2;
+        Mon, 11 Apr 2022 13:00:31 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id h14so23441675lfl.2;
+        Mon, 11 Apr 2022 13:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=HQW6p5XHkDmFdXcFFMAKSTMR7c12bQrCmTxneppa4IY=;
-        b=XvKXaBY0+FG1tmG2ZLkX8lj/1RrGPbuWStt06IKqgUgYXG7WbsoyWzr/CPktw6vaSt
-         9u8QllcxrheruT/2xpSBgn5YwZTJCIq6Er+X7a0dVcaWxTy7gOiWb/kZsyeqW6kXI4XK
-         g4M4l8yBaZLKP85vov6kQkDBpdgna/tx6D9HQ=
+        bh=ZezkdIQoJxr3FUS6ZgUv1QgR6XVz7LoPRwJNYEn+SLo=;
+        b=pHx1HShz+YL7+SrcmJDf7CmYoeDStArvZ1drztzWQGn0c1RI1cwYuLv3RWkJ3JARi0
+         wsoQQ3NOcyj4IJavheL7QKNX1huqRFIuDW/HaG8h/577m3fVcItja/urS+Jj7o26eQlb
+         YeDvp9eZ7lLdBT4zuLrS6CbjDU4R/qbhZ7FipUWFVlJa9AyOK9GuFdr8iFfxbGdV4jPM
+         443q0RMxMNuIQ/c2a3pA8JgChF6J3uY4kzFFrQhykf2ZTGgCwgBQuVUjiLBHognFj0kC
+         gbnv5jMdNkNOxx0XQODG2qFlQ9haoRKK4cgR33f415UV7xUXO7fE/bdx6X8snlG5wUx0
+         fmqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HQW6p5XHkDmFdXcFFMAKSTMR7c12bQrCmTxneppa4IY=;
-        b=zqxfXuD07fuIvl7WaSW10cKbQledrW09PtSB28l0rjc/5IZ0sOEdUNJytD6Ftf6g49
-         xVpA1wGUzBDZY9HxGHBR9wPdVHJFdxGgVttt6VwPpqvOHZB59C9dsitVU72f0xHz7k0/
-         xgq/5WCUU8+WxAULQZwC9ShyMqtNOAS13OhvO7SBGMzQ6BVIm3pvLeVT5ZvrGvxJawqG
-         7wfTQU5hvBPE620QaBAWSAZox8QH+H2CGJUHC93EEU/fI5TW7Bf+/s8q/xBGuuUFnyMG
-         i/30sZnFSGwlF232HgKYNkZEfScj4/L2w4x1+exC7/kIVer/UA8qjPpFbHl0iNxTuOUL
-         zh7w==
-X-Gm-Message-State: AOAM530VosEtkeVB1+WlnzU8YVn8J6qF7NXAKx/m6WeBb2XaAf/+jWuS
-        ETagg0sdb/nS8nMZPo28PNGX5Q==
-X-Google-Smtp-Source: ABdhPJy46Nb67XtLDVVS/w6pd6omc5Ct5ml3k8IojyyCxOY1LCYD4hjqOd6yvjcWEYJbLnmUIjJs1A==
-X-Received: by 2002:a65:614e:0:b0:380:bfd9:d4ea with SMTP id o14-20020a65614e000000b00380bfd9d4eamr27582317pgv.92.1649706816054;
-        Mon, 11 Apr 2022 12:53:36 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:eb96:76ba:e2a1:2442])
-        by smtp.gmail.com with UTF8SMTPSA id nv11-20020a17090b1b4b00b001c71b0bf18bsm292189pjb.11.2022.04.11.12.53.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 12:53:35 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 12:53:33 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, srinivas.kandagatla@linaro.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
-        quic_rohkumar@quicinc.com
-Subject: Re: [PATCH v6 1/3] arm64: dts: qcom: sc7280: Add nodes for va tx and
- rx macros and external codecs
-Message-ID: <YlSHPU7XITS2dju/@google.com>
-References: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
- <1649157220-29304-2-git-send-email-quic_srivasam@quicinc.com>
- <Yky2Iwt+tvxvu4/S@google.com>
- <8fea1165-c8b6-6ce2-86dc-82274af8c43d@quicinc.com>
+        bh=ZezkdIQoJxr3FUS6ZgUv1QgR6XVz7LoPRwJNYEn+SLo=;
+        b=iT5t7Wvgvw+SpWATUO4qRBxrkk+RbBTiPS90xAaCuDxRF5VS/YaovIaBEQ8P/KB+o8
+         AuFiYdQILyZKBFpxTQ+QU25qp9ImFXpAa3dKXeB1Snain/MLQyGWMANT8fNQPIrzH9kf
+         384HR3LFfLFV6YoHwfaQW8PWiAMpAEUAKQ/KFJTkRlT52LLYW990Btc2fFn6/XAADF+k
+         5Y2tMhv0MU0oM/4LjgaWX0Qa//eAiBtueuQAi0t/vUA3HQXdxHVhmVfRxrNCUA1MEddc
+         cWl2MzKtyIYtL96jFZ6a1qj/kWpcZoRd/lwq2Ao2aBeQw8AOrOiTEP6H14LGctowF2aq
+         O7AA==
+X-Gm-Message-State: AOAM532mIx4A+vw3z4ciUfFymoBK9pF5bP1ViZp02ha7xFP6H2wqhOS5
+        z8saQxAv3vXet8hqQs5q9XI=
+X-Google-Smtp-Source: ABdhPJxc9aEhflRAiUvc4xI3UADaDqAjKt7Bdkh6zvVnf3elCeWkg6x7xB2Uul+fg3SaEQlEzsB9Gg==
+X-Received: by 2002:a05:6512:68e:b0:44a:6594:3b9e with SMTP id t14-20020a056512068e00b0044a65943b9emr22350771lfe.623.1649707230072;
+        Mon, 11 Apr 2022 13:00:30 -0700 (PDT)
+Received: from mobilestation ([95.79.134.149])
+        by smtp.gmail.com with ESMTPSA id k7-20020a056512330700b0046b8e44be22sm942955lfe.83.2022.04.11.13.00.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 13:00:29 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 23:00:27 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 16/21] dt-bindings: ata: ahci: Add DWC AHCI SATA
+ controller DT schema
+Message-ID: <20220411200027.l5ph4lvw6dujbexg@mobilestation>
+References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324001628.13028-17-Sergey.Semin@baikalelectronics.ru>
+ <YkZCA08HZ6Nx1IqQ@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8fea1165-c8b6-6ce2-86dc-82274af8c43d@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YkZCA08HZ6Nx1IqQ@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 07:32:33PM +0530, Srinivasa Rao Mandadapu wrote:
+On Thu, Mar 31, 2022 at 07:06:27PM -0500, Rob Herring wrote:
+> On Thu, Mar 24, 2022 at 03:16:23AM +0300, Serge Semin wrote:
+> > Synopsys AHCI SATA controller is mainly compatible with the generic AHCI
+> > SATA controller except a few peculiarities and the platform environment
+> > requirements. In particular it can have one or two reference clocks to
+> > feed up its AXI/AHB interface and SATA PHYs domain and at least one reset
+> > control for the application clock domain. In addition to that the DMA
+> > interface of each port can be tuned up to work with the predefined maximum
+> > data chunk size. Note unlike generic AHCI controller DWC AHCI can't have
+> > more than 8 ports. All of that is reflected in the new DWC AHCI SATA
+> > device DT binding.
+> > 
+> > Note the DWC AHCI SATA controller DT-schema has been created in a way so
+> > to be reused for the vendor-specific DT-schemas. One of which we are about
+> > to introduce.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > ---
+> >  .../bindings/ata/snps,dwc-ahci.yaml           | 121 ++++++++++++++++++
+> >  1 file changed, 121 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > new file mode 100644
+> > index 000000000000..b443154b63aa
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> > @@ -0,0 +1,121 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/ata/snps,dwc-ahci.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Synopsys DWC AHCI SATA controller
+> > +
+> > +maintainers:
+> > +  - Serge Semin <fancer.lancer@gmail.com>
+> > +
+> > +description: |
+> > +  This document defines device tree bindings for the Synopsys DWC
+> > +  implementation of the AHCI SATA controller.
+> > +
+> > +allOf:
+> > +  - $ref: ahci-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - description: Synopsys AHCI SATA-compatible devices
+> > +        contains:
+> > +          const: snps,dwc-ahci
+> > +      - description: SPEAr1340 AHCI SATA device
+> > +        const: snps,spear-ahci
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description:
+> > +      Basic DWC AHCI SATA clock sources like application AXI/AHB BIU clock
+> > +      and embedded PHYs reference clock together with vendor-specific set
+> > +      of clocks.
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +
+> > +  clock-names:
+> > +    contains:
+> > +      anyOf:
+> > +        - description: Application AXI/AHB BIU clock source
+> > +          enum:
+> > +            - aclk
+> > +            - sata
+> > +        - description: SATA Ports reference clock
+> > +          enum:
+> > +            - ref
+> > +            - sata_ref
+> > +
+> > +  resets:
+> > +    description:
+> > +      At least basic core and application clock domains reset is normally
+> > +      supported by the DWC AHCI SATA controller. Some platform specific
+> > +      clocks can be also specified though.
+> > +
+> > +  reset-names:
+> > +    contains:
+> > +      description: Core and application clock domains reset control
+> > +      const: arst
+> > +
+> > +patternProperties:
+> > +  "^sata-port@[0-9a-e]$":
+> > +    type: object
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 7
+> > +
+> > +      snps,tx-ts-max:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description: Maximal size of Tx DMA transactions in FIFO words
+> > +        minimum: 1
+> > +        maximum: 1024
+> > +
+> > +      snps,rx-ts-max:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description: Maximal size of Rx DMA transactions in FIFO words
+> > +        minimum: 1
+> > +        maximum: 1024
 > 
-> On 4/6/2022 3:05 AM, Matthias Kaehlcke wrote:
-> Thanks for your time Matthias!!!
-> > On Tue, Apr 05, 2022 at 04:43:38PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
-> > > codecs like WCD938x, max98360a using soundwire masters and i2s bus.
-> > > Add these nodes for sc7280 based platforms audio use case.
-> > > Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
-> > > 
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > ---
-> > A change log would be helpful for reviewers
-> Change log added in cover letter.
 
-From my perspective as a reviewer I find it more practical to have a
-change log per patch.
+> Are you reading these somewhere? 
 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> > > index de646d9..c6a04c3 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> > > @@ -20,6 +20,14 @@
-> > >   #include "sc7280-chrome-common.dtsi"
-> > >   / {
-> > > +	max98360a: audio-codec-0 {
-> > > +		compatible = "maxim,max98360a";
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&amp_en>;
-> > > +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
-> > > +		#sound-dai-cells = <0>;
-> > > +	};
-> > > +
-> > This node shouldn't be at top but with the other device nodes, in
-> > alphabetical order, i.e. before 'pwmleds'.
+Yes I do read them in the DWC AHCI driver and use ilog2() to get
+the corresponding power of two value.
+
 > 
-> Actually we are sorting as per node name. Hence kept it here. As per
-> previous reviewer comments, sorted accordingly.
+> Only powers of 2 are valid. (Guess what Calxeda's controller uses.)
+
+Right and is limited to be within [1; 1024]. Do you suggest to add a
+respective comment in the description or just manually enumerate the
+POW2 values? I don't believe there is a ready-to-use power-of-2 type in
+the /schemas/types.yaml file. BTW what about adding one seeing there are
+many cases where it could be useful?
+
+-Sergey
+
 > 
-> Please suggest better approach.
-
-True, I forgot the node names are used for sorting, not the labels.
-
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index db74fc3..78ec84c 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -822,6 +822,127 @@
-> > >   			#power-domain-cells = <1>;
-> > >   		};
-> > > +		rxmacro: codec@3200000 {
-> > These node are not at the correct position. They should be sorted by
-> > address and hence be inserted between 'lpasscc@3000000' and
-> > 'interconnect@3c40000'.
-> 
-> Actually we are sorting as per node(codec) name. Hence kept it here. As per
-> previous reviewer comments, sorted accordingly.
-
-Could you provide a pointer to those comments?
-
-My understanding is that we are sorting by node name when nodes don't have
-addresses or for overrides in board files/snippets, however the nodes under
-'soc@0' are sorted by address.
-
-Another nit: 'rx_macro, tx_macro, va_macro' instead of the labels without
-underscore? Not really important, but maybe slightly more readable and
-would match the 'spelling' of the compatible strings.
+> Rob
