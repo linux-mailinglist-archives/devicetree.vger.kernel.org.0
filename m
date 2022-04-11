@@ -2,60 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 327BF4FB739
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 788B14FB7E3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:41:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244194AbiDKJWS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Apr 2022 05:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45250 "EHLO
+        id S1344631AbiDKJnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 05:43:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235213AbiDKJWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:22:17 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1C33204C
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:20:03 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ndqD4-0003hy-BW; Mon, 11 Apr 2022 11:19:46 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ndqCz-002MLK-V5; Mon, 11 Apr 2022 11:19:40 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ndqCx-00040Q-Qs; Mon, 11 Apr 2022 11:19:39 +0200
-Message-ID: <8470f6029703a29bd7c384f489da0c7936c44cc7.camel@pengutronix.de>
-Subject: Re: [PATCH RESEND v3 2/3] net: mdio: add reset control for Aspeed
- MDIO
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, pabeni@redhat.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        netdev <netdev@vger.kernel.org>
-Cc:     BMC-SW@aspeedtech.com
-Date:   Mon, 11 Apr 2022 11:19:39 +0200
-In-Reply-To: <667280e7-526d-4002-9dff-389f6b35ac2f@www.fastmail.com>
-References: <20220407075734.19644-1-dylan_hung@aspeedtech.com>
-         <20220407075734.19644-3-dylan_hung@aspeedtech.com>
-         <667280e7-526d-4002-9dff-389f6b35ac2f@www.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S1344810AbiDKJnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:43:24 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CBA35AA5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:41:10 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so8095049wmn.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:41:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xDR0Oo93RBMr/a7qSFkHAnxdyg/wff1wMpM/g7CP34w=;
+        b=gmpvBoMH52aIdLBa/PxVc8cIjE+SH82zUdfbrHBrp/oLN6ipQV04xdDZ32gi7TkYij
+         YuqQAXm2crjZ1ntW1FoXCYo/ss0KVodV9aY45i+Ymt3vGcy5lfDqWrZ/fjJvknRx5BT3
+         aseK8WVQ+0aALq3NkBXUIxyV+3T702Uimjkdso45GbDEC28a65i2SQQlwn9H8Ydst34k
+         rHusuBKSCE9tBxEp5nRB4rjQ5cFVikbzRGIFG1GqrXMXXnr9Pz+vLY2mdnTN7UmxPixy
+         Yqxzl5S/gE+qF4g/AfVcQoTMgPEMD96+0QtbqB97VSjcfd25K0fekERlHB148S20c1iV
+         tHjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xDR0Oo93RBMr/a7qSFkHAnxdyg/wff1wMpM/g7CP34w=;
+        b=vljshCdZJ8CAcWBxuDnc0V1LBvqx3eUI6WAEUjUM1kDS9K5YXgX/sLvZXVUmNZ1AnR
+         P5116IuLQamacmA+83iDBTP7Zv/9TocOaQtbuWoDhY3el21CkyZz1rEYCxEwPPpYCu5R
+         rdvXB9ElPSA4dsOFR89/X/3tKg0xSBOaHfBG/+OGVjjH4S0MjMYliFUME84ouM//ddxj
+         ve+k/asZbYgyMyoeb/RlDZRcbKUuhP2QEVeUUW4UUgB0k8KPHxZXg/83nuvV2s8tTHxk
+         eqzYizOV/3W9Q7cN3oo6ajyAHyC2pZHbJD8xNLa9LTLtMyLM4nqaCTMC/bSimwhqbh2k
+         ljJA==
+X-Gm-Message-State: AOAM530CYH6zAqa8Ft12039OM20uvIa9eYI5Jq5pBENMdpD5CJXfRTlT
+        Q504w+Z5UDmX5mJ1WYKTdegpkA==
+X-Google-Smtp-Source: ABdhPJw23NRGbtN7+13L8/M7UHc6Xq+YEURJVzQPqGaudaX3LlcXQTmHIECgkQ4WgyCkCkvoNRTXAA==
+X-Received: by 2002:a1c:7302:0:b0:38c:bb21:faf7 with SMTP id d2-20020a1c7302000000b0038cbb21faf7mr28082521wmb.31.1649670068725;
+        Mon, 11 Apr 2022 02:41:08 -0700 (PDT)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id d11-20020a056000186b00b0020799d3d416sm8484092wri.55.2022.04.11.02.41.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 02:41:07 -0700 (PDT)
+Message-ID: <92e94b98-847d-7d3f-4063-96d2d01eff6e@linaro.org>
+Date:   Mon, 11 Apr 2022 10:41:06 +0100
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 3/3] nvmem: Add Apple eFuse driver
+Content-Language: en-US
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowsk <krzysztof.kozlowski@canonical.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220410135414.20606-1-sven@svenpeter.dev>
+ <20220410135414.20606-3-sven@svenpeter.dev>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220410135414.20606-3-sven@svenpeter.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,77 +80,156 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mo, 2022-04-11 at 09:50 +0930, Andrew Jeffery wrote:
-> 
-> On Thu, 7 Apr 2022, at 17:27, Dylan Hung wrote:
-> > Add reset assertion/deassertion for Aspeed MDIO.  There are 4 MDIO
-> > controllers embedded in Aspeed AST2600 SOC and share one reset control
-> > register SCU50[3].  To work with old DT blobs which don't have the reset
-> > property, devm_reset_control_get_optional_shared is used in this change.
-> > 
-> > Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-> > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > ---
-> >  drivers/net/mdio/mdio-aspeed.c | 15 ++++++++++++++-
-> >  1 file changed, 14 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/net/mdio/mdio-aspeed.c b/drivers/net/mdio/mdio-aspeed.c
-> > index e2273588c75b..1afb58ccc524 100644
-> > --- a/drivers/net/mdio/mdio-aspeed.c
-> > +++ b/drivers/net/mdio/mdio-aspeed.c
-> > @@ -3,6 +3,7 @@
-> > 
-> >  #include <linux/bitfield.h>
-> >  #include <linux/delay.h>
-> > +#include <linux/reset.h>
-> >  #include <linux/iopoll.h>
-> >  #include <linux/mdio.h>
-> >  #include <linux/module.h>
-> > @@ -37,6 +38,7 @@
-> > 
-> >  struct aspeed_mdio {
-> >  	void __iomem *base;
-> > +	struct reset_control *reset;
-> >  };
-> > 
-> >  static int aspeed_mdio_read(struct mii_bus *bus, int addr, int regnum)
-> > @@ -120,6 +122,12 @@ static int aspeed_mdio_probe(struct platform_device *pdev)
-> >  	if (IS_ERR(ctx->base))
-> >  		return PTR_ERR(ctx->base);
-> > 
-> > +	ctx->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> > +	if (IS_ERR(ctx->reset))
-> > +		return PTR_ERR(ctx->reset);
-> > +
-> > +	reset_control_deassert(ctx->reset);
-> > +
-> >  	bus->name = DRV_NAME;
-> >  	snprintf(bus->id, MII_BUS_ID_SIZE, "%s%d", pdev->name, pdev->id);
-> >  	bus->parent = &pdev->dev;
-> > @@ -129,6 +137,7 @@ static int aspeed_mdio_probe(struct platform_device *pdev)
-> >  	rc = of_mdiobus_register(bus, pdev->dev.of_node);
-> >  	if (rc) {
-> >  		dev_err(&pdev->dev, "Cannot register MDIO bus!\n");
-> > +		reset_control_assert(ctx->reset);
-> >  		return rc;
-> >  	}
-> > 
-> > @@ -139,7 +148,11 @@ static int aspeed_mdio_probe(struct platform_device *pdev)
-> > 
-> >  static int aspeed_mdio_remove(struct platform_device *pdev)
-> >  {
-> > -	mdiobus_unregister(platform_get_drvdata(pdev));
-> > +	struct mii_bus *bus = (struct mii_bus *)platform_get_drvdata(pdev);
-> > +	struct aspeed_mdio *ctx = bus->priv;
-> > +
-> > +	reset_control_assert(ctx->reset);
-> 
-> Isn't this unnecessary because you've used the devm_ variant to acquire 
-> the reset?
 
-No, this is correct. deassert/assert needs to be balanced, and the
-reset_control_deassert() call in aspeed_mdio_probe() is not devres
-managed.
 
-regards
-Philipp
+On 10/04/2022 14:54, Sven Peter wrote:
+> Apple SoCs contain eFuses used to store factory-programmed data such
+> as calibration values for the PCIe or the Type-C PHY. They are organized
+> as 32bit values exposed as MMIO.
+> 
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+
+
+Applied all 3,
+
+thanks,
+--srini
+
+
+> ---
+> v3 -> v4:
+>    - rebased on 5.18-rc1 and split off MAINTAINER changes as requested
+>      by Srinivas Kandagatla
+> v2 -> v3:
+>    - removed .owner = THIS_MODULE again since it's already done by the
+>      core as pointed out by Krzysztof Kozlowski
+> v1 -> v2:
+>    - fixed sparse warning about __iomem by introducing
+>      struct apple_efuses_priv as done in other nvmem drivers
+>    - make sure the driver actually works as a module by
+>      setting .owner to THIS_MODULE and adding MODULE_DEVICE_TABLE
+>      pointed out by Joey Gouly
+> 
+>   drivers/nvmem/Kconfig        | 12 ++++++
+>   drivers/nvmem/Makefile       |  2 +
+>   drivers/nvmem/apple-efuses.c | 80 ++++++++++++++++++++++++++++++++++++
+>   3 files changed, 94 insertions(+)
+>   create mode 100644 drivers/nvmem/apple-efuses.c
+> 
+> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> index 555aa77a574d..6283e09cc1e9 100644
+> --- a/drivers/nvmem/Kconfig
+> +++ b/drivers/nvmem/Kconfig
+> @@ -324,4 +324,16 @@ config NVMEM_SUNPLUS_OCOTP
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called nvmem-sunplus-ocotp.
+>   
+> +config NVMEM_APPLE_EFUSES
+> +	tristate "Apple eFuse support"
+> +	depends on ARCH_APPLE || COMPILE_TEST
+> +	default ARCH_APPLE
+> +	help
+> +	  Say y here to enable support for reading eFuses on Apple SoCs
+> +	  such as the M1. These are e.g. used to store factory programmed
+> +	  calibration data required for the PCIe or the USB-C PHY.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called nvmem-apple-efuses.
+> +
+>   endif
+> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+> index 891958e29d25..00e136a0a123 100644
+> --- a/drivers/nvmem/Makefile
+> +++ b/drivers/nvmem/Makefile
+> @@ -65,3 +65,5 @@ obj-$(CONFIG_NVMEM_LAYERSCAPE_SFP)	+= nvmem-layerscape-sfp.o
+>   nvmem-layerscape-sfp-y		:= layerscape-sfp.o
+>   obj-$(CONFIG_NVMEM_SUNPLUS_OCOTP)	+= nvmem_sunplus_ocotp.o
+>   nvmem_sunplus_ocotp-y		:= sunplus-ocotp.o
+> +obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
+> +nvmem-apple-efuses-y 		:= apple-efuses.o
+> diff --git a/drivers/nvmem/apple-efuses.c b/drivers/nvmem/apple-efuses.c
+> new file mode 100644
+> index 000000000000..9b7c87102104
+> --- /dev/null
+> +++ b/drivers/nvmem/apple-efuses.c
+> @@ -0,0 +1,80 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Apple SoC eFuse driver
+> + *
+> + * Copyright (C) The Asahi Linux Contributors
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-provider.h>
+> +#include <linux/platform_device.h>
+> +
+> +struct apple_efuses_priv {
+> +	void __iomem *fuses;
+> +};
+> +
+> +static int apple_efuses_read(void *context, unsigned int offset, void *val,
+> +			     size_t bytes)
+> +{
+> +	struct apple_efuses_priv *priv = context;
+> +	u32 *dst = val;
+> +
+> +	while (bytes >= sizeof(u32)) {
+> +		*dst++ = readl_relaxed(priv->fuses + offset);
+> +		bytes -= sizeof(u32);
+> +		offset += sizeof(u32);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int apple_efuses_probe(struct platform_device *pdev)
+> +{
+> +	struct apple_efuses_priv *priv;
+> +	struct resource *res;
+> +	struct nvmem_config config = {
+> +		.dev = &pdev->dev,
+> +		.read_only = true,
+> +		.reg_read = apple_efuses_read,
+> +		.stride = sizeof(u32),
+> +		.word_size = sizeof(u32),
+> +		.name = "apple_efuses_nvmem",
+> +		.id = NVMEM_DEVID_AUTO,
+> +		.root_only = true,
+> +	};
+> +
+> +	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->fuses = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(priv->fuses))
+> +		return PTR_ERR(priv->fuses);
+> +
+> +	config.priv = priv;
+> +	config.size = resource_size(res);
+> +
+> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
+> +}
+> +
+> +static const struct of_device_id apple_efuses_of_match[] = {
+> +	{ .compatible = "apple,efuses", },
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, apple_efuses_of_match);
+> +
+> +static struct platform_driver apple_efuses_driver = {
+> +	.driver = {
+> +		.name = "apple_efuses",
+> +		.of_match_table = apple_efuses_of_match,
+> +	},
+> +	.probe = apple_efuses_probe,
+> +};
+> +
+> +module_platform_driver(apple_efuses_driver);
+> +
+> +MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
+> +MODULE_LICENSE("GPL");
