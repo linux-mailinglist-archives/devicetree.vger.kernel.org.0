@@ -2,126 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 905A84FC2AD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 18:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E1964FC2D6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 19:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348667AbiDKQsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 12:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49318 "EHLO
+        id S1348698AbiDKRDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 13:03:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237884AbiDKQsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 12:48:40 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E2D167C2
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 09:46:25 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1ndxBA-0004rS-4Y; Mon, 11 Apr 2022 18:46:16 +0200
-Message-ID: <e60c0914467a16b01100db0af99aae47674b4fdc.camel@pengutronix.de>
-Subject: Re: [PATCH v4 02/11] soc: imx: add i.MX8MP HSIO blk-ctrl
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Mon, 11 Apr 2022 18:46:14 +0200
-In-Reply-To: <25744e36-63ee-7669-067a-a671a5f461d6@denx.de>
-References: <20220406153402.1265474-1-l.stach@pengutronix.de>
-         <20220406153402.1265474-3-l.stach@pengutronix.de>
-         <e99520af-7b32-f1a4-7ebc-eb66611b850f@denx.de>
-         <e60a4bcad472411a8f82546b57d8d375ed8cbda8.camel@pengutronix.de>
-         <25744e36-63ee-7669-067a-a671a5f461d6@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S1348724AbiDKRDJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 13:03:09 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE1EAAE7F
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 10:00:54 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id u18so8567135eda.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 10:00:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xpy+Tnj7CSKL3X1uy9b/hDN/vNkE2wdoaTq7+ca8M10=;
+        b=EUuImKaaNnPaaTkG6bKXr8HOXsakGzjtj6MwQzcNNnCginsQOkhcLw9musbZzPcwCe
+         u/pmx4TtJXQiMiWhwLmH5iZdX/6DYIV6uC/0MNnhRCFMdbgb/lc/0w6ImKxbKK3tGSzd
+         R/ZDMG3P7uYw8upLYen3/7m1Bfp4iNS02kMgCGC3iumIcsrqsvr9p2qKXzC575Tmsh2h
+         lIWUGabTR//BgAc8VJhfGNOXEiMgWtvkbqepKY5ThE/EOCsLFXpUpjF/GEaCI/67XY75
+         61TpHI9o3ut2YGuuQYIt8oIE/9FyeD7Og0PA+rzwmvGt2NAH3NnhVcET6AQyQm6TyxIS
+         8wjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xpy+Tnj7CSKL3X1uy9b/hDN/vNkE2wdoaTq7+ca8M10=;
+        b=CXEI7SuIBqy0H4lCIR+lQhHRvxJWITzjYzvVEbzloruIvEBP0iPr8/aYjJDv2Z5ETN
+         1BQnVRyGxMAlLG2mzk6MHSNDXhxzBmmseFBwhUsdaGu2UR/N2dhd1B7mL3bfBUurLmXP
+         K6v0vZI2qTecQB2q9TigeU1pn74bfpcZeX5W5WAFcgDBF/XBTWG7ZZo0go7slcX6CXpV
+         bfdIZuW1GkCD6Ia0i/yhNUf81AfTxOiZlXnvZqF63FQj4J6cwnB6VgGPn4JyiabBYfkC
+         BZPd6NRi1nBXud/kBVuW5SJ8EbUfx9Q0dnAJH381xwVT1zS+n4bOpEjHI7wetQqj/dRE
+         LJsw==
+X-Gm-Message-State: AOAM532AloY+kXwoB8aZep5ljmZ2v3gPs/rdJ5CXd1qjiCo2mJVWEji2
+        LqrLaN6JCsnmcqYV0Q+/UA==
+X-Google-Smtp-Source: ABdhPJyZWh5pBitjWq97qA691BTkI6+vlnwnK/ZRRj/OfjGkLZqOhhIF8UGk3ef12YyoZgHpQrbEiQ==
+X-Received: by 2002:aa7:d682:0:b0:419:3b78:e489 with SMTP id d2-20020aa7d682000000b004193b78e489mr34615358edr.372.1649696453246;
+        Mon, 11 Apr 2022 10:00:53 -0700 (PDT)
+Received: from ?IPV6:2001:16b8:e9a0:2b00:12ab:3410:473c:e8ef? ([2001:16b8:e9a0:2b00:12ab:3410:473c:e8ef])
+        by smtp.gmail.com with ESMTPSA id f13-20020a50bf0d000000b0041cdd9c9147sm10371016edk.40.2022.04.11.10.00.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 10:00:52 -0700 (PDT)
+Message-ID: <2b0f0eba-87fe-e2c4-d951-2b090b827ca6@gmail.com>
+Date:   Mon, 11 Apr 2022 19:00:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v10 12/24] drm/rockchip: dw_hdmi: drop mode_valid hook
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
+ <20220408112238.1274817-13-s.hauer@pengutronix.de>
+ <8fac5d72-c635-521c-e7d1-a3980a4ed719@gmail.com>
+ <20220411075357.GQ4012@pengutronix.de>
+From:   Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <20220411075357.GQ4012@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, dem 11.04.2022 um 00:11 +0200 schrieb Marek Vasut:
-> On 4/7/22 11:12, Lucas Stach wrote:
-> > Am Donnerstag, dem 07.04.2022 um 01:43 +0200 schrieb Marek Vasut:
-> > > On 4/6/22 17:33, Lucas Stach wrote:
-> > > 
-> > > [...]
-> > > 
-> > > > +static const struct imx8mp_blk_ctrl_data imx8mp_hsio_blk_ctl_dev_data = {
-> > > > +	.max_reg = 0x24,
-> > > 
-> > > Doesn't the HSIO_BLK_CTL go up to 0x10c ?
-> > 
-> > Technically yes, but there is already a driver for the USB glue
-> > (fsl,imx8mp-dwc3) that occupies the USB registers at and above 0x100.
+Am 11.04.22 um 09:53 schrieb Sascha Hauer:
+> On Sun, Apr 10, 2022 at 01:31:23PM +0200, Alex Bee wrote:
+>> Am 08.04.22 um 13:22 schrieb Sascha Hauer:
+>>> The driver checks if the pixel clock of the given mode matches an entry
+>>> in the mpll config table. The frequencies in the mpll table are meant as
+>>> a frequency range up to which the entry works, not as a frequency that
+>>> must match the pixel clock. The downstream Kernel also does not have
+>>> this check, so drop it to allow for more display resolutions.
+>>>
+>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>> ---
+>>>
+>> You're correct: That frequency is meant to be greater or equal. But I'm
+>> not sure if it makes sense to completely drop it - what happens for
+>> clocks rates > 600 MHz which might be supported by later generation
+>> sinks (HDMI 2.1 or later)?
+>> As these are not supported by the IPs/PHYs currently supported by that
+>> driver a reason a simple
+>>
+>>         int i;
+>>
+>>
+>>
+>>         for (i = 0; mpll_cfg[i].mpixelclock != (~0UL); i++) {
+>>
+>> -               if (pclk == mpll_cfg[i].mpixelclock) {
+>>
+>> +               if (pclk >= mpll_cfg[i].mpixelclock) {
 > 
-> Shouldn't that imx8mp-dwc3 glue code be switched to syscon and access 
-> the registers through this driver then ?
+> Should be <=
 
-I don't see why this would be needed. Registers up to 0x24 are a mixed
-bag of blk-ctrls, but the registers above 0x100 are only USB wakeup
-related, I don't see the blk-ctrl ever wanting to touch them.
+Sure, sorry 'bout that.
+> 
+> No other user currently in the tree has this check.
+I dont't think that's true - it might not be checked against mpll table,
+but max pixelclocks are checked in meson_encoder_hdmi_mode_valid for
+amlogic, in sun8i_dw_hdmi_mode_valid_a83t and
+sun8i_dw_hdmi_mode_valid_h6 for allwinner and rcar_hdmi_mode_valid for
+rcar platform. There is no other point in rockchip dw-hdmi platform
+driver where this is currently checked.
 
-I think the current split is fine. Just because the RM lumps those
-register regions together into the HSIO blk-ctrl description doesn't
-mean we need to cover them all in a single syscon.
+> hdmi_phy_configure_dwc_hdmi_3d_tx() has this:
+> 
+>> 	/* PLL/MPLL Cfg - always match on final entry */
+>> 	for (; mpll_config->mpixelclock != ~0UL; mpll_config++)
+>> 		if (mpixelclock <= mpll_config->mpixelclock)
+>> 			break;
+>>
+>> 	for (; curr_ctrl->mpixelclock != ~0UL; curr_ctrl++)
+>> 		if (mpixelclock <= curr_ctrl->mpixelclock)
+>> 			break;
+>>
+>> 	for (; phy_config->mpixelclock != ~0UL; phy_config++)
+>> 		if (mpixelclock <= phy_config->mpixelclock)
+>> 			break;
+>>
+>> 	if (mpll_config->mpixelclock == ~0UL ||
+>> 	    curr_ctrl->mpixelclock == ~0UL ||
+>> 	    phy_config->mpixelclock == ~0UL)
+>> 		return -EINVAL;
+> 
+> This means we already have this check and others already in the generic
+> part of the dw-hdmi driver. Should we maybe do the above in
+> dw_hdmi_bridge_mode_valid() instead of doing it in the users?
+I guess that's not possible, due to the different kind of phys which are
+used for dw-hdmi. The checks you are refering to, are only done for dw
+hdmi tx phys, but not for "vendor phys" (like for RK3328 and RK3228, for
+example) - those have have own drivers which are handled only in dw-hdmi
+platform driver.
+Therefore this check should remain here for Rockchip also.
 
 Regards,
-Lucas
-
+Alex
 > 
-> > > > +	.power_on = imx8mp_hsio_blk_ctrl_power_on,
-> > > > +	.power_off = imx8mp_hsio_blk_ctrl_power_off,
-> > > > +	.power_notifier_fn = imx8mp_hsio_power_notifier,
-> > > > +	.domains = imx8mp_hsio_domain_data,
-> > > > +	.num_domains = ARRAY_SIZE(imx8mp_hsio_domain_data),
-> > > > +};
-> > > > +
-> > > > +static int imx8mp_blk_ctrl_power_on(struct generic_pm_domain *genpd)
-> > > > +{
-> > > > +	struct imx8mp_blk_ctrl_domain *domain = to_imx8mp_blk_ctrl_domain(genpd);
-> > > > +	const struct imx8mp_blk_ctrl_domain_data *data = domain->data;
-> > > > +	struct imx8mp_blk_ctrl *bc = domain->bc;
-> > > > +	int ret;
-> > > > +
-> > > > +	/* make sure bus domain is awake */
-> > > > +	ret = pm_runtime_resume_and_get(bc->bus_power_dev);
-> > > > +	if (ret < 0) {
-> > > > +		dev_err(bc->dev, "failed to power up bus domain\n");
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	/* enable upstream clocks */
-> > > > +	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);;
-> > > > +	if (ret) {
-> > > > +		dev_err(bc->dev, "failed to enable clocks\n");
-> > > > +		goto bus_put;
-> > > > +	}
-> > > > +
-> > > > +	/* domain specific blk-ctrl manipulation */
-> > > > +	bc->power_on(bc, domain);
-> > > 
-> > > Would it make sense to add error checking ?
-> > > 
-> > I don't expect those functions to do any more than a bit of blk-ctrl
-> > MMIO register poking. If that fails you are in much more trouble than
-> > what you can reasonably fix with some error checking.
+> Sascha
 > 
-> All right.
-
+> 
 
