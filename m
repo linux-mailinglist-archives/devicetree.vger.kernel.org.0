@@ -2,87 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9494FB27E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 05:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DA004FB28B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 06:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbiDKEBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 00:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
+        id S234079AbiDKENE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 00:13:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239704AbiDKEBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 00:01:09 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758A240E6B;
-        Sun, 10 Apr 2022 20:58:52 -0700 (PDT)
-X-UUID: 61d9f0ad50ee42d99456cf471b4c4ce2-20220411
-X-UUID: 61d9f0ad50ee42d99456cf471b4c4ce2-20220411
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1656277168; Mon, 11 Apr 2022 11:58:45 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 11 Apr 2022 11:58:45 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Apr 2022 11:58:44 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <p.zabel@pengutronix.de>, <airlied@linux.ie>,
-        <yongqiang.niu@mediatek.com>, <jason-jh.lin@mediatek.com>,
-        <nancy.lin@mediatek.com>, <allen-kh.cheng@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH V2 3/3] dt-bindings: display: mediatek: Update disp_aal binding for MT8192 and MT8195
-Date:   Mon, 11 Apr 2022 11:58:43 +0800
-Message-ID: <20220411035843.19847-4-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220411035843.19847-1-rex-bc.chen@mediatek.com>
-References: <20220411035843.19847-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S233151AbiDKEND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 00:13:03 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30CB273E;
+        Sun, 10 Apr 2022 21:10:50 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id ke15so12317365qvb.11;
+        Sun, 10 Apr 2022 21:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=O84u4g0rEMhiEbnfnW6weOWFhugAjRvAb7liky1i+SU=;
+        b=DneHJtvUWQgzhOZMeRyv/pSo0pxe+UFtg/MsQ1rVH5VYF1UxmxumkfkI9sbO0pO3YW
+         mLqbiQOwBibN4dPwSUNoqxw9l40OCyYRn6kSRLXm+OZPkLL19xfXYcgtR83ICfbZdoI8
+         dTbYZY4xMkBLKnCQSI5z8nUdu+w4FtqAqVpsPmmXR73HV5GdiXBqmsPscwvwi1VR0/jj
+         cQ2X3sh67++uXNGhhADPVGdCCQH33h+5AnIzpWxXNJqrYdkm7dKLn9aqyiD1RPZUpZi4
+         FyAHQWguvtperffgP7ByO/yxwLwYtv5CEpHYp6mYgvuRNGTPlXlU8SsXUFLN7nhyrWid
+         B21w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=O84u4g0rEMhiEbnfnW6weOWFhugAjRvAb7liky1i+SU=;
+        b=e0Erzy59O3DdJfPmGwfQpmKimH+3MFYwBHSWPWpObbEadl6brNHYYAM/yyr5M0f9K8
+         iiI7SnZpfse3UhPN74bqqg3Pv3/WN/rDITKqewV73fR5djKY2gczsdA+ATEV9cJ4bQqS
+         CHGq4g8F6WFX5V9tjKIFjDWq046SjQh3w7ZjD0oQoMn66ZalGDqxrOrJCUIoO+iNHCmM
+         ml8a8Bhde/kr1vo7O8vg/DrRzwvOnoB0kg0E6mB9b6D3Q5zWt7amLx7ikcVHgX2CiQQ8
+         wQgBi2Vm56MbHkUomm2rM+ztHK8k6Nm1P8dFV/nMKz7sRtMJmTqFTfNrjwak86K4kEle
+         ppJA==
+X-Gm-Message-State: AOAM5323uuDHXMX0BGu3zDPusoCAmyIdASobdCsdysGlLzTpADsy6/Uz
+        Flda+IJoiNrzQ9gM4Yq+MWo=
+X-Google-Smtp-Source: ABdhPJyz74QJW/R9APqpj6K9iL73Bp/NOoaWsAIgDb75ZRuEOyrAfpMzSLQTmgJpnfw0D72vdp5ufw==
+X-Received: by 2002:a0c:ea52:0:b0:444:330a:2f19 with SMTP id u18-20020a0cea52000000b00444330a2f19mr7304876qvp.32.1649650249725;
+        Sun, 10 Apr 2022 21:10:49 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:91e2:dfcf:c904:aebc? ([2600:1700:2442:6db0:91e2:dfcf:c904:aebc])
+        by smtp.gmail.com with ESMTPSA id x138-20020a376390000000b0069bf27a8d26sm4568598qkb.47.2022.04.10.21.10.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Apr 2022 21:10:49 -0700 (PDT)
+Message-ID: <a2679425-3486-2823-01f7-6b208d296564@gmail.com>
+Date:   Sun, 10 Apr 2022 23:10:48 -0500
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/2] of: overlay: rework overlay apply and remove
+ kfree()s
+Content-Language: en-US
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Slawomir Stepien <sst@poczta.fm>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alan Tull <atull@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+References: <20220410210833.441504-1-frowand.list@gmail.com>
+In-Reply-To: <20220410210833.441504-1-frowand.list@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Disp_aal of MT8192 and MT8195 are fully compatible with disp_aal of
-MT8183. Therefore, we move the them to item "mediatek,mt8183-disp-aal".
+adding cc: Jan Kiszka <jan.kiszka@siemens.com>
 
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
----
- .../devicetree/bindings/display/mediatek/mediatek,aal.yaml    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
-index f118075e4a89..d4d585485e7b 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
-@@ -27,12 +27,12 @@ properties:
-       - items:
-           - enum:
-               - mediatek,mt2712-disp-aal
--              - mediatek,mt8192-disp-aal
--              - mediatek,mt8195-disp-aal
-           - const: mediatek,mt8173-disp-aal
-       - items:
-           - enum:
-               - mediatek,mt8186-disp-aal
-+              - mediatek,mt8192-disp-aal
-+              - mediatek,mt8195-disp-aal
-           - const: mediatek,mt8183-disp-aal
- 
-   reg:
--- 
-2.18.0
+On 4/10/22 16:08, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
+> 
+> Fix various kfree() issues related to of_overlay_apply().
+> 
+> The fixes revealed inconsist variable names for the same variable
+> across functions, resulting in difficulty understanding the code
+> that was being modified.  Doing both variable renaming and the
+> fixes results in a hard to review patch, so split into two patches.
+> 
+> The first patch in the series contains only variable renaming.
+> The second patch contains the kfree() related fixes.
+> 
+> Frank Rowand (2):
+>   of: overlay: rename variables to be consistent
+>   of: overlay: rework overlay apply and remove kfree()s
+> 
+>  Documentation/devicetree/overlay-notes.rst |  23 ++-
+>  drivers/of/overlay.c                       | 175 +++++++++++----------
+>  2 files changed, 115 insertions(+), 83 deletions(-)
+> 
 
