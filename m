@@ -2,108 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B37E4FB65C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 950FA4FB66E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:53:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243308AbiDKIx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54714 "EHLO
+        id S1343952AbiDKIzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:55:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243620AbiDKIx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:53:56 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3A833EABC
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:51:41 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id t1so4222683wra.4
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:51:41 -0700 (PDT)
+        with ESMTP id S1343950AbiDKIzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:55:10 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 526F53EBA8;
+        Mon, 11 Apr 2022 01:52:51 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id b2-20020a17090a010200b001cb0c78db57so12900874pjb.2;
+        Mon, 11 Apr 2022 01:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=IXFXkZ/zIPR/vpj7KNO5NDwB6CMm+azUma0NGH5YVgU=;
-        b=DU1x7RrLRqhM32z2qCQqJ8a/bsJ1Es12ZQaw54KzV/aumf31lk1TLA1cpv4cZI8Ml0
-         I+PBZQ513P+Kl+A/cS98JJNei9ccl78hSmxjsg7XW11/rh3t9Ybra6WILnO2jHnWVw03
-         d99k42th8WeHxcw1YDHY+O1+QzALwhvy3AH1pZW142gprxVanbAPJMWDcfOlCMCwxITt
-         0bDMQgwZrIbdNbhNstZ0ncbZD4ArqB/X32ZlX0JK3qVtYtPbKZ7UwF7Z7vjQOIhIkgsF
-         hcglTWYerpYvHtIhiNnQjyVGp4qBPBlKNsdrpzUAw6LdVPJPh8vkURTvWG+uDP3P+36m
-         kpSg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=Q/paJW9ie5DNXM/d6p+1m3onX+nRzXcgKkbIti8bjJE=;
+        b=KpDoUUVC50cOsIuyNJpgW+RFycUibIju6u/aEuTTHZ1ih8p56PAxFHD069Q0peRT8b
+         JVGYHmne4rEMsecWIxD4tq9E5kBIe3rPN09VeBiEJEzYAMtC/Ic/LL0J0QbrB0aYhfI3
+         89bVV8MgpS2Zej8E0movu8gY3YxoRZ+3EI+aIwADCxS0Q9RA4dlD6w4OHlfW3SFcCtH/
+         c2F1pxqJDbfsK8E6x6czEjqFMlwZRjl55pQpFvYIdlnuHYOH9eHexGnbjKcm4oCOeiij
+         cSoo7orH84EFgAY8Tldl4OC49PoCkr5Qg31IhAZ5ywHtA+pzJLKcLOSJiWMOekpAaT+f
+         9/uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IXFXkZ/zIPR/vpj7KNO5NDwB6CMm+azUma0NGH5YVgU=;
-        b=SsumOniNyBSBpCP7NdQsi0FBc801yUX/bCJcRGNpmorKeNyT9kssQs1Xc76j859Yca
-         gKQ/9cRYcuGm3pvXPUEXT6pjuZ7sEW3l8+GpFvaf/2LgzONb0nc+hjCc2iPUlW8/tIha
-         DVOgMOAsBIG1tG9zCoPr66tUEBMXDnI4iBAkIkdrT037zIt06dgGy167iuiSqWv9Ifjg
-         6byJ/7p5Tk3m/qake8K7zfnCiXbrPGRwBlaOaWaXbMwW4iC2je3vYXDSrgcCpQsm10jy
-         nZcW6ETr2njMGmNOB8Zq8zYUfXoxTgy+OEl1Xq4okIVo+SK6t5h5eKs0AsR4Fd7XU4wK
-         UU3w==
-X-Gm-Message-State: AOAM5327vVQD+eZvx+aWYP6ob+d9jEMR+tS8ADX0VnkLsdltbWf2BoUy
-        KvVg92JZJs0MB+8HkyiHGViz7Q==
-X-Google-Smtp-Source: ABdhPJwBIvnDClmMj7lyqH8WolBn46vICihfyKzrStW5W+VTLqQQ9byyWSgWtWbeDhcHuG4qEqGRgQ==
-X-Received: by 2002:a05:6000:15cb:b0:207:97e4:e445 with SMTP id y11-20020a05600015cb00b0020797e4e445mr11520814wry.672.1649667100481;
-        Mon, 11 Apr 2022 01:51:40 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id y15-20020a056000168f00b002057a9f9f5csm30881650wrd.31.2022.04.11.01.51.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 01:51:39 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 10:51:38 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     John Keeping <john@metanate.com>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 08/33] crypto: rockchip: better handle cipher key
-Message-ID: <YlPsGvmoloOBw8Sa@Red>
-References: <20220401201804.2867154-1-clabbe@baylibre.com>
- <20220401201804.2867154-9-clabbe@baylibre.com>
- <YkrW/+DX5vN8W5cF@donbot>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YkrW/+DX5vN8W5cF@donbot>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Q/paJW9ie5DNXM/d6p+1m3onX+nRzXcgKkbIti8bjJE=;
+        b=UxfDEle8K5R651EmL5BUc5VDrvVPsghr0V49+LXYbULpdcC9vRLPcZosWZcQf7zAF6
+         7UNcJMGSEBPNc3Tbc6ckxcDU/kDcIWRaMobCSKboVLt4oGAoTAWnfuROXR5MmZ6nw8gz
+         I4OecH39fq754JGyNYtQc1u4p8Z4M6htkq9J4uHhUBSCb8bo+eTJ9iyj+0jWN2tN8Ekh
+         5c5WspGlnDbLt37QY/duBNrv5TEWGUbkuP0tDBahKaUhka5WE+RWYtjcY3HFdPVOIPTW
+         z+f8HYYchHOQ8IWoJbak8ixvLGzRPbyKlSSodqnew4d3PzDwA91TiSqFaBpyibiIwnsS
+         I6lA==
+X-Gm-Message-State: AOAM5327RwVLcFcvbnLsNfwrPLFxRCHag7lG/xq2cEzY9ivvpOJ6p6Q7
+        4Og5C+3mO4ZGdMo//N/dLOI=
+X-Google-Smtp-Source: ABdhPJzkbQcsfDV7LTEJJnM7W8CweM0vo8LWRIcDEFHzuxiT8wwTp34XuevjvN3nh6DXvFzYiQnoYA==
+X-Received: by 2002:a17:902:b183:b0:14f:c266:20d5 with SMTP id s3-20020a170902b18300b0014fc26620d5mr31472235plr.136.1649667170595;
+        Mon, 11 Apr 2022 01:52:50 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id b16-20020a17090a011000b001cb4815d135sm10054057pjb.9.2022.04.11.01.52.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 11 Apr 2022 01:52:50 -0700 (PDT)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     krzk@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org,
+        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v7 0/2] Add thermal control driver for Sunplus SP7021 SoC
+Date:   Mon, 11 Apr 2022 16:52:38 +0800
+Message-Id: <cover.1649662002.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, Apr 04, 2022 at 12:31:11PM +0100, John Keeping a écrit :
-> On Fri, Apr 01, 2022 at 08:17:39PM +0000, Corentin Labbe wrote:
-> > The key should not be set in hardware too much in advance, this will
-> > fail it 2 TFM with different keys generate alternative requests.
-> > The key should be stored and used just before doing cipher operations.
-> > 
-> > Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >  drivers/crypto/rockchip/rk3288_crypto.h          |  1 +
-> >  drivers/crypto/rockchip/rk3288_crypto_skcipher.c | 10 +++++++---
-> >  2 files changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/crypto/rockchip/rk3288_crypto.h b/drivers/crypto/rockchip/rk3288_crypto.h
-> > index 8b1e15d8ddc6..826508e4a0c3 100644
-> > --- a/drivers/crypto/rockchip/rk3288_crypto.h
-> > +++ b/drivers/crypto/rockchip/rk3288_crypto.h
-> > @@ -245,6 +245,7 @@ struct rk_ahash_rctx {
-> >  struct rk_cipher_ctx {
-> >  	struct rk_crypto_info		*dev;
-> >  	unsigned int			keylen;
-> > +	u32 key[AES_MAX_KEY_SIZE / 4];
-> 
-> Should this be u8?  It's only ever memcpy'd so the fact the registers
-> are 32-bit is irrelevant.
-> 
-> (Also a very minor nit: this should probably be aligned in the same was
-> as the above two variables.)
+This is a patch series for thermal driver for Sunplus SP7021 SoC.
 
-Yes, it could be u8 and I will fix the alignement.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Regards
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Li-hao Kuo (2):
+  thermal: Add thermal driver for Sunplus SP7021
+  dt-bindings:thermal: Add Sunplus SP7021 schema
+
+ .../bindings/thermal/sunplus-thermal.yaml          |  43 +++++++
+ MAINTAINERS                                        |   7 ++
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 139 +++++++++++++++++++++
+ 5 files changed, 200 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sunplus-thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
+
+-- 
+2.7.4
+
