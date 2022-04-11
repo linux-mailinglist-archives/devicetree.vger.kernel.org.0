@@ -2,230 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E04B74FC07E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9781A4FC06E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347934AbiDKPZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47174 "EHLO
+        id S1347878AbiDKPZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:25:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347937AbiDKPZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:25:28 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9B83CA57;
-        Mon, 11 Apr 2022 08:23:01 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id t1so5848500wra.4;
-        Mon, 11 Apr 2022 08:23:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ekfMytrXwLVzydWFQD06PuCm7n67RUjTXkiwu4FLXvs=;
-        b=aPxWMdR75gd/4D6Lsy6bAdNv0SFjCryWfPLl0w8KOOFtNAf6s1SZSqbCXAVbLWd+pJ
-         2tTqjN3kozCFtNuc/PN8hFZqutlTtsh/gHPGftDNhxG4JPtbZST4fWvNiuo+T7gD7RQl
-         KzfBE/DA1IKlP/reHOiDpH6HeD4XrFZgxm6ac22fWqoXeEOMZTRosDaETGcLRg3unKWL
-         nPJPPc9qkiYLpcE8KqrfdhRDPcvA0xdrlinX/RGxfnIhohqNJhhXaIosDMuDTcIrZmff
-         cnE6kGmOQ/AqZcsskhOq8ko0TJ0mREy2BZKs/dkcFGqKYi22PK4Jy2ayKpnUdP+CNRy0
-         cSDg==
+        with ESMTP id S1347871AbiDKPZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:25:06 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291593BF82;
+        Mon, 11 Apr 2022 08:22:51 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id bk12so10882473qkb.7;
+        Mon, 11 Apr 2022 08:22:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ekfMytrXwLVzydWFQD06PuCm7n67RUjTXkiwu4FLXvs=;
-        b=390Nc54jA22Pr3FC2wvTTDR+XOwAVNgM5Zdg261Sy9zuJ/5e5iyyG7h5wCCYPtsc44
-         HYarHlA02kTOCEimcPrEnsIEb+swwsf7gNq5C8vDh50lPjkh0t9ofHI1Uox0B7geoHRY
-         BVDyQ4SkEmutINrKGZH54bmazINu6O0u1lrqrpyCq22M3RbWAK/xY/tIT7msar3Vv+oW
-         gfTzk+Jh9MZgy2fxnagG0hMM8UuJzFnDwKIBpRiG8P4sxJlQYb2clKbsWyHtK/DqXtYN
-         3InLYSjfP1FJhmwqp8MX9G3c2TnZ6NU73LSeQc3hdAhyLk1BAj74ujRFiqFpdoQu5Wg1
-         xoLA==
-X-Gm-Message-State: AOAM531B/5JgOprIaDDnX1TASxNj0Lwga+0szJFu7M59EG1WzjHHF7Jw
-        RpYFiYHgmYKVo3MOQbDUkLA=
-X-Google-Smtp-Source: ABdhPJw5in+mLmhkhW+3PfyFB6K3625bOXc51YWBV1OlklZNsIStdVNwB/LtUZwhDul2D2AeAHJ4vQ==
-X-Received: by 2002:a05:6000:18ae:b0:204:62a:20f4 with SMTP id b14-20020a05600018ae00b00204062a20f4mr26767163wri.640.1649690580241;
-        Mon, 11 Apr 2022 08:23:00 -0700 (PDT)
-Received: from linuxdev2.toradex.int (31-10-206-124.static.upc.ch. [31.10.206.124])
-        by smtp.gmail.com with ESMTPSA id a9-20020a7bc1c9000000b0038eb67e966esm5209374wmj.29.2022.04.11.08.22.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 08:22:59 -0700 (PDT)
-From:   Max Krummenacher <max.oss.09@gmail.com>
-To:     max.krummenacher@toradex.com
-Cc:     Arnd Bergmann <arnd@arndb.de>, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Olof Johansson <olof@lixom.net>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org
-Subject: [PATCH v2 13/14] ARM: dts: imx6dl-colibri: Add support for Toradex Aster carrier board
-Date:   Mon, 11 Apr 2022 17:22:33 +0200
-Message-Id: <20220411152234.12678-14-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220411152234.12678-1-max.oss.09@gmail.com>
-References: <20220411152234.12678-1-max.oss.09@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lku+hoHFzt1e28Ahk8UaGKlfUPzqGYonqFhWJ98wq7g=;
+        b=q9YbdKAiqR/XTl7eW7yU7a41tsT4j2VSefLRDxK62445GPhgpZgKifcQwUVJgojpx/
+         YSHZQvPkxHGr0N3qVB9I+7jbys5gUJ0MsWx5CABRCEfSIMzlRe5AKZ1Ws2Ax8dM5EVdU
+         cKmJEy+pGV79sEN9ffDXs3PtiBfisNDqh4y7k1oMdRpRq+qANp5kfGJLMyvna2aYvHl+
+         J5PotLDYU+m/6CnAzVtC1rMhCKtldX6QwM4MzcnfHEJfftGNtbrlOzGGhzcR+hIYpZId
+         vEsp6OwtByzIJ0mof+OXVwUTMqJuJG50PMDhHMgiYOm5KGbFEkKqZ19NlMidcT9+aVTY
+         dhdg==
+X-Gm-Message-State: AOAM533bhOQ1YYxWtzbNsdaepwQWIEdvjciFIpQOmGxoLA4QGWaqRb//
+        SoSDv028H/O3scSVtowRHtU/GhFJvnCKkg==
+X-Google-Smtp-Source: ABdhPJwWX3jRX6WeAgI6DT2YEK/BcXC0KeDlUdI2hg0VMxJZkToU49DQOVAyYQGhTMxMUNi0WbPqRw==
+X-Received: by 2002:a05:620a:44d3:b0:680:9eb3:e7ad with SMTP id y19-20020a05620a44d300b006809eb3e7admr21753851qkp.376.1649690569408;
+        Mon, 11 Apr 2022 08:22:49 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id c10-20020ac87dca000000b002e1db1b7b10sm25337271qte.25.2022.04.11.08.22.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 08:22:49 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2ebf3746f87so74612727b3.6;
+        Mon, 11 Apr 2022 08:22:48 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr26340123ywb.132.1649690568687; Mon, 11
+ Apr 2022 08:22:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220405184716.1578385-1-miquel.raynal@bootlin.com> <20220405184716.1578385-7-miquel.raynal@bootlin.com>
+In-Reply-To: <20220405184716.1578385-7-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 11 Apr 2022 17:22:37 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVQFXYKBiqN0eZTVH4VCf6WuVLWezWj4CCzhkYkt2WMeA@mail.gmail.com>
+Message-ID: <CAMuHMdVQFXYKBiqN0eZTVH4VCf6WuVLWezWj4CCzhkYkt2WMeA@mail.gmail.com>
+Subject: Re: [PATCH 6/7] MAINTAINERS: Add myself as maintainer of the RZN1 RTC driver
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+On Tue, Apr 5, 2022 at 8:47 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> After contributing it, I'll volunteer to maintain it.
 
-Add support for Toradex Aster, small form-factor with header compatible
-with Arduino Uno and Raspberry Pi (RPi) maker boards.
+Thanks a lot!
 
-Additional detail available at
-https://www.toradex.com/products/carrier-boards/aster-carrier-board
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
----
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-(no changes since v1)
+Gr{oetje,eeting}s,
 
- arch/arm/boot/dts/Makefile                 |   1 +
- arch/arm/boot/dts/imx6dl-colibri-aster.dts | 113 +++++++++++++++++++++
- 2 files changed, 114 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-colibri-aster.dts
+                        Geert
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index cb4cf5453a9f..f0e5fc7e5274 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -458,6 +458,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-aristainetos_7.dtb \
- 	imx6dl-aristainetos2_4.dtb \
- 	imx6dl-aristainetos2_7.dtb \
-+	imx6dl-colibri-aster.dtb \
- 	imx6dl-colibri-eval-v3.dtb \
- 	imx6dl-colibri-iris.dtb \
- 	imx6dl-colibri-iris-v2.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-colibri-aster.dts b/arch/arm/boot/dts/imx6dl-colibri-aster.dts
-new file mode 100644
-index 000000000000..74e8a6cd8bed
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-colibri-aster.dts
-@@ -0,0 +1,113 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "imx6dl.dtsi"
-+#include "imx6qdl-colibri.dtsi"
-+
-+/ {
-+	model = "Toradex Colibri iMX6DL/S on Colibri Aster Board";
-+	compatible = "toradex,colibri_imx6dl-aster", "toradex,colibri_imx6dl",
-+		     "fsl,imx6dl";
-+
-+	aliases {
-+		i2c0 = &i2c2;
-+		i2c1 = &i2c3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+/* Colibri SSP */
-+&ecspi4 {
-+	cs-gpios = <
-+		&gpio5 2 GPIO_ACTIVE_HIGH
-+		&gpio5 4 GPIO_ACTIVE_HIGH
-+	>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi4 &pinctrl_csi_gpio_2>;
-+	status = "okay";
-+};
-+
-+/* Colibri I2C: I2C3_SDA/SCL on SODIMM 194/196 */
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <
-+		&pinctrl_csi_gpio_1
-+		&pinctrl_gpio_2
-+		&pinctrl_gpio_aster
-+		&pinctrl_usbh_oc_1
-+		&pinctrl_usbc_id_1
-+		&pinctrl_weim_gpio_5
-+	>;
-+
-+	pinctrl_gpio_aster: gpioaster {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL2__GPIO4_IO10		0x1b0b0
-+			MX6QDL_PAD_KEY_ROW2__GPIO4_IO11		0x1b0b0
-+			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15		0x1b0b0
-+			MX6QDL_PAD_NANDF_D1__GPIO2_IO01		0x1b0b0
-+			MX6QDL_PAD_NANDF_D3__GPIO2_IO03		0x1b0b0
-+			MX6QDL_PAD_NANDF_D6__GPIO2_IO06		0x1b0b0
-+			MX6QDL_PAD_SD4_DAT0__GPIO2_IO08		0x1b0b0
-+			MX6QDL_PAD_SD4_DAT3__GPIO2_IO11		0x1b0b0
-+		>;
-+	};
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+&pwm3 {
-+	status = "okay";
-+};
-+
-+&pwm4 {
-+	status = "okay";
-+};
-+
-+&reg_usb_host_vbus {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	vbus-supply = <&reg_usb_host_vbus>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	status = "okay";
-+};
-+
-+/* Colibri MMC */
-+&usdhc1 {
-+	status = "okay";
-+};
--- 
-2.20.1
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
