@@ -2,185 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7A44FB5B8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0754A4FB5D4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:20:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343625AbiDKIRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41766 "EHLO
+        id S1343710AbiDKIWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:22:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343621AbiDKIRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:17:20 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B647C33A05
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:15:06 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id r13so29219876ejd.5
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:15:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=RIVhF17ZHyHEkRri4xITDP87S8vJ9Qvq5E0aaRqPUqo=;
-        b=HpaD939JeDZag7GNabmmQUbDl6GkCFHqziohJsuZGD+aNbU1ARxNfXa3i2WnDYA538
-         fW9gwz8E+m/NaeSym75ztYGKWgO37LMloV/o3DijSlF0lFfIn9CSK9f8puk6IHC1AoZ6
-         um4jHwLJyvHVr3qBulK72R6/IdOk7gQBN1mmoB+Fw6FHinX1mNOOJ+GRx4Q87yrxXzpe
-         SBFoJYhlOgONfzWDahBatGtSgcpfv7I9amynwL7I1O+Y4Hd3Zldqm+2fZdtslt227Dz+
-         WNKYlVr9HNypLGyRgcqTVJ5R7lB87i0atreNYS0WipI3cJ4Vl8BxRfBeyKzCdACYKpX9
-         nlbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=RIVhF17ZHyHEkRri4xITDP87S8vJ9Qvq5E0aaRqPUqo=;
-        b=SZqjKT1tdCgmnJtuBI7RWJ5HkJk0H/liIEJ+eGDc3c+nUPq4ljPe7u6n1rXaTsc782
-         HtukZCpN6eBTOEAVzBxxpdkKwpoMZM6OMDl7Z417WrDzsttwaqGLKNYn0/yNyPY2DdoC
-         kiT9N5EofHJmFRK91TZXI5dM3VaIw4pNPUTEthdSbNQeZHu1mioRCqV+t14Z8dSUqjL4
-         hsdXh86cXyVqkSYCHGgx+4BYWy84yUsrXM+hIeOCOVOLbWm1t7D4VnWJs5+r4FxwKTRC
-         8itI+OZlnnPC9VY2w+L+CwxB1Vb7reZnkbtimMdLsnh2SXjjcp2gk+dRmxJrKbdSREcq
-         UFoA==
-X-Gm-Message-State: AOAM532OSl+vATCixnZv48+ADoCWYI2zp+b3exZfnzCs+MqruNq74/Cx
-        KU2OJn4IxPESSjoMBp51CzEKlw==
-X-Google-Smtp-Source: ABdhPJzRz84+mPotUb9JXXoXBsuHqdyI4MsyzEKZLWh+RTv0i4v5vUAvX5V9WgyUrO7Z4GDU8ed/3A==
-X-Received: by 2002:a17:907:c0c:b0:6d1:8c46:6415 with SMTP id ga12-20020a1709070c0c00b006d18c466415mr29329284ejc.326.1649664905140;
-        Mon, 11 Apr 2022 01:15:05 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id p3-20020a1709060e8300b006d0e8ada804sm11609969ejf.127.2022.04.11.01.15.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 01:15:04 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 11 Apr 2022 10:15:04 +0200
-Message-Id: <CJ79EIW9Z89J.YZTZ6AU91TGE@otso>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
- haptics
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        <linux-input@vger.kernel.org>
-X-Mailer: aerc 0.9.0
-References: <20220408115311.237039-1-luca.weiss@fairphone.com>
- <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
-In-Reply-To: <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
+        with ESMTP id S1343706AbiDKIWh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:22:37 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2059.outbound.protection.outlook.com [40.107.22.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67593DDD5;
+        Mon, 11 Apr 2022 01:20:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BoN65JpiP2FgjojkoMVxT6Olna4JxjDmDpPsdXR92kL4d8wZ5/nhXhVlo8EacDJVNNjcNe4SItoFr1D/MSHXGMLOziEDfHgr5pY86v4gnnqZXo9LUpme0e1H8U8o2FYK4yZByd1RxHn58XDFUO3nBCLOW6edZX5hXGh7OvLg+3neIdQ+oJvBHptc3UZvcUsJP/HDoMXFYYMJlwKMp+7cEHkLo8F4ZYSkaxjgF+RaPSlj3rIRr4P8MXyQPlwDlcnVzrvRedo+uZFSCqKVXz+yR/4GOn6J/kPmqjxk4h14S0Xd7N+3dzHaUpAoSQNKoDcXRrqUNezy16YSjR8lDAmMIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=W13edjOYsUWO4npRw3m0INekIfhcfO+9ruYVSYh+ob0=;
+ b=h46Ay899VB7jL/iaKaxKnchmSJw2Ie7vlCIJelGZrv10koBnc15gyvp84K0/P/7QLtUbvoemhHiXD6ZpCxaORMq/9K9KY5kqcY4GX9JL5/PJk1Usak/RtdxUMA9nsFdX49EnSPDmPZJDWWrHzJjwVWSlDRnu07RnYugxhXIG1tww64SavNt4AE5HRf1y33vypWsjY6ee9n3x9UXmjDWF2XXTNyqWrmJCm0bF3Bq1mL3lBdBqyFFR65BCalkzw7Bzh35ad82nEjJ4u+7Csir45kvgsfZKTOwqr4V6Bk30hNxkgtQ1/+71THtxbSJDRK7EQOgP1x2kdxG7s01OiZlqbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W13edjOYsUWO4npRw3m0INekIfhcfO+9ruYVSYh+ob0=;
+ b=EQ1TOq5MBUoOt/OXfX2a3gYosZqZDIKd1IdUJzWqqXkdjOVxtP9dLRXCf1ieY7ncXfzcG5bNgHvpoD2Jtz9Hu27g9UdIXKtFf0Qc2/qUda0I3mlzLe1lGgh7hUlhBGz1AhQF373ymI406adoizD5hImSTZQqh16E9OapNHT0SkE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by DB7PR04MB4585.eurprd04.prod.outlook.com (2603:10a6:5:36::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
+ 2022 08:20:17 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::d8b5:5914:5189:ffa5]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::d8b5:5914:5189:ffa5%6]) with mapi id 15.20.5144.029; Mon, 11 Apr 2022
+ 08:20:17 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        mirela.rabulea@oss.nxp.com
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] media: imx-jpeg: don't change byteused of queued buffer
+Date:   Mon, 11 Apr 2022 16:19:53 +0800
+Message-Id: <20220411081953.9021-1-ming.qian@nxp.com>
+X-Mailer: git-send-email 2.35.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0029.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::16)
+ To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 783ca054-3fe5-4a41-a2f2-08da1b941c77
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4585:EE_
+X-Microsoft-Antispam-PRVS: <DB7PR04MB458546EA8749583E28DE85CCE7EA9@DB7PR04MB4585.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 57pWprcP+LUZVddHqLBs30QA0ZhyU92mCVkgn/mQtGmxmd3GsnhpenXxA+oiBezX4/3pzoyDNUSekhMMgub5Zs9RED7vBA0TxoNmwfqdI47CElnR+pUD1dMV0neaOBIU55IZDRTYtbepLqzKhwUX1bKDelkFkBtAwYIIY1Gaoeo+JpzOxspAYJnlWA/LFwh25Y4/Qr9kvB5bsPITjLVg99xJgpliKAJJSm5XU2nLPsuUc1I9gHYGuhR6vWNFF5GN86dUVuVYnceIsfZsq/FZz/zrFvx0x3xj56J3zaJ0QgqT4uUibpW7H8X1Em1PLaqz5ztFZeghODbDnvjsayUXipy1HYx4chtUFbdXlTNFeC8pIBDDl5yEior61JDlHS9nAcXxsoujzIziKWZ/IpmRe3/3cvcWIvq2UFmr4sN7UGhuOces4tpXGEDkWyZozK3K87pj8RMbBurg6J3gQCp/Y+R9oxolqRSgSOcwh8smws+wXZVPpyNp8Ro4WgHrnijVgO6goSn9tEV7Ws5HTFXL8BAPNqco6tk8XWcXaF+Y1MUXzAyTz9523R9kZHK07AGH73dsqfAfprzh5+s+hPOGqFTynRipcTBQfzKz+LZ8a3E20BLgzQwwpz0E8xH1zfwAT+PQrQa2Td9+VqcBzutTqivn1c+FkWDYxrpv/3JkNdgU+3D9jo1mEQ6fh5WTq7/r8jlv3TGyNrluedpZ2gbiiA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(186003)(6512007)(26005)(5660300002)(7416002)(36756003)(8676002)(52116002)(38350700002)(38100700002)(1076003)(2616005)(66946007)(6486002)(66476007)(6666004)(8936002)(66556008)(508600001)(83380400001)(86362001)(44832011)(316002)(6506007)(4326008)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9JetpnWxfp63ZWfLCdm4sy4PTxD/+MA/FX9dIQGWeHPL6NmqznT7biGPScUk?=
+ =?us-ascii?Q?+4sxN6OV9H/1wAzL/DYnh6G6CcJo4XPTIKavbEISuITnuq9oDYWvxmU12dxW?=
+ =?us-ascii?Q?QwTZxqLlsAF5YQhIJBhzapfvHP3+XoYjnHaySUFOz0J79lBAhhLMNdKFhGqn?=
+ =?us-ascii?Q?isJL21PNCQTBm8zs95LVN0oaxBiScy8XTw7kjBbcjeJoTxo6QcuOwUseZUOP?=
+ =?us-ascii?Q?+ygAbaGtSANnyA0H8JF9o4NDN04C9vdhyGmeWVF4V1iJxS32CStn7/0tM82C?=
+ =?us-ascii?Q?KkNgMBqicUNf55m6OffgrXJwO7O3z+ysDwAnmAForN4q8Bjey2Oe+UEQKeLd?=
+ =?us-ascii?Q?eaAJCN8i3Wt9s/ylBmHohaBJcRMBrw95FmQoDicS2TFTa17sxup/8E0Ikbd3?=
+ =?us-ascii?Q?Cq5E1pbD/tNu1ea4ymWLXS3zwjtdGEfrJQCFutbRIAyg+ErrwHkxbN/rUK5k?=
+ =?us-ascii?Q?pwjxD+bz8rEcjVw4/IA3WHS+ls0wr4lmfMjh73VV8IJlGFEbUyzMLmyOZWrx?=
+ =?us-ascii?Q?/tBZWnUUyidu0fqaTslepR2Hzzv2rzs5TBmeYW6q9XdffzG91nAXMwcX3IH6?=
+ =?us-ascii?Q?a2Gyl9/Jvg2XqvrPQQEPYWecQWdaM+ZfnYfHuLhOcQ5gj/doQ3s8UXnI1O3n?=
+ =?us-ascii?Q?u6Fzxnq1WrwrMuZG4q8yNIM/BEGrvtTIywv7B3Lmec2tI92T5NalEWNjejDf?=
+ =?us-ascii?Q?KZPyIriyxTwjfs2XgBRGZvIha18XXJWp6YTuJo39Ix8H2e3xB8HOJB5gtgg1?=
+ =?us-ascii?Q?5EBszRkJg5JDuMeBIdaPR0CJPcf6AhG8O8lDEKkFpdzQq6u3Me/bPPfpp6m3?=
+ =?us-ascii?Q?b56pPAagc1aznWU5wQvV9zXsFKU9JJjfcrHSsK3mDr9s85OBeTS+Ee1Frjls?=
+ =?us-ascii?Q?IFVS1wPK4aSEM6Y4NEvcH8ZPbJy1dW8H52OgQBdpxgwhNXZIdk7JDO47VF9b?=
+ =?us-ascii?Q?+J3Efe9mjsRMEj8aA71sDSj0zbeaPFmW1cxgoFLvRKRgy7q6oteqqAodppep?=
+ =?us-ascii?Q?eA5qmrDj17i6q1ukP9ydmMqv/oBZUGuSq/fru1MHj40UaQXwop8UoUkGNAFD?=
+ =?us-ascii?Q?HL4XmcY4H4q5RYQGZizpB0/970aAzTwx/YDLCBQi26Y9eVluXlGlsrgBH4oA?=
+ =?us-ascii?Q?r+waVdfoW/OPE6UL2sGPB13vRKa+4UPDPBpdAjfxhYyNfYBmDUBYF+ukogVx?=
+ =?us-ascii?Q?ncjKR2W3MbH36XZqf7/ZzyKiqCCk7AmbiSYyOvlDFpNH/3Fuwx/p+KxwOcr2?=
+ =?us-ascii?Q?rubeCmD7UfCj/Tu5N8etY9Ov6Y2G8XFjo+SNW9Z1CM2YrXismDTP+yP6UIfh?=
+ =?us-ascii?Q?J7PmZIxDkhsFpArpxkpmzz8XrlQl/rIhnhiMHJ0b89HebE/JK/jelg+lEXe9?=
+ =?us-ascii?Q?B/QiSE8h9AUJ5DvGwmevPCOQ5rKY/5ROdSY07zvLHDorwJyDy7sOhmZhbLfQ?=
+ =?us-ascii?Q?SUUQ8fxUIgxikqwY+Qttb5mEiyq8TWV2xYYvKrGGB8BUSPRI75KJYkX9awLN?=
+ =?us-ascii?Q?CeSQgqBIjZzwOT8x2a1eIWJUbrnR2tMzk+OoFiu/etGGQXRZc/B0wtKEZmim?=
+ =?us-ascii?Q?WCxNQOQ8IEqvFX1kK6qdcYgL0YCnrEQW2URwtQtE3eihA/71IDX/IFF9LsAG?=
+ =?us-ascii?Q?ZjiTRG+2VYeDIUGPpDGbwHUOM8EJujXgXPwRNsKAh+3y/xRmcuhxIbbwxn9A?=
+ =?us-ascii?Q?jzt9DPuoxSIpYymPavtSd7S/AcFMEm8OptmWzfOEHoS7sBQGfi7ZMEjfgQux?=
+ =?us-ascii?Q?4nVURq9vgQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 783ca054-3fe5-4a41-a2f2-08da1b941c77
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 08:20:17.6027
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EZ88Cab7kd0zthMBeX9Wm2nwIYz6azEKNng1amGg9/6kSupE7H3aMquX9eaA9ebBrmetmCFa2UTMOEzTJJk1vA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4585
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Don't change the output buffer's bytesused set by user.
+Drop allow_zero_bytesused, since it's deprecated.
+This should also guarantee it's the application's responsibility
+to set bytesused for the output buffer.
 
-thanks for the review, replies are inline!
+Signed-off-by: Ming Qian <ming.qian@nxp.com>
+---
+ drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-On Fri Apr 8, 2022 at 5:05 PM CEST, Krzysztof Kozlowski wrote:
-> On 08/04/2022 13:53, Luca Weiss wrote:
-> > Add a document describing the bindings for the AW8695 LRA Haptic Driver=
-.
->
-> (...)
->
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description: GPIO connected to RSTN pin (active high)
-> > +
-> > +  awinic,f0-preset:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Default value for the f0 of LRA
-> > +
-> > +  awinic,f0-coefficient:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Coefficient between actual f0 and the value in the re=
-gisters
-> > +
-> > +  awinic,f0-calibration-percent:
-> > +    maxItems: 1
-> > +    description: Limit of f0 deviation from awinic,f0-preset
-> > +
-> > +  awinic,drive-level:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Level of drive waveform in normal driving
-> > +
-> > +  awinic,f0-detection-play-time:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Drive waveform play times in the first period in the =
-f0 detection
->
-> Use standard unit suffixes for known units (e.g. time).
-
-While the datasheet doesn't mention any time unit, the value is used to
-calculate the f0_trace_ms variable (which is milliseconds) but the
-result also depends on the awinic,f0-preset value, so it's not a raw
-time value.
-
->
-> > +
-> > +  awinic,f0-detection-wait-time:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Waveform wait times in the f0 detection
->
-> Ditto.
->
-> > +
-> > +  awinic,f0-detection-repeat:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Repeat times in the f0 detection
-> > +
-> > +  awinic,f0-detection-trace:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Drive waveform play times in the second period and la=
-ter in the f0 detection
-> > +
-> > +  awinic,boost-debug:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    minItems: 3
-> > +    maxItems: 3
-> > +    description: Values for BSTDBG1-3 registers
->
-> Do not encode device programming model (registers) into the binding. You
-> need to define it as a property related to hardware itself, not its
-> registers (e.g. boost value in mV).
-
-Unfortunately I couldn't figure the meaning for this and the two values
-below.
-
-The datasheet doesn't mention these registers at all and the downstream
-driver doesn't do anything meaningful with them (other than setting them)
-nor has any comment to indicate what they do.
-In the datasheet there's only BSTDBG4 mentioned where bits [5:1] mean
-PVDD output voltage setting so for these registers it could really be
-anthing :(
-
-Maybe someone with more knowledge about LRAs might be able to decipher
-what tset and r_spare is at least? I unfortunately didn't manage.
-
-Regards
-Luca
-
->
-> > +
-> > +  awinic,tset:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    description: Value for TSET register
->
-> Ditto.
->
-> > +
-> > +  awinic,r-spare:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    description: Value for R_SPARE register
->
-> Ditto.
->
->
-> Best regards,
-> Krzysztof
+diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+index 8bee179c5cec..930cea05c40a 100644
+--- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
++++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+@@ -1470,7 +1470,6 @@ static int mxc_jpeg_buf_prepare(struct vb2_buffer *vb)
+ 				i, vb2_plane_size(vb, i), sizeimage);
+ 			return -EINVAL;
+ 		}
+-		vb2_set_plane_payload(vb, i, sizeimage);
+ 	}
+ 	return 0;
+ }
+@@ -1519,7 +1518,6 @@ static int mxc_jpeg_queue_init(void *priv, struct vb2_queue *src_vq,
+ 	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
+ 	src_vq->lock = &ctx->mxc_jpeg->lock;
+ 	src_vq->dev = ctx->mxc_jpeg->dev;
+-	src_vq->allow_zero_bytesused = 1; /* keep old userspace apps working */
+ 
+ 	ret = vb2_queue_init(src_vq);
+ 	if (ret)
+-- 
+2.35.1
 
