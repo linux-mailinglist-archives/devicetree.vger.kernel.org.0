@@ -2,110 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6041B4FBB09
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:34:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53AA24FBB0F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344019AbiDKLge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 07:36:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50240 "EHLO
+        id S245729AbiDKLhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 07:37:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239683AbiDKLgd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:36:33 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3C4C15FC3
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:34:18 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id b15so17997310edn.4
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:34:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=PriMJtte/5hgjriSNEToIdFfrLkuSVpCW0l+e7C3lOg=;
-        b=YW/bjohkH5YlnoINwYy8ZTkU/kPoS6OSYhi2Nmyw7qdSMmHEjs6NR3ndPlfr4QwKhB
-         3Da1O5Tfe5om2Fo0lnNVVIocYfoarmWleA9BaF0Fw/5Y0uZ1OrEzmRUS4VMyFkNRGcnS
-         MaDeUeLNE7oiI86kaZTbibpAbvxLWXC6SYJKuWCDtAgdV79dKBBwn6ZfLwElfbesdWbj
-         pA3EzTQ55zndlfF9NH+onk5bNc8VAUfNp4XWPRpBdEj/Nne63MNOv/B8RfvSbjsOnKVb
-         5Hvl47nRTYDjy35vU4upXpJ5E795ux/CuVBX7DA3iEPxFNGUEyMCB250FS9PYrQVqoM4
-         i8mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=PriMJtte/5hgjriSNEToIdFfrLkuSVpCW0l+e7C3lOg=;
-        b=LbTm4BAbmPD4DfZONRvDhKLObNNBgqfp+zwvdc/HoCIn5HJDbuFpQ6Z46XFaFvAs7z
-         yxBzmQWUmeNEaOoqSBH/CVpV5OiWV44OJk1dbqOYeNIUBIzlKWjbVm6tM3z5+z73mAMd
-         zW44zMkVusHj9MkfCQaNpsvXD80CyykvLwT7SoC8ACrUksFe5meQwoctRBQzQwjEEBiJ
-         P/hqztpsbkgtI3DR34OaMx6kYPFPw2qfTn0trYvVjo0RxlyF3QVOL+dOC7e538GWd6jK
-         jYAMNKLhwbjxu2fzNU8QGiJq342sBIwGa7Kh+SathioYCTQNEGVYfjW4QZO1cQnO+4r9
-         jrXA==
-X-Gm-Message-State: AOAM530EZ2F0faYexxyCTaK+hsE0Oojo7oUVbO6c3XdEFpE2Sj+xCJrS
-        r55Hm9TP33wiQfBLuoIKy6li2oJQ4rTTi39j
-X-Google-Smtp-Source: ABdhPJwWKcguqGqBLwNOxShWwcd7Yc3YcqboI8pqcx86iqrVVgwAv1TKmUt48U31rdiVBxs5t/VMew==
-X-Received: by 2002:a05:6402:5210:b0:419:d802:626e with SMTP id s16-20020a056402521000b00419d802626emr33267210edd.11.1649676857289;
-        Mon, 11 Apr 2022 04:34:17 -0700 (PDT)
-Received: from [192.168.0.191] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id s11-20020a170906284b00b006e108693850sm11793292ejc.28.2022.04.11.04.34.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 04:34:16 -0700 (PDT)
-Message-ID: <aefe5080-475b-946e-d6c7-1c39dc90da1c@linaro.org>
-Date:   Mon, 11 Apr 2022 13:34:15 +0200
+        with ESMTP id S236405AbiDKLhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:37:24 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD1539D;
+        Mon, 11 Apr 2022 04:35:08 -0700 (PDT)
+X-UUID: dbd08abc811945b1993f258b3e75863a-20220411
+X-UUID: dbd08abc811945b1993f258b3e75863a-20220411
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1613410139; Mon, 11 Apr 2022 19:35:02 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 11 Apr 2022 19:35:01 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 11 Apr
+ 2022 19:35:01 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 Apr 2022 19:35:01 +0800
+Message-ID: <096e5da55313bb064575af4e64915fecb839a248.camel@mediatek.com>
+Subject: Re: [PATCH V2 06/15] cpufreq: mediatek: Record previous target
+ vproc value
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
+Date:   Mon, 11 Apr 2022 19:35:00 +0800
+In-Reply-To: <4cc24333-3985-5efe-cc5f-c7b8492f6c1e@collabora.com>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+         <20220408045908.21671-7-rex-bc.chen@mediatek.com>
+         <4cc24333-3985-5efe-cc5f-c7b8492f6c1e@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC PATCH 1/2] regulator: dt-bindings: qcom,rpmh: document
- supplies per variant
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220411110344.231903-1-krzysztof.kozlowski@linaro.org>
- <20220411110344.231903-2-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220411110344.231903-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 13:03, Krzysztof Kozlowski wrote:
-> The RPMH regulator binding covers several devices with different
-> regulator supplies, so it uses patterns matching broad range of these
-> supplies.  This works fine but is not specific and might miss actual
-> mistakes when a wrong supply property is used for given variant.
+On Fri, 2022-04-08 at 15:36 +0200, AngeloGioacchino Del Regno wrote:
+> Il 08/04/22 06:58, Rex-BC Chen ha scritto:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > We found the buck voltage may not be exactly the same with what we
+> > set
+> > because CPU may share the same buck with other module.
+> > Therefore, we need to record the previous desired value instead of
+> > reading
+> > it from regulators.
+> > 
+> > Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > ---
+> >   drivers/cpufreq/mediatek-cpufreq.c | 31 +++++++++++++++++++----
+> > -------
+> >   1 file changed, 20 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index dc4a87e68940..472f4de29e5f 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> > @@ -40,6 +40,7 @@ struct mtk_cpu_dvfs_info {
+> >   	struct list_head list_head;
+> >   	int intermediate_voltage;
+> >   	bool need_voltage_tracking;
+> > +	int old_vproc;
+> >   };
+> >   
+> >   static LIST_HEAD(dvfs_info_list);
+> > @@ -190,11 +191,17 @@ static int
+> > mtk_cpufreq_voltage_tracking(struct mtk_cpu_dvfs_info *info,
+> >   
+> >   static int mtk_cpufreq_set_voltage(struct mtk_cpu_dvfs_info
+> > *info, int vproc)
+> >   {
+> > +	int ret;
+> > +
+> >   	if (info->need_voltage_tracking)
+> > -		return mtk_cpufreq_voltage_tracking(info, vproc);
+> > +		ret = mtk_cpufreq_voltage_tracking(info, vproc);
+> >   	else
+> > -		return regulator_set_voltage(info->proc_reg, vproc,
+> > -					     vproc + VOLT_TOL);
+> > +		ret = regulator_set_voltage(info->proc_reg, vproc,
+> > +					    MAX_VOLT_LIMIT);
+> > +	if (!ret)
+> > +		info->old_vproc = vproc;
+> > +
+> > +	return ret;
+> >   }
+> >   
+> >   static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
+> > @@ -211,15 +218,7 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >   
+> >   	inter_vproc = info->intermediate_voltage;
+> >   
+> > -	old_freq_hz = clk_get_rate(cpu_clk);
+> > -	old_vproc = regulator_get_voltage(info->proc_reg);
+> > -	if (old_vproc < 0) {
+> > -		pr_err("%s: invalid Vproc value: %d\n", __func__,
+> > old_vproc);
+> > -		return old_vproc;
+> > -	}
+> > -
+> >   	freq_hz = freq_table[index].frequency * 1000;
+> > -
+> >   	opp = dev_pm_opp_find_freq_ceil(cpu_dev, &freq_hz);
+> >   	if (IS_ERR(opp)) {
+> >   		pr_err("cpu%d: failed to find OPP for %ld\n",
+> > @@ -229,6 +228,16 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >   	vproc = dev_pm_opp_get_voltage(opp);
+> >   	dev_pm_opp_put(opp);
+> >   
+> > +	old_freq_hz = clk_get_rate(cpu_clk);
+> > +	old_vproc = info->old_vproc;
+> > +	if (old_vproc == 0)
+> > +		old_vproc = regulator_get_voltage(info->proc_reg);
+> > +	if (old_vproc < 0) {
+> > +		dev_err(cpu_dev, "%s: invalid Vproc value: %d\n",
+> > +			__func__, old_vproc);
+> > +		return old_vproc;
+> > +	}
 > 
-> Add separate child schema which describes the supplies depending on the
-> compatible.
+>  From my understandment, if this fails once, it fails forever!
+> 
+> info->old_vproc is set only if info->need_voltage_tracking is true,
+> and only
+> in mtk_cpufreq_set_voltage(): this function is called only after the
+> checks
+> that you've introduced there, and that's on previously stored values.
+> While this was fine in the previous version, because it was always
+> calling
+> regulator_get_voltage(), here it's not.
+> 
+> I think that a good option here is to:
+> 
+> old_vproc = info->old_vproc;
+> if (old_vproc <= 0)
+> 	old_vproc = regulator_get_voltage(info->proc_reg);
+> if (old_vproc < 0) {
+> 	dev_err and return
+> }
+> 
+> ...or, if this is not applicable, we should still find another way to
+> not
+> let this driver to simply fail forever in case anything goes wrong.
+> 
+> Regards,
+> Angelo
 
+Hello Angelo,
 
-(...)
+Yes, your concern is right.
+I will add this in next version.
 
-> -additionalProperties: false
-> -
->  required:
->    - compatible
->    - qcom,pmic-id
->  
-> +allOf:
-> +  - $ref: qcom,rpmh-regulator-supplies.yaml#
-> +
-> +additionalProperties: false
+if (old_vproc <= 0)
+	old_vproc = regulator_get_voltage(info->proc_reg);
+if (old_vproc < 0) {
+	dev_err and return
+}
 
-This should be unevaluatedProperties:false, although this makes schema
-matching any property. :(
+BRs,
+Rex
 
-
-Best regards,
-Krzysztof
