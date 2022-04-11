@@ -2,129 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9FB4FBACA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B864FBAD9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232099AbiDKLXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 07:23:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49150 "EHLO
+        id S232540AbiDKL1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 07:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236445AbiDKLXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:23:43 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD6642A06;
-        Mon, 11 Apr 2022 04:21:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649676065; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=CNOTXYv8Sx8j1g4oPY7guZ7x8Y+9W4nAWbaAtTVJaGAEjnPEbPURRROrxlPeiVlexU6os8+D6poyT2IuNj2J3ppdiMFrLipTTRI+g4xaKxkfras9goVVn4eCqKi38bpQXE4TWQT+f3qfvaVRnMivOWrnPw3BD4dmpR4c6ssNcGY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649676065; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=5/jbDAF5X5kezjSRAK51Yoit+uFd9VQLdmTmKwAwHMY=; 
-        b=dseB4UyKiR9WxMIcSnQZDK6jMcO05AtaGhRY3jPfFS0Sx/OyeGOIJIL4tzjRqdsbZbrl78erto5C6VVuxy6xe0izsgYnKSoAXnwopNMFrERtKAOG1tXJ5cFzWPE8PYJ7gXIm81ImfN/alB6R6WWX6c2UeGWybjlwlqwzlOMIz2k=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649676065;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=5/jbDAF5X5kezjSRAK51Yoit+uFd9VQLdmTmKwAwHMY=;
-        b=I8/9xBIsYdFV55onKD8dTdAAGKHxevBRAhV0IDExLNV+mCSXvemhUwqNJ3ODxduz
-        sT78ypYJCINSDizM9Sd6RSB8pUcgbHTsuwmkN2QxsxRuUgusBcvkMIvV09qKSx+TrNz
-        dr2ZBB5PcMAdPYxEt8YlxzAt7Kib3DozynGuReBg=
-Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649676064932643.1336824950525; Mon, 11 Apr 2022 04:21:04 -0700 (PDT)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-Subject: [PATCH v2 3/3] mips: dts: ralink: mt7621: remove defining gpio function for pin groups
-Date:   Mon, 11 Apr 2022 14:20:49 +0300
-Message-Id: <20220411112049.18001-3-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220411112049.18001-1-arinc.unal@arinc9.com>
-References: <20220411112049.18001-1-arinc.unal@arinc9.com>
+        with ESMTP id S229491AbiDKL1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:27:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 533372654E;
+        Mon, 11 Apr 2022 04:25:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 08E7DB812AB;
+        Mon, 11 Apr 2022 11:24:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C26DDC385A4;
+        Mon, 11 Apr 2022 11:24:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649676297;
+        bh=wg7y9W7+1wtuUP8K8s5H/JdupTDeh8S8WNk1NMp09l8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qitRrUFkz04RxBchZcJrkV33p9Op3aPYQ1tIZupjpDjFpB32yEKZwwr3AKOSvFKJH
+         VesCSnofR3mZSl3nYvfZioYZzwhXeHcLU52NnEuhyfCF6nUmaKN7PS0jPWSE5b6X9d
+         BMiqbUK2Uz3f6YePIbz4hmsP4WMIOehw+9wBL+lM6njAyvQ9qqpEGsA+AJVsjLvqfr
+         jkjf8h0i3OqfzzpVBKVNyvqGwqJKT+dIW/w6wJ8Ng905RDsO9CziouM7Bxb+rR3k27
+         vOLCn/5z6EB6Ow70PbxMcvQl4FwP8P2S+ohn9DQnCXnrcR49t1xS2j61ROdmrD4Vz+
+         mIuUPiAPX+8rg==
+Date:   Mon, 11 Apr 2022 16:54:52 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router
+ support
+Message-ID: <YlQQBIeM0GZQ6UOE@matsya>
+References: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
+ <20220406161856.1669069-6-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220406161856.1669069-6-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All pin groups function as gpio unless set otherwise. Therefore, remove
-this unnecessary binding.
+On 06-04-22, 18:18, Miquel Raynal wrote:
+> The Renesas RZN1 DMA IP is based on a DW core, with eg. an additional
+> dmamux register located in the system control area which can take up to
+> 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> two different peripherals.
+> 
+> We need two additional information from the 'dmas' property: the channel
+> (bit in the dmamux register) that must be accessed and the value of the
+> mux for this channel.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  drivers/dma/dw/Kconfig       |   9 ++
+>  drivers/dma/dw/Makefile      |   2 +
+>  drivers/dma/dw/rzn1-dmamux.c | 157 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 168 insertions(+)
+>  create mode 100644 drivers/dma/dw/rzn1-dmamux.c
+> 
+> diff --git a/drivers/dma/dw/Kconfig b/drivers/dma/dw/Kconfig
+> index db25f9b7778c..a9828ddd6d06 100644
+> --- a/drivers/dma/dw/Kconfig
+> +++ b/drivers/dma/dw/Kconfig
+> @@ -16,6 +16,15 @@ config DW_DMAC
+>  	  Support the Synopsys DesignWare AHB DMA controller. This
+>  	  can be integrated in chips such as the Intel Cherrytrail.
+>  
+> +config RZN1_DMAMUX
+> +	tristate "Renesas RZ/N1 DMAMUX driver"
+> +	depends on DW_DMAC
+> +	depends on ARCH_RZN1 || COMPILE_TEST
+> +	help
+> +	  Support the Renesas RZ/N1 DMAMUX which is located in front of
+> +	  the Synopsys DesignWare AHB DMA controller located on Renesas
+> +	  SoCs.
+> +
+>  config DW_DMAC_PCI
+>  	tristate "Synopsys DesignWare AHB DMA PCI driver"
+>  	depends on PCI
+> diff --git a/drivers/dma/dw/Makefile b/drivers/dma/dw/Makefile
+> index a6f358ad8591..e1796015f213 100644
+> --- a/drivers/dma/dw/Makefile
+> +++ b/drivers/dma/dw/Makefile
+> @@ -9,3 +9,5 @@ dw_dmac-$(CONFIG_OF)		+= of.o
+>  
+>  obj-$(CONFIG_DW_DMAC_PCI)	+= dw_dmac_pci.o
+>  dw_dmac_pci-y			:= pci.o
+> +
+> +obj-$(CONFIG_RZN1_DMAMUX)	+= rzn1-dmamux.o
+> diff --git a/drivers/dma/dw/rzn1-dmamux.c b/drivers/dma/dw/rzn1-dmamux.c
+> new file mode 100644
+> index 000000000000..5f878a55158f
+> --- /dev/null
+> +++ b/drivers/dma/dw/rzn1-dmamux.c
+> @@ -0,0 +1,157 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Schneider-Electric
+> + * Author: Miquel Raynal <miquel.raynal@bootlin.com
+> + * Based on TI crossbar driver written by Peter Ujfalusi <peter.ujfalusi@ti.com>
+> + */
+> +#include <linux/of_device.h>
+> +#include <linux/of_dma.h>
+> +#include <linux/slab.h>
+> +#include <linux/soc/renesas/r9a06g032-sysctrl.h>
+> +
+> +#define RZN1_DMAMUX_LINES 64
+> +#define RZN1_DMAMUX_MAX_LINES 16
+> +
+> +struct rzn1_dmamux_data {
+> +	struct dma_router dmarouter;
+> +	u32 used_chans;
+> +	struct mutex lock;
+> +};
+> +
+> +struct rzn1_dmamux_map {
+> +	unsigned int req_idx;
+> +};
+> +
+> +static void rzn1_dmamux_free(struct device *dev, void *route_data)
+> +{
+> +	struct rzn1_dmamux_data *dmamux = dev_get_drvdata(dev);
+> +	struct rzn1_dmamux_map *map = route_data;
+> +
+> +	dev_dbg(dev, "Unmapping DMAMUX request %u\n", map->req_idx);
+> +
+> +	mutex_lock(&dmamux->lock);
+> +	dmamux->used_chans &= ~BIT(map->req_idx);
+> +	mutex_unlock(&dmamux->lock);
 
-Tested on UniElec U7621-06-16M on OpenWrt.
+Why not use idr or bitmap for this. Hint: former does locking as well
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
-v2: add "ralink:" to the commit summary
+> +
+> +	kfree(map);
+> +}
+> +
+> +static void *rzn1_dmamux_route_allocate(struct of_phandle_args *dma_spec,
+> +					struct of_dma *ofdma)
+> +{
+> +	struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
+> +	struct rzn1_dmamux_data *dmamux = platform_get_drvdata(pdev);
+> +	struct rzn1_dmamux_map *map;
+> +	unsigned int dmac_idx, chan, val;
+> +	u32 mask;
+> +	int ret;
+> +
+> +	if (dma_spec->args_count != 6)
 
----
- arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts | 12 ------------
- arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts | 12 ------------
- 2 files changed, 24 deletions(-)
+magic
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-index 75f3b0425487..c307a0edb91f 100644
---- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-+++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-@@ -97,18 +97,6 @@ &pcie {
- 	status = "okay";
- };
- 
--&pinctrl {
--	pinctrl-names = "default";
--	pinctrl-0 = <&state_default>;
--
--	state_default: state-default {
--		gpio-pinmux {
--			groups = "uart3", "wdt";
--			function = "gpio";
--		};
--	};
--};
--
- &gmac1 {
- 	status = "okay";
- 	phy-handle = <&ethphy4>;
-diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-index b427ae9e081f..8268d738e74f 100644
---- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-+++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-@@ -81,18 +81,6 @@ &pcie {
- 	status = "okay";
- };
- 
--&pinctrl {
--	pinctrl-names = "default";
--	pinctrl-0 = <&state_default>;
--
--	state_default: state-default {
--		gpio-pinmux {
--			groups = "wdt";
--			function = "gpio";
--		};
--	};
--};
--
- &gmac1 {
- 	status = "okay";
- 	phy-handle = <&ethphy7>;
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	map = kzalloc(sizeof(*map), GFP_KERNEL);
+> +	if (!map)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	chan = dma_spec->args[0];
+> +	map->req_idx = dma_spec->args[4];
+> +	val = dma_spec->args[5];
+> +	dma_spec->args_count -= 2;
+> +
+> +	if (chan >= RZN1_DMAMUX_MAX_LINES) {
+> +		dev_err(&pdev->dev, "Invalid DMA request line: %u\n", chan);
+> +		ret = -EINVAL;
+> +		goto free_map;
+> +	}
+> +
+> +	if (map->req_idx >= RZN1_DMAMUX_LINES ||
+> +	    (map->req_idx % RZN1_DMAMUX_MAX_LINES) != chan) {
+> +		dev_err(&pdev->dev, "Invalid MUX request line: %u\n", map->req_idx);
+> +		ret = -EINVAL;
+> +		goto free_map;
+> +	}
+> +
+> +	dmac_idx = map->req_idx >= RZN1_DMAMUX_MAX_LINES ? 1 : 0;
+> +	dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", dmac_idx);
+> +	if (!dma_spec->np) {
+> +		dev_err(&pdev->dev, "Can't get DMA master\n");
+> +		ret = -EINVAL;
+> +		goto free_map;
+> +	}
+> +
+> +	dev_dbg(&pdev->dev, "Mapping DMAMUX request %u to DMAC%u request %u\n",
+> +		map->req_idx, dmac_idx, chan);
+> +
+> +	mask = BIT(map->req_idx);
+> +	mutex_lock(&dmamux->lock);
+> +	dmamux->used_chans |= mask;
+> +	ret = r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
+
+I guess due to this it would be merged by whosoever merges this api.
+Please mention this in cover letter and how you propose this should be
+merged
+
 -- 
-2.25.1
-
+~Vinod
