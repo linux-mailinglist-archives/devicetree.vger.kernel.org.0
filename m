@@ -2,88 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A73184FBC83
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CED74FBCB8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235616AbiDKMzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
+        id S240003AbiDKNFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 09:05:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231481AbiDKMzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:55:50 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E492733365
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:53:35 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id t1so5163441wra.4
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:53:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=H2Wa14/be/MapqwdEwUDQHMWBsanYigO3XT2Lr6Swoc=;
-        b=K++AZqOu12JXzZwEh27ZnzSiLauYhZ429z4DGGxRxtltLvCIIPB8hbzu20nV3Lf5IE
-         i50tR2SmPpo3vAyoivozenYAKfWdUATC1wpCrn14O4F/6thnVXiLB/4Eergew46a7BlP
-         lA1KhCgyXEtoi/0rmgyS7Aco5A3slPKfo5bhMEooe72KmRbJfBcm73Jd8YIfvHQIijJ6
-         Ea1xHzXEFjb0Ym+EufbtDsAKYApeaImPJiL0Rj7GYibVhA0jpveCDpOE+u8I5tJte2cU
-         fQFk96Ksyn6eLgR6UbCKb1HKxo+zjw1enMfdQVuIszqYUytCrzC9CbPKYI1xrDChKqml
-         cExw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=H2Wa14/be/MapqwdEwUDQHMWBsanYigO3XT2Lr6Swoc=;
-        b=ZTULDrcLWIbH0q6n1fzAwEQE/VfmvuSHBsUUI8YC5iw1eAydMOR7OcLst7WANaT/Fd
-         LkIzQVtCSc7ScKlMA4mUsRHLGzkaFxA0MrctYaVtbzluRUXxViLwNW70VCJ3FnplzoHQ
-         jvTjYGlCJf//dGYbGPp0drTz752urvyt/nBPm49LUyeX5JobU++fXk2GlHrneHrPXTw0
-         5N63Y9Z+sK7FqPisQE0CnJ9xinWVNcuDpoM5aYgCK5uMePTGE9ux0g9JOGp8I1w1OXep
-         7Krl+yHIlhANh/tvtDHNcgT9pzUhYs4UMNl9Jfb15l+mW/q5hvWdKXh1w4xuXd4QpvE9
-         fFYg==
-X-Gm-Message-State: AOAM532lPz9wW73Ti4RRWB6Zl6heLJ/gG0x43g6+zW+aQ6FNkrzJdlU6
-        6s0WE0ZuYx5YLfOEeDuv5s8kHQ==
-X-Google-Smtp-Source: ABdhPJyKHLzX422TghnhzNrWqsYIgexNfpxMzJ6eMiGfRQI2foPOm76YuWIKjNXyDCksYKZV0Ft/XQ==
-X-Received: by 2002:a5d:6b0b:0:b0:1ef:d826:723a with SMTP id v11-20020a5d6b0b000000b001efd826723amr25713546wrw.420.1649681614311;
-        Mon, 11 Apr 2022 05:53:34 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:d1:e096:d183:1bc5])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b0038cb8b38f9fsm18613040wmq.21.2022.04.11.05.53.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 05:53:33 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson: alpa sort the board Makefile
-Date:   Mon, 11 Apr 2022 14:53:31 +0200
-Message-Id: <164968160694.932109.7341549191882617182.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220409064257.24453-1-christianshewitt@gmail.com>
-References: <20220409064257.24453-1-christianshewitt@gmail.com>
+        with ESMTP id S234731AbiDKNFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:05:47 -0400
+Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31114120AA
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 06:03:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1649682212; x=1681218212;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=GonxJXSP5Jp3Xd7YM5AlvcGjeaM6Z6X6GgWrsHdG9Yw=;
+  b=NaXIs+vEhDp0Zfv2+MjOgoqMkdAhAq9Kf4RUAIr1R48rxGD5t42l/ZbJ
+   C3pW81JESXGCpgE1JUMD/21I+5l4iWyIxmMgXU4BaDc6wotxk5cE2q9LA
+   ifwW8PzRCzaxhhXjG3B/0iaSfKNqtUGqRm/NwNUWmP2UdABfU3GhgrUSN
+   1xaKfw72CghDGUYJoiiJpLUMDkBPECRjpK18Kd3Rf0dKUFHWGxheL1OVw
+   COKNvrgADaoNWNILEHTwqJFrmXqnVkyd+mK8mk4UXOJz5XYV/N6f1/9Zy
+   bvBWp8tyCfA/wU815PKgOTI267S40Ypefahn/SA4qujridzglTi+k5fJU
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,251,1643644800"; 
+   d="scan'208";a="198525878"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 11 Apr 2022 21:03:31 +0800
+IronPort-SDR: YXuXJZwjo1V4ZETbeSnMKA/zfHzS/BsoXZLhiVd1THOEUd5pVzQ19Fld4ZwQVcTzJjvmOZxbvA
+ VyxrBWCPCv2SPbDgAa6SqNBOHDa04yB133zPvLFukranjgC9ZTKhrDvcXfT5zr/o90abhmuPM+
+ 4vlVEDWcocgOKKmIegIoQA2d1Mmkb0+/NdtosXJNbV4XEXss0hXiBeowfEHAseWwM8ltuvKj6R
+ 2rT+KFxMDoDCFl4WAjtGEmZnb0QXyeQI3+f1otMJMz2w8J1f+FkNoICK8WzBFi2t0OaEpGCL2p
+ /Km+mWcxxwroMWhqhwhIuXch
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 05:34:48 -0700
+IronPort-SDR: 9FgtJcyg//lR1ewsGTiB7qtiF78yR6r/tPrM5Lyk255zCmT9hytMjGOimFI+f2TM2BuV5IQNbE
+ hDCls/C3BmNoYG4vTvQVeRQT1P1RhI/dIxI4gbRYyntuRRZRAZwTfQC+TjMOQH5WkaVqQw0erq
+ sFQswl8Bth27rCpE2qGoj0PmBWhYJDRQaA0UQOxOzicH5oWbweYj0P3MmKpak5BYI67WRSf/kf
+ DgeAEBNYfHfgJSxnE1MFifaxVNNwnjvS1MmQDSSkiZnlWVWG84ZZfRaT/Q2BxiBy9gmnOitFs3
+ ZIk=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 06:03:32 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KcTYt6D7Mz1SVp2
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 06:03:30 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1649682210; x=1652274211; bh=GonxJXSP5Jp3Xd7YM5AlvcGjeaM6Z6X6GgW
+        rsHdG9Yw=; b=uOG3e7awlyrhX10tYSqVxTqB52BuS6mHzh9d9Fw8N3z1pJ2MJOb
+        6en0NLwtDpvYkwtSOt4ypp6WMh0NyJB2Ux5EnMb9LVDLvDlQT5ttcscr7lEOFe4/
+        9osknsfdRqwhNKGkUkEz35M7K3VTddIE+7BRxt2NXPzSYE64IAb9+assY+K5XDEr
+        P3k2wj0Zj/aEm4B31udF1UxxZjlzLfRKMTYjsdJcpuDW9Vla2ke7QfMyqcw9tA51
+        sSZAtM5W3yB7MK+LTAVm2RHUmZAzOUOg6p9V/4JiP2+F5B3FYPTFLdLISryRlQih
+        4/ief4Fg4713T2aNFj9KoPMLB38BkSa1lFA==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id yiKz_y1NTWKf for <devicetree@vger.kernel.org>;
+        Mon, 11 Apr 2022 06:03:30 -0700 (PDT)
+Received: from [10.225.163.9] (unknown [10.225.163.9])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KcTYr3pcLz1Rvlx;
+        Mon, 11 Apr 2022 06:03:28 -0700 (PDT)
+Message-ID: <382133db-7a90-6092-d3cc-3c4f5d851838@opensource.wdc.com>
+Date:   Mon, 11 Apr 2022 22:03:27 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 17/21] ata: ahci: Add DWC AHCI SATA controller support
+Content-Language: en-US
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324001628.13028-18-Sergey.Semin@baikalelectronics.ru>
+ <2f873143-eb45-e652-063d-615d63055401@opensource.wdc.com>
+ <20220411124126.wnfykivcvtllyua6@mobilestation>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20220411124126.wnfykivcvtllyua6@mobilestation>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 4/11/22 21:41, Serge Semin wrote:
+> I beg your pardon what convention? Is it defined in someplace of the
+> subsystem docs? If it's not then how should I know about that? These
+> are the device-specific macro. The static methods below are also
+> platform-specific and the standard kernel coding style doesn't specify
+> any rule about that. Moreover the most of the AHCI glue drivers (LLDD
+> like ahci_mtk.c, ahci_ceva.c, ahci_brcm.c, ahci_st.c, ahci_tegra.c,
+> ahci_xgene.c, etc) use the same prefixing style as I do here. Finally
+> the prefix reflects the actual device name "DWC AHCI". So if there is
+> no subsystem-specific restrictions I normally define the prefix in
+> that order for the sake of the clarity.
 
-On Sat, 9 Apr 2022 06:42:57 +0000, Christian Hewitt wrote:
-> Let's alpha-sort the board Makefile to keep things organised.
+Look at how other ahci drivers have named things. That's the "convention"
+I am talking about. Most of them name things ahci_xxx_... Same for macros.
+
 > 
-> 
+> Note I don't mind to convert the code to being the way you ask, but if
+> it's really the AHCI-specific codying style convention then it would be
+> very useful to have it described/advertised in some place in the
+> kernel so to know about that beforehead for the developers reference.
+> So do you insist on switching the words order in the names prefix here?
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
+It is nice to have code consistency in the naming. That always facilitate
+grepping the code.
 
-[1/1] arm64: dts: meson: alpa sort the board Makefile
-      https://git.kernel.org/amlogic/c/456733feb0da2dbb1288b9e8f5765df163620c2c
 
 -- 
-Neil
+Damien Le Moal
+Western Digital Research
