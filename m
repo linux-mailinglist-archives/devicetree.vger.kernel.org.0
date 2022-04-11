@@ -2,89 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 594F34FBA92
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B9CE4FBAA3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244120AbiDKLNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 07:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43776 "EHLO
+        id S235188AbiDKLQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 07:16:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346023AbiDKLNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:13:00 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2173BE34;
-        Mon, 11 Apr 2022 04:09:52 -0700 (PDT)
-X-UUID: 4d1ee65a5a024114b512a6064079f27b-20220411
-X-UUID: 4d1ee65a5a024114b512a6064079f27b-20220411
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1431660548; Mon, 11 Apr 2022 19:09:46 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 11 Apr 2022 19:09:45 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Apr 2022 19:09:44 +0800
-Message-ID: <5c6dc5ed28c64f62b66e7b68b54c342b63e42d42.camel@mediatek.com>
-Subject: Re: [PATCH V2 15/15] cpufreq: mediatek: Use device print to show
- logs
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-CC:     <rafael@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
-        <roger.lu@mediatek.com>, <hsinyi@google.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 11 Apr 2022 19:09:44 +0800
-In-Reply-To: <20220411032922.yj4p42is5ky6bgau@vireshk-i7>
-References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
-         <20220408045908.21671-16-rex-bc.chen@mediatek.com>
-         <20220411032922.yj4p42is5ky6bgau@vireshk-i7>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229625AbiDKLQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:16:01 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FAE513D;
+        Mon, 11 Apr 2022 04:13:48 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id D0AEF1F4023C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649675626;
+        bh=qXNSUAatAu+49KD5X1wMrep6ovWzzUkN4hPQhFlLpHo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IVYZr2Lw1IHAxdafW4UAznDuUStmuDMak/mGVhX2OPQBC97OvReLzXM7w6GjTI4od
+         ujm+N0VxeBYFIU37jqFRai/sKBgAnp3ecq7ztk65C5WTeXu1vhMhXVibxY1ge2fTQC
+         mLFHwgqKOotEr+6M4xTsLIlBfRfVQhyjXOm7VGHeKrWnfY+tWwJWirBytngkrbBn0g
+         pBeOSKsVKdbuQSxyA1p8ayMTouZpGU1nODpAow528sWt/4izxgd+6O3DkIvzS9Hb/0
+         hyeyiMdRtIXFek7ZljMoOK5eQ3wl4ymhy/sxJfgGCF7HgtH/u3/te7qSBOKFU1ILKD
+         Sp1HIRmWKllCw==
+Message-ID: <c3e6a50f-c098-5165-a596-ee386ac533e8@collabora.com>
+Date:   Mon, 11 Apr 2022 14:13:43 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v6 1/4] memory: tegra: Add memory controller channels
+ support
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        krzysztof.kozlowski@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220406052459.10438-1-amhetre@nvidia.com>
+ <20220406052459.10438-2-amhetre@nvidia.com>
+ <3bbbffff-6aa3-7068-6f0c-4372d53daf94@gmail.com>
+ <ba28886f-be5d-9ab2-41d0-942609934263@nvidia.com>
+ <0ce65e42-6567-9fd5-d959-3bc5aa0457eb@collabora.com>
+ <16d5c86b-cb04-5f57-7923-724850ce2633@nvidia.com>
+ <185f72b6-e6a1-3062-5f36-864973d12ec5@collabora.com>
+ <3414a89d-bb80-ec89-3605-e435c7656321@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <3414a89d-bb80-ec89-3605-e435c7656321@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-04-11 at 08:59 +0530, Viresh Kumar wrote:
-> On 08-04-22, 12:59, Rex-BC Chen wrote:
-> > Replace pr_* with dev_* to show logs.
-> > 
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  drivers/cpufreq/mediatek-cpufreq.c | 41 +++++++++++++++++---------
-> > ----
-> >  1 file changed, 23 insertions(+), 18 deletions(-)
-> 
-> One should always arrange the patches in this form:
-> 
-> - Fix bugs first (since they need to be applied first and need to go
->   to stable kernels too).
-> 
-> - Trivial fixes next, like this one which you chose to be present at
->   15/15. I would have applied this one right away, if it wasn't he
->   last one, because of which we have conflicts now.
-> 
-> - Non-trivial patches later, so reviews on them don't affect other
->   patches.
-> 
-Hello Viresh,
 
-Thanks for your review and suggestions.
-I will put this patch to first in next version.
+On 4/11/22 12:18, Ashish Mhetre wrote:
+> 
+> 
+> On 4/11/2022 1:05 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> On 4/11/22 10:28, Ashish Mhetre wrote:
+>>>
+>>>
+>>> On 4/11/2022 12:03 PM, Dmitry Osipenko wrote:
+>>>> External email: Use caution opening links or attachments
+>>>>
+>>>>
+>>>> On 4/11/22 09:05, Ashish Mhetre wrote:
+>>>>>
+>>>>>
+>>>>> On 4/10/2022 7:48 PM, Dmitry Osipenko wrote:
+>>>>>> External email: Use caution opening links or attachments
+>>>>>>
+>>>>>>
+>>>>>> 06.04.2022 08:24, Ashish Mhetre пишет:
+>>>>>>> +     num_dt_channels =
+>>>>>>> of_property_count_elems_of_size(pdev->dev.of_node, "reg",
+>>>>>>> +                                                       reg_cells *
+>>>>>>> sizeof(u32));
+>>>>>>> +     /*
+>>>>>>> +      * On tegra186 onwards, memory controller support multiple
+>>>>>>> channels.
+>>>>>>> +      * Apart from regular memory controller channels, there is one
+>>>>>>> broadcast
+>>>>>>> +      * channel and one for stream-id registers.
+>>>>>>> +      */
+>>>>>>> +     if (num_dt_channels < mc->soc->num_channels + 2) {
+>>>>>>> +             dev_warn(&pdev->dev, "MC channels are missing, please
+>>>>>>> update memory controller DT node with MC channels\n");
+>>>>>>> +             return 0;
+>>>>>>> +     }
+>>>>>>> +
+>>>>>>> +     mc->bcast_ch_regs =
+>>>>>>> devm_platform_ioremap_resource_byname(pdev,
+>>>>>>> "mc-broadcast");
+>>>>>>> +     if (IS_ERR(mc->bcast_ch_regs))
+>>>>>>> +             return PTR_ERR(mc->bcast_ch_regs);
+>>>>>>
+>>>>>> Looks to me that you don't need to use
+>>>>>> of_property_count_elems_of_size()
+>>>>>> and could only check the "mc-broadcast" presence to decide whether
+>>>>>> this
+>>>>>> is an older DT.
+>>>>>>
+>>>>> Now that we are using reg-names in new DT, yes it'd be fine to just
+>>>>> check mc-broadcast to decide it's a new or old DT.
+>>>>>
+>>>>>> mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev,
+>>>>>> "broadcast");
+>>>>>> if (IS_ERR(mc->bcast_ch_regs)) {
+>>>>>>            dev_warn(&pdev->dev, "Broadcast channel is missing, please
+>>>>>> update your
+>>>>>> device-tree\n");
+>>>>>>            return PTR_ERR(mc->bcast_ch_regs);
+>>>>>> }
+>>>>>
+>>>>> return 0;
+>>>>>
+>>>>> to avoid DT ABI break, right?
+>>>>
+>>>> Yes, it should be "return 0".
+>>>
+>>> But if we "return 0" from here, then what about the case when ioremap()
+>>> actually fails with new DT i.e. when broadcast reg is present in DT?
+>>> In that case error should be returned and probe should be failed, right?
+>>
+>> You should check for the -ENOENT.
+> 
+> I checked __devm_ioremap_resource(), it returns -EINVAL if given
+> resource is not present. So should we check for -EINVAL instead?
 
-BRs,
-Rex
-
+Yes
