@@ -2,84 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD624FBC58
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D13E4FBC74
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241197AbiDKMpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:45:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34686 "EHLO
+        id S1346233AbiDKMxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:53:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240146AbiDKMpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:45:24 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF3041319
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:43:10 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:b509:6862:2557:437a])
-        by albert.telenet-ops.be with bizsmtp
-        id HQj7270041G7NMJ06Qj7vf; Mon, 11 Apr 2022 14:43:08 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ndtNq-000AQ1-Hv; Mon, 11 Apr 2022 14:43:06 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ndtNp-009IwF-Ts; Mon, 11 Apr 2022 14:43:05 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-ide@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marian-Cristian Rotariu 
-        <marian-cristian.rotariu.rb@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] dt-bindings: ata: renesas,rcar-sata: Add r8a774e1 support
-Date:   Mon, 11 Apr 2022 14:43:05 +0200
-Message-Id: <5861565a79a2bdadc07ae84e23e6d96dbb764823.1649680949.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1346241AbiDKMw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:52:58 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D4539148;
+        Mon, 11 Apr 2022 05:50:42 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id i7-20020a1c3b07000000b0038eb92fa965so465752wma.4;
+        Mon, 11 Apr 2022 05:50:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=zTnB8WVccOxUVDlUw5vkzXtIzU9nDF4JTc2pabtWMf0=;
+        b=Ow6nqERzOTHAiBNIYzqMqGmV0QACJectDUyZxykLB3WPWHQoqVu6oMf5dgYlB5yM99
+         QzHVab1Xzpcgo+vpJ/ExZwp9EAoBasEx6FislnCKkPyKhUegue1meYWecROWs6Z/bpnj
+         BQS1l5zBed6u8ACRiXHZDJU4VjmDS8QhrGhQb3Y6Ak75hbju+TBH2SGV0wyzLs8UnX8Q
+         nvN88Oi8op54vV8T2sg2Xxhi8EhqMVPOrlZYUTf7URMv8fPnSIfvQ/NLHKnns48PET61
+         P/af+TAI388jzBXqkoSfSqObwIDpTQPDAE55IriOTkH2K4/LsUkcwc/J+s0W9te46M+K
+         DpHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=zTnB8WVccOxUVDlUw5vkzXtIzU9nDF4JTc2pabtWMf0=;
+        b=ATyUHtAVsIwLDkI8AONMDhNyI5hLerfrVmytr0EDyvFlWpjbX3ecX66cRfJFxC+Aso
+         DyFpDhr+WEzyEjCgVLY95bOrqqrBEW4+egJRorCGUT6FwzaFtXnhvS0UAg1XWIYCyZL9
+         khzt0WgEn5Lzgthl0IpDHzw5db6C0m54VPOBOhbIXnrSNKxaJllm8ysl0FuI2/g63CdT
+         om5ztM3ytCCKhm7UqncyosLrWQcfzd5pClJAetcW1+sqol2FrNbh3IQbA73Bi8dU7t/h
+         dC5jvv0m3h6oKppB4lH4kBj5qUyY+1ml/O7C+M5ViyMW3515N2obyzXdRSkFQhAeAvK/
+         eZ0w==
+X-Gm-Message-State: AOAM530pHxkHGV3rxub4oCl3CzNi3ejsTWXYIKWJV6VqPpdMXcaW70CW
+        NbDdVmcXEFHus3fsP2RKaYk19Hay3XGmTWePlG6QC5puK/FjUw==
+X-Google-Smtp-Source: ABdhPJwG4G3zEORHuTwL3nQcZeDB02FKrleXGHEgcEVZHpzO0DXU0ndza+T2nBeRLrzTHz6yF3gZZRLz/Ei3XHs/mkU=
+X-Received: by 2002:a05:600c:6020:b0:38e:c006:f55f with SMTP id
+ az32-20020a05600c602000b0038ec006f55fmr1858651wmb.123.1649681440479; Mon, 11
+ Apr 2022 05:50:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220407082148.571442-1-gengcixi@gmail.com> <20220407082148.571442-3-gengcixi@gmail.com>
+ <20220410171020.4fb2a894@jic23-huawei>
+In-Reply-To: <20220410171020.4fb2a894@jic23-huawei>
+From:   Cixi Geng <gengcixi@gmail.com>
+Date:   Mon, 11 Apr 2022 20:50:04 +0800
+Message-ID: <CAF12kFsvmaAbpVQSRLcCk8wVzvEVX3bovTGCnnMjMm6nT_O53Q@mail.gmail.com>
+Subject: Re: [PATCH V3 2/7] iio: adc: sc27xx: fix read big scale voltage not right
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        =?UTF-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
+        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Document SATA support for the RZ/G2H SoC, no driver change required.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
----
-v2:
-  - Add Acked-by.
----
- Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-index c060c7914cae6573..c4e4a9eab658056d 100644
---- a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-+++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-@@ -26,6 +26,7 @@ properties:
-       - items:
-           - enum:
-               - renesas,sata-r8a774b1     # RZ/G2N
-+              - renesas,sata-r8a774e1     # RZ/G2H
-               - renesas,sata-r8a7795      # R-Car H3
-               - renesas,sata-r8a77965     # R-Car M3-N
-           - const: renesas,rcar-gen3-sata # generic R-Car Gen3 or RZ/G2
--- 
-2.25.1
-
+Jonathan Cameron <jic23@kernel.org> =E4=BA=8E2022=E5=B9=B44=E6=9C=8811=E6=
+=97=A5=E5=91=A8=E4=B8=80 00:02=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Thu,  7 Apr 2022 16:21:43 +0800
+> Cixi Geng <gengcixi@gmail.com> wrote:
+>
+> > From: Cixi Geng <cixi.geng1@unisoc.com>
+> >
+> > Fix wrong configuration value of SC27XX_ADC_SCALE_MASK and
+> > SC27XX_ADC_SCALE_SHIFT by spec documetation.
+> >
+> > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> > Reviewed-by: Baolin Wang <baolin.wang7@gmail.com>
+> Fixes tag?
+Fixes: 5df362a6cf49c (iio: adc: Add Spreadtrum SC27XX PMICs ADC support)
+> No need to resend for this though, just reply with the appropriate
+> tag so when I use b4 it'll be picked up.
+>
+> Thanks,
+>
+> Jonathan
+>
+> > ---
+> >  drivers/iio/adc/sc27xx_adc.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.=
+c
+> > index 00098caf6d9e..aee076c8e2b1 100644
+> > --- a/drivers/iio/adc/sc27xx_adc.c
+> > +++ b/drivers/iio/adc/sc27xx_adc.c
+> > @@ -36,8 +36,8 @@
+> >
+> >  /* Bits and mask definition for SC27XX_ADC_CH_CFG register */
+> >  #define SC27XX_ADC_CHN_ID_MASK               GENMASK(4, 0)
+> > -#define SC27XX_ADC_SCALE_MASK                GENMASK(10, 8)
+> > -#define SC27XX_ADC_SCALE_SHIFT               8
+> > +#define SC27XX_ADC_SCALE_MASK                GENMASK(10, 9)
+> > +#define SC27XX_ADC_SCALE_SHIFT               9
+> >
+> >  /* Bits definitions for SC27XX_ADC_INT_EN registers */
+> >  #define SC27XX_ADC_IRQ_EN            BIT(0)
+>
