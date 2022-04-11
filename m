@@ -2,163 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5A424FBFED
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7030A4FC03B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347598AbiDKPNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:13:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43682 "EHLO
+        id S234271AbiDKPVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:21:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347657AbiDKPNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:13:22 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8B731524
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 08:11:07 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id k23so31530278ejd.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 08:11:07 -0700 (PDT)
+        with ESMTP id S244274AbiDKPVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:21:19 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0F8F136;
+        Mon, 11 Apr 2022 08:19:02 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id r13so31628537ejd.5;
+        Mon, 11 Apr 2022 08:19:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
-         :subject:references:in-reply-to;
-        bh=pCJjCOYD1pHvTfEkVbYg6ajc5I2hvGHciFb/sFyrlHY=;
-        b=gpXKT43tqtGTzEZYyVUu+KoI+Ti3B/PxcwEDJCLsPuyjVj05Rp2kVeLH4lDKz/v0IQ
-         FGC2lHgJcmFoDsWBaFhXQ6E805MJtsOtjLVLztpZo6cHtyHOb9Vb31mGUxRZJP0V4NM7
-         5dja41jjOCCg9xz49t+W/PIxhhuhBPAFHAzqgM3iRRXbN0dj5gH2/aofGsZgH0fOyjak
-         E0aOHfu7ip8UebMzNLGB9+XC8Gw7BZNP+VyQlD98g5X+dd4zFpG3dF4iNv4OGnM302vf
-         5VncVzRR6K2zlVASr9C7gH840TYvI6RvoB/T5AumJobdDYS7fdD7FzFGQGXcfQZMi83A
-         lUMQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fej47CfixVgPG/8tAe3B68WAc9QzMj+LhfE1bf6mdHc=;
+        b=jD9MaBAIHx7E4aQHXu/BECkBObNtPbqFVEY9DF0mITyo+lkTI/fnGWkGJ/1BL+Gd4V
+         +tf/gFyTMBVLefBt+Jiy87iLc/GFyKWbPCvUUfr3YQuY3VHUzoWygchl5F4A2MQh2rZQ
+         iEjb7Ud1HMoayECdcHLn/eYbJ/qsaxEvc2kAujKqz2r4aFGF8ubWwUq/JS6QhU08MMmd
+         q4tLWyE9vtitTttFJXG6ZjAx9zAt/J4jU9iU0kuSD03+fdPx0AQOI5lTiFzZWwVxwy+E
+         xW3YlUSvtXo6zDtTJ0Sf6qNebJgGea2i+8p17GhGb3j2UhmcuVN0nOG7QudVBFIr5pm9
+         4AoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:from:to:cc:subject:references:in-reply-to;
-        bh=pCJjCOYD1pHvTfEkVbYg6ajc5I2hvGHciFb/sFyrlHY=;
-        b=x56o8v7juBo1jzShgsLzV6ehfcsjkYgy99aXe/H1mchmmbu+7F4tFkoyJEbVACQHax
-         +CWI2na/GdJRAGseGxoTvGQD/VHhlHLUtPgo7U3zDiRrqzGcC0HLskYVHA72P+5FopEf
-         ouQ82Xfic06Ol68Z1b2E27P9Jqs44qEyq5v+AP8wAtO1lWRfCWfRGH3g0xsD5vQHwMDV
-         Cbk8ftVuHgphvx/48r3wMgZ05tbg6hlB7W4osvXKBVhE19j1lWrqopaRlaCaECQWdz91
-         MJAPh9JgmmIkQj8FBDFoKSWQHRBDpCtHL/ydvHIpzwJE1pj/YwmjpMbT0TeZFAYXIInk
-         jyvA==
-X-Gm-Message-State: AOAM530n5bxazFW6NPjjkvOEB2Y+2AP4yuxPivTh/DlzJUe9QKHS0lap
-        g/Ww47rwpblWoHJIrLPkdE15MA==
-X-Google-Smtp-Source: ABdhPJwLC6bUCnaIFc6oW/Xq/0xCuw+godnXoSeE5FChrONf7ocIGLASLvPmRetx5nLXf3Im5q8Plw==
-X-Received: by 2002:a17:907:9803:b0:6db:ab21:738e with SMTP id ji3-20020a170907980300b006dbab21738emr29228455ejc.112.1649689865639;
-        Mon, 11 Apr 2022 08:11:05 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id x17-20020a170906297100b006e49a9535f3sm12047743ejd.114.2022.04.11.08.11.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 08:11:04 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 11 Apr 2022 17:11:04 +0200
-Message-Id: <CJ7I91AXGGCE.24GR11X2CBJ2J@otso>
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        <linux-input@vger.kernel.org>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>,
-        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
- haptics
-X-Mailer: aerc 0.9.0
-References: <20220408115311.237039-1-luca.weiss@fairphone.com>
- <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
- <CJ79EIW9Z89J.YZTZ6AU91TGE@otso>
- <60402ff3-db73-5fc0-bc2a-942d664085ec@linaro.org>
-In-Reply-To: <60402ff3-db73-5fc0-bc2a-942d664085ec@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fej47CfixVgPG/8tAe3B68WAc9QzMj+LhfE1bf6mdHc=;
+        b=aeBxXe9XWC0zwvPc+W3g5uJbMmAp6kF87XjpfoKRGE7SElKrNzv0NVKOso3XHJ+/vX
+         KIRA6nvx20hAwus+F16+oZxB2t9YWg7qVTSCgl2dAFcBf9vqDnIReKJ12lm+SOXcLy3U
+         /OdHSQXPgcTod/Ey+rXt5u8ZvZubBKrfjDL7fTOez8JEhuo5HQqEmvzW9byKAdCQD3nf
+         onUfzxotYwL5/0Q23tWXCz/b68uG9u5hluTdx1O6GytIAda7GcYrZgwMhKEopRGdpKu0
+         fwmkMtwU45fgqw6YAX8L3UJolNZZ/nTTnVEL6X51dlg4z0GGwy9FslmFBvGVaBygyt1S
+         xtDA==
+X-Gm-Message-State: AOAM533wy8Zc4VZ83WFHe/fAPTfWXkNcrjyH5vieN27zD1fdYafCjNpd
+        Ah7kwkuKBr7zeJfoAowAFYzCi26wOu9FVDN+dNk6V+xgqXw=
+X-Google-Smtp-Source: ABdhPJy+ii2nkk759zthtMe3RU2DqWHDHIqPX16lClgCQ18ZzQ5HFYN8xZzKc4Xaq3XAWkbK9F4qIhNPm6K1PIT6Gs8=
+X-Received: by 2002:a17:907:724a:b0:6e8:4f12:b6fd with SMTP id
+ ds10-20020a170907724a00b006e84f12b6fdmr14444674ejc.198.1649690340917; Mon, 11
+ Apr 2022 08:19:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220410193544.1745684-1-aford173@gmail.com> <6c4b6eac-86d8-eb93-37a5-d0fa9bf2a7d2@linaro.org>
+In-Reply-To: <6c4b6eac-86d8-eb93-37a5-d0fa9bf2a7d2@linaro.org>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 11 Apr 2022 10:18:49 -0500
+Message-ID: <CAHCN7xKpoCrLgFfM30ZgYCgTan7FymhopcMQE0=VkzNuYryu9w@mail.gmail.com>
+Subject: Re: [PATCH V4 1/3] dt-bindings: mmc: imx-esdhc: Update compatible fallbacks
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Mon Apr 11, 2022 at 2:52 PM CEST, Krzysztof Kozlowski wrote:
-> On 11/04/2022 10:15, Luca Weiss wrote:
+On Mon, Apr 11, 2022 at 1:42 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> (...)
+> On 10/04/2022 21:35, Adam Ford wrote:
+> > The SDHC controller in the imx8mn and imx8mp have the same controller
+> > as the imx8mm which is slightly different than that of the imx7d.
+> >
+> > Using the fallback of the imx8mm enables the controllers to support
+> > HS400-ES which is not available on the imx7d. After discussion with NXP,
+> > it turns out that the imx8qm should fall back to the imx8qxp, because
+> > those have some additional flags not present in the imx8mm.
+> >
+> > Mark the current state of the fallbacks as deprecated, and add the
+> > proper fallbacks so in the future, the deprecated combination can be
+> > removed and prevent any future devices from using the wrong fallback.
+> >
+> > Suggested-by: haibo.chen@nxp.com
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
 >
-> >>> +  awinic,f0-detection-play-time:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Drive waveform play times in the first period in th=
-e f0 detection
-> >>
-> >> Use standard unit suffixes for known units (e.g. time).
-> >=20
-> > While the datasheet doesn't mention any time unit, the value is used to
-> > calculate the f0_trace_ms variable (which is milliseconds) but the
-> > result also depends on the awinic,f0-preset value, so it's not a raw
-> > time value.
 >
-> I see, ok.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
-> >=20
-> >>
-> >>> +
-> >>> +  awinic,f0-detection-wait-time:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Waveform wait times in the f0 detection
-> >>
-> >> Ditto.
-> >>
-> >>> +
-> >>> +  awinic,f0-detection-repeat:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Repeat times in the f0 detection
-> >>> +
-> >>> +  awinic,f0-detection-trace:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Drive waveform play times in the second period and =
-later in the f0 detection
-> >>> +
-> >>> +  awinic,boost-debug:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> >>> +    minItems: 3
-> >>> +    maxItems: 3
-> >>> +    description: Values for BSTDBG1-3 registers
-> >>
-> >> Do not encode device programming model (registers) into the binding. Y=
-ou
-> >> need to define it as a property related to hardware itself, not its
-> >> registers (e.g. boost value in mV).
-> >=20
-> > Unfortunately I couldn't figure the meaning for this and the two values
-> > below.
-> >=20
-> > The datasheet doesn't mention these registers at all and the downstream
-> > driver doesn't do anything meaningful with them (other than setting the=
-m)
-> > nor has any comment to indicate what they do.
-> > In the datasheet there's only BSTDBG4 mentioned where bits [5:1] mean
-> > PVDD output voltage setting so for these registers it could really be
-> > anthing :(
-> >=20
-> > Maybe someone with more knowledge about LRAs might be able to decipher
-> > what tset and r_spare is at least? I unfortunately didn't manage.
->
-> Do you have to define them in such case in DT? Maybe it should be part
-> of driver?
-
-As these parameters are part of the dts downstream, I assume they differ
-per board or actual LRA used.
-
-But I also found other downstream dts examples on github (e.g.
-awinic,aw8697_haptic) and they also seemed to use the same values for
-these couple of registers (r_spare, tset and bstdbg). Maybe I can gather
-more info but it's unlikely I'll be able to get a concrete answer..
-
-Regards
-Luca
+Thanks for the help and guidance.  I always seem to struggle with the
+YAML syntax.
 
 >
 > Best regards,
 > Krzysztof
-
