@@ -2,117 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9100B4FBB73
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:58:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9D64FBB77
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244478AbiDKMA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60400 "EHLO
+        id S245019AbiDKMBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244459AbiDKMA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:00:28 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 946C743AEE
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:58:13 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id b21so26185857lfb.5
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:58:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JERDklzk6s2PPnC39j7OE/TDaMRzZiYeptCBbWpUsQY=;
-        b=kGfoP7QX0DheOWSDXhB0V0+uy/TMBASl387iU1f1T4I8HFCyKFJATC6+1RSOFkuggF
-         +1IesTEfHM5cALAlib9tDK/NEPq7zlVpNCrfFRi1RgFkaQakLTl9VFe0zQ5EGFKhGDW2
-         4STVo5Fc52Gkqu/ymGeQeHF8ihJmdpEDald4qntioc3Lpl3x6e5LgNqPN1Nb5efHAoY0
-         sdm8aMhplI8VvGdh+/B3S7ZCBul8kChuwSheR1bTZ9OfgKfiUHRVgWja0lTFO9x04u3O
-         eovfMzwIp9GgNx5wS6dA4UkpNPfyZg6XdyPAm+Wyzaa7+Uuj2JrWB2iXy02eprAABVSS
-         bEcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JERDklzk6s2PPnC39j7OE/TDaMRzZiYeptCBbWpUsQY=;
-        b=glOHleeTX87dXXcTPDO1ytxtvwVE0A86N5BGmMcWObtslTXUJADd4CNU5iCcTcabH5
-         zgUhK/8Kmk/MWBKI3Sazh2B/EfZvmBE53nSolxZwjHVJtbQar5LYVfO4VtAwWber+HpX
-         3c7vzt4hMJrbpZL9zC1WpxVZ1VBx8C/4HrZOjFbuvvn7k1/W7uyS+9F2U/H2xsNMxMYC
-         D6X9SkViRdnOqk14k4y56MHf4aUoOG9pFYeg9wtTt0vJ3s2U1wRz3XwgYmMPD6FOPkiV
-         UJs+rT5JENelfDm9nLS9nXDbi+MFol1QgaOvUszEd4CDo7uU6gyAFy6QIQTdeR/12Vas
-         eKvQ==
-X-Gm-Message-State: AOAM530mJt47t9lcg4uIYbThbFwV5EkOf+P9fM25n19qlvEXXZwIG3z5
-        Rmv4rq4O4+R88+rSp/hClA8DTqrON2bucQ==
-X-Google-Smtp-Source: ABdhPJxqmO23mZBG4CwQbUtvXHX2UkcmmekWE4l7sENTYkqPXLSAV2nDGOrXYXyiDfd3gVSTkwDJFw==
-X-Received: by 2002:a05:6512:1045:b0:44a:6422:4c8 with SMTP id c5-20020a056512104500b0044a642204c8mr22075360lfb.253.1649678291767;
-        Mon, 11 Apr 2022 04:58:11 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id p7-20020ac24ec7000000b00443d65ea161sm3314171lfr.291.2022.04.11.04.58.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 04:58:11 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S231547AbiDKMBk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:01:40 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7351E1AD92
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:59:27 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id BD91C320208F;
+        Mon, 11 Apr 2022 07:59:25 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Mon, 11 Apr 2022 07:59:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1649678365; x=1649764765; bh=0qJaiZk6qA
+        srEaDmTUAGx++TIqfK79p9zce7kcZU8lk=; b=c8ZfBNdbOZ7JWXONVaRAFIwRJ0
+        IAZwVz9BvCu5buQAisI+tOp73hcSH7CKMB7qZq7C29xg0Y/+Ixntr3r3bnW4EF6Z
+        WO2X2LT+E4FCGlTIPeuPeXoWn09HGxwg6u1b/XTrCw7EAx9bFcgqqFElwceF9rsE
+        PjvF5mcc9oJcf/UQZFtNABpDDrZIfK4kaRjnwUE5Q0/DDDPY4eIkbM+r3t1JawSH
+        L1d9fR9arrIuXyS41V1nVXbkB3NZQRBBciH6gmoFTVyfs52uydzBDurSr2CZhoCL
+        Xih8FPntb7R9D1b39zkD73x3JSOnnKeIUm61dU3BBGrum9YAdU2woNgJygjg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1649678365; x=
+        1649764765; bh=0qJaiZk6qAsrEaDmTUAGx++TIqfK79p9zce7kcZU8lk=; b=H
+        DBAb8A1uIs4YtS4QeBTFI2ppSHZrxmkXoCN6Fs4DnlnoR2AxBxm4Jg+tg78QxZz2
+        ldhwdMWmWluO0Y6uMoOVaBRmabj3ppmYBiursfWE2XMvIfxXZjtotMALISiFqe2w
+        +PLGSUbxNJZSlNqBIQeJRXAapqqLB4/sAVJqC4BzMGIf7y7aepZxuqKM36VBpMc1
+        DDGtsoz3fZ0cvl83sKaANHGgg9XSbKe0jX8QjVMmLljvLCobsXMcEmeqXiALXpSQ
+        zaXzS0LiYfayuycfj4wgj2A6fL+fMCp8YqIVBU9/iDkhLJg2+ebC8IUgrjiPfnF5
+        gsAu/2OQYDqyPDGF6husw==
+X-ME-Sender: <xms:HBhUYmkb5ANZ6yHcNeOX1kwyCC6UUbin4mDazgnMfltpGPfEAo2D4A>
+    <xme:HBhUYt0dgjM5n4khqg6Tffblp5ri6MtBL9ekD0LbmTaJYfFS7t_vrH3h7lJ1UVfAP
+    -NqYtoZbId_Cb4ynqI>
+X-ME-Received: <xmr:HBhUYkqdV_obaPjFDVMikHKt0Y2vqGOhwyj6r0MlD-lP3PuGKx0017AcvqT1Cte6X6Nvjgog1YETQ9XTWEYRbRSqa5z6fFczttfaFJQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekiedggeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepveevfeffudeviedtgeethffhteeuffetfeffvdehvedvheetteehvdelfffg
+    jedvnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpe
+    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HBhUYqngub_TQhzydet8XiOKo2NKBCT3zfx397NWrAq0QHsKR3un8Q>
+    <xmx:HBhUYk1CDIja_720Rpx2yIfjIwqRoOFkZFFVrq4BZlkRs97Rsd6j4w>
+    <xmx:HBhUYhsFrFZLgzStGLiSxFCLEQj_5OgSZskYIinzaXYOnAvLmS6B9A>
+    <xmx:HRhUYtFOhZ3bAf29gHLX7MJzbWbnrPNScgnXl1IwU4Fln3aFXN_iEg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 11 Apr 2022 07:59:24 -0400 (EDT)
+Date:   Mon, 11 Apr 2022 13:59:22 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8996: remove snps,dw-pcie compatibles
-Date:   Mon, 11 Apr 2022 14:58:08 +0300
-Message-Id: <20220411115808.1976500-2-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220411115808.1976500-1-dmitry.baryshkov@linaro.org>
-References: <20220411115808.1976500-1-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
+Subject: Re: [PATCH v0 07/10] phy: freescale: add Samsung HDMI PHY
+Message-ID: <20220411115922.luv2gyutdecvsxa3@houat>
+References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+ <20220406160123.1272911-8-l.stach@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gze2mcn7iv4mzkgz"
+Content-Disposition: inline
+In-Reply-To: <20220406160123.1272911-8-l.stach@pengutronix.de>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On MSM8996 PCI controller bindings are not compatible with snps,dw-pcie
-binding. The platform doesn't provide second (global) IRQ, it requires
-additional glue code. To prevent it from probing against the dw-pcie
-driver, remove corresponding compatible.
 
-Fixes: ed965ef89227 ("arm64: dts: qcom: msm8996: add support to pcie")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+--gze2mcn7iv4mzkgz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 9fdac8a1c322..2612fe91bfee 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1666,7 +1666,7 @@ agnoc@0 {
- 			ranges;
- 
- 			pcie0: pcie@600000 {
--				compatible = "qcom,pcie-msm8996", "snps,dw-pcie";
-+				compatible = "qcom,pcie-msm8996";
- 				status = "disabled";
- 				power-domains = <&gcc PCIE0_GDSC>;
- 				bus-range = <0x00 0xff>;
-@@ -1718,7 +1718,7 @@ pcie0: pcie@600000 {
- 			};
- 
- 			pcie1: pcie@608000 {
--				compatible = "qcom,pcie-msm8996", "snps,dw-pcie";
-+				compatible = "qcom,pcie-msm8996";
- 				power-domains = <&gcc PCIE1_GDSC>;
- 				bus-range = <0x00 0xff>;
- 				num-lanes = <1>;
-@@ -1771,7 +1771,7 @@ pcie1: pcie@608000 {
- 			};
- 
- 			pcie2: pcie@610000 {
--				compatible = "qcom,pcie-msm8996", "snps,dw-pcie";
-+				compatible = "qcom,pcie-msm8996";
- 				power-domains = <&gcc PCIE2_GDSC>;
- 				bus-range = <0x00 0xff>;
- 				num-lanes = <1>;
--- 
-2.35.1
+Hi Lucas,
 
+On Wed, Apr 06, 2022 at 06:01:20PM +0200, Lucas Stach wrote:
+> +static unsigned long phy_clk_recalc_rate(struct clk_hw *hw,
+> +					 unsigned long parent_rate)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy = to_fsl_samsung_hdmi_phy(hw);
+> +
+> +	if (!phy->cur_cfg)
+> +		return 0;
+> +
+> +	return phy->cur_cfg->clk_rate;
+> +}
+
+This means that the clock will return 0 at initialization, which will
+throw the rate accounting in the CCF off.
+
+Returning 0 here isn't valid. Surely that phy has a default
+configuration at boot that you could use to initialize a rate?
+
+See https://lore.kernel.org/linux-clk/20220408091037.2041955-1-maxime@cerno.tech/
+
+Maxime
+
+--gze2mcn7iv4mzkgz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYlQYGgAKCRDj7w1vZxhR
+xeBpAQCJcFWh2PVcJIOtynWxA1viOlH3w9X5no7GMk6bkiTkvgD7BJp9gmbCUMvt
+mGBDtMSqVlbzzUn4KoAnBisVHCZ4awI=
+=jPTb
+-----END PGP SIGNATURE-----
+
+--gze2mcn7iv4mzkgz--
