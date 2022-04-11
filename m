@@ -2,125 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2BA14FBDB9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF1C54FBDDD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241072AbiDKNtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 09:49:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32946 "EHLO
+        id S1346777AbiDKN4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 09:56:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234271AbiDKNtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:49:40 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A86C12090;
-        Mon, 11 Apr 2022 06:47:26 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id j6so10617243qkp.9;
-        Mon, 11 Apr 2022 06:47:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tCnkeyoKwqeX0JN+o8L5AX58NLvdx+Oy98J9n9irz2I=;
-        b=QsVLZhstsbtqMWAt1NlGRARQ+RZOSXCHb/O1auvUcrzaapQ3Saig1NckFJsTSxuiH1
-         ELayZrTpkO9f7Gm85athQjc0jKGdS8eRAtWq9Yxz7++0jlorRG6q4tmWwPrvknqZ8w7P
-         uqf2Woifk/Xc8qkmPLqYT7/91YKx8Pb/gIItGXqtK/+aCpkS7bK3M66epXLmT6FPGWgc
-         oOM7++jylqUC2HF32ajb/30YPmEg2S06gXHGI7l9m4rhyJT4ecVkox2CAcOzD4vmV8ir
-         ldKtBd9WVXDcyWihgydhychncmS67Vn1UXyHSSE2BRyBaKJsOrvW0lib4E66E+oDWPvO
-         TDaA==
-X-Gm-Message-State: AOAM532qtX7tcyKDcZcp7GNLKIBaINU6T5IdZw+wawZs5m941pHp29BC
-        NgWpyE/yw0BCHYr2ZgfatdNZp/3t4F1x8w==
-X-Google-Smtp-Source: ABdhPJwSgjjIb1LGvAWUwyssIO5dX9zuTvPIMgcCKNCDgMB4ayCF+GdyosCA7XeSglqIP0Ln4BqYqQ==
-X-Received: by 2002:a37:aec7:0:b0:69b:f27b:8784 with SMTP id x190-20020a37aec7000000b0069bf27b8784mr8783717qke.464.1649684845151;
-        Mon, 11 Apr 2022 06:47:25 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id y20-20020a05622a121400b002eefd7bf5basm1519967qtx.63.2022.04.11.06.47.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 06:47:24 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id g34so7639127ybj.1;
-        Mon, 11 Apr 2022 06:47:24 -0700 (PDT)
-X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
- c4-20020a5b0984000000b0063f8c38676cmr11998194ybq.393.1649684844325; Mon, 11
- Apr 2022 06:47:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220407200205.28838-1-javierm@redhat.com> <20220407200205.28838-2-javierm@redhat.com>
-In-Reply-To: <20220407200205.28838-2-javierm@redhat.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 11 Apr 2022 15:47:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUGQ6qabs_xD6kQeDruQLG-OX17UEVrgeGu3Eo6C2dEgw@mail.gmail.com>
-Message-ID: <CAMuHMdUGQ6qabs_xD6kQeDruQLG-OX17UEVrgeGu3Eo6C2dEgw@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev
- compatible strings
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S238419AbiDKN4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:56:08 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC4624F2C;
+        Mon, 11 Apr 2022 06:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649685235; x=1681221235;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ietpjAH2T/bkGKzP1TWlkHX10R1PiEwOjSTCOSWzC/E=;
+  b=dAwO6bDG/YC9ESQmMFpbbD2uW3ozKtW/UAk9hNSrEh6oULLuFVY/b7gp
+   upLGbcLRNqZVtbqPfnbLi+0uwhoaLDd7DGTMxNl7Cf6urzEOEgIYEkn5S
+   ecIhMWQbVqITvMd09HFmWZLSOfj7NwRjcrlw6tc+ICML7XSb7CFQzyasH
+   6xptn2gJUfdBN+bPWimaffjXBFO1W38G2qexqN/QmS0fVusLqgNY4gsSj
+   vO8MB+xP58VBHN6UGy2jdH7NA/L4rZqZWT96HRh1CRKw8ykm4AGOuB9BL
+   PvgPymyAKxotzAeKIsYcAKxAF4wb1vi8q4Eh13bRcI9YN4s3y5cjoxigW
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="242057827"
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; 
+   d="scan'208";a="242057827"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 06:53:54 -0700
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; 
+   d="scan'208";a="654627742"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 06:53:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nduQl-001Dys-JD;
+        Mon, 11 Apr 2022 16:50:11 +0300
+Date:   Mon, 11 Apr 2022 16:50:11 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v6 1/5] device property: Allow error pointer to be passed
+ to fwnode APIs
+Message-ID: <YlQyEz3/J0rb2Hew@smile.fi.intel.com>
+References: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+On Fri, Apr 08, 2022 at 09:48:40PM +0300, Andy Shevchenko wrote:
+> Some of the fwnode APIs might return an error pointer instead of NULL
+> or valid fwnode handle. The result of such API call may be considered
+> optional and hence the test for it is usually done in a form of
+> 
+> 	fwnode = fwnode_find_reference(...);
+> 	if (IS_ERR(fwnode))
+> 		...error handling...
+> 
+> Nevertheless the resulting fwnode may have bumped the reference count
+> and hence caller of the above API is obliged to call fwnode_handle_put().
+> Since fwnode may be not valid either as NULL or error pointer the check
+> has to be performed there. This approach uglifies the code and adds
+> a point of making a mistake, i.e. forgetting about error point case.
+> 
+> To prevent this, allow an error pointer to be passed to the fwnode APIs.
 
-On Thu, Apr 7, 2022 at 10:03 PM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
-> The current compatible strings for SSD130x I2C controllers contain an -fb
-> suffix, this seems to indicate that are for a fbdev driver. But the DT is
-> supposed to describe the hardware and not Linux implementation details.
->
-> Let's deprecate those compatible strings and add a new enum that contains
-> compatible strings that don't have a -fb suffix. These will be matched by
-> the ssd130x-i2c DRM driver.
->
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Rafael and Greg, if this okay for you, can the first three patches be
+applied, so we will have at least the fix in and consider constification
+a further work?
 
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -12,12 +12,24 @@ maintainers:
->
->  properties:
->    compatible:
-> -    enum:
-> -      - sinowealth,sh1106-i2c
-> -      - solomon,ssd1305fb-i2c
-> -      - solomon,ssd1306fb-i2c
-> -      - solomon,ssd1307fb-i2c
-> -      - solomon,ssd1309fb-i2c
-> +    oneOf:
-> +      # Deprecated compatible strings
-> +      - items:
-> +          - enum:
-> +              - solomon,ssd1305fb-i2c
-> +              - solomon,ssd1306fb-i2c
-> +              - solomon,ssd1307fb-i2c
-> +              - solomon,ssd1309fb-i2c
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Please drop the "-i2c" suffixes, too.
-We already have plenty of IIO sensors and audio codecs using the
-same compatible value for spi and i2c, cfr.
-'git grep compatible -- "*-[si][p2][ic].c"'
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
