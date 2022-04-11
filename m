@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B070B4FB3E7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 08:43:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D6C4FB3EC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 08:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245029AbiDKGpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 02:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59764 "EHLO
+        id S245033AbiDKGpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 02:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245020AbiDKGo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 02:44:58 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C354D289A1
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:42:45 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id bg10so28785250ejb.4
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:42:45 -0700 (PDT)
+        with ESMTP id S245035AbiDKGpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 02:45:08 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA32428999
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:42:55 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id z12so4482449edl.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 23:42:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=oeGY+i1594VzqaZYPeCwfNtowmuuBm84SvUo17g7pww=;
-        b=UxJIcbi+k0bsNmAhFdx5LRRsGrLtn1cxDTlmkQ6rEecQxLd3ZlQzxbbXpBXlqGMqW2
-         mcunz3PDYykTTMlJMvdGv4Pf0VZ+tO4dhzuj3cMkad/CJAfyQhY44MenyyiMs4zO9B4i
-         GgLx+x1mfFRfOJwLXHFGacQUj38rWDNNamcoR+5tizxZXj1+kbnd3Qmg0bDStwp2AELF
-         QqXJYc0ZMuaOkHcF+9nCkY+rzYgeOnqB7VcYdHcQu8MS2yal6THrzsFfHG3elJfIqqwH
-         8iYXRWblSPgVH+ym5mLkJORVDKtpdrp6EtblUZ8AZZJcoxXKvneyiS38Xhy4kI7VZY80
-         ABHA==
+        bh=LSzv58nBkA+R90RIZ6HMgs1Sf8Kdw1DEQuIT8NvmTLQ=;
+        b=d+v/gvITQ1Y2LUYM7zzqwlwy19c/S43Re/LX2hDa3CJQTImXu1JcZQAMwjBGJbniwe
+         NO5O6Of0yNp7XhKr4tyFGJtlIPqzseOXRdcOEF1vEThz413KF1h3GAc/ycnO7aHDn8o6
+         Svvxl0/XwftyY+mH4QS0qeZK12O8IyTxdWzE1rCO497BMsoNAwPYxJty9j6+DNgEoKQ5
+         f9vyuZ3i6nFDztMNMVSZsrqn8CaabrRCtWboKRwK2Ti88QBGbkGHYnFNF8twGwC7wTlg
+         v9ZUBwBXk26EQoJ5jNdI5Ms3yDE44kWOk0khHkmyWEywO8diJAm8qhcRT5snNNEcb1CO
+         jMdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=oeGY+i1594VzqaZYPeCwfNtowmuuBm84SvUo17g7pww=;
-        b=t9k1INajadKSG0hRTR5BCruF2vlUkzvVJb5EO1yoLIyeharkoHPAgiybhFFnMVbTgt
-         99Kt4oHcAQJbI0jrJQYj/PUmojTZTq5UJ73oZ2/Vvjehm3guaY4Ck94NW79DT5KQ/rpn
-         l5aAut3pyhrIogJG8WoZtjmeesv6MX+AyAmvnYcoukbW7pNVsqyLczSHDNKPPq1K3QSE
-         fz7z2hExN+eSY17vCMn68RYhIar3FlQxPGQshvAkHGmQgETEEXAMHgoFGbdKD5R8KVIN
-         qG0l1M5x1B0OLOoAeUIcSulKpJaaKLdsY5Bp0a47UxRaTwWreRk94sXGyVSrH/Ej8cHj
-         F2VA==
-X-Gm-Message-State: AOAM533wHsBG111x/P4Gx/+zRxpXjDzFWHFy+/Pb60yWT/X2KK+hUAHl
-        2NkRgEWPwkEZkgWJDqghnG5gAa8/YB8PMOTQ
-X-Google-Smtp-Source: ABdhPJxWQegr0c/5XL0ZzwCad1TzFMKBUFGyQOBP0ER/rivBmSCr6Xyxq34fdHrUvtNT/lD5OtP94w==
-X-Received: by 2002:a17:907:9705:b0:6e4:b769:286f with SMTP id jg5-20020a170907970500b006e4b769286fmr27845750ejc.728.1649659364246;
-        Sun, 10 Apr 2022 23:42:44 -0700 (PDT)
+        bh=LSzv58nBkA+R90RIZ6HMgs1Sf8Kdw1DEQuIT8NvmTLQ=;
+        b=MJryuqCYRibOO7fVJxzHPBkHmiY2XrA4KPzPwoXUeATvGRcFLzs/T0ISKXJ5UTvczm
+         W295tHuLn8kJquvlzCleAp8m8TAIEdxloLWrdKkTP8P5Xg/QzfgHkqLhoXLii3IQpf1o
+         NSnLNKFW3+oj+Ez0XLAiqU4Ioqjpg+WazV/1xU7TKUKMCLBxkOexCWnGh+32AtFZfBpH
+         fu/yTweVRsHakV7/JCkbWDv6mhocdQtbkaAJ/mbMY6SqWSF3gtrX92eaRN7j/pK1JYBB
+         1OAPvbq8iruOG7Nv4meMucCtKb3dHzx6Joge8GcaXAKc5Dm076gdnTH1gHvk2SKQ162M
+         t+lA==
+X-Gm-Message-State: AOAM5333rFo9VXS2JYEJyfREH1o2gqMSjE7/4ZGglQxoAaI5zwSd2MsL
+        3dwRG7Uvlcg2bt5ugNlVpBA46w==
+X-Google-Smtp-Source: ABdhPJyIfNJlUqbXK2jSR+BEoY1rEx7VZMuvim0+1+SfEpiM6Dr32FXbWSqp8i3oUbEc6Qkycufchg==
+X-Received: by 2002:a05:6402:696:b0:41d:7345:41e1 with SMTP id f22-20020a056402069600b0041d734541e1mr7460059edy.179.1649659374503;
+        Sun, 10 Apr 2022 23:42:54 -0700 (PDT)
 Received: from [192.168.0.191] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id r29-20020a50c01d000000b00415fb0dc793sm14810681edb.47.2022.04.10.23.42.43
+        by smtp.gmail.com with ESMTPSA id p24-20020a056402045800b0041614c8f79asm14379330edw.88.2022.04.10.23.42.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 23:42:43 -0700 (PDT)
-Message-ID: <6c4b6eac-86d8-eb93-37a5-d0fa9bf2a7d2@linaro.org>
-Date:   Mon, 11 Apr 2022 08:42:42 +0200
+        Sun, 10 Apr 2022 23:42:54 -0700 (PDT)
+Message-ID: <49a8a43b-471b-2b62-c7e3-4dac9fdf61ec@linaro.org>
+Date:   Mon, 11 Apr 2022 08:42:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH V4 1/3] dt-bindings: mmc: imx-esdhc: Update compatible
- fallbacks
+Subject: Re: [PATCH V4 2/3] arm64: dts: imx8mn: Enable HS400-ES
 Content-Language: en-US
 To:     Adam Ford <aford173@gmail.com>, linux-mmc@vger.kernel.org
-Cc:     aford@beaconembedded.com, haibo.chen@nxp.com,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+Cc:     aford@beaconembedded.com, Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -69,8 +67,9 @@ Cc:     aford@beaconembedded.com, haibo.chen@nxp.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 References: <20220410193544.1745684-1-aford173@gmail.com>
+ <20220410193544.1745684-2-aford173@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220410193544.1745684-1-aford173@gmail.com>
+In-Reply-To: <20220410193544.1745684-2-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,23 +83,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/04/2022 21:35, Adam Ford wrote:
-> The SDHC controller in the imx8mn and imx8mp have the same controller
-> as the imx8mm which is slightly different than that of the imx7d.
+> The SDHC controller in the imx8mn has the same controller
+> as the imx8mm which supports HS400-ES. Change the compatible
+> fallback to imx8mm to enable it, but keep the imx7d-usdhc
+> to prevent breaking backwards compatibility.
 > 
-> Using the fallback of the imx8mm enables the controllers to support
-> HS400-ES which is not available on the imx7d. After discussion with NXP,
-> it turns out that the imx8qm should fall back to the imx8qxp, because
-> those have some additional flags not present in the imx8mm.
-> 
-> Mark the current state of the fallbacks as deprecated, and add the
-> proper fallbacks so in the future, the deprecated combination can be
-> removed and prevent any future devices from using the wrong fallback.
-> 
-> Suggested-by: haibo.chen@nxp.com
 > Signed-off-by: Adam Ford <aford173@gmail.com>
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
