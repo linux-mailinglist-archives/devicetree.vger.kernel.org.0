@@ -2,100 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 570E94FB20C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 04:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B47CB4FB214
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 04:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244443AbiDKCzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 22:55:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35218 "EHLO
+        id S232823AbiDKC7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 22:59:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234062AbiDKCzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 22:55:42 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA11E0B3;
-        Sun, 10 Apr 2022 19:53:28 -0700 (PDT)
-X-UUID: 376ffa70e2ca4549b02cd5f05a78d908-20220411
-X-UUID: 376ffa70e2ca4549b02cd5f05a78d908-20220411
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 68587967; Mon, 11 Apr 2022 10:53:22 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 11 Apr 2022 10:53:21 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 11 Apr
- 2022 10:53:20 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Mon, 11 Apr 2022 10:53:17 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <rex-bc.chen@mediatek.com>,
-        <jitao.shi@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: [PATCH v4,2/2] drm/mediatek: Add mt8186 dpi compatible to mtk_dpi.c
-Date:   Mon, 11 Apr 2022 10:53:04 +0800
-Message-ID: <1649645584-13186-3-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1649645584-13186-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1649645584-13186-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S232344AbiDKC7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 22:59:05 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F0AD51837A
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 19:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1649645812;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=T/TxVJ8j7MEenFEqiqkbwv+oE0JIQvDaicMqp8AOqcI=;
+        b=IxsiRlVBhy+7zF9DBYsPnUNsNxeKB6J7ODIUrewuBOMDiHaldnTwOPEwqWL1JEFQC8hMM+
+        fJUkCRGfM95o7mfyuacOgF0l9/EviqnJJe3nBLYlZQnciGzyAq8pe+doxYYOA95bfCKiq5
+        4j6iqKAMIVM58TF+LfAhFXU4SJXPrdk=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-361-H7MUrN6SN8WG-5xHhgUh7Q-1; Sun, 10 Apr 2022 22:56:47 -0400
+X-MC-Unique: H7MUrN6SN8WG-5xHhgUh7Q-1
+Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com [10.11.54.10])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 8FBE4811E75;
+        Mon, 11 Apr 2022 02:56:46 +0000 (UTC)
+Received: from localhost (ovpn-12-19.pek2.redhat.com [10.72.12.19])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 5C3E3401E99;
+        Mon, 11 Apr 2022 02:56:45 +0000 (UTC)
+Date:   Mon, 11 Apr 2022 10:56:42 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v21 0/5] support reserving crashkernel above 4G on arm64
+ kdump
+Message-ID: <YlOY6jGpl2EBs6zE@MiWiFi-R3L-srv>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <YlABRPBEaTldZwuL@MiWiFi-R3L-srv>
+ <3a0bb9a9-c2a1-2e3a-8f23-16109ae1e525@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3a0bb9a9-c2a1-2e3a-8f23-16109ae1e525@huawei.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xinlei Lee <xinlei.lee@mediatek.com>
+On 04/08/22 at 05:47pm, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2022/4/8 17:32, Baoquan He wrote:
+> > Hi, Lei
+> > 
+> > On 02/27/22 at 11:07am, Zhen Lei wrote:
+> >> Changes since [v20]:
+> >> 1. Check whether crashkernel=Y,low is incorrectly configured or not configured. Do different processing.
+> >> 2. Share the existing description of x86. The configuration of arm64 is the same as that of x86.
+> >> 3. Define the value of macro CRASH_ADDR_HIGH_MAX as memblock.current_limit, instead of MEMBLOCK_ALLOC_ACCESSIBLE.
+> >> 4. To improve readability, some lightweight code adjustments have been made to reserve_craskernel(), including comments.
+> >> 5. The defined value of DEFAULT_CRASH_KERNEL_LOW_SIZE reconsiders swiotlb, just like x86, to share documents.
+> > 
+> > 5.18 rc1 is already done, do you have plan to post a new version for
+> > reviewing?
+> 
+> Yes, v5.18-rc1 has added a new patch
+> commit  031495635b46 ("arm64: Do not defer reserve_crashkernel() for platforms with no DMA memory zones")
+> to allow block mapping again, so my patches need to be modified. It should be post next week.
 
-Add the compatible because use different .data in mt8186.
-
-Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dpi.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 4554e2de1430..824d7da41c6a 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -815,6 +815,14 @@ static const struct mtk_dpi_conf mt8183_conf = {
- 	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
- };
- 
-+static const struct mtk_dpi_conf mt8186_conf = {
-+	.cal_factor =  mt8183_calculate_factor,
-+	.reg_h_fre_con = 0xe0,
-+	.max_clock_khz = 150000,
-+	.output_fmts = mt8183_output_fmts,
-+	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
-+};
-+
- static const struct mtk_dpi_conf mt8192_conf = {
- 	.cal_factor = mt8183_calculate_factor,
- 	.reg_h_fre_con = 0xe0,
-@@ -942,6 +950,9 @@ static const struct of_device_id mtk_dpi_of_ids[] = {
- 	{ .compatible = "mediatek,mt8183-dpi",
- 	  .data = &mt8183_conf,
- 	},
-+	{ .compatible = "mediatek,mt8186-dpi",
-+	  .data = &mt8186_conf,
-+	},
- 	{ .compatible = "mediatek,mt8192-dpi",
- 	  .data = &mt8192_conf,
- 	},
--- 
-2.18.0
+Sounds great, thanks. Just a reminder, please take your time.
 
