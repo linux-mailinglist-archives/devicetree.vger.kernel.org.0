@@ -2,133 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A27E04FB6CE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7F364FB697
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344094AbiDKJDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 05:03:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48522 "EHLO
+        id S242691AbiDKJBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 05:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344111AbiDKJDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:03:03 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98DC53ED2F;
-        Mon, 11 Apr 2022 02:00:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649667649; x=1681203649;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dPt81KGByL2JT3h91dRTMfPIeeyxRYvMJGbksSYGCkQ=;
-  b=lwG3my8wtILXVpW3tuPue1yGyrx8cjcs72RR8pcXvHvVtsfY5VbZWzyY
-   C2zFiJlXmLEQm6QgFXghREVuyKtqmZPjrd2JylXT7YLjPCPAZEa6bume6
-   EVs4exKcMQHoUofqVzJIRHQClCj8GXe9JEd91B3uNLUf7Ec+CfSqorOYX
-   LjSeml1leEZOMzICocrLRg0xP7wfE2DHt0Oxq7eqffk+/4kVFe6WqN36B
-   hGsddOAwefXTE8d7dwMn1CXV4MmK+W6bM/2YiWrmj8C+X3+W3bLhz3+Ap
-   bBFlpqlSYp8D+L6bAvqrBVAtDrIx9ReoOKC+h5qojePR2qTF+XChhB/RS
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,251,1643698800"; 
-   d="scan'208";a="155113068"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Apr 2022 02:00:48 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 11 Apr 2022 02:00:48 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 11 Apr 2022 02:00:44 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <aou@eecs.berkeley.edu>, <paul.walmsley@sifive.com>,
-        <palmer@rivosinc.com>, <a.zummo@towertech.it>,
-        <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-CC:     <daire.mcnamara@microchip.com>, <linux-rtc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 9/9] riscv: dts: microchip: reparent mpfs clocks
-Date:   Mon, 11 Apr 2022 09:59:17 +0100
-Message-ID: <20220411085916.941433-10-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220411085916.941433-1-conor.dooley@microchip.com>
-References: <20220411085916.941433-1-conor.dooley@microchip.com>
+        with ESMTP id S236336AbiDKJBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:01:47 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C5925C4F;
+        Mon, 11 Apr 2022 01:59:31 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 762EA100010;
+        Mon, 11 Apr 2022 08:59:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649667570;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=FHhGfgxL0S3jJMjJ9eWRoGXgfDat53Md5h9pfpllbBk=;
+        b=hUgcWSpQ8LygWqNmSFSaYQ/9wS/ZhdbQ/KhyoVXhioGge6FYFMWgsvU2FVjaONpYB9+QV7
+        q8Mq0VmJwvQ0Tvy3h8ylFoszzMx3LV0iCZg8o05/YUCVTBjx4PLqxpuqJbfRQNEagkvX5e
+        e46VxrinOS09rppBS7bBLTnmzV/EhhPnQSvJvvn5DxP+Avcnw/HSC4yOozsn8GyuMuu1U/
+        znMEsTEGTfc6ZAQ/B5q1xr0PQ1n8VtzVrleov4c5yZ0elX56U2IUtbXG9BTHV1DRwIj4fF
+        ViyOLILWIidJS1ZRdBP37G4D9DdYFVAHsHfp5SZWdkzj7kEPCi/Gn+KrRjJnfA==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        =?utf-8?b?UmFmYcWCIE1p?= =?utf-8?b?xYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 2/2] nvmem: add driver handling U-Boot environment variables
+Date:   Mon, 11 Apr 2022 10:59:26 +0200
+Message-Id: <20220411085926.10925-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20220406143225.28107-2-zajec5@gmail.com>
+References: 
 MIME-Version: 1.0
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'06a39b4da6de04315c133eaca4c785ae6ebc930f'
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 600M clock in the fabric is not the real reference, replace it with
-a 125M clock which is the correct value for the icicle kit. Rename the
-msspllclk node to mssrefclk since this is now the input to, not the
-output of, the msspll clock. Control of the msspll clock has been moved
-into the clock configurator, so add the register range for it to the clk
-configurator. Finally, add a new output of the clock config block which
-will provide the 1M reference clock for the MTIMER and the rtc.
+On Wed, 2022-04-06 at 14:32:25 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> U-Boot stores its setup as environment variables. It's a list of
+> key-value pairs stored on flash device with a custom header.
+> 
+> This commit adds an NVMEM driver that:
+> 1. Provides NVMEM access to environment vars binary data
+> 2. Extracts variables as NVMEM cells
+> 
+> It can be used for:
+> 1. Accessing env variables from user-space
+> 2. Reading NVMEM cells by Linux drivers
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Fixes: feeb38685523 ("Update the Icicle Kit device tree")
-Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../boot/dts/microchip/microchip-mpfs-icicle-kit.dts      | 2 +-
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi         | 8 ++++----
- 2 files changed, 5 insertions(+), 5 deletions(-)
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-index cd2fe80fa81a..3392153dd0f1 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-@@ -45,7 +45,7 @@ ddrc_cache_hi: memory@1000000000 {
- };
- 
- &refclk {
--	clock-frequency = <600000000>;
-+	clock-frequency = <125000000>;
- };
- 
- &mmuart1 {
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index 3b48b7f35410..746c4d4e7686 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -141,7 +141,7 @@ cpu4_intc: interrupt-controller {
- 		};
- 	};
- 
--	refclk: msspllclk {
-+	refclk: mssrefclk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 	};
-@@ -190,7 +190,7 @@ plic: interrupt-controller@c000000 {
- 
- 		clkcfg: clkcfg@20002000 {
- 			compatible = "microchip,mpfs-clkcfg";
--			reg = <0x0 0x20002000 0x0 0x1000>;
-+			reg = <0x0 0x20002000 0x0 0x1000>, <0x0 0x3E001000 0x0 0x1000>;
- 			clocks = <&refclk>;
- 			#clock-cells = <1>;
- 		};
-@@ -393,8 +393,8 @@ rtc: rtc@20124000 {
- 			reg = <0x0 0x20124000 0x0 0x1000>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <80>, <81>;
--			clocks = <&clkcfg CLK_RTC>;
--			clock-names = "rtc";
-+			clocks = <&clkcfg CLK_RTC>, <&clkcfg CLK_RTCREF>;
-+			clock-names = "rtc", "rtcref";
- 			status = "disabled";
- 		};
- 
--- 
-2.35.1
-
+Miquel
