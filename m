@@ -2,54 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92EF44FBF79
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D558E4FBF8B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 16:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347436AbiDKOsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 10:48:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
+        id S229508AbiDKOus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 10:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiDKOsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:48:46 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281751FCFD;
-        Mon, 11 Apr 2022 07:46:31 -0700 (PDT)
-Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id DEA542223E;
-        Mon, 11 Apr 2022 16:46:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1649688389;
+        with ESMTP id S1347471AbiDKOuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 10:50:44 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1026322280
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:48:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1649688509;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=+RSECJ+CEyfjPWT/tfdNYeMHsiQqq7qeZXL2Sxx3RMg=;
-        b=b2Gv4nuR8HsYZyaaiYxiXBbclBKcL++tLeiPy2bZrup4of7iR+blbz96N+cjJqyeLX4Nqa
-        aNaZwKademI++CiAskjbwa4xhAd7J8BerpzT/sLEPVmaPDdqg6z7AkRUNHN9x+Ih0VtXmy
-        sj7pUIaK8w6yaZmpbsPr5VZVb64E5zc=
-From:   Michael Walle <michael@walle.cc>
-To:     kavyasree.kotagiri@microchip.com
-Cc:     Claudiu.Beznea@microchip.com, Manohar.Puri@microchip.com,
-        Nicolas.Ferre@microchip.com, Tudor.Ambarus@microchip.com,
-        UNGLinuxDriver@microchip.com, alexandre.belloni@bootlin.com,
-        broonie@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, robh+dt@kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH] spi: atmel,quadspi: Define lan966x QSPI
-Date:   Mon, 11 Apr 2022 16:46:19 +0200
-Message-Id: <20220411144619.101883-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <CO1PR11MB48654DEFB31E8F8AB00C180292E99@CO1PR11MB4865.namprd11.prod.outlook.com>
-References: <CO1PR11MB48654DEFB31E8F8AB00C180292E99@CO1PR11MB4865.namprd11.prod.outlook.com>
+        bh=23gHevVrroOIYzFgSputvPyAa/4Ktzn0dvOFX/eCoLE=;
+        b=IP+gNK1KMRc73LYuC49haEHu+Vcn2Dr5mssDbV/EomJ76ovL5Lbxtl2q5c4mgB6muqrawr
+        /fRjDpQScG5OXRgiqqgR7J0jqrIhYVLpKFPJsLmMWQ5l0N6JW62XcBO0wFVsb6FEnO/aea
+        8reP/2a6OH67PzWwyMVvQPqtLCjIqOg=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-465-BOTOgkIiOwiJ1PCZ0tYf9Q-1; Mon, 11 Apr 2022 10:48:27 -0400
+X-MC-Unique: BOTOgkIiOwiJ1PCZ0tYf9Q-1
+Received: by mail-wm1-f69.google.com with SMTP id o35-20020a05600c512300b0038e83a52c71so4693574wms.7
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 07:48:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=23gHevVrroOIYzFgSputvPyAa/4Ktzn0dvOFX/eCoLE=;
+        b=A6GrkkDbkFl5Ni7wcHlIZItdixRU/xQ7UAA3mA6R6cVPoNPlysgpxU022Qvn0dsU5e
+         6SBiTLJgiIfvDEoyPWDuLuDAJX0dXe2A2QZxoph0Qt0CTJ3LYzd79rcwifwPe8vBFha5
+         vEtdzuQlfbqO7MQiFUKJLQztmEKaKsz13dHwkslUfcZMufLvO/fNsLaNeFZFHxpzmV6i
+         2r0yGO9UQNOsqpUc3Xk96QSEEwJo7gt+LC1VCRrJCcj5jC5wLJmlm43sRp3lzqF9n6Ju
+         RTyNQy4kazTAuMMwY6stDRQc3eCJ6g2REDxRG3yR4wwK5RVOaG5iCuCOELxf587fiEO8
+         4qVw==
+X-Gm-Message-State: AOAM532HclrRAfGp4VqQx7wru0CouqvNGDX3orYrPZQa1U0kc0GPs+VI
+        RiR2pSmLVMmzx9FOOyL6iL1lW4BFnO4ZbqvgEa66JAEPjrHMiWD79qkJ/fR67DQIE8cl8IDJ7tu
+        6AapW2FkBTg/+kulvRbokAg==
+X-Received: by 2002:a05:600c:25cd:b0:38e:715e:d9b6 with SMTP id 13-20020a05600c25cd00b0038e715ed9b6mr29405432wml.63.1649688506634;
+        Mon, 11 Apr 2022 07:48:26 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxulV+PmBoci9B8dGS1eRwND5+wEOgNayliPAYXAVTwZj2JV3nKrI1I662hg1YD8X6EMDanug==
+X-Received: by 2002:a05:600c:25cd:b0:38e:715e:d9b6 with SMTP id 13-20020a05600c25cd00b0038e715ed9b6mr29405403wml.63.1649688506398;
+        Mon, 11 Apr 2022 07:48:26 -0700 (PDT)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id s1-20020adfb781000000b002060d4a8bd9sm22107168wre.17.2022.04.11.07.48.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 07:48:25 -0700 (PDT)
+Message-ID: <a422b984-6d2a-a307-7b4d-a4fec08e87c2@redhat.com>
+Date:   Mon, 11 Apr 2022 16:48:24 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev
+ compatible strings
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20220407200205.28838-1-javierm@redhat.com>
+ <20220407200205.28838-2-javierm@redhat.com>
+ <CAMuHMdUGQ6qabs_xD6kQeDruQLG-OX17UEVrgeGu3Eo6C2dEgw@mail.gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <CAMuHMdUGQ6qabs_xD6kQeDruQLG-OX17UEVrgeGu3Eo6C2dEgw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,24 +94,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > LAN966x SoC supports 3 QSPI controllers. Each of them support
-> > > data and clock frequency upto 100Mhz DDR and QUAD protocol.
-> >
-> > How is this IP different than microchip,sama7g5-qspi? Does this speed
-> > limitation come from the IP itself or from the board that you're using?
-> >
-> > Neither of these instances support octal mode?
-> >
-> Thanks for your comments. All the three instances support only QUAD
-> protocol.
-> You are correct. There is no difference from sama7g5-qspi. Please ignore
-> this patch. I will send next version of dt patches where I will use
-> "microchip,sama7g5-qspi" for all my qspi nodes.
+Hello Geert,
 
-Are you sure? There is a max frequency property in Tudor's sama7g5-qspi
-driver (200/133MHz) which doesn't match neither the LAN9668 manual (which
-states 150MHz on QSPI0 and 100MHZ on QSPI1, funny enough there is no
-mention of QSPI2) nor does it match the max frequency set in the downstream
-linux driver (24 MHz).
+On 4/11/22 15:47, Geert Uytterhoeven wrote:
+> Hi Javier,
+> 
+> On Thu, Apr 7, 2022 at 10:03 PM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
+>> The current compatible strings for SSD130x I2C controllers contain an -fb
+>> suffix, this seems to indicate that are for a fbdev driver. But the DT is
+>> supposed to describe the hardware and not Linux implementation details.
+>>
+>> Let's deprecate those compatible strings and add a new enum that contains
+>> compatible strings that don't have a -fb suffix. These will be matched by
+>> the ssd130x-i2c DRM driver.
+>>
+>> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> 
+>> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+>> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+>> @@ -12,12 +12,24 @@ maintainers:
+>>
+>>  properties:
+>>    compatible:
+>> -    enum:
+>> -      - sinowealth,sh1106-i2c
+>> -      - solomon,ssd1305fb-i2c
+>> -      - solomon,ssd1306fb-i2c
+>> -      - solomon,ssd1307fb-i2c
+>> -      - solomon,ssd1309fb-i2c
+>> +    oneOf:
+>> +      # Deprecated compatible strings
+>> +      - items:
+>> +          - enum:
+>> +              - solomon,ssd1305fb-i2c
+>> +              - solomon,ssd1306fb-i2c
+>> +              - solomon,ssd1307fb-i2c
+>> +              - solomon,ssd1309fb-i2c
+> 
+> Please drop the "-i2c" suffixes, too.
+> We already have plenty of IIO sensors and audio codecs using the
+> same compatible value for spi and i2c, cfr.
+> 'git grep compatible -- "*-[si][p2][ic].c"'
+>
 
--michael
+Yes, I know but was worried about the potential issues that mentioned in a
+previous email in this thread. But after the discussion we had over IRC, I
+think that is safe to assume that the SPI subsystem won't change how the
+modaliases are reported, so there won't be conflict between I2C and SPI.
+
+And if that is ever changed, there's a plan to add the bus type to the data
+reported by the modalias uevent so user-space could figure out what to load.
+
+So I'll go ahead with Rob and yours suggestion, and just deprecate the old
+ones and drop both the "fb" and "-i2c" part of the compatible strings, to
+use the same compatible strings for both the I2C and SPI drivers.
+
+After all, that's the correct way to describe the hardware and not encode
+any Linux implementation details in the DT binding.
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
