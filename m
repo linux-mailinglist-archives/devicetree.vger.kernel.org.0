@@ -2,372 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAC974FB0E1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 01:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8747A4FB0F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 02:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230233AbiDJXrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 19:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36848 "EHLO
+        id S235362AbiDKASN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 20:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233612AbiDJXrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 19:47:16 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CF1321277
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 16:45:04 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id u19so3680340lff.4
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 16:45:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=z0iwiGRxOyeqOGHo3JL2L+l4TGSZbXHltWbEO9ZLp08=;
-        b=tmJyxnaFeYxmluppOXvP8Ju1pWTrSOtbZUygbxFGh6RGMqU7C9sQBTMeSsGZdsNKd2
-         X/IW2zZBWEPbh216At0VZqxvU4bdoKivN94dtk2bn26vAM3/nsCOgf0ome7rKI8IiM4P
-         IIg4btq6NWASr53mn4g6tg0hn4ZehSoFLKCiRWUBLGxqdFEB22zMo+KVlSY+2Ck6HofV
-         Y3Dy9/2KpykOWz+MdpAFFH5sFxY82wmg7N+R7qy86Nu9wsRd9fryTQqqOYpQIPnLIWcU
-         zNDzbxur6VO7ZeVwzCWq2k/UkKVhN8kTCt+Av6/O/FJmrvMdyS4dQ0B32aTAbwG1Dz4L
-         V/xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=z0iwiGRxOyeqOGHo3JL2L+l4TGSZbXHltWbEO9ZLp08=;
-        b=AUG3aN1Ifxv6hT78XcwEvVO4ZVJEsnhiLt0p8SUmmtOCqUd048GFljFam8djK15t8n
-         PdAkjpDgbVdeMucPPQSxXiBLkO3IXjCa6zinvNOPOR+l4HOJX72Zsg6PjwkwakYWsRZ8
-         +GUtFfIDUZog20Too5fQn+7Z8eiv7fysVx11LHip4cqU0vH69GwRk+yoEoM1N2Pbm4x3
-         OzwsJClPvCr5RpcxUmMvZch4xiKX7ZIfhhFd96tJZ0Kk4D0lfJSXI+eh0x78ooLZhjZx
-         2WgwJjokl2QhpuWB554z5FcArhrKgc7+bQ3nd1yDQTLzP8M4xcYms/owxF3amIYotJVz
-         UjZQ==
-X-Gm-Message-State: AOAM533W3ps88TCGAd3GGABAYyARcAwS1JMOE4gYTioxZc8PJ+gfrxyi
-        QoDy32ULXX4A8gr0TpSlrlJUfg==
-X-Google-Smtp-Source: ABdhPJyd1OESP0/054g4EmzjAxYzmdqFfSSZPFIucwHQN1E/J0vyGFNnLk4DQ57aibD6BYwnENLoZg==
-X-Received: by 2002:ac2:4899:0:b0:464:f80b:a86d with SMTP id x25-20020ac24899000000b00464f80ba86dmr11650228lfc.65.1649634302415;
-        Sun, 10 Apr 2022 16:45:02 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id m28-20020a19435c000000b00464f6d27ff1sm1153881lfj.103.2022.04.10.16.45.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 16:45:01 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8450: add cooling-maps to CPU trip points
-Date:   Mon, 11 Apr 2022 02:44:58 +0300
-Message-Id: <20220410234458.1739279-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220410234458.1739279-1-dmitry.baryshkov@linaro.org>
-References: <20220410234458.1739279-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235268AbiDKASM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 20:18:12 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49EDB1704D;
+        Sun, 10 Apr 2022 17:16:00 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0BE0B5C0170;
+        Sun, 10 Apr 2022 20:15:57 -0400 (EDT)
+Received: from imap49 ([10.202.2.99])
+  by compute3.internal (MEProxy); Sun, 10 Apr 2022 20:15:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=dXHAm3z4tHh0Mh9DCwiFQXs0dDzLplgovQi8uT
+        MwfCo=; b=S8vxj8OPWf6SGtbLLFubtaYn6pEuq8jgI7De51ASehkIYH1X2DOqav
+        35x+Qq63Pi0USpZQw3+Mj/fSrQ+suiiQ6Xye+Byr4zHqj2Aoxr4LJWrW3u1ywHHt
+        k3jzV0S73f1CCL/my5YXrpOPr6iXGde6bNXzfT/GvNavkCc/WQmXXN3bAsgnua9v
+        aBYJ4pxmL2muJiPtyVDoQVijIbZL99J/4bsoEDdZN5/X3a/FG4+xRUhoxhc+zz9n
+        w2vrFSVO5g/JvNPQqALOQ+OfDIg7QmYu+4f+HrCdfb2BWFtAdszxuUattwRbCCcO
+        72to41T1GN/TACfEZ1FHII3fB7dUIqYA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=dXHAm3z4tHh0Mh9DC
+        wiFQXs0dDzLplgovQi8uTMwfCo=; b=eL9SkB6aSP3VvVWAtHSve0LtgDqy6guq+
+        cq+unj2ZcoE7JdAziBx33SMlBgt5vO0btc332b4W+jftz9ptEsT63vtZ2dKn1Sln
+        T+g5h5b84vq2OtONLN7OUF9RsDZvSuTUaL49Gt8+OyON+p70mOn/e5pKk+w6SPjb
+        ZvLaux6HLb6pnvmbFzywZzKWYZz1oMh/6z5qCtO2hc8zVB8CtkiqhFaRt5WEPC6f
+        QlOoVkIEHFyHRcQCvSPyI0GlebHcrALseV0QZ5bOuhTlEdQEj2v2QzKEUKICL8HD
+        lZ3T3VDK/1x4yQwzUwF7mr3DNR3AFE8SADu1r3olZem+Q5YHerhMQ==
+X-ME-Sender: <xms:PHNTYjXvumB48-XHUf8RktCZ7hW5IjC2Vk5YPwHCrPpM7rXEKdNJuQ>
+    <xme:PHNTYrmTU-VkCTgLO9Of22i01BV25VTo-rfKVIh9tTif0qzsTbV1jsP9dvaaHgfHn
+    MGU4z6FJ4xGeDELkQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekhedgvdejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:PHNTYvZzOk_XZqRSL1dq7pl9EiVDKF3NXhGIfuf_vYHDleBDU7ez6w>
+    <xmx:PHNTYuXPvb_FyNPv_X2NFeZXfz0L3js9LLFEYQGq_mnLXHRWZ1p7bA>
+    <xmx:PHNTYtkG-aWJApj1Q8aGUtJM9YaqI04HgA497iwTRQfmVs-ocVBrfA>
+    <xmx:PXNTYi_0nkeCzyYbQid88OAoZh7YIm9qjOhjgsvMflq4_epZm4s_-w>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 040DF15A005F; Sun, 10 Apr 2022 20:15:55 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-386-g4174665229-fm-20220406.001-g41746652
+Mime-Version: 1.0
+Message-Id: <41242dce-15e6-471e-bb44-bf8659175045@www.fastmail.com>
+In-Reply-To: <20220407075734.19644-2-dylan_hung@aspeedtech.com>
+References: <20220407075734.19644-1-dylan_hung@aspeedtech.com>
+ <20220407075734.19644-2-dylan_hung@aspeedtech.com>
+Date:   Mon, 11 Apr 2022 09:45:23 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Dylan Hung" <dylan_hung@aspeedtech.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>, "Andrew Lunn" <andrew@lunn.ch>,
+        "Heiner Kallweit" <hkallweit1@gmail.com>,
+        "Russell King" <linux@armlinux.org.uk>,
+        "David Miller" <davem@davemloft.net>,
+        "Jakub Kicinski" <kuba@kernel.org>, pabeni@redhat.com,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        netdev <netdev@vger.kernel.org>
+Cc:     BMC-SW@aspeedtech.com, "Krzysztof Kozlowski" <krzk@kernel.org>
+Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: net: add reset property for aspeed,
+ ast2600-mdio binding
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the lead of other Qualcomm platforms and add cooling maps for CPU
-trip points. Handle three clusters separately, cooling cores 0-3 for
-cpu0-3 trip points, cores 4-6 for cpu4-6 trip points and only cpu7 for
-cpu7 trip points.
+Hi Dylan,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 191 +++++++++++++++++++++++++++
- 1 file changed, 191 insertions(+)
+On Thu, 7 Apr 2022, at 17:27, Dylan Hung wrote:
+> The AST2600 MDIO bus controller has a reset control bit and must be
+> deasserted before manipulating the MDIO controller. By default, the
+> hardware asserts the reset so the driver only need to deassert it.
+>
+> Regarding to the old DT blobs which don't have reset property in them,
+> the reset deassertion is usually done by the bootloader so the reset
+> property is optional to work with them.
+>
+> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  .../devicetree/bindings/net/aspeed,ast2600-mdio.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git 
+> a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml 
+> b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> index 1c88820cbcdf..7f43b4fe86a3 100644
+> --- a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> @@ -20,10 +20,14 @@ allOf:
+>  properties:
+>    compatible:
+>      const: aspeed,ast2600-mdio
+> +
+>    reg:
+>      maxItems: 1
+>      description: The register range of the MDIO controller instance
+> 
+> +  resets:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -39,6 +43,7 @@ examples:
+>              reg = <0x1e650000 0x8>;
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+> +            resets = <&syscon 35>;
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 4f3c7e7d2855..dd8ef4438fd0 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1651,6 +1651,21 @@ cpu4_top_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu4_top_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu4_top_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu4-bottom-thermal {
-@@ -1677,6 +1692,21 @@ cpu4_bottom_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu4_bottom_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu4_bottom_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu5-top-thermal {
-@@ -1703,6 +1733,21 @@ cpu5_top_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu5_top_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu5_top_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu5-bottom-thermal {
-@@ -1729,6 +1774,21 @@ cpu5_bottom_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu5_bottom_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu5_bottom_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu6-top-thermal {
-@@ -1755,6 +1815,21 @@ cpu6_top_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu6_top_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu6_top_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu6-bottom-thermal {
-@@ -1781,6 +1856,21 @@ cpu6_bottom_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu6_bottom_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu6_bottom_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu7-top-thermal {
-@@ -1807,6 +1897,17 @@ cpu7_top_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu7_top_alert0>;
-+					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu7_top_alert1>;
-+					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu7-middle-thermal {
-@@ -1833,6 +1934,17 @@ cpu7_middle_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu7_middle_alert0>;
-+					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu7_middle_alert1>;
-+					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu7-bottom-thermal {
-@@ -1859,6 +1971,17 @@ cpu7_bottom_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu7_bottom_alert0>;
-+					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu7_bottom_alert1>;
-+					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		gpu-top-thermal {
-@@ -1969,6 +2092,23 @@ cpu0_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu0_alert0>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu0_alert1>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu1-thermal {
-@@ -1995,6 +2135,23 @@ cpu1_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu1_alert0>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu1_alert1>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu2-thermal {
-@@ -2021,6 +2178,23 @@ cpu2_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu2_alert0>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu2_alert1>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cpu3-thermal {
-@@ -2047,6 +2221,23 @@ cpu3_crit: cpu_crit {
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu3_alert0>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+				map1 {
-+					trip = <&cpu3_alert1>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		cdsp0-thermal {
--- 
-2.35.1
+This is just the example but we should probably have it do the 
+canonical thing and use ASPEED_RESET_MII from 
+include/dt-bindings/clock/ast2600-clock.h
 
+Andrew
