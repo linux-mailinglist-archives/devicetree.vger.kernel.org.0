@@ -2,253 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B95EE4FBD76
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:41:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2BA14FBDB9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:47:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346620AbiDKNnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 09:43:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44886 "EHLO
+        id S241072AbiDKNtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 09:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346593AbiDKNnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:43:19 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4B015FD1;
-        Mon, 11 Apr 2022 06:41:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649684464; x=1681220464;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=B4MQ7T14IRb4CS1kUI7tBVcKJAmTTsUChGoW5RsNlM8=;
-  b=mm8wHjO3i5GBlvyQmDv2i4qTJoSijm/n+AnPkNBonMlVR7mPuKGGYzO4
-   34UKBAyH4qyYIv4GLBRVi9GV+HyoyPtSVhnXa/Xu4jrJOuToEmtJqqktw
-   xVAASLXNHSZIu2AFUt03ed3Ub5qGCE9X5lVM0ek3lVgyY+k6zsZ53O3lT
-   o=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 11 Apr 2022 06:41:03 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 06:41:03 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 11 Apr 2022 06:41:03 -0700
-Received: from [10.216.15.65] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 11 Apr
- 2022 06:40:58 -0700
-Message-ID: <da9d1c86-0d99-9199-fc4f-1c158ec47993@quicinc.com>
-Date:   Mon, 11 Apr 2022 19:10:56 +0530
+        with ESMTP id S234271AbiDKNtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:49:40 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A86C12090;
+        Mon, 11 Apr 2022 06:47:26 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id j6so10617243qkp.9;
+        Mon, 11 Apr 2022 06:47:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tCnkeyoKwqeX0JN+o8L5AX58NLvdx+Oy98J9n9irz2I=;
+        b=QsVLZhstsbtqMWAt1NlGRARQ+RZOSXCHb/O1auvUcrzaapQ3Saig1NckFJsTSxuiH1
+         ELayZrTpkO9f7Gm85athQjc0jKGdS8eRAtWq9Yxz7++0jlorRG6q4tmWwPrvknqZ8w7P
+         uqf2Woifk/Xc8qkmPLqYT7/91YKx8Pb/gIItGXqtK/+aCpkS7bK3M66epXLmT6FPGWgc
+         oOM7++jylqUC2HF32ajb/30YPmEg2S06gXHGI7l9m4rhyJT4ecVkox2CAcOzD4vmV8ir
+         ldKtBd9WVXDcyWihgydhychncmS67Vn1UXyHSSE2BRyBaKJsOrvW0lib4E66E+oDWPvO
+         TDaA==
+X-Gm-Message-State: AOAM532qtX7tcyKDcZcp7GNLKIBaINU6T5IdZw+wawZs5m941pHp29BC
+        NgWpyE/yw0BCHYr2ZgfatdNZp/3t4F1x8w==
+X-Google-Smtp-Source: ABdhPJwSgjjIb1LGvAWUwyssIO5dX9zuTvPIMgcCKNCDgMB4ayCF+GdyosCA7XeSglqIP0Ln4BqYqQ==
+X-Received: by 2002:a37:aec7:0:b0:69b:f27b:8784 with SMTP id x190-20020a37aec7000000b0069bf27b8784mr8783717qke.464.1649684845151;
+        Mon, 11 Apr 2022 06:47:25 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id y20-20020a05622a121400b002eefd7bf5basm1519967qtx.63.2022.04.11.06.47.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 06:47:24 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id g34so7639127ybj.1;
+        Mon, 11 Apr 2022 06:47:24 -0700 (PDT)
+X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
+ c4-20020a5b0984000000b0063f8c38676cmr11998194ybq.393.1649684844325; Mon, 11
+ Apr 2022 06:47:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: sc7280: Add pinmux for I2S
- speaker and Headset
-Content-Language: en-US
-To:     Matthias Kaehlcke <mka@chromium.org>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohitkr@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1649157167-29106-1-git-send-email-quic_srivasam@quicinc.com>
- <1649157167-29106-2-git-send-email-quic_srivasam@quicinc.com>
- <YkyLuemETXD97Jv1@google.com>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <YkyLuemETXD97Jv1@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220407200205.28838-1-javierm@redhat.com> <20220407200205.28838-2-javierm@redhat.com>
+In-Reply-To: <20220407200205.28838-2-javierm@redhat.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 11 Apr 2022 15:47:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUGQ6qabs_xD6kQeDruQLG-OX17UEVrgeGu3Eo6C2dEgw@mail.gmail.com>
+Message-ID: <CAMuHMdUGQ6qabs_xD6kQeDruQLG-OX17UEVrgeGu3Eo6C2dEgw@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev
+ compatible strings
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Javier,
 
-On 4/6/2022 12:04 AM, Matthias Kaehlcke wrote:
-Thanks for your time Matthias!!!
-> On Tue, Apr 05, 2022 at 04:42:46PM +0530, Srinivasa Rao Mandadapu wrote:
->> Add AMP enable node and pinmux for primary and secondary I2S
->> for SC7280 based platforms.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 34 +++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 20 +++++++++++++
->>   arch/arm64/boot/dts/qcom/sc7280.dtsi           | 41 ++++++++++++++++++++++++++
->>   3 files changed, 95 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
->> index dc17f20..de646d9 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
->> @@ -530,6 +530,26 @@ ap_ec_spi: &spi10 {
->>   	drive-strength = <2>;
->>   };
->>   
->> +&pri_mi2s_data0 {
->> +	drive-strength = <6>;
-> Isn't this pin used as an input (HP_DIN)? Is specifying the drive strength
-> really needed?
-Okay. will remove this.
+On Thu, Apr 7, 2022 at 10:03 PM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+> The current compatible strings for SSD130x I2C controllers contain an -fb
+> suffix, this seems to indicate that are for a fbdev driver. But the DT is
+> supposed to describe the hardware and not Linux implementation details.
 >
->> +};
->> +
->> +&pri_mi2s_data1 {
->> +	drive-strength = <6>;
->> +};
->> +
->> +&pri_mi2s_mclk {
->> +	drive-strength = <6>;
->> +};
->> +
->> +&pri_mi2s_sclk {
->> +	drive-strength = <6>;
->> +};
->> +
->> +&pri_mi2s_ws {
->> +	drive-strength = <6>;
->> +};
->> +
->>   &qspi_cs0 {
->>   	bias-disable;
->>   	drive-strength = <8>;
->> @@ -610,6 +630,20 @@ ap_ec_spi: &spi10 {
->>   	drive-strength = <10>;
->>   };
->>   
->> +&sec_mi2s_data0 {
->> +	drive-strength = <6>;
->> +	bias-disable;
->> +};
->> +
->> +&sec_mi2s_sclk {
->> +	drive-strength = <6>;
->> +	bias-disable;
->> +};
->> +
->> +&sec_mi2s_ws {
->> +	drive-strength = <6>;
->> +};
-> Actually there are several sound configs for herobrine boards. For now I
-> think it's ok to specify the config for herobrine -rev1 (as this patch
-> does) and we can sort out later how to best support the different configs.
-Okay. Will skip this for now.
+> Let's deprecate those compatible strings and add a new enum that contains
+> compatible strings that don't have a -fb suffix. These will be matched by
+> the ssd130x-i2c DRM driver.
 >
->>   /* PINCTRL - board-specific pinctrl */
->>   
->>   &pm7325_gpios {
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index ecbf2b8..2afbbe3 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -462,7 +462,27 @@
->>   	drive-strength = <10>;
->>   };
->>   
->> +&sec_mi2s_data0 {
->> +	drive-strength = <6>;
->> +	bias-disable;
->> +};
->> +
->> +&sec_mi2s_sclk {
->> +	drive-strength = <6>;
->> +	bias-disable;
->> +};
->> +
->> +&sec_mi2s_ws {
->> +	drive-strength = <6>;
->> +};
->> +
->>   &tlmm {
->> +	amp_en: amp-en {
->> +		pins = "gpio63";
->> +		bias-pull-down;
->> +		drive-strength = <2>;
->> +	};
-> nit: all the other pins are i2s related, it might make sense to add amp_en
-> in a separate patch.
-Okay. will add it in corresponding consumer patch.
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+
+> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> @@ -12,12 +12,24 @@ maintainers:
 >
->> +
->>   	bt_en: bt-en {
->>   		pins = "gpio85";
->>   		function = "gpio";
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index f0b64be..8d8cec5 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -3527,6 +3527,31 @@
->>   				function = "pcie1_clkreqn";
->>   			};
->>   
->> +			pri_mi2s_data0: pri-mi2s-data0 {
->> +				pins = "gpio98";
->> +				function = "mi2s0_data0";
->> +			};
->> +
->> +			pri_mi2s_data1: pri-mi2s-data1 {
->> +				pins = "gpio99";
->> +				function = "mi2s0_data1";
->> +			};
->> +
->> +			pri_mi2s_mclk: pri-mi2s-mclk {
->> +				pins = "gpio96";
->> +				function = "pri_mi2s";
->> +			};
->> +
->> +			pri_mi2s_sclk: pri-mi2s-sclk {
->> +				pins = "gpio97";
->> +				function = "mi2s0_sck";
->> +			};
->> +
->> +			pri_mi2s_ws: pri-mi2s-ws {
->> +				pins = "gpio100";
->> +				function = "mi2s0_ws";
->> +			};
->> +
->>   			qspi_clk: qspi-clk {
->>   				pins = "gpio14";
->>   				function = "qspi_clk";
->> @@ -4261,6 +4286,22 @@
->>   				drive-strength = <2>;
->>   				bias-bus-hold;
->>   			};
->> +
->> +			sec_mi2s_data0: sec-mi2s-data0 {
->> +				pins = "gpio107";
->> +				function = "mi2s1_data0";
->> +			};
->> +
->> +			sec_mi2s_sclk: sec-mi2s-sclk {
->> +				pins = "gpio106";
->> +				function = "mi2s1_sck";
->> +			};
->> +
->> +			sec_mi2s_ws: sec-mi2s-ws {
->> +				pins = "gpio108";
->> +				function = "mi2s1_ws";
->> +			};
-> Is there a particular reason for the pri/sec nomenclature? The datasheet and
-> schematics call the pin mi2sN_xyz, it seems it would be clearer to follow
-> that naming. Primary/secondary seems to imply a 'master/slave' topology, but
-> these are independent controllers IIUC. The datasheet refers to pin 96 as
-> PRI_MI2S_MCLK and pin 105 SEC_MI2S_MCLK, I guess the naming was derived from
-> that.
->
-> My suggestion would be to follow the naming in the datasheet/schematic, i.e.
-> mi2sN_data0, mi2sN_data1, pri/sec_mi2s_mclk, mi2sN_sck, mi2sN_ws.
-Okay. Actually we followed same in Rennel architecture. Will change 
-accordingly.
+>  properties:
+>    compatible:
+> -    enum:
+> -      - sinowealth,sh1106-i2c
+> -      - solomon,ssd1305fb-i2c
+> -      - solomon,ssd1306fb-i2c
+> -      - solomon,ssd1307fb-i2c
+> -      - solomon,ssd1309fb-i2c
+> +    oneOf:
+> +      # Deprecated compatible strings
+> +      - items:
+> +          - enum:
+> +              - solomon,ssd1305fb-i2c
+> +              - solomon,ssd1306fb-i2c
+> +              - solomon,ssd1307fb-i2c
+> +              - solomon,ssd1309fb-i2c
+
+Please drop the "-i2c" suffixes, too.
+We already have plenty of IIO sensors and audio codecs using the
+same compatible value for spi and i2c, cfr.
+'git grep compatible -- "*-[si][p2][ic].c"'
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
