@@ -2,99 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD6914FB60F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B664FB606
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343854AbiDKIgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:36:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35592 "EHLO
+        id S1343852AbiDKIfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:35:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235802AbiDKIgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:36:10 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D67D3E5FC;
-        Mon, 11 Apr 2022 01:33:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649666037; x=1681202037;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=eUnDT/tQIKoHsmCis2wzCbJm/ia4pS4SboD/+n1ghGM=;
-  b=ZiJS5xFd3+/s7ZVYjw9QFDu+N7nyvAHDFXold7GFh3Tu4NUxg22ONqfO
-   vKxeX7e4ceYFPu6XEubps3doZJN1ET2SS1/bnxsauMjJZTWJv0fZnJbng
-   jvrh5CXLFhygmZKjfrRhks2WhHkximPcX1GI1CW0tWm0yrQgcuTd9wSjS
-   Hq8nCK1uW5wp9F3o6gylvT6+vlxN+2HFoXQs7jhncXA/I+x7M9j4kKv6D
-   mk5xGB77FdE7Tm7EOOzHDZCmwhp4W6CsMEDOa3JE8jGY7SXIbD6bMVrKX
-   X+5tvAlD/5I5hurm4g254cEwoaZr96IFBDmcCfGfn+RBJqdsLugPFiy+z
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="322511578"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; 
-   d="scan'208";a="322511578"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 01:33:57 -0700
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; 
-   d="scan'208";a="572028660"
-Received: from azahoner-mobl1.ger.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.249.44.232])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 01:33:53 -0700
-From:   =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     linux-serial@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Lukas Wunner <lukas@wunner.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Johan Hovold <johan@kernel.org>, heiko@sntech.de,
-        giulio.benetti@micronovasrl.com,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 05/12] dt_bindings: rs485: Add receiver enable polarity
-Date:   Mon, 11 Apr 2022 11:33:14 +0300
-Message-Id: <20220411083321.9131-6-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220411083321.9131-1-ilpo.jarvinen@linux.intel.com>
-References: <20220411083321.9131-1-ilpo.jarvinen@linux.intel.com>
+        with ESMTP id S241378AbiDKIfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:35:41 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DABD53E5F6
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:33:26 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id c7so21946339wrd.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:33:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=27lr1TeRoTWAFLVF9iWjZf9oxGgkBi1ijJ2WmnDVaWw=;
+        b=FCiOpWwMz1l33QbeB+Jtt4vgr1FQhMBvYuXg9CwxMEZsIcuVknweKFjUN7iW+2i9cK
+         6icNeAlKmv9KMrFKBYTeJzTuTaLQrqAz87rGMry1dWZXm4WaTRZD8qkPhMoBRQIgboJq
+         gkDMBZ4Iywc5c8AWFqttqw8Mf9H62DLQn1ShJ5V1P9YTxEyxOqX6P+22Zz2p+H8QQk7b
+         72SKN7Xp2UiqKy1gotmgGVAH985FbXgT7oZ+HcB5XzDQ6YLW+zqHRxDP9MiZ9FTJ2hbG
+         /qFhqT7Bdal9IeLusenPQiG3Pw7Ma5BF2J+9ynOn0iiNwFlEPSEVFRAdzuuhc8ZgZNrz
+         60Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=27lr1TeRoTWAFLVF9iWjZf9oxGgkBi1ijJ2WmnDVaWw=;
+        b=QR9aDIuH5PzjdgyuzMm97MuvzKdwOhfKeREol+nhSow2bEf1+heT9T3C4YnEAVqGLG
+         mafhDkdDTiF3BTcUVRTBqrbEwwtKIKlPMWbkjuJQeBzdHPKgtXjvN4Nle1RjCOm0ondq
+         2uvpg5UXowuNEe6SUhMfUIFMbb1JoosvVimTN8gT35o4MtOi1PDb74r6CwqOHcDmKpKt
+         yaC1lB3+1QRV6K3vyjCek8noJnwV1FDCO2AfJm983XXjSU3qVJhTfAnPjUBsZXtCeChL
+         G8JjbnGvcpe+U5ajk28TWgM8PcQQSB8S7El/9ZgX2yACXjFMGMX5kBPK8VgvWgdRAoax
+         kXhw==
+X-Gm-Message-State: AOAM5329wenzPT0AtX9z9yszRmat49nSuhEG12MCRAxzuF9mVWwJNNuO
+        KzK1XbDBK1R9Uz4xft6p/5PBpQ==
+X-Google-Smtp-Source: ABdhPJyMduce5eskJ2Cz9CC/3y6wawMSFNfIrfesrt3XjKQQPdmm+A6C+5gLz1aqtTxhi5MfzzLSUg==
+X-Received: by 2002:a05:6000:1c14:b0:207:9988:2af0 with SMTP id ba20-20020a0560001c1400b0020799882af0mr11267923wrb.324.1649666005486;
+        Mon, 11 Apr 2022 01:33:25 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id z5-20020a05600c0a0500b0037fa93193a8sm20206956wmp.44.2022.04.11.01.33.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 01:33:24 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 10:33:22 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     John Keeping <john@metanate.com>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 17/33] crypto: rockchip: use read_poll_timeout
+Message-ID: <YlPn0nevX6zdYWwG@Red>
+References: <20220401201804.2867154-1-clabbe@baylibre.com>
+ <20220401201804.2867154-18-clabbe@baylibre.com>
+ <YkrYs87bgWs7+tOm@donbot>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <YkrYs87bgWs7+tOm@donbot>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add polarity property for receiver enable. Some UARTs have
-separate enable pins for tx (RTS or DE) and rx (RE). As most
-RS485 transceivers have !RE pin, the default is active low in
-contrast to rs485-rts-active-low that defaults to active high.
+Le Mon, Apr 04, 2022 at 12:38:27PM +0100, John Keeping a écrit :
+> On Fri, Apr 01, 2022 at 08:17:48PM +0000, Corentin Labbe wrote:
+> > Use read_poll_timeout instead of open coding it
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> >  drivers/crypto/rockchip/rk3288_crypto_ahash.c | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/crypto/rockchip/rk3288_crypto_ahash.c b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+> > index 137013bd4410..21c9a0327ddf 100644
+> > --- a/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+> > +++ b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+> > @@ -10,6 +10,7 @@
+> >   */
+> >  #include <linux/device.h>
+> >  #include <asm/unaligned.h>
+> > +#include <linux/iopoll.h>
+> >  #include "rk3288_crypto.h"
+> >  
+> >  /*
+> > @@ -305,8 +306,8 @@ static int rk_hash_run(struct crypto_engine *engine, void *breq)
+> >  		 * efficiency, and make it response quickly when dma
+> >  		 * complete.
+> >  		 */
+> > -	while (!CRYPTO_READ(tctx->dev, RK_CRYPTO_HASH_STS))
+> > -		udelay(10);
+> > +	read_poll_timeout(readl, v, v == 0, 10, 1000, false,
+> > +			  tctx->dev->dev + RK_CRYPTO_HASH_STS);
+> 
+> This can be simplified to:
+> 
+> 	readl_poll_timeout(tctx->dev->dev + RK_CRYPTO_HASH_STS,
+> 			   v, v == 0, 10, 1000);
 
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Ilpo JÃ¤rvinen <ilpo.jarvinen@linux.intel.com>
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Thanks, this is better.
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index 0c9fa694f85c..f2c9c9fe6aa7 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -33,6 +33,11 @@ properties:
-     description: drive RTS low when sending (default is high).
-     $ref: /schemas/types.yaml#/definitions/flag
- 
-+  rs485-rx-active-high:
-+    description: Polarity of receiver enable signal (when separate from RTS).
-+      True indicates active high (default is low).
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-   linux,rs485-enabled-at-boot-time:
-     description: enables the rs485 feature at boot time. It can be disabled
-       later with proper ioctl.
--- 
-2.30.2
+> 
+> But shouldn't this be tctx->dev->reg ?!
 
+Yes, I will fix it.
+
+Thanks
+Regards
