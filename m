@@ -2,66 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A20E4FBC1E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 669E24FBC26
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbiDKMeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36692 "EHLO
+        id S1346110AbiDKMfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:35:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346068AbiDKMeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:34:17 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7093EBB9
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:31:59 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id bh17so30501353ejb.8
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:31:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jBDZOUj40UCKpbLB7bFx1yBWu6QPK94DCYQV33996m4=;
-        b=j+A5ccabaUeeM3416rNwxeOecPOSkjCNrxnFAXpzerKo+LUtJ8+0sbgHxV1y1df7th
-         4tOgEILYkjiBedfexIvLZ3cgdeJhRbfOeXS2MpyJp1JNMkfSKWiIOK9JpGom6TGPhtBz
-         ilgZIqZCvGhSJGw6EwRNmAzDp77wy6FQ38oAI4IAI3cZi064EYq7c5WewoXrXZ5+OFP6
-         q1+VyVnGcX4NmukImCPV6WGpEr2P0i3EkAz/AGmBVn6kPjNq8dFeJ+SkDYyNEVgFbfKz
-         fJyrbXMc6RgNDrcopLi9sCoLOVeico0nmBL0blW9iUe8PUClcQePHmtnxfDL06wm4DxQ
-         EKJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jBDZOUj40UCKpbLB7bFx1yBWu6QPK94DCYQV33996m4=;
-        b=6UenQUtYxTcLwOyAPYHeK8gZWuiSxUOyAShFIL8G7VCuaNL2fiiYaf/s8IKh68zLQ2
-         DupTKarhP6voaPiCl1PsSI6WNOmAVCnuT9/+tqBNLeh9svQhO7KX8M8n8JGWvaPCXl9L
-         cfYZvPVfQX9OegoXnhni9o1I1BGoxGkeenXhAsuJpa7AAICW5roZo7KHu7ilm1VQp/8b
-         T7EnwDLPBBKb5mhzUDahYzF+syiJ7G5WssFqQlo+Tr2KwsLWAUhcTXjG30bLsrcFcJpq
-         Zy9lzURxRd3M5uegDN8Z/nFVJkxiX94EaKVc0KpvVcHhHU6vKUToRacHtCA3BNxRN7Jq
-         VZjQ==
-X-Gm-Message-State: AOAM5318GuzF6BPmBWqDqzvKTAYnDvMSd0ODlkUMcG8JHLeT3RYfTtB8
-        beRU+o4lWjX2Z67ygAePtYF7U3wBTimtj58MsiWD7A==
-X-Google-Smtp-Source: ABdhPJwNZv8N7FgL9z4krJ3g7caKEsfemJcG4eROygWQm1CPb3gR15iupplZRtc05YRM0cnB2/1iXvgiGp99Aaz/Qmo=
-X-Received: by 2002:a17:907:10ce:b0:6e7:116:10d0 with SMTP id
- rv14-20020a17090710ce00b006e7011610d0mr29415404ejb.101.1649680317762; Mon, 11
- Apr 2022 05:31:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1649533972.git.sander@svanheule.net>
-In-Reply-To: <cover.1649533972.git.sander@svanheule.net>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 11 Apr 2022 14:31:46 +0200
-Message-ID: <CAMRc=MeRMtm84ZyRgs9nxqWQ-LhkL0kejJA5UqrP1VHogFrccQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/6] Support for RTL930x/RTL931x GPIOs
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S1346099AbiDKMfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:35:09 -0400
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A1A3EBB6
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:32:50 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:b509:6862:2557:437a])
+        by michel.telenet-ops.be with bizsmtp
+        id HQYm2700Z1G7NMJ06QYm34; Mon, 11 Apr 2022 14:32:48 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ndtDp-000AML-WB; Mon, 11 Apr 2022 14:32:46 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ndtDp-009IkF-I1; Mon, 11 Apr 2022 14:32:45 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bert Vermeulen <bert@biot.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] ARM: dts: r9a06g032: Drop "arm,cortex-a7-timer" from timer node
+Date:   Mon, 11 Apr 2022 14:32:44 +0200
+Message-Id: <a8e0cf00a983b4c539cdb1cfad5cc6b10b423c5b.1649680220.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,35 +50,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 9, 2022 at 9:56 PM Sander Vanheule <sander@svanheule.net> wrote:
->
-> This patch series adds support for the GPIO controllers as found on the
-> RTL930x and RTL931x SoC families of MIPS CPUs, used in managed NBase-T
-> ethernet switches.
->
-> The RTL931x's GPIO controller behaves the same as the one in the older
-> RTL838x and RTL839x series. This controller is trivially supported.
->
-> The RTL930x's controller has a reversed port order, and supports CPU
-> affinity settings for individual GPIO line IRQs, thus requiring two
-> additional changes to implement these features.
->
-> Sander Vanheule (6):
->   dt-bindings: gpio: realtek-otto: Add rtl9300 compatible
->   gpio: realtek-otto: Support reversed port layouts
->   gpio: realtek-otto: Support per-cpu interrupts
->   gpio: realtek-otto: Add RTL930x support
->   dt-bindings: gpio: realtek-otto: Add rtl9310 compatible
->   gpio: realtek-otto: Add RTL931x support
->
->  .../bindings/gpio/realtek,otto-gpio.yaml      |  34 ++++-
->  drivers/gpio/gpio-realtek-otto.c              | 137 +++++++++++++++++-
->  2 files changed, 164 insertions(+), 7 deletions(-)
->
-> --
-> 2.35.1
->
+"make dtbs_check":
 
-Queued the entire series, thanks!
+    arch/arm/boot/dts/r9a06g032-rzn1d400-db.dt.yaml: timer: compatible: 'oneOf' conditional failed, one must be fixed:
+	    ['arm,cortex-a7-timer', 'arm,armv7-timer'] is too long
+	    'arm,cortex-a7-timer' is not one of ['arm,cortex-a15-timer']
+	    'arm,cortex-a7-timer' is not one of ['arm,armv7-timer']
+	    'arm,cortex-a7-timer' is not one of ['arm,armv8-timer']
+	    From schema: Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
 
-Bart
+The Cortex-A7 timer should just declare compatibility with
+"arm,armv7-timer".
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+To be queued in renesas-devel for v5.19.
+
+ arch/arm/boot/dts/r9a06g032.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
+index 636a6ab31c589c3e..2257706ce84fc70a 100644
+--- a/arch/arm/boot/dts/r9a06g032.dtsi
++++ b/arch/arm/boot/dts/r9a06g032.dtsi
+@@ -214,8 +214,7 @@ gic: interrupt-controller@44101000 {
+ 	};
+ 
+ 	timer {
+-		compatible = "arm,cortex-a7-timer",
+-			     "arm,armv7-timer";
++		compatible = "arm,armv7-timer";
+ 		interrupt-parent = <&gic>;
+ 		arm,cpu-registers-not-fw-configured;
+ 		always-on;
+-- 
+2.25.1
+
