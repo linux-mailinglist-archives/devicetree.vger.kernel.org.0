@@ -2,96 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E454FBBED
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FAEA4FBBF5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbiDKMXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:23:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34588 "EHLO
+        id S243864AbiDKMZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346104AbiDKMWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:22:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0686542A0D
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:20:38 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1ndt1s-0004DP-Bg; Mon, 11 Apr 2022 14:20:24 +0200
-Message-ID: <f2fc68f6c2034546009c96658da0e63f191978d1.camel@pengutronix.de>
-Subject: Re: [PATCH v0 07/10] phy: freescale: add Samsung HDMI PHY
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
-Date:   Mon, 11 Apr 2022 14:20:22 +0200
-In-Reply-To: <20220411115922.luv2gyutdecvsxa3@houat>
-References: <20220406160123.1272911-1-l.stach@pengutronix.de>
-         <20220406160123.1272911-8-l.stach@pengutronix.de>
-         <20220411115922.luv2gyutdecvsxa3@houat>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S235625AbiDKMZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:25:33 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF3542EDD;
+        Mon, 11 Apr 2022 05:23:19 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id bg10so30507150ejb.4;
+        Mon, 11 Apr 2022 05:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=p3K7UtkaAmdhk912uS6+rgvTEva2rfQRiBVV1ZuGdMU=;
+        b=HuRiT0ANWZP6UjYHsieS+X9qE6PsH2PKM2SYytRq+JFCv0R5RmnbZtuIb92jaMAoA1
+         CU1bYkB3vNDTzZhz5mTVdtOwAz/kBMmW2V0WjEB9KnIF7nsso4pHx5fe6Cf+2yas0d3p
+         12eO3FxEv3QPW+wOKls+pOMVwIyanCa3i8T7cECKjMQdHGPXPSppHr9Ujv3eoq4Qnn4i
+         vjK2BWfvTsuxFdfa/au0BoitJtj8X4J+WNwPbS9JyHoZm6goW06I2+5LHI6YzJn+AFJO
+         Ro1+PhAntdQIxLZyVewl/V4cB2fXIAysnGi1g3KAJMTD+SWNbYmxOsapExdpoPprZ8uJ
+         fWRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p3K7UtkaAmdhk912uS6+rgvTEva2rfQRiBVV1ZuGdMU=;
+        b=lOa3EowOwoWWlB/J221Brj2P3UM53mFSyXxXlYXKZBKpLt+0ayqZntI8j5rAIPmcdw
+         j61yoBVRiL7lAhXumhJF28WOd8+MUXRF7oKodsHKAfl8TKMCTfyZnm2+dgp0qMyXFo7h
+         qu2xsvdgq1XmNHZTOzLdL62lCBNK/Hy7TiRAVHZ0zUy6L972q43PjFiIE92M2oUJU2Oz
+         2yus5QlYeS8+dPk+/8Sy9rkkB/NZcsQ+ois7EiJkZNVs41Tm5IMPksX4LpZSgri75xMR
+         1l9yLvVrNWzMrSOc2nOmOQdsuymUj4BoEx4YXSjDFlF/SU5lZvE1Hl0Jnv7iX5m99ckd
+         cgGA==
+X-Gm-Message-State: AOAM533hTset1y/Rgm/QEJHdynpQrwoJi56i/HMbL9uQgChoRx62TTuH
+        K0Ywwu+AsbbX5OSM+c2joxClauWB/iEJkRUgk7w=
+X-Google-Smtp-Source: ABdhPJzsx8ixnvvwZcOQCCytMaslcnBviduIWhYCyNcWaDzDXQGHfmdS2Pi2TSFE/QDGHSZVNBuOgw3JW5mhtnvztq0=
+X-Received: by 2002:a17:907:7b8b:b0:6e8:9dd9:59ac with SMTP id
+ ne11-20020a1709077b8b00b006e89dd959acmr1655923ejc.588.1649679797613; Mon, 11
+ Apr 2022 05:23:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220408162108.184583-1-jagan@amarulasolutions.com> <20220408162108.184583-5-jagan@amarulasolutions.com>
+In-Reply-To: <20220408162108.184583-5-jagan@amarulasolutions.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 11 Apr 2022 07:23:06 -0500
+Message-ID: <CAHCN7xJmiEBsbZRepsM0FLd8YDSQj8GUwwyYm4M_ViJFPoU8FQ@mail.gmail.com>
+Subject: Re: [PATCH 04/11] drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fancy Fang <chen.fang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+On Fri, Apr 8, 2022 at 11:22 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> Host transfer() in DSI master will invoke only when the DSI commands
+> are sent from DSI devices like DSI Panel or DSI bridges and this
+> host transfer wouldn't invoke for I2C-based-DSI bridge drivers.
+>
+> Handling DSI host initialization in transfer calls misses the
+> controller setup for I2C configured DSI bridges.
+>
+> This patch adds the DSI initialization from transfer to bridge
+> pre_enable as the bridge pre_enable API is invoked by core as
+> it is common across all classes of DSI device drivers.
+>
+> v1:
+> * keep DSI init in host transfer
+>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  drivers/gpu/drm/bridge/samsung-dsim.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
+> index ff05c8e01cff..3e12b469dfa8 100644
+> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+> @@ -1290,6 +1290,13 @@ static void samsung_dsim_atomic_pre_enable(struct drm_bridge *bridge,
+>         }
+>
+>         dsi->state |= DSIM_STATE_ENABLED;
+> +
+> +       if (!(dsi->state & DSIM_STATE_INITIALIZED)) {
+> +               ret = samsung_dsim_init(dsi);
+> +               if (ret)
+> +                       return;
+> +               dsi->state |= DSIM_STATE_INITIALIZED;
 
-Am Montag, dem 11.04.2022 um 13:59 +0200 schrieb Maxime Ripard:
-> Hi Lucas,
-> 
-> On Wed, Apr 06, 2022 at 06:01:20PM +0200, Lucas Stach wrote:
-> > +static unsigned long phy_clk_recalc_rate(struct clk_hw *hw,
-> > +					 unsigned long parent_rate)
-> > +{
-> > +	struct fsl_samsung_hdmi_phy *phy = to_fsl_samsung_hdmi_phy(hw);
-> > +
-> > +	if (!phy->cur_cfg)
-> > +		return 0;
-> > +
-> > +	return phy->cur_cfg->clk_rate;
-> > +}
-> 
-> This means that the clock will return 0 at initialization, which will
-> throw the rate accounting in the CCF off.
-> 
-> Returning 0 here isn't valid. Surely that phy has a default
-> configuration at boot that you could use to initialize a rate?
-> 
-> See https://lore.kernel.org/linux-clk/20220408091037.2041955-1-maxime@cerno.tech/
+Out of curiosity, is there a reason that  dsi->state cannot add
+DSIM_STATE_INITIALIZED inside the samsung_dsim_init function call?  It
+seems to me that if samsung_dsim_init returns successfully, it should
+set that flag.  I don't know if it's called from other places or not.
 
-Thanks for the hint. I don't know the full history of this and surely I
-can use the register reset defaults to initialize the clock rate, but
-it still seems odd. A powered down clock generator, like the PLL in
-this PHY, is not actually putting out a clock at any rate, so 0 for the
-rate seems natural, so it's kind of a bad pitfall if the CCF can't deal
-with that.
-
-Regards,
-Lucas
-
+adam
+> +       }
+>  }
+>
+>  static void samsung_dsim_atomic_enable(struct drm_bridge *bridge,
+> --
+> 2.25.1
+>
