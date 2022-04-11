@@ -2,71 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A704FBB4B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D64EB4FBB51
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345219AbiDKLvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 07:51:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34446 "EHLO
+        id S244590AbiDKLw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 07:52:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345588AbiDKLvr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:51:47 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55EED240AD
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:49:33 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id h14so20999643lfl.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:49:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/6CFto7M8oZaCl7cm5R2A65FlhclhlqZYkEyXGEcxkg=;
-        b=NOwyTfnNgzPqQpLy4Cr4YL62YQVyBgFIOMOlbqtNGsUO86YFi6G/XKGlzByYu9myX6
-         6A3uH9RKckCTkUxgBtxAGmQCIDGXOuWPXmRO1wAmItJdcdqnOfZGG8jrO70wqpljuhpl
-         rVJYMei0cDiBx9/MRfQNVI/A8rk8H3jRYu7fJxX6xSjbs+izySWxBxmfqsc2I0yLjvmS
-         1Bx6XqSjss3Anuqxo9+CvEaVh0SL+T1562SAKeOarOlbHLHQDkAd2Op3WJt2RA+8Lswt
-         KLriaqgVBwl7b/aTBNGa/mw4xjgnKqr8zGyqXoCYSABlvI9KRR9qs2dvrBnsywzLpp+z
-         4ORA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/6CFto7M8oZaCl7cm5R2A65FlhclhlqZYkEyXGEcxkg=;
-        b=pswQwiBb2YqwpWoJisKRZKpsozfz6w9hpmSOFSydshmp8egqpyEsxFBB2u3Q6C2zc5
-         Cwm4mYe3uTuSROKod7M3t71ZxZlmmMy3v8mRzyoJ27LeeP68FC3WpU4W6h4FyvC8vaOx
-         m00Feq3WX29VM7uCJtKEDqtUlXdPqwOwTh3BF9AyGUXcFlXHPjYjx+LUkdPfUB7kEvdo
-         MpUGODnrJEPfG4FQRlLPP9cLZacTgxlEQGVFCjdWgDWbcZqS/SFN+A2Ox/NGumrL7fA/
-         U0sjzrU6PIHLjy+TdQFavI6dFcVhdTWqeHKY3P8H5RAynh59Y5UcHqfQ8sqgqVawDzGi
-         6GAw==
-X-Gm-Message-State: AOAM533rnEG0asvXAK+KWh2ym3ti/KxW7tVCqsC+KMf/39NIdVol8P72
-        FnFsbw6xoLFK6scUpktEs9mlnw==
-X-Google-Smtp-Source: ABdhPJxMpGguGkJehVVepkmvquygZLb6Tr9Ost9vzYkV8QLaDFq07AlZF8kbTtvVDyeZXtdTHgTs3w==
-X-Received: by 2002:a05:6512:3d0e:b0:46b:a6b4:9cdd with SMTP id d14-20020a0565123d0e00b0046ba6b49cddmr2673851lfv.322.1649677771540;
-        Mon, 11 Apr 2022 04:49:31 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id y21-20020a05651c021500b0024b5d56484dsm587973ljn.83.2022.04.11.04.49.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 04:49:30 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, Manivannan Sadhasivam <mani@kernel.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8250: provide additional MSI interrupts
-Date:   Mon, 11 Apr 2022 14:49:26 +0300
-Message-Id: <20220411114926.1975363-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220411114926.1975363-1-dmitry.baryshkov@linaro.org>
-References: <20220411114926.1975363-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S242979AbiDKLwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:52:25 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99422338A8;
+        Mon, 11 Apr 2022 04:50:10 -0700 (PDT)
+X-UUID: 5ac3e574fb744c4f8d5ef478c0b669f9-20220411
+X-UUID: 5ac3e574fb744c4f8d5ef478c0b669f9-20220411
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 534694944; Mon, 11 Apr 2022 19:50:04 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 11 Apr 2022 19:50:03 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 Apr 2022 19:50:03 +0800
+Message-ID: <7920cc153930ab1e724fe65df370fc70f6cbe3db.camel@mediatek.com>
+Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 11 Apr 2022 19:50:03 +0800
+In-Reply-To: <dc18d877-effb-1286-341d-1792ea6fcc05@collabora.com>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+         <20220408045908.21671-14-rex-bc.chen@mediatek.com>
+         <dc18d877-effb-1286-341d-1792ea6fcc05@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,41 +60,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 each group of MSI interrupts is mapped to the separate host
-interrupt. Describe each of interrupts in the device tree for PCIe0
-host.
+On Fri, 2022-04-08 at 15:37 +0200, AngeloGioacchino Del Regno wrote:
+> Il 08/04/22 06:59, Rex-BC Chen ha scritto:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > In some MediaTek SoCs, like MT8183, CPU and CCI share the same
+> > power
+> > supplies. Cpufreq needs to check if CCI devfreq exists and wait
+> > until
+> > CCI devfreq ready before scaling frequency.
+> > 
+> > - Add is_ccifreq_ready() to link CCI device to CPI, and CPU will
+> > start
+> >    DVFS when CCI is ready.
+> > - Add platform data for MT8183.
+> > 
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > ---
+> >   drivers/cpufreq/mediatek-cpufreq.c | 69
+> > +++++++++++++++++++++++++++++-
+> >   1 file changed, 68 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index b08ab7c14818..cebe5af2ef5d 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> > @@ -22,6 +22,7 @@ struct mtk_cpufreq_platform_data {
+> >   	int proc_max_volt;
+> >   	int sram_min_volt;
+> >   	int sram_max_volt;
+> > +	bool is_ccifreq_support;
+> 
+> bool ccifreq_supported; looks better.
 
-Tested on Qualcomm RB5 platform with first group of MSI interrupts being
-used by the PME and attached ath11k WiFi chip using second group of MSI
-interrupts.
+Hello Angelo,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+Thanks for your review.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index a7a7375893cc..ad22a921db7e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1808,8 +1808,15 @@ pcie0: pci@1c00000 {
- 			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
- 				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
- 
--			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7", "msi8";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
--- 
-2.35.1
+OK, I will modify this in next version.
+
+> 
+> >   };
+> >   
+> >   /*
+> > @@ -38,6 +39,7 @@ struct mtk_cpufreq_platform_data {
+> >   struct mtk_cpu_dvfs_info {
+> >   	struct cpumask cpus;
+> >   	struct device *cpu_dev;
+> > +	struct device *cci_dev;
+> >   	struct regulator *proc_reg;
+> >   	struct regulator *sram_reg;
+> >   	struct clk *cpu_clk;
+> > @@ -52,6 +54,7 @@ struct mtk_cpu_dvfs_info {
+> >   	int opp_cpu;
+> >   	unsigned long opp_freq;
+> >   	const struct mtk_cpufreq_platform_data *soc_data;
+> > +	bool is_ccifreq_bounded;
+> 
+> bool ccifreq_bound; looks better.
+> 
+
+OK, I will modify this in next version.
+
+> >   };
+> >   
+> >   static struct platform_device *cpufreq_pdev;
+> > @@ -171,6 +174,29 @@ static int mtk_cpufreq_set_voltage(struct
+> > mtk_cpu_dvfs_info *info, int vproc)
+> >   	return ret;
+> >   }
+> >   
+> > +static bool is_ccifreq_ready(struct mtk_cpu_dvfs_info *info)
+> > +{
+> > +	struct device_link *sup_link;
+> > +
+> > +	if (info->is_ccifreq_bounded)
+> > +		return true;
+> > +
+> > +	sup_link = device_link_add(info->cpu_dev, info->cci_dev,
+> > +				   DL_FLAG_AUTOREMOVE_CONSUMER);
+> > +	if (!sup_link) {
+> > +		dev_err(info->cpu_dev, "cpu%d: sup_link is NULL\n",
+> > +			info->opp_cpu);
+> 
+> Please, don't break this line: 84 columns are ok.
+> 
+
+OK, I will modify this in next version.
+
+> > +		return false;
+> > +	}
+> > +
+> > +	if (sup_link->supplier->links.status != DL_DEV_DRIVER_BOUND)
+> > +		return false;
+> > +
+> > +	info->is_ccifreq_bounded = true;
+> > +
+> > +	return true;
+> > +}
+> > +
+> >   static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
+> >   				  unsigned int index)
+> >   {
+> > @@ -183,6 +209,9 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >   	long freq_hz, old_freq_hz;
+> >   	int vproc, old_vproc, inter_vproc, target_vproc, ret;
+> >   
+> > +	if (info->soc_data->is_ccifreq_support &&
+> > !is_ccifreq_ready(info))
+> > +		return 0;
+> 
+> Honestly, I think that pretending that everything is alright and
+> faking
+> set_target success is *not* a good idea...
+> 
+> You should return -EAGAIN here, not zero.
+> 
+> Regards,
+> Angelo
+> 
+
+As metioneded by Kevin, I will review these three situations.
+Thanks for your suggestion.
+
+BRs,
+Rex
 
