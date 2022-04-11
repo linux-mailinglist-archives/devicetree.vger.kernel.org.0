@@ -2,102 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A25354FC7F5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 01:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1FDF4FC7F8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 01:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiDKXIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 19:08:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
+        id S229884AbiDKXKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 19:10:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbiDKXIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 19:08:04 -0400
-Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E443F11C18
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 16:05:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1649718350; x=1681254350;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Wuv82C+NThJ2LAyrvMNDY/iIjAzWwWVaRV90LnNl2nw=;
-  b=YuAzAncOW8D/0Fg3LqxxsIje06zncFVC25vhv35AQVxNS+vtvwz9r2qU
-   artGWunA+XDyAC7LRVbGsZfD9c14rXJfsThPBb/O4KCJAsnag4utkcI0d
-   T8jZlrpDVhRDuAn7pFOm3lYua1/a39/Ue8dWo+FnlUQ2wF6cADkdalaA9
-   FXk1v+5VN2qTgD1mJMprnWaI8fnK0XYPetzlNVQUx+LfkdL5Lq0ZcjhYe
-   Qxqzyo/0AcO7hJfpYJjOVc/t5tbGfdUyNSejc3CVPGMlYBAD7zQg5bBr1
-   Cl7N9cS/cizycF8Mgpj1z8lftK7YzfL5I8+OU0anWo5m/4ZgC1Lxwe1C7
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,252,1643644800"; 
-   d="scan'208";a="198568476"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 12 Apr 2022 07:05:47 +0800
-IronPort-SDR: PRNhzWUJXdHtp9fbqxEascWx0+vJMCxi/pkKF+iQE99A1S21hBdAmydQF3fIMKtG9gY35EzlGB
- 9syzvEv+jcjJLS287XNyJ0lGOGFzBByM5LHnXJdb0jFXz9fx9e3rQ2HcEUgbPpeIvX2HBLbCEn
- 5jWhEEjgKimSQBDYKAXb5f8Re8DOXxB0rn6MgNH9j8mS3qf/UHgMOxrgziZN2ITr7IpO980vru
- RhYP6DaoL8qpas20Jer7oTM2VUpryjRx5Nej3H0GoCJj2NSRkwL0M5UGmmHLR5UergQCClNgLc
- DJzfw3P87zsgPcOeTcBBfmBS
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 15:36:15 -0700
-IronPort-SDR: jtZPQUDnNM9F528Yhp75TR8tdu+DLeSD+U7MlucHwXRS5okfSnCATJ5vd5kyxVohoq8UTVb3if
- uw2YuxOnWLDV5p8NH0vaaZMBB5OLlD6FwP56XtRSBdRksobY+FpfdqmSwyA441SpXD38iLJkLf
- AWnTDalP+Jt7ikbKC1KDqeqCA2PROAsd2TmZPfDmEcJx6FctfrZfiZdMHgQcIgrWVmp4b1/ax1
- EDk31Ibsnsb2a5pwV7+G93O1n3Qnoum6cvd1ihjhhqfKU+FJsu19rmKyh8ko8sIy80YtXLu1CG
- A/U=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 16:05:47 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Kckwp1SB9z1SVnx
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 16:05:46 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1649718345; x=1652310346; bh=Wuv82C+NThJ2LAyrvMNDY/iIjAzWwWVaRV9
-        0LnNl2nw=; b=IzT1lVoemoVGtrP39rzKF5oNCmsWW7TP0fPaOwcx4bhWNZV9YVk
-        y/HCqgVVG8eUEWd1slLrWl5ZW96xMz/6M/BnNEa6gsDPULtvagk4LQfWNGNejHIA
-        3lCWOcMjQy3dp1zlD8TgrAt3dxl+6/BcJcQ7CRj0gPDFW/3hNqlm/E9yNckD/L+8
-        pKH2d6fXyr3GU/WM+Ohex10z5TjyKmLpxsay4FK9dWe4gJ+slu4FYsAVaTMtgREL
-        KGWOpjGXFYgPvnmAuWSF2m+tPVZWb4z0CxHYqq/kv1Nl+Dgku1GeAcFKAAnS280e
-        Rm5VTbwLnch294YMOIhR8GHj8lxqGfIbhxQ==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id JWmbSaL1mgY6 for <devicetree@vger.kernel.org>;
-        Mon, 11 Apr 2022 16:05:45 -0700 (PDT)
-Received: from [10.225.163.9] (unknown [10.225.163.9])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Kckwl70RLz1Rvlx;
-        Mon, 11 Apr 2022 16:05:43 -0700 (PDT)
-Message-ID: <4716ac8b-acee-da06-5fa1-34eed07ba4d0@opensource.wdc.com>
-Date:   Tue, 12 Apr 2022 08:05:42 +0900
+        with ESMTP id S229540AbiDKXKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 19:10:40 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E6911C18;
+        Mon, 11 Apr 2022 16:08:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649718505; x=1681254505;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=z5H/rq03nkgQAfI8+PdRAbFO8Il2m/4sGggc2QYRUUE=;
+  b=DXPMRnfvtAKQK0kUOMbdVDe82oYxQPcKPKxPCVMdXs+xfSTGLq4CYTM2
+   K/nPvm9AXWZCAg0y+WEPMVXy9WWQ7ES/R9M2GkMQJyl0k5ntYiD6QDL1V
+   SSxyzSo6zAI+pm9tc/k+l9l9DVIcc/7Oo/RBTOF7gGokspjX1TZcs3UbF
+   t+SuI/RYKPEGqZPLjI3oIwcdhiCQ0F1mO7VOAXqqdSgoSM3phekUDkS/n
+   sZAR/3r+PSdfwYYeLFxLlZ0U4fl+e6Knke46U50ritHQzh/uu8/rT1ec1
+   OCfMrMwoFpnssKhTWq5uJa5N08M28nBtDtQDsSmm7QsEBeDltuUH81X/q
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="325146697"
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; 
+   d="scan'208";a="325146697"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 16:08:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; 
+   d="scan'208";a="644468203"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 11 Apr 2022 16:08:21 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1ne38u-0002IQ-M6;
+        Mon, 11 Apr 2022 23:08:20 +0000
+Date:   Tue, 12 Apr 2022 07:08:05 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, reimu@sudomaker.com
+Subject: Re: [PATCH v4 3/3] clocksource: Ingenic: Add SMP/SMT support for
+ sysost driver.
+Message-ID: <202204120622.OSuTgle5-lkp@intel.com>
+References: <1649687597-74219-4-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [WARNING: UNSCANNABLE EXTRACTION FAILED][PATCH v2] dt-bindings:
- ata: renesas,rcar-sata: Add r8a774e1 support
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-ide@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marian-Cristian Rotariu 
-        <marian-cristian.rotariu.rb@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-References: <5861565a79a2bdadc07ae84e23e6d96dbb764823.1649680949.git.geert+renesas@glider.be>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <5861565a79a2bdadc07ae84e23e6d96dbb764823.1649680949.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1649687597-74219-4-git-send-email-zhouyanjie@wanyeetech.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -105,40 +70,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/22 21:43, Geert Uytterhoeven wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Document SATA support for the RZ/G2H SoC, no driver change required.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-> ---
-> v2:
->   - Add Acked-by.
-> ---
->  Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> index c060c7914cae6573..c4e4a9eab658056d 100644
-> --- a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> +++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - items:
->            - enum:
->                - renesas,sata-r8a774b1     # RZ/G2N
-> +              - renesas,sata-r8a774e1     # RZ/G2H
->                - renesas,sata-r8a7795      # R-Car H3
->                - renesas,sata-r8a77965     # R-Car M3-N
->            - const: renesas,rcar-gen3-sata # generic R-Car Gen3 or RZ/G2
+Hi "周琰杰,
 
-Rob,
+Thank you for the patch! Perhaps something to improve:
 
-Will you take this patch or do you want me to queue it ?
+[auto build test WARNING on tip/timers/core]
+[also build test WARNING on robh/for-next v5.18-rc2 next-20220411]
+[cannot apply to daniel-lezcano/clockevents/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Zhou-Yanjie/Add-SMP-SMT-support-for-Ingenic-sysost-driver/20220411-223537
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git 8afbcaf8690dac19ebf570a4e4fef9c59c75bf8e
+config: openrisc-randconfig-s032-20220411 (https://download.01.org/0day-ci/archive/20220412/202204120622.OSuTgle5-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 11.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/facdbd1eb8f72863d589c575577f6130d8cf6ed1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Zhou-Yanjie/Add-SMP-SMT-support-for-Ingenic-sysost-driver/20220411-223537
+        git checkout facdbd1eb8f72863d589c575577f6130d8cf6ed1
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=openrisc SHELL=/bin/bash drivers/clocksource/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/clocksource/ingenic-sysost.c:703:65: sparse: sparse: incorrect type in argument 5 (different address spaces) @@     expected void *dev @@     got struct ingenic_ost_timer [noderef] __percpu *timers @@
+   drivers/clocksource/ingenic-sysost.c:703:65: sparse:     expected void *dev
+   drivers/clocksource/ingenic-sysost.c:703:65: sparse:     got struct ingenic_ost_timer [noderef] __percpu *timers
+
+vim +703 drivers/clocksource/ingenic-sysost.c
+
+   678	
+   679	static int __init ingenic_ost_init(struct device_node *np)
+   680	{
+   681		struct ingenic_ost *ost;
+   682		unsigned long rate;
+   683		int ret;
+   684	
+   685		ret = ingenic_ost_probe(np);
+   686		if (ret) {
+   687			pr_crit("%s: Failed to initialize OST clocks: %d\n", __func__, ret);
+   688			return ret;
+   689		}
+   690	
+   691		of_node_clear_flag(np, OF_POPULATED);
+   692	
+   693		ost = ingenic_ost;
+   694		if (IS_ERR(ost))
+   695			return PTR_ERR(ost);
+   696	
+   697		if (ost->soc_info->has_event_timer) {
+   698			if (ost->soc_info->version >= ID_X2000)
+   699				ret = request_percpu_irq(ost->irq, ingenic_ost_cevt_cb,
+   700						  "OST event timer", ost->timers);
+   701			else
+   702				ret = request_irq(ost->irq, ingenic_ost_cevt_cb, IRQF_TIMER,
+ > 703						  "OST event timer", ost->timers);
+   704	
+   705			if (ret) {
+   706				pr_crit("%s: Unable to request IRQ: %d\n", __func__, ret);
+   707				goto err_free_ingenic_ost;
+   708			}
+   709	
+   710			/* Setup clock events on each CPU core */
+   711			ret = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "Ingenic XBurst: online",
+   712						ingenic_ost_setup_cevt, NULL);
+   713			if (ret < 0) {
+   714				pr_crit("%s: Unable to init event timers: %d\n", __func__, ret);
+   715				goto err_free_ingenic_ost;
+   716			}
+   717		}
+   718	
+   719		if (ost->soc_info->has_global_timer) {
+   720			ret = ingenic_ost_global_timer_init(np, ost);
+   721			if (ret) {
+   722				pr_crit("%s: Unable to init global timer: %d\n", __func__, ret);
+   723	
+   724				if (!ost->soc_info->has_event_timer)
+   725					goto err_free_ingenic_ost;
+   726			}
+   727	
+   728			/* Register the sched_clock at the end as there's no way to undo it */
+   729			rate = clk_get_rate(ost->global_timer_clk);
+   730			sched_clock_register(ingenic_ost_global_timer_read_cntl, 32, rate);
+   731		}
+   732	
+   733		return 0;
+   734	
+   735	err_free_ingenic_ost:
+   736		kfree(ost);
+   737		return ret;
+   738	}
+   739	
 
 -- 
-Damien Le Moal
-Western Digital Research
+0-DAY CI Kernel Test Service
+https://01.org/lkp
