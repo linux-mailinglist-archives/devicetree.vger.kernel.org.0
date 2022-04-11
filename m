@@ -2,234 +2,542 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A524FBBFE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A117E4FBC15
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 14:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230080AbiDKM1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 08:27:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
+        id S1346087AbiDKMdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 08:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235275AbiDKM1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:27:25 -0400
-Received: from esa2.hgst.iphmx.com (esa2.hgst.iphmx.com [68.232.143.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E88813DD9
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:25:11 -0700 (PDT)
+        with ESMTP id S1346101AbiDKMdF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 08:33:05 -0400
+Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975313EBB1;
+        Mon, 11 Apr 2022 05:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1649679911; x=1681215911;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1649680250; x=1681216250;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=PrDQ1E16Pyv12c8+jc/Pe47PY10PhBUx1qaK2gNFohg=;
-  b=Y00WI4qNoua2o2hj0NXrpGC8tKsOY1NwU+b9x7zagpt7JMgn2XZm0y9n
-   AhHm/xH7wby1JBxZrS9GELvss/oFGmFwHYncOx3Z8ueCmNr35WRiIkR6V
-   3LJIxqL4PuFEZHB4RoTxsQ3/lssLIwSiT/0gKNfflyqIjMH03OV4ObEC9
-   Vp03D3bOJ0cHlbTbIGXL8wKRVldr+aEDBWxMi3Ae8ozpPVbe5wM6pCXmo
-   SOZXkclKwYL2T8JWNhwtWAW84tpPPXT3wCk1B2CVfMB5hhHc3yMleHh9O
-   lInDU3fbUTDzmj02P6al2NWsVwdQKDmp88qPNfdjyheP7aoYmE97NjSJr
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,251,1643644800"; 
-   d="scan'208";a="301806128"
-Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 11 Apr 2022 20:25:09 +0800
-IronPort-SDR: gap6BM5U+nmhwvwTKtvlhS4m+vciW2dLgEDY9eIubfS4uP0XEVCgtRL77cw3DT9Dc+BehpK4YG
- zXU5ckmFH96QKfP+G2f1dG/HHOrWvOcm4/PJEcnZ56JTQbz6HNsdqRkI8gAcwm3h1vr2rnuh3G
- ZK+W7GJZkUf9ZcaRi2ceaNbrA3YXe+K5uKZAqyX7blByyRqdmXk4LnWf/OtlC09XnSCM7abKOG
- nrZ2v325WguI/ycQUTwZbML2T+cQoG5QPs04cenTzDpBbyL5HTCdh1mN2eTD/uyV65+xKbwLGg
- ezBPS9mWcjktRY2KBV3BYNaU
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 04:56:26 -0700
-IronPort-SDR: wANpqRSLJiDc2fA9gfFhktmUufe/7rdpQOe9smBcA//vbjNZFucyMcCYNggedect4xkjlsyisg
- kLPKzOZZGGBqpHPVZDmh3ll39/0Ni7bybS9mdDrrN+nqfUWTkgspkF7kI5xAvL2iFkN+8oFomD
- o+fkCiV4nX3ewfAp9Xx8FUe4G8ZZj042uXl+pa3DLmo3RjzSJhsOLlVOiWEdaF1m2ISCN2KbPi
- rGFFJdQaw+v4s9Nza+bbflRCy4ThJW7rbXJKDZQKK0ZaVVv2LmqfeVw8FOxv+0ryno23TBWokw
- AGU=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Apr 2022 05:25:09 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KcSjc3kk4z1SVp1
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 05:25:08 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1649679907; x=1652271908; bh=PrDQ1E16Pyv12c8+jc/Pe47PY10PhBUx1qa
-        K2gNFohg=; b=AsOILDiePXK8tNjJN/VxCcqRIcSCnsCBY/W+Foflr5sAVoZCayD
-        C5fUF64ivVxC6P/nGWPYkvINiVsj4cXxoLRGh0mlij7WVErVJKBsUu3uJllhFtwX
-        DVA1QCNuESLKLWq16xfgyEJXGePZKRyun8lbiVgSP7+f210XP/R76m+L9GosP8lo
-        +b9weqvbW8qrjpcGx7y56S9JoLz17yfRe9lkXhG53J0TLVk+J4LYfgozj2Y3Xo0L
-        h9wwG3+FQVawyqn8OGNr07tPVfeVac/TOuNNB5W9BUCPo4+CIjfgook6xCebFVPc
-        NDCSLWlxcEyU1OCwz6MXJYeF7juwR2BeUBA==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id DTeEWDNC4mMq for <devicetree@vger.kernel.org>;
-        Mon, 11 Apr 2022 05:25:07 -0700 (PDT)
-Received: from [10.225.163.9] (unknown [10.225.163.9])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KcSjY19FGz1Rvlx;
-        Mon, 11 Apr 2022 05:25:04 -0700 (PDT)
-Message-ID: <bde34952-e244-a1c3-fc33-251d618d2bb4@opensource.wdc.com>
-Date:   Mon, 11 Apr 2022 21:25:03 +0900
+  bh=kZd2uG2cwc/GA0oiQz44Cwo9kU3QzNAjdgzd0z7dQtM=;
+  b=JDewLOBPGA9IFNkaSQlA97Qp7MAfg6WXLLY73p15QXAlcSzPNrFTDgj3
+   1tqdH+rmsYPsXX8BDjT4vH3D50hCPv0lV0bllb4YZNU0ib3g46sFizYNn
+   FixGos2tOFnNjiHSf4gJ9PeJoAD8fuIgZ+9ogBoxwpHuhcULg/G/zPFce
+   M=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="289858437"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643670000"; 
+   d="scan'208";a="289858437"
+Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 14:30:47 +0200
+Received: from MUCSE819.infineon.com (MUCSE819.infineon.com [172.23.29.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
+        Mon, 11 Apr 2022 14:30:46 +0200 (CEST)
+Received: from [10.160.241.183] (172.23.8.247) by MUCSE819.infineon.com
+ (172.23.29.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 11 Apr
+ 2022 14:30:43 +0200
+Message-ID: <a32a901a-4628-3d8f-cb61-baf71c0bf8cd@infineon.com>
+Date:   Mon, 11 Apr 2022 14:30:42 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 12/21] ata: libahci: Discard redundant force_port_map
- parameter
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 1/4] tpm: Add tpm_tis_i2c backend for tpm_tis_core
 Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-13-Sergey.Semin@baikalelectronics.ru>
- <b06a8382-d5c1-e3a5-8577-692fa82cb3c1@opensource.wdc.com>
- <20220411121151.vm6wmtalbl2lgtgo@mobilestation>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20220411121151.vm6wmtalbl2lgtgo@mobilestation>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Jarkko Sakkinen <jarkko@kernel.org>
+CC:     "peterhuewe@gmx.de" <peterhuewe@gmx.de>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>,
+        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "amirmizi6@gmail.com" <amirmizi6@gmail.com>,
+        "robh@kernel.org" <robh@kernel.org>
+References: <20220404081835.495-1-johannes.holland@infineon.com>
+ <Yk635RtLeyfgQo1V@iki.fi>
+From:   Johannes Holland <johannes.holland@infineon.com>
+In-Reply-To: <Yk635RtLeyfgQo1V@iki.fi>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE806.infineon.com (172.23.29.32) To
+ MUCSE819.infineon.com (172.23.29.45)
+X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/22 21:11, Serge Semin wrote:
-> On Thu, Mar 24, 2022 at 11:05:58AM +0900, Damien Le Moal wrote:
->> On 3/24/22 09:16, Serge Semin wrote:
->>> Currently there are four port-map-related fields declared in the
->>> ahci_host_priv structure and used to setup the HBA ports mapping. First
->>> the ports-mapping is read from the PI register and immediately stored in
->>> the saved_port_map field. If forced_port_map is initialized with non-zero
->>> value then its value will have greater priority over the value read from
->>> PI, thus it will override the saved_port_map field. That value will be then
->>> masked by a non-zero mask_port_map field and after some sanity checks it
->>> will be stored in the ahci_host_priv.port_map field as a final port
->>> mapping.
->>>
->>> As you can see the logic is a bit too complicated for such a simple task.
->>> We can freely get rid from at least one of the fields with no change to
->>> the implemented semantic. The force_port_map field can be replaced with
->>> taking non-zero saved_port_map value into account. So if saved_port_map is
->>> pre-initialized by the glue-driver/platform-specific code then it will
+On 07.04.2022 12:07, Jarkko Sakkinen wrote:
+> On Mon, Apr 04, 2022 at 10:18:32AM +0200, Johannes Holland wrote:
+>> Implement the TCG I2C Interface driver, as specified in the TCG PC
+>> Client Platform TPM Profile (PTP) specification for TPM 2.0 v1.04
+>> revision 14, section 8, I2C Interface Definition.
+>>
+>> This driver supports Guard Times. That is, if required by the TPM, the
+>> driver has to wait by a vendor-specific time after each I2C read/write.
+>> The specific time is read from the TPM_I2C_INTERFACE_CAPABILITY register.
+>>
+>> Unfortunately, the TCG specified almost but not quite compatible
+>> register addresses. Therefore, the TIS register addresses need to be
+>> mapped to I2C ones. The locality is stripped because for now, only
+>> locality 0 is supported.
+>>
+>> Add a sanity check to I2C reads of e.g. TPM_ACCESS and TPM_STS. This is
+>> to detect communication errors and issues due to non-standard behaviour
+>> (E.g. the clock stretching quirk in the BCM2835, see 4dbfb5f4401f). In
+>> case the sanity check fails, attempt a retry.
+>>
+>> The CRC over the FIFO register is not implemented here since a new call
+>> has to be added to the API (tpm_tis_phy_ops).
+>>
+>> Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
+>> ---
+>>  drivers/char/tpm/Kconfig       |  12 ++
+>>  drivers/char/tpm/Makefile      |   1 +
+>>  drivers/char/tpm/tpm_tis_i2c.c | 365 +++++++++++++++++++++++++++++++++
+>>  3 files changed, 378 insertions(+)
+>>  create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
+>>
+>> diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
+>> index 4a5516406c22..927088b2c3d3 100644
+>> --- a/drivers/char/tpm/Kconfig
+>> +++ b/drivers/char/tpm/Kconfig
+>> @@ -74,6 +74,18 @@ config TCG_TIS_SPI_CR50
+>>         If you have a H1 secure module running Cr50 firmware on SPI bus,
+>>         say Yes and it will be accessible from within Linux.
+>>
+>> +config TCG_TIS_I2C
+>> +     tristate "TPM Interface Specification 1.3 Interface / TPM 2.0 FIFO Interface - (I2C - generic)"
+>> +     depends on I2C
+>> +     select CRC_CCITT
+>> +     select TCG_TIS_CORE
+>> +     help
+>> +       If you have a TPM security chip, compliant with the TCG TPM PTP
+>> +       (I2C interface) specification and connected to an I2C bus master,
+>> +       say Yes and it will be accessible from within Linux.
+>> +       To compile this driver as a module, choose M here;
+>> +       the module will be called tpm_tis_i2c.
+>> +
+>>  config TCG_TIS_SYNQUACER
+>>       tristate "TPM Interface Specification 1.2 Interface / TPM 2.0 FIFO Interface (MMIO - SynQuacer)"
+>>       depends on ARCH_SYNQUACER || COMPILE_TEST
+>> diff --git a/drivers/char/tpm/Makefile b/drivers/char/tpm/Makefile
+>> index 66d39ea6bd10..0222b1ddb310 100644
+>> --- a/drivers/char/tpm/Makefile
+>> +++ b/drivers/char/tpm/Makefile
+>> @@ -29,6 +29,7 @@ tpm_tis_spi-$(CONFIG_TCG_TIS_SPI_CR50) += tpm_tis_spi_cr50.o
+>>
+>>  obj-$(CONFIG_TCG_TIS_I2C_CR50) += tpm_tis_i2c_cr50.o
+>>
+>> +obj-$(CONFIG_TCG_TIS_I2C) += tpm_tis_i2c.o
+>>  obj-$(CONFIG_TCG_TIS_I2C_ATMEL) += tpm_i2c_atmel.o
+>>  obj-$(CONFIG_TCG_TIS_I2C_INFINEON) += tpm_i2c_infineon.o
+>>  obj-$(CONFIG_TCG_TIS_I2C_NUVOTON) += tpm_i2c_nuvoton.o
+>> diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
+>> new file mode 100644
+>> index 000000000000..206406c97325
+>> --- /dev/null
+>> +++ b/drivers/char/tpm/tpm_tis_i2c.c
+>> @@ -0,0 +1,365 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2014-2021 Nuvoton Technology corporation
+>> + * Copyright (C) 2019-2022 Infineon Technologies AG
+>> + *
+>> + * Authors:
+>> + * Alexander Steffen <alexander.steffen@infineon.com>
+>> + * Amir Mizinski <amirmizi6@gmail.com>
+>> + * Johannes Holland <johannes.holland@infineon.com>
+> 
+> Please, use co-developed-by instead in the commit message:
+> 
+> https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html
+
+Will do.
+
+> 
+>> + *
+>> + * This device driver implements the TPM interface as defined in the TCG PC
+>> + * Client Platform TPM Profile (PTP) Specification for TPM 2.0 v1.04
+>> + * Revision 14.
+>> + *
+>> + * It is based on the tpm_tis_spi device driver.
+>> + */
+>> +
+>> +#include <linux/init.h>
+>> +#include <linux/module.h>
+>> +#include <linux/moduleparam.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/wait.h>
+>> +#include <linux/acpi.h>
+>> +#include <linux/freezer.h>
+>> +
+>> +#include <linux/module.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/gpio.h>
+>> +#include <linux/of_irq.h>
+>> +#include <linux/of_gpio.h>
+>> +#include <linux/tpm.h>
+>> +#include "tpm_tis_core.h"
+>> +
+>> +/* TPM registers */
+>> +#define TPM_I2C_LOC_SEL 0x00
+>> +#define TPM_I2C_ACCESS 0x04
+>> +#define TPM_I2C_INTERFACE_CAPABILITY 0x30
+>> +#define TPM_I2C_DEVICE_ADDRESS 0x38
+>> +#define TPM_I2C_DATA_CSUM_ENABLE 0x40
+>> +#define TPM_I2C_DID_VID 0x48
+>> +#define TPM_I2C_RID 0x4C
+>> +
+>> +/* TIS-compatible register address to avoid clash with TPM_ACCESS (0x00) */
+>> +#define TPM_LOC_SEL 0x0FFF
+>> +
+>> +/* Mask to extract the I2C register from TIS register addresses */
+>> +#define TPM_TIS_REGISTER_MASK 0x0FFF
+>> +
+>> +/*
+>> + * Guard Time:
+>> + * After each I2C operation, the TPM might require the master to wait.
+>> + * The time period is vendor-specific and must be read from the
+>> + * TPM_I2C_INTERFACE_CAPABILITY register.
+>> + *
+>> + * Before the Guard Time is read (or after the TPM failed to send an I2C NACK),
+>> + * a Guard Time of 250µs applies.
+>> + *
+>> + * Various flags in the same register indicate if a guard time is needed:
+>> + *  - SR: <I2C read with repeated start> <guard time> <I2C read>
+>> + *  - RR: <I2C read> <guard time> <I2C read>
+>> + *  - RW: <I2C read> <guard time> <I2C write>
+>> + *  - WR: <I2C write> <guard time> <I2C read>
+>> + *  - WW: <I2C write> <guard time> <I2C write>
+>> + *
+>> + * See TCG PC Client PTP Specification v1.04, 8.1.10 GUARD_TIME
+>> + */
+>> +
+>> +/* Default Guard Time until interface capability register is read */
+>> +#define GUARD_TIME_DEFAULT_MIN 250
+>> +#define GUARD_TIME_DEFAULT_MAX 300
+>> +
+>> +/* Guard Time after I2C slave NACK */
+>> +#define GUARD_TIME_ERR_MIN 250
+>> +#define GUARD_TIME_ERR_MAX 300
+>> +
+>> +/* Guard Time bit masks; SR is repeated start, RW is read then write, etc. */
+>> +#define TPM_GUARD_TIME_SR_MASK 0x40000000
+>> +#define TPM_GUARD_TIME_RR_MASK 0x00100000
+>> +#define TPM_GUARD_TIME_RW_MASK 0x00080000
+>> +#define TPM_GUARD_TIME_WR_MASK 0x00040000
+>> +#define TPM_GUARD_TIME_WW_MASK 0x00020000
+>> +#define TPM_GUARD_TIME_MIN_MASK 0x0001FE00
+>> +#define TPM_GUARD_TIME_MIN_SHIFT 9
+>> +
+>> +/* Masks with bits that must be read zero */
+>> +#define TPM_ACCESS_READ_ZERO 0x48
+>> +#define TPM_INT_ENABLE_ZERO 0x7FFFFF6
+>> +#define TPM_STS_READ_ZERO 0x23
+>> +#define TPM_INTF_CAPABILITY_ZERO 0x0FFFF000
+>> +#define TPM_I2C_INTERFACE_CAPABILITY_ZERO 0x80000000
+>> +
+>> +struct tpm_tis_i2c_phy {
+>> +     struct tpm_tis_data priv;
+>> +     struct i2c_client *i2c_client;
+>> +     bool guard_time_read;
+>> +     bool guard_time_write;
+>> +     u16 guard_time_min;
+>> +     u16 guard_time_max;
+>> +     u8 *io_buf;
+>> +};
+>> +
+>> +static inline struct tpm_tis_i2c_phy *
+>> +to_tpm_tis_i2c_phy(struct tpm_tis_data *data)
+>> +{
+>> +     return container_of(data, struct tpm_tis_i2c_phy, priv);
+>> +}
+>> +
+>> +static u8 address_to_register(u32 addr)
+>> +{
+>> +     addr &= TPM_TIS_REGISTER_MASK;
+>> +
+>> +     switch (addr) {
+>> +     case TPM_ACCESS(0):
+>> +             return TPM_I2C_ACCESS;
+>> +     case TPM_LOC_SEL:
+>> +             return TPM_I2C_LOC_SEL;
+>> +     case TPM_DID_VID(0):
+>> +             return TPM_I2C_DID_VID;
+>> +     case TPM_RID(0):
+>> +             return TPM_I2C_RID;
+>> +     default:
+>> +             return addr;
+>> +     }
+>> +}
+>> +
+>> +static int retry_i2c_transfer_until_ack(struct tpm_tis_data *data,
+>> +                                     struct i2c_msg *msg)
+>> +{
+>> +     struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
+>> +     bool guard_time;
+>> +     int i = 0;
+>> +     int ret;
+>> +
+>> +     if (msg->flags & I2C_M_RD)
+>> +             guard_time = phy->guard_time_read;
+>> +     else
+>> +             guard_time = phy->guard_time_write;
+>> +
+>> +     do {
+>> +             ret = i2c_transfer(phy->i2c_client->adapter, msg, 1);
+>> +             if (ret < 0)
+>> +                     usleep_range(GUARD_TIME_ERR_MIN, GUARD_TIME_ERR_MAX);
+>> +             else if (guard_time)
+>> +                     usleep_range(phy->guard_time_min, phy->guard_time_max);
+>> +             /* retry on TPM NACK */
+>> +     } while (ret < 0 && i++ < TPM_RETRY);
+>> +
+>> +     return ret;
+>> +}
+>> +
+>> +/* Check that bits which must be read zero are not set */
+>> +static int sanity_check_read(u8 reg, u16 len, u8 *buf)
+>> +{
+>> +     u32 value;
+>> +     u32 zero_mask;
+>> +
+>> +     switch (len) {
+>> +     case sizeof(u8):
+>> +             value = buf[0];
+>> +             break;
+>> +     case sizeof(u16):
+>> +             value = le16_to_cpup((__le16 *)buf);
+>> +             break;
+>> +     case sizeof(u32):
+>> +             value = le32_to_cpup((__le32 *)buf);
+>> +             break;
+>> +     default:
+>> +             return 0;
+>> +     }
+>> +
+>> +     switch (reg) {
+>> +     case TPM_I2C_ACCESS:
+>> +             zero_mask = TPM_ACCESS_READ_ZERO;
+>> +             break;
+>> +     case TPM_INT_ENABLE(0) & TPM_TIS_REGISTER_MASK:
+>> +             zero_mask = TPM_INT_ENABLE_ZERO;
+>> +             break;
+>> +     case TPM_STS(1) & TPM_TIS_REGISTER_MASK:
+>> +             zero_mask = TPM_STS_READ_ZERO;
+>> +             break;
+>> +     case TPM_INTF_CAPS(0) & TPM_TIS_REGISTER_MASK:
+>> +             zero_mask = TPM_INTF_CAPABILITY_ZERO;
+>> +             break;
+>> +     case TPM_I2C_INTERFACE_CAPABILITY:
+>> +             zero_mask = TPM_I2C_INTERFACE_CAPABILITY_ZERO;
+>> +             break;
+>> +     default:
+>> +             return 0;
+>> +     }
+>> +
+>> +     if (unlikely((value & zero_mask) != 0x00)) {
+>> +             pr_debug("TPM I2C read of register 0x%02x failed sanity check: 0x%x\n", reg, value);
+>> +             return -EIO;
+>> +     }
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static int tpm_tis_i2c_read_bytes(struct tpm_tis_data *data, u32 addr, u16 len,
+>> +                               u8 *result, enum tpm_tis_io_mode io_mode)
+>> +{
+>> +     struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
+>> +     struct i2c_msg msg = { .addr = phy->i2c_client->addr };
+>> +     u8 reg = address_to_register(addr);
+>> +     int i = 0;
+>> +     int ret;
+>> +
+>> +     do {
+>> +             /* write register */
+>> +             msg.len = sizeof(reg);
+>> +             msg.buf = &reg;
+>> +             msg.flags = 0;
+>> +             retry_i2c_transfer_until_ack(data, &msg);
+>> +             if (ret < 0)
+>> +                     return ret;
+>> +
+>> +             /* read data */
+>> +             msg.buf = result;
+>> +             msg.len = len;
+>> +             msg.flags = I2C_M_RD;
+>> +             retry_i2c_transfer_until_ack(data, &msg);
+>> +             if (ret < 0)
+>> +                     return ret;
+>> +
+>> +             ret = sanity_check_read(reg, len, result);
+>> +             if (ret == 0)
+>> +                     return 0;
+>> +
+>> +             usleep_range(GUARD_TIME_ERR_MIN, GUARD_TIME_ERR_MAX);
+>> +     } while (i++ < TPM_RETRY);
+>> +
+>> +     return ret;
+>> +}
+>> +
+>> +static int tpm_tis_i2c_write_bytes(struct tpm_tis_data *data, u32 addr, u16 len,
+>> +                                const u8 *value,
+>> +                                enum tpm_tis_io_mode io_mode)
+>> +{
+>> +     struct tpm_tis_i2c_phy *phy = to_tpm_tis_i2c_phy(data);
+>> +     struct i2c_msg msg = { .addr = phy->i2c_client->addr };
+>> +     u8 reg = address_to_register(addr);
+>> +     int ret = 0;
+>> +
+>> +     if (len > TPM_BUFSIZE - 1)
+>> +             return -EIO;
+>> +
+>> +     /* write register and data in one go */
+>> +     phy->io_buf[0] = reg;
+>> +     memcpy(phy->io_buf + sizeof(reg), value, len);
+>> +
+>> +     msg.len = sizeof(reg) + len;
+>> +     msg.buf = phy->io_buf;
+>> +     retry_i2c_transfer_until_ack(data, &msg);
+>> +     if (ret < 0)
+>> +             return ret;
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static int init_guard_time(struct tpm_tis_i2c_phy *phy)
+>> +{
+>> +     u32 i2c_caps;
+>> +     int ret;
+>> +
+>> +     phy->guard_time_read = true;
+>> +     phy->guard_time_write = true;
+>> +     phy->guard_time_min = GUARD_TIME_DEFAULT_MIN;
+>> +     phy->guard_time_max = GUARD_TIME_DEFAULT_MAX;
+>> +
+>> +     ret = tpm_tis_i2c_read_bytes(&phy->priv, TPM_I2C_INTERFACE_CAPABILITY,
+>> +                                  sizeof(i2c_caps), (u8 *)&i2c_caps,
+>> +                                  TPM_TIS_PHYS_32);
+>> +     if (ret)
+>> +             return ret;
+>> +
+>> +     phy->guard_time_read = (i2c_caps & TPM_GUARD_TIME_RR_MASK) ||
+>> +                            (i2c_caps & TPM_GUARD_TIME_RW_MASK);
+>> +     phy->guard_time_write = (i2c_caps & TPM_GUARD_TIME_WR_MASK) ||
+>> +                             (i2c_caps & TPM_GUARD_TIME_WW_MASK);
+>> +     phy->guard_time_min = (i2c_caps & TPM_GUARD_TIME_MIN_MASK) >>
+>> +                           TPM_GUARD_TIME_MIN_SHIFT;
+>> +     /* guard_time_max = guard_time_min * 1.2 */
+>> +     phy->guard_time_max = phy->guard_time_min + phy->guard_time_min / 5;
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static SIMPLE_DEV_PM_OPS(tpm_tis_pm, tpm_pm_suspend, tpm_tis_resume);
+>> +
+>> +static const struct tpm_tis_phy_ops tpm_i2c_phy_ops = {
+>> +     .read_bytes = tpm_tis_i2c_read_bytes,
+>> +     .write_bytes = tpm_tis_i2c_write_bytes,
+>> +};
+>> +
+>> +static int tpm_tis_i2c_probe(struct i2c_client *dev,
+>> +                          const struct i2c_device_id *id)
+>> +{
+>> +     struct tpm_tis_i2c_phy *phy;
+>> +     const u8 locality = 0;
+>> +     int ret;
+>> +
+>> +     phy = devm_kzalloc(&dev->dev, sizeof(struct tpm_tis_i2c_phy),
+>> +                        GFP_KERNEL);
+>> +     if (!phy)
+>> +             return -ENOMEM;
+>> +
+>> +     phy->io_buf = devm_kzalloc(&dev->dev, TPM_BUFSIZE, GFP_KERNEL);
+>> +     if (!phy->io_buf)
+>> +             return -ENOMEM;
+>> +
+>> +     phy->i2c_client = dev;
+>> +
+>> +     /* must precede all communication with the tpm */
+>> +     ret = init_guard_time(phy);
+>> +     if (ret)
+>> +             return ret;
+>> +
+>> +     ret = tpm_tis_i2c_write_bytes(&phy->priv, TPM_LOC_SEL, sizeof(locality),
+>> +                                   &locality, TPM_TIS_PHYS_8);
+>> +     if (ret)
+>> +             return ret;
+>> +
+>> +     return tpm_tis_core_init(&dev->dev, &phy->priv, -1, &tpm_i2c_phy_ops,
+>> +                              NULL);
+>> +}
+>> +
+>> +static int tpm_tis_i2c_remove(struct i2c_client *client)
+>> +{
+>> +     struct tpm_chip *chip = i2c_get_clientdata(client);
+>> +
+>> +     tpm_chip_unregister(chip);
+>> +     tpm_tis_remove(chip);
+>> +     return 0;
+>> +}
+>> +
+>> +static const struct i2c_device_id tpm_tis_i2c_id[] = {
+>> +     { "tpm_tis_i2c", 0 },
+>> +     {}
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
+>> +
+>> +static const struct of_device_id of_tis_i2c_match[] = {
+>> +     { .compatible = "infineon,slb9673", },
+>> +     { .compatible = "nuvoton,npct75x", },
+>> +     { .compatible = "tcg,tpm-tis-i2c", },
+>> +     {}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
+>> +
+>> +static struct i2c_driver tpm_tis_i2c_driver = {
+>> +     .driver = {
+>> +             .owner = THIS_MODULE,
+>> +             .name = "tpm_tis_i2c",
+>> +             .pm = &tpm_tis_pm,
+>> +             .of_match_table = of_match_ptr(of_tis_i2c_match),
+>> +     },
+>> +     .probe = tpm_tis_i2c_probe,
+>> +     .remove = tpm_tis_i2c_remove,
+>> +     .id_table = tpm_tis_i2c_id,
+>> +};
+>> +module_i2c_driver(tpm_tis_i2c_driver);
+>> +
+>> +MODULE_DESCRIPTION("TPM Driver for native I2C access");
+>> +MODULE_LICENSE("GPL");
+>> --
+>> 2.31.1.windows.1
 >>
 > 
->> glue-driver == LLDD (low level device driver), for the entire series please.
+> Quality looks quite solid. Have you tried:
 > 
-> Why? It's a normal term and well known amongst developers. I've used it
-> in a plenty of my patches before and none of them has been questioned in that
-> part so far.
+> - TPM2 kselftest
 
-This term is not used in libata, nor do I remember seeing it used in SCSI
-or block subsystem either. We always talk about mid-layer (ahci platform)
-and LLDD (adapter driver).
+Yes, kselftest runs successfully. However, it can time out.
+I will fix this in a subsequent patch. Basically:
+
+echo timeout=1500 > tools/testing/selftests/tpm2/settings
+
+The line coverage for tpm_tis_i2c.c is 98.1%.
+
+> - rmmod + modprobe (sanity check)
+
+Ran that in a loop. No errors.
 
 > 
-> -Sergey
-> 
->>
->>> have greater priority over the value read from PI register and will be
->>> used as actual HBA ports mapping later on. Thus the ports map forcing task
->>> will be just transferred from the force_port_map to saved_port_map field.
->>>
->>> This modification will perfectly fit into the feature of having OF-based
->>> initialization of the HW-init HBA CSR fields we are about to introduce in
->>> the next commit.
->>>
->>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
->>> ---
->>>  drivers/ata/ahci.c             |  2 +-
->>>  drivers/ata/ahci.h             |  1 -
->>>  drivers/ata/libahci.c          | 10 ++++++----
->>>  drivers/ata/libahci_platform.c |  2 +-
->>>  4 files changed, 8 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/ata/ahci.c b/drivers/ata/ahci.c
->>> index ab5811ef5a53..8ce0d166cc8d 100644
->>> --- a/drivers/ata/ahci.c
->>> +++ b/drivers/ata/ahci.c
->>> @@ -654,7 +654,7 @@ static void ahci_pci_save_initial_config(struct pci_dev *pdev,
->>>  {
->>>  	if (pdev->vendor == PCI_VENDOR_ID_JMICRON && pdev->device == 0x2361) {
->>>  		dev_info(&pdev->dev, "JMB361 has only one port\n");
->>> -		hpriv->force_port_map = 1;
->>> +		hpriv->saved_port_map = 1;
->>>  	}
->>>  
->>>  	/*
->>> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
->>> index 04690b4168a3..519d148ecaea 100644
->>> --- a/drivers/ata/ahci.h
->>> +++ b/drivers/ata/ahci.h
->>> @@ -329,7 +329,6 @@ struct ahci_port_priv {
->>>  struct ahci_host_priv {
->>>  	/* Input fields */
->>>  	unsigned int		flags;		/* AHCI_HFLAG_* */
->>> -	u32			force_port_map;	/* force port map */
->>>  	u32			mask_port_map;	/* mask out particular bits */
->>>  
->>>  	void __iomem *		mmio;		/* bus-independent mem map */
->>> diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
->>> index 0ed484e04fd6..011175e82174 100644
->>> --- a/drivers/ata/libahci.c
->>> +++ b/drivers/ata/libahci.c
->>> @@ -453,7 +453,6 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->>>  	 * reset.  Values without are used for driver operation.
->>>  	 */
->>>  	hpriv->saved_cap = cap = readl(mmio + HOST_CAP);
->>> -	hpriv->saved_port_map = port_map = readl(mmio + HOST_PORTS_IMPL);
->>>  
->>>  	/* CAP2 register is only defined for AHCI 1.2 and later */
->>>  	vers = readl(mmio + HOST_VERSION);
->>> @@ -517,10 +516,13 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->>>  		cap &= ~HOST_CAP_SXS;
->>>  	}
->>>  
->>> -	if (hpriv->force_port_map && port_map != hpriv->force_port_map) {
->>> +	/* Override the HBA ports mapping if the platform needs it */
->>> +	port_map = readl(mmio + HOST_PORTS_IMPL);
->>> +	if (hpriv->saved_port_map && port_map != hpriv->saved_port_map) {
->>>  		dev_info(dev, "forcing port_map 0x%x -> 0x%x\n",
->>> -			 port_map, hpriv->force_port_map);
->>> -		port_map = hpriv->force_port_map;
->>> +			 port_map, hpriv->saved_port_map);
->>> +		port_map = hpriv->saved_port_map;
->>> +	} else {
->>>  		hpriv->saved_port_map = port_map;
->>>  	}
->>>  
->>> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
->>> index febad33aa43c..5cbc2c42164d 100644
->>> --- a/drivers/ata/libahci_platform.c
->>> +++ b/drivers/ata/libahci_platform.c
->>> @@ -539,7 +539,7 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
->>>  	}
->>>  
->>>  	of_property_read_u32(dev->of_node,
->>> -			     "ports-implemented", &hpriv->force_port_map);
->>> +			     "ports-implemented", &hpriv->saved_port_map);
->>>  
->>>  	if (child_nodes) {
->>>  		for_each_child_of_node(dev->of_node, child) {
->>
->>
->> -- 
->> Damien Le Moal
->> Western Digital Research
+> BR, Jarkko
 
-
--- 
-Damien Le Moal
-Western Digital Research
+Thanks, Johannes
