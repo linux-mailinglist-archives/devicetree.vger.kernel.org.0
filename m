@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 788B14FB7E3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07EE54FB7F2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344631AbiDKJnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 05:43:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48388 "EHLO
+        id S1344666AbiDKJsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 05:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344810AbiDKJnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:43:24 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CBA35AA5
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:41:10 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so8095049wmn.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:41:10 -0700 (PDT)
+        with ESMTP id S1344783AbiDKJsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:48:10 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0DF63B556
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:45:56 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id c7so22226600wrd.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:45:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xDR0Oo93RBMr/a7qSFkHAnxdyg/wff1wMpM/g7CP34w=;
-        b=gmpvBoMH52aIdLBa/PxVc8cIjE+SH82zUdfbrHBrp/oLN6ipQV04xdDZ32gi7TkYij
-         YuqQAXm2crjZ1ntW1FoXCYo/ss0KVodV9aY45i+Ymt3vGcy5lfDqWrZ/fjJvknRx5BT3
-         aseK8WVQ+0aALq3NkBXUIxyV+3T702Uimjkdso45GbDEC28a65i2SQQlwn9H8Ydst34k
-         rHusuBKSCE9tBxEp5nRB4rjQ5cFVikbzRGIFG1GqrXMXXnr9Pz+vLY2mdnTN7UmxPixy
-         Yqxzl5S/gE+qF4g/AfVcQoTMgPEMD96+0QtbqB97VSjcfd25K0fekERlHB148S20c1iV
-         tHjw==
+        bh=b198qKsCSPH7gfzfy4u2xyvLQAEiRiVMpS7bpZx+ZSY=;
+        b=M9qpF7g3cWBcjHdulSQYqLsv06hF4R0iYCQJJX0pkjMFCXhA4luKWRawmUycgMrvX9
+         mtEGikRv4pcZj6KrQHU8V4zTNqqYQHNnRguM/U6uMQRFE8dLmM7GhHMi2XNs9kZyoGBe
+         A57W2slA1xmXVYstxt2IeRfzzPt0ANQJg1vGpUYbczjLERHh5WXlDCr/lXkDajg13opX
+         R0PS3l8/MgFGHpS+Av2vwwEDCHWGkOHB/0854XB7aqkxrvwnBWCF/i2IQBzEwju2A32f
+         wRm6f6A1+mqOvweF1OWt3SKtK/mWSa2vBwAsxDktRLQZHh2wokgftvQagHj1egEtsbqt
+         omQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=xDR0Oo93RBMr/a7qSFkHAnxdyg/wff1wMpM/g7CP34w=;
-        b=vljshCdZJ8CAcWBxuDnc0V1LBvqx3eUI6WAEUjUM1kDS9K5YXgX/sLvZXVUmNZ1AnR
-         P5116IuLQamacmA+83iDBTP7Zv/9TocOaQtbuWoDhY3el21CkyZz1rEYCxEwPPpYCu5R
-         rdvXB9ElPSA4dsOFR89/X/3tKg0xSBOaHfBG/+OGVjjH4S0MjMYliFUME84ouM//ddxj
-         ve+k/asZbYgyMyoeb/RlDZRcbKUuhP2QEVeUUW4UUgB0k8KPHxZXg/83nuvV2s8tTHxk
-         eqzYizOV/3W9Q7cN3oo6ajyAHyC2pZHbJD8xNLa9LTLtMyLM4nqaCTMC/bSimwhqbh2k
-         ljJA==
-X-Gm-Message-State: AOAM530CYH6zAqa8Ft12039OM20uvIa9eYI5Jq5pBENMdpD5CJXfRTlT
-        Q504w+Z5UDmX5mJ1WYKTdegpkA==
-X-Google-Smtp-Source: ABdhPJw23NRGbtN7+13L8/M7UHc6Xq+YEURJVzQPqGaudaX3LlcXQTmHIECgkQ4WgyCkCkvoNRTXAA==
-X-Received: by 2002:a1c:7302:0:b0:38c:bb21:faf7 with SMTP id d2-20020a1c7302000000b0038cbb21faf7mr28082521wmb.31.1649670068725;
-        Mon, 11 Apr 2022 02:41:08 -0700 (PDT)
+        bh=b198qKsCSPH7gfzfy4u2xyvLQAEiRiVMpS7bpZx+ZSY=;
+        b=QmWtTCQ5AOU4gHUBmgeg2VD6oyd6iJ/D7+4GMhTHHdSvTPFLzpEni/+Oa1Z+A/6sV9
+         6GDDp6VL9tjSIxcWI6KytT9VeZUVndGaoIruSamYmhMmIae65FBhJ48roRbyZkzoFZI6
+         AZrIRGSSxap5qVZJfyvcgMgf4h+A8/kgg7lFuUIeh95H7Ic4FmFzZ3UqBS48s3L6cNrl
+         nTmmVzLBLCj6dlQA79clIF6ANCtzjcsJTywcsP8TKuI28bevat3iUEFJu+Cg/nkySeaL
+         bzzakEB1F1qKcZxFMpS57kd8yvhIb38A/fjH1VB6JGwy2zck+FHBV03jDrpCtq880GUc
+         vDeg==
+X-Gm-Message-State: AOAM531+XOZiNv2uvLZ+7+Iiql2WqQp8vLehKRZqKh0Kfe7hEuamuxkn
+        vXI+QtMhCl0PddKc7cFja0HNBg==
+X-Google-Smtp-Source: ABdhPJzkysCMQKH2AW06DpYoYdftSbMItpy/7K4EcBy9BwM+dIOakJTfvnbTDNO+5DO5ZE5DJ+FWzg==
+X-Received: by 2002:adf:f981:0:b0:205:c3e1:9eba with SMTP id f1-20020adff981000000b00205c3e19ebamr24699249wrr.244.1649670355449;
+        Mon, 11 Apr 2022 02:45:55 -0700 (PDT)
 Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id d11-20020a056000186b00b0020799d3d416sm8484092wri.55.2022.04.11.02.41.07
+        by smtp.googlemail.com with ESMTPSA id v15-20020a056000144f00b002079acb2349sm7618565wrx.1.2022.04.11.02.45.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 02:41:07 -0700 (PDT)
-Message-ID: <92e94b98-847d-7d3f-4063-96d2d01eff6e@linaro.org>
-Date:   Mon, 11 Apr 2022 10:41:06 +0100
+        Mon, 11 Apr 2022 02:45:54 -0700 (PDT)
+Message-ID: <e6343890-2c8c-ea83-636a-61230a1e1759@linaro.org>
+Date:   Mon, 11 Apr 2022 10:45:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 3/3] nvmem: Add Apple eFuse driver
+Subject: Re: [PATCH 2/2] nvmem: add driver handling U-Boot environment
+ variables
 Content-Language: en-US
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowsk <krzysztof.kozlowski@canonical.com>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220410135414.20606-1-sven@svenpeter.dev>
- <20220410135414.20606-3-sven@svenpeter.dev>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20220411085926.10925-1-miquel.raynal@bootlin.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220410135414.20606-3-sven@svenpeter.dev>
+In-Reply-To: <20220411085926.10925-1-miquel.raynal@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,154 +81,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/04/2022 14:54, Sven Peter wrote:
-> Apple SoCs contain eFuses used to store factory-programmed data such
-> as calibration values for the PCIe or the Type-C PHY. They are organized
-> as 32bit values exposed as MMIO.
+On 11/04/2022 09:59, Miquel Raynal wrote:
+> On Wed, 2022-04-06 at 14:32:25 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> U-Boot stores its setup as environment variables. It's a list of
+>> key-value pairs stored on flash device with a custom header.
+>>
+>> This commit adds an NVMEM driver that:
+>> 1. Provides NVMEM access to environment vars binary data
+>> 2. Extracts variables as NVMEM cells
+>>
+>> It can be used for:
+>> 1. Accessing env variables from user-space
+>> 2. Reading NVMEM cells by Linux drivers
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+
+Hi Miquel,
+
+Any reason why this nvmem driver is taken via mtd tree?
+
+This is going to conflict with other nvmem patches that are touching 
+KConfig and Makefile
 
 
-Applied all 3,
-
-thanks,
 --srini
-
-
-> ---
-> v3 -> v4:
->    - rebased on 5.18-rc1 and split off MAINTAINER changes as requested
->      by Srinivas Kandagatla
-> v2 -> v3:
->    - removed .owner = THIS_MODULE again since it's already done by the
->      core as pointed out by Krzysztof Kozlowski
-> v1 -> v2:
->    - fixed sparse warning about __iomem by introducing
->      struct apple_efuses_priv as done in other nvmem drivers
->    - make sure the driver actually works as a module by
->      setting .owner to THIS_MODULE and adding MODULE_DEVICE_TABLE
->      pointed out by Joey Gouly
 > 
->   drivers/nvmem/Kconfig        | 12 ++++++
->   drivers/nvmem/Makefile       |  2 +
->   drivers/nvmem/apple-efuses.c | 80 ++++++++++++++++++++++++++++++++++++
->   3 files changed, 94 insertions(+)
->   create mode 100644 drivers/nvmem/apple-efuses.c
-> 
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 555aa77a574d..6283e09cc1e9 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -324,4 +324,16 @@ config NVMEM_SUNPLUS_OCOTP
->   	  This driver can also be built as a module. If so, the module
->   	  will be called nvmem-sunplus-ocotp.
->   
-> +config NVMEM_APPLE_EFUSES
-> +	tristate "Apple eFuse support"
-> +	depends on ARCH_APPLE || COMPILE_TEST
-> +	default ARCH_APPLE
-> +	help
-> +	  Say y here to enable support for reading eFuses on Apple SoCs
-> +	  such as the M1. These are e.g. used to store factory programmed
-> +	  calibration data required for the PCIe or the USB-C PHY.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called nvmem-apple-efuses.
-> +
->   endif
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 891958e29d25..00e136a0a123 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -65,3 +65,5 @@ obj-$(CONFIG_NVMEM_LAYERSCAPE_SFP)	+= nvmem-layerscape-sfp.o
->   nvmem-layerscape-sfp-y		:= layerscape-sfp.o
->   obj-$(CONFIG_NVMEM_SUNPLUS_OCOTP)	+= nvmem_sunplus_ocotp.o
->   nvmem_sunplus_ocotp-y		:= sunplus-ocotp.o
-> +obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
-> +nvmem-apple-efuses-y 		:= apple-efuses.o
-> diff --git a/drivers/nvmem/apple-efuses.c b/drivers/nvmem/apple-efuses.c
-> new file mode 100644
-> index 000000000000..9b7c87102104
-> --- /dev/null
-> +++ b/drivers/nvmem/apple-efuses.c
-> @@ -0,0 +1,80 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Apple SoC eFuse driver
-> + *
-> + * Copyright (C) The Asahi Linux Contributors
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/platform_device.h>
-> +
-> +struct apple_efuses_priv {
-> +	void __iomem *fuses;
-> +};
-> +
-> +static int apple_efuses_read(void *context, unsigned int offset, void *val,
-> +			     size_t bytes)
-> +{
-> +	struct apple_efuses_priv *priv = context;
-> +	u32 *dst = val;
-> +
-> +	while (bytes >= sizeof(u32)) {
-> +		*dst++ = readl_relaxed(priv->fuses + offset);
-> +		bytes -= sizeof(u32);
-> +		offset += sizeof(u32);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int apple_efuses_probe(struct platform_device *pdev)
-> +{
-> +	struct apple_efuses_priv *priv;
-> +	struct resource *res;
-> +	struct nvmem_config config = {
-> +		.dev = &pdev->dev,
-> +		.read_only = true,
-> +		.reg_read = apple_efuses_read,
-> +		.stride = sizeof(u32),
-> +		.word_size = sizeof(u32),
-> +		.name = "apple_efuses_nvmem",
-> +		.id = NVMEM_DEVID_AUTO,
-> +		.root_only = true,
-> +	};
-> +
-> +	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->fuses = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(priv->fuses))
-> +		return PTR_ERR(priv->fuses);
-> +
-> +	config.priv = priv;
-> +	config.size = resource_size(res);
-> +
-> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
-> +}
-> +
-> +static const struct of_device_id apple_efuses_of_match[] = {
-> +	{ .compatible = "apple,efuses", },
-> +	{}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, apple_efuses_of_match);
-> +
-> +static struct platform_driver apple_efuses_driver = {
-> +	.driver = {
-> +		.name = "apple_efuses",
-> +		.of_match_table = apple_efuses_of_match,
-> +	},
-> +	.probe = apple_efuses_probe,
-> +};
-> +
-> +module_platform_driver(apple_efuses_driver);
-> +
-> +MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
-> +MODULE_LICENSE("GPL");
+> Miquel
