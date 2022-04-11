@@ -2,63 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C224FBDDA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3726A4FBDEB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 15:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346771AbiDKNzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 09:55:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
+        id S1346810AbiDKN6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 09:58:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346773AbiDKNzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:55:46 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B610924F30;
-        Mon, 11 Apr 2022 06:53:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649685212; x=1681221212;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=tgpPo55v0hZMP1D9KLS+8Bk9D5L0sftc2mUdtFpjW8k=;
-  b=FotL7c2SP6A+WwNuPd/WFDDuGZ+uWFJ+pf3UF8GFzXHAu90WqaaYeYx3
-   PSWLIcmVH57CQIjmrriLbjHYLvVS7zfwn/gg+0AYiMzfB31H8rBiFPZOv
-   icRWyvNfGqy9FpggVMh+r0+Sb2wHF7sn5h+O2KzzwlplMmzKMjKUMvJQi
-   M=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 11 Apr 2022 06:53:32 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 06:53:32 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 11 Apr 2022 06:53:31 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 11 Apr 2022 06:53:27 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v7 2/2] arm64: dts: qcom: sc7280: add lpass lpi pin controller node
-Date:   Mon, 11 Apr 2022 19:23:04 +0530
-Message-ID: <1649685184-8448-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649685184-8448-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1649685184-8448-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1346808AbiDKN6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 09:58:36 -0400
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA55829CAA
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 06:56:18 -0700 (PDT)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20220411135613euoutp01a4cfd2ac2e08fcfc18c08886fa2ed30a~k3BtQ9i291620316203euoutp01F
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 13:56:13 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20220411135613euoutp01a4cfd2ac2e08fcfc18c08886fa2ed30a~k3BtQ9i291620316203euoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1649685373;
+        bh=iyvNnrEVC5QV7hJVIEWg2C1iilTYcEjLxCmISlfZI7Y=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=HRg/ASFNWitBO+97Q4kGFIreOwsS7v2rFWw4w+P7a2o8BCi15ZcT33SonbsZErZ06
+         nupfKLnQ/jngPjOd+VnlC/x5mbmaD2bXMzpiUyzTN2IezAA1z42ILhbQsNGdsKvubr
+         wmjJ5q2RuEXUf5QHWZwPjsOZEGswzxe1OqzonQzE=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20220411135612eucas1p20ea262a87937b3385fa456341a0a2730~k3Bsybs3z2334723347eucas1p2J;
+        Mon, 11 Apr 2022 13:56:12 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id EE.6D.09887.C7334526; Mon, 11
+        Apr 2022 14:56:12 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220411135612eucas1p14c90f07b2be642da630c03e7d7a79a6a~k3BsF0Rx-1536215362eucas1p1Z;
+        Mon, 11 Apr 2022 13:56:12 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220411135612eusmtrp1e5cc8f4736b0463600d2c53f2f93ef67~k3BsEuZI73010530105eusmtrp1e;
+        Mon, 11 Apr 2022 13:56:12 +0000 (GMT)
+X-AuditID: cbfec7f4-471ff7000000269f-12-6254337cefd0
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 89.6F.09522.B7334526; Mon, 11
+        Apr 2022 14:56:12 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220411135610eusmtip2167d2bfdf2d79a0b0346484c69379b34~k3Bq6I1iw1417514175eusmtip2C;
+        Mon, 11 Apr 2022 13:56:10 +0000 (GMT)
+Message-ID: <4c693c6e-512b-a568-948a-4a1af6a1313a@samsung.com>
+Date:   Mon, 11 Apr 2022 15:56:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+        Gecko/20100101 Thunderbird/91.7.0
+Subject: Re: [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
+Content-Language: en-US
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fancy Fang <chen.fang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20220408162108.184583-1-jagan@amarulasolutions.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplk+LIzCtJLcpLzFFi42LZduzned0a45Akg18nDS3u3D7NbHF/8WcW
+        i9e3V7BZzD9yjtXiytf3bBa9S4GsSfcnsFh82TSBzeLFvYssFmeb3rBbdE5cwm6xfMI+NotN
+        j6+xWnT9WslsMeP8PiaLU42tLBaH+qItPs16yGzRuvcIu8WMyS/ZLC6e+MTsIOqx9uN9Vo/3
+        N1rZPc713GXz2DnrLrvH7I6ZrB6L97xk8ti0qpPN48jVxawed67tYfO4332cyWPzknqPje92
+        MHn0bVnF6PF5k1wAXxSXTUpqTmZZapG+XQJXxvWpW5kK7ohV3D5yha2B8ZlgFyMnh4SAicSc
+        ozvZuhi5OIQEVjBK7Gv5DuV8YZS4/vw1C4TzmVHixuWbrDAtx1e2sEIkljNKTP3/BKrqI6PE
+        pWMb2EGqeAXsJB4tm8oCYrMIqEpsPtIPFReUODnzCVhcVCBJYvX21WwgtrCAi8TWa//AapgF
+        xCVuPZnPBDJUROAPi8TvX/fYIBLPGCXO3GcEsdkEDCW63naBxTkFHCXm/jnIClEjL7H97Rxm
+        kGYJgX+cEu+vH2GCuBtow7adzBC2sMSr41vYIWwZidOTe4Au4gCy8yX+zjCGCFdIXHu9Bqrc
+        WuLOuV9sICXMApoS63fpQ1Q7Siy7FwVh8knceCsIcQCfxKRt05khwrwSHW1CEDPUJGYdXwe3
+        8uCFS8wTGJVmIYXJLCS/z0LyyiyEtQsYWVYxiqeWFuempxYb5aWW6xUn5haX5qXrJefnbmIE
+        ptjT/45/2cG4/NVHvUOMTByMhxglOJiVRHgtkgKShHhTEiurUovy44tKc1KLDzFKc7AoifMm
+        Z25IFBJITyxJzU5NLUgtgskycXBKNTD5F5bvce/7Lu+bohu//4zTC17WJTkTc5e5srW+0tu1
+        4ULYD9VO7SlH45KCbrV5Z+0283073XdNZtryxbFiV04m1q7fqXDU1lhATrvvuOwUIaNVqZqV
+        GvtObpznOH/Gj4xZN59Id33/c/Op12mWQ0KBb2tf8jx5OC/z1Pqu6x8LJ8tueNov3zi/zapC
+        eFdCa3vTe6n9M/ULDiYazsg/vqdst06GV6+R9aTbLK9PPL6wZaau5QKjd1uaZDabnQkzf5Gq
+        kdhXfE+oIYNX94X9gUb50uA5V46LdDy6ItgX6/lullbELN6wm5dfrC1kmJzfJLm/+avNd///
+        jelXJB8L5Tlf9H+TqdJsxp765NzJV7OUWIozEg21mIuKEwGb4EeMIAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIKsWRmVeSWpSXmKPExsVy+t/xe7o1xiFJBnMTLO7cPs1scX/xZxaL
+        17dXsFnMP3KO1eLK1/dsFr1LgaxJ9yewWHzZNIHN4sW9iywWZ5vesFt0TlzCbrF8wj42i02P
+        r7FadP1ayWwx4/w+JotTja0sFof6oi0+zXrIbNG69wi7xYzJL9ksLp74xOwg6rH2431Wj/c3
+        Wtk9zvXcZfPYOesuu8fsjpmsHov3vGTy2LSqk83jyNXFrB53ru1h87jffZzJY/OSeo+N73Yw
+        efRtWcXo8XmTXABflJ5NUX5pSapCRn5xia1StKGFkZ6hpYWekYmlnqGxeayVkamSvp1NSmpO
+        Zllqkb5dgl7G9albmQruiFXcPnKFrYHxmWAXIyeHhICJxPGVLaxdjFwcQgJLGSUWPZrJDpGQ
+        kTg5rYEVwhaW+HOtiw2i6D2jxL7XW1lAErwCdhKPlk0Fs1kEVCU2H+lnh4gLSpyc+QQsLiqQ
+        JHGpq50RxBYWcJHYeu0fWA2zgLjErSfzmUBsEYEGVolDF7kg4s8YJe7+SoNYNoVR4vrRV2AN
+        bAKGEl1vQa7g5OAUcJSY++cgK0SDmUTX1i5GCFteYvvbOcwTGIVmIbljFpJ9s5C0zELSsoCR
+        ZRWjSGppcW56brGhXnFibnFpXrpecn7uJkZgWtl27OfmHYzzXn3UO8TIxMF4iFGCg1lJhNci
+        KSBJiDclsbIqtSg/vqg0J7X4EKMpMDAmMkuJJucDE1teSbyhmYGpoYmZpYGppZmxkjivZ0FH
+        opBAemJJanZqakFqEUwfEwenVAPTMutF7OufZIXcCgjRWsR6r5E5uWKr2gTpq2//yT07dk9w
+        j6U9S93mOwvqNqxcrKb8ewFTzhnR7W6Klb9mRlmfn3HlYkXhQff9Os90Jm3LLI6L/zElZqFp
+        dqX9tVw7YdNcj3dTavc2+q91+KeifL3rebKD38EVGalr9OXE4k3vCB/5vktTe4aF7qrsc/4h
+        xpwnNRfPvz83O5iXQcZs9Yn7qYs3TviyvoVNrNbWPGcqv7/gYan6G7v05nSvF3TZZGBUOc9m
+        I9vnbTcj5vZq8XZWbKs+OInd8LHW/NTEzvtxx2Z8VdNZtKthQ63tPmW3Z9/8nwm7btrZ6Z3K
+        IS2bl3z75of/S04c9bry/8Rt7sAKJZbijERDLeai4kQAfUM9ErQDAAA=
+X-CMS-MailID: 20220411135612eucas1p14c90f07b2be642da630c03e7d7a79a6a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3
+References: <CGME20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3@eucas1p1.samsung.com>
+        <20220408162108.184583-1-jagan@amarulasolutions.com>
+X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,230 +133,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LPASS LPI pinctrl node required for Audio functionality on sc7280
-based platforms.
+On 08.04.2022 18:20, Jagan Teki wrote:
+> This series supports common bridge support for Samsung MIPI DSIM
+> which is used in Exynos and i.MX8MM SoC's.
+>
+> Previous RFC can be available here [1].
+>
+> The final bridge supports both the Exynos and i.MX8MM DSI devices.
+>
+> On, summary this patch-set break the entire DSIM driver into
+> - platform specific glue code for platform ops, component_ops.
+> - common bridge driver which handle platform glue init and invoke.
+>
+> Patch 0000: 	Samsung DSIM bridge
+>
+> Patch 0001: 	platform init flag via driver_data
+>
+> Patch 0002/9:   bridge fixes, atomic API's
+>
+> Patch 0010:	document fsl,imx8mm-mipi-dsim
+>
+> Patch 0011:	add i.MX8MM DSIM support
+>
+> Tested in Engicam i.Core MX8M Mini SoM.
+>
+> Anyone interested, please have a look on this repo [2]
+>
+> [2] https://protect2.fireeye.com/v1/url?k=930e329a-f28527b5-930fb9d5-74fe485cbfe7-b0c53e2d688ddbc5&q=1&e=e6aa727d-5ae2-4ca5-bff3-7f62d8fae87e&u=https%3A%2F%2Fgithub.com%2Fopenedev%2Fkernel%2Ftree%2Fimx8mm-dsi-v1
+> [1] https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/T/
+>
+> Any inputs?
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  84 ++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 107 +++++++++++++++++++++++++++++++
- 2 files changed, 191 insertions(+)
+I wanted to test this on the Exynos, but I wasn't able to find what base 
+should I apply this patchset. I've tried linux-next as well as 
+95a2441e4347 ("drm: exynos: dsi: Switch to atomic funcs").
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 4ba2274..ea751dc 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -238,6 +238,90 @@
- 	modem-init;
- };
- 
-+&dmic01 {
-+	clk {
-+		drive-strength = <8>;
-+	};
-+};
-+
-+&dmic01_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		pull-down;
-+	};
-+};
-+
-+&dmic23 {
-+	clk {
-+		drive-strength = <8>;
-+	};
-+};
-+
-+&dmic23_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		pull-down;
-+	};
-+};
-+
-+&rx_swr {
-+	clk {
-+		drive-strength = <2>;
-+		slew-rate = <1>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		drive-strength = <2>;
-+		slew-rate = <1>;
-+		bias-bus-hold;
-+	};
-+};
-+
-+&rx_swr_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	data {
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+};
-+
-+&tx_swr {
-+	clk {
-+		drive-strength = <2>;
-+		slew-rate = <1>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		slew-rate = <1>;
-+		bias-bus-hold;
-+	};
-+};
-+
-+&tx_swr_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	data {
-+		bias-bus-hold;
-+	};
-+};
-+
- &pcie1 {
- 	status = "okay";
- 	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8099c80..c692420 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1987,6 +1987,113 @@
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		lpass_tlmm: pinctrl@33c0000 {
-+			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
-+			reg = <0 0x033c0000 0x0 0x20000>,
-+				<0 0x03550000 0x0 0x10000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&lpass_tlmm 0 0 15>;
-+
-+			#clock-cells = <1>;
-+
-+			dmic01: dmic01 {
-+				clk {
-+					pins = "gpio6";
-+					function = "dmic1_clk";
-+				};
-+
-+				data {
-+					pins = "gpio7";
-+					function = "dmic1_data";
-+				};
-+			};
-+
-+			dmic01_sleep: dmic01-sleep {
-+				clk {
-+					pins = "gpio6";
-+					function = "dmic1_clk";
-+				};
-+
-+				data {
-+					pins = "gpio7";
-+					function = "dmic1_data";
-+				};
-+			};
-+
-+			dmic23: dmic23 {
-+				clk {
-+					pins = "gpio8";
-+					function = "dmic2_clk";
-+				};
-+
-+				data {
-+					pins = "gpio9";
-+					function = "dmic2_data";
-+				};
-+			};
-+
-+			dmic23_sleep: dmic23_sleep {
-+				clk {
-+					pins = "gpio8";
-+					function = "dmic2_clk";
-+				};
-+
-+				data {
-+					pins = "gpio9";
-+					function = "dmic2_data";
-+				};
-+			};
-+
-+			rx_swr: rx-swr {
-+				clk {
-+					pins = "gpio3";
-+					function = "swr_rx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio4", "gpio5";
-+					function = "swr_rx_data";
-+				};
-+			};
-+
-+			rx_swr_sleep: rx-swr-sleep {
-+				clk {
-+					pins = "gpio3";
-+					function = "swr_rx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio4", "gpio5";
-+					function = "swr_rx_data";
-+				};
-+			};
-+
-+			tx_swr: tx-swr {
-+				clk {
-+					pins = "gpio0";
-+					function = "swr_tx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio1", "gpio2", "gpio14";
-+					function = "swr_tx_data";
-+				};
-+			};
-+
-+			tx_swr_sleep: tx-swr-sleep {
-+				clk {
-+					pins = "gpio0";
-+					function = "swr_tx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio1", "gpio2", "gpio14";
-+					function = "swr_tx_data";
-+				};
-+			};
-+		};
-+
- 		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-635.0", "qcom,adreno";
- 			reg = <0 0x03d00000 0 0x40000>,
+Please note that pointing a proper base for the patchset is really 
+essential if you really want others to test it.
+
+
+> Jagan.
+>
+> Jagan Teki (11):
+>    drm: bridge: Add Samsung DSIM bridge driver
+>    drm: bridge: samsung-dsim: Handle platform init via driver_data
+>    drm: bridge: samsung-dsim: Mark PHY as optional
+>    drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
+>    drm: bridge: samsung-dsim: Fix PLL_P (PMS_P) offset
+>    drm: bridge: samsung-dsim: Add module init, exit
+>    drm: bridge: samsung-dsim: Add atomic_check
+>    drm: bridge: samsung-dsim: Add atomic_get_input_bus_fmts
+>    drm: bridge: samsung-dsim: Add input_bus_flags
+>    dt-bindings: display: exynos: dsim: Add NXP i.MX8MM support
+>    drm: bridge: samsung-dsim: Add i.MX8MM support
+>
+>   .../bindings/display/exynos/exynos_dsim.txt   |    1 +
+>   MAINTAINERS                                   |   12 +
+>   drivers/gpu/drm/bridge/Kconfig                |   12 +
+>   drivers/gpu/drm/bridge/Makefile               |    1 +
+>   drivers/gpu/drm/bridge/samsung-dsim.c         | 1803 +++++++++++++++++
+>   drivers/gpu/drm/exynos/Kconfig                |    1 +
+>   drivers/gpu/drm/exynos/exynos_drm_dsi.c       | 1704 +---------------
+>   include/drm/bridge/samsung-dsim.h             |   97 +
+>   8 files changed, 1982 insertions(+), 1649 deletions(-)
+>   create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.c
+>   create mode 100644 include/drm/bridge/samsung-dsim.h
+>
+Best regards
 -- 
-2.7.4
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
