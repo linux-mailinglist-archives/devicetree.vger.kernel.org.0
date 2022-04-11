@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C18744FC55F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 22:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD2E4FC563
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 22:02:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233105AbiDKUEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 16:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59834 "EHLO
+        id S240425AbiDKUEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 16:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233371AbiDKUEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 16:04:43 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6935A1A391
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 13:02:28 -0700 (PDT)
+        with ESMTP id S1349767AbiDKUEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 16:04:49 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B767E1FCC0
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 13:02:34 -0700 (PDT)
 Received: from localhost.localdomain ([37.4.249.94]) by
  mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1N8XLj-1o0G6P2vXV-014XJ5; Mon, 11 Apr 2022 22:02:04 +0200
+ id 1MuUrM-1nw5Nv0g8g-00rZ0y; Mon, 11 Apr 2022 22:02:05 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -28,66 +28,79 @@ Cc:     bcm-kernel-feedback-list@broadcom.com,
         Linus Walleij <linus.walleij@linaro.org>,
         devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 3/6] ARM: dts: bcm2837-rpi-3-b-plus: Fix GPIO line name of power LED
-Date:   Mon, 11 Apr 2022 22:01:40 +0200
-Message-Id: <20220411200143.4876-4-stefan.wahren@i2se.com>
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: [PATCH 4/6] ARM: dts: bcm2835-rpi-b: Fix GPIO line names
+Date:   Mon, 11 Apr 2022 22:01:41 +0200
+Message-Id: <20220411200143.4876-5-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220411200143.4876-1-stefan.wahren@i2se.com>
 References: <20220411200143.4876-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:ZCHLLXUIKg4bqQR6jWljmHMjyMhXdWmz/I9yYD3589SFZ2uHunH
- 8GMxp7MOX5XdEdhd7KMH2hONgBjNTA71mLB98GK391syMrizd/TVenpM2tmcgBMbArRiq8J
- BS5l/UGLCrLsSED33/dYEGYxIt6RC4vBUml1XJ47utgrUBb3zDe/8XNZMP2Zi/+/+rM9Ijq
- H4FyQxOu32gW/n+Jqu7+g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:GGs8j0FKpVY=:8aP1dwZAscSf5YXOOmZqYp
- fz5x3/Vm65y234t9jd8D0BNyqok8W3nhJg31y1OMT4ZJj/oPAb05E0qL173DGbv2OtLYCHK1A
- Bvxu5NG0nGDV08q58tIo9AZJqOKR2Wp9GdzCzJ7zJg+mHho3GxvBWPgNJqXqS93eJvAo5mRP5
- RrA+ltRH49OEFFwTqufJXUOTbwGYg/HEYgbP6ViUJBLsef5vEqiWj1sUuHZbLq4PLagRUzMw7
- oBZVlESfKef6C4CghXCRJJCVTFCMwIIbzVOiF062AmYrvmhK7vhn72KJAcn+O6U+OSGaTKup4
- Hp9Jw1Pqg4m0ulESa4w/lYYVMblyjqg2Z3nGkdFdGI7zOea6QFY9hStKFHnpm8LMPL4z4OdCL
- dNdB/7o811qdnP8Fgtzta7kUZIt3doZfh7QfeSYO+hNTsQE6nMP1kwq64D9Ekn7VOSe3RLvRw
- Wyw/5S9ME4jPTMsGDNnMD3QuVDgbin9lWxRFmjqFffgpzCn4IMVHRXy0f/mthwJMnwxfgEZcK
- fhkxAVs4/d8MMhPQn9U3/eFFBqIgQo/QL328s6pC1eUCRnjNHiiG92znwjRTn9QBV/cCw03B+
- vnAN/7jcwG9R9L0E4Z3PF8TlSHsqcpCkizqQX6T3/aqcraVfucdKsefmoxhLRrWfVhucMTlNZ
- U226oYWjuFVwSq7PLUq7dOTVIKK0tnwN7Yr8lAdAHA/6MlKRcvPy9FJZV+ALxpeC0mYuYsaDl
- mH55PdYv54BvtpY3
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:HJgaSy8A+0EDxH1dGCmk+rvbQzMnAKboKGPyiaH9iFU+ISdqomx
+ CLcl6MPhKpUYTaU3mHvm//0aVNAxNsWeVVM4H5OpT6e4YeJXhMF+MPs5QTTTbQIsOty1jC6
+ 2M5NlF+oQw1Od+hhMM/c3QoegIzhguvcn/z/z3DKwm2wC5BF5rnZ1tGTXLF95xEfPlJW/pB
+ tZQFW9N8au25Bg/ZVGg+w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Kf/XypCv7s0=:2dlY304k799dC+PYg9B2M2
+ oUh2BSfhVpWu/Zvzo1WAUK/fU6xSYzofyX8qef+ZkgsoUTzo7hDbUGeIFWkNnErvPbwtGi3dA
+ PXUtvONU1pX5ge+wEyI47THfcuc57fN1S71Q4DNPDKPx2toB/T5gs6I3wAoewMpzDPjqJbgh0
+ jLa5CII+1LOmdROZYHLLtnDcQMk25Bx7rNI76yH+OSR2AqgkgrDFmalYHsQEXQloFvaIa90Wp
+ D79xKrAXso/W5aVh20ruo7kVOeRTROdydX9luT6AbCot2ytpIxwMBjspv0cIGwzRiShOSXtgM
+ mwwuhYxJyC5ges07mrjMTnp1dp7Iblu/ipj/QVYLvmSv89zPtLqhYvfj+q4u+P3w3OpJZxsYu
+ LUBwXgEucx4/3qSlsar343hcHViSIKWz43Rm6AXaKgtkE7WMGHwCz8Vo85nABFxMngHYgk8Q0
+ ymYvvXm+XtmTGd2hBDFgSq5LXiIKzQrmMnKua3yHZDlAPmFvt8uFZAjDu3QlKeNiCf0JcjWMC
+ tRgS4SS6wEJbqTXh7CsYlcmUJfEa5cV1KZt14V889Pp/9Or6J50OwJUxCIH6JhcjnQDD2Q9Y7
+ SNoO1ldaBHV75YR0j39uMVx8zKmSAbTKD2yQnniRwd/pDcD7GlQ6xmMmfhyVMD9uxDk8busyZ
+ t3ie2YGlYY+wX13RLSEzmZ9EJLZJcMDzb4DAHfRqQ8Hgo6fH1Em1dUR4GZVMtZGI2kZpg5YIa
+ DZXkknYmV38kjUs/
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Phil Elwell <phil@raspberrypi.com>
+Recently this has been fixed in the vendor tree, so upstream this.
 
-The red LED on the Raspberry Pi 3 B Plus is the power LED.
-So fix the GPIO line name accordingly.
-
-Fixes: 71c0cd2283f2 ("ARM: dts: bcm2837: Add Raspberry Pi 3 B+")
+Fixes: 731b26a6ac17 ("ARM: bcm2835: Add names for the Raspberry Pi GPIO lines")
 Signed-off-by: Phil Elwell <phil@raspberrypi.com>
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 ---
- arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/bcm2835-rpi-b.dts | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-index e12938baaf12..c263f5b48b96 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-@@ -45,7 +45,7 @@ expgpio: gpio {
- 		#gpio-cells = <2>;
- 		gpio-line-names = "BT_ON",
- 				  "WL_ON",
--				  "STATUS_LED_R",
-+				  "PWR_LED_R",
- 				  "LAN_RUN",
- 				  "",
- 				  "CAM_GPIO0",
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-b.dts b/arch/arm/boot/dts/bcm2835-rpi-b.dts
+index 1b63d6b19750..25d87212cefd 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-b.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-b.dts
+@@ -53,18 +53,17 @@ &gpio {
+ 			  "GPIO18",
+ 			  "NC", /* GPIO19 */
+ 			  "NC", /* GPIO20 */
+-			  "GPIO21",
++			  "CAM_GPIO0",
+ 			  "GPIO22",
+ 			  "GPIO23",
+ 			  "GPIO24",
+ 			  "GPIO25",
+ 			  "NC", /* GPIO26 */
+-			  "CAM_GPIO0",
+-			  /* Binary number representing build/revision */
+-			  "CONFIG0",
+-			  "CONFIG1",
+-			  "CONFIG2",
+-			  "CONFIG3",
++			  "GPIO27",
++			  "GPIO28",
++			  "GPIO29",
++			  "GPIO30",
++			  "GPIO31",
+ 			  "NC", /* GPIO32 */
+ 			  "NC", /* GPIO33 */
+ 			  "NC", /* GPIO34 */
 -- 
 2.25.1
 
