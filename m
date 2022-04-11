@@ -2,302 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 855624FB1F2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 04:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E10614FB1FF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 04:51:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244165AbiDKCqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 22:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
+        id S229710AbiDKCyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 22:54:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244394AbiDKCqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 22:46:20 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B02038BE;
-        Sun, 10 Apr 2022 19:44:07 -0700 (PDT)
-Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 11 Apr
- 2022 10:44:05 +0800
-Message-ID: <0435d1f5-af28-2a3a-b53c-d7557e3fe75f@amlogic.com>
-Date:   Mon, 11 Apr 2022 10:44:05 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Content-Language: en-US
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
+        with ESMTP id S244420AbiDKCyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 22:54:04 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6F2155A6;
+        Sun, 10 Apr 2022 19:51:47 -0700 (PDT)
+X-UUID: 3bdd3723baf247528fc419440bb205bd-20220411
+X-UUID: 3bdd3723baf247528fc419440bb205bd-20220411
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 218981122; Mon, 11 Apr 2022 10:51:42 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 11 Apr 2022 10:51:40 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 Apr 2022 10:51:40 +0800
+Message-ID: <8c27890e8b33bce333c2f8afaf4b4f893560ca7f.camel@mediatek.com>
+Subject: Re: [PATCH v1 1/1] dt-bindings: pwrap: mediatek: fix pwrap document
+ for mt8195
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>, <lee.jones@linaro.org>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <eddie.huang@mediatek.com>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
+        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20220402074921.13316-1-liang.yang@amlogic.com>
- <20220402074921.13316-2-liang.yang@amlogic.com>
- <d30b32fe-e1d4-0684-a1fa-710c1da3faea@baylibre.com>
-From:   Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <d30b32fe-e1d4-0684-a1fa-710c1da3faea@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.28.39.106]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        <linux-mediatek@lists.infradead.org>
+Date:   Mon, 11 Apr 2022 10:51:40 +0800
+In-Reply-To: <20220411014121.15015-2-zhiyong.tao@mediatek.com>
+References: <20220411014121.15015-1-zhiyong.tao@mediatek.com>
+         <20220411014121.15015-2-zhiyong.tao@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+Hi all,
+
+After discussed with Zhiyong, this patch will be sent together within mt8195 dts series.
+It's because this change is related to mt8195 dts pwrap node.
+
+Follow this link for resend version of this patch,
+
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220411022724.11005-2-tinghan.shen@mediatek.com/
 
 
-On 2022/4/4 20:40, Neil Armstrong wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> Hi,
-> 
-> On 02/04/2022 09:49, Liang Yang wrote:
->> EMMC and NAND have the same clock control register named 
->> 'SD_EMMC_CLOCK' which is
->> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the 
->> divider and
->> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock 
->> has been
->> implemented and can be used by the eMMC and NAND controller (which are 
->> mutually
->> exclusive anyway). Let's use this new clock.
->>
->> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
->> ---
->>   drivers/mtd/nand/raw/meson_nand.c | 89 +++++++++++++++----------------
->>   1 file changed, 42 insertions(+), 47 deletions(-)
->>
->> diff --git a/drivers/mtd/nand/raw/meson_nand.c 
->> b/drivers/mtd/nand/raw/meson_nand.c
->> index ac3be92872d0..1b1a9407fb2f 100644
->> --- a/drivers/mtd/nand/raw/meson_nand.c
->> +++ b/drivers/mtd/nand/raw/meson_nand.c
->> @@ -10,6 +10,7 @@
->>   #include <linux/dma-mapping.h>
->>   #include <linux/interrupt.h>
->>   #include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->>   #include <linux/mtd/rawnand.h>
->>   #include <linux/mtd/mtd.h>
->>   #include <linux/mfd/syscon.h>
->> @@ -19,6 +20,7 @@
->>   #include <linux/iopoll.h>
->>   #include <linux/of.h>
->>   #include <linux/of_device.h>
->> +#include <linux/of_address.h>
->>   #include <linux/sched/task_stack.h>
->>   #define NFC_REG_CMD        0x00
->> @@ -104,6 +106,9 @@
->>   #define PER_INFO_BYTE        8
->> +#define CLK_DIV_SHIFT        0
->> +#define CLK_DIV_WIDTH        6
->> +
->>   struct meson_nfc_nand_chip {
->>       struct list_head node;
->>       struct nand_chip nand;
->> @@ -151,15 +156,15 @@ struct meson_nfc {
->>       struct nand_controller controller;
->>       struct clk *core_clk;
->>       struct clk *device_clk;
->> -    struct clk *phase_tx;
->> -    struct clk *phase_rx;
->> +    struct clk *nand_clk;
->> +    struct clk_divider nand_divider;
->>       unsigned long clk_rate;
->>       u32 bus_timing;
->>       struct device *dev;
->>       void __iomem *reg_base;
->> -    struct regmap *reg_clk;
->> +    void __iomem *sd_emmc_clock;
-> 
-> The name could still be reg_clk, even if not a regmap anymore.
+Best regards,
+Tinghan
 
-ok, i will do it.
+On Mon, 2022-04-11 at 09:41 +0800, Zhiyong Tao wrote:
+> From: "Zhiyong.Tao" <zhiyong.tao@mediatek.com>
 > 
->>       struct completion completion;
->>       struct list_head chips;
->>       const struct meson_nfc_data *data;
->> @@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip 
->> *nand, int chip)
->>       nfc->timing.tbers_max = meson_chip->tbers_max;
->>       if (nfc->clk_rate != meson_chip->clk_rate) {
->> -        ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
->> +        ret = clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
->>           if (ret) {
->>               dev_err(nfc->dev, "failed to set clock rate\n");
->>               return;
->> @@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc 
->> *nfc, int timeout_ms)
->>       cmd = NFC_CMD_RB | NFC_CMD_RB_INT
->>           | nfc->param.chip_select | nfc->timing.tbers_max;
->>       writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> -
->>       ret = wait_for_completion_timeout(&nfc->completion,
->>                         msecs_to_jiffies(timeout_ms));
->>       if (ret == 0)
->> @@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops 
->> meson_ooblayout_ops = {
->>       .free = meson_ooblayout_free,
->>   };
->> +struct clk_parent_data nfc_divider_parent_data[1];
+> fix pwrap document description for mt8195
 > 
-> This should be in the meson_nfc_clk_init() function, not global
+> Signed-off-by: Zhiyong.Tao <zhiyong.tao@mediatek.com>
+> ---
+>  .../devicetree/bindings/soc/mediatek/pwrap.txt         | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> index d74a7a5ae9f2..601647717ceb 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> @@ -30,20 +30,20 @@ Required properties in pwrap device node.
+>  	"mediatek,mt8195-pwrap" for MT8195 SoCs
+>  	"mediatek,mt8516-pwrap" for MT8516 SoCs
+>  - interrupts: IRQ for pwrap in SOC
+> -- reg-names: Must include the following entries:
+> +- reg-names: Must include "pwrap", "pwrap-bridge" is optinal.
+>    "pwrap": Main registers base
+>    "pwrap-bridge": bridge base (IP Pairing)
+>  - reg: Must contain an entry for each entry in reg-names.
+> -- reset-names: Must include the following entries:
+> -  "pwrap"
+> -  "pwrap-bridge" (IP Pairing)
+> -- resets: Must contain an entry for each entry in reset-names.
+>  - clock-names: Must include the following entries:
+>    "spi": SPI bus clock
+>    "wrap": Main module clock
+>  - clocks: Must contain an entry for each entry in clock-names.
+>  
+>  Optional properities:
+> +- reset-names: Some SoCs include the following entries:
+> +  "pwrap"
+> +  "pwrap-bridge" (IP Pairing)
+> +- resets: Must contain an entry for each entry in reset-names.
+>  - pmic: Using either MediaTek PMIC MFD as the child device of pwrap
+>    See the following for child node definitions:
+>    Documentation/devicetree/bindings/mfd/mt6397.txt
 
-ok.
-
-> 
->>   static int meson_nfc_clk_init(struct meson_nfc *nfc)
->>   {
->>       int ret;
->> +    struct clk_init_data init = {0};
->>       /* request core clock */
->>       nfc->core_clk = devm_clk_get(nfc->dev, "core");
->> @@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc 
->> *nfc)
->>           return PTR_ERR(nfc->device_clk);
->>       }
->> -    nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
->> -    if (IS_ERR(nfc->phase_tx)) {
->> -        dev_err(nfc->dev, "failed to get TX clk\n");
->> -        return PTR_ERR(nfc->phase_tx);
->> -    }
->> -
->> -    nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
->> -    if (IS_ERR(nfc->phase_rx)) {
->> -        dev_err(nfc->dev, "failed to get RX clk\n");
->> -        return PTR_ERR(nfc->phase_rx);
->> -    }
->> +    init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
-> 
-> name = devm_kasprintf(nfc->dev, GFP_KERNEL, "%s#div", dev_name(dev));
-> 
-> would be better.
-
-ok, thanks.
-
-> 
->> +    init.ops = &clk_divider_ops;
->> +    nfc_divider_parent_data[0].fw_name = "device";
->> +    init.parent_data = nfc_divider_parent_data;
->> +    init.num_parents = 1;
->> +    nfc->nand_divider.reg = nfc->sd_emmc_clock;
->> +    nfc->nand_divider.shift = CLK_DIV_SHIFT;
->> +    nfc->nand_divider.width = CLK_DIV_WIDTH;
->> +    nfc->nand_divider.hw.init = &init;
->> +    nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
->> +                  CLK_DIVIDER_ROUND_CLOSEST |
->> +                  CLK_DIVIDER_ALLOW_ZERO;
->> +
->> +    nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
->> +    if (IS_ERR(nfc->nand_clk))
->> +        return PTR_ERR(nfc->nand_clk);
->>       /* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
->> -    regmap_update_bits(nfc->reg_clk,
->> -               0, CLK_SELECT_NAND, CLK_SELECT_NAND);
->> +    writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
->> +           nfc->sd_emmc_clock);
->>       ret = clk_prepare_enable(nfc->core_clk);
->>       if (ret) {
->> @@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc 
->> *nfc)
->>           goto err_device_clk;
->>       }
->> -    ret = clk_prepare_enable(nfc->phase_tx);
->> +    ret = clk_prepare_enable(nfc->nand_clk);
->>       if (ret) {
->> -        dev_err(nfc->dev, "failed to enable TX clock\n");
->> -        goto err_phase_tx;
->> +        dev_err(nfc->dev, "pre enable NFC divider fail\n");
->> +        goto err_nand_clk;
->>       }
->> -    ret = clk_prepare_enable(nfc->phase_rx);
->> -    if (ret) {
->> -        dev_err(nfc->dev, "failed to enable RX clock\n");
->> -        goto err_phase_rx;
->> -    }
->> -
->> -    ret = clk_set_rate(nfc->device_clk, 24000000);
->> +    ret = clk_set_rate(nfc->nand_clk, 24000000);
->>       if (ret)
->> -        goto err_disable_rx;
->> +        goto err_disable_clk;
->>       return 0;
->> -err_disable_rx:
->> -    clk_disable_unprepare(nfc->phase_rx);
->> -err_phase_rx:
->> -    clk_disable_unprepare(nfc->phase_tx);
->> -err_phase_tx:
->> +err_disable_clk:
->> +    clk_disable_unprepare(nfc->nand_clk);
->> +err_nand_clk:
->>       clk_disable_unprepare(nfc->device_clk);
->>   err_device_clk:
->>       clk_disable_unprepare(nfc->core_clk);
->> @@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc 
->> *nfc)
->>   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
->>   {
->> -    clk_disable_unprepare(nfc->phase_rx);
->> -    clk_disable_unprepare(nfc->phase_tx);
->> +    clk_disable_unprepare(nfc->nand_clk);
->>       clk_disable_unprepare(nfc->device_clk);
->>       clk_disable_unprepare(nfc->core_clk);
->>   }
->> @@ -1374,7 +1376,6 @@ static int meson_nfc_probe(struct 
->> platform_device *pdev)
->>   {
->>       struct device *dev = &pdev->dev;
->>       struct meson_nfc *nfc;
->> -    struct resource *res;
->>       int ret, irq;
->>       nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
->> @@ -1388,21 +1389,15 @@ static int meson_nfc_probe(struct 
->> platform_device *pdev)
->>       nand_controller_init(&nfc->controller);
->>       INIT_LIST_HEAD(&nfc->chips);
->>       init_completion(&nfc->completion);
->> -
->>       nfc->dev = dev;
->> -    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> -    nfc->reg_base = devm_ioremap_resource(dev, res);
->> +    nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
->>       if (IS_ERR(nfc->reg_base))
->>           return PTR_ERR(nfc->reg_base);
->> -    nfc->reg_clk =
->> -        syscon_regmap_lookup_by_phandle(dev->of_node,
->> -                        "amlogic,mmc-syscon");
->> -    if (IS_ERR(nfc->reg_clk)) {
->> -        dev_err(dev, "Failed to lookup clock base\n");
->> -        return PTR_ERR(nfc->reg_clk);
->> -    }
->> +    nfc->sd_emmc_clock = devm_platform_ioremap_resource_byname(pdev, 
->> "emmc");
->> +    if (IS_ERR(nfc->sd_emmc_clock))
->> +        return PTR_ERR(nfc->sd_emmc_clock);
->>       irq = platform_get_irq(pdev, 0);
->>       if (irq < 0)
-> 
-> Thanks,
-> Neil
-> 
-> .
