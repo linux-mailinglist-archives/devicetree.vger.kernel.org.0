@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3F4B4FB867
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 455BF4FB868
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 11:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344708AbiDKJyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 05:54:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38030 "EHLO
+        id S1344726AbiDKJyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 05:54:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345007AbiDKJxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:53:12 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 346864162C;
-        Mon, 11 Apr 2022 02:50:47 -0700 (PDT)
+        with ESMTP id S1345071AbiDKJxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 05:53:22 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6D4A1
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:51:08 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id r13so29718039ejd.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 02:51:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649670647; x=1681206647;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=pz9Q9tfygcswvzxpNlt2xnEXl7RY0zN/Xm6yTTTTrBU=;
-  b=L+JBz2cHSc4c2mXvIAOyKIE2rwkyaxhTVOZjMZ/ks4t3iKw+X8F/ZcbF
-   GRwFnV6wA3trJ68Sf/x4KupXo4GFOhr7Anek0js02goOR4vK08rVtAvMi
-   ScemRJImHGkg+bpGCH3WCM7JOBamZ2NDtbWcfspujePoWY+fb3a6UTNcd
-   k=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 11 Apr 2022 02:50:47 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Apr 2022 02:50:45 -0700
-X-QCInternal: smtphost
-Received: from hu-rohiagar-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.106.138])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 11 Apr 2022 15:20:28 +0530
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 0968D3AA3; Mon, 11 Apr 2022 15:20:27 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, ulf.hansson@linaro.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v2 7/7] ARM: dts: qcom: sdx65: Add Shared memory manager support
-Date:   Mon, 11 Apr 2022 15:20:15 +0530
-Message-Id: <1649670615-21268-8-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649670615-21268-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1649670615-21268-1-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iDorRWYF+QQ7tsQ5XJAfMUGysPHXxZuhvqA5athArg4=;
+        b=cQUcIjYqumxFXKIfax6Ac8EtD9FDWOfGxzbGQVqSOljpl775nxUIiMeTO8Xp/bJT9n
+         grUwLrpbFGnfB1LswBBPbgAuAlSZZalLgirSgNC8Wz6z12NgXyEI3u6lTpl0XoFngnt/
+         Ao6Zj5AdYIwiBtHhcUNWFdV9E4rRwnuejnHx5RXMcwpeECvQXlRzL1ap2ZaPbC3Q/ZLT
+         hdMmrdhF+tPKedGTSo7exitV750T6YVuHFDM17lKLxHO+en6cinkI9rZy4HAMe897N6x
+         sna7mzw2litogiKbmAHMl5lVfdwFnBZNTh6ussREe/jgl2E34XnhViJgLcbRVEQDVcPN
+         HoiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=iDorRWYF+QQ7tsQ5XJAfMUGysPHXxZuhvqA5athArg4=;
+        b=U8YhJmPgLRw09sQWL2H4gDbY8yClGECeTc+2RiWOyFFRJvw0VobKvRunsZGe6TuSrN
+         55STa72sVsxSk4cjHHG0+IVw1C2QpgxfTui48gijDIHD3vvEkitCOCviXjbr8qGQsogL
+         6wchkfL4KvpGOor/iKTp3uNUsFmPATcxbReONZ3X5PS2vKR3R/W0S7mpY1l3JexiuseQ
+         ENeGV+uXUktdgYdRUklU1AVgFfpgETfOyHegbi7B7G6xvgA+eGKtEPE8TpFTnYHU+Xnn
+         YCOXudQ8z3crvzoAmykUB/Vzv7hUWaX9s5p9yhydpQZLyVrjQL1Dbakb6VkBPed0+nfT
+         e7SA==
+X-Gm-Message-State: AOAM5333eZwwq4tf9713Cjn7NGwtSvoiLVpcnsyoK0HNbBvt3KR+jo9F
+        aH973QD7s5FFifu2HAVixkACsg==
+X-Google-Smtp-Source: ABdhPJyKyVJsgYT5B0W9dpIJ6npkZo/eH4l4L0qruFZU6wbmitvhLWcwAuqSBf+SfmmtGbdwMwfbWg==
+X-Received: by 2002:a17:906:7314:b0:6df:839f:af7 with SMTP id di20-20020a170906731400b006df839f0af7mr29069881ejc.65.1649670667205;
+        Mon, 11 Apr 2022 02:51:07 -0700 (PDT)
+Received: from [192.168.0.191] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id j12-20020a056402238c00b0041ce094cf47sm9469078eda.60.2022.04.11.02.51.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 02:51:06 -0700 (PDT)
+Message-ID: <b4d721f5-7eb6-480b-84ea-8fcea7516fde@linaro.org>
+Date:   Mon, 11 Apr 2022 11:51:05 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RESEND PATCH] dt-bindings: power: renesas,rcar-sysc: drop
+ useless consumer example
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220407193542.17230-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdWXLiTKDpXydKQh-fmyHOHb8WpCe9oetNrs2GGNGZqRCg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdWXLiTKDpXydKQh-fmyHOHb8WpCe9oetNrs2GGNGZqRCg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add smem node to support shared memory manager on SDX65 platform.
+On 11/04/2022 11:14, Geert Uytterhoeven wrote:
+>>
+>> -description:
+>> +description: |
+>>    The R-Car (RZ/G) System Controller provides power management for the CPU
+>>    cores and various coprocessors.
+>> +  The power domain IDs for consumers are defined in header files::
+>> +  include.dt-bindings/power/r8*-sysc.h
+> 
+> include/dt-bindings/power/r8*-sysc.h?
+> 
+> Or does the period have a special meaning here?
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- arch/arm/boot/dts/qcom-sdx65.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+Uh, sorry for this. A typo. Thanks for the report. I will send a fix.
 
-diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-index 210e55c..8fef644 100644
---- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-@@ -113,6 +113,12 @@
- 		};
- 	};
- 
-+	smem {
-+		compatible = "qcom,smem";
-+		memory-region = <&smem_mem>;
-+		hwlocks = <&tcsr_mutex 3>;
-+	};
-+
- 	soc: soc {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--- 
-2.7.4
 
+Best regards,
+Krzysztof
