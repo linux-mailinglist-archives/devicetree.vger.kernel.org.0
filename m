@@ -2,127 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C90C94FC0D6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 351AC4FC106
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347079AbiDKPfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
+        id S1348074AbiDKPkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242045AbiDKPfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:35:05 -0400
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2635236B4C;
-        Mon, 11 Apr 2022 08:32:51 -0700 (PDT)
-Received: by mail-qv1-f49.google.com with SMTP id b17so13489074qvf.12;
-        Mon, 11 Apr 2022 08:32:51 -0700 (PDT)
+        with ESMTP id S240237AbiDKPkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:40:07 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0054A3A5E7;
+        Mon, 11 Apr 2022 08:37:52 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id m33-20020a05600c3b2100b0038ec0218103so1115195wms.3;
+        Mon, 11 Apr 2022 08:37:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ZEd2NUfggsD7hgjY8ZW9Vk2tNqqVUG6JADb5kDnjH9Y=;
+        b=ZOQvmS/wEUkvWeynt1+EWEaVA+W9eMPHyQEiaRq21gFbWomCufcS8tUyh7ZQPu5LwP
+         eUJ1WFpwyr9Yaqft68B8Nm/C+PGGHXUuTmGoF51iyzkF3siGBMH+JbPuJgnjBYZUQ0rk
+         Rcab+BNrqtIDRdL1aduuV/rJWLG6C3gqZxMSNqkBpLnMkCujJoCI1LqQFlAqfyYnWPkC
+         bvWQ6Pmc5eLqexEdzFrdr3CkHrDmtXhkSU7mjU3BvZHz1uqWYGghCI2eTSdTnMfEAzTC
+         H/xVAOBg32rRcMvl5vxvcfb3LXbU80yq1DS9PzCV7iURoVOOuLaKzCbcU5eq/IECPn71
+         8chg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vI8B2NQEJsy0Y3l6kvTznv2x70M0aqJTxZmt3sM3f5I=;
-        b=EudAcLX2aCf0voLJOxaYHF0PRCT1f17umbLtKsX6Xu+j9MeBMtE28Ury+0R3c0etCK
-         hunXKkc6Jjuc18GZME2tCmFC8ODNhdrUrgkpTif9OlTY07zPJVkxT5ff4h7UWjHt/x1v
-         7qqcaFzKA3dmtrOFXCOmziXS6rv5v4RkslEDhA9FH9nv35sNvttxETHMTVYxgmJct1aI
-         8i+6kY7Zpv6aQ4fPyZEe+3k4wepONCy+75ECdSAOeqUBRocUX1q4nT+l8Z448WQl9zyC
-         D7lyzIP1nzGk6Vk1PX35By7l1Jp65+4P291mpzYQbzAAuxYD0z4EeeIUiLCs7FH0l/Ou
-         O7jQ==
-X-Gm-Message-State: AOAM533PZhndpNljlJR2k983/3gP3JWg74s+7Jn4RNEoo5FTgMupXQEP
-        403/9FxLHWW9JeeLVbK2iF5tDnU0xpEc1A==
-X-Google-Smtp-Source: ABdhPJyb2niBOFbIx4F/ieGrq3lg4ZiA/33Fxfb0FVMVRXG5+qkTWdg8r2+2sPa2nmea+0APewdHBg==
-X-Received: by 2002:a05:6214:3001:b0:443:bb87:7f9a with SMTP id ke1-20020a056214300100b00443bb877f9amr26873059qvb.13.1649691169690;
-        Mon, 11 Apr 2022 08:32:49 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id f3-20020ac87f03000000b002ed137e0510sm5239725qtk.77.2022.04.11.08.32.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 08:32:49 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id t12so7644584ybt.10;
-        Mon, 11 Apr 2022 08:32:49 -0700 (PDT)
-X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
- p9-20020a259e89000000b0063cad37a5demr22542847ybq.342.1649691169145; Mon, 11
- Apr 2022 08:32:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220405184716.1578385-1-miquel.raynal@bootlin.com> <20220405184716.1578385-8-miquel.raynal@bootlin.com>
-In-Reply-To: <20220405184716.1578385-8-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 11 Apr 2022 17:32:38 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXHUQg3FZ29rxka1WS=0mGfNPQSuC0xr75WQ7XAxeV3CA@mail.gmail.com>
-Message-ID: <CAMuHMdXHUQg3FZ29rxka1WS=0mGfNPQSuC0xr75WQ7XAxeV3CA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] ARM: dts: r9a06g032: Describe the RTC
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ZEd2NUfggsD7hgjY8ZW9Vk2tNqqVUG6JADb5kDnjH9Y=;
+        b=p5l2WD+jx4lZaYvzk8UpO0pr+l+sc5aAd7xPVoJugMp3igrdV7DYITj7e6ib/sU+nQ
+         IgCbnVOIAbgJQDq/KG+2F3vOpduc7ZUPAGaVWHldnytonm4yz9wqrQjlAxZXNuPcGDf+
+         +OzR4H8UcD8oRAIisy1ZnC1hCcf1ewHUylora2jDMirxZE67NDOSL3cnzs6pcFyzwnB2
+         HVx1rxX37FJNRhhdTSWXcIXhFuVqfI5Rrv1tQC1EcCHVn2lKji9MRzt+uVuQqQ0vQ7Wx
+         2nV1HmZD148qDcDh2HmlFugiDBZJmpXTFW0Ax/0PLVV/9J7eznL1yUOkUe1XSZUGfkBm
+         9s5g==
+X-Gm-Message-State: AOAM530Djq7IXXf7ygY9vscaaI7gvw+4tMfgtfbi7HxMyW43qVJZgvSk
+        WIfdvvKC7UgrDx9LWO0gtzU=
+X-Google-Smtp-Source: ABdhPJy/BzuwObXpGrBkuPP/B+nIiUKgXHozXUMEVJpsQ9JEfJdCGxcjcG2VRWPpqzSHJ8PxH0l9YA==
+X-Received: by 2002:a7b:c7c3:0:b0:389:cbf1:fadf with SMTP id z3-20020a7bc7c3000000b00389cbf1fadfmr30248265wmk.147.1649691471387;
+        Mon, 11 Apr 2022 08:37:51 -0700 (PDT)
+Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
+        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0037bdfa1665asm22528252wmj.18.2022.04.11.08.37.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 08:37:51 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 03/10] drm/sun4i: Remove obsolete references to PHYS_OFFSET
+Date:   Mon, 11 Apr 2022 17:37:49 +0200
+Message-ID: <3167527.44csPzL39Z@kista>
+In-Reply-To: <20220411043423.37333-4-samuel@sholland.org>
+References: <20220411043423.37333-1-samuel@sholland.org> <20220411043423.37333-4-samuel@sholland.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Dne ponedeljek, 11. april 2022 ob 06:34:15 CEST je Samuel Holland napisal(a):
+> commit b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a
+> central place") added a platform device notifier that sets the DMA
+> offset for all of the display engine frontend and backend devices.
+> 
+> The code applying the offset to DMA buffer physical addresses was then
+> removed from the backend driver in commit 756668ba682e ("drm/sun4i:
+> backend: Remove the MBUS quirks"), but the code subtracting PHYS_OFFSET
+> was left in the frontend driver.
+> 
+> As a result, the offset was applied twice in the frontend driver. This
+> likely went unnoticed because it only affects specific configurations
+> (scaling or certain pixel formats) where the frontend is used, on boards
+> with both one of these older SoCs and more than 1 GB of DRAM.
+> 
+> In addition, the references to PHYS_OFFSET prevent compiling the driver
+> on architectures where PHYS_OFFSET is not defined.
+> 
+> Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a central 
+place")
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-On Tue, Apr 5, 2022 at 8:47 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> Describe the SoC RTC which counts time and provides alarm support.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Good catch! Actually, people complained about non-working display on 
+Cubietruck IIRC, which has 2 GB of RAM.
 
-Thanks for your patch!
+Did you test this on HW?
 
-> --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> @@ -103,6 +103,18 @@ dmamux: dma-router@a0 {
->                         };
->                 };
->
-> +               rtc0: rtc@40006000 {
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Please insert this before watchdog@40008000, to preserve sort
-order (by unit address).
+Best regards,
+Jernej
 
-> +                       compatible = "renesas,r9a06g032-rtc", "renesas,rzn1-rtc";
-> +                       reg = <0x40006000 0x1000>;
-> +                       interrupts = <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names = "alarm", "timer", "pps";
-> +                       clocks = <&sysctrl R9A06G032_HCLK_RTC>;
-> +                       clock-names = "hclk";
-> +                       status = "disabled";
-> +               };
-> +
->                 uart0: serial@40060000 {
->                         compatible = "renesas,r9a06g032-uart", "renesas,rzn1-uart", "snps,dw-apb-uart";
->                         reg = <0x40060000 0x400>;
+> ---
+> 
+>  drivers/gpu/drm/sun4i/sun4i_frontend.c | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_frontend.c b/drivers/gpu/drm/sun4i/
+sun4i_frontend.c
+> index 56ae38389db0..462fae73eae9 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_frontend.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_frontend.c
+> @@ -222,13 +222,11 @@ void sun4i_frontend_update_buffer(struct sun4i_frontend 
+*frontend,
+>  
+>  	/* Set the physical address of the buffer in memory */
+>  	paddr = drm_fb_cma_get_gem_addr(fb, state, 0);
+> -	paddr -= PHYS_OFFSET;
+>  	DRM_DEBUG_DRIVER("Setting buffer #0 address to %pad\n", &paddr);
+>  	regmap_write(frontend->regs, SUN4I_FRONTEND_BUF_ADDR0_REG, paddr);
+>  
+>  	if (fb->format->num_planes > 1) {
+>  		paddr = drm_fb_cma_get_gem_addr(fb, state, swap ? 2 : 
+1);
+> -		paddr -= PHYS_OFFSET;
+>  		DRM_DEBUG_DRIVER("Setting buffer #1 address to %pad\n", 
+&paddr);
+>  		regmap_write(frontend->regs, 
+SUN4I_FRONTEND_BUF_ADDR1_REG,
+>  			     paddr);
+> @@ -236,7 +234,6 @@ void sun4i_frontend_update_buffer(struct sun4i_frontend 
+*frontend,
+>  
+>  	if (fb->format->num_planes > 2) {
+>  		paddr = drm_fb_cma_get_gem_addr(fb, state, swap ? 1 : 
+2);
+> -		paddr -= PHYS_OFFSET;
+>  		DRM_DEBUG_DRIVER("Setting buffer #2 address to %pad\n", 
+&paddr);
+>  		regmap_write(frontend->regs, 
+SUN4I_FRONTEND_BUF_ADDR2_REG,
+>  			     paddr);
+> -- 
+> 2.35.1
+> 
+> 
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
