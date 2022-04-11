@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F52E4FC16E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04DE24FC179
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235953AbiDKPvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:51:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56704 "EHLO
+        id S243721AbiDKPyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:54:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238147AbiDKPvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:51:15 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDE0DF82;
-        Mon, 11 Apr 2022 08:49:00 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id q20so10202871wmq.1;
-        Mon, 11 Apr 2022 08:49:00 -0700 (PDT)
+        with ESMTP id S241114AbiDKPyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:54:06 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E1181157;
+        Mon, 11 Apr 2022 08:51:52 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id r206-20020a1c44d7000000b0038ccb70e239so4870867wma.3;
+        Mon, 11 Apr 2022 08:51:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=qi7eZg7eL4sVsLMsy0YjPHKG017lj1wQEyIFwGViWAM=;
-        b=Hcuy/vAQzyD17YUsghb6LKm+6+s4YDr705jX4CsiwWq9VxmAGbrdyRmeixApfoNWmV
-         RyZjfdTljqLOpTYYxSGTXxN7zQo9o1xWzQ9142lEscAsZnMwU+Kt9dNgtoiCAj8HwqID
-         AxkThIp1zjjtHUEUQe1xs9yhbIS0Uy5Qrvo1ALCaK/2TxFAh/7lWWOaJIg1R97CFYX9k
-         dNj0PI330BZ35QIkJrSSSI7lCYuC5NYfWV6WkB+8rMf+s9YdsI4O3ZIXIxSqLUAf1ppd
-         5wD/9QVOwN3G0fJ1vQyHxUpDwTbnkVezLEd7ehy3CDnyCmEhPaJxAxeMdIPE+of+F2ud
-         n4cg==
+        bh=YS8EHgwmMuCqhyig1rAaWaRxXw3QqtoY27L8Jll0TfY=;
+        b=As31xpNOOXW4cOL7/qqPuWMExguKMbXyka+Vh9C9W/8PbSFivYI75aVr2GVZmJcjgr
+         kV8l4qy2Tg7yf0ZL0HMf5UlajwgEf/6IO/yB2BV/rekMrDTVP6T54LENY+PjKv515hDK
+         ZulGZCIDUpMCpb47TlwyOwE+tf8P1n0XEh5rwPXgJlJVevhJ/jqjrXGRRzT3fvG8b2KJ
+         fYzEnlx7I+/Lhth6iiZHjNNVJEmdTdiiMSUZ0YhWi1SfgfKAuAC/pvQ0gPD0kQRLB5k4
+         WGwwSqF83vJ73SX0VyHlRTH15XOHjv+7fdr0/gn9Z0trOGwQ9wpZUIlh8rozIZsSrxgX
+         wqRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=qi7eZg7eL4sVsLMsy0YjPHKG017lj1wQEyIFwGViWAM=;
-        b=LdsELdP3B5aUj8l3DEQQb9+00QBz4kNFW30saCzHC7kKGm7mN40J+eo+Em8SyyJukt
-         ZQ+0beq+ZwBR+TWjlazrlkTyEbipa8YD2VaUfjwc/wEx2igtL4tbGHw7ADBHPH53AiDq
-         PjcLCgpiFsE196p3UOoMVvFC2vgc8jspz3NBvTLrZx5lex20/cQT9h2SxgHldhutKGtB
-         tuGp54OGLcBpDbeY4+kUxPiOGGjN9iWcM7bBjwgnD0PSqJ8+QdRwn30r7/BUkJfNdoNQ
-         9DW+sCoWbzJLkEyvid1U0g2Aw15ImhmRnAQYZOMlSMLFbZbDijbLvvXs800N/T3S3sdV
-         gdMg==
-X-Gm-Message-State: AOAM532rso0RyCYK90XeATPAeFSB43JxNkw67dSNws6QH1tSMOriIBVI
-        dJ9ddCWpz3mCAl2PZinHTNE=
-X-Google-Smtp-Source: ABdhPJxg6gCExkFst8ObOPuO3ENH/Jiahpnnv1uxdrIaBDYAOcjx7+rWzK7x7weJ/8GqR1ckC8YxOA==
-X-Received: by 2002:a05:600c:4f95:b0:38e:b596:b3f5 with SMTP id n21-20020a05600c4f9500b0038eb596b3f5mr9549574wmq.164.1649692139309;
-        Mon, 11 Apr 2022 08:48:59 -0700 (PDT)
+        bh=YS8EHgwmMuCqhyig1rAaWaRxXw3QqtoY27L8Jll0TfY=;
+        b=0Ji2G9N/m1GLdbzX3IiOHmmuexY2aJgT3FNfaIroypNmL6wiNv6cLjhK2k5Ix3aItz
+         KqV11reX2iYAyuLDR9ZQ2og3s+H6nZe8wnSnUU6ukggN6G19mAtePs6Nc0kjxS7KLppP
+         s5aXDZgF3T43SXEoX53BcOQq1vI0r1Im1NM9yEf+LzGVhPxXaE+wCxoo+7ZXf4G6r0UX
+         uU/vUQta2vZ4UwbotqrVaZeZJQ6edxNffnKuTn4ynxqULFTxnXfGiETFrSOYYOx9838S
+         Ke70RmvJROnpR3t7m18shZvHh5bTrdNZoXOSUyiAwufruWwSeBhjkEEhHpBv6X4+RSp6
+         Rd6Q==
+X-Gm-Message-State: AOAM531jt84EtQIxJXBFeZMDaFu60KgTwXaWRvZU2cVHoEd+iLif3LO2
+        kN9wj9b6C79jxRHpRv1WHqw=
+X-Google-Smtp-Source: ABdhPJxvtJQJT9jI/s9bYQuO90GNiVMlLPs03qEqheRFSe8rV0SXjb9P9bAhHpKdX5WiBso6FB1JZw==
+X-Received: by 2002:a7b:cb05:0:b0:38c:7910:d935 with SMTP id u5-20020a7bcb05000000b0038c7910d935mr29586332wmj.170.1649692310794;
+        Mon, 11 Apr 2022 08:51:50 -0700 (PDT)
 Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
-        by smtp.gmail.com with ESMTPSA id r129-20020a1c2b87000000b0038e6a025d05sm19083256wmr.18.2022.04.11.08.48.58
+        by smtp.gmail.com with ESMTPSA id u1-20020a056000038100b00207a578e9d4sm4140041wrf.89.2022.04.11.08.51.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 08:48:59 -0700 (PDT)
+        Mon, 11 Apr 2022 08:51:50 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
         Samuel Holland <samuel@sholland.org>
@@ -58,11 +58,11 @@ Cc:     Samuel Holland <samuel@sholland.org>,
         dri-devel@lists.freedesktop.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 06/10] drm/sun4i: Allow VI layers to be primary planes
-Date:   Mon, 11 Apr 2022 17:48:57 +0200
-Message-ID: <3096240.5fSG56mABF@kista>
-In-Reply-To: <20220411043423.37333-7-samuel@sholland.org>
-References: <20220411043423.37333-1-samuel@sholland.org> <20220411043423.37333-7-samuel@sholland.org>
+Subject: Re: [PATCH 07/10] drm/sun4i: Add support for D1 mixers
+Date:   Mon, 11 Apr 2022 17:51:49 +0200
+Message-ID: <1721354.VLH7GnMWUR@kista>
+In-Reply-To: <20220411043423.37333-8-samuel@sholland.org>
+References: <20220411043423.37333-1-samuel@sholland.org> <20220411043423.37333-8-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -76,116 +76,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 11. april 2022 ob 06:34:18 CEST je Samuel Holland napisal(a):
-> D1's mixer 1 has no UI layers, only a single VI layer. That means the
-> mixer can only be used if the primary plane comes from this VI layer.
-> Add the code to handle this case, setting the mixer's global registers
-> in the same way as when the primary plane comes from a UI layer.
+Dne ponedeljek, 11. april 2022 ob 06:34:19 CEST je Samuel Holland napisal(a):
+> D1 has a display engine with the usual pair of mixers, albeit with
+> relatively few layers. In fact, D1 appears to be the first SoC to have
+> a mixer without any UI layers. Add support for these new variants.
 > 
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> 
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 36 +++++++++++++++++++++++++-
->  1 file changed, 35 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/
-sun8i_vi_layer.c
-> index bb7c43036dfa..86212cb2098c 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> @@ -146,6 +146,36 @@ static int sun8i_vi_layer_update_coord(struct 
-sun8i_mixer *mixer, int channel,
->  	insize = SUN8I_MIXER_SIZE(src_w, src_h);
->  	outsize = SUN8I_MIXER_SIZE(dst_w, dst_h);
->  
-> +	if (plane->type == DRM_PLANE_TYPE_PRIMARY) {
-> +		bool interlaced = false;
-> +		u32 val;
-> +
-> +		DRM_DEBUG_DRIVER("Primary layer, updating global size W: 
-%u H: %u\n",
-> +				 dst_w, dst_h);
-> +		regmap_write(mixer->engine.regs,
-> +			     SUN8I_MIXER_GLOBAL_SIZE,
-> +			     outsize);
-> +		regmap_write(mixer->engine.regs,
-> +			     SUN8I_MIXER_BLEND_OUTSIZE(bld_base), 
-outsize);
-> +
-> +		if (state->crtc)
-> +			interlaced = state->crtc->state-
->adjusted_mode.flags
-> +				& DRM_MODE_FLAG_INTERLACE;
-> +
-> +		if (interlaced)
-> +			val = SUN8I_MIXER_BLEND_OUTCTL_INTERLACED;
-> +		else
-> +			val = 0;
-> +
-> +		regmap_update_bits(mixer->engine.regs,
-> +				   
-SUN8I_MIXER_BLEND_OUTCTL(bld_base),
-> +				   
-SUN8I_MIXER_BLEND_OUTCTL_INTERLACED,
-> +				   val);
-> +
-> +		DRM_DEBUG_DRIVER("Switching display mixer interlaced 
-mode %s\n",
-> +				 interlaced ? "on" : "off");
-> +	}
-> +
 
-Above code doesn't really belong to layer management and actually cause an 
-issue when primary plane is reconfigured to cover only part of display. It 
-should be executed at mode set time. I already wrote patches for that. Feel 
-free to reuse them:
-
-https://github.com/jernejsk/linux-1/commit/
-bddb61cfa9c8ab70f5af6ed384fc7ffe159ac064
-https://github.com/jernejsk/linux-1/commit/
-3320184b88df81b7d3d2b375db899442e1085519
-https://github.com/jernejsk/linux-1/commit/
-05a04d721ae31dbff0432606892ec94b6a63b8bc
-
-FWIW, I have other clean ups stacked here: https://github.com/jernejsk/
-linux-1/commits/hdmi-yuv420
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
 Jernej
 
->  	/* Set height and width */
->  	DRM_DEBUG_DRIVER("Layer source offset X: %d Y: %d\n",
->  			 (state->src.x1 >> 16) & ~(format->hsub - 
-1),
-> @@ -542,6 +572,7 @@ struct sun8i_vi_layer *sun8i_vi_layer_init_one(struct 
-drm_device *drm,
->  					       struct 
-sun8i_mixer *mixer,
->  					       int index)
->  {
-> +	enum drm_plane_type type = DRM_PLANE_TYPE_OVERLAY;
->  	u32 supported_encodings, supported_ranges;
->  	unsigned int plane_cnt, format_count;
->  	struct sun8i_vi_layer *layer;
-> @@ -560,12 +591,15 @@ struct sun8i_vi_layer *sun8i_vi_layer_init_one(struct 
-drm_device *drm,
->  		format_count = ARRAY_SIZE(sun8i_vi_layer_formats);
->  	}
+> ---
+> 
+>  drivers/gpu/drm/sun4i/sun8i_mixer.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/
+sun8i_mixer.c
+> index f5e8aeaa3cdf..49c0d17c6f0a 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> @@ -585,6 +585,24 @@ static const struct sun8i_mixer_cfg sun8i_v3s_mixer_cfg 
+= {
+>  	.mod_rate = 150000000,
+>  };
 >  
-> +	if (!mixer->cfg->ui_num && index == 0)
-> +		type = DRM_PLANE_TYPE_PRIMARY;
+> +static const struct sun8i_mixer_cfg sun20i_d1_mixer0_cfg = {
+> +	.ccsc		= 2,
+> +	.mod_rate	= 297000000,
+> +	.scaler_mask	= 0x3,
+> +	.scanline_yuv	= 2048,
+> +	.ui_num		= 1,
+> +	.vi_num		= 1,
+> +};
 > +
->  	/* possible crtcs are set later */
->  	ret = drm_universal_plane_init(drm, &layer->plane, 0,
->  				       &sun8i_vi_layer_funcs,
->  				       formats, format_count,
->  				       sun8i_layer_modifiers,
-> -				       DRM_PLANE_TYPE_OVERLAY, 
-NULL);
-> +				       type, NULL);
->  	if (ret) {
->  		dev_err(drm->dev, "Couldn't initialize layer\n");
->  		return ERR_PTR(ret);
+> +static const struct sun8i_mixer_cfg sun20i_d1_mixer1_cfg = {
+> +	.ccsc		= 1,
+> +	.mod_rate	= 297000000,
+> +	.scaler_mask	= 0x1,
+> +	.scanline_yuv	= 1024,
+> +	.ui_num		= 0,
+> +	.vi_num		= 1,
+> +};
+> +
+>  static const struct sun8i_mixer_cfg sun50i_a64_mixer0_cfg = {
+>  	.ccsc		= 0,
+>  	.mod_rate	= 297000000,
+> @@ -638,6 +656,14 @@ static const struct of_device_id sun8i_mixer_of_table[] 
+= {
+>  		.compatible = "allwinner,sun8i-v3s-de2-mixer",
+>  		.data = &sun8i_v3s_mixer_cfg,
+>  	},
+> +	{
+> +		.compatible = "allwinner,sun20i-d1-de2-mixer-0",
+> +		.data = &sun20i_d1_mixer0_cfg,
+> +	},
+> +	{
+> +		.compatible = "allwinner,sun20i-d1-de2-mixer-1",
+> +		.data = &sun20i_d1_mixer1_cfg,
+> +	},
+>  	{
+>  		.compatible = "allwinner,sun50i-a64-de2-mixer-0",
+>  		.data = &sun50i_a64_mixer0_cfg,
 > -- 
 > 2.35.1
 > 
