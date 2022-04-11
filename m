@@ -2,150 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0754A4FB5D4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:20:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C39F4FB5E2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343710AbiDKIWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:22:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57300 "EHLO
+        id S243824AbiDKIYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:24:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343706AbiDKIWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:22:37 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2059.outbound.protection.outlook.com [40.107.22.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67593DDD5;
-        Mon, 11 Apr 2022 01:20:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BoN65JpiP2FgjojkoMVxT6Olna4JxjDmDpPsdXR92kL4d8wZ5/nhXhVlo8EacDJVNNjcNe4SItoFr1D/MSHXGMLOziEDfHgr5pY86v4gnnqZXo9LUpme0e1H8U8o2FYK4yZByd1RxHn58XDFUO3nBCLOW6edZX5hXGh7OvLg+3neIdQ+oJvBHptc3UZvcUsJP/HDoMXFYYMJlwKMp+7cEHkLo8F4ZYSkaxjgF+RaPSlj3rIRr4P8MXyQPlwDlcnVzrvRedo+uZFSCqKVXz+yR/4GOn6J/kPmqjxk4h14S0Xd7N+3dzHaUpAoSQNKoDcXRrqUNezy16YSjR8lDAmMIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W13edjOYsUWO4npRw3m0INekIfhcfO+9ruYVSYh+ob0=;
- b=h46Ay899VB7jL/iaKaxKnchmSJw2Ie7vlCIJelGZrv10koBnc15gyvp84K0/P/7QLtUbvoemhHiXD6ZpCxaORMq/9K9KY5kqcY4GX9JL5/PJk1Usak/RtdxUMA9nsFdX49EnSPDmPZJDWWrHzJjwVWSlDRnu07RnYugxhXIG1tww64SavNt4AE5HRf1y33vypWsjY6ee9n3x9UXmjDWF2XXTNyqWrmJCm0bF3Bq1mL3lBdBqyFFR65BCalkzw7Bzh35ad82nEjJ4u+7Csir45kvgsfZKTOwqr4V6Bk30hNxkgtQ1/+71THtxbSJDRK7EQOgP1x2kdxG7s01OiZlqbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W13edjOYsUWO4npRw3m0INekIfhcfO+9ruYVSYh+ob0=;
- b=EQ1TOq5MBUoOt/OXfX2a3gYosZqZDIKd1IdUJzWqqXkdjOVxtP9dLRXCf1ieY7ncXfzcG5bNgHvpoD2Jtz9Hu27g9UdIXKtFf0Qc2/qUda0I3mlzLe1lGgh7hUlhBGz1AhQF373ymI406adoizD5hImSTZQqh16E9OapNHT0SkE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by DB7PR04MB4585.eurprd04.prod.outlook.com (2603:10a6:5:36::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
- 2022 08:20:17 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::d8b5:5914:5189:ffa5]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::d8b5:5914:5189:ffa5%6]) with mapi id 15.20.5144.029; Mon, 11 Apr 2022
- 08:20:17 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        mirela.rabulea@oss.nxp.com
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] media: imx-jpeg: don't change byteused of queued buffer
-Date:   Mon, 11 Apr 2022 16:19:53 +0800
-Message-Id: <20220411081953.9021-1-ming.qian@nxp.com>
-X-Mailer: git-send-email 2.35.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2P153CA0029.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::16)
- To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+        with ESMTP id S243837AbiDKIYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:24:10 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D9793E5CE;
+        Mon, 11 Apr 2022 01:21:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649665317; x=1681201317;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=scsOcqJzNI6mZ2YEH5vHXnC/k0h5kNwTVDSSNWSTjAA=;
+  b=ll/JbAKfULVpsfSXyYAdw+csSpJhOdNX/aNcrMMNB8hfTDbk5kgD04z1
+   qTAC7+2G+miThrHPEp9vPCCxiql1bq/v5Ydsc5qBUfc+I+/16m1p1DIxt
+   ahGsbLlmKOxMeNPyc3g3ntbvhr0lOQK32lbHipJzMhlvFHJ7K93Tlp7lo
+   ewwNewfJmRZ6pzUwBz++eZ+gik6XSMXFn9OEkC0V35cHB1KJD0fnPS39m
+   5/ZSE0pJy3MC2fAKcZEOewoA3hSDT41VeC8eDnRqha6BJLIxzc70f1hZa
+   jdgkyBsOl2wrv/RUle8g7O/qggJ94zYqRss9kjv6Nf04JfqBndYe56dCS
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="348503221"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; 
+   d="scan'208";a="348503221"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 01:21:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; 
+   d="scan'208";a="622754005"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 11 Apr 2022 01:21:53 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1ndpJ3-0001gN-6G;
+        Mon, 11 Apr 2022 08:21:53 +0000
+Date:   Mon, 11 Apr 2022 16:20:58 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Samuel Holland <samuel@sholland.org>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 2/4] dmaengine: sun6i: Do not use virt_to_phys
+Message-ID: <202204111641.yuvoMU5q-lkp@intel.com>
+References: <20220411044633.39014-3-samuel@sholland.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 783ca054-3fe5-4a41-a2f2-08da1b941c77
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4585:EE_
-X-Microsoft-Antispam-PRVS: <DB7PR04MB458546EA8749583E28DE85CCE7EA9@DB7PR04MB4585.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 57pWprcP+LUZVddHqLBs30QA0ZhyU92mCVkgn/mQtGmxmd3GsnhpenXxA+oiBezX4/3pzoyDNUSekhMMgub5Zs9RED7vBA0TxoNmwfqdI47CElnR+pUD1dMV0neaOBIU55IZDRTYtbepLqzKhwUX1bKDelkFkBtAwYIIY1Gaoeo+JpzOxspAYJnlWA/LFwh25Y4/Qr9kvB5bsPITjLVg99xJgpliKAJJSm5XU2nLPsuUc1I9gHYGuhR6vWNFF5GN86dUVuVYnceIsfZsq/FZz/zrFvx0x3xj56J3zaJ0QgqT4uUibpW7H8X1Em1PLaqz5ztFZeghODbDnvjsayUXipy1HYx4chtUFbdXlTNFeC8pIBDDl5yEior61JDlHS9nAcXxsoujzIziKWZ/IpmRe3/3cvcWIvq2UFmr4sN7UGhuOces4tpXGEDkWyZozK3K87pj8RMbBurg6J3gQCp/Y+R9oxolqRSgSOcwh8smws+wXZVPpyNp8Ro4WgHrnijVgO6goSn9tEV7Ws5HTFXL8BAPNqco6tk8XWcXaF+Y1MUXzAyTz9523R9kZHK07AGH73dsqfAfprzh5+s+hPOGqFTynRipcTBQfzKz+LZ8a3E20BLgzQwwpz0E8xH1zfwAT+PQrQa2Td9+VqcBzutTqivn1c+FkWDYxrpv/3JkNdgU+3D9jo1mEQ6fh5WTq7/r8jlv3TGyNrluedpZ2gbiiA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(186003)(6512007)(26005)(5660300002)(7416002)(36756003)(8676002)(52116002)(38350700002)(38100700002)(1076003)(2616005)(66946007)(6486002)(66476007)(6666004)(8936002)(66556008)(508600001)(83380400001)(86362001)(44832011)(316002)(6506007)(4326008)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9JetpnWxfp63ZWfLCdm4sy4PTxD/+MA/FX9dIQGWeHPL6NmqznT7biGPScUk?=
- =?us-ascii?Q?+4sxN6OV9H/1wAzL/DYnh6G6CcJo4XPTIKavbEISuITnuq9oDYWvxmU12dxW?=
- =?us-ascii?Q?QwTZxqLlsAF5YQhIJBhzapfvHP3+XoYjnHaySUFOz0J79lBAhhLMNdKFhGqn?=
- =?us-ascii?Q?isJL21PNCQTBm8zs95LVN0oaxBiScy8XTw7kjBbcjeJoTxo6QcuOwUseZUOP?=
- =?us-ascii?Q?+ygAbaGtSANnyA0H8JF9o4NDN04C9vdhyGmeWVF4V1iJxS32CStn7/0tM82C?=
- =?us-ascii?Q?KkNgMBqicUNf55m6OffgrXJwO7O3z+ysDwAnmAForN4q8Bjey2Oe+UEQKeLd?=
- =?us-ascii?Q?eaAJCN8i3Wt9s/ylBmHohaBJcRMBrw95FmQoDicS2TFTa17sxup/8E0Ikbd3?=
- =?us-ascii?Q?Cq5E1pbD/tNu1ea4ymWLXS3zwjtdGEfrJQCFutbRIAyg+ErrwHkxbN/rUK5k?=
- =?us-ascii?Q?pwjxD+bz8rEcjVw4/IA3WHS+ls0wr4lmfMjh73VV8IJlGFEbUyzMLmyOZWrx?=
- =?us-ascii?Q?/tBZWnUUyidu0fqaTslepR2Hzzv2rzs5TBmeYW6q9XdffzG91nAXMwcX3IH6?=
- =?us-ascii?Q?a2Gyl9/Jvg2XqvrPQQEPYWecQWdaM+ZfnYfHuLhOcQ5gj/doQ3s8UXnI1O3n?=
- =?us-ascii?Q?u6Fzxnq1WrwrMuZG4q8yNIM/BEGrvtTIywv7B3Lmec2tI92T5NalEWNjejDf?=
- =?us-ascii?Q?KZPyIriyxTwjfs2XgBRGZvIha18XXJWp6YTuJo39Ix8H2e3xB8HOJB5gtgg1?=
- =?us-ascii?Q?5EBszRkJg5JDuMeBIdaPR0CJPcf6AhG8O8lDEKkFpdzQq6u3Me/bPPfpp6m3?=
- =?us-ascii?Q?b56pPAagc1aznWU5wQvV9zXsFKU9JJjfcrHSsK3mDr9s85OBeTS+Ee1Frjls?=
- =?us-ascii?Q?IFVS1wPK4aSEM6Y4NEvcH8ZPbJy1dW8H52OgQBdpxgwhNXZIdk7JDO47VF9b?=
- =?us-ascii?Q?+J3Efe9mjsRMEj8aA71sDSj0zbeaPFmW1cxgoFLvRKRgy7q6oteqqAodppep?=
- =?us-ascii?Q?eA5qmrDj17i6q1ukP9ydmMqv/oBZUGuSq/fru1MHj40UaQXwop8UoUkGNAFD?=
- =?us-ascii?Q?HL4XmcY4H4q5RYQGZizpB0/970aAzTwx/YDLCBQi26Y9eVluXlGlsrgBH4oA?=
- =?us-ascii?Q?r+waVdfoW/OPE6UL2sGPB13vRKa+4UPDPBpdAjfxhYyNfYBmDUBYF+ukogVx?=
- =?us-ascii?Q?ncjKR2W3MbH36XZqf7/ZzyKiqCCk7AmbiSYyOvlDFpNH/3Fuwx/p+KxwOcr2?=
- =?us-ascii?Q?rubeCmD7UfCj/Tu5N8etY9Ov6Y2G8XFjo+SNW9Z1CM2YrXismDTP+yP6UIfh?=
- =?us-ascii?Q?J7PmZIxDkhsFpArpxkpmzz8XrlQl/rIhnhiMHJ0b89HebE/JK/jelg+lEXe9?=
- =?us-ascii?Q?B/QiSE8h9AUJ5DvGwmevPCOQ5rKY/5ROdSY07zvLHDorwJyDy7sOhmZhbLfQ?=
- =?us-ascii?Q?SUUQ8fxUIgxikqwY+Qttb5mEiyq8TWV2xYYvKrGGB8BUSPRI75KJYkX9awLN?=
- =?us-ascii?Q?CeSQgqBIjZzwOT8x2a1eIWJUbrnR2tMzk+OoFiu/etGGQXRZc/B0wtKEZmim?=
- =?us-ascii?Q?WCxNQOQ8IEqvFX1kK6qdcYgL0YCnrEQW2URwtQtE3eihA/71IDX/IFF9LsAG?=
- =?us-ascii?Q?ZjiTRG+2VYeDIUGPpDGbwHUOM8EJujXgXPwRNsKAh+3y/xRmcuhxIbbwxn9A?=
- =?us-ascii?Q?jzt9DPuoxSIpYymPavtSd7S/AcFMEm8OptmWzfOEHoS7sBQGfi7ZMEjfgQux?=
- =?us-ascii?Q?4nVURq9vgQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 783ca054-3fe5-4a41-a2f2-08da1b941c77
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 08:20:17.6027
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EZ88Cab7kd0zthMBeX9Wm2nwIYz6azEKNng1amGg9/6kSupE7H3aMquX9eaA9ebBrmetmCFa2UTMOEzTJJk1vA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4585
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411044633.39014-3-samuel@sholland.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Don't change the output buffer's bytesused set by user.
-Drop allow_zero_bytesused, since it's deprecated.
-This should also guarantee it's the application's responsibility
-to set bytesused for the output buffer.
+Hi Samuel,
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
----
- drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c | 2 --
- 1 file changed, 2 deletions(-)
+I love your patch! Perhaps something to improve:
 
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-index 8bee179c5cec..930cea05c40a 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-@@ -1470,7 +1470,6 @@ static int mxc_jpeg_buf_prepare(struct vb2_buffer *vb)
- 				i, vb2_plane_size(vb, i), sizeimage);
- 			return -EINVAL;
- 		}
--		vb2_set_plane_payload(vb, i, sizeimage);
- 	}
- 	return 0;
- }
-@@ -1519,7 +1518,6 @@ static int mxc_jpeg_queue_init(void *priv, struct vb2_queue *src_vq,
- 	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
- 	src_vq->lock = &ctx->mxc_jpeg->lock;
- 	src_vq->dev = ctx->mxc_jpeg->dev;
--	src_vq->allow_zero_bytesused = 1; /* keep old userspace apps working */
- 
- 	ret = vb2_queue_init(src_vq);
- 	if (ret)
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on sunxi/sunxi/for-next v5.18-rc2 next-20220411]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Samuel-Holland/dmaengine-sun6i-Allwinner-D1-support/20220411-124826
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+config: hexagon-randconfig-r041-20220410 (https://download.01.org/0day-ci/archive/20220411/202204111641.yuvoMU5q-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c6e83f560f06cdfe8aa47b248d8bdc58f947274b)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/280420721fd264a03a3d3f9fbe2b4e6bfddd0f79
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Samuel-Holland/dmaengine-sun6i-Allwinner-D1-support/20220411-124826
+        git checkout 280420721fd264a03a3d3f9fbe2b4e6bfddd0f79
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/dma/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/dma/sun6i-dma.c:253:15: warning: format specifies type 'unsigned long' but the argument has type 'int' [-Wformat]
+                   pchan->idx, pchan->base - sdev->base,
+                               ^~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:155:39: note: expanded from macro 'dev_dbg'
+           dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+                                        ~~~     ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:167:19: note: expanded from macro 'dynamic_dev_dbg'
+                              dev, fmt, ##__VA_ARGS__)
+                                   ~~~    ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:152:56: note: expanded from macro '_dynamic_func_call'
+           __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
+                                                                 ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:134:15: note: expanded from macro '__dynamic_func_call'
+                   func(&id, ##__VA_ARGS__);               \
+                               ^~~~~~~~~~~
+   1 warning generated.
+
+
+vim +253 drivers/dma/sun6i-dma.c
+
+   240	
+   241	static inline void sun6i_dma_dump_chan_regs(struct sun6i_dma_dev *sdev,
+   242						    struct sun6i_pchan *pchan)
+   243	{
+   244		dev_dbg(sdev->slave.dev, "Chan %d reg: 0x%lx\n"
+   245			"\t___en(%04x): \t0x%08x\n"
+   246			"\tpause(%04x): \t0x%08x\n"
+   247			"\tstart(%04x): \t0x%08x\n"
+   248			"\t__cfg(%04x): \t0x%08x\n"
+   249			"\t__src(%04x): \t0x%08x\n"
+   250			"\t__dst(%04x): \t0x%08x\n"
+   251			"\tcount(%04x): \t0x%08x\n"
+   252			"\t_para(%04x): \t0x%08x\n\n",
+ > 253			pchan->idx, pchan->base - sdev->base,
+   254			DMA_CHAN_ENABLE,
+   255			readl(pchan->base + DMA_CHAN_ENABLE),
+   256			DMA_CHAN_PAUSE,
+   257			readl(pchan->base + DMA_CHAN_PAUSE),
+   258			DMA_CHAN_LLI_ADDR,
+   259			readl(pchan->base + DMA_CHAN_LLI_ADDR),
+   260			DMA_CHAN_CUR_CFG,
+   261			readl(pchan->base + DMA_CHAN_CUR_CFG),
+   262			DMA_CHAN_CUR_SRC,
+   263			readl(pchan->base + DMA_CHAN_CUR_SRC),
+   264			DMA_CHAN_CUR_DST,
+   265			readl(pchan->base + DMA_CHAN_CUR_DST),
+   266			DMA_CHAN_CUR_CNT,
+   267			readl(pchan->base + DMA_CHAN_CUR_CNT),
+   268			DMA_CHAN_CUR_PARA,
+   269			readl(pchan->base + DMA_CHAN_CUR_PARA));
+   270	}
+   271	
+
 -- 
-2.35.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
