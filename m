@@ -2,180 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F03814FC0B5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C90C94FC0D6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:33:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231477AbiDKPbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36246 "EHLO
+        id S1347079AbiDKPfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:35:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346656AbiDKPbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:31:43 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559141FCF8;
-        Mon, 11 Apr 2022 08:29:28 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id c6so3764650edn.8;
-        Mon, 11 Apr 2022 08:29:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mzIfVfFUOODRjLdS14PpvkG0S0GbVnViYVnZ49D8qA0=;
-        b=GBafK7+JAVNForJ4ptnul61FCr66yI4Smn4eNC0ynAHf6wqxrTNyFdD/pcZuGIFtCG
-         5vYfE7Fk938DLVBUmlcX/xX/3nF7hg1ay4kScO80jH2V0g1R/F1U0w2R0O/1UHRImTbY
-         ge1vwLQwIZ5lwQRAasDWsQvA9p9r5PmsjAXIrFZml++liIvTGlsdHaXEbEALMCAQvn9w
-         zAlSfpYreWr3yzlyPr7zsfEOXWwD9StL10JoG+bNp3YGxmhAYgBBmis6/ReM4FuYiuEj
-         dWNbA3nia+6dWpBk9k3lP0z44CmYmaXKieBeg29ydMpuKEk2y4uF7P7RI4bPEnon5dlA
-         1rLQ==
+        with ESMTP id S242045AbiDKPfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:35:05 -0400
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2635236B4C;
+        Mon, 11 Apr 2022 08:32:51 -0700 (PDT)
+Received: by mail-qv1-f49.google.com with SMTP id b17so13489074qvf.12;
+        Mon, 11 Apr 2022 08:32:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mzIfVfFUOODRjLdS14PpvkG0S0GbVnViYVnZ49D8qA0=;
-        b=G5yD+dPIB5oj5YDkwc7QIZfGTF47fGmjMPVad6p2TBovekKJ951nUj7WdPUidxVuf5
-         9jOR3Iq6R9hcYvSr/2q6C5+qBG9r7rXjPSOQfTgQRaBSMKVP05bWUEUmHArNB2ZT+gt3
-         ayWMmqlCv3G1j+DiIOhlW8KOM3ydaKuvZBn7uXMAY9OCUNGSCNSojUiKqks+Wdv5KTNR
-         8X6yCUiDApsNISWW+xGQOEHQ+EBJHCiRXUn/WqlacqcQa/CAAFyf6mK+VAh6SexTDsR+
-         H+ug9Ya2aFrTRF85JVkzI2nn2izIcv9+EfSCd7vI4YPibJZTIXIbUjKdKAuNVg+oMzUC
-         KLOQ==
-X-Gm-Message-State: AOAM533XNeK3C0MLyLT6RIsItAKGvv+rTB296ZhJwh889B+SBC5Tpzs3
-        0C/dW52x1SwL9VFM1u6Sl7Uqq3a149SD5Eo5Rak=
-X-Google-Smtp-Source: ABdhPJzgVW17R1KDDFRpyF9QFb1z4pjCDGITJBWmNH4/PLP2cVb+cM1aoNqDBlE3e8twNNi8WizL8HsXgo9p4y02T1s=
-X-Received: by 2002:a50:d4d9:0:b0:41d:6ee0:80d with SMTP id
- e25-20020a50d4d9000000b0041d6ee0080dmr11392500edj.254.1649690966382; Mon, 11
- Apr 2022 08:29:26 -0700 (PDT)
+        bh=vI8B2NQEJsy0Y3l6kvTznv2x70M0aqJTxZmt3sM3f5I=;
+        b=EudAcLX2aCf0voLJOxaYHF0PRCT1f17umbLtKsX6Xu+j9MeBMtE28Ury+0R3c0etCK
+         hunXKkc6Jjuc18GZME2tCmFC8ODNhdrUrgkpTif9OlTY07zPJVkxT5ff4h7UWjHt/x1v
+         7qqcaFzKA3dmtrOFXCOmziXS6rv5v4RkslEDhA9FH9nv35sNvttxETHMTVYxgmJct1aI
+         8i+6kY7Zpv6aQ4fPyZEe+3k4wepONCy+75ECdSAOeqUBRocUX1q4nT+l8Z448WQl9zyC
+         D7lyzIP1nzGk6Vk1PX35By7l1Jp65+4P291mpzYQbzAAuxYD0z4EeeIUiLCs7FH0l/Ou
+         O7jQ==
+X-Gm-Message-State: AOAM533PZhndpNljlJR2k983/3gP3JWg74s+7Jn4RNEoo5FTgMupXQEP
+        403/9FxLHWW9JeeLVbK2iF5tDnU0xpEc1A==
+X-Google-Smtp-Source: ABdhPJyb2niBOFbIx4F/ieGrq3lg4ZiA/33Fxfb0FVMVRXG5+qkTWdg8r2+2sPa2nmea+0APewdHBg==
+X-Received: by 2002:a05:6214:3001:b0:443:bb87:7f9a with SMTP id ke1-20020a056214300100b00443bb877f9amr26873059qvb.13.1649691169690;
+        Mon, 11 Apr 2022 08:32:49 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id f3-20020ac87f03000000b002ed137e0510sm5239725qtk.77.2022.04.11.08.32.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 08:32:49 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id t12so7644584ybt.10;
+        Mon, 11 Apr 2022 08:32:49 -0700 (PDT)
+X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
+ p9-20020a259e89000000b0063cad37a5demr22542847ybq.342.1649691169145; Mon, 11
+ Apr 2022 08:32:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <CGME20220408162213eucas1p158d7c7ee27006a61d4af95d3c72c58e3@eucas1p1.samsung.com>
- <20220408162108.184583-1-jagan@amarulasolutions.com> <4c693c6e-512b-a568-948a-4a1af6a1313a@samsung.com>
- <CAHCN7xK_H-nLA5Z6hJW5V0Bpo8bDKPU6UpN05kMBkG+PXmwBBw@mail.gmail.com>
-In-Reply-To: <CAHCN7xK_H-nLA5Z6hJW5V0Bpo8bDKPU6UpN05kMBkG+PXmwBBw@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 11 Apr 2022 10:29:15 -0500
-Message-ID: <CAHCN7xKFr3cjLRPMFMzOyeTe5CG2vzK_ewUg73zsexKVCLW0tw@mail.gmail.com>
-Subject: Re: [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+References: <20220405184716.1578385-1-miquel.raynal@bootlin.com> <20220405184716.1578385-8-miquel.raynal@bootlin.com>
+In-Reply-To: <20220405184716.1578385-8-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 11 Apr 2022 17:32:38 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXHUQg3FZ29rxka1WS=0mGfNPQSuC0xr75WQ7XAxeV3CA@mail.gmail.com>
+Message-ID: <CAMuHMdXHUQg3FZ29rxka1WS=0mGfNPQSuC0xr75WQ7XAxeV3CA@mail.gmail.com>
+Subject: Re: [PATCH 7/7] ARM: dts: r9a06g032: Describe the RTC
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        linux-rtc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 9:39 AM Adam Ford <aford173@gmail.com> wrote:
+Hi Miquel,
+
+On Tue, Apr 5, 2022 at 8:47 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> Describe the SoC RTC which counts time and provides alarm support.
 >
-> On Mon, Apr 11, 2022 at 8:56 AM Marek Szyprowski
-> <m.szyprowski@samsung.com> wrote:
-> >
-> > On 08.04.2022 18:20, Jagan Teki wrote:
-> > > This series supports common bridge support for Samsung MIPI DSIM
-> > > which is used in Exynos and i.MX8MM SoC's.
-> > >
-> > > Previous RFC can be available here [1].
-> > >
-> > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
-> > >
-> > > On, summary this patch-set break the entire DSIM driver into
-> > > - platform specific glue code for platform ops, component_ops.
-> > > - common bridge driver which handle platform glue init and invoke.
-> > >
-> > > Patch 0000:   Samsung DSIM bridge
-> > >
-> > > Patch 0001:   platform init flag via driver_data
-> > >
-> > > Patch 0002/9:   bridge fixes, atomic API's
-> > >
-> > > Patch 0010:   document fsl,imx8mm-mipi-dsim
-> > >
-> > > Patch 0011:   add i.MX8MM DSIM support
-> > >
-> > > Tested in Engicam i.Core MX8M Mini SoM.
-> > >
-> > > Anyone interested, please have a look on this repo [2]
-> > >
-> > > [2] https://protect2.fireeye.com/v1/url?k=930e329a-f28527b5-930fb9d5-74fe485cbfe7-b0c53e2d688ddbc5&q=1&e=e6aa727d-5ae2-4ca5-bff3-7f62d8fae87e&u=https%3A%2F%2Fgithub.com%2Fopenedev%2Fkernel%2Ftree%2Fimx8mm-dsi-v1
-> > > [1] https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/T/
-> > >
-> > > Any inputs?
-> >
-> > I wanted to test this on the Exynos, but I wasn't able to find what base
-> > should I apply this patchset. I've tried linux-next as well as
-> > 95a2441e4347 ("drm: exynos: dsi: Switch to atomic funcs").
-> >
-> > Please note that pointing a proper base for the patchset is really
-> > essential if you really want others to test it.
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> @@ -103,6 +103,18 @@ dmamux: dma-router@a0 {
+>                         };
+>                 };
 >
-> Can you clone his repo and test that?  He posted it above.  I was
-> going to clone it at some point this week to give it a try.
+> +               rtc0: rtc@40006000 {
 
-Jagan,
+Please insert this before watchdog@40008000, to preserve sort
+order (by unit address).
 
-Is there anyway you could rebase this onto 5.18-rc1? Marek was having
-issues applying patches to a known branch, and it looks like I cannot
-enable stuff on Nano without applying a bunch of patches, because this
-base lacks the power-domain features on Nano that are present in the
-5.18-rc1.
+> +                       compatible = "renesas,r9a06g032-rtc", "renesas,rzn1-rtc";
+> +                       reg = <0x40006000 0x1000>;
+> +                       interrupts = <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
+> +                       interrupt-names = "alarm", "timer", "pps";
+> +                       clocks = <&sysctrl R9A06G032_HCLK_RTC>;
+> +                       clock-names = "hclk";
+> +                       status = "disabled";
+> +               };
+> +
+>                 uart0: serial@40060000 {
+>                         compatible = "renesas,r9a06g032-uart", "renesas,rzn1-uart", "snps,dw-apb-uart";
+>                         reg = <0x40060000 0x400>;
 
-thanks,
+Gr{oetje,eeting}s,
 
-adam
+                        Geert
 
->
-> adam
-> >
-> >
-> > > Jagan.
-> > >
-> > > Jagan Teki (11):
-> > >    drm: bridge: Add Samsung DSIM bridge driver
-> > >    drm: bridge: samsung-dsim: Handle platform init via driver_data
-> > >    drm: bridge: samsung-dsim: Mark PHY as optional
-> > >    drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
-> > >    drm: bridge: samsung-dsim: Fix PLL_P (PMS_P) offset
-> > >    drm: bridge: samsung-dsim: Add module init, exit
-> > >    drm: bridge: samsung-dsim: Add atomic_check
-> > >    drm: bridge: samsung-dsim: Add atomic_get_input_bus_fmts
-> > >    drm: bridge: samsung-dsim: Add input_bus_flags
-> > >    dt-bindings: display: exynos: dsim: Add NXP i.MX8MM support
-> > >    drm: bridge: samsung-dsim: Add i.MX8MM support
-> > >
-> > >   .../bindings/display/exynos/exynos_dsim.txt   |    1 +
-> > >   MAINTAINERS                                   |   12 +
-> > >   drivers/gpu/drm/bridge/Kconfig                |   12 +
-> > >   drivers/gpu/drm/bridge/Makefile               |    1 +
-> > >   drivers/gpu/drm/bridge/samsung-dsim.c         | 1803 +++++++++++++++++
-> > >   drivers/gpu/drm/exynos/Kconfig                |    1 +
-> > >   drivers/gpu/drm/exynos/exynos_drm_dsi.c       | 1704 +---------------
-> > >   include/drm/bridge/samsung-dsim.h             |   97 +
-> > >   8 files changed, 1982 insertions(+), 1649 deletions(-)
-> > >   create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.c
-> > >   create mode 100644 include/drm/bridge/samsung-dsim.h
-> > >
-> > Best regards
-> > --
-> > Marek Szyprowski, PhD
-> > Samsung R&D Institute Poland
-> >
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
