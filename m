@@ -2,134 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62FA94FC560
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 22:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0574FC568
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 22:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233371AbiDKUEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 16:04:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59844 "EHLO
+        id S241120AbiDKUHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 16:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240425AbiDKUEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 16:04:44 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB951EAC0
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 13:02:28 -0700 (PDT)
-Received: from localhost.localdomain ([37.4.249.94]) by
- mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MA7Om-1npa0i09Kk-00BaR6; Mon, 11 Apr 2022 22:02:06 +0200
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 6/6] ARM: dts: bcm283x: Align ETH_CLK GPIO line name
-Date:   Mon, 11 Apr 2022 22:01:43 +0200
-Message-Id: <20220411200143.4876-7-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220411200143.4876-1-stefan.wahren@i2se.com>
-References: <20220411200143.4876-1-stefan.wahren@i2se.com>
+        with ESMTP id S230306AbiDKUHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 16:07:50 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D171CB32;
+        Mon, 11 Apr 2022 13:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649707536; x=1681243536;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=jhv6EkHDtQ4ltXXOFpDhNcSEV9W9C2fd4dh3zQjQ+Ew=;
+  b=ATLnV1hHO3j2PkiXGH3TrFOUZE4+l4oyTd4LO+nPN8s7D/P4xK0g01rp
+   fB/mOE1ufMo5ZzG/eW0qnaYR16wPIHmHHmaVZxvVQvXT4appyZ4rIMPOP
+   4NpRERJRK18Ek30Ye6/cdSrEJXrcvEVa/YuB/L/CD+cGumu09JE4irjZh
+   M=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 11 Apr 2022 13:05:35 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 13:05:35 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 11 Apr 2022 13:05:34 -0700
+Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 11 Apr 2022 13:05:33 -0700
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+To:     <dmitry.torokhov@gmail.com>, <corbet@lwn.net>, <sre@kernel.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <collinsd@codeaurora.org>,
+        <bjorn.andersson@linaro.org>, <swboyd@chromium.org>,
+        <skakit@codeaurora.org>, <linux-doc@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Anjelique Melendez <quic_amelende@quicinc.com>
+Subject: [PATCH v5 0/5] Extend pm8941-pwrkey driver
+Date:   Mon, 11 Apr 2022 13:05:01 -0700
+Message-ID: <20220411200506.22891-1-quic_amelende@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:KrFedrT8IfT+32vpSLgHtasxeDaJm/Jl+XoqHPoIBafnGkj/liU
- M3MX777w2SWykRFgOkpLhN7dY2GIBPIyR0w19R03Zb1vlo6rVmMO+/ChQW21ABFJFDcNLas
- l1dgkaiYZD3sZdei3ZdsWEqXVR3NbeEXnEijg8VpfC9lA3aQmQ6n0uU98rflYTzhcev9P8K
- vs7QobOAVFjoSbxLsCWag==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fsKYnIkBpeA=:eN9imY8hgdrnhDvpsI0Nft
- C69IfOWbZCh/i7cUIzKrZXMdx8AJMxkJsSlBbQwyl/SHKNWBPb9ZwpaJagSLT3zeWgg0+wUj6
- GBfNNppal1oidvrauHRm+varpUno4TngzlSOYKpBviNBXz8seH1O6TPMCS08JUgp2TGF5aldV
- FWqzcJOJ/SIU6ZdBn69Z+hE1Hf7sZeT/Lz/L1STujeCmZyHVc8spo6OSl2xXl/tqTLn7xWQpq
- 5/RFVRoJoig6JXJMlCpGVJZZNxvv9h0ZtX2F57hIdQzKXp/KoFFNuh7cjAHWZ88Cc2mNUTQgH
- 5VMlni0COmls5d5XL3IBz81yi/35ZbVFYks+RdyZ1vYAwdRqXBuRB+6wplc10AQ3UEX1EnYBn
- s+NFbdoekb+uFksL/KHOIxRjtmQ6q8Q3TBLtJJPm7CE35qIoiu5DBsfTHiQeywkFuy/qDoHPK
- GKGh2UE+oN5jTlrJLu5RsJIYovV0NAAi+w5AjM2NxR3fNA9Ki9fuiCzIcf/zxWz4ttj7OeYvC
- gu8uX4FkBaNmIhN5owW68Nw8z+gqUAA5leqPSuYb/ipcXwqj6ZA1PhExHrro7MJ56msoW1gbE
- Agka01p5UXcuY3jkG79RI+dK/HgrtR0V5I2E8DzcPEqdNqcFZC3Zos1iK+M77Tu99vFruXy7g
- chj7qaaoZNvsdbxo6FmKLUbNevexp4F/xYcJpIfvJJ6/bJJaF9VaT9zduBa3ElgxJjfIf9YHl
- rWlCaMxVCtCtJZjx
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Phil Elwell <phil@raspberrypi.com>
+Changes from v4:
+  - Added new dt-binding patch as 1/5
+ 
+Changes from v3:
+  - Fixed dereference issue in 2/4
+  - Added Stephen's reviewed by tag for 2/4
 
-The GPIO line name ETHCLK is not aligned with the other signals like
-WIFI_CLK. Recently this has been fixed in the vendor tree, so upstream
-this change.
+Changes from v2:
+  - Addressed Stephen's comments
+    - Add Stephen's reviewed by tag for 1/4
+    - Fixed style for 2/4
+    - Corrected function call to use correct function for 3/4
 
-Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm/boot/dts/bcm2835-rpi-b-plus.dts   | 2 +-
- arch/arm/boot/dts/bcm2836-rpi-2-b.dts      | 2 +-
- arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts | 2 +-
- arch/arm/boot/dts/bcm2837-rpi-3-b.dts      | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+Changes from v1:
+  - Removed Change-Id from all patches
+  - Updated subject line of cover letter
+  - Addressed Stephen's comments for v1 1/3
+    - Separated error message fix to own patch (v2 1/4)
+    - Separated PON GEN3 base address changes to own patch (v2 2/4)
+    - Added new variables and functions to make code more readable
+  - Removed v1 3/3 as per Bjorn's comments
 
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
-index 7b7c363e5ee8..248feb2ed23d 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
-@@ -82,7 +82,7 @@ &gpio {
- 			  "CAM_GPIO0", /* GPIO41 */
- 			  "", /* GPIO42 */
- 			  "", /* GPIO43 */
--			  "ETHCLK", /* GPIO44 */
-+			  "ETH_CLK", /* GPIO44 */
- 			  "PWM1_OUT", /* GPIO45 */
- 			  "HDMI_HPD_N",
- 			  "STATUS_LED",
-diff --git a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
-index c824a2cea02e..3635502b1e0a 100644
---- a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
-+++ b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
-@@ -82,7 +82,7 @@ &gpio {
- 			  "CAM_GPIO0",
- 			  "SMPS_SCL",
- 			  "SMPS_SDA",
--			  "ETHCLK",
-+			  "ETH_CLK",
- 			  "PWM1_OUT",
- 			  "HDMI_HPD_N",
- 			  "STATUS_LED",
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-index fd4ac6f2d077..ec721d323ac5 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-@@ -109,7 +109,7 @@ &gpio {
- 			  "SD1_DATA3",
- 			  "PWM0_OUT",
- 			  "PWM1_OUT",
--			  "ETHCLK",
-+			  "ETH_CLK",
- 			  "WIFI_CLK",
- 			  "SDA0",
- 			  "SCL0",
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
-index 00ea439d601d..fb6a417d73e7 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
-@@ -102,7 +102,7 @@ &gpio {
- 			  "SD1_DATA3",
- 			  "PWM0_OUT",
- 			  "PWM1_OUT",
--			  "ETHCLK",
-+			  "ETH_CLK",
- 			  "WIFI_CLK",
- 			  "SDA0",
- 			  "SCL0",
+Anjelique Melendez (2):
+  input: misc: pm8941-pwrkey: fix error message
+  input: misc: pm8941-pwrkey: add support for PON GEN3 base addresses
+
+David Collins (3):
+  dt-bindings: power: reset: qcom-pon: update "reg" property details
+  input: misc: pm8941-pwrkey: add software key press debouncing support
+  input: misc: pm8941-pwrkey: simulate missed key press events
+
+ Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 20 +++++++++++++++++++-
+ drivers/input/misc/pm8941-pwrkey.c | 124 +++++++++++++++++++++++++----
+ 2 files changed, 129 insertions(+), 15 deletions(-)
+
 -- 
-2.25.1
+2.35.1
 
