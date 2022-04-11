@@ -2,72 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 682324FB500
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:34:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D624FB507
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 09:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245512AbiDKHgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 03:36:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53770 "EHLO
+        id S245506AbiDKHiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 03:38:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245515AbiDKHgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:36:20 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3484826B
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 00:34:05 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id s14-20020a17090a880e00b001caaf6d3dd1so17569991pjn.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 00:34:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iZkMojDEiOG897WMlFg+Va0QtRJHeg2erchkTICMc24=;
-        b=hRdTZbnlrYWoBM0S8X6kLUXTF8SNJO5PrmDCFE/DJnzjqJS8PZQGxNejp8OMNXx5Ra
-         VB4qMrcyMMDskerI3ElBg/Pfz9IYBoHMSQJCPYscb1SwHNfFoH4xY4I3GQEW5ZPWrChB
-         xuV8kHfY6s5Ut/ApM6lYD93p+BCJCX/Dlgez37VfSwOJhk6cLpU9Lt0gcBNR7hjElywR
-         WRlAW3OewEjN7PS+Wqh2MW9xLOukNDMbcZ7O68ihL7U3j1puvlYv1wYHKuKlIfsvgFnK
-         4xffWmjv/3yXginjUG6tzLvjnvg5Kpx55SmqqMixCVCYYyYg6hu1ZlwQwX9NlunzpMC1
-         375w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iZkMojDEiOG897WMlFg+Va0QtRJHeg2erchkTICMc24=;
-        b=yF6acsZROr+U01W3bnB56K0rC5HJCVua75cNDxd7EAwb0wIvBPr3ZReNCrSJbih6CY
-         o5FxG0kk2AwWfUOxo6PbV5Jqyk7WsQ4vtwVANLoCuEWyK2PCpZI5/62zYN+UbBSrjIU1
-         wotURy7P/Sbf0sYYSQ0Lx0w0d8zmj2l2Kzod5sBIg2BvOZRc3Z/hvx5A4wIVgOKeI1uj
-         XEMGf3hfzS6lzo8NtniH5ApcCfrZ2QqPc+2sjN/lyw4xRl3q6KRR6C7gz8Q7l0R+3qmj
-         VLAtEWUc30VwM1EfAlhbH4q8uuiD0yrbU0D2WwopwsJYKvTkaMIsKjUf3hFnsmRLh9f2
-         KOrQ==
-X-Gm-Message-State: AOAM533cM/V5x9qq1ZEG5DT7DVWgtVZUk4b6RCBG8wD+4GXYaxheQ5AJ
-        h0vaQ55LIIHnPplS09fZvdSsiIKisc5N
-X-Google-Smtp-Source: ABdhPJzAQ1sW5dAp4LbQendoFyZcshYJiDlJIWfSZjsLfFvcCcxYZj5kvAk6DUP9/icLNdM7fDr6bQ==
-X-Received: by 2002:a17:902:ccc4:b0:156:5d37:b42f with SMTP id z4-20020a170902ccc400b001565d37b42fmr30864306ple.157.1649662444701;
-        Mon, 11 Apr 2022 00:34:04 -0700 (PDT)
-Received: from thinkpad ([117.217.182.106])
-        by smtp.gmail.com with ESMTPSA id a21-20020a62bd15000000b00505b8bad895sm3477896pff.106.2022.04.11.00.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 00:34:04 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 13:03:55 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, ulf.hansson@linaro.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 6/7] ARM: dts: qcom: sdx65: Add support for TCSR Mutex
-Message-ID: <20220411073355.GE24975@thinkpad>
-References: <1649660143-22400-1-git-send-email-quic_rohiagar@quicinc.com>
- <1649660143-22400-7-git-send-email-quic_rohiagar@quicinc.com>
+        with ESMTP id S235994AbiDKHiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 03:38:03 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592063D4BF;
+        Mon, 11 Apr 2022 00:35:50 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id D08861F43081
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649662548;
+        bh=U8vg0Q5OeV/cifLCFPNn/Ip6ep2b+r7K2V7Yx7UT+d4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=hGnkuSZcNLkiqBOEU/BhFhrmiDBMpCfCCQhNceN5acMI3eIAYgzXFWiPjdtduBvYL
+         6N3sjAFVVtgGnfRHN8310jYJdSPG8EcOEoqEBV74HLQxuhBxcYmFpPbByHy/s/MGqd
+         Ru/W/EpqRpp9akU3MjDTa46X7yhKdFp+BOPQe/xCjUtzz/NiCAOlv6xqFOsVLSSRZE
+         reQXEZ422BA+u0dRKEleh6+TaUe4shX9ujNTHZnB24KNof/EYvSP7qbdcswnde4NKI
+         Tg6lALWFhZf3xdfD0htoV0ejZaP2En8xxoUBWGFW8pTzOAFwTUiZrypiB9eT70/vxJ
+         jBzVeE1IRQWDQ==
+Message-ID: <185f72b6-e6a1-3062-5f36-864973d12ec5@collabora.com>
+Date:   Mon, 11 Apr 2022 10:35:45 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1649660143-22400-7-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v6 1/4] memory: tegra: Add memory controller channels
+ support
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        krzysztof.kozlowski@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220406052459.10438-1-amhetre@nvidia.com>
+ <20220406052459.10438-2-amhetre@nvidia.com>
+ <3bbbffff-6aa3-7068-6f0c-4372d53daf94@gmail.com>
+ <ba28886f-be5d-9ab2-41d0-942609934263@nvidia.com>
+ <0ce65e42-6567-9fd5-d959-3bc5aa0457eb@collabora.com>
+ <16d5c86b-cb04-5f57-7923-724850ce2633@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <16d5c86b-cb04-5f57-7923-724850ce2633@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,38 +62,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 12:25:42PM +0530, Rohit Agarwal wrote:
-> Add TCSR Mutex node to support Qualcomm Hardware Mutex block
-> on SDX65 platform.
+On 4/11/22 10:28, Ashish Mhetre wrote:
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> ---
->  arch/arm/boot/dts/qcom-sdx65.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> index 2481769..5c28c94 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> @@ -168,6 +168,12 @@
->  			#interrupt-cells = <2>;
->  		};
->  
-> +		tcsr_mutex: hwlock@1f40000 {
-> +			compatible = "qcom,tcsr-mutex";
-> +			reg = <0x01f40000 0x40000>;
-> +			#hwlock-cells = <1>;
-> +		};
-> +
->  		sdhc_1: sdhci@8804000 {
->  			compatible = "qcom,sdx65-sdhci", "qcom,sdhci-msm-v5";
->  			reg = <0x08804000 0x1000>;
-> -- 
-> 2.7.4
+> On 4/11/2022 12:03 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> On 4/11/22 09:05, Ashish Mhetre wrote:
+>>>
+>>>
+>>> On 4/10/2022 7:48 PM, Dmitry Osipenko wrote:
+>>>> External email: Use caution opening links or attachments
+>>>>
+>>>>
+>>>> 06.04.2022 08:24, Ashish Mhetre пишет:
+>>>>> +     num_dt_channels =
+>>>>> of_property_count_elems_of_size(pdev->dev.of_node, "reg",
+>>>>> +                                                       reg_cells *
+>>>>> sizeof(u32));
+>>>>> +     /*
+>>>>> +      * On tegra186 onwards, memory controller support multiple
+>>>>> channels.
+>>>>> +      * Apart from regular memory controller channels, there is one
+>>>>> broadcast
+>>>>> +      * channel and one for stream-id registers.
+>>>>> +      */
+>>>>> +     if (num_dt_channels < mc->soc->num_channels + 2) {
+>>>>> +             dev_warn(&pdev->dev, "MC channels are missing, please
+>>>>> update memory controller DT node with MC channels\n");
+>>>>> +             return 0;
+>>>>> +     }
+>>>>> +
+>>>>> +     mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev,
+>>>>> "mc-broadcast");
+>>>>> +     if (IS_ERR(mc->bcast_ch_regs))
+>>>>> +             return PTR_ERR(mc->bcast_ch_regs);
+>>>>
+>>>> Looks to me that you don't need to use
+>>>> of_property_count_elems_of_size()
+>>>> and could only check the "mc-broadcast" presence to decide whether this
+>>>> is an older DT.
+>>>>
+>>> Now that we are using reg-names in new DT, yes it'd be fine to just
+>>> check mc-broadcast to decide it's a new or old DT.
+>>>
+>>>> mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev,
+>>>> "broadcast");
+>>>> if (IS_ERR(mc->bcast_ch_regs)) {
+>>>>           dev_warn(&pdev->dev, "Broadcast channel is missing, please
+>>>> update your
+>>>> device-tree\n");
+>>>>           return PTR_ERR(mc->bcast_ch_regs);
+>>>> }
+>>>
+>>> return 0;
+>>>
+>>> to avoid DT ABI break, right?
+>>
+>> Yes, it should be "return 0".
 > 
+> But if we "return 0" from here, then what about the case when ioremap()
+> actually fails with new DT i.e. when broadcast reg is present in DT?
+> In that case error should be returned and probe should be failed, right?
+
+You should check for the -ENOENT.
