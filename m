@@ -2,115 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BACEB4FB5AD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7A44FB5B8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245692AbiDKIOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:14:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37446 "EHLO
+        id S1343625AbiDKIRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231967AbiDKIOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:14:48 -0400
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0BB3DDFA;
-        Mon, 11 Apr 2022 01:12:34 -0700 (PDT)
-Received: from [192.168.0.2] (ip5f5ae91f.dynamic.kabel-deutschland.de [95.90.233.31])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 7A71061EA1923;
-        Mon, 11 Apr 2022 10:12:32 +0200 (CEST)
-Message-ID: <ccf4d29e-9efb-23ea-b706-f00cde7ead4b@molgen.mpg.de>
-Date:   Mon, 11 Apr 2022 10:12:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v6 1/3] ARM: dts: nuvoton: Add memory controller node
-Content-Language: en-US
-To:     Medad Young <medadyoung@gmail.com>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        LKML <linux-kernel@vger.kernel.org>, linux-edac@vger.kernel.org
-References: <20220322030152.19018-1-ctcchien@nuvoton.com>
- <20220322030152.19018-2-ctcchien@nuvoton.com>
- <c73bf178-f5bd-01c6-209d-051706112877@molgen.mpg.de>
- <CAHpyw9ckLUNe8biEFSjHBndG_WD-7O-QsHO8Rr0eoXbROH0dUQ@mail.gmail.com>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <CAHpyw9ckLUNe8biEFSjHBndG_WD-7O-QsHO8Rr0eoXbROH0dUQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1343621AbiDKIRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:17:20 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B647C33A05
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:15:06 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id r13so29219876ejd.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:15:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=RIVhF17ZHyHEkRri4xITDP87S8vJ9Qvq5E0aaRqPUqo=;
+        b=HpaD939JeDZag7GNabmmQUbDl6GkCFHqziohJsuZGD+aNbU1ARxNfXa3i2WnDYA538
+         fW9gwz8E+m/NaeSym75ztYGKWgO37LMloV/o3DijSlF0lFfIn9CSK9f8puk6IHC1AoZ6
+         um4jHwLJyvHVr3qBulK72R6/IdOk7gQBN1mmoB+Fw6FHinX1mNOOJ+GRx4Q87yrxXzpe
+         SBFoJYhlOgONfzWDahBatGtSgcpfv7I9amynwL7I1O+Y4Hd3Zldqm+2fZdtslt227Dz+
+         WNKYlVr9HNypLGyRgcqTVJ5R7lB87i0atreNYS0WipI3cJ4Vl8BxRfBeyKzCdACYKpX9
+         nlbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=RIVhF17ZHyHEkRri4xITDP87S8vJ9Qvq5E0aaRqPUqo=;
+        b=SZqjKT1tdCgmnJtuBI7RWJ5HkJk0H/liIEJ+eGDc3c+nUPq4ljPe7u6n1rXaTsc782
+         HtukZCpN6eBTOEAVzBxxpdkKwpoMZM6OMDl7Z417WrDzsttwaqGLKNYn0/yNyPY2DdoC
+         kiT9N5EofHJmFRK91TZXI5dM3VaIw4pNPUTEthdSbNQeZHu1mioRCqV+t14Z8dSUqjL4
+         hsdXh86cXyVqkSYCHGgx+4BYWy84yUsrXM+hIeOCOVOLbWm1t7D4VnWJs5+r4FxwKTRC
+         8itI+OZlnnPC9VY2w+L+CwxB1Vb7reZnkbtimMdLsnh2SXjjcp2gk+dRmxJrKbdSREcq
+         UFoA==
+X-Gm-Message-State: AOAM532OSl+vATCixnZv48+ADoCWYI2zp+b3exZfnzCs+MqruNq74/Cx
+        KU2OJn4IxPESSjoMBp51CzEKlw==
+X-Google-Smtp-Source: ABdhPJzRz84+mPotUb9JXXoXBsuHqdyI4MsyzEKZLWh+RTv0i4v5vUAvX5V9WgyUrO7Z4GDU8ed/3A==
+X-Received: by 2002:a17:907:c0c:b0:6d1:8c46:6415 with SMTP id ga12-20020a1709070c0c00b006d18c466415mr29329284ejc.326.1649664905140;
+        Mon, 11 Apr 2022 01:15:05 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id p3-20020a1709060e8300b006d0e8ada804sm11609969ejf.127.2022.04.11.01.15.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 01:15:04 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 11 Apr 2022 10:15:04 +0200
+Message-Id: <CJ79EIW9Z89J.YZTZ6AU91TGE@otso>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
+ haptics
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-input@vger.kernel.org>
+X-Mailer: aerc 0.9.0
+References: <20220408115311.237039-1-luca.weiss@fairphone.com>
+ <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
+In-Reply-To: <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Medad,
+Hi Krzysztof,
 
+thanks for the review, replies are inline!
 
-Thank you for your reply.
+On Fri Apr 8, 2022 at 5:05 PM CEST, Krzysztof Kozlowski wrote:
+> On 08/04/2022 13:53, Luca Weiss wrote:
+> > Add a document describing the bindings for the AW8695 LRA Haptic Driver=
+.
+>
+> (...)
+>
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: GPIO connected to RSTN pin (active high)
+> > +
+> > +  awinic,f0-preset:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Default value for the f0 of LRA
+> > +
+> > +  awinic,f0-coefficient:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Coefficient between actual f0 and the value in the re=
+gisters
+> > +
+> > +  awinic,f0-calibration-percent:
+> > +    maxItems: 1
+> > +    description: Limit of f0 deviation from awinic,f0-preset
+> > +
+> > +  awinic,drive-level:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Level of drive waveform in normal driving
+> > +
+> > +  awinic,f0-detection-play-time:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Drive waveform play times in the first period in the =
+f0 detection
+>
+> Use standard unit suffixes for known units (e.g. time).
 
-Am 11.04.22 um 09:56 schrieb Medad Young:
+While the datasheet doesn't mention any time unit, the value is used to
+calculate the f0_trace_ms variable (which is milliseconds) but the
+result also depends on the awinic,f0-preset value, so it's not a raw
+time value.
 
-[…]
+>
+> > +
+> > +  awinic,f0-detection-wait-time:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Waveform wait times in the f0 detection
+>
+> Ditto.
+>
+> > +
+> > +  awinic,f0-detection-repeat:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Repeat times in the f0 detection
+> > +
+> > +  awinic,f0-detection-trace:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Drive waveform play times in the second period and la=
+ter in the f0 detection
+> > +
+> > +  awinic,boost-debug:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +    description: Values for BSTDBG1-3 registers
+>
+> Do not encode device programming model (registers) into the binding. You
+> need to define it as a property related to hardware itself, not its
+> registers (e.g. boost value in mV).
 
-> Paul Menzel 於 2022年4月9日 週六 下午1:57寫道：
+Unfortunately I couldn't figure the meaning for this and the two values
+below.
 
->> Thank you for the patch.
->>
->> Am 22.03.22 um 04:01 schrieb Medad CChien:
->>> ECC must be configured in the BootBlock header.
->>
->> bootblock
->>
->> I search for *bootblock* in Linux and the git commit messages, and does
->> not seem to be a common term. Is that term used in the datasheet?
-> 
-> Yes, bootblock is a bootloader of our SOC
+The datasheet doesn't mention these registers at all and the downstream
+driver doesn't do anything meaningful with them (other than setting them)
+nor has any comment to indicate what they do.
+In the datasheet there's only BSTDBG4 mentioned where bits [5:1] mean
+PVDD output voltage setting so for these registers it could really be
+anthing :(
 
-Nice. Never heard of it before. Maybe add the project URL as reference 
-for the ignorant like me.
+Maybe someone with more knowledge about LRAs might be able to decipher
+what tset and r_spare is at least? I unfortunately didn't manage.
 
->>> Then, you can read error counts via
->>> the EDAC kernel framework.
->>
->> Please reflow for 75 characters per line. (Also, there is no need to
->> break lines after a sentence, unless 75 characters are reached or a new
->> paragraph starts.)
->>
->> Tested on what board?
-> 
-> I tested this on Nuvoton's BMC board
+Regards
+Luca
 
-It would be nice to have that with the model number documented in the 
-commit message.
+>
+> > +
+> > +  awinic,tset:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > +    description: Value for TSET register
+>
+> Ditto.
+>
+> > +
+> > +  awinic,r-spare:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > +    description: Value for R_SPARE register
+>
+> Ditto.
+>
+>
+> Best regards,
+> Krzysztof
 
->>> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
->>
->> Out of curiosity, is the first C in CChien the letter of your middle
->> name, or the last name really spelled with two capital letters in the
->> beginning?
-> 
-> this is a special last name in chinese.
-> my last name does really spell with two capital letters in the beginning.
-
-Interesting. Thank you for teaching me new things.
-
-
-Kind regards,
-
-Paul
