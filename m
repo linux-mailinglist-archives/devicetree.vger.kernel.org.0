@@ -2,119 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B664FB606
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C8D44FB63F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 10:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343852AbiDKIfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 04:35:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35348 "EHLO
+        id S1343933AbiDKIoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 04:44:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241378AbiDKIfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:35:41 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DABD53E5F6
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:33:26 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id c7so21946339wrd.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:33:26 -0700 (PDT)
+        with ESMTP id S232399AbiDKIoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 04:44:44 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231243EAAF
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:42:31 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id v2so8197643wrv.6
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 01:42:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=27lr1TeRoTWAFLVF9iWjZf9oxGgkBi1ijJ2WmnDVaWw=;
-        b=FCiOpWwMz1l33QbeB+Jtt4vgr1FQhMBvYuXg9CwxMEZsIcuVknweKFjUN7iW+2i9cK
-         6icNeAlKmv9KMrFKBYTeJzTuTaLQrqAz87rGMry1dWZXm4WaTRZD8qkPhMoBRQIgboJq
-         gkDMBZ4Iywc5c8AWFqttqw8Mf9H62DLQn1ShJ5V1P9YTxEyxOqX6P+22Zz2p+H8QQk7b
-         72SKN7Xp2UiqKy1gotmgGVAH985FbXgT7oZ+HcB5XzDQ6YLW+zqHRxDP9MiZ9FTJ2hbG
-         /qFhqT7Bdal9IeLusenPQiG3Pw7Ma5BF2J+9ynOn0iiNwFlEPSEVFRAdzuuhc8ZgZNrz
-         60Yw==
+        bh=8C/eYgaWADBmXGolQTtkrHTLecaGjlBMq7BNuIlcZ8Q=;
+        b=xeJcy/KGJE8E9dTJtbqIY8xwk3sT+9zWBdf3lwNQ3wiHwbo4fFi8C+BojzWUb7Nts5
+         YPHs4k4QJ+0sAnvMgpBPi22mDZOONbSIFtlnjK/F59s/8G5mPCd2VtQv5dvyliQPsxYp
+         KmY7lSTcYSkZjPO7nyfaPW2MGED205fey3U79yIsgipqxg9s588DuLwxZoS624dnuMgM
+         MHMyVZLpuUay/uFgMoPsgbusEwXdLTEqSSHSIgL/tziKq/jixkyvnP9IpacQh9Y4GqEV
+         Rm3sXKIwUpMR9FpWp1I6M9UhCnaMeQFSP4Q/dXQ3qck3BCxgik8RLUyCr26oF7Q4kt7N
+         JBRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=27lr1TeRoTWAFLVF9iWjZf9oxGgkBi1ijJ2WmnDVaWw=;
-        b=QR9aDIuH5PzjdgyuzMm97MuvzKdwOhfKeREol+nhSow2bEf1+heT9T3C4YnEAVqGLG
-         mafhDkdDTiF3BTcUVRTBqrbEwwtKIKlPMWbkjuJQeBzdHPKgtXjvN4Nle1RjCOm0ondq
-         2uvpg5UXowuNEe6SUhMfUIFMbb1JoosvVimTN8gT35o4MtOi1PDb74r6CwqOHcDmKpKt
-         yaC1lB3+1QRV6K3vyjCek8noJnwV1FDCO2AfJm983XXjSU3qVJhTfAnPjUBsZXtCeChL
-         G8JjbnGvcpe+U5ajk28TWgM8PcQQSB8S7El/9ZgX2yACXjFMGMX5kBPK8VgvWgdRAoax
-         kXhw==
-X-Gm-Message-State: AOAM5329wenzPT0AtX9z9yszRmat49nSuhEG12MCRAxzuF9mVWwJNNuO
-        KzK1XbDBK1R9Uz4xft6p/5PBpQ==
-X-Google-Smtp-Source: ABdhPJyMduce5eskJ2Cz9CC/3y6wawMSFNfIrfesrt3XjKQQPdmm+A6C+5gLz1aqtTxhi5MfzzLSUg==
-X-Received: by 2002:a05:6000:1c14:b0:207:9988:2af0 with SMTP id ba20-20020a0560001c1400b0020799882af0mr11267923wrb.324.1649666005486;
-        Mon, 11 Apr 2022 01:33:25 -0700 (PDT)
+        bh=8C/eYgaWADBmXGolQTtkrHTLecaGjlBMq7BNuIlcZ8Q=;
+        b=RNhXJV80o+JFV8zFHbBGBYkCjuDplzjjmTEbZVL+9nuA1Ptqnam0S636lRmE+kmLu0
+         DJ3n8x9rQgmA8uzNGFS3NjV23ssIFJgT+X6m+nhRV0WGiRSU4Gt09NviBk4SRA/DBw5j
+         4KXOue2T12sNyKFwuEuthJl7j5MF1nNAKEdpAulqy7ei1mfbc5RSHw/hzgOUocVPg9fA
+         fX1u5qAYoZSQOYF5blrC1r0NgqTf9FtuS6jxk5smxBf8BuVMB99CAN1YTqniBqGlousf
+         tQ1YZgUPWyX02vV+9pt9amvq5+rhcwf9sq+zmRyduuG/UXfSrR75tfNvtUqLqn+p6P/a
+         in+g==
+X-Gm-Message-State: AOAM533+dqxH3NQ7x4xIv4EI08SXOVBtyS5SIpwB+gOiTFpZnLLaVnVP
+        brlmsrQslAGy+WdJ3LXqPtC6HQ==
+X-Google-Smtp-Source: ABdhPJwj2GX5sxFvKfF2plvDXxPFsbnq+9QtCMe/UP3BTx6ywnM8X9ZtvNekIgx0mHUmfcedMxPk8Q==
+X-Received: by 2002:a5d:5406:0:b0:205:a2c2:3530 with SMTP id g6-20020a5d5406000000b00205a2c23530mr23927622wrv.587.1649666549614;
+        Mon, 11 Apr 2022 01:42:29 -0700 (PDT)
 Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id z5-20020a05600c0a0500b0037fa93193a8sm20206956wmp.44.2022.04.11.01.33.24
+        by smtp.googlemail.com with ESMTPSA id c4-20020a056000184400b00207a55f712asm3337327wri.37.2022.04.11.01.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 01:33:24 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 10:33:22 +0200
+        Mon, 11 Apr 2022 01:42:29 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 10:42:26 +0200
 From:   LABBE Corentin <clabbe@baylibre.com>
 To:     John Keeping <john@metanate.com>
 Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
         robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 17/33] crypto: rockchip: use read_poll_timeout
-Message-ID: <YlPn0nevX6zdYWwG@Red>
+Subject: Re: [PATCH v4 06/33] crypto: rockchip: add fallback for cipher
+Message-ID: <YlPp8rkH7B742TZM@Red>
 References: <20220401201804.2867154-1-clabbe@baylibre.com>
- <20220401201804.2867154-18-clabbe@baylibre.com>
- <YkrYs87bgWs7+tOm@donbot>
+ <20220401201804.2867154-7-clabbe@baylibre.com>
+ <YkrV1z5GPVXc+d/X@donbot>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YkrYs87bgWs7+tOm@donbot>
+In-Reply-To: <YkrV1z5GPVXc+d/X@donbot>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, Apr 04, 2022 at 12:38:27PM +0100, John Keeping a écrit :
-> On Fri, Apr 01, 2022 at 08:17:48PM +0000, Corentin Labbe wrote:
-> > Use read_poll_timeout instead of open coding it
+Le Mon, Apr 04, 2022 at 12:26:15PM +0100, John Keeping a écrit :
+> On Fri, Apr 01, 2022 at 08:17:37PM +0000, Corentin Labbe wrote:
+> > The hardware does not handle 0 size length request, let's add a
+> > fallback.
+> > Furthermore fallback will be used for all unaligned case the hardware
+> > cannot handle.
 > > 
+> > Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
 > > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 > > ---
-> >  drivers/crypto/rockchip/rk3288_crypto_ahash.c | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/crypto/rockchip/rk3288_crypto_ahash.c b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
-> > index 137013bd4410..21c9a0327ddf 100644
-> > --- a/drivers/crypto/rockchip/rk3288_crypto_ahash.c
-> > +++ b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
-> > @@ -10,6 +10,7 @@
-> >   */
-> >  #include <linux/device.h>
-> >  #include <asm/unaligned.h>
-> > +#include <linux/iopoll.h>
-> >  #include "rk3288_crypto.h"
+> > diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> > index bbd0bf52bf07..c6b601086c04 100644
+> > --- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> > +++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> > @@ -13,6 +13,71 @@
 > >  
-> >  /*
-> > @@ -305,8 +306,8 @@ static int rk_hash_run(struct crypto_engine *engine, void *breq)
-> >  		 * efficiency, and make it response quickly when dma
-> >  		 * complete.
-> >  		 */
-> > -	while (!CRYPTO_READ(tctx->dev, RK_CRYPTO_HASH_STS))
-> > -		udelay(10);
-> > +	read_poll_timeout(readl, v, v == 0, 10, 1000, false,
-> > +			  tctx->dev->dev + RK_CRYPTO_HASH_STS);
+> >  #define RK_CRYPTO_DEC			BIT(0)
+> >  
+> > +static int rk_cipher_need_fallback(struct skcipher_request *req)
+> > +{
+> > +	struct scatterlist *sgs, *sgd;
+> > +	unsigned int todo, len;
+> > +	unsigned int bs = crypto_skcipher_blocksize(tfm);
+> > +
+> > +	if (!req->cryptlen)
+> > +		return true;
+> > +
+> > +	len = req->cryptlen;
+> > +	sgs = req->src;
+> > +	while (sgs) {
+> > +		if (!IS_ALIGNED(sgs->offset, sizeof(u32))) {
+> > +			return true;
+> > +		}
+> > +		todo = min(len, sgs->length);
+> > +		if (todo % bs) {
+> > +			return true;
+> > +		}
+> > +		len -= todo;
+> > +		sgs = sg_next(sgs);
+> > +	}
+> > +	len = req->cryptlen;
+> > +	sgd = req->dst;
+> > +	while (sgd) {
+> > +		if (!IS_ALIGNED(sgd->offset, sizeof(u32))) {
+> > +			return true;
+> > +		}
+> > +		todo = min(len, sgd->length);
+> > +		if (todo % bs) {
+> > +			return true;
+> > +		}
+> > +		len -= todo;
+> > +		sgd = sg_next(sgd);
+> > +	}
+> > +	sgs = req->src;
+> > +	sgd = req->dst;
+> > +	while (sgs && sgd) {
+> > +		if (sgs->length != sgd->length)
 > 
-> This can be simplified to:
+> This check still seems to be triggering the fallback when it is not
+> needed.
 > 
-> 	readl_poll_timeout(tctx->dev->dev + RK_CRYPTO_HASH_STS,
-> 			   v, v == 0, 10, 1000);
-
-Thanks, this is better.
-
+> I've done some testing with fscrypt and the series is working great, but
+> the stats show the fallback triggering more than I'd expect.  With some
+> extra logging here I see output like:
 > 
-> But shouldn't this be tctx->dev->reg ?!
+> 	sgs->length=32 sgd->length=255 req->cryptlen=16
+> 
+> In this case sgs and sgd are both the first (and only) entries in the
+> list.  Should this take account of req->cryptlen as well?
+> 
+> In fact, can't this whole function be folded into one loop over src and
+> dst at the same time, since all the checks must be the same?  Something
+> like this (untested):
+> 
+> 	while (sgs && sgd) {
+> 		if (!IS_ALIGNED(sgs->offset, sizeof(u32)) ||
+> 		    !IS_ALIGNED(sgd->offset, sizeof(u32)))
+> 			return true;
+> 
+> 		todo = min(len, sgs->length);
+> 		if (todo % bs)
+> 			return true;
+> 
+> 		if (sgd->length < todo)
+> 			return true;
+> 
+> 		len -= todo;
+> 		sgs = sg_next(sgs);
+> 		sgd = sg_next(sgd);
+> 	}
+> 
+> 	if (len)
+> 		return true;
+> 
 
-Yes, I will fix it.
+Thanks, for this hint, I will use it.
 
-Thanks
 Regards
