@@ -2,102 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2011E4FC68F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 23:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E234FC69D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 23:17:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350155AbiDKVSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 17:18:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
+        id S237036AbiDKVUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 17:20:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237746AbiDKVSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 17:18:06 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B5E193F0
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:15:51 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id w18so20014208edi.13
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:15:51 -0700 (PDT)
+        with ESMTP id S236174AbiDKVUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 17:20:07 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 181AF1B7B8;
+        Mon, 11 Apr 2022 14:17:52 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id s13so21739332ljd.5;
+        Mon, 11 Apr 2022 14:17:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u3IPKba47VHgKeeSAVtwOFmES8+Ru1c827vSgPVijTU=;
-        b=EOnIBkqU4gAnFTiOCLuuFJuYrgMFSYtiBJzSaGkZhWnqDoH7SY2EVy1Wolr2JY+s1/
-         GyAySIrorqGQ2K1QrPWNJOesbKQvhPoaTxKwZNEl5RzrcglL3fjjESgXCExNPX/fI2Ue
-         qiSGZ4q5xIUeoA3H9DI8cr5VuAKNL1LKU4xDI=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=i0zDKPAt/qufZ/2jxiglBqBb3LU9NVf66CHpPtR+y0U=;
+        b=SL7bvtN5kIiGOoqp4g1eJjN4b+D1XnkBCJjrGWEx3fqmVWNV2vI3QsrsCAwL+/TUhH
+         TaofrnTJq7QNBNJw1e8Hxs7NXBWGMmBaGE5L5QP/YOlU5zTKHE3AyTO8ScvY9hOLqPXg
+         165zanGQoZQO7gSM5qDrimAma3Iv27KTx/Pl65umQPJepvY146IlZQs7xww2soJstFqy
+         jzbT/zaC85v9AuzePoFQYXQ6AFN+O+PWwH12KBX0P6uUpD9aTCjoAKo7qN04bIF0BZrp
+         dro1Q37yiqwcHLriURQwEa9/0YW/kq4nMfn90QVZe4ndX/h3wwYh7W/8Tz0mitK5uDp4
+         Q2pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u3IPKba47VHgKeeSAVtwOFmES8+Ru1c827vSgPVijTU=;
-        b=I15B36iW8Qt9wCzElOXNlTgwer9KXDpuLTToLHxL0lKgSU5i0mCYa4QE8i8UUYSLcG
-         tTIafkH6lOqJ/JtTYCr4b/eccL/TogBEvh4ZE1vpFjPo/fFw0+SmEy61riK67eQxBy5a
-         8436jK7RZF+8S6RjIIHEButET4pE1E/VPeIuH3qVLmuRGKKwIgoIuXidZf6t41GObTbg
-         PaJieTxhNm8oV7eVESSbWrZZ3oJ7ytotVb1ALj/Ft0wnZpOFRGAdmZPclXr0pOrNFRnn
-         Qg+9B5Mkyh+HqlayYa2/TTe95m43jJGc3TGmMy3hANUracx/FkJFi901riF88rnz8iBJ
-         Tuwg==
-X-Gm-Message-State: AOAM5323yYea+UaHKF5BjV1uwHh9RXajGIR8wcVjbOobPNiyfDgmE8Wz
-        giiA3jq5LXsogohRoEnbAYxZ0fWMGsnDWrwK
-X-Google-Smtp-Source: ABdhPJwtDwMf0txbBvozoxCPUOHjHO22MJJAH3iHWPpL6ijJq8Z2kPjqGom7oyvLIj4X6OqSQ36u3w==
-X-Received: by 2002:a05:6402:294e:b0:41c:c191:64bc with SMTP id ed14-20020a056402294e00b0041cc19164bcmr36179602edb.166.1649711749878;
-        Mon, 11 Apr 2022 14:15:49 -0700 (PDT)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
-        by smtp.gmail.com with ESMTPSA id e26-20020a50ec9a000000b004193fe50151sm16135600edr.9.2022.04.11.14.15.48
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 14:15:49 -0700 (PDT)
-Received: by mail-wm1-f43.google.com with SMTP id r7so10709367wmq.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 14:15:48 -0700 (PDT)
-X-Received: by 2002:a05:600c:3ca4:b0:38e:54d0:406d with SMTP id
- bg36-20020a05600c3ca400b0038e54d0406dmr922556wmb.199.1649711748286; Mon, 11
- Apr 2022 14:15:48 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=i0zDKPAt/qufZ/2jxiglBqBb3LU9NVf66CHpPtR+y0U=;
+        b=tzPiGZqss6WQhn1ekJH8zsjz79gexMYbLunOtbIiCXRlBKc5CLSdEqf6WBoSMH/ikX
+         lu1dzOi1m+Mr7M9KYVSAhByV6jvVCsz0shw9KK4zhbC5ZFPFfM0ewme9BmcKJPlezQvT
+         TzZ8BA5pqEXvEiwqhYI+ZS7V50vp+Wo93rL45qVLH1u6JxHrUMyvRMSOovZ8d8scVNe/
+         qgi9Luofgx+PTXPw/twEmdYWN/spD9mMhzx/PwOuas8PsBGFPiOjJMzo8OFhjN8TEKg4
+         1UM/ToPeVkXPllp+jS54tEgyZotDB9uWSegNQKJ38lF2XwtVf6O4Ukcgg2HrGIzvvhcg
+         0loQ==
+X-Gm-Message-State: AOAM533su2IXI52fivpMrkim5GvkBWpk46zp8H2ftg5croFOW2/rQiwC
+        taE4CVKjJ9YCC3b5eoOBOnA=
+X-Google-Smtp-Source: ABdhPJxeTr2tnLXOWLID+EcB1R5yGfZdzHA5Pr5lRRx+5q2f6Pvr7LZvKQK3f8TLdcv5bY3x5nnvXg==
+X-Received: by 2002:a2e:9a8b:0:b0:24b:4ffa:638f with SMTP id p11-20020a2e9a8b000000b0024b4ffa638fmr11338355lji.192.1649711870402;
+        Mon, 11 Apr 2022 14:17:50 -0700 (PDT)
+Received: from mobilestation ([95.79.134.149])
+        by smtp.gmail.com with ESMTPSA id i4-20020a056512318400b0044a31d60589sm3428966lfe.86.2022.04.11.14.17.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 14:17:49 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 00:17:47 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Brad Larson <brad@pensando.io>,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        broonie@kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, olof@lixom.net, dac2@pensando.io,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/11] dt-bindings: spi: dw: Add Pensando Elba SoC SPI
+ Controller bindings
+Message-ID: <20220411211747.ttpqk7s37j3gpzxp@mobilestation>
+References: <20220406233648.21644-1-brad@pensando.io>
+ <20220406233648.21644-6-brad@pensando.io>
+ <6769ea2d-9e6a-03b1-0e05-cb5b7379cb5e@linaro.org>
 MIME-Version: 1.0
-References: <20220411141332.v2.1.I9f06fec63b978699fe62591fec9e5ac31bb3a69d@changeid>
-In-Reply-To: <20220411141332.v2.1.I9f06fec63b978699fe62591fec9e5ac31bb3a69d@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 11 Apr 2022 14:15:36 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X8sWD0ktzFLou1m4RSoutj7N22hjCjFVS2xqB_Lnb8KQ@mail.gmail.com>
-Message-ID: <CAD=FV=X8sWD0ktzFLou1m4RSoutj7N22hjCjFVS2xqB_Lnb8KQ@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280-herobrine: Audio codec wants
- 1.8V, not 1.62V
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6769ea2d-9e6a-03b1-0e05-cb5b7379cb5e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Apr 07, 2022 at 08:52:34PM +0200, Krzysztof Kozlowski wrote:
+> On 07/04/2022 01:36, Brad Larson wrote:
+> > The Pensando Elba SoC has integrated the DW APB SPI Controller
+> > and requires the property pensando,syscon-spics for access
+> > to the spics control register.
+> > 
+> > Signed-off-by: Brad Larson <brad@pensando.io>
+> > ---
+> > Change from V3:
+> > - Add required property pensando,syscon-spics to go with
+> >   pensando,elba-spi
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+> 
+> >  .../bindings/spi/snps,dw-apb-ssi.yaml           | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > index d7e08b03e204..41c3bbf5a55c 100644
+> > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > @@ -37,6 +37,21 @@ allOf:
+> >      else:
+> >        required:
+> >          - interrupts
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - pensando,elba-spi
+> > +    then:
+> > +      properties:
+> > +        pensando,syscon-spics:
+> > +          $ref: /schemas/types.yaml#/definitions/phandle
+> > +          description:
+> > +            Phandle to the system control device node which provides access to
+> > +            the spics control register
+> 
 
-On Mon, Apr 11, 2022 at 2:14 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> The L2C rail on herobrine boards is intended to go to the audio
-> codec. Let's override the 1.62V specified in the qcard.dtsi file to be
-> 1.8V.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
->
-> Changes in v2:
-> - Adjust Qcard regulator override section heading
->
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
+> It looks you only need to poke one register from spics, so it could be
+> something like:
+> 
+>     items:
+>       - items:
+>           - description: Phandle to the system control device node
+>           - description: spics control register offset
 
-...and I somehow forgot to add in from v1:
+Right, especially seeing that's the way the elba-specific part of the
+DW APB SSI driver expects the property being initialized.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+-Sergey
+
+> 
+> 
+> Best regards,
+> Krzysztof
