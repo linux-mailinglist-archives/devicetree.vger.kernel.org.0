@@ -2,137 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73AB34FC543
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 21:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841B34FC552
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 21:53:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244411AbiDKTs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 15:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34158 "EHLO
+        id S1349748AbiDKTz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 15:55:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232918AbiDKTs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 15:48:57 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197C02716F;
-        Mon, 11 Apr 2022 12:46:43 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1ndzzl-00CNX3-4E; Mon, 11 Apr 2022 19:46:41 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v3] arm64: dts: imx8m{m,n}-venice-*: add missing uart-has-rtscts property to UARTs
-Date:   Mon, 11 Apr 2022 12:46:38 -0700
-Message-Id: <20220411194638.5706-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1349744AbiDKTzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 15:55:55 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5D536E03
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:53:36 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id s137so12383852pgs.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 12:53:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HQW6p5XHkDmFdXcFFMAKSTMR7c12bQrCmTxneppa4IY=;
+        b=XvKXaBY0+FG1tmG2ZLkX8lj/1RrGPbuWStt06IKqgUgYXG7WbsoyWzr/CPktw6vaSt
+         9u8QllcxrheruT/2xpSBgn5YwZTJCIq6Er+X7a0dVcaWxTy7gOiWb/kZsyeqW6kXI4XK
+         g4M4l8yBaZLKP85vov6kQkDBpdgna/tx6D9HQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HQW6p5XHkDmFdXcFFMAKSTMR7c12bQrCmTxneppa4IY=;
+        b=zqxfXuD07fuIvl7WaSW10cKbQledrW09PtSB28l0rjc/5IZ0sOEdUNJytD6Ftf6g49
+         xVpA1wGUzBDZY9HxGHBR9wPdVHJFdxGgVttt6VwPpqvOHZB59C9dsitVU72f0xHz7k0/
+         xgq/5WCUU8+WxAULQZwC9ShyMqtNOAS13OhvO7SBGMzQ6BVIm3pvLeVT5ZvrGvxJawqG
+         7wfTQU5hvBPE620QaBAWSAZox8QH+H2CGJUHC93EEU/fI5TW7Bf+/s8q/xBGuuUFnyMG
+         i/30sZnFSGwlF232HgKYNkZEfScj4/L2w4x1+exC7/kIVer/UA8qjPpFbHl0iNxTuOUL
+         zh7w==
+X-Gm-Message-State: AOAM530VosEtkeVB1+WlnzU8YVn8J6qF7NXAKx/m6WeBb2XaAf/+jWuS
+        ETagg0sdb/nS8nMZPo28PNGX5Q==
+X-Google-Smtp-Source: ABdhPJy46Nb67XtLDVVS/w6pd6omc5Ct5ml3k8IojyyCxOY1LCYD4hjqOd6yvjcWEYJbLnmUIjJs1A==
+X-Received: by 2002:a65:614e:0:b0:380:bfd9:d4ea with SMTP id o14-20020a65614e000000b00380bfd9d4eamr27582317pgv.92.1649706816054;
+        Mon, 11 Apr 2022 12:53:36 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:eb96:76ba:e2a1:2442])
+        by smtp.gmail.com with UTF8SMTPSA id nv11-20020a17090b1b4b00b001c71b0bf18bsm292189pjb.11.2022.04.11.12.53.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 12:53:35 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 12:53:33 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
+        quic_rohkumar@quicinc.com
+Subject: Re: [PATCH v6 1/3] arm64: dts: qcom: sc7280: Add nodes for va tx and
+ rx macros and external codecs
+Message-ID: <YlSHPU7XITS2dju/@google.com>
+References: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649157220-29304-2-git-send-email-quic_srivasam@quicinc.com>
+ <Yky2Iwt+tvxvu4/S@google.com>
+ <8fea1165-c8b6-6ce2-86dc-82274af8c43d@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <8fea1165-c8b6-6ce2-86dc-82274af8c43d@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing 'uart-has-rtscts' property to UART's that have hardware
-flow control capability.
+On Mon, Apr 11, 2022 at 07:32:33PM +0530, Srinivasa Rao Mandadapu wrote:
+> 
+> On 4/6/2022 3:05 AM, Matthias Kaehlcke wrote:
+> Thanks for your time Matthias!!!
+> > On Tue, Apr 05, 2022 at 04:43:38PM +0530, Srinivasa Rao Mandadapu wrote:
+> > > SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
+> > > codecs like WCD938x, max98360a using soundwire masters and i2s bus.
+> > > Add these nodes for sc7280 based platforms audio use case.
+> > > Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+> > > 
+> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > ---
+> > A change log would be helpful for reviewers
+> Change log added in cover letter.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v3: rebase properly on imx/dt64 (without dropped patches)
-v2: fix prefix of commit message and reboase on imx/dt64
----
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi | 1 +
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts  | 3 +++
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts  | 3 +++
- arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts  | 1 +
- 4 files changed, 8 insertions(+)
+From my perspective as a reviewer I find it more practical to have a
+change log per patch.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index f52947b0cf77..89fc2c595056 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -221,6 +221,7 @@
- 	pinctrl-0 = <&pinctrl_uart3>, <&pinctrl_bten>;
- 	cts-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
- 	rts-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- 
- 	bluetooth {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-index 7e7231046215..70b2ae55e906 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-@@ -716,6 +716,7 @@
- 	dtr-gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
- 	dsr-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
- 	dcd-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- };
- 
-@@ -731,6 +732,7 @@
- 	pinctrl-0 = <&pinctrl_uart3>, <&pinctrl_uart3_gpio>;
- 	cts-gpios = <&gpio4 10 GPIO_ACTIVE_LOW>;
- 	rts-gpios = <&gpio4 9 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- };
- 
-@@ -739,6 +741,7 @@
- 	pinctrl-0 = <&pinctrl_uart4>, <&pinctrl_uart4_gpio>;
- 	cts-gpios = <&gpio5 11 GPIO_ACTIVE_LOW>;
- 	rts-gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index edf0c7aaaef0..1b03aa154688 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -644,6 +644,7 @@
- 	pinctrl-0 = <&pinctrl_uart1>, <&pinctrl_uart1_gpio>;
- 	rts-gpios = <&gpio4 10 GPIO_ACTIVE_LOW>;
- 	cts-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- };
- 
-@@ -660,6 +661,7 @@
- 	pinctrl-0 = <&pinctrl_uart3>, <&pinctrl_uart3_gpio>;
- 	rts-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
- 	cts-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- 
- 	bluetooth {
-@@ -677,6 +679,7 @@
- 	dtr-gpios = <&gpio4 3 GPIO_ACTIVE_LOW>;
- 	dsr-gpios = <&gpio4 4 GPIO_ACTIVE_LOW>;
- 	dcd-gpios = <&gpio4 6 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-index 3c0e63d2e82d..2c1f591335ad 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-@@ -625,6 +625,7 @@
- 	pinctrl-0 = <&pinctrl_uart3>, <&pinctrl_uart3_gpio>;
- 	rts-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
- 	cts-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
- 	status = "okay";
- 
- 	bluetooth {
--- 
-2.17.1
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > index de646d9..c6a04c3 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > @@ -20,6 +20,14 @@
+> > >   #include "sc7280-chrome-common.dtsi"
+> > >   / {
+> > > +	max98360a: audio-codec-0 {
+> > > +		compatible = "maxim,max98360a";
+> > > +		pinctrl-names = "default";
+> > > +		pinctrl-0 = <&amp_en>;
+> > > +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> > > +		#sound-dai-cells = <0>;
+> > > +	};
+> > > +
+> > This node shouldn't be at top but with the other device nodes, in
+> > alphabetical order, i.e. before 'pwmleds'.
+> 
+> Actually we are sorting as per node name. Hence kept it here. As per
+> previous reviewer comments, sorted accordingly.
+> 
+> Please suggest better approach.
 
+True, I forgot the node names are used for sorting, not the labels.
+
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > index db74fc3..78ec84c 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > @@ -822,6 +822,127 @@
+> > >   			#power-domain-cells = <1>;
+> > >   		};
+> > > +		rxmacro: codec@3200000 {
+> > These node are not at the correct position. They should be sorted by
+> > address and hence be inserted between 'lpasscc@3000000' and
+> > 'interconnect@3c40000'.
+> 
+> Actually we are sorting as per node(codec) name. Hence kept it here. As per
+> previous reviewer comments, sorted accordingly.
+
+Could you provide a pointer to those comments?
+
+My understanding is that we are sorting by node name when nodes don't have
+addresses or for overrides in board files/snippets, however the nodes under
+'soc@0' are sorted by address.
+
+Another nit: 'rx_macro, tx_macro, va_macro' instead of the labels without
+underscore? Not really important, but maybe slightly more readable and
+would match the 'spelling' of the compatible strings.
