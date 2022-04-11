@@ -2,103 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC3E4FB177
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 03:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FCAF4FB184
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 03:52:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244295AbiDKBnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 21:43:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47122 "EHLO
+        id S243359AbiDKByZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 21:54:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244288AbiDKBnu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 21:43:50 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02DBEDF6F;
-        Sun, 10 Apr 2022 18:41:33 -0700 (PDT)
-X-UUID: 8d18cfee5cb641b087296e53aa965667-20220411
-X-UUID: 8d18cfee5cb641b087296e53aa965667-20220411
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 49525070; Mon, 11 Apr 2022 09:41:29 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 11 Apr 2022 09:41:27 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Apr 2022 09:41:26 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
-        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <fshao@chromium.org>
-CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
-        <tinghan.shen@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
-        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v1 1/1] dt-bindings: pwrap: mediatek: fix pwrap document for mt8195
-Date:   Mon, 11 Apr 2022 09:41:21 +0800
-Message-ID: <20220411014121.15015-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220411014121.15015-1-zhiyong.tao@mediatek.com>
-References: <20220411014121.15015-1-zhiyong.tao@mediatek.com>
+        with ESMTP id S244390AbiDKBwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 21:52:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0E302BC8;
+        Sun, 10 Apr 2022 18:50:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5ECFA60FD2;
+        Mon, 11 Apr 2022 01:50:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80FA9C385A1;
+        Mon, 11 Apr 2022 01:50:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649641826;
+        bh=scU/wt9Y7hTgr9P069KO0dFurEObKBwZx5KXA8rxJGw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CHElk7Wf5pPUAZI0hAcgnkgBApY3HQZNLwHmI4PXeix6YDvD/GZWUl2WIh0lO2Xol
+         rKN3fMT9151oDT8VD0EY0u3IUi1SxPEFheRHcYzlaIoHNilC6gbgenYPv89/YqolM9
+         vVUtZ4Xj552A16gGsiLfpCxNLk1Lk8Sc8QvAzawKQv2+sqWCcVp9FEoiiJmSM9IaH4
+         /6yKfM2tOiWU5iw3oqrHDRqqXy+iRiBQ5ToDJtr+sUvfdAd6kV5pS2rBqSOoUp2R+B
+         UlbN64YXhwPQ22YpLMX+VHfIhianJJpHg/P0AHAGeH56h1zuBav9pEDL0bYCO5rWS7
+         Jvokf2Cuo2tUg==
+Date:   Mon, 11 Apr 2022 09:50:18 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] ARM: dts: imx: align SPI NOR node name with dtschema
+Message-ID: <20220411015018.GE129381@dragon>
+References: <20220407143155.295187-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220407143155.295187-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Zhiyong.Tao" <zhiyong.tao@mediatek.com>
+On Thu, Apr 07, 2022 at 04:31:54PM +0200, Krzysztof Kozlowski wrote:
+> The node names should be generic and SPI NOR dtschema expects "flash".
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-fix pwrap document description for mt8195
-
-Signed-off-by: Zhiyong.Tao <zhiyong.tao@mediatek.com>
----
- .../devicetree/bindings/soc/mediatek/pwrap.txt         | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-index d74a7a5ae9f2..601647717ceb 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-+++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-@@ -30,20 +30,20 @@ Required properties in pwrap device node.
- 	"mediatek,mt8195-pwrap" for MT8195 SoCs
- 	"mediatek,mt8516-pwrap" for MT8516 SoCs
- - interrupts: IRQ for pwrap in SOC
--- reg-names: Must include the following entries:
-+- reg-names: Must include "pwrap", "pwrap-bridge" is optinal.
-   "pwrap": Main registers base
-   "pwrap-bridge": bridge base (IP Pairing)
- - reg: Must contain an entry for each entry in reg-names.
--- reset-names: Must include the following entries:
--  "pwrap"
--  "pwrap-bridge" (IP Pairing)
--- resets: Must contain an entry for each entry in reset-names.
- - clock-names: Must include the following entries:
-   "spi": SPI bus clock
-   "wrap": Main module clock
- - clocks: Must contain an entry for each entry in clock-names.
- 
- Optional properities:
-+- reset-names: Some SoCs include the following entries:
-+  "pwrap"
-+  "pwrap-bridge" (IP Pairing)
-+- resets: Must contain an entry for each entry in reset-names.
- - pmic: Using either MediaTek PMIC MFD as the child device of pwrap
-   See the following for child node definitions:
-   Documentation/devicetree/bindings/mfd/mt6397.txt
--- 
-2.18.0
-
+Applied both, thanks!
