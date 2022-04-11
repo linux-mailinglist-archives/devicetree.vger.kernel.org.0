@@ -2,132 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E684FBFE9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A424FBFED
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 17:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347653AbiDKPMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 11:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
+        id S1347598AbiDKPNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 11:13:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347664AbiDKPMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:12:18 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038DF2FE5F;
-        Mon, 11 Apr 2022 08:10:02 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id z14so2298159qto.5;
-        Mon, 11 Apr 2022 08:10:02 -0700 (PDT)
+        with ESMTP id S1347657AbiDKPNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 11:13:22 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8B731524
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 08:11:07 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id k23so31530278ejd.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 08:11:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=pCJjCOYD1pHvTfEkVbYg6ajc5I2hvGHciFb/sFyrlHY=;
+        b=gpXKT43tqtGTzEZYyVUu+KoI+Ti3B/PxcwEDJCLsPuyjVj05Rp2kVeLH4lDKz/v0IQ
+         FGC2lHgJcmFoDsWBaFhXQ6E805MJtsOtjLVLztpZo6cHtyHOb9Vb31mGUxRZJP0V4NM7
+         5dja41jjOCCg9xz49t+W/PIxhhuhBPAFHAzqgM3iRRXbN0dj5gH2/aofGsZgH0fOyjak
+         E0aOHfu7ip8UebMzNLGB9+XC8Gw7BZNP+VyQlD98g5X+dd4zFpG3dF4iNv4OGnM302vf
+         5VncVzRR6K2zlVASr9C7gH840TYvI6RvoB/T5AumJobdDYS7fdD7FzFGQGXcfQZMi83A
+         lUMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=upNIJzGRSw+uwckmTerdXsmNODqFik3Po2f0Zu+5l4I=;
-        b=MbkyVl2HWGuSXX7xxFNskpZ0PRHPlDO7ePB6BzSIYsntwG54Yxhj2HzR7E92wkjq/C
-         GFksJUXgXxd43cStOBtoPIguuHhrx9e5eY/2nKOV2vmv5QAfTxzayI84NCH4NT5jtRUX
-         q3ONIs0AxaZvREYQX4jgX467eEGVzidzAE2rcUiyExnW9qaloCkJv4t2vLwrWuTJ7UqE
-         vS/fdrJ4RTB40J3qSPPp6SnU3OtikVYvtjljj1yTuaGGZhfSWmo2QFIZNXnPLJjtzoqB
-         d4iPX4mlMQlrnBDP1U6+IdFDkSyB+jpFdVbjMYu1meufDDyIv1ISQ1pMp1kh1EIz02mS
-         tAFg==
-X-Gm-Message-State: AOAM532eItcTyJs/yS7qgCU6jao28H4vBxq9/lt71GAur4IRYR7QEuii
-        K2Jv2eKIbjhcEJqdnhY+AX9spkQPzNjhFQ==
-X-Google-Smtp-Source: ABdhPJwGCcDbHF/Rl1pKqHT6ULSQw3M2eH8ZM/PZXtxZ68xg/sK+AePoOw7bCBMvNkKVAXEP5XWWpg==
-X-Received: by 2002:a05:622a:8e:b0:2e1:fee4:8ca2 with SMTP id o14-20020a05622a008e00b002e1fee48ca2mr26015011qtw.431.1649689801698;
-        Mon, 11 Apr 2022 08:10:01 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id j19-20020a05622a039300b002ecc2ebfd87sm8438929qtx.32.2022.04.11.08.10.01
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=pCJjCOYD1pHvTfEkVbYg6ajc5I2hvGHciFb/sFyrlHY=;
+        b=x56o8v7juBo1jzShgsLzV6ehfcsjkYgy99aXe/H1mchmmbu+7F4tFkoyJEbVACQHax
+         +CWI2na/GdJRAGseGxoTvGQD/VHhlHLUtPgo7U3zDiRrqzGcC0HLskYVHA72P+5FopEf
+         ouQ82Xfic06Ol68Z1b2E27P9Jqs44qEyq5v+AP8wAtO1lWRfCWfRGH3g0xsD5vQHwMDV
+         Cbk8ftVuHgphvx/48r3wMgZ05tbg6hlB7W4osvXKBVhE19j1lWrqopaRlaCaECQWdz91
+         MJAPh9JgmmIkQj8FBDFoKSWQHRBDpCtHL/ydvHIpzwJE1pj/YwmjpMbT0TeZFAYXIInk
+         jyvA==
+X-Gm-Message-State: AOAM530n5bxazFW6NPjjkvOEB2Y+2AP4yuxPivTh/DlzJUe9QKHS0lap
+        g/Ww47rwpblWoHJIrLPkdE15MA==
+X-Google-Smtp-Source: ABdhPJwLC6bUCnaIFc6oW/Xq/0xCuw+godnXoSeE5FChrONf7ocIGLASLvPmRetx5nLXf3Im5q8Plw==
+X-Received: by 2002:a17:907:9803:b0:6db:ab21:738e with SMTP id ji3-20020a170907980300b006dbab21738emr29228455ejc.112.1649689865639;
+        Mon, 11 Apr 2022 08:11:05 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id x17-20020a170906297100b006e49a9535f3sm12047743ejd.114.2022.04.11.08.11.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Apr 2022 08:10:01 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2eafabbc80aso168490327b3.11;
-        Mon, 11 Apr 2022 08:10:01 -0700 (PDT)
-X-Received: by 2002:a81:c703:0:b0:2d0:cc6b:3092 with SMTP id
- m3-20020a81c703000000b002d0cc6b3092mr25978028ywi.449.1649689801114; Mon, 11
- Apr 2022 08:10:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
- <20220407004511.3A6D1C385A3@smtp.kernel.org> <20220407101605.7d2a17cc@xps13>
-In-Reply-To: <20220407101605.7d2a17cc@xps13>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 11 Apr 2022 17:09:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUZFTm+0NFLUFoXT7ujtxDot_Y+gya9ETK1FOai2MXfvA@mail.gmail.com>
-Message-ID: <CAMuHMdUZFTm+0NFLUFoXT7ujtxDot_Y+gya9ETK1FOai2MXfvA@mail.gmail.com>
-Subject: Re: [PATCH v8 0/9] RZN1 DMA support
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Mon, 11 Apr 2022 08:11:04 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 11 Apr 2022 17:11:04 +0200
+Message-Id: <CJ7I91AXGGCE.24GR11X2CBJ2J@otso>
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-input@vger.kernel.org>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
+ haptics
+X-Mailer: aerc 0.9.0
+References: <20220408115311.237039-1-luca.weiss@fairphone.com>
+ <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
+ <CJ79EIW9Z89J.YZTZ6AU91TGE@otso>
+ <60402ff3-db73-5fc0-bc2a-942d664085ec@linaro.org>
+In-Reply-To: <60402ff3-db73-5fc0-bc2a-942d664085ec@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Krzysztof,
 
-On Thu, Apr 7, 2022 at 10:16 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> sboyd@kernel.org wrote on Wed, 06 Apr 2022 17:45:09 -0700:
-> > Quoting Miquel Raynal (2022-04-06 09:18:47)
-> > > Here is a first series bringing DMA support to RZN1 platforms. Soon a
-> > > second series will come with changes made to the UART controller
-> > > driver, in order to interact with the RZN1 DMA controller.
-> > >
-> > > Stephen acked the sysctrl patch (in the clk driver) but somehow I feel
-> > > like it would be good to have this patch applied on both sides
-> > > (dmaengine and clk) because more changes will depend on the addition of
-> > > this helper, that are not related to DMA at all. I'll let you folks
-> > > figure out what is best.
-> >
-> > Are you sending more patches in the next 7 weeks or so that will touch
-> > the same area? If so, then it sounds like I'll need to take the clk
-> > patch through clk tree. I don't know what is best because I don't have
-> > the information about what everyone plans to do in that file.
+On Mon Apr 11, 2022 at 2:52 PM CEST, Krzysztof Kozlowski wrote:
+> On 11/04/2022 10:15, Luca Weiss wrote:
 >
-> This series brings DMA support and needs to access the dmamux registers
-> that are in the sysctrl area.
+> (...)
 >
-> I've sent an RTC series which needs to access this area as well, but
-> it is not fully ready yet as it was advised to go for a reset
-> controller in this case. The reset controller would be registered by
-> the clock driver, so yes it would touch the same file.
+> >>> +  awinic,f0-detection-play-time:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    description: Drive waveform play times in the first period in th=
+e f0 detection
+> >>
+> >> Use standard unit suffixes for known units (e.g. time).
+> >=20
+> > While the datasheet doesn't mention any time unit, the value is used to
+> > calculate the f0_trace_ms variable (which is milliseconds) but the
+> > result also depends on the awinic,f0-preset value, so it's not a raw
+> > time value.
 >
-> Finally, there is an USB series that is coming soon, I don't know if
-> it will be ready for merge for 5.19, but it needs to access a specific
-> register in this area as well (h2mode).
+> I see, ok.
 >
-> So provided that we are able to contribute this reset driver quickly
-> enough, I would argue that it is safer to merge the clk changes in the
-> clk tree.
+> >=20
+> >>
+> >>> +
+> >>> +  awinic,f0-detection-wait-time:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    description: Waveform wait times in the f0 detection
+> >>
+> >> Ditto.
+> >>
+> >>> +
+> >>> +  awinic,f0-detection-repeat:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    description: Repeat times in the f0 detection
+> >>> +
+> >>> +  awinic,f0-detection-trace:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    description: Drive waveform play times in the second period and =
+later in the f0 detection
+> >>> +
+> >>> +  awinic,boost-debug:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> >>> +    minItems: 3
+> >>> +    maxItems: 3
+> >>> +    description: Values for BSTDBG1-3 registers
+> >>
+> >> Do not encode device programming model (registers) into the binding. Y=
+ou
+> >> need to define it as a property related to hardware itself, not its
+> >> registers (e.g. boost value in mV).
+> >=20
+> > Unfortunately I couldn't figure the meaning for this and the two values
+> > below.
+> >=20
+> > The datasheet doesn't mention these registers at all and the downstream
+> > driver doesn't do anything meaningful with them (other than setting the=
+m)
+> > nor has any comment to indicate what they do.
+> > In the datasheet there's only BSTDBG4 mentioned where bits [5:1] mean
+> > PVDD output voltage setting so for these registers it could really be
+> > anthing :(
+> >=20
+> > Maybe someone with more knowledge about LRAs might be able to decipher
+> > what tset and r_spare is at least? I unfortunately didn't manage.
+>
+> Do you have to define them in such case in DT? Maybe it should be part
+> of driver?
 
-The clk tree or the renesas-clk tree? ;-)
+As these parameters are part of the dts downstream, I assume they differ
+per board or actual LRA used.
 
-Gr{oetje,eeting}s,
+But I also found other downstream dts examples on github (e.g.
+awinic,aw8697_haptic) and they also seemed to use the same values for
+these couple of registers (r_spare, tset and bstdbg). Maybe I can gather
+more info but it's unlikely I'll be able to get a concrete answer..
 
-                        Geert
+Regards
+Luca
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> Best regards,
+> Krzysztof
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
