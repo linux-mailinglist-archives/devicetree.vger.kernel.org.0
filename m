@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9644FB15E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 03:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D18234FB179
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 03:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237353AbiDKBdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 21:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45742 "EHLO
+        id S239395AbiDKBqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 21:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244226AbiDKBdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 21:33:50 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258F23EA9E
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 18:31:38 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id i20so7718015wrb.13
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 18:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=N+Sd3XQqKZuKjlUjPG3x4ncDDe97DiTcIqhqg+djNQQ=;
-        b=AWN2Hrv4psLo6G9lENTC2PigdvnCG4+GGNTd9d2xN2xrtdCNJu7yCw8oHPjqxuLKGH
-         aWVSBsSrLmelnVnFMltar6ec4486c/lpxJYLLIn9gI9c9r9c6nTTz6/e2hdwHGJ16Ag7
-         4PjPX3w3pO9mlNkORMfOTuGDpOyiL78yGqAalrZmp9mXG/J3SRd0VQA5QQZ4K8GazAQX
-         aAGXJ50VJx5eyWFwK4VOyumWeZ0yvYtG6s5x7xpxvZcazjpiea6qRvCppLpwT5H58iBr
-         gbw6ZU0H+0mvXRmheQYtPsTsx/I4/v3eGRcTK/2x1Ndw5JfHfybgGi5biQib0wxk0giz
-         Fttw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=N+Sd3XQqKZuKjlUjPG3x4ncDDe97DiTcIqhqg+djNQQ=;
-        b=BXEDHt9p0H5kcG4c3hPFaZH/++BboZ9oNhUojKKiJK0CAzOTWXm2ZVr+ha+tbAUgpB
-         QhiPIxkgRv4ZR2XamFPG8KimyA4npWb4I6iSaIq4pS4EQVXoy0c/9zFvX116wpQ2PSG5
-         tR1lrBUSo2BkWla4uBobymt7LSRUlwfP20Wbo3EL4chAdmFdlkOM2EgBOERSmwTIGV9C
-         fJJu+rNZHizKgHPGtt5glfCY9ZqNX20jsIswqj2PsKy0IVZKYL1f6ua3qjnnB//1tBOt
-         okzews880p84+PRWbIITHhvCp1CUr1OXWtvWbYT+3zZOAjiLvcZH69VeGj8yo8hzl20Q
-         pjTA==
-X-Gm-Message-State: AOAM531YGoUHdQZMjQvCshjwD9x5zi2Oz/UIJbMiwktZDYIK/3JpFxyn
-        IV3YyOF+EVaVjnuofNb5dqHfow==
-X-Google-Smtp-Source: ABdhPJwdit9ufgaeV7A8lq0+RA/xIZAjjtZ8xW1wVja+YAFOecwW8dpobQ6RENdabY4Fg/iKwvdNvg==
-X-Received: by 2002:a05:6000:1d93:b0:205:e0af:e079 with SMTP id bk19-20020a0560001d9300b00205e0afe079mr22340416wrb.525.1649640696684;
-        Sun, 10 Apr 2022 18:31:36 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id w1-20020a5d6081000000b002061b616b83sm15862934wrt.39.2022.04.10.18.31.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 18:31:36 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
+        with ESMTP id S235432AbiDKBqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 21:46:31 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EFBBC88;
+        Sun, 10 Apr 2022 18:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649641459; x=1681177459;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MD7Q42ZDoqyehGhEpCAOlWo7PUck1hpDtCMUuvaoFGc=;
+  b=MoagKVTstWYjEzC/Lam5BlWX7zH5eFMaz6egQ/MlGQvXOt5FfSfqBtsV
+   7toVcuHWGvAMlIsI6xnzTGdJAVFh2XWF7iPv46yimEedJeDG4pHjy4fYY
+   0khK9IB71d+hPcCy8zgA6GSqd9ylHLOtssNugJhnPzkCO/cbQy95nNH3M
+   dawIIUJ+WPT0OE4VdvHjclrjLi5/DsTKwYYXo5eEFxunkghc0He5QtGqj
+   TpAUPNLfhh50FhFgr4H3gjy9PJoEpVx1nDDyuq9GveeIarlViXpm+ezhs
+   B3G/NoxIYHTh0wuaMBLJLpx2BA4Al5lEOinNOPU88HOEH/rF28waXZwWg
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="241946643"
+X-IronPort-AV: E=Sophos;i="5.90,250,1643702400"; 
+   d="scan'208";a="241946643"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2022 18:44:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,250,1643702400"; 
+   d="scan'208";a="571899959"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.135])
+  by orsmga008.jf.intel.com with ESMTP; 10 Apr 2022 18:44:16 -0700
+Date:   Mon, 11 Apr 2022 09:36:50 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com,
+        conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, system@metrotek.ru,
+        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
         devicetree@vger.kernel.org
-Cc:     robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
-        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v2 2/2] media: i2c: imx412: Add bulk regulator support
-Date:   Mon, 11 Apr 2022 02:31:31 +0100
-Message-Id: <20220411013131.3553098-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220411013131.3553098-1-bryan.odonoghue@linaro.org>
-References: <20220411013131.3553098-1-bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v9 1/3] fpga: fpga-mgr: support bitstream offset in image
+  buffer
+Message-ID: <20220411013650.GA271264@yilunxu-OptiPlex-7050>
+References: <20220407133658.15699-1-i.bornyakov@metrotek.ru>
+ <20220407133658.15699-2-i.bornyakov@metrotek.ru>
+ <20220409050423.GA265355@yilunxu-OptiPlex-7050>
+ <20220409123851.tcjflctnuurag2yb@x260>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220409123851.tcjflctnuurag2yb@x260>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,102 +66,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depending on the platform we may need to enable and disable three separate
-regulators for the imx412.
+On Sat, Apr 09, 2022 at 03:38:51PM +0300, Ivan Bornyakov wrote:
+> On Sat, Apr 09, 2022 at 01:04:23PM +0800, Xu Yilun wrote:
+> > On Thu, Apr 07, 2022 at 04:36:56PM +0300, Ivan Bornyakov wrote:
+> > > 
+> > > ... snip ...
+> > > 
+> > > @@ -148,12 +149,10 @@ static int fpga_mgr_write_init_buf(struct fpga_manager *mgr,
+> > >  	int ret;
+> > >  
+> > >  	mgr->state = FPGA_MGR_STATE_WRITE_INIT;
+> > > -	if (!mgr->mops->initial_header_size)
+> > > -		ret = fpga_mgr_write_init(mgr, info, NULL, 0);
+> > > -	else
+> > > -		ret = fpga_mgr_write_init(
+> > > -		    mgr, info, buf, min(mgr->mops->initial_header_size, count));
+> > > +	if (mgr->mops->initial_header_size)
+> > > +		count = min(mgr->mops->initial_header_size, count);
+> > >  
+> > > +	ret = fpga_mgr_write_init(mgr, info, buf, count);
+> > 
+> > Here we pass the whole buffer for write_init(). Maybe it works for mapped buf,
+> > but still doesn't work for sg buf.
+> > 
+> > It is also inefficient if we change to map and copy all sg buffers just for
+> > write_init().
+> > 
+> > We could discuss on the solution.
+> > 
+> > My quick mind is we introduce an optional fpga_manager_ops.parse_header()
+> > callback, and a header_size (dynamic header size) field in
+> > fpga_image_info. FPGA core starts with mapping a buf of initial_header_size
+> > for parse_header(), let the drivers decide the dynamic header_size.
+> > 
+> > The parse_header() could be called several times with updated dynamic
+> > header_size, if drivers doesn't get enough buffer for final decision and
+> > return -EAGAIN.
+> > 
+> > Then write_init() be called with the final dynamic header size.
+> > 
+> > For mapped buffer, just passing the whole buffer for write_init() is
+> > fine.
+> > 
+> 
+> Ok, that's sounds reasonable. Should we pass PAGE_SIZE of a buffer to
+> the parse_header() if initial_header_size is not set? The other option
 
-- DOVDD
-Digital I/O power
+I think it is not necessary, no initial_header_size means no need to
+parse image header.
 
-- AVDD
-Analog power
+> would be to make initial_header_size to be mandatory for usage of
+> parse_header().
 
-- DVDD
-Digital core power
+That's a good idea. If parse_header() is provided, initial_header_size
+is mandatory.
 
-The addition of these regulators shouldn't affect existing users using
-fixed-on/firmware-controlled regulators.
+Thanks,
+Yilun
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/i2c/imx412.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-index be3f6ea55559..44b92718b6cf 100644
---- a/drivers/media/i2c/imx412.c
-+++ b/drivers/media/i2c/imx412.c
-@@ -11,6 +11,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-fwnode.h>
-@@ -101,6 +102,12 @@ struct imx412_mode {
- 	struct imx412_reg_list reg_list;
- };
- 
-+static const char * const imx412_supply_names[] = {
-+	"dovdd",	/* Digital I/O power */
-+	"avdd",		/* Analog power */
-+	"dvdd",		/* Digital core power */
-+};
-+
- /**
-  * struct imx412 - imx412 sensor device structure
-  * @dev: Pointer to generic device
-@@ -128,6 +135,8 @@ struct imx412 {
- 	struct media_pad pad;
- 	struct gpio_desc *reset_gpio;
- 	struct clk *inclk;
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(imx412_supply_names)];
-+	int num_supplies;
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	struct v4l2_ctrl *link_freq_ctrl;
- 	struct v4l2_ctrl *pclk_ctrl;
-@@ -946,6 +955,17 @@ static int imx412_parse_hw_config(struct imx412 *imx412)
- 		return -EINVAL;
- 	}
- 
-+	/* Get optional DT defined regulators */
-+	imx412->num_supplies = ARRAY_SIZE(imx412_supply_names);
-+	for (i = 0; i < imx412->num_supplies; i++)
-+		imx412->supplies[i].supply = imx412_supply_names[i];
-+
-+	ret = devm_regulator_bulk_get(imx412->dev,
-+				      imx412->num_supplies,
-+				      imx412->supplies);
-+	if (ret)
-+		return ret;
-+
- 	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
- 	if (!ep)
- 		return -ENXIO;
-@@ -1011,6 +1031,13 @@ static int imx412_power_on(struct device *dev)
- 	struct imx412 *imx412 = to_imx412(sd);
- 	int ret;
- 
-+	ret = regulator_bulk_enable(imx412->num_supplies,
-+				    imx412->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		goto error_reset;
-+	}
-+
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
- 
- 	ret = clk_prepare_enable(imx412->inclk);
-@@ -1044,6 +1071,9 @@ static int imx412_power_off(struct device *dev)
- 
- 	clk_disable_unprepare(imx412->inclk);
- 
-+	regulator_bulk_disable(imx412->num_supplies,
-+			       imx412->supplies);
-+
- 	return 0;
- }
- 
--- 
-2.35.1
-
+> 
+> > > 
+> > > ... snip ...
+> > > 
+> > > @@ -98,6 +101,8 @@ struct fpga_image_info {
+> > >  	struct sg_table *sgt;
+> > >  	const char *buf;
+> > >  	size_t count;
+> > > +	size_t bitstream_start;
+> > 
+> > How about we name it header_size?
+> > 
+> > > +	size_t bitstream_size;
+> > 
+> > And how about data_size?
+> > 
+> 
+> Sure, I don't mind.
