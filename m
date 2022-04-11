@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F17E74FBB26
-	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:43:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 922DA4FBB39
+	for <lists+devicetree@lfdr.de>; Mon, 11 Apr 2022 13:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243639AbiDKLqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 07:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46608 "EHLO
+        id S1344159AbiDKLt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 07:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbiDKLqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:46:03 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F411457B1
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:43:49 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id h11so19754464ljb.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:43:48 -0700 (PDT)
+        with ESMTP id S244035AbiDKLt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 07:49:58 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8855445AE6
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:47:43 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id b17so12964819qvf.12
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 04:47:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Vdw4ZXHCV2Uqoc9GaWxbHE5SGjw8cSMUbAVvs7T22GI=;
-        b=F20AJPCK1CUmmC/89HjK7NO6rVKSVy3xpQV7B137WtPj4PvbxYCWh7ZeWsyzMSxphb
-         OSORHdz36qT/dybt+JqjzG125vybXdvRrnHsaEItWGI7ONrwjpdvqLsObj8g052BsYW2
-         setyyqMFpM6YDU58chmeHDeXOS9hDx0narpJk/2lt0jLQ3Q7qUcU4OUy+Jhy2R+SX/U5
-         dg/cZzI1tTxHa3Vl8N2wMEkp+s+986jop1ipS1pwaXcRr80ONdbU/B6Ve3KkC84CIWPk
-         PZMMcbboGv6Jsu3PNaq3HwfXQ42oXfDKDmnJ+RQQe5vtaLv58+uzZJr/GO1G/wQ65Oa4
-         /1lA==
+        d=ziepe.ca; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=clUQcx1FzZV9/CrN/0nkK9UIJB8E1uPK+JxCdawkISQ=;
+        b=kNwzIcC1Tu/DEZHkYHyGdcusOmnfjVckBMYeTBJInUZNKkQIp7gU+TDBFqPHaQDF8C
+         ish4dQ1qK/mzhm7R/SzHz8s69Kh9c8NELUPppb3lHDg7OZQJBf1mOZ0WtmtPVxwSJMr5
+         Wp7/jGKL8vEBh1loLIAUaAkW3JzzKCGEh5aXtrojCCqUxeB+P/MVC2w2bZ25+olfOK05
+         h+IwHZCmGP9St3KHgy8FQEGZUcNyGs4QFlrETm28cGL1TsEqOqtgDvKf3841oU6QgutU
+         z7YRmqLG2+khtrBDCpa7g+wHDTZHUCCmAcMDKY6qxNM93WZZ8Jrb6eloV09OHCbi1HB8
+         0faw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Vdw4ZXHCV2Uqoc9GaWxbHE5SGjw8cSMUbAVvs7T22GI=;
-        b=uExQ5VJMmDViPns1n2M7USLxEUidFThKLFTqG9qhjsngTGHe4T2igqxzxTc71C50Ge
-         nMtVqqUg/5tyVEO4LjkCSo5LqfGN7d/BLJfiV/nAhOzXoPd2jwx5mRiZsOUeGV9+zGio
-         8e0xzECx8ET3J0TLoyE0mbxTTZ/oidFv3C69gFrHJuxvqhuz/qg61S7hx9/jSMZaDTKD
-         Rnn2rkhDciokkr0CUjK/kApUjhEuLsDCQ5BXyYj4ce4f9jcjXpekWYSmYeDYe8xIWjEe
-         Pn7y1doBbOy0VE9gGhHrAYMmlvT2FgDiV6697UIYPm0R8quZ0PsdOJZOOFxxVC1cELHN
-         LG/Q==
-X-Gm-Message-State: AOAM5306AWawRg6Fl2/43L4gLxmY+29UliowTzXLIrQyqyCLzkL0o6Qc
-        PqlwWRKaZIPD4bJEztt4hjdos1lOA371K+XH6cC0ZA==
-X-Google-Smtp-Source: ABdhPJzd1j57QPZdoje//KcP9Tuy/PNpiFrQTI71gFTl5ZTAYthKpmeyoPyuscLcK59MdNdaagW07TWeRFQm8huBV9w=
-X-Received: by 2002:a2e:b742:0:b0:24b:6370:1e00 with SMTP id
- k2-20020a2eb742000000b0024b63701e00mr2899689ljo.71.1649677427312; Mon, 11 Apr
- 2022 04:43:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=clUQcx1FzZV9/CrN/0nkK9UIJB8E1uPK+JxCdawkISQ=;
+        b=l0dhEByNJhGdMEUAuPQv78FOK2gg+uKPe27XjmzcuYwlapgqA4uIb3grwzGaxsv9ky
+         fnUnObPUfcECC1Y0s5YzrH9iJqc2g3yyO3Gf+zEF5ZV/7sD+HLtI9ENcyOwSFCnZLSE1
+         +KJ71jXp4B/yikU31XPBQjAhINM7Mqo0bvlfN4asJnceqDw7TVle40j43ixaZ39gTUJ1
+         s5ZeoCFJ6687iaaSxUao5swVfVg8wd45+QyB70ayu8emKqpP7aE5Y2VIbsR2aqzXRmZ7
+         sJ6/Pu2y/MCcDn8wOTxScgIsjQgcCJFwakU5WG0gXXPsCQJhqgT/70XPDeZc3i1moVTH
+         dX5w==
+X-Gm-Message-State: AOAM530U+IeAPzjkZFsF7Wb//z/A3bY9e7B1+oCV0qJ80GQNdKPx/6AC
+        C9W/X94N/4M0MQFonblWmUpZ2Q==
+X-Google-Smtp-Source: ABdhPJzkPU36RFVeX7u392AQJtCEsuNKiU4SzQV4oRld7cZwX2WbCGqmgaLTwpJDlwMCRDZTuq87aA==
+X-Received: by 2002:ad4:4eaf:0:b0:441:7ff6:f639 with SMTP id ed15-20020ad44eaf000000b004417ff6f639mr26561264qvb.73.1649677662733;
+        Mon, 11 Apr 2022 04:47:42 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.162.113.129])
+        by smtp.gmail.com with ESMTPSA id 3-20020ac85903000000b002ee83037459sm2089230qty.42.2022.04.11.04.47.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 04:47:41 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.94)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1ndsWD-00Gixt-AP; Mon, 11 Apr 2022 08:47:41 -0300
+Date:   Mon, 11 Apr 2022 08:47:41 -0300
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     Lukas Wunner <lukas@wunner.de>
+Cc:     Lino Sanfilippo <LinoSanfilippo@gmx.de>, peterhuewe@gmx.de,
+        jarkko@kernel.org, =robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stefanb@linux.ibm.com, p.rosenberger@kunbus.com
+Subject: Re: [PATCH 1/5] tpm: add functions to set and unset the tpm chips
+ reset state
+Message-ID: <20220411114741.GA64706@ziepe.ca>
+References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
+ <20220407111849.5676-2-LinoSanfilippo@gmx.de>
+ <20220407142526.GW64706@ziepe.ca>
+ <20220410171123.GA24453@wunner.de>
 MIME-Version: 1.0
-References: <cover.1648461096.git.zong.li@sifive.com> <YlA1DwdIMoQ1dXZS@matsya>
- <CANXhq0ramPvr=CL2oPsPAnWiF9X0eYVt8HGAVWPE9mZ5PfhG7A@mail.gmail.com> <YlQHkeZhHvC/n0G5@matsya>
-In-Reply-To: <YlQHkeZhHvC/n0G5@matsya>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Mon, 11 Apr 2022 19:43:35 +0800
-Message-ID: <CANXhq0r15Z9NZj+xr7K_2Tt5VbK2r4+f7Fpg-f9BY98ufgKxcw@mail.gmail.com>
-Subject: Re: [PATCH v8 0/4] Determine the number of DMA channels by
- 'dma-channels' property
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220410171123.GA24453@wunner.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,29 +78,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 6:48 PM Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 11-04-22, 10:51, Zong Li wrote:
-> > On Fri, Apr 8, 2022 at 9:13 PM Vinod Koul <vkoul@kernel.org> wrote:
-> > >
-> > > On 28-03-22, 17:52, Zong Li wrote:
-> > > > The PDMA driver currently assumes there are four channels by default, it
-> > > > might cause the error if there is actually less than four channels.
-> > > > Change that by getting number of channel dynamically from device tree.
-> > > > For backwards-compatible, it uses the default value (i.e. 4) when there
-> > > > is no 'dma-channels' information in dts.
-> > >
-> > > Applied patch 1 & 4 to dmaengine-next, thanks
-> >
-> > Hi Vinod,
-> > Thanks for your help and review. For patch 2 and 3, does it mean that
-> > we should go through the riscv tree?
->
-> Yes
->
+On Sun, Apr 10, 2022 at 07:11:23PM +0200, Lukas Wunner wrote:
+> On Thu, Apr 07, 2022 at 11:25:26AM -0300, Jason Gunthorpe wrote:
+> > On Thu, Apr 07, 2022 at 01:18:45PM +0200, Lino Sanfilippo wrote:
+> > > Currently it is not possible to set the tpm chips reset state from within
+> > > the driver. This is problematic if the chip is still in reset after the
+> > > system comes up. This may e.g. happen if the reset line is pulled into
+> > > reset state by a pin configuration in the device tree.
+> > 
+> > This kind of system is badly misdesigned.
+> > 
+> > TPM PCRs fundementally cannot work if the TPM reset line is under
+> > software control.
+> 
+> Not every system which incorporates a TPM wants to use or is even capable
+> of measuring software state of any kind or perform secure boot.
+> 
+> Those systems may merely want to use the TPM to store key material.
 
-Hi Palmer,
-Could you please help me to pick up the patch 2 and 3. Thanks :)
+Then maybe the TPM driver should make it clear somehow that the PCRs
+don't work in these systems.
 
-> --
-> ~Vinod
+It is really dangerous to add capabilities like this that should
+never, ever be used in sanely designed systems.
+
+Jason
