@@ -2,198 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5F074FD112
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 08:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 806904FD114
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 08:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351022AbiDLG5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 02:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48954 "EHLO
+        id S1351030AbiDLG5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 02:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351486AbiDLGxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 02:53:43 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C161834B;
-        Mon, 11 Apr 2022 23:41:22 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23C6fB6d126223;
-        Tue, 12 Apr 2022 01:41:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1649745671;
-        bh=ryFspbi7U5eOpPSWkofesym52c9XFNMHay0/UVI/cCA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=e0T7Sd2XbL7Jlur/ULNsmnXo1drOOWWKiPEp8LzOLxLrTUpvBUXpeUJ1MyQaow1SG
-         N7VG77gkGDvyxo4tPRvB4G0sfDzUzxHFaN1v1KnF3sEJOOKooNj+yV5bBwf2Psp+U4
-         niiRQTx61IJyLp1IeJPDgjp5kHemcsS2hveXbtis=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23C6fBtU097102
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 12 Apr 2022 01:41:11 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
- Apr 2022 01:41:10 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 12 Apr 2022 01:41:10 -0500
-Received: from [172.24.222.151] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23C6f2wV057949;
-        Tue, 12 Apr 2022 01:41:03 -0500
-Message-ID: <b1f3a81b-8384-981b-5207-01deaa6037c5@ti.com>
-Date:   Tue, 12 Apr 2022 12:11:02 +0530
+        with ESMTP id S1351774AbiDLGyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 02:54:22 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4304DBEA
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 23:44:02 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id k23so35278623ejd.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 23:44:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gdMXT9TzsyH4/nxmkBNQPgpVjR8VBr666pmrMpmTXZI=;
+        b=Sf9531F6U+Pwb0a1JtSz+UJf/7y7GtDmQlZZhYfSi+mfIvdBuA4l0w7/WatdjA9Ad6
+         TvV1/c+RE7sUGKS1/vUuU2MhBpzDMSR5e27v5CWt4Y1uEERO4rzy1WFE7UFOUTkys8y4
+         CrAZELDcitDaBEG070MG6AnwITJStO2p0wpebyOBC/F8c4E4tcDxGW0/DG5QxVW1sIpV
+         8p0pgBHVk3S74bwGfrfbc9v6owVXngqPs+TyhlqZ2FJ8kqVHCNvX0K4QrJKpDWlQQ4ZP
+         fgucKqXTCFSYrEFgMqiDfOIFe4mCpdCXVpFSuD1BRgEDhCuvS5dXmNhhvfMGmg+v/lcO
+         ESgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gdMXT9TzsyH4/nxmkBNQPgpVjR8VBr666pmrMpmTXZI=;
+        b=l9NzWhdWuXRfZa8jJo9yCPbdzYFtKdV4t50lbtmOSZClzV9phDOXYVmfeFRhK2zdmH
+         q6JHlaNsI2ufTYDx4AOVO0C6isk6Ogdu4PEjH+uQSF85wvAvuFYbocFnFGJ2Y0jZ2hsY
+         hdZT/YJhfW2tJ3DBE65U4zVxIK8mw0p18rgfz6jbTJKDvLqx9NKOLIWBHY4TaW4+CzEv
+         SCMT8T0BxKE3dy4xYgBvgmz0uoB545RM7hC6n278BaQKi3ZFIvv9lC+5cjIj2o/o/Bjs
+         tdUZ++W80Pb3+gxxH6zlXlcjWlyf/QaCYMMbrq3Hya28YYU9nl/3VY0PmNJdat9/1XPz
+         Ikew==
+X-Gm-Message-State: AOAM533wM+2+vU9CaSMcGIbrKSoolhvmoN5WlorK4qGMs9wscjrchDDI
+        unc/ubaE019JjL7mYYO/p6ciCw==
+X-Google-Smtp-Source: ABdhPJzlMIXt07hedFNdXekcNnAvfM3k0nzYSnt57hMcEFauFmO4UC80WvnBdB/kePIRmAW6KtUX+g==
+X-Received: by 2002:a17:907:1b06:b0:6e7:f58a:9b91 with SMTP id mp6-20020a1709071b0600b006e7f58a9b91mr34377224ejc.291.1649745840798;
+        Mon, 11 Apr 2022 23:44:00 -0700 (PDT)
+Received: from [192.168.0.193] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id c1-20020a50cf01000000b0041cb7e02a5csm14566517edk.87.2022.04.11.23.43.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 23:44:00 -0700 (PDT)
+Message-ID: <8ff07720-3c52-99e6-8046-501f4ae28518@linaro.org>
+Date:   Tue, 12 Apr 2022 08:43:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [RFC 01/13] dt-bindings: remoteproc: Add PRU consumer bindings
+Subject: Re: [PATCH v2 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA binding
+ to json format
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <bjorn.andersson@linaro.org>,
-        <mathieu.poirier@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <davem@davemloft.net>,
-        <kuba@kernel.org>, <netdev@vger.kernel.org>, <vigneshr@ti.com>,
-        <kishon@ti.com>
-References: <20220406094358.7895-1-p-mohan@ti.com>
- <20220406094358.7895-2-p-mohan@ti.com> <Yk7+wXwDHrtjFo9s@robh.at.kernel.org>
-From:   Puranjay Mohan <p-mohan@ti.com>
-In-Reply-To: <Yk7+wXwDHrtjFo9s@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org
+References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+ <20220410175056.79330-7-singh.kuldeep87k@gmail.com>
+ <14ecb746-56f0-2d3b-2f93-1af9407de4b7@linaro.org>
+ <20220411105810.GB33220@9a2d8922b8f1>
+ <50defa36-3d91-80ea-e303-abaade1c1f7e@linaro.org>
+ <20220412061953.GA95928@9a2d8922b8f1>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220412061953.GA95928@9a2d8922b8f1>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 07/04/22 20:39, Rob Herring wrote:
-> On Wed, Apr 06, 2022 at 03:13:46PM +0530, Puranjay Mohan wrote:
->> From: Suman Anna <s-anna@ti.com>
+On 12/04/2022 08:19, Kuldeep Singh wrote:
+> On Mon, Apr 11, 2022 at 01:38:41PM +0200, Krzysztof Kozlowski wrote:
+>> On 11/04/2022 12:58, Kuldeep Singh wrote:
+>>>> This is something new and it seems only one SoC defines it (not even one
+>>>> BAM version). I wonder whether this is actually correct or this
+>>>> particular version of BAM is slightly different. Maybe someone could
+>>>> clarify it, but if no - looks ok.
+>>>
+>>> Yes, sdm845.dtsi uses 4 entries and rest 1.
 >>
->> Add a YAML binding document for PRU consumers. The binding includes
->> all the common properties that can be used by different PRU consumer
->> or application nodes and supported by the PRU remoteproc driver.
->> These are used to configure the PRU hardware for specific user
->> applications.
+>> Yes, I know. This does not solve my wonder.
 >>
->> The application nodes themselves should define their own bindings.
+>>>
+>>>>
+>>>>> +
+>>>>> +  num-channels:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description:
+>>>>> +      Indicates supported number of DMA channels in a remotely controlled bam.
+>>>>> +
+>>>>> +  qcom,controlled-remotely:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>
+>>>> type: boolean
+>>>
+>>> Boolean comes under flag in types.yaml
+>>>
+>>> definitions:
+>>>   flag:
+>>>     oneOf:
+>>>       - type: boolean
+>>>         const: true
+>>>       - type: 'null'
+>>>
+>>> I have seen other boolean properties(spi-cpol, spi-cpha and bunch of
+>>> others) using type flag. I think we should keep flag here.
 >>
->> Co-developed-by: Tero Kristo <t-kristo@ti.com>
->> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->> ---
->>  .../bindings/remoteproc/ti,pru-consumer.yaml  | 66 +++++++++++++++++++
->>  1 file changed, 66 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->> new file mode 100644
->> index 000000000000..c245fe1de656
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->> @@ -0,0 +1,66 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Common TI PRU Consumer Binding
->> +
->> +maintainers:
->> +  - Suman Anna <s-anna@ti.com>
->> +
->> +description: |
->> +  A PRU application/consumer/user node typically uses one or more PRU device
->> +  nodes to implement a PRU application/functionality. Each application/client
->> +  node would need a reference to at least a PRU node, and optionally define
->> +  some properties needed for hardware/firmware configuration. The below
->> +  properties are a list of common properties supported by the PRU remoteproc
->> +  infrastructure.
->> +
->> +  The application nodes shall define their own bindings like regular platform
->> +  devices, so below are in addition to each node's bindings.
->> +
->> +properties:
->> +  ti,prus:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> type:boolean is just shorter and example-schema recommends it. If you
+>> want to base on something (as a template, pattern) then the
+>> example-schema is the source, the preferred one.
 > 
-> Needs contraints. A phandle-array is really a matrix of phandles and 
-> args. If no args, something like this:
-> 
-> minItems: ??
-> maxItems: ??
-> items:
->   maxItems: 1
+> I had seen other spec using flag and that's why kept same here.
 
-So, I can add:
-minItems: 1
-as max items can't be constrained.
-Also, there are no args.
+I understand, you mentioned it before. However other spec is not the
+example-schema...
 
-> 
->> +    description: phandles to the PRU, RTU or Tx_PRU nodes used
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string-array
->> +    description: |
->> +      firmwares for the PRU cores, the default firmware for the core from
->> +      the PRU node will be used if not provided. The firmware names should
->> +      correspond to the PRU cores listed in the 'ti,prus' property
->> +
->> +  ti,pruss-gp-mux-sel:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    maxItems: 6
->> +    items:
->> +        enum: [0, 1, 2, 3, 4]
->> +    description: |
->> +      array of values for the GP_MUX_SEL under PRUSS_GPCFG register for a PRU.
->> +      This selects the internal muxing scheme for the PRU instance. Values
->> +      should correspond to the PRU cores listed in the 'ti,prus' property. The
->> +      GP_MUX_SEL setting is a per-slice setting (one setting for PRU0, RTU0,
->> +      and Tx_PRU0 on K3 SoCs). Use the same value for all cores within the
->> +      same slice in the associative array. If the array size is smaller than
->> +      the size of 'ti,prus' property, the default out-of-reset value (0) for the
->> +      PRU core is used.
->> +
->> +required:
->> +  - ti,prus
->> +
->> +dependencies:
->> +  firmware-name: [ 'ti,prus' ]
->> +  ti,pruss-gp-mux-sel: [ 'ti,prus' ]
->> +
->> +additionalProperties: true
-> 
-> This must be false unless it is a common, shared schema.
+> Which example schema are you talking about?
 
-This is a shared schema, so I made it true.
+There is only one example-schema.
+$ find ./linux -name 'example-schema*'
 
-> 
->> +
->> +examples:
->> +  - |
->> +    /* PRU application node example */
->> +    pru-app {
->> +        ti,prus = <&pru0>, <&pru1>;
->> +        firmware-name = "pruss-app-fw0", "pruss-app-fw1";
->> +        ti,pruss-gp-mux-sel = <2>, <1>;
->> +    };
->> -- 
->> 2.17.1
+>>>> clocks, clock-names, qcom-ee - these are required according to old bindings.
+>>>
+>>> I missed qcom,ee. Will add in v3.
+>>>
+>>> For clocks and clock-names , there are two platforms(msm8996.dtsi,
+>>> sdm845.dtsi) where these properties are missing. And I don't want to add
+>>> some random values. Shall I skip them here? and let board owners add
+>>> them later.
 >>
->>
+>> These are required, so the SoC DTSI should be fixed. Not with random
+>> clocks but something proper. :)
+> 
+> Yes absolutely :-)
+> I have kept Srinivas in copy, who sent initial support for both the
+> dtsi. Probably he can confirm provided his email doesn't bounce.
+> 
+> Anyway Krzysztof, can you confirm the same as you have been actively
+> contributing to Qcom peripherals. I will add credit in follow-up
+> submission.
+
+Honestly not now, because I don't have access to related datasheets (I
+am working on this). You can though try to look at original (vendor)
+sources:
+https://git.codelinaro.org/clo/la/kernel/msm-4.19 (sdm845)
+https://git.codelinaro.org/clo/la/kernel/msm-3.18 (msm8996)
 
 
-Thanks,
-Puranjay
+Best regards,
+Krzysztof
