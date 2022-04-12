@@ -2,142 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 041904FDDB4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 243314FDE24
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231907AbiDLLgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 07:36:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46822 "EHLO
+        id S230403AbiDLLfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 07:35:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232561AbiDLLeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:34:50 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BB075E72;
-        Tue, 12 Apr 2022 03:13:00 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B91CE60003;
-        Tue, 12 Apr 2022 10:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649758379;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=68UMe/N6Z3nFxIrYdpsovoXjPbZxFhEBEnyv/vU9mcw=;
-        b=NOJcrTnbofpEXSCB/eWW3epn5H6PfJo97VOcruxHuNItNcwXcS7y7xH+h1/m+S7Abuvs8S
-        g6pu3R3xx8XHHcL1dvAI058NzOP7A6JhLR8yly/HhrkMndi5XCzHbtSbllF74wwpW3ECuy
-        z8qy/jd3l/SkiyMTfKlvAgEIKxGFqz0y6EDRO4cGloQXok57QTYG54sHX9cq6B1yJFoChV
-        u7bijyh2cnJxFnmuIvsdeb6RnivjDDMe2wVDFjkf14iXPjAHadlQW0t4g4xfcnvz/p40gS
-        EemqwIJLg0iAOIPfRHo/Xdrcitl2JfGsgwAHWn6xgBaSe2kF9Hq2G6MJsyp7MQ==
-Date:   Tue, 12 Apr 2022 12:12:55 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Ilpo =?UTF-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router
- support
-Message-ID: <20220412121255.63ebe280@xps13>
-In-Reply-To: <8d10c313-ecfe-4460-4040-8886aa421ef@linux.intel.com>
-References: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
-        <20220406161856.1669069-6-miquel.raynal@bootlin.com>
-        <6fbeebe2-9693-f91-78bd-451480f7a6dd@linux.intel.com>
-        <YlAgbh2AFevBktxd@smile.fi.intel.com>
-        <8d10c313-ecfe-4460-4040-8886aa421ef@linux.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S1352820AbiDLLfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:35:23 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C4813F78;
+        Tue, 12 Apr 2022 03:14:28 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23CAENQc014341;
+        Tue, 12 Apr 2022 05:14:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649758463;
+        bh=ipQpcgHXpfbJcelLyl6HL6bFtANq2NPuGwT1Zv7GR7s=;
+        h=From:To:CC:Subject:Date;
+        b=X41862wbNGiNWnnv9sSegH48kEYfCpdGYJpO4nmuVMJLowjNNvNSyjdvAQqRO8KM+
+         Pa7P12vjmp799tGzDGmbxuqqhFPp4C0mfQCRYDA5WqfTme7dq0esZwkeaWGfEwhG4Q
+         ASAkJsuknoD+gYPxH4jhAanGw9zofsLp3XB0lE3A=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23CAENLd037774
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 12 Apr 2022 05:14:23 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
+ Apr 2022 05:14:23 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 12 Apr 2022 05:14:23 -0500
+Received: from keerthy.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23CAEJmN122452;
+        Tue, 12 Apr 2022 05:14:20 -0500
+From:   Keerthy <j-keerthy@ti.com>
+To:     <robh+dt@kernel.org>, <daniel.lezcano@linaro.org>,
+        <rui.zhang@intel.com>, <amitk@kernel.org>, <kristo@kernel.org>
+CC:     <j-keerthy@ti.com>, <linux-pm@vger.kernel.org>, <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/4] thermal: k3_j72xx_bandgap: Add the bandgap driver support
+Date:   Tue, 12 Apr 2022 15:44:05 +0530
+Message-ID: <20220412101409.7980-1-j-keerthy@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ilpo, Andy,
+Add VTM thermal support. In the Voltage Thermal Management
+Module(VTM), K3 J72XX supplies a voltage reference and a temperature
+sensor feature that are gathered in the band gap voltage and
+temperature sensor (VBGAPTS) module. The band gap provides current and
+voltage reference for its internal circuits and other analog IP
+blocks. The analog-to-digital converter (ADC) produces an output value
+that is proportional to the silicon temperature.
 
-ilpo.jarvinen@linux.intel.com wrote on Fri, 8 Apr 2022 15:38:48 +0300
-(EEST):
+Currently reading temperatures only is supported.  There are no
+active/passive cooling agent supported.
 
-> On Fri, 8 Apr 2022, Andy Shevchenko wrote:
->=20
-> > On Fri, Apr 08, 2022 at 12:55:47PM +0300, Ilpo J=C3=A4rvinen wrote: =20
-> > > On Wed, 6 Apr 2022, Miquel Raynal wrote:
-> > >  =20
-> > > > The Renesas RZN1 DMA IP is based on a DW core, with eg. an addition=
-al
-> > > > dmamux register located in the system control area which can take u=
-p to
-> > > > 32 requests (16 per DMA controller). Each DMA channel can be wired =
-to
-> > > > two different peripherals.
-> > > >=20
-> > > > We need two additional information from the 'dmas' property: the ch=
-annel
-> > > > (bit in the dmamux register) that must be accessed and the value of=
- the
-> > > > mux for this channel. =20
-> >  =20
-> > > > +	mask =3D BIT(map->req_idx);
-> > > > +	mutex_lock(&dmamux->lock);
-> > > > +	dmamux->used_chans |=3D mask;
-> > > > +	ret =3D r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
-> > > > +	if (ret)
-> > > > +		goto release_chan_and_unlock;
-> > > > +
-> > > > +	mutex_unlock(&dmamux->lock);
-> > > > +
-> > > > +	return map;
-> > > > +
-> > > > +release_chan_and_unlock:
-> > > > +	dmamux->used_chans &=3D ~mask; =20
-> > >=20
-> > > Now that I check this again, I'm not sure why dmamux->used_chans |=3D=
- mask;=20
-> > > couldn't be done after r9a06g032_sysctrl_set_dmamux() call so this=20
-> > > rollback of it wouldn't be necessary. =20
-> >=20
-> > I would still need the mutex unlock which I believe is down path there =
-under
-> > some other label. Hence you are proposing something like
-> >=20
-> > 	mask =3D BIT(map->req_idx);
-> >=20
-> > 	mutex_lock(&dmamux->lock);
-> > 	ret =3D r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
-> > 	if (ret)
-> > 		goto err_unlock; // or whatever label is
-> >=20
-> > 	dmamux->used_chans |=3D mask;
-> > 	mutex_unlock(&dmamux->lock);
-> >=20
-> > 	return map;
-> >=20
-> > Is that correct? If so, I don't see impediments either. =20
->=20
-> Yes, and yes, the mutex still has to be unlocked on that error path.
->=20
-> > > Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com> =20
+J721e SoCs have errata i2128: https://www.ti.com/lit/pdf/sprz455
 
-I've done the modification, thanks for your feedback.
+The series also incorporates workaround for Errata i2128.
 
-Thanks,
-Miqu=C3=A8l
+Daniel,
+
+Apologies for the long silence on this!
+
+- Keerthy
+
+Changes in v5:
+
+  * Fixed all the comments on v4.
+  * Simplified the computation of the table.
+  * Removed unnecessary members in the structures.
+
+Changes in v4:
+
+  * Fixed compilation warning with W=1.
+
+Changes in v3:
+
+  * Removed static look up tables & added functions to dynamically generate them.
+
+Changes in v2:
+
+  * Fixed DT binding errors.
+
+Keerthy (4):
+  dt-bindings: thermal: k3-j72xx: Add VTM bindings documentation
+  arm64: dts: ti: j721e: Add VTM node
+  arm64: dts: ti: j7200: Add VTM node
+  thermal: k3_j72xx_bandgap: Add the bandgap driver support
+
+ .../bindings/thermal/ti,j72xx-thermal.yaml    |  62 ++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   9 +
+ arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi  |  45 ++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi          |   4 +
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   9 +
+ arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi  |  73 ++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   4 +
+ drivers/thermal/Makefile                      |   2 +-
+ drivers/thermal/k3_j72xx_bandgap.c            | 623 ++++++++++++++++++
+ 9 files changed, 830 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
+ create mode 100644 drivers/thermal/k3_j72xx_bandgap.c
+
+-- 
+2.17.1
+
