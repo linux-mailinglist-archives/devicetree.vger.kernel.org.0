@@ -2,103 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 992B64FDFBF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 821394FDF7E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236919AbiDLMPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 08:15:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41242 "EHLO
+        id S1353630AbiDLMQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 08:16:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344427AbiDLMON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:14:13 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B2485BCA;
-        Tue, 12 Apr 2022 04:15:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1649762107;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=LAJfLx6J2WmZC4bb1+JwTUQAf3iNcvFDt6K/GjnBeyo=;
-    b=i1+808ypX8DaCa2FQHHrzR2cUPVWbCJQbQR37xzwCqFyRjK/hyEo+6sZb3nZbBAR9I
-    S3qa/W9a4pw1J1Sb5tcBB+l0KYkq+bu4/plZytXmxSiGshI6lN9a2dFx/cCnu8aZr/Hw
-    UV6WTx4PW7VFDGAsK3oQpg36h6j0abq7DUaFCBBctI9z1Ff4gjFSpEP5sZx8SRaROiTk
-    R8VUnKVbnWHkrgXMd6HRHrvbsQ1zMRkBvMzNbVuQeMXtE61uEkPcbWaDqUbxRsqJ3Deu
-    0bXI/lwiAJypVETla80H5TAoHy6x9nj7n7XrSxr2ntn98rafoycluCFUw6TyUmunFTPw
-    lbzQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iKs="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.42.2 DYNA|AUTH)
-    with ESMTPSA id k708cfy3CBF74I3
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Tue, 12 Apr 2022 13:15:07 +0200 (CEST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH 07/18] MIPS: DTS: jz4780: fix otg node as reported by
- dtbscheck
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <3e088e18-5df9-bf50-0070-b24b8a3c5f41@wanyeetech.com>
-Date:   Tue, 12 Apr 2022 13:15:06 +0200
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <3649C5AE-FDE3-49B4-9A70-431506F78AB7@goldelico.com>
-References: <cover.1649443080.git.hns@goldelico.com>
- <298162bfa2e7225ccc753865e1ffa39ce2722b2a.1649443080.git.hns@goldelico.com>
- <bd19b6eb-d53a-b665-749d-46c275c85ccc@linaro.org>
- <822182F3-5429-4731-9FA1-8F18C5D95DEC@goldelico.com>
- <535e3eab-a28e-46f3-2a7e-f1ffd1913470@linaro.org>
- <7B66AC66-EF73-4F75-A775-589A4F98BEFC@goldelico.com>
- <3e95f567-03f5-bf9c-1856-9fe602e9b025@linaro.org>
- <81BA49E3-AFDE-4DFD-BB77-2B03488C727B@goldelico.com>
- <b6090a27-12b7-0c01-6d33-ae32b31b4b74@wanyeetech.com>
- <8FA36CE4-CD39-4767-B49E-D112E4313036@goldelico.com>
- <3e088e18-5df9-bf50-0070-b24b8a3c5f41@wanyeetech.com>
-To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>
-X-Mailer: Apple Mail (2.3445.104.21)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1353066AbiDLMPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:15:52 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5301E8B6E0
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 04:16:23 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id bg10so36655689ejb.4
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 04:16:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QftC8yM+rUi2GOJON22Vc2R4NpEgVxs6x2hJpLqwdnc=;
+        b=YiJgoYeBRq9Y21t33IryYjiuDLJTAioEQ2GbYTsR5cTeWCcL0+egkZjsFoKqqyqASX
+         mvHPFm3DGmrcyc2GLutxiyEiei0hcCNw0m7mJS/7wONYLuKhZJ41ReUF9bT9Rd5GQ46f
+         vA2PUVZkMTkeRSLxhIMy9Nz+STf5OG0321tjqe2J0RkqP/io4YuwP2teVrs8ff0xGHjl
+         TG1uklojBCOUxFJTYjSm5gPs6jrn2Ag62gYS5mGZQOXIKVe4HVGxWG8kwYCA3ObVgWC7
+         jEnFQGavM7LdDGKtyWjQVFSWmV7afJq/d/G1C+r4mNp7DUYpvJ30Z3P5LBI/eUFidqvd
+         dDHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QftC8yM+rUi2GOJON22Vc2R4NpEgVxs6x2hJpLqwdnc=;
+        b=CFQTF2vWsdspDoDuob06szv2yAP7hoD44tvd7XxwzZ//NH5EToXFFjo4gucdT40jxm
+         FdMtkV2N8I2zRBavIEw7v8NEFE9vabCvdiPHSh7JSnD0SpxuiFvsEIAYyF8NzL+JzlXn
+         odu+h1HLp+pUKfuZQOKegS4vngKVDkas41gkkNMngr2Co0v1ukY3iFaZRVBufGKHiSaT
+         wAs9YfTCETeIGOqq7DbZAXEBMaDr7ixhk1LfioppMmSycsS8MvytubqRxtFrXB0oCi8T
+         WfKH7YnyjFS6F7S1LssLBYotlVyDsgDAOm891A1nEbJhWoKShBKFdPNUMLcaVJa7PmrE
+         6riw==
+X-Gm-Message-State: AOAM532u0vdbfH0oG2Kn8i8wAYO8tz6QjzU0sgz5jSTmaY+sohH7kIqg
+        kSuTSeeltLAuAI2lLFjM1blTtQ==
+X-Google-Smtp-Source: ABdhPJwTG/0ht3PfH8/lq8uPzYm/e2Ao+H/Xa4o6fo8AnoydrKmhd5cCF0GGtULh9uSw1g9jUUd7OA==
+X-Received: by 2002:a17:906:b107:b0:6e0:a25a:af6e with SMTP id u7-20020a170906b10700b006e0a25aaf6emr34159552ejy.359.1649762181893;
+        Tue, 12 Apr 2022 04:16:21 -0700 (PDT)
+Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id e19-20020a056402105300b004162d0b4cbbsm16534904edu.93.2022.04.12.04.16.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 04:16:21 -0700 (PDT)
+Message-ID: <d74cd447-ac2f-92d5-f845-ee62d48cbd3b@linaro.org>
+Date:   Tue, 12 Apr 2022 13:16:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add SDX65 interconnect provider
+ driver
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, djakov@kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1649740053-14507-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1649740053-14507-3-git-send-email-quic_rohiagar@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1649740053-14507-3-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yanjie,
+On 12/04/2022 07:07, Rohit Agarwal wrote:
+> Add driver for the Qualcomm interconnect buses found in SDX65 based
+> platforms.
 
-> Am 12.04.2022 um 11:49 schrieb Zhou Yanjie =
-<zhouyanjie@wanyeetech.com>:
->=20
-> Hi Nikolaus,
->=20
-> On 2022/4/11 =E4=B8=8A=E5=8D=883:13, H. Nikolaus Schaller wrote:
->> Hi,
->>=20
->>=20
->> If you agree I can add "ingenic,jz4780-otg" to the schema file and =
-keep
->> the .dts in the v2 of my series.
->=20
->=20
-> Sure.
->=20
-> Or you can wait a bit, I plan to send out new patches later today, it =
-contains "ingenic,jz4780-otg".
+Thank you for your patch. There is something to discuss/improve.
 
-Would be fine! I think you will be faster than me :)
+> +
+> +static struct qcom_icc_bcm *system_noc_bcms[] = {
 
-So I'll check with your patch and drop mine from my v2 series.
+It can be array of const pointers, if you rebase on this:
+"interconnect: qcom: constify icc_node pointers"
+(I just sent it but I am not sure if it made it to the lists)
 
-BR and thanks,
-Nikolaus
+> +	&bcm_ce0,
+> +	&bcm_pn0,
+> +	&bcm_pn1,
+> +	&bcm_pn2,
+> +	&bcm_pn3,
+> +	&bcm_pn4,
+> +	&bcm_sn0,
+> +	&bcm_sn1,
+> +	&bcm_sn2,
+> +	&bcm_sn3,
+> +	&bcm_sn5,
+> +	&bcm_sn6,
+> +	&bcm_sn7,
+> +	&bcm_sn8,
+> +	&bcm_sn9,
+> +	&bcm_sn10,
+> +};
+> +
+> +static struct qcom_icc_node *system_noc_nodes[] = {
 
+The same.
+
+
+> +	[MASTER_AUDIO] = &qhm_audio,
+> +	[MASTER_BLSP_1] = &qhm_blsp1,
+> +	[MASTER_QDSS_BAM] = &qhm_qdss_bam,
+> +	[MASTER_QPIC] = &qhm_qpic,
+> +	[MASTER_SNOC_CFG] = &qhm_snoc_cfg,
+> +	[MASTER_SPMI_FETCHER] = &qhm_spmi_fetcher1,
+> +	[MASTER_ANOC_SNOC] = &qnm_aggre_noc,
+> +	[MASTER_IPA] = &qnm_ipa,
+> +	[MASTER_MEM_NOC_SNOC] = &qnm_memnoc,
+> +	[MASTER_MEM_NOC_PCIE_SNOC] = &qnm_memnoc_pcie,
+> +	[MASTER_CRYPTO] = &qxm_crypto,
+> +	[MASTER_IPA_PCIE] = &xm_ipa2pcie_slv,
+> +	[MASTER_PCIE_0] = &xm_pcie,
+> +	[MASTER_QDSS_ETR] = &xm_qdss_etr,
+> +	[MASTER_SDCC_1] = &xm_sdc1,
+> +	[MASTER_USB3] = &xm_usb3,
+> +	[SLAVE_AOSS] = &qhs_aoss,
+> +	[SLAVE_APPSS] = &qhs_apss,
+> +	[SLAVE_AUDIO] = &qhs_audio,
+> +	[SLAVE_BLSP_1] = &qhs_blsp1,
+> +	[SLAVE_CLK_CTL] = &qhs_clk_ctl,
+> +	[SLAVE_CRYPTO_0_CFG] = &qhs_crypto0_cfg,
+> +	[SLAVE_CNOC_DDRSS] = &qhs_ddrss_cfg,
+> +	[SLAVE_ECC_CFG] = &qhs_ecc_cfg,
+> +	[SLAVE_IMEM_CFG] = &qhs_imem_cfg,
+> +	[SLAVE_IPA_CFG] = &qhs_ipa,
+> +	[SLAVE_CNOC_MSS] = &qhs_mss_cfg,
+> +	[SLAVE_PCIE_PARF] = &qhs_pcie_parf,
+> +	[SLAVE_PDM] = &qhs_pdm,
+> +	[SLAVE_PRNG] = &qhs_prng,
+> +	[SLAVE_QDSS_CFG] = &qhs_qdss_cfg,
+> +	[SLAVE_QPIC] = &qhs_qpic,
+> +	[SLAVE_SDCC_1] = &qhs_sdc1,
+> +	[SLAVE_SNOC_CFG] = &qhs_snoc_cfg,
+> +	[SLAVE_SPMI_FETCHER] = &qhs_spmi_fetcher,
+> +	[SLAVE_SPMI_VGI_COEX] = &qhs_spmi_vgi_coex,
+> +	[SLAVE_TCSR] = &qhs_tcsr,
+> +	[SLAVE_TLMM] = &qhs_tlmm,
+> +	[SLAVE_USB3] = &qhs_usb3,
+> +	[SLAVE_USB3_PHY_CFG] = &qhs_usb3_phy,
+> +	[SLAVE_ANOC_SNOC] = &qns_aggre_noc,
+> +	[SLAVE_SNOC_MEM_NOC_GC] = &qns_snoc_memnoc,
+> +	[SLAVE_IMEM] = &qxs_imem,
+> +	[SLAVE_SERVICE_SNOC] = &srvc_snoc,
+> +	[SLAVE_PCIE_0] = &xs_pcie,
+> +	[SLAVE_QDSS_STM] = &xs_qdss_stm,
+> +	[SLAVE_TCU] = &xs_sys_tcu_cfg,
+> +};
+> +
+> +static struct qcom_icc_desc sdx65_system_noc = {
+
+All these structures can be const.
+
+Best regards,
+Krzysztof
