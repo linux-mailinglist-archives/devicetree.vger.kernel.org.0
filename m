@@ -2,210 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42BF84FE775
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 19:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97E694FE78C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 20:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347871AbiDLRwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 13:52:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51830 "EHLO
+        id S236694AbiDLSE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 14:04:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbiDLRwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 13:52:18 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 981194756F;
-        Tue, 12 Apr 2022 10:49:59 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id q14so24993315ljc.12;
-        Tue, 12 Apr 2022 10:49:59 -0700 (PDT)
+        with ESMTP id S232756AbiDLSEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 14:04:24 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 080395A15D;
+        Tue, 12 Apr 2022 11:02:06 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id nt14-20020a17090b248e00b001ca601046a4so3790076pjb.0;
+        Tue, 12 Apr 2022 11:02:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=bZD6MIHOgstiitM1UOkrGGlVLBJ6vm9PI8DMS7m0H98=;
-        b=dymxGqcQwtPQPM6BPjjBYCYZXG8ECnjuvlwfz0ISm2672OAB2V6jnch6NLABRwyi0y
-         FbVdqZC84Uwxc61L7KKgWOoReDCbY2oowB86e1km5QKO/4dfaCLjyIZ8pq7Pzg9RVdh7
-         EpUZm5M8ciyCUfnTNNlTqCDgxHU5ssagpbiC4FRSbU7B7QRAZltyPEbz/eAng7KM0MSF
-         16Hoch8imIBBEWytaRg94lcgTdtXX5y6GsvosltNqBjSdNuw0trpVqzv1764Dnifw8P6
-         iuThqU1mdYBbnFc/SgLKE5z5uLerFdr07hOTU2znNxIYd38e5WRRriR9+n+kw3IYH6jX
-         ShWg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KD3zlhA4cnu+F8Ye3bhSZQoi9dOhZ7oX6Of6NoxUUuk=;
+        b=iCV26r+EyhOpvQyEn8WdLCWBOQ4OpaL8UodOn8ua4BC/Q/QHEOiVx5lPx/ZLNmhkr3
+         z+juAfN3JLD9T5FhqgJRBwEqc0LKZnjU2fSzjGEFGDJMEbOJd4jtE9YPC0w5FnNiGMvk
+         4RkbVGo09yl2USiIoe/oMQfhxY1Pef+eCmp8tDE5vDiLu2q0U2/QZazh/ayjMJj47/UL
+         UtCBr0ROq5yagnvTt4xiLC4Ut52nYyab2dCgb8921SBD/ydYeP/+8ltyei70aJ6ZNSe0
+         eBbYeU89jNImPvSLIDF4JIUuluccMh43n13h0XJaomdvq0nDzlONJZ6S/87nRRCr/eud
+         Iz8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bZD6MIHOgstiitM1UOkrGGlVLBJ6vm9PI8DMS7m0H98=;
-        b=Pmrm0FL0JUxG3gpxg15nJVaeAvwBt+ySn2ikN5FsmUisoqBAWuK8aupO5bBtjDUy8P
-         NGg0cGWbHz08DjlTXbCC2tJdO9ktis6oeV8tiSsKI/qNBZfiUbDS5bNGAp2jme08FyHY
-         6VlDxXednvGaBSVOHrPjfU8EdtGbzJ0gfL7586FFehMPvKfQy7lYzMvOGM3F0QRBjpZ2
-         20JQMcY2abSj8mfoZh8qvsf6JcjxfDIvWoDwkp01WL9i/w2idPpfgS49gOX+cYdAyqoz
-         Bq9eHksf/x6h6Dl/GB9D4GzKPLzVsC/OpnHND9GsqPPVdVbOCQEDwfT4cYxquAeqRrTl
-         IcPg==
-X-Gm-Message-State: AOAM53041WpXnve9EQoIZUxSBz942dnZOSnK+rVhZPdKSE82Fnjp/KzI
-        QGFkN/js9HMxroHWvFZPaDE=
-X-Google-Smtp-Source: ABdhPJxveI9cOFkBq9T1R6cPlKQLl1G0bBU3Tc2fCUa97Rtzngv/cvXMNyWJdUZ4qO6S9gkX0Mnh7A==
-X-Received: by 2002:a2e:a362:0:b0:24b:5c8d:3a71 with SMTP id i2-20020a2ea362000000b0024b5c8d3a71mr9752706ljn.305.1649785797726;
-        Tue, 12 Apr 2022 10:49:57 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id n26-20020a2e879a000000b0024b47286a60sm1666071lji.135.2022.04.12.10.49.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 10:49:57 -0700 (PDT)
-Message-ID: <ab529968-7dc5-f4c9-5ce4-5dc95b64838f@gmail.com>
-Date:   Tue, 12 Apr 2022 19:49:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Buffalo WZR-1166DHP2
-To:     SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KD3zlhA4cnu+F8Ye3bhSZQoi9dOhZ7oX6Of6NoxUUuk=;
+        b=tjdXmagNocT1UQHBKiyC1rO3DvCyQkGrf1PPCHw/csTZg3hynpTCg1Zii3HYYFIlKb
+         xb42WrDNYvrOByCPY20eP88k2eJoZJLol8y32WWWYu6jLYfHIVfd7bK68CGSubat2sqB
+         WWYf7smkl8Y0713SkHNGntnKMHuD2ICPIReH6N268xifTFXQkcNy4ZtQ1qn8t94G1bID
+         0KP+ZO4lZpgpuFpvO+tXoGs3nwxdi91kVcepuBg+p+j7CUqWqntzQGTDLwyqyU+fAeTh
+         jC3UNktXwlHzawTTAE+OkBNYV0Qkv/f69jADyLegP1cxQDbeFF7CaAwgRVoNM8qkzQz4
+         9sgg==
+X-Gm-Message-State: AOAM530yqT/8PR8t8ke+LKSxY4dfmFYo7umLg9JTpsOqyCmmsGU5jk3G
+        NLvVwAHXSaBhhziXyWizvp97y2/fDBI=
+X-Google-Smtp-Source: ABdhPJza/agHmGrmFLgonFL7VOBBA4SS8lMXCPSs9MfxWwOxa5kiBqig+Iy0FNNkQutRNULcGytwDw==
+X-Received: by 2002:a17:90a:d584:b0:1bc:e520:91f2 with SMTP id v4-20020a17090ad58400b001bce52091f2mr6402022pju.192.1649786525466;
+        Tue, 12 Apr 2022 11:02:05 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id m13-20020a62a20d000000b004fe0ce6d7a1sm30027607pff.193.2022.04.12.11.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 11:02:05 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 23:31:59 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220412154432.12124-1-takayoshi.shimamoto.360@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20220412154432.12124-1-takayoshi.shimamoto.360@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA
+ binding to json format
+Message-ID: <20220412180159.GA29479@9a2d8922b8f1>
+References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+ <20220410175056.79330-7-singh.kuldeep87k@gmail.com>
+ <14ecb746-56f0-2d3b-2f93-1af9407de4b7@linaro.org>
+ <20220411105810.GB33220@9a2d8922b8f1>
+ <50defa36-3d91-80ea-e303-abaade1c1f7e@linaro.org>
+ <20220412061953.GA95928@9a2d8922b8f1>
+ <8ff07720-3c52-99e6-8046-501f4ae28518@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8ff07720-3c52-99e6-8046-501f4ae28518@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.04.2022 17:44, SHIMAMOTO Takayoshi wrote:
-> Buffalo WZR-1166DHP2  wireless router with
+> > Which example schema are you talking about?
 > 
->   - BCM4708A0
->   - 256MiB DDR2 SDRAM
->   - 128MiB NAND flash
->   - 2T2R 11ac/a/b/g/n Wi-Fi
->   - 4x 10/100M ethernet switch
+> There is only one example-schema.
+> $ find ./linux -name 'example-schema*'
 
-Isn't that 10/100/1000?
+Example seems good to me. I will change to boolean.
 
-
-> The hardware configuration is very similar to the WZR-1750DHP,
-> except for memory size and number of antennas.
+> > Anyway Krzysztof, can you confirm the same as you have been actively
+> > contributing to Qcom peripherals. I will add credit in follow-up
+> > submission.
 > 
-> Signed-off-by: SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-> ---
->   .../boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts | 189 ++++++++++++++++++
->   1 file changed, 189 insertions(+)
->   create mode 100644 arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts
-> 
-> diff --git a/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts b/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts
-> new file mode 100644
-> index 000000000000..22e54a0a202a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts
-> @@ -0,0 +1,189 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/*
-> + * Broadcom BCM470X / BCM5301X ARM platform code.
-> + * DTS for Buffalo WZR-1166DHP2
-> + *
-> + * Copyright (C) 2014 Rafał Miłecki <zajec5@gmail.com>
-> + * Copyright (C) 2022 SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "bcm4708.dtsi"
-> +#include "bcm5301x-nand-cs0-bch8.dtsi"
-> +
-> +/ {
-> +	compatible = "buffalo,wzr-1166dhp2", "brcm,bcm4708";
-> +	model = "Buffalo WZR-1166DHP2 (BCM4708)";
+> Honestly not now, because I don't have access to related datasheets (I
+> am working on this).
 
-We stopped adding SoC name to the "model" value, please drop it.
+Yes definitely and you also must be having bunch of items in your todo list.
+Actually, I also don't have access to datasheets that's why was looking
+for inputs.
 
+> You can though try to look at original (vendor) sources:
+> https://git.codelinaro.org/clo/la/kernel/msm-4.19 (sdm845)
+> https://git.codelinaro.org/clo/la/kernel/msm-3.18 (msm8996)
 
-> +	chosen {
-> +		bootargs = "console=ttyS0,115200";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x00000000 0x08000000>,
-> +		      <0x88000000 0x08000000>;
-> +	};
-> +
-> +	spi {
-> +		compatible = "spi-gpio";
-> +		num-chipselects = <1>;
-> +		gpio-sck = <&chipcommon 7 0>;
-> +		gpio-mosi = <&chipcommon 4 0>;
-> +		cs-gpios = <&chipcommon 6 0>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		hc595: gpio_spi@0 {
-> +			compatible = "fairchild,74hc595";
-> +			reg = <0>;
-> +			registers-number = <1>;
-> +			spi-max-frequency = <100000>;
-> +
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		usb {
-> +			label = "bcm53xx:blue:usb";
-> +			gpios = <&hc595 0 GPIO_ACTIVE_HIGH>;
-> +			trigger-sources = <&ohci_port1>, <&ehci_port1>,
-> +					  <&xhci_port1>, <&ohci_port2>,
-> +					  <&ehci_port2>;
-> +			linux,default-trigger = "usbport";
-> +		};
-> +
-> +		power0 {
-> +			label = "bcm53xx:red:power";
-> +			gpios = <&hc595 1 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		power1 {
-> +			label = "bcm53xx:white:power";
-> +			gpios = <&hc595 2 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "default-on";
-> +		};
-> +
-> +		router0 {
-> +			label = "bcm53xx:blue:router";
-> +			gpios = <&hc595 3 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "default-on";
-> +		};
-> +
-> +		router1 {
-> +			label = "bcm53xx:amber:router";
-> +			gpios = <&hc595 4 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		wan {
-> +			label = "bcm53xx:blue:wan";
-> +			gpios = <&hc595 5 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "default-on";
-> +		};
-> +
-> +		wireless0 {
-> +			label = "bcm53xx:blue:wireless";
-> +			gpios = <&hc595 6 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		wireless1 {
-> +			label = "bcm53xx:amber:wireless";
-> +			gpios = <&hc595 7 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-
-I'm wondering if all new DTS files should use "function" and "color"
-instead of "label". That's preferred solution and I guess it's good idea
-to use it for new code.
+Great. I'll see if I can make most out of it.
