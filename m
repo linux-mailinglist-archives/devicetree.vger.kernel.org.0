@@ -2,164 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CE514FE470
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03DC74FE479
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356904AbiDLPSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 11:18:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
+        id S234739AbiDLPTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 11:19:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356890AbiDLPSc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:18:32 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8905E74D
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:16:14 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-deb9295679so21080596fac.6
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:16:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Go9IvpDXSR7Gejk41sTME4/PVZMxW5LbmIPwH42ez3c=;
-        b=oB8XLCKEtXmigDeFjQNL0sJlBLv5iwNx5epuN9ygeoE616XfYi7Kw9lPPA7oNqzegL
-         Tc9QtYGbbMOktFi30wj2BH+QltPtIO8XxT/7iWGR/yZzeAwzP9ENRzoPxegYkw5ZQoyK
-         KQmeEYzcooeQmyv8TwVqqfr6DZaya0NOCz8o7ICwh1GK7NPKPSTpk5bJBBDwJeIEFt7x
-         YW+o9o5VENEHkc06/TlfvBGbYjIuFaWsHL0434BCsFbHj03V/oYorKQKXrh0LZInyWTk
-         a9PLafjcUEdXVVbnK7ufRzlEke41wAMRr4U1B83CL7tiMg9dDHbsLJJh3GqB3yqse+HL
-         +MPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Go9IvpDXSR7Gejk41sTME4/PVZMxW5LbmIPwH42ez3c=;
-        b=BNwT3q+Eaw10czFJ43StKTy/yexWknOOv4sf5n/a5ZeV5j9bEOetHuoKx4XgpQIcTF
-         +yffqy2o/KdrAkHnwtMFAvs6i8rsxHh01rHMIQNsyFFy15kQH8nkL9MQ+q8UEo+2JXsp
-         +OjQoDnM6qs1HwSAkUcslslqSQF/3f1I2/Wpp1kUbsiYdGT/XWXRPrzhzttqsCRpJPHw
-         RllD6vQsPDxOPH/USE/VJcKlz3RY6gzIbrlq1KJ+E7ZNddt23ikdCv3KUcFAbugDk6Yw
-         Xnhzc2S7WMAhedhvsLBlY4ONkm74WYGE6Iv5B/TRL5dL8DlOG530v0CGCJMthVks8ZvO
-         GKAA==
-X-Gm-Message-State: AOAM5303sJ5sNaRxgev/MVwPh5mDAmFBoDEt/jYUdrCukWlctqR1YGhP
-        XgkBKDIQeEXukNMHplHGKnPjhA==
-X-Google-Smtp-Source: ABdhPJxEP7GnS1O5iaSgUztxZ1RQViAVxjyIijKeQzEMMM0+b5vJiMuOKmwEAEZ01Bj66KpDFQmesg==
-X-Received: by 2002:a05:6870:232a:b0:db:360c:7f5a with SMTP id w42-20020a056870232a00b000db360c7f5amr2215026oao.230.1649776573359;
-        Tue, 12 Apr 2022 08:16:13 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id g8-20020a9d2d88000000b005b238f7551csm13319217otb.53.2022.04.12.08.16.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 08:16:12 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 10:16:10 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RESEND 2/2] soc: qcom: rpmhpd: add sc8280xp rpmh power-domains
-Message-ID: <YlWXuiHZQXHBXz6F@builder.lan>
-References: <20220225054345.2479565-1-bjorn.andersson@linaro.org>
- <20220225054345.2479565-2-bjorn.andersson@linaro.org>
- <YlQtfu5K9IeJLPcS@hovoldconsulting.com>
+        with ESMTP id S230387AbiDLPTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:19:32 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B8C55E74D;
+        Tue, 12 Apr 2022 08:17:13 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 37A3024000E;
+        Tue, 12 Apr 2022 15:17:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649776632;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fRPbzKghNrLcWzL0upbuuhSfisRbrbkUbmUfYgSIypo=;
+        b=i/yWvK0e0N+bBW0QN02/AQQB/xfMLKHE8CbISse+qvoLnonxgWT0JMrzN3O4GI3VJ6mLIq
+        FA+Pcn5MwzHCreLJfhZbqixMBB9+TgyyRchO2565KfIqFQVOqwVCQMRsrzamqbupZrK3N4
+        pmJvepfXODmaQFRhd1t5vj9u6SRUNa6eq+mvv77sBH4tJSHWoIy/YMhs0w8F+3Fie36RRx
+        wfH6qX/1D9DlgevB7iNRkM5TPZ+1E9bdyxSL0Wv1plLMZ/e01nwF1uX5oG2zrUdpAaefHn
+        RJrMcO8VvuxGQHdQm7zwTXS6HB8w0jkaROpdjJa/lR4I4dOYmNayPokSYfeMxg==
+Date:   Tue, 12 Apr 2022 17:17:05 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router
+ support
+Message-ID: <20220412171705.0dd51846@xps13>
+In-Reply-To: <YlVdsTVpWrx+XaUH@smile.fi.intel.com>
+References: <20220412102138.45975-1-miquel.raynal@bootlin.com>
+        <20220412102138.45975-6-miquel.raynal@bootlin.com>
+        <YlVdNpuYdgzo7Vgi@smile.fi.intel.com>
+        <YlVdsTVpWrx+XaUH@smile.fi.intel.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YlQtfu5K9IeJLPcS@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 11 Apr 08:30 CDT 2022, Johan Hovold wrote:
+Hi Andy,
 
-> On Thu, Feb 24, 2022 at 09:43:45PM -0800, Bjorn Andersson wrote:
-> > The Qualcomm sc8280xp platform has 8 power-domains. Add these, and their
-> > relevant active-only variants, to the RPMh power-domain driver.
+andriy.shevchenko@linux.intel.com wrote on Tue, 12 Apr 2022 14:08:33
++0300:
+
+> On Tue, Apr 12, 2022 at 02:06:31PM +0300, Andy Shevchenko wrote:
+> > On Tue, Apr 12, 2022 at 12:21:34PM +0200, Miquel Raynal wrote:  
 > 
-> As we discussed off-list, the sc8280xp apparently has 13 domains. Guess
-> the commit message should be updated even if you don't expose all of
-> these to Linux.
+> ...
 > 
-
-Thanks for spotting that, I will update the patch and rewrite the commit
-message accordingly.
-
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  drivers/soc/qcom/rpmhpd.c | 26 ++++++++++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> > 
-> > diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-> > index 58f1dc9b9cb7..71602eb824f7 100644
-> > --- a/drivers/soc/qcom/rpmhpd.c
-> > +++ b/drivers/soc/qcom/rpmhpd.c
-> > @@ -180,6 +180,11 @@ static struct rpmhpd mxc_ao = {
-> >  	.res_name = "mxc.lvl",
-> >  };
-> >  
-> > +static struct rpmhpd nsp = {
-> > +	.pd = { .name = "nsp", },
-> > +	.res_name = "nsp.lvl",
-> > +};
-> > +
-> >  /* SDM845 RPMH powerdomains */
-> >  static struct rpmhpd *sdm845_rpmhpds[] = {
-> >  	[SDM845_CX] = &cx_w_mx_parent,
-> > @@ -363,10 +368,31 @@ static const struct rpmhpd_desc sc8180x_desc = {
-> >  	.num_pds = ARRAY_SIZE(sc8180x_rpmhpds),
-> >  };
-> >  
-> > +/* SC8280xp RPMH powerdomains */
-> > +static struct rpmhpd *sc8280xp_rpmhpds[] = {
-> > +	[SC8280XP_CX] = &cx,
-> > +	[SC8280XP_CX_AO] = &cx_ao,
-> > +	[SC8280XP_MX] = &mx,
-> > +	[SC8280XP_MX_AO] = &mx_ao,
-> > +	[SC8280XP_EBI] = &ebi,
-> > +	[SC8280XP_LCX] = &lcx,
-> > +	[SC8280XP_LMX] = &lmx,
-> > +	[SC8280XP_GFX] = &gfx,
-> > +	[SC8280XP_MMCX] = &mmcx,
-> > +	[SC8280XP_MMCX_AO] = &mmcx_ao,
-> > +	[SC8280XP_NSP] = &nsp,
-> > +};
+> > > +	clear_bit(BIT(map->req_idx), dmamux->used_chans);  
 > 
-> Commit 90c74c1c2574 ("soc: qcom: rpmhpd: Sort power-domain definitions
-> and lists") recently sorted the other arrays. Sorting by address like
-> you've implicitly done here makes it easy to compare with the firmware
-> interface, but perhaps you want to sort alphabetically for consistency.
-> 
+> On top of the previously asked, are you sure the use of BIT() is correct here?
 
-I like consistency.
+Looks like I have been tricked by the doc...
 
-> Since there apparently are no users for active-only domains in the tree,
-> perhaps they can also be added later.
-> 
-
-I'll take an extra look at this as well. Seems we do cx, mx and mmcx ao
-on the other platforms, but question is if that's only because we do it
-on previous platforms...
-
-Thanks for the review,
-Bjorn
-
-> > +
-> > +static const struct rpmhpd_desc sc8280xp_desc = {
-> > +	.rpmhpds = sc8280xp_rpmhpds,
-> > +	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
-> > +};
-> > +
-> >  static const struct of_device_id rpmhpd_match_table[] = {
-> >  	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
-> >  	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
-> >  	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
-> > +	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
-> >  	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
-> >  	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
-> >  	{ .compatible = "qcom,sm6350-rpmhpd", .data = &sm6350_desc },
-> 
-> Johan
+	* DOC: bitmap bitops
+	*  set_bit(bit, addr)                  *addr |= bit
+	*  clear_bit(bit, addr)                *addr &= ~bit
