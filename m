@@ -2,188 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C234FDC7E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 000304FDC7D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235067AbiDLKbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:31:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
+        id S232101AbiDLKbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:31:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238009AbiDLKUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:20:54 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E4F4ECEE
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:28:06 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 17so23315544lji.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:28:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=turZnB5n/CzolNSuA1M6dvnR84HpAEYW+xCag97801o=;
-        b=LLpP//XqcCWJbA7PKJ/iNKGZM7a/+mCZCyu/q5r/dhGWNinAOtWglqZZw4AmZ4v16n
-         tD4SZ/IjuZK7eUKTVDLQeH3BCO5njAy7Hvy8BN51ygyDVOxaX1P90IyzZVlMxvgCEvMV
-         H0lc6FnP98SA6xfTlopEbcdxWwQ6lb86w0+NqyPkeJfiXenhix3ZhgR8fABWpeWKuLR+
-         8BJSLY/CQantZvQqTVlLrmpGSwVc/V6yqVpzLv2fzAWxK2KACSr363O7J+VFAIqVtM/K
-         yEFBQ49PnSJgQuj9wseT7qD6eX0PTfWWR02dBNugGi18ClGko/syLvbnjx/p89gnUaU0
-         wQ0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=turZnB5n/CzolNSuA1M6dvnR84HpAEYW+xCag97801o=;
-        b=EtK3vtmIWlS8YpngmgGEf8nJ52Isrwtof/Bz87zvcfCO/MIWurdyMVWrtuk9qYOK8a
-         bhqdO0ObH6UOqxbQVb5zQk7HGheOZOQLPOT9JZnMnPLHcuVUnlMcO+M95lF182iyPli6
-         evZzYwM8OKkbwnfYEDO87l67Bo//xWZGI72EBZ8Z0zvUFopzd5aDk4s95QuOYFhvIYtM
-         Svsb7j3w28KfXJqo/qXN2Z3DVGrLNhm/0vMU2JKIhsDNvX59tgpdbd2tEZtG1Sy5Zr/5
-         Qo6xAkbEY0Um6CeacmAqow1TI77nX6y2GrfUL60Kho9HnOhRxQpvRf7euXlP50Ks1VfJ
-         N/FQ==
-X-Gm-Message-State: AOAM531ZPKwPRDM7xCZ1TK1mAlF55+9M/PIzVS3CvHI7FhXL7yB6vc4x
-        VM4bbaBleg7KBci8OtHeiyM=
-X-Google-Smtp-Source: ABdhPJzmTly0C01dv1dnFZBkivb7+onAaRQNmLX6/Q6cwjdDqEB6rqDUmd6996XnBZPaUD96eXGIQA==
-X-Received: by 2002:a05:651c:17a1:b0:247:dc02:69b9 with SMTP id bn33-20020a05651c17a100b00247dc0269b9mr22661983ljb.437.1649755684369;
-        Tue, 12 Apr 2022 02:28:04 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id m8-20020a2e9348000000b0024b47e7dda5sm1457065ljh.65.2022.04.12.02.28.02
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 12 Apr 2022 02:28:03 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220412075034.GS4012@pengutronix.de>
-Date:   Tue, 12 Apr 2022 11:28:01 +0200
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Lucas Stach <lst@pengutronix.de>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <006DD91F-E4D2-4A45-80BC-5B38A4FEBF0A@gmail.com>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220401125205.GL4012@pengutronix.de>
- <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
- <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
- <20220408080748.GA2387@pengutronix.de> <20220408120021.GO4012@pengutronix.de>
- <B3E76A7A-9B62-4E6F-9472-00B6298689C5@gmail.com>
- <20220411090800.GR4012@pengutronix.de>
- <5929E7A7-776E-4BCB-92C8-A1CE05774FE3@gmail.com>
- <20220412075034.GS4012@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1380840AbiDLKZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:25:48 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3703213D6C;
+        Tue, 12 Apr 2022 02:29:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649755751; x=1681291751;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Rb2OhLPdmdoOp2xQrfaVfs6H3bBcZA5IDC3PKqaob3g=;
+  b=bYOJH8NGQfBqrL0nLEI7MD+FZq+zK3wAfIys0YcjO4xWRgb9xMLkepjA
+   gvj1K09aknzZDWgKKu+H6ZvXMNnqqiNLVjx4bOb+mvg/0O1XxhqblvP+S
+   kacxBAxmZGDIShzYScQ/xYrf9dV08KmmAQlpYUDReMQK1kUOm4o1iYmCc
+   2hkkRQFOjpGA0KRrGYUL2Pn0dlLGfoKSIZ+jlJxQNZdls1gM64bfW/A+X
+   U4Dgvz9QkLoUUnWlyzdN/mywCGa8KDvFHEyMCjqWIg/u/UJ6Pjb7o9gyw
+   VGtyxYnwaCt8TpgVfx9TdrytPY2VwEL7Qc9rbzeqQSyklJyaNJ93NoFjv
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="261766254"
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
+   d="scan'208";a="261766254"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 02:29:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
+   d="scan'208";a="854289795"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 12 Apr 2022 02:28:59 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1neCpW-0002hb-W8;
+        Tue, 12 Apr 2022 09:28:59 +0000
+Date:   Tue, 12 Apr 2022 17:28:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Qin Jian <qinjian@cqplus1.com>, krzysztof.kozlowski@linaro.org
+Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de,
+        maz@kernel.org, p.zabel@pengutronix.de, linux@armlinux.org.uk,
+        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, Qin Jian <qinjian@cqplus1.com>
+Subject: Re: [PATCH v13 7/9] irqchip: Add Sunplus SP7021 interrupt controller
+ driver
+Message-ID: <202204121739.itrMS2oq-lkp@intel.com>
+References: <20437e316e49a3a66e7003a7dc5258086558ce9a.1649659095.git.qinjian@cqplus1.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20437e316e49a3a66e7003a7dc5258086558ce9a.1649659095.git.qinjian@cqplus1.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Qin,
+
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on pza/reset/next]
+[also build test WARNING on clk/clk-next tip/irq/core linus/master v5.18-rc2 next-20220411]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220411-145949
+base:   https://git.pengutronix.de/git/pza/linux reset/next
+config: ia64-allmodconfig (https://download.01.org/0day-ci/archive/20220412/202204121739.itrMS2oq-lkp@intel.com/config)
+compiler: ia64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/75f77401bb7a6f669659aab4efb2779bdd6aae9e
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220411-145949
+        git checkout 75f77401bb7a6f669659aab4efb2779bdd6aae9e
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/irqchip/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/irqchip/irq-sp7021-intc.c: In function 'sp_intc_handle_ext_cascaded':
+>> drivers/irqchip/irq-sp7021-intc.c:170:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     170 |         int ext_num = (int)irq_desc_get_handler_data(desc);
+         |                       ^
+   drivers/irqchip/irq-sp7021-intc.c: In function 'sp_intc_irq_map':
+>> drivers/irqchip/irq-sp7021-intc.c:218:76: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     218 |         irq_set_chained_handler_and_data(irq, sp_intc_handle_ext_cascaded, (void *)i);
+         |                                                                            ^
 
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 12.04.2022, o godz. 09:50:
->=20
->=20
-> Somehow negotiation of the format goes wrong. Applications shouldn't
-> pick these formats when the GPU is used for rendering. I don't know =
-how
-> and where this should be fixed properly, but your application should =
-use
-> DRM_FORMAT_ABGR8888 aka AB24 aka PIPE_FORMAT_R8G8B8A8_UNORM instead of
-> DRM_FORMAT_ARGB8888 aka AR24 aka PIPE_FORMAT_B8G8R8A8_UNORM.
->=20
-Applied :-)
-Results: pls see below
+vim +170 drivers/irqchip/irq-sp7021-intc.c
 
-> Could you try the following patch? It removed the formats in question
-> from the list of supported formats in the hope that your application
-> then picks one of the supported formats.
->=20
-> Sascha
->=20
-> -----------------------8<-----------------------------
->=20
-> =46rom 7427109cfd16803902b55cd5536b9212abd09665 Mon Sep 17 00:00:00 =
-2001
-> From: Sascha Hauer <s.hauer@pengutronix.de>
-> Date: Tue, 12 Apr 2022 09:42:32 +0200
-> Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
->=20
-> The cluster windows only allow AFBC compressed formats. Not all of the
-> offered formats are supported by the GPU though. Applications pick one
-> of the formats and assume that this is also supported by the GPU they
-> use to render on them, but this is not the case for all formats.
-> Particularly DRM_FORMAT_XRGB8888 and DRM_FORMAT_ARGB8888 are not
-> supported by the GPU and choosing them results in a black screen.
-> Drop these formats for now.
->=20
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
-> drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 2 --
-> 1 file changed, 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c =
-b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> index 9bf0637bf8e26..38412766e3659 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> @@ -16,8 +16,6 @@
-> #include "rockchip_drm_vop2.h"
->=20
-> static const uint32_t formats_win_full_10bit[] =3D {
-> -	DRM_FORMAT_XRGB8888,
-> -	DRM_FORMAT_ARGB8888,
-> 	DRM_FORMAT_XBGR8888,
-> 	DRM_FORMAT_ABGR8888,
-> 	DRM_FORMAT_RGB888,
-> --=20
->=20
+   166	
+   167	static void sp_intc_handle_ext_cascaded(struct irq_desc *desc)
+   168	{
+   169		struct irq_chip *chip = irq_desc_get_chip(desc);
+ > 170		int ext_num = (int)irq_desc_get_handler_data(desc);
+   171		int hwirq;
+   172	
+   173		chained_irq_enter(chip, desc);
+   174	
+   175		while ((hwirq = sp_intc_get_ext_irq(ext_num)) >= 0) {
+   176			if (unlikely(IS_GPIO_INT(hwirq) && TEST_STATE(hwirq, _IS_ACTIVE))) { // WORKAROUND
+   177				ASSIGN_STATE(hwirq, _IS_ACTIVE, false);
+   178				sp_intc_assign_bit(hwirq, REG_INTR_POLARITY, TEST_STATE(hwirq, _IS_LOW));
+   179			} else {
+   180				generic_handle_domain_irq(sp_intc.domain, hwirq);
+   181			}
+   182		}
+   183	
+   184		chained_irq_exit(chip, desc);
+   185	}
+   186	
+   187	static struct irq_chip sp_intc_chip = {
+   188		.name = "sp_intc",
+   189		.irq_ack = sp_intc_ack_irq,
+   190		.irq_mask = sp_intc_mask_irq,
+   191		.irq_unmask = sp_intc_unmask_irq,
+   192		.irq_set_type = sp_intc_set_type,
+   193	};
+   194	
+   195	static int sp_intc_irq_domain_map(struct irq_domain *domain,
+   196					  unsigned int irq, irq_hw_number_t hwirq)
+   197	{
+   198		irq_set_chip_and_handler(irq, &sp_intc_chip, handle_level_irq);
+   199		irq_set_chip_data(irq, &sp_intc_chip);
+   200		irq_set_noprobe(irq);
+   201	
+   202		return 0;
+   203	}
+   204	
+   205	static const struct irq_domain_ops sp_intc_dm_ops = {
+   206		.xlate = irq_domain_xlate_twocell,
+   207		.map = sp_intc_irq_domain_map,
+   208	};
+   209	
+   210	static int sp_intc_irq_map(struct device_node *node, int i)
+   211	{
+   212		unsigned int irq;
+   213	
+   214		irq = irq_of_parse_and_map(node, i);
+   215		if (!irq)
+   216			return -ENOENT;
+   217	
+ > 218		irq_set_chained_handler_and_data(irq, sp_intc_handle_ext_cascaded, (void *)i);
+   219	
+   220		return 0;
+   221	}
+   222	
 
-With above patch app select expected format (i think):
-
-1970-01-01 01:00:31.074643 I /dev/dri/card0: Authenticated
-1970-01-01 01:00:31.189420 I /dev/dri/card0: Found 3 planes; 3 for this =
-CRTC
-1970-01-01 01:00:31.189444 I /dev/dri/card0: Selected Plane #37 Overlay =
-for video
-1970-01-01 01:00:31.189528 I /dev/dri/card0: Supported DRM video =
-formats: NV12,NV16,NV24,YVYU,VYUY
-1970-01-01 01:00:31.189536 I /dev/dri/card0: Selected Plane #43 Overlay =
-for GUI
-1970-01-01 01:00:31.190279 I Wrote =
-/home/minimyth/.mythtv/eglfs_kms_config.json:=20
-{
-"device": "/dev/dri/card0",
-"outputs": [ { "name": "HDMI1", "format": "abgr8888", "mode": "current" =
-} ]
-}
-
-(file eglfs_kms_config.json is generated by app to configure Qt; it is =
-steep (b) in yesterday's email)=20
-I see format abgr8888 is now selected by app (this is expected t think)
-
-
-
-but later Qt says:
-
-1970-01-01 01:00:34.985215 I Qt: EGL Error : Could not create the egl =
-surface: error =3D 0x3009
-Handling Aborted
-Aborted
-=20
-I suspect Qt tries with this format talk to GLES provider - but it =
-wasn't somehow accepted by underlying EGL provider (mesa GLES)?
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
