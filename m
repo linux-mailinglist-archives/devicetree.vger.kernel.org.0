@@ -2,96 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99E2E4FE44F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:05:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CE514FE470
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356894AbiDLPHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 11:07:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46842 "EHLO
+        id S1356904AbiDLPSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 11:18:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235711AbiDLPH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:07:26 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08BBF5BE51
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:05:05 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id w4so28090089wrg.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:05:04 -0700 (PDT)
+        with ESMTP id S1356890AbiDLPSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:18:32 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8905E74D
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:16:14 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-deb9295679so21080596fac.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:16:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AU2XsmDlDNlX0BEIJLBYiWWgvTto/3B9fgEktWGlYes=;
-        b=FLvdqRwxsxx8Xo/stue2ji1qIfkqVdTAjxTS4EXVFaBypzDQTGplbAch/Ak2V+kLAO
-         1VSMTefrGAQ8MwRJM9lsr/J1AZ5q7x33iM3UKBRn63jlvQSSyuLOCPbubYe8xOPzCY0S
-         CZAfT9NJWSAKvXuIZlHOsKDY7zua6SrVtoyS42Ymh5XNMQiUYasLIjio4vYF3T6FUmf+
-         DXC7rNP1FKqVsxUMzPoJE3mIANYsQp4U2hnDwClCb0ezUCJSlojSetiiznwCkfsPLoi8
-         BQQE+P3W4xSrSR0p7HD4UOCeshOvLd6Yz2oLZqKUZppDnJV3WGLPTPJm7nNzIcMS3piu
-         bPkw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Go9IvpDXSR7Gejk41sTME4/PVZMxW5LbmIPwH42ez3c=;
+        b=oB8XLCKEtXmigDeFjQNL0sJlBLv5iwNx5epuN9ygeoE616XfYi7Kw9lPPA7oNqzegL
+         Tc9QtYGbbMOktFi30wj2BH+QltPtIO8XxT/7iWGR/yZzeAwzP9ENRzoPxegYkw5ZQoyK
+         KQmeEYzcooeQmyv8TwVqqfr6DZaya0NOCz8o7ICwh1GK7NPKPSTpk5bJBBDwJeIEFt7x
+         YW+o9o5VENEHkc06/TlfvBGbYjIuFaWsHL0434BCsFbHj03V/oYorKQKXrh0LZInyWTk
+         a9PLafjcUEdXVVbnK7ufRzlEke41wAMRr4U1B83CL7tiMg9dDHbsLJJh3GqB3yqse+HL
+         +MPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AU2XsmDlDNlX0BEIJLBYiWWgvTto/3B9fgEktWGlYes=;
-        b=s/uELezf51KuoJ3NsqCAGztzoGkk+TBniQukUY3DAs66gx5Hw9Aw+hyTpAbuC0pZnN
-         TjfGHxY4EoetZjdSfErbwPXM3BqRnJyurPG/bvU+Ka9XN1nBfoW5jUP6rlKPvhmJNOMf
-         3JR1bXEw2PoAEiPK/VWQryk+W/6mWM1bp1WBJSrL1oJeM0/kFQJSADLzKtizPkw4oJMd
-         crAtj5mgs/IdYeUWfK250ExtCAeXkbsm9jDaMmcuDF8cMqqkkbAK2hOyrSgSaKmWSSFW
-         Sn/2JKJJET9syj5I2r4pGaGwPSzttfwNJpB8bjftc/5Y0yFdNq0cD+Feszbu27kPu48X
-         ZrVw==
-X-Gm-Message-State: AOAM531xmlR5fZKLP7TJDSOZXiq+0/t54pu7QZG7i2WohskdF4BPK1o5
-        ErxEgR/rcJpLfa/Yhgki7ldQLQ==
-X-Google-Smtp-Source: ABdhPJxd7WjJ9ssivqQBFFzu00/JymmKh7NNpLeijb6Bysb443KvBJi9evGO+J3pEkJBE/id0C1F5Q==
-X-Received: by 2002:adf:ee81:0:b0:206:1b32:d6f2 with SMTP id b1-20020adfee81000000b002061b32d6f2mr28536137wro.144.1649775903583;
-        Tue, 12 Apr 2022 08:05:03 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id 61-20020adf8143000000b002061d8d807esm19685371wrm.87.2022.04.12.08.05.02
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Go9IvpDXSR7Gejk41sTME4/PVZMxW5LbmIPwH42ez3c=;
+        b=BNwT3q+Eaw10czFJ43StKTy/yexWknOOv4sf5n/a5ZeV5j9bEOetHuoKx4XgpQIcTF
+         +yffqy2o/KdrAkHnwtMFAvs6i8rsxHh01rHMIQNsyFFy15kQH8nkL9MQ+q8UEo+2JXsp
+         +OjQoDnM6qs1HwSAkUcslslqSQF/3f1I2/Wpp1kUbsiYdGT/XWXRPrzhzttqsCRpJPHw
+         RllD6vQsPDxOPH/USE/VJcKlz3RY6gzIbrlq1KJ+E7ZNddt23ikdCv3KUcFAbugDk6Yw
+         Xnhzc2S7WMAhedhvsLBlY4ONkm74WYGE6Iv5B/TRL5dL8DlOG530v0CGCJMthVks8ZvO
+         GKAA==
+X-Gm-Message-State: AOAM5303sJ5sNaRxgev/MVwPh5mDAmFBoDEt/jYUdrCukWlctqR1YGhP
+        XgkBKDIQeEXukNMHplHGKnPjhA==
+X-Google-Smtp-Source: ABdhPJxEP7GnS1O5iaSgUztxZ1RQViAVxjyIijKeQzEMMM0+b5vJiMuOKmwEAEZ01Bj66KpDFQmesg==
+X-Received: by 2002:a05:6870:232a:b0:db:360c:7f5a with SMTP id w42-20020a056870232a00b000db360c7f5amr2215026oao.230.1649776573359;
+        Tue, 12 Apr 2022 08:16:13 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id g8-20020a9d2d88000000b005b238f7551csm13319217otb.53.2022.04.12.08.16.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 08:05:03 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] ASoC: dt-bindings: tas27xx: fix invalid yaml
-Date:   Tue, 12 Apr 2022 15:04:44 +0000
-Message-Id: <20220412150444.3918829-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        Tue, 12 Apr 2022 08:16:12 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 10:16:10 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND 2/2] soc: qcom: rpmhpd: add sc8280xp rpmh power-domains
+Message-ID: <YlWXuiHZQXHBXz6F@builder.lan>
+References: <20220225054345.2479565-1-bjorn.andersson@linaro.org>
+ <20220225054345.2479565-2-bjorn.andersson@linaro.org>
+ <YlQtfu5K9IeJLPcS@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlQtfu5K9IeJLPcS@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The word "or" is useless and breaks yaml validation.
+On Mon 11 Apr 08:30 CDT 2022, Johan Hovold wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- Added reviewed-by
-- Fixed subject
+> On Thu, Feb 24, 2022 at 09:43:45PM -0800, Bjorn Andersson wrote:
+> > The Qualcomm sc8280xp platform has 8 power-domains. Add these, and their
+> > relevant active-only variants, to the RPMh power-domain driver.
+> 
+> As we discussed off-list, the sc8280xp apparently has 13 domains. Guess
+> the commit message should be updated even if you don't expose all of
+> these to Linux.
+> 
 
- Documentation/devicetree/bindings/sound/tas27xx.yaml | 1 -
- 1 file changed, 1 deletion(-)
+Thanks for spotting that, I will update the patch and rewrite the commit
+message accordingly.
 
-diff --git a/Documentation/devicetree/bindings/sound/tas27xx.yaml b/Documentation/devicetree/bindings/sound/tas27xx.yaml
-index 191f4bceb4ee..66a0df8850ea 100644
---- a/Documentation/devicetree/bindings/sound/tas27xx.yaml
-+++ b/Documentation/devicetree/bindings/sound/tas27xx.yaml
-@@ -20,7 +20,6 @@ properties:
-   compatible:
-     enum:
-       - ti,tas2764
--      or
-       - ti,tas2780
- 
-   reg:
--- 
-2.35.1
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  drivers/soc/qcom/rpmhpd.c | 26 ++++++++++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> > 
+> > diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
+> > index 58f1dc9b9cb7..71602eb824f7 100644
+> > --- a/drivers/soc/qcom/rpmhpd.c
+> > +++ b/drivers/soc/qcom/rpmhpd.c
+> > @@ -180,6 +180,11 @@ static struct rpmhpd mxc_ao = {
+> >  	.res_name = "mxc.lvl",
+> >  };
+> >  
+> > +static struct rpmhpd nsp = {
+> > +	.pd = { .name = "nsp", },
+> > +	.res_name = "nsp.lvl",
+> > +};
+> > +
+> >  /* SDM845 RPMH powerdomains */
+> >  static struct rpmhpd *sdm845_rpmhpds[] = {
+> >  	[SDM845_CX] = &cx_w_mx_parent,
+> > @@ -363,10 +368,31 @@ static const struct rpmhpd_desc sc8180x_desc = {
+> >  	.num_pds = ARRAY_SIZE(sc8180x_rpmhpds),
+> >  };
+> >  
+> > +/* SC8280xp RPMH powerdomains */
+> > +static struct rpmhpd *sc8280xp_rpmhpds[] = {
+> > +	[SC8280XP_CX] = &cx,
+> > +	[SC8280XP_CX_AO] = &cx_ao,
+> > +	[SC8280XP_MX] = &mx,
+> > +	[SC8280XP_MX_AO] = &mx_ao,
+> > +	[SC8280XP_EBI] = &ebi,
+> > +	[SC8280XP_LCX] = &lcx,
+> > +	[SC8280XP_LMX] = &lmx,
+> > +	[SC8280XP_GFX] = &gfx,
+> > +	[SC8280XP_MMCX] = &mmcx,
+> > +	[SC8280XP_MMCX_AO] = &mmcx_ao,
+> > +	[SC8280XP_NSP] = &nsp,
+> > +};
+> 
+> Commit 90c74c1c2574 ("soc: qcom: rpmhpd: Sort power-domain definitions
+> and lists") recently sorted the other arrays. Sorting by address like
+> you've implicitly done here makes it easy to compare with the firmware
+> interface, but perhaps you want to sort alphabetically for consistency.
+> 
 
+I like consistency.
+
+> Since there apparently are no users for active-only domains in the tree,
+> perhaps they can also be added later.
+> 
+
+I'll take an extra look at this as well. Seems we do cx, mx and mmcx ao
+on the other platforms, but question is if that's only because we do it
+on previous platforms...
+
+Thanks for the review,
+Bjorn
+
+> > +
+> > +static const struct rpmhpd_desc sc8280xp_desc = {
+> > +	.rpmhpds = sc8280xp_rpmhpds,
+> > +	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
+> > +};
+> > +
+> >  static const struct of_device_id rpmhpd_match_table[] = {
+> >  	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
+> >  	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
+> >  	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
+> > +	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
+> >  	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
+> >  	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
+> >  	{ .compatible = "qcom,sm6350-rpmhpd", .data = &sm6350_desc },
+> 
+> Johan
