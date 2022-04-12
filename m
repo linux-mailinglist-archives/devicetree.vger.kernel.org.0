@@ -2,118 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF1D4FD53E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E53354FD9CC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:46:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353268AbiDLIDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 04:03:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
+        id S244698AbiDLIBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 04:01:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357791AbiDLHko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:40:44 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281B13969F;
-        Tue, 12 Apr 2022 00:16:56 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id j21so18588456qta.0;
-        Tue, 12 Apr 2022 00:16:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rxaeyf8gbGoNuQoaq4wl2Y+6pdc5/JQoS19NqHJuW/8=;
-        b=iRvVNJemv7HdIvuRfYvUWK0WCNbRqTJJhvq/STsNeUg9tpISFov480jvE+GxLuP3kE
-         Yyc/zjoRd5UDjdGJwh9rV0E8Er7Fr4xRgVAlD68t+19MtkP7V99WKJnAywX1MqURo5hN
-         29Rfw4L393EXGBVDszFMECHNIMswd39SYkoAmEooyhadvgIeLMgM9P7+DEIHPJ6+yC7P
-         i2DPWbitfn6WppzY27kE0loo7gtg3Nw3RZ9xyLJEJFwzsMzep2IBVGkLMkx0aJrhx2Z7
-         szvB+8xCD21yhzTb0wX4WETt9w19p0q+Y4gEWfkJc4xSyimg6blnyNnrMvavnBpp+8lg
-         VEmQ==
-X-Gm-Message-State: AOAM531lgq+WfkGNy2Am1LBlxiqTxak2gVJu1rHUN8or1ju8qCwA93Pt
-        dv+OHgWwZjMqTaiylZ0aChaFTE+tEFV13lJt
-X-Google-Smtp-Source: ABdhPJxzUcqZ/MqWhFtJw2JLntJeRwr7dGif60jZt68cheskfjc+q1NcLgxFTZwKq9tzQC264NmA6Q==
-X-Received: by 2002:a05:622a:64b:b0:2e1:cbc3:c9ff with SMTP id a11-20020a05622a064b00b002e1cbc3c9ffmr2300195qtb.226.1649747814528;
-        Tue, 12 Apr 2022 00:16:54 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 203-20020a370ad4000000b0069bd97f4f1asm8014629qkk.77.2022.04.12.00.16.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 00:16:54 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2ec04a2ebadso71624157b3.12;
-        Tue, 12 Apr 2022 00:16:53 -0700 (PDT)
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr29212275ywb.132.1649747813680; Tue, 12
- Apr 2022 00:16:53 -0700 (PDT)
+        with ESMTP id S1377966AbiDLHyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:54:51 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB039F8;
+        Tue, 12 Apr 2022 00:33:32 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23C7XI09092329;
+        Tue, 12 Apr 2022 02:33:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649748798;
+        bh=VdCs/Pjh+iURxxt1j4N/dr32rlnP02nAMXE1v7NZKvs=;
+        h=From:To:CC:Subject:Date;
+        b=uzXEO5wn9Hu2ga7934M8A5BhJGO5x9fecsbpw54zw/DpGcfKp+mxw8cVaNFLtd3A0
+         DgVTI/QZIUBM7pWIci4weKaSCfAhP2wXGqffpWi1ApRjMiDlX0NycQdByjtAONmUd3
+         p5TaqJrZ0msS9f9xjR3q/uX1mzHqNfcTg7YdAWZk=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23C7XIrR126912
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 12 Apr 2022 02:33:18 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
+ Apr 2022 02:30:17 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 12 Apr 2022 02:30:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23C7UHL0026687;
+        Tue, 12 Apr 2022 02:30:17 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <linux-crypto@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <krzysztof.kozlowski+dt@linaro.org>, <j-choudhary@ti.com>,
+        <robh+dt@kernel.org>
+Subject: [PATCH 0/2] New compatible for sa3ul for AM62x
+Date:   Tue, 12 Apr 2022 13:00:14 +0530
+Message-ID: <20220412073016.6014-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20220411211243.11121-1-javierm@redhat.com> <20220411211243.11121-3-javierm@redhat.com>
-In-Reply-To: <20220411211243.11121-3-javierm@redhat.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 12 Apr 2022 09:16:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVuivPSRooR5CqTX6GQtxO6RQYwKUqfOK36zsiN8-v6kg@mail.gmail.com>
-Message-ID: <CAMuHMdVuivPSRooR5CqTX6GQtxO6RQYwKUqfOK36zsiN8-v6kg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: display: ssd1307fb: Extend schema for
- SPI controllers
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+This series add the new compatible for sa3ul in the bindings and
+driver file which will be used further in device tree nodes to
+enable crypto support in TI SoC AM62x.
 
-On Mon, Apr 11, 2022 at 11:12 PM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
-> The Solomon SSD130x OLED displays can either have an I2C or SPI interface,
-> add to the schema the properties and examples for OLED devices under SPI.
->
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> ---
->
-> Changes in v2:
-> - Don't add compatible strings with an "-spi" suffix (Geert Uytterhoeven).
+I will post the patch to enable crypto accelerator once this series
+is merged.
 
-Thanks for the update!
+Jayesh Choudhary (2):
+  dt-bindings: crypto: ti,sa2ul: Add a new compatible for AM62
+  crypto: sa2ul: Add the new compatible for AM62
 
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -39,9 +39,14 @@ properties:
->    reset-gpios:
->      maxItems: 1
->
-> +  dc-gpios:
-> +    maxItems: 1
-> +
+ Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml | 1 +
+ drivers/crypto/sa2ul.c                                 | 1 +
+ 2 files changed, 2 insertions(+)
 
-Perhaps add a description, and clarify this is for SPI only?
+-- 
+2.17.1
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
