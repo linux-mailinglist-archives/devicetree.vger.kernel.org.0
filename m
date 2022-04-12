@@ -2,73 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C0564FE5DA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 18:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5154FE635
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 18:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357677AbiDLQdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 12:33:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
+        id S1357861AbiDLQr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 12:47:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354747AbiDLQc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 12:32:56 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2649C5DE61
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:30:38 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id g18so13456510ejc.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:30:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gAj5xfHelclFReLdPPkYeZY0lE/SV5SVwgS8pMhTnxw=;
-        b=ooxwf1D2Mzc648NR6tfapMy+bq0FJ8IPXHeL8J/mpMDNxQfZMAVKr+BY3nD70ynTzl
-         Zlt/s+voJVfTfwCV02Z25lSnfoaakmM2M5z0gyggFHXn9kAeQcXW0ECD8fj7tGWr2nq1
-         NDcgWq2ShvCntNE4hjUh//ji69yh6AE/leeBXQ5IAtQ1//dIR6MSL3g0kuoAlA4IkR4V
-         qLNhlgx/zisOQbb6Ig3EH3SGK+gC6/fNAr75elsMtsg+BjCzLjRPU/L7y4VVitNYhtKi
-         HqbFuMrLHZU3sW3jrHPdLCbCRRUySxiGI2DKQHijVJE3UBrcBLlgnwaHaf0xik/AtBOm
-         i8mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gAj5xfHelclFReLdPPkYeZY0lE/SV5SVwgS8pMhTnxw=;
-        b=z8B6DT/JVZDO6Gc2k0PIOPBBx56/llmYT4/ccYhSz7BtPQLM9FkddTwPcyYkwisA/N
-         qC8aQuMhBq/2zJu68QDHq62w/gTcIza2cQuSHagNpJK6uN2oyeSKyrXEoFf4c9FlrFQL
-         44sIYonp8CJcfy3OpHY/Do7TC+u5VYjQhDoskWK5bMs0hyDct96pm29plYLZ9tpUI/w4
-         02CEC/45WK8DsaOs3o4ROQSX04cSs8bjNb+wcXZyUXxXJXT8crJ5/x0Rwi1K5gTfRFRQ
-         tlp4pylSK/TN8yEO1wVt30t2ocQ85ADkUvjzgGkV2dzJ9x6dYuuu2jSJkXvFCRtE5IWU
-         N06Q==
-X-Gm-Message-State: AOAM531dUzdZ5teQmgvLIdthBYAcWxu8cmMRMbZOXVS6ibyJ5yHrsVuw
-        HTkv4U0+Oo4gcGS976xv9YV80g==
-X-Google-Smtp-Source: ABdhPJwK8gR7AiQ34rV2PoWL7kth4RYbKFkRLOIq1Ammnm02jL+1fJVqgJdWykKP2fbJd9VqevTEYw==
-X-Received: by 2002:a17:907:3f18:b0:6e8:9332:542e with SMTP id hq24-20020a1709073f1800b006e89332542emr9689224ejc.633.1649781036722;
-        Tue, 12 Apr 2022 09:30:36 -0700 (PDT)
-Received: from [192.168.0.197] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id z21-20020a05640240d500b0041d7f66a9cesm3375964edb.41.2022.04.12.09.30.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 09:30:36 -0700 (PDT)
-Message-ID: <11a0ac1f-31a4-841b-6050-7876b784b960@linaro.org>
-Date:   Tue, 12 Apr 2022 18:30:35 +0200
+        with ESMTP id S1357874AbiDLQrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 12:47:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745DD41633;
+        Tue, 12 Apr 2022 09:45:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A197618E3;
+        Tue, 12 Apr 2022 16:45:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9ABBC385A1;
+        Tue, 12 Apr 2022 16:45:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649781926;
+        bh=9WqfLsITCMQXM6BzvIJqgUUTiyJhjqSLaU3vvrhppUY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=EPRs9cD4B+WGLVGyn7/owde2rI1JLkCO4GeFwhlhNyrTK8tJg89r4e3vS8UwUyRh1
+         xjsdyvSayYgzzwg+nELxF7Hl/H8LDlVR1XivUJ6zd0PtLiRzeMlTunNGoB2Dv+KiZX
+         PMwfO+se/K+71qvzHp17lAcTuok75yU9D92ZH6zzz4Ksm4/WCF3urCK6OxehCI3Ib9
+         4nNKwt7r6lIOTlKMOk83Tt8ASAmAP5SO1amo/0x2uVFsn5FDgEIK42lqMNLGy8Wcny
+         zMwYD9j9I8jmBpfbLvXrLkqP32pFT4XUaguBIowlSGimo1QxNjVG6Zc+IEI0qdRW7b
+         YS+S+WaZ89rmA==
+Date:   Tue, 12 Apr 2022 09:45:24 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     <alexandru.tachici@analog.com>
+Cc:     <andrew@lunn.ch>, <o.rempel@pengutronix.de>, <davem@davemloft.net>,
+        <devicetree@vger.kernel.org>, <hkallweit1@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
+        <netdev@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v6 4/7] net: phy: Add 10BASE-T1L support in phy-c45
+Message-ID: <20220412094524.178b8785@kernel.org>
+In-Reply-To: <20220412130706.36767-5-alexandru.tachici@analog.com>
+References: <20220412130706.36767-1-alexandru.tachici@analog.com>
+        <20220412130706.36767-5-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
-Content-Language: en-US
-To:     Camel Guo <camel.guo@axis.com>, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20220412135232.1943677-1-camel.guo@axis.com>
- <20220412135232.1943677-2-camel.guo@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220412135232.1943677-2-camel.guo@axis.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,21 +56,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 15:52, Camel Guo wrote:
-> Document the TMP401, TMP411 and TMP43x device devicetree bindings
-> 
-> Signed-off-by: Camel Guo <camel.guo@axis.com>
-> ---
-> 
-> Notes:
->  v2:
->  - Fix format and describe hardware properties instead of programming
->    models
-> 
+On Tue, 12 Apr 2022 16:07:03 +0300 alexandru.tachici@analog.com wrote:
+> diff --git a/include/linux/phy.h b/include/linux/phy.h
+> index 36ca2b5c2253..6c3048e2a3ce 100644
+> --- a/include/linux/phy.h
+> +++ b/include/linux/phy.h
+> @@ -698,6 +698,8 @@ struct phy_device {
+>  	u8 mdix;
+>  	u8 mdix_ctrl;
+>  
+> +	int pma_extable;
+> +
+>  	void (*phy_link_change)(struct phy_device *phydev, bool up);
+>  	void (*adjust_link)(struct net_device *dev);
 
+kdoc warning here:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+include/linux/phy.h:711: warning: Function parameter or member 'pma_extable' not described in 'phy_device'
 
-
-Best regards,
-Krzysztof
+Please allow at least 24h between postings to collect additional
+feedback.
