@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D70014FCC2C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 04:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66B4C4FCC2D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 04:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241222AbiDLCIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 22:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59704 "EHLO
+        id S242780AbiDLCJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 22:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238348AbiDLCIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 22:08:41 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D587338A6
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:06:25 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id r8so17656550oib.5
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:06:25 -0700 (PDT)
+        with ESMTP id S244789AbiDLCJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 22:09:49 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFCF33A31
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:07:30 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id y3-20020a056830070300b005cd9c4d03feso12510741ots.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:07:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=xxag4ZIW149CcrXtrH0YzGowXRWMVfXwU6q0iOTY4aw=;
-        b=QcU2pNfiNQyR3sB69cLBKlINF0W9SjcbPiSADwFAeeYgc9S8GzTKpj5yOXGpuNhb4S
-         9clWPUha0Qjh8ipiB9i8VypSgCAd615ATTObJEPg+1guSmoZD+PEeADqlBbKVRq3p7fB
-         6rPqpqdMq1YnLaNSEQ7cQTO1Q9+U2FYqCmjpqgxG0lTCDA1IMv1YRBXt9mKFAW7ciaJi
-         odq5/bGzXnYndNIGKpBkRtCVcbbqokKanyUl41zaMaaiZsivqdKsQ/HjnPFpFfeo3R9g
-         mr6DtVWAxQ/W7+ZYrAYEGqrlS1EXS+DhKL3gemY8Lq/TlXJrF9mIEJPNhzA7in1z/daH
-         DKLg==
+        bh=SCI03q6KO7RJ8Z0gQrLEcavVh4DD9/KhxNuCwaK92/8=;
+        b=j9n/z9YTNVBTgBoufuLxjrlPhahiK7Y1pEkMlxFHdAn45f8wAwn2Q4pTg3k4vy5oa8
+         AeHX9/XcI4VjU+rUBWo8GKubGHa/N4ACtQsa1G4HUR3t8o1zjlo3eMY3Ei6V3BYiCOfR
+         te7JzGAaw+fIVt/+E+qiefPCh/3rgJiY1uOYGpwRWziG0aBUdnM94fvACKTIS9T/Dovk
+         sMAVz4hvwWOAOGaS0/spD7SlonJX5iNxlEtS2X447SaOcCVxvWiVJ4HRjgZ3Hjg9235F
+         K7MJLibHxeApa/fPUDfPLXZftKzfxpGms/LFb27JZpERXftJGIP+UR7YzizfbFhWf44n
+         dDPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xxag4ZIW149CcrXtrH0YzGowXRWMVfXwU6q0iOTY4aw=;
-        b=IZtzqaOEGms8uPfHX1aP+vhme6CJ2NI7Qfd6VFxhvmpPRybd/u3QaWYxWJZljhGYLj
-         0D6XtWn7Lft3XNccWjcbujFpgiMMebJ0TFqzErgCuBKsyaCvYK4czoPLobsxxDPJJ/Aq
-         9ZDIPoTLleISbp6FhZrg6QOMJzDTvNMwfDqdnwrGIBsCnHDwjD2lXWhKhYVzujvpwPSk
-         bGippKduxKK6MYoVlGVwmGE/ovk1zYJN+mPGfkJD8SxjaSj+ewLQrG3/v9dcbavyaJHB
-         o+LNbHVF37g0vC9MFpB7j5vWLIM7yxExjHLMn2hFQ7kUAsMZUdfk7yBFZ1kH5Mz4Yr0U
-         SIfw==
-X-Gm-Message-State: AOAM531k4r3wnGN4uzD59JTnJjhFLnHJBBoBhLV3AkWo78HaUCCRqUWc
-        AUwdvFjGMZHTa3uFpvleC/ez6B05wCl3Cnhz
-X-Google-Smtp-Source: ABdhPJyIOOATx5tnUyjLEexHhSq3mQk5MU+VJABvfqdqLvwOCzIaV+Htgt5wD+3GArSO8C7sr8z9BQ==
-X-Received: by 2002:a05:6808:128c:b0:2da:3751:7639 with SMTP id a12-20020a056808128c00b002da37517639mr856602oiw.294.1649729184542;
-        Mon, 11 Apr 2022 19:06:24 -0700 (PDT)
+        bh=SCI03q6KO7RJ8Z0gQrLEcavVh4DD9/KhxNuCwaK92/8=;
+        b=gstG0Qhg3jSQEhG235rmKChUSKOz5uomJusZ+J6U1Ex9m/I03L+ZzLPrahS0zFfBKg
+         N0kXdHioKi+GAbKRGGK4DpJWZ8Sc+LCHwSQR58qo/3ySm5glZ0i/bfOfskHzC4HgLZSG
+         nXqKfVCKaKrXkL+6Y/03gJT9oAyzc8dmUPndQ2W/xc5UgYUDSM84sDP1unJ379Ku3Dkh
+         dDEeyRvELp/lg6zN5lXr7jKB8VHhcZ0gUOKzZYzpof9/waCcoWlxo8oIGGJ2gn71hU5F
+         Kh5F+dn3kIfVgOpBdGttw697CPBt7qbi/dwbksYBEk1fsX7mnVtgqC8+xfChB0FzphbS
+         2SWA==
+X-Gm-Message-State: AOAM5338XR7D7Aag5COUOTy1KZ/0P+00n7QVjbQ4yDW2c1IL+89ZNP+/
+        D9K3r4HtVzCfvZi7KucMBJVhww==
+X-Google-Smtp-Source: ABdhPJztTgonoMLn9nU1x+YCwXavZRhiu3FBPzb5YXoVo7oYK3T88HqG7LAXOLMsG8REuabw3aQjMw==
+X-Received: by 2002:a9d:368:0:b0:5b2:585c:da24 with SMTP id 95-20020a9d0368000000b005b2585cda24mr12485641otv.8.1649729249445;
+        Mon, 11 Apr 2022 19:07:29 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id x20-20020a4ac594000000b00329a02f2f34sm4925186oop.16.2022.04.11.19.06.23
+        by smtp.gmail.com with ESMTPSA id e81-20020a9d01d7000000b005cdbabcbab0sm12861668ote.22.2022.04.11.19.07.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 19:06:23 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 21:06:22 -0500
+        Mon, 11 Apr 2022 19:07:28 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 21:07:27 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Cc:     agross@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
         jgrahsl@snap.com
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8250: camss: Add CCI definitions
-Message-ID: <YlTeng8OcnvUnILZ@builder.lan>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sm8250: camss: Add CAMSS block
+ definition
+Message-ID: <YlTe3/RSGwMNuwOJ@builder.lan>
 References: <20220409164556.2832782-1-bryan.odonoghue@linaro.org>
- <20220409164556.2832782-5-bryan.odonoghue@linaro.org>
+ <20220409164556.2832782-3-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220409164556.2832782-5-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220409164556.2832782-3-bryan.odonoghue@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,119 +75,185 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sat 09 Apr 11:45 CDT 2022, Bryan O'Donoghue wrote:
 
-> sm8250 has two CCI busses with two I2C busses apiece.
+> Adds a CAMSS definition block.
 > 
 > Co-developed-by: Julian Grahsl <jgrahsl@snap.com>
 > Signed-off-by: Julian Grahsl <jgrahsl@snap.com>
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 82 ++++++++++++++++++++++++++++
->  1 file changed, 82 insertions(+)
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 153 +++++++++++++++++++++++++++
+>  1 file changed, 153 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 91ed079edbf7..98e96527702b 100644
+> index 906bc8ed25b7..3d6c617de045 100644
 > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3150,6 +3150,88 @@ videocc: clock-controller@abf0000 {
+> @@ -3150,6 +3150,159 @@ videocc: clock-controller@abf0000 {
 >  			#power-domain-cells = <1>;
 >  		};
 >  
-> +		cci0: cci@ac4f000 {
-> +			compatible = "qcom,sm8250-cci";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			reg = <0 0x0ac4f000 0 0x1000>;
-> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
-> +
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&cci0_default &cci1_default>;
-> +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-
-I would prefer that you include these in the same patch.
-
-> +
+> +		camss: camss@ac6a000 {
+> +			compatible = "qcom,sm8250-camss";
 > +			status = "disabled";
 > +
-> +			cci_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
+> +			reg = <0 0xac6a000 0 0x2000>,
+> +			      <0 0xac6c000 0 0x2000>,
+> +			      <0 0xac6e000 0 0x1000>,
+> +			      <0 0xac70000 0 0x1000>,
+> +			      <0 0xac72000 0 0x1000>,
+> +			      <0 0xac74000 0 0x1000>,
+> +			      <0 0xacb4000 0 0xd000>,
+> +			      <0 0xacc3000 0 0xd000>,
+> +			      <0 0xacd9000 0 0x2200>,
+> +			      <0 0xacdb200 0 0x2200>;
+> +			reg-names = "csiphy0",
+> +				    "csiphy1",
+> +				    "csiphy2",
+> +				    "csiphy3",
+> +				    "csiphy4",
+> +				    "csiphy5",
+> +				    "vfe0",
+> +				    "vfe1",
+> +				    "vfe_lite0",
+> +				    "vfe_lite1";
 > +
-> +			cci_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
+> +			interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "csiphy0",
+> +					  "csiphy1",
+> +					  "csiphy2",
+> +					  "csiphy3",
+> +					  "csiphy4",
+> +					  "csiphy5",
+> +					  "csid0",
+> +					  "csid1",
+> +					  "csid2",
+> +					  "csid3",
+> +					  "vfe0",
+> +					  "vfe1",
+> +					  "vfe_lite0",
+> +					  "vfe_lite1";
 > +
-> +		cci1: cci@ac50000 {
-> +			compatible = "qcom,sm8250-cci";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+> +			power-domains = <&camcc IFE_0_GDSC>,
+> +					<&camcc IFE_1_GDSC>,
+> +					<&camcc TITAN_TOP_GDSC>;
 > +
-> +			reg = <0 0x0ac50000 0 0x1000>;
-> +			interrupts = <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
+> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+> +				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
+> +				 <&camcc CAM_CC_CAMNOC_AXI_CLK>,
+> +				 <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
+> +				 <&camcc CAM_CC_CORE_AHB_CLK>,
 > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_1_CLK>,
-> +				 <&camcc CAM_CC_CCI_1_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
+> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
+> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
+> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
+> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY3_CLK>,
+> +				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY4_CLK>,
+> +				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY5_CLK>,
+> +				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
+> +				 <&camcc CAM_CC_IFE_0_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_AREG_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_AREG_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
+> +
+> +			clock-names = "cam_ahb_clk",
+> +				      "cam_hf_axi",
+> +				      "cam_sf_axi",
+> +				      "camnoc_axi",
+> +				      "camnoc_axi_src",
+> +				      "core_ahb",
 > +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
+> +				      "csiphy0",
+> +				      "csiphy0_timer",
+> +				      "csiphy1",
+> +				      "csiphy1_timer",
+> +				      "csiphy2",
+> +				      "csiphy2_timer",
+> +				      "csiphy3",
+> +				      "csiphy3_timer",
+> +				      "csiphy4",
+> +				      "csiphy4_timer",
+> +				      "csiphy5",
+> +				      "csiphy5_timer",
+> +				      "slow_ahb_src",
+> +				      "vfe0_ahb",
+> +				      "vfe0_axi",
+> +				      "vfe0",
+> +				      "vfe0_cphy_rx",
+> +				      "vfe0_csid",
+> +				      "vfe0_areg",
+> +				      "vfe1_ahb",
+> +				      "vfe1_axi",
+> +				      "vfe1",
+> +				      "vfe1_cphy_rx",
+> +				      "vfe1_csid",
+> +				      "vfe1_areg",
+> +				      "vfe_lite_ahb",
+> +				      "vfe_lite_axi",
+> +				      "vfe_lite",
+> +				      "vfe_lite_cphy_rx",
+> +				      "vfe_lite_csid";
 > +
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&cci2_default &cci3_default>;
-> +			pinctrl-1 = <&cci2_sleep &cci3_sleep>;
-> +
-> +			status = "disabled";
-> +
-> +			cci_i2c2: i2c-bus@0 {
+> +			iommus = <&apps_smmu 0x800 0x400>,
+> +				 <&apps_smmu 0x801 0x400>,
+> +				 <&apps_smmu 0x840 0x400>,
+> +				 <&apps_smmu 0x841 0x400>,
+> +				 <&apps_smmu 0xC00 0x400>,
+> +				 <&apps_smmu 0xC01 0x400>,
+> +				 <&apps_smmu 0xC40 0x400>,
+> +				 <&apps_smmu 0xC41 0x400>;
 
-Are these names (the label) used somewhere in the schematics? How about
-cci0_i2c0 and cci1_i2c0 instead (unless these names are defined by some
-documentation)?
+Please use lower case hex digits in the iommus property as well.
 
-Regards,
+Thanks,
 Bjorn
 
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
 > +
-> +			cci_i2c3: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
+> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
+> +					<&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
+> +					<&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
+> +					<&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "cam_ahb",
+> +					     "cam_hf_0_mnoc",
+> +					     "cam_sf_0_mnoc",
+> +					     "cam_sf_icp_mnoc";
 > +		};
 > +
->  		camss: camss@ac6a000 {
->  			compatible = "qcom,sm8250-camss";
->  			status = "disabled";
+>  		camcc: clock-controller@ad00000 {
+>  			compatible = "qcom,sm8250-camcc";
+>  			reg = <0 0x0ad00000 0 0x10000>;
 > -- 
 > 2.35.1
 > 
