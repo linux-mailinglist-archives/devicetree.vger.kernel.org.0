@@ -2,209 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF354FDC8A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 301B54FDC79
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244046AbiDLKbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
+        id S1351989AbiDLKbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:31:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379272AbiDLKTi (ORCPT
+        with ESMTP id S1379265AbiDLKTi (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:19:38 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CFE22BEC
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:18:36 -0700 (PDT)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690C255A9
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:19:20 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id c6so6447982edn.8
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:19:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1649755117; x=1681291117;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=wllcvgbH0tVMOp4P3a8Ug7HpQsdqWo0Kq9vLghsmuEc=;
-  b=HmLHcjR8btorLIAvq24yOGctC5iFx4jgBo/w7XavgKKKwYjRNkANpA7U
-   e8QDIdQQqxgnrg3Nkta5fQjMZsIHmFTpUUfp6lNxb+EOmUV12v+T9kjxt
-   hbQDzLEFiSi59fQgKRGe1du8c04xwS3yg22QWVTLKyi8o8aqw0G0WccjL
-   k1gnDguFHN+xB6gUIYoQmGlyDKMozQ96eIdqWuxkd7N8HOiiDzCIN0WOd
-   Kc6sl0bKKl4XigleE177KVOlJJLFs38IHQuVpEk8brATwBIbOwIx67GQR
-   a33UD4eKMbENFc76BCgEL5wS21CUBj9JbBsWEHKX1qZkncOeV6v7r9mrh
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,253,1643670000"; 
-   d="scan'208";a="23243933"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 12 Apr 2022 11:18:35 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 12 Apr 2022 11:18:35 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 12 Apr 2022 11:18:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1649755115; x=1681291115;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=wllcvgbH0tVMOp4P3a8Ug7HpQsdqWo0Kq9vLghsmuEc=;
-  b=Tf5L0LxbU/NkPHHoWu8bLs1eTREnL7w5LVdrR3HOy3PZaVJn+3olcbmv
-   00+4h7FzXjfiSEvZ6RrDPuRO07UNTNS3biyaSlux3c2o4HXU+0ExcOYBJ
-   xuwB4QBhjOpjvO4oLCkr/ymCszwb04HS5+Wdydgu8LXF49XZuhTkm/wfx
-   L38yrHxUlny1x2WibC1ryQh9Yhw7wriv94SOeUsf20pU/JrNSEPqq+Yv8
-   Jg2RHsaaG7Xb0rAoveR1+g2Rv83J79dIbjrGZhqyCnHTiPdIIDzH11tF4
-   EpawZyY5vRI32/kCb7uRMrjE/UfrjVxiUNgan6RW/WoojPNFtOodWfhih
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,253,1643670000"; 
-   d="scan'208";a="23243932"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 12 Apr 2022 11:18:35 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C650C280070;
-        Tue, 12 Apr 2022 11:18:34 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v0 00/10] i.MX8MP HDMI support
-Date:   Tue, 12 Apr 2022 11:18:32 +0200
-Message-ID: <3484598.R56niFO833@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220406160123.1272911-1-l.stach@pengutronix.de>
-References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=yhcCIU7DE0IB/Ct8ayO2BJ1LjRabGTwtnXdW2NhwWWs=;
+        b=PqvgzdPye1JbNnLeS1ndUKeSzvbTLzf9u9jwRQH0yehgVdfIkSzT7BwhC2AR5ExPmP
+         eCMjwBjZh2zZ5eZs3r636bK1nLu40Tw7E29QrLn3hXAQ3Jpr5oQWmLR6rc0VWcuOVmYe
+         r7Q0HCLTHBwIs5BNVVZF9kTIGyrtXyv19bvIRcq3LvsKTEiKzj3sfz70qpvXd9sKmo6W
+         aKkb46tkUtNG8u/jlLg7GWDrD09xjD7QSyppdidKPT0nYoRFl97qjCkYrop6zfFynDMA
+         oEbyqs6NhmqDv5lJO5Jlxr7lvrHlqkPUcwXTzcG+S4nRahwFc3aZNmwDHZqyWPbi2kwB
+         HtGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yhcCIU7DE0IB/Ct8ayO2BJ1LjRabGTwtnXdW2NhwWWs=;
+        b=WgHfmVVmO1jp5NYTFhXYSWY6ONFXLSkuPl7OS/kIdivhjKo4u8QsDNW+r4uDT8XrTA
+         muelUuSylU3E/l5j2229ngZwZCpVMyJBFUyk8ZKVlR+lZQR/5tnCEvyZxWsN2daHx/bH
+         R2F1r/gc3nIGZQvb7wCUKDfUuiTY+wCH2hTWh6jWvz2WsnVAAymak5VhO51P64Xmy5aO
+         osPyspT4UVCyl4QYHFj94DqO1E7rUfgg434XAqUt/TatUK3J1aS2/14izKjG5qucT4ne
+         4rosXfyPhycP97d8tsDj+qYRPXpJrx8hJT+KHTbLlTmrpdlPRP3+Ch4y5mg8iUJOdrDe
+         KSAg==
+X-Gm-Message-State: AOAM5317UpuVvSmQKD7v53bl2vlKHVcA3x0T20jQQT7MAJnL5Fvxwt+9
+        spp4wCgWq733L1xkfTsgpb2RGw==
+X-Google-Smtp-Source: ABdhPJw1v8JMNT1scRtq0kc3RAYfJiEEHavJfzGTaArPpMPFy0ixcqU47BTStrD9lgTAaYHgpm5IJA==
+X-Received: by 2002:a50:a6d4:0:b0:41d:77aa:d876 with SMTP id f20-20020a50a6d4000000b0041d77aad876mr11619054edc.48.1649755158995;
+        Tue, 12 Apr 2022 02:19:18 -0700 (PDT)
+Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id d7-20020a50cd47000000b004187eacb4d6sm16718423edj.37.2022.04.12.02.19.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 02:19:18 -0700 (PDT)
+Message-ID: <23baab5b-722e-bdcd-be2c-62e38b2ff6a5@linaro.org>
+Date:   Tue, 12 Apr 2022 11:19:17 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 0/7] treewide: scsi: ufs: Add support for Renesas R-Car
+ UFS controller
+Content-Language: en-US
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Lucas,
-
-Am Mittwoch, 6. April 2022, 18:01:13 CEST schrieb Lucas Stach:
-> Hi all,
+On 12/04/2022 09:36, Yoshihiro Shimoda wrote:
+> This patch series adds support Renesas R-Car S4-8 UFS controller.
+> This controller has some restrictions so adds some quirks for it.
+> Before using this driver, we have to initialize a clock generator
+> on the environment board (named "Spider") by using the commands of
+> U-Boot like below:
+>  => i2c dev 0
+>  => i2c mw 0x6c 0x26 0x05
+>  => i2c olen 0x6c 2
+>  => i2c mw 0x6c 0x26c 0x2e
 > 
-> this adds support for the HDMI output pipeline on the i.MX8MP.
-> It currently depends on the i.MX8MP HDMI power domain series [1]
-> and support for the new LCDIF [2] in the i.MX8MP. I guess the
-> implementation presented here also still has some warts that
-> require fixing and the individual patches most likely need to go
-> through different maintainer trees, so I don't expect this series
-> to be applied right away.
+> To use the UFS controller, we need the following patch too:
+> https://lore.kernel.org/all/20220411124932.3765571-1-yoshihiro.shimoda.uh@renesas.com/
 > 
-> However this complete series should allow people to test it more
-> easily and provide feedback on the implementation with the full
-> picture available.
-> 
-> Compared to downstream this implementation actually allows to
-> power down the separate HDMI PHY power domain when the display
-> is inactive or no HDMI cable is connected.
 
-Thanks for these patches.
-I tried using them on my imx8mp based board (TQMa8MPxL + MBa8MPxL) but failed 
-to get the display showing anything. I noticed several things though:
-
-* For some reason the HDMI PHY PLL does not lock. I get the error
-> fsl-samsung-hdmi-phy 32fdff00.phy: PLL failed to lock
-Increasing timeout does not change anything.
-
-* The HDMI bridge wants to use bus format 0x200f which is not supported by 
-lcdif.
-> lcdif 32fc6000.display-controller: Unknown media bus format 0x200f
-I wonder which part in the DRM chain choses to use this.
-But even hard limiting to 0x100a the screen stayed in suspend
-
-* If the drivers are built as modules I get a hard lockup during boot. Using 
-built-in drivers or 'clk_ignore_unused' workarounds this.
-
-* DDC does actually work. The display is detected and EDID can be read.
-
-* Sometimes I get the following error:
-------------[ cut here ]------------
-[CRTC:33:crtc-0] vblank wait timed out
-WARNING: CPU: 2 PID: 151 at drivers/gpu/drm/drm_atomic_helper.c:1529 
-drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
-Modules linked in: caamhash_desc caamalg_desc crypto_engine rng_core mcp320x 
-dw_hdmi_cec authenc libdes dw100 videobuf2_dma_contig lcdif crct10dif_ce 
-phy_fsl_samsung_hdmi v4l2_mem2mem imx_sdma flexcan imx8mm_thermal can_dev caam 
-error pwm_fan fuse ipv6
-CPU: 2 PID: 151 Comm: kworker/u8:7 Not tainted 5.18.0-rc2-next-20220412+ #165 
-d226098cac46ded24901c7090f909ca8f5098eb0
-Hardware name: TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MPxL (DT)
-Workqueue: events_unbound deferred_probe_work_func
-pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-pc : drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
-lr : drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
-sp : ffff80000a133430
-x29: ffff80000a133430 x28: 0000000000000000 x27: 0000000000000000
-x26: 0000000000000000 x25: 0000000000000001 x24: ffff80000935f030
-x23: ffff00000433e000 x22: ffff0000029e7000 x21: 0000000000000001
-x20: ffff000002e7fb48 x19: 0000000000000000 x18: 0000000000000001
-x17: 4d554e5145530065 x16: 6c75646f6d3d4d45 x15: 5453595342555300
-x14: 0000000000000000 x13: 0a74756f2064656d x12: 6974207469617720
-x11: 0000000000000000 x10: 000000000000003a x9 : ffff80000a133430
-x8 : 00000000ffffffff x7 : 6974207469617720 x6 : 6b6e616c6276205d
-x5 : ffff00007fb91b00 x4 : 0000000000000000 x3 : 0000000000000027
-x2 : 0000000000000023 x1 : 0000000000000000 x0 : 0000000000000000
-Call trace:
- drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
- drm_atomic_helper_commit_tail_rpm+0x80/0xa0
- commit_tail+0xcc/0x1f0
- drm_atomic_helper_commit+0x13c/0x370
- drm_atomic_commit+0xa4/0xe0
- drm_client_modeset_commit_atomic+0x1fc/0x250
- drm_client_modeset_commit_locked+0x58/0xa0
- drm_client_modeset_commit+0x2c/0x50
- __drm_fb_helper_restore_fbdev_mode_unlocked+0xec/0x140
- drm_fb_helper_set_par+0x38/0x6c
- fbcon_init+0x264/0x5e4
- visual_init+0xc8/0x15c
- do_bind_con_driver.isra.0+0x20c/0x470
- do_take_over_console+0x44/0x60
- do_fbcon_takeover+0x80/0x140
- fbcon_fb_registered+0x1c4/0x260
- do_register_framebuffer+0x1e0/0x2d0
- register_framebuffer+0x2c/0x50
- __drm_fb_helper_initial_config_and_unlock+0x9c/0x130
- drm_fbdev_client_hotplug+0x1a8/0x20c
- drm_fbdev_generic_setup+0xc0/0x1d0
- lcdif_probe+0x7c/0xa0 [lcdif e756925430e957a7bc9e6376ad5964e4b1cb143e]
- platform_probe+0x64/0x100
- call_driver_probe+0x28/0x130
- really_probe+0x178/0x310
- __driver_probe_device+0xfc/0x144
- driver_probe_device+0x38/0x12c
- __device_attach_driver+0xd4/0x180
- bus_for_each_drv+0x74/0xc4
- __device_attach+0xd8/0x1e0
- device_initial_probe+0x10/0x20
- bus_probe_device+0x90/0xa0
- deferred_probe_work_func+0x9c/0xf0
- process_one_work+0x1d0/0x330
- worker_thread+0x68/0x390
- kthread+0xec/0xfc
- ret_from_fork+0x10/0x20
----[ end trace 0000000000000000 ]---
-
-But given that the PLL did not lock I assume this is not too surprising.
+Thanks for the patches. Somehow I did not got entire set (bindings
+missing) and I cannot find any of them on lore.kernel.org. Did you have
+some bounces or sending troubles?
 
 Best regards,
-Alexander
-
-
-
+Krzysztof
