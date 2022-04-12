@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 493F74FEA7D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52C694FEA6F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbiDLXTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 19:19:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
+        id S230186AbiDLXcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 19:32:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbiDLXTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:19:01 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39176433A1;
-        Tue, 12 Apr 2022 15:06:50 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id e4so193610oif.2;
-        Tue, 12 Apr 2022 15:06:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=G0pAhD9aV5AnyvwmtEpWGX9c5HWPBuJjLdVCNmvb9b0=;
-        b=dMsjOhm/N8YBqpt3hVD5slD8DOgLJRA4+YCmqdH/HbLlgR+wv+LWU1sYWu4dSfIPyx
-         eOnguFiUNWlFcy5iE0+WM1LxYj8I7DylPnYjEyn0VS+JnmJCNOBDx1mgcTWkRQc/kktt
-         7hBqgdyjWf3esvLcgLkDlba1ISGo5vB+iTDEf1WQEVpTZGs/appZ9tmKVHR5GhBUV6xw
-         N2RDFY4ipDVvWwq6lHIlajydBp5/JIoSpBnSeM7DXEe+59AYAEjcXXbyLehb1d+A/ueJ
-         DnIwZOKQ/HrzR6bsaTaBrSDe2A7sqCpg6tNqyBPOPJ3c95KUxST7y+lS5aqTdVghsPKO
-         YWUw==
-X-Gm-Message-State: AOAM5328BMKTyGTNzu05h6X99cR+ogvtTOLH4jmtKhPf3/6JKukbrGYS
-        ma7CLDdW8eqagczr4vDdDg==
-X-Google-Smtp-Source: ABdhPJxE/UsRuMfOAtqMzMZJgMh3Iphs+MRCEPCalHC0CQNxxJhgkhfFrPYjVDsBukILcUlibYaHNw==
-X-Received: by 2002:a05:6808:13d2:b0:2f9:b876:31e8 with SMTP id d18-20020a05680813d200b002f9b87631e8mr2798341oiw.157.1649801209539;
-        Tue, 12 Apr 2022 15:06:49 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ek23-20020a056870f61700b000e2f14d4f8csm1439791oab.53.2022.04.12.15.06.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 15:06:49 -0700 (PDT)
-Received: (nullmailer pid 1028482 invoked by uid 1000);
-        Tue, 12 Apr 2022 22:06:48 -0000
-Date:   Tue, 12 Apr 2022 17:06:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Qin Jian <qinjian@cqplus1.com>
-Cc:     krzysztof.kozlowski@linaro.org, linux-clk@vger.kernel.org,
-        linux@armlinux.org.uk, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, maz@kernel.org, robh+dt@kernel.org,
-        tglx@linutronix.de, p.zabel@pengutronix.de,
-        mturquette@baylibre.com, linux-kernel@vger.kernel.org,
-        sboyd@kernel.org, arnd@arndb.de
-Subject: Re: [PATCH v13 2/9] dt-bindings: reset: Add bindings for SP7021
- reset driver
-Message-ID: <YlX3+EgShsr01dkT@robh.at.kernel.org>
-References: <cover.1649659095.git.qinjian@cqplus1.com>
- <11b8f60a7f19f25d2fdaa7a2ed770e9383cec3ba.1649659095.git.qinjian@cqplus1.com>
+        with ESMTP id S230171AbiDLXb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:31:58 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8672991367;
+        Tue, 12 Apr 2022 15:18:04 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23CMHiDr025325;
+        Tue, 12 Apr 2022 17:17:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649801864;
+        bh=nyNY/m9ONJlCKzS4q3CdtgYdHO/OxuVygYMFfJGfbVc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=wNWOhax4SJjeNOYOlDh/guaxqjCaoCnetpB9byCEN81YlcKpAgDhE3L3VluOSuYVf
+         5wvXqx1oDqR/KaHrL+B1Mo/lENn677nehWEtZATpnawi/WT3skoWn/metfU/7ftVtr
+         vxU8vwSn+rFAxwY24SnlVBT5XZcoPCVrKWPNVA/A=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23CMHi3n059118
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 12 Apr 2022 17:17:44 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
+ Apr 2022 17:17:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 12 Apr 2022 17:17:43 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23CMHhdk128579;
+        Tue, 12 Apr 2022 17:17:43 -0500
+Date:   Tue, 12 Apr 2022 17:17:43 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: Add TI K3 RTC devicetree bindings
+ documentation
+Message-ID: <20220412221743.vbectb4bcghau2b7@confider>
+References: <20220412073138.25027-1-nm@ti.com>
+ <20220412073138.25027-2-nm@ti.com>
+ <dee496ce-5e74-4a53-c783-6420b2391387@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <11b8f60a7f19f25d2fdaa7a2ed770e9383cec3ba.1649659095.git.qinjian@cqplus1.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <dee496ce-5e74-4a53-c783-6420b2391387@linaro.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,19 +72,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Apr 2022 14:49:52 +0800, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 reset driver bindings.
+On 14:06-20220412, Krzysztof Kozlowski wrote:
+> > +properties:
+> > +  compatible:
+> > +    items:
 > 
-> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
-> ---
-> Move HW mapping from dt-binding header to driver.
-> ---
->  .../bindings/reset/sunplus,reset.yaml         | 38 ++++++++
->  MAINTAINERS                                   |  2 +
->  include/dt-bindings/reset/sp-sp7021.h         | 87 +++++++++++++++++++
->  3 files changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
->  create mode 100644 include/dt-bindings/reset/sp-sp7021.h
-> 
+> No need for items. Just enum under the compatible.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Will fix in next rev. Thanks for catching.
+
+> 
+> > +      - enum:
+> > +          - ti,am62-rtc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: VBUS Interface clock
+> > +      - description: 32k Clock source (external or internal).
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: "vbus"
+> > +      - const: "osc32k"
+> 
+> No quotes.
+
+Uggh.. my bad. yup
+> 
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  assigned-clocks:
+> > +    description: |
+> > +      override default osc32k parent clock reference to the osc32k clock entry
+> > +    maxItems: 1
+> > +
+> > +  assigned-clock-parents:
+> > +    description: |
+> > +      override default osc32k parent clock phandle of the new parent clock of osc32k
+> > +    maxItems: 1
+> 
+> Usually assigned-clockXXX are not needed in the bindings. Is here
+> something different? They are put only to indicate something special.
+
+I wonder if I should rather use unevaluatedproperties instead? If I use
+additionalProperties: False, then the second example below fails.
+
+Thoughts?
+> 
+> > +
+> > +  wakeup-source: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    rtc@2b1f0000 {
+> > +        compatible = "ti,am62-rtc";
+> > +        reg = <0x2b1f0000 0x100>;
+> > +        interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> > +        power-domains = <&bar 0>;
+> > +        clocks = <&foo 0>, <&foo 1>;
+> > +        clock-names = "vbus", "osc32k";
+> > +        wakeup-source;
+> > +    };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    rtc@2b1f0000 {
+> > +        compatible = "ti,am62-rtc";
+> > +        reg = <0x2b1f0000 0x100>;
+> > +        interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> > +        power-domains = <&bar 0>;
+> > +        clocks = <&foo 0>, <&foo 1>;
+> > +        clock-names = "vbus", "osc32k";
+> > +        wakeup-source;
+> > +        assigned-clocks = <&foo 1>;
+> > +        assigned-clock-parents = <&foo 2>;
+> > +
+> 
+> Unneeded blank line.
+
+Ack.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
