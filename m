@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E10764FEB98
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9630E4FEBA7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231384AbiDLXtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 19:49:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46060 "EHLO
+        id S229490AbiDLXw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 19:52:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbiDLXs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:48:58 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A92713DEC
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 16:44:00 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id t4so149162pgc.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 16:44:00 -0700 (PDT)
+        with ESMTP id S231214AbiDLXwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:52:31 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489C1B60
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 16:50:11 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id r13so271703wrr.9
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 16:50:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=VU9lamI5SC1v1PEkHOXanlr6Bu5BMP3jBswdNfiKvIQ=;
-        b=NM7LQJaUFLfZJuurMa99JDAcodT6/NkyxUNSaCP4tMIQ/62Y0Sx5IhV8eE61wE51cG
-         0ZvWfb+hv4tq3A+3o0ppm5eLCGH3NIWKNL3uHrjEuD7i3GSgcEHeuDQsvLKZBsdnC9D4
-         aTTBptwt8A3GdOWNLnCuZ23PLnOpSt2m/S7n4=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ShN/rXSZKDhy7VrfNgli/IlBDtGr/3iqN8cN4k09Vn8=;
+        b=iLzG9wP7sgYVdHoHOo3azGNItHgaCWAOJDkB/QBUnw/Edh1jsVv6a5T9dYGhH5tyKJ
+         0a5HcblT9K+dlIXdpQ3tFA0+camcJdIhX0sVlnpfyClqUU7xSErsL1ZHMAXe3RYDUVxU
+         pnQPunWVA93FVmVDTT1ynO2I0EP0jpsgjLcqbANq40SqMPeafOc2qptouftJDbwWKxiU
+         YJntqySSJKzHtApqQ6+95e1SKgtfSwT+pxvIAnSf7+4KbMJSLYzztGaEgx3ZsDsoaByw
+         DIk3kvIbfnwO+DYlR+ylE7IcBednV1Xsg/xKC98C0JJmhUv92qhnXZ8FlabDhfJDBUPC
+         gfKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VU9lamI5SC1v1PEkHOXanlr6Bu5BMP3jBswdNfiKvIQ=;
-        b=WLtUQOHaOJeM7DyJDR8r12wQR2dz80ve5QH9nCVkIS1bArbmfRigmWIGfJmHpIZdMK
-         lwYcyXr5Ix0+8Vk5jNpCymXZzg2fCYOmQXGnIwi/qO0AkuccahLIMdcR6CoyI2UKhoAa
-         s458XsznKPDGT9ofQzmL5bVnbZ3sAi3sHonqJ72pUhcEfqG5khMihvpY9KCiGK/OejMk
-         NkzL2l/MHobyOD9FHkefsc7c4ARgAaQYb/aaXFXDhYaV94oYyTHZMmnIbrA4VsoTaxiG
-         p+5PdI7eFyvbCc/fd43HRVB8rZGCILIOemr6I78qqrweQbcN696SnWSqHewct7b2tA3V
-         rSvg==
-X-Gm-Message-State: AOAM531tP3LUcqOzF2mdflUDMuuG9g/L0Da2zOLyXTxXEKlhlCpZghvi
-        3OII8AVS0qoN41hwxzWWeJuGQA==
-X-Google-Smtp-Source: ABdhPJxNXKAaV4IqGlohWzqhZmvrIFVjMoymPiM1ubqd8P9LQ4+qOPnOC3+57Gry/tXWIjUz340EBw==
-X-Received: by 2002:a05:6a00:a15:b0:4fb:4112:870e with SMTP id p21-20020a056a000a1500b004fb4112870emr40298678pfh.11.1649807039988;
-        Tue, 12 Apr 2022 16:43:59 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:3a41:5079:6f1b:397c])
-        by smtp.gmail.com with UTF8SMTPSA id b12-20020a17090aa58c00b001ca977b49d5sm618740pjq.31.2022.04.12.16.43.58
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ShN/rXSZKDhy7VrfNgli/IlBDtGr/3iqN8cN4k09Vn8=;
+        b=rbLA4xpAcqAu9t3bZ58Lomzt0h+5cEjcBeHLgr9r9QHr67BxZMoC4NbefCSquN3FX4
+         6oege1yqbK5Xzcic59XcvnyhEWvVB4Uvjvcdfs3LPOh3IKj+nrkKPw+cBG3B2umOeUx7
+         NlEKuxmGyg5pNqA3i8Ygf6ft95QX7cfff2IQXoKxOvd3l6ELILJw3Zpsx15xT5/WYV5C
+         hCJkRiOM+LM3dO2A31gBFTlMKeaUtD0TJAD6Ri8BF3uOFDrXRbaLw0LgnkNMdG2Fzr2T
+         yoN/1Q2BXaV8JkIdbOVQROZPa+vS4oV5p2BiK/HjrPXguglOHGvewfY8G1nCUeCi4FK/
+         rLig==
+X-Gm-Message-State: AOAM530M9ZAfBRCwXeRncovwT+SUISW1vfWK6JWrG8ZSPOyfyvLlv/Ld
+        HUmRVtXex6psS4iXBCnu0t/gEg==
+X-Google-Smtp-Source: ABdhPJxVYF5/Ot+Wn6f/JaZIXiK9MrZIXg76PjvIZTuYXtHcHsUoi1/vTnJRY+UCQUGAWjcHqtPuRw==
+X-Received: by 2002:a5d:6205:0:b0:1e4:b3fd:9ba8 with SMTP id y5-20020a5d6205000000b001e4b3fd9ba8mr30055376wru.426.1649807409850;
+        Tue, 12 Apr 2022 16:50:09 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05600002c600b00207a389117csm9169769wry.53.2022.04.12.16.50.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 16:43:59 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 16:43:57 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: sc7280: add lpass lpi pin
- controller node
-Message-ID: <YlYOvf71AZxXPSAL@google.com>
-References: <1649685184-8448-1-git-send-email-quic_srivasam@quicinc.com>
- <1649685184-8448-3-git-send-email-quic_srivasam@quicinc.com>
- <YlSCWC47tITuW/BZ@google.com>
- <9bacee6d-ab44-2975-c523-38164d016af5@quicinc.com>
+        Tue, 12 Apr 2022 16:50:09 -0700 (PDT)
+Message-ID: <50aa0994-a139-dcd6-7483-83bf80c37394@linaro.org>
+Date:   Wed, 13 Apr 2022 00:50:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <9bacee6d-ab44-2975-c523-38164d016af5@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sm8250: camss: Add downstream
+ camera pin definitions
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
+        jgrahsl@snap.com
+References: <20220409164556.2832782-1-bryan.odonoghue@linaro.org>
+ <20220409164556.2832782-4-bryan.odonoghue@linaro.org>
+ <YlTeFYp6IoPJfHEb@builder.lan>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <YlTeFYp6IoPJfHEb@builder.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,61 +78,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 12, 2022 at 06:18:33PM +0530, Srinivasa Rao Mandadapu wrote:
+On 12/04/2022 03:04, Bjorn Andersson wrote:
+> On Sat 09 Apr 11:45 CDT 2022, Bryan O'Donoghue wrote:
 > 
-> On 4/12/2022 1:02 AM, Matthias Kaehlcke wrote:
-> Thanks for your time Matthias!!!
-> > On Mon, Apr 11, 2022 at 07:23:04PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > Add LPASS LPI pinctrl node required for Audio functionality on sc7280
-> > > based platforms.
-> > > 
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  84 ++++++++++++++++++++++++
-> > >   arch/arm64/boot/dts/qcom/sc7280.dtsi     | 107 +++++++++++++++++++++++++++++++
-> > >   2 files changed, 191 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > index 4ba2274..ea751dc 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > @@ -238,6 +238,90 @@
-> > >   	modem-init;
-> > >   };
-> > > +&dmic01 {
-> > Shouldn't these nodes be in the PINCTRL section at their respective
-> > positions in alphabetical order?
+>> There are a number of pin mux descriptions for the CAMSS block which are
+>> defined downstream.
+>>
+>> Bring in the definitions now. Subsequent changes will optionally activate
+>> those muxes for different sm8250 based boards.
+>>
 > 
-> These are not part of tlmm pin control section. These are part of lpass_tlmm
-> section.
+> I'm not able to spot where these are referenced, are they not used or am
+> I just failing the search today?
 
-Agreed, these shouldn't be in the tlmm section, but it still seems nice to
-separate them from device nodes.
+Used here:
 
-Some sc7180-trogdor devices have a section like this:
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/commit/?h=br-v5.19b%2brb5-dts%2bsensors&id=96d26b916efca18450ff67d385d846b50d8eb7e1
 
-/* PINCTRL - modifications to sc7180-trogdor.dtsi */
+I'll send out the RB5 patch once I get regulator_bulk_*() added to the 
+imx412 driver
 
-In any case I don't care too much about the IDP, but this might come up again
-for sc7280-herobrine boards.
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/commit/?h=br-v5.19b%2brb5-dts%2bsensors&id=e11966d8101350d0e76eb3e1520165864bdbc296
 
-> In your previous comment you asked to remove &lpass_tlmm. Hence brought out.
 > 
-> > 
-> > nit: since you are keeping the groups the group names are a bit generic IMO.
-> > e.g. it is fairly obvious that 'dmic01_clk' refers to a clock pin, however
-> > just 'dmic01' is a bit vague. You could consider adding the prefix 'lpass_'
-> > to the group names for more clarity.
-> as dmic01 has both clk and data section, I don't think keeping clk is
-> appropriate here.
+> I would prefer that we don't sprinkle pinctrl states that potentially
+> might be used at a later time...
+> 
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 471 +++++++++++++++++++++++++++
+>>   1 file changed, 471 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index 3d6c617de045..91ed079edbf7 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -3687,6 +3687,477 @@ tlmm: pinctrl@f100000 {
+>>   			gpio-ranges = <&tlmm 0 0 181>;
+>>   			wakeup-parent = <&pdc>;
+>>   
+>> +			cam_sensor_mclk0_active: cam_sensor_mclk0_active {
+> 
+> Please don't use '_' in the node name.
+> 
+>> +				/* MCLK0 */
+> 
+> I would prefer that we don't inherit the mux/config split upstream.
+> 
+> You can either do:
+> 
+> cam-sensor-mclk0-active-state {
+> 	pins = ;
+> 	function = ;
+> 	bias...
+> };
+> 
+> or:
+> 
+> cam-sensor-mclk0-active-state {
+> 	mclk0 {
+> 		pins = ;
+> 		function = ;
+> 		bias...
+> 	};
+> };
+> 
+> And depending on how this state is actually used you could lump together
+> the configuration of several pins - with different properties - in the
+> same state node.
 
-Agreed, _clk isn't appropriate as long as it's a group of pins, that would be
-for a label per pin.
+Sure np
 
-> >  From the schematics I interpret that the LPASS GPIOs 0-9 are mapped to the
-> > SC7280 GPIOs 144-153. Is that correct?
-> Yes. But we refer with GPIOs 0-9 in driver.
-
-Thanks, just wanted to make sure my understanding is correct.
+---
+bod
