@@ -2,150 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5AE34FDD89
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB8C4FDD85
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345752AbiDLLLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 07:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36498 "EHLO
+        id S237428AbiDLLKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 07:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354105AbiDLLFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:05:02 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8416579C;
-        Tue, 12 Apr 2022 02:56:31 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23C9uMkm096818;
-        Tue, 12 Apr 2022 04:56:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1649757382;
-        bh=ugRzal5VjfUjawoYrtpjB5VqZuPi1bn0ckWPOzleY+I=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=C1f8WWG9B+NuH/0xhstTTtlhzitG0rhgxCIrYltEffUaic4JJMPgjkaJIsf2/+4Ug
-         431a7/S5g/wkQ84AW+CxPOAUMHEQd31cfQqvw6akWggMX3fd4nmUxEb5hUCaxEIzb5
-         MZqqMr0moR311MI/KhWkJY2IdK+96z5saHQwOPss=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23C9uMvC027020
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 12 Apr 2022 04:56:22 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
- Apr 2022 04:56:21 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 12 Apr 2022 04:56:21 -0500
-Received: from [10.249.96.184] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23C9uGJA115407;
-        Tue, 12 Apr 2022 04:56:17 -0500
-Message-ID: <f3ae48a8-7177-3a92-bdfd-3b243a5527c1@ti.com>
-Date:   Tue, 12 Apr 2022 12:56:18 +0300
+        with ESMTP id S1349086AbiDLLIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:08:02 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C0F6D861;
+        Tue, 12 Apr 2022 03:00:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649757654; x=1681293654;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7tP6Hmh57tdYk/XI1EXwttwZcLinGHP54ZjZICaf18M=;
+  b=IP4f0St3HE7L2DS7hFIdTuebHeYZiuc6JfnnlMxXwmubZqUHOtNVKNWM
+   artZ7LqNw8WFU6JHXkn9iPI21FPpOyJXAjtRe/1HzZ4V82CahukFxbE9Z
+   u2Ci12dNKjgV2/jRdCcLUncWxxVOMdtAWVRtHQ2ABbP8AhcBGPQ8r8H0f
+   Ebqd6OBAUyqPnHPlOMIPGxtTmMRJlOwdnUlIy5/6eRGJZSG/+GUv5knlm
+   tmpQTePvY/bRyGMaXbQq2znJUit+L2B4LPZ2Z2F/LtKaRPKj8vBfvedKJ
+   RwW93wHjbh9Tb877TyjkJHT6aARn5Jh61+A76TiQFesSoLtcDEwff36T+
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="261183851"
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
+   d="scan'208";a="261183851"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 03:00:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
+   d="scan'208";a="525976363"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 12 Apr 2022 03:00:47 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1neDKJ-0002jQ-1f;
+        Tue, 12 Apr 2022 10:00:47 +0000
+Date:   Tue, 12 Apr 2022 18:00:05 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Samuel Holland <samuel@sholland.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 04/10] drm/sun4i: Allow building the driver on RISC-V
+Message-ID: <202204121758.QeUxJKUh-lkp@intel.com>
+References: <20220411043423.37333-5-samuel@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC 13/13] net: ti: icssg-prueth: Add ICSSG ethernet driver
-Content-Language: en-US
-To:     Puranjay Mohan <p-mohan@ti.com>, Andrew Lunn <andrew@lunn.ch>
-CC:     <linux-kernel@vger.kernel.org>, <bjorn.andersson@linaro.org>,
-        <mathieu.poirier@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <davem@davemloft.net>,
-        <kuba@kernel.org>, <netdev@vger.kernel.org>, <vigneshr@ti.com>,
-        <kishon@ti.com>, Roger Quadros <rogerq@kernel.org>
-References: <20220406094358.7895-1-p-mohan@ti.com>
- <20220406094358.7895-14-p-mohan@ti.com> <Yk3d/cC36fhNmfY2@lunn.ch>
- <468d4d9b-44b4-2894-2a75-4caab1e72147@ti.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-In-Reply-To: <468d4d9b-44b4-2894-2a75-4caab1e72147@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411043423.37333-5-samuel@sholland.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Samuel,
+
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on sunxi/sunxi/for-next]
+[also build test ERROR on drm/drm-next linus/master v5.18-rc2 next-20220412]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Samuel-Holland/drm-sun4i-Allwinner-D1-Display-Engine-2-0-Support/20220411-123701
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220412/202204121758.QeUxJKUh-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c6e83f560f06cdfe8aa47b248d8bdc58f947274b)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/829dac8ee2cbb6d1b7bda1c513cc2ad1939fca53
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Samuel-Holland/drm-sun4i-Allwinner-D1-Display-Engine-2-0-Support/20220411-123701
+        git checkout 829dac8ee2cbb6d1b7bda1c513cc2ad1939fca53
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c:59:3: error: implicit declaration of function 'readsb' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+                   readsb(hdmi->base + hdmi->variant->ddc_fifo_reg, buf, len);
+                   ^
+   drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c:59:3: note: did you mean 'readb'?
+   arch/hexagon/include/asm/io.h:83:18: note: 'readb' declared here
+   static inline u8 readb(const volatile void __iomem *addr)
+                    ^
+>> drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c:61:3: error: implicit declaration of function 'writesb' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+                   writesb(hdmi->base + hdmi->variant->ddc_fifo_reg, buf, len);
+                   ^
+   drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c:61:3: note: did you mean 'writeb'?
+   arch/hexagon/include/asm/io.h:122:20: note: 'writeb' declared here
+   static inline void writeb(u8 data, volatile void __iomem *addr)
+                      ^
+   2 errors generated.
 
 
-On 12/04/2022 12:45, Puranjay Mohan wrote:
-> + Roger, Grygorii
-> 
-> On 07/04/22 00:07, Andrew Lunn wrote:
->>> +static int emac_phy_connect(struct prueth_emac *emac)
->>> +{
->>> +	struct prueth *prueth = emac->prueth;
->>> +
->>> +	/* connect PHY */
->>> +	emac->phydev = of_phy_connect(emac->ndev, emac->phy_node,
->>> +				      &emac_adjust_link, 0, emac->phy_if);
->>
->>> +static int prueth_config_rgmiidelay(struct prueth *prueth,
->>> +				    struct device_node *eth_np,
->>> +				    phy_interface_t phy_if)
->>> +{
->>> +	struct device *dev = prueth->dev;
->>> +	struct regmap *ctrl_mmr;
->>> +	u32 rgmii_tx_id = 0;
->>> +	u32 icssgctrl_reg;
->>> +
->>> +	if (!phy_interface_mode_is_rgmii(phy_if))
->>> +		return 0;
->>> +
->>> +	ctrl_mmr = syscon_regmap_lookup_by_phandle(eth_np, "ti,syscon-rgmii-delay");
->>> +	if (IS_ERR(ctrl_mmr)) {
->>> +		dev_err(dev, "couldn't get ti,syscon-rgmii-delay\n");
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	if (of_property_read_u32_index(eth_np, "ti,syscon-rgmii-delay", 1,
->>> +				       &icssgctrl_reg)) {
->>> +		dev_err(dev, "couldn't get ti,rgmii-delay reg. offset\n");
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
->>> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
->>> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
->>> +
->>> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
->>> +
->>> +	return 0;
->>> +}
->>>
->>
->> O.K, so this does not do what i initially thought it was doing. I was
->> thinking it was to fine tune the delay, ti,syscon-rgmii-delay would be
->> a small pico second value to allow the 2ns delay to be tuned to the
->> board.
->>
->> But now i think this is actually inserting the full 2ns delay?
->>
->> The problem is, you also pass phy_if to of_phy_connect() so the PHY
->> will also insert the delay if requested. So you end up with double
->> delays for rgmii_id and rgmii_txid.
+vim +/readsb +59 drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c
 
-It's misunderstanding here. The bit field name in TRM is RGMII0_ID_MODE
-and meaning:
-0h - Internal transmit delay is enabled
-1h - Internal transmit delay is not enabled.
-
-So here internal delay will be disabled for RGMII_ID/RGMII_TXID.
-
->>
->> The general recommendation is that the PHY inserts the delay, based on
->> phy-mode. The MAC does not add a delay, so i suggest you always write
->> 0 here, just to ensure the system is in a deterministic state, and the
->> bootloader and not being messing around with things.
->>
->> 	   Andrew
+f0a3dd33ba685b Jonathan Liu 2017-07-02  24  
+f0a3dd33ba685b Jonathan Liu 2017-07-02  25  static int fifo_transfer(struct sun4i_hdmi *hdmi, u8 *buf, int len, bool read)
+f0a3dd33ba685b Jonathan Liu 2017-07-02  26  {
+f0a3dd33ba685b Jonathan Liu 2017-07-02  27  	/*
+f0a3dd33ba685b Jonathan Liu 2017-07-02  28  	 * 1 byte takes 9 clock cycles (8 bits + 1 ACK) = 90 us for 100 kHz
+f0a3dd33ba685b Jonathan Liu 2017-07-02  29  	 * clock. As clock rate is fixed, just round it up to 100 us.
+f0a3dd33ba685b Jonathan Liu 2017-07-02  30  	 */
+f0a3dd33ba685b Jonathan Liu 2017-07-02  31  	const unsigned long byte_time_ns = 100;
+f0a3dd33ba685b Jonathan Liu 2017-07-02  32  	const u32 mask = SUN4I_HDMI_DDC_INT_STATUS_ERROR_MASK |
+f0a3dd33ba685b Jonathan Liu 2017-07-02  33  			 SUN4I_HDMI_DDC_INT_STATUS_FIFO_REQUEST |
+f0a3dd33ba685b Jonathan Liu 2017-07-02  34  			 SUN4I_HDMI_DDC_INT_STATUS_TRANSFER_COMPLETE;
+f0a3dd33ba685b Jonathan Liu 2017-07-02  35  	u32 reg;
+939d749ad6649c Chen-Yu Tsai 2017-10-10  36  	/*
+939d749ad6649c Chen-Yu Tsai 2017-10-10  37  	 * If threshold is inclusive, then the FIFO may only have
+939d749ad6649c Chen-Yu Tsai 2017-10-10  38  	 * RX_THRESHOLD number of bytes, instead of RX_THRESHOLD + 1.
+939d749ad6649c Chen-Yu Tsai 2017-10-10  39  	 */
+939d749ad6649c Chen-Yu Tsai 2017-10-10  40  	int read_len = RX_THRESHOLD +
+939d749ad6649c Chen-Yu Tsai 2017-10-10  41  		(hdmi->variant->ddc_fifo_thres_incl ? 0 : 1);
+f0a3dd33ba685b Jonathan Liu 2017-07-02  42  
+939d749ad6649c Chen-Yu Tsai 2017-10-10  43  	/*
+939d749ad6649c Chen-Yu Tsai 2017-10-10  44  	 * Limit transfer length by FIFO threshold or FIFO size.
+939d749ad6649c Chen-Yu Tsai 2017-10-10  45  	 * For TX the threshold is for an empty FIFO.
+939d749ad6649c Chen-Yu Tsai 2017-10-10  46  	 */
+939d749ad6649c Chen-Yu Tsai 2017-10-10  47  	len = min_t(int, len, read ? read_len : SUN4I_HDMI_DDC_FIFO_SIZE);
+f0a3dd33ba685b Jonathan Liu 2017-07-02  48  
+f0a3dd33ba685b Jonathan Liu 2017-07-02  49  	/* Wait until error, FIFO request bit set or transfer complete */
+939d749ad6649c Chen-Yu Tsai 2017-10-10  50  	if (regmap_field_read_poll_timeout(hdmi->field_ddc_int_status, reg,
+939d749ad6649c Chen-Yu Tsai 2017-10-10  51  					   reg & mask, len * byte_time_ns,
+939d749ad6649c Chen-Yu Tsai 2017-10-10  52  					   100000))
+f0a3dd33ba685b Jonathan Liu 2017-07-02  53  		return -ETIMEDOUT;
+f0a3dd33ba685b Jonathan Liu 2017-07-02  54  
+f0a3dd33ba685b Jonathan Liu 2017-07-02  55  	if (reg & SUN4I_HDMI_DDC_INT_STATUS_ERROR_MASK)
+f0a3dd33ba685b Jonathan Liu 2017-07-02  56  		return -EIO;
+f0a3dd33ba685b Jonathan Liu 2017-07-02  57  
+f0a3dd33ba685b Jonathan Liu 2017-07-02  58  	if (read)
+939d749ad6649c Chen-Yu Tsai 2017-10-10 @59  		readsb(hdmi->base + hdmi->variant->ddc_fifo_reg, buf, len);
+f0a3dd33ba685b Jonathan Liu 2017-07-02  60  	else
+939d749ad6649c Chen-Yu Tsai 2017-10-10 @61  		writesb(hdmi->base + hdmi->variant->ddc_fifo_reg, buf, len);
+f0a3dd33ba685b Jonathan Liu 2017-07-02  62  
+939d749ad6649c Chen-Yu Tsai 2017-10-10  63  	/* Clear FIFO request bit by forcing a write to that bit */
+939d749ad6649c Chen-Yu Tsai 2017-10-10  64  	regmap_field_force_write(hdmi->field_ddc_int_status,
+939d749ad6649c Chen-Yu Tsai 2017-10-10  65  				 SUN4I_HDMI_DDC_INT_STATUS_FIFO_REQUEST);
+f0a3dd33ba685b Jonathan Liu 2017-07-02  66  
+f0a3dd33ba685b Jonathan Liu 2017-07-02  67  	return len;
+f0a3dd33ba685b Jonathan Liu 2017-07-02  68  }
+f0a3dd33ba685b Jonathan Liu 2017-07-02  69  
 
 -- 
-Best regards,
-Grygorii, Ukraine
+0-DAY CI Kernel Test Service
+https://01.org/lkp
