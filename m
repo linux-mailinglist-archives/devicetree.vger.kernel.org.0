@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E989A4FDBE5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3534C4FDBA2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354843AbiDLKIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:08:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
+        id S238597AbiDLKFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352024AbiDLJmd (ORCPT
+        with ESMTP id S1352278AbiDLJmd (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:42:33 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E1EE13E84
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:52:29 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id b15so21526107edn.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:52:29 -0700 (PDT)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54FA813EAD
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:52:58 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bg10so35953466ejb.4
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:52:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pB+1JohUx/AAEa/eALR+9ZzJFy4+pwowrpjWY0TEY6s=;
-        b=g8oMWg7WaTEuIIf7SFur7baOsKDy1aiy27S3Ckz9bAm+8KujIwQkIc97hAPh+AzqEG
-         mRg9Bfu3IHa23w/tuKemvpsGngozqjFtft+1gPnxeCG62HCahLmUnOYOVcAbH89MfTxY
-         7fHOBXbcyyY/XF+IKx9M8npbHXSzHuVJMCELMOUqW10ce4TIO3+YH4TGsuCvQBbxu68j
-         ZgS3euFwXmfjbjBEBQ7Zsk7g2xSHQBFsFPJA8PePYO2Fo6kyKrvP3z+Y00eOAIjZ9YGu
-         6So0c3+Qu1ou28750cgLq/BEK/grwoiv+BLMSNzX1J1Q3T9I+rNLqPLoXpJs5fSE2X5N
-         i9Rw==
+        bh=dj68v7iu4Zt3Rzs0Pr5P8M0h7tKrLiKnCdRAOyQi4b8=;
+        b=HQ55l30vbFVJvqpeXp1l8IXzSOjWY485eG2FfD+kUxM4bjNgoBmffODquo7YfAji4k
+         v7opRaTpvu1EhneX/zxbWhlxQSotXi6u+ZBKyJ/MXh5r8hHzVoh9/cOhfEeX5hPz8QxV
+         hgZBRlJExPbcUnCZAmVe9po7PtDUnmEK68QKMvsh/rP5T+ZuxPkcfhEF8kU5MNEAe+F5
+         FWG7zYI7ix4Aaco6FL433jpU9vAb46I91/unZHoiE/2n8isXKF1YBB3OQtAN//JsKQvA
+         qPneSOsT/dj1m2vLzNqQY7eNrVo8dk8AqFz/nzuR81MM8JMYZQvJ8gahf9jVcB6axKWS
+         h99A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=pB+1JohUx/AAEa/eALR+9ZzJFy4+pwowrpjWY0TEY6s=;
-        b=DU7yFxYXCIaEXifcgf062L74sPMG/2Y7fTo8X10gQje2ZzH/huLO3KjB4xuyZrQiOD
-         baaPwh6zglS2VDpRonw1Q3MmaFUbx/8aAErJ4+D/xME+FwFqQCePPshy1eeLXUZevhWf
-         A2nrQw82t4yPCw0MGwC7uJoHzM82uvPqUlSu2aAV+Oo/iriuGUCfMY9K8PTPR9GMU+zv
-         YH2N704rn9yGyVQr22FBN0LBzHbWpqst7EbMPCic7HW9jqcQ6SmB6I4HlY/qpmmV+N+f
-         p9kY4RdVt2WnRFkof4g5+wWgIjTA+HOl2RzBBHCUaIa2A6GD7lmkpvNEEQvCakvf90Bx
-         faog==
-X-Gm-Message-State: AOAM531k6MnUo32St3hJH7QqXKIUlddXwveBgfANi72ZtFB2qW7uaz/K
-        3Me89mJ7Lm4f7geMTeztfRrAvg==
-X-Google-Smtp-Source: ABdhPJxFhtwpTL4eKhml6vgwWIqP+H4DWUDHQoZAIyaHwztXfad7VbrscMEEk+gBT3gfSXKH703Byw==
-X-Received: by 2002:a05:6402:42d4:b0:412:c26b:789 with SMTP id i20-20020a05640242d400b00412c26b0789mr37519085edc.232.1649753547814;
-        Tue, 12 Apr 2022 01:52:27 -0700 (PDT)
+        bh=dj68v7iu4Zt3Rzs0Pr5P8M0h7tKrLiKnCdRAOyQi4b8=;
+        b=fSViDdxVaQ4pYnXX6Y1xidrgZ8LSkpgb9ndJ7MDgJ+M3N3Z6PXYy4pZFkB9qcjj/m8
+         SillOe+oOrsklhdN2XS64xxvCv1rzrpBr4KZcpsczPLM/V7ZjhJQ3iTCJD9FKbFC30/l
+         2yJrTRrpCN94XCw08MN3G3GYPqwXtXrYefe/O8MdaEjrYuwvqRJMlvS/7C6Me2QuA+Ed
+         N4JXvDYqdyXNcoj0kqUA4TBgFFpmaBYGiXUkPP+DyuyyxIWOqnf8mZe5ynDpfsnEeSfs
+         LszeULfkeHbEc3HuPHfM4705z0QtzZr4OOT1M4VyAVdrvPEYGDZy1nEctjWThvW4ZoEl
+         praQ==
+X-Gm-Message-State: AOAM532MGF0u/3Eg+zr6hz1+RALLyKlCfnLdokKp/ovY8Eo/qBkRJKAn
+        Tuu6aR1qFj4eCvZC4z2cP30B2A==
+X-Google-Smtp-Source: ABdhPJwn2W0cfR+I7hVcqq37Lr+K8WL4A4Qnbv5VSlQnKDOTGwkfVuSezqX9jlnGL2F05n3DFIAdig==
+X-Received: by 2002:a17:907:94cd:b0:6e0:b001:aeb6 with SMTP id dn13-20020a17090794cd00b006e0b001aeb6mr33427745ejc.283.1649753576934;
+        Tue, 12 Apr 2022 01:52:56 -0700 (PDT)
 Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id p15-20020a170906228f00b006e86ff7db33sm3894546eja.68.2022.04.12.01.52.26
+        by smtp.gmail.com with ESMTPSA id s4-20020a170906bc4400b006e893908c4csm2156922ejv.60.2022.04.12.01.52.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 01:52:27 -0700 (PDT)
-Message-ID: <ab2252b6-a986-6f3b-0b5a-eb1cad3f28ae@linaro.org>
-Date:   Tue, 12 Apr 2022 10:52:26 +0200
+        Tue, 12 Apr 2022 01:52:56 -0700 (PDT)
+Message-ID: <0c87a45c-3d77-1941-f095-4547b8f46390@linaro.org>
+Date:   Tue, 12 Apr 2022 10:52:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: add property to avoid device
- detection
+Subject: Re: [PATCH 2/2] dt-bindings: timer: Add compatible for am6 for TI
+ timer-dm
 Content-Language: en-US
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>, wsa@kernel.org
-Cc:     kernel@axis.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220412085046.1110127-1-vincent.whitchurch@axis.com>
- <20220412085046.1110127-2-vincent.whitchurch@axis.com>
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20220411111858.16814-1-tony@atomide.com>
+ <20220411111858.16814-2-tony@atomide.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220412085046.1110127-2-vincent.whitchurch@axis.com>
+In-Reply-To: <20220411111858.16814-2-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,21 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 10:50, Vincent Whitchurch wrote:
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-> index fc3dd7ec0445..960d1d5c9362 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c.txt
-> +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-> @@ -72,6 +72,10 @@ wants to support one of the below features, it should adapt these bindings.
->  	this information to adapt power management to keep the arbitration awake
->  	all the time, for example. Can not be combined with 'single-master'.
->  
-> +- no-detect
-> +	states that no other devices are present on this bus other than the
-> +	ones listed in the devicetree.
+On 11/04/2022 13:18, Tony Lindgren wrote:
+> Let's add compatible for ti,am654-timer for TI am64, am65 and j72 SoCs.
+> As the timer hardware is the same between am64, am65 and j72 we use the
+> compatible name for the earliest SoC with this timer.
+> 
+> The timer interrupts are not routable for the operating system for some
+> timers on am6. Let's make sure the interrupts are configured for the
+> timers on all other SoCs.
+> 
 
-
-Looks good to me.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
