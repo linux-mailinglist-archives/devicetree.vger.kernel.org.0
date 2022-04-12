@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 713BA4FDBBA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D434FDB99
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234116AbiDLKGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:06:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36392 "EHLO
+        id S1348240AbiDLKF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354114AbiDLIKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 04:10:16 -0400
+        with ESMTP id S1356302AbiDLIJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 04:09:27 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 122AF2BF7
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 00:40:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DFF7C65
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 00:40:16 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1neB8A-0007g9-Lm; Tue, 12 Apr 2022 09:40:06 +0200
+        id 1neB8A-0007gA-Ll; Tue, 12 Apr 2022 09:40:06 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1neB89-00AQYk-6t; Tue, 12 Apr 2022 09:40:05 +0200
+        id 1neB89-00AQYt-7s; Tue, 12 Apr 2022 09:40:05 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
 Cc:     David Jander <david@protonic.nl>,
@@ -31,9 +31,9 @@ Cc:     David Jander <david@protonic.nl>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Robin van der Gracht <robin@protonic.nl>
-Subject: [PATCH v1 01/17] arm: dts: imx6qdl-vicut1.dtsi: remove TiWi module
-Date:   Tue, 12 Apr 2022 09:39:48 +0200
-Message-Id: <20220412074004.2485264-2-o.rempel@pengutronix.de>
+Subject: [PATCH v1 02/17] arm: dts: imx6qdl-vicut1.dtsi: Put nON_SWITCH in own pinctrl grp
+Date:   Tue, 12 Apr 2022 09:39:49 +0200
+Message-Id: <20220412074004.2485264-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220412074004.2485264-1-o.rempel@pengutronix.de>
 References: <20220412074004.2485264-1-o.rempel@pengutronix.de>
@@ -54,97 +54,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: David Jander <david@protonic.nl>
 
-Only the first prototypes had a TiWi module. There is no publicly available
-hardware where this module is fitted and there are no plant to produce
-any.
+Unify nON_SWITCH pinctrl configuration with imx6dl-victgo.dts.
+
+This patch is a preparation to reduce duplicated code between vicut1 and
+victgo.
 
 Signed-off-by: David Jander <david@protonic.nl>
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 51 ---------------------------
- 1 file changed, 51 deletions(-)
+ arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-index ec39008c0950..fe2685642bf1 100644
+index fe2685642bf1..32f7eb379e60 100644
 --- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
 +++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-@@ -144,18 +144,6 @@ reg_otg_vbus: regulator-otg-vbus {
- 		enable-active-high;
- 	};
+@@ -72,6 +72,8 @@ counter-2 {
  
--	reg_wifi: regulator-wifi {
--		compatible = "regulator-fixed";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_wifi_npd>;
--		regulator-name = "wifi";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		gpio = <&gpio1 26 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		startup-delay-us = <70000>;
--	};
--
- 	sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "prti6q-sgtl5000";
-@@ -530,26 +518,6 @@ &usdhc1 {
- 	status = "okay";
- };
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpiokeys>;
+ 		autorepeat;
  
--&usdhc2 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_usdhc2>;
--	vmmc-supply = <&reg_wifi>;
--	non-removable;
--	cap-power-off-card;
--	keep-power-in-suspend;
--	no-1-8-v;
--	no-mmc;
--	no-sd;
--	status = "okay";
--
--	wifi {
--		compatible = "ti,wl1271";
--		interrupts-extended = <&gpio1 30 IRQ_TYPE_LEVEL_HIGH>;
--		ref-clock-frequency = "38400000";
--		tcxo-clock-frequency = "19200000";
--	};
--};
--
- &usdhc3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_usdhc3>;
-@@ -808,19 +776,6 @@ MX6QDL_PAD_GPIO_1__GPIO1_IO01			0x1b0b0
+ 		power {
+@@ -621,6 +623,13 @@ MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28		0x1b0b1
  		>;
  	};
  
--	pinctrl_usdhc2: usdhc2grp {
--		fsl,pins = <
--			MX6QDL_PAD_SD2_CMD__SD2_CMD			0x170b9
--			MX6QDL_PAD_SD2_CLK__SD2_CLK			0x100b9
--			MX6QDL_PAD_SD2_DAT0__SD2_DATA0			0x170b9
--			MX6QDL_PAD_SD2_DAT1__SD2_DATA1			0x170b9
--			MX6QDL_PAD_SD2_DAT2__SD2_DATA2			0x170b9
--			MX6QDL_PAD_SD2_DAT3__SD2_DATA3			0x170b9
--			/* WL12xx IRQ */
--			MX6QDL_PAD_ENET_TXD0__GPIO1_IO30		0x10880
--		>;
--	};
--
- 	pinctrl_usdhc3: usdhc3grp {
++	pinctrl_gpiokeys: gpiokeygrp {
++		fsl,pins = <
++			/* nON_SWITCH */
++			MX6QDL_PAD_EIM_CS0__GPIO2_IO23			0x1b0b0
++		>;
++	};
++
+ 	pinctrl_hog: hoggrp {
  		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-@@ -836,10 +791,4 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
- 			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
- 		>;
- 	};
--
--	pinctrl_wifi_npd: wifinpdgrp {
--		fsl,pins = <
--			MX6QDL_PAD_ENET_RXD1__GPIO1_IO26		0x1b8b0
--		>;
--	};
- };
+ 			/* ITU656_nRESET */
+@@ -631,8 +640,6 @@ MX6QDL_PAD_GPIO_3__GPIO1_IO03			0x130b0
+ 			MX6QDL_PAD_GPIO_4__GPIO1_IO04			0x130b0
+ 			/* CAM_nDETECT */
+ 			MX6QDL_PAD_GPIO_17__GPIO7_IO12			0x1b0b0
+-			/* nON_SWITCH */
+-			MX6QDL_PAD_EIM_CS0__GPIO2_IO23			0x1b0b0
+ 			/* ISB_IN1 */
+ 			MX6QDL_PAD_EIM_A16__GPIO2_IO22			0x130b0
+ 			/* ISB_nIN2 */
 -- 
 2.30.2
 
