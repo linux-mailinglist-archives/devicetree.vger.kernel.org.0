@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3AF4FDBF0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA884FDBAD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354930AbiDLKIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:08:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50934 "EHLO
+        id S1353409AbiDLKGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389913AbiDLJYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:24:21 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791842459E;
-        Tue, 12 Apr 2022 01:39:44 -0700 (PDT)
-X-UUID: 88867b4216d24856b6005e31d2c9c5d0-20220412
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:6c7e3c15-4e3f-4ddf-9ac6-026e158614b3,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.4,REQID:6c7e3c15-4e3f-4ddf-9ac6-026e158614b3,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:faefae9,CLOUDID:bd8f1d78-0afa-4dca-bdec-ca54c998425a,C
-        OID:IGNORED,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,File:ni
-        l,QS:0,BEC:nil
-X-UUID: 88867b4216d24856b6005e31d2c9c5d0-20220412
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1283748203; Tue, 12 Apr 2022 16:39:37 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 12 Apr 2022 16:39:36 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 12 Apr 2022 16:39:36 +0800
-Message-ID: <d900f8181bddb20a56231310d46b9427c40e77b8.camel@mediatek.com>
-Subject: Re: [PATCH v2 2/2] PM / devfreq: mediatek: Introduce MediaTek CCI
- devfreq driver
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <cw00.choi@samsung.com>, <krzk+dt@kernel.org>,
-        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>
-CC:     <khilman@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 12 Apr 2022 16:39:36 +0800
-In-Reply-To: <76d58182-2f56-32b2-42e9-2ecbdd09ba3d@linaro.org>
-References: <20220408052150.22536-1-johnson.wang@mediatek.com>
-         <20220408052150.22536-3-johnson.wang@mediatek.com>
-         <76d58182-2f56-32b2-42e9-2ecbdd09ba3d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1390175AbiDLJYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:24:35 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ABE7496B6
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:41:03 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id u17-20020a05600c211100b0038eaf4cdaaeso1251927wml.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:41:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=JVS8yoTed/57DjCwKIW1A/c1IofL37wt+tYJEPzUAmU=;
+        b=Z+VbZn7FPHNe/GBsQyuivnzzgGzYvxBZDES1LMjk+AMruKFaWMliPs/DaWe4wQcj1V
+         Z46VUcXBRlve5tWnD6t/jEuT+5XKFrUE5df/ekH+6vCNCqWOXn6MuAX1Kaz4F4MRmb0u
+         prutTbcdiNtijUHwv3SzkXxA25iy5vFpLZA4E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JVS8yoTed/57DjCwKIW1A/c1IofL37wt+tYJEPzUAmU=;
+        b=OPzkNOiuki6I2ND+Iy0ah2JkFFihBL6NC41dVZBXlKoWoa4aRfM7fIGVTTosDNKZMY
+         0FpgcjjwHem5EjdrJJN/czIRPuMmncbHAcCbP73HYpu63JfITiOqCelS7Gb2/E23tAI7
+         UPszt1M3hiEXftKhY8PlF/yZPhb8PMPYtrIQaefwgJute3gwclff3W6k3iPf7nDlIp2D
+         CEqdgfuE3V5FFZwMmh67Ay2b3YXaBwddiiLX8ZMM146vOkFC4yKvLPfmmmOtW/URa1PV
+         X1gitO96SUh666/KM4bhzfNOU7pcKTFtlYCWrwf8P3tzJRC7Kg1/GP5aahj+5mRDcUwG
+         09Ig==
+X-Gm-Message-State: AOAM533x5Mur6obv1I2MAYrNqHX4yUPmtIR/PcDI6z9E/yWhciy/Xo/a
+        h5LFyUtP1GNjqNjKJyWB3q8eNA==
+X-Google-Smtp-Source: ABdhPJyHye7sxKTODHYVlr0Iw88mdVOrIKEdTmPAKEL4TcsxZIZQomuSpVY1efYdnCyhwPqDkolHGQ==
+X-Received: by 2002:a05:600c:1c0e:b0:38c:ae37:c1d2 with SMTP id j14-20020a05600c1c0e00b0038cae37c1d2mr2964820wms.205.1649752861339;
+        Tue, 12 Apr 2022 01:41:01 -0700 (PDT)
+Received: from google.com ([37.228.205.1])
+        by smtp.gmail.com with ESMTPSA id h10-20020a05600c144a00b0038ccc75a6adsm1769601wmi.37.2022.04.12.01.41.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 01:41:00 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 08:40:58 +0000
+From:   Fabio Baltieri <fabiobaltieri@chromium.org>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] drivers: pwm: pwm-cros-ec: add channel type
+ support
+Message-ID: <YlU7GoSYMPapAsVv@google.com>
+References: <20220411152114.2165933-1-fabiobaltieri@chromium.org>
+ <20220411152114.2165933-3-fabiobaltieri@chromium.org>
+ <YlUq8W+xjdxqYCo5@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlUq8W+xjdxqYCo5@google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,133 +75,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-On Fri, 2022-04-08 at 10:21 +0200, Krzysztof Kozlowski wrote:
-> On 08/04/2022 07:21, Johnson Wang wrote:
-> > We introduce a devfreq driver for the MediaTek Cache Coherent
-> > Interconnect
-> > (CCI) used by some MediaTek SoCs.
+Hi Tzung-Bi,
+
+On Tue, Apr 12, 2022 at 03:32:01PM +0800, Tzung-Bi Shih wrote:
+> On Mon, Apr 11, 2022 at 03:21:12PM +0000, Fabio Baltieri wrote:
+> > Add support for EC_PWM_TYPE_DISPLAY_LIGHT and EC_PWM_TYPE_KB_LIGHT pwm
+> > types to the PWM cros_ec_pwm driver. This allows specifying one of these
+> > PWM channel by functionality, and let the EC firmware pick the correct
+> > channel, thus abstracting the hardware implementation from the kernel
+> > driver.
 > > 
+> > To use it, define the node with the "google,cros-ec-pwm-type"
+> > compatible.
 > 
-> (...)
-> 
-> > index 87eb2b837e68..d985597f343f 100644
-> > --- a/drivers/devfreq/Kconfig
-> > +++ b/drivers/devfreq/Kconfig
-> > @@ -120,6 +120,16 @@ config ARM_TEGRA_DEVFREQ
-> >  	  It reads ACTMON counters of memory controllers and adjusts
-> > the
-> >  	  operating frequencies and voltages with OPP support.
-> >  
-> > +config ARM_MEDIATEK_CCI_DEVFREQ
-> > +	tristate "MEDIATEK CCI DEVFREQ Driver"
-> > +	depends on ARM_MEDIATEK_CPUFREQ
-> > > COMPILE_TEST? And check if it test compiles.
+> Not sure whether you decide to leave the prefix as is or not[1], just another
+> reminder: to be neat, suggest to remove "drivers: " prefix from the commit
+> title.
 
-Thank you for your review.
-I will add COMPILE_TEST and see if this driver is compiled with it.
+Sorry I messed up there, fixed in on the wrong branch and then forgot to
+re-fix it once I moved to the wrong one -- I'll make sure to get that
+right now, thanks for your patience.
 
 > 
-> (...)
+> [1]: https://patchwork.kernel.org/project/chrome-platform/patch/20220331125818.3776912-3-fabiobaltieri@chromium.org/
 > 
-> > +
-> > +static int mtk_ccifreq_remove(struct platform_device *pdev)
-> > +{
-> > +	struct device *cci_dev = &pdev->dev;
-> 
-> s/cci_dev/dev/
-> Everywhere.
-> 
-
-Sure, I will modify it in the next version.
-
-> > +	struct mtk_ccifreq_drv *drv;
-> > +
-> > +	drv = platform_get_drvdata(pdev);
-> > +
-> > +	dev_pm_opp_unregister_notifier(cci_dev, &drv->opp_nb);
-> > +	dev_pm_opp_of_remove_table(cci_dev);
-> > +	clk_disable_unprepare(drv->inter_clk);
-> > +	clk_disable_unprepare(drv->cci_clk);
-> > +	regulator_disable(drv->proc_reg);
-> > +	if (!IS_ERR(drv->sram_reg))
-> > +		regulator_disable(drv->sram_reg);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct mtk_ccifreq_platform_data mt8183_platform_data
-> > = {
-> > +	.min_volt_shift = 100000,
-> > +	.max_volt_shift = 200000,
-> > +	.proc_max_volt = 1150000,
-> > +	.sram_min_volt = 0,
-> > +	.sram_max_volt = 1150000,
-> > +};
-> > +
-> > +static const struct mtk_ccifreq_platform_data mt8186_platform_data
-> > = {
-> > +	.min_volt_shift = 100000,
-> > +	.max_volt_shift = 250000,
-> > +	.proc_max_volt = 1118750,
-> > +	.sram_min_volt = 850000,
-> > +	.sram_max_volt = 1118750,
-> > +};
-> > +
-> > +static const struct of_device_id mtk_ccifreq_machines[] = {
-> > +	{ .compatible = "mediatek,mt8183-cci", .data =
-> > &mt8183_platform_data },
-> > +	{ .compatible = "mediatek,mt8186-cci", .data =
-> > &mt8186_platform_data },
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, mtk_ccifreq_machines);
-> > +
-> > +static struct platform_driver mtk_ccifreq_platdrv = {
-> > +	.probe	= mtk_ccifreq_probe,
-> > +	.remove	= mtk_ccifreq_remove,
-> > +	.driver = {
-> > +		.name = "mtk-ccifreq",
-> > +		.of_match_table = of_match_ptr(mtk_ccifreq_machines),
-> 
-> You use of_match_ptr() so is it possible to build it without OF? If
-> so,
-> then mtk_ccifreq_machines needs maybe_unused.
-> 
-
-No, this driver must be built with OF due to our CPU arch.
-Should I add some dependencies in Kconfig to ensure OF is enabled?
-
+> > +#ifdef CONFIG_OF
+> > +static const struct of_device_id cros_ec_pwm_of_match[] = {
+> > +	{
+> > +		.compatible = "google,cros-ec-pwm",
 > > +	},
+> > +	{
+> > +		.compatible = "google,cros-ec-pwm-type",
+> > +		.data = OF_CROS_EC_PWM_TYPE,
+> > +	},
+> > +	{},
 > > +};
+> > +MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
+> > +#else
+> > +#define cros_ec_pwm_of_match NULL
+> > +#endif
 > > +
-> > +static int __init mtk_ccifreq_platdrv_init(void)
-> > +{
-> > +	return platform_driver_register(&mtk_ccifreq_platdrv);
-> > +}
-> > +module_init(mtk_ccifreq_platdrv_init)
+> >  static int cros_ec_pwm_probe(struct platform_device *pdev)
+> >  {
+> >  	struct cros_ec_device *ec = dev_get_drvdata(pdev->dev.parent);
+> >  	struct device *dev = &pdev->dev;
+> > +	const struct of_device_id *id;
+> >  	struct cros_ec_pwm_device *ec_pwm;
+> >  	struct pwm_chip *chip;
+> >  	int ret;
+> > @@ -251,17 +312,27 @@ static int cros_ec_pwm_probe(struct platform_device *pdev)
+> >  	chip = &ec_pwm->chip;
+> >  	ec_pwm->ec = ec;
+> >  
+> > +	id = of_match_device(cros_ec_pwm_of_match, dev);
+> > +	if (id && id->data == OF_CROS_EC_PWM_TYPE)
+> > +		ec_pwm->use_pwm_type = true;
 > > +
-> > +static void __exit mtk_ccifreq_platdrv_exit(void)
-> > +{
-> > +	platform_driver_unregister(&mtk_ccifreq_platdrv);
-> > +}
-> > +module_exit(mtk_ccifreq_platdrv_exit)
+> [...]
+> > -#ifdef CONFIG_OF
+> > -static const struct of_device_id cros_ec_pwm_of_match[] = {
+> > -	{ .compatible = "google,cros-ec-pwm" },
+> > -	{},
+> > -};
+> > -MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
+> > -#endif
+> > -
 > 
-> Why not module_platform_driver()?
-
-I will try to use module_platform_driver() and update it in the next
-version.
-
+> Use dev->driver->of_match_table to access the table so that the table
+> declaration doesn't actually need a move.  Instead, the helper function
+> of_device_get_match_data() is preferred.
 > 
-> > +
-> > +MODULE_DESCRIPTION("MediaTek CCI devfreq driver");
-> > +MODULE_AUTHOR("Jia-Wei Chang <jia-wei.chang@mediatek.com>");
-> > +MODULE_LICENSE("GPL v2");
-> 
-> 
-> Best regards,
-> Krzysztof
+> Alternatively, it could use
+> of_device_is_compatible(..."google,cros-ec-pwm-type") so that it doesn't
+> need to introduce OF_CROS_EC_PWM_TYPE and reduce some bits.  I would prefer
+> this way.
 
-BRs,
-Johnson Wang
+That's a very good point, should simplify things a fair bit, did not
+realize of_device_is_compatible() was an option somehow, will rework it
+for that and send a v4 soon. Thanks for the pointer.
 
+Fabio
+
+-- 
+Fabio Baltieri
