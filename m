@@ -2,85 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F5EA4FDBEE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53BA4FDBB7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354928AbiDLKIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:08:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55292 "EHLO
+        id S1353928AbiDLKGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358952AbiDLJrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:47:48 -0400
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C066762C8E;
-        Tue, 12 Apr 2022 01:53:37 -0700 (PDT)
-Received: by mail-qk1-f179.google.com with SMTP id c199so11483973qkg.4;
-        Tue, 12 Apr 2022 01:53:37 -0700 (PDT)
+        with ESMTP id S1356360AbiDLJzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:55:08 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CB996A036
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:57:55 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id a19so13862727oie.7
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:57:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
+         :subject:to:cc;
+        bh=4FpzyyLj/OdDU3ZmpUpstG+y8CAFSWZd/AR4b2PM65Y=;
+        b=O4uumP51JcV7qBCLnK0EA1pkMY6sGD/pTvzvNjou2PgcdwHOFuibGIptBgZ3zJNPCO
+         HNcpOraxajhSfH6FKpX+oohFsR9+cAmNzr3raUAIRjIXsDz70WJRGRPe0sBzCtIorZSn
+         jwU9hlWq8nhRQgCL+0BDauOseU08SQ6kHBE39slH9gyCacBPIRunwbgJFwT4MEAkgB4u
+         XOLgBEcCs1r6ODorwmX7IF0ZhAGaeOSeAxRCXAcIUN8mXCyKnW+FU3R/7MlScEWkf0VY
+         ZvjB33mZDqS56xB5bdfVu9Bjy/qdU0l0vvxbk6G4z6AorUZE6E2dkUcfig1wxL70aOEU
+         PS7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l+5QLEkfnkcIMk5JXvTP2/pWavVT6LD4E3jbjn1v9iw=;
-        b=Pm1oJI158xAUAlcmvWSJHbD0D8oB9Knm5zV7/ebK+m8O7OE67aWqe0UW+G9ZnL7GIE
-         9OvruRHj5fFdSkW417WHoQ4y5a2X55CVbobkHiy2Ql6rI6QYrAbX4T03wgm2hPAq5Hel
-         E9DpqczziHeuJD1rqCqG0In2PcrnMkFpWvKkc+VySIaflG9Bl5jxP8nAy2jEDEGkuRw5
-         jkis65AnnIM41GN2JeaBkisLdkug3H6CwKDvLQfZkTnHoXWEUxUJzfjyT4jGOtyPlcPz
-         CV/EiTsYRCy0oTru3nEzZrqt+VV14u9lybTN2TcnmtYR6oOL19LfmyzfHu+GcYFvQA9T
-         ByQQ==
-X-Gm-Message-State: AOAM533q6m6cLdv1sxjW+7C/gDmXvXQdzP8ybz0fhy3SCQ4/jfk2Tiam
-        fW3kC7dg2iuKQlL4QUZE0vzwBcc357fUBzfP
-X-Google-Smtp-Source: ABdhPJyTHYmKM7AYy+Shwi+ArGdcwINe40RVOgahUFGaRVWlRMPHeLR3xi+SVTdV+IjvlP7Qjf37Pg==
-X-Received: by 2002:a05:620a:448d:b0:67d:b59e:8720 with SMTP id x13-20020a05620a448d00b0067db59e8720mr2279663qkp.769.1649753616549;
-        Tue, 12 Apr 2022 01:53:36 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id d17-20020a05622a101100b002ed11f71ed9sm7117727qte.17.2022.04.12.01.53.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 01:53:36 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id z33so31938707ybh.5;
-        Tue, 12 Apr 2022 01:53:36 -0700 (PDT)
-X-Received: by 2002:a5b:24e:0:b0:63d:cba0:3d55 with SMTP id
- g14-20020a5b024e000000b0063dcba03d55mr24367733ybp.613.1649753616014; Tue, 12
- Apr 2022 01:53:36 -0700 (PDT)
+        h=x-gm-message-state:from:user-agent:references:in-reply-to
+         :mime-version:date:message-id:subject:to:cc;
+        bh=4FpzyyLj/OdDU3ZmpUpstG+y8CAFSWZd/AR4b2PM65Y=;
+        b=jXhtUlgOu9e8CySvJHOJJc0FvJjBjKDChd2I5Ff7eOF+hVciOCW6kuioRA4bFCYDHv
+         iAzoAKKygdKk/vw26tKK9lZeo/LnZlc41d/wQBBf8y3iJFRmK18eG4CFfamzPvdzCbY+
+         j+orVkDkegZhNM1ZBJffdbDt9Av1TKhzuB278qnAZA5/65zt8ptevLL4jFf0Z6YgkfQ6
+         0Esa/JuXCVi3fGjCYMOol22p5vyGLO9ycPu+3kjjRvEMXeX52kM1H1PGaOZpGr0Dn3oZ
+         Ucmx1sQUve51k4VKLmikBTU/+o/DBJ8aga9uxlmuXLYMTOVt3L9t6RuCIlU45LIrNTJz
+         rYGg==
+X-Gm-Message-State: AOAM533x/9390UJRw8yyUle7Gih4j0Xj/c9ub+982aSlQRl8dE58JCqA
+        lklcPJky5HmFzivg3D1flu5IJp9qUKF+8d5XaivhLg==
+X-Google-Smtp-Source: ABdhPJyGsXSnBb0OrYJzuxK+lplYEUvtBMZUA3XN/6JoCjC1Dfht5xOEuqQ6v8izMrWtfTdYVEwhffLY26AWeFbXjVU=
+X-Received: by 2002:a05:6808:159d:b0:2da:3946:ab3d with SMTP id
+ t29-20020a056808159d00b002da3946ab3dmr1258843oiw.248.1649753874382; Tue, 12
+ Apr 2022 01:57:54 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Apr 2022 01:57:53 -0700
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-5-granquet@baylibre.com>
+ <0c523ad5-6a71-5c71-17b8-1f15c1860d89@collabora.com>
+In-Reply-To: <0c523ad5-6a71-5c71-17b8-1f15c1860d89@collabora.com>
 MIME-Version: 1.0
-References: <20220322095512.4707-1-wsa+renesas@sang-engineering.com> <20220322095512.4707-6-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20220322095512.4707-6-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 12 Apr 2022 10:53:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUZ=gpqXKkxogV+jhrvZUuRjO_buzYntQ-PFOsy6YnYyA@mail.gmail.com>
-Message-ID: <CAMuHMdUZ=gpqXKkxogV+jhrvZUuRjO_buzYntQ-PFOsy6YnYyA@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: renesas: rcar-gen4: add interrupt
- property to the watchdog node
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+Date:   Tue, 12 Apr 2022 01:57:53 -0700
+Message-ID: <CABnWg9vxnLqAsoLOSHekwa9q3v=atLJEXpXADMc-bj+z1mkQHA@mail.gmail.com>
+Subject: Re: [PATCH v9 04/22] drm/edid: Convert cea_sad helper struct to kernelDoc
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, vkoul@kernel.org,
+        airlied@linux.ie, chunfeng.yun@mediatek.com,
+        chunkuang.hu@kernel.org, ck.hu@mediatek.com, daniel@ffwll.ch,
+        deller@gmx.de, jitao.shi@mediatek.com, kishon@ti.com,
+        krzk+dt@kernel.org, maarten.lankhorst@linux.intel.com,
+        matthias.bgg@gmail.com, mripard@kernel.org, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, tzimmermann@suse.de
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-phy@lists.infradead.org, markyacoub@google.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 10:58 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Driver doesn't use it yet, but let's describe the HW properly.
+On Mon, 28 Mar 2022 10:04, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>Il 28/03/22 00:39, Guillaume Ranquet ha scritto:
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>   include/drm/drm_edid.h | 11 ++++++++---
+>>   1 file changed, 8 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+>> index 144c495b99c4..5d4d840b9904 100644
+>> --- a/include/drm/drm_edid.h
+>> +++ b/include/drm/drm_edid.h
+>> @@ -359,12 +359,17 @@ struct edid {
+>>
+>>   #define EDID_PRODUCT_ID(e) ((e)->prod_code[0] | ((e)->prod_code[1] << 8))
+>>
+>> -/* Short Audio Descriptor */
 >
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>Hello Guillaume,
+>
+>> +/* struct cea_sad - Short Audio Descriptor.
+>> +	@format: See HDMI_AUDIO_CODING_TYPE_*.
+>> +	@channels: max number of channels - 1.
+>> +	@freq: See CEA_SAD_FREQ_*.
+>> +	@byte2: meaning depends on format.
+>> +*/
+>
+>I appreciate the effort, but this is not valid kerneldoc.
+>
+>Please refer to https://docs.kernel.org/doc-guide/kernel-doc.html
+>
+>Regards,
+>Angelo
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.19.
+Hello Angelo,
 
-Gr{oetje,eeting}s,
+Thx for your review.
+I'm sorry I posted this v9 in a bit of a rush...
+but I promise we will get there... eventually :D
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thx,
+Guillaume.
