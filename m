@@ -2,80 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F99D4FE4A9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E6A94FE4C1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357167AbiDLPYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 11:24:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48190 "EHLO
+        id S233337AbiDLPdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 11:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351989AbiDLPXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:23:51 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7201E1C933
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:21:29 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-deb9295679so21096678fac.6
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Qu3x8sdL450TLQDqbPVZSB+mpayh/+CyyZ7ypbjcaSU=;
-        b=r6cizZbLbT+19O9rXJANpT82cGCsvqn2fYt+NJUHZ8fWAx5bqrlJO1ag9v+NDtvUQF
-         dgcyRF7V4pQ6a7huSydcAB2zpQZk8DNUK/w6mGMoFUUeotYHOYeGBOucp9BP+KopXz7r
-         O2xrj9ulrpRv7XGAdFDjVmdcUgtCQQcxy92strzrfd68YVAGjofGmylhBoURLQjuD1D/
-         K7QretzqMAeumMbaAmOMG+age3q4DNJBSPh2Bu6J5lH3ChfrXR4DOZ+++4Pe2na04YJH
-         dBjXX23PBn5/Kn3szYQOVTT+nCDJDBhpcIY4LO/cj9sRSW2GeCTIVQK95Qb2s8YHhm4i
-         7Tpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Qu3x8sdL450TLQDqbPVZSB+mpayh/+CyyZ7ypbjcaSU=;
-        b=hLnG68KWrmdgtrC2XgRODhgSfRMLxJj8NnM8WN9JDWzTFCHTm34MEV5xbfUU71+ZdA
-         MpujdsuFm2pjaGzR2iCyO58IfveyNqDGcIRcvh6wMWCYlGaO519+DLITqUXuAoaxWzah
-         PZSLCmq3l0kxCBdtyvubRuQg/5TJfgDTRs2uBVK97yN1/dOvPwMKq9uTsfKyop+jG4Rz
-         0+EdPuuf1Koh9nEGCl2WO0BvkliQ3h2suVSRDSUO8SUzotnd4HpJsjKhGubYTMGYtePU
-         unOi/730gin8psRz6dXaQ5/kBAdpOPPLLT3fGnrQ0FzBuqj3OrLirL104WzKFSjZrCc3
-         hbww==
-X-Gm-Message-State: AOAM532JWrnHsdaiAqqrkXBGkXp/ydLoHmGPMZe7iXk6+culYsF18RGz
-        joXVGaCgq/zIR6p/6GpUK4M4vA==
-X-Google-Smtp-Source: ABdhPJwSMU6rLdoiFiE1YWIqEnAgFX38AXPmGE4lImEOYvnaGOANJ32c//Fqg3miUjWLSjDcu6Zvjw==
-X-Received: by 2002:a05:6870:e893:b0:e2:ecbc:e581 with SMTP id q19-20020a056870e89300b000e2ecbce581mr2203328oan.193.1649776888814;
-        Tue, 12 Apr 2022 08:21:28 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id n6-20020a9d6f06000000b005b266e43c92sm13460871otq.73.2022.04.12.08.21.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 08:21:27 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 08:23:42 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S1357157AbiDLPc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:32:56 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C0849F34;
+        Tue, 12 Apr 2022 08:30:38 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 4C8611F449DD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649777437;
+        bh=lQ4NdSCZzsjrOwPly6smii3XDpZabMAoBkBVD0ftePQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DypMHo/iqBWeOVAIsUtbr1TgMRAo4Egs4mPvgCYZkmDXSh575Wnsh2QlOf4+zqnZ3
+         HTc+h+30pelHZrWbwZMI5mxhwWB4ip2KId8dHBa1Hdul5lrLZ03e95mkFmtWa6Lrf+
+         rwomvfA6S+IH4/wD0SLVUnRByMfS8kW8J3AGX83mzQnhbR3vb42SDAAkVrb0J7djP5
+         zh/RBmU1mEP1yWGCGFzM1LuMe2QrvVjGYOynP1YYnV9Cp72fk4DlELrtKCKkcvLgYR
+         1W/NwnhXSpzpC0pD7RFoZjPUG1x1d/zhWdLVzl1kRe0VDGNZZdUrUMIsNoF9uN/e3h
+         CGn/SyVelKLJg==
+Message-ID: <138aad1c-63d7-371a-ff41-4fd7022d365d@collabora.com>
+Date:   Tue, 12 Apr 2022 17:30:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] soc: mediatek: svs: add support for mt8186
+Content-Language: en-US
+To:     Tim Chang <jia-wei.chang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v2 2/6] dt-bindings: opp: accept array of frequencies
-Message-ID: <YlWZfioKrHO9tqQv@ripper>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-3-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220411154347.491396-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Roger Lu <roger.lu@mediatek.com>,
+        Kevin Hilman <khilman@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        hsinyi@google.com
+References: <20220412112127.21570-1-jia-wei.chang@mediatek.com>
+ <20220412112127.21570-3-jia-wei.chang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220412112127.21570-3-jia-wei.chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,39 +62,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 11 Apr 08:43 PDT 2022, Krzysztof Kozlowski wrote:
-
-> Devices might need to control several clocks when scaling the frequency
-> and voltage.  Allow passing array of clock frequencies, similarly to the
-> voltages.
+Il 12/04/22 13:21, Tim Chang ha scritto:
+> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> MT8186 svs has a number of banks which used as optimization of opp
+> voltage table for corresponding dvfs drivers.
+> MT8186 svs big core uses 2-line high bank and low bank to optimize the
+> voltage of opp table for higher and lower frequency respectively.
 > 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> index 76c8acd981b3..1d7216008f95 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> @@ -50,6 +50,14 @@ patternProperties:
->            property to uniquely identify the OPP nodes exists. Devices like power
->            domains must have another (implementation dependent) property.
->  
-> +          This can be also an array of frequencies for each clock provided to the
-> +          device.  In such case value of 0 means the clock frequency should not
-> +          be configured for given clock.
-> +        minItems: 1
-> +        maxItems: 16
-> +        items:
-> +          maxItems: 1
-> +
->        opp-microvolt:
->          description: |
->            Voltage for the OPP
-> -- 
-> 2.32.0
-> 
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+
+For the code only, as I am unable to test:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
