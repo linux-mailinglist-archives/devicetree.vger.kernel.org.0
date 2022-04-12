@@ -2,112 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67A954FE4AA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3A3F4FE496
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:21:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356998AbiDLPYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 11:24:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48110 "EHLO
+        id S234881AbiDLPXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 11:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357056AbiDLPXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:23:55 -0400
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D425D660;
-        Tue, 12 Apr 2022 08:21:34 -0700 (PDT)
-Received: by mail-qv1-f47.google.com with SMTP id kl29so16382503qvb.2;
-        Tue, 12 Apr 2022 08:21:34 -0700 (PDT)
+        with ESMTP id S1356955AbiDLPWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:22:24 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60773193F9
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:20:05 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id y3-20020a056830070300b005cd9c4d03feso13597584ots.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=d+PIhawCGQKqSaXqYa/iZBL6dgcjK4qOFHlBoybLaRc=;
+        b=nBkGsJgmCNSS9IGV9Ejz9t/B5eC84S5Ir2h7JTfwxVIjXPKXhNFqWWY3C/RDP4ZWQ1
+         9LrWOl9ulQfyKZm2eTl72xbF+u5BqUyG32TzYFva4wgpBAn8/9SO4A2rbsxtRofgjR5M
+         7oXNc1wNuowc5gn+Y+uNdiUKPvB53Jrl0ZgHEMjT3ZZmOlrGxY9hU0HZvu+1+O39hndb
+         R950jUQa1n18bT8774XYDHdNoSjSpdr0wkOcZslivcyo4RXc6uzIJAHVEG+lkI+FFI3z
+         lNtV9hNKNv3mXH5uzS6b3iQ5sZV2PX9bseA4zwcCFMwuv7U1vE5jjSv1MfX0B00yshbt
+         ucyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VFJK5OIwXkaTtaTorFVplBIeKXoxiNuwUFLzBzwfNJc=;
-        b=1PBOLvaGtqGjsJHyxRcikr9Lj05lvKOXWT5UGGnnH+tKXdBueOnlIw7Z6DkGd7+vDE
-         4ki77a07wE3HeQifP5ARulEeHQ8yUdNRef7ATGgB39YfQYBq7p0pJM7P5SIaU9gYeBjK
-         wQEh8JiX+XkhzeVCQs0s6s8jwmHP8aeVhVYXOP3a5Vv4t+EtPcDFjBWVl6bNQIBhFnoe
-         FtMUpj3QHZgUcAI9v9C8VlLbiFtMuUar0CHMGcdZkPTGFUM0TeWp/3e3ohOo6kHOd6pX
-         KOoDJK6AzEb8Rmna1LdTfXX/IP6mpXAFppndDXz48QtLYZoHTziqnml9rnlPZ0j/QOat
-         dPtQ==
-X-Gm-Message-State: AOAM533mBmvtklZn0uija9yNhM36k8rTy5UAS/SQuzdZLXdeLwtJyVf3
-        gmULapmENUZb1yqdUdGAv0w9cehO24Vw/w==
-X-Google-Smtp-Source: ABdhPJxeT8WKR3wZzs6BRq7hzh+2Hf3Puu+kGfkfxVZaTqDlOirPqbcV6lKC6LwG42YTtUHznWkJ6Q==
-X-Received: by 2002:a05:6214:5198:b0:444:36cc:469a with SMTP id kl24-20020a056214519800b0044436cc469amr4226197qvb.39.1649776893662;
-        Tue, 12 Apr 2022 08:21:33 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 140-20020a370892000000b0069c1c277c58sm4306782qki.109.2022.04.12.08.21.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 08:21:33 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-2ec0bb4b715so76549147b3.5;
-        Tue, 12 Apr 2022 08:21:33 -0700 (PDT)
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr30817768ywb.132.1649776893018; Tue, 12
- Apr 2022 08:21:33 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=d+PIhawCGQKqSaXqYa/iZBL6dgcjK4qOFHlBoybLaRc=;
+        b=V6dw00gndZNibM0gYG7BExcRGwmhI8WEWPDRBljrQP2MDz85vYWjV3mNVWVChP3ta1
+         rIpKm2AXIqmLa74yTgkeN8MDPSXCmenQHcZolmEnYj1mZSNQ7NGiJpU85tbugw/qARza
+         HKSbXmgi+KbzDHKwqq7vuG+67B7cyvXC4zuxwq09Dulxutqi1k5ufy4RSX7JBa7iFCdR
+         xGvXAHKHlOpwPs1DVHOwa6vEEjKrms0GLx4NyqNomZeUXoCsB9pP544bk7cWIKPFtvD8
+         QKeNKWww4to9Gu2RG2RxmQ3hr3RkwHSZY+f/6dWYTvkcAZJj65XbsmqpynkId/6LoE+B
+         qRVQ==
+X-Gm-Message-State: AOAM531IDCuoFnepU4EeUKDkRa7ZIvHeM6z7eLpVrecvekWAD7VOUpoj
+        Mjmn1qUoWzO2HPfHQlfdf4fCuw==
+X-Google-Smtp-Source: ABdhPJxL/d3Q0dZmV5j0Z6N1rGq3uWRPM11JQ58vEe8BmpfuWmxwJ3FaHYUM2BW476AU0Q0tFlyVIw==
+X-Received: by 2002:a05:6830:154c:b0:5e6:85c5:ed8b with SMTP id l12-20020a056830154c00b005e685c5ed8bmr13202510otp.253.1649776804685;
+        Tue, 12 Apr 2022 08:20:04 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id r17-20020a0568080ab100b002f9fef240f7sm3110364oij.50.2022.04.12.08.20.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 08:20:03 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 08:22:18 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v2 1/6] dt-bindings: clock: qcom,gcc-sdm845: add
+ parent power domain
+Message-ID: <YlWZKprJuLJXd+r4@ripper>
+References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
+ <20220411154347.491396-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20220402073037.23947-1-biju.das.jz@bp.renesas.com> <20220402073037.23947-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220402073037.23947-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 12 Apr 2022 17:21:21 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXOoN+s63A4FQWitH_CvNqVw0dFAquOGxFjrdLJSz=KdQ@mail.gmail.com>
-Message-ID: <CAMuHMdXOoN+s63A4FQWitH_CvNqVw0dFAquOGxFjrdLJSz=KdQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] dt-bindings: clock: Add R9A07G043 CPG Clock and
- Reset Definitions
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411154347.491396-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Mon 11 Apr 08:43 PDT 2022, Krzysztof Kozlowski wrote:
 
-On Sat, Apr 2, 2022 at 9:30 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Define RZ/G2UL (R9A07G043U) Clock Pulse Generator Core Clock and module
-> clock outputs, as listed in Table 7.1.4.2 ("Clock List r0.51") and also
-> add Reset definitions referring to registers CPG_RST_* in Section 7.2.3
-> ("Register configuration") of the RZ/G2UL Hardware User's Manual (Rev.
-> 0.51, Nov. 2021).
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Allow Qualcomm GCC to register its parent power domain (e.g. RPMHPD) to
+> properly pass performance state from children.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
 > ---
-> v3->v4:
->  * Added Ab tag from Rob
->  * Removed LAST_COMMON macro from clock and reset indices.
->  * Added comment for RZ/G2UL specific clocks
->  * Listed all clocks and reset in the same order as RZ/G2L.
-
-Thanks for the update!
-
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
-
-> +/* R9A07G044 Resets */
-
-Oh well...
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in a branch shared by renesas-clk-for-v5.19 and
-renesas-arm-dt-for-v5.19, with the above fixed.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>  Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> index d902f137ab17..daf7906ebc40 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> @@ -43,6 +43,9 @@ properties:
+>    '#reset-cells':
+>      const: 1
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    '#power-domain-cells':
+>      const: 1
+>  
+> -- 
+> 2.32.0
+> 
