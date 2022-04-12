@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 859954FD531
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:11:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E51C04FD6FD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351780AbiDLIB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 04:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45880 "EHLO
+        id S1353364AbiDLIDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 04:03:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353424AbiDLHPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:15:21 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7BE9396A3;
-        Mon, 11 Apr 2022 23:56:56 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 23C6gdFx026337;
-        Tue, 12 Apr 2022 14:42:39 +0800 (GMT-8)
-        (envelope-from dylan_hung@aspeedtech.com)
-Received: from DylanHung-PC.aspeed.com (192.168.2.216) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 12 Apr
- 2022 14:54:19 +0800
-From:   Dylan Hung <dylan_hung@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <p.zabel@pengutronix.de>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <krzk+dt@kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH v4 3/3] ARM: dts: aspeed: add reset properties into MDIO nodes
-Date:   Tue, 12 Apr 2022 14:56:11 +0800
-Message-ID: <20220412065611.8930-4-dylan_hung@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220412065611.8930-1-dylan_hung@aspeedtech.com>
-References: <20220412065611.8930-1-dylan_hung@aspeedtech.com>
+        with ESMTP id S1357193AbiDLHjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:39:51 -0400
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B06214027;
+        Tue, 12 Apr 2022 00:13:36 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id kl29so15487664qvb.2;
+        Tue, 12 Apr 2022 00:13:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b40J74AZXHQx3F3Kvksxnsm3IoWKYudmg3ktvmskBdg=;
+        b=vtRsdCbyShHPW1r/c0C6OSnkbkYgKws2dk0YIuJ2uJdeJHhuhheIRlabc3kzgejLJ1
+         4lbXwJJX4hrPPJIUnEDhXOzJv7F68g3wfZYDPdRlXPAhm5COX4YRHZVy3h9GDwIL3ieK
+         TqaLrInRLjUIK9U6eCX0SMozsIfepheIaVlx88atEcI2vs6etuIIsVrfBrJuU/u1PDHx
+         4OH3ucwfh/DCCOIs1i9Xl/ONCtboy47ER6QV7Hugkjqx5uKrdxEY1bcXCnEW5lhEwYMg
+         efQGRg65IROV1BKEt6TMK42e0nIpUfh+/CvyuJ3dQKxXOkPoL18/9CY51d/GesQXVKy+
+         vw4A==
+X-Gm-Message-State: AOAM532Q1UP8SW3/YKCBtQbbMbadf11PzDTPOMzr2KGM28Jdglgk38/r
+        FJWZjfSj9YNPbUnWRxZa9y2js9IWLJ6y9uHX
+X-Google-Smtp-Source: ABdhPJzCYVy117bkQj/DB7M6GTJOgziXwfQaUZNvnpGntUlMNL4oQyNKpLyC6dmfrLvTaoCpJKCavg==
+X-Received: by 2002:a05:6214:202a:b0:441:6a41:f710 with SMTP id 10-20020a056214202a00b004416a41f710mr30439607qvf.84.1649747615328;
+        Tue, 12 Apr 2022 00:13:35 -0700 (PDT)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id i7-20020ac85e47000000b002e22bad4717sm27207165qtx.1.2022.04.12.00.13.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 00:13:35 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id e71so17006804ybf.8;
+        Tue, 12 Apr 2022 00:13:34 -0700 (PDT)
+X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
+ p9-20020a259e89000000b0063cad37a5demr24883011ybq.342.1649747614630; Tue, 12
+ Apr 2022 00:13:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.216]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 23C6gdFx026337
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220411211243.11121-1-javierm@redhat.com> <20220411211243.11121-2-javierm@redhat.com>
+In-Reply-To: <20220411211243.11121-2-javierm@redhat.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 12 Apr 2022 09:13:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU+ieUSv1sjOX-fks3o+J3Eicg-prCK2+roTq-MFKTHBg@mail.gmail.com>
+Message-ID: <CAMuHMdU+ieUSv1sjOX-fks3o+J3Eicg-prCK2+roTq-MFKTHBg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: ssd1307fb: Deprecate "-i2c"
+ compatible strings
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reset control properties into MDIO nodes.  The 4 MDIO controllers in
-AST2600 SOC share one reset control bit SCU50[3].
+On Mon, Apr 11, 2022 at 11:12 PM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+> The current compatible strings for SSD130x I2C controllers contain both an
+> "fb" and "-i2c" suffixes. It seems to indicate that are for a fbdev driver
+> and also that are for devices that can be accessed over an I2C bus.
+>
+> But a DT is supposed to describe the hardware and not Linux implementation
+> details. So let's deprecate those compatible strings and add new ones that
+> only contain the vendor and device name, without any of these suffixes.
+>
+> These will just describe the device and can be matched by both I2C and SPI
+> DRM drivers.
+>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> Acked-by: Mark Brown <broonie@kernel.org>
 
-Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index c32e87fad4dc..ab20ea8d829d 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -181,6 +181,7 @@ mdio0: mdio@1e650000 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio1_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio1: mdio@1e650008 {
-@@ -191,6 +192,7 @@ mdio1: mdio@1e650008 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio2_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio2: mdio@1e650010 {
-@@ -201,6 +203,7 @@ mdio2: mdio@1e650010 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio3_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio3: mdio@1e650018 {
-@@ -211,6 +214,7 @@ mdio3: mdio@1e650018 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio4_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mac0: ftgmac@1e660000 {
--- 
-2.25.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
