@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D40244FE05F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A9A74FE04A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344261AbiDLMk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 08:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45140 "EHLO
+        id S1352637AbiDLMka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 08:40:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355476AbiDLMjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:39:13 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4381327E
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 05:02:21 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id t25so9389107edt.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 05:02:21 -0700 (PDT)
+        with ESMTP id S1355881AbiDLMj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:39:28 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C491939694
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 05:03:23 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id t11so9886128eju.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 05:03:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QYvAQySo1sPsIjLPmB8FIvK2SiEiPIvz4SF0+8IYqQw=;
-        b=GTUU/BAw/7g1icPdyU1gicA+0STlI2aa4ncYMDx5RcmR/waZhtMZOSNr5gntvcxXkt
-         ZcRHjnk7S6mc7uTCeRabTQc9vxmnqPhg/QUV1E1kipzO+L0EyqtazSu7D+hHcyFzdRLY
-         xlaIvsEwqmFdCFMNA4xJ9nRZ+ILKSUyNWulsjOL3z46V0yzJoqFbUAbnwraaVq0bvp0w
-         uQlLLo3GU0MuerdCEEYIRrKWoo1PeJ1qi1IWeo5hFJP3kug2vwZN2B3S0Y7+T7Bi3itQ
-         QkRrJweOerYJHTf6hdqjrPxD+bLYZnhDzB85b3xjzrAz6MkqmXpnRN5ocAoLtSeLuVE7
-         z05w==
+        bh=P9Vlzh5r939TZHzBkHT3UQX7MKUcjJtbvYInSipTD1A=;
+        b=Zi7n7mxortlyiL0ZebgNg1KMOxCTMkm+i8luXhBBfdbazgaO5ITHkwS2+aR/OMjLc8
+         CaOS00+DjZz2LZn4A6KAuLLOLfHXR32t1tyGw/hPWfYGqBVdHoVMVEq5RRTIs2HE2kl7
+         qAyt9Q8mHGgtEKNEH5MqnG9wKYqUVBQfsCve4YnKwIhTKaxdhyBHSQuCYQ97AFRD5qbw
+         tZvSK2AJ37N5eNTCQQOUQCakyNAwr7S3/M5aWWMIBacW71lYe+Dj6fjQw4CPzXViFufy
+         P2aV+QjH4gN+OUKKBUrTgRKTW+S3Nc/VpdIHeMnDuQyzBvrfJTSATpIH7lHLFjysNGF3
+         n9mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QYvAQySo1sPsIjLPmB8FIvK2SiEiPIvz4SF0+8IYqQw=;
-        b=NiwGMhh3uSeZU3ecr7SdwLG2MpM8kuwZDH6rp0xUfm4M2T+uL4CCOKEmVrmJnStqe1
-         2yJb1svouyR8pwuYD378+iAz1T9ZMge+W7erlxE/D9rlHXFyOmEiihyZb/TsloWqwDho
-         ZvREpeVIKNI0+opQOlIBFrcEvto6gtYINZZadwQlERniDPQU8evQ0+3cVf4f8Piyl9I2
-         8tYQzQuhFD4uRjCOIY2vH7IjuE+u9+R6w9VQmBRxEa3wB1ruC3TePwde8Ew5e0p6MzOt
-         YTGXynOx/XUG+OnglvKZsv3ZeX44R49b/ysNyCixfZYyPbKGzGedPLTUZOTFtGBuPwNN
-         8JSg==
-X-Gm-Message-State: AOAM532YBkJlgL9Usp4qQvlceqCL63gQ560Wcw+OJnFNwyw7SvEns36R
-        uq61Gbzwzi+5VWuqrVvir44K6w==
-X-Google-Smtp-Source: ABdhPJzxtTWRt335RkLqbr9SGrvPqsb0D1/lwfuPdhnA0WbWgovri7fB6O1ERz8pptVoCEjSQJ+L3w==
-X-Received: by 2002:a05:6402:438d:b0:419:4550:d52b with SMTP id o13-20020a056402438d00b004194550d52bmr38259034edc.83.1649764939866;
-        Tue, 12 Apr 2022 05:02:19 -0700 (PDT)
+        bh=P9Vlzh5r939TZHzBkHT3UQX7MKUcjJtbvYInSipTD1A=;
+        b=0tVJhXu7K7m9qFp4QWX72ZoyEpjmcp0Kbn0RNlI8oTeT2XaWJdXm/dXIeA3wbGkDyc
+         mjn0+pzeyu1+WGn/gHp2x+V840hmdRcNk8fy5r3BFd+ZJfEOWsT3hUSYJgK3tRD6+3BR
+         G5g6dsLOujBsr4/ezZyPCw9Bso05D47EMLWW3hUneq++nOCBIMm14uvYnGqUMHXQloIt
+         XLfivyyo18Z+R2edz0Q2H1TaJm1lEhDEpa8wcWdZ4/dptMLDmOiEE7KYEk/XPw3PEosu
+         96cqI52cj/FChiDSy7LXjpiAmAx0MDj/VdYi1Mh4Y1MaoumYH1xSusS+E9jyiEybMjXj
+         QkYg==
+X-Gm-Message-State: AOAM531H+6jYBg5gIQ2hZ2uDdqeu2pQpGp7GLO+txegVuAZrd9ZRlTrH
+        WgeGkeH0YNwDYdMajefU3jPObw==
+X-Google-Smtp-Source: ABdhPJx6IBrqF+ExbI0R/I+qcJ+Gg7ztEoc2OuK961yTNxuYB01w3+TeUXFoQjHQaCY2aVfG07kRbw==
+X-Received: by 2002:a17:907:9482:b0:6da:a24e:e767 with SMTP id dm2-20020a170907948200b006daa24ee767mr34671029ejc.479.1649765002200;
+        Tue, 12 Apr 2022 05:03:22 -0700 (PDT)
 Received: from [192.168.0.195] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id jw12-20020a17090776ac00b006e87137194esm4001892ejc.150.2022.04.12.05.02.18
+        by smtp.gmail.com with ESMTPSA id o5-20020a50c905000000b0041d828d0c58sm2656513edh.53.2022.04.12.05.03.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 05:02:19 -0700 (PDT)
-Message-ID: <37b21c24-22e0-2de2-697f-d22ff92b90c2@linaro.org>
-Date:   Tue, 12 Apr 2022 14:02:17 +0200
+        Tue, 12 Apr 2022 05:03:21 -0700 (PDT)
+Message-ID: <aeff85cb-45b2-c7d6-5ce8-edd6776fbfe4@linaro.org>
+Date:   Tue, 12 Apr 2022 14:03:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v13 1/6] dt-bindings: usb: dwc3: Add wakeup-source
- property support
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: ti,sa2ul: Add a new compatible
+ for AM62
 Content-Language: en-US
-To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_kriskura@quicinc.com, quic_vpulyala@quicinc.com
-References: <1649704614-31518-1-git-send-email-quic_c_sanm@quicinc.com>
- <1649704614-31518-2-git-send-email-quic_c_sanm@quicinc.com>
+To:     Jayesh Choudhary <j-choudhary@ti.com>, linux-crypto@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+References: <20220412073016.6014-1-j-choudhary@ti.com>
+ <20220412073016.6014-2-j-choudhary@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1649704614-31518-2-git-send-email-quic_c_sanm@quicinc.com>
+In-Reply-To: <20220412073016.6014-2-j-choudhary@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,35 +76,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 21:16, Sandeep Maheswaram wrote:
-> Added support for wakeup-source property. This property can be
-> used to check and power down the phy during system suspend if
-> wake up is not supported.
+On 12/04/2022 09:30, Jayesh Choudhary wrote:
+> Add the AM62 version of sa3ul to the compatible list.
 > 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index f4471f8..4d4de2f 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -341,6 +341,11 @@ properties:
->        This port is used with the 'usb-role-switch' property  to connect the
->        dwc3 to type C connector.
+> diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> index a410d2cedde6..02f47c2e7998 100644
+> --- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> @@ -15,6 +15,7 @@ properties:
+>        - ti,j721e-sa2ul
+>        - ti,am654-sa2ul
+>        - ti,am64-sa2ul
+> +      - ti,am62-sa3ul
 >  
-> +  wakeup-source:
-> +    $ref: /schemas/types.yaml#/definitions/flag
 
-I would prefer to use shorter "type: boolean", but in any case:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-> +    description:
-> +      Enable USB remote wakeup.
-
+Just to be sure - dma-coherent is not required for this device (see
+final "if:" in the bindings)?
 
 Best regards,
 Krzysztof
