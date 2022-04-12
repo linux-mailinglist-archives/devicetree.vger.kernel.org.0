@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A430E4FEB36
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDFE4FEA19
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 00:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230176AbiDLX3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 19:29:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S229450AbiDLW1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 18:27:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbiDLX2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:28:06 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A99771705E
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 15:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1649802855;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Z+ent/yy95aJOm6DnI9kx/1sJTBsC05TLsSw4BZBHzs=;
-        b=SeC0Mk7HbI8AUy0rgdAO4pUfy759ub4kmNn8RfMv4zk2dtjON/fgv7jmh3DGkewVjh5VUc
-        0PLJjPyyydwrKb+PrSzBV3KsxSS8uTjDgKKsD9CsOZdKJ3xQUpWuurtnJE2y5X6AwHBi4b
-        2C6XMa2237kRq3jVuuEMoUO502AZ5Ck=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-413-jV2QJMBaNQm-JZsySZMRTA-1; Tue, 12 Apr 2022 16:14:14 -0400
-X-MC-Unique: jV2QJMBaNQm-JZsySZMRTA-1
-Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com [10.11.54.10])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 6C51D85A5BE;
-        Tue, 12 Apr 2022 20:14:13 +0000 (UTC)
-Received: from cmirabil.remote.csb (unknown [10.22.32.76])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id BA279416363;
-        Tue, 12 Apr 2022 20:14:12 +0000 (UTC)
-From:   Charles Mirabile <cmirabil@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Charles Mirabile <cmirabil@redhat.com>,
-        Serge Schneider <serge@raspberrypi.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
-        Mattias Brugger <mbrugger@suse.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, fedora-rpi@googlegroups.com,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, Mwesigwa Guma <mguma@redhat.com>,
-        Joel Savitz <jsavitz@redhat.com>
-Subject: [PATCH v8 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi Sense HAT schema
-Date:   Tue, 12 Apr 2022 16:13:41 -0400
-Message-Id: <20220412201343.8074-5-cmirabil@redhat.com>
-In-Reply-To: <20220412201343.8074-1-cmirabil@redhat.com>
-References: <20220412201343.8074-1-cmirabil@redhat.com>
+        with ESMTP id S229458AbiDLW0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 18:26:55 -0400
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FD0EA356
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:13:09 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id t11so14522eju.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:13:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5MGAtg924xQO54iJ+qv/RwdxCFigZdsll8ZfNIcJPJc=;
+        b=IRqKqtapX/MHyA0kDhcmneShyhbP439lD8Z4ajJgKEEMZUq7Vj+sED/f2zG9UVnerm
+         jpzuGuKrJfonnDeOMuIf0vIONMOIwnyrV3mqp8hjXo3XRoLeZeoo5BR1yxZ0us5IGLCX
+         H9JVNJpKmIEhAUOLZsJ/ckHDfJizPDyhh1LzKV9AJtaDXTMi6VVYWGZyQloKrFqD7Mdn
+         9mlgMDkO81cme6GlAzsCleTj8LTu7ADAE1Mw8pFcgc04Vg340p+7NMYOHu9JOT4aQDus
+         /ERJHCjamQajYUIAoG0AWxsglQKtacsyg28H/ioh0WG/5bTnm3HRNiz9TzBHQCOjpLva
+         mUsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5MGAtg924xQO54iJ+qv/RwdxCFigZdsll8ZfNIcJPJc=;
+        b=BaBG19ajJ+AXQopCJwCgu7O8LlW9PFTokcKUDAgEJ8sHJgk41ds7qLXLtngRyQb8fe
+         2gAzQ/3VUOJeELFcgmXt63J4+01OR80Rpdoj287xySWrj/fVptxxQa/JXys5Qk8FFGRm
+         tDTNYZ8/RTvMj67o5Sfx6iBdWQm0jXWYGuOhk6/VmNfVRRhVJVMx61HpjhiZlwSlPg7c
+         yRAYy9P6iWP4EiR7blTpIabOMaP11/i8x9wqR6jMwPsO7o/zGus0h8MO/Dh1xn7a3qbo
+         T9+Kt0fjnxVJF5/w+8SR7z2i7JH37drarursxGg2spK+T7Lv50Ov7866nXA7B9rc74sr
+         hAGg==
+X-Gm-Message-State: AOAM532ycsgFZMCkK5kLDFh3g0WRmaohs2UXIDpvjkfd9WmtG0+Y0OqO
+        6IlphKmfXmXwQtfnm98BhbfmcHigj1VdhQ==
+X-Google-Smtp-Source: ABdhPJxdvBgpOsgvYWc5ohlR+DrAhqAl4jpj9UN/qFwISEbPBxwK1JrxbDhyByhkPcvbEwT59vMZ5g==
+X-Received: by 2002:a2e:a585:0:b0:24b:70d2:249b with SMTP id m5-20020a2ea585000000b0024b70d2249bmr3482854ljp.78.1649797049159;
+        Tue, 12 Apr 2022 13:57:29 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id p9-20020a2e93c9000000b0024b3c2ecc18sm1861940ljh.115.2022.04.12.13.57.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 13:57:28 -0700 (PDT)
+Message-ID: <3c96b6f5-878f-ee90-657e-71e8de16e290@linaro.org>
+Date:   Tue, 12 Apr 2022 23:57:27 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 0/4] arm: qcom: qcom-apq8064: add separate device node
+ for tsens
+Content-Language: en-GB
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20220406002648.393486-1-dmitry.baryshkov@linaro.org>
+ <20220406154028.EC897C385A3@smtp.kernel.org>
+ <CAA8EJpod2cNOYr3g+DmdWo_2Ujv7-pW39fBKqcpCPvtVgP5-NQ@mail.gmail.com>
+ <20220412184304.79012C385A8@smtp.kernel.org>
+ <CAA8EJppha+V77S6LAZW9us6XiVu9vD9X=RF+RKd+5cvCz+NxEg@mail.gmail.com>
+ <YlXcTNv4ex54G/ig@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <YlXcTNv4ex54G/ig@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,170 +86,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the device tree bindings for the Sense HAT
-and each of its children devices in yaml form.
+On 12/04/2022 23:08, Bjorn Andersson wrote:
+> On Tue 12 Apr 12:20 PDT 2022, Dmitry Baryshkov wrote:
+> 
+>> On Tue, 12 Apr 2022 at 21:43, Stephen Boyd <sboyd@kernel.org> wrote:
+>>>
+>>> Quoting Dmitry Baryshkov (2022-04-06 12:57:30)
+>>>> On Wed, 6 Apr 2022 at 18:40, Stephen Boyd <sboyd@kernel.org> wrote:
+>>>>>
+>>>>> Quoting Dmitry Baryshkov (2022-04-05 17:26:44)
+>>>>>> Currently gcc-msm8960 driver manually creates tsens device. Instantiate
+>>>>>> the device using DT node instead. This follow the IPQ8064 device tree
+>>>>>> schema.
+>>>>>
+>>>>> Why can't the schema be changed?
+>>>>
+>>>> But these commits change the schema. They make apq8064 follow more
+>>>> logical scheme of ipq8064.
+>>>>
+>>>
+>>> Sounds like ipq8064 and apq8064 follow different schemas. Is there any
+>>> benefit to harmonizing the two vs. just leaving it as it is in the dts
+>>> and making the schema match whatever the dts has?
+>>
+>> I'd prefer to harmonize them. It makes no sense to have two different
+>> approaches for the single IP block (shared between ipq and apq/msm).
+>> And having a separate device tree node for the tsens removes a
+>> dependency from gcc on the nvmem/qfprom.
+>> Note, upstream qcom-msm8960.dtsi doesn't describe tsens at all, so we
+>> don't have to worry about it.
+>>
+> 
+> The apq8064 design was chosen in order to make the dts represent the GCC
+> being a single hardware block, and the fact that this is a clock and a
+> thermal driver in Linux is an implementation decision.
+> 
+> Seems like we forgot about this decision when we introduce the
+> ipq8064...
+> 
+> 
+> I'm not against harmonizing the two, but I don't see any changes to
+> Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml and the
+> clock patch describes what happens, but not why (i.e. if it's to
+> harmonize the implementations the commit message should say so).
 
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
-Co-developed-by: Joel Savitz <jsavitz@redhat.com>
-Signed-off-by: Joel Savitz <jsavitz@redhat.com>
-Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
----
- .../raspberrypi,sensehat-display.yaml         | 27 ++++++++
- .../input/raspberrypi,sensehat-joystick.yaml  | 33 +++++++++
- .../bindings/mfd/raspberrypi,sensehat.yaml    | 69 +++++++++++++++++++
- 3 files changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
- create mode 100644 Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
- create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+Nice catch. I forgot about the gcc-apq8064 schema. Will fix in the next 
+iteration.
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml b/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
-new file mode 100644
-index 000000000000..5e41d6b7817d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
-@@ -0,0 +1,27 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/raspberrypi,sensehat-display.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi Sensehat Display
-+
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
-+
-+description:
-+  This device is part of the sensehat multi function device.
-+  For more information see ../mfd/raspberrypi,sensehat.yaml.
-+
-+  This device features a programmable 8x8 RGB LED matrix.
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,sensehat-display
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml b/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
-new file mode 100644
-index 000000000000..c97cd1d8eac6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/raspberrypi,sensehat-joystick.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi Sensehat Joystick
-+
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
-+
-+description:
-+  This device is part of the sensehat multi function device.
-+  For more information see ../mfd/raspberrypi,sensehat.yaml.
-+
-+  This device features a five button joystick (up, down,left,
-+  right, click)
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,sensehat-joystick
-+
-+  interrupts:
-+    items:
-+      - description: pin number for joystick interrupt
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-new file mode 100644
-index 000000000000..2484ec91b430
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/raspberrypi,sensehat.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi Sensehat
-+
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
-+
-+description:
-+  The Raspberry Pi Sensehat is an addon board originally developed
-+  for the Raspberry Pi that has a joystick and an 8x8 RGB LED display
-+  as well as several environmental sensors. It connects via i2c and
-+  a gpio for irq.
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,sensehat
-+
-+  reg:
-+    items:
-+      - description: i2c device address
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  "joystick":
-+    $ref: ../input/raspberrypi,sensehat-joystick.yaml
-+
-+  "display":
-+    $ref: ../auxdisplay/raspberrypi,sensehat-display.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - joystick
-+  - display
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      sensehat@46 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "raspberrypi,sensehat";
-+        reg = <0x46>;
-+        display {
-+          compatible = "raspberrypi,sensehat-display";
-+        };
-+        joystick {
-+          compatible = "raspberrypi,sensehat-joystick";
-+          interrupts = <23 GPIO_ACTIVE_HIGH>;
-+        };
-+      };
-+    };
 -- 
-2.31.1
-
+With best wishes
+Dmitry
