@@ -2,137 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDFE4FEA19
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 00:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F15E4FEA21
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 00:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbiDLW1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 18:27:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38940 "EHLO
+        id S229517AbiDLWcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 18:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiDLW0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 18:26:55 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FD0EA356
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:13:09 -0700 (PDT)
-Received: by mail-ej1-f54.google.com with SMTP id t11so14522eju.13
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:13:09 -0700 (PDT)
+        with ESMTP id S229499AbiDLWcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 18:32:12 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D08F7F7B
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:17:46 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id s137so15660158pgs.5
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:17:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5MGAtg924xQO54iJ+qv/RwdxCFigZdsll8ZfNIcJPJc=;
-        b=IRqKqtapX/MHyA0kDhcmneShyhbP439lD8Z4ajJgKEEMZUq7Vj+sED/f2zG9UVnerm
-         jpzuGuKrJfonnDeOMuIf0vIONMOIwnyrV3mqp8hjXo3XRoLeZeoo5BR1yxZ0us5IGLCX
-         H9JVNJpKmIEhAUOLZsJ/ckHDfJizPDyhh1LzKV9AJtaDXTMi6VVYWGZyQloKrFqD7Mdn
-         9mlgMDkO81cme6GlAzsCleTj8LTu7ADAE1Mw8pFcgc04Vg340p+7NMYOHu9JOT4aQDus
-         /ERJHCjamQajYUIAoG0AWxsglQKtacsyg28H/ioh0WG/5bTnm3HRNiz9TzBHQCOjpLva
-         mUsQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LzVK1IQoHy6inUcYifHpyKq1c6gHZpZ4adL9ShMc3pA=;
+        b=MboutHxzQOdqFgBiScTBM+v/RlZEwIWrI+SZ3TVlCwgU+E9p0LkJo87yLyopNsrq5k
+         dZZ10V3nV4vGnJc1QW7qQRCY3XJMbBDPF/yfhsJ0/SYi9EHz2tPlogkv5U/fbAHrO3D7
+         Up9M4Wb5HbUddlf9lmOjzcQPNX9FBjvUAcRzkSoCKAIfLSp8CXnhjxB5J7oEUSpdrqfn
+         vi6eU8Fhy18Nm87Tjfcmq/7CMnx8ZKU0a+YF9jRvw3aP/OYbBkMvRPOC4spqXEZQQ2wS
+         XKuexO0eLcuSUV4SdH2sX1NOBa2FUqE6RcK0yqhCgwRA2JCr8VtRLgC/JdWnY9xTYfPn
+         lnrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5MGAtg924xQO54iJ+qv/RwdxCFigZdsll8ZfNIcJPJc=;
-        b=BaBG19ajJ+AXQopCJwCgu7O8LlW9PFTokcKUDAgEJ8sHJgk41ds7qLXLtngRyQb8fe
-         2gAzQ/3VUOJeELFcgmXt63J4+01OR80Rpdoj287xySWrj/fVptxxQa/JXys5Qk8FFGRm
-         tDTNYZ8/RTvMj67o5Sfx6iBdWQm0jXWYGuOhk6/VmNfVRRhVJVMx61HpjhiZlwSlPg7c
-         yRAYy9P6iWP4EiR7blTpIabOMaP11/i8x9wqR6jMwPsO7o/zGus0h8MO/Dh1xn7a3qbo
-         T9+Kt0fjnxVJF5/w+8SR7z2i7JH37drarursxGg2spK+T7Lv50Ov7866nXA7B9rc74sr
-         hAGg==
-X-Gm-Message-State: AOAM532ycsgFZMCkK5kLDFh3g0WRmaohs2UXIDpvjkfd9WmtG0+Y0OqO
-        6IlphKmfXmXwQtfnm98BhbfmcHigj1VdhQ==
-X-Google-Smtp-Source: ABdhPJxdvBgpOsgvYWc5ohlR+DrAhqAl4jpj9UN/qFwISEbPBxwK1JrxbDhyByhkPcvbEwT59vMZ5g==
-X-Received: by 2002:a2e:a585:0:b0:24b:70d2:249b with SMTP id m5-20020a2ea585000000b0024b70d2249bmr3482854ljp.78.1649797049159;
-        Tue, 12 Apr 2022 13:57:29 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id p9-20020a2e93c9000000b0024b3c2ecc18sm1861940ljh.115.2022.04.12.13.57.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 13:57:28 -0700 (PDT)
-Message-ID: <3c96b6f5-878f-ee90-657e-71e8de16e290@linaro.org>
-Date:   Tue, 12 Apr 2022 23:57:27 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LzVK1IQoHy6inUcYifHpyKq1c6gHZpZ4adL9ShMc3pA=;
+        b=o9dnW0Ly2TFoNiwZBbydFWDF05bfBnnXajsKBc6WpQX14Sdb1UyMHrM5CIWkTEF6Gp
+         BTj9QXQaewjJTc24PVtoPz+iB4WwzBbsbIcplr05y0C+sRRhuGWG1tPhCogQfOQex2SN
+         1/vt+ARC7tneJ7zqj2+M32GHiGFV1iJd8L1VoNJ6zInansxYF0aMlTcpE1Twid5YxhlC
+         tqk00W/fMLerDxfLCil22Q6bq+pLT9xXzwUvTkfv03bcrOn7Zdp8Soe5VzVpgFFsA58g
+         Y36M+alyTGX7KEhe91ph3JB/dMYbFTfhaNs1FzNiPpDuRleucOb6cq2wKXczJgQnl9/0
+         MHRw==
+X-Gm-Message-State: AOAM5327aRxm3s/CfTvi3RR+q3ezum3haGZPGM+FbsmGZx39+zjw+Dky
+        ErAK54Ef0OhPsb5M+iOL2VvbK+v4eqQHzw==
+X-Google-Smtp-Source: ABdhPJy9vH/5dk5SdPO+gnx9Vvk/LPSJEnQ7v+hjjt1g34/aCd4gYXgqkvlvOAi0xia+ZZQe6U2P9Q==
+X-Received: by 2002:a05:6a00:150d:b0:505:c6f0:686e with SMTP id q13-20020a056a00150d00b00505c6f0686emr6502605pfu.37.1649798079559;
+        Tue, 12 Apr 2022 14:14:39 -0700 (PDT)
+Received: from x1 ([2601:1c2:1001:7090:669f:cec7:c0c2:1cc])
+        by smtp.gmail.com with ESMTPSA id y30-20020a056a001c9e00b004fa9246adcbsm38195522pfw.144.2022.04.12.14.14.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 14:14:39 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 14:15:24 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: wkup-m3-ipc: Add vtt toggle gpio pin
+ property
+Message-ID: <YlXr7M/HXvlXWftR@x1>
+References: <20220409211215.2529387-1-dfustini@baylibre.com>
+ <20220409211215.2529387-2-dfustini@baylibre.com>
+ <YlXY88aJIrcHc5Bc@robh.at.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 0/4] arm: qcom: qcom-apq8064: add separate device node
- for tsens
-Content-Language: en-GB
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220406002648.393486-1-dmitry.baryshkov@linaro.org>
- <20220406154028.EC897C385A3@smtp.kernel.org>
- <CAA8EJpod2cNOYr3g+DmdWo_2Ujv7-pW39fBKqcpCPvtVgP5-NQ@mail.gmail.com>
- <20220412184304.79012C385A8@smtp.kernel.org>
- <CAA8EJppha+V77S6LAZW9us6XiVu9vD9X=RF+RKd+5cvCz+NxEg@mail.gmail.com>
- <YlXcTNv4ex54G/ig@ripper>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YlXcTNv4ex54G/ig@ripper>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlXY88aJIrcHc5Bc@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 23:08, Bjorn Andersson wrote:
-> On Tue 12 Apr 12:20 PDT 2022, Dmitry Baryshkov wrote:
+On Tue, Apr 12, 2022 at 02:54:27PM -0500, Rob Herring wrote:
+> On Sat, Apr 09, 2022 at 02:12:14PM -0700, Drew Fustini wrote:
+> > Document Wakeup M3 IPC property that indicates a GPIO pin is connected
+> > to the enable pin on DDR VTT regulator and can be toggled during low
+> > power mode transitions.
+> > 
+> > Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> > [dfustini: converted to YAML, removed unnecessary "ti,needs-vtt-toggle"]
+> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/soc/ti/wkup-m3-ipc.yaml     | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml b/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
+> > index d855c01ce61c..7f4a75c5fcaa 100644
+> > --- a/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
+> > @@ -24,6 +24,14 @@ description: |+
+> >    A wkup_m3_ipc device node is used to represent the IPC registers within an
+> >    SoC.
+> >  
+> > +  Support for VTT Toggle
+> > +  ==================================
+> > +  On some boards like the AM335x EVM-SK and the AM437x GP EVM, a GPIO pin is
+> > +  connected to the enable pin on the DDR VTT regulator. This allows the
+> > +  regulator to be disabled upon suspend and enabled upon resume. Please note
+> > +  that the GPIO pin must be part of the GPIO0 module as only this GPIO module
+> > +  is in the wakeup power domain.
+> > +
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -51,6 +59,10 @@ properties:
+> >        mbox_wkupm3 child node.
+> >      maxItems: 1
+> >  
+> > +  ti,vtt-gpio-pin:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: GPIO pin connected to enable pin on VTT regulator
 > 
->> On Tue, 12 Apr 2022 at 21:43, Stephen Boyd <sboyd@kernel.org> wrote:
->>>
->>> Quoting Dmitry Baryshkov (2022-04-06 12:57:30)
->>>> On Wed, 6 Apr 2022 at 18:40, Stephen Boyd <sboyd@kernel.org> wrote:
->>>>>
->>>>> Quoting Dmitry Baryshkov (2022-04-05 17:26:44)
->>>>>> Currently gcc-msm8960 driver manually creates tsens device. Instantiate
->>>>>> the device using DT node instead. This follow the IPQ8064 device tree
->>>>>> schema.
->>>>>
->>>>> Why can't the schema be changed?
->>>>
->>>> But these commits change the schema. They make apq8064 follow more
->>>> logical scheme of ipq8064.
->>>>
->>>
->>> Sounds like ipq8064 and apq8064 follow different schemas. Is there any
->>> benefit to harmonizing the two vs. just leaving it as it is in the dts
->>> and making the schema match whatever the dts has?
->>
->> I'd prefer to harmonize them. It makes no sense to have two different
->> approaches for the single IP block (shared between ipq and apq/msm).
->> And having a separate device tree node for the tsens removes a
->> dependency from gcc on the nvmem/qfprom.
->> Note, upstream qcom-msm8960.dtsi doesn't describe tsens at all, so we
->> don't have to worry about it.
->>
-> 
-> The apq8064 design was chosen in order to make the dts represent the GCC
-> being a single hardware block, and the fact that this is a clock and a
-> thermal driver in Linux is an implementation decision.
-> 
-> Seems like we forgot about this decision when we introduce the
-> ipq8064...
-> 
-> 
-> I'm not against harmonizing the two, but I don't see any changes to
-> Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml and the
-> clock patch describes what happens, but not why (i.e. if it's to
-> harmonize the implementations the commit message should say so).
+> Looking at the driver, can't you add 'maximum: 31' here? If so, I can 
+> add it when applying.
 
-Nice catch. I forgot about the gcc-apq8064 schema. Will fix in the next 
-iteration.
+Yes, good idea. I would appreciate it if that was added when applying.
 
--- 
-With best wishes
-Dmitry
+Thank you,
+Drew
