@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 473F04FDBDA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0F1C4FDB9B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354710AbiDLKH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36396 "EHLO
+        id S1348859AbiDLKFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:05:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353633AbiDLIJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 04:09:49 -0400
+        with ESMTP id S1356243AbiDLIJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 04:09:14 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DDFBFA
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AEEEBF9
         for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 00:40:16 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1neB8A-0007gO-Lp; Tue, 12 Apr 2022 09:40:06 +0200
+        id 1neB8A-0007gP-Lp; Tue, 12 Apr 2022 09:40:06 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1neB89-00AQam-Qn; Tue, 12 Apr 2022 09:40:05 +0200
+        id 1neB89-00AQaw-Rk; Tue, 12 Apr 2022 09:40:05 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
 Cc:     David Jander <david@protonic.nl>,
@@ -31,9 +31,9 @@ Cc:     David Jander <david@protonic.nl>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Robin van der Gracht <robin@protonic.nl>
-Subject: [PATCH v1 15/17] arm: dts: imx6dl-victgo.dts: Remove touchscreen x axis inversion
-Date:   Tue, 12 Apr 2022 09:40:02 +0200
-Message-Id: <20220412074004.2485264-16-o.rempel@pengutronix.de>
+Subject: [PATCH v1 16/17] arm: dts: imx6qdl-vicut1.dtsi: Add missing ISB led node
+Date:   Tue, 12 Apr 2022 09:40:03 +0200
+Message-Id: <20220412074004.2485264-17-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220412074004.2485264-1-o.rempel@pengutronix.de>
 References: <20220412074004.2485264-1-o.rempel@pengutronix.de>
@@ -54,26 +54,41 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: David Jander <david@protonic.nl>
 
-X axis is not inverted in hardware.
+Add missing ISB led node.
 
 Signed-off-by: David Jander <david@protonic.nl>
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6dl-victgo.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6dl-victgo.dts b/arch/arm/boot/dts/imx6dl-victgo.dts
-index 4f6100b2ce2d..516ec915a911 100644
---- a/arch/arm/boot/dts/imx6dl-victgo.dts
-+++ b/arch/arm/boot/dts/imx6dl-victgo.dts
-@@ -94,7 +94,6 @@ touchscreen {
-                               <&adc_ts 5>;
- 		io-channel-names = "y", "z1", "z2", "x";
- 		touchscreen-min-pressure = <64687>;
--		touchscreen-inverted-x;
- 		touchscreen-inverted-y;
- 		touchscreen-x-plate-ohms = <300>;
- 		touchscreen-y-plate-ohms = <800>;
+diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+index 2a86136a04e8..c928bd854e92 100644
+--- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+@@ -95,6 +95,13 @@ led-2 {
+ 			gpios = <&gpio2 24 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
+ 		};
++
++		led-3 {
++			label = "isb_led";
++			function = LED_FUNCTION_POWER;
++			gpios = <&gpio4 31 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
+ 	};
+ 
+ 	reg_1v8: regulator-1v8 {
+@@ -574,6 +581,8 @@ MX6QDL_PAD_DI0_DISP_CLK__GPIO4_IO16		0x1b0b0
+ 			MX6QDL_PAD_DI0_PIN15__GPIO4_IO17		0x1b0b0
+ 			/* POWER_LED */
+ 			MX6QDL_PAD_EIM_CS1__GPIO2_IO24			0x1b0b0
++			/* ISB_LED */
++			MX6QDL_PAD_DISP0_DAT10__GPIO4_IO31		0x1b0b0
+ 		>;
+ 	};
+ 
 -- 
 2.30.2
 
