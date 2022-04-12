@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AED04FCF8F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 08:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9A24FCFD5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 08:37:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348898AbiDLGf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 02:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50678 "EHLO
+        id S1349725AbiDLGiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 02:38:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348935AbiDLGf1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 02:35:27 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F9135857;
-        Mon, 11 Apr 2022 23:33:06 -0700 (PDT)
-X-UUID: 59ca3f62dd774853b46ce00bbf8b60e4-20220412
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:90f094df-27e4-4228-a006-e5dd11ed172f,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:51
-X-CID-INFO: VERSION:1.1.4,REQID:90f094df-27e4-4228-a006-e5dd11ed172f,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:51
-X-CID-META: VersionHash:faefae9,CLOUDID:523bdba8-d103-4e36-82b9-b0e86991b3df,C
-        OID:e37b7fabc8cf,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
-        le:nil,QS:0,BEC:nil
-X-UUID: 59ca3f62dd774853b46ce00bbf8b60e4-20220412
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2129992685; Tue, 12 Apr 2022 14:33:03 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 12 Apr 2022 14:33:02 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 12 Apr 2022 14:33:02 +0800
-Message-ID: <d08e121848788fee9898e1898ee756b10c99fa08.camel@mediatek.com>
-Subject: Re: [RESEND v17 3/7] soc: mediatek: add mtk-mmsys support for
- mt8195 vdosys0
-From:   CK Hu <ck.hu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jason-JH Lin <jason-jh.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     David Airlie <airlied@linux.ie>, <singo.chang@mediatek.com>,
-        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
-        <postmaster@vger.kernel.org>,
-        "Fabien Parent" <fparent@baylibre.com>,
-        John 'Warthog9' Hawley <warthog9@eaglescrag.net>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <roy-cw.yeh@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        <nancy.lin@mediatek.com>, <linux-mediatek@lists.infradead.org>,
-        <hsinyi@chromium.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <moudy.ho@mediatek.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Date:   Tue, 12 Apr 2022 14:33:02 +0800
-In-Reply-To: <a48df6bb-6be8-6cb9-51d0-9044e706e834@collabora.com>
-References: <20220407030409.9664-1-jason-jh.lin@mediatek.com>
-         <20220407030409.9664-4-jason-jh.lin@mediatek.com>
-         <67b3e42d6a094108f724ed9b8c73f5cd6b2ce219.camel@mediatek.com>
-         <d8711b8e4d233240eda73db54a625e88b9b3970b.camel@mediatek.com>
-         <1f1692b6d14280fed40e53f464145ed70b67135f.camel@mediatek.com>
-         <a48df6bb-6be8-6cb9-51d0-9044e706e834@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1350561AbiDLGiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 02:38:12 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE9017E35
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 23:34:56 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id b21so3332780ljf.4
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 23:34:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=O7aCx2FRRglqn4zVmoyWdyA60dbe6nn+Xs3q+BlzSm8=;
+        b=L4yyc1O58czZqpyOXDLRpQ8l05yUbeItghn7To3S0DTazS9IDzRwjFvo5oGGj/Ls88
+         C4GOQKM/+5fkeRYDoXuhEmTXf1DxZnepoXvD/IF6VBHeRCUQJpjCBHfcuCcUVSJB54es
+         /wKtWNYQY2589yuMTFIiRALHhdYyfernMdAAnT4qu61mOQHhoP4PJvJDoljAONcL+oAi
+         trrCM5X5fB5mkiaJYdAe5vOzqScpL5sM9lIXGSMA4YbOFtf2OA8AUAgiT46HdZjjVEK4
+         AZRho6SWfHMRgAJdWxK5Gu9gQ6G1iqUGp2ODttg7nJK1v6LEEYNtnLGPDl0ECrNjXPzX
+         9k6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=O7aCx2FRRglqn4zVmoyWdyA60dbe6nn+Xs3q+BlzSm8=;
+        b=VjbM2vwcnOWze5n942APdVaTLlTK7NYAuBSsY0QM2urPoeBZ81et3OpWw8RuGHzryw
+         e9hwiCpfbNycRJCF/X5xxcYvMVcvmHYqyiefkdmmVQWm15d6bOUGuB0Y7Vnj8il4wpPQ
+         d4ucGk+bW4gDx6HK1lC1sK0ikO1K7gzIf733SmY2m1mW4hu4qFoNW+7WOX++YOUqzwee
+         6t2HRIexN3B1dK+7UZ+/hsOJxNiPldqY82YstiO0dUu7WEVvAlmezXbudBPidm0Fvv1z
+         NG7OdvT9uDP0u57OVgMiAS0eFjVq3EiXlGsEqEjuKJN1eO/tNTFE+b+i2clNnZev+Mmw
+         ms+w==
+X-Gm-Message-State: AOAM532zdkgwPZdIxYoggOWEsxS9Knwjcpdd1gddjWSr3xxIg10iJqkW
+        x2yTssrblq4CySv3Gwsnwf8Qmw==
+X-Google-Smtp-Source: ABdhPJz1jJQkcvdIMFi9xPEXuJ8UFT2G6hv/bmy3giVCY2SOU3WJ7AOgtzNN0L1E3q7f0TaLxs16tA==
+X-Received: by 2002:a2e:9ed7:0:b0:24b:369:538b with SMTP id h23-20020a2e9ed7000000b0024b0369538bmr23292287ljk.206.1649745294581;
+        Mon, 11 Apr 2022 23:34:54 -0700 (PDT)
+Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
+        by smtp.gmail.com with ESMTPSA id bi2-20020a0565120e8200b004484aaaf818sm3541392lfb.13.2022.04.11.23.34.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Apr 2022 23:34:53 -0700 (PDT)
+Message-ID: <2af9a8a7-0904-df31-7c1a-21705bcda8d6@linaro.org>
+Date:   Tue, 12 Apr 2022 09:34:31 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of
+ UFS node
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
+ <dbe6d9c5-f717-785f-e65d-baa1328cea2b@linaro.org> <Ykx6NWrcf4IA2Mam@ripper>
+ <CAA8EJpqrJr5RB8E6CQ+cAgp6bad4m_LSG6CPeMsf+Ws0jqFf1Q@mail.gmail.com>
+ <YlTlZa35A4lu02oI@builder.lan>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <YlTlZa35A4lu02oI@builder.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,137 +79,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Angelo:
+Hi Bjorn,
 
-On Fri, 2022-04-08 at 10:49 +0200, AngeloGioacchino Del Regno wrote:
-> Il 08/04/22 03:28, CK Hu ha scritto:
-> > Hi, Jason:
-> > 
-> > On Thu, 2022-04-07 at 14:27 +0800, Jason-JH Lin wrote:
-> > > Hi CK,
-> > > 
-> > > Thanks for the reviews.
-> > > 
-> > > On Thu, 2022-04-07 at 13:45 +0800, CK Hu wrote:
-> > > > Hi, Jason:
-> > > > 
-> > > > On Thu, 2022-04-07 at 11:04 +0800, jason-jh.lin wrote:
-> > > > > 1. Add mt8195 mmsys compatible for vdosys0.
-> > > > > 2. Add mt8195 routing table settings and fix build fail.
-> > > > > 3. Add clock name, clock driver name and routing table into
-> > > > > the
-> > > > > driver data
-> > > > >     of mt8195 vdosys0.
-> > > > > 4. Add get match data by clock name function and clock
-> > > > > platform
-> > > > > labels
-> > > > >     to identify which mmsys node is corresponding to vdosys0.
-> > > > > 
-> > > > > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> > > > > ---
-> > > > >   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   2 +-
-> > > > >   drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   6 +-
-> > > > >   drivers/soc/mediatek/mt8167-mmsys.h         |   2 +-
-> > > > >   drivers/soc/mediatek/mt8183-mmsys.h         |   2 +-
-> > > > >   drivers/soc/mediatek/mt8186-mmsys.h         |   4 +-
-> > > > >   drivers/soc/mediatek/mt8192-mmsys.h         |   4 +-
-> > > > >   drivers/soc/mediatek/mt8195-mmsys.h         | 370
-> > > > > ++++++++++++++++++++
-> > > > >   drivers/soc/mediatek/mt8365-mmsys.h         |   4 +-
-> > > > >   drivers/soc/mediatek/mtk-mmsys.c            |  62 ++++
-> > > > >   drivers/soc/mediatek/mtk-mmsys.h            |   1 +
-> > > > >   drivers/soc/mediatek/mtk-mutex.c            |   8 +-
-> > > > >   include/linux/soc/mediatek/mtk-mmsys.h      |  13 +-
-> > > > >   12 files changed, 461 insertions(+), 17 deletions(-)
-> > > > >   create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
-> > > > > 
-> > > > 
-> > > > [snip]
-> > > > 
-> > > > > diff --git a/drivers/soc/mediatek/mtk-mmsys.c
-> > > > > b/drivers/soc/mediatek/mtk-mmsys.c
-> > > > > index 4fc4c2c9ea20..b2fa239c5f5f 100644
-> > > > > --- a/drivers/soc/mediatek/mtk-mmsys.c
-> > > > > +++ b/drivers/soc/mediatek/mtk-mmsys.c
-> > > > > @@ -4,6 +4,8 @@
-> > > > >    * Author: James Liao <jamesjj.liao@mediatek.com>
-> > > > >    */
-> > > > >   
+On 4/12/22 05:35, Bjorn Andersson wrote:
+> On Tue 05 Apr 12:38 CDT 2022, Dmitry Baryshkov wrote:
 > 
-> ..snip..
+>> On Tue, 5 Apr 2022 at 20:17, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+>>>
+>>> On Tue 05 Apr 08:38 PDT 2022, Dmitry Baryshkov wrote:
+>>>
+>>>> On 11/03/2022 01:19, Vladimir Zapolskiy wrote:
+>>>>> All interconnect device tree nodes on sm8450 are 2-cells, however in
+>>>>> UFS node they are handled as 1-cells, fix it.
+>>>>>
+>>>>> Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
+>>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>>>
+>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>
+>>>> Bjorn, could you please this pick for the -rc kernel?
+>>>>
+>>>
+>>> The change is obviously correct, but what difference does this change
+>>> make with the current implementation?
+>>
+>> it makes interconnect paths probe correctly. All NoC have
+>> #interconnec-cells = <2> now.
+>>
 > 
-> > > 
-> > > I think there might be another chip that needs to get driver data
-> > > by
-> > > clk_name .
-> > > So I use "clk-mt8195" in clk_driver to identify the corresponding
-> > > platform whose clk_name of mmsys is also "cfg_vod0".
-> > 
-> > We usually don't care the future because the future may not happen.
-> > If
-> 
-> Hello CK,
-> 
-> I'm sorry, but I really have to disagree here.
-> Sure, the future may not happen, but from what I can see, MediaTek's
-> commitment
-> on upstreaming their SoCs is continuative and they care about the
-> future.
-> 
-> Let's also not forget that these drivers are not on a downstream
-> tree, where
-> you don't care about the past or the future, but on upstream, where
-> you:
-> - Definitely care about the past
-> - Should care about the future, if you want to avoid commit noise and
->    making big changes to your drivers everytime, which would slow
-> down
->    your upstreaming due to reviewers having to put 3x efforts on each
->    iteration.
-> 
-> And let's also not forget that this being upstream means that these
-> drivers
-> may (or may not) be extended even by passionate community developers,
-> for
-> which, having such mechanisms there for other SoCs that MediaTek
-> didn't try
-> to upstream yet can only be good - and when these are engineered with
-> a
-> certain flexibility, while keeping the codebase solid, that can only
-> be good.
-> 
-> Besides, if I've misunderstood your "don't care the future"
-> statement,
-> pretend that I've never replied.
+> But there's no code in the UFS driver that calls of_icc_get(), so what
+> does this actually do? (Other than correcting the dtb for the day when
+> we add that support to the driver).
 
-OK, let's break this patch into two patches. The first is to support
-mt8195 only with clock name identification. The second patch is to
-identify SoC. In this series, we just need the first patch, so move the
-second patch to the series of another SoC with multiple mmsys device.
-Maybe another SoC with multiple mmsys device has new property which
-could be used to identify SoC, so we have no information about what is
-the better implementation of second patch. I do really care the future,
-but I have no information about the future. Please public any hidden
-information so we could have better decision.
+FWIW the change also has a runtime effect, it fixes a parsing of the board dtb,
+otherwise a warning in the kernel log appears:
 
-Regards,
-CK
+   OF: /soc@0/ufshc@1d84000: could not get #interconnect-cells for /clocks/sleep-clk
 
-> 
-> 
-> > it's sure that would happen, I think clk_driver is not a good
-> > choice.
-> > For now, the clk_driver name is different for each SoC, but it
-> > could be
-> > the same for each SoC because only one clock driver would be
-> > compiled.
-> > I think "compatible" would be different for each SoC.
-> > 
-> 
-> ...but I agree on that one (and I gave my own review and suggestions
-> on
-> how to improve that situation).
-> 
-> Regards,
-> Angelo
+Why /clocks/sleep-clk is mentioned here at all??
+Its phandle value is 0x26, which is equal to SLAVE_UFS_MEM_CFG from the array.
 
+--
+Best wishes,
+Vladimir
+
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+>>>>>    1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> index 0cd5af8c03bd..bbd38b55e976 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> @@ -1376,8 +1376,8 @@ ufs_mem_hc: ufshc@1d84000 {
+>>>>>                      iommus = <&apps_smmu 0xe0 0x0>;
+>>>>> -                   interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+>>>>> -                                   <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+>>>>> +                   interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+>>>>> +                                   <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+>>>>>                      interconnect-names = "ufs-ddr", "cpu-ufs";
+>>>>>                      clock-names =
+>>>>>                              "core_clk",
+>>>>
+>>>>
+>>>> --
+>>>> With best wishes
+>>>> Dmitry
+>>
+>>
+>>
+>> -- 
+>> With best wishes
+>> Dmitry
