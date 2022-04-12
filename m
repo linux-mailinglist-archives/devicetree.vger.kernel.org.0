@@ -2,138 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CD54FDD20
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90AEE4FDD88
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238961AbiDLK5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36734 "EHLO
+        id S1345508AbiDLLK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 07:10:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351477AbiDLKxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:53:32 -0400
-Received: from out28-123.mail.aliyun.com (out28-123.mail.aliyun.com [115.124.28.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E04923178;
-        Tue, 12 Apr 2022 02:49:14 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07437479|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.016684-0.000618175-0.982698;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=9;RT=9;SR=0;TI=SMTPD_---.NP95aWT_1649756947;
-Received: from 192.168.30.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NP95aWT_1649756947)
-          by smtp.aliyun-inc.com(33.37.72.206);
-          Tue, 12 Apr 2022 17:49:08 +0800
-Subject: Re: [PATCH 07/18] MIPS: DTS: jz4780: fix otg node as reported by
- dtbscheck
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
-References: <cover.1649443080.git.hns@goldelico.com>
- <298162bfa2e7225ccc753865e1ffa39ce2722b2a.1649443080.git.hns@goldelico.com>
- <bd19b6eb-d53a-b665-749d-46c275c85ccc@linaro.org>
- <822182F3-5429-4731-9FA1-8F18C5D95DEC@goldelico.com>
- <535e3eab-a28e-46f3-2a7e-f1ffd1913470@linaro.org>
- <7B66AC66-EF73-4F75-A775-589A4F98BEFC@goldelico.com>
- <3e95f567-03f5-bf9c-1856-9fe602e9b025@linaro.org>
- <81BA49E3-AFDE-4DFD-BB77-2B03488C727B@goldelico.com>
- <b6090a27-12b7-0c01-6d33-ae32b31b4b74@wanyeetech.com>
- <8FA36CE4-CD39-4767-B49E-D112E4313036@goldelico.com>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <3e088e18-5df9-bf50-0070-b24b8a3c5f41@wanyeetech.com>
-Date:   Tue, 12 Apr 2022 17:49:07 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        with ESMTP id S1353953AbiDLLFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:05:01 -0400
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF4C654BF
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:55:46 -0700 (PDT)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20220412095541euoutp02afeab9a16011a25dad725b17a3c933a2~lHY_48cgM0999309993euoutp024
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:55:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20220412095541euoutp02afeab9a16011a25dad725b17a3c933a2~lHY_48cgM0999309993euoutp024
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1649757341;
+        bh=njL2qvMFEhc0HzKA4tmgsS/RDhcCQzFsP7scg60RFzY=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=Z5VzAJSqs/bx2PopCOi/JpZraBnG2ADmjCSmvdHQ4umD10wpdGBarhHxr+5i4zh+s
+         Gu8PhtTbngjnv2A5aJY4Yk1/KgZY3+PS/PPN5Q3VC7FEoYGGu9ODL3goaej8oAE5Rk
+         3CvfZyrql1Bo49BoJ/uLeOeKDh2MEF/sCatBpfps=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20220412095541eucas1p222886ea3c33e6a2bf05cb3c20057aee7~lHY_eBiZo2834828348eucas1p2q;
+        Tue, 12 Apr 2022 09:55:41 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 99.C2.09887.D9C45526; Tue, 12
+        Apr 2022 10:55:41 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220412095540eucas1p26338894d71d3ab9190ac24639a89feff~lHY97jrgM3241332413eucas1p2s;
+        Tue, 12 Apr 2022 09:55:40 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220412095540eusmtrp27ca8c15d1c0ea9fd2cddeca7af9946d1~lHY91mUGV2041920419eusmtrp2B;
+        Tue, 12 Apr 2022 09:55:40 +0000 (GMT)
+X-AuditID: cbfec7f4-45bff7000000269f-26-62554c9de641
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id A6.4B.09404.C9C45526; Tue, 12
+        Apr 2022 10:55:40 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220412095537eusmtip1588c11a8d081c52b541062d64f10378a~lHY7KZ8rA1294412944eusmtip1F;
+        Tue, 12 Apr 2022 09:55:37 +0000 (GMT)
+Message-ID: <5823f59a-9c57-5f9a-0ebd-1ea2f39e73cb@samsung.com>
+Date:   Tue, 12 Apr 2022 11:55:36 +0200
 MIME-Version: 1.0
-In-Reply-To: <8FA36CE4-CD39-4767-B49E-D112E4313036@goldelico.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+        Gecko/20100101 Thunderbird/91.7.0
+Subject: Re: [PATCH 02/11] drm: bridge: samsung-dsim: Handle platform init
+ via driver_data
 Content-Language: en-US
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fancy Fang <chen.fang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20220408162108.184583-3-jagan@amarulasolutions.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUxTVxzlvvf6+trY7lkl3Og2tyZug0Q+hn/cAZKxOPNiTJhGTAAdFHgB
+        JhTXB36MbMMPBOrAtotQi6ROuhSwA61gQV0XGqATB4gCMwitRHQqIIHipsi6tX268d/5nd/H
+        OefmUrisklxD5SoLWZVSkScnxcTlnhcDG+q2JWVEajw4Grt7A0fueg+Bpu42kMjY1S9AQ89m
+        SVT5ow/p3BoCLVg1JHrkGiRQ35FpIarQmoTIrLGTyHp/RIDUi4040g/YMdR7uJRAjqpUNG+Y
+        wFHpz11CpP/+MYkGf53HPw5mfppzC5jZO6VCpv+7cZLpMIwLmdry0wKm/tpjjLE2VZBM13C9
+        gBkbuUYy7hNOjLlk+pa5+LQdY6pamwDjsb79mTRFHJfF5uXuZ1UR8eninG67HdvXKT9oNLdi
+        JWBxrRqIKEhvhOrpUVwNxJSMbgCwrdOC8cUCgN6qF4AvPADeqvlL+HrldssQyTfMvpXbNiFf
+        zAFo/L1Z4J+S0PGwvswE/Jig10O78TDO8yvh9dOThB8H0xnwvO287xJFraJ3Q50zzk/jdAgc
+        nTQGbKymlwj4ctFF8o2HAP7mDtwk6SionlEHeBGdADt0o69m1kHbzJlAIEh7RfDqn70C3vZm
+        qG+4B3i8Cj5xtr6K8yb8p8OvRvlwAfxbH83TB+HIlAXncSwc618M+MTpUNhyJYKnE+D0kWrA
+        b0rhnZmVvAMp1F2uwXlaAsuPy/jp96DB2fyfZufNW7gGyA3L3sSwLLxhWRbD/7pnAdEEQtgi
+        Lj+b5T5UsgfCOUU+V6TMDs8syLcC34+94XUutAPzk7lwB8Ao4ACQwuWrJSffT8qQSbIUh75i
+        VQVpqqI8lnOAtRQhD5Fk5l5QyOhsRSG7l2X3sarXXYwSrSnB2n4I+mipd3eYzRKT803i7MDO
+        Ff1LoQmbgnacDHqgldobL41sqmHLpO80FOvmMlwlm4styQ/Cnh+L7Z3vPjpWe7y15dQvz6TN
+        cNjb8wbZFXk09v5baVzb/sRjyee21o7GOOdBX+jDl+2pKZEx284oDhVXOptFddV/7Emu+MIs
+        m/g0bcOMN0W75dG9yvWO8cRSwYJWn/llLZgss6wbzNvztckVb6xulPfZpMHq7RXhU3QoHbUr
+        6cLOKTr93ayNHYU3M7vPfj6cU7dUfuBpKrcdaxyaiNoxFK08lQ3MEpje4mWl1NYrJaaeFSbV
+        Rf0nPUUG6Ra3uDPug4jnLi154qpHFy0nuBxFVBiu4hT/ArP6jSAgBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIKsWRmVeSWpSXmKPExsVy+t/xu7pzfEKTDBZ9FrO4c/s0s8X9xZ9Z
+        LF7fXsFmMf/IOVaLK1/fs1n0LgWyJt2fwGLxZdMENosX9y6yWJxtesNu0TlxCbvF8gn72Cw2
+        Pb7GatH1ayWzxYzz+5gsTjW2slgc6ou2+DTrIbNF694j7BYzJr9ks7h44hOzg6jH2o/3WT3e
+        32hl9zjXc5fNY+esu+wesztmsnos3vOSyWPTqk42jyNXF7N63Lm2h83jfvdxJo/NS+o9Nr7b
+        weTRt2UVo8fnTXIBfFF6NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2Nimp
+        OZllqUX6dgl6GUf37WMqOKhUMX/5FqYGxl/SXYycHBICJhKX119hA7GFBJYySmw+ZwYRl5E4
+        Oa2BFcIWlvhzrQuohguo5j2jxMzPp9lBErwCdhKL25cwgtgsAqoS++Y3MkPEBSVOznzCAmKL
+        CiRJXOpqB6sRFoiR2HBmJ1icWUBc4taT+UwgtohAA6vEoYtcEPFnjBJ3f6VBLDvNKHH1xQqw
+        ZWwChhJdb7vALuUUcJTYOekWG0SDmUTX1i5GCFteYvvbOcwTGIVmIbljFpJ9s5C0zELSsoCR
+        ZRWjSGppcW56brGRXnFibnFpXrpecn7uJkZgWtl27OeWHYwrX33UO8TIxMF4iFGCg1lJhLdf
+        PTRJiDclsbIqtSg/vqg0J7X4EKMpMDAmMkuJJucDE1teSbyhmYGpoYmZpYGppZmxkjivZ0FH
+        opBAemJJanZqakFqEUwfEwenVANTdA/7vdWLF03Tq34yY8eWXT0idllTgy6H365VSpp86X+z
+        D/ssfe7Lt0tr/zdMiVXZJFlV+ZXFMOIyx+GMGO9FSxwLY4L+v48zeumtybM+s/jik+0H7ddY
+        BXCetLvQsLtFLfvP7uj1EpsPlfOr3Sr6OZV77bIN8ZNU8p9cWnhqmvLCzzdVZkdLCcjX597q
+        f/akqFYiyV1M9UGgrhT32gyb3u6Nc1Q7hc395707eHKPdkTv/MevrU0+el/k/dvA1RviqTn3
+        v8NNzyWz1gq+2bl+Sh37r82Cx9V5/04T3yDv8b+1zlrOvaAmqi+Tm1+OJ/LySbfV1xJ/Hf/3
+        MftaRc+6duPvb27s5UxL+M6+1ktPiaU4I9FQi7moOBEAyqNtI7QDAAA=
+X-CMS-MailID: 20220412095540eucas1p26338894d71d3ab9190ac24639a89feff
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20220408162227eucas1p1f07cc5435b048a33013a72b52b135081
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20220408162227eucas1p1f07cc5435b048a33013a72b52b135081
+References: <20220408162108.184583-1-jagan@amarulasolutions.com>
+        <CGME20220408162227eucas1p1f07cc5435b048a33013a72b52b135081@eucas1p1.samsung.com>
+        <20220408162108.184583-3-jagan@amarulasolutions.com>
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
 
-On 2022/4/11 上午3:13, H. Nikolaus Schaller wrote:
-> Hi,
+On 08.04.2022 18:20, Jagan Teki wrote:
+> In order to make a common Samsung DSIM bridge driver some platform specific
+> glue code needs to maintain separately as it is hard to maintain platform
+> specific glue and conventional component_ops on the drm bridge drivers side.
 >
->> Am 10.04.2022 um 18:32 schrieb Zhou Yanjie <zhouyanjie@wanyeetech.com>:
->>
->> Hi folks,
->>
->> On 2022/4/9 下午9:53, H. Nikolaus Schaller wrote:
->>>> Am 09.04.2022 um 15:44 schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
->>>>
->>>> On 09/04/2022 15:32, H. Nikolaus Schaller wrote:
->>>>>> Am 09.04.2022 um 15:15 schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
->>>>>>
->>>>>> On 09/04/2022 15:05, H. Nikolaus Schaller wrote:
->>>>>>>> This looks wrong, the block usually should have a specific compatible.
->>>>>>>> Please mention why it does not.
->>>>>>> Well, I did not even have that idea that it could need an explanation.
->>>>>>>
->>>>>>> There is no "ingenic,jz4780-otg" and none is needed here to make it work.
->>>>>> Make it work in what terms? We talk about hardware description, right?
->>>>> Yes.
->>>>>
->>>>>>> Therefore the generic "snps,dwc2" is sufficient.
->>>>>> No, you are mixing now driver behavior (is sufficient) with hardware
->>>>>> description.
->>>>> No. "snps,dwc2" is a hardware description for a licensed block.
->>>>> Not a driver behavior.
->>>> snps,dwc2 matches the original block, not necessarily this
->>>> implementation. Unless you are sure?
->>> I assume. Nobody has reported an issue without having any specific jz4780 driver in place.
->>> Well, that is only evidence, not bullet proof.
->>>
->>>>>> Most of licensed blocks require the specific compatible to
->>>>>> differentiate it.
->>>>> If there is a need to differentiate.
->>>> No, regardless whether there is a need currently, most of them have
->>>> specific compatibles, because there are some minor differences. Even if
->>>> difference is not visible from programming model or wiring, it might
->>>> justify it's own specific compatible. For example because maybe once
->>>> that tiny difference will require some changes.
->>>>
->>>> Someone added the ingenic compatible, so why do you assume that one tool
->>>> (bindings) is correct but other piece of code (using specific
->>>> compatible) is not? You use the argument "bindings warning" which is not
->>>> enough. Argument that blocks are 100% same, is good enough, if you are
->>>> sure. Just use it in commit msg. But are you sure that these are the
->>>> same? Same pins, same programming model (entire model, not used by Linux)?
->>> The compatible ingenic,jz4780-otg was introduced in 158c774d3c64859e84dd20e04d5fb18c8d3d318e.
->>> Hence I have added Yanjie for clarification why he added it in the .dts and not in the bindings.
->>
->> It's my fault, last year I made an OTG driver for Ingenic SoCs and sent it
->> to the mailing list, and then I received some revision comments, but for
->> some personal reasons I didn't continue to improve it.
->>
->> I'll finish these modifications as soon as possible and send them out.
->> Then after they merge into the mainline, this problem will be solved.
-> No need to apologize.
+> This patch is trying to support that glue code initialization and invocation
+> in the form of platform_init flag in driver_data.
 >
-> If you agree I can add "ingenic,jz4780-otg" to the schema file and keep
-> the .dts in the v2 of my series.
-
-
-Sure.
-
-Or you can wait a bit, I plan to send out new patches later today, it 
-contains "ingenic,jz4780-otg".
-
-
-> And I'll add you to the list of reviewers, so you can please comment v2
-> if it is correct or if we are still missing something.
-
-
-Okay, thanks!
-
-
+> So, the platforms which enable platform_init flags will handle all platform
+> specific initialization via samsung_dsim_plat_probe.
 >
-> Best regards and thanks,
-> Nikolaus
+> The Platform probe is responsible to
+> - initialize samsung_dsim_plat_data and install hooks
+> - initialize component_ops
+> - preserve samsung_dsim structure pointer
+>
+> v1:
+> * use platform_init instead of exynos_specific
+> * handle component_ops in glue code
+>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>   drivers/gpu/drm/bridge/samsung-dsim.c | 20 ++++++++++++++++----
+>   include/drm/bridge/samsung-dsim.h     |  1 +
+>   2 files changed, 17 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
+> index ee5d7e5518a6..0e6a5d1c7e4e 100644
+> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+> @@ -370,6 +370,7 @@ static const struct samsung_dsim_driver_data exynos3_dsi_driver_data = {
+>   	.wait_for_reset = 1,
+>   	.num_bits_resol = 11,
+>   	.reg_values = reg_values,
+> +	.platform_init = true,
+>   };
+>   
+>   static const struct samsung_dsim_driver_data exynos4_dsi_driver_data = {
+> @@ -382,6 +383,7 @@ static const struct samsung_dsim_driver_data exynos4_dsi_driver_data = {
+>   	.wait_for_reset = 1,
+>   	.num_bits_resol = 11,
+>   	.reg_values = reg_values,
+> +	.platform_init = true,
+>   };
+>   
+>   static const struct samsung_dsim_driver_data exynos5_dsi_driver_data = {
+> @@ -392,6 +394,7 @@ static const struct samsung_dsim_driver_data exynos5_dsi_driver_data = {
+>   	.wait_for_reset = 1,
+>   	.num_bits_resol = 11,
+>   	.reg_values = reg_values,
+> +	.platform_init = true,
+>   };
+>   
+>   static const struct samsung_dsim_driver_data exynos5433_dsi_driver_data = {
+> @@ -403,6 +406,7 @@ static const struct samsung_dsim_driver_data exynos5433_dsi_driver_data = {
+>   	.wait_for_reset = 0,
+>   	.num_bits_resol = 12,
+>   	.reg_values = exynos5433_reg_values,
+> +	.platform_init = true,
+>   };
+>   
+>   static const struct samsung_dsim_driver_data exynos5422_dsi_driver_data = {
+> @@ -414,6 +418,7 @@ static const struct samsung_dsim_driver_data exynos5422_dsi_driver_data = {
+>   	.wait_for_reset = 1,
+>   	.num_bits_resol = 12,
+>   	.reg_values = exynos5422_reg_values,
+> +	.platform_init = true,
+>   };
+>   
+>   static const struct of_device_id samsung_dsim_of_match[] = {
+> @@ -1565,12 +1570,16 @@ static int samsung_dsim_probe(struct platform_device *pdev)
+>   	dsi->bridge.of_node = dev->of_node;
+>   	dsi->bridge.type = DRM_MODE_CONNECTOR_DSI;
+>   
+> -	dsi->plat_data = samsung_dsim_plat_probe(dsi);
+> -	if (IS_ERR(dsi->plat_data)) {
+> +	if (dsi->driver_data->platform_init) {
+> +		dsi->plat_data = samsung_dsim_plat_probe(dsi);
+>   		ret = PTR_ERR(dsi->plat_data);
+
+ret = IS_ERR(dsi->plat_data) ? PTR_ERR(dsi->plat_data) : 0;
+
+otherwise it always fails.
+
+> -		goto err_disable_runtime;
+> +	} else {
+> +		ret = mipi_dsi_host_register(&dsi->dsi_host);
+>   	}
+>   
+> +	if (ret)
+> +		goto err_disable_runtime;
+> +
+>   	return 0;
+>   
+>   err_disable_runtime:
+> @@ -1585,7 +1594,10 @@ static int samsung_dsim_remove(struct platform_device *pdev)
+>   
+>   	pm_runtime_disable(&pdev->dev);
+>   
+> -	samsung_dsim_plat_remove(dsi);
+> +	if (dsi->driver_data->platform_init)
+> +		samsung_dsim_plat_remove(dsi);
+> +	else
+> +		mipi_dsi_host_unregister(&dsi->dsi_host);
+>   
+>   	return 0;
+>   }
+> diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsung-dsim.h
+> index 59a43f9c4477..eca7eacb5910 100644
+> --- a/include/drm/bridge/samsung-dsim.h
+> +++ b/include/drm/bridge/samsung-dsim.h
+> @@ -39,6 +39,7 @@ struct samsung_dsim_driver_data {
+>   	unsigned int wait_for_reset;
+>   	unsigned int num_bits_resol;
+>   	const unsigned int *reg_values;
+> +	bool platform_init;
+>   };
+>   
+>   struct samsung_dsim_host_ops {
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
