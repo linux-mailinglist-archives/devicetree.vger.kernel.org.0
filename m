@@ -2,188 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F99E4FDD1F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EAFD4FDCDF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348800AbiDLK5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49796 "EHLO
+        id S1344139AbiDLKrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356662AbiDLKpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:45:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA3D84EFA
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:41:36 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1neD1N-0001dC-4R; Tue, 12 Apr 2022 11:41:13 +0200
-Message-ID: <439bd1aa1feaa0c43adb7b4c2dda57b5f2c5487c.camel@pengutronix.de>
-Subject: Re: [PATCH v0 00/10] i.MX8MP HDMI support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
-Date:   Tue, 12 Apr 2022 11:41:11 +0200
-In-Reply-To: <3484598.R56niFO833@steina-w>
-References: <20220406160123.1272911-1-l.stach@pengutronix.de>
-         <3484598.R56niFO833@steina-w>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S1356947AbiDLKpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:45:46 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E34F52E51;
+        Tue, 12 Apr 2022 02:42:58 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23C9ghtJ055677;
+        Tue, 12 Apr 2022 04:42:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649756563;
+        bh=SyaS56JNq1J/R8rshXzLp/0sIceEISL7rGQL73Y3BK8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=yfOD6vyCfmYXwsoN9Y+dQGT720vTjM+1ajhDpz8fOpRfik0Z25Z3fWkipiwjON6nU
+         u5NzzFfftREnK0osKMyik7B+ztd4JWQfipJq5hkjy7zRzd4ls+/sxUUt+M4JCz8MSp
+         Ceje9uEPi24sIN4PmueYcrR8EE7otE721WMcRNnE=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23C9ghpF019776
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 12 Apr 2022 04:42:43 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
+ Apr 2022 04:42:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 12 Apr 2022 04:42:42 -0500
+Received: from [10.24.69.24] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23C9gbet096869;
+        Tue, 12 Apr 2022 04:42:38 -0500
+Message-ID: <543b8c11-db95-29d1-29bc-ae5cbd99b2e2@ti.com>
+Date:   Tue, 12 Apr 2022 15:12:37 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC 13/13] net: ti: icssg-prueth: Add ICSSG ethernet driver
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <linux-kernel@vger.kernel.org>, <bjorn.andersson@linaro.org>,
+        <mathieu.poirier@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <davem@davemloft.net>,
+        <kuba@kernel.org>, <netdev@vger.kernel.org>, <vigneshr@ti.com>,
+        <kishon@ti.com>, Grygorii Strashko <grygorii.strashko@ti.com>,
+        Roger Quadros <rogerq@kernel.org>
+References: <20220406094358.7895-1-p-mohan@ti.com>
+ <20220406094358.7895-14-p-mohan@ti.com> <Yk2gDGN8a2xss1UO@lunn.ch>
+From:   Puranjay Mohan <p-mohan@ti.com>
+In-Reply-To: <Yk2gDGN8a2xss1UO@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
++ Roger, Grygorii
 
-Am Dienstag, dem 12.04.2022 um 11:18 +0200 schrieb Alexander Stein:
-> Hello Lucas,
+On 06/04/22 19:43, Andrew Lunn wrote:
+>> +static int emac_set_link_ksettings(struct net_device *ndev,
+>> +				   const struct ethtool_link_ksettings *ecmd)
+>> +{
+>> +	struct prueth_emac *emac = netdev_priv(ndev);
+>> +
+>> +	if (!emac->phydev || phy_is_pseudo_fixed_link(emac->phydev))
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	return phy_ethtool_ksettings_set(emac->phydev, ecmd);
+>> +}
+>> +
+>> +static int emac_get_eee(struct net_device *ndev, struct ethtool_eee *edata)
+>> +{
+>> +	struct prueth_emac *emac = netdev_priv(ndev);
+>> +
+>> +	if (!emac->phydev || phy_is_pseudo_fixed_link(emac->phydev))
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	return phy_ethtool_get_eee(emac->phydev, edata);
+>> +}
 > 
-> Am Mittwoch, 6. April 2022, 18:01:13 CEST schrieb Lucas Stach:
-> > Hi all,
-> > 
-> > this adds support for the HDMI output pipeline on the i.MX8MP.
-> > It currently depends on the i.MX8MP HDMI power domain series [1]
-> > and support for the new LCDIF [2] in the i.MX8MP. I guess the
-> > implementation presented here also still has some warts that
-> > require fixing and the individual patches most likely need to go
-> > through different maintainer trees, so I don't expect this series
-> > to be applied right away.
-> > 
-> > However this complete series should allow people to test it more
-> > easily and provide feedback on the implementation with the full
-> > picture available.
-> > 
-> > Compared to downstream this implementation actually allows to
-> > power down the separate HDMI PHY power domain when the display
-> > is inactive or no HDMI cable is connected.
+> Why do you need the phy_is_pseudo_fixed_link() calls here?
 > 
-> Thanks for these patches.
-> I tried using them on my imx8mp based board (TQMa8MPxL + MBa8MPxL) but failed 
-> to get the display showing anything. I noticed several things though:
+>> +/* called back by PHY layer if there is change in link state of hw port*/
+>> +static void emac_adjust_link(struct net_device *ndev)
+>> +{
 > 
-> * For some reason the HDMI PHY PLL does not lock. I get the error
-> > fsl-samsung-hdmi-phy 32fdff00.phy: PLL failed to lock
-> Increasing timeout does not change anything.
+> ...
 > 
-> * The HDMI bridge wants to use bus format 0x200f which is not supported by 
-> lcdif.
-> > lcdif 32fc6000.display-controller: Unknown media bus format 0x200f
-> I wonder which part in the DRM chain choses to use this.
-
-Do have a 4k HDMI display connected that wants to do YUV input? That's
-something I have to admit I didn't test yet and would be likely to
-cause this bus format selection.
-
-> But even hard limiting to 0x100a the screen stayed in suspend
+>> +	if (emac->link) {
+>> +		/* link ON */
+>> +		netif_carrier_on(ndev);
+>> +		/* reactivate the transmit queue */
+>> +		netif_tx_wake_all_queues(ndev);
+>> +	} else {
+>> +		/* link OFF */
+>> +		netif_carrier_off(ndev);
+>> +		netif_tx_stop_all_queues(ndev);
+>> +	}
 > 
-> * If the drivers are built as modules I get a hard lockup during boot. Using 
-> built-in drivers or 'clk_ignore_unused' workarounds this.
+> phylib should of set the carrier for you.
 > 
-> * DDC does actually work. The display is detected and EDID can be read.
+>> + * emac_ndo_open - EMAC device open
+>> + * @ndev: network adapter device
+>> + *
+>> + * Called when system wants to start the interface.
+>> + *
+>> + * Returns 0 for a successful open, or appropriate error code
+>> + */
+>> +static int emac_ndo_open(struct net_device *ndev)
+>> +{
+>> +	struct prueth_emac *emac = netdev_priv(ndev);
+>> +	int ret, i, num_data_chn = emac->tx_ch_num;
+>> +	struct prueth *prueth = emac->prueth;
+>> +	int slice = prueth_emac_slice(emac);
+>> +	struct device *dev = prueth->dev;
+>> +	int max_rx_flows;
+>> +	int rx_flow;
+>> +
+>> +	/* clear SMEM and MSMC settings for all slices */
+>> +	if (!prueth->emacs_initialized) {
+>> +		memset_io(prueth->msmcram.va, 0, prueth->msmcram.size);
+>> +		memset_io(prueth->shram.va, 0, ICSSG_CONFIG_OFFSET_SLICE1 * PRUETH_NUM_MACS);
+>> +	}
+>> +
+>> +	/* set h/w MAC as user might have re-configured */
+>> +	ether_addr_copy(emac->mac_addr, ndev->dev_addr);
+>> +
+>> +	icssg_class_set_mac_addr(prueth->miig_rt, slice, emac->mac_addr);
+>> +	icssg_ft1_set_mac_addr(prueth->miig_rt, slice, emac->mac_addr);
+>> +
+>> +	icssg_class_default(prueth->miig_rt, slice, 0);
+>> +
+>> +	netif_carrier_off(ndev);
 > 
-> * Sometimes I get the following error:
-> ------------[ cut here ]------------
-> [CRTC:33:crtc-0] vblank wait timed out
-> WARNING: CPU: 2 PID: 151 at drivers/gpu/drm/drm_atomic_helper.c:1529 
-> drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
-> Modules linked in: caamhash_desc caamalg_desc crypto_engine rng_core mcp320x 
-> dw_hdmi_cec authenc libdes dw100 videobuf2_dma_contig lcdif crct10dif_ce 
-> phy_fsl_samsung_hdmi v4l2_mem2mem imx_sdma flexcan imx8mm_thermal can_dev caam 
-> error pwm_fan fuse ipv6
-> CPU: 2 PID: 151 Comm: kworker/u8:7 Not tainted 5.18.0-rc2-next-20220412+ #165 
-> d226098cac46ded24901c7090f909ca8f5098eb0
-> Hardware name: TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MPxL (DT)
-> Workqueue: events_unbound deferred_probe_work_func
-> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> pc : drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
-> lr : drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
-> sp : ffff80000a133430
-> x29: ffff80000a133430 x28: 0000000000000000 x27: 0000000000000000
-> x26: 0000000000000000 x25: 0000000000000001 x24: ffff80000935f030
-> x23: ffff00000433e000 x22: ffff0000029e7000 x21: 0000000000000001
-> x20: ffff000002e7fb48 x19: 0000000000000000 x18: 0000000000000001
-> x17: 4d554e5145530065 x16: 6c75646f6d3d4d45 x15: 5453595342555300
-> x14: 0000000000000000 x13: 0a74756f2064656d x12: 6974207469617720
-> x11: 0000000000000000 x10: 000000000000003a x9 : ffff80000a133430
-> x8 : 00000000ffffffff x7 : 6974207469617720 x6 : 6b6e616c6276205d
-> x5 : ffff00007fb91b00 x4 : 0000000000000000 x3 : 0000000000000027
-> x2 : 0000000000000023 x1 : 0000000000000000 x0 : 0000000000000000
-> Call trace:
->  drm_atomic_helper_wait_for_vblanks.part.0+0x2ac/0x2fc
->  drm_atomic_helper_commit_tail_rpm+0x80/0xa0
->  commit_tail+0xcc/0x1f0
->  drm_atomic_helper_commit+0x13c/0x370
->  drm_atomic_commit+0xa4/0xe0
->  drm_client_modeset_commit_atomic+0x1fc/0x250
->  drm_client_modeset_commit_locked+0x58/0xa0
->  drm_client_modeset_commit+0x2c/0x50
->  __drm_fb_helper_restore_fbdev_mode_unlocked+0xec/0x140
->  drm_fb_helper_set_par+0x38/0x6c
->  fbcon_init+0x264/0x5e4
->  visual_init+0xc8/0x15c
->  do_bind_con_driver.isra.0+0x20c/0x470
->  do_take_over_console+0x44/0x60
->  do_fbcon_takeover+0x80/0x140
->  fbcon_fb_registered+0x1c4/0x260
->  do_register_framebuffer+0x1e0/0x2d0
->  register_framebuffer+0x2c/0x50
->  __drm_fb_helper_initial_config_and_unlock+0x9c/0x130
->  drm_fbdev_client_hotplug+0x1a8/0x20c
->  drm_fbdev_generic_setup+0xc0/0x1d0
->  lcdif_probe+0x7c/0xa0 [lcdif e756925430e957a7bc9e6376ad5964e4b1cb143e]
->  platform_probe+0x64/0x100
->  call_driver_probe+0x28/0x130
->  really_probe+0x178/0x310
->  __driver_probe_device+0xfc/0x144
->  driver_probe_device+0x38/0x12c
->  __device_attach_driver+0xd4/0x180
->  bus_for_each_drv+0x74/0xc4
->  __device_attach+0xd8/0x1e0
->  device_initial_probe+0x10/0x20
->  bus_probe_device+0x90/0xa0
->  deferred_probe_work_func+0x9c/0xf0
->  process_one_work+0x1d0/0x330
->  worker_thread+0x68/0x390
->  kthread+0xec/0xfc
->  ret_from_fork+0x10/0x20
-> ---[ end trace 0000000000000000 ]---
+> phylib should take care of this.
 > 
-> But given that the PLL did not lock I assume this is not too surprising.
+>> +
+>> +	/* Notify the stack of the actual queue counts. */
+>> +	ret = netif_set_real_num_tx_queues(ndev, num_data_chn);
+>> +	if (ret) {
+>> +		dev_err(dev, "cannot set real number of tx queues\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	init_completion(&emac->cmd_complete);
+>> +	ret = prueth_init_tx_chns(emac);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to init tx channel: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	max_rx_flows = PRUETH_MAX_RX_FLOWS;
+>> +	ret = prueth_init_rx_chns(emac, &emac->rx_chns, "rx",
+>> +				  max_rx_flows, PRUETH_MAX_RX_DESC);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to init rx channel: %d\n", ret);
+>> +		goto cleanup_tx;
+>> +	}
+>> +
+>> +	ret = prueth_ndev_add_tx_napi(emac);
+>> +	if (ret)
+>> +		goto cleanup_rx;
+>> +
+>> +	/* we use only the highest priority flow for now i.e. @irq[3] */
+>> +	rx_flow = PRUETH_RX_FLOW_DATA;
+>> +	ret = request_irq(emac->rx_chns.irq[rx_flow], prueth_rx_irq,
+>> +			  IRQF_TRIGGER_HIGH, dev_name(dev), emac);
+>> +	if (ret) {
+>> +		dev_err(dev, "unable to request RX IRQ\n");
+>> +		goto cleanup_napi;
+>> +	}
+>> +
+>> +	/* reset and start PRU firmware */
+>> +	ret = prueth_emac_start(prueth, emac);
+>> +	if (ret)
+>> +		goto free_rx_irq;
+>> +
+>> +	/* Prepare RX */
+>> +	ret = prueth_prepare_rx_chan(emac, &emac->rx_chns, PRUETH_MAX_PKT_SIZE);
+>> +	if (ret)
+>> +		goto stop;
+>> +
+>> +	ret = k3_udma_glue_enable_rx_chn(emac->rx_chns.rx_chn);
+>> +	if (ret)
+>> +		goto reset_rx_chn;
+>> +
+>> +	for (i = 0; i < emac->tx_ch_num; i++) {
+>> +		ret = k3_udma_glue_enable_tx_chn(emac->tx_chns[i].tx_chn);
+>> +		if (ret)
+>> +			goto reset_tx_chan;
+>> +	}
+>> +
+>> +	/* Enable NAPI in Tx and Rx direction */
+>> +	for (i = 0; i < emac->tx_ch_num; i++)
+>> +		napi_enable(&emac->tx_chns[i].napi_tx);
+>> +	napi_enable(&emac->napi_rx);
+>> +
+>> +	emac_phy_connect(emac);
 > 
-Yes, that's just the fallout of the LCDIF not seeing any pixel clock.
-
-You could aid me in diagnosing this by posting the output of
-/sys/kernel/debug/clk/clk_summary and
-/sys/kernel/debug/pm_genpd/pm_genpd_summary when the system is in this
-failed state.
-
-Regards,
-Lucas
-
-
+> Why don't you check the error code?
+> 
+>> +static int prueth_config_rgmiidelay(struct prueth *prueth,
+>> +				    struct device_node *eth_np,
+>> +				    phy_interface_t phy_if)
+>> +{
+>> +	struct device *dev = prueth->dev;
+>> +	struct regmap *ctrl_mmr;
+>> +	u32 rgmii_tx_id = 0;
+>> +	u32 icssgctrl_reg;
+>> +
+>> +	if (!phy_interface_mode_is_rgmii(phy_if))
+>> +		return 0;
+>> +
+>> +	ctrl_mmr = syscon_regmap_lookup_by_phandle(eth_np, "ti,syscon-rgmii-delay");
+>> +	if (IS_ERR(ctrl_mmr)) {
+>> +		dev_err(dev, "couldn't get ti,syscon-rgmii-delay\n");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	if (of_property_read_u32_index(eth_np, "ti,syscon-rgmii-delay", 1,
+>> +				       &icssgctrl_reg)) {
+>> +		dev_err(dev, "couldn't get ti,rgmii-delay reg. offset\n");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
+>> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
+>> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
+>> +
+>> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
+> 
+> Do you need to do a units conversion here, or does the register
+> already take pico seconds?
+> 
+> 	Andrew
