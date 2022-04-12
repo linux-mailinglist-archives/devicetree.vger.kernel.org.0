@@ -2,141 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2278F4FE366
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 371D64FE37D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347921AbiDLOKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 10:10:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53148 "EHLO
+        id S1355959AbiDLOOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 10:14:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239866AbiDLOKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:10:42 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C0C5EDD2;
-        Tue, 12 Apr 2022 07:08:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1649772504;
-  x=1681308504;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=RcwGtxTnBfipy07qeT7JSixj+t14RK2eLBKQPcVo6oI=;
-  b=fJ0O7EcD70kYi7wQZwEDr90vEqd6qvq9MMvkerQwVBKhbMNYu8GnU3Gd
-   gh96QUk6N2UhTRhXzzw9+6XOp2HjQRiLG8mwsUOB1i/xqrh2+LPQ66e/Z
-   VPCIkaHDNSFiAQsZfdIJy9mpHl8sMto7eJ+P02P3f83wj3rVMnqe6NksP
-   dcIclV7h5f9CENjggedvU0RGwvCyKklLHmYqrCZLS2rORfb2Mg5y7nkhX
-   NED/XhLN8Hq39DBKjSW6l6vzf7wtTKdlMNiD1HI729Pu4GTiB4jtPoOMo
-   fxTnl/IoKIDikN7ettsJ7fQxSSCDlLv2CxovRbiafdy85w/6RZo/3gTPJ
-   A==;
-Message-ID: <66f417b0-c323-1b9f-d5b0-30f1c9bcd90b@axis.com>
-Date:   Tue, 12 Apr 2022 16:08:21 +0200
+        with ESMTP id S241927AbiDLOOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:14:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C4D1CFD6
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:12:18 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1neHFg-0003eH-7Y; Tue, 12 Apr 2022 16:12:16 +0200
+Message-ID: <b7990c48-1bfe-210f-a24f-6e1c70235d76@pengutronix.de>
+Date:   Tue, 12 Apr 2022 16:12:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
+ Thunderbird/91.7.0
+Subject: Re: [PATCH V4 3/3] arm64: dts: imx8mp: Enable HS400-ES
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Camel Guo <Camel.Guo@axis.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-CC:     kernel <kernel@axis.com>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220411100329.1783432-1-camel.guo@axis.com>
- <20220411100329.1783432-2-camel.guo@axis.com>
- <c13a0f34-4938-3d56-43e0-5a9053e0bc25@linaro.org>
-From:   Camel Guo <camelg@axis.com>
-In-Reply-To: <c13a0f34-4938-3d56-43e0-5a9053e0bc25@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail03w.axis.com
- (10.20.40.9)
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Adam Ford <aford173@gmail.com>, linux-mmc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        aford@beaconembedded.com, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220410193544.1745684-1-aford173@gmail.com>
+ <20220410193544.1745684-3-aford173@gmail.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220410193544.1745684-3-aford173@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/12/22 13:53, Krzysztof Kozlowski wrote:
-> On 11/04/2022 12:03, Camel Guo wrote:
->> From: Camel Guo <camelg@axis.com>
->> 
->> Document the TMP401, TMP411 and TMP43x device devicetree bindings
->> 
->> Signed-off-by: Camel Guo <camelg@axis.com>
->> ---
->>  .../devicetree/bindings/hwmon/ti,tmp401.yaml  | 111 ++++++++++++++++++
->>  MAINTAINERS                                   |   1 +
->>  2 files changed, 112 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
->> 
+On 10.04.22 21:35, Adam Ford wrote:
+> The SDHC controller in the imx8mp has the same controller
+> as the imx8mm which supports HS400-ES. Change the compatible
+> fallback to imx8mm to enable it, but keep the imx7d-usdhc
+> to prevent breaking backwards compatibility.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
->> +      - ti,tmp401
->> +      - ti,tmp411
->> +      - ti,tmp431
->> +      - ti,tmp432
->> +      - ti,tmp435
-> 
-> Blank line, please.
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 
-Fixed
-> 
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#address-cells':
->> +    const: 1
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +  ti,extended-range-enable:
->> +    description: |
-> 
-> No need for "|". Here and in most of other cases below.
+Thanks,
+Ahmad
 
-Fixed
+> ---
+> V4: No Change
+> V3: No change
+> V2: Keep fallback to fsl,imx7d-usdhc to prevent breakage
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 794d75173cf5..8578ff1062e6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -769,7 +769,7 @@ i2c6: i2c@30ae0000 {
+>  			};
+>  
+>  			usdhc1: mmc@30b40000 {
+> -				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
+> +				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
+>  				reg = <0x30b40000 0x10000>;
+>  				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX8MP_CLK_DUMMY>,
+> @@ -783,7 +783,7 @@ usdhc1: mmc@30b40000 {
+>  			};
+>  
+>  			usdhc2: mmc@30b50000 {
+> -				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
+> +				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
+>  				reg = <0x30b50000 0x10000>;
+>  				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX8MP_CLK_DUMMY>,
+> @@ -797,7 +797,7 @@ usdhc2: mmc@30b50000 {
+>  			};
+>  
+>  			usdhc3: mmc@30b60000 {
+> -				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
+> +				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
+>  				reg = <0x30b60000 0x10000>;
+>  				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX8MP_CLK_DUMMY>,
 
-> 
->> +      When set, this sensor measures over extended temperature range.
->> +    type: boolean
->> +
->> +  ti,n-factor:
->> +    description: |
->> +      The value (two's complement) to be programmed in the n-factor correction
->> +      register.
-> 
-> Do not describe the programming model (registers) but hardware property
-> instead.
 
-Make another try. Hope it is clear now.
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    items:
->> +      minimum: 0
->> +      maximum: 255
->> +
->> +  ti,beta-compensation:
->> +    description: |
->> +      The value to be programmed in the beta range register.
-> 
-> The same, register values should not be stored in DT.
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    items:
->> +      minimum: 0
->> +      maximum: 15
->> +
-> 
-> 
-> Best regards,
-> Krzysztof
-
-Fixed in v2. Please review that instead.
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
