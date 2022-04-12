@@ -2,175 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C694FEA6F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A614FEB20
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230186AbiDLXcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 19:32:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58124 "EHLO
+        id S229834AbiDLX1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 19:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbiDLXb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:31:58 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8672991367;
-        Tue, 12 Apr 2022 15:18:04 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23CMHiDr025325;
-        Tue, 12 Apr 2022 17:17:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1649801864;
-        bh=nyNY/m9ONJlCKzS4q3CdtgYdHO/OxuVygYMFfJGfbVc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=wNWOhax4SJjeNOYOlDh/guaxqjCaoCnetpB9byCEN81YlcKpAgDhE3L3VluOSuYVf
-         5wvXqx1oDqR/KaHrL+B1Mo/lENn677nehWEtZATpnawi/WT3skoWn/metfU/7ftVtr
-         vxU8vwSn+rFAxwY24SnlVBT5XZcoPCVrKWPNVA/A=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23CMHi3n059118
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 12 Apr 2022 17:17:44 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
- Apr 2022 17:17:43 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 12 Apr 2022 17:17:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23CMHhdk128579;
-        Tue, 12 Apr 2022 17:17:43 -0500
-Date:   Tue, 12 Apr 2022 17:17:43 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: Add TI K3 RTC devicetree bindings
- documentation
-Message-ID: <20220412221743.vbectb4bcghau2b7@confider>
-References: <20220412073138.25027-1-nm@ti.com>
- <20220412073138.25027-2-nm@ti.com>
- <dee496ce-5e74-4a53-c783-6420b2391387@linaro.org>
+        with ESMTP id S230072AbiDLX00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:26:26 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217155E16F;
+        Tue, 12 Apr 2022 15:38:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1649803132; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xNAG0SZZHvrLl10xQGGWue13a4HRKmHPzD7hJXX4nXw=;
+        b=JrCsWn2rWIljaUBYBbe4lfE1WQfRTPty5lP17RS5P46896a7F0Klgi9OrmOXuP9gLhIkNH
+        SG1EzrVTvrFCtbI+6rPgdFfNjm3BNfEQ+cz4GyEfA1e0Fs3s8MWOnmdedVoks84rkkFpKu
+        qVg9d2d/TTBZq+Y0afxP2tEHOqRfv08=
+Date:   Tue, 12 Apr 2022 23:38:42 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 1/2] mips: dts: ingenic: Add TCU clock to x1000/x1830
+ tcu device node
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        dan.carpenter@oracle.com
+Message-Id: <I809AR.0C3UZTFR7V5I1@crapouillou.net>
+In-Reply-To: <20220412122750.279058-2-aidanmacdonald.0x0@gmail.com>
+References: <20220412122750.279058-1-aidanmacdonald.0x0@gmail.com>
+        <20220412122750.279058-2-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <dee496ce-5e74-4a53-c783-6420b2391387@linaro.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:06-20220412, Krzysztof Kozlowski wrote:
-> > +properties:
-> > +  compatible:
-> > +    items:
-> 
-> No need for items. Just enum under the compatible.
+Hi,
 
-Will fix in next rev. Thanks for catching.
+Le mar., avril 12 2022 at 13:27:49 +0100, Aidan MacDonald=20
+<aidanmacdonald.0x0@gmail.com> a =E9crit :
+> This clock is a gate for the TCU hardware block on these SoCs, but
+> it wasn't included in the device tree since the ingenic-tcu driver
+> erroneously did not request it.
+>=20
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 
-> 
-> > +      - enum:
-> > +          - ti,am62-rtc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: VBUS Interface clock
-> > +      - description: 32k Clock source (external or internal).
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: "vbus"
-> > +      - const: "osc32k"
-> 
-> No quotes.
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 
-Uggh.. my bad. yup
-> 
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  assigned-clocks:
-> > +    description: |
-> > +      override default osc32k parent clock reference to the osc32k clock entry
-> > +    maxItems: 1
-> > +
-> > +  assigned-clock-parents:
-> > +    description: |
-> > +      override default osc32k parent clock phandle of the new parent clock of osc32k
-> > +    maxItems: 1
-> 
-> Usually assigned-clockXXX are not needed in the bindings. Is here
-> something different? They are put only to indicate something special.
+Cheers,
+-Paul
 
-I wonder if I should rather use unevaluatedproperties instead? If I use
-additionalProperties: False, then the second example below fails.
+> ---
+>  arch/mips/boot/dts/ingenic/x1000.dtsi | 5 +++--
+>  arch/mips/boot/dts/ingenic/x1830.dtsi | 5 +++--
+>  2 files changed, 6 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi=20
+> b/arch/mips/boot/dts/ingenic/x1000.dtsi
+> index 8bd27edef216..c69df8eb158e 100644
+> --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
+> @@ -111,8 +111,9 @@ tcu: timer@10002000 {
+>=20
+>  		clocks =3D <&cgu X1000_CLK_RTCLK>,
+>  			 <&cgu X1000_CLK_EXCLK>,
+> -			 <&cgu X1000_CLK_PCLK>;
+> -		clock-names =3D "rtc", "ext", "pclk";
+> +			 <&cgu X1000_CLK_PCLK>,
+> +			 <&cgu X1000_CLK_TCU>;
+> +		clock-names =3D "rtc", "ext", "pclk", "tcu";
+>=20
+>  		interrupt-controller;
+>  		#interrupt-cells =3D <1>;
+> diff --git a/arch/mips/boot/dts/ingenic/x1830.dtsi=20
+> b/arch/mips/boot/dts/ingenic/x1830.dtsi
+> index 2595df8671c7..4408df24ca98 100644
+> --- a/arch/mips/boot/dts/ingenic/x1830.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/x1830.dtsi
+> @@ -104,8 +104,9 @@ tcu: timer@10002000 {
+>=20
+>  		clocks =3D <&cgu X1830_CLK_RTCLK>,
+>  			 <&cgu X1830_CLK_EXCLK>,
+> -			 <&cgu X1830_CLK_PCLK>;
+> -		clock-names =3D "rtc", "ext", "pclk";
+> +			 <&cgu X1830_CLK_PCLK>,
+> +			 <&cgu X1830_CLK_TCU>;
+> +		clock-names =3D "rtc", "ext", "pclk", "tcu";
+>=20
+>  		interrupt-controller;
+>  		#interrupt-cells =3D <1>;
+> --
+> 2.35.1
+>=20
 
-Thoughts?
-> 
-> > +
-> > +  wakeup-source: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    rtc@2b1f0000 {
-> > +        compatible = "ti,am62-rtc";
-> > +        reg = <0x2b1f0000 0x100>;
-> > +        interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> > +        power-domains = <&bar 0>;
-> > +        clocks = <&foo 0>, <&foo 1>;
-> > +        clock-names = "vbus", "osc32k";
-> > +        wakeup-source;
-> > +    };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    rtc@2b1f0000 {
-> > +        compatible = "ti,am62-rtc";
-> > +        reg = <0x2b1f0000 0x100>;
-> > +        interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> > +        power-domains = <&bar 0>;
-> > +        clocks = <&foo 0>, <&foo 1>;
-> > +        clock-names = "vbus", "osc32k";
-> > +        wakeup-source;
-> > +        assigned-clocks = <&foo 1>;
-> > +        assigned-clock-parents = <&foo 2>;
-> > +
-> 
-> Unneeded blank line.
 
-Ack.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
