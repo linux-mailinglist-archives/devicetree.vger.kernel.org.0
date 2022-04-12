@@ -2,191 +2,423 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD1D74FDF89
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21CAE4FDF9D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353961AbiDLMVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 08:21:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52802 "EHLO
+        id S1353801AbiDLMVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 08:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355414AbiDLMTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:19:10 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC6325BD0B
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 04:21:50 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id u15so18008998ejf.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 04:21:50 -0700 (PDT)
+        with ESMTP id S1355649AbiDLMTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:19:20 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACD716EB2B;
+        Tue, 12 Apr 2022 04:22:44 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id u19so11521649lff.4;
+        Tue, 12 Apr 2022 04:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=CICJfzFu5LJCinZ65ytfGl8MaNmqBDc806/TqIYFmE4=;
-        b=t0CxHk6qxRxUG3wltlf/YmWunz2ZgYolmtg7475YgERjvcWmmHNyahpEW83mH9I5Wb
-         YHabjg5dIPqsoaAmw2mbAwibWLYkxHa6vSW0KojZ16M2Cet/K3Ba8inJDxb/iZDvMMRD
-         H2ze+OtTC+Kl5gtExnIVF0BybHMv0YParQDpttPZDFmE0GROM1ZZk+1fpnJtAaalW5kq
-         q0+ZrKRN8qjY6KDj+B1UiEe7yqFNiNjnd9lFAgkkjyfSycYzUWlZWBiCdh4ynGg9fPji
-         zAZdah0a6YpidCJME+kLL9iy9558PLiEcnIl6AjVDNolqn/s79i7MxzEIhv2+Cluw8p+
-         r/hQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=zjgmtbSNoF2mZGEsUPtkbHFRRKP9FVVfefhVkGjbZfQ=;
+        b=kw7VIsEmf0U7Z1+NXfv7iOK5PQ4KvemOjD1kg7x00UfHoZBB6h+D0CwqbHh/cPuD/0
+         jIzEDCOy3vOueU+zlC5BzNs0rj0zc9mi7spq2cjU+5ty2WqyiQ+j7XyVHW/SHZrHkCHx
+         dSJkq1KezLVvbrG9ftDwj9TNLduLwhGKekHcdYWyT4yPUNmw+Yf0xVDYIyy09OcdopqK
+         nF/oww7ylgFAEA8CvC0fgY4UaSm8qezYVw8PEnwv6ltNKS9jMtWVCd1W36o6vgpjjCoQ
+         /06F6sHqA/I/MnWUGKJy78L6W8bdbVwzQ19FsIqb5OZffEsH97VUrLA+9Cr5aWhre0oJ
+         vYmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=CICJfzFu5LJCinZ65ytfGl8MaNmqBDc806/TqIYFmE4=;
-        b=L2VYvvZRz8+tg8EB92vFscG7bdow7tJBN343Fd/61P0+SCqaLGEDuw/RP3fpTzWWsY
-         SPFKEAik5+SjwzG6js/xAqbN1Mv2HnnB743MfMSqLeTlZhzt3/Uy9GgnyPc5mvnZFcli
-         E20OZuWmIEo+PI38r8bm1qvWU44+6ebNWD4/uKHvIQuGbl89bRNqsopI4XyA5rLc+SqA
-         SzyJUO1BIYLlZ/Bh20FWSWIJnyTGLautOuJBQQMnFU+j9Qd94hdvJqs3NMtOm85UZZRZ
-         mVK+cM1Ufzc/ES1tkTWtCiGr/WmQ01apSryADGNV3Qtek/5FGcUsPI9RzMwoyPoRZtiD
-         ZVHg==
-X-Gm-Message-State: AOAM533YL56pz9MobtFIUbEJKyhP72CCU+rCFR/rZIDqP99ZxC7bvEUG
-        xydtD41eS4w1DhwZNG5Qd4XEOfYrj9Weow6d
-X-Google-Smtp-Source: ABdhPJznPjeApaTPet9E9iJ/1AMeuU5YvWAH3lJZ/Xq8ze46Vckwc2+EqvWt5ID9ZLuDwbNkQ1lR/w==
-X-Received: by 2002:a17:907:761c:b0:6d6:e553:7bd1 with SMTP id jx28-20020a170907761c00b006d6e5537bd1mr33821579ejc.5.1649762509294;
-        Tue, 12 Apr 2022 04:21:49 -0700 (PDT)
-Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id a22-20020a50ff16000000b00410d029ea5csm16422858edu.96.2022.04.12.04.21.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 04:21:48 -0700 (PDT)
-Message-ID: <0dfd0d99-3519-3e1d-0f9e-07f1fcf2e0a4@linaro.org>
-Date:   Tue, 12 Apr 2022 13:21:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/4] ARM: dts: qcom: sdx65: Add USB3 and PHY support
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=zjgmtbSNoF2mZGEsUPtkbHFRRKP9FVVfefhVkGjbZfQ=;
+        b=oH363yHHYJQLyRtZwl/a1DqJP94Q6OxBnyYMBEDuxOUIE6qLeC7fIHYmCS4Agpcfe3
+         mSgEXvPR8PuSsfPkhJ9aVPnIpV+UkPoIIUrxscYlRZqSPY4wYIB+z5nnd63Rrm/1yHqj
+         RmovF2bjcbpXOM0YjKyfvEdw6QCUphgKTjPqTn6Jcwguagl33Yj0d8XtcZrJNFkirEDJ
+         4t9oO7jx+qFaqjd9qkocLO8hXjVspglNDc5QQEP+kjUMSm/JBYuahGlknBcmKmEKx4ba
+         lAeYdKddoI95zYwTiI6kM2GscLBAdt/zgKtzC+LT45Bk2x9F3ABKlmyW3E6teeVcVVa3
+         kQGQ==
+X-Gm-Message-State: AOAM530h9i5hUzENRQ9O3KIoxrtfYZlkoZkYs06y5bgWApnytnDyMABx
+        +Q5KtCjiEnPosL5wQO3E4QM=
+X-Google-Smtp-Source: ABdhPJwJo/oL6k4laov0OagaQyfUqPDx2IzYl7OYrblARpn+RJ3AYqSpMjIVyTxiG67PDc5twJ17Gw==
+X-Received: by 2002:ac2:4203:0:b0:448:8053:d402 with SMTP id y3-20020ac24203000000b004488053d402mr24213683lfh.687.1649762562723;
+        Tue, 12 Apr 2022 04:22:42 -0700 (PDT)
+Received: from mobilestation ([95.79.134.149])
+        by smtp.gmail.com with ESMTPSA id b19-20020a056512305300b0044a9638b343sm3612948lfb.303.2022.04.12.04.22.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 04:22:41 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 14:22:39 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <brad@pensando.io>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        broonie@kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, olof@lixom.net, dac2@pensando.io,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <1649761414-19217-1-git-send-email-quic_rohiagar@quicinc.com>
- <1649761414-19217-4-git-send-email-quic_rohiagar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1649761414-19217-4-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 11/11] arm64: dts: Add Pensando Elba SoC support
+Message-ID: <20220412112239.cucvqqlfsdpjnzju@mobilestation>
+References: <20220406233648.21644-1-brad@pensando.io>
+ <20220406233648.21644-12-brad@pensando.io>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220406233648.21644-12-brad@pensando.io>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 13:03, Rohit Agarwal wrote:
-> Add devicetree nodes for enabling USB3 controller, Qcom QMP PHY and
-> SNPS HS PHY on SDX65.
+On Wed, Apr 06, 2022 at 04:36:48PM -0700, Brad Larson wrote:
+> Add Pensando common and Elba SoC specific device nodes
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> Signed-off-by: Brad Larson <brad@pensando.io>
 > ---
->  arch/arm/boot/dts/qcom-sdx65.dtsi | 83 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 83 insertions(+)
+> Change from V3:
+> - Changed to dual copyright (GPL-2.0+ OR MIT)
+> - Minor changes from review input
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> index 3e4dc63..e419e47 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> @@ -130,6 +130,7 @@
->  			reg = <0x00100000 0x001f7400>;
->  			clocks = <&rpmhcc RPMH_CXO_CLK>, <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>;
->  			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
-> +			#power-domain-cells = <1>;
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  		};
-> @@ -143,6 +144,45 @@
->  			status = "disabled";
->  		};
->  
-> +		usb_hsphy: hsphy@ff4000 {
+>  arch/arm64/boot/dts/Makefile                  |   1 +
+>  arch/arm64/boot/dts/pensando/Makefile         |   3 +
+>  arch/arm64/boot/dts/pensando/elba-16core.dtsi | 189 ++++++++++++++++++
+>  .../boot/dts/pensando/elba-asic-common.dtsi   |  98 +++++++++
+>  arch/arm64/boot/dts/pensando/elba-asic.dts    |  28 +++
+>  .../boot/dts/pensando/elba-flash-parts.dtsi   | 106 ++++++++++
+>  arch/arm64/boot/dts/pensando/elba.dtsi        | 189 ++++++++++++++++++
+>  7 files changed, 614 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/pensando/Makefile
+>  create mode 100644 arch/arm64/boot/dts/pensando/elba-16core.dtsi
+>  create mode 100644 arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/pensando/elba-asic.dts
+>  create mode 100644 arch/arm64/boot/dts/pensando/elba-flash-parts.dtsi
+>  create mode 100644 arch/arm64/boot/dts/pensando/elba.dtsi
+> 
 
-Generic node names, so "phy".
+[...]
 
-> +			compatible = "qcom,usb-snps-hs-7nm-phy";
-> +			reg = <0xff4000 0x120>;
-> +			#phy-cells = <0>;
+> diff --git a/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi b/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
+> new file mode 100644
+> index 000000000000..7a89df68fdf7
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
+> @@ -0,0 +1,98 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020-2022, Pensando Systems Inc.
+> + */
+> +
+> +&ahb_clk {
+> +	clock-frequency = <400000000>;
+> +};
+> +
+> +&emmc_clk {
+> +	clock-frequency = <200000000>;
+> +};
+> +
+> +&flash_clk {
+> +	clock-frequency = <400000000>;
+> +};
+> +
+> +&ref_clk {
+> +	clock-frequency = <156250000>;
+> +};
+> +
+> +&qspi {
+> +	status = "okay";
+> +	flash0: flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <40000000>;
+> +		spi-rx-bus-width = <2>;
+> +		m25p,fast-read;
+> +		cdns,read-delay = <0>;
+> +		cdns,tshsl-ns = <0>;
+> +		cdns,tsd2d-ns = <0>;
+> +		cdns,tchsh-ns = <0>;
+> +		cdns,tslch-ns = <0>;
+> +	};
+> +};
+> +
+> +&gpio0 {
+> +	status = "okay";
+> +};
+> +
+> +&emmc {
+> +	bus-width = <8>;
+> +	status = "okay";
+> +};
+> +
+> +&wdt0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +	rtc@51 {
+> +		compatible = "nxp,pcf85263";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&spi0 {
+> +	num-cs = <4>;
+> +	cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
+> +		   <&porta 7 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +	spi0_cs0@0 {
+> +		compatible = "semtech,sx1301";	/* Enable spidev */
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <12000000>;
+> +		reg = <0>;
+> +	};
+> +
+> +	spi0_cs1@1 {
+> +		compatible = "semtech,sx1301";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <12000000>;
+> +		reg = <1>;
+> +	};
+> +
+> +	spi0_cs2@2 {
+> +		compatible = "semtech,sx1301";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <12000000>;
+> +		reg = <2>;
+> +		interrupt-parent = <&porta>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	spi0_cs3@3 {
+> +		compatible = "semtech,sx1301";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <12000000>;
+> +		reg = <3>;
+> +	};
+> +};
+
+[...]
+
+> diff --git a/arch/arm64/boot/dts/pensando/elba.dtsi b/arch/arm64/boot/dts/pensando/elba.dtsi
+> new file mode 100644
+> index 000000000000..10e06eb8cda6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/pensando/elba.dtsi
+> @@ -0,0 +1,189 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020-2022, Pensando Systems Inc.
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "dt-bindings/interrupt-controller/arm-gic.h"
+> +
+> +/ {
+> +	model = "Elba ASIC Board";
+> +	compatible = "pensando,elba";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	dma-coherent;
+> +
+> +	ahb_clk: oscillator0 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	emmc_clk: oscillator2 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	flash_clk: oscillator3 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	ref_clk: oscillator4 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,cortex-a72-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	soc: soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		i2c0: i2c@400 {
+> +			compatible = "snps,designware-i2c";
+> +			reg = <0x0 0x400 0x0 0x100>;
+> +			clocks = <&ahb_clk>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			i2c-sda-hold-time-ns = <480>;
+> +			snps,sda-timeout-ms = <750>;
+> +			interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
 > +			status = "disabled";
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "ref";
-> +			resets = <&gcc GCC_QUSB2PHY_BCR>;
 > +		};
 > +
-> +		usb_qmpphy: phy@ff6000 {
-> +			compatible = "qcom,sdx65-qmp-usb3-uni-phy";
-> +			reg = <0x00ff6000 0x1c8>;
+> +		wdt0: watchdog@1400 {
+> +			compatible = "snps,dw-wdt";
+> +			reg = <0x0 0x1400 0x0 0x100>;
+> +			clocks = <&ahb_clk>;
+> +			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
 > +			status = "disabled";
+> +		};
+> +
+> +		qspi: spi@2400 {
+> +			compatible = "pensando,elba-qspi", "cdns,qspi-nor";
 > +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
+> +			#size-cells = <0>;
+> +			reg = <0x0 0x2400 0x0 0x400>,
+> +			      <0x0 0x7fff0000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&flash_clk>;
+> +			cdns,fifo-depth = <1024>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x7fff0000>;
+> +			status = "disabled";
+> +		};
 > +
-> +			clocks = <&gcc GCC_USB3_PHY_AUX_CLK>,
-> +				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_CLKREF_EN>;
-> +			clock-names = "aux", "cfg_ahb", "ref";
+> +		spi0: spi@2800 {
+> +			compatible = "pensando,elba-spi";
+> +			reg = <0x0 0x2800 0x0 0x100>;
+
+> +			pensando,syscon-spics = <&mssoc 0x2468>;
+
+I am wondering do you really need to define the
+"pensando,syscon-spics" property as accepting a phandle with an
+additional argument? That would have been justified if you had at
+least two SPI controllers with different CS override registers. AFAICS
+you've got only one here. So you can simplify the bindings by defining
+the property like "pensando,syscon" (with no "spics" suffix) which
+accepts the syscon phandle alone. Respective SPICS offset can be
+locally declared in the driver as a macro with respective name.
+
+-Sergey
+
+
+> +			clocks = <&ahb_clk>;
+> +			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			num-cs = <2>;
+> +			status = "disabled";
+> +		};
 > +
-> +			resets = <&gcc GCC_USB3PHY_PHY_BCR>,
-> +				 <&gcc GCC_USB3_PHY_BCR>;
-> +			reset-names = "phy", "common";
+> +		gpio0: gpio@4000 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "snps,dw-apb-gpio";
+> +			reg = <0x0 0x4000 0x0 0x78>;
+> +			status = "disabled";
 > +
-> +			usb_ssphy: phy@ff6200 {
-> +				reg = <0x00ff6e00 0x160>,
-> +				      <0x00ff7000 0x1ec>,
-> +				      <0x00ff6200 0x1e00>;
-> +				#phy-cells = <0>;
-> +				#clock-cells = <0>;
-> +				clocks = <&gcc GCC_USB3_PHY_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "usb3_uni_phy_pipe_clk_src";
+> +			porta: gpio-port@0 {
+> +				compatible = "snps,dw-apb-gpio-port";
+> +				reg = <0>;
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				ngpios = <8>;
+> +				interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-controller;
+> +				interrupt-parent = <&gic>;
+> +				#interrupt-cells = <2>;
+> +			};
+> +
+> +			portb: gpio-port@1 {
+> +				compatible = "snps,dw-apb-gpio-port";
+> +				reg = <1>;
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				ngpios = <8>;
 > +			};
 > +		};
 > +
->  		system_noc: interconnect@1620000 {
->  			compatible = "qcom,sdx65-system-noc";
->  			reg = <0x1620000 0x31200>;
-> @@ -182,6 +222,49 @@
->  			status = "disabled";
->  		};
->  
-> +		usb: usb@a6f8800 {
-> +			compatible = "qcom,sdx65-dwc3", "qcom,dwc3";
-> +			reg = <0x0a6f8800 0x400>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
+> +		uart0: serial@4800 {
+> +			compatible = "ns16550a";
+> +			reg = <0x0 0x4800 0x0 0x100>;
+> +			clocks = <&ref_clk>;
+> +			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +		};
+> +
+> +		gic: interrupt-controller@800000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
 > +			ranges;
+> +			interrupt-controller;
+> +			reg = <0x0 0x800000 0x0 0x200000>,	/* GICD */
+> +			      <0x0 0xa00000 0x0 0x200000>;	/* GICR */
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 > +
-> +			clocks = <&gcc GCC_USB30_SLV_AHB_CLK>,
-> +				 <&gcc GCC_USB30_MASTER_CLK>,
-> +				 <&gcc GCC_USB30_MSTR_AXI_CLK>,
-> +				 <&gcc GCC_USB30_MOCK_UTMI_CLK>,
-> +				 <&gcc GCC_USB30_SLEEP_CLK>;
-> +			clock-names = "cfg_noc", "core", "iface", "mock_utmi",
-> +					"sleep";
+> +			/*
+> +			 * Elba specific pre-ITS is enabled using the
+> +			 * existing property socionext,synquacer-pre-its
+> +			 */
+> +			gic_its: msi-controller@820000 {
+> +				compatible = "arm,gic-v3-its";
+> +				msi-controller;
+> +				#msi-cells = <1>;
+> +				reg = <0x0 0x820000 0x0 0x10000>;
+> +				socionext,synquacer-pre-its =
+> +							<0xc00000 0x1000000>;
+> +			};
+> +		};
 > +
-> +			assigned-clocks = <&gcc GCC_USB30_MOCK_UTMI_CLK>,
-> +					  <&gcc GCC_USB30_MASTER_CLK>;
-> +			assigned-clock-rates = <19200000>, <200000000>;
+> +		emmc: mmc@30440000 {
+> +			compatible = "pensando,elba-sd4hc", "cdns,sd4hc";
+> +			clocks = <&emmc_clk>;
+> +			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> +			reg = <0x0 0x30440000 0x0 0x10000>,
+> +			      <0x0 0x30480044 0x0 0x4>;	/* byte-lane ctrl */
+> +			cdns,phy-input-delay-sd-highspeed = <0x4>;
+> +			cdns,phy-input-delay-legacy = <0x4>;
+> +			cdns,phy-input-delay-sd-uhs-sdr50 = <0x6>;
+> +			cdns,phy-input-delay-sd-uhs-ddr50 = <0x16>;
+> +			mmc-ddr-1_8v;
+> +			status = "disabled";
+> +		};
 > +
-> +			interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 19 IRQ_TYPE_EDGE_BOTH>,
-> +					      <&pdc 76 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 18 IRQ_TYPE_EDGE_BOTH>;
-> +			interrupt-names = "hs_phy_irq", "dp_hs_phy_irq",
-> +					  "ss_phy_irq", "dm_hs_phy_irq";
-> +
-> +			power-domains = <&gcc USB30_GDSC>;
-> +
-> +			resets = <&gcc GCC_USB30_BCR>;
-> +
-> +			usb_dwc3: dwc3@a600000 {
-
-usb. Please test your changes with `make dtbs_check`. This should
-clearly fail.
-
-
-Best regards,
-Krzysztof
+> +		mssoc: mssoc@307c0000 {
+> +			compatible = "syscon", "simple-mfd";
+> +			reg = <0x0 0x307c0000 0x0 0x3000>;
+> +		};
+> +	};
+> +};
+> -- 
+> 2.17.1
+> 
