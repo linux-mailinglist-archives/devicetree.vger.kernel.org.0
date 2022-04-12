@@ -2,106 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C28534FE634
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 18:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB814FE676
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 19:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345721AbiDLQr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 12:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38460 "EHLO
+        id S1354223AbiDLRDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 13:03:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357903AbiDLQrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 12:47:53 -0400
-Received: from out28-145.mail.aliyun.com (out28-145.mail.aliyun.com [115.124.28.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F07AA49930;
-        Tue, 12 Apr 2022 09:45:33 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09321077|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0642605-0.00489878-0.930841;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.NPL4wXj_1649781929;
-Received: from 192.168.30.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NPL4wXj_1649781929)
-          by smtp.aliyun-inc.com(33.37.67.126);
-          Wed, 13 Apr 2022 00:45:30 +0800
-Subject: Re: [PATCH 2/2] USB: dwc2: Add OTG support for Ingenic SoCs.
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Paul Cercueil <paul@crapouillou.net>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, hminas@synopsys.com,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
-        =?UTF-8?Q?Dragan_=c4=8ce=c4=8davac?= <dragancecavac@yahoo.com>
-References: <1627116521-124612-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1627116521-124612-3-git-send-email-zhouyanjie@wanyeetech.com>
- <IQWQWQ.9EAMZ76IPL892@crapouillou.net>
- <e4f7897a-6b70-d936-a968-e66556382851@wanyeetech.com>
- <8735s37slq.fsf@kernel.org>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <021ece97-5e62-c07f-bb6d-b69c93d73b31@wanyeetech.com>
-Date:   Wed, 13 Apr 2022 00:45:29 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        with ESMTP id S1357919AbiDLRDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 13:03:24 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2340C5C647;
+        Tue, 12 Apr 2022 10:01:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649782866; x=1681318866;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jgwijNu2ZezTRwUgeRa68DVn7L7cEW8MPUo/U76CR2Y=;
+  b=GZyCu0mxo97UI/ZjTKcMjJYXRPzz55+qogA8jocOLJN1C6moYGv0LQ6m
+   G6X0UB53PSfh0MxBIWX9oijJAa1J7lI8zH+rXZ1WUK//eoU5K9VDAMZV/
+   05uxYKsb1D5TaOFsJBthHmZraseLKqNyN7pQzPoaGQYKEjiCfBSvYxU2B
+   C3wTgaQw4ecF0vzYU43LXVPu1AQDuS1JMrnrem2tWjjUOXn8NpFZnHOw4
+   oujkzRQ2V2bsCWXSiHzQZCcMJipbGw903keajfiareg9+1ZPETw4Em67t
+   BTXRqeEEsYNewyrXcq4caEZGi+sxm+iSisG99q4tQ2WEFJwic3s3ha6ru
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="244323955"
+X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; 
+   d="scan'208";a="244323955"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 10:00:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; 
+   d="scan'208";a="644824295"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 12 Apr 2022 10:00:40 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1neJse-00030y-1Q;
+        Tue, 12 Apr 2022 17:00:40 +0000
+Date:   Wed, 13 Apr 2022 01:00:18 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, amitk@kernel.org,
+        kristo@kernel.org
+Cc:     kbuild-all@lists.01.org, j-keerthy@ti.com,
+        linux-pm@vger.kernel.org, vigneshr@ti.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] thermal: k3_j72xx_bandgap: Add the bandgap driver
+ support
+Message-ID: <202204130043.PiaWoNtR-lkp@intel.com>
+References: <20220412101409.7980-5-j-keerthy@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <8735s37slq.fsf@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220412101409.7980-5-j-keerthy@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+Hi Keerthy,
 
-On 2021/7/24 下午9:24, Felipe Balbi wrote:
-> Hi Zhou,
->
-> Zhou Yanjie writes:
->>>> diff --git a/drivers/usb/dwc2/params.c b/drivers/usb/dwc2/params.c
->>>> index 67c5eb1..a7a1b50 100644
->>>> --- a/drivers/usb/dwc2/params.c
->>>> +++ b/drivers/usb/dwc2/params.c
->>>> @@ -71,6 +71,47 @@ static void dwc2_set_his_params(struct
->>>> dwc2_hsotg *hsotg)
->>>>       p->power_down = DWC2_POWER_DOWN_PARAM_NONE;
->>>>   }
->>>>
->>>> +static void dwc2_set_jz4775_params(struct dwc2_hsotg *hsotg)
->>>> +{
->>>> +    struct dwc2_core_params *p = &hsotg->params;
->>>> +
->>>> +    p->otg_cap = DWC2_CAP_PARAM_NO_HNP_SRP_CAPABLE;
->>>> +    p->speed = DWC2_SPEED_PARAM_HIGH;
->>>> +    p->phy_type = DWC2_PHY_TYPE_PARAM_UTMI;
->>>> +    p->phy_utmi_width = 16;
->>>> +    p->deactivate_ingenic_overcurrent_detection =
->>>> +        device_property_read_bool(hsotg->dev, "disable-over-current");
->>> That device property was not documented in the previous patch. Also
->>> this probably should be "ingenic,disable-over-current".
->>>
->> This device property already exists (it has been used in the
->> "dwc2_get_device_properties()" function below).
->>
->> Under normal circumstances, after using this device attribute, it
->> should be possible to turn off the overcurrent
->>
->> detection, but on the Ingenic processors, somehow it did not take
->> effect normally, and we must operate the
->>
->> "VBVALOEN" bit and "VBVALOVAL" bit of "GOTGCTL" register to make it normal.
-> I believe what Paul is suggesting is that this property lacks
-> documentation under Documentation/devicetree/bindings/. If that's the
-> case, you could take the opportunity to document the property and,
-> perhaps, add the missing prefix.
+I love your patch! Yet something to improve:
 
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on rafael-pm/thermal v5.18-rc2 next-20220412]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Sorry for the long time delay.
+url:    https://github.com/intel-lab-lkp/linux/commits/Keerthy/thermal-k3_j72xx_bandgap-Add-the-bandgap-driver-support/20220412-193526
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: microblaze-buildonly-randconfig-r002-20220411 (https://download.01.org/0day-ci/archive/20220413/202204130043.PiaWoNtR-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/de47884b9759d99f1971558a45283b912efbf22a
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Keerthy/thermal-k3_j72xx_bandgap-Add-the-bandgap-driver-support/20220412-193526
+        git checkout de47884b9759d99f1971558a45283b912efbf22a
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=microblaze SHELL=/bin/bash
 
-Looks like Krzysztof has done the job, I will send v2 soon.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
+All errors (new ones prefixed by >>):
 
-Thanks and best regards!
+   microblaze-linux-ld: drivers/thermal/k3_j72xx_bandgap.o: in function `init_table':
+>> .tmp_gl_k3_j72xx_bandgap.o:(.text+0x69c): undefined reference to `__divdi3'
 
-
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
