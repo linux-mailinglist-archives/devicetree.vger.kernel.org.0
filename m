@@ -2,73 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 443C34FE071
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A13CE4FE02D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349788AbiDLMdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 08:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52416 "EHLO
+        id S238621AbiDLMbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 08:31:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351129AbiDLMdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:33:24 -0400
-X-Greylist: delayed 556 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Apr 2022 04:51:15 PDT
-Received: from ni.piap.pl (ni.piap.pl [195.187.100.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C7545B3DB;
-        Tue, 12 Apr 2022 04:51:15 -0700 (PDT)
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id AA042C3F2A7C;
-        Tue, 12 Apr 2022 13:41:54 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl AA042C3F2A7C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1649763715; bh=eDGbdVUneZ/T2RuspWQJiHylap/lgWRYWsmS2shYVko=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=glsS6E0+aD3K9YhLHeZw59r0S47bgX6qyoNqKb6mrNCtm5VwGhg3hVEXLsVL1NxYC
-         JEMEFG+wu+j1o5QvEqIE8kOkMn8/6Sv9blU+rQcOh1FaLg1/ExEX2WqxsTjboNjF9B
-         n2R4KUyDJOxG6tg+t44wd8Zar1sYFREU8RfGghrg=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Joe Perches <joe@perches.com>
-Subject: Re: [PATCH v8 2/2] On Semi AR0521 sensor driver
-References: <m3pmn66pie.fsf@t19.piap.pl> <m3h78i6p4t.fsf@t19.piap.pl>
-        <20220301093107.ihokyp4xptkzpbpc@uno.localdomain>
-        <m38rtt7sx7.fsf@t19.piap.pl>
-        <20220301143044.2l4vlwbnh5n3g5ng@uno.localdomain>
-Sender: khalasa@piap.pl
-Date:   Tue, 12 Apr 2022 13:41:54 +0200
-In-Reply-To: <20220301143044.2l4vlwbnh5n3g5ng@uno.localdomain> (Jacopo Mondi's
-        message of "Tue, 1 Mar 2022 15:30:44 +0100")
-Message-ID: <m37d7ufrzx.fsf@t19.piap.pl>
+        with ESMTP id S1356228AbiDLMaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:30:03 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553F6BEE
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 04:46:18 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id b15so22020975edn.4
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 04:46:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=CAzofaR9FtDRM+wFckGofjwaCdLcN5fw9Tp9Ja6KClQ=;
+        b=FkbM4k1L25VdLH3C5Axv+jI5HXZbnjrOgB1F9cfIlW0SFn/s0XwgchhjQhuYd75ZJp
+         l0ggFoX54olXCeWc9IzSamo3CubXGiIDP55x5LX57Oel5PZ6NkUUm+4iB6bxPS06h1HV
+         jqkEqowlNp00SUqof2j7njrdAHS9lNKcWcw0+hK0oH76kh/zz7TXHOhjEzqHRkoEK63j
+         wO1YON+EMja2U1zcYlojaB+aSh99hrGAmHupapX5VwM1ApVn7t0eydmPo4tc7UI95+FQ
+         +gfIaKkp2SSYX2kGa83T2AdSPTyLQfdvQg43BJ6dDbQbRLGtNCrf+SgoVy+4l2QQV06/
+         p+aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CAzofaR9FtDRM+wFckGofjwaCdLcN5fw9Tp9Ja6KClQ=;
+        b=1SfmJ0cq9Y9Uw6jGqQPT5Uj8YTdQNWmZV/AWvIMZeLDWziOcby6yR8TQAyKlgph0Lv
+         2NuL+0XVOJDJUgbAxsSZ0Y0FBz1iMtAjSRhED9Nfwaj0wKAwdwKi9Qy0yKG1Be5Zix2n
+         76/JpLGvMmyMGcq/kXC4RVSIXa1yUbR2pBR+1CahYMa5mLShnj9dXO+Db6dHp9NemIFr
+         ISGENeWR2WMdg0WpQwRFBjfpVkdmO5M8Tjq7CsCmAA34ErZ923c6C5iBZt4r7H8V4I8w
+         FixSAgEH2k2aO3balonB9TqH2UcPTwWzXU7vKI8cg28Yb1n6cyNX9Z9wUXit/5lXKRX3
+         3ONw==
+X-Gm-Message-State: AOAM533tIJUZk06GSNDDIsoaJIRXg/1s6LLeKmD1be8Zi8aeTYDikM1k
+        yODmIZIg+qFH8ZLefIntPZOOAQ==
+X-Google-Smtp-Source: ABdhPJzgTthKDvyK5jkgahd3jA3ghr8ocxlOO81cPS3FfOff0qgYSswuAkilr5C24AhAfauBQLOBDw==
+X-Received: by 2002:a05:6402:4302:b0:419:4be8:6493 with SMTP id m2-20020a056402430200b004194be86493mr38525636edc.294.1649763976885;
+        Tue, 12 Apr 2022 04:46:16 -0700 (PDT)
+Received: from [192.168.0.195] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id q16-20020a170906145000b006bdaf981589sm13012850ejc.81.2022.04.12.04.46.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 04:46:16 -0700 (PDT)
+Message-ID: <6bd0ef3e-5e50-9207-375d-088167131a9e@linaro.org>
+Date:   Tue, 12 Apr 2022 13:46:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 3
-X-KLMS-Message-Action: skipped
-X-KLMS-AntiSpam-Status: not scanned, whitelist
-X-KLMS-AntiPhishing: not scanned, whitelist
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 4/9] dt-bindings: clk: mpfs document msspll dri
+ registers
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
+        palmer@rivosinc.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220411085916.941433-1-conor.dooley@microchip.com>
+ <20220411085916.941433-5-conor.dooley@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220411085916.941433-5-conor.dooley@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All,
+On 11/04/2022 10:59, Conor Dooley wrote:
+> As there are two sections of registers that are responsible for clock
+> configuration on the PolarFire SoC: add the dynamic reconfiguration
+> interface section to the binding & describe what each of the sections
+> are used for.
+> 
+> Fixes: 2145bb687e3f ("dt-bindings: clk: microchip: Add Microchip PolarFire host binding")
+> Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../devicetree/bindings/clock/microchip,mpfs.yaml     | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+> 
 
-Since it appears all remaining issues with the AR0521 driver have been
-resolved weeks ago... is there anything I should do in order to have the
-driver merged, should I rather proceed with the "staging" thing, or
-maybe some other option should be used?
---=20
-Krzysztof "Chris" Ha=C5=82asa
 
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
