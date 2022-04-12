@@ -2,111 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4F844FCF0F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 07:46:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A5964FCF53
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 08:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238978AbiDLFs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 01:48:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38834 "EHLO
+        id S235048AbiDLGWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 02:22:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbiDLFsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 01:48:25 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D6E28E21;
-        Mon, 11 Apr 2022 22:46:06 -0700 (PDT)
+        with ESMTP id S229659AbiDLGWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 02:22:18 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258153465D;
+        Mon, 11 Apr 2022 23:20:01 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id o5so4910868pjr.0;
+        Mon, 11 Apr 2022 23:20:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649742366; x=1681278366;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=jsdy9u9+KISajB9c0j8gNH1SrGcFBDcQb+MHTS1cdWc=;
-  b=UleOYA4A4iXYNVQnn7LdnR9EuJ1gky+ICI8aBIR8TdnTy4G/2cOLP8cY
-   myPqOdGxylZ5cmLNe3T5Xoy0lIda7PdzJXh0I7xPRLvO8IwwVjpWh6y+t
-   I5tXOiZIrqkRqe4QTbLNuACzU/7wFKdGor/930H/LMy5r0gZ1msbJvVJW
-   E=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 11 Apr 2022 22:46:05 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2022 22:46:05 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 11 Apr 2022 22:46:05 -0700
-Received: from [10.50.41.188] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 11 Apr
- 2022 22:46:01 -0700
-Message-ID: <c5d10dc4-a76f-fdab-0ca3-2850871f36b3@quicinc.com>
-Date:   Tue, 12 Apr 2022 11:15:58 +0530
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VZKcGtC5tCIRmh/vNIQCaulDH5znaqMV+2ARM6ku8ic=;
+        b=B1TZxoPCuxyVlaC4j3CyGPLLfvj/ucmo3SD/4jFRD98igRMaMKJVk4FzjrUC4oV7ck
+         2e/zaRU+z0ZmeOaltjKNVDaW6rqV6NBxLo6uuAbnyCR1h/U0ULbEKVzCyCaDpW4h5EEA
+         E4tTnnXaEixFxwM5yvJBluP1di5V1NzqCD/GSysnC3y9WwBvn8kCfUOabdcNxvaQ+w1O
+         aIInKld4OneIinbkwrW5suZ6g9sZbef4+plK8zdemMApWfyGy/Od3czgDBJ7hE3qJk8o
+         JXrP+57xcbehQTs1gcy7OC5dHIgcqwAganOHQJn4ySQ7Be7LK55olmcWVfiCRrWsAODt
+         07eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VZKcGtC5tCIRmh/vNIQCaulDH5znaqMV+2ARM6ku8ic=;
+        b=8KbY2h2Nke66BMfkM0e+wP870ixBX9yNHFb19g0+ZF9I9QEwUZ4U1mzpD+jaAQ8JR/
+         WAznmhyI2ACKhKnMh6EPHTSraePu+yvMN8SUXCPoZqfx9FZHJvF+FdKmdZtEB5NFjot9
+         AcUiQ5ZNyg5c5pXlDiD8uTi36XF99wQTxTtmvZKtvjkGih2jHPAs2/Ks0drPdsmEztuz
+         QmF6xOED9p0CrSJmPZuA9vJ7RZGIo++4bV9hD2nYsjZZ8Y5iLIXYyMVlravJ8dDzEF/R
+         rOHLtvg4O/DsbyO8tHlP2zNyrpL1qzRpW2I1X6AdSZPhd+ezmf1LnvnUpHAvdTfBuAdV
+         /lQg==
+X-Gm-Message-State: AOAM530oKQk7cXc4sHxs6p+SbyZn3nvcb+40ln7Z9/zZU7Oq/sLR7brB
+        lDMLM2sDJPbrDIpOYBggbh0=
+X-Google-Smtp-Source: ABdhPJxvM1EiGufY6yffmCMAUDnYn/PcQczG74Cn/K14BzrA2CUVjB2tT/45DJF/kQjCQ8HsRY37Eg==
+X-Received: by 2002:a17:90b:1c87:b0:1ca:f4e:4fbe with SMTP id oo7-20020a17090b1c8700b001ca0f4e4fbemr3202324pjb.159.1649744400564;
+        Mon, 11 Apr 2022 23:20:00 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id 21-20020a630115000000b00382a0895661sm1568990pgb.11.2022.04.11.23.19.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 23:20:00 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 11:49:53 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA
+ binding to json format
+Message-ID: <20220412061953.GA95928@9a2d8922b8f1>
+References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+ <20220410175056.79330-7-singh.kuldeep87k@gmail.com>
+ <14ecb746-56f0-2d3b-2f93-1af9407de4b7@linaro.org>
+ <20220411105810.GB33220@9a2d8922b8f1>
+ <50defa36-3d91-80ea-e303-abaade1c1f7e@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v11] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_sibis@quicinc.com>,
-        <kuabhs@chromium.org>, <quic_pillair@quicinc.com>
-References: <20220406111101.27412-1-quic_mpubbise@quicinc.com>
- <CAE-0n51vq_V85SKh+hN1Ueas9t1dV7ZFaFyQsG9vukRBAHUc5A@mail.gmail.com>
- <5c87d5d9-66d0-41d9-4adb-53b3ec7cadeb@quicinc.com>
- <CAE-0n51PheX1poksttyYVEOVe2amWbWwZSQMwguTUxajSHm6bQ@mail.gmail.com>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <CAE-0n51PheX1poksttyYVEOVe2amWbWwZSQMwguTUxajSHm6bQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <50defa36-3d91-80ea-e303-abaade1c1f7e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/7/2022 11:46 PM, Stephen Boyd wrote:
-> Quoting Manikanta Pubbisetty (2022-04-06 23:11:50)
->>
->>
->> On 4/6/2022 8:47 PM, Stephen Boyd wrote:
->>> Quoting Manikanta Pubbisetty (2022-04-06 04:11:01)
->>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->>>> index ecbf2b89d896..f61a3e15fa8b 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->>>> @@ -547,3 +547,6 @@ sw_ctrl: sw-ctrl {
->>>>           };
->>>>    };
->>>>
->>>> +&remoteproc_wpss {
->>>> +       status = "okay";
->>>> +};
->>>
->>> This should be before the PINCTRL section in this file. I believe after
->>> the uart node.
->>
->> I have not understood your concern, any specific reason as why
->> remoteproc_wpss node has to be before PINCTRL section?
->> There is no problem in moving, just wanted to understand the reason.
->>
+On Mon, Apr 11, 2022 at 01:38:41PM +0200, Krzysztof Kozlowski wrote:
+> On 11/04/2022 12:58, Kuldeep Singh wrote:
+> >> This is something new and it seems only one SoC defines it (not even one
+> >> BAM version). I wonder whether this is actually correct or this
+> >> particular version of BAM is slightly different. Maybe someone could
+> >> clarify it, but if no - looks ok.
+> > 
+> > Yes, sdm845.dtsi uses 4 entries and rest 1.
 > 
-> It's a style that this file is following. The end of the file is for
-> pinctrl configurations. Before that section is where soc nodes are
-> modified. There are different sections of the file with comments
-> delineating them.
+> Yes, I know. This does not solve my wonder.
 > 
-> Furthermore, adding things to the end of the file is a recipe for
-> conflicts when applying patches as a maintainer. This is another reason
-> why we sort the nodes. I suspect having different sections helps here so
-> that we don't sort everything alphabetically and have pinctrl settings
-> scattered throughout the file.
+> > 
+> >>
+> >>> +
+> >>> +  num-channels:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    description:
+> >>> +      Indicates supported number of DMA channels in a remotely controlled bam.
+> >>> +
+> >>> +  qcom,controlled-remotely:
+> >>> +    $ref: /schemas/types.yaml#/definitions/flag
+> >>
+> >> type: boolean
+> > 
+> > Boolean comes under flag in types.yaml
+> > 
+> > definitions:
+> >   flag:
+> >     oneOf:
+> >       - type: boolean
+> >         const: true
+> >       - type: 'null'
+> > 
+> > I have seen other boolean properties(spi-cpol, spi-cpha and bunch of
+> > others) using type flag. I think we should keep flag here.
+> 
+> type:boolean is just shorter and example-schema recommends it. If you
+> want to base on something (as a template, pattern) then the
+> example-schema is the source, the preferred one.
 
-Thanks for the explanation, I'll send out a revised patch.
+I had seen other spec using flag and that's why kept same here.
+Which example schema are you talking about?
 
-Manikanta
+> >>
+> >> clocks, clock-names, qcom-ee - these are required according to old bindings.
+> > 
+> > I missed qcom,ee. Will add in v3.
+> > 
+> > For clocks and clock-names , there are two platforms(msm8996.dtsi,
+> > sdm845.dtsi) where these properties are missing. And I don't want to add
+> > some random values. Shall I skip them here? and let board owners add
+> > them later.
+> 
+> These are required, so the SoC DTSI should be fixed. Not with random
+> clocks but something proper. :)
+
+Yes absolutely :-)
+I have kept Srinivas in copy, who sent initial support for both the
+dtsi. Probably he can confirm provided his email doesn't bounce.
+
+Anyway Krzysztof, can you confirm the same as you have been actively
+contributing to Qcom peripherals. I will add credit in follow-up
+submission.
