@@ -2,66 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000304FDC7D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0F04FDCBF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232101AbiDLKbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43806 "EHLO
+        id S239521AbiDLKiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380840AbiDLKZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:25:48 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3703213D6C;
-        Tue, 12 Apr 2022 02:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649755751; x=1681291751;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Rb2OhLPdmdoOp2xQrfaVfs6H3bBcZA5IDC3PKqaob3g=;
-  b=bYOJH8NGQfBqrL0nLEI7MD+FZq+zK3wAfIys0YcjO4xWRgb9xMLkepjA
-   gvj1K09aknzZDWgKKu+H6ZvXMNnqqiNLVjx4bOb+mvg/0O1XxhqblvP+S
-   kacxBAxmZGDIShzYScQ/xYrf9dV08KmmAQlpYUDReMQK1kUOm4o1iYmCc
-   2hkkRQFOjpGA0KRrGYUL2Pn0dlLGfoKSIZ+jlJxQNZdls1gM64bfW/A+X
-   U4Dgvz9QkLoUUnWlyzdN/mywCGa8KDvFHEyMCjqWIg/u/UJ6Pjb7o9gyw
-   VGtyxYnwaCt8TpgVfx9TdrytPY2VwEL7Qc9rbzeqQSyklJyaNJ93NoFjv
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="261766254"
-X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
-   d="scan'208";a="261766254"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 02:29:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
-   d="scan'208";a="854289795"
-Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 12 Apr 2022 02:28:59 -0700
-Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1neCpW-0002hb-W8;
-        Tue, 12 Apr 2022 09:28:59 +0000
-Date:   Tue, 12 Apr 2022 17:28:47 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Qin Jian <qinjian@cqplus1.com>, krzysztof.kozlowski@linaro.org
-Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de,
-        maz@kernel.org, p.zabel@pengutronix.de, linux@armlinux.org.uk,
-        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, Qin Jian <qinjian@cqplus1.com>
-Subject: Re: [PATCH v13 7/9] irqchip: Add Sunplus SP7021 interrupt controller
- driver
-Message-ID: <202204121739.itrMS2oq-lkp@intel.com>
-References: <20437e316e49a3a66e7003a7dc5258086558ce9a.1649659095.git.qinjian@cqplus1.com>
+        with ESMTP id S1380827AbiDLKfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:35:08 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E2E5E15A
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:37:20 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id b188so18412390oia.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:37:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
+         :subject:to:cc;
+        bh=evIZsLOQJjFi37tCwIrJkfpZ9gIHXQ0UW8l5PUtfRtM=;
+        b=4QAERHFJ8BTZGtY7E+DkrtJGJSnzxgQgHwbOYAwlxzZXnKMY9dp3NVgOGA1Cbx3AW0
+         FxY2zgabemqQKkM8yYWIKTkzeKaFcP40xAgE+1dbimqQ4CldI7+o8TQ8dE1kodW+jrQU
+         gYXrQIuo73uA51I8IaOWcFPhvw+t8g/pF4/eUcwWtHBUvZuNigXM/QZvceMRt4bz7R/Q
+         iRCQbyMV95o4pipHij2S0MaVqvssVGHgSj8Xz769fQj6HFHoNaTjIpDoiR+7ZrOU9ACV
+         kY13mSlQ12q7mCyqJQTWIMCVaZV8qk0mntRPEqqEkgTpq9DAW883/q4t7wQjC3Wogopk
+         7VLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:user-agent:references:in-reply-to
+         :mime-version:date:message-id:subject:to:cc;
+        bh=evIZsLOQJjFi37tCwIrJkfpZ9gIHXQ0UW8l5PUtfRtM=;
+        b=JOCYLnJDihw1Z+e6qpfja1FRYKu4GTWx4AYEMPe4Ecf4eHiI69mUjS3s2T67173Xe8
+         EGDb/uklhchPPeoBCsoHIvus/hwz4b1wSxaOyUWiCRgX1iOXbo/TrgYSk8lzCB1Pi/CY
+         G4bHqTKKZvcH5qvbTF54xpRc3rMcEjtQP6dVOWhGK11hdsiQg3XMMeid52QS/gedtSqg
+         b35ngI4+18dh46EUolnQzxwINxTtiUagbxuAYAWIo2z50e8c4jfekWB7UtpBGjc0QPj7
+         VMC9nSeosoa59tRA39WEa+t0yVkg8Ak/YCXUn7CsP1tqFXBl4vJf1qhI7G4kSHpNa+OU
+         Euug==
+X-Gm-Message-State: AOAM532P/S1Ih5t0BnA6g/jG5Yo7TyvCwxAB76F1W69WgE0kMQ09qFdQ
+        xQFNTpxGBwlYJ4NNnOULCE53G/VyMN08Gj4FrF9O+Q==
+X-Google-Smtp-Source: ABdhPJw50fakNZZtGphBh/3iA9VZT9nYrxLt56LrY9rUXQ7AMr4P93Xi3Vwjdes2KLA+ubvrsqu9MdqkL/hZl7jIqcA=
+X-Received: by 2002:a05:6808:1804:b0:2f9:65eb:c40b with SMTP id
+ bh4-20020a056808180400b002f965ebc40bmr1343724oib.78.1649756239335; Tue, 12
+ Apr 2022 02:37:19 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Apr 2022 02:37:18 -0700
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-17-granquet@baylibre.com>
+ <736a7f6710f1ea31eff4abcc3d9c3ff79a1f0ddb.camel@mediatek.com>
+In-Reply-To: <736a7f6710f1ea31eff4abcc3d9c3ff79a1f0ddb.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20437e316e49a3a66e7003a7dc5258086558ce9a.1649659095.git.qinjian@cqplus1.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+Date:   Tue, 12 Apr 2022 02:37:18 -0700
+Message-ID: <CABnWg9vfMJTbOTK-khgaj7RReLVSKJ3DCmJbDvgKMf+tUBwoSA@mail.gmail.com>
+Subject: Re: [PATCH v9 16/22] drm/meditek: dpi: Add matrix_sel helper
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, vkoul@kernel.org,
+        airlied@linux.ie, angelogioacchino.delregno@collabora.com,
+        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
+        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+        mripard@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
+        tzimmermann@suse.de
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-phy@lists.infradead.org, markyacoub@google.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,106 +77,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Qin,
+On Mon, 28 Mar 2022 10:49, Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
+>On Mon, 2022-03-28 at 00:39 +0200, Guillaume Ranquet wrote:
+>> Add a mtk_dpi_matrix_sel() helper to update the DPI_MATRIX_SET
+>> register depending on the color format.
+>>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>  drivers/gpu/drm/mediatek/mtk_dpi.c | 21 +++++++++++++++++++++
+>>  1 file changed, 21 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+>> b/drivers/gpu/drm/mediatek/mtk_dpi.c
+>> index 8198d3cf23ac..82f97c687652 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+>> @@ -385,6 +385,25 @@ static void mtk_dpi_config_disable_edge(struct
+>> mtk_dpi *dpi)
+>>  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
+>> EDGE_SEL_EN);
+>>  }
+>>
+>> +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum
+>> mtk_dpi_out_color_format format)
+>> +{
+>> +	u32 matrix_sel = 0;
+>> +
+>> +	switch (format) {
+>> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
+>> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
+>> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
+>> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
+>> +	case MTK_DPI_COLOR_FORMAT_XV_YCC:
+>> +		if (dpi->mode.hdisplay <= 720)
+>> +			matrix_sel = 0x2;
+>> +		break;
+>> +	default:
+>> +		break;
+>> +	}
+>> +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
+>> INT_MATRIX_SEL_MASK);
+>> +}
+>> +
+>>  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+>>  					enum mtk_dpi_out_color_format
+>> format)
+>>  {
+>> @@ -392,6 +411,7 @@ static void mtk_dpi_config_color_format(struct
+>> mtk_dpi *dpi,
+>>  	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
+>>  		mtk_dpi_config_yuv422_enable(dpi, false);
+>>  		mtk_dpi_config_csc_enable(dpi, true);
+>> +		mtk_dpi_matrix_sel(dpi, format);
+>>  		if (dpi->conf->swap_input_support)
+>>  			mtk_dpi_config_swap_input(dpi, false);
+>>  		mtk_dpi_config_channel_swap(dpi,
+>> MTK_DPI_OUT_CHANNEL_SWAP_BGR);
+>> @@ -399,6 +419,7 @@ static void mtk_dpi_config_color_format(struct
+>> mtk_dpi *dpi,
+>>  		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
+>>  		mtk_dpi_config_yuv422_enable(dpi, true);
+>>  		mtk_dpi_config_csc_enable(dpi, true);
+>> +		mtk_dpi_matrix_sel(dpi, format);
+>>  		if (dpi->conf->swap_input_support)
+>>  			mtk_dpi_config_swap_input(dpi, true);
+>>  		mtk_dpi_config_channel_swap(dpi,
+>> MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+>
+>Hello Guillaume,
+>
+>Thanks for your patch.
+>I have one question:
+>Do this setting affect the dpi for previous SoCs?
+>(8183, 8192, or 8186)
+>If we can confirm the original register setting for this offset in
+>8183/8192/8186, I think we can clarify this question.
+>
 
-I love your patch! Perhaps something to improve:
+I've checked in the datasheet I have (8365/8385) that this register
+and setting exists.
+So yes, it will affect other platforms.
 
-[auto build test WARNING on pza/reset/next]
-[also build test WARNING on clk/clk-next tip/irq/core linus/master v5.18-rc2 next-20220411]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220411-145949
-base:   https://git.pengutronix.de/git/pza/linux reset/next
-config: ia64-allmodconfig (https://download.01.org/0day-ci/archive/20220412/202204121739.itrMS2oq-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/75f77401bb7a6f669659aab4efb2779bdd6aae9e
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220411-145949
-        git checkout 75f77401bb7a6f669659aab4efb2779bdd6aae9e
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/irqchip/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/irqchip/irq-sp7021-intc.c: In function 'sp_intc_handle_ext_cascaded':
->> drivers/irqchip/irq-sp7021-intc.c:170:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     170 |         int ext_num = (int)irq_desc_get_handler_data(desc);
-         |                       ^
-   drivers/irqchip/irq-sp7021-intc.c: In function 'sp_intc_irq_map':
->> drivers/irqchip/irq-sp7021-intc.c:218:76: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     218 |         irq_set_chained_handler_and_data(irq, sp_intc_handle_ext_cascaded, (void *)i);
-         |                                                                            ^
-
-
-vim +170 drivers/irqchip/irq-sp7021-intc.c
-
-   166	
-   167	static void sp_intc_handle_ext_cascaded(struct irq_desc *desc)
-   168	{
-   169		struct irq_chip *chip = irq_desc_get_chip(desc);
- > 170		int ext_num = (int)irq_desc_get_handler_data(desc);
-   171		int hwirq;
-   172	
-   173		chained_irq_enter(chip, desc);
-   174	
-   175		while ((hwirq = sp_intc_get_ext_irq(ext_num)) >= 0) {
-   176			if (unlikely(IS_GPIO_INT(hwirq) && TEST_STATE(hwirq, _IS_ACTIVE))) { // WORKAROUND
-   177				ASSIGN_STATE(hwirq, _IS_ACTIVE, false);
-   178				sp_intc_assign_bit(hwirq, REG_INTR_POLARITY, TEST_STATE(hwirq, _IS_LOW));
-   179			} else {
-   180				generic_handle_domain_irq(sp_intc.domain, hwirq);
-   181			}
-   182		}
-   183	
-   184		chained_irq_exit(chip, desc);
-   185	}
-   186	
-   187	static struct irq_chip sp_intc_chip = {
-   188		.name = "sp_intc",
-   189		.irq_ack = sp_intc_ack_irq,
-   190		.irq_mask = sp_intc_mask_irq,
-   191		.irq_unmask = sp_intc_unmask_irq,
-   192		.irq_set_type = sp_intc_set_type,
-   193	};
-   194	
-   195	static int sp_intc_irq_domain_map(struct irq_domain *domain,
-   196					  unsigned int irq, irq_hw_number_t hwirq)
-   197	{
-   198		irq_set_chip_and_handler(irq, &sp_intc_chip, handle_level_irq);
-   199		irq_set_chip_data(irq, &sp_intc_chip);
-   200		irq_set_noprobe(irq);
-   201	
-   202		return 0;
-   203	}
-   204	
-   205	static const struct irq_domain_ops sp_intc_dm_ops = {
-   206		.xlate = irq_domain_xlate_twocell,
-   207		.map = sp_intc_irq_domain_map,
-   208	};
-   209	
-   210	static int sp_intc_irq_map(struct device_node *node, int i)
-   211	{
-   212		unsigned int irq;
-   213	
-   214		irq = irq_of_parse_and_map(node, i);
-   215		if (!irq)
-   216			return -ENOENT;
-   217	
- > 218		irq_set_chained_handler_and_data(irq, sp_intc_handle_ext_cascaded, (void *)i);
-   219	
-   220		return 0;
-   221	}
-   222	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+>BRs,
+>Rex
+>
