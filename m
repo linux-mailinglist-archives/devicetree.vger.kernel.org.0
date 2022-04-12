@@ -2,129 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659F14FE396
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B344FE3BA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346504AbiDLOVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 10:21:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44032 "EHLO
+        id S1356490AbiDLO1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 10:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346770AbiDLOVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:21:37 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 126ED47AF3
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:19:19 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id u19so14653227ljd.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:19:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mQyhcpmuoxubOTeJc5FbJZSd/FqD2XuPIEYRCS1ggmw=;
-        b=ydG+eEZexNQfagzFvxoj4FD97ilHqxwQqCPkORhS5G/hJ0xwxgXdQZbamWtyEwi1aC
-         yOU7dgTfSLJUpRDyR7IedOV/kpj2RKsfEAJ8VnhCk/vmebRcBHjnQLmFARBt/57VbpZ6
-         qple/wrZ7mV6dOki1hZPjlcMd9FDcXZJZb/ezzjKTbhtX4FgmdlT2hXEHu0MFk06qI2d
-         m52WMMuSoMEwDIcuSIgVH/BUaCF+fKMFc0PDyiVrrqD+nPWzCIjCRhQSewtovaVV/Dah
-         mxt41+nsFKqD4mCj75quu7rgmMmUfuScOGJC8LF8reSmu0cAZAd8u6SxxV4h/PbHNT3j
-         fmHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mQyhcpmuoxubOTeJc5FbJZSd/FqD2XuPIEYRCS1ggmw=;
-        b=JnPKzbMl7bgjZyCZj7Gz8GTaxcsbF8DhPol72dH/l/XcCcg1aT5yro/pbpT4UIzyX6
-         NqARTSKBo90NFOS3HB12AKDub3aHHVi+Qtrp5qecMPkmOl2Px8S3q+1vsueAExYXC1rR
-         +0znmS0OXOy59OUrBYBCDRDN1efZhxxNej10CiOHSl8G/6KMNcURyTMM4GGGEWN8Pb7a
-         ZQ0RlwajiA5wTKb7Umye0vXaMTMlkk3N9wouQcdOC/WXAlQs7aGeTm0Vap2/5nsXeQ8I
-         UE/vH5HPoXe5GKtzbD1D00olCPybaVcJxIjl/6Ylj4PGPswPOQzcKnw+hP/VZqOUpNmj
-         tVDA==
-X-Gm-Message-State: AOAM531dhydIk5Q+5hjBl/kM/IoNqdSGgZUM3+F0xKT/xHnux79j0d7a
-        M994onyUjEkt4Bog6eXC4PSW9+1rI2cAUQty57NrZg==
-X-Google-Smtp-Source: ABdhPJybcpvxTKB+Nbs/AV1PA14+uH0q480UoHl1NeG/zKAVRWlPeSSnikUgTyII0O0N9vSECYon0Eo8hlDT0BXQCos=
-X-Received: by 2002:a05:651c:90a:b0:249:5d82:fe9c with SMTP id
- e10-20020a05651c090a00b002495d82fe9cmr23873129ljq.300.1649773157120; Tue, 12
- Apr 2022 07:19:17 -0700 (PDT)
+        with ESMTP id S231205AbiDLO1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:27:01 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4DAE0ED;
+        Tue, 12 Apr 2022 07:24:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=nJ15T4c/j8gXqXWAc1bdFcvt372osymWsJ1i4KD/CTY=; b=29N82hv/6CXhxqVHGVE31I80I1
+        yWgYaEu66ftEyEdx7MW7lEQlt3dwTtXQl21uK12UnUWhM5jsCrkvLz8+udl9LiJomqFcmc5Hjxm+q
+        gPHz376EGKuArxWXJ6TTmbShOZ+kAtktK1ThIL8chtKfhCgMH0U9St14VOjTP9GDOwVE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1neHRT-00FT8M-H9; Tue, 12 Apr 2022 16:24:27 +0200
+Date:   Tue, 12 Apr 2022 16:24:27 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Dylan Hung <dylan_hung@aspeedtech.com>
+Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, pabeni@redhat.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, krzk+dt@kernel.org, BMC-SW@aspeedtech.com
+Subject: Re: [PATCH v4 2/3] net: mdio: add reset control for Aspeed MDIO
+Message-ID: <YlWLm8mRfP07VkcP@lunn.ch>
+References: <20220412065611.8930-1-dylan_hung@aspeedtech.com>
+ <20220412065611.8930-3-dylan_hung@aspeedtech.com>
 MIME-Version: 1.0
-References: <1649759528-15125-1-git-send-email-quic_c_sbhanu@quicinc.com> <1649759528-15125-2-git-send-email-quic_c_sbhanu@quicinc.com>
-In-Reply-To: <1649759528-15125-2-git-send-email-quic_c_sbhanu@quicinc.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 12 Apr 2022 16:18:40 +0200
-Message-ID: <CAPDyKFrJDVBdyu4=0dXaBs8FhsF5jvcLKGgfjjbB-rVztxmgqg@mail.gmail.com>
-Subject: Re: [PATCH V4 1/2] dt-bindings: mmc: sdhci-msm: Add gcc resets strings
-To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, quic_rampraka@quicinc.com,
-        quic_pragalla@quicinc.com, quic_sartgarg@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_sayalil@quicinc.com,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220412065611.8930-3-dylan_hung@aspeedtech.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Bhupesh
+On Tue, Apr 12, 2022 at 02:56:10PM +0800, Dylan Hung wrote:
+> Add reset assertion/deassertion for Aspeed MDIO.  There are 4 MDIO
+> controllers embedded in Aspeed AST2600 SOC and share one reset control
+> register SCU50[3].  To work with old DT blobs which don't have the reset
+> property, devm_reset_control_get_optional_shared is used in this change.
+> 
+> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-On Tue, 12 Apr 2022 at 12:33, Shaik Sajida Bhanu
-<quic_c_sbhanu@quicinc.com> wrote:
->
-> Add gcc hardware reset supported strings for qcom-sdhci controller.
->
-> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-As stated earlier, I would really like to see the binding being
-converted to the yaml format first. It seems like Bhupesh is working
-on the conversion [1].
-
-Kind regards
-Uffe
-
-[1]
-https://www.spinics.net/lists/linux-arm-msm/msg107809.html
-
-
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> index 6216ed7..9f02461 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> @@ -76,6 +76,7 @@ Optional Properties:
->                 "cpu-sdhc".
->                 Please refer to Documentation/devicetree/bindings/
->                 interconnect/ for more details.
-> +- resets: Phandle and reset specifier for the device's reset.
->
->  Example:
->
-> @@ -98,6 +99,8 @@ Example:
->                                 <&qnoc MASTER_CPU_ID &qnoc SLAVE_SDCC_ID>;
->                 interconnect-names = "sdhc-ddr","cpu-sdhc";
->
-> +               resets = <&gcc GCC_SDCC1_BCR>;
-> +
->                 qcom,dll-config = <0x000f642c>;
->                 qcom,ddr-config = <0x80040868>;
->         };
-> @@ -118,6 +121,8 @@ Example:
->                 clocks = <&gcc GCC_SDCC2_APPS_CLK>, <&gcc GCC_SDCC2_AHB_CLK>;
->                 clock-names = "core", "iface";
->
-> +               resets = <&gcc GCC_SDCC2_BCR>;
-> +
->                 qcom,dll-config = <0x0007642c>;
->                 qcom,ddr-config = <0x80040868>;
->         };
-> --
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
->
+    Andrew
