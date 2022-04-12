@@ -2,108 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49AAA4FE252
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 15:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2DE14FE2AE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 15:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354289AbiDLNYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 09:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        id S1356056AbiDLNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 09:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356417AbiDLNXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 09:23:10 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D785F56;
-        Tue, 12 Apr 2022 06:14:07 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id a17-20020a9d3e11000000b005cb483c500dso13351016otd.6;
-        Tue, 12 Apr 2022 06:14:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=4Hu29V9bbNGQ7NeMGoWiDLgZuDde0wP79E71crt9DdM=;
-        b=6xDjFtAoU9TZO0esno4Hf4cS5FCI+aIIpNOUkbHDbAuuFwTt4JaIR20bDh9d6DSjfs
-         kAsGSx5LffWFabhBQ7aTEoMNwg1PSL5ed77c9J6xP9GlMkMjvYhtFLxi3tRSmKZWe9gH
-         Euc77qwslSDI9a5R8ODHwNjD43tmFQ6vZcYUFlaNJRFrXOol400alUhSwpI3SmzOSMl0
-         BhI/kargNL8AMuBC4jLIoGZrutqqr+34SjGLtbgMSIj/pNV+KgaMU2nHpA9/6rzSRdBT
-         pp8G7HePqq5VK33vCIP6SBf8i/keNDmT0K1IPrcoqSdwVo3INlQLZPVsV1AocB4KqI2P
-         MLpQ==
-X-Gm-Message-State: AOAM5334wWwbGUWYGN1J6buNWOhED6p1FJzd82JcMM7ueKBP2a0Hcs+L
-        TLuCsqSMAHVVp/kw/bl2Dw==
-X-Google-Smtp-Source: ABdhPJy/ZMhWQUc529yUtvgnyCadjBqr7fjsWtZYK6b6y58vnNMwVPuq1IYac7H3Y8QrDWl4AkwVgw==
-X-Received: by 2002:a05:6830:2aa1:b0:5e6:cccf:419b with SMTP id s33-20020a0568302aa100b005e6cccf419bmr6816302otu.208.1649769246965;
-        Tue, 12 Apr 2022 06:14:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n62-20020acaef41000000b002ef646e6690sm12947467oih.53.2022.04.12.06.14.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 06:14:06 -0700 (PDT)
-Received: (nullmailer pid 3815484 invoked by uid 1000);
-        Tue, 12 Apr 2022 13:14:05 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Dylan Hung <dylan_hung@aspeedtech.com>
-Cc:     netdev@vger.kernel.org, kuba@kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, joel@jms.id.au, hkallweit1@gmail.com,
-        pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
-        andrew@aj.id.au, robh+dt@kernel.org, p.zabel@pengutronix.de,
-        krzk+dt@kernel.org, linux-kernel@vger.kernel.org, andrew@lunn.ch,
-        BMC-SW@aspeedtech.com, linux@armlinux.org.uk, davem@davemloft.net
-In-Reply-To: <20220412065611.8930-2-dylan_hung@aspeedtech.com>
-References: <20220412065611.8930-1-dylan_hung@aspeedtech.com> <20220412065611.8930-2-dylan_hung@aspeedtech.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: add reset property for aspeed, ast2600-mdio binding
-Date:   Tue, 12 Apr 2022 08:14:05 -0500
-Message-Id: <1649769245.688561.3815481.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S1356820AbiDLNXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 09:23:49 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C7B91DA5F;
+        Tue, 12 Apr 2022 06:15:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649769314; x=1681305314;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=aH3utbw5l8E/y5TBHvQc1KmFvsJvf8pe/VK7QR7xL/s=;
+  b=i2i3XFzbxBpINI4CtIktBHkz//vou8NONjU6S8jS8MyMVP/9ijKisy+I
+   6sRiovZEEiJkGvJ4CSAoRvSZLK6L4EC2lL33Gn6btzvv5wjaKBV7Ph9nX
+   QjkdMINsOv4PQP+coIUO4SiDYxXlLaFQe+OlR280/F1YVv8Ah+koKVrmV
+   w=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Apr 2022 06:15:14 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 06:15:13 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 12 Apr 2022 06:15:13 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 12 Apr 2022 06:15:09 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v8 0/2] Add lpass pin control support for audio on sc7280 based targets
+Date:   Tue, 12 Apr 2022 18:44:39 +0530
+Message-ID: <1649769281-12458-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Apr 2022 14:56:09 +0800, Dylan Hung wrote:
-> The AST2600 MDIO bus controller has a reset control bit and must be
-> deasserted before manipulating the MDIO controller. By default, the
-> hardware asserts the reset so the driver only need to deassert it.
-> 
-> Regarding to the old DT blobs which don't have reset property in them,
-> the reset deassertion is usually done by the bootloader so the reset
-> property is optional to work with them.
-> 
-> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  .../devicetree/bindings/net/aspeed,ast2600-mdio.yaml         | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+This patch set is to add lpass pin control support for Audio over I2S,
+wcd codec and digital mics.
+This patch set depends on:
+	-- Lpass-lpi pinctrl patches [https://patchwork.kernel.org/project/alsa-devel/list/?series=623951&archive=both&state=*]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Changes Since V7:
+    -- Sort mi2s pincontrol nodes as per node name.
+    -- Fix typo errors.
+Changes Since V6:
+    -- Move amp_en node to corresponding consumer patch.
+    -- Update label and node names.
+    -- Remove redundant drive-strengths.
+    -- Remove herobrine crd specific mi2s configuration.
+Changes Since V5:
+    -- Remove redundant function property in amp_en node.
+    -- Move board specific properties of lpass pin control node to board specific file.
+    -- Remove redundant properties in pin control nodes.
+    -- Move wcd938x codec reset and CTIA/OMTP pin control patches to other series.
+Changes Since V4:
+    -- Add primary and secondary I2S pinmux nodes for herobrine specific targets.
+Changes Since V3:
+    -- Add pinctrl nodes for wcd codec reset and CTIA/OMTP headset selection.
+Changes Since V2:
+    -- Move lpass pin control node to main dtsi file.
+    -- Sort nodes alphabetically.
+    -- Remove redundant wcd reset gpio nodes.
+    -- Remove redundant input-enable field in dmic pin control nodes.
+    -- Update amp_en node. 
+    -- Fix typo errors.
+    -- Modify node names.
+    -- Create patches on latest kernel.    
+Changes Since V1:
+    -- Merge pinmux and pinconf properties in amp_en and wcd pin reset node.
+    -- Split common i2s pin control nodes to functionality specific nodes.
+    -- Move board specific properties to board specific dtsi file.
+    -- Update dmic pin control node name.
 
-yamllint warnings/errors:
+Srinivasa Rao Mandadapu (2):
+  arm64: dts: qcom: sc7280: Add pinmux for I2S speaker and Headset
+  arm64: dts: qcom: sc7280: add lpass lpi pin controller node
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.example.dts:25.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  98 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 147 +++++++++++++++++++++++++++++++
+ 2 files changed, 245 insertions(+)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.7.4
 
