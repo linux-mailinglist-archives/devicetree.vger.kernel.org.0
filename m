@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E51C04FD6FD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:25:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEF1D4FD53E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353364AbiDLIDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 04:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
+        id S1353268AbiDLIDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 04:03:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357193AbiDLHjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:39:51 -0400
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B06214027;
-        Tue, 12 Apr 2022 00:13:36 -0700 (PDT)
-Received: by mail-qv1-f43.google.com with SMTP id kl29so15487664qvb.2;
-        Tue, 12 Apr 2022 00:13:36 -0700 (PDT)
+        with ESMTP id S1357791AbiDLHko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:40:44 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281B13969F;
+        Tue, 12 Apr 2022 00:16:56 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id j21so18588456qta.0;
+        Tue, 12 Apr 2022 00:16:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=b40J74AZXHQx3F3Kvksxnsm3IoWKYudmg3ktvmskBdg=;
-        b=vtRsdCbyShHPW1r/c0C6OSnkbkYgKws2dk0YIuJ2uJdeJHhuhheIRlabc3kzgejLJ1
-         4lbXwJJX4hrPPJIUnEDhXOzJv7F68g3wfZYDPdRlXPAhm5COX4YRHZVy3h9GDwIL3ieK
-         TqaLrInRLjUIK9U6eCX0SMozsIfepheIaVlx88atEcI2vs6etuIIsVrfBrJuU/u1PDHx
-         4OH3ucwfh/DCCOIs1i9Xl/ONCtboy47ER6QV7Hugkjqx5uKrdxEY1bcXCnEW5lhEwYMg
-         efQGRg65IROV1BKEt6TMK42e0nIpUfh+/CvyuJ3dQKxXOkPoL18/9CY51d/GesQXVKy+
-         vw4A==
-X-Gm-Message-State: AOAM532Q1UP8SW3/YKCBtQbbMbadf11PzDTPOMzr2KGM28Jdglgk38/r
-        FJWZjfSj9YNPbUnWRxZa9y2js9IWLJ6y9uHX
-X-Google-Smtp-Source: ABdhPJzCYVy117bkQj/DB7M6GTJOgziXwfQaUZNvnpGntUlMNL4oQyNKpLyC6dmfrLvTaoCpJKCavg==
-X-Received: by 2002:a05:6214:202a:b0:441:6a41:f710 with SMTP id 10-20020a056214202a00b004416a41f710mr30439607qvf.84.1649747615328;
-        Tue, 12 Apr 2022 00:13:35 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id i7-20020ac85e47000000b002e22bad4717sm27207165qtx.1.2022.04.12.00.13.34
+        bh=rxaeyf8gbGoNuQoaq4wl2Y+6pdc5/JQoS19NqHJuW/8=;
+        b=iRvVNJemv7HdIvuRfYvUWK0WCNbRqTJJhvq/STsNeUg9tpISFov480jvE+GxLuP3kE
+         Yyc/zjoRd5UDjdGJwh9rV0E8Er7Fr4xRgVAlD68t+19MtkP7V99WKJnAywX1MqURo5hN
+         29Rfw4L393EXGBVDszFMECHNIMswd39SYkoAmEooyhadvgIeLMgM9P7+DEIHPJ6+yC7P
+         i2DPWbitfn6WppzY27kE0loo7gtg3Nw3RZ9xyLJEJFwzsMzep2IBVGkLMkx0aJrhx2Z7
+         szvB+8xCD21yhzTb0wX4WETt9w19p0q+Y4gEWfkJc4xSyimg6blnyNnrMvavnBpp+8lg
+         VEmQ==
+X-Gm-Message-State: AOAM531lgq+WfkGNy2Am1LBlxiqTxak2gVJu1rHUN8or1ju8qCwA93Pt
+        dv+OHgWwZjMqTaiylZ0aChaFTE+tEFV13lJt
+X-Google-Smtp-Source: ABdhPJxzUcqZ/MqWhFtJw2JLntJeRwr7dGif60jZt68cheskfjc+q1NcLgxFTZwKq9tzQC264NmA6Q==
+X-Received: by 2002:a05:622a:64b:b0:2e1:cbc3:c9ff with SMTP id a11-20020a05622a064b00b002e1cbc3c9ffmr2300195qtb.226.1649747814528;
+        Tue, 12 Apr 2022 00:16:54 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 203-20020a370ad4000000b0069bd97f4f1asm8014629qkk.77.2022.04.12.00.16.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 00:13:35 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id e71so17006804ybf.8;
-        Tue, 12 Apr 2022 00:13:34 -0700 (PDT)
-X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
- p9-20020a259e89000000b0063cad37a5demr24883011ybq.342.1649747614630; Tue, 12
- Apr 2022 00:13:34 -0700 (PDT)
+        Tue, 12 Apr 2022 00:16:54 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2ec04a2ebadso71624157b3.12;
+        Tue, 12 Apr 2022 00:16:53 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr29212275ywb.132.1649747813680; Tue, 12
+ Apr 2022 00:16:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220411211243.11121-1-javierm@redhat.com> <20220411211243.11121-2-javierm@redhat.com>
-In-Reply-To: <20220411211243.11121-2-javierm@redhat.com>
+References: <20220411211243.11121-1-javierm@redhat.com> <20220411211243.11121-3-javierm@redhat.com>
+In-Reply-To: <20220411211243.11121-3-javierm@redhat.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 12 Apr 2022 09:13:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU+ieUSv1sjOX-fks3o+J3Eicg-prCK2+roTq-MFKTHBg@mail.gmail.com>
-Message-ID: <CAMuHMdU+ieUSv1sjOX-fks3o+J3Eicg-prCK2+roTq-MFKTHBg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: ssd1307fb: Deprecate "-i2c"
- compatible strings
+Date:   Tue, 12 Apr 2022 09:16:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVuivPSRooR5CqTX6GQtxO6RQYwKUqfOK36zsiN8-v6kg@mail.gmail.com>
+Message-ID: <CAMuHMdVuivPSRooR5CqTX6GQtxO6RQYwKUqfOK36zsiN8-v6kg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: display: ssd1307fb: Extend schema for
+ SPI controllers
 To:     Javier Martinez Canillas <javierm@redhat.com>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh@kernel.org>,
@@ -68,29 +68,42 @@ Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Javier,
+
 On Mon, Apr 11, 2022 at 11:12 PM Javier Martinez Canillas
 <javierm@redhat.com> wrote:
-> The current compatible strings for SSD130x I2C controllers contain both an
-> "fb" and "-i2c" suffixes. It seems to indicate that are for a fbdev driver
-> and also that are for devices that can be accessed over an I2C bus.
->
-> But a DT is supposed to describe the hardware and not Linux implementation
-> details. So let's deprecate those compatible strings and add new ones that
-> only contain the vendor and device name, without any of these suffixes.
->
-> These will just describe the device and can be matched by both I2C and SPI
-> DRM drivers.
+> The Solomon SSD130x OLED displays can either have an I2C or SPI interface,
+> add to the schema the properties and examples for OLED devices under SPI.
 >
 > Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 > Acked-by: Mark Brown <broonie@kernel.org>
+> ---
+>
+> Changes in v2:
+> - Don't add compatible strings with an "-spi" suffix (Geert Uytterhoeven).
+
+Thanks for the update!
+
+> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> @@ -39,9 +39,14 @@ properties:
+>    reset-gpios:
+>      maxItems: 1
+>
+> +  dc-gpios:
+> +    maxItems: 1
+> +
+
+Perhaps add a description, and clarify this is for SPI only?
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
