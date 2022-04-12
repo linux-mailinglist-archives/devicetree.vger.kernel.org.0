@@ -2,67 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD60A4FDBC2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A47334FDBE2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240361AbiDLKGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:06:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44550 "EHLO
+        id S1354805AbiDLKIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:08:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387693AbiDLJI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:08:56 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF4095;
-        Tue, 12 Apr 2022 01:20:58 -0700 (PDT)
-X-UUID: 0417fe4805674b78b88b1031294c2cdd-20220412
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:32e3f7db-dd58-43c0-8b2a-a41fc17cd1b7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:50,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:50
-X-CID-INFO: VERSION:1.1.4,REQID:32e3f7db-dd58-43c0-8b2a-a41fc17cd1b7,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:50,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:50
-X-CID-META: VersionHash:faefae9,CLOUDID:e6ac1c78-0afa-4dca-bdec-ca54c998425a,C
-        OID:IGNORED,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,File:ni
-        l,QS:0,BEC:nil
-X-UUID: 0417fe4805674b78b88b1031294c2cdd-20220412
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1696802592; Tue, 12 Apr 2022 16:20:53 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 12 Apr 2022 16:20:52 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 12 Apr
- 2022 16:20:51 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 12 Apr 2022 16:20:51 +0800
-Message-ID: <17f8b17fee57115fb885e86a4b9aab4e7ed2df86.camel@mediatek.com>
-Subject: Re: [PATCH v4,2/2] drm/mediatek: Add mt8186 dpi compatible to
- mtk_dpi.c
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <xinlei.lee@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <jitao.shi@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <rex-bc.chen@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 12 Apr 2022 16:20:51 +0800
-In-Reply-To: <1649645584-13186-3-git-send-email-xinlei.lee@mediatek.com>
-References: <1649645584-13186-1-git-send-email-xinlei.lee@mediatek.com>
-         <1649645584-13186-3-git-send-email-xinlei.lee@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1389431AbiDLJXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:23:45 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC8A2546A4;
+        Tue, 12 Apr 2022 01:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649752685; x=1681288685;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QLFnvFZjCBbBm1WrCuQHfneVU5wUafBRZqi1LfvDPoE=;
+  b=mOSYN6HK4TTZts/UuOsNetTBcqvyjMVC1a0D+ojBhnMOq+qp/DfZzFbe
+   SZZd0R1XMKE2AVTGwe71xb776qGNwb/JKHiu8u5R3Gg6NEINTVeNp2nzt
+   zog34OBxVUkcZ1DyXbXlT+mGV/V5CVcd/2YY8PDelPgu0Lw9Jo+AAHdnC
+   gUKeiMmpQlNva+a/hI3RvUr84VXxCQUiecuMIMWU5fzHkZPZJev6RAIvr
+   tQDWapMylYMEFsk7JrduTu7s4GKFMcV3PPEwWbI5pAJNftVT89bqqzKc5
+   Pto7hwxOyz42XkMACv/eRIM8pxvmoe+JdGVY2NhOP5OJoScakqnP3KW07
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="242257568"
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
+   d="scan'208";a="242257568"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 01:38:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; 
+   d="scan'208";a="611341789"
+Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 12 Apr 2022 01:38:03 -0700
+Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1neC2E-0002fc-Oa;
+        Tue, 12 Apr 2022 08:38:02 +0000
+Date:   Tue, 12 Apr 2022 16:37:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Patrick Wang <patrick.wang.shcn@gmail.com>, robh+dt@kernel.org,
+        frowand.list@gmail.com
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        patrick.wang.shcn@gmail.com
+Subject: Re: [PATCH] of: fdt: do not reserve memory below MIN_MEMBLOCK_ADDR
+Message-ID: <202204121637.4ZHpTqwT-lkp@intel.com>
+References: <20220412045228.35306-1-patrick.wang.shcn@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220412045228.35306-1-patrick.wang.shcn@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,60 +66,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Xinlei:
+Hi Patrick,
 
-On Mon, 2022-04-11 at 10:53 +0800, xinlei.lee@mediatek.com wrote:
-> From: Xinlei Lee <xinlei.lee@mediatek.com>
-> 
-> Add the compatible because use different .data in mt8186.
-> 
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 4554e2de1430..824d7da41c6a 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -815,6 +815,14 @@ static const struct mtk_dpi_conf mt8183_conf = {
->  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
->  };
->  
-> +static const struct mtk_dpi_conf mt8186_conf = {
-> +	.cal_factor =  mt8183_calculate_factor,
-> +	.reg_h_fre_con = 0xe0,
-> +	.max_clock_khz = 150000,
-> +	.output_fmts = mt8183_output_fmts,
-> +	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
-> +};
-> +
->  static const struct mtk_dpi_conf mt8192_conf = {
->  	.cal_factor = mt8183_calculate_factor,
->  	.reg_h_fre_con = 0xe0,
-> @@ -942,6 +950,9 @@ static const struct of_device_id mtk_dpi_of_ids[]
-> = {
->  	{ .compatible = "mediatek,mt8183-dpi",
->  	  .data = &mt8183_conf,
->  	},
-> +	{ .compatible = "mediatek,mt8186-dpi",
-> +	  .data = &mt8186_conf,
+Thank you for the patch! Perhaps something to improve:
 
-If Nicolas' patch [1] is correct, this should be
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on v5.18-rc2 next-20220412]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-.data = &mt8192_conf,
+url:    https://github.com/intel-lab-lkp/linux/commits/Patrick-Wang/of-fdt-do-not-reserve-memory-below-MIN_MEMBLOCK_ADDR/20220412-125309
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm-buildonly-randconfig-r006-20220411 (https://download.01.org/0day-ci/archive/20220412/202204121637.4ZHpTqwT-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project fe2478d44e4f7f191c43fef629ac7a23d0251e72)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/d362274832c02bb7812c13eff968322a76f10ed3
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Patrick-Wang/of-fdt-do-not-reserve-memory-below-MIN_MEMBLOCK_ADDR/20220412-125309
+        git checkout d362274832c02bb7812c13eff968322a76f10ed3
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
 
-Could you help to comfirm patch [1] is correct or not?
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-[1] 
-https://patchwork.kernel.org/project/linux-mediatek/patch/20220408013950.674477-1-nfraprado@collabora.com/
+All warnings (new ones prefixed by >>):
 
-Regards,
-CK
+>> drivers/of/fdt.c:494:4: warning: format specifies type 'unsigned long long' but the argument has type 'phys_addr_t' (aka 'unsigned int') [-Wformat]
+                           base, phys_offset);
+                           ^~~~
+   include/linux/printk.h:499:37: note: expanded from macro 'pr_warn'
+           printk(KERN_WARNING pr_fmt(fmt), ##__VA_ARGS__)
+                                      ~~~     ^~~~~~~~~~~
+   include/linux/printk.h:446:60: note: expanded from macro 'printk'
+   #define printk(fmt, ...) printk_index_wrap(_printk, fmt, ##__VA_ARGS__)
+                                                       ~~~    ^~~~~~~~~~~
+   include/linux/printk.h:418:19: note: expanded from macro 'printk_index_wrap'
+                   _p_func(_fmt, ##__VA_ARGS__);                           \
+                           ~~~~    ^~~~~~~~~~~
+   1 warning generated.
 
-> +	},
->  	{ .compatible = "mediatek,mt8192-dpi",
->  	  .data = &mt8192_conf,
->  	},
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for DRM_GEM_SHMEM_HELPER
+   Depends on HAS_IOMEM && DRM && MMU
+   Selected by
+   - DRM_SSD130X && HAS_IOMEM && DRM
 
+
+vim +494 drivers/of/fdt.c
+
+   486	
+   487	static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
+   488						phys_addr_t size, bool nomap)
+   489	{
+   490		const u64 phys_offset = MIN_MEMBLOCK_ADDR;
+   491	
+   492		if (base < phys_offset) {
+   493			pr_warn("Ignoring reserved memory range 0x%llx - 0x%llx\n",
+ > 494				base, phys_offset);
+   495			size = (phys_offset - base) < size ?
+   496				size - (phys_offset - base) : 0;
+   497			base = phys_offset;
+   498	
+   499			if (!size)
+   500				return -EFAULT;
+   501		}
+   502	
+   503		if (nomap) {
+   504			/*
+   505			 * If the memory is already reserved (by another region), we
+   506			 * should not allow it to be marked nomap, but don't worry
+   507			 * if the region isn't memory as it won't be mapped.
+   508			 */
+   509			if (memblock_overlaps_region(&memblock.memory, base, size) &&
+   510			    memblock_is_region_reserved(base, size))
+   511				return -EBUSY;
+   512	
+   513			return memblock_mark_nomap(base, size);
+   514		}
+   515		return memblock_reserve(base, size);
+   516	}
+   517	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
