@@ -2,128 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0714FD84A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A93A24FDBF6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352731AbiDLICA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 04:02:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
+        id S1354968AbiDLKIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:08:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377938AbiDLHym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:54:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774F256209;
-        Tue, 12 Apr 2022 00:32:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2D764B81B58;
-        Tue, 12 Apr 2022 07:32:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2C95C385A5;
-        Tue, 12 Apr 2022 07:32:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649748725;
-        bh=Q00BETgFTrmU/q7T1FdvzQYcdJLp4PmeOg+OowHQNhQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PTI2mQf0MCbJiTv9DaUxqUVUzksobTkDS5QOT7hjig8DNV+ts93iEQ4mB9j9FyX6C
-         ximBbJ17+6wDLMcqdRTJ+mDCC92LHEZhg3q9a1DlsKXp6fvCoctynGGJtRz6xO8Mby
-         diVfj396JUUs0KEbk/TEKPANJw0M0pt74zA9ZRrUNZuG0dfJEYj0N63YOYXwnvYHXE
-         ui+0HxtqGPFVtNtGu7guF+c1SF8J8Q7F7v91HKhOyFOE1viDWvep6vDTiQ34yumw47
-         vbNQ7Qh1DS2A4CV73Bj2tw62JDEdMFI/qcV9+OgIdVjTZFJAluMuNTsm+e1Vexb7Ry
-         jB/ToJShnETLw==
-Date:   Tue, 12 Apr 2022 15:32:01 +0800
-From:   Tzung-Bi Shih <tzungbi@kernel.org>
-To:     Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] drivers: pwm: pwm-cros-ec: add channel type
- support
-Message-ID: <YlUq8W+xjdxqYCo5@google.com>
-References: <20220411152114.2165933-1-fabiobaltieri@chromium.org>
- <20220411152114.2165933-3-fabiobaltieri@chromium.org>
+        with ESMTP id S1355011AbiDLIGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 04:06:44 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D3AAD4A3D4;
+        Tue, 12 Apr 2022 00:37:07 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,253,1643641200"; 
+   d="scan'208";a="116447073"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 12 Apr 2022 16:37:06 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id BF08B400F4F6;
+        Tue, 12 Apr 2022 16:37:06 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH 0/7] treewide: scsi: ufs: Add support for Renesas R-Car UFS controller
+Date:   Tue, 12 Apr 2022 16:36:40 +0900
+Message-Id: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220411152114.2165933-3-fabiobaltieri@chromium.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 03:21:12PM +0000, Fabio Baltieri wrote:
-> Add support for EC_PWM_TYPE_DISPLAY_LIGHT and EC_PWM_TYPE_KB_LIGHT pwm
-> types to the PWM cros_ec_pwm driver. This allows specifying one of these
-> PWM channel by functionality, and let the EC firmware pick the correct
-> channel, thus abstracting the hardware implementation from the kernel
-> driver.
-> 
-> To use it, define the node with the "google,cros-ec-pwm-type"
-> compatible.
+This patch series adds support Renesas R-Car S4-8 UFS controller.
+This controller has some restrictions so adds some quirks for it.
+Before using this driver, we have to initialize a clock generator
+on the environment board (named "Spider") by using the commands of
+U-Boot like below:
+ => i2c dev 0
+ => i2c mw 0x6c 0x26 0x05
+ => i2c olen 0x6c 2
+ => i2c mw 0x6c 0x26c 0x2e
 
-Not sure whether you decide to leave the prefix as is or not[1], just another
-reminder: to be neat, suggest to remove "drivers: " prefix from the commit
-title.
+To use the UFS controller, we need the following patch too:
+https://lore.kernel.org/all/20220411124932.3765571-1-yoshihiro.shimoda.uh@renesas.com/
 
-[1]: https://patchwork.kernel.org/project/chrome-platform/patch/20220331125818.3776912-3-fabiobaltieri@chromium.org/
+Yoshihiro Shimoda (7):
+  dt-bindings: ufs: Document Renesas R-Car UFS host controller
+  ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
+  ufs: add UFSHCD_QUIRK_HIBERN_FASTAUTO
+  scsi: ufs-renesas: Add support for Renesas R-Car UFS controller
+  scsi: MAINTAINERS: Add maintainer for Renesas UFS driver
+  arm64: dts: renesas: r8a779f0: Add UFS node
+  arm64: dts: renesas: r8a779f0: spider-cpu: Enable UFS device
 
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id cros_ec_pwm_of_match[] = {
-> +	{
-> +		.compatible = "google,cros-ec-pwm",
-> +	},
-> +	{
-> +		.compatible = "google,cros-ec-pwm-type",
-> +		.data = OF_CROS_EC_PWM_TYPE,
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
-> +#else
-> +#define cros_ec_pwm_of_match NULL
-> +#endif
-> +
->  static int cros_ec_pwm_probe(struct platform_device *pdev)
->  {
->  	struct cros_ec_device *ec = dev_get_drvdata(pdev->dev.parent);
->  	struct device *dev = &pdev->dev;
-> +	const struct of_device_id *id;
->  	struct cros_ec_pwm_device *ec_pwm;
->  	struct pwm_chip *chip;
->  	int ret;
-> @@ -251,17 +312,27 @@ static int cros_ec_pwm_probe(struct platform_device *pdev)
->  	chip = &ec_pwm->chip;
->  	ec_pwm->ec = ec;
->  
-> +	id = of_match_device(cros_ec_pwm_of_match, dev);
-> +	if (id && id->data == OF_CROS_EC_PWM_TYPE)
-> +		ec_pwm->use_pwm_type = true;
-> +
-[...]
-> -#ifdef CONFIG_OF
-> -static const struct of_device_id cros_ec_pwm_of_match[] = {
-> -	{ .compatible = "google,cros-ec-pwm" },
-> -	{},
-> -};
-> -MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
-> -#endif
-> -
+ .../devicetree/bindings/ufs/renesas,ufs.yaml  |  63 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/renesas/r8a779f0-spider-cpu.dtsi |   8 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |  19 +
+ drivers/scsi/ufs/Kconfig                      |  12 +
+ drivers/scsi/ufs/Makefile                     |   1 +
+ drivers/scsi/ufs/ufs-renesas.c                | 418 ++++++++++++++++++
+ drivers/scsi/ufs/ufshcd.c                     |  12 +-
+ drivers/scsi/ufs/ufshcd.h                     |  12 +
+ 9 files changed, 549 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
+ create mode 100644 drivers/scsi/ufs/ufs-renesas.c
 
-Use dev->driver->of_match_table to access the table so that the table
-declaration doesn't actually need a move.  Instead, the helper function
-of_device_get_match_data() is preferred.
+-- 
+2.25.1
 
-Alternatively, it could use
-of_device_is_compatible(..."google,cros-ec-pwm-type") so that it doesn't
-need to introduce OF_CROS_EC_PWM_TYPE and reduce some bits.  I would prefer
-this way.
