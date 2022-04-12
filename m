@@ -2,117 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66DC44FDBF8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21CA4FDBAB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355016AbiDLKIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:08:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
+        id S1345532AbiDLKGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:06:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377958AbiDLJ4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:56:01 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791756BDEE
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:00:53 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id r13so36002792ejd.5
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:00:53 -0700 (PDT)
+        with ESMTP id S1377711AbiDLJ7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:59:19 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93766E25
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:03 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id e4so18395529oif.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+RIKl9qWM3M6+J1iZ1YqrZZKm7+7GiKis/oEh6MmLLI=;
-        b=iFcddDhU04FA9QotxDH04NLwV+JoUSATF1jdNc6z/JCmb8CxuYAN/5JrdhXmt2pSnP
-         iscYA4JVVoP57d5x9Oc0fhNxO4HSIyhMt5VZsP01D7V7qWZhKA4czrWExVUm4AyCSmBc
-         fo91qKBj5KbwzfkTA+v2ZVUCMV2FxZOEjaXYvkHVdAxsV1W8x9CmFV+foBcNsrbo/taB
-         tuQsDHoVRlrlrm7RqWJE14PmSxHIaV46jZS86Q38v9M8KPzdDgEI6m3dhv+7quoOR+Kf
-         /y4nalFFpowbmvtO13KqE+3XritUnU9G7JajxW98uxeD9d+DLbFfZF6C4B4L1rSv2FdX
-         cqyQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
+         :subject:to:cc;
+        bh=TaVLZyoZEENt9mm6XHe8rhxlLaPeM8tk8R1AgC2794g=;
+        b=sesqj42IAFm9WSWsTOqHdYA5Rorjo3bfN3YoTtq6JHYKWQqX1WmBP4uULeeni1uzGm
+         /hfuD40g58GgUJw3f9vzeM8X+LkiE2vXLWO6yolkj181V2nTWeGDiebzZ91tyH5BpGPv
+         zoQIBLJLMpiNHlQdyQc9zrY059t+bgc1gIWC7WwGslbm7t2nXtJJ5k723Eh4DT8Tb0QL
+         GFGKkRRWR16wjNsMJ07818rU6oJfnetWzWgQauQeYKQj0z3lhi3ue8MXM9rZPV19+9rQ
+         zqEOHIBojyGpj0ozyivfpOgZ5YZi4XuapP//Puf3rnOnvV42BlenzwpudpXnFaFyKAcx
+         bC8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+RIKl9qWM3M6+J1iZ1YqrZZKm7+7GiKis/oEh6MmLLI=;
-        b=40JwNLgdINhXdlJBCBLTjZ6WkKZPDhhvFfYLDZK86+HiLa7Q5dm1Q28orofR7A3o0N
-         499f3do8Fui/y3xGQ0+dI1baaU5T8rNCGiduVVVUnhemQypsW+MQPeFAVBHmjes7HldT
-         X1KZmP2Geau0M3wbVUC5hxrxiHJ7oq/bCjebrw5sjzRWvTIqky8VSUoBgk+JvnRC4NaK
-         gu5yNzX+Uarhz1tQwmkVzo9wZDIle6NY+pSp4mcykGl2lD4eFFrne/gJBWGzWUmlYp+r
-         wt/i9qYy/8nEPnX13fRbquEIX67idkTYS0/A03TTeI1UMFm0T6yVtPcGjTdIpFFQ2Qzk
-         w31Q==
-X-Gm-Message-State: AOAM530RX4mFc/lNI8TkEVqaiNph2hhT5YxN3Ci+/XhEyCUztDAbs9Zp
-        bQelh2+hyha856OC8PFr0p6SDA==
-X-Google-Smtp-Source: ABdhPJw6i3XMkUE2++p+HzcLbPrBel/BYSuUENRohHrLz2IzEC89n5KJaIN+OM8MX1+1ss8Rf20a0Q==
-X-Received: by 2002:a17:907:724b:b0:6e8:a44:4691 with SMTP id ds11-20020a170907724b00b006e80a444691mr33583698ejc.453.1649754051940;
-        Tue, 12 Apr 2022 02:00:51 -0700 (PDT)
-Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id h7-20020a50cf87000000b0041b7bd52e1fsm16798837edk.78.2022.04.12.02.00.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 02:00:51 -0700 (PDT)
-Message-ID: <3f3ec103-a7d8-b56d-afff-94a0379dffec@linaro.org>
-Date:   Tue, 12 Apr 2022 11:00:50 +0200
+        h=x-gm-message-state:from:user-agent:references:in-reply-to
+         :mime-version:date:message-id:subject:to:cc;
+        bh=TaVLZyoZEENt9mm6XHe8rhxlLaPeM8tk8R1AgC2794g=;
+        b=J07xtZdTDbvJTr9GBUtIixYU3yLT6cTgBRdOrwjjzJxMTNbp88WD4GprRQl062J/FE
+         hbP5q4s7g99lwJWik++klqTL4eJIlOXiF+chGah6iVC0omtUDRISkLcr0CboYexs6j6N
+         9KPI2vL90DPVQRftnEFbvN0NPWe4yLYwLcJCaK4tlCrFBl3wTSMrPqQVh2cg2Wkc3HhW
+         n47Xr2bLClCJ5ebAZzxwsuu68ykLbY7eB2y6dtsK87o+Rz94Xvi0eYNPR4/HLrZpUOfM
+         ceIBwQ00ybH81hWyKSr2rJchrVveIKhINvrps5gkADycPOxRdoGA2Jj93T7DnEbNI/C1
+         jcgw==
+X-Gm-Message-State: AOAM5321NqqLVCCLsxZcdUbcKZgQNVF3UvDR+WPshLi2rgJ+1VOSgtd8
+        vU979kZ1PYik/aJcWas14eUQorOwNZg6Mo7dJ+tSaQ==
+X-Google-Smtp-Source: ABdhPJzzWwf0u6lyl2/9u7EvJbdiNju6WRex6OFE3yBhD7hT45+S39d1b5mmEOgGvzLwyVK+y4+UdItaHwgA6/SFgm8=
+X-Received: by 2002:a05:6808:159d:b0:2da:3946:ab3d with SMTP id
+ t29-20020a056808159d00b002da3946ab3dmr1265654oiw.248.1649754242818; Tue, 12
+ Apr 2022 02:04:02 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Apr 2022 02:04:02 -0700
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-18-granquet@baylibre.com>
+ <4697e3af-86f7-83e0-1737-3f5000fc8d30@collabora.com>
+In-Reply-To: <4697e3af-86f7-83e0-1737-3f5000fc8d30@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: timer: Update TI timer to yaml
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20220411111858.16814-1-tony@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220411111858.16814-1-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Tue, 12 Apr 2022 02:04:02 -0700
+Message-ID: <CABnWg9s7MN_21CEYVJV9=udfYkYQ_huJjQvLf+Jcb3Dmc8pNCA@mail.gmail.com>
+Subject: Re: [PATCH v9 17/22] phy: phy-mtk-dp: Add driver for DP phy
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, vkoul@kernel.org,
+        airlied@linux.ie, chunfeng.yun@mediatek.com,
+        chunkuang.hu@kernel.org, ck.hu@mediatek.com, daniel@ffwll.ch,
+        deller@gmx.de, jitao.shi@mediatek.com, kishon@ti.com,
+        krzk+dt@kernel.org, maarten.lankhorst@linux.intel.com,
+        matthias.bgg@gmail.com, mripard@kernel.org, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, tzimmermann@suse.de
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-phy@lists.infradead.org, markyacoub@google.com,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 13:18, Tony Lindgren wrote:
-> Let's update the TI timer binding to use yaml. As this binding is specific
-> to the TI dual-mode timers also known as dm-timers, let's use file name
-> ti,timer-dm.yaml to avoid confusion with other timers.
-> 
-> We also correct the issue with the old binding that was out of date for
-> several properties.
-> 
-> The am43 related timers are undocumented, but compatible with the am3
-> timers. Let's add the am43 timers too.
-> 
-> The dm814 and dm816 timers are missing, let's add them.
-> 
-> Some timers on some SoCs are dual mapped, like the ABE timers on omap4
-> and 5. The reg property maxItems must be updated to 2.
+On Mon, 28 Mar 2022 10:20, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>Il 28/03/22 00:39, Guillaume Ranquet ha scritto:
+>> From: Markus Schneider-Pargmann <msp@baylibre.com>
+>>
+>> This is a new driver that supports the integrated DisplayPort phy for
+>> mediatek SoCs, especially the mt8195. The phy is integrated into the
+>> DisplayPort controller and will be created by the mtk-dp driver. This
+>> driver expects a struct regmap to be able to work on the same registers
+>> as the DisplayPort controller. It sets the device data to be the struct
+>> phy so that the DisplayPort controller can easily work with it.
+>>
+>> The driver does not have any devicetree bindings because the datasheet
+>> does not list the controller and the phy as distinct units.
+>>
+>> The interaction with the controller can be covered by the configure
+>> callback of the phy framework and its displayport parameters.
+>>
+>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>   MAINTAINERS                       |   1 +
+>>   drivers/phy/mediatek/Kconfig      |   8 ++
+>>   drivers/phy/mediatek/Makefile     |   1 +
+>>   drivers/phy/mediatek/phy-mtk-dp.c | 201 ++++++++++++++++++++++++++++++
+>>   4 files changed, 211 insertions(+)
+>>   create mode 100644 drivers/phy/mediatek/phy-mtk-dp.c
+>>
+>
+>..snip..
+>
+>> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy-mtk-dp.c
+>> new file mode 100644
+>> index 000000000000..e5c5494f3636
+>> --- /dev/null
+>> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+>
+>..snip..
+>
+>> +
+>> +static int mtk_dp_phy_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct mtk_dp_phy *dp_phy;
+>> +	struct phy *phy;
+>> +	struct regmap *regs;
+>> +
+>> +	regs = syscon_regmap_lookup_by_phandle(dev->of_node, "mediatek,dp-syscon");
+>> +
+>
+>Please drop this blank line
+>
+>> +	if (IS_ERR(regs))
+>> +		return PTR_ERR(regs);
+>> +
+>> +	dp_phy = devm_kzalloc(dev, sizeof(*dp_phy), GFP_KERNEL);
+>> +	if (!dp_phy)
+>> +		return -ENOMEM;
+>> +
+>> +	dp_phy->regs = regs;
+>> +
+>> +	phy = devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
+>> +
+>
+>Same here
+>
+>> +	if (IS_ERR(phy))
+>> +		return dev_err_probe(dev, PTR_ERR(phy), "Failed to create DP PHY: %ld\n", PTR_ERR(phy));
+>> +
+>
+>Using dev_err_probe automates printing the error, so the correct usage is:
+>
+>return dev_err_probe(dev, PTR_ERR(phy), "Failed to create DP PHY\n");
+>
+>> +	phy_set_drvdata(phy, dp_phy);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +struct platform_driver mtk_dp_phy_driver = {
+>> +	.probe = mtk_dp_phy_probe,
+>> +	.driver = {
+>> +		.name = "mediatek-dp-phy",
+>> +	},
+>> +};
+>> +module_platform_driver(mtk_dp_phy_driver);
+>
+>Also, in your dt-binding, you mention a compatible for this driver, but I don't see
+>any, here. This means that you do know what to do, so please do it.
+>
 
-(...)
+Following the comments from rob [1], I'll revert back to using
+platform_device_register_data() from v8.
 
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: Timer IO register range
-> +
+[1] https://lore.kernel.org/linux-mediatek/YkOPB5W7uXkOc72%2F@robh.at.kernel.org/
 
-Apart from what Grygorii said, it would be useful if you add "if:then:"
-case constraining it per implementation (as I understood from commit msg
-only some use double mapping).
-
-This looks like:
-https://elixir.bootlin.com/linux/v5.18-rc2/source/Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.yaml#L53
-
-Similarly should be done for clocks, unless it's impossible (same
-compatible uses different setups of clocks).
-
-BTW, it's a bit confusing it is not a v2...
-
-
-Best regards,
-Krzysztof
+>Regards,
+>Angelo
+>
+>> +
+>> +MODULE_AUTHOR("Markus Schneider-Pargmann <msp@baylibre.com>");
+>> +MODULE_DESCRIPTION("MediaTek DP PHY Driver");
+>> +MODULE_LICENSE("GPL");
+>
