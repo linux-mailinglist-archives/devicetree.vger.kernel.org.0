@@ -2,54 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B3514FE362
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2278F4FE366
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232100AbiDLOIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 10:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52088 "EHLO
+        id S1347921AbiDLOKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 10:10:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239866AbiDLOIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:08:41 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9505EBF6;
-        Tue, 12 Apr 2022 07:06:23 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: krisman)
-        with ESMTPSA id 305261F44867
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649772382;
-        bh=NhAvw/CPjn/FJ55ToKdoxCWXAqWdjMGkT/ji6E0FKyU=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=SYpsF7V3cepiNan4tqZ0rypUYSyf/XKReb0Sgn1oBe35LQqMtUCe9gG3GH2jPNtTK
-         jIrVKPXhFmRpX4eMj+TrUgDVLwxLIKVTIORCfi9VsL8mcVu3C0iMGHeswNR82BxS++
-         oV8HHbw/1oO2eLO2xyPQalGdshhpkzsx1iGk1BSeQ84jaTN2A2JzPVW+dkHfR8sWvN
-         1KOfu8zBk1Dw3J4aE1uFlfFCrrsy89j39npDKfufQka+s+DlKBifFcOfQf4EEumaTG
-         rMQa4yQtzSyJ57+03oDrnJs5o62qq7sKk4zhigcnW9PFKiu3u0AkvKoPsD2fbplL/T
-         J87j4VYjFUtow==
-From:   Gabriel Krisman Bertazi <krisman@collabora.com>
-To:     Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>, krzk@kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        alvaro.soliverez@collabora.com
-Subject: Re: [PATCH 3/3] iio: light: Add support for ltrf216a sensor
-Organization: Collabora
-References: <20220325103014.6597-1-shreeya.patel@collabora.com>
-        <20220325103014.6597-4-shreeya.patel@collabora.com>
-        <20220327153049.10e525e9@jic23-huawei>
-        <d5de6b56-ad90-feec-c65a-53699c8ddbe9@collabora.com>
-Date:   Tue, 12 Apr 2022 10:06:18 -0400
-In-Reply-To: <d5de6b56-ad90-feec-c65a-53699c8ddbe9@collabora.com> (Shreeya
-        Patel's message of "Mon, 11 Apr 2022 22:36:56 +0530")
-Message-ID: <875ynexup1.fsf@collabora.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
+        with ESMTP id S239866AbiDLOKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:10:42 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C0C5EDD2;
+        Tue, 12 Apr 2022 07:08:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1649772504;
+  x=1681308504;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=RcwGtxTnBfipy07qeT7JSixj+t14RK2eLBKQPcVo6oI=;
+  b=fJ0O7EcD70kYi7wQZwEDr90vEqd6qvq9MMvkerQwVBKhbMNYu8GnU3Gd
+   gh96QUk6N2UhTRhXzzw9+6XOp2HjQRiLG8mwsUOB1i/xqrh2+LPQ66e/Z
+   VPCIkaHDNSFiAQsZfdIJy9mpHl8sMto7eJ+P02P3f83wj3rVMnqe6NksP
+   dcIclV7h5f9CENjggedvU0RGwvCyKklLHmYqrCZLS2rORfb2Mg5y7nkhX
+   NED/XhLN8Hq39DBKjSW6l6vzf7wtTKdlMNiD1HI729Pu4GTiB4jtPoOMo
+   fxTnl/IoKIDikN7ettsJ7fQxSSCDlLv2CxovRbiafdy85w/6RZo/3gTPJ
+   A==;
+Message-ID: <66f417b0-c323-1b9f-d5b0-30f1c9bcd90b@axis.com>
+Date:   Tue, 12 Apr 2022 16:08:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Camel Guo <Camel.Guo@axis.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+CC:     kernel <kernel@axis.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220411100329.1783432-1-camel.guo@axis.com>
+ <20220411100329.1783432-2-camel.guo@axis.com>
+ <c13a0f34-4938-3d56-43e0-5a9053e0bc25@linaro.org>
+From:   Camel Guo <camelg@axis.com>
+In-Reply-To: <c13a0f34-4938-3d56-43e0-5a9053e0bc25@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail03w.axis.com
+ (10.20.40.9)
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,44 +64,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Shreeya Patel <shreeya.patel@collabora.com> writes:
+On 4/12/22 13:53, Krzysztof Kozlowski wrote:
+> On 11/04/2022 12:03, Camel Guo wrote:
+>> From: Camel Guo <camelg@axis.com>
+>> 
+>> Document the TMP401, TMP411 and TMP43x device devicetree bindings
+>> 
+>> Signed-off-by: Camel Guo <camelg@axis.com>
+>> ---
+>>  .../devicetree/bindings/hwmon/ti,tmp401.yaml  | 111 ++++++++++++++++++
+>>  MAINTAINERS                                   |   1 +
+>>  2 files changed, 112 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
+>> 
 
->>> +	val_1 = i2c_smbus_read_byte_data(data->client, addr + 1);
->>> +	val_2 = i2c_smbus_read_byte_data(data->client, addr + 2);
->>> +	ret = (val_2 << 16) + (val_1 << 8) + val_0;
->> This is a le24_to_cpu() conversion.
->> Preferred choice would be to use something like
->> 	u8 buf[3];
->> 	int i;
->>
->> 	for (i = 0; i < 3; i++) {
->> 		ret = i2c_smbus_read_byte_data(data->client, addr);
->> 		if (ret < 0)
->> 			return ret;
->> 		buf[i] = ret;
->> 	}
->> 	return le24_to_cpu(buf);
->>
->
-> We do not have any le24_to_cpu() function in current kernel source code.
-> I was thinking to use le32_to_cpu() instead but it requires an argument of
-> type __le32 and our case we storing the values in u8 buf[3] so I'm not
-> really sure if it's possible to use le32_to_cpu() or any other function.
+>> +      - ti,tmp401
+>> +      - ti,tmp411
+>> +      - ti,tmp431
+>> +      - ti,tmp432
+>> +      - ti,tmp435
+> 
+> Blank line, please.
 
-I guess you could make it a 32-bit buffer, keep the most
-significant byte zeroed and return le32_to_cpu:
+Fixed
+> 
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +  ti,extended-range-enable:
+>> +    description: |
+> 
+> No need for "|". Here and in most of other cases below.
 
-  u8 buf[4];
+Fixed
 
-  memset(buf, 0x0, sizeof(buf));
+> 
+>> +      When set, this sensor measures over extended temperature range.
+>> +    type: boolean
+>> +
+>> +  ti,n-factor:
+>> +    description: |
+>> +      The value (two's complement) to be programmed in the n-factor correction
+>> +      register.
+> 
+> Do not describe the programming model (registers) but hardware property
+> instead.
 
-  for (i = 0; i < 3; i++) {
- 	ret = i2c_smbus_read_byte_data(data->client, addr);
- 	if (ret < 0)
- 		return ret;
-	buf[i] = ret;
-  }
-  return le32_to_cpu(buf);
+Make another try. Hope it is clear now.
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 255
+>> +
+>> +  ti,beta-compensation:
+>> +    description: |
+>> +      The value to be programmed in the beta range register.
+> 
+> The same, register values should not be stored in DT.
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 15
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
 
--- 
-Gabriel Krisman Bertazi
+Fixed in v2. Please review that instead.
