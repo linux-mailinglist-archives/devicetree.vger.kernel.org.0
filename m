@@ -2,184 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21CA4FDBAB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CC114FDBE6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345532AbiDLKGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:06:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
+        id S1354857AbiDLKIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377711AbiDLJ7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:59:19 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93766E25
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:03 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id e4so18395529oif.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:03 -0700 (PDT)
+        with ESMTP id S1377834AbiDLJ7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:59:20 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F0C13EA4
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:17 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id l7so30546393ejn.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
-         :subject:to:cc;
-        bh=TaVLZyoZEENt9mm6XHe8rhxlLaPeM8tk8R1AgC2794g=;
-        b=sesqj42IAFm9WSWsTOqHdYA5Rorjo3bfN3YoTtq6JHYKWQqX1WmBP4uULeeni1uzGm
-         /hfuD40g58GgUJw3f9vzeM8X+LkiE2vXLWO6yolkj181V2nTWeGDiebzZ91tyH5BpGPv
-         zoQIBLJLMpiNHlQdyQc9zrY059t+bgc1gIWC7WwGslbm7t2nXtJJ5k723Eh4DT8Tb0QL
-         GFGKkRRWR16wjNsMJ07818rU6oJfnetWzWgQauQeYKQj0z3lhi3ue8MXM9rZPV19+9rQ
-         zqEOHIBojyGpj0ozyivfpOgZ5YZi4XuapP//Puf3rnOnvV42BlenzwpudpXnFaFyKAcx
-         bC8Q==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0zbxI/ib4mJ1wAKwasv9a8XEMpxsdHx9KOUkKJeNjyc=;
+        b=iPDESGSdefhx3WHl3UInb7oISwRqS0QoJI2JHspUFFmMnYInKpmWBT1ex2UHs5TdnG
+         vDnp1pUIwYXF7FOqyOQz2S/bhv9gALNLTuE34KYk0rBLkgToOt7CfoFNK7C/LhhKGQ/+
+         GaAeH/nwhmBElKJkqVEYLJ0g6T+55I2wO+I9ZXWTOlwms7cWGmpGJloZ9rfhM9vjsysZ
+         3XjRuC4Vj8Zx1KozHvau8sM83o/XTnFI+ow0APLWuTfFKWFIE2VC3Qo4I+KIqjlUKNNT
+         f9Ax1hsfsQ82nJWH+kvdYb2ccs8x9exbynejbcUODNU7ibhMcq8Mcl+h+MkTPTu04TLx
+         /zPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:user-agent:references:in-reply-to
-         :mime-version:date:message-id:subject:to:cc;
-        bh=TaVLZyoZEENt9mm6XHe8rhxlLaPeM8tk8R1AgC2794g=;
-        b=J07xtZdTDbvJTr9GBUtIixYU3yLT6cTgBRdOrwjjzJxMTNbp88WD4GprRQl062J/FE
-         hbP5q4s7g99lwJWik++klqTL4eJIlOXiF+chGah6iVC0omtUDRISkLcr0CboYexs6j6N
-         9KPI2vL90DPVQRftnEFbvN0NPWe4yLYwLcJCaK4tlCrFBl3wTSMrPqQVh2cg2Wkc3HhW
-         n47Xr2bLClCJ5ebAZzxwsuu68ykLbY7eB2y6dtsK87o+Rz94Xvi0eYNPR4/HLrZpUOfM
-         ceIBwQ00ybH81hWyKSr2rJchrVveIKhINvrps5gkADycPOxRdoGA2Jj93T7DnEbNI/C1
-         jcgw==
-X-Gm-Message-State: AOAM5321NqqLVCCLsxZcdUbcKZgQNVF3UvDR+WPshLi2rgJ+1VOSgtd8
-        vU979kZ1PYik/aJcWas14eUQorOwNZg6Mo7dJ+tSaQ==
-X-Google-Smtp-Source: ABdhPJzzWwf0u6lyl2/9u7EvJbdiNju6WRex6OFE3yBhD7hT45+S39d1b5mmEOgGvzLwyVK+y4+UdItaHwgA6/SFgm8=
-X-Received: by 2002:a05:6808:159d:b0:2da:3946:ab3d with SMTP id
- t29-20020a056808159d00b002da3946ab3dmr1265654oiw.248.1649754242818; Tue, 12
- Apr 2022 02:04:02 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 12 Apr 2022 02:04:02 -0700
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-18-granquet@baylibre.com>
- <4697e3af-86f7-83e0-1737-3f5000fc8d30@collabora.com>
-In-Reply-To: <4697e3af-86f7-83e0-1737-3f5000fc8d30@collabora.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0zbxI/ib4mJ1wAKwasv9a8XEMpxsdHx9KOUkKJeNjyc=;
+        b=pqtm94kFKfNcI/1Y9sdDj8cq5tcuePpf2PePflYTK/iKcvmF6JlKfzTqmQ90Mx4VpI
+         sRqAjrZYi+kp7h2RhERaqBpFesQb4/4Y1f93GIsN8yjrHCF9n6nvS8LMjqp7sQx4V5cx
+         corSJE+471l3kOnXKjiNdNj5ZFOpX5DkKVOkFyOg/WuIU6Dx/jTYkQeb/8gOlSIqEzXP
+         yDbd3yBFvuq/H011EQeVdvNvxtVCG2e/aYkvWSPd6vHcP3azlymYxBjYfKcBerJumPdz
+         k+vg5Vx7ND92cPoYQeyw4lxerjkHMSUFTyixpfTfdYHai2JgVPsUOroUSb2A1Vxy6+Nq
+         gkuw==
+X-Gm-Message-State: AOAM530xjb4owMbgr7dboqB59wCNfwOR0umRurzYUcGV1zH69IGHYUN0
+        VCgh727skjA7TCNrrVXI/u0qiw==
+X-Google-Smtp-Source: ABdhPJyErGvhOFNiJ61usdXAps8FK2Vg+GNwV0o4wtQnbyq0kE0lJzdjV4sPTfJL9Hy/4xhDaVt/yQ==
+X-Received: by 2002:a17:906:730c:b0:6e6:c512:49c8 with SMTP id di12-20020a170906730c00b006e6c51249c8mr33870825ejc.405.1649754255559;
+        Tue, 12 Apr 2022 02:04:15 -0700 (PDT)
+Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id bj13-20020a170906b04d00b006e742719b9fsm11004863ejb.7.2022.04.12.02.04.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 02:04:15 -0700 (PDT)
+Message-ID: <b189e6fc-98b5-9668-d22c-1144d5741071@linaro.org>
+Date:   Tue, 12 Apr 2022 11:04:14 +0200
 MIME-Version: 1.0
-Date:   Tue, 12 Apr 2022 02:04:02 -0700
-Message-ID: <CABnWg9s7MN_21CEYVJV9=udfYkYQ_huJjQvLf+Jcb3Dmc8pNCA@mail.gmail.com>
-Subject: Re: [PATCH v9 17/22] phy: phy-mtk-dp: Add driver for DP phy
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, vkoul@kernel.org,
-        airlied@linux.ie, chunfeng.yun@mediatek.com,
-        chunkuang.hu@kernel.org, ck.hu@mediatek.com, daniel@ffwll.ch,
-        deller@gmx.de, jitao.shi@mediatek.com, kishon@ti.com,
-        krzk+dt@kernel.org, maarten.lankhorst@linux.intel.com,
-        matthias.bgg@gmail.com, mripard@kernel.org, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, tzimmermann@suse.de
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 6/7] arm64: dts: renesas: r8a779f0: Add UFS node
+Content-Language: en-US
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220412073647.3808493-7-yoshihiro.shimoda.uh@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220412073647.3808493-7-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Mar 2022 10:20, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->Il 28/03/22 00:39, Guillaume Ranquet ha scritto:
->> From: Markus Schneider-Pargmann <msp@baylibre.com>
->>
->> This is a new driver that supports the integrated DisplayPort phy for
->> mediatek SoCs, especially the mt8195. The phy is integrated into the
->> DisplayPort controller and will be created by the mtk-dp driver. This
->> driver expects a struct regmap to be able to work on the same registers
->> as the DisplayPort controller. It sets the device data to be the struct
->> phy so that the DisplayPort controller can easily work with it.
->>
->> The driver does not have any devicetree bindings because the datasheet
->> does not list the controller and the phy as distinct units.
->>
->> The interaction with the controller can be covered by the configure
->> callback of the phy framework and its displayport parameters.
->>
->> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->> ---
->>   MAINTAINERS                       |   1 +
->>   drivers/phy/mediatek/Kconfig      |   8 ++
->>   drivers/phy/mediatek/Makefile     |   1 +
->>   drivers/phy/mediatek/phy-mtk-dp.c | 201 ++++++++++++++++++++++++++++++
->>   4 files changed, 211 insertions(+)
->>   create mode 100644 drivers/phy/mediatek/phy-mtk-dp.c
->>
->
->..snip..
->
->> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy-mtk-dp.c
->> new file mode 100644
->> index 000000000000..e5c5494f3636
->> --- /dev/null
->> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
->
->..snip..
->
->> +
->> +static int mtk_dp_phy_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct mtk_dp_phy *dp_phy;
->> +	struct phy *phy;
->> +	struct regmap *regs;
->> +
->> +	regs = syscon_regmap_lookup_by_phandle(dev->of_node, "mediatek,dp-syscon");
->> +
->
->Please drop this blank line
->
->> +	if (IS_ERR(regs))
->> +		return PTR_ERR(regs);
->> +
->> +	dp_phy = devm_kzalloc(dev, sizeof(*dp_phy), GFP_KERNEL);
->> +	if (!dp_phy)
->> +		return -ENOMEM;
->> +
->> +	dp_phy->regs = regs;
->> +
->> +	phy = devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
->> +
->
->Same here
->
->> +	if (IS_ERR(phy))
->> +		return dev_err_probe(dev, PTR_ERR(phy), "Failed to create DP PHY: %ld\n", PTR_ERR(phy));
->> +
->
->Using dev_err_probe automates printing the error, so the correct usage is:
->
->return dev_err_probe(dev, PTR_ERR(phy), "Failed to create DP PHY\n");
->
->> +	phy_set_drvdata(phy, dp_phy);
->> +
->> +	return 0;
->> +}
->> +
->> +struct platform_driver mtk_dp_phy_driver = {
->> +	.probe = mtk_dp_phy_probe,
->> +	.driver = {
->> +		.name = "mediatek-dp-phy",
->> +	},
->> +};
->> +module_platform_driver(mtk_dp_phy_driver);
->
->Also, in your dt-binding, you mention a compatible for this driver, but I don't see
->any, here. This means that you do know what to do, so please do it.
->
+On 12/04/2022 09:36, Yoshihiro Shimoda wrote:
+> Add UFS node for R-Car S4-8 (r8a779f0).
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  arch/arm64/boot/dts/renesas/r8a779f0.dtsi | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git
 
-Following the comments from rob [1], I'll revert back to using
-platform_device_register_data() from v8.
+Thank you for your patch. There is something to discuss/improve.
 
-[1] https://lore.kernel.org/linux-mediatek/YkOPB5W7uXkOc72%2F@robh.at.kernel.org/
+ a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> index b0241aa29fc8..8bf418a4232f 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> @@ -40,6 +40,13 @@ extalr_clk: extalr {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> +	ufs30_clk: ufs30_refclk_v {
 
->Regards,
->Angelo
->
->> +
->> +MODULE_AUTHOR("Markus Schneider-Pargmann <msp@baylibre.com>");
->> +MODULE_DESCRIPTION("MediaTek DP PHY Driver");
->> +MODULE_LICENSE("GPL");
->
+No underscores in node names. Node names should be generic, so if you
+insist on prefix, it could be "ufs30-clk".
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		/* This value must be overridden by the board */
+> +		clock-frequency = <0>;
+> +	};
+> +
+>  	pmu_a55 {
+>  		compatible = "arm,cortex-a55-pmu";
+>  		interrupts-extended = <&gic GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> @@ -258,6 +265,18 @@ i2c5: i2c@e66e0000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		ufs: scsi@e6860000 {
+
+Node name: ufs (it is not a SCSI device, AFAIK).
+
+> +			compatible = "renesas,r8a779f0-ufs";
+> +			reg = <0 0xe6860000 0 0x100>;
+> +			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 1514>, <&ufs30_clk>;
+> +			clock-names = "fck", "ref_clk";
+
+
+Best regards,
+Krzysztof
