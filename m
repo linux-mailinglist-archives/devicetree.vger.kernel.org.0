@@ -2,101 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C32B4FE8FF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 21:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F3654FE902
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 21:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238622AbiDLTn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 15:43:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55726 "EHLO
+        id S241931AbiDLTn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 15:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359113AbiDLTmY (ORCPT
+        with ESMTP id S1359099AbiDLTmY (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 15:42:24 -0400
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [217.70.178.232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9863738BF2;
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF08D4D635
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 12:40:00 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id q189so8804956ljb.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 12:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=KdIHWvqojnl+hhQv1NddoZGquOpYAIy3tu+JSVXI7oI=;
+        b=QRgQW2WV/0W7v5dLXmjrbIlUVh6XkuCR1zF1c0yWfP/t9nfxB8sW4ENL0Foq571BPe
+         EoIEIQQIhySJI8EyUCd61wCY+i2c8pJLQ64ry7Y3qvvWw8V9M0pp42W1v9illgZ3Sy6m
+         oNbBmMQgX1JB/uptjuXdpr1V+Zi5bGF2v2t+XheV7wivdkb9xQ0aL+flmRtkBvaJA4Ab
+         ctQ+rKm2eTyZxC0PJnkSUeKDbnCrpSYeQKKHwpOWtr3QaMJZtX/1TtlNlMv6q+gFIFKJ
+         r9BCB4BuVBgmAKhdgwXoa1+Y1vpcteq8/VeRmCsWynv8YzpRmvfUaUVNkTBh01irPafe
+         gVFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=KdIHWvqojnl+hhQv1NddoZGquOpYAIy3tu+JSVXI7oI=;
+        b=Ymo+uLv/cWYO6QuZ/in4xq/FeIbcMdGvo/wMbfrG1Zv3vSCscmIYd2wEUEX+OkVKx6
+         ndeDDeAO2k3IH6sIf8JVrA6MrBiHBOrdBf8YetTyD+dDgLcrAJlSFz6jxjMWVURXrq3j
+         Y7GnAsS6mtclgKLFhW+1VT+AxbCNns8Ljte6dJqw6CIIxRSeRerBrPO8oDGkx2LjxkHQ
+         Hw5s0khw2E80Qocsa/gvB5LfFrpFGWBD4t9PsTgNEYNLF0BRgdDCGx1Is+9Qy095/MO3
+         /BuGPkPB59z6N/B7zMeKMN04L7+3V5c5qpcWJYOGlbaJStfNV8up7lPH2aJenSd3f4FU
+         nZaA==
+X-Gm-Message-State: AOAM530EE/NbfVgTMBNDx3/Tds4+Bs7LWL2YrmwsHJ+3UVk7qsNx0M9i
+        mWNGgGwK92aPeUsQYD7l2EXGsA==
+X-Google-Smtp-Source: ABdhPJyf1LhztmWShF/xkMubxhGcmYwTnnoY73R9m1whl3tKv8dN0dzQfprAv05/zdhUvdbRbB4sXg==
+X-Received: by 2002:a05:651c:992:b0:24b:99c:35c with SMTP id b18-20020a05651c099200b0024b099c035cmr24913059ljq.142.1649792399080;
         Tue, 12 Apr 2022 12:39:59 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2D890200002;
-        Tue, 12 Apr 2022 19:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649792398;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gDMgEYZK2TXVp0tig+qscRTbrixY++njrNcYKAKseyE=;
-        b=ULacIuA629hgYD2MgoH0xFbz65HWDpG6veG/exq1g5EC57bFBrh1V8/haFzMMGHwkPMPzJ
-        4rEpoUOJAb+EOkyWMRjb9ibXvEKvHfz5ondy5mgXFkV3FYFVPdgR9Gp1bwiMDi4jfW13Wi
-        guXEUnssmwirK9jA9oVRBC4LCtQg0cZSigFaMqxg4fQ5jR5KbJrNAbXMSXIM1eUo6dMBHA
-        ybruFjo6MCE9wPi2APpxutZejWojipE6i1Yrs3ygR+YRP6moIZ1xCx+vyXLnbB3Op2zNi4
-        2vD/fT65EVK92iwQKOCD/nOyfnBlHJtUaSpI13QurgjcxdPshmT7MCZVdzRB3Q==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v10 9/9] ARM: dts: r9a06g032: Describe the DMA router
-Date:   Tue, 12 Apr 2022 21:39:36 +0200
-Message-Id: <20220412193936.63355-10-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20220412193936.63355-1-miquel.raynal@bootlin.com>
-References: <20220412193936.63355-1-miquel.raynal@bootlin.com>
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id s9-20020a197709000000b0046bc30798aesm191382lfc.282.2022.04.12.12.39.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 12:39:58 -0700 (PDT)
+Message-ID: <c48f83a4-ef84-de25-e87c-539c4b0d1a0a@linaro.org>
+Date:   Tue, 12 Apr 2022 22:39:57 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add thermal sensor
+ controllers
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20220410234458.1739279-1-dmitry.baryshkov@linaro.org>
+ <20220410234458.1739279-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220410234458.1739279-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a dmamux on this SoC which allows picking two different sources
-for a single DMA request.
+On 11/04/2022 02:44, Dmitry Baryshkov wrote:
+> From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> 
+> The change adds description of two thermal sensor controllers found
+> on SM8450.
+> 
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- arch/arm/boot/dts/r9a06g032.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Of course:
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-index 839580ec21ee..c854aa4cfa77 100644
---- a/arch/arm/boot/dts/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/r9a06g032.dtsi
-@@ -91,6 +91,16 @@ sysctrl: system-controller@4000c000 {
- 			clocks = <&ext_mclk>, <&ext_rtc_clk>,
- 					<&ext_jtag_clk>, <&ext_rgmii_ref>;
- 			clock-names = "mclk", "rtc", "jtag", "rgmii_ref_ext";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			dmamux: dma-router@a0 {
-+				compatible = "renesas,rzn1-dmamux";
-+				reg = <0xa0 4>;
-+				#dma-cells = <6>;
-+				dma-requests = <32>;
-+				dma-masters = <&dma0 &dma1>;
-+			};
- 		};
- 
- 		uart0: serial@40060000 {
+
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 934e29b9e153..b695ce824722 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1021,6 +1021,28 @@ pdc: interrupt-controller@b220000 {
+>   			interrupt-controller;
+>   		};
+>   
+> +		tsens0: thermal-sensor@c263000 {
+> +			compatible = "qcom,sm8450-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c263000 0 0x1000>, /* TM */
+> +			      <0 0x0c222000 0 0x1000>; /* SROT */
+> +			#qcom,sensors = <16>;
+> +			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+> +		tsens1: thermal-sensor@c265000 {
+> +			compatible = "qcom,sm8450-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c265000 0 0x1000>, /* TM */
+> +			      <0 0x0c223000 0 0x1000>; /* SROT */
+> +			#qcom,sensors = <16>;
+> +			interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+>   		aoss_qmp: power-controller@c300000 {
+>   			compatible = "qcom,sm8450-aoss-qmp", "qcom,aoss-qmp";
+>   			reg = <0 0x0c300000 0 0x400>;
+
+
 -- 
-2.27.0
-
+With best wishes
+Dmitry
