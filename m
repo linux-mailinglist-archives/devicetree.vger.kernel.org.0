@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B1554FDBFA
+	by mail.lfdr.de (Postfix) with ESMTP id 75DBE4FDBFB
 	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:00:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232947AbiDLKLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35958 "EHLO
+        id S1352878AbiDLKLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353141AbiDLKDa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:03:30 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F9D25C4C
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:10:57 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id t21so18359040oie.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:10:57 -0700 (PDT)
+        with ESMTP id S1356834AbiDLKJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:09:42 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C99716E0
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:12:17 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so20121675fac.7
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:12:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:user-agent:references:in-reply-to:mime-version:date:message-id
          :subject:to:cc;
-        bh=j2d9wMZ4Dn70FczQLj2pbuSIpYNajn+KjBgUPeahz9Y=;
-        b=d755dZcyw/9BFIYn9owbsElgR43HZUII7AXXDY9tgTYi25X+lHEpWnybc6V10B24OF
-         jw/gXtzNLOpJm4uxhAttWKWyfMGC3Z2CSY+fY7o7n2eWXqXzhL9FvCO9ACzTeo70vHMC
-         /Php1/74zEKlV5WcAULJMdgq3V11wZdSRDdei59ZTV0QNjWeNngX1P8Oq3nhgHWgMVDh
-         mHh7xBqp/cgasJY7SK5ZNVQRty2yjwfnZPKSCGN0gWpJ9hEVZHzHLEbua1NV5Zgc2kxl
-         juU1Z7MWstxc2gPgXIDheBqNoGWXTxWU9JKU84IYmPeBpFb3G71Bw7pF1+rMFlw7dEAq
-         k8Kw==
+        bh=D37fpu9MYMGrVM4sHogQhQQf9RiEPpYgXDKjNghtvEc=;
+        b=PJWwOM5gbJeRumlTztAxPWMSrtF8tKhqiVbN1FyLXxomE8pQ8m9aRKCVnwJbJ1T4Gx
+         hyGbtG3DXtXIgyvXRhntDRSwRqX3eaAmqUoA4OX1+mR9GM/wxzrB3foS/ToVi5I1fSBP
+         RGSL9EiNHKLHZfgLeAfowDz/TgsNPFT96RdDOjd5blB7A5WnCk6a4AwWGIX3uJktHWp9
+         oDtPrbFZuZj4359knqmh0mTjUINynCbZk9A92hIB0RZ1HDiVrnwDQWYm4KjERtJ8XB6X
+         Yl7BSZ/4fa1eVX9CP+cdf5BN9nfpLXAJTkxvPA7GDP0GoKlCcr1Q6JQ7DuEjZnjPuPUl
+         BQRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:user-agent:references:in-reply-to
          :mime-version:date:message-id:subject:to:cc;
-        bh=j2d9wMZ4Dn70FczQLj2pbuSIpYNajn+KjBgUPeahz9Y=;
-        b=f85qzSo1T3qZ8EUBxAt9VHMLeKPJdDmx6leKqeLNDA9PTN7xQGQZLYEMEN5gwM/vgT
-         NDiPkbiWoNo+7MDuevp4ZQ7OkaTGWBuU/nSUDjlK09WYehqal64MRpY57m76YpqD4dH2
-         CEGa4zYf1Po54YjBn0pF/h503GcGInWQArsquBlUyub03FMwnqPnT+/AqThYI0m29kFU
-         wYvcNjE3IutZUk6N1XvA6UgQI+/yjjuFQ9coSyvbAkQvkXVw9qxzXjZtNjaBCQb/VNPi
-         YqrKk2QeteHALBq3SgrcDTxVxeE9LJIa7uYx+PlOKuEbsjwl3MoU4ugxQMLzaBe2YSf4
-         usUg==
-X-Gm-Message-State: AOAM533Yg/P6H90r/dlNYg7P8O5drmfulONd+GtitnEeTn+WMAt4CdGJ
-        Zef+0VLwzpz/ghXlfTQZQimdaoE5r9WLT7e1TxNK/g==
-X-Google-Smtp-Source: ABdhPJym0wUH56xDasZZcT8vh3C+x/PVUlFJ7UG6Mj8R3MXY3by/qXsmyvnSEZT+6tIIruxfg75z3l91ME8OPr9nDHA=
-X-Received: by 2002:a05:6808:159d:b0:2da:3946:ab3d with SMTP id
- t29-20020a056808159d00b002da3946ab3dmr1272829oiw.248.1649754657107; Tue, 12
- Apr 2022 02:10:57 -0700 (PDT)
+        bh=D37fpu9MYMGrVM4sHogQhQQf9RiEPpYgXDKjNghtvEc=;
+        b=ReZpO4Btvp6+M9KaZ1p3QTfEnxx9eMORFCVN7zA0exqEWTOtUQj51a2liuuIMvw/FL
+         SNPYOCb7g8EwWly7IlOsIXhLHArCcVv8PeX0OUyP+wpqnbZ3bdkEhn+jvh1T8MMrhSvv
+         DUxm8ggrw3zCujzTHPfwecwNJQcAXn7j4X5iPWgxw1Mh02wIZ2pio4Atl2X5WLoHUyNA
+         eZeHPadxe6ISaArMsiqhL/TNvfsimwSjtyJjuW8TVg0GggMRh7FLUg/9jKcp/EHchOV3
+         NxCmgViM76kAOI+jtpALSqB0J0JcVQTgxE5FO0tNJpRxSrPxqs19jbfgwwk2Zn5CzbF4
+         F7Rw==
+X-Gm-Message-State: AOAM533/oaSFEtVkKnT2TvZXapzq6ieEwhBQCeMawiR7FdTyuqqD/jv1
+        +B/FaKFdRyQnr0C/dnl9te/hpjk4tcCGscGsuEOh3Q==
+X-Google-Smtp-Source: ABdhPJygxqmgs1C51eoxJmvwDXwGHKS/2sSPlL+b26E+6Tl1+WKvDOY/onHe+ZyNWJjLgLOirlY+CCLTpGtYWtuFalc=
+X-Received: by 2002:a05:6870:d191:b0:dd:a91e:82dc with SMTP id
+ a17-20020a056870d19100b000dda91e82dcmr1564506oac.248.1649754736694; Tue, 12
+ Apr 2022 02:12:16 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 12 Apr 2022 02:10:56 -0700
+ HTTPREST; Tue, 12 Apr 2022 02:12:16 -0700
 From:   Guillaume Ranquet <granquet@baylibre.com>
 User-Agent: meli 0.7.2
 References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-16-granquet@baylibre.com>
- <032e690ba56f646a12d68c5fcb8de35f74ce9b25.camel@mediatek.com>
-In-Reply-To: <032e690ba56f646a12d68c5fcb8de35f74ce9b25.camel@mediatek.com>
+ <b308f2b37f6e9768fb3b5d85b906a3961ca8419a.camel@mediatek.com>
+In-Reply-To: <b308f2b37f6e9768fb3b5d85b906a3961ca8419a.camel@mediatek.com>
 MIME-Version: 1.0
-Date:   Tue, 12 Apr 2022 02:10:56 -0700
-Message-ID: <CABnWg9shORfLvk3sNQL4-dZyYAEZzwUmbgPm7pX8E1mdRpaDTw@mail.gmail.com>
+Date:   Tue, 12 Apr 2022 02:12:15 -0700
+Message-ID: <CABnWg9sQFd8_ZyXCwQjgjRKAMEiKv_6anG77Pc6jyv0fAh62vQ@mail.gmail.com>
 Subject: Re: [PATCH v9 15/22] drm/mediatek: dpi: Add dpintf support
 To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, vkoul@kernel.org,
         airlied@linux.ie, angelogioacchino.delregno@collabora.com,
@@ -71,18 +71,15 @@ Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Mar 2022 10:38, Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
->Hello Guillaume,
->
->Thanks for your patch, but I have some questions for this patch:
->
+On Tue, 29 Mar 2022 05:16, Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
 >On Mon, 2022-03-28 at 00:39 +0200, Guillaume Ranquet wrote:
 >> dpintf is the displayport interface hardware unit. This unit is
 >> similar
@@ -195,19 +192,6 @@ On Mon, 28 Mar 2022 10:38, Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
 >>  	mtk_dpi_sw_reset(dpi, false);
 >>
 >> +	mtk_dpi_enable(dpi);
->
->Why do we need to add mtk_dpi_enable() here?
->Will this change the power on sequence?
->
-
-I have been told that this is to avoid artifacts on screen, the
-mtk_dpi_enable() is done
-in mtk_dpi_set_display_mode() instead of mtk_dpi_power_on();
-
-I will try to convey that explanation in a separate patch for v10
-
->BRs,
->Rex
 >> +
 >>  	return 0;
 >>  }
@@ -477,6 +461,20 @@ I will try to convey that explanation in a separate patch for v10
 >> -		    comp_type == MTK_DSI) {
 >> +		    comp_type == MTK_DPI ||
 >> +		    comp_type == MTK_DP_INTF) {
+>
+>Hello Guillaume,
+>
+>Is this modification correct?
+>MTK_DPI appears twice and MTK_DSI is removed.
+>
+This is not correct, I've messed up my rebase it seems.
+
+Thx for your review.
+
+>
+>BRs,
+>Rex
+>
 >>  			dev_info(dev, "Adding component match for
 >> %pOF\n",
 >>  				 node);
