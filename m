@@ -2,98 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 640624FDFE3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C3F54FDFFC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 14:30:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352734AbiDLMaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 08:30:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43074 "EHLO
+        id S1352467AbiDLMa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 08:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354303AbiDLM22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:28:28 -0400
-X-Greylist: delayed 344 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 12 Apr 2022 04:40:26 PDT
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B2E3A71A;
-        Tue, 12 Apr 2022 04:40:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1649763278; bh=zpeerSXmbG/t+M5drVYbi8mhlf53wi2ByStwNHLIGBM=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=Zln2DnULEY4CpEK+7gh7m/jRAB1NSzcRbVjzhCauEFtG/4Asr827YJayxSvaDS/hm
-         etLqS53Fy7csDocrQUPX80D7bxOVFjlNxwJGcYPs1U5K88zCsEAsKwq2LmevMyMYC7
-         wyOiNf6buZWAYO5FUz2Lp3OLlAgCsbx7QthmpqI0=
-Date:   Tue, 12 Apr 2022 13:34:38 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>
-To:     Jarrah <kernel@undef.tools>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
-Subject: Re: [PATCH 3/5] Input: pinephone-keyboard - Build in the default
- keymap
-Message-ID: <20220412113438.eeuptiner7lrzfpl@core.my.home>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
-        Jarrah <kernel@undef.tools>, Samuel Holland <samuel@sholland.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20220129230043.12422-1-samuel@sholland.org>
- <20220129230043.12422-4-samuel@sholland.org>
- <bde4ae40-98b6-7a77-2059-33c34442b604@undef.tools>
+        with ESMTP id S1353258AbiDLM16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 08:27:58 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E073182;
+        Tue, 12 Apr 2022 04:37:43 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id o2so10035784lfu.13;
+        Tue, 12 Apr 2022 04:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5aneK7Rl07kK1qGmCVmUb7811DnxlqneA9Z72R6PRJc=;
+        b=HxQcMx486YxA3qXMLBqpak4qkZIVxLl/ycmPCLsPG+cpIO8n/09K/HAcK5/LPYhkxZ
+         oq8z7qo/cw9fpuSHQikyXY7xnWM4u84DnBmJGaOOR7KYFNWv8vfHGrbYpMikl5RswyaF
+         FnB+0zQGyFpE2J1RuTAE/CqtzQa5937jjDUwRhsSMwnrZl5EKqjUI5XrfoE+YqriPfr7
+         jVHKnK5k0q2pRgZXwIZBCTZYPizAB0a7OzPn1fLDety23eDV2k95zPfdJhgKn/WCdV+4
+         h7Y/xkdQLhKCwxLttf1slKfwUEnES7YAA5d3ogJH1/OIqgYCW/0Y+hHrg3v1MlpVN12l
+         Gnbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5aneK7Rl07kK1qGmCVmUb7811DnxlqneA9Z72R6PRJc=;
+        b=3JQ/rbJVZRVfBXDjqXKDZJzNb/ayFNkulKuEXznxKbbFwgJhjr0PERQcxIy/PrB18L
+         w5pRc6rqvsi2Bvg0lCBkDfRr0fZDsMdGm4W0uBg+VKsKdeCwLHAVRHA4BBUe3KgtZiKM
+         7U0TEyTjdWe+qhFQcO9PeNip+pnbBTyafeEoQbd7bFhrmaEy5HDCFIqGaH2C5TSrcRCu
+         0amn3vviPOTqnsqq8j70jC/ss+UkDP3lKRfdDeSiNp2T2fRSUecn/BODJ0PP0Mk+gVt1
+         +henfqIGdoMyQMvDURG06MSh4QEeq3NE35Ntsb70sTpYvMzqacF515HOHUlUWLq6gAgC
+         6w5A==
+X-Gm-Message-State: AOAM5303864SCDCXUX+IzWJxiiv2mAb3qtNRubX30msJ1It4xiROltT/
+        1pgMLxToyNdhq5AmhyHEBtg=
+X-Google-Smtp-Source: ABdhPJxAmdxPltsou8uUUjeWnJuCK2JK93YfESll7d9K7ZQG+0dZuU+DhMEF1dNWNnaVHcgqlzdCPg==
+X-Received: by 2002:a05:6512:c18:b0:44a:9992:28bc with SMTP id z24-20020a0565120c1800b0044a999228bcmr25269448lfu.641.1649763461666;
+        Tue, 12 Apr 2022 04:37:41 -0700 (PDT)
+Received: from mobilestation ([95.79.134.149])
+        by smtp.gmail.com with ESMTPSA id bq8-20020a056512150800b00448ab58bd53sm3618431lfb.40.2022.04.12.04.37.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 04:37:41 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 14:37:39 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <brad@pensando.io>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        broonie@kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, olof@lixom.net, dac2@pensando.io,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 04/11] dt-bindings: spi: Add compatible for Pensando Elba
+ SoC
+Message-ID: <20220412113739.xczqscungojcitrm@mobilestation>
+References: <20220406233648.21644-1-brad@pensando.io>
+ <20220406233648.21644-5-brad@pensando.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bde4ae40-98b6-7a77-2059-33c34442b604@undef.tools>
+In-Reply-To: <20220406233648.21644-5-brad@pensando.io>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 12, 2022 at 08:20:24PM +1000, Jarrah wrote:
-> 
-> On 1/30/22 10:00, Samuel Holland wrote:
-> > +
-> > +static const uint32_t ppkb_default_fn_keymap[] = {
-> > +	KEY(0,  0, KEY_FN_ESC),
-> > +	KEY(0,  1, KEY_F1),
-> > +	KEY(0,  2, KEY_F2),
-> > +	KEY(0,  3, KEY_F3),
-> > +	KEY(0,  4, KEY_F4),
-> > +	KEY(0,  5, KEY_F5),
-> > +	KEY(0,  6, KEY_F6),
-> > +	KEY(0,  7, KEY_F7),
-> > +	KEY(0,  8, KEY_F8),
-> > +	KEY(0,  9, KEY_F9),
-> > +	KEY(0, 10, KEY_F10),
-> > +	KEY(0, 11, KEY_DELETE),
-> > +
-> > +	KEY(2,  0, KEY_SYSRQ),
-> > +	KEY(2, 10, KEY_INSERT),
-> > +
-> 
-> 
-> The driver currently being patched into most distros supporting the keyboard
-> exposes the symbols printed on the keyboard rather than the F* keys on the
-> function layer. While I agree than exposing function keys on the Fn layer is
-> more logical, in practice running this patch for a day I've found it's far
-> more useful to have quick access to the standard set of symbols (such as |
-> and -) than to have the function keys.
-> 
-> Would it be possible to either set the default back to symbols or expose
-> another layer (potentially under the "pine" key)? An alternative solution
-> proposed on the Mobian issue for this was to add a module option, allowing
-> these to be switched at runtime rather than compile time.
+> [PATCH 04/11] dt-bindings: spi: Add compatible for Pensando Elba SoC
 
-You will not get access to all the symbols anyway, this way. You should solve
-this via xkb and kernel keymaps (man keymaps(5)). Normal users should not be
-modifying basic keymap in DT or the driver anyway.
+I think you need to be more specific in the patch title to what bindings
+you are adding the new compatible string. Something like this
+"dt-bindings: spi: cdns: ..."
+The same concerns the patch "[PATCH 03/11] dt-bindings: mmc: Add Pensando
+Elba SoC binding".
+Otherwise it isn't clear to what schema you are adding the Elba SoC
+support to.
 
-kind regards,
-	o.
+-Sergey
+
+On Wed, Apr 06, 2022 at 04:36:41PM -0700, Brad Larson wrote:
+> Document the cadence qspi controller compatible for Pensando Elba SoC
+> boards.  The Elba qspi fifo size is 1024.
+> 
+> Signed-off-by: Brad Larson <brad@pensando.io>
+> ---
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index 0a537fa3a641..bc298e413842 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -30,6 +30,7 @@ properties:
+>                - intel,lgm-qspi
+>                - xlnx,versal-ospi-1.0
+>                - intel,socfpga-qspi
+> +              - pensando,elba-qspi
+>            - const: cdns,qspi-nor
+>        - const: cdns,qspi-nor
+>  
+> @@ -48,7 +49,7 @@ properties:
+>      description:
+>        Size of the data FIFO in words.
+>      $ref: "/schemas/types.yaml#/definitions/uint32"
+> -    enum: [ 128, 256 ]
+> +    enum: [ 128, 256, 1024 ]
+>      default: 128
+>  
+>    cdns,fifo-width:
+> -- 
+> 2.17.1
+> 
