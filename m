@@ -2,115 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3A3F4FE496
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D81AD4FE4AC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:23:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234881AbiDLPXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 11:23:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
+        id S231394AbiDLP0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 11:26:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356955AbiDLPWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:22:24 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60773193F9
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:20:05 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id y3-20020a056830070300b005cd9c4d03feso13597584ots.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 08:20:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=d+PIhawCGQKqSaXqYa/iZBL6dgcjK4qOFHlBoybLaRc=;
-        b=nBkGsJgmCNSS9IGV9Ejz9t/B5eC84S5Ir2h7JTfwxVIjXPKXhNFqWWY3C/RDP4ZWQ1
-         9LrWOl9ulQfyKZm2eTl72xbF+u5BqUyG32TzYFva4wgpBAn8/9SO4A2rbsxtRofgjR5M
-         7oXNc1wNuowc5gn+Y+uNdiUKPvB53Jrl0ZgHEMjT3ZZmOlrGxY9hU0HZvu+1+O39hndb
-         R950jUQa1n18bT8774XYDHdNoSjSpdr0wkOcZslivcyo4RXc6uzIJAHVEG+lkI+FFI3z
-         lNtV9hNKNv3mXH5uzS6b3iQ5sZV2PX9bseA4zwcCFMwuv7U1vE5jjSv1MfX0B00yshbt
-         ucyQ==
+        with ESMTP id S229961AbiDLPZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:25:59 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF851B797;
+        Tue, 12 Apr 2022 08:23:42 -0700 (PDT)
+Received: by mail-qk1-f170.google.com with SMTP id e10so12351775qka.6;
+        Tue, 12 Apr 2022 08:23:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=d+PIhawCGQKqSaXqYa/iZBL6dgcjK4qOFHlBoybLaRc=;
-        b=V6dw00gndZNibM0gYG7BExcRGwmhI8WEWPDRBljrQP2MDz85vYWjV3mNVWVChP3ta1
-         rIpKm2AXIqmLa74yTgkeN8MDPSXCmenQHcZolmEnYj1mZSNQ7NGiJpU85tbugw/qARza
-         HKSbXmgi+KbzDHKwqq7vuG+67B7cyvXC4zuxwq09Dulxutqi1k5ufy4RSX7JBa7iFCdR
-         xGvXAHKHlOpwPs1DVHOwa6vEEjKrms0GLx4NyqNomZeUXoCsB9pP544bk7cWIKPFtvD8
-         QKeNKWww4to9Gu2RG2RxmQ3hr3RkwHSZY+f/6dWYTvkcAZJj65XbsmqpynkId/6LoE+B
-         qRVQ==
-X-Gm-Message-State: AOAM531IDCuoFnepU4EeUKDkRa7ZIvHeM6z7eLpVrecvekWAD7VOUpoj
-        Mjmn1qUoWzO2HPfHQlfdf4fCuw==
-X-Google-Smtp-Source: ABdhPJxL/d3Q0dZmV5j0Z6N1rGq3uWRPM11JQ58vEe8BmpfuWmxwJ3FaHYUM2BW476AU0Q0tFlyVIw==
-X-Received: by 2002:a05:6830:154c:b0:5e6:85c5:ed8b with SMTP id l12-20020a056830154c00b005e685c5ed8bmr13202510otp.253.1649776804685;
-        Tue, 12 Apr 2022 08:20:04 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id r17-20020a0568080ab100b002f9fef240f7sm3110364oij.50.2022.04.12.08.20.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 08:20:03 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 08:22:18 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/6] dt-bindings: clock: qcom,gcc-sdm845: add
- parent power domain
-Message-ID: <YlWZKprJuLJXd+r4@ripper>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-2-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vAQqBbqDFRMdtmvtUQ5ccojDEwuH55pNl6H2SkNuZ+I=;
+        b=FlJSHiOgb8xvW8pvjJ0+zWiLWlTj1rbX2KI9XhaGcAMaAEvb4RhEPLgqeGN/bmrfM0
+         rF4JHLFOT/J1F/EmhHjSzJBxtYum4N/CY81kKxQvOXWbNu+jY+6zpzsBDNQImdmpfntE
+         89GnAWCSxmll2XXev2s4xpSxNeSJ1QdsUsV97+FnpPc0XsDB2hOJ4saLkX5L8XPucUHh
+         33sXxMDkGv17FWOpEt21bg3YrafoNhsRDUZSDfsSAHiHQVcTwQ07Mz8zditO2jraLsky
+         SSvNbhpaORv0e83Hd6UMiFZzSrPegBsIf0g/DOsoVECxRWtaXkL/QZcnID7iQexRG0FC
+         0kWg==
+X-Gm-Message-State: AOAM531XpXUvazt5ZopzD0XCkltos1fpOCpjVTz2QHPeWV5U5NuvFbY7
+        X1FTewY1qHhBN4HuYtWr+bpix3qMs25Lng==
+X-Google-Smtp-Source: ABdhPJwJf0BOvjbArpGzMWyy4z4S6HapRKDRS9JRifseV0jJKs7BIgjah2+61/X1NLnCQggwfjNkfA==
+X-Received: by 2002:ae9:eb01:0:b0:69c:10ca:ed6 with SMTP id b1-20020ae9eb01000000b0069c10ca0ed6mr3458714qkg.496.1649777021022;
+        Tue, 12 Apr 2022 08:23:41 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id o10-20020ac85a4a000000b002ed143903a9sm7275214qta.45.2022.04.12.08.23.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 08:23:40 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id f17so2789852ybj.10;
+        Tue, 12 Apr 2022 08:23:40 -0700 (PDT)
+X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
+ c4-20020a5b0984000000b0063f8c38676cmr16423561ybq.393.1649777020266; Tue, 12
+ Apr 2022 08:23:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220411154347.491396-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220401175427.19078-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220401175427.19078-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 12 Apr 2022 17:23:29 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUFRaWEG3xcnuTGOFst9aADwCng6JRROJzoz+4sbzH6BA@mail.gmail.com>
+Message-ID: <CAMuHMdUFRaWEG3xcnuTGOFst9aADwCng6JRROJzoz+4sbzH6BA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc: Move gpios property of
+ vccq_sdhi1 from common dtsi
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 11 Apr 08:43 PDT 2022, Krzysztof Kozlowski wrote:
+On Fri, Apr 1, 2022 at 7:54 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> On RZ/G2{L,LC} SoM module, gpio for power selection is connected to
+> P39_1 whereas on RZ/G2UL it is connected to P6_1. So move gpios property
+> of vccq_sdhi1 regulator from common dtsi to soc specific dtsi.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-> Allow Qualcomm GCC to register its parent power domain (e.g. RPMHPD) to
-> properly pass performance state from children.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Gr{oetje,eeting}s,
 
-> ---
->  Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-> index d902f137ab17..daf7906ebc40 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-> @@ -43,6 +43,9 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
->    '#power-domain-cells':
->      const: 1
->  
-> -- 
-> 2.32.0
-> 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
