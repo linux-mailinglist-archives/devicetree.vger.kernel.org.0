@@ -2,159 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA884FDBAD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07184FDBA4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:58:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353409AbiDLKGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:06:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
+        id S1350224AbiDLKFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:05:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390175AbiDLJYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:24:35 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ABE7496B6
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:41:03 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id u17-20020a05600c211100b0038eaf4cdaaeso1251927wml.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 01:41:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JVS8yoTed/57DjCwKIW1A/c1IofL37wt+tYJEPzUAmU=;
-        b=Z+VbZn7FPHNe/GBsQyuivnzzgGzYvxBZDES1LMjk+AMruKFaWMliPs/DaWe4wQcj1V
-         Z46VUcXBRlve5tWnD6t/jEuT+5XKFrUE5df/ekH+6vCNCqWOXn6MuAX1Kaz4F4MRmb0u
-         prutTbcdiNtijUHwv3SzkXxA25iy5vFpLZA4E=
+        with ESMTP id S1391578AbiDLJaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:30:25 -0400
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B7A55C856;
+        Tue, 12 Apr 2022 01:43:51 -0700 (PDT)
+Received: by mail-qv1-f49.google.com with SMTP id ke15so15605949qvb.11;
+        Tue, 12 Apr 2022 01:43:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JVS8yoTed/57DjCwKIW1A/c1IofL37wt+tYJEPzUAmU=;
-        b=OPzkNOiuki6I2ND+Iy0ah2JkFFihBL6NC41dVZBXlKoWoa4aRfM7fIGVTTosDNKZMY
-         0FpgcjjwHem5EjdrJJN/czIRPuMmncbHAcCbP73HYpu63JfITiOqCelS7Gb2/E23tAI7
-         UPszt1M3hiEXftKhY8PlF/yZPhb8PMPYtrIQaefwgJute3gwclff3W6k3iPf7nDlIp2D
-         CEqdgfuE3V5FFZwMmh67Ay2b3YXaBwddiiLX8ZMM146vOkFC4yKvLPfmmmOtW/URa1PV
-         X1gitO96SUh666/KM4bhzfNOU7pcKTFtlYCWrwf8P3tzJRC7Kg1/GP5aahj+5mRDcUwG
-         09Ig==
-X-Gm-Message-State: AOAM533x5Mur6obv1I2MAYrNqHX4yUPmtIR/PcDI6z9E/yWhciy/Xo/a
-        h5LFyUtP1GNjqNjKJyWB3q8eNA==
-X-Google-Smtp-Source: ABdhPJyHye7sxKTODHYVlr0Iw88mdVOrIKEdTmPAKEL4TcsxZIZQomuSpVY1efYdnCyhwPqDkolHGQ==
-X-Received: by 2002:a05:600c:1c0e:b0:38c:ae37:c1d2 with SMTP id j14-20020a05600c1c0e00b0038cae37c1d2mr2964820wms.205.1649752861339;
-        Tue, 12 Apr 2022 01:41:01 -0700 (PDT)
-Received: from google.com ([37.228.205.1])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c144a00b0038ccc75a6adsm1769601wmi.37.2022.04.12.01.41.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 01:41:00 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 08:40:58 +0000
-From:   Fabio Baltieri <fabiobaltieri@chromium.org>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] drivers: pwm: pwm-cros-ec: add channel type
- support
-Message-ID: <YlU7GoSYMPapAsVv@google.com>
-References: <20220411152114.2165933-1-fabiobaltieri@chromium.org>
- <20220411152114.2165933-3-fabiobaltieri@chromium.org>
- <YlUq8W+xjdxqYCo5@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SMgJTejebzSsoCA0bmYeszZ3G1uAWNOffFqDWqFqdBk=;
+        b=Uo8uFuFYUk/Wpd4clANKUu85Npy6Zi3JXKfGsXRE2r39/cV+JDaACkAoITqXpZNB+L
+         M3jn4KuV9OUUeTxhxdmXQgEVyuL0d7OPk3+nwWx8TQ1xDUrvUzJmCizJSeAr9BQc2Ro1
+         4MedUE5LGnDCXK6sskmQJp6Ok7iR1epyhNeTKWztCuqHMozR1AYIPUDRmQ+FAiszT69n
+         YJy0y+OXp6fWh3mlKbucu9IDNWct5R9fTr/0XTw+DkQAY2HSehE26fgY4QTYZ3SMGhW5
+         dkDvuNvy9IGET9tNqMFhi0NQo7DEqYWdy/DpHup5nui2EeftfMyMNNB32lQQhSSmn98k
+         VMCA==
+X-Gm-Message-State: AOAM532qvZZL8eGeeFolYGLkxug8iIPntsaFQ7LOT+6wOtWfhlSNZ4Jw
+        OA3buYfPFBbnsQupqkdoPrYzse2BKCuw0Tn9
+X-Google-Smtp-Source: ABdhPJwBYN4U7vve6hoCYi85lACXgLhRbRxvfmm82QH2fafnTD2aH7kjmqN7mEz2SPEq/NGs3SAz9Q==
+X-Received: by 2002:a05:6214:e4c:b0:444:4ce3:890a with SMTP id o12-20020a0562140e4c00b004444ce3890amr2699457qvc.72.1649753030186;
+        Tue, 12 Apr 2022 01:43:50 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id h27-20020ac8777b000000b002eff87a2c42sm1645348qtu.4.2022.04.12.01.43.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 01:43:49 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ebf4b91212so94998927b3.8;
+        Tue, 12 Apr 2022 01:43:49 -0700 (PDT)
+X-Received: by 2002:a81:c703:0:b0:2d0:cc6b:3092 with SMTP id
+ m3-20020a81c703000000b002d0cc6b3092mr29042137ywi.449.1649753029692; Tue, 12
+ Apr 2022 01:43:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YlUq8W+xjdxqYCo5@google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220322095512.4707-1-wsa+renesas@sang-engineering.com> <20220322095512.4707-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220322095512.4707-2-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 12 Apr 2022 10:43:38 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXdj1RvH3SOvqh+Lu89ze=KNNVsvYt2wmGty-d8Z+VAjA@mail.gmail.com>
+Message-ID: <CAMuHMdXdj1RvH3SOvqh+Lu89ze=KNNVsvYt2wmGty-d8Z+VAjA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] ARM: dts: rcar-gen2: add interrupt property to the
+ watchdog node
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tzung-Bi,
+On Tue, Mar 22, 2022 at 11:22 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Driver doesn't use it yet, but let's describe the HW properly.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-On Tue, Apr 12, 2022 at 03:32:01PM +0800, Tzung-Bi Shih wrote:
-> On Mon, Apr 11, 2022 at 03:21:12PM +0000, Fabio Baltieri wrote:
-> > Add support for EC_PWM_TYPE_DISPLAY_LIGHT and EC_PWM_TYPE_KB_LIGHT pwm
-> > types to the PWM cros_ec_pwm driver. This allows specifying one of these
-> > PWM channel by functionality, and let the EC firmware pick the correct
-> > channel, thus abstracting the hardware implementation from the kernel
-> > driver.
-> > 
-> > To use it, define the node with the "google,cros-ec-pwm-type"
-> > compatible.
-> 
-> Not sure whether you decide to leave the prefix as is or not[1], just another
-> reminder: to be neat, suggest to remove "drivers: " prefix from the commit
-> title.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-Sorry I messed up there, fixed in on the wrong branch and then forgot to
-re-fix it once I moved to the wrong one -- I'll make sure to get that
-right now, thanks for your patience.
+Gr{oetje,eeting}s,
 
-> 
-> [1]: https://patchwork.kernel.org/project/chrome-platform/patch/20220331125818.3776912-3-fabiobaltieri@chromium.org/
-> 
-> > +#ifdef CONFIG_OF
-> > +static const struct of_device_id cros_ec_pwm_of_match[] = {
-> > +	{
-> > +		.compatible = "google,cros-ec-pwm",
-> > +	},
-> > +	{
-> > +		.compatible = "google,cros-ec-pwm-type",
-> > +		.data = OF_CROS_EC_PWM_TYPE,
-> > +	},
-> > +	{},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
-> > +#else
-> > +#define cros_ec_pwm_of_match NULL
-> > +#endif
-> > +
-> >  static int cros_ec_pwm_probe(struct platform_device *pdev)
-> >  {
-> >  	struct cros_ec_device *ec = dev_get_drvdata(pdev->dev.parent);
-> >  	struct device *dev = &pdev->dev;
-> > +	const struct of_device_id *id;
-> >  	struct cros_ec_pwm_device *ec_pwm;
-> >  	struct pwm_chip *chip;
-> >  	int ret;
-> > @@ -251,17 +312,27 @@ static int cros_ec_pwm_probe(struct platform_device *pdev)
-> >  	chip = &ec_pwm->chip;
-> >  	ec_pwm->ec = ec;
-> >  
-> > +	id = of_match_device(cros_ec_pwm_of_match, dev);
-> > +	if (id && id->data == OF_CROS_EC_PWM_TYPE)
-> > +		ec_pwm->use_pwm_type = true;
-> > +
-> [...]
-> > -#ifdef CONFIG_OF
-> > -static const struct of_device_id cros_ec_pwm_of_match[] = {
-> > -	{ .compatible = "google,cros-ec-pwm" },
-> > -	{},
-> > -};
-> > -MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
-> > -#endif
-> > -
-> 
-> Use dev->driver->of_match_table to access the table so that the table
-> declaration doesn't actually need a move.  Instead, the helper function
-> of_device_get_match_data() is preferred.
-> 
-> Alternatively, it could use
-> of_device_is_compatible(..."google,cros-ec-pwm-type") so that it doesn't
-> need to introduce OF_CROS_EC_PWM_TYPE and reduce some bits.  I would prefer
-> this way.
+                        Geert
 
-That's a very good point, should simplify things a fair bit, did not
-realize of_device_is_compatible() was an option somehow, will rework it
-for that and send a v4 soon. Thanks for the pointer.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Fabio
-
--- 
-Fabio Baltieri
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
