@@ -2,162 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0F04FDCBF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEB184FDCDD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:07:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239521AbiDLKiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:38:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
+        id S1343548AbiDLKra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380827AbiDLKfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:35:08 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E2E5E15A
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:37:20 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id b188so18412390oia.13
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:37:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
-         :subject:to:cc;
-        bh=evIZsLOQJjFi37tCwIrJkfpZ9gIHXQ0UW8l5PUtfRtM=;
-        b=4QAERHFJ8BTZGtY7E+DkrtJGJSnzxgQgHwbOYAwlxzZXnKMY9dp3NVgOGA1Cbx3AW0
-         FxY2zgabemqQKkM8yYWIKTkzeKaFcP40xAgE+1dbimqQ4CldI7+o8TQ8dE1kodW+jrQU
-         gYXrQIuo73uA51I8IaOWcFPhvw+t8g/pF4/eUcwWtHBUvZuNigXM/QZvceMRt4bz7R/Q
-         iRCQbyMV95o4pipHij2S0MaVqvssVGHgSj8Xz769fQj6HFHoNaTjIpDoiR+7ZrOU9ACV
-         kY13mSlQ12q7mCyqJQTWIMCVaZV8qk0mntRPEqqEkgTpq9DAW883/q4t7wQjC3Wogopk
-         7VLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:user-agent:references:in-reply-to
-         :mime-version:date:message-id:subject:to:cc;
-        bh=evIZsLOQJjFi37tCwIrJkfpZ9gIHXQ0UW8l5PUtfRtM=;
-        b=JOCYLnJDihw1Z+e6qpfja1FRYKu4GTWx4AYEMPe4Ecf4eHiI69mUjS3s2T67173Xe8
-         EGDb/uklhchPPeoBCsoHIvus/hwz4b1wSxaOyUWiCRgX1iOXbo/TrgYSk8lzCB1Pi/CY
-         G4bHqTKKZvcH5qvbTF54xpRc3rMcEjtQP6dVOWhGK11hdsiQg3XMMeid52QS/gedtSqg
-         b35ngI4+18dh46EUolnQzxwINxTtiUagbxuAYAWIo2z50e8c4jfekWB7UtpBGjc0QPj7
-         VMC9nSeosoa59tRA39WEa+t0yVkg8Ak/YCXUn7CsP1tqFXBl4vJf1qhI7G4kSHpNa+OU
-         Euug==
-X-Gm-Message-State: AOAM532P/S1Ih5t0BnA6g/jG5Yo7TyvCwxAB76F1W69WgE0kMQ09qFdQ
-        xQFNTpxGBwlYJ4NNnOULCE53G/VyMN08Gj4FrF9O+Q==
-X-Google-Smtp-Source: ABdhPJw50fakNZZtGphBh/3iA9VZT9nYrxLt56LrY9rUXQ7AMr4P93Xi3Vwjdes2KLA+ubvrsqu9MdqkL/hZl7jIqcA=
-X-Received: by 2002:a05:6808:1804:b0:2f9:65eb:c40b with SMTP id
- bh4-20020a056808180400b002f965ebc40bmr1343724oib.78.1649756239335; Tue, 12
- Apr 2022 02:37:19 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 12 Apr 2022 02:37:18 -0700
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-17-granquet@baylibre.com>
- <736a7f6710f1ea31eff4abcc3d9c3ff79a1f0ddb.camel@mediatek.com>
-In-Reply-To: <736a7f6710f1ea31eff4abcc3d9c3ff79a1f0ddb.camel@mediatek.com>
+        with ESMTP id S1351859AbiDLKnP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:43:15 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6A6B476E06;
+        Tue, 12 Apr 2022 02:39:46 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 326AB8061;
+        Tue, 12 Apr 2022 09:37:13 +0000 (UTC)
+Date:   Tue, 12 Apr 2022 12:39:44 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-omap@vger.kernel.org, aford@beaconembedded.com,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: am3517-evm: Fix misc pinmuxing
+Message-ID: <YlVI4EAX5is25bqh@atomide.com>
+References: <20220226214820.747847-1-aford173@gmail.com>
 MIME-Version: 1.0
-Date:   Tue, 12 Apr 2022 02:37:18 -0700
-Message-ID: <CABnWg9vfMJTbOTK-khgaj7RReLVSKJ3DCmJbDvgKMf+tUBwoSA@mail.gmail.com>
-Subject: Re: [PATCH v9 16/22] drm/meditek: dpi: Add matrix_sel helper
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, vkoul@kernel.org,
-        airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        mripard@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
-        tzimmermann@suse.de
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220226214820.747847-1-aford173@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Mar 2022 10:49, Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
->On Mon, 2022-03-28 at 00:39 +0200, Guillaume Ranquet wrote:
->> Add a mtk_dpi_matrix_sel() helper to update the DPI_MATRIX_SET
->> register depending on the color format.
->>
->> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->> ---
->>  drivers/gpu/drm/mediatek/mtk_dpi.c | 21 +++++++++++++++++++++
->>  1 file changed, 21 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
->> b/drivers/gpu/drm/mediatek/mtk_dpi.c
->> index 8198d3cf23ac..82f97c687652 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
->> @@ -385,6 +385,25 @@ static void mtk_dpi_config_disable_edge(struct
->> mtk_dpi *dpi)
->>  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
->> EDGE_SEL_EN);
->>  }
->>
->> +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum
->> mtk_dpi_out_color_format format)
->> +{
->> +	u32 matrix_sel = 0;
->> +
->> +	switch (format) {
->> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
->> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
->> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
->> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
->> +	case MTK_DPI_COLOR_FORMAT_XV_YCC:
->> +		if (dpi->mode.hdisplay <= 720)
->> +			matrix_sel = 0x2;
->> +		break;
->> +	default:
->> +		break;
->> +	}
->> +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
->> INT_MATRIX_SEL_MASK);
->> +}
->> +
->>  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
->>  					enum mtk_dpi_out_color_format
->> format)
->>  {
->> @@ -392,6 +411,7 @@ static void mtk_dpi_config_color_format(struct
->> mtk_dpi *dpi,
->>  	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
->>  		mtk_dpi_config_yuv422_enable(dpi, false);
->>  		mtk_dpi_config_csc_enable(dpi, true);
->> +		mtk_dpi_matrix_sel(dpi, format);
->>  		if (dpi->conf->swap_input_support)
->>  			mtk_dpi_config_swap_input(dpi, false);
->>  		mtk_dpi_config_channel_swap(dpi,
->> MTK_DPI_OUT_CHANNEL_SWAP_BGR);
->> @@ -399,6 +419,7 @@ static void mtk_dpi_config_color_format(struct
->> mtk_dpi *dpi,
->>  		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
->>  		mtk_dpi_config_yuv422_enable(dpi, true);
->>  		mtk_dpi_config_csc_enable(dpi, true);
->> +		mtk_dpi_matrix_sel(dpi, format);
->>  		if (dpi->conf->swap_input_support)
->>  			mtk_dpi_config_swap_input(dpi, true);
->>  		mtk_dpi_config_channel_swap(dpi,
->> MTK_DPI_OUT_CHANNEL_SWAP_RGB);
->
->Hello Guillaume,
->
->Thanks for your patch.
->I have one question:
->Do this setting affect the dpi for previous SoCs?
->(8183, 8192, or 8186)
->If we can confirm the original register setting for this offset in
->8183/8192/8186, I think we can clarify this question.
->
+* Adam Ford <aford173@gmail.com> [220226 23:47]:
+> The bootloader for the AM3517 has previously done much of the pin
+> muxing, but as the bootloader is moving more and more to a model
+> based on the device tree, it may no longer automatically pux the
+> pins, so it is necessary to add the pinmuxing to the Linux device
+> trees so the respective peripherals can remain functional.
+> 
+> Fixes: 6ed1d7997561 ("ARM: dts: am3517-evm: Add support for UI board and Audio")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+> I put the fixes tag here, because I feel that the pinmuxing should not
+> have depended on the bootloader, but if it's not appropriate, feel free
+> to drop the fixes tag when applying or I can submit a subsequent patch
+> with the fixes tag dropped.
 
-I've checked in the datasheet I have (8365/8385) that this register
-and setting exists.
-So yes, it will affect other platforms.
+Makes sense as a fix as confusing issues like this are annoying. So
+applying into fixes fixes with s/pux/mux/ typo correction.
 
->BRs,
->Rex
->
+Regards,
+
+Tony
