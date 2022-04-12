@@ -2,130 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CC114FDBE6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4B04FDBE3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354857AbiDLKIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:08:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54918 "EHLO
+        id S1354812AbiDLKIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:08:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377834AbiDLJ7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:59:20 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F0C13EA4
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:17 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id l7so30546393ejn.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:04:17 -0700 (PDT)
+        with ESMTP id S1378009AbiDLJ7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:59:32 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B268205D4;
+        Tue, 12 Apr 2022 02:05:21 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id b15so21563186edn.4;
+        Tue, 12 Apr 2022 02:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0zbxI/ib4mJ1wAKwasv9a8XEMpxsdHx9KOUkKJeNjyc=;
-        b=iPDESGSdefhx3WHl3UInb7oISwRqS0QoJI2JHspUFFmMnYInKpmWBT1ex2UHs5TdnG
-         vDnp1pUIwYXF7FOqyOQz2S/bhv9gALNLTuE34KYk0rBLkgToOt7CfoFNK7C/LhhKGQ/+
-         GaAeH/nwhmBElKJkqVEYLJ0g6T+55I2wO+I9ZXWTOlwms7cWGmpGJloZ9rfhM9vjsysZ
-         3XjRuC4Vj8Zx1KozHvau8sM83o/XTnFI+ow0APLWuTfFKWFIE2VC3Qo4I+KIqjlUKNNT
-         f9Ax1hsfsQ82nJWH+kvdYb2ccs8x9exbynejbcUODNU7ibhMcq8Mcl+h+MkTPTu04TLx
-         /zPg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=JvUzj4eJQSW6VlbLUjMSITUiq97FPtxDr7ncwYmoRZw=;
+        b=PQN4pGhpOlIZoayWPrUBzGowazBqMXrd4jRr1snIyitef4NjsLhheTAe0qQ4xxS53b
+         3Bt6MF+gTSAJvT6Dr3An/eqtqMwA/5zAkSdx9c7loYNVNFh9WM+LFbECAWMLVRdG5mYk
+         EHaD8+YmvSfCswWysoOwVBSMt1FW0TYI80ssVuaKlsX40TIA1HRDORT8I2xQLJg1MiMs
+         Yx/pt7YehaJjEiMKaTBxBkXZNXuWm38BnB890ruRydAj6g6KeFCaBmrdhEULfmwVXtvW
+         JuXDdKRrxlc7wpyYmrYqigcamJk84SaFG6J8AQDlYbDZrY894fzLN+jF/gyZI2J22cJA
+         G+3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0zbxI/ib4mJ1wAKwasv9a8XEMpxsdHx9KOUkKJeNjyc=;
-        b=pqtm94kFKfNcI/1Y9sdDj8cq5tcuePpf2PePflYTK/iKcvmF6JlKfzTqmQ90Mx4VpI
-         sRqAjrZYi+kp7h2RhERaqBpFesQb4/4Y1f93GIsN8yjrHCF9n6nvS8LMjqp7sQx4V5cx
-         corSJE+471l3kOnXKjiNdNj5ZFOpX5DkKVOkFyOg/WuIU6Dx/jTYkQeb/8gOlSIqEzXP
-         yDbd3yBFvuq/H011EQeVdvNvxtVCG2e/aYkvWSPd6vHcP3azlymYxBjYfKcBerJumPdz
-         k+vg5Vx7ND92cPoYQeyw4lxerjkHMSUFTyixpfTfdYHai2JgVPsUOroUSb2A1Vxy6+Nq
-         gkuw==
-X-Gm-Message-State: AOAM530xjb4owMbgr7dboqB59wCNfwOR0umRurzYUcGV1zH69IGHYUN0
-        VCgh727skjA7TCNrrVXI/u0qiw==
-X-Google-Smtp-Source: ABdhPJyErGvhOFNiJ61usdXAps8FK2Vg+GNwV0o4wtQnbyq0kE0lJzdjV4sPTfJL9Hy/4xhDaVt/yQ==
-X-Received: by 2002:a17:906:730c:b0:6e6:c512:49c8 with SMTP id di12-20020a170906730c00b006e6c51249c8mr33870825ejc.405.1649754255559;
-        Tue, 12 Apr 2022 02:04:15 -0700 (PDT)
-Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bj13-20020a170906b04d00b006e742719b9fsm11004863ejb.7.2022.04.12.02.04.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 02:04:15 -0700 (PDT)
-Message-ID: <b189e6fc-98b5-9668-d22c-1144d5741071@linaro.org>
-Date:   Tue, 12 Apr 2022 11:04:14 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=JvUzj4eJQSW6VlbLUjMSITUiq97FPtxDr7ncwYmoRZw=;
+        b=apipqC5iq8qGmSdZFgX7WK8tmdHuIHRk8IzpIu6qFqkTKLsHzlVxoo5Fq7f6oq7upL
+         qqlFFiABi33laX9LmL4Bg5AwNT/OKMyyJ8G2HUjNFhEX2+AiObGv7z5UutbIB/ap0GOD
+         4daMLZMq8VIjWXUs+gYvFEIGwX7ABy/ezDHDJzXKbHidlhe7w3aZwezfVZrAsl7eUN3S
+         F86jKysoOT5+E41CWIMzQpBFCSp4mXOZjEpPIPn33mkuoYwciyuhtUVMYgHL1e+iYSMB
+         f3TZ8efmMxMR8lOdgHhiAIVgsXfneL3Dlbm1zXidw9zbJ6FMEM1n2uURWBbY7KI1yVe3
+         corg==
+X-Gm-Message-State: AOAM531lq5w84URxPGf8nDBU4uHxBAwcEVwri+wNPlh3JMus3uQjVExT
+        27BURn0Kk0AB8oAu0rs5pFs=
+X-Google-Smtp-Source: ABdhPJy7UIlkAw90AvWa8CNYC9UtMZpU5M8mz2CPjgf62C2T/CEb2v4+GAYAJGpj0vByS1chiMtK+A==
+X-Received: by 2002:a05:6402:27d1:b0:419:1b02:4a04 with SMTP id c17-20020a05640227d100b004191b024a04mr37474442ede.218.1649754319553;
+        Tue, 12 Apr 2022 02:05:19 -0700 (PDT)
+Received: from orome (pd9e518f7.dip0.t-ipconnect.de. [217.229.24.247])
+        by smtp.gmail.com with ESMTPSA id d26-20020a1709064c5a00b006e89debe3f4sm1595260ejw.9.2022.04.12.02.05.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 02:05:18 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 11:05:15 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-stm32@st-md-mailman.stormreply.com, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH] arm64: dts: tegra: Fix boolean properties with
+ values
+Message-ID: <YlVAy95eF/9b1nmu@orome>
+References: <Yk3nShkFzNJaI3/Z@robh.at.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 6/7] arm64: dts: renesas: r8a779f0: Add UFS node
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
- <20220412073647.3808493-7-yoshihiro.shimoda.uh@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220412073647.3808493-7-yoshihiro.shimoda.uh@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NBsBIpgqCfiMExLJ"
+Content-Disposition: inline
+In-Reply-To: <Yk3nShkFzNJaI3/Z@robh.at.kernel.org>
+User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 09:36, Yoshihiro Shimoda wrote:
-> Add UFS node for R-Car S4-8 (r8a779f0).
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+--NBsBIpgqCfiMExLJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Apr 06, 2022 at 02:17:30PM -0500, Rob Herring wrote:
+> Boolean properties in DT are present or not present and don't take a valu=
+e.
+> A property such as 'foo =3D <0>;' evaluated to true. IOW, the value doesn=
+'t
+> matter.
+>=20
+> It may have been intended that 0 values are false, but there is no change
+> in behavior with this patch.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  arch/arm64/boot/dts/renesas/r8a779f0.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git
+> Can someone apply this for 5.18.
+>=20
+>  arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi            | 8 ++++----
+>  .../boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts    | 8 ++++----
+>  arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi            | 6 +++---
+>  arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi            | 6 +++---
+>  arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi            | 6 +++---
+>  arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi            | 8 ++++----
+>  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts        | 8 ++++----
+>  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts             | 4 ++--
+>  8 files changed, 27 insertions(+), 27 deletions(-)
 
-Thank you for your patch. There is something to discuss/improve.
+This causes multiple regressions on Tegra boards. The reason for this is
+that these properties are not in fact boolean, despite what the DT
+bindings say. If you look at the code that handles these, you'll notice
+that they are single-cell properties, typically with <0> and <1> values.
+What may have led to the conclusion that these are boolean is that there
+is also a special case where these can be left out, but the meaning of
+that is not the "false" (<0>) value. Instead, leaving these out means
+that the values should be left at whatever is currently in the register.
 
- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
-b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
-> index b0241aa29fc8..8bf418a4232f 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
-> @@ -40,6 +40,13 @@ extalr_clk: extalr {
->  		clock-frequency = <0>;
->  	};
->  
-> +	ufs30_clk: ufs30_refclk_v {
+See pinconf_generic_parse_dt_config() and parse_dt_cfg() specifically in
+drivers/pinctrl/pinconf-generic.c.
 
-No underscores in node names. Node names should be generic, so if you
-insist on prefix, it could be "ufs30-clk".
+Arnd, can you please revert this so that these boards can be unbroken?
 
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		/* This value must be overridden by the board */
-> +		clock-frequency = <0>;
-> +	};
-> +
->  	pmu_a55 {
->  		compatible = "arm,cortex-a55-pmu";
->  		interrupts-extended = <&gic GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> @@ -258,6 +265,18 @@ i2c5: i2c@e66e0000 {
->  			status = "disabled";
->  		};
->  
-> +		ufs: scsi@e6860000 {
+It's a bit unfortunate because there seem to be other platforms that
+also employ these in the boolean form that Rob mentioned, but I think it
+is those that probably need fixing instead. Not sure what the intentions
+were for those.
 
-Node name: ufs (it is not a SCSI device, AFAIK).
+Adding Bjorn for MSM, the Nuvoton and STM32 folks.
 
-> +			compatible = "renesas,r8a779f0-ufs";
-> +			reg = <0 0xe6860000 0 0x100>;
-> +			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 1514>, <&ufs30_clk>;
-> +			clock-names = "fck", "ref_clk";
+Thierry
 
+--NBsBIpgqCfiMExLJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmJVQMgACgkQ3SOs138+
+s6FAcQ//f9+PoHjpquYwfy+qc69MSz549E+MT1SBelK6GGDpNc7CWrtmujpeiTP/
+bgA1e0TzCagra2528fAUyOtyAaVKPHS8BVt6OxptgyEgvwP2fygn83+2BIQsVar1
+Ls092mvWt1GeHYri19DRt3L43JH1RlcYxaPsUbgWU2tucetEtEDndOVUki87oclX
+se/tsVqGRA5B1FMFHPiVgJyTaFzJtiwkCZnH31BN3DRXSsOnkJr33fV5bQM4Ylg5
+vxWmwURr1T7+vTgUSCxi2RNzYGAuveI/IGFs1QD/jddo8MEHqF/EHmGmPWHF5fta
+iP3T6u7bSb0y433imp3GDtLFch/cJ4BZ9sIWfLqPXP06sVVMfbLq2joo0p26XEZ1
+q7hxFhNrpWBpmEna+RtNQWLCbcW7BBI+v0f4VYml+xNVpYehqUfHwrOqLdURucPO
+WbriU9+nODw81tLTJbSr2EGGvYi4uiGBZw302ZuApk2pOhF+Az9WnlxUHiM3Q64D
+WFubEG7Ezq1lEFO4hD4zZs9bMhSycTi6LMIJRTz7HHH/qPubJ8DWRi/Npn7WjN5S
+uzQyjmD9ei7E/jLb28Sa0TCk4zAKiZiSVWZF/ONXhJ4aGzkgLhebFgMlGOihj4Gj
+4J3cLi4fOm2o4qU7axaSMb8yd6hAD93kKRIylehK0Lfdmt9pM4I=
+=kKPk
+-----END PGP SIGNATURE-----
+
+--NBsBIpgqCfiMExLJ--
