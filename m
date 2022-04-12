@@ -2,290 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D224FE50D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050FB4FE524
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 17:51:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348890AbiDLPsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 11:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37684 "EHLO
+        id S1354321AbiDLPxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 11:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235507AbiDLPsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:48:01 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5876320BCE;
-        Tue, 12 Apr 2022 08:45:43 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id n18so17129176plg.5;
-        Tue, 12 Apr 2022 08:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3okIYTvZNPFDunpvxgG2iXtNjtosYg6lQPzQ1MGwbJk=;
-        b=X/UPOyLBVYd9TIRyXWlv2m/qBkAxBI3gZcp892x+jLOpWGQjCrY6l21VxfC6OIj2zx
-         y+LNFLSq/2ySZEPpl9NRKL7mVdXtUA6ygKL9jgpGDbOZYiwjU1Vb610Kau3kM9gkp9Vb
-         pxoPd+4QWSBTcPUSacGXjBsZ1U6p1WJdjjzj1RpFHx6tlnqyz7G1VHbgGj/NqCc1OBoZ
-         s7apPROniiyoUB7V+1tf/XE6jONPrZleR1Ms1Hwt7RGFgF2SL8UDaLhwpJpepNe2ZOHX
-         1vbaO0ALE1SXpeS3xeAmff5kPNqCp0FmAlOvGBrg5Q4pOpLmKjxZ6qAgXnVtTr9VxIq3
-         DvRg==
+        with ESMTP id S1351060AbiDLPw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 11:52:29 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7F35F4D2;
+        Tue, 12 Apr 2022 08:50:11 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-d39f741ba0so21131981fac.13;
+        Tue, 12 Apr 2022 08:50:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3okIYTvZNPFDunpvxgG2iXtNjtosYg6lQPzQ1MGwbJk=;
-        b=aDrJgLzO7LLst3jqniN5B1bbzZIHUxgFJ+bxy3wJs/mYoLONtxdmtTgv+AJBqSJX3W
-         UMjlj3Yk2FkFQQDO4kPwlJm1kLhlKSmf48uLUFE01xprjlR72rEUtJkahXERjeI5o2U8
-         f+TYu9KlHrgdl7RhZfep/bSqvIeR+r0JsY1lbGqmyBlhtMTrOtatVmmKuZmhcybvkyDx
-         AcmdFXJmahkHRvVCOis8fbwP3YSHf3ej1VWEz4ev9dHy6QG6wqtCxm59VVTPF99ThVJG
-         KilXuMXrMIqwVvlsisV+WaYDVf4bLn29iFTp6Hv4geKEe8Hf+lQFQvi6mlJkDQ4qZmVH
-         B9VA==
-X-Gm-Message-State: AOAM532+pqcaalM9mnFGVqU07YTK9nglm52x9P3+K6KUCNZTXgwmMGtB
-        7kP5TpJVcq2tuKT788U9DE8=
-X-Google-Smtp-Source: ABdhPJwfCHUCHLh1AyfvndnhFyCvr6gFxb9RB5wBg1ql/h57JQt+JyCDcfyRnQmR3mPH3+JjWND2EQ==
-X-Received: by 2002:a17:902:eb81:b0:158:937e:adf with SMTP id q1-20020a170902eb8100b00158937e0adfmr1853244plg.123.1649778342872;
-        Tue, 12 Apr 2022 08:45:42 -0700 (PDT)
-Received: from V2.localdomain (M106073234000.v4.enabler.ne.jp. [106.73.234.0])
-        by smtp.gmail.com with ESMTPSA id pg14-20020a17090b1e0e00b001c75634df70sm3285157pjb.31.2022.04.12.08.45.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZNA3RtRbTOSzp1Zg/MKQMKPcySxQIZx2q6vIr3MdFp8=;
+        b=HUzwR+BipbmqnR/Qh7F0lnutARb43uiWStV1tzQPVNEAgoUvv79BRuOf15KwJ566iL
+         ITB4vlPYSI4QIn6TBZ6wFgpw+r18Up7nZJYDH1ZlNRv4BhXJGCH7OyopXsF0BCUx1hFZ
+         jYGcmdUcipt8zYsTDWU8MEmmgQpUEHe9rT2ITu0YxlTiy1c+8MSVhn3VDf3Jqacy1qST
+         nwjZA0y98ddba/tLCEn09OWWvi05Q/po99OpBKA8mVciN6rs1rLqaKI72obgUHXtbf6N
+         gRanwzIo83LWEiAh0KVRpJ7ezjBT3A2wZmr++VicyfCNY0S0nDSgEw4MgxRc2B2cExfi
+         8nPw==
+X-Gm-Message-State: AOAM532j5BQgO2bMKqTh70WILGz64aEZ6QzxLyW5W1HIYh+ap+kPWdHP
+        +72ARi89ByaKbuz0m+4k/w==
+X-Google-Smtp-Source: ABdhPJyZgxE30bekwBpxlZpef6JiIY5gtFmQYO/TK0Q9XIlFTziESsSwi0XHzrcr6VvGhLCbnTzWeg==
+X-Received: by 2002:a05:6870:3113:b0:d3:473b:3f1d with SMTP id v19-20020a056870311300b000d3473b3f1dmr2333741oaa.116.1649778611040;
+        Tue, 12 Apr 2022 08:50:11 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s24-20020a056808209800b002da3b9bf8e0sm12333974oiw.32.2022.04.12.08.50.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 08:45:42 -0700 (PDT)
-From:   SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-To:     takayoshi.shimamoto.360@gmail.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
+        Tue, 12 Apr 2022 08:50:10 -0700 (PDT)
+Received: (nullmailer pid 348051 invoked by uid 1000);
+        Tue, 12 Apr 2022 15:50:10 -0000
+Date:   Tue, 12 Apr 2022 10:50:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: BCM5301X: Add DT for Buffalo WZR-1166DHP2
-Date:   Wed, 13 Apr 2022 00:44:30 +0900
-Message-Id: <20220412154432.12124-1-takayoshi.shimamoto.360@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH 1/6] PCI: rcar-gen2: Add support for clocks
+Message-ID: <YlWfslEOdrf62KiP@robh.at.kernel.org>
+References: <20220412094029.287562-1-herve.codina@bootlin.com>
+ <20220412094029.287562-2-herve.codina@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220412094029.287562-2-herve.codina@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Buffalo WZR-1166DHP2  wireless router with
+On Tue, Apr 12, 2022 at 11:40:24AM +0200, Herve Codina wrote:
+> The PCI rcar-gen2 does not call any clk_prepare_enable().
+> This lead to an access failure when the driver tries to access
+> the IP (at least on a RZ/N1D platform).
+> 
+> Prepare and enable clocks using the bulk version of
+> clk_prepare_enable() in order to prepare and enable all clocks
+> attached to this device.
 
- - BCM4708A0
- - 256MiB DDR2 SDRAM
- - 128MiB NAND flash
- - 2T2R 11ac/a/b/g/n Wi-Fi
- - 4x 10/100M ethernet switch
+The binding says there is only a single clock, so it needs an update if 
+there are multiple clocks. (And ideally converted to DT schema format.)
 
-The hardware configuration is very similar to the WZR-1750DHP,
-except for memory size and number of antennas.
-
-Signed-off-by: SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
----
- .../boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts | 189 ++++++++++++++++++
- 1 file changed, 189 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts
-
-diff --git a/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts b/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts
-new file mode 100644
-index 000000000000..22e54a0a202a
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm4708-buffalo-wzr-1166dhp2.dts
-@@ -0,0 +1,189 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Broadcom BCM470X / BCM5301X ARM platform code.
-+ * DTS for Buffalo WZR-1166DHP2
-+ *
-+ * Copyright (C) 2014 Rafał Miłecki <zajec5@gmail.com>
-+ * Copyright (C) 2022 SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm4708.dtsi"
-+#include "bcm5301x-nand-cs0-bch8.dtsi"
-+
-+/ {
-+	compatible = "buffalo,wzr-1166dhp2", "brcm,bcm4708";
-+	model = "Buffalo WZR-1166DHP2 (BCM4708)";
-+
-+	chosen {
-+		bootargs = "console=ttyS0,115200";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x08000000>,
-+		      <0x88000000 0x08000000>;
-+	};
-+
-+	spi {
-+		compatible = "spi-gpio";
-+		num-chipselects = <1>;
-+		gpio-sck = <&chipcommon 7 0>;
-+		gpio-mosi = <&chipcommon 4 0>;
-+		cs-gpios = <&chipcommon 6 0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		hc595: gpio_spi@0 {
-+			compatible = "fairchild,74hc595";
-+			reg = <0>;
-+			registers-number = <1>;
-+			spi-max-frequency = <100000>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		usb {
-+			label = "bcm53xx:blue:usb";
-+			gpios = <&hc595 0 GPIO_ACTIVE_HIGH>;
-+			trigger-sources = <&ohci_port1>, <&ehci_port1>,
-+					  <&xhci_port1>, <&ohci_port2>,
-+					  <&ehci_port2>;
-+			linux,default-trigger = "usbport";
-+		};
-+
-+		power0 {
-+			label = "bcm53xx:red:power";
-+			gpios = <&hc595 1 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		power1 {
-+			label = "bcm53xx:white:power";
-+			gpios = <&hc595 2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		router0 {
-+			label = "bcm53xx:blue:router";
-+			gpios = <&hc595 3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		router1 {
-+			label = "bcm53xx:amber:router";
-+			gpios = <&hc595 4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		wan {
-+			label = "bcm53xx:blue:wan";
-+			gpios = <&hc595 5 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		wireless0 {
-+			label = "bcm53xx:blue:wireless";
-+			gpios = <&hc595 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		wireless1 {
-+			label = "bcm53xx:amber:wireless";
-+			gpios = <&hc595 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		restart {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&chipcommon 11 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		aoss {
-+			label = "AOSS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&chipcommon 12 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		/* Commit mode set by switch? */
-+		mode {
-+			label = "Mode";
-+			linux,code = <KEY_SETUP>;
-+			gpios = <&chipcommon 13 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		/* Switch: AP mode */
-+		sw_ap {
-+			label = "AP";
-+			linux,code = <BTN_0>;
-+			gpios = <&chipcommon 14 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		eject {
-+			label = "USB eject";
-+			linux,code = <KEY_EJECTCD>;
-+			gpios = <&chipcommon 15 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&usb2 {
-+	vcc-gpio = <&chipcommon 9 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&usb3 {
-+	vcc-gpio = <&chipcommon 10 GPIO_ACTIVE_LOW>;
-+};
-+
-+&spi_nor {
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&srab {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			reg = <0>;
-+			label = "lan1";
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			label = "lan2";
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+			label = "lan3";
-+		};
-+
-+		port@3 {
-+			reg = <3>;
-+			label = "lan4";
-+		};
-+
-+		port@4 {
-+			reg = <4>;
-+			label = "wan";
-+		};
-+
-+		port@5 {
-+			reg = <5>;
-+			label = "cpu";
-+			ethernet = <&gmac0>;
-+		};
-+	};
-+};
--- 
-2.30.2
-
+Rob
