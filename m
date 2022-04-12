@@ -2,140 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67FE44FCC74
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 04:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 438D84FCCC1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 04:56:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbiDLChk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 22:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47848 "EHLO
+        id S232016AbiDLC6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 22:58:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233008AbiDLChj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 22:37:39 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A70D19C31
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:35:20 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-de48295467so19451420fac.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:35:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=27t0/Qo4lvhMaM3TOiDm3Op0HQcIUZVxhkHZUsq/h+k=;
-        b=Tx/Tmmv9cHXeVpqxCWqj5GsiGQfPuyPwy4ZJMqCZoCmjSIUC2mrhsAqTGh697Gst1L
-         QFHWj6TLIKNnv8EJk8n/SO9zlOHUFgyrE3AOsDxCbR9fhedJk6tQYkJnoew1SfXL19IW
-         iJb7r8PL73g+YsrPSvfbkQyH0Ug3gUohwbGfcH+uEV5vxkngt2D9/qreYYvdETlrj2fz
-         tzpN451OGElP9tZrzg5+SE2DuAg3kiloaUDwSZSNxbvkbwOeF3N0y7bAWuW9ByPM2WC6
-         5H3rpSpxUBsmzS+pXakv/NZVpPCRpjDXT6ME0mbbGumtz4FVeQru8tPLQe832jmxBi+P
-         F3jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=27t0/Qo4lvhMaM3TOiDm3Op0HQcIUZVxhkHZUsq/h+k=;
-        b=1UjJs32FCTv0iBMJ+mwsxD0qsFaccA09F1M2HW+s3CecSBDKacR6mcGEaWw5+tdZ9z
-         CdDENpDt6zx4MzUqLLLUG5VRQbmEaH3r2KEgBn+WanH6rPd9gHV6LjKXMtC5TCOAOUaf
-         aLleA+UB9Yl/BK59LIvuE+Ft8eSNleL146BgFUbLRGgX7y6kA7qPkt7zCiNz11q8HytP
-         MD22q9gRj2NPy6caJJawCgWDEYvgfF0+g3SNBtvdEPfRhayA/srPy//+B1I9s0tVM7QZ
-         QHheP7ZgkF8uu5Z8ZwMy3yutjerNtnQH5YmqHPS9w3R3dn1Oct53OrLseKFvbx0Gib/Q
-         2Dmg==
-X-Gm-Message-State: AOAM530kog9m3GBEnrmp6uP0ZFDNV2+2I77Udfsew6gBGELPyt/DgkJA
-        2OlqfqMje8AMyjyN3yvwF14kgAieT5R3hGKM
-X-Google-Smtp-Source: ABdhPJw/w+OlcERZQK/Rj6XF2LKTmJs8sqZLOUp33SNe35UFdg2B00DCfvuhLcn2uIV4Glaep/a58w==
-X-Received: by 2002:a05:6870:f104:b0:da:b3f:3248 with SMTP id k4-20020a056870f10400b000da0b3f3248mr1138491oac.248.1649730919742;
-        Mon, 11 Apr 2022 19:35:19 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id i28-20020a056870891c00b000de777f1a41sm12756872oao.46.2022.04.11.19.35.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 19:35:18 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 21:35:17 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of
- UFS node
-Message-ID: <YlTlZa35A4lu02oI@builder.lan>
-References: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
- <dbe6d9c5-f717-785f-e65d-baa1328cea2b@linaro.org>
- <Ykx6NWrcf4IA2Mam@ripper>
- <CAA8EJpqrJr5RB8E6CQ+cAgp6bad4m_LSG6CPeMsf+Ws0jqFf1Q@mail.gmail.com>
+        with ESMTP id S231405AbiDLC6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 22:58:53 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7447D15FD1;
+        Mon, 11 Apr 2022 19:56:37 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 876B83201134;
+        Mon, 11 Apr 2022 22:56:34 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Mon, 11 Apr 2022 22:56:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1649732194; x=
+        1649818594; bh=GEVsmM8mHkm2qG9DTDJgBu3H8Y9rP3KCaLB0pTjkV5s=; b=G
+        vqYuC1RwjHaEKN20jPrg/yicidZ2nqNoJ2CRITPHmY8knRo/a5PW1Vy4vqkM3pwT
+        5VDLFmJe3UFS9YexgXgpQh86JUP4Z/0Yny4uZS2sES2N369XBtiqju2ferrZeM1B
+        EVgxPioUk3DEYHXigkKmoNWDs6DEFsD4KH+73n7O1jZrDuHPb44lynRpfeSXAHax
+        PUixnA2yP1Fx0xqY3HsudNMdKJhlKYw2QWAf4XltHPgOwX7Xw1X3eFKeEyDfEySO
+        VCztEDKxjBxg4jwkfQnlcQG0zgmkLKyJD5f6/hz6318UMmHSjxUTvnnw2hEd69SX
+        /ImufdQIXHcxh3QwzPF3g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1649732194; x=1649818594; bh=GEVsmM8mHkm2q
+        G9DTDJgBu3H8Y9rP3KCaLB0pTjkV5s=; b=RHbmbrRjpYdes/hY+qNpyMtTGA7Vt
+        v2o9jaYz/ghQV6r/b4JabiNX+DQvyNWpIplpm9DsWnG1rL0YacZ/FII8Im4+9TQ5
+        BkZFmDys9Z6d5gtgEumkx68/TZm6SNXJv/LaJ39wrbgE91AVMJeP06ruZzgce1jh
+        Bh2EnPTB2mGhwOqWnaDOgo1STWlEB3YQZ4lZ8AK7A8srL8rQ8OdceAbdN5f/zcSK
+        qc7z6vrhpxvsEf+WBn6Rw4mHcHzo0FQ+Vs/qWEcUGhVYysGYe7EhAehi9TbWaMP6
+        FhmBO0cGcpg1TMr8dom4wAPI6hnA4Wmb79ZHcAvjmKRTOAQndkFTuCNIg==
+X-ME-Sender: <xms:YepUYg6C6oiPRMxmgjjI9LV9IbU33EiZ1mglFefbQN4WmAhMKqy8Cg>
+    <xme:YepUYh4QkE1fWKFstK5Ua-ye-x2udMZOn9KRNzoNmsiPMSmb24DnCyoAET15gBE9J
+    tIJ86wWpx7Ivv6emg>
+X-ME-Received: <xmr:YepUYvco2kvij6BP1YI2gzxmwuw4qePQhGGUawxvLTRjl-WKn-P1AAw4GsfrR1k2DZHOZeutCH4N0TZJB5aIyT3FApUy2Feft4T_CirlkG7lFA0iphTQGeeUHg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekjedgieefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
+    udetteelieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:YepUYlLHSIcWA_HfEcGpcgURZgVRR5Jquw3pvxmwwBAK81VncHqRKg>
+    <xmx:YepUYkJO7BQTpjaeGpZlDZDnr6zO9VMyHr9RtT_k3tlGfqwkIovYHA>
+    <xmx:YepUYmw6qxhWvT_NAC1uJnjAZ-_Y7zefUor75-DkmBLEaBlXWjxyzA>
+    <xmx:YupUYhD16u6z1peFxWat0RxNgFZVyHG8fe8B4pjvTgWzoB_gN1q2kA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 11 Apr 2022 22:56:32 -0400 (EDT)
+Subject: Re: [PATCH 03/10] drm/sun4i: Remove obsolete references to
+ PHYS_OFFSET
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+References: <20220411043423.37333-1-samuel@sholland.org>
+ <20220411043423.37333-4-samuel@sholland.org> <3167527.44csPzL39Z@kista>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <04d64c79-8379-7fad-2554-c8b88d733ec0@sholland.org>
+Date:   Mon, 11 Apr 2022 21:56:31 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpqrJr5RB8E6CQ+cAgp6bad4m_LSG6CPeMsf+Ws0jqFf1Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <3167527.44csPzL39Z@kista>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 05 Apr 12:38 CDT 2022, Dmitry Baryshkov wrote:
-
-> On Tue, 5 Apr 2022 at 20:17, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Tue 05 Apr 08:38 PDT 2022, Dmitry Baryshkov wrote:
-> >
-> > > On 11/03/2022 01:19, Vladimir Zapolskiy wrote:
-> > > > All interconnect device tree nodes on sm8450 are 2-cells, however in
-> > > > UFS node they are handled as 1-cells, fix it.
-> > > >
-> > > > Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
-> > > > Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> > >
-> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > >
-> > > Bjorn, could you please this pick for the -rc kernel?
-> > >
-> >
-> > The change is obviously correct, but what difference does this change
-> > make with the current implementation?
+On 4/11/22 10:37 AM, Jernej Škrabec wrote:
+> Dne ponedeljek, 11. april 2022 ob 06:34:15 CEST je Samuel Holland napisal(a):
+>> commit b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a
+>> central place") added a platform device notifier that sets the DMA
+>> offset for all of the display engine frontend and backend devices.
+>>
+>> The code applying the offset to DMA buffer physical addresses was then
+>> removed from the backend driver in commit 756668ba682e ("drm/sun4i:
+>> backend: Remove the MBUS quirks"), but the code subtracting PHYS_OFFSET
+>> was left in the frontend driver.
+>>
+>> As a result, the offset was applied twice in the frontend driver. This
+>> likely went unnoticed because it only affects specific configurations
+>> (scaling or certain pixel formats) where the frontend is used, on boards
+>> with both one of these older SoCs and more than 1 GB of DRAM.
+>>
+>> In addition, the references to PHYS_OFFSET prevent compiling the driver
+>> on architectures where PHYS_OFFSET is not defined.
+>>
+>> Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a central 
+> place")
+>> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > 
-> it makes interconnect paths probe correctly. All NoC have
-> #interconnec-cells = <2> now.
+> Good catch! Actually, people complained about non-working display on 
+> Cubietruck IIRC, which has 2 GB of RAM.
 > 
+> Did you test this on HW?
 
-But there's no code in the UFS driver that calls of_icc_get(), so what
-does this actually do? (Other than correcting the dtb for the day when
-we add that support to the driver).
+The only DE1 board I have is an A33 tablet with 512 MB of DRAM. So while I
+boot-tested the patch, I am not able to verify if it has any real effect.
+
+The reason for sending this is that folks ran in to compilation errors on
+RISC-V. And I was surprised to still see references to PHYS_OFFSET, since
+sunxi_mbus.c includes the frontend compatibles.
 
 Regards,
-Bjorn
+Samuel
 
-> >
-> > Regards,
-> > Bjorn
-> >
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
-> > > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > > index 0cd5af8c03bd..bbd38b55e976 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > > @@ -1376,8 +1376,8 @@ ufs_mem_hc: ufshc@1d84000 {
-> > > >                     iommus = <&apps_smmu 0xe0 0x0>;
-> > > > -                   interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
-> > > > -                                   <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
-> > > > +                   interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
-> > > > +                                   <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
-> > > >                     interconnect-names = "ufs-ddr", "cpu-ufs";
-> > > >                     clock-names =
-> > > >                             "core_clk",
-> > >
-> > >
-> > > --
-> > > With best wishes
-> > > Dmitry
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 > 
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+> Best regards,
+> Jernej
