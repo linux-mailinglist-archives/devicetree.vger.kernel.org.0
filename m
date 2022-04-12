@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 860CC4FCC70
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 04:30:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67FE44FCC74
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 04:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243030AbiDLC3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Apr 2022 22:29:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36236 "EHLO
+        id S231308AbiDLChk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Apr 2022 22:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238083AbiDLC3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 22:29:18 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8EB2A272
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:26:59 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id j83so17697080oih.6
-        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:26:59 -0700 (PDT)
+        with ESMTP id S233008AbiDLChj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Apr 2022 22:37:39 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A70D19C31
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:35:20 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-de48295467so19451420fac.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Apr 2022 19:35:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mK8JcrG8Qx2kyMEBNEpiV/VoNjnbjCx6vfxA6ZQWMKQ=;
-        b=rS0NZmTt44rjYAkBCsrNwXriu57BaIZUATZhgV6TKotVaRv3kECL/YGYu8wDiILrsd
-         iJ936GXx4PSHbW5R3y/RIa3UbuWCvPfAzETQwVo9Q/PI93RfPmwfyDF8H0+qd9GIbZWi
-         PAfR7CDPhb/VpqR/G1y4QOiZPYVYnf3dbEw3e5y/cy2cfIU0iSA9Ui2G9X1yFvp/0WLK
-         L741lCGtTRiiohYk/HqzoGjJhciuyf5aTr4wG7vcwqYI06dIyJB1Dob1NcHzGGByc4UB
-         aeXLfQckVVGFq3YWmnx9ynY99ho0pCrCOQDaBWdDpSkeEJ/iLXxUi6UDYCtqHZ8YQwQK
-         ni/A==
+         :content-disposition:in-reply-to;
+        bh=27t0/Qo4lvhMaM3TOiDm3Op0HQcIUZVxhkHZUsq/h+k=;
+        b=Tx/Tmmv9cHXeVpqxCWqj5GsiGQfPuyPwy4ZJMqCZoCmjSIUC2mrhsAqTGh697Gst1L
+         QFHWj6TLIKNnv8EJk8n/SO9zlOHUFgyrE3AOsDxCbR9fhedJk6tQYkJnoew1SfXL19IW
+         iJb7r8PL73g+YsrPSvfbkQyH0Ug3gUohwbGfcH+uEV5vxkngt2D9/qreYYvdETlrj2fz
+         tzpN451OGElP9tZrzg5+SE2DuAg3kiloaUDwSZSNxbvkbwOeF3N0y7bAWuW9ByPM2WC6
+         5H3rpSpxUBsmzS+pXakv/NZVpPCRpjDXT6ME0mbbGumtz4FVeQru8tPLQe832jmxBi+P
+         F3jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mK8JcrG8Qx2kyMEBNEpiV/VoNjnbjCx6vfxA6ZQWMKQ=;
-        b=wjGvfpkt5xeZ0TERdLEHqJj9HuFfaCsFtuuIaUQHjQffkOzkGRtWTGMn7jNZ92Lcax
-         VhxKgscbGpn+rD5cGKke8Etx0+BgxztVINyrHT9NsQD4UnFn4czlEzCEQukbGGfsW1k3
-         EYchmu1rZgQ4tMG55iDVpzVSgxxkAMDRGukRsXRW7SaLltdp+ZA4CmEyVFmnOq1SuMmJ
-         bqiabpk7zfbB5bkRJApAWBlhVwJzK2oIiQaigg4ZMCrIQzKLUo1bkKmAe31W06QDcGT6
-         hcNLOIUFabQocYgKnAhrFnNA4U+NLG3pkUmtkMF9e+wbY4Wugslqda68GF4dv65NDVmA
-         gxGQ==
-X-Gm-Message-State: AOAM532GfOfC5hdlIHoRWnVHtFjtKDE1xJb1eqya1wu9RLPmf9Ex0r6y
-        qT7jnesn04qxml+DFJgRuIwyhQ==
-X-Google-Smtp-Source: ABdhPJwiPXSmxKWuhSyRkhkg/sD3E+kIyeohpDu6LQ6plE/QLEfcaNrVHANbTmxfzoYlkQ3d7p6H0A==
-X-Received: by 2002:a05:6808:1827:b0:2da:5085:2e78 with SMTP id bh39-20020a056808182700b002da50852e78mr868079oib.172.1649730419134;
-        Mon, 11 Apr 2022 19:26:59 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=27t0/Qo4lvhMaM3TOiDm3Op0HQcIUZVxhkHZUsq/h+k=;
+        b=1UjJs32FCTv0iBMJ+mwsxD0qsFaccA09F1M2HW+s3CecSBDKacR6mcGEaWw5+tdZ9z
+         CdDENpDt6zx4MzUqLLLUG5VRQbmEaH3r2KEgBn+WanH6rPd9gHV6LjKXMtC5TCOAOUaf
+         aLleA+UB9Yl/BK59LIvuE+Ft8eSNleL146BgFUbLRGgX7y6kA7qPkt7zCiNz11q8HytP
+         MD22q9gRj2NPy6caJJawCgWDEYvgfF0+g3SNBtvdEPfRhayA/srPy//+B1I9s0tVM7QZ
+         QHheP7ZgkF8uu5Z8ZwMy3yutjerNtnQH5YmqHPS9w3R3dn1Oct53OrLseKFvbx0Gib/Q
+         2Dmg==
+X-Gm-Message-State: AOAM530kog9m3GBEnrmp6uP0ZFDNV2+2I77Udfsew6gBGELPyt/DgkJA
+        2OlqfqMje8AMyjyN3yvwF14kgAieT5R3hGKM
+X-Google-Smtp-Source: ABdhPJw/w+OlcERZQK/Rj6XF2LKTmJs8sqZLOUp33SNe35UFdg2B00DCfvuhLcn2uIV4Glaep/a58w==
+X-Received: by 2002:a05:6870:f104:b0:da:b3f:3248 with SMTP id k4-20020a056870f10400b000da0b3f3248mr1138491oac.248.1649730919742;
+        Mon, 11 Apr 2022 19:35:19 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id g25-20020a544f99000000b002da70c710b8sm12286102oiy.54.2022.04.11.19.26.57
+        by smtp.gmail.com with ESMTPSA id i28-20020a056870891c00b000de777f1a41sm12756872oao.46.2022.04.11.19.35.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Apr 2022 19:26:58 -0700 (PDT)
-Date:   Mon, 11 Apr 2022 21:26:56 -0500
+        Mon, 11 Apr 2022 19:35:18 -0700 (PDT)
+Date:   Mon, 11 Apr 2022 21:35:17 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Beno?t Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Andy Gross <agross@kernel.org>, linux-omap@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: Fix more boolean properties with values
-Message-ID: <YlTjcNNM/22wtjSY@builder.lan>
-References: <20220407225107.2175958-1-robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of
+ UFS node
+Message-ID: <YlTlZa35A4lu02oI@builder.lan>
+References: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
+ <dbe6d9c5-f717-785f-e65d-baa1328cea2b@linaro.org>
+ <Ykx6NWrcf4IA2Mam@ripper>
+ <CAA8EJpqrJr5RB8E6CQ+cAgp6bad4m_LSG6CPeMsf+Ws0jqFf1Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220407225107.2175958-1-robh@kernel.org>
+In-Reply-To: <CAA8EJpqrJr5RB8E6CQ+cAgp6bad4m_LSG6CPeMsf+Ws0jqFf1Q@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,126 +75,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 07 Apr 17:51 CDT 2022, Rob Herring wrote:
+On Tue 05 Apr 12:38 CDT 2022, Dmitry Baryshkov wrote:
 
-> Boolean properties in DT are present or not present and don't take a value.
-> A property such as 'foo = <0>;' evaluated to true. IOW, the value doesn't
-> matter.
+> On Tue, 5 Apr 2022 at 20:17, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Tue 05 Apr 08:38 PDT 2022, Dmitry Baryshkov wrote:
+> >
+> > > On 11/03/2022 01:19, Vladimir Zapolskiy wrote:
+> > > > All interconnect device tree nodes on sm8450 are 2-cells, however in
+> > > > UFS node they are handled as 1-cells, fix it.
+> > > >
+> > > > Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
+> > > > Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> > >
+> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >
+> > > Bjorn, could you please this pick for the -rc kernel?
+> > >
+> >
+> > The change is obviously correct, but what difference does this change
+> > make with the current implementation?
 > 
-> It may have been intended that 0 values are false, but there is no change
-> in behavior with this patch.
+> it makes interconnect paths probe correctly. All NoC have
+> #interconnec-cells = <2> now.
 > 
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Claudiu Beznea <claudiu.beznea@microchip.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: "Benoît Cousson" <bcousson@baylibre.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-omap@vger.kernel.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/arm/boot/dts/at91-sam9_l9260.dts            | 2 +-
->  arch/arm/boot/dts/imx28-ts4600.dts               | 2 +-
->  arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi | 4 ++--
->  arch/arm/boot/dts/qcom-ipq8064.dtsi              | 8 ++++----
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+But there's no code in the UFS driver that calls of_icc_get(), so what
+does this actually do? (Other than correcting the dtb for the day when
+we add that support to the driver).
 
 Regards,
 Bjorn
 
->  4 files changed, 8 insertions(+), 8 deletions(-)
+> >
+> > Regards,
+> > Bjorn
+> >
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+> > > >   1 file changed, 2 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > index 0cd5af8c03bd..bbd38b55e976 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > @@ -1376,8 +1376,8 @@ ufs_mem_hc: ufshc@1d84000 {
+> > > >                     iommus = <&apps_smmu 0xe0 0x0>;
+> > > > -                   interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+> > > > -                                   <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+> > > > +                   interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+> > > > +                                   <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+> > > >                     interconnect-names = "ufs-ddr", "cpu-ufs";
+> > > >                     clock-names =
+> > > >                             "core_clk",
+> > >
+> > >
+> > > --
+> > > With best wishes
+> > > Dmitry
 > 
-> diff --git a/arch/arm/boot/dts/at91-sam9_l9260.dts b/arch/arm/boot/dts/at91-sam9_l9260.dts
-> index 1e2a28c2f365..2fb51b9aca2a 100644
-> --- a/arch/arm/boot/dts/at91-sam9_l9260.dts
-> +++ b/arch/arm/boot/dts/at91-sam9_l9260.dts
-> @@ -101,7 +101,7 @@ pinctrl_board_mmc0: mmc0-board {
->  		nand0: nand@40000000 {
->  			nand-bus-width = <8>;
->  			nand-ecc-mode = "soft";
-> -			nand-on-flash-bbt = <1>;
-> +			nand-on-flash-bbt;
->  			status = "okay";
->  		};
->  
-> diff --git a/arch/arm/boot/dts/imx28-ts4600.dts b/arch/arm/boot/dts/imx28-ts4600.dts
-> index 097ec35c62d8..0d58da1c0cc5 100644
-> --- a/arch/arm/boot/dts/imx28-ts4600.dts
-> +++ b/arch/arm/boot/dts/imx28-ts4600.dts
-> @@ -26,7 +26,7 @@ ssp0: spi@80010000 {
->  				pinctrl-0 = <&mmc0_4bit_pins_a
->  					     &mmc0_sck_cfg
->  					     &en_sd_pwr>;
-> -				broken-cd = <1>;
-> +				broken-cd;
->  				bus-width = <4>;
->  				vmmc-supply = <&reg_vddio_sd0>;
->  				status = "okay";
-> diff --git a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
-> index b4664ab00256..d3da8b1b473b 100644
-> --- a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
-> +++ b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
-> @@ -118,8 +118,8 @@ usb@6,0 {
->  		gpmc,device-width = <2>;
->  		gpmc,wait-pin = <0>;
->  		gpmc,burst-length = <4>;
-> -		gpmc,cycle2cycle-samecsen = <1>;
-> -		gpmc,cycle2cycle-diffcsen = <1>;
-> +		gpmc,cycle2cycle-samecsen;
-> +		gpmc,cycle2cycle-diffcsen;
->  		gpmc,cs-on-ns = <0>;
->  		gpmc,cs-rd-off-ns = <45>;
->  		gpmc,cs-wr-off-ns = <45>;
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> index 996f4458d9fc..8cb04aa8ed2f 100644
-> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> @@ -972,7 +972,7 @@ gmac0: ethernet@37000000 {
->  
->  			snps,axi-config = <&stmmac_axi_setup>;
->  			snps,pbl = <32>;
-> -			snps,aal = <1>;
-> +			snps,aal;
->  
->  			qcom,nss-common = <&nss_common>;
->  			qcom,qsgmii-csr = <&qsgmii_csr>;
-> @@ -996,7 +996,7 @@ gmac1: ethernet@37200000 {
->  
->  			snps,axi-config = <&stmmac_axi_setup>;
->  			snps,pbl = <32>;
-> -			snps,aal = <1>;
-> +			snps,aal;
->  
->  			qcom,nss-common = <&nss_common>;
->  			qcom,qsgmii-csr = <&qsgmii_csr>;
-> @@ -1020,7 +1020,7 @@ gmac2: ethernet@37400000 {
->  
->  			snps,axi-config = <&stmmac_axi_setup>;
->  			snps,pbl = <32>;
-> -			snps,aal = <1>;
-> +			snps,aal;
->  
->  			qcom,nss-common = <&nss_common>;
->  			qcom,qsgmii-csr = <&qsgmii_csr>;
-> @@ -1044,7 +1044,7 @@ gmac3: ethernet@37600000 {
->  
->  			snps,axi-config = <&stmmac_axi_setup>;
->  			snps,pbl = <32>;
-> -			snps,aal = <1>;
-> +			snps,aal;
->  
->  			qcom,nss-common = <&nss_common>;
->  			qcom,qsgmii-csr = <&qsgmii_csr>;
+> 
+> 
 > -- 
-> 2.32.0
-> 
+> With best wishes
+> Dmitry
