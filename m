@@ -2,103 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D21E4FEA30
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 00:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1184FEB4F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiDLWtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 18:49:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53112 "EHLO
+        id S229933AbiDLX2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 19:28:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiDLWtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 18:49:00 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857F8111DF1
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:30:30 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-e2fa360f6dso115012fac.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 14:30:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=jD+82WbEufy2X8i5Y0RTwJaeb0VsOpJSpK4/ctGdy1w=;
-        b=pTQjcsxviay2afn3gp0HiWqJ107Q+sJEeHW/DRFziwwMZsQcnJtz5ZCBEqEkPgicnJ
-         ypGM22GlrwrYGIqGSrQ6cUdDYapdCrcKJhVJWXtruFmxiPkAYV9CVWxcbE3J9G3erUCE
-         dMeBMKU576Dh3M1i5QmA0TJuKgVoBSCOjff8m8k9OIQvrrHmQjSqA8Jr3f3xf+u+lU3j
-         Ej2bYFxkiiRTozHF4qesVFmnfoYiAKI/ZGM1GrCn8HEjLIzCHxhyCAAvjy7Ldl1v5uI7
-         O1zzajBiB4/OBmstfB4m6ZKIE5BkufKE3quCgfYEg7al3Tp8sR1wuRL86nJT0DDphzOK
-         pJPA==
+        with ESMTP id S230262AbiDLX1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:27:46 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E54D1129;
+        Tue, 12 Apr 2022 15:12:43 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id q129so198151oif.4;
+        Tue, 12 Apr 2022 15:12:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jD+82WbEufy2X8i5Y0RTwJaeb0VsOpJSpK4/ctGdy1w=;
-        b=zTT4VdRAKNIZE6ZfAlCwW9hYFoxU8MU89umQGHubxovoEtrn87TlKEBj+800xZeVeZ
-         xjCzP3pT99WELTEwIhiRitieR+AXaFsgHY0jg+viXk4KdGXMhHY8ifJkKhesu9hYT2pR
-         4nwijycM/nDZYO1nlHCHrWimOztrp/kjNB7MG+Llj7ne0qni0Q9pLHiwQQ6eopk7usGv
-         qYpyZX72wzUge6QcwH1nxqinOLtpe4MVDCa6VUq/Td3udbBsfZqgzIFHazy8abj/6wEL
-         w6rsLTbP5n8HtnCap48GJacoTgHQkQtHY9rcsstgrfSDfSwOV0uu6/W+tj/KAwYjOcJD
-         DyNw==
-X-Gm-Message-State: AOAM5313PI1aUaAk7yzbBC6NINlb0bQ1r1g+t8pNvkhodO2JkFO54eW0
-        bbZrFfgllg8HBfpjQoG5Ha+HIMlPrtKxQRpp
-X-Google-Smtp-Source: ABdhPJwz0V9sKmC9Pmd2YQ7iBDYhDj7EjLvAhBCgQwdGm8KXnbHnH7n+K0TP4vTkyN+i6c7cGCxQMA==
-X-Received: by 2002:a05:6870:d62c:b0:e2:d756:e7c8 with SMTP id a44-20020a056870d62c00b000e2d756e7c8mr2867301oaq.156.1649798924907;
-        Tue, 12 Apr 2022 14:28:44 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id u7-20020a05687036c700b000da4bcdae42sm13362331oak.13.2022.04.12.14.28.43
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=47WaZ6kjUZsT9iTQ2UXEwksvZRBMq7QZhouU2/Ai3wA=;
+        b=nn6akzkksEjsEa+Rwnpp2HMTxuAp3mqJeP1ata3p5oLL6UQhqbx1fYcpOjuiA06rXV
+         7a/ohOIYcGO/0U88pNb/2EPA/NyceqrkmSX9XQNY8YibocHcPdlqTJYlCAv7vGAxrxOw
+         /KTzcdPO8BOpSWvaYVvXLC2S0+PpAtXNRKO78SVEFVHe+mxzSXXaSc6rUo1ryCUTgLU6
+         P6XMWUFEowaHzudYvJVmHf3VixN31urF0P84SU2bQKnVO0qDdYbE7GdTTaXIPQJ/Is7h
+         3mKWi3l2La2AJ7Y/CU/lx6sPRxUnCpktdYPIk2JovqyaEd3NLk0n7oxCaa9bGZSWfIc0
+         UniA==
+X-Gm-Message-State: AOAM5326+WAHa28aGa6jdVL1Z1QErbQGuwh6RJWKXJYbXMo1A6mk+I8I
+        eR8PkP40eRK4Yqh8hCBgWe6CNHu7NA==
+X-Google-Smtp-Source: ABdhPJy0+SAQRoWAmj5LECu0tTl+2mffhIhmvVHUT1qzdnR8HC/3zPqvSt1AiEHDsaC+FDvuG0T6Jg==
+X-Received: by 2002:a05:6870:796:b0:da:3d6a:101d with SMTP id en22-20020a056870079600b000da3d6a101dmr2996279oab.20.1649799369047;
+        Tue, 12 Apr 2022 14:36:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p18-20020a056830131200b005ccf8ac6207sm13941666otq.80.2022.04.12.14.36.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 14:28:43 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 14:30:58 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Tue, 12 Apr 2022 14:36:08 -0700 (PDT)
+Received: (nullmailer pid 984530 invoked by uid 1000);
+        Tue, 12 Apr 2022 21:36:08 -0000
+Date:   Tue, 12 Apr 2022 16:36:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Camel Guo <camel.guo@axis.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: dmaengine: qcom: gpi: add compatible
- for sm8350/sm8350
-Message-ID: <YlXvkv8c56+Pv3c0@ripper>
-References: <20220406132508.1029348-1-vkoul@kernel.org>
- <20220406132508.1029348-2-vkoul@kernel.org>
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@axis.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
+Message-ID: <YlXwyKkkC1VoPpjU@robh.at.kernel.org>
+References: <20220412135232.1943677-1-camel.guo@axis.com>
+ <20220412135232.1943677-2-camel.guo@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220406132508.1029348-2-vkoul@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220412135232.1943677-2-camel.guo@axis.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 06 Apr 06:25 PDT 2022, Vinod Koul wrote:
-
-> Add the compatible for newer qcom socs with gpi dma i.e qcom sm8350 and
-> sm8450.
+On Tue, Apr 12, 2022 at 03:52:31PM +0200, Camel Guo wrote:
+> Document the TMP401, TMP411 and TMP43x device devicetree bindings
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
+> Signed-off-by: Camel Guo <camel.guo@axis.com>
 > ---
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 2 ++
->  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> index e614fe3187bb..67f046a4a442 100644
-> --- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> @@ -22,6 +22,8 @@ properties:
->        - qcom,sdm845-gpi-dma
->        - qcom,sm8150-gpi-dma
->        - qcom,sm8250-gpi-dma
-> +      - qcom,sm8350-gpi-dma
-> +      - qcom,sm8450-gpi-dma
+> Notes:
+>  v2:
+>  - Fix format and describe hardware properties instead of programming
+>    models
+> 
+>  .../devicetree/bindings/hwmon/ti,tmp401.yaml  | 112 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
+> new file mode 100644
+> index 000000000000..dae4df36935e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/ti,tmp401.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TMP401, TPM411 and TMP43x temperature sensor
+> +
+> +maintainers:
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +description: |
+> +  ±1°C Remote and Local temperature sensor
+> +
+> +  Datasheets:
+> +  https://www.ti.com/lit/ds/symlink/tmp401.pdf
+> +  https://www.ti.com/lit/ds/symlink/tmp411.pdf
+> +  https://www.ti.com/lit/ds/symlink/tmp431.pdf
+> +  https://www.ti.com/lit/ds/symlink/tmp435.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tmp401
+> +      - ti,tmp411
+> +      - ti,tmp431
+> +      - ti,tmp432
+> +      - ti,tmp435
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+
+You don't have any child nodes and these are for child nodes with 'reg'.
+
+> +
+> +  ti,extended-range-enable:
+> +    description:
+> +      When set, this sensor measures over extended temperature range.
+> +    type: boolean
+> +
+> +  ti,n-factor:
+
+Funny, I just ran across this property today for tmp421...
+
+Can the schema be shared?
+
+> +    description:
+> +      value to be used for converting remote channel measurements to
+> +      temperature.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    items:
+> +      minimum: 0
+> +      maximum: 255
+
+Isn't this property signed and should be -128 to -127? The code treats 
+the existing cases as signed. One schema is correct and one is like you 
+have it.
+
+> +
+> +  ti,beta-compensation:
+> +    description:
+> +      value to select beta correction range.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    items:
+> +      minimum: 0
+> +      maximum: 15
+
+Drop 'items'. It is not an array.
+
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tmp401
+> +    then:
+> +      properties:
+> +        ti,n-factor: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tmp401
+> +              - ti,tmp411
+> +    then:
+> +      properties:
+> +        ti,beta-compensation: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      sensor@4c {
+> +        compatible = "ti,tmp401";
+> +        reg = <0x4c>;
+> +      };
+> +    };
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      sensor@4c {
+> +        compatible = "ti,tmp431";
+> +        reg = <0x4c>;
+> +        ti,extended-range-enable;
+> +        ti,n-factor = <0x3b>;
+> +        ti,beta-compensation = <0x7>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 61d9f114c37f..6b0d8f5cc68e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19838,6 +19838,7 @@ TMP401 HARDWARE MONITOR DRIVER
+>  M:	Guenter Roeck <linux@roeck-us.net>
+>  L:	linux-hwmon@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
+>  F:	Documentation/hwmon/tmp401.rst
+>  F:	drivers/hwmon/tmp401.c
 >  
->    reg:
->      maxItems: 1
 > -- 
-> 2.34.1
+> 2.30.2
+> 
 > 
