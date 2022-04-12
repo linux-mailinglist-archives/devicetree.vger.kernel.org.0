@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 301B54FDC79
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 053304FDC80
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351989AbiDLKbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:31:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
+        id S236934AbiDLKbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379265AbiDLKTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:19:38 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690C255A9
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:19:20 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id c6so6447982edn.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:19:20 -0700 (PDT)
+        with ESMTP id S1379593AbiDLKTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:19:45 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5032DFDD
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:21:27 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id w18so21551878edi.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:21:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yhcCIU7DE0IB/Ct8ayO2BJ1LjRabGTwtnXdW2NhwWWs=;
-        b=PqvgzdPye1JbNnLeS1ndUKeSzvbTLzf9u9jwRQH0yehgVdfIkSzT7BwhC2AR5ExPmP
-         eCMjwBjZh2zZ5eZs3r636bK1nLu40Tw7E29QrLn3hXAQ3Jpr5oQWmLR6rc0VWcuOVmYe
-         r7Q0HCLTHBwIs5BNVVZF9kTIGyrtXyv19bvIRcq3LvsKTEiKzj3sfz70qpvXd9sKmo6W
-         aKkb46tkUtNG8u/jlLg7GWDrD09xjD7QSyppdidKPT0nYoRFl97qjCkYrop6zfFynDMA
-         oEbyqs6NhmqDv5lJO5Jlxr7lvrHlqkPUcwXTzcG+S4nRahwFc3aZNmwDHZqyWPbi2kwB
-         HtGw==
+        bh=JaTsKAtJSNi54rHJhG+hyScjwgHDH7ka4b7b1ta/ySE=;
+        b=iJelTY48iYoGFyhaVFKLSxyokhQc4j93X9lAO5VhyZM9gCgpC+PF7tZeerg9RneIfw
+         Eb70dzcx4VMDRiJEbpiXy+8uVTAXBY4jhu2+7BeoSYso4U5tRiab2Gj1RA3qgIUUyhl1
+         mvn5o+J92QpBLV223Feml/8T2wb9WuAYrl9wiGwC6fL/hU8FsDjTbSSLWc36Jp6oaVHy
+         EvfxX6ySNbJzY4TAoWCpUnP3I1iU5aUbqERMjyiRfzpGxWBBLlv6zs1sRXdREAHlFj7A
+         Q9b8ze2DYdv3O4yZ+CMXhYuNm4K8ZmJptFpggymArTWdcckk5aCVuDck954SAUZ6JpuF
+         UsSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yhcCIU7DE0IB/Ct8ayO2BJ1LjRabGTwtnXdW2NhwWWs=;
-        b=WgHfmVVmO1jp5NYTFhXYSWY6ONFXLSkuPl7OS/kIdivhjKo4u8QsDNW+r4uDT8XrTA
-         muelUuSylU3E/l5j2229ngZwZCpVMyJBFUyk8ZKVlR+lZQR/5tnCEvyZxWsN2daHx/bH
-         R2F1r/gc3nIGZQvb7wCUKDfUuiTY+wCH2hTWh6jWvz2WsnVAAymak5VhO51P64Xmy5aO
-         osPyspT4UVCyl4QYHFj94DqO1E7rUfgg434XAqUt/TatUK3J1aS2/14izKjG5qucT4ne
-         4rosXfyPhycP97d8tsDj+qYRPXpJrx8hJT+KHTbLlTmrpdlPRP3+Ch4y5mg8iUJOdrDe
-         KSAg==
-X-Gm-Message-State: AOAM5317UpuVvSmQKD7v53bl2vlKHVcA3x0T20jQQT7MAJnL5Fvxwt+9
-        spp4wCgWq733L1xkfTsgpb2RGw==
-X-Google-Smtp-Source: ABdhPJw1v8JMNT1scRtq0kc3RAYfJiEEHavJfzGTaArPpMPFy0ixcqU47BTStrD9lgTAaYHgpm5IJA==
-X-Received: by 2002:a50:a6d4:0:b0:41d:77aa:d876 with SMTP id f20-20020a50a6d4000000b0041d77aad876mr11619054edc.48.1649755158995;
-        Tue, 12 Apr 2022 02:19:18 -0700 (PDT)
+        bh=JaTsKAtJSNi54rHJhG+hyScjwgHDH7ka4b7b1ta/ySE=;
+        b=wjahsuWrPxABCPtrLyHmJDdaet2lbPecxKsfTVQ+xmsGKSTL3Ad2W3j8P8jocKyo+X
+         XpJbn4Z1vxNKqD99dtyWKg8UNEXK5bQrSG4kk0pYcFaWVKVDzO50tORZma7jaDY5dMBs
+         8xIhFZ4zN6YQVDkThIugNfhzv6HBrc+zbl1vIxulYFs6Rm3GyNOjVynHt4YI0C57guCq
+         0NUaJEL55tHUvV8GBG3RYT+jTTH4V/gOQTc3jSPVbEJsjshpn/C9+JFyPxAGWdlAg0/6
+         vAcQX8DkwZr5AdQnD7B8ejjQCWPOLje53zLPkaby4Kv9NxkjUV70jftUEKlOrMR1S77B
+         Zr6A==
+X-Gm-Message-State: AOAM533RY0H3dk9U1ndYaUVn3tMRVVWuayfy96QBChmT8S1dIF59oEnu
+        ZsTAaDwQ27BQJMz8594ddaGozQ==
+X-Google-Smtp-Source: ABdhPJw5C5ynAEjOGwr/Emmjbh1RB5R+OcYH/bF0ZPE6x+rHILFMQ21c/S2l6KrpC8SuS8oQX3VIXQ==
+X-Received: by 2002:a05:6402:3713:b0:41d:96f6:8a09 with SMTP id ek19-20020a056402371300b0041d96f68a09mr1070881edb.136.1649755286201;
+        Tue, 12 Apr 2022 02:21:26 -0700 (PDT)
 Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id d7-20020a50cd47000000b004187eacb4d6sm16718423edj.37.2022.04.12.02.19.18
+        by smtp.gmail.com with ESMTPSA id dd6-20020a1709069b8600b006df08710d00sm13200550ejc.85.2022.04.12.02.21.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 02:19:18 -0700 (PDT)
-Message-ID: <23baab5b-722e-bdcd-be2c-62e38b2ff6a5@linaro.org>
-Date:   Tue, 12 Apr 2022 11:19:17 +0200
+        Tue, 12 Apr 2022 02:21:25 -0700 (PDT)
+Message-ID: <2853deaa-324a-6c54-2fe3-3f4b78d110bb@linaro.org>
+Date:   Tue, 12 Apr 2022 11:21:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 0/7] treewide: scsi: ufs: Add support for Renesas R-Car
- UFS controller
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Add SDX65 USB PHY binding
 Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, kishon@ti.com, vkoul@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1649740652-17515-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1649740652-17515-2-git-send-email-quic_rohiagar@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1649740652-17515-2-git-send-email-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,24 +77,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 09:36, Yoshihiro Shimoda wrote:
-> This patch series adds support Renesas R-Car S4-8 UFS controller.
-> This controller has some restrictions so adds some quirks for it.
-> Before using this driver, we have to initialize a clock generator
-> on the environment board (named "Spider") by using the commands of
-> U-Boot like below:
->  => i2c dev 0
->  => i2c mw 0x6c 0x26 0x05
->  => i2c olen 0x6c 2
->  => i2c mw 0x6c 0x26c 0x2e
+On 12/04/2022 07:17, Rohit Agarwal wrote:
+> Add devicetree YAML binding for Qualcomm QMP Super Speed (SS) PHY found
+> in SDX65.
 > 
-> To use the UFS controller, we need the following patch too:
-> https://lore.kernel.org/all/20220411124932.3765571-1-yoshihiro.shimoda.uh@renesas.com/
-> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 
-Thanks for the patches. Somehow I did not got entire set (bindings
-missing) and I cannot find any of them on lore.kernel.org. Did you have
-some bounces or sending troubles?
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
