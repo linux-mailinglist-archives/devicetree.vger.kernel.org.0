@@ -2,118 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C984FE187
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 15:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B9A4FE1E1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 15:14:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354846AbiDLNF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 09:05:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47796 "EHLO
+        id S1355295AbiDLNPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 09:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357642AbiDLNEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 09:04:52 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0B43B2AC52
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 05:49:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1649767773;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=6aZBKTB5BdnestxMdj/07bW+IS1GqohyMIbIwvT48vw=;
-        b=WHuZBdrokSJ+Qlz0hzQYsEXGsa7kr2s522yjSMAuwa9qjSOk7wECwxISIreNbPMPfEt8A+
-        /wKABg1B8EstxjGv6qWE2QyiprTU5DfC99i9N+k9IdZ7eRdgFzXLDa4KYNYJmfuAARZktJ
-        kbXQ1RP5vRpQEa6KlTItzOuLtt9CI7I=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-547-oXjFdtMIOFeeCUcIAVD-Lg-1; Tue, 12 Apr 2022 08:49:32 -0400
-X-MC-Unique: oXjFdtMIOFeeCUcIAVD-Lg-1
-Received: by mail-wm1-f69.google.com with SMTP id g13-20020a1c4e0d000000b0038eba16aa46so1232118wmh.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 05:49:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6aZBKTB5BdnestxMdj/07bW+IS1GqohyMIbIwvT48vw=;
-        b=1uPRKMS/5kXXn7DvCcwnoWCrEOVQoNE4ukyxKOrrC2+q+KiSboK+6DqrTwCXJ1W0DE
-         cuY36u8QkRqK681G9GSKX1a7KY3W6m66uXs3cNiKvACWp1xuf7UIBNXDuAwnt/dh8ikH
-         rgFIMxHgd07kaEazi3WeUiMGHIZJboMnwgoWpzZbGAckPsFB5yPWjdjIV7WsRLpPmrmU
-         MPwSn8D4ZxF+Xog0f7Ma4fSKi3gQBFz49/TACe90Vk1yuxZX6jQie3V3HhRYqZ+9nEr4
-         RtUwzpRW/gQKxCzj9mUK43K3zOodzsf7prP4UX+ihmF6prvMxBbfdgLoolYimeQpsyD7
-         otJg==
-X-Gm-Message-State: AOAM5316O0gG0f8NUuRqd0Ssio6jEAzrzmJD2h2tlJ+lrSFVjJiAfOHP
-        Ew7lVMaAaftajunEqSW1PP2O27LC9/lIfmeRpqdgUsyNvgVc8IAYBhvXIRfWlD4HCTCsDH2kZWL
-        eQrmnQKOanyHP3m1suiDEhg==
-X-Received: by 2002:a1c:35c2:0:b0:38e:c75d:90a3 with SMTP id c185-20020a1c35c2000000b0038ec75d90a3mr3401932wma.98.1649767771390;
-        Tue, 12 Apr 2022 05:49:31 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJygjYoMGC2lgYeBF5Ke4bl1SzKCjpQSFH5jCLjSKYAGIYkoI4H+oTt5pffQRoaBBQWPPpiY7w==
-X-Received: by 2002:a1c:35c2:0:b0:38e:c75d:90a3 with SMTP id c185-20020a1c35c2000000b0038ec75d90a3mr3401912wma.98.1649767771190;
-        Tue, 12 Apr 2022 05:49:31 -0700 (PDT)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id 2-20020a056000154200b00203ee1fd1desm31172443wry.64.2022.04.12.05.49.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 05:49:30 -0700 (PDT)
-Message-ID: <60bfa30c-35d7-7853-5741-b7a1ec9e0441@redhat.com>
-Date:   Tue, 12 Apr 2022 14:49:29 +0200
+        with ESMTP id S1356788AbiDLNOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 09:14:10 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C65D2BC;
+        Tue, 12 Apr 2022 06:01:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649768468; x=1681304468;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=bifhyOCkRst28z4/YuVYetStnqamZXAtDYuVHvzQJXk=;
+  b=IbLkmIQ9b2/KgphnMB4zaDlajpuTi7hTl5MGS2nemVHv7FUFJ4fvSpnd
+   Bso+UT2x9Z/4TUoSm1iYe63mt4paqyyVJvyACR2UF8DP3NbX9CO7ECUyw
+   WStgSJ9G6P2+WRm8Ukfq2zhjZ0F+Gq31mSSF7g0DyiEgA0oSJKHKrWkJN
+   4=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Apr 2022 06:01:07 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 06:01:07 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 12 Apr 2022 06:01:06 -0700
+Received: from [10.216.28.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 12 Apr
+ 2022 06:01:02 -0700
+Message-ID: <be05410d-8b68-ca5f-63a6-4565bcd43f66@quicinc.com>
+Date:   Tue, 12 Apr 2022 18:30:59 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: ssd1307fb: Deprecate "-i2c"
- compatible strings
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v6 1/3] arm64: dts: qcom: sc7280: Add nodes for va tx and
+ rx macros and external codecs
 Content-Language: en-US
-To:     wens@kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20220411211243.11121-1-javierm@redhat.com>
- <20220411211243.11121-2-javierm@redhat.com>
- <CAGb2v65CBZp3DZFGX0GMTaQQPYMKJTJMNoU2V5u7MxsLN7ONKQ@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAGb2v65CBZp3DZFGX0GMTaQQPYMKJTJMNoU2V5u7MxsLN7ONKQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
+        <quic_rohkumar@quicinc.com>
+References: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649157220-29304-2-git-send-email-quic_srivasam@quicinc.com>
+ <Yky2Iwt+tvxvu4/S@google.com>
+ <8fea1165-c8b6-6ce2-86dc-82274af8c43d@quicinc.com>
+ <YlSHPU7XITS2dju/@google.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <YlSHPU7XITS2dju/@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Chen-Yu,
 
-On 4/12/22 14:07, Chen-Yu Tsai wrote:
-> On Tue, Apr 12, 2022 at 5:12 AM Javier Martinez Canillas
-> <javierm@redhat.com> wrote:
-
-[snip]
-
-> 
-> I think you can just drop this one, since it was just merged and isn't
-> part of any release yet. It's not even in -rc.
+On 4/12/2022 1:23 AM, Matthias Kaehlcke wrote:
+Thanks for your time Matthias!!!
+> On Mon, Apr 11, 2022 at 07:32:33PM +0530, Srinivasa Rao Mandadapu wrote:
+>> On 4/6/2022 3:05 AM, Matthias Kaehlcke wrote:
+>> Thanks for your time Matthias!!!
+>>> On Tue, Apr 05, 2022 at 04:43:38PM +0530, Srinivasa Rao Mandadapu wrote:
+>>>> SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
+>>>> codecs like WCD938x, max98360a using soundwire masters and i2s bus.
+>>>> Add these nodes for sc7280 based platforms audio use case.
+>>>> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+>>>>
+>>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>>> ---
+>>> A change log would be helpful for reviewers
+>> Change log added in cover letter.
+>  From my perspective as a reviewer I find it more practical to have a
+> change log per patch.
+Okay. will do accordingly from next time.
 >
-
-I believe you are correct and we could just drop that one.
- 
-> ChenYu
-> 
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>> index de646d9..c6a04c3 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>> @@ -20,6 +20,14 @@
+>>>>    #include "sc7280-chrome-common.dtsi"
+>>>>    / {
+>>>> +	max98360a: audio-codec-0 {
+>>>> +		compatible = "maxim,max98360a";
+>>>> +		pinctrl-names = "default";
+>>>> +		pinctrl-0 = <&amp_en>;
+>>>> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+>>>> +		#sound-dai-cells = <0>;
+>>>> +	};
+>>>> +
+>>> This node shouldn't be at top but with the other device nodes, in
+>>> alphabetical order, i.e. before 'pwmleds'.
+>> Actually we are sorting as per node name. Hence kept it here. As per
+>> previous reviewer comments, sorted accordingly.
+>>
+>> Please suggest better approach.
+> True, I forgot the node names are used for sorting, not the labels.
+Okay.
+>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>> index db74fc3..78ec84c 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>> @@ -822,6 +822,127 @@
+>>>>    			#power-domain-cells = <1>;
+>>>>    		};
+>>>> +		rxmacro: codec@3200000 {
+>>> These node are not at the correct position. They should be sorted by
+>>> address and hence be inserted between 'lpasscc@3000000' and
+>>> 'interconnect@3c40000'.
+>> Actually we are sorting as per node(codec) name. Hence kept it here. As per
+>> previous reviewer comments, sorted accordingly.
+> Could you provide a pointer to those comments?
+Sorry. it seems we misunderstood.
+>
+> My understanding is that we are sorting by node name when nodes don't have
+> addresses or for overrides in board files/snippets, however the nodes under
+> 'soc@0' are sorted by address.
+>
+> Another nit: 'rx_macro, tx_macro, va_macro' instead of the labels without
+> underscore? Not really important, but maybe slightly more readable and
+> would match the 'spelling' of the compatible strings.
+Okay. Will change accordingly!!!
