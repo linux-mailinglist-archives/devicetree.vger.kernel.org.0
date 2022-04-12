@@ -2,98 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C6FE4FDC81
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 150D54FDC87
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234194AbiDLKbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59410 "EHLO
+        id S243041AbiDLKb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379597AbiDLKTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:19:45 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD2D1B27
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:22:42 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id t25so8928726edt.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:22:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bZb78c0Dkr90FauEaWEqBXjjhU7NexeivXh5gp2UwLs=;
-        b=nJd5sbCAd9J/o4YopB04i0kUvmA/FYRwp4TZLvMSdd/djfBJC5mEQo1zlTxMl6u561
-         pb4/lYc1Od+ESsT6Y6OMh/rLitkI/mrPRe0d0+2qyvyLqP6G2HsMjWsJfY9VzjfbD7fi
-         e17tMN2ldkGal1+yNOHeGymcmPXUVAfyjHvrmroqXTUjZGCy5zRFhLwzqs9uaX40rOGM
-         p5JAxjE0PPDtWF+Z0eGgO2NzfHkJmoVt2Ofv2qpQ1F1dW0Ymhy/Yi+RrnKMFKLCaP0MK
-         cTdhydh3xM3FOIyWbU6UTkTduoy9WnyqbxdejqVdrVHeg7B3cK4UJt22c4HLb5864Uss
-         Uc3A==
+        with ESMTP id S1379745AbiDLKTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 06:19:46 -0400
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD391BFA;
+        Tue, 12 Apr 2022 02:23:12 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id kl29so15674000qvb.2;
+        Tue, 12 Apr 2022 02:23:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=bZb78c0Dkr90FauEaWEqBXjjhU7NexeivXh5gp2UwLs=;
-        b=rqd7irjI/W2edWrP+N93TM6m70nusGL42PBvKxg9FZgwDTf/zUHfOStZuTWUMW6DQN
-         dXu5NDP38Gm+wXwAOsrtoC0Bh3unJUhsic10xNR37RuQ2mkMDidRsxCzwToa3cjR8/qg
-         NxXRYhZovHZhaBmCItNtPYwu77M/ZGPlnDCHIv1/RKp19lWNUlMVYRXB8Gn629C8xNas
-         V+jSPJu81cDfvoSIb5qFqDuO8DXqJUhxGGmNHl8Nv72kzm006ULauJHQ2Z7YikFN8FuY
-         15pfFF9yUZcCCfskC7V9Z7Y3u0a7ws+kjrF8CfS4ZYvFRl4YTky27wMIAXq3wFX7MFYO
-         qmOQ==
-X-Gm-Message-State: AOAM530/40XHso6rv1hSMhXlAMlCMRdXkkw5QohhJR3b82/XWN8o/rpx
-        yATan/a3LqvXTp7CJOdtgGvkew==
-X-Google-Smtp-Source: ABdhPJzjntVBw7ZPan1uIuGYH95xd+2RtjqZ63AcS1EbLEPJuhLy8PiF9590Xuzc4M4jj0o/LN+tCQ==
-X-Received: by 2002:a50:9eaa:0:b0:418:f708:f59c with SMTP id a39-20020a509eaa000000b00418f708f59cmr37146046edf.333.1649755361419;
-        Tue, 12 Apr 2022 02:22:41 -0700 (PDT)
-Received: from [192.168.0.194] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id f4-20020a170906c08400b006e82dbd3f6esm6260961ejz.116.2022.04.12.02.22.40
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/xFq3TalGXTAEX7MoZBabt4i2+T5YfvEcGLfK8vF3nI=;
+        b=TBKZUNXrqv9JAiDVcwDPX/PUJzYhW4I2YVWxfgblEjAGYCcTlEZOD92WbkYRPf768b
+         f1jWRjgyyn63rhibW8bhK+SJQNEF0m1Rqedx15f/+x2p6m209NPd5TA5X+U19ujiRVg9
+         Hm/9D6uPqmOI3MLnFW7QBB5RUR/gxcTAx81uIGYEL2IlwDEMf7qEFURVZGucTeaJVH4g
+         1eJJH9tZXjGYVyVn+YdeYUhgmmRT3CQ8o9g3LQNuh73tdSgFVHdkcBX3fuRdsVLwrKXE
+         +IlRhSeBKz4fAa6UQ0g/NcfYbfrfkfXDeGtNXbpsDo2M4/A0NRyhArRVvF92VqIdDilv
+         oFWA==
+X-Gm-Message-State: AOAM5333nW6DKspj8CGcDmzIIMeshgtXQD3xJSQBP13NloXWaOk3xJ8U
+        nry+SMshXXlaDFo0lUo/QgqXTGbTGoXWpPNg
+X-Google-Smtp-Source: ABdhPJxEGpTzWd13Pq3jMcVmWjsbTuPBpqfJ+vCQkkou7dvKfe3WZY5TOX58uuCbLaUG3k6cqGXHag==
+X-Received: by 2002:a0c:8d07:0:b0:443:a6be:7774 with SMTP id r7-20020a0c8d07000000b00443a6be7774mr30129715qvb.51.1649755391450;
+        Tue, 12 Apr 2022 02:23:11 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id d6-20020ac85d86000000b002f0eddf163fsm355080qtx.47.2022.04.12.02.23.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 02:22:40 -0700 (PDT)
-Message-ID: <7e1e6c10-c02a-c8da-44c0-ba3abef1950e@linaro.org>
-Date:   Tue, 12 Apr 2022 11:22:39 +0200
+        Tue, 12 Apr 2022 02:23:11 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-2edbd522c21so33642507b3.13;
+        Tue, 12 Apr 2022 02:23:11 -0700 (PDT)
+X-Received: by 2002:a81:5210:0:b0:2ef:21e3:54dd with SMTP id
+ g16-20020a815210000000b002ef21e354ddmr2919382ywb.438.1649755390817; Tue, 12
+ Apr 2022 02:23:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm SDX65 DT
- bindings
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, djakov@kernel.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1649740053-14507-1-git-send-email-quic_rohiagar@quicinc.com>
- <1649740053-14507-2-git-send-email-quic_rohiagar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1649740053-14507-2-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220401145702.17954-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220401145702.17954-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 12 Apr 2022 11:22:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW9cfiy-1koCUTuK40WXrikKtyEyh3qBJcAeDtP98sRRw@mail.gmail.com>
+Message-ID: <CAMuHMdW9cfiy-1koCUTuK40WXrikKtyEyh3qBJcAeDtP98sRRw@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: renesas: rzg2lc-smarc: Enable RSPI1 on
+ carrier board
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 07:07, Rohit Agarwal wrote:
-> Add interconnect IDs for Qualcomm SDX65 platform.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+On Fri, Apr 1, 2022 at 4:57 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on the
+> carrier board.  This patch adds pinmux and spi1 nodes to the carrier
+> board dtsi file and drops deleting pinctl* properties from DTS file.
+>
+> RSPI1 interface is tested by setting the macro SW_RSPI_CAN to 0.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3:
+>  * Removed redundant spi1 node, as it is already enabled in common.
 
-(...)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-> diff --git a/include/dt-bindings/interconnect/qcom,sdx65.h b/include/dt-bindings/interconnect/qcom,sdx65.h
-> new file mode 100644
-> index 0000000..8d02c79
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,sdx65.h
-> @@ -0,0 +1,67 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
+Gr{oetje,eeting}s,
 
-Is it possible to license it the same as bindings (GPL-2.0 OR BSD-2-Clause)?
+                        Geert
 
-Best regards,
-Krzysztof
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
