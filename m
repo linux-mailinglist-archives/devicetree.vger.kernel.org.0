@@ -2,115 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3774B4FE3BD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B9854FE3EA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356544AbiDLO23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 10:28:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60722 "EHLO
+        id S1356595AbiDLOiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 10:38:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356516AbiDLO22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:28:28 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD42158E41
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:26:10 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 15so9466562ljw.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:26:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=o9Y0Dxo+q6yQbzDxJ/ULmzM1Yxju629VRSmpegysqN8=;
-        b=twWeTn+wbEgNDoLKArv4PJZiTp6oZnld1mH8i8kfifUjKs0iQRcaZ+kHoABKm7/Scd
-         3US+3G/CYRtfNcu/VWgVjD/mESRcSvcIiq5CsdjiRaS38+bj+pDt7bnKHFiZZyy820Iy
-         aZmrwQNZT0Cu/zCKNZ/XbB/VTX3yMBgV3zXiAj/E2WNiWAicWfSc75KIq+78hwogMpYJ
-         ar+m0WvCjAayOJzwqk4Bqj093B/gBIHVlORyh3lXABeP2HsUVwwix5DW5QTogpeQrC+D
-         CGX3bGHd2uSBpxWDWvtTv2aV5r8qht5nyXVwZlMD8pbXO7nAPZ1j77itunZ4WducbwKT
-         zxPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=o9Y0Dxo+q6yQbzDxJ/ULmzM1Yxju629VRSmpegysqN8=;
-        b=P/xw/sp/DvLRTthXMbndfMiNXkm5hpZvOhmDkKACYXBYJQKx3PWX++YmC7cFnXLX/n
-         r0BS7fvCyAacWEn3ps8fiDLU7t824NCk19Hb3SpH0c+yiAtQFU10sQGKJ/O1fHTwiAaY
-         Y/8D+sn+1TqP1zVECt/DQpuQn+ALC/Y42OzIB0xGgYFzoJ7YdvVs1P94oZqAwEmqnp1g
-         DABiqbx5YqLtuM8Uc0U0Pz+eK7yK1PQxd5IglBx8oJtqRE/yJ2aqrmE2Bjc0Q8uanowA
-         J8yIc2DQsRu1iqD+nLu+HIBHEPCKV8H7n75SyBU2NWs8/x72T8LKjP7ATt11+vl1ajEQ
-         siWw==
-X-Gm-Message-State: AOAM530eIVORXGcFYogq58YZicxXCosLMOlQB+sMXzYpWPgwakQunpet
-        YpBplGEZgOlfo0p23UFhtZ+SGbuu/Sf0sxVwe4QOhw==
-X-Google-Smtp-Source: ABdhPJyaj7tFxdrLYCr2zY8LfreX76pb3X9XmGkW2cSHqy2L9vVwR4doSIMzzrLhQfMLm15Cp7vZ1XdvlfGpOmv0uxY=
-X-Received: by 2002:a2e:3e05:0:b0:24b:5df0:6388 with SMTP id
- l5-20020a2e3e05000000b0024b5df06388mr8356865lja.367.1649773569043; Tue, 12
- Apr 2022 07:26:09 -0700 (PDT)
+        with ESMTP id S244461AbiDLOiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:38:07 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3F35BE6C;
+        Tue, 12 Apr 2022 07:35:48 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 0B09622239;
+        Tue, 12 Apr 2022 16:35:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1649774146;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=s23tGVg5wfsxakK5pO6iL+Jzfw1pM3exjiQaOm1BYgk=;
+        b=hcSDKp8yvOYM1X/auajUFIy2zmhU59ZbK9GxqJXte96X/3m8v4ZyaZQRUglRLP3okRPO0R
+        bQTiL5rJv21ilNbKdqqYUtRniSNChW+LzjkGEfyuoAs1G8/Jh/JBczd9wY9KinoodtcoV6
+        c2UNgJOBvTSEv6wZrhe9vlT4hrdBdZQ=
+From:   Michael Walle <michael@walle.cc>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v3 0/2] arm64: dts: imx8mn: add 8MNANOD3L-EVK device tree
+Date:   Tue, 12 Apr 2022 16:32:36 +0200
+Message-Id: <20220412143238.1925059-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <1649670615-21268-1-git-send-email-quic_rohiagar@quicinc.com> <1649670615-21268-3-git-send-email-quic_rohiagar@quicinc.com>
-In-Reply-To: <1649670615-21268-3-git-send-email-quic_rohiagar@quicinc.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 12 Apr 2022 16:25:32 +0200
-Message-ID: <CAPDyKFrU0hQzs3xL8Jf1E22cS9DWuorLgcVF9+m80+Osw8=odg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: mmc: sdhci-msm: Document the SDX65 compatible
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Shaik, Bhupesh
+Add support for the 8MNANOD3L-EVK which features a NXP IMX8MN SoC.
 
+Patch 1 was formerly postet separately, but never picked up. So I've bumped
+its version and added the actual device tree. Please note, there wasn't a
+v1 nor a v2 of patch 2.
 
-On Mon, 11 Apr 2022 at 11:50, Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
->
-> The SDHCI controller on SDX65 is based on MSM SDHCI v5 IP. Hence,
-> document the compatible with "qcom,sdhci-msm-v5" as the fallback.
->
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+Michael Walle (2):
+  dt-bindings: arm: fsl: add IMX8MN DDR3L eval board
+  arm64: dts: imx8mn: add 8MNANOD3L-EVK device tree
 
-As stated in a couple of other threads for patches extending these
-bindings, I would really like to see the binding being converted to
-the yaml format first.
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8mn-ddr3l-evk.dts   | 114 ++++++++++++++++++
+ 3 files changed, 116 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-ddr3l-evk.dts
 
-It seems like Bhupesh is working on the conversion [1]. If not, please
-help him to get this done.
+-- 
+2.30.2
 
-Kind regards
-Uffe
-
-[1]
-https://www.spinics.net/lists/linux-arm-msm/msg107809.html
-
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> index 6216ed7..e7dec8a 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> @@ -25,6 +25,7 @@ Required properties:
->                 "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
->                 "qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
->                 "qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
-> +               "qcom,sdx65-sdhci", "qcom,sdhci-msm-v5";
->                 "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
->         NOTE that some old device tree files may be floating around that only
->         have the string "qcom,sdhci-msm-v4" without the SoC compatible string
-> --
-> 2.7.4
->
