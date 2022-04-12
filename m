@@ -2,105 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C359F4FDBD2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D3F64FDBE1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:59:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354637AbiDLKHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 06:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39356 "EHLO
+        id S1354797AbiDLKIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 06:08:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245211AbiDLJmc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:42:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2808361A38;
-        Tue, 12 Apr 2022 01:48:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C043D6157E;
-        Tue, 12 Apr 2022 08:48:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB467C385A5;
-        Tue, 12 Apr 2022 08:48:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649753308;
-        bh=r5lnm0sxojey3xs1AqNSLOGlFrFpusnlCcuKdm7bsqM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=tFhl30sTiKTy84INaxUqdMw9Rv9aGynIFb742lgpVSFolADnxvUJ/xMo0QiUVnlbB
-         rH3x6jOdG9L9+eZkTuRcsHDhAvVNoPMrfUiJOROkeSYj6ho9DULMPc3Xhq05QFhhuc
-         aAxpONgHthrzlRu+8eq3+IkWZLP0cDofoaHWl9oR7pOwY1lVGvVFsg/8wFJT1M1J+I
-         B6uqRSUctyCWGjKxayZ+mGQJySQoc8Y6nh8HVGQcM8l1i0CxJQjsOv122W93IbpAIv
-         AKAQks2UxcTKe+Q58BWJuF2eSbgpLsWdh9p56GlQXGJHjWuoKolpdzthYYkD2wm1KV
-         ikM6KCBmMQ49g==
-Message-ID: <36b7de46-7e8b-fbb5-6eeb-89180d358d84@kernel.org>
-Date:   Tue, 12 Apr 2022 10:48:21 +0200
+        with ESMTP id S1351860AbiDLJmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 05:42:33 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D735F5006E;
+        Tue, 12 Apr 2022 01:49:46 -0700 (PDT)
+Received: by mail-qk1-f182.google.com with SMTP id t207so11777739qke.2;
+        Tue, 12 Apr 2022 01:49:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HEV75USYeQipOpGCIPsKDQNFk/Kk7zQM9cWBtFpjTOQ=;
+        b=VbYxAQz4qhbIQfKmCrm5/Ndr47DxSo7mTseY27gCNQC1iNhAFm9NnCFZDaP45caAaZ
+         8cvIbg7eSKKPDpgN3nrsqd+YjTz/u+h2xSX7NL2mjw4JM5D70edIwYd+7r4dmQ/eHlkg
+         Pp98E/BiCKtigKwnHw9+EkaSq6eeUa3LBjv9uPMPqTjRyXaCrUvE/+GgMqmTEZ89t3Eg
+         f8oaDHpz8qiya0MCpN3OJaHO12+3aI6HTB/W5aHiDhJ2524Febn1pqNqcpAqbz9oMT+s
+         n0xoJ5qS6XG3RG9LGED0DGqKpkEgAf9xJZIGjzuufbzw1Ymq5Rh7rtoh3gNIGWu0wxcw
+         a0ww==
+X-Gm-Message-State: AOAM532Ttv//XnNLb3L6sUkj1nss2IiQYBHwvWomt38+/9qEjP0v9NRj
+        Y5OB1jAjOEDx9ghIVmMcjDBFFNlFL8ki+fLf
+X-Google-Smtp-Source: ABdhPJxjPdub7r6kUVt+HremPZS73CSGbs+mJU/SOr9e/cqVjaphkkBCU7SyMXkc8hYnsOSz1zwk7Q==
+X-Received: by 2002:a37:a914:0:b0:69c:f27:7e4d with SMTP id s20-20020a37a914000000b0069c0f277e4dmr2355413qke.198.1649753385830;
+        Tue, 12 Apr 2022 01:49:45 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id d140-20020a376892000000b0069bdd40d852sm7838020qkc.75.2022.04.12.01.49.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Apr 2022 01:49:45 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id x200so8197703ybe.13;
+        Tue, 12 Apr 2022 01:49:45 -0700 (PDT)
+X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
+ c4-20020a5b0984000000b0063f8c38676cmr15160517ybq.393.1649753385328; Tue, 12
+ Apr 2022 01:49:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v7 2/2] dt-bindings:thermal: Add Sunplus SP7021 schema
-Content-Language: en-US
-To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
-        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com
-References: <cover.1649662002.git.lhjeff911@gmail.com>
- <f24781413a8a305b28a1e9c3861263975eebaee6.1649662002.git.lhjeff911@gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <f24781413a8a305b28a1e9c3861263975eebaee6.1649662002.git.lhjeff911@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220322095512.4707-1-wsa+renesas@sang-engineering.com> <20220322095512.4707-5-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220322095512.4707-5-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 12 Apr 2022 10:49:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUx-o9i0YPhoLrPDKh0=MSdMmrpdtgB1O4=i5UK_RfPWg@mail.gmail.com>
+Message-ID: <CAMuHMdUx-o9i0YPhoLrPDKh0=MSdMmrpdtgB1O4=i5UK_RfPWg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: renesas: rzg2: add interrupt property to
+ the watchdog node
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 10:52, Li-hao Kuo wrote:
-> Add bindings for Sunplus SP7021 thermal driver
-> 
-> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+On Tue, Mar 22, 2022 at 11:57 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Driver doesn't use it yet, but let's describe the HW properly.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19.
 
-> ---
-> Changes in v7:
->  - Modify yaml file.
->  - Change the filename sunplus_thermal to sunplus-thermal.
->  - Change the nvmem-cell-names thermal_calib to calib.
-> 
->  .../bindings/thermal/sunplus-thermal.yaml          | 43 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/sunplus-thermal.yaml
-> 
+Gr{oetje,eeting}s,
 
-I commented with v5 [1] how the naming should look like. That's the
-Devicetree convention.
+                        Geert
 
-You sent v6 without implementing the changes. I pointed out that you did
-not follow what I asked for.
-Now you sent v7 also without implementing these changes, again.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-You also did not discuss it with me, did not come with counter
-arguments, other proposals. Therefore it looks like either you
-misunderstood me or you ignored my comments.
-
-Let's assume first case, so I will repeat. Name should be one of:
-1. sunplus,thermal.yaml
-2. sunplus,sp7021-thermal.yaml
-
-Not other names. No other characters, no undescores, no hyphens after
-vendor name. If this is unclear, please respond instead of ignoring.
-
-Without implementing the changes:
-NAK
-
-[1]
-https://lore.kernel.org/linux-devicetree/fe67c7e7-957b-3abf-a929-5ee346657bcf@canonical.com/
-
-Best regards,
-Krzysztof
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
