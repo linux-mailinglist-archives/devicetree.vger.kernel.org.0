@@ -2,112 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 371D64FE37D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 659F14FE396
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 16:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355959AbiDLOOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 10:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32886 "EHLO
+        id S1346504AbiDLOVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 10:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241927AbiDLOOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:14:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C4D1CFD6
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:12:18 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1neHFg-0003eH-7Y; Tue, 12 Apr 2022 16:12:16 +0200
-Message-ID: <b7990c48-1bfe-210f-a24f-6e1c70235d76@pengutronix.de>
-Date:   Tue, 12 Apr 2022 16:12:15 +0200
+        with ESMTP id S1346770AbiDLOVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 10:21:37 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 126ED47AF3
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:19:19 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id u19so14653227ljd.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 07:19:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mQyhcpmuoxubOTeJc5FbJZSd/FqD2XuPIEYRCS1ggmw=;
+        b=ydG+eEZexNQfagzFvxoj4FD97ilHqxwQqCPkORhS5G/hJ0xwxgXdQZbamWtyEwi1aC
+         yOU7dgTfSLJUpRDyR7IedOV/kpj2RKsfEAJ8VnhCk/vmebRcBHjnQLmFARBt/57VbpZ6
+         qple/wrZ7mV6dOki1hZPjlcMd9FDcXZJZb/ezzjKTbhtX4FgmdlT2hXEHu0MFk06qI2d
+         m52WMMuSoMEwDIcuSIgVH/BUaCF+fKMFc0PDyiVrrqD+nPWzCIjCRhQSewtovaVV/Dah
+         mxt41+nsFKqD4mCj75quu7rgmMmUfuScOGJC8LF8reSmu0cAZAd8u6SxxV4h/PbHNT3j
+         fmHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mQyhcpmuoxubOTeJc5FbJZSd/FqD2XuPIEYRCS1ggmw=;
+        b=JnPKzbMl7bgjZyCZj7Gz8GTaxcsbF8DhPol72dH/l/XcCcg1aT5yro/pbpT4UIzyX6
+         NqARTSKBo90NFOS3HB12AKDub3aHHVi+Qtrp5qecMPkmOl2Px8S3q+1vsueAExYXC1rR
+         +0znmS0OXOy59OUrBYBCDRDN1efZhxxNej10CiOHSl8G/6KMNcURyTMM4GGGEWN8Pb7a
+         ZQ0RlwajiA5wTKb7Umye0vXaMTMlkk3N9wouQcdOC/WXAlQs7aGeTm0Vap2/5nsXeQ8I
+         UE/vH5HPoXe5GKtzbD1D00olCPybaVcJxIjl/6Ylj4PGPswPOQzcKnw+hP/VZqOUpNmj
+         tVDA==
+X-Gm-Message-State: AOAM531dhydIk5Q+5hjBl/kM/IoNqdSGgZUM3+F0xKT/xHnux79j0d7a
+        M994onyUjEkt4Bog6eXC4PSW9+1rI2cAUQty57NrZg==
+X-Google-Smtp-Source: ABdhPJybcpvxTKB+Nbs/AV1PA14+uH0q480UoHl1NeG/zKAVRWlPeSSnikUgTyII0O0N9vSECYon0Eo8hlDT0BXQCos=
+X-Received: by 2002:a05:651c:90a:b0:249:5d82:fe9c with SMTP id
+ e10-20020a05651c090a00b002495d82fe9cmr23873129ljq.300.1649773157120; Tue, 12
+ Apr 2022 07:19:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V4 3/3] arm64: dts: imx8mp: Enable HS400-ES
-Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>, linux-mmc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        aford@beaconembedded.com, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220410193544.1745684-1-aford173@gmail.com>
- <20220410193544.1745684-3-aford173@gmail.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20220410193544.1745684-3-aford173@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <1649759528-15125-1-git-send-email-quic_c_sbhanu@quicinc.com> <1649759528-15125-2-git-send-email-quic_c_sbhanu@quicinc.com>
+In-Reply-To: <1649759528-15125-2-git-send-email-quic_c_sbhanu@quicinc.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 12 Apr 2022 16:18:40 +0200
+Message-ID: <CAPDyKFrJDVBdyu4=0dXaBs8FhsF5jvcLKGgfjjbB-rVztxmgqg@mail.gmail.com>
+Subject: Re: [PATCH V4 1/2] dt-bindings: mmc: sdhci-msm: Add gcc resets strings
+To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sartgarg@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_sayalil@quicinc.com,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.04.22 21:35, Adam Ford wrote:
-> The SDHC controller in the imx8mp has the same controller
-> as the imx8mm which supports HS400-ES. Change the compatible
-> fallback to imx8mm to enable it, but keep the imx7d-usdhc
-> to prevent breaking backwards compatibility.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
++ Bhupesh
 
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+On Tue, 12 Apr 2022 at 12:33, Shaik Sajida Bhanu
+<quic_c_sbhanu@quicinc.com> wrote:
+>
+> Add gcc hardware reset supported strings for qcom-sdhci controller.
+>
+> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
 
-Thanks,
-Ahmad
+As stated earlier, I would really like to see the binding being
+converted to the yaml format first. It seems like Bhupesh is working
+on the conversion [1].
+
+Kind regards
+Uffe
+
+[1]
+https://www.spinics.net/lists/linux-arm-msm/msg107809.html
+
 
 > ---
-> V4: No Change
-> V3: No change
-> V2: Keep fallback to fsl,imx7d-usdhc to prevent breakage
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 794d75173cf5..8578ff1062e6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -769,7 +769,7 @@ i2c6: i2c@30ae0000 {
->  			};
->  
->  			usdhc1: mmc@30b40000 {
-> -				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
-> +				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
->  				reg = <0x30b40000 0x10000>;
->  				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MP_CLK_DUMMY>,
-> @@ -783,7 +783,7 @@ usdhc1: mmc@30b40000 {
->  			};
->  
->  			usdhc2: mmc@30b50000 {
-> -				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
-> +				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
->  				reg = <0x30b50000 0x10000>;
->  				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MP_CLK_DUMMY>,
-> @@ -797,7 +797,7 @@ usdhc2: mmc@30b50000 {
->  			};
->  
->  			usdhc3: mmc@30b60000 {
-> -				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
-> +				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
->  				reg = <0x30b60000 0x10000>;
->  				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MP_CLK_DUMMY>,
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> index 6216ed7..9f02461 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> @@ -76,6 +76,7 @@ Optional Properties:
+>                 "cpu-sdhc".
+>                 Please refer to Documentation/devicetree/bindings/
+>                 interconnect/ for more details.
+> +- resets: Phandle and reset specifier for the device's reset.
+>
+>  Example:
+>
+> @@ -98,6 +99,8 @@ Example:
+>                                 <&qnoc MASTER_CPU_ID &qnoc SLAVE_SDCC_ID>;
+>                 interconnect-names = "sdhc-ddr","cpu-sdhc";
+>
+> +               resets = <&gcc GCC_SDCC1_BCR>;
+> +
+>                 qcom,dll-config = <0x000f642c>;
+>                 qcom,ddr-config = <0x80040868>;
+>         };
+> @@ -118,6 +121,8 @@ Example:
+>                 clocks = <&gcc GCC_SDCC2_APPS_CLK>, <&gcc GCC_SDCC2_AHB_CLK>;
+>                 clock-names = "core", "iface";
+>
+> +               resets = <&gcc GCC_SDCC2_BCR>;
+> +
+>                 qcom,dll-config = <0x0007642c>;
+>                 qcom,ddr-config = <0x80040868>;
+>         };
+> --
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+>
