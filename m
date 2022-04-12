@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F3654FE902
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 21:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5392A4FE91A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 21:50:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241931AbiDLTn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 15:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55772 "EHLO
+        id S229706AbiDLTxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 15:53:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359099AbiDLTmY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 15:42:24 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF08D4D635
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 12:40:00 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q189so8804956ljb.13
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 12:40:00 -0700 (PDT)
+        with ESMTP id S230224AbiDLTvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 15:51:02 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3D765483
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 12:46:43 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-df02f7e2c9so21844104fac.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 12:46:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=KdIHWvqojnl+hhQv1NddoZGquOpYAIy3tu+JSVXI7oI=;
-        b=QRgQW2WV/0W7v5dLXmjrbIlUVh6XkuCR1zF1c0yWfP/t9nfxB8sW4ENL0Foq571BPe
-         EoIEIQQIhySJI8EyUCd61wCY+i2c8pJLQ64ry7Y3qvvWw8V9M0pp42W1v9illgZ3Sy6m
-         oNbBmMQgX1JB/uptjuXdpr1V+Zi5bGF2v2t+XheV7wivdkb9xQ0aL+flmRtkBvaJA4Ab
-         ctQ+rKm2eTyZxC0PJnkSUeKDbnCrpSYeQKKHwpOWtr3QaMJZtX/1TtlNlMv6q+gFIFKJ
-         r9BCB4BuVBgmAKhdgwXoa1+Y1vpcteq8/VeRmCsWynv8YzpRmvfUaUVNkTBh01irPafe
-         gVFQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OcCFOIbabGMt8R4R5kmD+nWqw4w/utia9Z9PYHvplQc=;
+        b=m2dzcglSF6AgD3X8N5HTbv7KqJkmZFNOirfaSAEFEihSuceCvzNa5HXcUilyiXZXDy
+         zURF3W6b44+rgOeL6/HQbB0OtbxFI3RC/Ki+t3a/wqa7hVnoqfyr9YRBEkD+yq1lUEWj
+         zwdILpqgAqWpRm5gOip9LPDtQLEjw62N8TC3+ky2m+gDdbL6K+RCAv7n0jWRLbPffnH6
+         F+s6nlz49Bg5JvpXEGQgiiZcwblXBthrdI2HbB5NZv5014L21pubsa880JYyZyPmneHT
+         uAyBYzyhxsaLjqNLNV0Etk4V3ZghSjqklGG+MD8UXxkCRPPWlzM2wYqUjMLUsPpunpK3
+         5fhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=KdIHWvqojnl+hhQv1NddoZGquOpYAIy3tu+JSVXI7oI=;
-        b=Ymo+uLv/cWYO6QuZ/in4xq/FeIbcMdGvo/wMbfrG1Zv3vSCscmIYd2wEUEX+OkVKx6
-         ndeDDeAO2k3IH6sIf8JVrA6MrBiHBOrdBf8YetTyD+dDgLcrAJlSFz6jxjMWVURXrq3j
-         Y7GnAsS6mtclgKLFhW+1VT+AxbCNns8Ljte6dJqw6CIIxRSeRerBrPO8oDGkx2LjxkHQ
-         Hw5s0khw2E80Qocsa/gvB5LfFrpFGWBD4t9PsTgNEYNLF0BRgdDCGx1Is+9Qy095/MO3
-         /BuGPkPB59z6N/B7zMeKMN04L7+3V5c5qpcWJYOGlbaJStfNV8up7lPH2aJenSd3f4FU
-         nZaA==
-X-Gm-Message-State: AOAM530EE/NbfVgTMBNDx3/Tds4+Bs7LWL2YrmwsHJ+3UVk7qsNx0M9i
-        mWNGgGwK92aPeUsQYD7l2EXGsA==
-X-Google-Smtp-Source: ABdhPJyf1LhztmWShF/xkMubxhGcmYwTnnoY73R9m1whl3tKv8dN0dzQfprAv05/zdhUvdbRbB4sXg==
-X-Received: by 2002:a05:651c:992:b0:24b:99c:35c with SMTP id b18-20020a05651c099200b0024b099c035cmr24913059ljq.142.1649792399080;
-        Tue, 12 Apr 2022 12:39:59 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s9-20020a197709000000b0046bc30798aesm191382lfc.282.2022.04.12.12.39.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 12:39:58 -0700 (PDT)
-Message-ID: <c48f83a4-ef84-de25-e87c-539c4b0d1a0a@linaro.org>
-Date:   Tue, 12 Apr 2022 22:39:57 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OcCFOIbabGMt8R4R5kmD+nWqw4w/utia9Z9PYHvplQc=;
+        b=RSzcE85m8MN8cpeF87xHi23N1mCRfkg6lZW2WtR0hfCwDywe3MAqSFryv4tbHNMS2L
+         vzJMjg4TzJJRemiWQga3ypoDOtciRQSCIy8j1kHkiivBjuw+BJYnA4BINO/i+kOy7BkZ
+         JYlqnTtirH2vlQDF90h0mi2/NHT1MIPJ2GCoIvgoRtRYFLVguc0Zzo77dR40QMgpAHfS
+         3Ve6DSY8XHoNGkyRf0Nhn4g9KnoOoGA653crNmQOSJ/2VWUL4UvcGRExnqL0gFiW2i5l
+         wRTWqfYqR3xPlVstSS8bbR2GvKHwlo8r1RDqVGzsp2bLFo3RpD+Ee0BSSa4JMuYRs/cM
+         RiNQ==
+X-Gm-Message-State: AOAM533dZFYsCwtAdXjBP1J4rzOQ4CMV5fLK/vano3myxTAiH0TjaJov
+        /Ud25pL53UWJcnsqdZ+X5aEXHg==
+X-Google-Smtp-Source: ABdhPJz57YhmO0GbH2IOg8zrRjFf+Vn8T4DxIDvA1pCWwG5XZAcc5n87X0xNf2O1Lp1voPFA3bWVUg==
+X-Received: by 2002:a05:6870:e303:b0:e2:e9fc:2fbe with SMTP id z3-20020a056870e30300b000e2e9fc2fbemr2863838oad.74.1649792802346;
+        Tue, 12 Apr 2022 12:46:42 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id r205-20020acadad6000000b002ef824213c9sm12964798oig.55.2022.04.12.12.46.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 12:46:41 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 14:46:39 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan McDowell <noodles@earth.li>
+Subject: Re: [PATCH v3 03/18] ARM: dts: qcom: add missing rpm regulators and
+ cells for ipq8064
+Message-ID: <YlXXH3ikA5Tcdx9R@builder.lan>
+References: <20220309190152.7998-1-ansuelsmth@gmail.com>
+ <20220309190152.7998-4-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add thermal sensor
- controllers
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20220410234458.1739279-1-dmitry.baryshkov@linaro.org>
- <20220410234458.1739279-2-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220410234458.1739279-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220309190152.7998-4-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,57 +72,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 02:44, Dmitry Baryshkov wrote:
-> From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+On Wed 09 Mar 13:01 CST 2022, Ansuel Smith wrote:
+
+> Add cells definition for rpm node
+
+Why do we need the cells?
+
+> and add missing regulators for the 4
+> regulator present on ipq8064. There regulators are controlled by rpm and
+> to correctly works gsbi4_i2c require to be NEVER disabled or rpm will
+
+Are you saying "...to correctly work, gsbi4_i2c must NEVER be disabled..."?
+
+If so, that's good information, but how does it relate to this
+particular change?
+
+Regards,
+Bjorn
+
+> reject any regulator change request.
 > 
-> The change adds description of two thermal sensor controllers found
-> on SM8450.
-> 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-
-Of course:
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Tested-by: Jonathan McDowell <noodles@earth.li>
 > ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
->   1 file changed, 22 insertions(+)
+>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 36 +++++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 934e29b9e153..b695ce824722 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1021,6 +1021,28 @@ pdc: interrupt-controller@b220000 {
->   			interrupt-controller;
->   		};
->   
-> +		tsens0: thermal-sensor@c263000 {
-> +			compatible = "qcom,sm8450-tsens", "qcom,tsens-v2";
-> +			reg = <0 0x0c263000 0 0x1000>, /* TM */
-> +			      <0 0x0c222000 0 0x1000>; /* SROT */
-> +			#qcom,sensors = <16>;
-> +			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow", "critical";
-> +			#thermal-sensor-cells = <1>;
-> +		};
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> index b309bc0fbbcd..0938838a4af8 100644
+> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> @@ -842,10 +842,46 @@ rpm: rpm@108000 {
+>  			clocks = <&gcc RPM_MSG_RAM_H_CLK>;
+>  			clock-names = "ram";
+>  
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +
-> +		tsens1: thermal-sensor@c265000 {
-> +			compatible = "qcom,sm8450-tsens", "qcom,tsens-v2";
-> +			reg = <0 0x0c265000 0 0x1000>, /* TM */
-> +			      <0 0x0c223000 0 0x1000>; /* SROT */
-> +			#qcom,sensors = <16>;
-> +			interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow", "critical";
-> +			#thermal-sensor-cells = <1>;
-> +		};
+>  			rpmcc: clock-controller {
+>  				compatible = "qcom,rpmcc-ipq806x", "qcom,rpmcc";
+>  				#clock-cells = <1>;
+>  			};
 > +
->   		aoss_qmp: power-controller@c300000 {
->   			compatible = "qcom,sm8450-aoss-qmp", "qcom,aoss-qmp";
->   			reg = <0 0x0c300000 0 0x400>;
-
-
--- 
-With best wishes
-Dmitry
+> +			smb208_regulators: regulators {
+> +				compatible = "qcom,rpm-smb208-regulators";
+> +				status = "okay";
+> +
+> +				smb208_s1a: s1a {
+> +					regulator-min-microvolt = <1050000>;
+> +					regulator-max-microvolt = <1150000>;
+> +
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
+> +
+> +				smb208_s1b: s1b {
+> +					regulator-min-microvolt = <1050000>;
+> +					regulator-max-microvolt = <1150000>;
+> +
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
+> +
+> +				smb208_s2a: s2a {
+> +					regulator-min-microvolt = < 800000>;
+> +					regulator-max-microvolt = <1250000>;
+> +
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
+> +
+> +				smb208_s2b: s2b {
+> +					regulator-min-microvolt = < 800000>;
+> +					regulator-max-microvolt = <1250000>;
+> +
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
+> +			};
+>  		};
+>  
+>  		tcsr: syscon@1a400000 {
+> -- 
+> 2.34.1
+> 
