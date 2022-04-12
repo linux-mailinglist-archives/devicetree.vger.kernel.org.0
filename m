@@ -2,157 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 146494FEB34
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A11C4FEB9C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 01:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbiDLXTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 19:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
+        id S229450AbiDLXtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 19:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbiDLXTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:19:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752F255BEF;
-        Tue, 12 Apr 2022 16:08:27 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 92CA01F44C84
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649804905;
-        bh=BIhBahY5mK+O0aUB2G5eR+qvBV8h9i6YuuZcILddZFQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hc82udoKR5hMf/MlAxnnn39fVT6v+Tps0+g2G7EqF18ANs67qzMx8NOvlqI9tvdl4
-         Mf5pQZ4p7xZsicA0tZ5jBq2UprhTpGu8lWn2xl6DE11vqsbSB32sNwRxfzySqRJlE0
-         l4+8rSyDjs3lHpXcEg5WHiyYvfFGej6WOqpV4jxaN4KxqbLVyWayIe/HzDjWYfdYwc
-         Fd9h4UEITFxvCGjKWwTZvnh0WYJwrxSxKhVEfiQ1GKo1plj6M4DDmqH5Abw2LOkF6s
-         rQEJO/VnzEwlTdhuIX0Ul1AqW0E+fD9060qnT3KiJ2tX/xPrmNXl/zz5rVWVLT9CnR
-         dDUkTrzg1M9wg==
-Date:   Tue, 12 Apr 2022 19:08:19 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH 1/1] arm64: dts: mt8192: Add vcodec lat and core nodes
-Message-ID: <20220412230819.vnbdv6wpsg73eqzi@notapiano>
-References: <20220408104124.31395-1-allen-kh.cheng@mediatek.com>
- <20220408104124.31395-2-allen-kh.cheng@mediatek.com>
+        with ESMTP id S231473AbiDLXs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 19:48:59 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A564A15A0E;
+        Tue, 12 Apr 2022 16:44:05 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23CNi0Hw051029;
+        Tue, 12 Apr 2022 18:44:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649807041;
+        bh=oc+HIh97XfczM9ecJOWeQVZz2RDSA8zgm3GE8d06OmM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=DlBdKv2q02c0VTjJEKmcvt3g5TKP22WKCUxl9FvtuZ9uJMMp9oTh+nGeO62Pak96u
+         gMHdR/fd1OGtxe2IZdfJRlZNkg04QM3w38kxNC21UgpnN9ZMpBJEh5ciOMQAGYK09d
+         vaIF3N6yLT61U73WOiv8gk9fv/qzFS2/tsNY7cII=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23CNi0af047739
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 12 Apr 2022 18:44:00 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
+ Apr 2022 18:44:00 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 12 Apr 2022 18:44:00 -0500
+Received: from [10.250.234.106] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23CNhvxL019743;
+        Tue, 12 Apr 2022 18:43:58 -0500
+Message-ID: <88c59d74-f251-b444-7b99-71e3fe428482@ti.com>
+Date:   Wed, 13 Apr 2022 05:13:56 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220408104124.31395-2-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v5 2/4] arm64: dts: ti: j721e: Add VTM node
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>, <robh+dt@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <amitk@kernel.org>, <kristo@kernel.org>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220412101409.7980-1-j-keerthy@ti.com>
+ <20220412101409.7980-3-j-keerthy@ti.com>
+ <c1c2dc5b-5958-2b34-a963-6248e2817ca7@ti.com>
+From:   "J, KEERTHY" <j-keerthy@ti.com>
+In-Reply-To: <c1c2dc5b-5958-2b34-a963-6248e2817ca7@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen,
 
-On Fri, Apr 08, 2022 at 06:41:24PM +0800, Allen-KH Cheng wrote:
-> Add vcodec lat and core nodes for mt8192 SoC.
+
+On 4/12/2022 10:39 PM, Vignesh Raghavendra wrote:
+> Hi Keerthy
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60 ++++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
+> On 12/04/22 3:44 pm, Keerthy wrote:
+>> VTM stands for Voltage Thermal Management
+>>
+>> Signed-off-by: Keerthy <j-keerthy@ti.com>
+>> ---
+>>   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  9 +++
+>>   arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi  | 73 +++++++++++++++++++
+>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi          |  4 +
+>>   3 files changed, 86 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+>> index b4972dfb7da8..6290f563b8e7 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+>> @@ -418,4 +418,13 @@
+>>   		interrupt-names = "int0", "int1";
+>>   		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+>>   	};
+>> +
+>> +	wkup_vtm0: wkup_vtm0@42040000 {
+>> +		compatible = "ti,j721e-vtm";
+>> +		reg = <0x0 0x42040000 0x0 0x350>,
+>> +			<0x0 0x42050000 0x0 0x350>,
+>> +			<0x0 0x43000300 0x0 0x10>;
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 18a58239d6f1..c7f4b2fbb315 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1120,6 +1120,66 @@
->  			power-domains = <&spm MT8192_POWER_DOMAIN_ISP2>;
->  		};
->  
-> +		vcodec_dec: vcodec-dec@16000000 {
-> +			compatible = "mediatek,mt8192-vcodec-dec";
-> +			reg = <0 0x16000000 0 0x1000>;
-> +			mediatek,scp = <&scp>;
-> +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> +			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
+> Please follow convention of using 0x00 as rest of the file:
 
-The dt-binding says address-cells and size-cells should be 1. Then most of the
-extra 0s can be dropped from ranges and the children's regs.
+Okay.
 
-Other than that,
-
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Thanks,
-Nícolas
-
-> +			ranges = <0 0 0 0x16000000 0 0x26000>;
-> +
-> +			vcodec_lat: vcodec-lat@10000 {
-> +				compatible = "mediatek,mtk-vcodec-lat";
-> +				reg = <0x0 0x10000 0 0x800>;
-> +				interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
-> +					 <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
-> +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +					 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-> +					 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
-> +					 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
-> +					 <&topckgen CLK_TOP_MAINPLL_D4>;
-> +				clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-> +				assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-> +				assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-> +				power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
-> +			};
-> +
-> +			vcodec_core: vcodec-core@25000 {
-> +				compatible = "mediatek,mtk-vcodec-core";
-> +				reg = <0 0x25000 0 0x1000>;
-> +				interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
-> +					 <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
-> +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +					 <&vdecsys CLK_VDEC_VDEC>,
-> +					 <&vdecsys CLK_VDEC_LAT>,
-> +					 <&vdecsys CLK_VDEC_LARB1>,
-> +					 <&topckgen CLK_TOP_MAINPLL_D4>;
-> +				clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-> +				assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-> +				assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-> +				power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
-> +			};
-> +		};
-> +
->  		larb5: larb@1600d000 {
->  			compatible = "mediatek,mt8192-smi-larb";
->  			reg = <0 0x1600d000 0 0x1000>;
-> -- 
-> 2.18.0
+> 
+> 		reg = <0x00 0x42040000 0x00 0x350>,
+> 		....
+> 
+>> +		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
+>> +		#thermal-sensor-cells = <1>;
+>> +	};
+>>   };
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
+>> new file mode 100644
+>> index 000000000000..e922042f356f
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
+>> @@ -0,0 +1,73 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +#include <dt-bindings/thermal/thermal.h>
+>> +
+>> +wkup_thermal: wkup_thermal {
+>> +	polling-delay-passive = <250>; /* milliseconds */
+>> +	polling-delay = <500>; /* milliseconds */
+>> +	thermal-sensors = <&wkup_vtm0 0>;
+>> +
+>> +	trips {
+>> +		wkup_crit: wkup_crit {
 > 
 > 
+> Here and elsewhere no "-" in node names please.
+
+I believe you meant no "_" ?
+
+> 
+> You can use:
+> 
+> https://github.com/nmenon/kernel_patch_verify
+> kpv -C -n <no of commits>
+> 
+> This catches most issues like above
+
+Okay
+
+> 
+>> +			temperature = <125000>; /* milliCelsius */
+>> +			hysteresis = <2000>; /* milliCelsius */
+>> +			type = "critical";
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +mpu_thermal: mpu_thermal {
+>> +	polling-delay-passive = <250>; /* milliseconds */
+>> +	polling-delay = <500>; /* milliseconds */
+>> +	thermal-sensors = <&wkup_vtm0 1>;
+>> +
+>> +	trips {
+>> +		mpu_crit: mpu_crit {
+>> +			temperature = <125000>; /* milliCelsius */
+>> +			hysteresis = <2000>; /* milliCelsius */
+>> +			type = "critical";
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +c7x_thermal: c7x_thermal {
+>> +	polling-delay-passive = <250>; /* milliseconds */
+>> +	polling-delay = <500>; /* milliseconds */
+>> +	thermal-sensors = <&wkup_vtm0 2>;
+>> +
+>> +	trips {
+>> +		c7x_crit: c7x_crit {
+>> +			temperature = <125000>; /* milliCelsius */
+>> +			hysteresis = <2000>; /* milliCelsius */
+>> +			type = "critical";
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +gpu_thermal: gpu_thermal {
+>> +	polling-delay-passive = <250>; /* milliseconds */
+>> +	polling-delay = <500>; /* milliseconds */
+>> +	thermal-sensors = <&wkup_vtm0 3>;
+>> +
+>> +	trips {
+>> +		gpu_crit: gpu_crit {
+>> +			temperature = <125000>; /* milliCelsius */
+>> +			hysteresis = <2000>; /* milliCelsius */
+>> +			type = "critical";
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +r5f_thermal: r5f_thermal {
+>> +	polling-delay-passive = <250>; /* milliseconds */
+>> +	polling-delay = <500>; /* milliseconds */
+>> +	thermal-sensors = <&wkup_vtm0 4>;
+>> +
+>> +	trips {
+>> +		r5f_crit: r5f_crit {
+>> +			temperature = <125000>; /* milliCelsius */
+>> +			hysteresis = <2000>; /* milliCelsius */
+>> +			type = "critical";
+>> +		};
+>> +	};
+>> +};
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> index 0e23886c9fd1..6979863eb500 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> @@ -181,6 +181,10 @@
+>>   				 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>; /* FSS OSPI1 data region 3*/
+>>   		};
+>>   	};
+>> +
+>> +	thermal_zones: thermal-zones {
+>> +		#include "k3-j721e-thermal.dtsi"
+>> +	};
+> 
+> Bit weird representation, any reason why thermal-zones {} cannot be
+> moved into k3-j721e-thermal.dtsi?
+
+Okay. This could be moved. This is typically done when we have different 
+zones defined under different dtsi files. Like in the case of 
+omap5/dra7. The same was followed here. You are right this could be 
+moved as we have all the zones under one dtsi.
+
+Regards,
+Keerthy
+
+> 
+>>   };
+>>   
+>>   /* Now include the peripherals for each bus segments */
+> 
+> 
+> Regards
+> Vignesh
