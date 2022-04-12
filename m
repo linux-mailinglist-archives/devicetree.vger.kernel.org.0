@@ -2,133 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90AEE4FDD88
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5AE34FDD89
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:09:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345508AbiDLLK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 07:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36436 "EHLO
+        id S1345752AbiDLLLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 07:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353953AbiDLLFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:05:01 -0400
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF4C654BF
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 02:55:46 -0700 (PDT)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20220412095541euoutp02afeab9a16011a25dad725b17a3c933a2~lHY_48cgM0999309993euoutp024
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:55:41 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20220412095541euoutp02afeab9a16011a25dad725b17a3c933a2~lHY_48cgM0999309993euoutp024
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1649757341;
-        bh=njL2qvMFEhc0HzKA4tmgsS/RDhcCQzFsP7scg60RFzY=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=Z5VzAJSqs/bx2PopCOi/JpZraBnG2ADmjCSmvdHQ4umD10wpdGBarhHxr+5i4zh+s
-         Gu8PhtTbngjnv2A5aJY4Yk1/KgZY3+PS/PPN5Q3VC7FEoYGGu9ODL3goaej8oAE5Rk
-         3CvfZyrql1Bo49BoJ/uLeOeKDh2MEF/sCatBpfps=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20220412095541eucas1p222886ea3c33e6a2bf05cb3c20057aee7~lHY_eBiZo2834828348eucas1p2q;
-        Tue, 12 Apr 2022 09:55:41 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 99.C2.09887.D9C45526; Tue, 12
-        Apr 2022 10:55:41 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220412095540eucas1p26338894d71d3ab9190ac24639a89feff~lHY97jrgM3241332413eucas1p2s;
-        Tue, 12 Apr 2022 09:55:40 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220412095540eusmtrp27ca8c15d1c0ea9fd2cddeca7af9946d1~lHY91mUGV2041920419eusmtrp2B;
-        Tue, 12 Apr 2022 09:55:40 +0000 (GMT)
-X-AuditID: cbfec7f4-45bff7000000269f-26-62554c9de641
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id A6.4B.09404.C9C45526; Tue, 12
-        Apr 2022 10:55:40 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220412095537eusmtip1588c11a8d081c52b541062d64f10378a~lHY7KZ8rA1294412944eusmtip1F;
-        Tue, 12 Apr 2022 09:55:37 +0000 (GMT)
-Message-ID: <5823f59a-9c57-5f9a-0ebd-1ea2f39e73cb@samsung.com>
-Date:   Tue, 12 Apr 2022 11:55:36 +0200
+        with ESMTP id S1354105AbiDLLFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:05:02 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8416579C;
+        Tue, 12 Apr 2022 02:56:31 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23C9uMkm096818;
+        Tue, 12 Apr 2022 04:56:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649757382;
+        bh=ugRzal5VjfUjawoYrtpjB5VqZuPi1bn0ckWPOzleY+I=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=C1f8WWG9B+NuH/0xhstTTtlhzitG0rhgxCIrYltEffUaic4JJMPgjkaJIsf2/+4Ug
+         431a7/S5g/wkQ84AW+CxPOAUMHEQd31cfQqvw6akWggMX3fd4nmUxEb5hUCaxEIzb5
+         MZqqMr0moR311MI/KhWkJY2IdK+96z5saHQwOPss=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23C9uMvC027020
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 12 Apr 2022 04:56:22 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
+ Apr 2022 04:56:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 12 Apr 2022 04:56:21 -0500
+Received: from [10.249.96.184] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23C9uGJA115407;
+        Tue, 12 Apr 2022 04:56:17 -0500
+Message-ID: <f3ae48a8-7177-3a92-bdfd-3b243a5527c1@ti.com>
+Date:   Tue, 12 Apr 2022 12:56:18 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
-        Gecko/20100101 Thunderbird/91.7.0
-Subject: Re: [PATCH 02/11] drm: bridge: samsung-dsim: Handle platform init
- via driver_data
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC 13/13] net: ti: icssg-prueth: Add ICSSG ethernet driver
 Content-Language: en-US
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Adam Ford <aford173@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20220408162108.184583-3-jagan@amarulasolutions.com>
+To:     Puranjay Mohan <p-mohan@ti.com>, Andrew Lunn <andrew@lunn.ch>
+CC:     <linux-kernel@vger.kernel.org>, <bjorn.andersson@linaro.org>,
+        <mathieu.poirier@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <davem@davemloft.net>,
+        <kuba@kernel.org>, <netdev@vger.kernel.org>, <vigneshr@ti.com>,
+        <kishon@ti.com>, Roger Quadros <rogerq@kernel.org>
+References: <20220406094358.7895-1-p-mohan@ti.com>
+ <20220406094358.7895-14-p-mohan@ti.com> <Yk3d/cC36fhNmfY2@lunn.ch>
+ <468d4d9b-44b4-2894-2a75-4caab1e72147@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+In-Reply-To: <468d4d9b-44b4-2894-2a75-4caab1e72147@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUxTVxzlvvf6+trY7lkl3Og2tyZug0Q+hn/cAZKxOPNiTJhGTAAdFHgB
-        JhTXB36MbMMPBOrAtotQi6ROuhSwA61gQV0XGqATB4gCMwitRHQqIIHipsi6tX268d/5nd/H
-        OefmUrisklxD5SoLWZVSkScnxcTlnhcDG+q2JWVEajw4Grt7A0fueg+Bpu42kMjY1S9AQ89m
-        SVT5ow/p3BoCLVg1JHrkGiRQ35FpIarQmoTIrLGTyHp/RIDUi4040g/YMdR7uJRAjqpUNG+Y
-        wFHpz11CpP/+MYkGf53HPw5mfppzC5jZO6VCpv+7cZLpMIwLmdry0wKm/tpjjLE2VZBM13C9
-        gBkbuUYy7hNOjLlk+pa5+LQdY6pamwDjsb79mTRFHJfF5uXuZ1UR8eninG67HdvXKT9oNLdi
-        JWBxrRqIKEhvhOrpUVwNxJSMbgCwrdOC8cUCgN6qF4AvPADeqvlL+HrldssQyTfMvpXbNiFf
-        zAFo/L1Z4J+S0PGwvswE/Jig10O78TDO8yvh9dOThB8H0xnwvO287xJFraJ3Q50zzk/jdAgc
-        nTQGbKymlwj4ctFF8o2HAP7mDtwk6SionlEHeBGdADt0o69m1kHbzJlAIEh7RfDqn70C3vZm
-        qG+4B3i8Cj5xtr6K8yb8p8OvRvlwAfxbH83TB+HIlAXncSwc618M+MTpUNhyJYKnE+D0kWrA
-        b0rhnZmVvAMp1F2uwXlaAsuPy/jp96DB2fyfZufNW7gGyA3L3sSwLLxhWRbD/7pnAdEEQtgi
-        Lj+b5T5UsgfCOUU+V6TMDs8syLcC34+94XUutAPzk7lwB8Ao4ACQwuWrJSffT8qQSbIUh75i
-        VQVpqqI8lnOAtRQhD5Fk5l5QyOhsRSG7l2X3sarXXYwSrSnB2n4I+mipd3eYzRKT803i7MDO
-        Ff1LoQmbgnacDHqgldobL41sqmHLpO80FOvmMlwlm4styQ/Cnh+L7Z3vPjpWe7y15dQvz6TN
-        cNjb8wbZFXk09v5baVzb/sRjyee21o7GOOdBX+jDl+2pKZEx284oDhVXOptFddV/7Emu+MIs
-        m/g0bcOMN0W75dG9yvWO8cRSwYJWn/llLZgss6wbzNvztckVb6xulPfZpMHq7RXhU3QoHbUr
-        6cLOKTr93ayNHYU3M7vPfj6cU7dUfuBpKrcdaxyaiNoxFK08lQ3MEpje4mWl1NYrJaaeFSbV
-        Rf0nPUUG6Ra3uDPug4jnLi154qpHFy0nuBxFVBiu4hT/ArP6jSAgBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIKsWRmVeSWpSXmKPExsVy+t/xu7pzfEKTDBZ9FrO4c/s0s8X9xZ9Z
-        LF7fXsFmMf/IOVaLK1/fs1n0LgWyJt2fwGLxZdMENosX9y6yWJxtesNu0TlxCbvF8gn72Cw2
-        Pb7GatH1ayWzxYzz+5gsTjW2slgc6ou2+DTrIbNF694j7BYzJr9ks7h44hOzg6jH2o/3WT3e
-        32hl9zjXc5fNY+esu+wesztmsnos3vOSyWPTqk42jyNXF7N63Lm2h83jfvdxJo/NS+o9Nr7b
-        weTRt2UVo8fnTXIBfFF6NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2Nimp
-        OZllqUX6dgl6GUf37WMqOKhUMX/5FqYGxl/SXYycHBICJhKX119hA7GFBJYySmw+ZwYRl5E4
-        Oa2BFcIWlvhzrQuohguo5j2jxMzPp9lBErwCdhKL25cwgtgsAqoS++Y3MkPEBSVOznzCAmKL
-        CiRJXOpqB6sRFoiR2HBmJ1icWUBc4taT+UwgtohAA6vEoYtcEPFnjBJ3f6VBLDvNKHH1xQqw
-        ZWwChhJdb7vALuUUcJTYOekWG0SDmUTX1i5GCFteYvvbOcwTGIVmIbljFpJ9s5C0zELSsoCR
-        ZRWjSGppcW56brGRXnFibnFpXrpecn7uJkZgWtl27OeWHYwrX33UO8TIxMF4iFGCg1lJhLdf
-        PTRJiDclsbIqtSg/vqg0J7X4EKMpMDAmMkuJJucDE1teSbyhmYGpoYmZpYGppZmxkjivZ0FH
-        opBAemJJanZqakFqEUwfEwenVANTdA/7vdWLF03Tq34yY8eWXT0idllTgy6H365VSpp86X+z
-        D/ssfe7Lt0tr/zdMiVXZJFlV+ZXFMOIyx+GMGO9FSxwLY4L+v48zeumtybM+s/jik+0H7ddY
-        BXCetLvQsLtFLfvP7uj1EpsPlfOr3Sr6OZV77bIN8ZNU8p9cWnhqmvLCzzdVZkdLCcjX597q
-        f/akqFYiyV1M9UGgrhT32gyb3u6Nc1Q7hc395707eHKPdkTv/MevrU0+el/k/dvA1RviqTn3
-        v8NNzyWz1gq+2bl+Sh37r82Cx9V5/04T3yDv8b+1zlrOvaAmqi+Tm1+OJ/LySbfV1xJ/Hf/3
-        MftaRc+6duPvb27s5UxL+M6+1ktPiaU4I9FQi7moOBEAyqNtI7QDAAA=
-X-CMS-MailID: 20220412095540eucas1p26338894d71d3ab9190ac24639a89feff
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20220408162227eucas1p1f07cc5435b048a33013a72b52b135081
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220408162227eucas1p1f07cc5435b048a33013a72b52b135081
-References: <20220408162108.184583-1-jagan@amarulasolutions.com>
-        <CGME20220408162227eucas1p1f07cc5435b048a33013a72b52b135081@eucas1p1.samsung.com>
-        <20220408162108.184583-3-jagan@amarulasolutions.com>
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -136,128 +73,79 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 08.04.2022 18:20, Jagan Teki wrote:
-> In order to make a common Samsung DSIM bridge driver some platform specific
-> glue code needs to maintain separately as it is hard to maintain platform
-> specific glue and conventional component_ops on the drm bridge drivers side.
->
-> This patch is trying to support that glue code initialization and invocation
-> in the form of platform_init flag in driver_data.
->
-> So, the platforms which enable platform_init flags will handle all platform
-> specific initialization via samsung_dsim_plat_probe.
->
-> The Platform probe is responsible to
-> - initialize samsung_dsim_plat_data and install hooks
-> - initialize component_ops
-> - preserve samsung_dsim structure pointer
->
-> v1:
-> * use platform_init instead of exynos_specific
-> * handle component_ops in glue code
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->   drivers/gpu/drm/bridge/samsung-dsim.c | 20 ++++++++++++++++----
->   include/drm/bridge/samsung-dsim.h     |  1 +
->   2 files changed, 17 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-> index ee5d7e5518a6..0e6a5d1c7e4e 100644
-> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
-> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-> @@ -370,6 +370,7 @@ static const struct samsung_dsim_driver_data exynos3_dsi_driver_data = {
->   	.wait_for_reset = 1,
->   	.num_bits_resol = 11,
->   	.reg_values = reg_values,
-> +	.platform_init = true,
->   };
->   
->   static const struct samsung_dsim_driver_data exynos4_dsi_driver_data = {
-> @@ -382,6 +383,7 @@ static const struct samsung_dsim_driver_data exynos4_dsi_driver_data = {
->   	.wait_for_reset = 1,
->   	.num_bits_resol = 11,
->   	.reg_values = reg_values,
-> +	.platform_init = true,
->   };
->   
->   static const struct samsung_dsim_driver_data exynos5_dsi_driver_data = {
-> @@ -392,6 +394,7 @@ static const struct samsung_dsim_driver_data exynos5_dsi_driver_data = {
->   	.wait_for_reset = 1,
->   	.num_bits_resol = 11,
->   	.reg_values = reg_values,
-> +	.platform_init = true,
->   };
->   
->   static const struct samsung_dsim_driver_data exynos5433_dsi_driver_data = {
-> @@ -403,6 +406,7 @@ static const struct samsung_dsim_driver_data exynos5433_dsi_driver_data = {
->   	.wait_for_reset = 0,
->   	.num_bits_resol = 12,
->   	.reg_values = exynos5433_reg_values,
-> +	.platform_init = true,
->   };
->   
->   static const struct samsung_dsim_driver_data exynos5422_dsi_driver_data = {
-> @@ -414,6 +418,7 @@ static const struct samsung_dsim_driver_data exynos5422_dsi_driver_data = {
->   	.wait_for_reset = 1,
->   	.num_bits_resol = 12,
->   	.reg_values = exynos5422_reg_values,
-> +	.platform_init = true,
->   };
->   
->   static const struct of_device_id samsung_dsim_of_match[] = {
-> @@ -1565,12 +1570,16 @@ static int samsung_dsim_probe(struct platform_device *pdev)
->   	dsi->bridge.of_node = dev->of_node;
->   	dsi->bridge.type = DRM_MODE_CONNECTOR_DSI;
->   
-> -	dsi->plat_data = samsung_dsim_plat_probe(dsi);
-> -	if (IS_ERR(dsi->plat_data)) {
-> +	if (dsi->driver_data->platform_init) {
-> +		dsi->plat_data = samsung_dsim_plat_probe(dsi);
->   		ret = PTR_ERR(dsi->plat_data);
 
-ret = IS_ERR(dsi->plat_data) ? PTR_ERR(dsi->plat_data) : 0;
+On 12/04/2022 12:45, Puranjay Mohan wrote:
+> + Roger, Grygorii
+> 
+> On 07/04/22 00:07, Andrew Lunn wrote:
+>>> +static int emac_phy_connect(struct prueth_emac *emac)
+>>> +{
+>>> +	struct prueth *prueth = emac->prueth;
+>>> +
+>>> +	/* connect PHY */
+>>> +	emac->phydev = of_phy_connect(emac->ndev, emac->phy_node,
+>>> +				      &emac_adjust_link, 0, emac->phy_if);
+>>
+>>> +static int prueth_config_rgmiidelay(struct prueth *prueth,
+>>> +				    struct device_node *eth_np,
+>>> +				    phy_interface_t phy_if)
+>>> +{
+>>> +	struct device *dev = prueth->dev;
+>>> +	struct regmap *ctrl_mmr;
+>>> +	u32 rgmii_tx_id = 0;
+>>> +	u32 icssgctrl_reg;
+>>> +
+>>> +	if (!phy_interface_mode_is_rgmii(phy_if))
+>>> +		return 0;
+>>> +
+>>> +	ctrl_mmr = syscon_regmap_lookup_by_phandle(eth_np, "ti,syscon-rgmii-delay");
+>>> +	if (IS_ERR(ctrl_mmr)) {
+>>> +		dev_err(dev, "couldn't get ti,syscon-rgmii-delay\n");
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	if (of_property_read_u32_index(eth_np, "ti,syscon-rgmii-delay", 1,
+>>> +				       &icssgctrl_reg)) {
+>>> +		dev_err(dev, "couldn't get ti,rgmii-delay reg. offset\n");
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
+>>> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
+>>> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
+>>> +
+>>> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
+>>> +
+>>> +	return 0;
+>>> +}
+>>>
+>>
+>> O.K, so this does not do what i initially thought it was doing. I was
+>> thinking it was to fine tune the delay, ti,syscon-rgmii-delay would be
+>> a small pico second value to allow the 2ns delay to be tuned to the
+>> board.
+>>
+>> But now i think this is actually inserting the full 2ns delay?
+>>
+>> The problem is, you also pass phy_if to of_phy_connect() so the PHY
+>> will also insert the delay if requested. So you end up with double
+>> delays for rgmii_id and rgmii_txid.
 
-otherwise it always fails.
+It's misunderstanding here. The bit field name in TRM is RGMII0_ID_MODE
+and meaning:
+0h - Internal transmit delay is enabled
+1h - Internal transmit delay is not enabled.
 
-> -		goto err_disable_runtime;
-> +	} else {
-> +		ret = mipi_dsi_host_register(&dsi->dsi_host);
->   	}
->   
-> +	if (ret)
-> +		goto err_disable_runtime;
-> +
->   	return 0;
->   
->   err_disable_runtime:
-> @@ -1585,7 +1594,10 @@ static int samsung_dsim_remove(struct platform_device *pdev)
->   
->   	pm_runtime_disable(&pdev->dev);
->   
-> -	samsung_dsim_plat_remove(dsi);
-> +	if (dsi->driver_data->platform_init)
-> +		samsung_dsim_plat_remove(dsi);
-> +	else
-> +		mipi_dsi_host_unregister(&dsi->dsi_host);
->   
->   	return 0;
->   }
-> diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsung-dsim.h
-> index 59a43f9c4477..eca7eacb5910 100644
-> --- a/include/drm/bridge/samsung-dsim.h
-> +++ b/include/drm/bridge/samsung-dsim.h
-> @@ -39,6 +39,7 @@ struct samsung_dsim_driver_data {
->   	unsigned int wait_for_reset;
->   	unsigned int num_bits_resol;
->   	const unsigned int *reg_values;
-> +	bool platform_init;
->   };
->   
->   struct samsung_dsim_host_ops {
+So here internal delay will be disabled for RGMII_ID/RGMII_TXID.
 
-Best regards
+>>
+>> The general recommendation is that the PHY inserts the delay, based on
+>> phy-mode. The MAC does not add a delay, so i suggest you always write
+>> 0 here, just to ensure the system is in a deterministic state, and the
+>> bootloader and not being messing around with things.
+>>
+>> 	   Andrew
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Best regards,
+Grygorii, Ukraine
