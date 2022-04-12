@@ -2,80 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B177C4FE5D1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 18:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C0564FE5DA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 18:31:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241925AbiDLQaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 12:30:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
+        id S1357677AbiDLQdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 12:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357578AbiDLQaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 12:30:21 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D485D5D5EC
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:27:57 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id i27so38392365ejd.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:27:57 -0700 (PDT)
+        with ESMTP id S1354747AbiDLQc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 12:32:56 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2649C5DE61
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:30:38 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id g18so13456510ejc.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 09:30:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NDMWPs4S7zilupRHZRh1G0PStgWMtqHNX86waZCmVE8=;
-        b=dLqmb6kJL5mNPwhuzfsZIOYf5d4DggnddiZ5T1YazUghckPybZmqFE+PE1EBKvLGoI
-         WJLC9SFdCWvTV3ielnSpXSBbtdLZxodidqSypOgcBqEQyxnzI8Y8N+t6+F8VJrV7mGLu
-         ufIm5LiSViEmjJR7el+bjssJ218/plCuY61Q8hsfp1C9xEZpJnx5Jengqphk/6btlNHx
-         nFAEYhMCaySp7kk/buf0tZYPTsPmitigjeJTNE6mNi9fjNezM7a4SYW+P41QzbpE9ZD6
-         yNI81MAGKHX7EmhPxVGLcyH5OyKtY0IiP7BQFQapa12TpyyXteQdmdOvhyGpHhA2Ls2o
-         VQqQ==
+        bh=gAj5xfHelclFReLdPPkYeZY0lE/SV5SVwgS8pMhTnxw=;
+        b=ooxwf1D2Mzc648NR6tfapMy+bq0FJ8IPXHeL8J/mpMDNxQfZMAVKr+BY3nD70ynTzl
+         Zlt/s+voJVfTfwCV02Z25lSnfoaakmM2M5z0gyggFHXn9kAeQcXW0ECD8fj7tGWr2nq1
+         NDcgWq2ShvCntNE4hjUh//ji69yh6AE/leeBXQ5IAtQ1//dIR6MSL3g0kuoAlA4IkR4V
+         qLNhlgx/zisOQbb6Ig3EH3SGK+gC6/fNAr75elsMtsg+BjCzLjRPU/L7y4VVitNYhtKi
+         HqbFuMrLHZU3sW3jrHPdLCbCRRUySxiGI2DKQHijVJE3UBrcBLlgnwaHaf0xik/AtBOm
+         i8mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=NDMWPs4S7zilupRHZRh1G0PStgWMtqHNX86waZCmVE8=;
-        b=3w0sMA7O6+D6u8JPj7oJdWN+eFy2zjmqcWOoHlrXd+tMuUtJkXBzy2LyAUTXPOU2m8
-         59O7Xwx2DZhhOwwBsgTwS4tH9b3FEWz91gfEwZb0z6bagtsPTxNS8fKe5nLLJ64Gme8U
-         BW7v154rh/+IvkKDyrtStm8o7SmWxRo2M2Hn0Frpj0FxQrIJn4ZRsC4qNkJ5SLF8QclJ
-         BXbuFcWGGNpZNXHAYo/+D/RNQiZ3ATglGlKWkFn7C/O3lN9aI9L5TUVHXPrHOC4R+IU3
-         NVOVUXF53KRbEmG9V7MaTs9QtyAqMd41Aqks8g6IEF1WlWz47deCd/ewCtqrhT4/qQyn
-         oglQ==
-X-Gm-Message-State: AOAM530knmJJXnkPiS99q0ADA13Osqz05+o8BI1QJPVn8bC59BRkxnGt
-        O31r+kcaVnl/AmgyDkYAQ4/mHg==
-X-Google-Smtp-Source: ABdhPJxOgxov+X+zXtcd2ayLa52f1FP4vBidDROaYaMLhZJo1c4KNN1Dn13j9jc1Pkv6HT2SJxILKA==
-X-Received: by 2002:a17:907:e87:b0:6e8:42ef:86d9 with SMTP id ho7-20020a1709070e8700b006e842ef86d9mr22736713ejc.59.1649780876063;
-        Tue, 12 Apr 2022 09:27:56 -0700 (PDT)
+        bh=gAj5xfHelclFReLdPPkYeZY0lE/SV5SVwgS8pMhTnxw=;
+        b=z8B6DT/JVZDO6Gc2k0PIOPBBx56/llmYT4/ccYhSz7BtPQLM9FkddTwPcyYkwisA/N
+         qC8aQuMhBq/2zJu68QDHq62w/gTcIza2cQuSHagNpJK6uN2oyeSKyrXEoFf4c9FlrFQL
+         44sIYonp8CJcfy3OpHY/Do7TC+u5VYjQhDoskWK5bMs0hyDct96pm29plYLZ9tpUI/w4
+         02CEC/45WK8DsaOs3o4ROQSX04cSs8bjNb+wcXZyUXxXJXT8crJ5/x0Rwi1K5gTfRFRQ
+         tlp4pylSK/TN8yEO1wVt30t2ocQ85ADkUvjzgGkV2dzJ9x6dYuuu2jSJkXvFCRtE5IWU
+         N06Q==
+X-Gm-Message-State: AOAM531dUzdZ5teQmgvLIdthBYAcWxu8cmMRMbZOXVS6ibyJ5yHrsVuw
+        HTkv4U0+Oo4gcGS976xv9YV80g==
+X-Google-Smtp-Source: ABdhPJwK8gR7AiQ34rV2PoWL7kth4RYbKFkRLOIq1Ammnm02jL+1fJVqgJdWykKP2fbJd9VqevTEYw==
+X-Received: by 2002:a17:907:3f18:b0:6e8:9332:542e with SMTP id hq24-20020a1709073f1800b006e89332542emr9689224ejc.633.1649781036722;
+        Tue, 12 Apr 2022 09:30:36 -0700 (PDT)
 Received: from [192.168.0.197] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id r29-20020a50c01d000000b00415fb0dc793sm17267681edb.47.2022.04.12.09.27.54
+        by smtp.gmail.com with ESMTPSA id z21-20020a05640240d500b0041d7f66a9cesm3375964edb.41.2022.04.12.09.30.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 09:27:55 -0700 (PDT)
-Message-ID: <60a9a401-7d1f-5100-7c3d-45452ebfa2ae@linaro.org>
-Date:   Tue, 12 Apr 2022 18:27:54 +0200
+        Tue, 12 Apr 2022 09:30:36 -0700 (PDT)
+Message-ID: <11a0ac1f-31a4-841b-6050-7876b784b960@linaro.org>
+Date:   Tue, 12 Apr 2022 18:30:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 3/5] ARM: dts: add dts files for bcmbca soc 47622
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
 Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     Samyon Furman <samyon.furman@broadcom.com>,
-        Joel Peshkin <joel.peshkin@broadcom.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Dan Beygelman <dan.beygelman@broadcom.com>,
-        Tomer Yacoby <tomer.yacoby@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org
-References: <20220411172815.20916-1-william.zhang@broadcom.com>
- <20220411172815.20916-4-william.zhang@broadcom.com>
- <ed806d35-3613-4f9c-54ba-b31fc5ed91c8@linaro.org>
- <147e23b6-c5a3-a9fa-c0e1-defe906e42a9@broadcom.com>
+To:     Camel Guo <camel.guo@axis.com>, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@axis.com
+References: <20220412135232.1943677-1-camel.guo@axis.com>
+ <20220412135232.1943677-2-camel.guo@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <147e23b6-c5a3-a9fa-c0e1-defe906e42a9@broadcom.com>
+In-Reply-To: <20220412135232.1943677-2-camel.guo@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,27 +77,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 17:37, William Zhang wrote:
->>> +/ {
->>> +	compatible = "brcm,bcm47622";
->>
->> This does not match your bindings. Even if it is not used.
-> Did I miss anything? But it matches one of the compatible strings in 
-> brcm,bcmbca.yaml.
+On 12/04/2022 15:52, Camel Guo wrote:
+> Document the TMP401, TMP411 and TMP43x device devicetree bindings
+> 
+> Signed-off-by: Camel Guo <camel.guo@axis.com>
+> ---
+> 
+> Notes:
+>  v2:
+>  - Fix format and describe hardware properties instead of programming
+>    models
+> 
 
-Your bindings expect that this compatible is followed with "brcm,bcmbca".
 
-(...)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->>> +	periph-bus@ff800000 {
->>
->> just "bus" to be generic?
-> This node represents the peripheral bus in the soc. Would prefer to use 
-> the specific name unless it is not allowed by the linux dts.
-
-It is allowed but the Devicetree spec explicitly asks for generic names
-and gives example: bus ("2.2.2 Generic Names Recommendation"). Specific
-names are discouraged.
 
 Best regards,
 Krzysztof
