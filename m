@@ -2,125 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8774FDDE8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB0F4FDDCD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 13:43:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242960AbiDLLk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 07:40:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55236 "EHLO
+        id S238058AbiDLLoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 07:44:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356155AbiDLLjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:39:49 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EAB5AA5F;
-        Tue, 12 Apr 2022 03:20:37 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 0FFED3201F82;
-        Tue, 12 Apr 2022 06:20:33 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 12 Apr 2022 06:20:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=undef.tools; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1649758833; x=
-        1649845233; bh=aRTApUSPxPOLZop5S/TZELqtxAg3W/UHUjXVwD/lHLM=; b=R
-        R5rYINfZ0nps4BJkw16j8qEW+Mrpac5C0AcE8g6ztszRuzlpkf6xRrKhuNXdCr9l
-        dX+cGVE4H+Dz6kWo68cr8+qWx01qjMI0j/VldYYQTKaN6WnHNLqel7VFf27FPVyX
-        AGJY2ipZYg7OJF5UkLWjqUBlDRDq6oo7MfOx0SUzIrPKhGaUAE3Wfo4GaWIF/SWZ
-        sTHhBFR5c4zhyaoXwAXvZpp6Odkj6zw7YDeBWGRxLER8xmATblZdsJsbYfhkRKSF
-        Ou5J8sVVd8Al9xAC2CFJt9aJeyGV0L/HyKmHDqE/9+pS0OSRQq+cA+1WJQpJ1Q19
-        9PPbsjbuKKt+F1j2Oi/WQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1649758833; x=1649845233; bh=aRTApUSPxPOLZ
-        op5S/TZELqtxAg3W/UHUjXVwD/lHLM=; b=afgmwmEBa0E/skokOknejBLFq8PoO
-        u7YabiKT6Ox7ixA/5ot9FX7wsZ1+oS4wYTSiGGg5TitU0SR9ZFg6ZVdL0Ipq5nV1
-        DknfCz/WUcpytUgh4SFb8kBjDGeqr+F0LFLsYhEiTEJRx7pw7LrnqSGxB/s3na5w
-        o3pn9ufAC/s83FdMlkWgxGYnIUVTu5QR+QNnPCCcbJlraV7vFOJDQi4IbO21yZUS
-        itd5F3kYF3PFYf09pvOMCePoQ/ZVZ7QDg/KyZSjuE7B+GV1U1OMzz7wGU3tB6lod
-        jcATYcA7NSo5pKYhI4FeFpI8KkKB7/zUproAdjq7nBGaqDKkv89wGrgEw==
-X-ME-Sender: <xms:cVJVYupzJMMiA3faFLhYlnJR_t1leCJIq_AOZpRG7N0E3xBw2qyC9g>
-    <xme:cVJVYsqyV-Z4dA6qdPtkg7zlVOUW534n8ihL71q_CAOqDpHwAW1m_xZnI4ORO8iJf
-    _ElQEhhlTBnbjqSgrs>
-X-ME-Received: <xmr:cVJVYjP0kNNdpGuwVUwEkHpIMjkD8WoIeaJe8eOXT67ZXQ8mkRUmSUYmrpqHaioQrHynFH0AZMpDDFKNlc0XqXSzvSRuhxvnRmGGxohUzVe_YhY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekkedgvdehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfuffvfhfhjggtgfesthejredttdefjeenucfhrhhomheplfgrrhhr
-    rghhuceokhgvrhhnvghlsehunhguvghfrdhtohholhhsqeenucggtffrrghtthgvrhhnpe
-    dvveekhffgtdduveekgeefiefguedujefhudfhvdfhffehffdtgfdutdetjeevffenucev
-    lhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehkvghrnhgvlh
-    esuhhnuggvfhdrthhoohhlsh
-X-ME-Proxy: <xmx:cVJVYt43Be7rH6aUbV0JQnV13IKMRy9jplvPs5cL_44JmhxaxowhvQ>
-    <xmx:cVJVYt4BVklTM8Gig5ZTrb2FeuOsfIcHimoCzGqgDDCrhMpw-vZ-7A>
-    <xmx:cVJVYtjb2jxOFwIdJTNYomAEXFtTTAzVhGNS3xxQ8AEI6mxrh_53lQ>
-    <xmx:cVJVYoaDm-GIuSMK_oZUVAH0UPKM2HD4ZsNt23WzO-NKvcB0rlpyQw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 12 Apr 2022 06:20:29 -0400 (EDT)
-Message-ID: <bde4ae40-98b6-7a77-2059-33c34442b604@undef.tools>
-Date:   Tue, 12 Apr 2022 20:20:24 +1000
+        with ESMTP id S245099AbiDLLlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 07:41:06 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4677A9A0;
+        Tue, 12 Apr 2022 03:21:44 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 4EF35FF804;
+        Tue, 12 Apr 2022 10:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649758903;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=+tuLOxrY1hW1qC0jcLc+r/ZB2125hSuzD7inGPMbKSs=;
+        b=hL5qxsXym/IAbPuzhxpk/yNIi0EZj38dvEqEeYRv9u1lwK4eDd3d4qdNM1KAR7K0MYNdB4
+        pBmYotHzZxb/ltd1PToz1vm4qjSiKs4nJTIdV263K7lYoaE4cnnNzy4z8lCpiFwGzZHQmr
+        RHoxfsJPcyAx/dh5Q4loOr9ftqiR92R0tR7qRD8Qm6xmW6cPPtIAOXl0RBwmTJ/dGJD4mp
+        Sg4GJ0PiorfKfAfq+IJe02OLPBtgtSu7Ja4OVoGCMZ5oKuZXOZtGCQcarZl3iA7oNfFocR
+        2gp87hnQ0GSByWfpcYJ7oOSo77kWMq/fBzxJpFL9ob666hCzw9t6XtFy78Gm6Q==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v9 0/9] RZN1 DMA support
+Date:   Tue, 12 Apr 2022 12:21:29 +0200
+Message-Id: <20220412102138.45975-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/5] Input: pinephone-keyboard - Build in the default
- keymap
-Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Wolfram Sang <wsa@kernel.org>, Ondrej Jirman <x@xff.cz>
-References: <20220129230043.12422-1-samuel@sholland.org>
- <20220129230043.12422-4-samuel@sholland.org>
-From:   Jarrah <kernel@undef.tools>
-In-Reply-To: <20220129230043.12422-4-samuel@sholland.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
-On 1/30/22 10:00, Samuel Holland wrote:
-> +
-> +static const uint32_t ppkb_default_fn_keymap[] = {
-> +	KEY(0,  0, KEY_FN_ESC),
-> +	KEY(0,  1, KEY_F1),
-> +	KEY(0,  2, KEY_F2),
-> +	KEY(0,  3, KEY_F3),
-> +	KEY(0,  4, KEY_F4),
-> +	KEY(0,  5, KEY_F5),
-> +	KEY(0,  6, KEY_F6),
-> +	KEY(0,  7, KEY_F7),
-> +	KEY(0,  8, KEY_F8),
-> +	KEY(0,  9, KEY_F9),
-> +	KEY(0, 10, KEY_F10),
-> +	KEY(0, 11, KEY_DELETE),
-> +
-> +	KEY(2,  0, KEY_SYSRQ),
-> +	KEY(2, 10, KEY_INSERT),
-> +
+Here is a first series bringing DMA support to RZN1 platforms. Soon a
+second series will come with changes made to the UART controller
+driver, in order to interact with the RZN1 DMA controller.
 
+Stephen acked the sysctrl patch (in the clk driver) but as this series
+is a base for more canges (serial, RTC), it would be best to merge
+everything through the Renesas trees. So, maintainers, if you agree with
+it, your acks are welcome.
 
-The driver currently being patched into most distros supporting the 
-keyboard exposes the symbols printed on the keyboard rather than the F* 
-keys on the function layer. While I agree than exposing function keys on 
-the Fn layer is more logical, in practice running this patch for a day 
-I've found it's far more useful to have quick access to the standard set 
-of symbols (such as | and -) than to have the function keys.
+Cheers,
+Miquèl
 
-Would it be possible to either set the default back to symbols or expose 
-another layer (potentially under the "pine" key)? An alternative 
-solution proposed on the Mobian issue for this was to add a module 
-option, allowing these to be switched at runtime rather than compile time.
+Changes in v9:
+* Collected more tags.
+* Changed a u32 into a regular bitmap and used the bitmap API.
+* Reordered two function calls to save one extra line.
+* Added a define to avoid a magic value.
+
+Changes in v8:
+* Collected more tags.
+* Moved the Makefile line adding the dmamux driver to the bottom of the
+  file.
+* Reversed the logic in a ternary operation as suggested by Andy.
+* Changed a bit the naming of a #define as suggested by Andy.
+
+Changes in v7:
+* This time, really added Stephen's Acks (sorry for the error).
+* Moved an error check to get rid of one mutex_unlock/lock call as
+  suggested by Ilpo.
+* Split the patch adding the dmamux driver as advised by Vinod. One
+  patch introduces the dmamux driver, the other populates the children
+  of the system controller. As the original patch got acked by Stephen
+  Boyd, I moved his tag to the patch touching the clock controller only.
+
+Changes in v6:
+* Added Stephen's acks.
+* Fixed an extra newline added in the middle of nowhere.
+* Rebased on top of v5.18-rc1.
+
+Changes in v5:
+* Used gotos in rzn1_dmamux_route_allocate().
+* Changed the prefix to "dmaengine:".
+* Dropped the partial transfers fix.
+* Added Rob's acks.
+
+Changes in v4:
+* Freed "map" in the error path of the dmamux driver.
+* Improved a bit the style as requested by Prabhakar.
+* Dropped a __maybe_unused.
+* Reorder the includes.
+* Added a dependency on ARCH_RZN1.
+* Added Rob's Ack.
+* Added a reg property to the dmamux binding file.
+* Referenced the dmamux binding from the system controller file.
+* Called of_platform_populate from the end of the system controller
+  (clock) driver probe in order to probe the dmamux if it was
+  populated.
+* Added DMA properties to all the relevant UARTs.
+
+Changes in v3:
+* Added Reviewed-by tags.
+* Exported the set_dmamux* symbol properly.
+* Dropped a useless check in the probe and moved the sysctrl_priv
+  assignation to the end of the probe.
+* Renamed the dmamux driver
+* Added a couple of missing MODULE_ macros in the dmamux driver.
+* Decided to use a regular platform init call instead of the
+  arch_initcall() initially proposed.
+* s/%d/%u/ in printk's when appropriate.
+* Used a hardcoded value instead of dmamux->dmac_requests when
+  appropriate.
+* Changed the variable name "master" to "dmac_idx" to be more
+  descriptive.
+* Dropped most of the of_* calls in favor of #define's.
+* Fixed a typo.
+* Exported two symbols from 8250_dma.c.
+
+Changes in v2:
+* Clarified that the 'fix' regarding non aligned reads would only apply
+  to the DEV_TO_MEM case.
+* Fix the DMA controller compatible string (copy-paste error).
+* s/syscon/sysctrl/ as advised by Geert.
+* Disabled irqs when taking the spinlock from the clocks driver.
+* Moved the DMAMUX offset inside the driver.
+* Removed extra commas.
+* Improved the style as suggested by Andy.
+* Removed a dupplicated check against the device node presence.
+* Reduced the number of lines of code by using dev_err_probe().
+* Created a Kconfig symbol for DMAMUX to fix the two robot reports
+  received and be sure there was no useless overhead with other
+  platforms.
+* Exported the serial8250_{tx,rx}_dma() symbols.
+
+Miquel Raynal (9):
+  dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
+  dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
+  dt-bindings: dmaengine: Introduce RZN1 DMA compatible
+  soc: renesas: rzn1-sysc: Export function to set dmamux
+  dmaengine: dw: dmamux: Introduce RZN1 DMA router support
+  clk: renesas: r9a06g032: Probe possible children
+  dmaengine: dw: Add RZN1 compatible
+  ARM: dts: r9a06g032: Add the two DMA nodes
+  ARM: dts: r9a06g032: Describe the DMA router
+
+ .../clock/renesas,r9a06g032-sysctrl.yaml      |  11 ++
+ .../bindings/dma/renesas,rzn1-dmamux.yaml     |  51 ++++++
+ .../bindings/dma/snps,dma-spear1340.yaml      |   8 +-
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/r9a06g032.dtsi              |  40 +++++
+ drivers/clk/renesas/r9a06g032-clocks.c        |  36 +++-
+ drivers/dma/dw/Kconfig                        |   9 +
+ drivers/dma/dw/Makefile                       |   2 +
+ drivers/dma/dw/platform.c                     |   1 +
+ drivers/dma/dw/rzn1-dmamux.c                  | 163 ++++++++++++++++++
+ include/linux/soc/renesas/r9a06g032-sysctrl.h |  11 ++
+ 11 files changed, 331 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
+ create mode 100644 drivers/dma/dw/rzn1-dmamux.c
+ create mode 100644 include/linux/soc/renesas/r9a06g032-sysctrl.h
+
+-- 
+2.27.0
 
