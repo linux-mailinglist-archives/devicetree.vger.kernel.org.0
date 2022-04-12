@@ -2,345 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D4EC4FE246
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 15:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AAA4FE252
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 15:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356007AbiDLNWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 09:22:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        id S1354289AbiDLNYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 09:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355873AbiDLNWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 09:22:17 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24547C4;
-        Tue, 12 Apr 2022 06:11:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649769094; x=1681305094;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=kT6Ot8+nfgTsQi/J+cK/x9upUdjWkz0QjcKSjUE2ecI=;
-  b=tHm1LhiDx1r8jbpPET/5qmRpcTr5B8OSEatSUy0gMhBPnd4cYQ9B8FSD
-   LjjeI7IdcxBbFdiJG1L8HHyQ/kZ1h8Q9cBbjyWq/apromE7mUeVzCuuQd
-   b+izmtV2kUNtcACLkCurHa9J4nMQuXrQRNlg5HSBmALXOin91/CvEUQMP
-   8=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 12 Apr 2022 06:11:33 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 06:11:33 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 12 Apr 2022 06:11:33 -0700
-Received: from [10.216.28.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 12 Apr
- 2022 06:11:28 -0700
-Message-ID: <be8c6dae-20b1-3ba1-db3f-119da1e4ebfe@quicinc.com>
-Date:   Tue, 12 Apr 2022 18:41:25 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: sc7280: add lpass lpi pin
- controller node
-Content-Language: en-US
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     Matthias Kaehlcke <mka@chromium.org>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1649685184-8448-1-git-send-email-quic_srivasam@quicinc.com>
- <1649685184-8448-3-git-send-email-quic_srivasam@quicinc.com>
- <YlSCWC47tITuW/BZ@google.com>
- <9bacee6d-ab44-2975-c523-38164d016af5@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <9bacee6d-ab44-2975-c523-38164d016af5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1356417AbiDLNXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 09:23:10 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D785F56;
+        Tue, 12 Apr 2022 06:14:07 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id a17-20020a9d3e11000000b005cb483c500dso13351016otd.6;
+        Tue, 12 Apr 2022 06:14:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=4Hu29V9bbNGQ7NeMGoWiDLgZuDde0wP79E71crt9DdM=;
+        b=6xDjFtAoU9TZO0esno4Hf4cS5FCI+aIIpNOUkbHDbAuuFwTt4JaIR20bDh9d6DSjfs
+         kAsGSx5LffWFabhBQ7aTEoMNwg1PSL5ed77c9J6xP9GlMkMjvYhtFLxi3tRSmKZWe9gH
+         Euc77qwslSDI9a5R8ODHwNjD43tmFQ6vZcYUFlaNJRFrXOol400alUhSwpI3SmzOSMl0
+         BhI/kargNL8AMuBC4jLIoGZrutqqr+34SjGLtbgMSIj/pNV+KgaMU2nHpA9/6rzSRdBT
+         pp8G7HePqq5VK33vCIP6SBf8i/keNDmT0K1IPrcoqSdwVo3INlQLZPVsV1AocB4KqI2P
+         MLpQ==
+X-Gm-Message-State: AOAM5334wWwbGUWYGN1J6buNWOhED6p1FJzd82JcMM7ueKBP2a0Hcs+L
+        TLuCsqSMAHVVp/kw/bl2Dw==
+X-Google-Smtp-Source: ABdhPJy/ZMhWQUc529yUtvgnyCadjBqr7fjsWtZYK6b6y58vnNMwVPuq1IYac7H3Y8QrDWl4AkwVgw==
+X-Received: by 2002:a05:6830:2aa1:b0:5e6:cccf:419b with SMTP id s33-20020a0568302aa100b005e6cccf419bmr6816302otu.208.1649769246965;
+        Tue, 12 Apr 2022 06:14:06 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n62-20020acaef41000000b002ef646e6690sm12947467oih.53.2022.04.12.06.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 06:14:06 -0700 (PDT)
+Received: (nullmailer pid 3815484 invoked by uid 1000);
+        Tue, 12 Apr 2022 13:14:05 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dylan Hung <dylan_hung@aspeedtech.com>
+Cc:     netdev@vger.kernel.org, kuba@kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, joel@jms.id.au, hkallweit1@gmail.com,
+        pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
+        andrew@aj.id.au, robh+dt@kernel.org, p.zabel@pengutronix.de,
+        krzk+dt@kernel.org, linux-kernel@vger.kernel.org, andrew@lunn.ch,
+        BMC-SW@aspeedtech.com, linux@armlinux.org.uk, davem@davemloft.net
+In-Reply-To: <20220412065611.8930-2-dylan_hung@aspeedtech.com>
+References: <20220412065611.8930-1-dylan_hung@aspeedtech.com> <20220412065611.8930-2-dylan_hung@aspeedtech.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: add reset property for aspeed, ast2600-mdio binding
+Date:   Tue, 12 Apr 2022 08:14:05 -0500
+Message-Id: <1649769245.688561.3815481.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 12 Apr 2022 14:56:09 +0800, Dylan Hung wrote:
+> The AST2600 MDIO bus controller has a reset control bit and must be
+> deasserted before manipulating the MDIO controller. By default, the
+> hardware asserts the reset so the driver only need to deassert it.
+> 
+> Regarding to the old DT blobs which don't have reset property in them,
+> the reset deassertion is usually done by the bootloader so the reset
+> property is optional to work with them.
+> 
+> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  .../devicetree/bindings/net/aspeed,ast2600-mdio.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-On 4/12/2022 6:18 PM, Srinivasa Rao Mandadapu wrote:
->
-> On 4/12/2022 1:02 AM, Matthias Kaehlcke wrote:
-> Thanks for your time Matthias!!!
->> On Mon, Apr 11, 2022 at 07:23:04PM +0530, Srinivasa Rao Mandadapu wrote:
->>> Add LPASS LPI pinctrl node required for Audio functionality on sc7280
->>> based platforms.
->>>
->>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  84 
->>> ++++++++++++++++++++++++
->>>   arch/arm64/boot/dts/qcom/sc7280.dtsi     | 107 
->>> +++++++++++++++++++++++++++++++
->>>   2 files changed, 191 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
->>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->>> index 4ba2274..ea751dc 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->>> @@ -238,6 +238,90 @@
->>>       modem-init;
->>>   };
->>>   +&dmic01 {
->> Shouldn't these nodes be in the PINCTRL section at their respective
->> positions in alphabetical order?
->
-> These are not part of tlmm pin control section. These are part of 
-> lpass_tlmm section.
->
-> In your previous comment you asked to remove &lpass_tlmm. Hence 
-> brought out.
->
->>
->> nit: since you are keeping the groups the group names are a bit 
->> generic IMO.
->> e.g. it is fairly obvious that 'dmic01_clk' refers to a clock pin, 
->> however
->> just 'dmic01' is a bit vague. You could consider adding the prefix 
->> 'lpass_'
->> to the group names for more clarity.
-> as dmic01 has both clk and data section, I don't think keeping clk is 
-> appropriate here.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-As these nodes are part of SC7280, i.e. qcom specific chipset, I feel 
-lpass_ is redundant.
+yamllint warnings/errors:
 
-If we add lpass_ to all dmic nodes, some node names are too lengthy.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.example.dts:25.35-36 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
 
->>
->>> +    clk {
->>> +        drive-strength = <8>;
->>> +    };
->>> +};
->>> +
->>> +&dmic01_sleep {
->>> +    clk {
->>> +        drive-strength = <2>;
->>> +        bias-disable;
->>> +    };
->>> +
->>> +    data {
->>> +        pull-down;
->>> +    };
->>> +};
->>> +
->>> +&dmic23 {
->>> +    clk {
->>> +        drive-strength = <8>;
->>> +    };
->>> +};
->>> +
->>> +&dmic23_sleep {
->>> +    clk {
->>> +        drive-strength = <2>;
->>> +        bias-disable;
->>> +    };
->>> +
->>> +    data {
->>> +        pull-down;
->>> +    };
->>> +};
->>> +
->>> +&rx_swr {
->>> +    clk {
->>> +        drive-strength = <2>;
->>> +        slew-rate = <1>;
->>> +        bias-disable;
->>> +    };
->>> +
->>> +    data {
->>> +        drive-strength = <2>;
->>> +        slew-rate = <1>;
->>> +        bias-bus-hold;
->>> +    };
->>> +};
->>> +
->>> +&rx_swr_sleep {
->>> +    clk {
->>> +        drive-strength = <2>;
->>> +        bias-pull-down;
->>> +    };
->>> +
->>> +    data {
->>> +        drive-strength = <2>;
->>> +        bias-pull-down;
->>> +    };
->>> +};
->>> +
->>> +&tx_swr {
->>> +    clk {
->>> +        drive-strength = <2>;
->>> +        slew-rate = <1>;
->>> +        bias-disable;
->>> +    };
->>> +
->>> +    data {
->>> +        slew-rate = <1>;
->>> +        bias-bus-hold;
->>> +    };
->>> +};
->>> +
->>> +&tx_swr_sleep {
->>> +    clk {
->>> +        drive-strength = <2>;
->>> +        bias-pull-down;
->>> +    };
->>> +
->>> +    data {
->>> +        bias-bus-hold;
->>> +    };
->>> +};
->>> +
->>>   &pcie1 {
->>>       status = "okay";
->>>       perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> index 8099c80..c692420 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> @@ -1987,6 +1987,113 @@
->>>               qcom,bcm-voters = <&apps_bcm_voter>;
->>>           };
->>>   +        lpass_tlmm: pinctrl@33c0000 {
->>> +            compatible = "qcom,sc7280-lpass-lpi-pinctrl";
->>> +            reg = <0 0x033c0000 0x0 0x20000>,
->>> +                <0 0x03550000 0x0 0x10000>;
->>> +            gpio-controller;
->>> +            #gpio-cells = <2>;
->>> +            gpio-ranges = <&lpass_tlmm 0 0 15>;
->>> +
->>> +            #clock-cells = <1>;
->>> +
->>> +            dmic01: dmic01 {
->>> +                clk {
->>> +                    pins = "gpio6";
->>  From the schematics I interpret that the LPASS GPIOs 0-9 are mapped 
->> to the
->> SC7280 GPIOs 144-153. Is that correct?
-> Yes. But we refer with GPIOs 0-9 in driver.
->>
->>> +                    function = "dmic1_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio7";
->>> +                    function = "dmic1_data";
->>> +                };
->>> +            };
->>> +
->>> +            dmic01_sleep: dmic01-sleep {
->>> +                clk {
->>> +                    pins = "gpio6";
->>> +                    function = "dmic1_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio7";
->>> +                    function = "dmic1_data";
->>> +                };
->>> +            };
->>> +
->>> +            dmic23: dmic23 {
->>> +                clk {
->>> +                    pins = "gpio8";
->>> +                    function = "dmic2_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio9";
->>> +                    function = "dmic2_data";
->>> +                };
->>> +            };
->>> +
->>> +            dmic23_sleep: dmic23_sleep {
->> s/dmic23_sleep/dmic23-sleep/ for the node name.
-> Okay.
->>
->>> +                clk {
->>> +                    pins = "gpio8";
->>> +                    function = "dmic2_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio9";
->>> +                    function = "dmic2_data";
->>> +                };
->>> +            };
->>> +
->>> +            rx_swr: rx-swr {
->>> +                clk {
->>> +                    pins = "gpio3";
->>> +                    function = "swr_rx_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio4", "gpio5";
->>> +                    function = "swr_rx_data";
->>> +                };
->>> +            };
->>> +
->>> +            rx_swr_sleep: rx-swr-sleep {
->>> +                clk {
->>> +                    pins = "gpio3";
->>> +                    function = "swr_rx_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio4", "gpio5";
->>> +                    function = "swr_rx_data";
->>> +                };
->>> +            };
->>> +
->>> +            tx_swr: tx-swr {
->>> +                clk {
->>> +                    pins = "gpio0";
->>> +                    function = "swr_tx_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio1", "gpio2", "gpio14";
->>> +                    function = "swr_tx_data";
->>> +                };
->>> +            };
->>> +
->>> +            tx_swr_sleep: tx-swr-sleep {
->>> +                clk {
->>> +                    pins = "gpio0";
->>> +                    function = "swr_tx_clk";
->>> +                };
->>> +
->>> +                data {
->>> +                    pins = "gpio1", "gpio2", "gpio14";
->>> +                    function = "swr_tx_data";
->>> +                };
->>> +            };
->>> +        };
->>> +
->>>           gpu: gpu@3d00000 {
->>>               compatible = "qcom,adreno-635.0", "qcom,adreno";
->>>               reg = <0 0x03d00000 0 0x40000>,
->>> -- 
->>> 2.7.4
->>>
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
