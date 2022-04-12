@@ -2,130 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC4594FD653
-	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D0714FD84A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Apr 2022 12:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348053AbiDLIBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 04:01:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
+        id S1352731AbiDLICA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 04:02:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377928AbiDLHyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:54:41 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9FF506D2;
-        Tue, 12 Apr 2022 00:32:00 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 87B521BF204;
-        Tue, 12 Apr 2022 07:31:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649748719;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=X35WNGkpzJuR8QwsexhB4AiDSNFg4aYG2MXJXgXQfu4=;
-        b=MftXS1qpch3u8BR/zUR5NpnKYwxy/YXxXE6EbNy5pCKENpwvf1eRA88j2ojUrqJ7NGFW+X
-        7zPncsxaft5BZNtXXU1nKt2EBbajHilEQN3dVe745BDKCbYTOenH/NKbuo+0bww6O2u3DH
-        MyaMUm+FaoEXY5ZITJQcDU+V9mv26k9BMIchkDW7RORJ/IiPssHvpAGxf3FTRT1wcwg8DC
-        RMbf+2ItuOAWmXdQeOTLgwbunN6fzeY+FKdjMVNiMFO9b+Ta3d4fhnxz46U5xabDqpQ+tu
-        QZVYxbLyHzjIw81FCtF63yQltACz2EJq7xJ/suXor6CVW6o5C8poPAVDzDXmCg==
-Date:   Tue, 12 Apr 2022 09:31:55 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v8 0/9] RZN1 DMA support
-Message-ID: <20220412093155.090de9d6@xps13>
-In-Reply-To: <CAMuHMdUZFTm+0NFLUFoXT7ujtxDot_Y+gya9ETK1FOai2MXfvA@mail.gmail.com>
-References: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
-        <20220407004511.3A6D1C385A3@smtp.kernel.org>
-        <20220407101605.7d2a17cc@xps13>
-        <CAMuHMdUZFTm+0NFLUFoXT7ujtxDot_Y+gya9ETK1FOai2MXfvA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S1377938AbiDLHym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 03:54:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774F256209;
+        Tue, 12 Apr 2022 00:32:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2D764B81B58;
+        Tue, 12 Apr 2022 07:32:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2C95C385A5;
+        Tue, 12 Apr 2022 07:32:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649748725;
+        bh=Q00BETgFTrmU/q7T1FdvzQYcdJLp4PmeOg+OowHQNhQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PTI2mQf0MCbJiTv9DaUxqUVUzksobTkDS5QOT7hjig8DNV+ts93iEQ4mB9j9FyX6C
+         ximBbJ17+6wDLMcqdRTJ+mDCC92LHEZhg3q9a1DlsKXp6fvCoctynGGJtRz6xO8Mby
+         diVfj396JUUs0KEbk/TEKPANJw0M0pt74zA9ZRrUNZuG0dfJEYj0N63YOYXwnvYHXE
+         ui+0HxtqGPFVtNtGu7guF+c1SF8J8Q7F7v91HKhOyFOE1viDWvep6vDTiQ34yumw47
+         vbNQ7Qh1DS2A4CV73Bj2tw62JDEdMFI/qcV9+OgIdVjTZFJAluMuNTsm+e1Vexb7Ry
+         jB/ToJShnETLw==
+Date:   Tue, 12 Apr 2022 15:32:01 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Fabio Baltieri <fabiobaltieri@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] drivers: pwm: pwm-cros-ec: add channel type
+ support
+Message-ID: <YlUq8W+xjdxqYCo5@google.com>
+References: <20220411152114.2165933-1-fabiobaltieri@chromium.org>
+ <20220411152114.2165933-3-fabiobaltieri@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411152114.2165933-3-fabiobaltieri@chromium.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Mon, Apr 11, 2022 at 03:21:12PM +0000, Fabio Baltieri wrote:
+> Add support for EC_PWM_TYPE_DISPLAY_LIGHT and EC_PWM_TYPE_KB_LIGHT pwm
+> types to the PWM cros_ec_pwm driver. This allows specifying one of these
+> PWM channel by functionality, and let the EC firmware pick the correct
+> channel, thus abstracting the hardware implementation from the kernel
+> driver.
+> 
+> To use it, define the node with the "google,cros-ec-pwm-type"
+> compatible.
 
-geert@linux-m68k.org wrote on Mon, 11 Apr 2022 17:09:50 +0200:
+Not sure whether you decide to leave the prefix as is or not[1], just another
+reminder: to be neat, suggest to remove "drivers: " prefix from the commit
+title.
 
-> Hi Miquel,
->=20
-> On Thu, Apr 7, 2022 at 10:16 AM Miquel Raynal <miquel.raynal@bootlin.com>=
- wrote:
-> > sboyd@kernel.org wrote on Wed, 06 Apr 2022 17:45:09 -0700: =20
-> > > Quoting Miquel Raynal (2022-04-06 09:18:47) =20
-> > > > Here is a first series bringing DMA support to RZN1 platforms. Soon=
- a
-> > > > second series will come with changes made to the UART controller
-> > > > driver, in order to interact with the RZN1 DMA controller.
-> > > >
-> > > > Stephen acked the sysctrl patch (in the clk driver) but somehow I f=
-eel
-> > > > like it would be good to have this patch applied on both sides
-> > > > (dmaengine and clk) because more changes will depend on the additio=
-n of
-> > > > this helper, that are not related to DMA at all. I'll let you folks
-> > > > figure out what is best. =20
-> > >
-> > > Are you sending more patches in the next 7 weeks or so that will touch
-> > > the same area? If so, then it sounds like I'll need to take the clk
-> > > patch through clk tree. I don't know what is best because I don't have
-> > > the information about what everyone plans to do in that file. =20
-> >
-> > This series brings DMA support and needs to access the dmamux registers
-> > that are in the sysctrl area.
-> >
-> > I've sent an RTC series which needs to access this area as well, but
-> > it is not fully ready yet as it was advised to go for a reset
-> > controller in this case. The reset controller would be registered by
-> > the clock driver, so yes it would touch the same file.
-> >
-> > Finally, there is an USB series that is coming soon, I don't know if
-> > it will be ready for merge for 5.19, but it needs to access a specific
-> > register in this area as well (h2mode).
-> >
-> > So provided that we are able to contribute this reset driver quickly
-> > enough, I would argue that it is safer to merge the clk changes in the
-> > clk tree. =20
->=20
-> The clk tree or the renesas-clk tree? ;-)
+[1]: https://patchwork.kernel.org/project/chrome-platform/patch/20220331125818.3776912-3-fabiobaltieri@chromium.org/
 
-Actually I forgot about this tree, would you mind to merge *all* the
-patches that depend on the sysctrl changes in the renesas/renesas-clk
-tree? This also stands for the UART and RTC for instance. Otherwise
-you'll need to set up immutable branches and share them with the
-dmaengine, serial and rtc trees. I'm fine either way, it's just much
-less work in the first situation IMHO.
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id cros_ec_pwm_of_match[] = {
+> +	{
+> +		.compatible = "google,cros-ec-pwm",
+> +	},
+> +	{
+> +		.compatible = "google,cros-ec-pwm-type",
+> +		.data = OF_CROS_EC_PWM_TYPE,
+> +	},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
+> +#else
+> +#define cros_ec_pwm_of_match NULL
+> +#endif
+> +
+>  static int cros_ec_pwm_probe(struct platform_device *pdev)
+>  {
+>  	struct cros_ec_device *ec = dev_get_drvdata(pdev->dev.parent);
+>  	struct device *dev = &pdev->dev;
+> +	const struct of_device_id *id;
+>  	struct cros_ec_pwm_device *ec_pwm;
+>  	struct pwm_chip *chip;
+>  	int ret;
+> @@ -251,17 +312,27 @@ static int cros_ec_pwm_probe(struct platform_device *pdev)
+>  	chip = &ec_pwm->chip;
+>  	ec_pwm->ec = ec;
+>  
+> +	id = of_match_device(cros_ec_pwm_of_match, dev);
+> +	if (id && id->data == OF_CROS_EC_PWM_TYPE)
+> +		ec_pwm->use_pwm_type = true;
+> +
+[...]
+> -#ifdef CONFIG_OF
+> -static const struct of_device_id cros_ec_pwm_of_match[] = {
+> -	{ .compatible = "google,cros-ec-pwm" },
+> -	{},
+> -};
+> -MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
+> -#endif
+> -
 
-Thanks,
-Miqu=C3=A8l
+Use dev->driver->of_match_table to access the table so that the table
+declaration doesn't actually need a move.  Instead, the helper function
+of_device_get_match_data() is preferred.
+
+Alternatively, it could use
+of_device_is_compatible(..."google,cros-ec-pwm-type") so that it doesn't
+need to introduce OF_CROS_EC_PWM_TYPE and reduce some bits.  I would prefer
+this way.
