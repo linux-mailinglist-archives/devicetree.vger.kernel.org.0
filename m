@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B25444FEFCD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E7114FEFD5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:30:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232430AbiDMGaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 02:30:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47606 "EHLO
+        id S232605AbiDMGcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 02:32:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231625AbiDMGaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:30:22 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3A44093C;
-        Tue, 12 Apr 2022 23:28:02 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id j6so679007qkp.9;
-        Tue, 12 Apr 2022 23:28:02 -0700 (PDT)
+        with ESMTP id S230193AbiDMGcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:32:47 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD4923BF2;
+        Tue, 12 Apr 2022 23:30:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=IQXd2jV2y0H/jmnC3zsa4bcZYEpr7db5gHWElQ3LxHo=;
-        b=AvEuQTFPadwF9B77e3hFm5DnRzYyP8mYjU5oKInOTekImMPQ9N1mTIms5cmjhh5hfX
-         LkSFJbC8gnLmJpgwY9zA4JI9A+RTpDk5xxPfFD0tF0qxtIC1rK0grKMt/tLDK8cS23fT
-         RulFwQP5jljqMXD5I54GLeZedam6rTu20H2OlNPRx5/9V/Vn8nf/+xNxosavSCJY/SCu
-         +poIEZNxeCdfOF4HvSyXtg1difDMot4a7EYKqtr2rJrY4OKZ+FFp5sutGw0baRndzwRM
-         OmTkbR4cyxBWSnly8W0CvNAabWt3/+9Tr+h92US8UHNUlCwCRzxn0emaPr/vkcSVEKYA
-         vplw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=IQXd2jV2y0H/jmnC3zsa4bcZYEpr7db5gHWElQ3LxHo=;
-        b=AYLwmWLEH7leIN+QHqPkA7KzuyvuCxzrza3+nt0Pd2p7QYs8PlGyAENd0jPNES52kk
-         PSf/jgL0814QywtGZpaFRgx3WcpdcNKLpCpIGWR8s0TzdGRNRdKATPAiTt/tXk0onavd
-         XfqecNxVD2/I8qlccAYPR9WnhiKEbgFj2ygg+0/APjJdx17qeE7VBx2UntBTw/JJN37Q
-         skSqNqXbMCfYG55+PNhnkpxsykEHhGHXN7ORBTlh8I362puPJ6DacnifEvDSLb5BuQwX
-         kRtz3MbMDG7DFpttoDhx4HR2i1dbHXa6olQRobv1BeGxRc4JYKZVPpSVUe5/HY02LqGG
-         C5Yw==
-X-Gm-Message-State: AOAM530x+RX0BKWTDc4HkVuVE5e9B2LTjBg095e6p7YbGwBwIlsdrOCL
-        6lgTVOtJu+/djetZHpJ6UGToUO4N6dku5ilm64Y=
-X-Google-Smtp-Source: ABdhPJxSAul1DQiuip/zXWO7y/5rdjzwToJfLdrqCdPR32d03sINv0FlPWqCmtrCOu+ed1zUDp0D9fKwELAyHXivy54=
-X-Received: by 2002:a05:620a:bd5:b0:67d:15ed:2fcd with SMTP id
- s21-20020a05620a0bd500b0067d15ed2fcdmr5870340qki.81.1649831281235; Tue, 12
- Apr 2022 23:28:01 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649831425; x=1681367425;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=xM+wf1BUZmW/HNu/E3LhqoovUaO0Y5F+jWE6PX2DAGI=;
+  b=bwcYZ7B2R5kOsfQBGhccgoAWwBMd+yj6iVIk67PrBWYYl6N3ml5zGwrB
+   jmmSniCwA1Dc4L7mNMBnDsqkmZ7MvUjl5n1e0byzgHzE53YYmkZRiAS0t
+   2RyLgnJq/SksmWnkdbTkzRhGVeCabMoShWNz2/p0w0NdbUAjrM2v6yys1
+   0=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Apr 2022 23:30:25 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2022 23:30:24 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 12 Apr 2022 23:30:24 -0700
+Received: from [10.216.28.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 12 Apr
+ 2022 23:30:20 -0700
+Message-ID: <99e49c61-4a6a-69c6-810c-581ee0ce5008@quicinc.com>
+Date:   Wed, 13 Apr 2022 11:59:58 +0530
 MIME-Version: 1.0
-References: <20220413060729.27639-1-arinc.unal@arinc9.com> <20220413060729.27639-9-arinc.unal@arinc9.com>
-In-Reply-To: <20220413060729.27639-9-arinc.unal@arinc9.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 13 Apr 2022 08:27:50 +0200
-Message-ID: <CAMhs-H8W990kGWPtVkLLXj4wr0+v8aEgv42K6Ffh+k=misYvGQ@mail.gmail.com>
-Subject: Re: [PATCH 08/14] MAINTAINERS: add Ralink pinctrl driver
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        erkin.bozoglu@xeront.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Add Qualcomm SDX65 DT
+ bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <djakov@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>
+CC:     <manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1649740053-14507-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1649740053-14507-2-git-send-email-quic_rohiagar@quicinc.com>
+ <7e1e6c10-c02a-c8da-44c0-ba3abef1950e@linaro.org>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <7e1e6c10-c02a-c8da-44c0-ba3abef1950e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 8:08 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
-9.com> wrote:
->
-> Add a new section for the Ralink pinctrl driver and add me and Sergio as
-> the maintainers.
->
-> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fd768d43e048..cbd0c3e180bf 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16502,6 +16502,13 @@ L:     linux-mips@vger.kernel.org
->  S:     Maintained
->  F:     arch/mips/boot/dts/ralink/mt7621*
->
-> +RALINK PINCTRL DRIVER
-> +M:     Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> +M:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +L:     linux-mips@vger.kernel.org
-> +S:     Maintained
-> +F:     drivers/pinctrl/ralink/*
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+On 4/12/2022 2:52 PM, Krzysztof Kozlowski wrote:
+> On 12/04/2022 07:07, Rohit Agarwal wrote:
+>> Add interconnect IDs for Qualcomm SDX65 platform.
+>>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> (...)
+>
+>> diff --git a/include/dt-bindings/interconnect/qcom,sdx65.h b/include/dt-bindings/interconnect/qcom,sdx65.h
+>> new file mode 100644
+>> index 0000000..8d02c79
+>> --- /dev/null
+>> +++ b/include/dt-bindings/interconnect/qcom,sdx65.h
+>> @@ -0,0 +1,67 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+> Is it possible to license it the same as bindings (GPL-2.0 OR BSD-2-Clause)?
+
+The qcom related code are marked as GPL 2.0 license
 
 Thanks,
-    Sergio Paracuellos
+Rohit.
+
+>
+> Best regards,
+> Krzysztof
