@@ -2,362 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A6F4FFF38
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F144FFF53
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238313AbiDMT3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 15:29:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
+        id S233559AbiDMTdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 15:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238307AbiDMT3i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:29:38 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AB371EFC
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:27:16 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id p10so2777410plf.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:27:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=X+OWxcWSuEeEMEEMml9TrwAEE8r9QYOF2I2VwseRBoU=;
-        b=ZtRxw7bL9EuWKjJFZWQ+ebftmM2JDNHP5SYJXHOdfrGa/gRHjJjZeckn5amdSAycPY
-         ZFHK4ay0HVeN2F5KLL4fb/NKlxtvjgZByehyzmj4ThKyhSRmKKhHbD8FXdmTvTXzBNko
-         HBTrHGA9TAJeu7HZRQ2fhSWStzwoGwb8iY46E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=X+OWxcWSuEeEMEEMml9TrwAEE8r9QYOF2I2VwseRBoU=;
-        b=g64FBf06m3OYk6XewY8o03drjEqNi1r6xzrJHdfD5plYu4/gmdW4qEKLUHWmN2banJ
-         Ow2AlQw+x7C1UPThJh6eLNE8S5xA4Ow0JO7CbuQlpA0F6Z2d36RM6cdixLRMfeLqnMkA
-         on5QueNhm5PCt1ZPsgxMHwllc7TPU/YD2fe9lHA/DUiWMeKmzNKCa3ie50Nh4oDnSiC1
-         DFk8eEWXT6Z2XulIX/0QBk+7AoBalNHhpY+LKAcj3k8+ljL+ISuCmezdaT4ohdE3uvoi
-         KoxHknnzPB8280AsD2qr7AdXHaxpkyppXAegOltV88d7zjv//dB/Kbrg9QMf36I2mbuT
-         iDEA==
-X-Gm-Message-State: AOAM533pFb8zYYXwGvxa9z/wJ+GolgmWWJgOFkDuoaI5RiZfQzDt0Vld
-        2uKn56/3xzKbzR8bBwsl58rbyQ==
-X-Google-Smtp-Source: ABdhPJzQb0khpocik8a4XS7IQBwyQXlDJ5DkNxubVaeZP4oBZJuwH0YHiX6SU7rDKdlk7nWXZ5DCHQ==
-X-Received: by 2002:a17:90b:1d04:b0:1c7:b10f:e33d with SMTP id on4-20020a17090b1d0400b001c7b10fe33dmr258845pjb.165.1649878035034;
-        Wed, 13 Apr 2022 12:27:15 -0700 (PDT)
-Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id u7-20020aa78487000000b00505d9277cb3sm8624906pfn.38.2022.04.13.12.27.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 12:27:14 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Joel Peshkin <joel.peshkin@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Dan Beygelman <dan.beygelman@broadcom.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        William Zhang <william.zhang@broadcom.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-Subject: [PATCH v2 3/5] ARM: dts: add dts files for bcmbca soc 47622
-Date:   Wed, 13 Apr 2022 12:26:43 -0700
-Message-Id: <20220413192645.7067-4-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220413192645.7067-1-william.zhang@broadcom.com>
-References: <20220413192645.7067-1-william.zhang@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000004489ce05dc8e2a62"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S238565AbiDMTdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:33:07 -0400
+X-Greylist: delayed 43642 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Apr 2022 12:30:44 PDT
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7CB23167;
+        Wed, 13 Apr 2022 12:30:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1649878220;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=XizD8wLk7RPr/MmlqEKaUWzpG6m4WiqeZdBPHS0La8o=;
+    b=E29x+v4cnWoYTOOQZ3tOrcqmGRKwpSCBnpTnlNCdcRSrJK4MG4pih2yeqnzzhn/Je/
+    GY5tNEepJQbAnarKOqlWgt+zkI1gXNmoEqImr0yfLX0ThgyXg8FLVidTZWqdKx7Q+8MJ
+    BYWYh/+X8qnxM4I2W2dat1/9XcgH1Mh36gT0NcC3ibY6LoJRve5A6FfUdHQVfPXy12gy
+    U9vVtxjeohA/2w/bgtLPEaod1jTKE9SSd7r4uXmp3R5d5P3gB+2bKe3D82joLMQf57d+
+    mXQsSdvz5wDkdwzk0U+d90/mUmGXfnT3bis+Qq5TyblENzOpMk6kpoD3zfK+96K+gL6a
+    jAyg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw4nvnQ=="
+X-RZG-CLASS-ID: mo00
+Received: from mbp-13-nikolaus.fritz.box
+    by smtp.strato.de (RZmta 47.42.2 DYNA|AUTH)
+    with ESMTPSA id k708cfy3DJUJAlv
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 13 Apr 2022 21:30:19 +0200 (CEST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v2 1/2] dt-bindings: dwc2: Add bindings for new Ingenic
+ SoCs.
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <c79a8ff7-7a3f-9627-f910-dbbf942e34cb@wanyeetech.com>
+Date:   Wed, 13 Apr 2022 21:30:18 +0200
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        hminas@synopsys.com, Rob Herring <robh+dt@kernel.org>,
+        linux-usb@vger.kernel.org, linux-mips <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, dragancecavac@yahoo.com,
+        dongsheng.qiu@ingenic.com, qipengzhen <aric.pzqi@ingenic.com>,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, reimu@sudomaker.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <0AE74BF9-46F1-44EC-8E5F-40EA12851AD0@goldelico.com>
+References: <1649788201-87620-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1649788201-87620-2-git-send-email-zhouyanjie@wanyeetech.com>
+ <6F03670F-9040-4560-AD78-CC7A03EC678F@goldelico.com>
+ <c79a8ff7-7a3f-9627-f910-dbbf942e34cb@wanyeetech.com>
+To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000004489ce05dc8e2a62
-
-Add dts for ARMv7 based broadband SoC BCM47622. bcm47622.dtsi is the
-SoC description dts header and bcm947622.dts is a simple dts file for
-Broadcom BCM947622 Reference board that only enable the UART port.
-
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
----
-
-Changes for V2:
-    * Update compatible string and node name in bcm47622.dtsi
-
- arch/arm/boot/dts/Makefile      |   2 +
- arch/arm/boot/dts/bcm47622.dtsi | 126 ++++++++++++++++++++++++++++++++
- arch/arm/boot/dts/bcm947622.dts |  30 ++++++++
- 3 files changed, 158 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm47622.dtsi
- create mode 100644 arch/arm/boot/dts/bcm947622.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b738..ff0054d55590 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -179,6 +179,8 @@ dtb-$(CONFIG_ARCH_BERLIN) += \
- 	berlin2q-marvell-dmp.dtb
- dtb-$(CONFIG_ARCH_BRCMSTB) += \
- 	bcm7445-bcm97445svmb.dtb
-+dtb-$(CONFIG_ARCH_BCMBCA) += \
-+	bcm947622.dtb
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_DAVINCI) += \
-diff --git a/arch/arm/boot/dts/bcm47622.dtsi b/arch/arm/boot/dts/bcm47622.dtsi
-new file mode 100644
-index 000000000000..c016e12b7372
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm47622.dtsi
-@@ -0,0 +1,126 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "brcm,bcm47622", "brcm,bcmbca";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		CA7_0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x0>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		CA7_1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x1>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+		CA7_2: cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x2>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+		CA7_3: cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x3>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+		L2_0: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv7-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+		arm,cpu-registers-not-fw-configured;
-+	};
-+
-+	pmu: pmu {
-+		compatible = "arm,cortex-a7-pmu";
-+		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&CA7_0>, <&CA7_1>,
-+			<&CA7_2>, <&CA7_3>;
-+	};
-+
-+	clocks: clocks {
-+		periph_clk: periph-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+		};
-+		uart_clk: uart-clk {
-+			compatible = "fixed-factor-clock";
-+			#clock-cells = <0>;
-+			clocks = <&periph_clk>;
-+			clock-div = <4>;
-+			clock-mult = <1>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+		cpu_off = <1>;
-+		cpu_on = <2>;
-+	};
-+
-+	axi@81000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x81000000 0x818000>;
-+
-+		gic: interrupt-controller@1000 {
-+			compatible = "arm,cortex-a7-gic";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x1000 0x1000>,
-+				<0x2000 0x2000>;
-+		};
-+	};
-+
-+	bus@ff800000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0xff800000 0x800000>;
-+
-+		uart0: serial@12000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x12000 0x1000>;
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&uart_clk>, <&uart_clk>;
-+			clock-names = "uartclk", "apb_pclk";
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/bcm947622.dts b/arch/arm/boot/dts/bcm947622.dts
-new file mode 100644
-index 000000000000..6f083724ab8e
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm947622.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2019 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm47622.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM947622 Reference Board";
-+	compatible = "brcm,bcm947622", "brcm,bcm47622", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.17.1
+Hi,
 
 
---0000000000004489ce05dc8e2a62
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+> Am 13.04.2022 um 20:55 schrieb Zhou Yanjie =
+<zhouyanjie@wanyeetech.com>:
+>=20
+> Hi Nikolaus,
+>=20
+> On 2022/4/13 =E4=B8=8B=E5=8D=883:22, H. Nikolaus Schaller wrote:
+>> Hi,
+>>=20
+>>=20
+>>> Am 12.04.2022 um 20:30 schrieb =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou =
+Yanjie) <zhouyanjie@wanyeetech.com>
+>>> :
+>>>=20
+>>> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000
+>>> SoC, the X1600 SoC, the X1700 SoC, the X1830 SoC, and the X2000 SoC
+>>> from Ingenic.
+>>>=20
+>>> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie)=20
+>>> <zhouyanjie@wanyeetech.com>
+>>>=20
+>>> Acked-by: Rob Herring=20
+>>> <robh@kernel.org>
+>>>=20
+>>> ---
+>>>=20
+>>> Notes:
+>>>    v1->v2:
+>>>    Add Rob Herring's Acked-by.
+>>>=20
+>>> Documentation/devicetree/bindings/usb/dwc2.yaml | 7 +++++++
+>>> 1 file changed, 7 insertions(+)
+>>>=20
+>>> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml =
+b/Documentation/devicetree/bindings/usb/dwc2.yaml
+>>> index 4cebce6..c6e8c0b 100644
+>>> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+>>> @@ -17,6 +17,13 @@ properties:
+>>>     oneOf:
+>>>       - const: brcm,bcm2835-usb
+>>>       - const: hisilicon,hi6220-usb
+>>> +      - const: ingenic,jz4775-otg
+>>> +      - const: ingenic,jz4780-otg
+>>> +      - const: ingenic,x1000-otg
+>>> +      - const: ingenic,x1600-otg
+>>> +      - const: ingenic,x1700-otg
+>>> +      - const: ingenic,x1830-otg
+>>> +      - const: ingenic,x2000-otg
+>>>=20
+>> I have merged it with my recently proposed removal of
+>> ingenic,jz4780-otg in jz4780.dtsi but there was no dtbscheck
+>> complaint about missing snps,dwc2.
+>>=20
+>> So I think should it be:
+>>=20
+>>       - items:
+>>           - enum:
+>>               - const: ingenic,jz4775-otg
+>>               - const: ingenic,jz4780-otg
+>>               - const: ingenic,x1000-otg
+>>               - const: ingenic,x1600-otg
+>>               - const: ingenic,x1700-otg
+>>               - const: ingenic,x1830-otg
+>>               - const: ingenic,x2000-otg
+>>=20
 
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIPlBvaTLGmFeTKoAhsSUNjjUoFSI
-phNGDE9Lm2FzhtpAMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDQxMzE5MjcxNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQBKRHNzDM95rSMKvDeiRx5QTxr2nADDJFOcou+rq2+VKKAE
-VfNPHkHXLvl1OG6Ul9E9f7dig4l4ZrtZuZ3XzN/K4mZ8piW3RVNDhruZ/vrEzfV3ZolNKBm0eePk
-ZMhHirek82mC+GeS3wppv+NQB5vWQLJtKPMkvkvWSNp2BamwjQu5NbVP+Ji0Qq0VEIwnxe1BsI5f
-XRFy+J7DUWZ97OI3Hz82W1stvQANgqEcgtRLXbkrvdl03vb4+JMemFJMgWV53kRal8rUr9kPIAFQ
-zCyGl2eGpqTY4IU6bnJdsK6jKRWxSCr3Y3/PjNHvEZ8atRitmm+gU0qbUwhciUTAF5l4
---0000000000004489ce05dc8e2a62--
+PS: the const: above should be removed (I hadn't run it through the =
+compiler).
+
+>>           - const: snps,dwc2
+
+here it is needed.
+
+>>=20
+>> similar to the entry for amlogic?
+>>=20
+>=20
+>=20
+> Or we can just remove the "snps,dwc2" from jz4780.dtsi?
+
+Well, my recent proposal to fix dtbscheck was the other way round:
+remove "ingenic,jz4780-otg" from jz4780.dtsi and leave it out here.
+
+> I'm not too sure, but since we already have a dedicated "ingenic, =
+jz4780-otg", it seems "snps,dwc2" is redundant.
+
+As far as I see there is no driver specialization compatible to
+"ingenic,jz4780-otg". `grep ingenic,jz4780-otg *` only shows the .dtsi =
+(and the new .yaml).
+
+So we need "snps,dwc2" to get any driver match and I thought the =
+"ingenic,jz4780-otg" is redundant.
+
+But maintainers convinced me to keep it as a dummy compatible in the =
+.dtsi for potential future
+specialization (which does not exist and seems not to be necessary). =
+Unless I can convince them=20
+that this is never ever needed. Which is beyond my knowledge and almost =
+everyone.
+
+So we can't remove the "snps,dwc2" here.
+
+Well, we can with more work elsewhere.
+You have to extend the dwc2_of_match_table to include all ingenic =
+devices.
+
+Therefore we now know 3 potential solutions:
+a) remove "ingenic,jz4780-otg" from jz4780.dtsi (my proposal)
+b) add "ingenic,jz4780-otg" to dwc2.yaml together with "snps,dwc2" (your =
+proposal + my suggestion here)
+c) add only "ingenic,jz4780-otg" to dwc2.yaml and extend the match table =
+in drivers//usb/dwc2/params.c (new proposals)
+
+=46rom consistency point of view I think variant b) is the right one. a) =
+was rejected and c) only adds redundant code.
+
+I am open to anything as long as the dtbscheck doesn't complain any =
+more.
+
+BR an thanks,
+Nikolaus
+
