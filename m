@@ -2,140 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D7024FECFF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 04:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D8D4FED07
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 04:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231461AbiDMCgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 22:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
+        id S229842AbiDMCjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 22:39:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231451AbiDMCgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 22:36:40 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C691828E09;
-        Tue, 12 Apr 2022 19:34:20 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id 3so422149qkj.5;
-        Tue, 12 Apr 2022 19:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MqB+e2xT6Yv8MpPTnOJ+2E7n6YyjIMzpIJ4iHfGOxzQ=;
-        b=MiGg6bcAs91xkbp2RAUHsNccXGOyhvPuMSn82Wa1gSKILPMKoQG5P3Nl6kIPR+N5J+
-         zVXOLkNpjaDHn+waq32rztY1uH6Ltt+sjAJ0nV2d/w1hp6PgqHrypZf+6wnGN6+VoZhA
-         Gqm9ac5gX/HqIda6RlWEEWZA5aB3xxReNhoT8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MqB+e2xT6Yv8MpPTnOJ+2E7n6YyjIMzpIJ4iHfGOxzQ=;
-        b=t7fBsECdTn7A+wWRmrPxbNn52y/e/rvmTo4iyTOJAOMhiEGdM0QBSgjnDqYpVKBp2q
-         uuOyUOnzUgNNZ39xdcWuvW2IVezSFQFUFTRMDGy30x9jIG2tSyqD+5dAvuE7xoKz2KsZ
-         3znyBWE8H+5fU7kijyFqRUDb+vcEyQSmYUOAsOUZ6U0dGhksUiJPzFshnEtf+3FOBBMo
-         Ryd8juNhX01VC7Qwzdpim0dwEafUeVUn/k6+kJtl5FMITimGd2XKh9OK0inx7ujbJFFK
-         6rEDSL/FZsXtCTe/GIBHxXAq6N8rg0kSBOCySPqom8//9Tpix57wX5uU88l9f9O67IrX
-         B7bA==
-X-Gm-Message-State: AOAM531/UGpyveGOSjyQHSpXkK5Drkq1WOLQ9yGlq9jXe3XBuyw3DtAo
-        4ptVkW+NWEM3y7hQmyxSA+WWf3yXX8lqB3xVCSd14xzDK3Q=
-X-Google-Smtp-Source: ABdhPJywZYFb5Kxa0f4hpEMdUjYMwcNEQCHYq0m2mmEOdorMP1FM/4Q5J9SAQdd/0fyvytzb+Axet0s98+c5ArMZPco=
-X-Received: by 2002:a37:f903:0:b0:648:ca74:b7dc with SMTP id
- l3-20020a37f903000000b00648ca74b7dcmr5261283qkj.666.1649817259877; Tue, 12
- Apr 2022 19:34:19 -0700 (PDT)
+        with ESMTP id S229813AbiDMCjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 22:39:53 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2AA85FCB;
+        Tue, 12 Apr 2022 19:37:33 -0700 (PDT)
+X-UUID: b1cc66f9661c4a38b6abc7ea4038c5bd-20220413
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:045e66ee-4df1-4318-b48f-f754670b460f,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:045e66ee-4df1-4318-b48f-f754670b460f,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:b4b7f5a8-d103-4e36-82b9-b0e86991b3df,C
+        OID:460889320a0c,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: b1cc66f9661c4a38b6abc7ea4038c5bd-20220413
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 772270675; Wed, 13 Apr 2022 10:37:26 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 13 Apr 2022 10:37:24 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 13 Apr 2022 10:37:21 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2, 0/3] add h264 decoder driver for mt8186
+Date:   Wed, 13 Apr 2022 10:37:17 +0800
+Message-ID: <20220413023720.29297-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220412065611.8930-1-dylan_hung@aspeedtech.com> <20220412065611.8930-2-dylan_hung@aspeedtech.com>
-In-Reply-To: <20220412065611.8930-2-dylan_hung@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 13 Apr 2022 02:34:08 +0000
-Message-ID: <CACPK8Xd0gh5pDafP3ysu7odhnP=YPNSYPV9u36CEoMPDtQxEJw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: add reset property for aspeed,
- ast2600-mdio binding
-To:     Dylan Hung <dylan_hung@aspeedtech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        Andrew Lunn <andrew@lunn.ch>, hkallweit1@gmail.com,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, pabeni@redhat.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Apr 2022 at 06:55, Dylan Hung <dylan_hung@aspeedtech.com> wrote:
->
-> The AST2600 MDIO bus controller has a reset control bit and must be
-> deasserted before manipulating the MDIO controller. By default, the
-> hardware asserts the reset so the driver only need to deassert it.
->
-> Regarding to the old DT blobs which don't have reset property in them,
-> the reset deassertion is usually done by the bootloader so the reset
-> property is optional to work with them.
->
-> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  .../devicetree/bindings/net/aspeed,ast2600-mdio.yaml         | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
-> index 1c88820cbcdf..1174c14898e1 100644
-> --- a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
-> @@ -20,10 +20,14 @@ allOf:
->  properties:
->    compatible:
->      const: aspeed,ast2600-mdio
-> +
->    reg:
->      maxItems: 1
->      description: The register range of the MDIO controller instance
->
-> +  resets:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -39,6 +43,7 @@ examples:
->              reg = <0x1e650000 0x8>;
->              #address-cells = <1>;
->              #size-cells = <0>;
-> +            resets = <&syscon ASPEED_RESET_MII>;
+Firstly, add mt8186 compatible and private data, then add document for
+compatible "mediatek,mt8186-vcodec-dec". For mt8186 is single core
+architecture, need to add new interface for h264 hardware decoder.
 
-You will need to include the definition for ASPEED_RESET_MII at the
-start of the example:
+Patche 1 add mt8186 compatible and private data.
+Patche 2 add mt8186 compatible document.
+Patche 3 add h264 single core driver.
+---
+This patch depends on "support for MT8192 decoder"[1]
 
-#include <dt-bindings/clock/ast2600-clock.h>
+[1]  https://patchwork.kernel.org/project/linux-mediatek/cover/20220408120240.29571-1-yunfei.dong@mediatek.com/
+---
+changed with v1:
+- rebase driver to the latest media_stage.
+---
+Yunfei Dong (3):
+  dt-bindings: media: mediatek: vcodec: Adds decoder dt-bindings for
+    mt8186
+  media: mediatek: vcodec: Support MT8186
+  media: mediatek: vcodec: add h264 decoder driver for mt8186
 
-You can test the bindings example by doing this:
+ .../media/mediatek,vcodec-subdev-decoder.yaml |   4 +-
+ .../platform/mediatek/vcodec/mtk_vcodec_dec.h |   1 +
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   4 +
+ .../vcodec/mtk_vcodec_dec_stateless.c         |  19 ++
+ .../vcodec/vdec/vdec_h264_req_multi_if.c      | 177 +++++++++++++++++-
+ 5 files changed, 203 insertions(+), 2 deletions(-)
 
-pip install dtschema
+-- 
+2.18.0
 
-make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
-
-Cheers,
-
-Joel
-
->
->              ethphy0: ethernet-phy@0 {
->                      compatible = "ethernet-phy-ieee802.3-c22";
-> --
-> 2.25.1
->
