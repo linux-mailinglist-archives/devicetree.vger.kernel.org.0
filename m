@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 612494FF728
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 14:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201DA4FF730
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 14:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233382AbiDMMzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 08:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56108 "EHLO
+        id S235670AbiDMM4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 08:56:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230373AbiDMMzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 08:55:48 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3154A53B4C;
-        Wed, 13 Apr 2022 05:53:26 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 19A0F100003;
-        Wed, 13 Apr 2022 12:53:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649854404;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=jMM1Syt6Hb7HT86R4R4Lg8BJZKzBGi7RXcW2xbIgcVc=;
-        b=FMdpcKK7I4B4GTQ6T7VC2cgv3L/jz5eqCgFceBWM3qKgMVghduEdAlo7GofwrG8R0zNWxl
-        endHPgd8SN3Ob1WCHWNJ0TwE+NW9V+Eil9RfWN3JHiGn95B0OXSwjpsPT0gqh/ceTSvtmn
-        18y4uQdfJsTqHKguWEuchW/DwQIJ87Cdp2/GXeXiiszR9gUqt7X6eA6vi0dLKGQY3AC8aN
-        L7uE88pGxhL2akALO/eeijrh4osCzdlg7DpYjQ3OyXcWPzx5aaAIQitdw5t6XnY9HHHOoO
-        NGx9Du4jJ6YpaDLtpWW8UKkKQu5sOla9eF6gz7fch7aTj96IP0sSghxuECJ7HA==
-Date:   Wed, 13 Apr 2022 14:53:19 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v10 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA
- router support
-Message-ID: <20220413145319.6d3f1cce@xps13>
-In-Reply-To: <Ylao068kNANViy4B@smile.fi.intel.com>
-References: <20220412193936.63355-1-miquel.raynal@bootlin.com>
-        <20220412193936.63355-6-miquel.raynal@bootlin.com>
-        <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
-        <20220413100026.73e11004@xps13>
-        <CAMuHMdU3pEX3oGoHQ71cm7m0DpguJOqpOTq4_kfAxD98XN325A@mail.gmail.com>
-        <Ylao068kNANViy4B@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S235649AbiDMM43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 08:56:29 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E81053B4C;
+        Wed, 13 Apr 2022 05:54:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649854448; x=1681390448;
+  h=from:to:cc:subject:date:message-id;
+  bh=5xRQ8goNdbg3PNC/HfjumOMnpeRAm6Z/VpX0ULTu4M4=;
+  b=eek9xqWVrKjt6YOIxYzczxQpGBp71a9cP8v4qIQExTKGP0dhRCjCECB5
+   W9yn/U+1DRGU+xDCTDIwqfj2arl2zKlWjfDuvRxUsDJdg9Ycbx1pDQOyu
+   gZhj9veMuBLiY31OiOQWI1nWiR9bh+00nKJRrXh/RwakhFGeKRjr0xsu9
+   U=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 13 Apr 2022 05:54:08 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 13 Apr 2022 05:54:06 -0700
+X-QCInternal: smtphost
+Received: from hu-rohiagar-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.106.138])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 13 Apr 2022 18:23:49 +0530
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id A583E3AC2; Wed, 13 Apr 2022 18:23:47 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, djakov@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v2 0/2] Add interconnect driver for SDX65
+Date:   Wed, 13 Apr 2022 18:23:33 +0530
+Message-Id: <1649854415-11174-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy, Geert,
+Hello,
 
-andriy.shevchenko@linux.intel.com wrote on Wed, 13 Apr 2022 13:41:23
-+0300:
+This series adds interconnect driver support for SDX65 
+platform for scaling the bandwidth requirements over RPMh.
 
-> On Wed, Apr 13, 2022 at 10:05:43AM +0200, Geert Uytterhoeven wrote:
-> > On Wed, Apr 13, 2022 at 10:00 AM Miquel Raynal
-> > <miquel.raynal@bootlin.com> wrote: =20
->=20
-> ...
->=20
-> >     DECLARE_BITMAP(used_chans, 2 * RZN1_DMAMUX_MAX_LINES); =20
-
-I'll make the update. Do you mind if I send only this patch as a v11?
-There is no change in any of the other patches anyway and I think I've
-received all the acks required.
+Changes from v1:
+ - Addressed Krzysztof's comments and made necessary changes.
 
 Thanks,
-Miqu=C3=A8l
+Rohit.
+
+
+Rohit Agarwal (2):
+  dt-bindings: interconnect: Add Qualcomm SDX65 DT bindings
+  interconnect: qcom: Add SDX65 interconnect provider driver
+
+ .../bindings/interconnect/qcom,rpmh.yaml           |   3 +
+ drivers/interconnect/qcom/Kconfig                  |   9 +
+ drivers/interconnect/qcom/Makefile                 |   2 +
+ drivers/interconnect/qcom/sdx65.c                  | 231 +++++++++++++++++++++
+ drivers/interconnect/qcom/sdx65.h                  |  65 ++++++
+ include/dt-bindings/interconnect/qcom,sdx65.h      |  67 ++++++
+ 6 files changed, 377 insertions(+)
+ create mode 100644 drivers/interconnect/qcom/sdx65.c
+ create mode 100644 drivers/interconnect/qcom/sdx65.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sdx65.h
+
+-- 
+2.7.4
+
