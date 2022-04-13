@@ -2,490 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 453E74FFF1E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F95D4FFF29
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbiDMT0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 15:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60158 "EHLO
+        id S238292AbiDMT33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 15:29:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238255AbiDMT0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:26:45 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A457821270;
-        Wed, 13 Apr 2022 12:24:22 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id 12so3093811oix.12;
-        Wed, 13 Apr 2022 12:24:22 -0700 (PDT)
+        with ESMTP id S233465AbiDMT32 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:29:28 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D7A72462
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:27:04 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id o5so3021284pjr.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:27:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=QXVbqBImFL1me1uiYiIW6PBcizcDpeNphl8USIxSq2Q=;
+        b=HC3I2jMOQ4FWW4vZ5YKEDgqiL+BnRKwLi7fS32iyk9tQbdf43VaFs+gEnot27qs6yf
+         +uOm0r/xjRwoRJRUrac2s4C2ri51Ddimst/olSseu/WG4wPPB9Vw4zUmuglX9CRFSt9n
+         WelSFXQg7pRHMv9A2cj2Dz5HPSuJVSmzqv1+w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uu2f7x6jJJFUM9jpeBhZFHGmISerd4DsBMM9TZSiOmQ=;
-        b=77TlW1ji0rQTOxVHcz0h8ZQXAC5Xaz7/j1Hvkv4io16ihFAuMAzD5ZiE9pp/giwEON
-         o4vLirPeQnGwPA941/Q1WQgCPOL22ll6b+fJMvOioInyq0iWrRskhsahJH9weN4+rnRh
-         STA/3BcToFFspUWOPw6mIUWXyj1gJRG1ymZJrExYx59p0wSedhvy6aUVI1uWPue6+Wl+
-         gsyssTFmeCTst6PJFyBhuUYSPvBVQcgk7h+d9ZkkIanyarScTvbgureGnYHwTXVkQ3ZX
-         ZhJLHH5ueoap8SxCiSNE3Ge5dEjG4kdDMFBwcOc0RFdhIs6P0q41CzFwAXllFwvZzu96
-         9pXg==
-X-Gm-Message-State: AOAM532E6x0EOhK4pnU7mzdQQ1EybfF+EvlSsACjJNuJrAfovmDRts9f
-        UC0a+GJxCw6EG7FfSif7q2L1sUFPBg==
-X-Google-Smtp-Source: ABdhPJxfV7f2GWz8dkNP8JM7g4bJvejMxVuqqZZzXMiYISfjRuKAosfMrYVvfecqjF3iXCt5SmeZhA==
-X-Received: by 2002:a05:6808:1150:b0:2f9:48a3:504a with SMTP id u16-20020a056808115000b002f948a3504amr159357oiu.252.1649877861750;
-        Wed, 13 Apr 2022 12:24:21 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u20-20020a4a9e94000000b003291f6ac4b2sm13603996ook.28.2022.04.13.12.24.21
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QXVbqBImFL1me1uiYiIW6PBcizcDpeNphl8USIxSq2Q=;
+        b=IGbjGB5b2Y4rzZTEG7bwHOByufY1WdWaciq8bfVMZtSJr4qR3dd/mDSsJXjSt5VLEh
+         VaCjf0ebaCofNEa4NTcNJoVn72Sgf/jtBOeTKIk55xjz61qig0AZ5HWQXw9TcTWIBBhB
+         xAk43PgY8Y4Atb7UFMpDqOfXs8Sj6Ouj9evGUVVMwIhCo9JG2JZTaqYeolGthndIgAla
+         F2wFyHbAJXHI7wungCuiCdOiONYl+WK9/efJ61CoQbm0fu1q6Po93GsVO5f5K5Ly3exG
+         dKmwpGXvUytUzTVod/p5E7ExB5Sbt/QlE63GCNsUADP1oz16m4/ql87qlx2TyXSbBh6Z
+         Kv4g==
+X-Gm-Message-State: AOAM530nPvJIqAsiNGuMfIOHo0/yj2P8xdLTw4lPBb6TIwkb7kb+Wa/p
+        J1GUZWnbEn85PEK5Mcub9dwf0A==
+X-Google-Smtp-Source: ABdhPJyPLxvD0LtK2BO9A5jpEoJz0/Cm6FUmdX5c6ByiSsye6TFs+pRdbmnh4phzU+78nRRJ66MqQQ==
+X-Received: by 2002:a17:902:6bc2:b0:158:a26b:5884 with SMTP id m2-20020a1709026bc200b00158a26b5884mr3913151plt.38.1649878024160;
+        Wed, 13 Apr 2022 12:27:04 -0700 (PDT)
+Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id u7-20020aa78487000000b00505d9277cb3sm8624906pfn.38.2022.04.13.12.27.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 12:24:21 -0700 (PDT)
-Received: (nullmailer pid 3682497 invoked by uid 1000);
-        Wed, 13 Apr 2022 19:24:20 -0000
-Date:   Wed, 13 Apr 2022 14:24:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Cixi Geng <gengcixi@gmail.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, orsonzhai@gmail.com,
-        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] clk: sprd: Add dt-bindings include file for UMS512
-Message-ID: <YlcjZIMQETIF51Y4@robh.at.kernel.org>
-References: <20220408104520.1896568-1-gengcixi@gmail.com>
- <20220408104520.1896568-3-gengcixi@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408104520.1896568-3-gengcixi@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
-        autolearn=no autolearn_force=no version=3.4.6
+        Wed, 13 Apr 2022 12:27:02 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Dan Beygelman <dan.beygelman@broadcom.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        William Zhang <william.zhang@broadcom.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, Ray Jui <rjui@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Scott Branden <sbranden@broadcom.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        soc@kernel.org
+Subject: [PATCH v2 0/5] arm: bcmbca: introduce the bcmbca architecture and 47622 SOC
+Date:   Wed, 13 Apr 2022 12:26:40 -0700
+Message-Id: <20220413192645.7067-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000094aeda05dc8e29a4"
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        MIME_HEADER_CTYPE_ONLY,MIME_NO_TEXT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 08, 2022 at 06:45:19PM +0800, Cixi Geng wrote:
-> From: Cixi Geng <cixi.geng1@unisoc.com>
-> 
-> This file defines all UMS512 clock indexes, it should be included in the
-> device tree in which there's device using the clocks.
-> 
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> ---
->  include/dt-bindings/clock/sprd,ums512-clk.h | 397 ++++++++++++++++++++
->  1 file changed, 397 insertions(+)
->  create mode 100644 include/dt-bindings/clock/sprd,ums512-clk.h
-> 
-> diff --git a/include/dt-bindings/clock/sprd,ums512-clk.h b/include/dt-bindings/clock/sprd,ums512-clk.h
-> new file mode 100644
-> index 000000000000..69009a93de4f
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/sprd,ums512-clk.h
-> @@ -0,0 +1,397 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
+--00000000000094aeda05dc8e29a4
 
-Dual license please.
 
-> +/*
-> + * Unisoc UMS512 SoC DTS file
-> + *
-> + * Copyright (C) 2019, Unisoc Inc.
+This change introduces Broadcom's ARCH_BCMBCA architecture for
+armv7 and armv8 based Broadband SoCs. We expect to send additional
+patches for each SoC in the near future.
 
-It's 2022.
+The first SoC supported in this arch is Broadcom's ARM A7 based 47622
+SOC. The initial support includes a bare-bone dts for quad core ARM A7
+with a ARM PL011 uart. Linux kernel image can be built with
+multi_v7_defconfig.
 
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_UMS512_H_
-> +#define _DT_BINDINGS_CLK_UMS512_H_
-> +
-> +#define CLK_26M_AUD			0
-> +#define CLK_13M				1
-> +#define CLK_6M5				2
-> +#define CLK_4M3				3
-> +#define CLK_2M				4
-> +#define CLK_1M				5
-> +#define CLK_250K			6
-> +#define CLK_RCO_25M			7
-> +#define CLK_RCO_4M			8
-> +#define CLK_RCO_2M			9
-> +#define CLK_ISPPLL_GATE			10
-> +#define CLK_DPLL0_GATE			11
-> +#define CLK_DPLL1_GATE			12
-> +#define CLK_LPLL_GATE			13
-> +#define CLK_TWPLL_GATE			14
-> +#define CLK_GPLL_GATE			15
-> +#define CLK_RPLL_GATE			16
-> +#define CLK_CPPLL_GATE			17
-> +#define CLK_MPLL0_GATE			18
-> +#define CLK_MPLL1_GATE			19
-> +#define CLK_MPLL2_GATE			20
-> +#define CLK_PMU_GATE_NUM		(CLK_MPLL2_GATE + 1)
-> +
-> +#define CLK_DPLL0			0
-> +#define CLK_DPLL0_58M31			1
-> +#define CLK_ANLG_PHY_G0_NUM		(CLK_DPLL0_58M31 + 1)
-> +
-> +#define CLK_MPLL1			0
-> +#define CLK_MPLL1_63M38			1
-> +#define CLK_ANLG_PHY_G2_NUM		(CLK_MPLL1_63M38 + 1)
-> +
-> +#define CLK_RPLL			0
-> +#define CLK_AUDIO_GATE			1
-> +#define CLK_MPLL0			2
-> +#define CLK_MPLL0_56M88			3
-> +#define CLK_MPLL2			4
-> +#define CLK_MPLL2_47M13			5
-> +#define CLK_ANLG_PHY_G3_NUM		(CLK_MPLL2_47M13 + 1)
-> +
-> +#define CLK_TWPLL			0
-> +#define CLK_TWPLL_768M			1
-> +#define CLK_TWPLL_384M			2
-> +#define CLK_TWPLL_192M			3
-> +#define CLK_TWPLL_96M			4
-> +#define CLK_TWPLL_48M			5
-> +#define CLK_TWPLL_24M			6
-> +#define CLK_TWPLL_12M			7
-> +#define CLK_TWPLL_512M			8
-> +#define CLK_TWPLL_256M			9
-> +#define CLK_TWPLL_128M			10
-> +#define CLK_TWPLL_64M			11
-> +#define CLK_TWPLL_307M2			12
-> +#define CLK_TWPLL_219M4			13
-> +#define CLK_TWPLL_170M6			14
-> +#define CLK_TWPLL_153M6			15
-> +#define CLK_TWPLL_76M8			16
-> +#define CLK_TWPLL_51M2			17
-> +#define CLK_TWPLL_38M4			18
-> +#define CLK_TWPLL_19M2			19
-> +#define CLK_TWPLL_12M29			20
-> +#define CLK_LPLL			21
-> +#define CLK_LPLL_614M4			22
-> +#define CLK_LPLL_409M6			23
-> +#define CLK_LPLL_245M76			24
-> +#define CLK_LPLL_30M72			25
-> +#define CLK_ISPPLL			26
-> +#define CLK_ISPPLL_468M			27
-> +#define CLK_ISPPLL_78M			28
-> +#define CLK_GPLL			29
-> +#define CLK_GPLL_40M			30
-> +#define CLK_CPPLL			31
-> +#define CLK_CPPLL_39M32			32
-> +#define CLK_ANLG_PHY_GC_NUM		(CLK_CPPLL_39M32 + 1)
-> +
-> +#define CLK_AP_APB			0
-> +#define CLK_IPI			        1
-> +#define CLK_AP_UART0			2
-> +#define CLK_AP_UART1			3
-> +#define CLK_AP_UART2			4
-> +#define CLK_AP_I2C0			5
-> +#define CLK_AP_I2C1			6
-> +#define CLK_AP_I2C2			7
-> +#define CLK_AP_I2C3			8
-> +#define CLK_AP_I2C4			9
-> +#define CLK_AP_SPI0			10
-> +#define CLK_AP_SPI1			11
-> +#define CLK_AP_SPI2			12
-> +#define CLK_AP_SPI3			13
-> +#define CLK_AP_IIS0			14
-> +#define CLK_AP_IIS1			15
-> +#define CLK_AP_IIS2			16
-> +#define CLK_AP_SIM			17
-> +#define CLK_AP_CE			18
-> +#define CLK_SDIO0_2X			19
-> +#define CLK_SDIO1_2X			20
-> +#define CLK_EMMC_2X			21
-> +#define CLK_VSP				22
-> +#define CLK_DISPC0			23
-> +#define CLK_DISPC0_DPI			24
-> +#define CLK_DSI_APB			25
-> +#define CLK_DSI_RXESC			26
-> +#define CLK_DSI_LANEBYTE		27
-> +#define CLK_VDSP		        28
-> +#define CLK_VDSP_M		        29
-> +#define CLK_AP_CLK_NUM			(CLK_VDSP_M + 1)
-> +
-> +#define CLK_DSI_EB			0
-> +#define CLK_DISPC_EB			1
-> +#define CLK_VSP_EB			2
-> +#define CLK_VDMA_EB			3
-> +#define CLK_DMA_PUB_EB			4
-> +#define CLK_DMA_SEC_EB			5
-> +#define CLK_IPI_EB			6
-> +#define CLK_AHB_CKG_EB			7
-> +#define CLK_BM_CLK_EB			8
-> +#define CLK_AP_AHB_GATE_NUM		(CLK_BM_CLK_EB + 1)
-> +
-> +#define CLK_AON_APB			0
-> +#define CLK_ADI				1
-> +#define CLK_AUX0			2
-> +#define CLK_AUX1			3
-> +#define CLK_AUX2			4
-> +#define CLK_PROBE			5
-> +#define CLK_PWM0			6
-> +#define CLK_PWM1			7
-> +#define CLK_PWM2			8
-> +#define CLK_PWM3			9
-> +#define CLK_EFUSE			10
-> +#define CLK_UART0			11
-> +#define CLK_UART1			12
-> +#define CLK_THM0			13
-> +#define CLK_THM1			14
-> +#define CLK_THM2			15
-> +#define CLK_THM3			16
-> +#define CLK_AON_I2C			17
-> +#define CLK_AON_IIS			18
-> +#define CLK_SCC				19
-> +#define CLK_APCPU_DAP			20
-> +#define CLK_APCPU_DAP_MTCK		21
-> +#define CLK_APCPU_TS			22
-> +#define CLK_DEBUG_TS			23
-> +#define CLK_DSI_TEST_S			24
-> +#define CLK_DJTAG_TCK			25
-> +#define CLK_DJTAG_TCK_HW		26
-> +#define CLK_AON_TMR			27
-> +#define CLK_AON_PMU			28
-> +#define CLK_DEBOUNCE			29
-> +#define CLK_APCPU_PMU			30
-> +#define CLK_TOP_DVFS			31
-> +#define CLK_OTG_UTMI			32
-> +#define CLK_OTG_REF			33
-> +#define CLK_CSSYS			34
-> +#define CLK_CSSYS_PUB			35
-> +#define CLK_CSSYS_APB			36
-> +#define CLK_AP_AXI			37
-> +#define CLK_AP_MM			38
-> +#define CLK_SDIO2_2X			39
-> +#define CLK_ANALOG_IO_APB		40
-> +#define CLK_DMC_REF_CLK			41
-> +#define CLK_EMC				42
-> +#define CLK_USB				43
-> +#define CLK_26M_PMU			44
-> +#define CLK_AON_APB_NUM			(CLK_26M_PMU + 1)
-> +
-> +#define CLK_MM_AHB			0
-> +#define CLK_MM_MTX			1
-> +#define CLK_SENSOR0			2
-> +#define CLK_SENSOR1			3
-> +#define CLK_SENSOR2			4
-> +#define CLK_CPP				5
-> +#define CLK_JPG				6
-> +#define CLK_FD				7
-> +#define CLK_DCAM_IF			8
-> +#define CLK_DCAM_AXI			9
-> +#define CLK_ISP				10
-> +#define CLK_MIPI_CSI0			11
-> +#define CLK_MIPI_CSI1			12
-> +#define CLK_MIPI_CSI2			13
-> +#define CLK_MM_CLK_NUM			(CLK_MIPI_CSI2 + 1)
-> +
-> +#define CLK_RC100M_CAL_EB		0
-> +#define CLK_DJTAG_TCK_EB		1
-> +#define CLK_DJTAG_EB			2
-> +#define CLK_AUX0_EB			3
-> +#define CLK_AUX1_EB			4
-> +#define CLK_AUX2_EB			5
-> +#define CLK_PROBE_EB			6
-> +#define CLK_MM_EB			7
-> +#define CLK_GPU_EB			8
-> +#define CLK_MSPI_EB			9
-> +#define CLK_APCPU_DAP_EB		10
-> +#define CLK_AON_CSSYS_EB		11
-> +#define CLK_CSSYS_APB_EB		12
-> +#define CLK_CSSYS_PUB_EB		13
-> +#define CLK_SDPHY_CFG_EB		14
-> +#define CLK_SDPHY_REF_EB		15
-> +#define CLK_EFUSE_EB			16
-> +#define CLK_GPIO_EB			17
-> +#define CLK_MBOX_EB			18
-> +#define CLK_KPD_EB			19
-> +#define CLK_AON_SYST_EB			20
-> +#define CLK_AP_SYST_EB			21
-> +#define CLK_AON_TMR_EB			22
-> +#define CLK_OTG_UTMI_EB			23
-> +#define CLK_OTG_PHY_EB			24
-> +#define CLK_SPLK_EB			25
-> +#define CLK_PIN_EB			26
-> +#define CLK_ANA_EB			27
-> +#define CLK_APCPU_TS0_EB		28
-> +#define CLK_APB_BUSMON_EB		29
-> +#define CLK_AON_IIS_EB			30
-> +#define CLK_SCC_EB			31
-> +#define CLK_THM0_EB			32
-> +#define CLK_THM1_EB			33
-> +#define CLK_THM2_EB			34
-> +#define CLK_ASIM_TOP_EB			35
-> +#define CLK_I2C_EB			36
-> +#define CLK_PMU_EB			37
-> +#define CLK_ADI_EB			38
-> +#define CLK_EIC_EB			39
-> +#define CLK_AP_INTC0_EB			40
-> +#define CLK_AP_INTC1_EB			41
-> +#define CLK_AP_INTC2_EB			42
-> +#define CLK_AP_INTC3_EB			43
-> +#define CLK_AP_INTC4_EB			44
-> +#define CLK_AP_INTC5_EB			45
-> +#define CLK_AUDCP_INTC_EB		46
-> +#define CLK_AP_TMR0_EB			47
-> +#define CLK_AP_TMR1_EB			48
-> +#define CLK_AP_TMR2_EB			49
-> +#define CLK_PWM0_EB			50
-> +#define CLK_PWM1_EB			51
-> +#define CLK_PWM2_EB			52
-> +#define CLK_PWM3_EB			53
-> +#define CLK_AP_WDG_EB			54
-> +#define CLK_APCPU_WDG_EB		55
-> +#define CLK_SERDES_EB			56
-> +#define CLK_ARCH_RTC_EB			57
-> +#define CLK_KPD_RTC_EB			58
-> +#define CLK_AON_SYST_RTC_EB		59
-> +#define CLK_AP_SYST_RTC_EB		60
-> +#define CLK_AON_TMR_RTC_EB		61
-> +#define CLK_EIC_RTC_EB			62
-> +#define CLK_EIC_RTCDV5_EB		63
-> +#define CLK_AP_WDG_RTC_EB		64
-> +#define CLK_AC_WDG_RTC_EB		65
-> +#define CLK_AP_TMR0_RTC_EB		66
-> +#define CLK_AP_TMR1_RTC_EB		67
-> +#define CLK_AP_TMR2_RTC_EB		68
-> +#define CLK_DCXO_LC_RTC_EB		69
-> +#define CLK_BB_CAL_RTC_EB		70
-> +#define CLK_AP_EMMC_RTC_EB		71
-> +#define CLK_AP_SDIO0_RTC_EB		72
-> +#define CLK_AP_SDIO1_RTC_EB		73
-> +#define CLK_AP_SDIO2_RTC_EB		74
-> +#define CLK_DSI_CSI_TEST_EB		75
-> +#define CLK_DJTAG_TCK_EN		76
-> +#define CLK_DPHY_REF_EB			77
-> +#define CLK_DMC_REF_EB			78
-> +#define CLK_OTG_REF_EB			79
-> +#define CLK_TSEN_EB			80
-> +#define CLK_TMR_EB			81
-> +#define CLK_RC100M_REF_EB		82
-> +#define CLK_RC100M_FDK_EB		83
-> +#define CLK_DEBOUNCE_EB			84
-> +#define CLK_DET_32K_EB			85
-> +#define CLK_TOP_CSSYS_EB		86
-> +#define CLK_AP_AXI_EN			87
-> +#define CLK_SDIO0_2X_EN			88
-> +#define CLK_SDIO0_1X_EN			89
-> +#define CLK_SDIO1_2X_EN			90
-> +#define CLK_SDIO1_1X_EN			91
-> +#define CLK_SDIO2_2X_EN			92
-> +#define CLK_SDIO2_1X_EN			93
-> +#define CLK_EMMC_2X_EN			94
-> +#define CLK_EMMC_1X_EN			95
-> +#define CLK_PLL_TEST_EN			96
-> +#define CLK_CPHY_CFG_EN			97
-> +#define CLK_DEBUG_TS_EN			98
-> +#define CLK_ACCESS_AUD_EN		99
-> +#define CLK_AON_APB_GATE_NUM		(CLK_ACCESS_AUD_EN + 1)
-> +
-> +#define CLK_MM_CPP_EB			0
-> +#define CLK_MM_JPG_EB			1
-> +#define CLK_MM_DCAM_EB			2
-> +#define CLK_MM_ISP_EB			3
-> +#define CLK_MM_CSI2_EB			4
-> +#define CLK_MM_CSI1_EB			5
-> +#define CLK_MM_CSI0_EB			6
-> +#define CLK_MM_CKG_EB			7
-> +#define CLK_ISP_AHB_EB			8
-> +#define CLK_MM_DVFS_EB			9
-> +#define CLK_MM_FD_EB			10
-> +#define CLK_MM_SENSOR2_EB		11
-> +#define CLK_MM_SENSOR1_EB		12
-> +#define CLK_MM_SENSOR0_EB		13
-> +#define CLK_MM_MIPI_CSI2_EB		14
-> +#define CLK_MM_MIPI_CSI1_EB		15
-> +#define CLK_MM_MIPI_CSI0_EB		16
-> +#define CLK_DCAM_AXI_EB			17
-> +#define CLK_ISP_AXI_EB			18
-> +#define CLK_MM_CPHY_EB			19
-> +#define CLK_MM_GATE_CLK_NUM		(CLK_MM_CPHY_EB + 1)
-> +
-> +#define CLK_SIM0_EB			0
-> +#define CLK_IIS0_EB			1
-> +#define CLK_IIS1_EB			2
-> +#define CLK_IIS2_EB			3
-> +#define CLK_APB_REG_EB			4
-> +#define CLK_SPI0_EB			5
-> +#define CLK_SPI1_EB			6
-> +#define CLK_SPI2_EB			7
-> +#define CLK_SPI3_EB			8
-> +#define CLK_I2C0_EB			9
-> +#define CLK_I2C1_EB			10
-> +#define CLK_I2C2_EB			11
-> +#define CLK_I2C3_EB			12
-> +#define CLK_I2C4_EB			13
-> +#define CLK_UART0_EB			14
-> +#define CLK_UART1_EB			15
-> +#define CLK_UART2_EB			16
-> +#define CLK_SIM0_32K_EB			17
-> +#define CLK_SPI0_LFIN_EB		18
-> +#define CLK_SPI1_LFIN_EB		19
-> +#define CLK_SPI2_LFIN_EB		20
-> +#define CLK_SPI3_LFIN_EB		21
-> +#define CLK_SDIO0_EB			22
-> +#define CLK_SDIO1_EB			23
-> +#define CLK_SDIO2_EB			24
-> +#define CLK_EMMC_EB			25
-> +#define CLK_SDIO0_32K_EB		26
-> +#define CLK_SDIO1_32K_EB		27
-> +#define CLK_SDIO2_32K_EB		28
-> +#define CLK_EMMC_32K_EB			29
-> +#define CLK_AP_APB_GATE_NUM		(CLK_EMMC_32K_EB + 1)
-> +
-> +#define CLK_GPU_CORE_EB			0
-> +#define CLK_GPU_CORE			1
-> +#define CLK_GPU_MEM_EB			2
-> +#define CLK_GPU_MEM			3
-> +#define CLK_GPU_SYS_EB			4
-> +#define CLK_GPU_SYS			5
-> +#define CLK_GPU_CLK_NUM			(CLK_GPU_SYS + 1)
-> +
-> +#define CLK_AUDCP_IIS0_EB		0
-> +#define CLK_AUDCP_IIS1_EB		1
-> +#define CLK_AUDCP_IIS2_EB		2
-> +#define CLK_AUDCP_UART_EB		3
-> +#define CLK_AUDCP_DMA_CP_EB		4
-> +#define CLK_AUDCP_DMA_AP_EB		5
-> +#define CLK_AUDCP_SRC48K_EB		6
-> +#define CLK_AUDCP_MCDT_EB		7
-> +#define CLK_AUDCP_VBCIFD_EB		8
-> +#define CLK_AUDCP_VBC_EB		9
-> +#define CLK_AUDCP_SPLK_EB		10
-> +#define CLK_AUDCP_ICU_EB		11
-> +#define CLK_AUDCP_DMA_AP_ASHB_EB	12
-> +#define CLK_AUDCP_DMA_CP_ASHB_EB	13
-> +#define CLK_AUDCP_AUD_EB		14
-> +#define CLK_AUDCP_VBC_24M_EB		15
-> +#define CLK_AUDCP_TMR_26M_EB		16
-> +#define CLK_AUDCP_DVFS_ASHB_EB		17
-> +#define CLK_AUDCP_AHB_GATE_NUM		(CLK_AUDCP_DVFS_ASHB_EB + 1)
-> +
-> +#define CLK_AUDCP_WDG_EB		0
-> +#define CLK_AUDCP_RTC_WDG_EB		1
-> +#define CLK_AUDCP_TMR0_EB		2
-> +#define CLK_AUDCP_TMR1_EB		3
-> +#define CLK_AUDCP_APB_GATE_NUM		(CLK_AUDCP_TMR1_EB + 1)
-> +
-> +#define CLK_ACORE0			0
-> +#define CLK_ACORE1			1
-> +#define CLK_ACORE2			2
-> +#define CLK_ACORE3			3
-> +#define CLK_ACORE4			4
-> +#define CLK_ACORE5			5
-> +#define CLK_PCORE0			6
-> +#define CLK_PCORE1			7
-> +#define CLK_SCU				8
-> +#define CLK_ACE				9
-> +#define CLK_PERIPH			10
-> +#define CLK_GIC				11
-> +#define CLK_ATB				12
-> +#define CLK_DEBUG_APB			13
-> +#define CLK_APCPU_SEC_NUM		(CLK_DEBUG_APB + 1)
-> +
-> +#endif /* _DT_BINDINGS_CLK_UMS512_H_ */
-> -- 
-> 2.25.1
-> 
-> 
+Changes for V2:
+* Update compatible string and node name in the 47622.dtsi
+* Change Broadcom internal list from maintainer to reviewer in
+MAINTAINERS
+
+
+William Zhang (5):
+  dt-bindings: arm: add bcmbca device tree binding document
+  arm: bcmbca: add arch bcmbca machine entry
+  ARM: dts: add dts files for bcmbca soc 47622
+  MAINTAINERS: update MAINTAINERS file
+  ARM: multi_v7_defconfig: enable CONFIG_ARCH_BCMBCA in armv7 defconfig
+
+ .../bindings/arm/bcm/brcm,bcmbca.yaml         |  33 +++++
+ MAINTAINERS                                   |  14 ++
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/bcm47622.dtsi               | 126 ++++++++++++++++++
+ arch/arm/boot/dts/bcm947622.dts               |  30 +++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ arch/arm/mach-bcm/Kconfig                     |  12 ++
+ 7 files changed, 218 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+ create mode 100644 arch/arm/boot/dts/bcm47622.dtsi
+ create mode 100644 arch/arm/boot/dts/bcm947622.dts
+
+-- 
+2.17.1
+
+
+--00000000000094aeda05dc8e29a4
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBOWMylPQTtPeg1GbKfNc5isSAIE
+KyuAs3cz4OVJlroPMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDQxMzE5MjcwNFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQBvAr8azHyzFS3cbS2i8fEln5f90EJFDGr6qldDH19MyYso
+wry7iHAarJyADgPQoGzHeQdvLFpDZJj+MhNBMgyiLUg/kVm5iHPtmiyNC4IkgGOkIzplMD8I0REY
+fXe87shOiPwO+io16GlfOS91+651rWfeabDwmwWcOxRiw9GLi5n2i7MBpj4kOStfi7MaUAM6xEwP
+z1NcYVKGQxIegl/faC3ea0GbercJbQp6crWNz1yUGYRZxsp7ybZL1ce03VP4b+b+CWb+hY4XFdtQ
+asBqchIo0Rrojf6q+BikyilwnMOIXWe9Q2zyKhenEQjLjbKi/xWFX8ie3SaeJECYc5im
+--00000000000094aeda05dc8e29a4--
