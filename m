@@ -2,101 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E8E4FF9A9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B39B44FF9F3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231567AbiDMPHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 11:07:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        id S234842AbiDMPYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230492AbiDMPHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:07:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DD82A271;
-        Wed, 13 Apr 2022 08:04:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4193861D1D;
-        Wed, 13 Apr 2022 15:04:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D66F2C385A6;
-        Wed, 13 Apr 2022 15:04:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649862297;
-        bh=VjQY5nrpmgcSuXTK7yu3ew0bxgkZKQoSqOgDwl0n0qs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XPlaH6Uwu0ASIIeC4tABPUXxD+o5rD0bVVjxiaGSaGJzSnoa7pEbwYOJVPzdwxBr8
-         gjmVBL3QASH7L3+kPUTYd3ATwDf+Ww0FtHN/+gbvrLwirjJnoM+Ox8JGAveDN8iQhi
-         SdaVZOW03yWFbj2CcXTV4aWWL0XDafDczT09RCDSqlvv7X+Rl5IVzmVger+t9Iy9eH
-         jThrWoEVjusVit/qemkFT1q2MPHcWZwM9WuBMXMhtyTzr35msxMUgJEUao4rjg/dAk
-         2SM9lnWA7c1kD7cKtP8brJcgyKbwO3srdZROYmi951/rZzD5QjgTYtIODfsI9TJUc5
-         LmilSMYDd1Pwg==
-Date:   Wed, 13 Apr 2022 16:04:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Agathe Porte <agathe.porte@nokia.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-hwmon@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix array constraints on scalar properties
-Message-ID: <YlbmkSFqY34UuVzN@sirena.org.uk>
-References: <20220413140121.3132837-1-robh@kernel.org>
+        with ESMTP id S232655AbiDMPYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:24:05 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D3747566;
+        Wed, 13 Apr 2022 08:21:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649863303; x=1681399303;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=3N2kt1c2FPhVfb4mXhigLF/ssk+WM5dkEKEoJhIMsJk=;
+  b=KpRWTuy2qm2pw0a0glgoTU5L/EWqZ6iUjkyrXFu36Kf42jYF4ufF3H05
+   Ya0BsW71VWMI7jdhsT/1w09uyw4VCXjqLDX8EARm3J4fC62VeJk7BONih
+   e/UZk1s3Xg1KPJkVUXglU6gauFdjk9YANMokwZJxVMAu8HHGRxIUK8nq0
+   k=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 13 Apr 2022 08:21:43 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 08:21:42 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 13 Apr 2022 08:21:42 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 13 Apr 2022 08:21:37 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v7 0/4] Add soundcard support for sc7280 based platforms.
+Date:   Wed, 13 Apr 2022 20:51:13 +0530
+Message-ID: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VekwRPP0COgtFOIs"
-Content-Disposition: inline
-In-Reply-To: <20220413140121.3132837-1-robh@kernel.org>
-X-Cookie: The horror... the horror!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch set is to add bolero digital macros, WCD and maxim codecs nodes
+for audio on sc7280 based platforms.
 
---VekwRPP0COgtFOIs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This patch set depends on:
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=631506
+    -- https://patchwork.kernel.org/project/linux-arm-msm/patch/20220202053207.14256-1-tdas@codeaurora.org/.
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=601249
+    -- Clock reset control patches
 
-On Wed, Apr 13, 2022 at 09:01:21AM -0500, Rob Herring wrote:
-> Scalar properties shouldn't have array constraints (minItems, maxItems,
-> items). These constraints can simply be dropped with any constraints under
-> 'items' moved up a level.
+Changes Since V6:
+    -- Modify link-names and audio routing in a sound node.
+    -- Move amp_en pin control node to appropriate consumer patch.
+    -- Split patches as per digital macro codecs and board specific codecs and sort it.
+    -- Modify label and node names to lpass specific.
+Changes Since V5:
+    -- Move soc specific bolero digital codec nodes to soc specific file.
+    -- Bring wcd938x codec reset pin control and US/EURO HS selection nodes from other series.
+    -- Change node name and remove redundant status property in sound node.
+Changes Since V4:
+    -- Update nodes in sorting order.
+    -- Update DTS node names as per dt-bindings.
+    -- Update Node properties in proper order.
+    -- Update missing pinctrl properties like US/EURO HS selection, wcd reset control.
+    -- Remove redundant labels.
+    -- Remove unused size cells and address cells in tx macro node.
+    -- Keep all same nodes at one place, which are defined in same file.
+    -- Add max98360a codec node to herobrine board specific targets.
+Changes Since V3:
+    -- Move digital codec macro nodes to board specific dtsi file.
+    -- Update pin controls in lpass cpu node.
+    -- Update dependency patch list.
+    -- Create patches on latest kernel.
+Changes Since V2:
+    -- Add power domains to digital codec macro nodes.
+    -- Change clock node usage in lpass cpu node.
+    -- Add codec mem clock to lpass cpu node.
+    -- Modify the node names to be generic.
+    -- Move sound and codec nodes to root node.
+    -- sort dai links as per reg.
+    -- Fix typo errors.
+Changes Since V1:
+    -- Update the commit message of cpu node patch.
+    -- Add gpio control property to support Euro headset in wcd938x node.
+    -- Fix clock properties in lpass cpu and digital codec macro node.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Srinivasa Rao Mandadapu (4):
+  arm64: dts: qcom: sc7280: Add nodes for soundwire and va tx rx digital
+    macro codecs
+  arm64: dts: qcom: sc7280: Add nodes for wcd9385 and max98360a codec
+  arm64: dts: qcom: sc7280: Add lpass cpu node
+  arm64: dts: qcom: sc7280: Add dt nodes for sound card
 
---VekwRPP0COgtFOIs
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/qcom/sc7280-crd.dts        |  29 ++++
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |   8 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 215 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi           | 184 +++++++++++++++++++++
+ 4 files changed, 436 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.7.4
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJW5pAACgkQJNaLcl1U
-h9DmlQf+J09i7xHNBLa9qVJkVXaOe/HVJYPPltu9GIpREcAJsawEZ8ZgDKwby26+
-+O8wcS47jwyM2wZ375w8CG/0FcziZRNk6g7yndlWyV64CN/Df4tje+K9ZC9Gdo4n
-OQrfdNzqXLPs7KxCpSYGQUhDaEKBAd0bUY/L+lszBvk1MzWBaDVeexfjwLGy+YVL
-4M+OkSQ++mNAsRvPNgyOqID8nPkKlrnkXL5dm/GG8SHl39P3GxGKl4Cag+Gd1/R9
-yIrjCokgS3AhWjKGygEYh1AFNJZqueydevyr6s4e1JRm/Fi6lYL0xRlPPx5aPsGZ
-xfaeAjTvT59WiM8RA/ZX4aZX46zCXg==
-=O1L2
------END PGP SIGNATURE-----
-
---VekwRPP0COgtFOIs--
