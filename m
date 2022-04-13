@@ -2,153 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 826D14FFB46
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B51A4FFB59
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235266AbiDMQbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 12:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53260 "EHLO
+        id S230265AbiDMQeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 12:34:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233135AbiDMQbE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:31:04 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54EC45064
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 09:28:41 -0700 (PDT)
-Received: from localhost.localdomain ([37.4.249.94]) by
- mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MCoYS-1nnRIE3oA4-008v2g; Wed, 13 Apr 2022 18:28:15 +0200
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Peter Robinson <pbrobinson@gmail.com>, matthias.bgg@kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH RFC] ARM: dts: bcm2711: Fix DMA constrains for newer BCM2711 boards
-Date:   Wed, 13 Apr 2022 18:27:39 +0200
-Message-Id: <20220413162739.6717-1-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230367AbiDMQeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:34:00 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E8D5BE76
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 09:31:38 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1nefu5-0004wI-4P; Wed, 13 Apr 2022 18:31:37 +0200
+Message-ID: <11f8bf43-d6f7-12fe-f5da-1f7a397c4317@pengutronix.de>
+Date:   Wed, 13 Apr 2022 18:31:34 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:DMbliJyZHtRhT3XCf1R4ZRtgOWndXe4XF6s2L9Lk4jO4IfQbP9G
- jen5Fi+ZMkpox8ueSO7JEdXtGt0uhhOMg/qBJhqrSb6bwK9p7uL0B/czSbuU84kVRJCYcGG
- U9qcFWOBw9ozMFxNaXvTlLC/2jPnaiUzloC+r3DnMB1LQWvRqHBCiye1F0741kx9HttcwpN
- 8hTZ7alpDbOnNRjTRpuEw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:b0qKXLjwMyE=:ogLy03e69UZih+07u9Ida2
- w5r8pxG+UlOsFTeJPDiv2uy1Bghv3k8+xFkCFrv2RbSZFDVe9l2eFzdWhkpLYnZb7CP26om4d
- 77L+3tlJD217ktW5832I/UQbyl49hV5omzfip2aCA5sHgyL0lSLt+PW2HSsLcwuwKe1oh6qX1
- 9T3uAXUTKVfUYYJu3nDWL4w4mHdudsK2kPbEC47cu2aQgr0k6FXt3q+QnCzR5CT3fGZb6Hkpv
- JZloQIngLRsnB9u2LWfa8vd8XGoJ0RGO4vpxqAQdS2l5cTik+1YnW4k+Kmq+vkF+IXxiUmBTy
- Ht/sfl95tsJuTtnJAFmqrm0qCK0ujWyLb9ihzGaRrUEqKZVONvJNZoUqeqIyWTu/VOV5LV4Nw
- aWMvmenkECSWbTGq/KMBs69dUoEJjmBnPvoFCwYeVrOQtGkcwzYuxJAYMmBgHGmO+ihTMmIXM
- lLk55ivphGzDtWAWCPdgZOm4gJhacY/iyd/98k2RPF80wiZ19tB3eqD7ljqCCMLxiBlbV8Z77
- lIYf3NifLKrmQmOAkoIWl2JPpw2d94sT/sdCGTUW//YHgqWEapu+hpBAEyztsQboG3CxWY3rD
- mDVD8z6YYJ0ADMIhC/+93Am5dk3mS35m2hQmghhTQJ3D0ouftm5TA2JOxt0bPSs4LE61Q/TyP
- G1StcQUB2qGITj3AFEmH2u4kFsnO3nhkMs+/Ss96t7wQU17X/qmQKZ4JbOJdnfq8pNrhcq8fg
- TvwVbbhzR7DhVOrk
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3] arm64: dts: imx8mm-evk: add pwm1/backlight support
+Content-Language: en-US
+To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        linux-arm-kernel@lists.infradead.org, Li Jun <jun.li@nxp.com>
+References: <20220413160900.36271-1-tommaso.merciai@amarulasolutions.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220413160900.36271-1-tommaso.merciai@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit 3d2cbb644836 ("ARM: dts: bcm2711: Move emmc2 into its own bus")
-assumed that all bootloader pass the FDT modified by the firmware to the
-kernel. But this is not always the case (e.g. Fedora) and cause boot
-issues for boards with a BCM2711 C0 SoC (RPi 400, CM4, newer RPi 4 B)
-which does have different DMA constraints.
+Hello Tomasso,
 
-Since we are not able to detect the SoC revision, let's assume a BCM2711
-C0 SoC for bcm2711.dtsi and move the restricted DMA constrains to a
-separate RPi 4 B board file just for the old SoC revision.
+On 13.04.22 18:08, Tommaso Merciai wrote:
+> Add pwm1/backlight support nodes for imx8mm_evk board.
+> Align with u-boot dts
+> 
+> References:
+>  - https://patchwork.ozlabs.org/project/uboot/patch/20220326111911.13720-9-tommaso.merciai@amarulasolutions.com/
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> ---
+> Changes since v1:
+>  - Fix commit body
+>  - Enable pwm, backlight
+> 
+> Changes since v2:
+>  - Remove status okay from pwm1,backlight (enable as default)
+> 
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 6d67df7692f1..c50d2cc3ca71 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -59,6 +59,14 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		enable-active-high;
+>  	};
+>  
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm1 0 5000000>;
+> +		brightness-levels = <0 255>;
+> +		num-interpolated-steps = <255>;
+> +		default-brightness-level = <250>;
+> +	};
+> +
+>  	ir-receiver {
+>  		compatible = "gpio-ir-receiver";
+>  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> @@ -395,6 +403,11 @@ &wdog1 {
+>  	status = "okay";
+>  };
+>  
+> +&pwm1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_backlight>;
 
-Fixes: 3d2cbb644836 ("ARM: dts: bcm2711: Move emmc2 into its own bus")
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm/boot/dts/Makefile               |  1 +
- arch/arm/boot/dts/bcm2711-rpi-4-b-b0.dts | 22 ++++++++++++++++++++++
- arch/arm/boot/dts/bcm2711.dtsi           | 11 +++--------
- 3 files changed, 26 insertions(+), 8 deletions(-)
- create mode 100644 arch/arm/boot/dts/bcm2711-rpi-4-b-b0.dts
+imx8mm.dtsi has &pwm1 { status = "disabled" };
+Where is it enabled?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b738..560d36ba1041 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -96,6 +96,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += \
- 	bcm2837-rpi-zero-2-w.dtb \
- 	bcm2711-rpi-400.dtb \
- 	bcm2711-rpi-4-b.dtb \
-+	bcm2711-rpi-4-b-b0.dtb \
- 	bcm2711-rpi-cm4-io.dtb \
- 	bcm2835-rpi-zero.dtb \
- 	bcm2835-rpi-zero-w.dtb
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b-b0.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b-b0.dts
-new file mode 100644
-index 000000000000..c53ed510392f
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b-b0.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+#include "bcm2711-rpi-4-b.dts"
-+
-+&emmc2bus {
-+	/*
-+	 * emmc2 on initial SoC revision (only assembled on RPi 4 B)
-+	 * has different DMA constraints.
-+	 */
-+	dma-ranges = <0x0 0xc0000000  0x0 0x00000000  0x40000000>;
-+};
-+
-+&pcie0 {
-+	/*
-+	 * The wrapper around the PCIe block has a bug
-+	 * preventing it from accessing beyond the first 3GB of
-+	 * memory.
-+	 */
-+	dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000
-+				      0x0 0xc0000000>;
-+};
-+
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 89af57482bc8..c307c45385a0 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -420,7 +420,7 @@ emmc2bus: emmc2bus {
- 		#size-cells = <1>;
- 
- 		ranges = <0x0 0x7e000000  0x0 0xfe000000  0x01800000>;
--		dma-ranges = <0x0 0xc0000000  0x0 0x00000000  0x40000000>;
-+		dma-ranges = <0x0 0x00000000  0x0 0x00000000  0xfc000000>;
- 
- 		emmc2: mmc@7e340000 {
- 			compatible = "brcm,bcm2711-emmc2";
-@@ -574,13 +574,8 @@ IRQ_TYPE_LEVEL_HIGH>,
- 
- 			ranges = <0x02000000 0x0 0xf8000000 0x6 0x00000000
- 				  0x0 0x04000000>;
--			/*
--			 * The wrapper around the PCIe block has a bug
--			 * preventing it from accessing beyond the first 3GB of
--			 * memory.
--			 */
--			dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000
--				      0x0 0xc0000000>;
-+			dma-ranges = <0x02000000 0x4 0x00000000 0x0 0x00000000
-+				      0x1 0x00000000>;
- 			brcm,enable-ssc;
- 		};
- 
+> +};
+> +
+>  &iomuxc {
+>  	pinctrl_fec1: fec1grp {
+>  		fsl,pins = <
+> @@ -549,4 +562,10 @@ pinctrl_wdog: wdoggrp {
+>  			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
+>  		>;
+>  	};
+> +
+> +	pinctrl_backlight: backlightgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT	0x06
+> +		>;
+> +	};
+>  };
+
+
 -- 
-2.25.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
