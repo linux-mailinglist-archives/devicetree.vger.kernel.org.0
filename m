@@ -2,184 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3FEC4FF11D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 09:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E184FF129
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:01:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231737AbiDMIAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52572 "EHLO
+        id S233159AbiDMIDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233622AbiDMIAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:00:06 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D3F4D9C8;
-        Wed, 13 Apr 2022 00:57:44 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D10231F44E9A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649836663;
-        bh=mzWuX58y4C68CcEn/a3a+EywObIenobNezPNhsxckgU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kmXqsesSLvWFXzGLTRqiWYSvGN5LlWNAB2FD23E8+ZrbGAW+o2zP1LzJNsSBPxhjg
-         nZD50ua/mXxtL5FVp3MUxGXDKntSSHgUHVzv+8hZN9VsiSkBuW+aLxP3HcN7+qrpsp
-         ZA4/7d8gH9NrJ4NCZsIMElGupIRW+KNTFSxc6sD4dSLglT75G1iWWAb/WDPiw/unGt
-         Ptq5TZN3NIP95ftv0KTiPn+ZlxAYI1yBuNReJsIH39gIkOEQzmacvZq8/RGRGIZWUs
-         YQ4tBIFxaakTc1bVA8nSmLlZFdlos8RfWTvoDvMg4WYfAXtZe7G1FEb2t+VnQa5OsO
-         XD08QtZM8nlfg==
-Message-ID: <1d9a6259-b1f6-5c4f-7e91-0529b77b6a44@collabora.com>
-Date:   Wed, 13 Apr 2022 09:57:39 +0200
+        with ESMTP id S233692AbiDMICy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:02:54 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C9461E3C8;
+        Wed, 13 Apr 2022 01:00:32 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 75ED01C0014;
+        Wed, 13 Apr 2022 08:00:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649836831;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fqBnj4E/IArS778TbFuQ/LXdhPkqCVHeLCS/sR1tXo8=;
+        b=bG4D7mAptj9IoSxJDX73pRGt2qJyJ6MhlJzmHqx4amX7xWZJm1qu7Sqa9uAf5BjVmOQ+n1
+        eQOk+Z5lAp9DL/AqgxiHaxckOcuNH6ZoVXUJKlMSD9bvvVeEGZE3AZkRbXEseZJ6DD6JhC
+        IXlPYM/hmzpPEiTfbLAtLYIMIvTDgpGl7N0gi0h0pimcZ8JL4M3lvPIxtkZh4CMXcvcZlv
+        nHQv0fqfW3xApEpSvRalk9lOx4oKbdsMPxbqJPWVjW1TYDf+FUM36obalcd06t496V77C6
+        k7wU9AuGnbCamtYJ3IGPqxQmZ+QnkmKIVpzhsQirtKrej+Bisik8tovOyua9iA==
+Date:   Wed, 13 Apr 2022 10:00:26 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v10 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA
+ router support
+Message-ID: <20220413100026.73e11004@xps13>
+In-Reply-To: <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
+References: <20220412193936.63355-1-miquel.raynal@bootlin.com>
+        <20220412193936.63355-6-miquel.raynal@bootlin.com>
+        <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v8, 00/15] media: mtk-vcodec: support for M8192 decoder
-Content-Language: en-US
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220331024801.29229-1-yunfei.dong@mediatek.com>
- <fbfe4572296a133492310f13e3f41db56218fc17.camel@ndufresne.ca>
- <0f385e6e2d0687c3e6de12a576d1617af9504cee.camel@mediatek.com>
- <c5dc9f759054418082849233639f727e39329550.camel@ndufresne.ca>
- <cdcaf769ee162658e3bbb0c30bb8c4cbb168c6d6.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <cdcaf769ee162658e3bbb0c30bb8c4cbb168c6d6.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 13/04/22 09:03, allen-kh.cheng ha scritto:
-> Hi Nicolas,
-> 
-> On Tue, 2022-04-12 at 10:48 -0400, Nicolas Dufresne wrote:
->> Le lundi 11 avril 2022 à 11:41 +0800, yunfei.dong@mediatek.com a
->> écrit :
->>> Hi Nicolas,
->>>
->>> On Thu, 2022-03-31 at 16:48 -0400, Nicolas Dufresne wrote:
->>>> Hi Yunfei,
->>>>
->>>> thanks for the update, I should be testing this really soon.
->>>>
->>>> Le jeudi 31 mars 2022 à 10:47 +0800, Yunfei Dong a écrit :
->>>>> This series adds support for mt8192 h264/vp8/vp9 decoder
->>>>> drivers.
->>>>> Firstly, refactor
->>>>> power/clock/interrupt interfaces for mt8192 is lat and core
->>>>> architecture.
->>>>
->>>> Similarly to MT8173 and MT8183, a shared* firmware is needed for
->>>> this
->>>> CODEC to
->>>> work (scp.img). I looked into linux-firmware[1] it has not been
->>>> added
->>>> for mt8192
->>>> yet. As your patches are getting close to be ready, it would be
->>>> important to
->>>> look into this so the patchset does not get blocked due to that.
->>>>
->>>> best regards,
->>>> Nicolas
->>>>
->>>> [1]
->>>>
-> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/mediatek__;!!CTRNKA9wMg0ARbw!zy4N6JDroSXtumXXa7MuxAgYAPAink8uyW-978vpWct8S3vOjBqXirFE8uTEHopHCovbSl0FNP9LPgWCEBrZfMIcvQ$
->>>>   
->>>> * Shared at least between MDP3 and MTK VCODEC from my knowledge
->>>>
->>>
->>> Thanks for your remind.
->>>
->>> I have already sent mt8192 scp.img to github.
->>>
->>>
-> https://urldefense.com/v3/__https://github.com/yunfeidongmediatek/linux_fw_scp_8192/commit/3ac2fc85bc7dfcebdb92b5b5808b0268cdfb772d__;!!CTRNKA9wMg0ARbw!zy4N6JDroSXtumXXa7MuxAgYAPAink8uyW-978vpWct8S3vOjBqXirFE8uTEHopHCovbSl0FNP9LPgWCEBpf9F_nWA$
->>>   
->>>
->>> Waiting for to be merged.
->>
->> On boards I have, the firmware is loaded from /lib/firmware/scp.img,
->> but with
->> this submission it will be in lib/firmware/mediatek/mt8192/scp.img .
->> I haven't
->> found anything around:
->>
->>   drivers/remoteproc/mtk_scp.c:812:       char *fw_name = "scp.img";
->>
->> That would use the platform path. This seems like a problem to me,
->> the
->> upstreaming of the firmware isn't being aligned with the were the
->> firmware is
->> picked by the upstream driver. Correct me if I got this wrong, but
->> I'd really
->> like to clarify this.
->>
->> Nicolas
->>
-> 
-> I am not sure why it's accepted the fw path of scp is
-> /lib/firmware/scp.img in mt8173/8183 but we upload scp.ing in
-> /lib/firmware/mediatek/mt8173(mt8183)/scp.img to
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/mediatek
-> 
-> Currently, the scp driver will load firmware in /lib/firmware/scp.img.
-> that means there is only one firmware for a specific platform.
-> I think we can send a PATCH to make firmware name of scp being more
-> flexible.
-> 
-> Maybe get firmware name from dts. e.g.,
-> &scp {
-> 	status = "okay";
-> 	firmware-name = "mediatek/mt81xx/scp.img";
-> };
-> 
-> Do you think it feasible?
-> If you have any concerns, please let us know.
-> 
-> Thanks,
-> Allen
-> 
+Hi Geert,
 
-Hello Allen,
+geert@linux-m68k.org wrote on Wed, 13 Apr 2022 09:53:09 +0200:
 
-what you proposed is exactly what has been done for other platforms because of
-both per-device firmware differences (different signatures) and per-SoC (different
-firmware entirely), found on TI K3, iMX DSP, Qualcomm MSS/DSP remoteproc and
-others.
+> Hi Miquel,
+>=20
+> On Tue, Apr 12, 2022 at 9:39 PM Miquel Raynal <miquel.raynal@bootlin.com>=
+ wrote:
+> > The Renesas RZN1 DMA IP is based on a DW core, with eg. an additional
+> > dmamux register located in the system control area which can take up to
+> > 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> > two different peripherals.
+> >
+> > We need two additional information from the 'dmas' property: the channel
+> > (bit in the dmamux register) that must be accessed and the value of the
+> > mux for this channel.
+> >
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com> =20
+>=20
+> Thanks for your patch!
+>=20
+> > --- /dev/null
+> > +++ b/drivers/dma/dw/rzn1-dmamux.c
+> > @@ -0,0 +1,160 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2022 Schneider-Electric
+> > + * Author: Miquel Raynal <miquel.raynal@bootlin.com
+> > + * Based on TI crossbar driver written by Peter Ujfalusi <peter.ujfalu=
+si@ti.com>
+> > + */
+> > +#include <linux/bitops.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_dma.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/soc/renesas/r9a06g032-sysctrl.h>
+> > +#include <linux/types.h>
+> > +
+> > +#define RNZ1_DMAMUX_NCELLS 6
+> > +#define RZN1_DMAMUX_LINES 64
+> > +#define RZN1_DMAMUX_MAX_LINES 16
+> > +
+> > +struct rzn1_dmamux_data {
+> > +       struct dma_router dmarouter;
+> > +       unsigned long *used_chans; =20
+>=20
+> Why a pointer?
+>=20
+> > +static int rzn1_dmamux_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device_node *mux_node =3D pdev->dev.of_node;
+> > +       const struct of_device_id *match;
+> > +       struct device_node *dmac_node;
+> > +       struct rzn1_dmamux_data *dmamux;
+> > +
+> > +       dmamux =3D devm_kzalloc(&pdev->dev, sizeof(*dmamux), GFP_KERNEL=
+);
+> > +       if (!dmamux)
+> > +               return -ENOMEM;
+> > +
+> > +       dmamux->used_chans =3D devm_bitmap_zalloc(&pdev->dev, 2 * RZN1_=
+DMAMUX_MAX_LINES,
+> > +                                               GFP_KERNEL); =20
+>=20
+> ... Oh, you want to allocate the bitmap separately, although you
+> know it's just a single long.
+>=20
+> You might as well declare it in rzn1_dmamux_data as:
+>=20
+>     unsigned long used_chans[BITS_TO_LONGS(2 * RZN1_DMAMUX_MAX_LINES)];
 
-Of course this is an accepted way to resolve this situation: please go on!
+I've done that in versions v1..v8 and it was explicitly requested by
+Ilpo that I used something more specific like a bitmap (or an idr, but
+I don't think it fits well here). So now I'm using a bitmap...
 
-Cheers,
-Angelo
-
+Thanks,
+Miqu=C3=A8l
