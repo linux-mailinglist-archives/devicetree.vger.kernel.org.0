@@ -2,155 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2954FEF73
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDDB24FEF93
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbiDMGMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 02:12:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50418 "EHLO
+        id S230195AbiDMGNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 02:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233017AbiDMGLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:11:32 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFD651E67;
-        Tue, 12 Apr 2022 23:09:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649830134; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=avtSYMatMQJTrvfdxH9tcMztEPmn8u2zb4O7F+3j+jyn7fN+YJ+hUKHj62tjFqaBwVG9RBXaSBPETmVn8m++fw5RabDjKwAzIXW/cHJ7Aemgj1Bwc79/uKU8Dq9MokCsK7DAgL69YYudAc8n1b24ISEiNAUFeoyHWNguyd4iOfU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649830134; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=vTUK5pF/zz+MqI8xc+MhrlHhkZm8+zGbv4qzWp+bAOE=; 
-        b=NhDgpIiMVBktiDlGV/krs0IHM+bqOylp/Al5kOTSrW0I8AbVInNxMNnwjziWm/4PcdUSjFnxZ9Nk0ipfowPLsMBmELrrqdZdSl57zL8INo4GYcpmXNOEowOj4ei21DYJBith5K0Y7dlbeuc/x53A5sl5JeZrx2Xgf8mwPCrdKFs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649830134;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=vTUK5pF/zz+MqI8xc+MhrlHhkZm8+zGbv4qzWp+bAOE=;
-        b=ejk/5EvrqsknZXlaLdvQGYU93zbCdTKVMlIZ4j8DpZkISNRrzojLACKDOitPIi5c
-        L06j4w4zK9iwD3VF03Y9CMTmMWY97rHnxPpV43b+Szwce/LmhbrZ66u+L+AD9lhl7NO
-        X9NGzPIuZvHT1HFCCnt0/Ftsm6RSh4wzqFg9DJZU=
-Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649830132114573.9252729984381; Tue, 12 Apr 2022 23:08:52 -0700 (PDT)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     erkin.bozoglu@xeront.com,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: [PATCH 14/14] dt-bindings: pinctrl: add binding for Ralink RT3883 pinctrl
-Date:   Wed, 13 Apr 2022 09:07:29 +0300
-Message-Id: <20220413060729.27639-15-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220413060729.27639-1-arinc.unal@arinc9.com>
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
+        with ESMTP id S231484AbiDMGNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:13:49 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E1B17393C9;
+        Tue, 12 Apr 2022 23:11:24 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id C252E8061;
+        Wed, 13 Apr 2022 06:08:49 +0000 (UTC)
+Date:   Wed, 13 Apr 2022 09:11:23 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCHv3 0/2] Convert TI dmtimer binding to yaml
+Message-ID: <YlZpi2beBeLHJ+BP@atomide.com>
+References: <20220412131644.59195-1-tony@atomide.com>
+ <YlXun5/rKNPvLZs3@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlXun5/rKNPvLZs3@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for the Ralink RT3883 pin controller for RT3883 SoC.
+* Rob Herring <robh@kernel.org> [220412 21:24]:
+> On Tue, Apr 12, 2022 at 04:16:42PM +0300, Tony Lindgren wrote:
+> > Hi all,
+> > 
+> > Here's v3 changes for TI dmtimer changes.
+> 
+> You missed 'v3' on the patches.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- .../pinctrl/ralink,rt3883-pinctrl.yaml        | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
+Sounds like I need to start using git format-patch with -v option :)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-new file mode 100644
-index 000000000000..583efc0ad51c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/ralink,rt3883-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ralink RT3883 Pin Controller
-+
-+maintainers:
-+  - Arınç ÜNAL <arinc.unal@arinc9.com>
-+  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+
-+description:
-+  Ralink RT3883 pin controller for RT3883 SoC.
-+  The pin controller can only set the muxing of pin groups. Muxing indiviual pins
-+  is not supported. There is no pinconf support.
-+
-+properties:
-+  compatible:
-+    const: ralink,rt3883-pinctrl
-+
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    patternProperties:
-+      '^(.*-)?pinmux$':
-+        type: object
-+        description: node for pinctrl.
-+        $ref: pinmux-node.yaml#
-+
-+        properties:
-+          groups:
-+            description: The pin group to select.
-+            enum: [ge1, ge2, i2c, jtag, lna a, lna g, mdio, pci, spi, uartf, uartlite]
-+
-+          function:
-+            description: The mux function to select.
-+            enum: [ge1, ge2, gpio, gpio i2s, gpio uartf, i2c, i2s uartf, jtag, lna a, lna g, mdio, pci-dev,
-+                   pci-fnc, pci-host1, pci-host2, pcm gpio, pcm i2s, pcm uartf, spi, uartf, uartlite]
-+
-+        required:
-+          - groups
-+          - function
-+
-+        additionalProperties: false
-+
-+    additionalProperties: false
-+
-+allOf:
-+  - $ref: "pinctrl.yaml#"
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  # Pinmux controller node
-+  - |
-+    pinctrl {
-+      compatible = "ralink,rt3883-pinctrl";
-+
-+      i2c_pins: i2c0-pins {
-+        pinmux {
-+          groups = "i2c";
-+          function = "i2c";
-+        };
-+      };
-+    };
--- 
-2.25.1
+Regards,
 
+Tony
