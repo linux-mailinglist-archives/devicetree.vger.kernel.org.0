@@ -2,134 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9727E4FF153
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 132CE4FF155
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233658AbiDMIEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:04:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56386 "EHLO
+        id S229667AbiDMIGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233666AbiDMIEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:04:49 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19646205F8;
-        Wed, 13 Apr 2022 01:02:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649836949; x=1681372949;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=oTEpoAPnyso2h61BCD6hUWgh5IMvEBbrEh0BiLEeJ8s=;
-  b=PcVbmL6eEoFl2NwF/9J5lVl7wWaQDbk8zxP+ZiqDu7VZqr3ZqOR2QPXB
-   Um7nB70X9wMlrav5MS1p2XvOEVFao6A9HJOsMHNU1bX1c/nsI2pLb0df2
-   iV2dxF+54ZnFrVJXrrk6leXIPRU8WzCpYhNx1XePfpJnQ0yt8bcSijtR9
-   BI98dM+9mk9YWnLhnV6PbBRaG4ZyDW31FkC+x7rTEAPDHY3/qvElFLx+P
-   QzcwYE42y2jdtljhU265nn8j4pV9/zSwDHVUWlv770lrt+ixiR3g0eZHs
-   /lg0Ejt1Qt/CwFf+FW+/UA9J2zC7gzzWh1AFm0nv0N6g5hQpf1jpksJri
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,256,1643698800"; 
-   d="scan'208";a="159940090"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2022 01:02:29 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 13 Apr 2022 01:02:28 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Wed, 13 Apr 2022 01:02:24 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <aou@eecs.berkeley.edu>, <paul.walmsley@sifive.com>,
-        <palmer@rivosinc.com>, <a.zummo@towertech.it>,
-        <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-CC:     <daire.mcnamara@microchip.com>, <linux-rtc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 9/9] riscv: dts: microchip: reparent mpfs clocks
-Date:   Wed, 13 Apr 2022 08:58:36 +0100
-Message-ID: <20220413075835.3354193-10-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220413075835.3354193-1-conor.dooley@microchip.com>
-References: <20220413075835.3354193-1-conor.dooley@microchip.com>
+        with ESMTP id S229489AbiDMIGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:06:34 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377AA20BC1;
+        Wed, 13 Apr 2022 01:04:14 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id ay4so813455qtb.11;
+        Wed, 13 Apr 2022 01:04:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0SQtFKwvmFkbGQ+l9yQziQCJESUKXjbWruyGdBT8yb8=;
+        b=Alt6fDp5zuUFy59dHH0cpL0kLvpCiVd6EB9mpXn+pCKlwphhwWM9it1/8ejgvtiSLh
+         tS98OzUjXuukBS7IATr7e7+qWIav0wBtL5Jtzg26IU9vQgScf4vfqWbO1qV71LMAWj+Y
+         sERrPQ8w2JrdYVRpdJ+yRSSTeAk0dgbPoxfzdeZHRFNV9qf+G/LyASlhLooEKuFkuYA+
+         0UWIHWVsS3E5bpIk44gAneqexasYb6D91iCPCirAmUSynQg4zpTRgYpuEuEg0IkhYev1
+         lic1SoQm1P5EClnYIdW1ZTdCqFrxnsBGTbNnV3Te8/ffcVir5V7uV7oCmbheNMmqk9n/
+         jyCA==
+X-Gm-Message-State: AOAM531Da1znrvr6jeIIWL61cjKgRqjw3f0hyU8hsfxFK87Og/mJlU37
+        EeKHE75QVm0vruZ7X0rzivBn+yadqQrV8Q==
+X-Google-Smtp-Source: ABdhPJw39m4mwWMfkdTwkUaqfE0sF2gAW9ujZC7ptKpijrXzyAt2pB7Vt79cd/DKGYPmcK8ia1TSMQ==
+X-Received: by 2002:a05:622a:1926:b0:2ef:fe22:8aec with SMTP id w38-20020a05622a192600b002effe228aecmr6413882qtc.446.1649837053045;
+        Wed, 13 Apr 2022 01:04:13 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id q125-20020a378e83000000b0069bf8409e6fsm7778160qkd.28.2022.04.13.01.04.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 01:04:12 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2edbd522c21so13087407b3.13;
+        Wed, 13 Apr 2022 01:04:11 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr33617003ywb.132.1649837051663; Wed, 13
+ Apr 2022 01:04:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220412162729.184783-1-javierm@redhat.com> <20220412162729.184783-3-javierm@redhat.com>
+In-Reply-To: <20220412162729.184783-3-javierm@redhat.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Apr 2022 10:04:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUDxexqsGjb3B37jW_xZU1TBLq8gK5hctA+PKjL+LhQGQ@mail.gmail.com>
+Message-ID: <CAMuHMdUDxexqsGjb3B37jW_xZU1TBLq8gK5hctA+PKjL+LhQGQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: display: ssd1307fb: Extend schema for
+ SPI controllers
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Mark Brown <broonie@kernel.org>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 600M clock in the fabric is not the real reference, replace it with
-a 125M clock which is the correct value for the icicle kit. Rename the
-msspllclk node to mssrefclk since this is now the input to, not the
-output of, the msspll clock. Control of the msspll clock has been moved
-into the clock configurator, so add the register range for it to the clk
-configurator. Finally, add a new output of the clock config block which
-will provide the 1M reference clock for the MTIMER and the rtc.
+Hi Javier,
 
-Fixes: 528a5b1f2556 ("riscv: dts: microchip: add new peripherals to icicle kit device tree")
-Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
-Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../boot/dts/microchip/microchip-mpfs-icicle-kit.dts      | 2 +-
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi         | 8 ++++----
- 2 files changed, 5 insertions(+), 5 deletions(-)
+On Tue, Apr 12, 2022 at 6:27 PM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+> The Solomon SSD130x OLED displays can either have an I2C or SPI interface,
+> add to the schema the properties and examples for OLED devices under SPI.
+>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> Acked-by: Mark Brown <broonie@kernel.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>
+> Changes in v3:
+> - Add a comment to the properties required for SPI (Geert Uytterhoeven)
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-index cd2fe80fa81a..3392153dd0f1 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-@@ -45,7 +45,7 @@ ddrc_cache_hi: memory@1000000000 {
- };
- 
- &refclk {
--	clock-frequency = <600000000>;
-+	clock-frequency = <125000000>;
- };
- 
- &mmuart1 {
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index 3b48b7f35410..746c4d4e7686 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -141,7 +141,7 @@ cpu4_intc: interrupt-controller {
- 		};
- 	};
- 
--	refclk: msspllclk {
-+	refclk: mssrefclk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 	};
-@@ -190,7 +190,7 @@ plic: interrupt-controller@c000000 {
- 
- 		clkcfg: clkcfg@20002000 {
- 			compatible = "microchip,mpfs-clkcfg";
--			reg = <0x0 0x20002000 0x0 0x1000>;
-+			reg = <0x0 0x20002000 0x0 0x1000>, <0x0 0x3E001000 0x0 0x1000>;
- 			clocks = <&refclk>;
- 			#clock-cells = <1>;
- 		};
-@@ -393,8 +393,8 @@ rtc: rtc@20124000 {
- 			reg = <0x0 0x20124000 0x0 0x1000>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <80>, <81>;
--			clocks = <&clkcfg CLK_RTC>;
--			clock-names = "rtc";
-+			clocks = <&clkcfg CLK_RTC>, <&clkcfg CLK_RTCREF>;
-+			clock-names = "rtc", "rtcref";
- 			status = "disabled";
- 		};
- 
--- 
-2.35.1
+Thanks for the update!
 
+> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> @@ -38,9 +38,16 @@ properties:
+>    reset-gpios:
+>      maxItems: 1
+>
+> +  # Only required for SPI
+> +  dc-gpios:
+> +    maxItems: 1
+
+Actually I meant to also add a description, like for vbat-supply below,
+to explain the meaning of "dc".
+
+> +
+>    vbat-supply:
+>      description: The supply for VBAT
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
