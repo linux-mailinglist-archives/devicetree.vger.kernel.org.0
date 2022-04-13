@@ -2,123 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597044FF48C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 515C44FF4A0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232482AbiDMKTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 06:19:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44242 "EHLO
+        id S234873AbiDMKXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 06:23:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234677AbiDMKTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:19:50 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1843456C3F
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 03:17:28 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id k23so2962294ejd.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 03:17:28 -0700 (PDT)
+        with ESMTP id S234541AbiDMKXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:23:20 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511423B54F
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 03:20:59 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id t11so2895629eju.13
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 03:20:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+p9OhkRWnU4KvZxsWUOBOa1aYPgHNe796kCuZ/Rbemw=;
-        b=KdMY7C1/bpo1NHLGrHjYumxcgSCzqO0LjpALLIq/biQ/fK9NL3DH4iiRCabL5kfCut
-         DQnuyPXS61QoXZadQYFaswTtf6v3cuNR/0Imzm/eF0a6c0lQIPRjU9bNlOYCgCc/vJF9
-         IQphk1UFmLXa3aeyftdTqOrpIiJwiM+XwWNP1EAlmuL5LoAQ8JvUh8uspC1nj5uXUmbA
-         rDflWKiPP9/dX/7/2KhM9yQGOdLzDF7ma14UiqxUD+6NxrGj3uoV+oKFhsKGneci3dZK
-         eqD1LPP9RdQSVnGcecw+UHepP8h+5wS/MLiG4wVhasAzNoj18VdoTJA8VkZydVIFXJO4
-         i9BA==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zGO6fu5bsJKLhceCU/2eZbT6NC6ZKZlGiRFZPq4QBd8=;
+        b=lUJPLTmrBG8EGdlglUt6FsdnyuMBIQH6L1xSpGJEabdt7ofMyOQaqeNHc/HErZUbbM
+         CPvEkBqPWMxwgShffc4c0zIxaAczkglBwkcpQKrCIfrXO7sLlyXosLYMpPAN2x5kA5Uj
+         WUoD6HblWk8E3RnB2o8u2Z23Jc7ubq3kR+pTk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+p9OhkRWnU4KvZxsWUOBOa1aYPgHNe796kCuZ/Rbemw=;
-        b=abWJ5+aP3zi69N9LZA0X9ud2aBZJLAQqhh+8Jim5rrPTq+Iy3xVgYeYC8AqmVTks/m
-         x/nJFqvEXHhebGmQ6ZOs6vNCoSAckCzOenQKKVxqfKpdgEDGi1YifB+Ela5ToB90GpnW
-         H0mUuzsNxsKiZFbfqGwUHZu0UJOksnlno7zrD5GFO/5XSGHThNPIVtW7JX3fFZ5Oal3s
-         WcB0T3wq0Q4ANKCK/mHK8EopACPop8Vh7sOOUt5EJZLi+JomgJS+/uJ/Ws5vNXQuORKK
-         jzs2ITTczlUcOiaaxw27fadaehDNfKGeEwpK+WRQFbrTrvoUg2Dyia3w43tHJIccd71N
-         VJUg==
-X-Gm-Message-State: AOAM533+LMafCTS+QQ4ayPVmccXf2DRCfttKsmO7kvULOT6aMP6bulf+
-        y1rdhLqH1eGcuqzRVMM0ZoU5rw==
-X-Google-Smtp-Source: ABdhPJxHkJTh8c3ZBgS7Vn312uG35xCXzwXPNIs5425WDpbNuafB8mLuK02G5kzvi/vCtITLUNmHNw==
-X-Received: by 2002:a17:907:96a9:b0:6e0:db4a:ba8d with SMTP id hd41-20020a17090796a900b006e0db4aba8dmr39539516ejc.87.1649845046712;
-        Wed, 13 Apr 2022 03:17:26 -0700 (PDT)
-Received: from [192.168.0.203] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id jl28-20020a17090775dc00b006e05cdf3a95sm14081100ejc.163.2022.04.13.03.17.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 03:17:26 -0700 (PDT)
-Message-ID: <7ac04ea5-a797-de24-7701-76699d73518a@linaro.org>
-Date:   Wed, 13 Apr 2022 12:17:25 +0200
+        bh=zGO6fu5bsJKLhceCU/2eZbT6NC6ZKZlGiRFZPq4QBd8=;
+        b=YDx4t4IKXL1psIPwNhUJDBYV70WxROBtJJbUfWAaG+JkOS2ZABJQh7wimSu9p9LfCW
+         VOC0T8Zn8SSxSpVkqdmEUoHW4bUWRiihYBohqZsesAsUARAm/ARFTBSuQy9ENpGQz9A8
+         L+A7WkZINWUPZqbPmVo+NTiDGWRwiD6hbGxp7VZZ2crjz6W1HB/CuJsvCN038xo9nlNT
+         GlmGsjdBsZXfLLOgAVm1P0BiVTvzwniyhN+F1LlUEOfVIZcHlgxXxc9grYjcoonPFHZ3
+         e0kwnermsFnuPi5ckwPiX5n8MN03mxcSsTE0x6n1W7/GvTweDmXl7oQqLgRs++8AgoI8
+         jjsA==
+X-Gm-Message-State: AOAM533ePFYGQpFVPhnqV1c3wKpa/UK3lCvcZKAoan3hLYDulaHG0t3R
+        YEAOV5L5xmofeLS0PBDkMPDZwg==
+X-Google-Smtp-Source: ABdhPJyd46hjgiXiKc0E6A+TkwfuNjRpTspMmE/b+xlPHX9Jpc6mEp15RgVxpqgijjXtUcN2SGghkQ==
+X-Received: by 2002:a17:906:6a0d:b0:6e8:c927:663 with SMTP id qw13-20020a1709066a0d00b006e8c9270663mr1940427ejc.394.1649845257887;
+        Wed, 13 Apr 2022 03:20:57 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-245-147-71.retail.telecomitalia.it. [95.245.147.71])
+        by smtp.gmail.com with ESMTPSA id m3-20020a17090679c300b006cf9ce53354sm14021163ejo.190.2022.04.13.03.20.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Apr 2022 03:20:57 -0700 (PDT)
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     tommaso.merciai@amarulasolutions.com,
+        linux-amarula@amarulasolutions.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>, Li Jun <jun.li@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-evk: add pwm1/backlight support
+Date:   Wed, 13 Apr 2022 12:20:51 +0200
+Message-Id: <20220413102052.20207-1-tommaso.merciai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 4/4] thermal: k3_j72xx_bandgap: Add the bandgap driver
- support
-Content-Language: en-US
-To:     Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, amitk@kernel.org,
-        kristo@kernel.org
-Cc:     linux-pm@vger.kernel.org, vigneshr@ti.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220412101409.7980-1-j-keerthy@ti.com>
- <20220412101409.7980-5-j-keerthy@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220412101409.7980-5-j-keerthy@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 12:14, Keerthy wrote:
-> Add VTM thermal support. In the Voltage Thermal Management
-> Module(VTM), K3 J72XX supplies a voltage reference and a temperature
-> sensor feature that are gathered in the band gap voltage and
-> temperature sensor (VBGAPTS) module. The band gap provides current and
-> voltage reference for its internal circuits and other analog IP
-> blocks. The analog-to-digital converter (ADC) produces an output value
-> that is proportional to the silicon temperature.
+Add pwm1/backlight support nodes for imx8mm_evk board. Align with u-boot
+dts
 
+References:
+ - https://patchwork.ozlabs.org/project/uboot/patch/20220326111911.13720-9-tommaso.merciai@amarulasolutions.com/
 
-(...)
+Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-> +
-> +static void print_look_up_table(struct device *dev, int *ref_table)
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+index 6d67df7692f1..55566708f667 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+@@ -59,6 +59,15 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		enable-active-high;
+ 	};
+ 
++	backlight: backlight {
++		status = "disabled";
++		compatible = "pwm-backlight";
++		pwms = <&pwm1 0 5000000>;
++		brightness-levels = <0 255>;
++		num-interpolated-steps = <255>;
++		default-brightness-level = <250>;
++	};
++
+ 	ir-receiver {
+ 		compatible = "gpio-ir-receiver";
+ 		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+@@ -395,6 +404,12 @@ &wdog1 {
+ 	status = "okay";
+ };
+ 
++&pwm1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_backlight>;
++	status = "disabled";
++};
++
+ &iomuxc {
+ 	pinctrl_fec1: fec1grp {
+ 		fsl,pins = <
+@@ -549,4 +564,10 @@ pinctrl_wdog: wdoggrp {
+ 			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
+ 		>;
+ 	};
++
++	pinctrl_backlight: backlightgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT	0x06
++		>;
++	};
+ };
+-- 
+2.25.1
 
-Here and everywhere else in such cases - you do not modify pointed data,
-so pointers to const please.
-
-> +{
-> +	int i;
-> +
-> +	dev_dbg(dev, "The contents of derived array\n");
-> +	dev_dbg(dev, "Code   Temperaturei\n");
-> +	for (i = 0; i <= 1023; i++)
-> +		dev_dbg(dev, "%d       %d %d\n", i, derived_table[i], ref_table[i]);
-> +}
-> +
-> +static const struct of_device_id of_k3_j72xx_bandgap_match[];
-> +
-
-Why do you need forward declaration?
-
-(....)
-
-> +
-> +static const struct of_device_id of_k3_j72xx_bandgap_match[] = {
-> +	{
-> +		.compatible = "ti,j721e-vtm",
-> +		.data = (void *)&k3_j72xx_bandgap_j721e_data,
-
-Why do you need the cast?
-
-
-Best regards,
-Krzysztof
