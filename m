@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BED644FF992
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E8E4FF9A9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235481AbiDMPBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 11:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
+        id S231567AbiDMPHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233433AbiDMPBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:01:34 -0400
-X-Greylist: delayed 105489 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Apr 2022 07:59:12 PDT
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365C764703;
-        Wed, 13 Apr 2022 07:59:11 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5685D6000E;
-        Wed, 13 Apr 2022 14:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649861950;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=g7zAjg3ptZqqrWECXfvJR9zNVfSPbwQ7SWTZx29xlQw=;
-        b=lLKO1tiYqkxNFatSDu3YABe8z+IJcYzcMFfiRBJyfwpjfsCMhg4tS0rdi16QpgPGc+zSow
-        tzBio5kSuE/21Fu1qtgYez39H6SGGJKYc/21qQZPB4ruSEDotfseb8I+nyVHMewf/eANH8
-        3zWc0lmIRpQcOnuqu0kwc1t1xc3vFFp6+jZrSDUKfdYoAMUjZqqB+2f4SFJJQATew93bTg
-        +istpAtNWovwKwzWGYyZ5bJRy8y5tUj4k19/agTTQ5aydkY5IZaNq6EEDP1AvXPaXyZhgB
-        NZ+w7sd+PYh7nty9BrCSvkFMwidgEE1LnNCJ2RhWg4xubwn1BjSya5gqdJc86Q==
-Date:   Wed, 13 Apr 2022 16:59:07 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Sergey Shtylyov <s.shtylyov@omp.ru>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S230492AbiDMPHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:07:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DD82A271;
+        Wed, 13 Apr 2022 08:04:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4193861D1D;
+        Wed, 13 Apr 2022 15:04:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D66F2C385A6;
+        Wed, 13 Apr 2022 15:04:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649862297;
+        bh=VjQY5nrpmgcSuXTK7yu3ew0bxgkZKQoSqOgDwl0n0qs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XPlaH6Uwu0ASIIeC4tABPUXxD+o5rD0bVVjxiaGSaGJzSnoa7pEbwYOJVPzdwxBr8
+         gjmVBL3QASH7L3+kPUTYd3ATwDf+Ww0FtHN/+gbvrLwirjJnoM+Ox8JGAveDN8iQhi
+         SdaVZOW03yWFbj2CcXTV4aWWL0XDafDczT09RCDSqlvv7X+Rl5IVzmVger+t9Iy9eH
+         jThrWoEVjusVit/qemkFT1q2MPHcWZwM9WuBMXMhtyTzr35msxMUgJEUao4rjg/dAk
+         2SM9lnWA7c1kD7cKtP8brJcgyKbwO3srdZROYmi951/rZzD5QjgTYtIODfsI9TJUc5
+         LmilSMYDd1Pwg==
+Date:   Wed, 13 Apr 2022 16:04:49 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Agathe Porte <agathe.porte@nokia.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 3/6] PCI: rcar-gen2: Add R9A06G032 support
-Message-ID: <20220413165907.183c39f5@bootlin.com>
-In-Reply-To: <75be60ce-d9b2-b9a0-c897-3cc904889db6@omp.ru>
-References: <20220412094029.287562-1-herve.codina@bootlin.com>
-        <20220412094029.287562-4-herve.codina@bootlin.com>
-        <75be60ce-d9b2-b9a0-c897-3cc904889db6@omp.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-hwmon@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix array constraints on scalar properties
+Message-ID: <YlbmkSFqY34UuVzN@sirena.org.uk>
+References: <20220413140121.3132837-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="VekwRPP0COgtFOIs"
+Content-Disposition: inline
+In-Reply-To: <20220413140121.3132837-1-robh@kernel.org>
+X-Cookie: The horror... the horror!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
 
-On Wed, 13 Apr 2022 12:08:01 +0300
-Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
+--VekwRPP0COgtFOIs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Hello!
->=20
-> On 4/12/22 12:40 PM, Herve Codina wrote:
->=20
-> > Add Renesas R9A06G032 SoC support to the Renesas R-Car gen2 PCI
-> > bridge driver.
-> > The Renesas RZ/N1D (R9A06G032) internal PCI bridge is compatible
-> > with the one available in the R-Car Gen2 family.
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  drivers/pci/controller/pci-rcar-gen2.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/drivers/pci/controller/pci-rcar-gen2.c b/drivers/pci/contr=
-oller/pci-rcar-gen2.c
-> > index 528bc3780e01..586e4785a57f 100644
-> > --- a/drivers/pci/controller/pci-rcar-gen2.c
-> > +++ b/drivers/pci/controller/pci-rcar-gen2.c
-> > @@ -352,6 +352,8 @@ static const struct of_device_id rcar_pci_of_match[=
-] =3D {
-> >  	{ .compatible =3D "renesas,pci-r8a7791", },
-> >  	{ .compatible =3D "renesas,pci-r8a7794", },
-> >  	{ .compatible =3D "renesas,pci-rcar-gen2", },
-> > +	{ .compatible =3D "renesas,pci-r9a06g032", }, =20
->=20
->    Do we really need this one here? Isn't it covered by the next item?
+On Wed, Apr 13, 2022 at 09:01:21AM -0500, Rob Herring wrote:
+> Scalar properties shouldn't have array constraints (minItems, maxItems,
+> items). These constraints can simply be dropped with any constraints under
+> 'items' moved up a level.
 
-Yes, this one is not needed.
-Miqu=C3=A8l did the same remark too.
+Acked-by: Mark Brown <broonie@kernel.org>
 
-I will remove '.compatible =3D "renesas,pci-r9a06g032"' in v2.
+--VekwRPP0COgtFOIs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Regards,
-Herve
+-----BEGIN PGP SIGNATURE-----
 
->=20
-> > +	{ .compatible =3D "renesas,pci-rzn1", },
-> >  	{ },
-> >  };
-> >   =20
->=20
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJW5pAACgkQJNaLcl1U
+h9DmlQf+J09i7xHNBLa9qVJkVXaOe/HVJYPPltu9GIpREcAJsawEZ8ZgDKwby26+
++O8wcS47jwyM2wZ375w8CG/0FcziZRNk6g7yndlWyV64CN/Df4tje+K9ZC9Gdo4n
+OQrfdNzqXLPs7KxCpSYGQUhDaEKBAd0bUY/L+lszBvk1MzWBaDVeexfjwLGy+YVL
+4M+OkSQ++mNAsRvPNgyOqID8nPkKlrnkXL5dm/GG8SHl39P3GxGKl4Cag+Gd1/R9
+yIrjCokgS3AhWjKGygEYh1AFNJZqueydevyr6s4e1JRm/Fi6lYL0xRlPPx5aPsGZ
+xfaeAjTvT59WiM8RA/ZX4aZX46zCXg==
+=O1L2
+-----END PGP SIGNATURE-----
+
+--VekwRPP0COgtFOIs--
