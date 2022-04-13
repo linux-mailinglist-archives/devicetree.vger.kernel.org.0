@@ -2,114 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E32C4FFDF8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DDE4FFE19
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:46:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236453AbiDMSlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 14:41:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56454 "EHLO
+        id S236451AbiDMSsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 14:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbiDMSlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:41:07 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1565F241;
-        Wed, 13 Apr 2022 11:38:45 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-d6ca46da48so2879588fac.12;
-        Wed, 13 Apr 2022 11:38:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4XE0LuRXhbOvzCbZ48CucOmOo4RYloaUhD24S7+cs9c=;
-        b=SCL+QHwaGYTQdsgYqES7jtm//yibu7xp4EIHxECDXCiWVMnISX9TxJWttRXkCKxaTI
-         CIRb2rX4hduo6+/oiCguSLbHeve033KzntKfQnhrLp6ZjfMmlYYMWLxYi0iTd1+0D9Hq
-         OevgnjhBZG744vqlcMqi7/UJHzr0FaL+RCgtWypq55LrnRe7uRnQQIGCpNi3RvYeV0nN
-         jS7syfhh4ZJSIAs1Yqke7/swgnDYSPaeV25J1NP11gc2htKsI80kv7/iLTcmMlO85gKU
-         xt6IQFd66MmT8fENHQ3TLhbROC4/o4ipuo1RfJMTtG/AFYR3MJWvSBpEA1QS+ASPu8uF
-         DaKA==
-X-Gm-Message-State: AOAM531GZ/2W3ZFrqdC7QRWoqR0ZMpz5NMN5Ge/V5NHU4eVjvmjsXAU0
-        vSrNq97qs09L3UAdaAB/WA==
-X-Google-Smtp-Source: ABdhPJxe6R3tfDj53W7g+BEn/HAdgL54WG1tAWd27g09KrpCzZbryWBMuy55bSxgbhp0/gThFGphQQ==
-X-Received: by 2002:a05:6870:8a29:b0:e2:ffb9:f52d with SMTP id p41-20020a0568708a2900b000e2ffb9f52dmr26568oaq.205.1649875124603;
-        Wed, 13 Apr 2022 11:38:44 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id gu14-20020a056870ab0e00b000e2d96cebe5sm3355192oab.48.2022.04.13.11.38.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 11:38:44 -0700 (PDT)
-Received: (nullmailer pid 3616565 invoked by uid 1000);
-        Wed, 13 Apr 2022 18:38:43 -0000
-Date:   Wed, 13 Apr 2022 13:38:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Gwendal Grignou <gwendal@chromium.org>
-Cc:     jic23@kernel.org, swboyd@chromium.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 7/8] dt-bindings: iio: sx9360: Add precharge resistor
- setting
-Message-ID: <YlcYswjsb6dn1a6M@robh.at.kernel.org>
-References: <20220406165011.10202-1-gwendal@chromium.org>
- <20220406165011.10202-8-gwendal@chromium.org>
+        with ESMTP id S233329AbiDMSsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:48:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D1552E6C;
+        Wed, 13 Apr 2022 11:46:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BE9561A08;
+        Wed, 13 Apr 2022 18:46:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE13C385A3;
+        Wed, 13 Apr 2022 18:46:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649875589;
+        bh=ysrPtaTYb8EyW5VHJIP8kmaecK5XOai6g/Tx5uvuzMc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HifCVjTyYmnCyys0GagMzajpFi5s2br8b7c+XHv7DHYIJzrdFhnAbBf3FkZu3qSWP
+         s17MFMgODFGfpkBV5AscPelCEh6z0AhZgHVzb9rbTw/jrao+66i+tH/JLlcBF2kVXQ
+         KTctZBJL3Q1a7/12vV6yV9E4S3g+SXq6W2qPxQliijDSkdF1sA9+98+beDedPiCOua
+         A7qtMNXhn1Qysd/O9HOH0mIQfCarGoETMkb3v/Gox0CQEbmKoLUoKLjxO/13qnmuip
+         kSC2loFpBokA9hshSpQ3RaojFDk8A9Gw6Rck9OwXpeFMZAGhtl0WYRH6CjSXryMQh7
+         OyrSBCBCfTzVg==
+Received: by mail-io1-f49.google.com with SMTP id p135so2932049iod.2;
+        Wed, 13 Apr 2022 11:46:29 -0700 (PDT)
+X-Gm-Message-State: AOAM531+XfXUJV5VYHhIdQ2UZFeVGJRr1GBy6J1E4N9rzB7pOkMjWMlQ
+        MV+SQ9D131iWFDyxtGogSP3ueefk6Sun0FOYeA==
+X-Google-Smtp-Source: ABdhPJxBoCyvmmSYBlR3CPMXkWfpbJbFlu0q65XwYXKzyqlRpm9qS1dexycZeKMQZVXe6ksNkSG9HXnYOujJ9Kbb334=
+X-Received: by 2002:a02:1107:0:b0:321:78dc:890d with SMTP id
+ 7-20020a021107000000b0032178dc890dmr22807402jaf.236.1649875588926; Wed, 13
+ Apr 2022 11:46:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220406165011.10202-8-gwendal@chromium.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220413092454.1073-1-tzimmermann@suse.de> <20220413092454.1073-2-tzimmermann@suse.de>
+ <CAL_JsqK4oT47Q=XFTZ0a=g3-DiB1JsW7_j9M1qRzpeahhz0muA@mail.gmail.com> <b31df06c-6cce-37dd-5ec1-661fdc8151da@suse.de>
+In-Reply-To: <b31df06c-6cce-37dd-5ec1-661fdc8151da@suse.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 13 Apr 2022 13:46:17 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJdYjd=P4Nhd9E+=OjOb2A-=_txBUtWsDL1FWqZ0phD+g@mail.gmail.com>
+Message-ID: <CAL_JsqJdYjd=P4Nhd9E+=OjOb2A-=_txBUtWsDL1FWqZ0phD+g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: Create platform devices for OF framebuffers
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Helge Deller <deller@gmx.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 06, 2022 at 09:50:10AM -0700, Gwendal Grignou wrote:
-> Allow configure the resistance used during precharge.
-> 
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> ---
-> Changes since v3:
-> - Fix maximum field. Check make dt_binding_check passes.
-> 
-> Changes since v2:
-> - Change kOhms into ohms.
-> 
-> Changes since v1:
-> - Suffix property with kOhms.
-> 
->  .../bindings/iio/proximity/semtech,sx9360.yaml           | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
-> index 63e1a1fd00d4c..20c2759ced436 100644
-> --- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
-> +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
-> @@ -61,6 +61,14 @@ properties:
->        UINT_MAX (4294967295) represents infinite. Other values
->        represent 1-1/N.
->  
-> +  semtech,input-precharge-resistor-ohms:
-> +    default: 0
-> +    description:
-> +      Pre-charge input resistance in Ohm.
-> +      Rounded down to a 2000 Ohm multiple.
+On Wed, Apr 13, 2022 at 12:58 PM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+> Hi
+>
+> Am 13.04.22 um 14:51 schrieb Rob Herring:
+> > On Wed, Apr 13, 2022 at 4:24 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> >>
+> >> Create a platform device for each OF-declared framebuffer and have
+> >> offb bind to these devices. Allows for real hot-unplugging and other
+> >> drivers besides offb.
+> >>
+> >> Originally, offb created framebuffer devices while initializing its
+> >> module by parsing the OF device tree. No actual Linux device was set
+> >> up. This tied OF framebuffers to offb and makes writing other drivers
+> >> for the OF framebuffers complicated. The absence of a Linux device
+> >> prevented real hot-unplugging. Adding a distinct platform device for
+> >> each OF framebuffer solves both problems. Specifically, a DRM drivers
+> >> can now provide graphics output with modern userspace.
+> >>
+> >> Some of the offb init code is now located in the OF initialization.
+> >> There's now also an implementation of of_platform_default_populate_init(),
+> >> which was missing before. The OF side creates different devices for
+> >> either OF display nodes or bootx displays as they require different
+> >> handling by the driver. The offb drivers picks up each type of device
+> >> and runs the appropriate fbdev initialization.
+> >>
+> >> Tested with OF display nodes on qemu's ppc64le target.
+> >>
+> >> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> >> ---
+> >>   drivers/of/platform.c      | 73 ++++++++++++++++++++++++++--
+> >>   drivers/video/fbdev/offb.c | 98 +++++++++++++++++++++++++-------------
+> >>   2 files changed, 134 insertions(+), 37 deletions(-)
+> >>
+> >> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> >> index a16b74f32aa9..4c63b9a73587 100644
+> >> --- a/drivers/of/platform.c
+> >> +++ b/drivers/of/platform.c
+> >> @@ -447,6 +447,60 @@ int of_platform_bus_probe(struct device_node *root,
+> >>   }
+> >>   EXPORT_SYMBOL(of_platform_bus_probe);
+> >>
+> >> +static int __init of_platform_populate_framebuffers(void)
+> >> +{
+> >> +       struct device_node *boot_display = NULL;
+> >> +       struct device_node *node;
+> >> +       struct platform_device *dev;
+> >> +       int ret;
+> >> +
+> >> +       node = of_get_compatible_child(of_chosen, "simple-framebuffer");
+> >> +       of_platform_device_create(node, NULL, NULL);
+> >> +       of_node_put(node);
+> >> +
+> >
+> > The rest is PPC only, so bail out here if !PPC.
+> >
+> >> +       /* Check if we have a MacOS display without a node spec */
+> >> +       if (of_get_property(of_chosen, "linux,bootx-noscreen", NULL)) {
+> >> +               /*
+> >> +                * The old code tried to work out which node was the MacOS
+> >> +                * display based on the address. I'm dropping that since the
+> >> +                * lack of a node spec only happens with old BootX versions
+> >> +                * (users can update) and with this code, they'll still get
+> >> +                * a display (just not the palette hacks).
+> >> +                */
+> >> +               dev = platform_device_alloc("bootx-noscreen", 0);
+> >> +               if (WARN_ON(!dev))
+> >> +                       return -ENOMEM;
+> >> +               ret = platform_device_add(dev);
+> >> +               if (WARN_ON(ret)) {
+> >> +                       platform_device_put(dev);
+> >> +                       return ret;
+> >> +               }
+> >> +       }
+> >> +
+> >> +       /*
+> >> +        * For OF framebuffers, first create the device for the boot display,
+> >> +        * then for the other framebuffers. Only fail for the boot display;
+> >> +        * ignore errors for the rest.
+> >> +        */
+> >> +       for_each_node_by_type(node, "display") {
+> >> +               if (!of_get_property(node, "linux,opened", NULL) ||
+> >> +                   !of_get_property(node, "linux,boot-display", NULL))
+> >> +                       continue;
+> >> +               dev = of_platform_device_create(node, "of-display", NULL);
+> >> +               if (WARN_ON(!dev))
+> >> +                       return -ENOMEM;
+> >> +               boot_display = node;
+> >> +               break;
+> >> +       }
+> >> +       for_each_node_by_type(node, "display") {
+> >> +               if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+> >> +                       continue;
+> >> +               of_platform_device_create(node, "of-display", NULL);
+> >> +       }
+> >> +
+> >> +       return 0;
+> >> +}
+> >> +
+> >>   /**
+> >>    * of_platform_populate() - Populate platform_devices from device tree data
+> >>    * @root: parent of the first level to probe or NULL for the root of the tree
+> >> @@ -541,9 +595,7 @@ static int __init of_platform_default_populate_init(void)
+> >>                  of_node_put(node);
+> >>          }
+> >>
+> >> -       node = of_get_compatible_child(of_chosen, "simple-framebuffer");
+> >> -       of_platform_device_create(node, NULL, NULL);
+> >> -       of_node_put(node);
+> >> +       of_platform_populate_framebuffers();
+> >>
+> >>          /* Populate everything else. */
+> >>          of_platform_default_populate(NULL, NULL, NULL);
+> >
+> > I'm pretty sure it's just this call that's the problem for PPC though
+> > none of the above existed when adding this caused a regression. Can we
+> > remove the ifdef and just make this call conditional on
+> > !IS_ENABLED(CONFIG_PPC).
+>
+> Together with the changes in of_platform_populate_framebuffers(), the
+> code is more or less an "if-else" depending on PPC. I'll drop
+> of_platform_populate_framebuffers() from the patch and make a separate
+> implementation of of_platform_default_populate_init for PPC. Seems like
+> the easiest solution to me.
 
-You can have 'multipleOf: 2000' as a constraint.
+That just moves us farther from PPC ever using
+of_platform_default_populate_init(). But I don't know that anyone in
+PPC cares about that, so fine I guess.
 
-> +    minimum: 0
-> +    maximum: 30000
-> +
->  required:
->    - compatible
->    - reg
-> @@ -85,5 +93,6 @@ examples:
->          semtech,resolution = <256>;
->          semtech,proxraw-strength = <2>;
->          semtech,avg-pos-strength = <64>;
-> +        semtech,input-precharge-resistor-ohms = <4000>;
->        };
->      };
-> -- 
-> 2.35.1.1094.g7c7d902a7c-goog
-> 
-> 
+Rob
