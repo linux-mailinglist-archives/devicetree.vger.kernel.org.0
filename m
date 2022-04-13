@@ -2,75 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A9BF4FF2CC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BEE54FF2F9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 11:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232965AbiDMI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:58:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S234091AbiDMJJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 05:09:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbiDMI6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:58:44 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB4704C407
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:56:23 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id h11so1364102ljb.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:56:23 -0700 (PDT)
+        with ESMTP id S234229AbiDMJJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 05:09:42 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE93C4D9E5
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 02:07:19 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id b15so1563416edn.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 02:07:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pW/YXqDQlANPBYShRmBV2kdR37gC3CSOvx43OZDkAhE=;
-        b=qh42nCIWLGN1ZO8hf0HKW2TozddfXNaIBL9zBdN2j8n60oMeBN/ONPfQS1qzMtVYXb
-         HDixcST50N9KtLPWYqQxHI2Qyjva/qMxKOMgpJ7AAs8DMV4chKNTmaPrex/fFApFPGFY
-         aUsZCgsZBjlxrs6ob5iJX5Noga9W/z2l4AJfUsiokfmWZEl0XfR8IKthQQU8afNzrJQt
-         z0K6VqLO8h3TIQYl1NTbqD2J/PRdSJEoZBJqgvu0XThoT+Ptyd8NNfwfcoYPWpBbSgF2
-         NzzvcGl2G3XA5zDizGPbxtHgFGc1cd7gEI5BVBRTlD2eD5MZMu7cEbc3KKAk5sDV7r7S
-         qWsg==
+        bh=z84tQ9PE482BMfOh0tGEWBbuxsfWf7PM713AXwUAt8U=;
+        b=FI4d7X6SsxtqQKnRO595Rrvz+y7TCy5uSYJ1E4ffWmuz2lWCdWKO43S4bMqsVkOxGp
+         ghHiStu6lESL6/iYdJXXxzZYobNuJsIrC1KdLa8PVUStA5DZKFsPrQT8BYrXyhomp21y
+         VSsGIkMvmt3feVHT8TrQzjGBp/5d4bX/0M29dI3FiNAKQmPUT7PD41ZHwWSaslZ/AxrY
+         B0ueTpkUhXjcKuyJ7AnqLgZ0c21j82tT1uVZEeG7Djp64Jfp9EVMsq7Kryz8I4jbiSH4
+         Uo7QMxUVhOzx9CgUOY4N5Tgb0whGI5vAc03PdQWoKlsLvIFHgQgv+V6nQeauHa4eT7Nr
+         tQ1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=pW/YXqDQlANPBYShRmBV2kdR37gC3CSOvx43OZDkAhE=;
-        b=iPQ3amk0dBRZ2czEmsRMqMj8YYlOD0X3iPY8G3F4WAdCcyYqJOOBKfzqqgvtoAhgcd
-         RmDUcuGXddLTFH725qUfVVyLzOpWPo+/Vplj3nzDO29uh6cBX35D1gilMeDjzF9I454Y
-         L0LBSAWB4m0/Q/i8L9bIHBV8yygaEi3lN+b7ekg4YrdPBvFyDTu90J0Y7jpNvWqstXjO
-         A4kgi4r7JCnjPWKvRqX0pjggQ1ZnTNrKlhke4y0h0So5tJIuhkXbMdrE/TAJ+kfa8y8E
-         UTv4LUMPaC7YJW+tiwafCnirVfCL4KGKWJCMZa7k7lvRP+8LlryfbsSYeGeJUkqD3/Zm
-         LWRA==
-X-Gm-Message-State: AOAM532i37J2j4gJjrSGeE5m/TJ0ydcIf29VABehbaJqY3jl7NypLCC7
-        rFd95sznGLfihuaurd82YQE1Jw==
-X-Google-Smtp-Source: ABdhPJwNr3fF1U5cyt61pQkVfOd9PYDX8/VX7j47apbjMQcNns5dZH+kozuz5AHC6Jhsli2ImOC+SA==
-X-Received: by 2002:a05:651c:4d2:b0:24b:5de1:222 with SMTP id e18-20020a05651c04d200b0024b5de10222mr10509562lji.38.1649840182020;
-        Wed, 13 Apr 2022 01:56:22 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c3-20020a056512104300b0044a3582c9ecsm4034584lfb.219.2022.04.13.01.56.21
+        bh=z84tQ9PE482BMfOh0tGEWBbuxsfWf7PM713AXwUAt8U=;
+        b=V9WIi452I/NTQzGrU8f094cqnnKyYVLBjJQT8gXkJr/fmtfqJ3zyHxIxucDKNGvtDC
+         +JunBCTqSO7TfTUtqgRyrmhGwJyE5ZAzqxdiHPNxHn+1bfoAk77Ebs4SERYzbyvrGRrC
+         TL7V4xnZhXdQuN+reM4pNn4fZ+rQqBvpft9kj+Qc8Bf0mIczUE+3YtrA1IS+nQJShXiX
+         Pj/8ey8hjzGM05b+sAHRWePIf/CTI9eWdUJQQzqvhe3exR0k8jVYccvIkicdc02uyKM0
+         BGWcPsZN1JeRiL2lstLwsAkcWAqwup27IBXOnxW6I2Xdn3FJSVVC0FwA0nqQUzqF6k2A
+         M9Yg==
+X-Gm-Message-State: AOAM531DLFo09IirQB+KKtlDIo7phZcN8jXLXlh2rkAtpfeT1TWWFyfV
+        wqZdJPkXAFkX2NLBo+Q215FZ8w==
+X-Google-Smtp-Source: ABdhPJybTYoB6hFzkTnGzb9M3CRBUVTSHcKTnFZfrgqbnaYoSiDSY2iH30hdSK5/Q287fVX6yfQFbQ==
+X-Received: by 2002:a50:d4d2:0:b0:410:9fa2:60d6 with SMTP id e18-20020a50d4d2000000b004109fa260d6mr43074728edj.35.1649840838413;
+        Wed, 13 Apr 2022 02:07:18 -0700 (PDT)
+Received: from [192.168.0.203] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id a22-20020a50ff16000000b00410d029ea5csm908162edu.96.2022.04.13.02.07.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 01:56:21 -0700 (PDT)
-Message-ID: <e0ab19b3-0ae4-efd4-4035-44c8a5aec443@linaro.org>
-Date:   Wed, 13 Apr 2022 11:56:21 +0300
+        Wed, 13 Apr 2022 02:07:17 -0700 (PDT)
+Message-ID: <02fc797a-190f-3558-5ee1-c9c3320f3d57@linaro.org>
+Date:   Wed, 13 Apr 2022 11:07:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v3 17/18] ARM: dts: qcom: add ipq8064-v2.0 dtsi
-Content-Language: en-GB
-To:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jonathan McDowell <noodles@earth.li>
-References: <20220309190152.7998-1-ansuelsmth@gmail.com>
- <20220309190152.7998-18-ansuelsmth@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220309190152.7998-18-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
+References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
+ <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
+ <YlWztZknl4OBmekp@ripper>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YlWztZknl4OBmekp@ripper>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,104 +88,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2022 22:01, Ansuel Smith wrote:
-> Many devices are based on the v2.0 of the ipq8064 SoC. Main difference
-> is a change in the pci compatible and different way to configre the usb
-> phy.
+On 12/04/2022 19:15, Bjorn Andersson wrote:
+>>  
+>> +	opp_table->clks = kmalloc_array(1, sizeof(*opp_table->clks),
+>> +					GFP_KERNEL);
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> Tested-by: Jonathan McDowell <noodles@earth.li>
-> ---
->   arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi | 70 ++++++++++++++++++++++++
->   1 file changed, 70 insertions(+)
->   create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+> This seems to be 81 chars long, perhaps worth not line breaking?
+
+I doubt that it will increase the readability:
+
+	opp_table->clks = kmalloc_array(1,
+					sizeof(*opp_table->clks),
+					GFP_KERNEL);
+
+80-character is not anymore that strict hard limit and in such case
+using 1-2 characters longer improves the code.
+
 > 
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
-> new file mode 100644
-> index 000000000000..c082c3cd1a19
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
-> @@ -0,0 +1,70 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +#include "qcom-ipq8064.dtsi"
-> +
-> +/ {
-> +	aliases {
-> +		serial0 = &gsbi4_serial;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
+>> +	if (!opp_table->clks)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>>  	/* Find clk for the device */
+>> -	opp_table->clk = clk_get(dev, NULL);
+>> +	opp_table->clks[0] = clk_get(dev, NULL);
+>>  
+>> -	ret = PTR_ERR_OR_ZERO(opp_table->clk);
+>> -	if (!ret)
+>> +	ret = PTR_ERR_OR_ZERO(opp_table->clks[0]);
+>> +	if (!ret) {
+>> +		opp_table->clk_count = 1;
+>>  		return opp_table;
+>> +	}
+> [..]
+>> +struct opp_table *dev_pm_opp_set_clknames(struct device *dev,
+>> +					  const char * const names[],
+>> +					  unsigned int count)
+>>  {
+>>  	struct opp_table *opp_table;
+>> -	int ret;
+>> +	struct clk *clk;
+>> +	int ret, i;
+>>  
+>>  	opp_table = _add_opp_table(dev, false);
+>>  	if (IS_ERR(opp_table))
+>> @@ -2159,70 +2259,92 @@ struct opp_table *dev_pm_opp_set_clkname(struct device *dev, const char *name)
+>>  	}
+>>  
+>>  	/* clk shouldn't be initialized at this point */
+>> -	if (WARN_ON(opp_table->clk)) {
+>> +	if (WARN_ON(opp_table->clks)) {
+>>  		ret = -EBUSY;
+>>  		goto err;
+>>  	}
+>>  
+>> -	/* Find clk for the device */
+>> -	opp_table->clk = clk_get(dev, name);
+>> -	if (IS_ERR(opp_table->clk)) {
+>> -		ret = dev_err_probe(dev, PTR_ERR(opp_table->clk),
+>> -				    "%s: Couldn't find clock\n", __func__);
+>> +	opp_table->clks = kmalloc_array(count, sizeof(*opp_table->clks),
+>> +					GFP_KERNEL);
+>> +	if (!opp_table->clks) {
+>> +		ret = -ENOMEM;
+>>  		goto err;
+>>  	}
+>>  
+>> +	for (i = 0; i < count; i++) {
+>> +		clk = clk_get(dev, names[i]);
+>> +		if (IS_ERR(clk)) {
+>> +			ret =  dev_err_probe(dev, PTR_ERR(clk),
+>> +					     "%s: Couldn't find clock %s\n",
+>> +					     __func__, names[i]);
+>> +			goto free_clks;
+>> +		}
+>> +
+>> +		opp_table->clks[i] = clk;
+>> +	}
+> 
+> Wouldn't it be convenient to make clks a struct clk_bulk_data array
+> and use clk_bulk_get()/clk_bulk_put() instead?
 
-I'd expect that /aliases and /chosen should go to the board dts files.
-I see that ipq8064-v1.0.dtsi also is a mixture of SoC-specific nodes and 
-board details (gpio, leds, aliases, etc.). I think it should be split 
-into ipq8064-v1.0.dtsi and ipq8064-common.dtsi (or 
-ipq8064-v1.0-common.dtsi). This file also should contain just SoC 
-specifics, not the enablement of individual devices.
+I was thinking about this but clk_bulk_get() requires struct
+clk_bulk_data, so the code in "get" is not actually smaller if function
+receives array of clock names.
 
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		rsvd@41200000 {
-> +			reg = <0x41200000 0x300000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&gsbi4 {
-> +	qcom,mode = <GSBI_PROT_I2C_UART>;
-> +	status = "okay";
-> +
-> +	serial@16340000 {
-> +		status = "okay";
-> +	};
-> +	/*
-> +	 * The i2c device on gsbi4 should not be enabled.
-> +	 * On ipq806x designs gsbi4 i2c is meant for exclusive
-> +	 * RPM usage. Turning this on in kernel manifests as
-> +	 * i2c failure for the RPM.
-> +	 */
-> +};
-> +
-> +&CPU_SPC {
-> +	status = "okay";
-> +};
-> +
-> +&pcie0 {
-> +	compatible = "qcom,pcie-ipq8064-v2";
-> +};
-> +
-> +&pcie1 {
-> +	compatible = "qcom,pcie-ipq8064-v2";
-> +};
-> +
-> +&pcie2 {
-> +	compatible = "qcom,pcie-ipq8064-v2";
-> +};
-> +
-> +&sata {
-> +	ports-implemented = <0x1>;
-> +};
-> +
-> +&ss_phy_0 {
-> +	qcom,rx-eq = <2>;
-> +	qcom,tx-deamp_3_5db = <32>;
-> +	qcom,mpll = <5>;
-> +};
-> +
-> +&ss_phy_1 {
-> +	qcom,rx-eq = <2>;
-> +	qcom,tx-deamp_3_5db = <32>;
-> +	qcom,mpll = <5>;
-> +};
+OTOH, usage of clk_bulk_get() would reduce code in: _put_clocks(). Rest
+of the code would be more-or-less the same, including all corner cases
+when clocks are missing.
+
+> 
+>> +
+>> +	opp_table->clk_count = count;
+>> +
+>>  	return opp_table;
+>>  
+>> +free_clks:
+>> +	while (i != 0)
+>> +		clk_put(opp_table->clks[--i]);
+>> +
+>> +	kfree(opp_table->clks);
+>> +	opp_table->clks = NULL;
+>> +	opp_table->clk_count = -1;
+>>  err:
+>>  	dev_pm_opp_put_opp_table(opp_table);
+>>  
+>>  	return ERR_PTR(ret);
+>>  }
+>> -EXPORT_SYMBOL_GPL(dev_pm_opp_set_clkname);
+>> +EXPORT_SYMBOL_GPL(dev_pm_opp_set_clknames);
+> [..]
+>> +static int _read_clocks(struct dev_pm_opp *opp, struct opp_table *opp_table,
+>> +			struct device_node *np)
+>> +{
+>> +	int count, ret;
+>> +	u64 *freq;
+>> +
+>> +	count = of_property_count_u64_elems(np, "opp-hz");
+>> +	if (count < 0) {
+>> +		pr_err("%s: Invalid %s property (%d)\n",
+>> +			__func__, of_node_full_name(np), count);
+> 
+> Wouldn't %pOF be convenient to use here, seems like it becomes short
+> enough that you don't have to wrap this line then.
+
+Yes, I forgot about %pOF.
+
+> 
+>> +		return count;
+>> +	}
+>> +
+>> +	if (count != opp_table->clk_count) {
+>> +		pr_err("%s: number of rates %d does not match number of clocks %d in %s\n",
+>> +		       __func__, count, opp_table->clk_count,
+>> +		       of_node_full_name(np));
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	freq = kmalloc_array(count, sizeof(*freq), GFP_KERNEL);
+>> +	if (!freq)
+>> +		return -ENOMEM;
+>> +
+>> +	ret = of_property_read_u64_array(np, "opp-hz", freq, count);
+>> +	if (ret) {
+>> +		pr_err("%s: error parsing %s: %d\n", __func__,
+>> +		       of_node_full_name(np), ret);
+>> +		ret = -EINVAL;
+>> +		goto free_freq;
+>> +	}
+> 
+> Regards,
+> Bjorn
 
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
