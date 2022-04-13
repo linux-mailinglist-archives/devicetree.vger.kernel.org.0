@@ -2,170 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F9E50013D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 23:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 577C6500149
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 23:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230483AbiDMViO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 17:38:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56978 "EHLO
+        id S232083AbiDMVny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 17:43:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbiDMViN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 17:38:13 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE2256766
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:35:51 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id r64so1883733wmr.4
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:35:51 -0700 (PDT)
+        with ESMTP id S232047AbiDMVnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 17:43:53 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6043C35DD0
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:41:29 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id 2so3289451pjw.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:41:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KgpH8E8Be3mLImfDuc7rcAzwOJ8eNCA0wVEOLBBjmmo=;
-        b=Pyb/JtRmDglYafeGT9DnYvtGO7mseoHJWlxBWUNQO3xPD/Hfw5SdposQc/zLfC8TZE
-         U0vyMgWVViLZ6BmQUTkt7TZihL80XxzSm9bCf29CGU8jBa/+ew2rBWQFncxLhTCaCiBy
-         RJZW0bwS9uIhiIeYIn7MZ1+g37gTgzQQfg/jQ=
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=SfoDmkk530wshO3slXTZtiI0F2WjtIKkqUFd0Gpj3l0=;
+        b=0Vl0rKzEHtcgIFrinPbJd5uJsmwc724wKh4qfOM8rKzFHmxW8UZoO6IAqF9wBLu34d
+         pPV6iyo01K/E7H8ZiavcBMdqf0CRkaSQbhjSJJRj7Ts19En0qGBww8lWX29+l14gN6vW
+         cksutE4ofHqbv6clurhG64VqK8dHsYYhdWqKAYrm8jRYX2VsBYzs30yXnjNIMTwMlYS+
+         hwSbvSDSHZHpY7kWBKPzl46VqWuCg7TBzx/LxVGaeNYoHbskbjlOThWen3A3l3rAtrwe
+         0m5tm6avY1ERvUDpkLksEEoZtmBtn/nxciulWQcxSbtGmXqeEnXFxVKDMtgcGSyHgqWh
+         YNXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KgpH8E8Be3mLImfDuc7rcAzwOJ8eNCA0wVEOLBBjmmo=;
-        b=axaZTQselrbvKr2eYr9LArtDvmrsr1cyDFlbwSOXzeJCJunp2bXm4RpL/DAEMZin7E
-         FEtKw/qQLEaYS+X7fcWZfUT8kc44Hn6Mb26XWjnhREkYW/t/PDlxjInpW8P6HfuG1/ng
-         nsk0jyOcILihYbMtSvlmW2d0cC5Kj3FoqIE4B+FzmMjYE7/QLbwMIRawkwyzDV5RJIse
-         EfbqdJS1t7w8ENTFVYNXkszgWpBJ3SYzCvrslHtE0x0C//9tw1KAnH3HCxp6d/asWgZg
-         U41Gdu8xGjzidmylu3kbXk4SQ3ItrHqnVSilbEAiMXBjaP/BBnawYaqRulXkVfuivezX
-         XaYA==
-X-Gm-Message-State: AOAM532lW11u5FJp/+Ow/Y28Yx8B3nfkLxNARqb0TpmcWIzQ4zHuo9w/
-        6+M4X61Ebn0nbLoDu9RfY5uLeQ==
-X-Google-Smtp-Source: ABdhPJylm1FwSAG+uiLlo8hTEXpIbhcw0aXer6Zn3oVPIznnRJNzbsJ2zE5Z9PwqlDrOi7TQ2BVALA==
-X-Received: by 2002:a05:600c:34d4:b0:38c:5ec7:1e38 with SMTP id d20-20020a05600c34d400b0038c5ec71e38mr558062wmq.184.1649885749834;
-        Wed, 13 Apr 2022 14:35:49 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-56-163.cust.vodafonedsl.it. [188.217.56.163])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c198600b0038cafe3d47dsm8705wmq.42.2022.04.13.14.35.48
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=SfoDmkk530wshO3slXTZtiI0F2WjtIKkqUFd0Gpj3l0=;
+        b=RwJrTjIy5etvf6B2OOgajEpPywpWLMiKi3owjf/5OVtTRWWZQrtgXOVS9qoSnAUPP9
+         nzEybjLuQlxcHC8slSb8E/4XqY+kJTiGgYy/OhXiSSd5BC9ifFMQRoZEaCskuoIGDRWk
+         TouqkBdJ62GV+SgoYTGRtjROcYnuCOzCHYMEHdaTS0ilY7vs3E6UqsFH5G5Wrcg1+QC6
+         zGvDg8Tymxffnhiy6ge6I3R6Wtg6aoxo0JdxU6Vcvdf2iGAU4b10RvMX8BP/g36Ys6BV
+         sqNIxyqkg00Rui+VQfmvmbHUeYhZ6fvYaj/NJ/sKVIBKwKdAcBbES7c+k6LzYasCW26N
+         LKKg==
+X-Gm-Message-State: AOAM530JAUkZGzcBTkSdEXCmYm+A/pH3+2e+FoLTJ9m4/3IBWcOvWtGd
+        yBrOhIErQZv3xYTbxef0DWffDQ==
+X-Google-Smtp-Source: ABdhPJyGFmnzNC3pTBW2D7XaCwphac5mMo0z2X+wQ7DzCjDKA2ZH9jGplIWSOU9tVq6aTFlgaVJTCw==
+X-Received: by 2002:a17:902:cec4:b0:158:5584:7c46 with SMTP id d4-20020a170902cec400b0015855847c46mr18784795plg.80.1649886088253;
+        Wed, 13 Apr 2022 14:41:28 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id j13-20020a17090a840d00b001ca89db9e6esm24311pjn.19.2022.04.13.14.41.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 14:35:49 -0700 (PDT)
-Date:   Wed, 13 Apr 2022 23:35:46 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-amarula@amarulasolutions.com,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        linux-arm-kernel@lists.infradead.org, Li Jun <jun.li@nxp.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mm-evk: add pwm1/backlight support
-Message-ID: <20220413213546.GA11567@tom-ThinkPad-T14s-Gen-2i>
-References: <20220413160900.36271-1-tommaso.merciai@amarulasolutions.com>
- <11f8bf43-d6f7-12fe-f5da-1f7a397c4317@pengutronix.de>
+        Wed, 13 Apr 2022 14:41:27 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
+In-Reply-To: <98957e61b040b6c5b6a6b39e6eb661e07e510277.camel@mediatek.com>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+ <20220408045908.21671-14-rex-bc.chen@mediatek.com>
+ <7hfsmn5m9f.fsf@baylibre.com>
+ <bc6dd020a1cc3f00f5be2bf2929046b9116bbeef.camel@mediatek.com>
+ <7hwnfv4hfr.fsf@baylibre.com>
+ <f00e3df2e270e5edc160f8ff1bd8c52a49bf71d5.camel@mediatek.com>
+ <7h5yne3zlx.fsf@baylibre.com>
+ <98957e61b040b6c5b6a6b39e6eb661e07e510277.camel@mediatek.com>
+Date:   Wed, 13 Apr 2022 14:41:27 -0700
+Message-ID: <7hlew83blk.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <11f8bf43-d6f7-12fe-f5da-1f7a397c4317@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 06:31:34PM +0200, Ahmad Fatoum wrote:
-> Hello Tomasso,
-> 
-> On 13.04.22 18:08, Tommaso Merciai wrote:
-> > Add pwm1/backlight support nodes for imx8mm_evk board.
-> > Align with u-boot dts
-> > 
-> > References:
-> >  - https://patchwork.ozlabs.org/project/uboot/patch/20220326111911.13720-9-tommaso.merciai@amarulasolutions.com/
-> > 
-> > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> > ---
-> > Changes since v1:
-> >  - Fix commit body
-> >  - Enable pwm, backlight
-> > 
-> > Changes since v2:
-> >  - Remove status okay from pwm1,backlight (enable as default)
-> > 
-> >  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> > index 6d67df7692f1..c50d2cc3ca71 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> > @@ -59,6 +59,14 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
-> >  		enable-active-high;
-> >  	};
-> >  
-> > +	backlight: backlight {
-> > +		compatible = "pwm-backlight";
-> > +		pwms = <&pwm1 0 5000000>;
-> > +		brightness-levels = <0 255>;
-> > +		num-interpolated-steps = <255>;
-> > +		default-brightness-level = <250>;
-> > +	};
-> > +
-> >  	ir-receiver {
-> >  		compatible = "gpio-ir-receiver";
-> >  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-> > @@ -395,6 +403,11 @@ &wdog1 {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&pwm1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_backlight>;
-> 
-> imx8mm.dtsi has &pwm1 { status = "disabled" };
-> Where is it enabled?
+Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
 
-Hi Ahmad,
-Thanks for review, update in v4.
+[...]
 
-Tommaso
-> 
-> > +};
-> > +
-> >  &iomuxc {
-> >  	pinctrl_fec1: fec1grp {
-> >  		fsl,pins = <
-> > @@ -549,4 +562,10 @@ pinctrl_wdog: wdoggrp {
-> >  			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
-> >  		>;
-> >  	};
-> > +
-> > +	pinctrl_backlight: backlightgrp {
-> > +		fsl,pins = <
-> > +			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT	0x06
-> > +		>;
-> > +	};
-> >  };
-> 
-> 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> From the Chanwoo's devfreq passive govonor series, it's impossible to
+> let cci devreq probed done before cpufreq because the passive govonor
+> will search for cpufreq node and use it.
+>
+> Ref: function: cpufreq_passive_register_notifier()
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing&id=b670978ddc43eb0c60735c3af6e4a370603ab673
 
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
+Well this is a problem, because CCI depends on CPUfreq, but CPUfreq
+depends on CCI, so one of them has to load and then wait for the other.
 
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+> After I discuss with Angelo and Jia-wei, we think we are keeping the
+> function in target_index and if the cci is not ready we will use the
+> voltage which is set by bootloader to prevent high freqeuncy low
+> voltage crash. And then we can keep seting the target frequency.
+>
+ > We assume the setting of bootloader is correct and we can do this.
+
+I'm still not crazy about this because you're lying to the CPUfreq
+framework.  It's requesting one OPP, but you're not setting that, you're
+just keeping the bootloader frequency.
+
+In my earlier reply, I gave two other options for handling this.
+
+1) set a (temporary) constraint on the voltage regulator so that it
+cannot change.
+
+or more clean, IMO:
+
+2) set a CPUfreq policy that restricts available OPPs to ones that will
+not break CCI.
+
+Either of these solutions allow you to load the CPUfreq driver early,
+and then wait for the CCI driver to be ready before removing the
+restrictions.
+
+> For the SoCs that including ci hardware (8183 and 8186), we think it's
+> not ok if we don't probe cci correctly.
+> If we failed to get cci node, I think we sould return -ENODEV and the
+> probe of cpufreq failed.
+>
+> What do you think the solution?
+
+I think it would be better if CPUfreq probes sucessfully, but restricts
+the OPPs available until CCI is ready.  If CCI fails to probe/load, you
+still have a working CPUfreq driver, it just has a restricted set of
+OPPs.
+
+Kevin
