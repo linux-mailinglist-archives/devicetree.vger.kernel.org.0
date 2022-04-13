@@ -2,123 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BC2B4FFBF4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 19:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D024FFC01
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 19:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233651AbiDMRDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 13:03:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37994 "EHLO
+        id S237166AbiDMREh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 13:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237147AbiDMRCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 13:02:32 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F31F91BEA7;
-        Wed, 13 Apr 2022 10:00:09 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 21so3207479edv.1;
-        Wed, 13 Apr 2022 10:00:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=DlQ+pyRwe7qHszIiHVeIqVG2GBzeusjMOdi25t/1dbg=;
-        b=BDvmBiS2gYedfQA2KXmxPJAL1lMWmhK6f8oQN6Kz/fvX4fDJSe5yGvVMvDjhKRjV31
-         QHnRJ96yYht1eMZIw87RIcDWQnRtH1paF67z7mYeyQyINTEtxPMvDmoqbZSpH3C1tnLx
-         qmw1tKv7O4cnKoD2+oSgIPgu+GDmoGoXB8SAQosGbT0nt9vTmctp/gPpahD4PUt/CarL
-         L0EDaKyBTvIpTM9Ja2exmQsDC2o7n65ZcrKCWQ56Z3uBmhL2gSf7SmdZhGFGhHLV1JFw
-         POgmf6NIs+6BQvgAQDCN8nVGJBn2so7VEJ7nShnBq1YYUzLKB69+z3f59N8MyVZGhx1K
-         1sOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DlQ+pyRwe7qHszIiHVeIqVG2GBzeusjMOdi25t/1dbg=;
-        b=f5gQdh/AF/8GNVeqMyjDzzKbCuAe1TMzoQf5n+9svW8wdABpg71w9wrq2x+KOx85h9
-         AdzHCfgYoU3owiezNw0eG8QvoSllerqHsOm8NYNyuUYelzi2H0co/8CQEiGV5MzLrg7m
-         vxajaICQKkBx9qe9szeHsF7rDMuIHDeNQMLGEJ6KPE5OrPAsoAf0ybLnoM+ZCKmOtmGW
-         dj+8OqbRgwycGWKKn8zZzjgMnIhvZi5CC0cGDvX0NwuQ/Vb+ai+u60SS46USKkCwdPbX
-         5E3fHsAcsHpibZDNFz1wYM53riGoT5I1bk2joBszdBvEbtdVoF6YR2TpY2Z2qRYyjJi0
-         7TtA==
-X-Gm-Message-State: AOAM533ZkowOc2BfHno64c75AdYxkgk65ElO8kN2QrK6WxEB+gm9lsOG
-        laaRlAVDQRKtQlxLM1DHAos=
-X-Google-Smtp-Source: ABdhPJwy+Dys3iMoOhXVWrnmlUQTYocjmBYLYWmiTaWOy2UFycV6wC/zhJ6z3ewvvfPNHNXno43nAQ==
-X-Received: by 2002:aa7:cb93:0:b0:415:d57a:4603 with SMTP id r19-20020aa7cb93000000b00415d57a4603mr44262449edt.62.1649869208260;
-        Wed, 13 Apr 2022 10:00:08 -0700 (PDT)
-Received: from Ansuel-xps. (host-80-182-176-248.retail.telecomitalia.it. [80.182.176.248])
-        by smtp.gmail.com with ESMTPSA id f1-20020a056402194100b00416b174987asm1425800edz.35.2022.04.13.10.00.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 10:00:07 -0700 (PDT)
-Message-ID: <62570197.1c69fb81.c3de2.7b70@mx.google.com>
-X-Google-Original-Message-ID: <YlcBlmQHjwylg8XX@Ansuel-xps.>
-Date:   Wed, 13 Apr 2022 19:00:06 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 03/18] clk: qcom: gcc-ipq806x: add PXO_SRC in clk table
-References: <20220321231548.14276-1-ansuelsmth@gmail.com>
- <20220321231548.14276-4-ansuelsmth@gmail.com>
- <20220325011037.03173C340EC@smtp.kernel.org>
- <Yj0XTYgoMScoiUHP@Ansuel-xps.localdomain>
- <20220325012231.899FBC340EC@smtp.kernel.org>
+        with ESMTP id S237173AbiDMREg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 13:04:36 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 182856A067;
+        Wed, 13 Apr 2022 10:02:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1649869335; x=1681405335;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=WLObBFJjHepucWp1gxGGS056KEnKSZ7vFw9X3LFEX+Y=;
+  b=eJyv7ebuwi3w5QdFIDOvCXZc38/mwLBJ/HJXGyAdzyTb5nhqiihZxyFV
+   xpApvRTAMQsCtmQr1LdZ+TGZLeIVCd4d4Mgn4jcRfJKGfhX7HORtOQM/E
+   aShHL3hmwBFu9yUKc2Rst3i6GlDXWiBxrKDPSmo9aKDv7Q/Q2ja0esJsE
+   St8zvKkMoosPA2rXjLEv0e6Yje3kEiT3fgO6ONEUFdR06J6tBtZG+tk8L
+   oC/axaIbgdDKeD4OwsDQPrM8kVDj+i0bfZmPazDmfc0ILZrVLI9/+uZA2
+   rEt0MmdMK7u9ZuMlanavES4riTPl/v3NUVrY6gGH6CXLYlpKd98D0jvTe
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,257,1643698800"; 
+   d="scan'208";a="155466311"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2022 10:02:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 13 Apr 2022 10:02:13 -0700
+Received: from [10.12.72.146] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Wed, 13 Apr 2022 10:02:12 -0700
+Message-ID: <cbef8724-86b6-6eef-eb03-ec27f492f90c@microchip.com>
+Date:   Wed, 13 Apr 2022 19:02:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220325012231.899FBC340EC@smtp.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] ARM: dts: at91: fix pinctrl phandles
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Ajay Kathat <ajay.kathat@microchip.com>
+References: <20220331141323.194355-1-claudiu.beznea@microchip.com>
+ <20220331141323.194355-2-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20220331141323.194355-2-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 06:22:29PM -0700, Stephen Boyd wrote:
-> Quoting Ansuel Smith (2022-03-24 18:13:49)
-> > On Thu, Mar 24, 2022 at 06:10:35PM -0700, Stephen Boyd wrote:
-> > > Quoting Ansuel Smith (2022-03-21 16:15:33)
-> > > > PXO_SRC is currently defined in the gcc include and referenced in the
-> > > > ipq8064 DTSI. Correctly provide a clk after gcc probe to fix kernel
-> > > > panic if a driver starts to actually use it.
-> > > > 
-> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > > ---
-> > > 
-> > > What is this patch about? clk providers shouldn't be calling clk_get().
-> > >
-> > 
-> > If pxo is passed as a clock in dts and defined as a fixed clock, what
-> > should be used? 
+On 31/03/2022 at 16:13, Claudiu Beznea wrote:
+> Commit bf781869e5cf ("ARM: dts: at91: add pinctrl-{names, 0} for all
+> gpios") introduces pinctrl phandles for pins used by individual
+> controllers to avoid failures due to commit 2ab73c6d8323 ("gpio:
+> Support GPIO controllers without pin-ranges"). For SPI controllers
+> available on SAMA5D4 and SAMA5D3 some of the pins are defined in
+> SoC specific dtsi on behalf of pinctrl-0. Adding extra pinctrl phandles
+> on board specific dts also on behalf of pinctrl-0 overwrite the pinctrl-0
+> phandle specified in SoC specific dtsi. Thus add the board specific
+> pinctrl to pinctrl-1.
 > 
-> clk_parent_data
+> Fixes: bf781869e5cf ("ARM: dts: at91: add pinctrl-{names, 0} for all gpios")
+> Depends-on: e8042102d11e ("ARM: dts: at91: sama5d4_xplained: fix pinctrl phandle name")
+> Reported-by: Ajay Kathat <ajay.kathat@microchip.com>
+> Co-developed-by: Ajay Kathat <ajay.kathat@microchip.com>
+> Signed-off-by: Ajay Kathat <ajay.kathat@microchip.com>
+> Tested-by: Ajay Kathat <ajay.kathat@microchip.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-Sorry but I'm not following you. No idea if you missed the cover letter
-where i describe the problem with PXO_SRC.
+For the 2 patches:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-The problem here is that
-- In DTS we have node that reference <&gcc PXO_SRC>
-But
-- gcc driver NEVER defined PXO_SRC
-As
-- PXO_SRC is actually pxo_board that should be defined as a fixed-clock
-  in dts or is defined using qcom_cc_register_board_clk.
 
-So in theory we should just put in PXO_SRC the clk hw of the
-fixed-clock. That is why I'm using clk_get(). I can use __clk_lookup()
-as an alternative but I really can't find a way to get the clock defined
-from DTS or qcom_cc_register_board_clk.
+> ---
+> 
+> Hi, Nicolas,
+> 
+> If all good with this patches please update the SHA1 on "Depends-on"
+> tag.
 
-(I have the same exact problem with the cpu qsb clock where is defined
-using fixed-clock API but can also defined directly in DTS and I have to
-use clk_get())
+Yes, sure. I did it on the "fixes" branch queued for 5.18.
 
-I'm totally missing something so I would love some hint on how to solve
-this.
+Thanks, best regards,
+   Nicolas
+
+>   arch/arm/boot/dts/at91-sama5d3_xplained.dts | 8 ++++----
+>   arch/arm/boot/dts/at91-sama5d4_xplained.dts | 4 ++--
+>   2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+> index d72c042f2850..a49c2966b41e 100644
+> --- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+> @@ -57,8 +57,8 @@ slot@0 {
+>   			};
+>   
+>   			spi0: spi@f0004000 {
+> -				pinctrl-names = "default";
+> -				pinctrl-0 = <&pinctrl_spi0_cs>;
+> +				pinctrl-names = "default", "cs";
+> +				pinctrl-1 = <&pinctrl_spi0_cs>;
+>   				cs-gpios = <&pioD 13 0>, <0>, <0>, <&pioD 16 0>;
+>   				status = "okay";
+>   			};
+> @@ -171,8 +171,8 @@ slot@0 {
+>   			};
+>   
+>   			spi1: spi@f8008000 {
+> -				pinctrl-names = "default";
+> -				pinctrl-0 = <&pinctrl_spi1_cs>;
+> +				pinctrl-names = "default", "cs";
+> +				pinctrl-1 = <&pinctrl_spi1_cs>;
+>   				cs-gpios = <&pioC 25 0>;
+>   				status = "okay";
+>   			};
+> diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+> index accb92cfac44..e519d2747936 100644
+> --- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+> @@ -81,8 +81,8 @@ usart4: serial@fc010000 {
+>   			};
+>   
+>   			spi1: spi@fc018000 {
+> -				pinctrl-names = "default";
+> -				pinctrl-0 = <&pinctrl_spi1_cs>;
+> +				pinctrl-names = "default", "cs";
+> +				pinctrl-1 = <&pinctrl_spi1_cs>;
+>   				cs-gpios = <&pioB 21 0>;
+>   				status = "okay";
+>   			};
+
 
 -- 
-	Ansuel
+Nicolas Ferre
