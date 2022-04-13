@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7C44FFC40
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 19:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB0664FFC9C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 19:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235740AbiDMRVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 13:21:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57414 "EHLO
+        id S231996AbiDMR2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 13:28:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237183AbiDMRVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 13:21:42 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE7FD7D
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 10:19:21 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id o5-20020a17090ad20500b001ca8a1dc47aso6894131pju.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 10:19:21 -0700 (PDT)
+        with ESMTP id S237542AbiDMR1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 13:27:50 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF63D3633E
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 10:25:28 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id 12so2498773pll.12
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 10:25:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=lME6SHAgnKlmWBOKOizWm8XVxJpddGvUH85Ld8tYptw=;
-        b=UTabBOIrMAwX7G926h1g/XxwxCNw+redFrANl5vrbvEVFXqf3dVOsfKbJlN/8qVd6b
-         9gZ/mx8JQZDJ2nW52LktmlO9klbmAm34eSmWShJ+HKBGgunwO3ZUW6fiHXwTKvXPPJwK
-         EjYmODPltiC3D/nlbGntEawXo1fKfBXxUO7ug=
+        bh=CfH4hnYZTKDMMLfceQBqDJ1Kg4COwkEciCmvmaOTXik=;
+        b=Z0GuslnytN5UVYPRl1aE84EU2zbabfasrf2onFpdaxU5HKo+AmsJJFcyYnF+Ofjdz3
+         LKTKbR2Hzao8aj+o52QTtP/H4WySHcDKAZtbUX+/r5U1L1pfVGx+2HY9XbLrb67mo/29
+         bWtVpUIgafnEz9CbcTZciiTiszvdChdYpr3gc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=lME6SHAgnKlmWBOKOizWm8XVxJpddGvUH85Ld8tYptw=;
-        b=tKPY95svWhBJ1if1WwogGJDkzjGXIwg57iwsp25LLW/FIn6fTSkCR1+E21RfwbctG3
-         +OydX5eq+pYHzYkUSjmaH5XnsNQe9MorZyUJmHU3i2NraSmWQDOFKnHN0dqkWeOdHdDQ
-         OUOFa2zdwSqR6DgVexPnccJBxkDVkux9bMohCYpelOQcNV6NNQ1+oQ8nvFEh1LYO6zHO
-         LgotJm5S0nYyefEkhHdAEIYO7+W/YonoLh2R95K/0PPohOBLkz3yDJuvJjeS3C4sxXYA
-         4hqD6Vob9DDatoRoyUeHccfJ6gz2ZoAkFPkh27Ap7u/yjrRZqw6qtURgNVFn4Ro5rpYu
-         4PPA==
-X-Gm-Message-State: AOAM530eqhr8TqNfCqcXW4V25uV03c5PJcd7G7FXCkysSpDmTuNnfg0n
-        8wGm7Bgc01mO+z2+19fXLFM4EQ==
-X-Google-Smtp-Source: ABdhPJz7ppfzbQ8wE0OtGonV82yO6sDyoE48BgV4umaaIEAVFFGDk/8CJYoUUK24mmhN04OGb0xKpg==
-X-Received: by 2002:a17:902:e74d:b0:156:9d3c:4271 with SMTP id p13-20020a170902e74d00b001569d3c4271mr43099858plf.79.1649870360761;
-        Wed, 13 Apr 2022 10:19:20 -0700 (PDT)
+        bh=CfH4hnYZTKDMMLfceQBqDJ1Kg4COwkEciCmvmaOTXik=;
+        b=p9WB9nJVuHa1kDE9ibW6RqS8IzTtexux3sgGXMjM1SQ7wQL+8fpt35blFe5mzijJ1E
+         OpfjRtIsVPQJ1lr7c43P4pUNELekuWK0JygXvvw5Wvl+qjPHSt2WidkEyOg9gvtmVxY8
+         mOyjn0BGYxV93bCMZ0ydnAEvkESAQEdC+qujpEhU101r9uD+iI8EY+pHoQDRpdC4mRCD
+         Y0fKv57tfwP7nDr0bKkvHYfUq/Uh8YUD9xXz+ohhFFElmxm0bXrNPcVXhjnCGg+i09Hb
+         XkZ4sg2T8lecK/xuaUJmrYHE4bAq+BerAe+ddjZZftdwmjYXmrDTKFaQM9uedyjcsU2/
+         aVwQ==
+X-Gm-Message-State: AOAM532ip953UcFiAJkaeshYchWLy88esWt3gFYWVZZbn9LzbgAiTYsZ
+        W8J8bfIAEj2ydqdAz3WlHvRNsg==
+X-Google-Smtp-Source: ABdhPJzg20qb9a+Ybr7TF4ypEki2FuEqdvc/xuJbZLJAsHcRCb8z666rTPDEit0AaJ/bngQEhb9v4A==
+X-Received: by 2002:a17:902:c3c4:b0:158:85b8:1459 with SMTP id j4-20020a170902c3c400b0015885b81459mr10287875plj.10.1649870728392;
+        Wed, 13 Apr 2022 10:25:28 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:6a4f:9277:743f:c648])
-        by smtp.gmail.com with UTF8SMTPSA id b25-20020a637159000000b00381fda49d15sm6821133pgn.39.2022.04.13.10.19.19
+        by smtp.gmail.com with UTF8SMTPSA id f19-20020a056a00229300b004fb157f136asm44017370pfe.153.2022.04.13.10.25.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 10:19:20 -0700 (PDT)
-Date:   Wed, 13 Apr 2022 10:19:18 -0700
+        Wed, 13 Apr 2022 10:25:28 -0700 (PDT)
+Date:   Wed, 13 Apr 2022 10:25:26 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
@@ -53,15 +53,15 @@ Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         srinivas.kandagatla@linaro.org, dianders@chromium.org,
         swboyd@chromium.org, judyhsiao@chromium.org,
         Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v9 1/2] arm64: dts: qcom: sc7280: Add pinmux for I2S
- speaker and Headset
-Message-ID: <YlcGFlFXhh+bHGko@google.com>
+Subject: Re: [PATCH v9 2/2] arm64: dts: qcom: sc7280: add lpass lpi pin
+ controller node
+Message-ID: <YlcHhhFLcryXqxEC@google.com>
 References: <1649861047-7811-1-git-send-email-quic_srivasam@quicinc.com>
- <1649861047-7811-2-git-send-email-quic_srivasam@quicinc.com>
+ <1649861047-7811-3-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1649861047-7811-2-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1649861047-7811-3-git-send-email-quic_srivasam@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -72,11 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 08:14:06PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add pinmux nodes for primary and secondary I2S for SC7280 based platforms.
+On Wed, Apr 13, 2022 at 08:14:07PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add LPASS LPI pinctrl node required for Audio functionality on sc7280
+> based platforms.
 > 
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  84 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 107 +++++++++++++++++++++++++++++++
+>  2 files changed, 191 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 6e6cfeda..50fea0e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1987,6 +1987,113 @@
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		lpass_tlmm: pinctrl@33c0000 {
+> +			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
+> +			reg = <0 0x033c0000 0x0 0x20000>,
+> +				<0 0x03550000 0x0 0x10000>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&lpass_tlmm 0 0 15>;
+> +
+> +			#clock-cells = <1>;
+> +
+> +			lpass_dmic01: lpass-dmic01 {
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+For the node names the 'lpass-' prefix is redundant as you remarked
+earlier, since they are inside the 'lpass_tlmm' node. It's only useful
+for the labels, which can be used in other .dts[i] files where the
+context might not be evident.
