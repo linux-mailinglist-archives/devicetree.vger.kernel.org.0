@@ -2,108 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68FE84FF377
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 11:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 152894FF393
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 11:34:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234447AbiDMJ1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 05:27:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
+        id S234474AbiDMJgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 05:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234463AbiDMJ1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 05:27:20 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83ED8506F7;
-        Wed, 13 Apr 2022 02:24:58 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id E3E881F856;
-        Wed, 13 Apr 2022 09:24:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1649841896; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=w6TfRZoOGRUo3LlMuyq76o2EmErslwUNJo3163b4OjQ=;
-        b=Lu7Zu52PuvSBaYdZMdpa3ST6Gh+q90gr2XK79KTYuZ+WcfUfbtjbN5rTAzQgxv05QPZ4rt
-        rsPvndkJQuNyr0YlH/XfWts8OQwVzNYFGjwrcWO+ZHR9GpioG5cAQxdHL821WxdwqnCk9U
-        2o9YARV1KWtgA2M0f9lpqiIehOTor3g=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1649841896;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=w6TfRZoOGRUo3LlMuyq76o2EmErslwUNJo3163b4OjQ=;
-        b=f0BN0R8CTRpU6UJN7CfIIeySW+iPxnA29A64D/EhblK+jifh6MIfYqUrg/TPU7daB+5sCX
-        5dL0F3BS0c5eGYBw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 847AE13A91;
-        Wed, 13 Apr 2022 09:24:56 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id KCZ+H+iWVmI5FwAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Wed, 13 Apr 2022 09:24:56 +0000
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-To:     robh+dt@kernel.org, frowand.list@gmail.com, daniel@ffwll.ch,
-        deller@gmx.de, sam@ravnborg.org, linux@roeck-us.net,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.org,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 2/2] fbdev: Remove hot-unplug workaround for framebuffers without device
-Date:   Wed, 13 Apr 2022 11:24:54 +0200
-Message-Id: <20220413092454.1073-3-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220413092454.1073-1-tzimmermann@suse.de>
-References: <20220413092454.1073-1-tzimmermann@suse.de>
+        with ESMTP id S231169AbiDMJgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 05:36:17 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B575F54191
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 02:33:56 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id s18so2813504ejr.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 02:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=kxSrHKVFH1QXMjvyuKXvr1FpxSh/pLZOJ8vsJhHQk/k=;
+        b=unVJxO1zGnsrPr7gTwaCqLZWg19RzXyWMIaYcvM3e7Y54n6X2Pi5/inrJZLaFLhUST
+         Ezh4hznSzTDpeft0jvk0vSr9uh9DVSL+PpSRpMOSbG9NXOlL6Owy7tpRf658vzcgXlRY
+         HmWC/U7LmBUfzuc9u3cacjIIuN2Xvdlhjrs46Kq99KZQK5rAWZG8wJp5kq+ZRjsgIPkd
+         QsJZs9rBf//kN9dPybPRM4y0Z89C5yA5JUf+M+tqvhEVZaM236KLDv1ZtuyQy4NGu5KC
+         t6+Ot0D6OxzF/F7K8zWBKefFMfMzALc7rHMksMDs4TwGeKpOqvmuAwGNkYnfDdJd8Ngh
+         U4jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=kxSrHKVFH1QXMjvyuKXvr1FpxSh/pLZOJ8vsJhHQk/k=;
+        b=M/ap/G6sDri5qkHt9CJrtzuGRRfJY81D9rRsBfXdXP6D9mqTEnDWd6do+pq4/Z8US9
+         WiZBjwBPLESZ5lZftBOSBVjwy6AmflnTjr6qBCzJC3dk8HGtCBjdzKKcQwIU9AeQl1G8
+         5McoJ4/I2kd9CPgojpPG+4spFYb3lqp8QAwC6aifoxkM4zfYqT0SZWAxegiOXqZSKur+
+         aMepq23jqvBmteUnGTxrJ3McNr3zdsRe2EqT/b0lser+7Fg96X9iVrSq4venQeQrrzhb
+         cBxxkzr5O+yj7Cfzx2Yfh0N7EJ+SfzT+aW3HaiGZ8UVSkR1O4o+RuqjrJ9SMQLhQkaSe
+         381g==
+X-Gm-Message-State: AOAM5339fhSPyCfGQDcFDanQiQlz4kyzQLMWIsgmTvssJ0O8Df7qGEQK
+        +VCeeGLF8MBASrUJuCcNfrj4Gw==
+X-Google-Smtp-Source: ABdhPJyyet/tlElQG2QHa5ATj43qNsbiw4rEFAnMNGkgydczXJ96HxPZZeyw0UJ6lxWNVnpQ/ON4sw==
+X-Received: by 2002:a17:907:1b09:b0:6d8:faa8:4a06 with SMTP id mp9-20020a1709071b0900b006d8faa84a06mr38060541ejc.701.1649842435354;
+        Wed, 13 Apr 2022 02:33:55 -0700 (PDT)
+Received: from [192.168.0.203] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id k14-20020a170906128e00b006e4b67514a1sm14111965ejb.179.2022.04.13.02.33.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 02:33:54 -0700 (PDT)
+Message-ID: <824c3322-ff79-d123-4769-4fb6527ad467@linaro.org>
+Date:   Wed, 13 Apr 2022 11:33:53 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] ARM: dts: at91: align SPI NOR node name with dtschema
+Content-Language: en-US
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Tudor Ambarus - M18064 <Tudor.Ambarus@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>,
+        Lars Povlsen - M31675 <Lars.Povlsen@microchip.com>,
+        Steen Hegelund - M31857 <Steen.Hegelund@microchip.com>,
+        UNGLinuxDriver <UNGLinuxDriver@microchip.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220407143223.295344-1-krzysztof.kozlowski@linaro.org>
+ <8eb6621b-78ca-e5f9-def9-47809dab9bb4@microchip.com>
+ <1d67baa4-48d1-67dd-7d9e-60a8ecbea3f4@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1d67baa4-48d1-67dd-7d9e-60a8ecbea3f4@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A workaround makes fbdev hot-unplugging work for framebuffers without
-device. The only user for this feature was offb. As each OF framebuffer
-now has an associated platform device, the workaround is no longer
-needed. Remove it. Effectively reverts commit 0f525289ff0d ("fbdev: Fix
-unregistering of framebuffers without device").
+On 13/04/2022 11:21, Nicolas Ferre wrote:
+> On 12/04/2022 at 12:32, Tudor Ambarus - M18064 wrote:
+>> On 4/7/22 17:32, Krzysztof Kozlowski wrote:
+>>> The node names should be generic and SPI NOR dtschema expects "flash".
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Reviewed-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> 
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> 
+> I think that without this patch, errors are generated while checking DT, 
+> so I would put this patch in my "fixes" branch for 5.18: tell me if you 
+> disagree.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/video/fbdev/core/fbmem.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+These are schema warnings, so except our checking tools, no real
+user-visible issue. Fixes are ok, though.
 
-diff --git a/drivers/video/fbdev/core/fbmem.c b/drivers/video/fbdev/core/fbmem.c
-index bc6ed750e915..bdd00d381bbc 100644
---- a/drivers/video/fbdev/core/fbmem.c
-+++ b/drivers/video/fbdev/core/fbmem.c
-@@ -1579,14 +1579,7 @@ static void do_remove_conflicting_framebuffers(struct apertures_struct *a,
- 			 * If it's not a platform device, at least print a warning. A
- 			 * fix would add code to remove the device from the system.
- 			 */
--			if (!device) {
--				/* TODO: Represent each OF framebuffer as its own
--				 * device in the device hierarchy. For now, offb
--				 * doesn't have such a device, so unregister the
--				 * framebuffer as before without warning.
--				 */
--				do_unregister_framebuffer(registered_fb[i]);
--			} else if (dev_is_platform(device)) {
-+			if (dev_is_platform(device)) {
- 				registered_fb[i]->forced_out = true;
- 				platform_device_unregister(to_platform_device(device));
- 			} else {
--- 
-2.35.1
 
+Best regards,
+Krzysztof
