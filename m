@@ -2,147 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFC74FF796
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93F1C4FF7B1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234627AbiDMN3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 09:29:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60188 "EHLO
+        id S233821AbiDMNhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 09:37:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232618AbiDMN3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:29:03 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8443C5D198;
-        Wed, 13 Apr 2022 06:26:41 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id k23so3965001ejd.3;
-        Wed, 13 Apr 2022 06:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CSb8eXfi4X28YB6JnZMBoT5Zw178Jb3u+JBDfRQAguM=;
-        b=JUiSoH3Sh7ufvAtp/1YhMcSgW+hKbCmq8VOb/r+qBA5GY4IE3vpkQpSisdMgsA6pis
-         +R+mCjhrwG1l7GaUdhQusG3EhPM9Jy0obDLxSs6USKzUq+z/b1Z6uuz9q+tE39igYHuy
-         UJSVY1kVhGXESKjve3OpGaeG0lJHVVAwflPCTOzY4/cuQbWBuFrllJ5ug5jgYmF8TBbk
-         rSDwkMGpIF008ynIi+tm9eIJ02+cZKMiI8ax/iMbMfu2VFpStk/rKA7LYax5i4g+zKIF
-         syuDuqnpozsWDuV9mM6nDGXL5Bx7pEfzSrV+/FBx7NvLpnAa+oXH8hqCHv+5B+TSxKhT
-         IkAg==
+        with ESMTP id S233601AbiDMNhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:37:07 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A15D40A31;
+        Wed, 13 Apr 2022 06:34:46 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id n19-20020a9d7113000000b005cd9cff76c3so1190312otj.1;
+        Wed, 13 Apr 2022 06:34:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CSb8eXfi4X28YB6JnZMBoT5Zw178Jb3u+JBDfRQAguM=;
-        b=yX4vepMriUNSj0laq9OeMyCnrKz82dKcEEMlMCcdJNQn/vTxHcU6Q1NNzMwZBIpxWh
-         g+a71/MeAi0k4OEEDhrwUC8Q0eq/j2lvVGN4dqk93JPVlL3uCTcax09RYIyQg9pWxJWz
-         KOr9Toox1Nx0lIkJpIBtoU6QI5keEtUZwCDs0YpL6wACAAqOEwnCSLoMY28v+hsOOe4C
-         T3kzvs0PdXqgnB1Gbl3/PTvihdYs2x6K+UExjiQGz5XdNJPAqxfZoiIhBF5maj3aHnf3
-         XQyuIH0zJgNTUzWypSnWeCLGXqxdeviO59fIhZNDn127SFEDIaLr2hnGF0cdCoFPH37S
-         DdQw==
-X-Gm-Message-State: AOAM530FI92FeeGLO6GcTTqbmhig7xbkY948qCXFphVBQ7YAhTWXuFkL
-        7WfMq2cPZAcFS6amMwoaVao=
-X-Google-Smtp-Source: ABdhPJzSGApHRcC/6JIo3Z18BaToM/wyEJaY3ofsmWRsGW0EF896BAKDZCye8IsWf5NtXqaEsGTO9Q==
-X-Received: by 2002:a17:907:868c:b0:6e8:d608:bcc7 with SMTP id qa12-20020a170907868c00b006e8d608bcc7mr777827ejc.148.1649856399891;
-        Wed, 13 Apr 2022 06:26:39 -0700 (PDT)
-Received: from Ansuel-xps. (host-80-182-176-248.retail.telecomitalia.it. [80.182.176.248])
-        by smtp.gmail.com with ESMTPSA id s12-20020a1709062ecc00b006e8558c9a5csm6027235eji.94.2022.04.13.06.26.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=3y1tBH0uZHiWcDFM/FP1qr/+fsEsYbd599zXEVsCG6c=;
+        b=AjaFty2yypILRWw4RiKgUHPUHSeds+4qRjdywvndYd4KuHTlQtuiOgY8ico7tUIvUu
+         WQ5GhGh9VuX9Qtuhz9ytPL8VItSL/V2+j90xP6xhXlVW4ENW9iYqCUM2ytjKrjo+HP+D
+         0/lUBXRBVs/bNByE0GK8pGpnutWbRS98cnSoH+Mk4rBCdrSN4YBu5imrK2O7GlJPA1Jl
+         J7iORViT4Y6E9lDpBQm5bsS37JIPHoLQMg4eBaU1/ZaPyMc2Ji8EjXE8TmVOhYRvvD3Z
+         uobat7z/jx6TWMCeoT2Z1m27kP6sd/d51xCCCkcZsXoV/o4cdFLqvSR5zMo7kM6YOoVr
+         sOlA==
+X-Gm-Message-State: AOAM53070MeYqu33SE+vxVvuzcl4rr7c0ZvgFBBDfRev2UKgfa9Sa2pa
+        /FOyc1t88kaWNGY9tupJwA==
+X-Google-Smtp-Source: ABdhPJw53nT25tjldjHfake5qVTorjpi6v6nDrY+wLnWDO2+imbSaw5Eo7N2GerPH4nRugMInKmh+w==
+X-Received: by 2002:a05:6830:2081:b0:5ce:ae9:2711 with SMTP id y1-20020a056830208100b005ce0ae92711mr14712746otq.215.1649856885224;
+        Wed, 13 Apr 2022 06:34:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y15-20020a056830208f00b005e6bf82e0b6sm6685084otq.46.2022.04.13.06.34.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 06:26:38 -0700 (PDT)
-Message-ID: <6256cf8e.1c69fb81.b313c.dd8b@mx.google.com>
-X-Google-Original-Message-ID: <YlbOXhL/Ni1R6kUu@Ansuel-xps.>
-Date:   Wed, 13 Apr 2022 15:21:34 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan McDowell <noodles@earth.li>
-Subject: Re: [PATCH v3 07/18] ARM: dts: qcom: reduce pci IO size to 64K for
- ipq8064
-References: <20220309190152.7998-1-ansuelsmth@gmail.com>
- <20220309190152.7998-8-ansuelsmth@gmail.com>
- <a7034b5e-24de-ef17-ae93-c626beb35a41@linaro.org>
+        Wed, 13 Apr 2022 06:34:44 -0700 (PDT)
+Received: (nullmailer pid 3093338 invoked by uid 1000);
+        Wed, 13 Apr 2022 13:34:44 -0000
+Date:   Wed, 13 Apr 2022 08:34:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Camel Guo <Camel.Guo@axis.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@axis.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
+Message-ID: <YlbRdCXnPPurC2wC@robh.at.kernel.org>
+References: <20220412135232.1943677-1-camel.guo@axis.com>
+ <20220412135232.1943677-2-camel.guo@axis.com>
+ <YlXwyKkkC1VoPpjU@robh.at.kernel.org>
+ <77167ffd-5674-9f6f-df51-3233e67fe9a7@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <a7034b5e-24de-ef17-ae93-c626beb35a41@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <77167ffd-5674-9f6f-df51-3233e67fe9a7@axis.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 04:19:42PM +0300, Dmitry Baryshkov wrote:
-> On 09/03/2022 22:01, Ansuel Smith wrote:
-> > The current value for pci IO is problematic for ath10k wifi card
-> > commonly connected to ipq8064 SoC.
-> > The current value is probably a typo and is actually uncommon to find
-> > 1MB IO space even on a x86 arch.
-> 
-> I checked other Qualcomm platforms (including downstream apq8084.dtsi). All
-> of them list 1MB region as IO space.
-> 
-> Interesting enough I couldn't get PCI to work on my IFC6410 (apq8064). It
-> has an ethernet adapter AR8151 sitting on the PCIe bus. The driver probes,
-> transmits packets successfully, but receives only garbage. I'm not sure if
-> it is the hardware or a software problem. Same adapter works fine on db820c.
->
-
-I didn't understand if device works correctly without this change. 
-The alternative to this, is to change the io space globally for every arm
-target and it was pointed out that it was a strange change to do. 99%
-the 1mb region present on every qcom platform is a copy past error but
-still a region that big worked before some kernel version just because
-the kernel didn't check them.
-So it's both reduce IO in dtsi or extend IO_SPACE_LIMIT for every arm
-target.
-
-> > Also with recent changes to the pci
-> > driver, pci1 and pci2 now fails to function as any connected device
-> > fails any reg read/write. Reduce this to 64K as it should be more than
-> > enough and 3 * 64K of total IO space doesn't exceed the IO_SPACE_LIMIT
-> > hardcoded for the ARM arch.
+On Wed, Apr 13, 2022 at 09:13:39AM +0000, Camel Guo wrote:
+> On 4/12/22 23:36, Rob Herring wrote:
+> > On Tue, Apr 12, 2022 at 03:52:31PM +0200, Camel Guo wrote:
+> >> Document the TMP401, TMP411 and TMP43x device devicetree bindings
+> >> 
+> >> Signed-off-by: Camel Guo <camel.guo@axis.com>
+> >> ---
+> >> 
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - ti,tmp401
+> >> +      - ti,tmp411
+> >> +      - ti,tmp431
+> >> +      - ti,tmp432
+> >> +      - ti,tmp435
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
 > > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > Tested-by: Jonathan McDowell <noodles@earth.li>
-> > ---
-> >   arch/arm/boot/dts/qcom-ipq8064.dtsi | 6 +++---
-> >   1 file changed, 3 insertions(+), 3 deletions(-)
+> >> +  '#address-cells':
+> >> +    const: 1
+> >> +
+> >> +  '#size-cells':
+> >> +    const: 0
 > > 
-> > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > index e247bf51df01..36bdfc8db3f0 100644
-> > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > @@ -918,7 +918,7 @@ pcie0: pci@1b500000 {
-> >   			#address-cells = <3>;
-> >   			#size-cells = <2>;
-> > -			ranges = <0x81000000 0 0x0fe00000 0x0fe00000 0 0x00100000   /* downstream I/O */
-> > +			ranges = <0x81000000 0 0x0fe00000 0x0fe00000 0 0x00010000   /* downstream I/O */
-> >   				  0x82000000 0 0x08000000 0x08000000 0 0x07e00000>; /* non-prefetchable memory */
-> >   			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> > @@ -969,7 +969,7 @@ pcie1: pci@1b700000 {
-> >   			#address-cells = <3>;
-> >   			#size-cells = <2>;
-> > -			ranges = <0x81000000 0 0x31e00000 0x31e00000 0 0x00100000   /* downstream I/O */
-> > +			ranges = <0x81000000 0 0x31e00000 0x31e00000 0 0x00010000   /* downstream I/O */
-> >   				  0x82000000 0 0x2e000000 0x2e000000 0 0x03e00000>; /* non-prefetchable memory */
-> >   			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> > @@ -1020,7 +1020,7 @@ pcie2: pci@1b900000 {
-> >   			#address-cells = <3>;
-> >   			#size-cells = <2>;
-> > -			ranges = <0x81000000 0 0x35e00000 0x35e00000 0 0x00100000   /* downstream I/O */
-> > +			ranges = <0x81000000 0 0x35e00000 0x35e00000 0 0x00010000   /* downstream I/O */
-> >   				  0x82000000 0 0x32000000 0x32000000 0 0x03e00000>; /* non-prefetchable memory */
-> >   			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> > You don't have any child nodes and these are for child nodes with 'reg'.
 > 
+> Ack! I will fix it in v3.
+> > 
+> >> +
+> >> +  ti,extended-range-enable:
+> >> +    description:
+> >> +      When set, this sensor measures over extended temperature range.
+> >> +    type: boolean
+> >> +
+> >> +  ti,n-factor:
+> > 
+> > Funny, I just ran across this property today for tmp421...
+> > 
+> > Can the schema be shared?
 > 
-> -- 
-> With best wishes
-> Dmitry
+> Yes, this property is in ti,tmp421.yaml and ti,tmp464.yaml as well. But 
+> I guess maybe it is better to separate tmp401 from them.
+> 
+> That is because the chips supported in ti,tmp421,yaml has three channels 
+> and the chips supported in ti,tmp464.yaml has eight channels and this 
+> property n-factor is for each channel/child node. But the chips 
+> supported in ti,tmp401.yaml only has one channel. n-factor is for this 
+> chip.
 
--- 
-	Ansuel
+Okay, that makes sense to keep them separate.
+
+> >> +    description:
+> >> +      value to be used for converting remote channel measurements to
+> >> +      temperature.
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    items:
+> >> +      minimum: 0
+> >> +      maximum: 255
+> > 
+> > Isn't this property signed and should be -128 to -127? The code treats
+> > the existing cases as signed. One schema is correct and one is like you
+> > have it.
+> 
+> Ack! will fix it in v3
+> 
+> > 
+> >> +
+> >> +  ti,beta-compensation:
+> >> +    description:
+> >> +      value to select beta correction range.
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    items:
+> >> +      minimum: 0
+> >> +      maximum: 15
+> > 
+> > Drop 'items'. It is not an array.
+> 
+> Not sure if I understand correctly. Do you means it should be like this? 
+> If so, I guess ti,n-factor should also be changed like this. Am I right?
+> 
+>    ti,beta-compensation:
+>     description:
+>       value to select beta correction range.
+>       $ref: /schemas/types.yaml#/definitions/uint32
+>       minimum: 0
+>       maximum: 15
+
+Yes, except your indentation is off. As-is, it's all 'description'. It 
+should be like this:
+
+  ti,beta-compensation:
+    description:
+      value to select beta correction range.
+    $ref: /schemas/types.yaml#/definitions/uint32
+    minimum: 0
+    maximum: 15
+
+Rob
