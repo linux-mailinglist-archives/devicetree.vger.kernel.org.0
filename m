@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B8094FF769
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 002FD4FF76D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232653AbiDMNMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 09:12:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47790 "EHLO
+        id S229534AbiDMNMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 09:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232476AbiDMNMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:12:02 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7433636B49;
-        Wed, 13 Apr 2022 06:09:40 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id z6-20020a17090a398600b001cb9fca3210so2136356pjb.1;
-        Wed, 13 Apr 2022 06:09:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:from:subject:to:cc
-         :references:content-language:in-reply-to:content-transfer-encoding;
-        bh=OmdGyzNAeRxm3nkDHt1WCAV+MzEwG75Y0ksewbX+MF4=;
-        b=PAOM8WIfUZW45BC2wg57HYBsBtUv0BVv3ho9de5zzfBGpQcV6dc+dv8zglA2PNG0TM
-         5Rq3N98WLNH/UgggAEoq11zI1cWyX9OGI1tINPc0Lz5+EYhkXmpDvfYozaT+65d/ZZhp
-         NtWg/2ngoAva0x1K3o0GAkZxlVMWlzAPalDK6JsjyE5vzvzz/VNVoQaWE37Js6wLpwXX
-         657YJGsQj8kRKNyDHLuQCl86qjMX+P3TwoS+CVqqlPOUytcql1pDJnkuNyJKWaG/FEZC
-         onwHaBuMHTSiur9x7RRrMP1mJlD4cQjN6V7FhF73pmPl9msEMnnWn9yAYsOMt77zLeyi
-         fIUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:to:cc:references:content-language:in-reply-to
-         :content-transfer-encoding;
-        bh=OmdGyzNAeRxm3nkDHt1WCAV+MzEwG75Y0ksewbX+MF4=;
-        b=iQHQ+nhQODh2lObSxsdZRCwkqj9vDB3jofBcgYHhq+s2diTZrDnYVMbDzX70s7W5eN
-         eJN6PFuHYeehQ6hLZrP5b92tSEaE9P1pc/rcnj1UHVKBScnTglxyJ/M5ENh2YINaWkdY
-         S01yE4eLRJLextYXCzp9bmvB9p557gh8pn4JikyQkXCAIknDGON5ry0VcbwZSChGszfA
-         d2VUpjnKzZG6KKIxA2WqbmoezffbmPiAmCa11uVw/U4hHPt5hvniTIppsk1xj2o5Ong3
-         ZQ9TJ0oublsKSkBql48tnnp7Zn9+08HPMEkj+79ercEclj5VN5smL3GFqS7VZoPssZ6I
-         k7+g==
-X-Gm-Message-State: AOAM533p7bluuHIUNKOyoNe6cnvZYU4wnteH3QZglWkGJ9GcHHqotr1k
-        TALAWYWWo9vh2zxEVeSGzC4=
-X-Google-Smtp-Source: ABdhPJxZ3lc5i6nvGo31seZiu+YtpLNfRWuJ6SkCtAfWac6phK2piMZLcrwDr4ywT/xF+5hk0GwYOg==
-X-Received: by 2002:a17:90a:4fa6:b0:1cb:1b77:c931 with SMTP id q35-20020a17090a4fa600b001cb1b77c931mr10849472pjh.63.1649855379956;
-        Wed, 13 Apr 2022 06:09:39 -0700 (PDT)
-Received: from ?IPV6:240b:11:ea00:8f10:1cbd:f3fd:b9f6:da2b? ([240b:11:ea00:8f10:1cbd:f3fd:b9f6:da2b])
-        by smtp.gmail.com with ESMTPSA id w7-20020a63a747000000b003991d7d3728sm6445338pgo.74.2022.04.13.06.09.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 06:09:39 -0700 (PDT)
-Message-ID: <52225285-3b64-f709-81ff-0c26a9b13c02@gmail.com>
-Date:   Wed, 13 Apr 2022 22:09:32 +0900
+        with ESMTP id S235711AbiDMNMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:12:34 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE32369FF;
+        Wed, 13 Apr 2022 06:10:12 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 8ADB560006;
+        Wed, 13 Apr 2022 13:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649855411;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Zq0/0xA2JZ05vFh/LQxUdxfXIW45kzNdF9iAIigkAL0=;
+        b=dgBzt2BY+uWtcgOkQ2QOiFv5e00IthNbA6vS4ChNlw4ltj7qbgUtlOv/B/NUaeXCCp4Zxi
+        1TY+VRfwlt3APCqV2qUzgd7sPHBMSmzOQLv2NcM1kyyoYy62G2D5jieoZOg8aE+1dhY+Gs
+        4yuF0rUIiiC7rOLbWe7UEfj8Z0FW+LWNwo6uYNx5qM84krPVjIY54oV97xDjciztMEJ6T0
+        HG/MgeAOCE02L4rguZetP3pa5DJ7jf1jY93kgZXcP5se0i1MYZR0yBaoSJeS5ZOyCuCKm4
+        Isz3w7T/SK7tmzwiQrH6dmtYpPHpX1e+y5mVUlTk74dGy/WVc/Gxs+siGs7l/g==
+Date:   Wed, 13 Apr 2022 15:10:07 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v10 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA
+ router support
+Message-ID: <20220413151007.15cc54fd@xps13>
+In-Reply-To: <Ylaom9pRMm0C0Nsz@smile.fi.intel.com>
+References: <20220412193936.63355-1-miquel.raynal@bootlin.com>
+        <20220412193936.63355-6-miquel.raynal@bootlin.com>
+        <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
+        <Ylaom9pRMm0C0Nsz@smile.fi.intel.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-From:   SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Buffalo WZR-1166DHP2
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220412154432.12124-1-takayoshi.shimamoto.360@gmail.com>
- <ab529968-7dc5-f4c9-5ce4-5dc95b64838f@gmail.com>
-Content-Language: en-US
-In-Reply-To: <ab529968-7dc5-f4c9-5ce4-5dc95b64838f@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,41 +76,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andy,
 
-Thank you for the replies.
+andriy.shevchenko@linux.intel.com wrote on Wed, 13 Apr 2022 13:40:27
++0300:
 
-On 2022/04/13 2:49, Rafał Miłecki wrote:
->>   - 4x 10/100M ethernet switch
-> 
-> Isn't that 10/100/1000?
+> On Wed, Apr 13, 2022 at 09:53:09AM +0200, Geert Uytterhoeven wrote:
+> > On Tue, Apr 12, 2022 at 9:39 PM Miquel Raynal <miquel.raynal@bootlin.co=
+m> wrote: =20
+>=20
+> ...
+>=20
+> > You might as well declare it in rzn1_dmamux_data as:
+> >=20
+> >     unsigned long used_chans[BITS_TO_LONGS(2 * RZN1_DMAMUX_MAX_LINES)];=
+ =20
 
-You are right.
-It supports 10/100/1000Mbps.
+Now at the top of the driver I have
 
->> +    model = "Buffalo WZR-1166DHP2 (BCM4708)";
-> 
-> We stopped adding SoC name to the "model" value, please drop it.
+#define RZN1_DMAMUX_LINES 64
+#define RZN1_DMAMUX_MAX_LINES 16
 
-Understood.
+Which does not look right. So FYI I decided to change them to
 
-I will fix it as follows
-model = "Buffalo WZR-1166DHP2";
+#define RZN1_DMAMUX_MAX_LINES 64
+#define RZN1_DMAMUX_LINES_PER_CTLR 16
 
->> +
->> +        wireless1 {
->> +            label = "bcm53xx:amber:wireless";
->> +            gpios = <&hc595 7 GPIO_ACTIVE_HIGH>;
->> +        };
->> +    };
-> 
-> I'm wondering if all new DTS files should use "function" and "color"
-> instead of "label". That's preferred solution and I guess it's good idea
-> to use it for new code.
+which feels much more clear.
 
-Understood.
-
-I will rewrite it with "function" and "color."
-
-I will post the patch again after testing.
-
-Best regards
+Thanks,
+Miqu=C3=A8l
