@@ -2,117 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC5094FF500
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B25D04FF509
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235034AbiDMKnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 06:43:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
+        id S231251AbiDMKrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 06:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbiDMKne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:43:34 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB7C53713;
-        Wed, 13 Apr 2022 03:41:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649846438; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=hTK7F7eh6Xj5J9hP1dIAfil1UZQXRGvObkBRkCHTzuj0q+lftB/3yKqiMTFAIdVBma5pFUK4GvD+9o5kxtw8GPcV0uoSYViNV+3P9tCh13Y8rj6EbKqUXZeG+JIbmcPSmyOo09mjWI0rdks8X/kpwFelWwDS8FUsxvmaDpKqTM0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649846438; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=8cuduJRz7v/CIkmAbDKACdBfRvx+g1IMGtExWKUFiic=; 
-        b=LrHwsyl96YzAPFyMZZpFmRM8ZAsJ7/WEnxyJJT47vRS3WxWnU2BBZFzoeMIHMJsIi/NUO3WoRdmkQnPEU83K6p2T35tvAWhFLlG4l91geiLdcIqHxkwTsURZrQTp1eCLlY/SNH8xoJJfwBFcQHP1JhSguHb/gquV5RSm7IEzzRI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649846438;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=8cuduJRz7v/CIkmAbDKACdBfRvx+g1IMGtExWKUFiic=;
-        b=V6098wza0NbqnazK1jLojGrElIUHRSajhlmRUN/clG2dIogHtpfLVNrqY+sw+VCA
-        AD3eI/5ydAsd+vuTzj7gvQxsFy/6SRuudVpbpvRuggPtxo+a6v7Y3wWh0EBBKvOYbG/
-        XrpN6GHMTC7RG28BeFmvGzv0bAV51k+Ci3sNHQ6g=
-Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 164984643564144.415058780915956; Wed, 13 Apr 2022 03:40:35 -0700 (PDT)
-Message-ID: <f5f3b847-eb6d-9978-3040-245e3b1acb23@arinc9.com>
-Date:   Wed, 13 Apr 2022 13:40:29 +0300
+        with ESMTP id S235015AbiDMKr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:47:28 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB28032076;
+        Wed, 13 Apr 2022 03:45:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649846707; x=1681382707;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tEfjdwY23aKsvFoAZXPuaR84pVXUkXydcu5CIrt9EcU=;
+  b=kNjI9kFmGs/RGczAg8RN1VHANg0whIUqtLDVy+POUeknLWdXUfAlCRRR
+   yX46L8vyvCoGTTa2I1FHP1SHiIuss48sYYFrV1gsbrP1+HSzMKs7VrHpH
+   YvABZ42Cby9+BDqPvSpCqwd0ecYV4W4RuKKAG4GdnI7rtzL4YA8O9iWZY
+   mLSbKscaBRbCJtE8JZY0K6MKvkEgVkC/GBKSItGJgzSpwBB4fDvGOVoWT
+   PVhNXvjBGSIKY+SUJaqx5pCNKXwuaEYylAELzyzfhj856tC5xQHCulH11
+   szyY4gOfmd1CRNQmA4dVZySSJzzJO9Ya4HGiQ/YdEtT571b7qg1It6Aqk
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="262386193"
+X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; 
+   d="scan'208";a="262386193"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 03:45:07 -0700
+X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; 
+   d="scan'208";a="700201266"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 03:45:02 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1neaR9-001nON-Fb;
+        Wed, 13 Apr 2022 13:41:23 +0300
+Date:   Wed, 13 Apr 2022 13:41:23 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v10 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router
+ support
+Message-ID: <Ylao068kNANViy4B@smile.fi.intel.com>
+References: <20220412193936.63355-1-miquel.raynal@bootlin.com>
+ <20220412193936.63355-6-miquel.raynal@bootlin.com>
+ <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
+ <20220413100026.73e11004@xps13>
+ <CAMuHMdU3pEX3oGoHQ71cm7m0DpguJOqpOTq4_kfAxD98XN325A@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 08/14] MAINTAINERS: add Ralink pinctrl driver
-Content-Language: en-US
-To:     Joe Perches <joe@perches.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
- <20220413060729.27639-9-arinc.unal@arinc9.com>
- <d0ed8518dfb93e6f2bbbaf4aac3436dd20369c00.camel@perches.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <d0ed8518dfb93e6f2bbbaf4aac3436dd20369c00.camel@perches.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdU3pEX3oGoHQ71cm7m0DpguJOqpOTq4_kfAxD98XN325A@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 11:29, Joe Perches wrote:
-> On Wed, 2022-04-13 at 09:07 +0300, Arınç ÜNAL wrote:
->> Add a new section for the Ralink pinctrl driver and add me and Sergio as
->> the maintainers.
->>
->> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> 
-> It's unusual for a last name to be completely capitalized.
+On Wed, Apr 13, 2022 at 10:05:43AM +0200, Geert Uytterhoeven wrote:
+> On Wed, Apr 13, 2022 at 10:00 AM Miquel Raynal
+> <miquel.raynal@bootlin.com> wrote:
 
-I was influenced by a law for official correspondence from where I live. 
-It sort of stuck with me. Surely that's not a problem?
+...
 
-> 
->> diff --git a/MAINTAINERS b/MAINTAINERS
-> []
->> @@ -16502,6 +16502,13 @@ L:	linux-mips@vger.kernel.org
->>   S:	Maintained
->>   F:	arch/mips/boot/dts/ralink/mt7621*
->>   
->> +RALINK PINCTRL DRIVER
->> +M:	Arınç ÜNAL <arinc.unal@arinc9.com>
->> +M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
->> +L:	linux-mips@vger.kernel.org
->> +S:	Maintained
->> +F:	drivers/pinctrl/ralink/*
-> 
-> Typically this is just the directory.
-> 
-> F:	drivers/pinctrl/ralink/
-> 
-> as this covers any file in the directory as well as
-> any possible subdirectories and files.
-> 
-> Using
-> 
-> F:	drivers/pinctrl/ralink/*
-> 
-> excludes any possible subdirectories and files within those
-> possible subdirectories.
+>     DECLARE_BITMAP(used_chans, 2 * RZN1_DMAMUX_MAX_LINES);
 
-Thanks! I'll change this if I get more stuff to address. I think this is 
-too minor of a change for resubmitting the series as there're no 
-subdirectories on there yet.
+Yep, this one.
 
-Arınç
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
