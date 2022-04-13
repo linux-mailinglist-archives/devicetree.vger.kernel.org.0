@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C60CF4FF813
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8204F4FF81A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:45:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235707AbiDMNrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 09:47:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56520 "EHLO
+        id S233817AbiDMNsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 09:48:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235913AbiDMNrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:47:15 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A544E5EDF9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 06:44:53 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id bv19so4054931ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 06:44:53 -0700 (PDT)
+        with ESMTP id S229555AbiDMNsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:48:08 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A913CA56
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 06:45:47 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id lc2so4011026ejb.12
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 06:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2jtZIB/IVpZD2JDZRTfQ4w1vkKRIDRhkH1q1iqYE4AE=;
-        b=JkqBbEmSdK0vs6ZM2OOyNoUI2SkJoeJsQRvFJ4xdFYF34DZUMNXdeAsXvV2CxGhHwi
-         D4k4DGIch+Gu4j5Vgs3B/TBiXIM0UGuiW39RjR5sS4LMyblap9IW6O0m+Ssa7ozv6vFT
-         nGvKRxO36wkll9iDz1+1E0+xAwa5fJkOf5MHAi7wOHnSJYseli/me2Cb01JfAl7yltY0
-         dMpw3yN1/u/5RZnqZVDvs1HVzT5VXdu+37pK5n/TMMq5EsEtevM0AotFAD3sQrNQggCO
-         VVW6FmlqPgygBFNsj0aJvoxMXCTg3S5l6sjTjGunaDzKpTffnXiMSrwdu9rhZh77nE+H
-         Xqog==
+        bh=I4Bto3DqqlTF/cosvOuigkAD+5xRDwJMBj3EBq0sxKk=;
+        b=aTe3y/yHMNc1zwYdJQpMlDjJYwXFpOkvDRMDjdedCXzt0LZSpSQM3zdVo6zeIhaGpM
+         VifdlLNTc889QD5rI4K7pi6kxQ8BsesPbT3rJvj877P2tLPmWhNRhEvd95m4f8z3qkUG
+         0/nE8keo+2Bu+DrJ98aXf1WpfXAeyToCdybOih2NN1ereli3Duo6F87eESTG3lP6lava
+         u8XHylWNyoXL+x8igXQvtXKSpQEbo8JwGhyx19wU69Vk3WDhLrBsLoNWOZUzJZrOzL8h
+         /4E8FuzPr/ImgG6JIotc/fH+6kVsj6mTYJGbdiPJ4XmIC8+KI9FarS9b9cL1/PzNOxsH
+         g83Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2jtZIB/IVpZD2JDZRTfQ4w1vkKRIDRhkH1q1iqYE4AE=;
-        b=xD98svFmkRqFKlw5ZAnAoKUpsfI4DcHsbbxRLhhU8xn62kwv2Bi+GvUWBZaOU1INU0
-         Gt5rFDpsHwuY5H4AORCRCUwCvnN1iqqDxTmu3/BMGFPiAEbjb6+MAYibw7wNzhJoLUOx
-         zjKB3CXqUVQrkm4PkCLOSZCwJ2kg83IbNQHTXCj9tdbo4C4Y0rZWZ1SkOTezWC3mjWQf
-         KPmE9cZV6r7oRWnEtpvN9OMhPtYEzt9SmbNid3FinIwmqsqCUBiY/o0Hwjlj4ScJWpiv
-         NIj8kT7X7b6GPGc5C7ygWU4AbEcWHuQo/0qaX4YvCzTvShH84x0GU44T0nXofW3gha3U
-         NEVA==
-X-Gm-Message-State: AOAM530gIDjUJQ5WwciweFcuwIyklplV5cDKORsns4fvvcpwmTJoMH6f
-        gudI9MAzW7tqnd5zAr6ZbnBgdA==
-X-Google-Smtp-Source: ABdhPJw574Ms3y6EsF7d/GyVo36j8uqmyM74s+vb9xThkVjmnlSg+Z8+rkNl/oMb2R1sUzQOTSycSw==
-X-Received: by 2002:a17:907:da9:b0:6da:beb8:fdac with SMTP id go41-20020a1709070da900b006dabeb8fdacmr38655115ejc.364.1649857492258;
-        Wed, 13 Apr 2022 06:44:52 -0700 (PDT)
+        bh=I4Bto3DqqlTF/cosvOuigkAD+5xRDwJMBj3EBq0sxKk=;
+        b=ilGUfKqEecygomsvqgbrnz0/L0sPEOsS0vZeoIS9BPxHqcXHvIiGd/NJL0iqR94955
+         6GL6y8abeAmFZ02kRsFSXalVFsJZ3Bqqt66sMqvq7BGcKUMVJW83mSdji+78wMZR7o1x
+         WtIhaRGFjyAfXx3i9ER7Zv8ecG5YDod0dusnn95mnsknIn+kGE6bsGq5Dg66SVG1x+RN
+         oXtqI0xUeMU4ISKRPDcg0O62CpGrX/d7qXcNoxp/RzFbBmRuUBDVNy1BWiLz+FXvserA
+         4JJeghXnr4PBx9lL2GPlTd5Y0dZR6WAKwZvhk3PiWsj31w2AppcMySSiiMGfEWislaOL
+         XkBA==
+X-Gm-Message-State: AOAM531pqoUUR9pzmPBC1GbNO63eb1UMwZIfuZgxgT3hGaqlPHWwLnI0
+        OY5rjIE8gUDouyI9XByxyexvLA==
+X-Google-Smtp-Source: ABdhPJz+E7zPXrbb5FwzmNw+1pRUnIJx05GyVyN4Ng1x+UgfUNEuczCcM4XR/p/lj+PKUsh5mpaSxw==
+X-Received: by 2002:a17:906:9754:b0:6da:7d72:1353 with SMTP id o20-20020a170906975400b006da7d721353mr38991990ejy.273.1649857545604;
+        Wed, 13 Apr 2022 06:45:45 -0700 (PDT)
 Received: from [192.168.0.205] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id l3-20020a509dc3000000b00420195722c7sm256664edk.6.2022.04.13.06.44.51
+        by smtp.gmail.com with ESMTPSA id l11-20020a50cbcb000000b0041d8c4290aasm1189579edi.97.2022.04.13.06.45.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 06:44:51 -0700 (PDT)
-Message-ID: <b9f9e72d-c202-9050-92b3-8a0fc64adb26@linaro.org>
-Date:   Wed, 13 Apr 2022 15:44:50 +0200
+        Wed, 13 Apr 2022 06:45:45 -0700 (PDT)
+Message-ID: <8283132d-c271-d1b8-cb28-8f95305b11ec@linaro.org>
+Date:   Wed, 13 Apr 2022 15:45:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: Add Qualcomm SDX65 DT
- bindings
+Subject: Re: [PATCH v2] arm64: dts: imx8mm-evk: add pwm1/backlight support
 Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, djakov@kernel.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1649854415-11174-1-git-send-email-quic_rohiagar@quicinc.com>
- <1649854415-11174-2-git-send-email-quic_rohiagar@quicinc.com>
+To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     linux-amarula@amarulasolutions.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Li Jun <jun.li@nxp.com>, Tim Harvey <tharvey@gateworks.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220413125636.28650-1-tommaso.merciai@amarulasolutions.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1649854415-11174-2-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <20220413125636.28650-1-tommaso.merciai@amarulasolutions.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,13 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 14:53, Rohit Agarwal wrote:
-> Add interconnect IDs for Qualcomm SDX65 platform.
+On 13/04/2022 14:56, Tommaso Merciai wrote:
+> Add pwm1/backlight support nodes for imx8mm_evk board.
+> Align with u-boot dts
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 
+Thank you for your patch. There is something to discuss/improve.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 6d67df7692f1..4c18f8fcd377 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -59,6 +59,15 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		enable-active-high;
+>  	};
+>  
+> +	backlight: backlight {
+> +		status = "okay";
+
+All nodes have status=okay by default, so no need for this.
+
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm1 0 5000000>;
+> +		brightness-levels = <0 255>;
+> +		num-interpolated-steps = <255>;
+> +		default-brightness-level = <250>;
+> +	};
+> +
+>  	ir-receiver {
+>  		compatible = "gpio-ir-receiver";
+>  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> @@ -395,6 +404,12 @@ &wdog1 {
+>  	status = "okay";
+>  };
+>  
+> +&pwm1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_backlight>;
+> +	status = "okay";
+
+This is needed if the node was disabled in DTSI (I did not check it).
 
 
 Best regards,
