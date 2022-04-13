@@ -2,152 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FAEC4FF5E3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 13:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABDF44FF653
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 13:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235242AbiDMLms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 07:42:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S233812AbiDMMBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 08:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235245AbiDMLmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 07:42:47 -0400
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9769286D7;
-        Wed, 13 Apr 2022 04:40:24 -0700 (PDT)
+        with ESMTP id S235476AbiDMMAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 08:00:44 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A883C5DA04
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 04:58:14 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id bg10so3459183ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 04:58:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1649850025;
-  x=1681386025;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=xxHINOHTIc+AyotznrFkjz9ShgXp6maW3czD4uF54DU=;
-  b=bog9f42GhfZQ1v6lg39BiwJR58QGg88m/ptpeDbURc08JDOIlSsxjT1D
-   4plrSim1TASyNXelQRtANPKKe5h2UVOwj4F1oifRSoDfUNsS/krBlDrfr
-   VeA9cgiHOpQVt2Bu5k+JU4JYvBuPF3N1we+4g3IBcFZIUL7BPKStIAtbq
-   lSc2EEHg3RanPCG0eEcDRy/wm1SiY/Pgy0HsINQqvw2hVS0VWka72/H+b
-   tuONv6dcMnY5V5sNnxw8xG87mcuDxQMipQo1b/e/zexiNOBwoY8YVaqg0
-   nES9/HCux28Z8KDaowChKxn7qrkZD+Msr0N5mWloGxRpFv5KH5h8OkDHY
-   g==;
-From:   Camel Guo <camel.guo@axis.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC:     Camel Guo <camel.guo@axis.com>, <linux-hwmon@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@axis.com>
-Subject: [PATCH v3 2/2] hwmon: (tmp401) Add support of three advanced features
-Date:   Wed, 13 Apr 2022 13:40:13 +0200
-Message-ID: <20220413114014.2204623-3-camel.guo@axis.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220413114014.2204623-1-camel.guo@axis.com>
-References: <20220413114014.2204623-1-camel.guo@axis.com>
+        d=amarulasolutions.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=t+e8bSlO8HlFBx5QkC+YWhBBQ1KUbhRpOI9qNhDs95Q=;
+        b=i3WWwCf7E9CLGuSIAfuJvq73Vxp3xh8JfHrEwq8LVCHc/Lqg0XG/6gf/RJ29vCQnMH
+         NMbMNVFLkjmF88dC0oiBDKaY/HZRFuqP3yJe4UwvgvMDUjWYjHdX/wjwU7xAuii3U0uH
+         H+I6DYLijb6SNsb01RPyEa5xpnfOtYw8FFUeo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=t+e8bSlO8HlFBx5QkC+YWhBBQ1KUbhRpOI9qNhDs95Q=;
+        b=LwmqDcXQBbV/+HQVylOSWYFKpG2w/Wh9TwId5zIZWfMvLCEKR5XULV9ga3VHw2UIn3
+         jQN8wGcW/7hLYGYnhg75nYxZUE9l5+1LQhJLbrT267hNycnNXuW5AdqyCmCHJnN8WapG
+         VPPw5En7OvdXkk9hZPNQlH1rY5g0S41fWgGd73UaSnOtbftZuuojKMWs6/ILlD54u/iS
+         SB049jK8SStjdIfvpFk5qQRONSHyY7kcaVcp6VZXxZ8BQcSHodz5kl4d//wxvej5dutJ
+         Axfh1RdQreB3dzM0OgUxaORk3QUlF+tJ3xefXlgyY5ch8hKc12b2bjhGHjauJkFnabch
+         oxUg==
+X-Gm-Message-State: AOAM5304XgaIc7TyxucOFMW+KZEx4+uLrcM9FzC30X3G4j2+/Xbrsmva
+        0WERP/lbAKM/0Q15qay/3phWQg==
+X-Google-Smtp-Source: ABdhPJwXevi2Yb3Y0tNYmPOsqfGxi/mGuGC3rrIyPQKgl7WIkrLCz3vEz1hoO92Z5sYeOExAS0ZJEw==
+X-Received: by 2002:a17:906:d54e:b0:6db:b241:c0e2 with SMTP id cr14-20020a170906d54e00b006dbb241c0e2mr37937273ejc.724.1649851093155;
+        Wed, 13 Apr 2022 04:58:13 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (host-95-245-147-71.retail.telecomitalia.it. [95.245.147.71])
+        by smtp.gmail.com with ESMTPSA id s4-20020a170906bc4400b006e893908c4csm3262077ejv.60.2022.04.13.04.58.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Apr 2022 04:58:12 -0700 (PDT)
+Date:   Wed, 13 Apr 2022 13:58:10 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-amarula@amarulasolutions.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>, Li Jun <jun.li@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-evk: add pwm1/backlight support
+Message-ID: <20220413115810.GA4713@tom-ThinkPad-T14s-Gen-2i>
+References: <20220413102052.20207-1-tommaso.merciai@amarulasolutions.com>
+ <c6fe3895-29b2-a371-ccae-c5a12c45d4f1@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c6fe3895-29b2-a371-ccae-c5a12c45d4f1@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-tmp401 driver supports TMP401, TMP411 and TMP43X temperature sensors.
-According to their datasheet:
-- all of them support extended temperature range feature;
-- TMP411 and TPM43X support n-factor correction feature;
-- TMP43X support beta compensation feature.
+On Wed, Apr 13, 2022 at 12:28:00PM +0200, Krzysztof Kozlowski wrote:
+> On 13/04/2022 12:20, Tommaso Merciai wrote:
+> > Add pwm1/backlight support nodes for imx8mm_evk board. Align with u-boot
+> > dts
+> > 
+> > References:
+> >  - https://patchwork.ozlabs.org/project/uboot/patch/20220326111911.13720-9-tommaso.merciai@amarulasolutions.com/
+> > 
+> > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 21 +++++++++++++++++++
+> >  1 file changed, 21 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> > index 6d67df7692f1..55566708f667 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> > @@ -59,6 +59,15 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+> >  		enable-active-high;
+> >  	};
+> >  
+> > +	backlight: backlight {
+> > +		status = "disabled";
+> 
+> Why disabled?
+> 
+> > +		compatible = "pwm-backlight";
+> > +		pwms = <&pwm1 0 5000000>;
+> > +		brightness-levels = <0 255>;
+> > +		num-interpolated-steps = <255>;
+> > +		default-brightness-level = <250>;
+> > +	};
+> > +
+> >  	ir-receiver {
+> >  		compatible = "gpio-ir-receiver";
+> >  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> > @@ -395,6 +404,12 @@ &wdog1 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&pwm1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_backlight>;
+> > +	status = "disabled";
+> 
+> Same here.
+> 
+> 
+> Best regards,
+> Krzysztof
 
-In order to support setting them during bootup, this commit reads
-ti,extended-range-enable, ti,n-factor and ti,beta-compensation and set
-the corresponding registers during probing.
+Hi Krzysztof,
+I think is better to keep disable into .dtsi and enable it at .dts
+level.
+What do you think about?
 
-Signed-off-by: Camel Guo <camel.guo@axis.com>
----
-
-Notes:
-    v3:
-    - Instead of u32, use s32 for ti,n-factor.
-    
-    v2: no change
-
- drivers/hwmon/tmp401.c | 44 +++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 43 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/hwmon/tmp401.c b/drivers/hwmon/tmp401.c
-index b86d9df7105d..8f49da997367 100644
---- a/drivers/hwmon/tmp401.c
-+++ b/drivers/hwmon/tmp401.c
-@@ -41,6 +41,8 @@ enum chips { tmp401, tmp411, tmp431, tmp432, tmp435 };
- #define TMP401_STATUS				0x02
- #define TMP401_CONFIG				0x03
- #define TMP401_CONVERSION_RATE			0x04
-+#define TMP4XX_N_FACTOR_REG			0x18
-+#define TMP43X_BETA_RANGE			0x25
- #define TMP401_TEMP_CRIT_HYST			0x21
- #define TMP401_MANUFACTURER_ID_REG		0xFE
- #define TMP401_DEVICE_ID_REG			0xFF
-@@ -543,6 +545,8 @@ static int tmp401_init_client(struct tmp401_data *data)
- 	struct regmap *regmap = data->regmap;
- 	u32 config, config_orig;
- 	int ret;
-+	u32 val = 0;
-+	s32 nfactor = 0;
- 
- 	/* Set conversion rate to 2 Hz */
- 	ret = regmap_write(regmap, TMP401_CONVERSION_RATE, 5);
-@@ -557,10 +561,48 @@ static int tmp401_init_client(struct tmp401_data *data)
- 	config_orig = config;
- 	config &= ~TMP401_CONFIG_SHUTDOWN;
- 
-+	if (of_property_read_bool(data->client->dev.of_node, "ti,extended-range-enable")) {
-+		/* Enable measurement over extended temperature range */
-+		config |= TMP401_CONFIG_RANGE;
-+	}
-+
- 	data->extended_range = !!(config & TMP401_CONFIG_RANGE);
- 
--	if (config != config_orig)
-+	if (config != config_orig) {
- 		ret = regmap_write(regmap, TMP401_CONFIG, config);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	ret = of_property_read_u32(data->client->dev.of_node, "ti,n-factor", &nfactor);
-+	if (!ret) {
-+		if (data->kind == tmp401) {
-+			dev_err(&data->client->dev, "ti,tmp401 does not support n-factor correction\n");
-+			return -EINVAL;
-+		}
-+		if (nfactor < -128 || nfactor > 127) {
-+			dev_err(&data->client->dev, "n-factor is invalid (%d)\n", nfactor);
-+			return -EINVAL;
-+		}
-+		ret = regmap_write(regmap, TMP4XX_N_FACTOR_REG, (unsigned int)nfactor);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	ret = of_property_read_u32(data->client->dev.of_node, "ti,beta-compensation", &val);
-+	if (!ret) {
-+		if (data->kind == tmp401 || data->kind == tmp411) {
-+			dev_err(&data->client->dev, "ti,tmp401 or ti,tmp411 does not support beta compensation\n");
-+			return -EINVAL;
-+		}
-+		if (val > 15) {
-+			dev_err(&data->client->dev, "beta-compensation is invalid (%u)\n", val);
-+			return -EINVAL;
-+		}
-+		ret = regmap_write(regmap, TMP43X_BETA_RANGE, val);
-+		if (ret < 0)
-+			return ret;
-+	}
- 
- 	return ret;
- }
+Regards,
+Tommaso
 -- 
-2.30.2
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
 
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
