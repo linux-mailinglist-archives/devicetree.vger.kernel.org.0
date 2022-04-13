@@ -2,122 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E858D4FF8EE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 488EC4FF91C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234344AbiDMOb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 10:31:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54522 "EHLO
+        id S230492AbiDMOmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 10:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbiDMOb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 10:31:27 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA9556221
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 07:29:02 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id j8so2096966pll.11
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 07:29:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W3hJGrmaAvxQ1Iq6K+QFDHPYd+AnBBrGQGYmAYimyFM=;
-        b=Jws5h8+7lkW5dWJUO628L+BorIWyk9T5tBc726AJSWzLf5pJBLWUVKbwW6UOJukFGr
-         waJ+8M/0jtPvdqefqOlUwzauP1OG5BnrNsmDCbbSlwK4hF/t16sPmj8ofalRaLbs+Zdw
-         HlNmGZeBEtRx/Z18Lb5crO21/nhVD91XmaOpeYtJwKYVKsTGb8SBP4BdARSE1+TmbA45
-         hwN1XewpTS2vSKhjD6MFZSWFShNGPmoS+bOZ/Kok9IOeqAHXJSpTKWx4L3TLcT05oTkF
-         Y2kJxSTAJfQ1T1NnpOKijzutYmUy03NGxJNA3pPK/eSMUCrfe/Fbx1cZLfPl608iIEaN
-         cMfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W3hJGrmaAvxQ1Iq6K+QFDHPYd+AnBBrGQGYmAYimyFM=;
-        b=mclVdWRk9G1eaphgKjbYyPClTCsJtGaZQuot2jSW9Wt07mtUGZI+fz+k6eHnGF0myk
-         rQPjWZnX2djs65Xr9H1jZWyrJidN9E14Pwu0SESTrTUsZUDYZBAumfZWgBTBaSQKK6Lx
-         pHsORdBJPZdIlZVQ1wrGz9ML6l6r4uEnoflnj5W8v3s5Nj13ExfQW+n+FNGGGx+mNWsw
-         wXa4sqGa8nXTE5VFgFg4WaHt0Y2+PtOj4FrcZCVQc1qbKKTdqea1rUmcBy+D4pdJxha0
-         TM+YZZF7aAm2/zAiHQgYtlwPINDS7nwCWYHAgrbJurwmv/77y/RDhOPR8P1/Iq7bf4OE
-         0Tiw==
-X-Gm-Message-State: AOAM531/ImPg5WM/W3hzLrjmnjlmqDS5nVKZwWxUp+EdgVyw568yXCOs
-        ilY2MS9ItNA2/RAbT1Q8wdrQvuhFwqDYozvCrFolIA==
-X-Google-Smtp-Source: ABdhPJz3n3+dk2Krw4doJzCu1wCrOBh4/t9lU1aVQm4BPNjr3lisjMW5XOOnjfCrRT56oMgfkVfEXl3aKlZ/ZAOIbR4=
-X-Received: by 2002:a17:902:c94c:b0:154:45c6:fbea with SMTP id
- i12-20020a170902c94c00b0015445c6fbeamr43212960pla.117.1649860142164; Wed, 13
- Apr 2022 07:29:02 -0700 (PDT)
+        with ESMTP id S233472AbiDMOmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 10:42:20 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 053F515A1E;
+        Wed, 13 Apr 2022 07:39:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649860799; x=1681396799;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FEqVR/bJ6blkfzQcYZuLKr7WhhCYJ06aOnPu5ZB6Q6Q=;
+  b=hgvQS/NeeIBDfF4aq/D3TVyFvbAS/ER/8U4Tdy/kuxOfH2FNXMVJ0d7R
+   /mSXNt/g6C63nZKXq2NLQWBPXvdga8xwQtjxvSL/7daYIHMDSzjLpFkMd
+   ox7kk0xz1EAQElKCsjNyFiPPk42JfP/WXSTW0MW+Z9AqddXNxBsPvUE4N
+   l6DWYD0XTisDRspuKNW/3Tgx7uM2/2XpVsLoDUXuBm8IS+8aJMHvUcOZw
+   h/SZ+Q7WQjwe+kr1HnGEhHyp0f6wB2tRbGldNdBGLVk7RAyEABCJhYand
+   2/aNtGDMnZjz/qViuxLurBAqHtZZ4izRO9wNaalXNv3o6VePvhiOwu5in
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="325589399"
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; 
+   d="scan'208";a="325589399"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 07:35:53 -0700
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; 
+   d="scan'208";a="573295871"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 07:35:49 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id C987220316;
+        Wed, 13 Apr 2022 17:35:46 +0300 (EEST)
+Date:   Wed, 13 Apr 2022 17:35:46 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>
+Subject: Re: [PATCH v6 4/5] device property: Constify fwnode_handle_get()
+Message-ID: <YlbfwjQcxj6fK7re@paasikivi.fi.intel.com>
+References: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
+ <20220408184844.22829-4-andriy.shevchenko@linux.intel.com>
+ <YlCq79KveByePxe9@paasikivi.fi.intel.com>
+ <CAHp75Ve-5=6bsF1mMQ4RceobV=OsR6VwZeP==iFGQJLEbt0-yg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220328120956.1848795-1-xji@analogixsemi.com>
- <20220328120956.1848795-3-xji@analogixsemi.com> <YkswTpDiPYfdIFtE@robh.at.kernel.org>
- <20220409044740.GA595530@anxtwsw-Precision-3640-Tower>
-In-Reply-To: <20220409044740.GA595530@anxtwsw-Precision-3640-Tower>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Wed, 13 Apr 2022 16:28:51 +0200
-Message-ID: <CAG3jFyt1Srtn2aTFQ6b8Rxc6F_GCzU2mKxiEiWwgskMwHHjj5Q@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: drm/bridge: anx7625: Change bus-type to
- 7 (DPI)
-To:     Xin Ji <xji@analogixsemi.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, bliang@analogixsemi.com,
-        qwen@analogixsemi.com, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Ve-5=6bsF1mMQ4RceobV=OsR6VwZeP==iFGQJLEbt0-yg@mail.gmail.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 9 Apr 2022 at 06:47, Xin Ji <xji@analogixsemi.com> wrote:
->
-> On Mon, Apr 04, 2022 at 12:52:14PM -0500, Rob Herring wrote:
-> > On Mon, Mar 28, 2022 at 08:09:54PM +0800, Xin Ji wrote:
-> > > Change bus-type define for DPI.
-> > >
-> > > Fixes: a43661e7e819 ("dt-bindings:drm/bridge:anx7625:add vendor define")
-> > >
-> > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > ---
-> > >  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml  | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > index 0d38d6fe3983..4590186c4a0b 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > @@ -106,7 +106,7 @@ properties:
-> > >                remote-endpoint: true
-> > >
-> > >                bus-type:
-> > > -                enum: [1, 5]
-> > > +                enum: [7]
+On Sun, Apr 10, 2022 at 05:10:23PM +0300, Andy Shevchenko wrote:
+> On Sat, Apr 9, 2022 at 2:35 AM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> > On Fri, Apr 08, 2022 at 09:48:43PM +0300, Andy Shevchenko wrote:
+> > > As to_of_node() suggests and the way the code in the OF and software node
+> > > back ends actually uses the fwnode handle, it may be constified. Do this
+> > > for good.
 > >
-> > Changing is an ABI break, but didn't we revert adding this?
-> Hi Rob, sorry, what do you mean about ABI break? Do I need remove this
-> patch in this serial? Or do I need revert patch
-> https://patchwork.freedesktop.org/patch/462331/, I don't know how to do
-> it.
->
+> > How?
+> >
+> > If the fwnode is const, then the struct it contains must be presumed to be
+> > const, too.
+> 
+> Why? The idea is that we are not updating the fwnode, but the container.
+> The container may or may not be const. It's orthogonal, no?
 
-I contributed to the confusion about this, let's see if we can clear it up.
+As you wrote: may or may not. The stricter requirement, i.e. const, must be
+thus followed. I think it would be fine (after adding a comment on what is
+being done) if you *know* the container struct is not const. But that is
+not the case here.
 
-An issue was found related to which enum values were used to represent
-what late in the last release cycle. As a result a revert[1] patch for
-everything touching bus-type in anx7625 was merged.
-
-This patch, does not apply to drm-misc-next due to the revert, and if
-Xin Ji rebases his work on the drm-misc-next there should be no
-ABI-change as this patch when fixed up will introduce bus-type to the
-nax7625 ABI.
-
-Xin: Does this make sense to you?
-
-[1] https://cgit.freedesktop.org/drm/drm-misc/commit/?id=979452fbc43028675b5a5da156f91928b739dea8
+-- 
+Sakari Ailus
