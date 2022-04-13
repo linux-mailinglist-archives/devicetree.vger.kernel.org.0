@@ -2,315 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0DA4FFB0A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B4154FFB33
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:25:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234051AbiDMQUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 12:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43478 "EHLO
+        id S236839AbiDMQ1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 12:27:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230178AbiDMQU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:20:29 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam07on2044.outbound.protection.outlook.com [40.107.95.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D307B22BDE;
-        Wed, 13 Apr 2022 09:18:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=feWEMgX9JlenM4viuAIAt7W3cik7O5sYPGQVvWkP1tdNM3FK+sdEbukkZmQm+qhhFyViAKBTjxBGe6aVFF+kc/bU3AJAim6XFvrAmTU5X0l5mgAGLlVvgvUT/PiJI0BUFED0wjXwke/drKxLUnRTKspkcIN5ZWKjxWQ/BpqKrBe8QwKCURWEa5Hqf29Q+ygZpvyhGeX6qf5JGNKjI6EgdxmFyCxj9JCOHdBK5BHXEb71uHu6tq91p627Mf/0PNG69ne5ixlsb8/3EeHSYs0rtgqTY9Si5JjtIQC5+aOR0jntpjNS6mMMcMa+lzWnxZTYtEwhXIN7DY/GpmbpeMFczw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YbRm0CZSbVNg2RyJZdJ1u1AdqQZwdf32fq2p4/x0zhg=;
- b=oH5gzethGDXHcueAM1dzZULg7DbsE4LbXo6K0ouZAX5zSAhj4vGFzSyizlZOCryH8On0jj4hPkU4LspOy0E2ntNeJV4FKOdK2J94qTm9EOu5LpFpaDCOOMpXtLOgvq3B77T5CmHQ8WS7RpLlFPslORwUoTJFm/EioiLxeICB9CzZjQ3NfOJcoMBQkgdo6OkXM7qQfQr3LP2zQMvi3z08nFxzaZJl5HrwkU6BizNHoENttIjqrAf5HCijDZ2V4OzPUK5HFxxSuNQQLuaV0FE8i/CZUkBb0LoN2qg0PKCD6Jiq+ZFu71vtHyoAtEHgA2z1i9zG6JfpHLYJtuiEHfKe8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YbRm0CZSbVNg2RyJZdJ1u1AdqQZwdf32fq2p4/x0zhg=;
- b=SxNYCo4hISUD9NoCXTtjbCN4ULIDhYZo3ZJDupn+w4ESNb+5lRrm1YTAKBH0BzSfE6XF58N90BxbinUEx/INpign9EyDpBJhZptz8SRZsC4oVKtwS/wzjRbj92jTPgfqwjVdkgXs+ZgKyJxS4zHl6Q3kP17yH+l7BepaCiMBDdglMC2Twj80xMgJuFzC4Qq6pXQViaP4axDiMaduPJYFc43DBe8Vs9/tT724mlPBKov1KwoyVjWTJGfYJs3XM2LIRYRmCsIyBFuQC6dU2IDbpIBaxRgoZepe3D4nPsL+IwMVrzmdOxcIW35C/w/sEdvdXk47+Bt+UblQZ79h10/oBg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SA0PR12MB4349.namprd12.prod.outlook.com (2603:10b6:806:98::21)
- by BYAPR12MB3207.namprd12.prod.outlook.com (2603:10b6:a03:135::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Wed, 13 Apr
- 2022 16:18:04 +0000
-Received: from SA0PR12MB4349.namprd12.prod.outlook.com
- ([fe80::e15c:41ca:1c76:2ef]) by SA0PR12MB4349.namprd12.prod.outlook.com
- ([fe80::e15c:41ca:1c76:2ef%4]) with mapi id 15.20.5144.030; Wed, 13 Apr 2022
- 16:18:04 +0000
-Message-ID: <71fc3efb-5110-287e-0422-10c1ae90139c@nvidia.com>
-Date:   Wed, 13 Apr 2022 21:47:50 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [Patch v7 3/4] dt-bindings: memory: Update reg/reg-names
- validation
-Content-Language: en-US
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     digetx@gmail.com, krzysztof.kozlowski@linaro.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220413094012.13589-1-amhetre@nvidia.com>
- <20220413094012.13589-4-amhetre@nvidia.com>
- <YlbSGEBKgpVC51dZ@robh.at.kernel.org>
- <b050247d-a62c-62e7-7750-24cefcc93506@collabora.com>
-From:   Ashish Mhetre <amhetre@nvidia.com>
-In-Reply-To: <b050247d-a62c-62e7-7750-24cefcc93506@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR01CA0117.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:1::33) To SA0PR12MB4349.namprd12.prod.outlook.com
- (2603:10b6:806:98::21)
+        with ESMTP id S236871AbiDMQ10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:27:26 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F150B527F2
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 09:25:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1649867101;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=9+iMkpFEjyk1AZtVXTOzqrt48AoAHLCVKi3QKP08JqE=;
+        b=cpeJe0CxiJXnW53Cs/uRHfIr1QMvgm4B7PsS3vNmRdpBbzvQyn1GazV7fu3vQYQrUeTyjJ
+        lRpRx1C25/yyZAff9hvjii0fe8RpsU0NndhyfF99irXZ6uhpltIsL2LlgIJ8G0kfmSmlZj
+        v+2YMsml3yz+fmy25mT3YceDI90Pmz0=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-532-DSq2fzS5NgSwSJsfCAn6hg-1; Wed, 13 Apr 2022 12:24:20 -0400
+X-MC-Unique: DSq2fzS5NgSwSJsfCAn6hg-1
+Received: by mail-wm1-f70.google.com with SMTP id l19-20020a05600c1d1300b0038e736f98faso1092923wms.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 09:24:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9+iMkpFEjyk1AZtVXTOzqrt48AoAHLCVKi3QKP08JqE=;
+        b=IuvonaRdSjOS2uZphf2oGpDjC5lv/8rAShdjwqOIkxgxYWeCXVKY8SdHOWHYMoxL/+
+         w0U/ZV99WTp74VE4oEVwgi/y28dbT5Ph4LHcqJhr1P64m7fPUaPRS96wlQTeqliGbiFq
+         KhpTgZFYuXzYSrz82DwHSCEoIuEHj+105xmEd7WWnH0yhd/oeSFnd2PkWAfeMkXM5yqD
+         wMf04IMK8PSMkmkNOUjoAZTst1Oy3MFkKxkAq/27Vdci5m3SAOLApVHsZpPseYfIVGNU
+         VICmCMWIJrokADwV9/wNZUMZLYN6bvyzpmaq+8Q+v3wrFsuhMvYML3EXHoyJM/cp9u9g
+         r8Ww==
+X-Gm-Message-State: AOAM531k7RKAke0aczjCP/0gsGS9iV50VV+pySBK0562+jW638L9y27v
+        5T+wvdgsGKXEdU3Yp3ksSlyZsCBzfdRbTFS5MDz/250ChXCf0dlEvPt2Dbi5JhanotDZ1QCpooU
+        gVu3grS94AOhgoQPfRSkkEQ==
+X-Received: by 2002:a05:600c:2744:b0:38e:b6f7:d548 with SMTP id 4-20020a05600c274400b0038eb6f7d548mr9395329wmw.49.1649867059228;
+        Wed, 13 Apr 2022 09:24:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzwqGxQDzVECdH3ZUuCtLW9dxuvadtDdmYHzpNw2mfwNWoXu5bqtIEYbN/8mZRxCF6rsLOxRQ==
+X-Received: by 2002:a05:600c:2744:b0:38e:b6f7:d548 with SMTP id 4-20020a05600c274400b0038eb6f7d548mr9395298wmw.49.1649867058909;
+        Wed, 13 Apr 2022 09:24:18 -0700 (PDT)
+Received: from minerva.home ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id t9-20020adfa2c9000000b002061561d4a7sm25446096wra.96.2022.04.13.09.24.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Apr 2022 09:24:18 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Chen-Yu Tsai <wens@kernel.org>, Rob Herring <robh@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Chen-Yu Tsai <wens@csie.org>, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/5] drm/solomon: Add SSD130x OLED displays SPI support
+Date:   Wed, 13 Apr 2022 18:23:53 +0200
+Message-Id: <20220413162359.325021-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: df03f1ff-dfb9-403d-7e93-08da1d692fba
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3207:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB32079CBB151B723920039D3CCAEC9@BYAPR12MB3207.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 25kpPtLSnhamHNyQVOSHWMxHTD7yLl8z4hLzFU9QJ7hv0EjBlhgOl9d86x2+YQbxAWjm+ts03lZ/57Z/GtnzhGuO/77r7EosXuwJMfFGil0MQKoa7R8UWIo3vK8OqnhMgNADOWheCDWtm92BzYkzjR9C7snJ4HvYM+P33VN3xVRGrFrynycYdQbxisrJJnebYUENVJaZyfvq8oh3uqoslo/Suau4oqMle4oDWn5bGZvCmm5i/qboJp9y6mCUPygscfka23Uiq4g+Ixxl/j+KtqWeOrKsnMgJhUemXbV6qurx1OMkj+NDKr07Q6DYcppcQWPJyfcX2VY2RM16nOIhyNa61lMtSq3WAWEbwruGDezJ+aDYxIPdBv4i9rJEdy92FmE3HtY8RgMVVMg+mnALlnnEXVEx47a5+nSB42c4wvfFGTQGeWSYv5w2cyJC4KKkflA+559ixOCiQ0xYKaqy7lKK5kP1hHxmlc3Dhm294OjXymmScM+xBeqZLQ/DLgEhGhrc0pKSuEXk49fCS0IGpnrX055jV88OUexLElTRwN4y2RXySbm7DNn+HGj0dJ3LZ1bgacmNneV27iTElU4S6s4ucp/PnD9Jcou4bD3r85ZYj7W1aLG4fxGktrwpPub1TqyaUk/Xm1WIhui68PcCd/MDM7u8yeVoJFqbu5LHk3gjFxKl5Dp0fUbpBoie5S/xg4Dm8NdrfZM89IrTvEjHUsUhJwplXQlIIEF6D6POVOM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR12MB4349.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66556008)(66946007)(4326008)(8676002)(5660300002)(8936002)(2906002)(55236004)(66476007)(6666004)(6506007)(6486002)(508600001)(26005)(31696002)(38100700002)(53546011)(186003)(2616005)(107886003)(86362001)(83380400001)(15650500001)(6512007)(316002)(31686004)(36756003)(110136005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2hWWkE2ZTgzNmN3SDVlWTREMkY1NEtCTDNLWnFXYnVIMU12Y3dEbWlTV3pK?=
- =?utf-8?B?cTRsa1lzUUFadnB2VE5xRloyMHZNZXhoL2xlWkJ4c2M3REthY29kemRDa1Fu?=
- =?utf-8?B?U2gva2lJUW01V0s4Vmlkd2kvZDJUZmZqMUUrT2o0Qmtta1BxRWJpWnExWnZO?=
- =?utf-8?B?S2dsY1ZTb2s2QXV1Yi9mNlNUREFnZnRYMXlmUTBZb3E2YjY3SmYvSTI2KzFz?=
- =?utf-8?B?NkJKdENDc1VnLzJpd3dkbGVkQnR0Ny9ya2M4eFpmZnZkRzJyaVYyVmYwMWVL?=
- =?utf-8?B?enZwZ21vTlhrVkhkaFFRdmxVb0hkWTFWa0FIdlVxZjdZMVBxa08rQXlQYW1O?=
- =?utf-8?B?RjJkam1nSkpqYjhCOUlzM3VMUXFNK0gzMXIyUTFLT1hFWnVOTHNSZHRxdW1s?=
- =?utf-8?B?SmwrdjJWNzZSSm1DZHdXc2dSOTBMVGZpL1BMbmpkV3JiZmN6QUdBSUVRT1Vr?=
- =?utf-8?B?NkE0TmlQSmJubDdGdGJvQXdWbWduUnAxZ21sYWNxeHNrS0xya2hrUkp3WVgr?=
- =?utf-8?B?dDNYMlpzenBsS1FuTUR0T3E2Mmt2NktVKy9VcFRvd3hUcVRMNUpJUlllZFJa?=
- =?utf-8?B?QjFIbnlraWhXNU0vVzlzMUhnay9YOXJNS25jSm1FYkI3Z3psVlcyVWpKVkpX?=
- =?utf-8?B?TUFDaG9UcjVoYzdJZXY0WEFZR25QczFWREp3SDBTL1lUNVdjWDd1dlNMemhM?=
- =?utf-8?B?M2k3dHV4eStSRUpaSXlKdXB6eEZzNGh4TnpwVHJFelJVUGticzF2c2JzbWd5?=
- =?utf-8?B?SzJFT3VXMklWNnR4NzFOYy96VEdpMDFtVUhkL3Z1RVhHTDloN1A2L2pXWENN?=
- =?utf-8?B?M0dRWnc0MGw1SHd3Yk9qcHQvRmFkUVYxc3gxNytWNHQ2VnM2N2lMbFB1WUxX?=
- =?utf-8?B?UUJsaG9QS1dMaXhlUEkxeVIxUzdGcDhYYTFuWE5ZR21zYXdNdVRvWDhHK3Iw?=
- =?utf-8?B?ZFhOWWpiVHcyVk8wZG42d0dHVDJjRjRvVXZSRHc5TGdzOG1WOWJ2YW4xN3J3?=
- =?utf-8?B?ZXJJZFM4Y0RGVUd5ektJWGVMMVpCMzI2V05LNXMySnJmTEIvVFFsOUZzbnNS?=
- =?utf-8?B?NWtEM3c0aENGU0tGd0tramlESTVGck0wdzN0Q1BFQWpKdjMrRkJEWGRZSUJp?=
- =?utf-8?B?MXRINEFzaUlaSUs5U29FR0VENEFrUDVVRFZzR212Vjd1b2lpN3pHcmNJaXZq?=
- =?utf-8?B?NXowbExsdThWUjBVang5OVd0SUx2c25DajdBV3dyT2NmZlAxSWhnaE1qVHkz?=
- =?utf-8?B?VUt1NUsyTVJuTUpEOW1KRXBnMXlCL3VZUk9yVE9VL3BKb0lSaUJzU1Urd3hY?=
- =?utf-8?B?dHFJeHcvR2EwLzU4aHZpd0trdlBpZUlOV3dwVW9sLzRrWTYxSi9GVW5lQ1dn?=
- =?utf-8?B?aCs2WmZhVmVHUTVNcXVFY2RzQnlDSk1Bc1owb3JRb01oZ0tJT3k0ajlRazZB?=
- =?utf-8?B?bEMyRWpFaDhJQ29wOFE1ZjJwVG5qRlpFb2FjUCswQ1R5VVJFK2xzNHhlZ1pG?=
- =?utf-8?B?RzUxQW1YaVpDVHI3Mlhpbk1rWHltbGorRWtaRlpXMmZZenIxeHh1VW13ajk1?=
- =?utf-8?B?UVhQZ3U5bWhFUmVQSkVqcS9kQ1drRnZ4dXdKdzQwOUsxT01IYzk0SXA1bWtt?=
- =?utf-8?B?RHZ5K3hwNGFkQWs1d3NjUk1CVVR6N1VQS1FjYW9LaXBobzl6L1JjSGJNMXpw?=
- =?utf-8?B?cm9uQzNBbEx1QzdGODZjU05IeTJIdmFPdDJYeVhwajM3OHFTSXlhdXJDOGt5?=
- =?utf-8?B?dzd5ejY3WlgyR3ZKaEE0WHdpcFhDYXV6UGxmYmpzRit2WXVEV2xaeTl3aHdX?=
- =?utf-8?B?VVRGTTJoQ1NvVGY4amFKTERNYnVnQmFKU1VGQk9LQWlmMGJpVzBiZUUyNFlR?=
- =?utf-8?B?alJTWXRhUUtjV0dpRi9JMjVRNTlUV1g0YU5RaE9xbCtsc0dPc3hKeHJTN3Jt?=
- =?utf-8?B?MEtMY0hUMlV0ZzZPL28rMVo5aHpFMTI2R25Sd3JldnFWaDhqYm80b3hkTmdw?=
- =?utf-8?B?U25nendyOUcvVlhVTThseWZiQk1CNkpBd2Zpbk1nSEdwUEVnRDJWYVJzdUVZ?=
- =?utf-8?B?UFlURTM3SXEvYndiODBSSTJ3WnJOeW8vMy9SbTJXUFBqdzNVQ2YyMU1YWU5J?=
- =?utf-8?B?WGhqWGVoY1JKbTZ1TStLdjJ2cDdkVDN1eEYwdlRWNmxQY1Fnc3Z4LzFNR1c2?=
- =?utf-8?B?L3U3SnhqTk5xOXZKOVdDQ1VxcHJ4eWg1SU5nMHlKL3VKRUJreUduQWdtb1V5?=
- =?utf-8?B?QU9RM0xOUGRZSEczcThiVEZKYTJ0ellsa2tDNUg4dUxPSDE0VUw0TWxPWXlV?=
- =?utf-8?B?WXVjdE5CUTUrTm1RQ1cxYmZpTXNBaVpOYXlSOTRWalBqRk80UGRVUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: df03f1ff-dfb9-403d-7e93-08da1d692fba
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4349.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2022 16:18:04.0243
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5kl5+2wYz/p9oxW9iSWSdWTQ0xAXg1+GNc4IhL69k1Ps7aJrBkPZ8Y+QPVJYDp+wKHxTE82K8Lq1inuphqwmLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3207
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
+This series adds a ssd130x-spi driver that provides a 4-wire SPI transport
+support for SSD130x OLED controllers that can be accessed over a SPI bus.
 
-On 4/13/2022 7:34 PM, Dmitry Osipenko wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> On 4/13/22 16:37, Rob Herring wrote:
->> On Wed, Apr 13, 2022 at 03:10:11PM +0530, Ashish Mhetre wrote:
->>>  From tegra186 onwards, memory controller support multiple channels.
->>> Reg items are updated with address and size of these channels.
->>> Tegra186 has overall 5 memory controller channels. Tegra194 and tegra234
->>> have overall 17 memory controller channels each.
->>> There is 1 reg item for memory controller stream-id registers.
->>> So update the reg maxItems to 18 in tegra186 devicetree documentation.
->>> Also update validation for reg-names added for these corresponding reg
->>> items.
->>
->> Somehow your subject should indicate this is for Tegra.
->>
->>>
->>> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
->>> ---
->>>   .../nvidia,tegra186-mc.yaml                   | 80 +++++++++++++++++--
->>>   1 file changed, 74 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>> index 13c4c82fd0d3..c7cfa6c2cd81 100644
->>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>> @@ -34,8 +34,12 @@ properties:
->>>             - nvidia,tegra234-mc
->>>
->>>     reg:
->>> -    minItems: 1
->>> -    maxItems: 3
->>> +    minItems: 6
->>
->> You just broke current users.
->>
->>> +    maxItems: 18
->>> +
->>> +  reg-names:
->>> +    minItems: 6
->>> +    maxItems: 18
->>>
->>>     interrupts:
->>>       items:
->>> @@ -142,7 +146,18 @@ allOf:
->>>       then:
->>>         properties:
->>>           reg:
->>> -          maxItems: 1
->>> +          maxItems: 6
->>> +          description: 5 memory controller channels and 1 for stream-id registers
->>> +
->>> +        reg-names:
->>> +          maxItems: 6
->>> +          items:
->>> +            - const: sid
->>> +            - const: broadcast
->>> +            - const: ch0
->>> +            - const: ch1
->>> +            - const: ch2
->>> +            - const: ch3
->>>
->>>     - if:
->>>         properties:
->>> @@ -151,7 +166,30 @@ allOf:
->>>       then:
->>>         properties:
->>>           reg:
->>> -          minItems: 3
->>> +          minItems: 18
->>> +          description: 17 memory controller channels and 1 for stream-id registers
->>> +
->>> +        reg-names:
->>> +          minItems: 18
->>> +          items:
->>> +            - const: sid
->>> +            - const: broadcast
->>> +            - const: ch0
->>> +            - const: ch1
->>> +            - const: ch2
->>> +            - const: ch3
->>> +            - const: ch4
->>> +            - const: ch5
->>> +            - const: ch6
->>> +            - const: ch7
->>> +            - const: ch8
->>> +            - const: ch9
->>> +            - const: ch10
->>> +            - const: ch11
->>> +            - const: ch12
->>> +            - const: ch13
->>> +            - const: ch14
->>> +            - const: ch15
->>>
->>>     - if:
->>>         properties:
->>> @@ -160,13 +198,37 @@ allOf:
->>>       then:
->>>         properties:
->>>           reg:
->>> -          minItems: 3
->>> +          minItems: 18
->>> +          description: 17 memory controller channels and 1 for stream-id registers
->>> +
->>> +        reg-names:
->>> +          minItems: 18
->>> +          items:
->>> +            - const: sid
->>> +            - const: broadcast
->>> +            - const: ch0
->>> +            - const: ch1
->>> +            - const: ch2
->>> +            - const: ch3
->>> +            - const: ch4
->>> +            - const: ch5
->>> +            - const: ch6
->>> +            - const: ch7
->>> +            - const: ch8
->>> +            - const: ch9
->>> +            - const: ch10
->>> +            - const: ch11
->>> +            - const: ch12
->>> +            - const: ch13
->>> +            - const: ch14
->>> +            - const: ch15
->>>
->>>   additionalProperties: false
->>>
->>>   required:
->>>     - compatible
->>>     - reg
->>> +  - reg-names
->>
->> New, added properties cannot be required. That's an ABI break.
->>
->>>     - interrupts
->>>     - "#address-cells"
->>>     - "#size-cells"
->>> @@ -182,7 +244,13 @@ examples:
->>>
->>>           memory-controller@2c00000 {
->>>               compatible = "nvidia,tegra186-mc";
->>> -            reg = <0x0 0x02c00000 0x0 0xb0000>;
->>> +            reg = <0x0 0x02c00000 0x0 0x10000>,    /* MC-SID */
->>> +                  <0x0 0x02c10000 0x0 0x10000>,    /* Broadcast channel */
->>> +                  <0x0 0x02c20000 0x0 0x10000>,    /* MC0 */
->>> +                  <0x0 0x02c30000 0x0 0x10000>,    /* MC1 */
->>> +                  <0x0 0x02c40000 0x0 0x10000>,    /* MC2 */
->>> +                  <0x0 0x02c50000 0x0 0x10000>;    /* MC3 */
->>> +            reg-names = "sid", "broadcast", "ch0", "ch1", "ch2", "ch3";
->>>               interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
->>>
->>>               #address-cells = <2>;
->>> --
->>> 2.17.1
->>>
-> 
-> Oh, wait.. I didn't notice that the new reg ranges are only splitting up
-> the old ranges. Previously it appeared to me that these are the new ranges.
->  > Ashish, in this case you don't need to change the regs in the DT at all.
-> Instead, you need to specify the per-channel reg-base offsets in the
-> driver code.
+The driver is quite similar to existing ssd130x-i2c driver that is used by
+I2C controllers, but there is a difference in the protocol used by SSD130x
+depending on the transport used. The details are in patch #4 description.
 
-Yes, it's kind of splitting up the old ranges and straight forward for
-Tegra186. But on Tegra194 and Tegra234 the old address is not in single
-range. It's already split across 3 ranges. We have to choose right range
-and add channel offsets to that range in order to read interrupts.
-So I went with the approach of splitting the regs in DT itself as per
-the channels because that way they can be mapped in a single loop and
-used easily.
-If we want to specify per-channel reg-base offsets then that would be
-per-SOC. Also we would need to choose correct reg-range for Tegra194 and
-Tegra234 and have a way to maintain offsets of channels from those
-respective reg-ranges.
+Patch #1 just makes the current ssd130x-i2c compatible strings in the DT
+binding to be deprecated, and add new ones that don't have an "fb-i2c".
+
+Patch #2 extends the DT binding with the properties needed to support SPI.
+
+Patch #3 adds the new compatible strings to the OF device ID table in the
+ssd130x-i2c DRM driver and deprecate the old ones.
+
+Patch #4 moves the device info for the different SSD130x variants from
+the ssd130x-i2c transport driver to the ssd130x core driver.
+
+Finally patch #5 adds the ssd130x-spi DRM driver for the OLED controllers
+that come with a 4-wire SPI interface, instead of an I2C interface.
+
+This is a v4 that addresses the issues pointed out in v3.
+
+Best regards,
+Javier
+
+Changes in v4:
+- Add a description for the dc-gpios property for SPI (Geert Uytterhoeven)
+- Export ssd13x_variants array using EXPORT_SYMBOL_NS_GPL() (Andy Shevchenko)
+- Use MODULE_IMPORT_NS(DRM_SSD130X) in the ssd130x-i2c driver (Andy Shevchenko)
+- Use MODULE_IMPORT_NS(DRM_SSD130X) in the ssd130x-spi driver (Andy Shevchenko)
+
+Changes in v3:
+- Drop the "sinowealth,sh1106-i2c", wasn't in a released version (Chen-Yu Tsai)
+- Continue enforcing required properties for deprecated strings (Maxime Ripard)
+- Add a comment to the properties required for SPI (Geert Uytterhoeven)
+- Drop the "sinowealth,sh1106-i2c", wasn't in a released version (Chen-Yu Tsai)
+- s/it/they in the commit description (Geert Uytterhoeven)
+- Drop unnecessary blank line (Geert Uytterhoeven)
+- Export variants array and use &info[ID] in device table (Andy Shevchenko)
+- Drop ssd130x_spi_get_dc() helper and open code it (Geert Uytterhoeven)
+- Export variants array and use &info[ID] in device table (Andy Shevchenko)
+- Add Geert Uytterhoeven's Reviewed-by tag to patches.
+
+Changes in v2:
+- Drop the -i2c suffixes from the compatible strings too (Geert Uytterhoeven)
+- Don't add compatible strings with an "-spi" suffix (Geert Uytterhoeven)
+- Use the compatible strings that don't have "fb-i2c" (Geert Uytterhoeven).
+- Drop ssd13x_variant_to_info() and just use the array index (Neil Armstrong).
+- Add the same compatible strings than I2C (Geert Uytterhoeven)
+- Add Mark Brown's Acked-by tag to all patches.
+
+Javier Martinez Canillas (5):
+  dt-bindings: display: ssd1307fb: Deprecate "-i2c" compatible strings
+  dt-bindings: display: ssd1307fb: Extend schema for SPI controllers
+  drm/solomon: Add ssd130x new compatible strings and deprecate old
+    ones.
+  drm/solomon: Move device info from ssd130x-i2c to the core driver
+  drm/solomon: Add SSD130x OLED displays SPI support
+
+ .../bindings/display/solomon,ssd1307fb.yaml   |  86 +++++++--
+ drivers/gpu/drm/solomon/Kconfig               |   9 +
+ drivers/gpu/drm/solomon/Makefile              |   1 +
+ drivers/gpu/drm/solomon/ssd130x-i2c.c         |  64 +++----
+ drivers/gpu/drm/solomon/ssd130x-spi.c         | 178 ++++++++++++++++++
+ drivers/gpu/drm/solomon/ssd130x.c             |  35 +++-
+ drivers/gpu/drm/solomon/ssd130x.h             |  14 ++
+ 7 files changed, 330 insertions(+), 57 deletions(-)
+ create mode 100644 drivers/gpu/drm/solomon/ssd130x-spi.c
+
+-- 
+2.35.1
+
