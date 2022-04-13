@@ -2,92 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFDB94FFA9E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 971954FFAA4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236060AbiDMPug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 11:50:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
+        id S235029AbiDMPvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:51:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234823AbiDMPuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:50:35 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD636620C
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:48:14 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bg10so4845552ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:48:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZUrQrM6enlfgMn/MObow0T//8GW1/W7c2olNoWx1WQk=;
-        b=cYfqlHMdFO+1nIfKsAz4h6xPJv2H4bDpx6SKU16eUaPGolydDIUZXiFqJ4uFG9fEUD
-         s1JN7QgJc9x8Fpc+CnbHbMZIMTs/EX3jXd84yTJB8toixzJQjfY3p85nNPujj7eJkSqX
-         XrZlSeOQ35HWKlgeAeLgV7AllKwssXdC2jakg6tq5XVK0AzKtQYDcbsfryjfx8L23lFw
-         /Q2W/520v3rByUE6mufw/9151seYEOyIeY43Y4O2pzCDIOK9xCJwRBdEm/wJTlaRH5Xl
-         3S19cbHHB7nfQBbD/iOs0Q0+qb8gInlWh0m5iIQIsGlplV1XiE9kyB7TSucWpNE9EKym
-         AqLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZUrQrM6enlfgMn/MObow0T//8GW1/W7c2olNoWx1WQk=;
-        b=wE33ed/TPUyXUktGjRdmIT+tw2V0dapQOVURrv0IHyKa9RBSFUBIZb4325lrm1pcbA
-         BrJ7IH4E1n/1R0mTuSwJqxPq6G/jmOCMuGaYC7FVa3bsCOhRtllZiQGIz8fumqcCFWs1
-         13SsTOUqtQaiTd6QT/vY2smHqdDlnb9axJafO9T1b0xErLHsSj/iGWWlq0hudoxvdEkR
-         WvKxsR4gOPDI1NGEibfLsBI/QYoI2Da9gOlLEFqZRAhC3zHCoEnqufRWzlcwIe/0V1T3
-         ELcpcKMvwY6c81GKfaQx9Ds7Nqf66HuQIxErZyQ2XGHhqQD7C7BBbi00pTbtLOS+tGct
-         lswg==
-X-Gm-Message-State: AOAM5333LvN6HzCy69i4vAhY9S3M3g1f/oqvWioJBn6qqKrFvb576qTS
-        dzlXk47oIirdanCHI4gn/X3gZw==
-X-Google-Smtp-Source: ABdhPJw7BMUh+VGZ5d6fOhsX9G0k6NTnqjs/n3rz6db8TkQALWGGalbmx8ZRBt7Za10zl8HCGtEraQ==
-X-Received: by 2002:a17:907:724a:b0:6e8:4f12:b6fd with SMTP id ds10-20020a170907724a00b006e84f12b6fdmr23155552ejc.198.1649864892685;
-        Wed, 13 Apr 2022 08:48:12 -0700 (PDT)
-Received: from [192.168.0.205] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id r16-20020a056402019000b00418ed60c332sm1246147edv.65.2022.04.13.08.48.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 08:48:12 -0700 (PDT)
-Message-ID: <8c1909da-8877-9bff-deed-c8f39037b3eb@linaro.org>
-Date:   Wed, 13 Apr 2022 17:48:11 +0200
+        with ESMTP id S234659AbiDMPvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:51:11 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C6666226;
+        Wed, 13 Apr 2022 08:48:48 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7A0C360009;
+        Wed, 13 Apr 2022 15:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649864927;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dUc7DZ0s5s8q5Hp7V4kZQSzl4aTwEKtCJGqudHda2mY=;
+        b=H5l4NFNlJQsdB8Ss/FBLauC8vGBummdq9D+Bu9irYpQvpIHYhwDhp6meFOyLbsXThZaW4v
+        fV7L6Op+QXiMZ+PQNQ6TfJfUFc4/jgHmR/5u2B+2PS1tt+IwahSk92gK2sS4xqQg0mIawT
+        W2/3saE14UCRF2nEBq0bM04IkeoeI9rd/M2q9QW0ry7Bt6QJZQ2VXvPGJwRU9hIjPdq1Cj
+        OT2uvWFrOy1sluYR/EcQpnAFhUAmxb2D4XZvJKYFdJau5v5lAQm5qv89696DpRZng0Du25
+        KDnmT0UkW3lTnCNk86jgxjjeKpIyVUAYONe5IS/+XHg+zrWDr3tKykMmIisgJg==
+Date:   Wed, 13 Apr 2022 17:48:45 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        linux-rtc@vger.kernel.org,
+        Michel Pollet <michel.pollet@bp.renesas.com>
+Subject: Re: [PATCH 3/7] rtc: rzn1: Add new RTC driver
+Message-ID: <Ylbw3bEc+QK4m9hX@mail.local>
+References: <20220405184716.1578385-1-miquel.raynal@bootlin.com>
+ <20220405184716.1578385-4-miquel.raynal@bootlin.com>
+ <Yk1UXjTk32Vc9+/k@mail.local>
+ <20220413172327.73d1fcc1@xps13>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: ti,sa2ul: Add a new compatible
- for AM62
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, linux-crypto@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-References: <20220412073016.6014-1-j-choudhary@ti.com>
- <20220412073016.6014-2-j-choudhary@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220412073016.6014-2-j-choudhary@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220413172327.73d1fcc1@xps13>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 09:30, Jayesh Choudhary wrote:
-> Add the AM62 version of sa3ul to the compatible list.
+Hi Miquèl,
+
+On 13/04/2022 17:23:27+0200, Miquel Raynal wrote:
+> > > +static int rzn1_rtc_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct rzn1_rtc *rtc;
+> > > +	int ret;
+> > > +
+> > > +	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
+> > > +	if (!rtc)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	platform_set_drvdata(pdev, rtc);
+> > > +
+> > > +	rtc->clk = devm_clk_get(&pdev->dev, "hclk");
+> > > +	if (IS_ERR(rtc->clk))
+> > > +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk), "Missing hclk\n");
+> > > +
+> > > +	rtc->base = devm_platform_ioremap_resource(pdev, 0);
+> > > +	if (IS_ERR(rtc->base))
+> > > +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->base), "Missing reg\n");
+> > > +
+> > > +	rtc->rtcdev = devm_rtc_allocate_device(&pdev->dev);
+> > > +	if (IS_ERR(rtc->rtcdev))
+> > > +		return PTR_ERR(rtc);
+> > > +
+> > > +	rtc->rtcdev->range_max = 3178591199UL; /* 100 years */  
+> > 
+> > I'm not sure how you came to this value, this is 2070-09-22T05:59:59.
+> > I'm pretty sure the RTC will not fail at that time. Also, the comment
+> > seems fishy.
 > 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> The RTC itself as no "starting point", but just a counter that can
+> count up to 100. So the max range is start-year + 100 years. But at
+> this point I don't yet have access to the start-year value. What's
+> your advise?
 
+The question is why is this limited to 100 years? My guess is that it
+doesn't handle leap years properly if this is the case, there is only
+one range that works, this is 2000-01-01 to 2099-12-31 like many other
+RTCs.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You can run rtc-range from rtc-tools after removing range_max to find
+out.
 
+Cheers
 
-Best regards,
-Krzysztof
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
