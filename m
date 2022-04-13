@@ -2,133 +2,388 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64DF74FEDF0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 05:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED0DB4FEEAE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 07:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232204AbiDMD5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 23:57:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41824 "EHLO
+        id S232591AbiDMFr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 01:47:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232170AbiDMD51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 23:57:27 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BF4D13CCE
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 20:55:07 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id b188so803956oia.13
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 20:55:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FvzKmQHaXA0DZABJVytp1jfjqBhOZKxzqyShV5ysPaI=;
-        b=OAYW9UBBpw4A+iCY4I5EaWlkldsxeOp+anBKmwX62Q0TRRCSFVHoTCU5lunO/PwDLx
-         o9Lq+MXt+IxvKdH0+TdwOTFmR5YDmI6ZONy2//sJsfgol5+xR2NEjtKeNDnKFkHRMyLX
-         uQV14/xbRAHLShTXWvkTeNZPc7KBdG+lJ2ai5PR/UXkH2YMusFSkfEqo/SBYzYCMwiRZ
-         4CwUcjqa5I8qMkUoPikziGCvExKSgudLFV/G9BqZmw6fXq1ERAJUJUcr8gfAmhDtNXAO
-         U/SWYihomjkSpBd2ZLvLsVY6dBsmG35qBse0B1wtgjTr82HNcKu1hl4mrtjzl7oddirx
-         0AMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FvzKmQHaXA0DZABJVytp1jfjqBhOZKxzqyShV5ysPaI=;
-        b=7Mja+juIjJ92iAlADg5Cu3SyyOsLVprqvxyBh9keIFWq32VxyDqD9Pw84k3+EZOSgI
-         lUcbmo3svhso77fjdzSgc4s3w+SiQp1TwHIJLksqIn+pJLNKKj26v1Pr/oSFvhtHpC4+
-         svpUJ58fRoSC2n6z0ZGeNToHJEV2kwVtIPD6KU/8wmQh6JzzNLpj5x9ut+CnYaEmQRUk
-         kNDSWskE6C+04Se2rfu72noinKiIgezwd3tru+wdU081jaUUugmBrsxn4LI9lvq8I5r6
-         pPEkpRy35kDcrCZJ9vhOpu7kdYPBrWJRbJZDPGBMCRLkidok20D1zHxRk2qx7WaWW7fM
-         K9VQ==
-X-Gm-Message-State: AOAM531EFu9vu9MHftCXPdm9sdu+eNXC+STZoO88nIcpOeIWiQgGdw4i
-        nci1y4sxS0kK14REkLTgd2orXw==
-X-Google-Smtp-Source: ABdhPJytHv9MYWBDz80W+4BG+BN0cR8bkxDn1ifdKRCOmARN+MzL0v9/ak+9qWlwCN1TEpvdUahlHA==
-X-Received: by 2002:a05:6808:1201:b0:2f9:ef08:1a4f with SMTP id a1-20020a056808120100b002f9ef081a4fmr3263265oil.192.1649822106718;
-        Tue, 12 Apr 2022 20:55:06 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id e9-20020a056820060900b003216277bfdasm13576747oow.19.2022.04.12.20.55.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 20:55:06 -0700 (PDT)
-Date:   Tue, 12 Apr 2022 20:57:20 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8350: Add GENI I2C/SPI DMA
- channels
-Message-ID: <YlZKIKR1iHO+Btwk@ripper>
-References: <20220412215137.2385831-1-bjorn.andersson@linaro.org>
- <20220412215137.2385831-2-bjorn.andersson@linaro.org>
- <YlZALC0DdSPB9n+/@matsya>
+        with ESMTP id S232584AbiDMFrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 01:47:16 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED0224591;
+        Tue, 12 Apr 2022 22:44:44 -0700 (PDT)
+X-UUID: 7f570b11644f46179f58f5b890772c35-20220413
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:5b207847-8f80-4971-a077-2bb5c2bc1d0a,OB:10,L
+        OB:10,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham
+        ,ACTION:release,TS:83
+X-CID-INFO: VERSION:1.1.4,REQID:5b207847-8f80-4971-a077-2bb5c2bc1d0a,OB:10,LOB
+        :10,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D
+        ,ACTION:quarantine,TS:83
+X-CID-META: VersionHash:faefae9,CLOUDID:a3833878-0afa-4dca-bdec-ca54c998425a,C
+        OID:f47502fb5ea1,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: 7f570b11644f46179f58f5b890772c35-20220413
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1656199588; Wed, 13 Apr 2022 13:44:37 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 13 Apr 2022 13:44:36 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 13 Apr
+ 2022 13:44:35 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 13 Apr 2022 13:44:33 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH] media: mediatek: vcodec: add vp9 decoder driver for mt8186
+Date:   Wed, 13 Apr 2022 13:44:31 +0800
+Message-ID: <20220413054431.29917-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YlZALC0DdSPB9n+/@matsya>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 12 Apr 20:14 PDT 2022, Vinod Koul wrote:
+From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
 
-> On 12-04-22, 14:51, Bjorn Andersson wrote:
-> > The GENI I2C and SPI controllers may use the GPI DMA engine, define the
-> > rx and tx channels for these controllers to enable this.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8350.dtsi | 108 +++++++++++++++++++++++++++
-> >  1 file changed, 108 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> > index 7e585d9e4c68..8547c0b2f060 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> > @@ -721,6 +721,9 @@ i2c14: i2c@880000 {
-> >  				pinctrl-names = "default";
-> >  				pinctrl-0 = <&qup_i2c14_default>;
-> >  				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
-> > +				dmas = <&gpi_dma2 0 0 QCOM_GPI_I2C>,
-> > +				       <&gpi_dma2 1 0 QCOM_GPI_I2C>;
-> > +				dma-names = "tx", "rx";
-> 
-> I have been thinking about this. I dont feel this is right approach here
-> as this is board dependent and having the firmware loaded on the board..
-> 
-> This was tested on HDK and can fail in MTP or other boards.. which might
-> be in FIFO mode
-> 
+Add vp9 single core decode driver to support mt8186.
 
-But if the controller is in FIFO mode, then !fifo_disable so we wouldn't
-try to pick up the dmas. And in the opposite case, i.e. when
-fifo_disable, the introduction of the GPI implementation meant that the
-i2c driver wouldn't no longer probe without the dmas specified.
+Signed-off-by: Mingjia Zhang <mingjia.zhang@mediatek.com>
+Signed-off-by: Xiaoyong Lu <xiaoyong.lu@mediatek.com>
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+This patch depends on "support mt8195 decoder"[1]
 
-Unfortunately we don't have any i2c busses enabled on the MTP currently,
-so I'm not able to validate this easily.
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20220413035410.29568-1-yunfei.dong@mediatek.com/
+---
+ .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 197 +++++++++++++++++-
+ .../platform/mediatek/vcodec/vdec_drv_if.c    |   2 +-
+ 2 files changed, 195 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+index 4b20d6e09809..8373b7ea3d44 100644
+--- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+@@ -439,6 +439,8 @@ struct vdec_vp9_slice_ref {
+  * @init_vsi:		vsi used for initialized VP9 instance
+  * @vsi:		vsi used for decoding/flush ...
+  * @core_vsi:		vsi used for Core stage
++ *
++ * @sc_pfc:		per frame context single core
+  * @counts_map:	used map to counts_helper
+  * @counts_helper:	counts table according to newest kernel spec
+  */
+@@ -487,6 +489,7 @@ struct vdec_vp9_slice_instance {
+ 	};
+ 	struct vdec_vp9_slice_vsi *core_vsi;
+ 
++	struct vdec_vp9_slice_pfc sc_pfc;
+ 	struct vdec_vp9_slice_counts_map counts_map;
+ 	struct v4l2_vp9_frame_symbol_counts counts_helper;
+ };
+@@ -692,6 +695,25 @@ static int vdec_vp9_slice_tile_offset(int idx, int mi_num, int tile_log2)
+ 	return offset < mi_num ? offset : mi_num;
+ }
+ 
++static
++int vdec_vp9_slice_setup_single_from_src_to_dst(struct vdec_vp9_slice_instance *instance)
++{
++	struct vb2_v4l2_buffer *src;
++	struct vb2_v4l2_buffer *dst;
++
++	src = v4l2_m2m_next_src_buf(instance->ctx->m2m_ctx);
++	if (!src)
++		return -EINVAL;
++
++	dst = v4l2_m2m_next_dst_buf(instance->ctx->m2m_ctx);
++	if (!dst)
++		return -EINVAL;
++
++	v4l2_m2m_buf_copy_metadata(src, dst, true);
++
++	return 0;
++}
++
+ static int vdec_vp9_slice_setup_lat_from_src_buf(struct vdec_vp9_slice_instance *instance,
+ 						 struct vdec_lat_buf *lat_buf)
+ {
+@@ -1568,6 +1590,33 @@ static int vdec_vp9_slice_update_prob(struct vdec_vp9_slice_instance *instance,
+ 	return 0;
+ }
+ 
++static int vdec_vp9_slice_update_single(struct vdec_vp9_slice_instance *instance,
++				        struct vdec_vp9_slice_pfc *pfc)
++{
++	struct vdec_vp9_slice_vsi *vsi;
++
++	vsi = &pfc->vsi;
++	memcpy(&pfc->state[0], &vsi->state, sizeof(vsi->state));
++
++	mtk_vcodec_debug(instance, "Frame %u Y_CRC %08x %08x %08x %08x\n",
++			 pfc->seq,
++			 vsi->state.crc[0], vsi->state.crc[1],
++			 vsi->state.crc[2], vsi->state.crc[3]);
++	mtk_vcodec_debug(instance, "Frame %u C_CRC %08x %08x %08x %08x\n",
++			 pfc->seq,
++			 vsi->state.crc[4], vsi->state.crc[5],
++			 vsi->state.crc[6], vsi->state.crc[7]);
++
++	vdec_vp9_slice_update_prob(instance, vsi);
++
++	instance->width = vsi->frame.uh.frame_width;
++	instance->height = vsi->frame.uh.frame_height;
++	instance->frame_type = vsi->frame.uh.frame_type;
++	instance->show_frame = vsi->frame.uh.show_frame;
++
++	return 0;
++}
++
+ static int vdec_vp9_slice_update_lat(struct vdec_vp9_slice_instance *instance,
+ 				     struct vdec_lat_buf *lat_buf,
+ 				     struct vdec_vp9_slice_pfc *pfc)
+@@ -1691,6 +1740,40 @@ static int vdec_vp9_slice_setup_core_buffer(struct vdec_vp9_slice_instance *inst
+ 	return 0;
+ }
+ 
++static void vdec_vp9_slice_setup_single_buffer(struct vdec_vp9_slice_instance *instance,
++					       struct vdec_vp9_slice_pfc *pfc,
++					       struct vdec_vp9_slice_vsi *vsi,
++					       struct mtk_vcodec_mem *bs,
++					       struct vdec_fb *fb)
++{
++	int i;
++
++	vsi->bs.buf.dma_addr = bs->dma_addr;
++	vsi->bs.buf.size = bs->size;
++	vsi->bs.frame.dma_addr = bs->dma_addr;
++	vsi->bs.frame.size = bs->size;
++
++	for (i = 0; i < 2; i++) {
++		vsi->mv[i].dma_addr = instance->mv[i].dma_addr;
++		vsi->mv[i].size = instance->mv[i].size;
++	}
++	for (i = 0; i < 2; i++) {
++		vsi->seg[i].dma_addr = instance->seg[i].dma_addr;
++		vsi->seg[i].size = instance->seg[i].size;
++	}
++	vsi->tile.dma_addr = instance->tile.dma_addr;
++	vsi->tile.size = instance->tile.size;
++	vsi->prob.dma_addr = instance->prob.dma_addr;
++	vsi->prob.size = instance->prob.size;
++	vsi->counts.dma_addr = instance->counts.dma_addr;
++	vsi->counts.size = instance->counts.size;
++
++	vsi->row_info.buf = 0;
++	vsi->row_info.size = 0;
++
++	vdec_vp9_slice_setup_core_buffer(instance, pfc, vsi, fb, NULL);
++}
++
+ static int vdec_vp9_slice_setup_core(struct vdec_vp9_slice_instance *instance,
+ 				     struct vdec_fb *fb,
+ 				     struct vdec_lat_buf *lat_buf,
+@@ -1717,6 +1800,43 @@ static int vdec_vp9_slice_setup_core(struct vdec_vp9_slice_instance *instance,
+ 	return ret;
+ }
+ 
++static int vdec_vp9_slice_setup_single(struct vdec_vp9_slice_instance *instance,
++				       struct mtk_vcodec_mem *bs,
++				       struct vdec_fb *fb,
++				       struct vdec_vp9_slice_pfc *pfc)
++{
++	struct vdec_vp9_slice_vsi *vsi = &pfc->vsi;
++	int ret;
++
++	ret = vdec_vp9_slice_setup_single_from_src_to_dst(instance);
++	if (ret)
++		goto err;
++
++	ret = vdec_vp9_slice_setup_pfc(instance, pfc);
++	if (ret)
++		goto err;
++
++	ret = vdec_vp9_slice_alloc_working_buffer(instance, vsi);
++	if (ret)
++		goto err;
++
++	vdec_vp9_slice_setup_single_buffer(instance, pfc, vsi, bs, fb);
++	vdec_vp9_slice_setup_seg_buffer(instance, vsi, &instance->seg[0]);
++
++	ret = vdec_vp9_slice_setup_prob_buffer(instance, vsi);
++	if (ret)
++		goto err;
++
++	ret = vdec_vp9_slice_setup_tile_buffer(instance, vsi, bs);
++	if (ret)
++		goto err;
++
++	return 0;
++
++err:
++	return ret;
++}
++
+ static int vdec_vp9_slice_update_core(struct vdec_vp9_slice_instance *instance,
+ 				      struct vdec_lat_buf *lat_buf,
+ 				      struct vdec_vp9_slice_pfc *pfc)
+@@ -1814,8 +1934,8 @@ static int vdec_vp9_slice_flush(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	struct vdec_vp9_slice_instance *instance = h_vdec;
+ 
+ 	mtk_vcodec_debug(instance, "flush ...\n");
+-
+-	vdec_msg_queue_wait_lat_buf_full(&instance->ctx->msg_queue);
++	if (instance->ctx->dev->vdec_pdata->hw_arch != MTK_VDEC_PURE_SINGLE_CORE)
++		vdec_msg_queue_wait_lat_buf_full(&instance->ctx->msg_queue);
+ 	return vpu_dec_reset(&instance->vpu);
+ }
+ 
+@@ -1868,6 +1988,63 @@ static int vdec_vp9_slice_get_param(void *h_vdec, enum vdec_get_param_type type,
+ 	return 0;
+ }
+ 
++static int vdec_vp9_slice_single_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
++				        struct vdec_fb *fb, bool *res_chg)
++{
++	struct vdec_vp9_slice_instance *instance = h_vdec;
++	struct vdec_vp9_slice_pfc *pfc = &(instance->sc_pfc);
++	struct vdec_vp9_slice_vsi *vsi;
++	struct mtk_vcodec_ctx *ctx;
++	int ret;
++
++	if (!instance || !instance->ctx)
++		return -EINVAL;
++	ctx = instance->ctx;
++
++	/* bs NULL means flush decoder */
++	if (!bs)
++		return vdec_vp9_slice_flush(h_vdec, bs, fb, res_chg);
++
++	fb = ctx->dev->vdec_pdata->get_cap_buffer(ctx);
++	if (!fb)
++		return -EBUSY;
++
++	vsi = &pfc->vsi;
++
++	ret = vdec_vp9_slice_setup_single(instance, bs, fb, pfc);
++	if (ret) {
++		mtk_vcodec_err(instance, "Failed to setup VP9 single ret %d\n", ret);
++		return ret;
++	}
++	vdec_vp9_slice_vsi_to_remote(vsi, instance->vsi);
++
++	ret = vpu_dec_start(&instance->vpu, 0, 0);
++	if (ret) {
++		mtk_vcodec_err(instance, "Failed to dec VP9 ret %d\n", ret);
++		return ret;
++	}
++
++	ret = mtk_vcodec_wait_for_done_ctx(ctx,	MTK_INST_IRQ_RECEIVED,
++					   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
++	/* update remote vsi if decode timeout */
++	if (ret) {
++		mtk_vcodec_err(instance, "VP9 decode timeout %d\n", ret);
++		writel(1, &instance->vsi->state.timeout);
++	}
++
++	vpu_dec_end(&instance->vpu);
++
++	vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
++	ret = vdec_vp9_slice_update_single(instance, pfc);
++	if (ret) {
++		mtk_vcodec_err(instance, "VP9 decode error: %d\n", ret);
++		return ret;
++	}
++
++	instance->ctx->decoded_frame_cnt++;
++	return 0;
++}
++
+ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 				     struct vdec_fb *fb, bool *res_chg)
+ {
+@@ -1947,6 +2124,20 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	return 0;
+ }
+ 
++static int vdec_vp9_slice_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
++				 struct vdec_fb *fb, bool *res_chg)
++{
++	struct vdec_vp9_slice_instance *instance = h_vdec;
++	int ret;
++
++	if (instance->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_PURE_SINGLE_CORE)
++		ret = vdec_vp9_slice_single_decode(h_vdec, bs, fb, res_chg);
++	else
++		ret = vdec_vp9_slice_lat_decode(h_vdec, bs, fb, res_chg);
++
++	return ret;
++}
++
+ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ {
+ 	struct vdec_vp9_slice_instance *instance;
+@@ -2025,7 +2216,7 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ 
+ const struct vdec_common_if vdec_vp9_slice_lat_if = {
+ 	.init		= vdec_vp9_slice_init,
+-	.decode		= vdec_vp9_slice_lat_decode,
++	.decode		= vdec_vp9_slice_decode,
+ 	.get_param	= vdec_vp9_slice_get_param,
+ 	.deinit		= vdec_vp9_slice_deinit,
+ };
+diff --git a/drivers/media/platform/mediatek/vcodec/vdec_drv_if.c b/drivers/media/platform/mediatek/vcodec/vdec_drv_if.c
+index 27b4b35039cf..f3807f03d880 100644
+--- a/drivers/media/platform/mediatek/vcodec/vdec_drv_if.c
++++ b/drivers/media/platform/mediatek/vcodec/vdec_drv_if.c
+@@ -47,7 +47,7 @@ int vdec_if_init(struct mtk_vcodec_ctx *ctx, unsigned int fourcc)
+ 		break;
+ 	case V4L2_PIX_FMT_VP9_FRAME:
+ 		ctx->dec_if = &vdec_vp9_slice_lat_if;
+-		ctx->hw_id = MTK_VDEC_LAT0;
++		ctx->hw_id = IS_VDEC_LAT_ARCH(hw_arch) ? MTK_VDEC_LAT0 : MTK_VDEC_CORE;
+ 		break;
+ 	default:
+ 		return -EINVAL;
+-- 
+2.18.0
 
-For the SPI driver though, the same logic is used to invoke
-spi_geni_grab_gpi_chan(). So dmas will only be considered if
-fifo_disabled is set.
-
-That said, in the even that the SPI driver finds a fifo_disabled
-controller and dma_request_chan() returns an error, we will fall back to
-fifo mode instead. I'm not sure if that's desirable...
-
-If that makes sense, we should at least handle EPROBE_DEFER instead of
-falling through to fifo mode.
-
-Regards,
-Bjorn
-
-> So, I think it might be apt to move these to board dtsi.. what do you
-> think?
-> 
-> -- 
-> ~Vinod
