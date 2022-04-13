@@ -2,162 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83B0D4FF078
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 09:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6885F4FF082
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 09:23:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231585AbiDMHYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 03:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48788 "EHLO
+        id S232692AbiDMHZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 03:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233280AbiDMHYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 03:24:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E323641639
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 00:22:10 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1neXK8-0002PA-B8; Wed, 13 Apr 2022 09:21:56 +0200
-Message-ID: <b112c517d5ee86ef09088ed3cc00291417101a6e.camel@pengutronix.de>
-Subject: Re: [PATCH v2 0/7] Add the iMX8MP PCIe support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Hongxing Zhu <hongxing.zhu@nxp.com>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>
-Date:   Wed, 13 Apr 2022 09:21:53 +0200
-In-Reply-To: <AS8PR04MB867606A1E2E45A0C0A1525A48CEA9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
-         <CAJ+vNU0McZxj_74DC0wCUyHq-NaT14URnvUP+kvudz7YLQq7fg@mail.gmail.com>
-         <AS8PR04MB86766041887E97E22B0AC8C48CE99@AS8PR04MB8676.eurprd04.prod.outlook.com>
-         <4f8f93c51fedc84d94534e962bc7c68c4a4e5616.camel@pengutronix.de>
-         <AS8PR04MB867606A1E2E45A0C0A1525A48CEA9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233319AbiDMHZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 03:25:44 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F864EF5B;
+        Wed, 13 Apr 2022 00:23:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1649834576;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=jSef++PqlCRC5a4E7G9ko+rR3cG0lpZnUPx+3xD3i7k=;
+    b=MiFx7X19KcZviO8N1lBrrnZQxFqdpVnskMF7uzqQgRP/aJm+jDz2EM+ReZG3FMkR5v
+    JdYIVJZzej7TkIId6fWcDIni7CLtCBG9UGi0/kPPjn4TZ6CeqPKlF9q9iqr3wv6s4+k7
+    Tz0eSNte16z2hyyaXk0SB3UP4ym/Jdr5XGXjLP2mMS2fJqvMe+OrN32QNsghhrpo2WBe
+    R60work5jkLFacohwDMRmCtDdfPWaSS4E56DF762marMk6BUmQpfVSd+n+KkoPYLoC7L
+    Jc+D0HRXsRjoRhFKBPZjttEZZGcvs7R6zY9G0Mi6skCLwoZtATU6BlU9mAGFD0BkLI6b
+    slsw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw4nvnQ=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.42.2 DYNA|AUTH)
+    with ESMTPSA id k708cfy3D7Mt7tg
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 13 Apr 2022 09:22:55 +0200 (CEST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v2 1/2] dt-bindings: dwc2: Add bindings for new Ingenic
+ SoCs.
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <1649788201-87620-2-git-send-email-zhouyanjie@wanyeetech.com>
+Date:   Wed, 13 Apr 2022 09:22:54 +0200
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        hminas@synopsys.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dragancecavac@yahoo.com, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, reimu@sudomaker.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6F03670F-9040-4560-AD78-CC7A03EC678F@goldelico.com>
+References: <1649788201-87620-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1649788201-87620-2-git-send-email-zhouyanjie@wanyeetech.com>
+To:     =?utf-8?B?IuWRqOeQsOadsCAoWmhvdSBZYW5qaWUpIg==?= 
+        <zhouyanjie@wanyeetech.com>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Richard,
+Hi,
 
-Am Montag, dem 11.04.2022 um 03:32 +0000 schrieb Hongxing Zhu:
-> > -----Original Message-----
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> > Sent: 2022年4月8日 16:13
-> > To: Hongxing Zhu <hongxing.zhu@nxp.com>; tharvey@gateworks.com;
-> > Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Cc: Philipp Zabel <p.zabel@pengutronix.de>; bhelgaas@google.com;
-> > Lorenzo
-> > Pieralisi <lorenzo.pieralisi@arm.com>; Rob Herring
-> > <robh@kernel.org>; Shawn
-> > Guo <shawnguo@kernel.org>; Vinod Koul <vkoul@kernel.org>;
-> > linux-phy@lists.infradead.org; Device Tree Mailing List
-> > <devicetree@vger.kernel.org>; linux-pci@vger.kernel.org; Linux ARM
-> > Mailing
-> > List <linux-arm-kernel@lists.infradead.org>; open list
-> > <linux-kernel@vger.kernel.org>; Sascha Hauer
-> > <kernel@pengutronix.de>;
-> > dl-linux-imx <linux-imx@nxp.com>
-> > Subject: Re: [PATCH v2 0/7] Add the iMX8MP PCIe support
-> > 
-> > Am Freitag, dem 08.04.2022 um 03:14 +0000 schrieb Hongxing Zhu:
-> > > > 
-> > [...]
-> > > > Richard,
-> > > > 
-> > > > Thanks for working on this!
-> > > > 
-> > > > Do you plan on submitting another version soon? I've tried to
-> > > > test
-> > > > this with an imx8mp board I'm bringing up and while the host
-> > > > controller enumerates I fail to get a link to a device. It's
-> > > > very
-> > > > likely I am missing something as this series depends on the
-> > > > IMX8MP blk-ctrl
-> > and gpc series which I also can't cleanly apply.
-> > > > Lucas just submitted a 'consolidated i.MX8MP HSIO/MEDIA/HDMI
-> > > > blk-ctrl series' [1] yet I can't find a repo/branch that
-> > > > applies to either.
-> > > > 
-> > > > Perhaps you have a git repo somewhere I can look at while we
-> > > > wait
-> > > > for imx8mp blk-ctl/gpc to settle and you to submit a v3?
-> > > Hi Tim:
-> > > Thanks for your kindly help to do the tests.
-> > > I had listed the dependencies in the cover-letter log.
-> > > Alexander and I used to test this series commits based on the
-> > > V5.17 kernel.
-> > > 
-> > > Lucas had provided some review comments and suggestions about the
-> > > PLL
-> > > bits
-> > >  manipulations of HSIOMIX in i.MX8MP PCIe PHY driver #3 of this
-> > > series.
-> > > And he suggested to let the HSIOMIX blk-ctrl make this PLL as a
-> > > real
-> > > clock,
-> > >  and used by i.MX8MP PCIe PHY driver later.
-> > > 
-> > > Although I have some confusions, it's better let's wating for the
-> > > blk-ctrl settle down and get clear discussion with Lucas later.
-> > > How do you think about that?
-> > 
-> > Just to let you know my plans: I was quite busy with getting the
-> > i.MX8MP
-> > HDMI part to work. Now that this is at least in a state where it
-> > can collect
-> > some feedback from upstream I have some time to circle back to this
-> > topic. I
-> > can't commit to do it immediately, but I'll get around to looking
-> > at the PCIe
-> > series a bit more in-depth and apply my HSIO PLL suggestion to the
-> > blk-ctrl
-> > driver during the next week.
-> 
-> Hi Lucas:
-> Thanks for your helpful reply.
-> I know that you're busy with the blk-ctrl settle down now, and had
-> explained to
-> Tim.
+> Am 12.04.2022 um 20:30 schrieb =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou =
+Yanjie) <zhouyanjie@wanyeetech.com>:
+>=20
+> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000
+> SoC, the X1600 SoC, the X1700 SoC, the X1830 SoC, and the X2000 SoC
+> from Ingenic.
+>=20
+> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) =
+<zhouyanjie@wanyeetech.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>=20
+> Notes:
+>    v1->v2:
+>    Add Rob Herring's Acked-by.
+>=20
+> Documentation/devicetree/bindings/usb/dwc2.yaml | 7 +++++++
+> 1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml =
+b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> index 4cebce6..c6e8c0b 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> @@ -17,6 +17,13 @@ properties:
+>     oneOf:
+>       - const: brcm,bcm2835-usb
+>       - const: hisilicon,hi6220-usb
+> +      - const: ingenic,jz4775-otg
+> +      - const: ingenic,jz4780-otg
+> +      - const: ingenic,x1000-otg
+> +      - const: ingenic,x1600-otg
+> +      - const: ingenic,x1700-otg
+> +      - const: ingenic,x1830-otg
+> +      - const: ingenic,x2000-otg
 
-Yesterday I tried to get this series working on my 8MP-EVK board, but
-was unsuccessful for now. The PCIe link does not come up. PCIe REF_CLK
-is present and PERST de-asserted. I'm not sure if this is due to a
-faulty EP device (I don't have another M.2 KeyE device around to check)
-or if this may be due to the old revision of my 8MP-EVK, as I'm still
-working with a RevA board. The schematic revision log doesn't show
-anything that would obviously influence PCIe operation, but I have also
-not found any schematics for RevA.
+I have merged it with my recently proposed removal of
+ingenic,jz4780-otg in jz4780.dtsi but there was no dtbscheck
+complaint about missing snps,dwc2.
 
-Do you know if there have been any PCIe related changes/fixes in the
-later EVK board revisions?
+So I think should it be:
 
-For now I'll try to get this working on a custom i.MX8MP board, where I
-can use a different EP device. Maybe I'll have a bit more luck there.
+      - items:
+          - enum:
+              - const: ingenic,jz4775-otg
+              - const: ingenic,jz4780-otg
+              - const: ingenic,x1000-otg
+              - const: ingenic,x1600-otg
+              - const: ingenic,x1700-otg
+              - const: ingenic,x1830-otg
+              - const: ingenic,x2000-otg
+          - const: snps,dwc2
 
-Regards,
-Lucas
+similar to the entry for amlogic?
 
+>       - items:
+>           - const: rockchip,rk3066-usb
+>           - const: snps,dwc2
+> --=20
+> 2.7.4
+>=20
+
+BR and thanks,
+Nikolaus=
