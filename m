@@ -2,77 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B14BC4FF437
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 11:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432594FF467
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234779AbiDMJ4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 05:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39684 "EHLO
+        id S230139AbiDMKHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 06:07:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234769AbiDMJ4P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 05:56:15 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA01C55754;
-        Wed, 13 Apr 2022 02:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649843634; x=1681379634;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uX5uibSkiPcv8Dv2GCvKW+JAmmzsyrKLIVW1cf+8rmc=;
-  b=J8PPP+Hd7B5fuS5DgfGqB+Hae55TRCpMPOqKuRJeeoUK1cFPLRxn/qDB
-   I/MUxMCMibNt+6rxLURpbNQqgGPjpWLX0364dLuL3DPUAagWfWU41ImPz
-   QbBwdhyXFqc2c25aCOnmxlWCjhnjXvup9bfHdFOzkHrA2yqftY/H4l+e1
-   k=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 13 Apr 2022 02:53:54 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 02:53:53 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 13 Apr 2022 02:53:52 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 13 Apr 2022 02:53:46 -0700
-Date:   Wed, 13 Apr 2022 15:23:42 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+        with ESMTP id S234875AbiDMKHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:07:36 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60083.outbound.protection.outlook.com [40.107.6.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E224B1DD;
+        Wed, 13 Apr 2022 03:05:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mqXa3hYQOM7omia6qeh5SaLKMTNcxffGewQ9qhzlwO/NCgGF3BsIcv9F+zR0KNIFtvIwGbZwYeRgX7YeJS23wW5Mcg87qcfbBb2THPbfv9WMJ3uvQQPnrc9seRB/0aBT+dQDIaXWhG7vShFRYojKcLuvpCQvPkVZFpsnQAmsXPvTQ1ft9a3pS1NdHdZoMWpG2GAwxplw0JYqK8VT0/wPPjsKGfi8CbnCK5aoGTzaVOpAOaZC0yhN03iVjmheVDKtiT4UA/URrIdYfCyY7d8oX7oluivCspxsGkbBxfbhK3734ywS6QSKGFlAlyfIpyjhmZH4JnUKBAUfEsYszz32nQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r8apnvQdKNcuAtc0sVirhIlNhQG9N/iVg4SWmATU20U=;
+ b=Y0b3Lm9JlUQAgeZeeUJ4Cb71t+dJUlnlkI9cbUAX5IqBMmfyDYYb4b7bjchGeFIaYIA0J9LktUJr4CmwZiajVxR9QuDIqtn7ZhBQKQ+shuRl0N7titrs42VD3PxBPI2i8kEfNgl3PvmHw1UNyet3se4dxYRBAQl1/HCq9IdZpABS0qq0tvdZqfb9fy2KIz29RswD/I0jq7eWCgrgypFmUWpX5xCDpUOwmQsnd+ybovZmk1O0lzqukFLbIFQyJBiQfBx6YHtJ8iVP58uAWYLMQLLpfLqDvWjtDF2AwxuqUK9s7wAtreilMTVfJFHS7SDHDnsFFnRFFL88FoInVzzprg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r8apnvQdKNcuAtc0sVirhIlNhQG9N/iVg4SWmATU20U=;
+ b=jracsDCNKYaXj5x1zZHpFQXnFCK/HYwRf7cbQSf5b7/2oKDNO5fXqz8aqw5hh497prVEj5klZX5/iGoPTtxb4VLgHOykWj4anBW7LnY+go+vWFW+O368bxbfjo9Dq1086U4Ywm/BzgBcTZmJC28+VIjakbkPUsgRjKw2mU4AxJQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM9PR04MB8322.eurprd04.prod.outlook.com (2603:10a6:20b:3e3::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.30; Wed, 13 Apr
+ 2022 10:05:09 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387%9]) with mapi id 15.20.5164.018; Wed, 13 Apr 2022
+ 10:05:09 +0000
+Message-ID: <d77b41d911e126331138ddaca146a581d316bd09.camel@nxp.com>
+Subject: Re: [PATCH v6 resend 2/5] phy: Add LVDS configuration options
+From:   Liu Ying <victor.liu@nxp.com>
 To:     Vinod Koul <vkoul@kernel.org>
-CC:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_kriskura@quicinc.com>
-Subject: Re: [PATCH v2 2/3] phy: qcom-snps: Add support for overriding phy
- tuning parameters
-Message-ID: <20220413095342.GE2627@hu-pkondeti-hyd.qualcomm.com>
-References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
- <1646288011-32242-3-git-send-email-quic_c_sanm@quicinc.com>
- <Ylaa8THv24KEEcJ4@matsya>
+Cc:     linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
+        robh+dt@kernel.org, andrzej.hajda@intel.com,
+        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
+        daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        agx@sigxcpu.org, robert.chiras@nxp.com, martin.kepplinger@puri.sm,
+        robert.foss@linaro.org
+Date:   Wed, 13 Apr 2022 18:04:57 +0800
+In-Reply-To: <YlZpnrKt9NbHZv26@matsya>
+References: <20220402052451.2517469-1-victor.liu@nxp.com>
+         <20220402052451.2517469-3-victor.liu@nxp.com> <YlZpnrKt9NbHZv26@matsya>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: HKAPR04CA0011.apcprd04.prod.outlook.com
+ (2603:1096:203:d0::21) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Ylaa8THv24KEEcJ4@matsya>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a96bf39f-5f64-4c56-546a-08da1d35179b
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8322:EE_
+X-Microsoft-Antispam-PRVS: <AM9PR04MB83229C178B4D48D309F204B498EC9@AM9PR04MB8322.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bPTDz8hMLLTuqb/lVfj5vasyGrEAdkux0W8GQ+hEUpvSa8dHxzNmlDj6KeSzlGMsSefqRtlr+WuQCnIezamX0C1Kpvh/zRXkFawSSEix1aK14WL8tKlu5HPI5UdRiRQ90KhUyQP17wPMO8GIv3zuLwnhiILlMkbZAvQnTmRElqKGiVI5Pqz2bvnSjHInnyy1Rtw6xnNjkrsf7ac4WUZJCV9GNg5Fef1BKk2IbIQQ9qW/mKuH/HbBx0ZtY1k0Y31bVgvJLOuf8hGdtWTHj5eC3Gn6BdCkCR047h9vEwMaH0eFsjeJv8atF6ZAJT7xD+T89TlnJdgvMtlk7lCmxsXni/ih8Y56P3j6hO6lR27x1N0HcZZm8xvdkgPwwsOUjS9LK+7zWGe3eCP3EWV9GYWzBbN8jeqgurTMw/1LpU2xQzvYUZcsg2garFRs3QgDmFckE4PB4gtVqA1Awei1o/eHX/85Eqi+7QRTBWquWwE9382jIPTjMfOXL0yUst2DF5eZRyMcvlRz9Bm+Tx3AKsCnHKk3ABicnFDTCKOcmjKQmLbIFYVH26WnpzwfXGiXkJvKy/Mun4ea3v9GlaEvq1IhJprw/VYE/nh11moWzE1TYwOFwnh0HqFN03+RZfOcrEY+yIPm/V3Ptnev6btcFnCIOYzGu3b2EPMeOauw9UR6K5+WTBZ87VTfbFRXxTgRehIkS5cATkJ7g3Nkl+M7LsTf5elENOk1iOTz7aYVJ4lxdbHggchozSTSD3xhuxcgcBLQEiHZwEM2V4Uph60GHh3OzfBzBNoD8bWxNEWdxHJoBxr0PX9++8CX74qRDPwGtehNWNaDEem7Cnkdx5+rMJN8qdHTJGwsX3EFYLGSNsVUP6A=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(2616005)(53546011)(52116002)(66556008)(8676002)(66476007)(38350700002)(38100700002)(86362001)(186003)(26005)(4326008)(6916009)(66946007)(316002)(7416002)(36756003)(2906002)(8936002)(6486002)(966005)(6666004)(508600001)(6506007)(6512007)(5660300002)(99106002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RW5jc1JuUTJlUkQrOVZZUmFQajZHODhvZk5PbFJqbXUrdWlDVXNJc2NzN3lm?=
+ =?utf-8?B?d3pmUm9xSzBja041RlhDQ1pkUWFoSHFtV3cyd1hOaUhlUWlYRjhDdU5GV0p6?=
+ =?utf-8?B?Rkt5UXhUM0JtdzBCOG1SK09VYVZFNWNUdVVMcTJ5OUxsa0NSMVJ0MVJaVnBj?=
+ =?utf-8?B?SEhucDlQclY4ZzRXMkRKVm11ajlMalBEc0VkSEtwMjNNN0liRkJEWi9tb3pQ?=
+ =?utf-8?B?clNEWU10M0pDMWxES3RwN09CckhwQzlYci95SG9qbnFkTVlDWi8xdUJnMTli?=
+ =?utf-8?B?NzZmOUZFQlk3M0RjTVRMbXA5NnJGWTJKL2tUaUhsd2RHVVNDb1k3SW16eU9B?=
+ =?utf-8?B?MG5RTEZFQmJpUTNDTVc0MUVrUkZYbklpcDNHNHBvazc3dHVuczJPZ1N0TWVP?=
+ =?utf-8?B?QmV0blhlZEVIVzlKTFFrbjJhTStNMC93N1ZUTTE5UDAyWHNQRVY1YXprdWhz?=
+ =?utf-8?B?a05LdlJLdzBGcVE2T2pWWTR1L0JyeC9abE9VSEN6cXlWczFFWjlMamJROEti?=
+ =?utf-8?B?dE5Ia2J5Y3QySGxGWUxQVmR3eVd6bktLN0I0eWVSUFBHWWpSVWFpclBhR011?=
+ =?utf-8?B?VjFXZTNwRyt5QWlua1g5WGQ0L1VqTDZrcS93ZlRKQnFCNkIwWGJMWmZaazJR?=
+ =?utf-8?B?bEttcEZxbUp2WTU0ZkhKYWFkek5VSnhsTDFSQ2Fmdnh1MVBGL1NJYWUzYWVw?=
+ =?utf-8?B?V1BqZ29pV3k5TFRoNzBkTXRodWF0MWlCclR3cUNnbEI1MGtzRjZxMTlzWjZF?=
+ =?utf-8?B?dkFKdEpZS3RuUnpQTnVkZ01ta010QTVZUzBMbW9hQm4wSk82eHlZV1BYcS9U?=
+ =?utf-8?B?WFNYbk9qMTRmTzJEZ2kyaXJ1R25yaDZvM1RORmNtWXRhVDc3T2N1SUZVOTlV?=
+ =?utf-8?B?OGpzcWhOWG9GWmpmTm5SYUM0Zmo1Rjl0dnBqS2Y3dGV3blEyV3hmOHVjakdW?=
+ =?utf-8?B?d1ZsUzhyR29QU1kyUkZtSkpDK043amI4cUx4Q3B3VS8yanZFUjg2R2JhSE14?=
+ =?utf-8?B?eWI3WGVLS0cwRzB0dDlnUXNuVGc1eHpBZ1o2SmJvZDJOcFVTdmFEakU3Mmlk?=
+ =?utf-8?B?a2VoVEgvcGkzNXlBRGw3Q1VUbGN2eDMwVXU1MWtmK25acFpWSyt5bWhGekdC?=
+ =?utf-8?B?LzNUQUVMTUpCZkd4VmVOSVdtMUFOSWNWQUViQ3NJVDNhNFphSUMxaitVNEpL?=
+ =?utf-8?B?cnFmSWdraXJlci9sdlhaY1JjdndURnM4Qm1BZzY4TWF0OEhhQlJPT0FJWXdP?=
+ =?utf-8?B?RWJGQjZpTGwxSndxVjUvdlphTW40bGQwM3E5NjY0bkw5WEZrVVk5eVhKNDY4?=
+ =?utf-8?B?OHcwbnV1dHozTVhkeWZNNVhxZDR1TW1hVnJpT09BYXlFRWQraDhQcVcxb1Yy?=
+ =?utf-8?B?UGprc0Mva2JPR1FiOXFmTW9melM3MGFmOU1qdGhESzR2bFJhK2xNWUxFbU5i?=
+ =?utf-8?B?dlNDMG9VblF3RjFPNWJweG1pOHVoOXFJQnY2QTB6MFExei9CN0kwL2Z6STBm?=
+ =?utf-8?B?NkdyRWtob1RPNWRJamZVWlNYMklhTFZidGNjQ0dNYXI4M3Y3MzU1TjBjdUd3?=
+ =?utf-8?B?UTFEalJVWlgzSmpqR3BaYlNjYUtDS3BYKzFtSVF0TjNCWXVBTjZvK1FJQlA5?=
+ =?utf-8?B?Q1BqVUJhVXV1ZWhrQWdFRGpMMTVxR1FMbXU3aDd0aTVKbE5qcEdQckVzMG1B?=
+ =?utf-8?B?cEl1TnNUTUEzNkNQM1gyWHNoVmRSL3FtOVZiNEhDaHhHS2NUaFZnb0tGd3ZN?=
+ =?utf-8?B?YldtcVpNdVBYZm4zRU1sNm5VUGJTOTR1Zy9YUGJjTE5icTE5NlpmTjZmdHAw?=
+ =?utf-8?B?M0x4MzNOS0I4VUtLVHllQWY4THBUN0Z2R2F2ZFg0c1p5OW9FZkN1NlNtNzYx?=
+ =?utf-8?B?cW52QnpNeXBwWU42S1NqN1RYN2FLdHhvNnN5akUraWU0am9vNUM5Q1BLaldB?=
+ =?utf-8?B?ZmltVVhDZlhSempTVlZ2eHNwM2hYYWJ0MWJnV3N6OExEMGJkL2lmdElTZTdZ?=
+ =?utf-8?B?OWFzVDJCM1VrQlRjRlRFaUhMV09VQ2NjRGQwQnU1UmV1b0h6ZWVvZzd6NnNp?=
+ =?utf-8?B?bXZOaEthVnVUQTZhWFR1bDF5eFdtUVJ5amJaVEV3U2xseFNNM2FsSHZUVURL?=
+ =?utf-8?B?cGE1K0psRm9aVVJmbTBnRHBTdk04dmpGbHN2bVRWNU1NOWxvOWRqL0lJV1Bm?=
+ =?utf-8?B?bDFSbHEwY24zZlpzcjFLN0I3KzBoMHIyQ1AvbjlTWXJzSCtCbXpkbTRFb05M?=
+ =?utf-8?B?d1VXSGhnOExJaEg4c1pWNnhjSHJIY3orR2laQjVLcm4wbTBqTXVtSEVkZTZH?=
+ =?utf-8?B?cUhYL2hCelB1TTQ5S0J4dmVWMWtOWVhzTHY3SDBDeTZLeEoyM3A5QT09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a96bf39f-5f64-4c56-546a-08da1d35179b
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2022 10:05:09.6623
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7tpE5qoH6rl+p4i3PDAfy/JOzNreOvdag2x8Y6m6TvgG6TOOh4/NK174QVGceHtXvvBDH5S3fM2rJNy225+w7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8322
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,280 +136,118 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Vinod,
 
-On Wed, Apr 13, 2022 at 03:12:09PM +0530, Vinod Koul wrote:
-> On 03-03-22, 11:43, Sandeep Maheswaram wrote:
-> > Added support for overriding x0,x1,x2,x3 params for SNPS PHY by reading
-> > values from device tree.
+On Wed, 2022-04-13 at 11:41 +0530, Vinod Koul wrote:
+> On 02-04-22, 13:24, Liu Ying wrote:
+> > This patch allows LVDS PHYs to be configured through
+> > the generic functions and through a custom structure
+> > added to the generic union.
 > > 
-> > Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> > The parameters added here are based on common LVDS PHY
+> > implementation practices.  The set of parameters
+> > should cover all potential users.
+> > 
+> > Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > > ---
-> >  drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 192 ++++++++++++++++++++++++++
-> >  1 file changed, 192 insertions(+)
+> > v5->v6:
+> > * Rebase upon v5.17-rc1.
 > > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-> > index 7e61202..b5aa06d 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-> > @@ -51,6 +51,48 @@
-> >  #define USB2_SUSPEND_N				BIT(2)
-> >  #define USB2_SUSPEND_N_SEL			BIT(3)
-> >  
-> > +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0	(0x6c)
-> > +
-> > +/*USB_PHY_HS_PHY_OVERRIDE_X0 register bits*/
+> > v4->v5:
+> > * Align kernel-doc style to include/linux/phy/phy.h. (Vinod)
+> > * Trivial tweaks.
+> > * Drop Robert's R-b tag.
+> > 
+> > v3->v4:
+> > * Add Robert's R-b tag.
+> > 
+> > v2->v3:
+> > * No change.
+> > 
+> > v1->v2:
+> > * No change.
+> > 
+> >  include/linux/phy/phy-lvds.h | 32 ++++++++++++++++++++++++++++++++
+> >  include/linux/phy/phy.h      |  4 ++++
+> >  2 files changed, 36 insertions(+)
+> >  create mode 100644 include/linux/phy/phy-lvds.h
+> > 
+> > diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-
+> > lvds.h
+> > new file mode 100644
+> > index 000000000000..7a2f4747f624
+> > --- /dev/null
+> > +++ b/include/linux/phy/phy-lvds.h
+> > @@ -0,0 +1,32 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright 2020 NXP
 > 
-> space after /* and before */ (checkpatch.pl --strict would warn you)
-> Pls fix it everywhere
+> 2022 now
+
+I may change it to 'Copyright 2020,2022 NXP'.
+
 > 
-> > +#define HS_DISCONNECT_MASK			GENMASK(2, 0)
-> > +#define HS_DISCONNECT_SHIFT			0x0
-> > +
-> > +#define SQUELCH_DETECTOR_MASK			GENMASK(7, 5)
-> > +#define SQUELCH_DETECTOR_SHIFT			0x5
-> > +
-> > +
-> > +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1	(0x70)
-> > +
-> > +/*USB_PHY_HS_PHY_OVERRIDE_X1 register bits*/
-> > +#define HS_AMPLITUDE_MASK			GENMASK(3, 0)
-> > +#define HS_AMPLITUDE_SHIFT			0x0
-> > +
-> > +#define PREEMPHASIS_DURATION_MASK		BIT(5)
-> > +#define PREEMPHASIS_DURATION_SHIFT		0x5
-> > +
-> > +#define PREEMPHASIS_AMPLITUDE_MASK		GENMASK(7, 6)
-> > +#define PREEMPHASIS_AMPLITUDE_SHIFT		0x6
-> > +
-> > +
-> > +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2	(0x74)
-> > +
-> > +/*USB_PHY_HS_PHY_OVERRIDE_X2 register bits*/
-> > +#define HS_RISE_FALL_MASK			GENMASK(1, 0)
-> > +#define HS_RISE_FALL_SHIFT			0x0
-> > +
-> > +#define HS_CROSSOVER_VOLTAGE_MASK		GENMASK(3, 2)
-> > +#define HS_CROSSOVER_VOLTAGE_SHIFT		0x2
-> > +
-> > +#define HS_OUTPUT_IMPEDANCE_MASK		GENMASK(5, 4)
-> > +#define HS_OUTPUT_IMPEDANCE_SHIFT		0x4
-> > +
-> > +
-> > +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X3	(0x78)
-> > +
-> > +/*USB_PHY_HS_PHY_OVERRIDE_X3 register bits*/
-> > +#define LS_FS_OUTPUT_IMPEDANCE_MASK		GENMASK(3, 0)
-> > +#define LS_FS_OUTPUT_IMPEDANCE_SHIFT		0x0
-> > +
-> >  #define USB2_PHY_USB_PHY_CFG0			(0x94)
-> >  #define UTMI_PHY_DATAPATH_CTRL_OVERRIDE_EN	BIT(0)
-> >  #define UTMI_PHY_CMN_CTRL_OVERRIDE_EN		BIT(1)
-> > @@ -65,6 +107,43 @@ static const char * const qcom_snps_hsphy_vreg_names[] = {
-> >  
-> >  #define SNPS_HS_NUM_VREGS		ARRAY_SIZE(qcom_snps_hsphy_vreg_names)
-> >  
-> > +/* struct override_param - structure holding snps phy overriding param
-> > + * set override true if the  device tree property exists and read and assign
-> > + * to value
 > > + */
-> > +struct override_param {
-> > +	bool override;
-> > +	u8 value;
-> > +};
 > > +
-> > +/*struct override_params - structure holding snps phy overriding params
-> > + * @hs_disconnect: disconnect threshold
-> > + * @squelch_detector: threshold to detect valid high-speed data
-> > + * @hs_amplitude: high-speed DC level voltage
-> > + * @preemphasis_duration: duration for which the HS pre-emphasis current
-> > + *  is sourced onto DP<#> or DM<#>
-> > + * @preemphasis_amplitude: current sourced to DP<#> and DM<#> after
-> > + *  a J-to-K or K-to-J transition.
-> > + * @hs_rise_fall_time: rise/fall times of the high-speed waveform
-> > + * @hs_crossover_voltage: voltage at which the DP<#> and DM<#>
-> > + *  signals cross while transmitting in HS mode
-> > + * @hs_output_impedance: driver source impedance to compensate for added series
-> > + *  resistance on the USB
-> > + * @ls_fs_output_impedance: low and full-speed single-ended source
-> > + *  impedance while driving high
-> > + */
-> > +struct override_params {
-> > +	struct override_param hs_disconnect;
-> > +	struct override_param squelch_detector;
-> > +	struct override_param hs_amplitude;
-> > +	struct override_param preemphasis_duration;
-> > +	struct override_param preemphasis_amplitude;
-> > +	struct override_param hs_rise_fall_time;
-> > +	struct override_param hs_crossover_voltage;
-> > +	struct override_param hs_output_impedance;
-> > +	struct override_param ls_fs_output_impedance;
-> > +};
+> > +#ifndef __PHY_LVDS_H_
+> > +#define __PHY_LVDS_H_
 > > +
-> >  /**
-> >   * struct qcom_snps_hsphy - snps hs phy attributes
-> >   *
-> > @@ -87,6 +166,7 @@ struct qcom_snps_hsphy {
-> >  	struct clk *ref_clk;
-> >  	struct reset_control *phy_reset;
-> >  	struct regulator_bulk_data vregs[SNPS_HS_NUM_VREGS];
-> > +	struct override_params overrides;
-> >  
-> >  	bool phy_initialized;
-> >  	enum phy_mode mode;
-> > @@ -175,6 +255,7 @@ static int qcom_snps_hsphy_set_mode(struct phy *phy, enum phy_mode mode,
-> >  static int qcom_snps_hsphy_init(struct phy *phy)
-> >  {
-> >  	struct qcom_snps_hsphy *hsphy = phy_get_drvdata(phy);
-> > +	struct override_params *or = &hsphy->overrides;
-> >  	int ret;
-> >  
-> >  	dev_vdbg(&phy->dev, "%s(): Initializing SNPS HS phy\n", __func__);
-> > @@ -222,6 +303,60 @@ static int qcom_snps_hsphy_init(struct phy *phy)
-> >  	qcom_snps_hsphy_write_mask(hsphy->base, USB2_PHY_USB_PHY_HS_PHY_CTRL1,
-> >  					VBUSVLDEXT0, VBUSVLDEXT0);
-> >  
-> > +	if (or->hs_disconnect.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0,
-> > +			HS_DISCONNECT_MASK,
-> > +			or->hs_disconnect.value << HS_DISCONNECT_SHIFT);
-> > +
-> > +	if (or->squelch_detector.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0,
-> > +			SQUELCH_DETECTOR_MASK,
-> > +			or->squelch_detector.value << SQUELCH_DETECTOR_SHIFT);
-> > +
-> > +	if (or->hs_amplitude.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1,
-> > +			HS_AMPLITUDE_MASK,
-> > +			or->hs_amplitude.value << HS_AMPLITUDE_SHIFT);
-> > +
-> > +	if (or->preemphasis_duration.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1,
-> > +			PREEMPHASIS_DURATION_MASK,
-> > +			or->preemphasis_duration.value << PREEMPHASIS_DURATION_SHIFT);
-> > +
-> > +	if (or->preemphasis_amplitude.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1,
-> > +			PREEMPHASIS_AMPLITUDE_MASK,
-> > +			or->preemphasis_amplitude.value << PREEMPHASIS_AMPLITUDE_SHIFT);
-> > +
-> > +	if (or->hs_rise_fall_time.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2,
-> > +			HS_RISE_FALL_MASK,
-> > +			or->hs_rise_fall_time.value << HS_RISE_FALL_SHIFT);
-> > +
-> > +	if (or->hs_crossover_voltage.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2,
-> > +			HS_CROSSOVER_VOLTAGE_MASK,
-> > +			or->hs_crossover_voltage.value << HS_CROSSOVER_VOLTAGE_SHIFT);
-> > +
-> > +	if (or->hs_output_impedance.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2,
-> > +			HS_OUTPUT_IMPEDANCE_MASK,
-> > +			or->hs_output_impedance.value << HS_OUTPUT_IMPEDANCE_SHIFT);
-> > +
-> > +	if (or->ls_fs_output_impedance.override)
-> > +		qcom_snps_hsphy_write_mask(hsphy->base,
-> > +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X3,
-> > +			LS_FS_OUTPUT_IMPEDANCE_MASK,
-> > +			or->ls_fs_output_impedance.value << LS_FS_OUTPUT_IMPEDANCE_SHIFT);
-> > +
-> >  	qcom_snps_hsphy_write_mask(hsphy->base,
-> >  					USB2_PHY_USB_PHY_HS_PHY_CTRL_COMMON2,
-> >  					VREGBYPASS, VREGBYPASS);
-> > @@ -292,12 +427,15 @@ static int qcom_snps_hsphy_probe(struct platform_device *pdev)
-> >  	struct qcom_snps_hsphy *hsphy;
-> >  	struct phy_provider *phy_provider;
-> >  	struct phy *generic_phy;
-> > +	struct override_params *or;
-> >  	int ret, i;
-> >  	int num;
-> > +	u32 value;
-> >  
-> >  	hsphy = devm_kzalloc(dev, sizeof(*hsphy), GFP_KERNEL);
-> >  	if (!hsphy)
-> >  		return -ENOMEM;
-> > +	or = &hsphy->overrides;
-> >  
-> >  	hsphy->base = devm_platform_ioremap_resource(pdev, 0);
-> >  	if (IS_ERR(hsphy->base))
-> > @@ -329,6 +467,60 @@ static int qcom_snps_hsphy_probe(struct platform_device *pdev)
-> >  		return ret;
-> >  	}
-> >  
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,hs-disconnect",
-> > +				  &value)) {
-> > +		or->hs_disconnect.value = (u8)value;
-> > +		or->hs_disconnect.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,squelch-detector",
-> > +				  &value)) {
-> > +		or->squelch_detector.value = (u8)value;
-> > +		or->squelch_detector.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,hs-amplitude",
-> > +				  &value)) {
-> > +		or->hs_amplitude.value = (u8)value;
-> > +		or->hs_amplitude.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,preemphasis-duration",
-> > +				  &value)) {
-> > +		or->preemphasis_duration.value = (u8)value;
-> > +		or->preemphasis_duration.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,preemphasis-amplitude",
-> > +				  &value)) {
-> > +		or->preemphasis_amplitude.value = (u8)value;
-> > +		or->preemphasis_amplitude.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,hs-rise-fall-time",
-> > +				  &value)) {
-> > +		or->hs_rise_fall_time.value = (u8)value;
-> > +		or->hs_rise_fall_time.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,hs-crossover-voltage",
-> > +				  &value)) {
-> > +		or->hs_crossover_voltage.value = (u8)value;
-> > +		or->hs_crossover_voltage.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,hs-output-impedance",
-> > +				  &value)) {
-> > +		or->hs_output_impedance.value = (u8)value;
-> > +		or->hs_output_impedance.override = true;
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "qcom,ls-fs-output-impedance",
-> > +				  &value)) {
-> > +		or->ls_fs_output_impedance.value = (u8)value;
-> > +		or->ls_fs_output_impedance.override = true;
-> > +	}
+> > +/**
+> > + * struct phy_configure_opts_lvds - LVDS configuration set
+> > + * @bits_per_lane_and_dclk_cycle:	Number of bits per data lane
+> > and
+> > + *					differential clock cycle.
 > 
-> Are all these values board specific or IP specific? Can we add these
-> values as tables in driver? 
+> What does it mean by bits per data lane and differential clock cycle?
 
-These are IP specific. The tuning is board specific. The plan is to add
-tables in the driver which lookup the values passed by device tree and
-program the override registers according. We are currently working on
-this.
+Please check Documentation/devicetree/bindings/display/panel/lvds.yaml.
+lvds.yaml metions slot.  'bits_per_lane_and_dclk_cycle' means the
+number of slots.  But, I don't find the word 'slot' in my lvds relevant
+specs which mentioned in lvds.yaml, so 'slots' is probably not a
+generic name(lvds.yaml is for display panel).  So, I use
+'bits_per_lane_and_dclk_cycle' as the name tells what it means.
 
-previous discussion:
-https://lore.kernel.org/linux-usb/1a43277a-94b9-4f95-314a-876291227982@canonical.com/
+> 
+> > + * @differential_clk_rate:		Clock rate, in Hertz, of the
+> > LVDS
+> > + *					differential clock.
+> > + * @lanes:				Number of active, consecutive,
+> > + *					data lanes, starting from lane
+> > 0,
+> > + *					used for the transmissions.
+> > + * @is_slave:				Boolean, true if the
+> > phy is a slave
+> > + *					which works together with a
+> > master
+> > + *					phy to support dual link
+> > transmission,
+> > + *					otherwise a regular phy or a
+> > master phy.
+> > + *
+> > + * This structure is used to represent the configuration state of
+> > a LVDS phy.
+> > + */
+> > +struct phy_configure_opts_lvds {
+> > +	unsigned int	bits_per_lane_and_dclk_cycle;
+> > +	unsigned long	differential_clk_rate;
+> > +	unsigned int	lanes;
+> > +	bool		is_slave;
+> > +};
+> 
+> Where is the user of this new configuration? Can you post that patch
+> for
+> reference as well please
 
-Thanks,
-Pavan
-> -- 
-> ~Vinod
+Patch 5/5 uses it. Also, I posted two drm bridge drivers[1][2] which
+use it.
+
+[1] 
+https://patchwork.kernel.org/project/dri-devel/patch/1617172405-12962-13-git-send-email-victor.liu@nxp.com/
+[2] 
+https://patchwork.kernel.org/project/dri-devel/patch/1617172405-12962-14-git-send-email-victor.liu@nxp.com/
+
+Regards,
+Liu Ying
+
