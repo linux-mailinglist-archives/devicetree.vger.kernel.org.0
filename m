@@ -2,98 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC57750023A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 01:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F299550026A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 01:17:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236955AbiDMXGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 19:06:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
+        id S229726AbiDMXUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 19:20:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233354AbiDMXGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 19:06:07 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA32255A8;
-        Wed, 13 Apr 2022 16:03:44 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id y3-20020a056830070300b005cd9c4d03feso2211823ots.3;
-        Wed, 13 Apr 2022 16:03:44 -0700 (PDT)
+        with ESMTP id S238643AbiDMXUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 19:20:06 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B33525C6A
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 16:17:43 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id c10so4691351wrb.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 16:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FtEiq6V4Qf6K8w6u8ULm+qXCUm/m9qWMOF4cHC4ZNeY=;
+        b=noAzADUqXt66SR9+PQGD+9nDCP2jjuS8UHfackVbD1IRP9S9tVP3yJucAriMGSoUU4
+         4M1XC1WJ37Dr/X4WGicLhtWoE9VZmWEFK5rF2bw3rLMjHz4XBtrRFTSHOPf07H9G/ax/
+         0u9rxdhZ+8sK8113MRNUi5AJK53jgSgckPcbw/3SgjyolWAV5lIWacGivoXRKfAMeTxX
+         KUp7O8zJuiKNcNoAfoof1PG7+9DVGicUg9AU/Bx+dnD/NeNrjZn1FQbdUjrh4XDrSRjQ
+         TXVANFdIVtOoNHdQ7+xlOzFX3FQbyrDrsx+uLNdQCM1oKlwWHqUyjUZWqKAz/OLYEie/
+         3fSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=e6n2orThYJMK64yUyZXxxDzaxl2UslTETHJ5TJ4xxPU=;
-        b=zSVgMlumhIsYBBUDBMFS/HMvtrrWm8sqCNgZN+lKXOmcs/ZA2ZMuJX698NltXd/NaZ
-         ceVPh8ulXCkz/qwRAk5VaY3nSg0aL33PvDT5FcMW6dcENb/05qXUr+3UAdyWSvQgm4x0
-         sIOj6BAbrOSChgbRbhQmsnnbmXjAOub1XWUuSxAkMe4kyDMn5tjvwyO0ffGlEkCL1OoW
-         SC5krvf4iA/7WgWgsQNA6GqcHNllQXQWRwa1QLWnfibo4aLi/Ogy+zZ0rTHp+nisZlrE
-         3481Mfr0IYp1qU7x1EUkqGbWaL5wsdQAk+o8FQckL7U03oaiIxjy6K31XbWfMjkoihUP
-         CEPg==
-X-Gm-Message-State: AOAM533MwX2fqRhLq0j2E3xtALTiCJ20Z3ZP/yUEbUaKJY9sWYX2wo72
-        msVQleAkFdgvDpWwF+ji8kykvT28XA==
-X-Google-Smtp-Source: ABdhPJx4S2rZ6YIF3m+FvOThc9/KLWF8G4Kb7iko6OSV2RpyAjSqfaz7em5gsvnl9O5ufXXm0kcohA==
-X-Received: by 2002:a9d:6047:0:b0:5b2:4003:cfcb with SMTP id v7-20020a9d6047000000b005b24003cfcbmr15452834otj.59.1649891024123;
-        Wed, 13 Apr 2022 16:03:44 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o18-20020a9d7652000000b005cbf6f5d7c5sm152356otl.21.2022.04.13.16.03.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FtEiq6V4Qf6K8w6u8ULm+qXCUm/m9qWMOF4cHC4ZNeY=;
+        b=dz1gC9b4btIti0kuG/4hE99FyrDXVgHOXtOn5AEwFAzenSHPGrEGSnEAQydFuK/hNA
+         T0GpTxz055dn7FsPyh02UEHXc+9Pr/kCpP33AFBDfO4pDjB5OsDTEJiB4pfP/JUQK36z
+         fIzTSDsIz2rcC2jgh3xdFc80CWEBVkhnqdnF3Yjv6+YHmeNLG+dJ7XiXPXxcxxGR81Ow
+         dsXFHbZav7b0VeSe0on9rOsyj5Fyd1+1SIeXir/t8jlHt/3IJGdHqjwa0r/TIcZYjU2o
+         XwfplN2jijK0zyk1F4jlTI1Vy6EnE2AYPysma8OCTGGgHfBP/kFbpvRfOmcloae133GS
+         5LgQ==
+X-Gm-Message-State: AOAM531rTJwCfdiNVVC0VMyivcD90Gc/uWDJwEwXRx1cXJVthMUHWvaH
+        GLWmk/RTg5RCc0hpFeYsj0GTig==
+X-Google-Smtp-Source: ABdhPJxa/fsCZ6PNEtUyrIX/yEI5YTtYrkxg1SEP6HzmiJCpVBZpvgKkmvDLJ0sika/1ffa4oSwKJQ==
+X-Received: by 2002:a5d:47ae:0:b0:207:a629:9845 with SMTP id 14-20020a5d47ae000000b00207a6299845mr750233wrb.125.1649891862008;
+        Wed, 13 Apr 2022 16:17:42 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id c12-20020a05600c0a4c00b00381141f4967sm205184wmq.35.2022.04.13.16.17.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 16:03:43 -0700 (PDT)
-Received: (nullmailer pid 4104301 invoked by uid 1000);
-        Wed, 13 Apr 2022 23:03:42 -0000
-Date:   Wed, 13 Apr 2022 18:03:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Moudy Ho <moudy.ho@mediatek.com>
-Cc:     jason-jh.lin@mediatek.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        srv_heupstream@mediatek.com, allen-kh.cheng@mediatek.com,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        daoyuan huang <daoyuan.huang@mediatek.com>, tfiga@chromium.org,
-        xiandong.wang@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        river.cheng@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        drinkcat@chromium.org, randy.wu@mediatek.com,
-        roy-cw.yeh@mediatek.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, hsinyi@google.com,
-        Rob Landley <rob@landley.net>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        pihsun@chromium.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v15 4/6] dt-bindings: soc: mediatek: add gce-client-reg
- for MUTEX
-Message-ID: <YldWzq2oiRxUdPz4@robh.at.kernel.org>
-References: <20220411074925.25539-1-moudy.ho@mediatek.com>
- <20220411074925.25539-5-moudy.ho@mediatek.com>
+        Wed, 13 Apr 2022 16:17:41 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
+        jgrahsl@snap.com, bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/3] Add camss to SM8250 dtsi 
+Date:   Thu, 14 Apr 2022 00:17:33 +0100
+Message-Id: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220411074925.25539-5-moudy.ho@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Apr 2022 15:49:23 +0800, Moudy Ho wrote:
-> In order to allow modules with latency requirements such as MDP3
-> to set registers through CMDQ, add the relevant GCE property.
-> 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> ---
->  .../bindings/soc/mediatek/mediatek,mutex.yaml        | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
+V2:
+- Change 0xHEX to 0xhex - Bjorn
+- Merge CCI and CCI pin definitions into one patch - Bjorn
+- Future pinctrl dropped, moved into dts file for board
+  which appears more consistent with sdm845-db845 &tlmm{} section - Bjorn, Bryan
+- Renamed cci0_i2c0/cci0_i2c1 and cci1_ic20/cci1_i2c1 - Bjorn
+- Grouped CCI pins into cci0_default, cci0_sleep, etc - Bryan
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+V1:
+Add in necessary CAMSS, pin and CCI definitions to the SM8250 dtsi.
+
+This is the SoC specific stuff, the platform enablement will be done in a
+separate drop later.
+
+On the RB5 platform we have validated ~ 30 FPS @ 4K using the SRGGB10P
+pixel format provided by a Sony IMX577 sensor.
+
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b%2brb5-dts%2bsensors
+
+Bryan O'Donoghue (3):
+  arm64: dts: qcom: sm8250: Add camcc DT node
+  arm64: dts: qcom: sm8250: camss: Add CAMSS block definition
+  arm64: dts: qcom: sm8250: camss: Add CCI definitions
+
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 330 +++++++++++++++++++++++++++
+ 1 file changed, 330 insertions(+)
+
+-- 
+2.35.1
+
