@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B104FFA90
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFDB94FFA9E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbiDMPrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 11:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36208 "EHLO
+        id S236060AbiDMPug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:50:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236739AbiDMPru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:47:50 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C5FD5EBF7;
-        Wed, 13 Apr 2022 08:45:28 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23DFjArV099164;
-        Wed, 13 Apr 2022 10:45:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1649864710;
-        bh=LKiOhQpH11PRHnUk7E83nty6XMEWWedQyINcMzjxJ8k=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=SVEb3BmVQOgTig6W3fudXL+ubrtWwy2pakyL8YTIVC5bPMqE85CXrPIEtfwcPAxlw
-         zo/X/4lE0+yAM9MoHbDCDkcuWQIRm12LbF8quvim9Q+WxywWZ+zgb0JDd2UfbyTfvk
-         inJtvkeAV8u8eeK6tXf3T56YpKAs7bkmm7bmK1XQ=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23DFjACd014238
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 13 Apr 2022 10:45:10 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 13
- Apr 2022 10:45:09 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 13 Apr 2022 10:45:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23DFj9VX015581;
-        Wed, 13 Apr 2022 10:45:09 -0500
-Date:   Wed, 13 Apr 2022 10:45:09 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: Add TI K3 RTC devicetree bindings
- documentation
-Message-ID: <20220413154509.2bllkjdnp7r2f7fd@remindful>
-References: <20220412073138.25027-1-nm@ti.com>
- <20220412073138.25027-2-nm@ti.com>
- <dee496ce-5e74-4a53-c783-6420b2391387@linaro.org>
- <20220412221743.vbectb4bcghau2b7@confider>
- <2609cb4e-df0e-f4b5-b89f-37287bbc569d@linaro.org>
+        with ESMTP id S234823AbiDMPuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:50:35 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD636620C
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:48:14 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bg10so4845552ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:48:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ZUrQrM6enlfgMn/MObow0T//8GW1/W7c2olNoWx1WQk=;
+        b=cYfqlHMdFO+1nIfKsAz4h6xPJv2H4bDpx6SKU16eUaPGolydDIUZXiFqJ4uFG9fEUD
+         s1JN7QgJc9x8Fpc+CnbHbMZIMTs/EX3jXd84yTJB8toixzJQjfY3p85nNPujj7eJkSqX
+         XrZlSeOQ35HWKlgeAeLgV7AllKwssXdC2jakg6tq5XVK0AzKtQYDcbsfryjfx8L23lFw
+         /Q2W/520v3rByUE6mufw/9151seYEOyIeY43Y4O2pzCDIOK9xCJwRBdEm/wJTlaRH5Xl
+         3S19cbHHB7nfQBbD/iOs0Q0+qb8gInlWh0m5iIQIsGlplV1XiE9kyB7TSucWpNE9EKym
+         AqLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZUrQrM6enlfgMn/MObow0T//8GW1/W7c2olNoWx1WQk=;
+        b=wE33ed/TPUyXUktGjRdmIT+tw2V0dapQOVURrv0IHyKa9RBSFUBIZb4325lrm1pcbA
+         BrJ7IH4E1n/1R0mTuSwJqxPq6G/jmOCMuGaYC7FVa3bsCOhRtllZiQGIz8fumqcCFWs1
+         13SsTOUqtQaiTd6QT/vY2smHqdDlnb9axJafO9T1b0xErLHsSj/iGWWlq0hudoxvdEkR
+         WvKxsR4gOPDI1NGEibfLsBI/QYoI2Da9gOlLEFqZRAhC3zHCoEnqufRWzlcwIe/0V1T3
+         ELcpcKMvwY6c81GKfaQx9Ds7Nqf66HuQIxErZyQ2XGHhqQD7C7BBbi00pTbtLOS+tGct
+         lswg==
+X-Gm-Message-State: AOAM5333LvN6HzCy69i4vAhY9S3M3g1f/oqvWioJBn6qqKrFvb576qTS
+        dzlXk47oIirdanCHI4gn/X3gZw==
+X-Google-Smtp-Source: ABdhPJw7BMUh+VGZ5d6fOhsX9G0k6NTnqjs/n3rz6db8TkQALWGGalbmx8ZRBt7Za10zl8HCGtEraQ==
+X-Received: by 2002:a17:907:724a:b0:6e8:4f12:b6fd with SMTP id ds10-20020a170907724a00b006e84f12b6fdmr23155552ejc.198.1649864892685;
+        Wed, 13 Apr 2022 08:48:12 -0700 (PDT)
+Received: from [192.168.0.205] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id r16-20020a056402019000b00418ed60c332sm1246147edv.65.2022.04.13.08.48.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 08:48:12 -0700 (PDT)
+Message-ID: <8c1909da-8877-9bff-deed-c8f39037b3eb@linaro.org>
+Date:   Wed, 13 Apr 2022 17:48:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2609cb4e-df0e-f4b5-b89f-37287bbc569d@linaro.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: ti,sa2ul: Add a new compatible
+ for AM62
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, linux-crypto@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+References: <20220412073016.6014-1-j-choudhary@ti.com>
+ <20220412073016.6014-2-j-choudhary@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220412073016.6014-2-j-choudhary@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,36 +76,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08:42-20220413, Krzysztof Kozlowski wrote:
-> On 13/04/2022 00:17, Nishanth Menon wrote:
-> >>> +  assigned-clocks:
-> >>> +    description: |
-> >>> +      override default osc32k parent clock reference to the osc32k clock entry
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  assigned-clock-parents:
-> >>> +    description: |
-> >>> +      override default osc32k parent clock phandle of the new parent clock of osc32k
-> >>> +    maxItems: 1
-> >>
-> >> Usually assigned-clockXXX are not needed in the bindings. Is here
-> >> something different? They are put only to indicate something special.
-> > 
-> > I wonder if I should rather use unevaluatedproperties instead? If I use
-> > additionalProperties: False, then the second example below fails.
-> > 
+On 12/04/2022 09:30, Jayesh Choudhary wrote:
+> Add the AM62 version of sa3ul to the compatible list.
 > 
-> Are you sure it fails? I just checked and it worked in my case. This
-> AFAIR was working since some time (or fixed some time ago), so maybe
-> update your dtschema?
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>  Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Arrgh, Thanks and you are right.
-Apologies, I should have cross checked again since developing late
-last year (understood the min schema currently is 2022.3).
 
-Will fix this up in the repost v2 in a short while.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Best regards,
+Krzysztof
