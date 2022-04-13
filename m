@@ -2,81 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78AA14FFA23
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F7D4FFA2A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:29:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236494AbiDMPaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 11:30:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
+        id S236504AbiDMPbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:31:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235931AbiDMPaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:30:02 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BB3962CA9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:27:41 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id t25so2814300edt.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:27:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FTu8nhpVPh5fCRzBhXpfj9kU4anJdDZdibBzSiYag/s=;
-        b=kQ3skXsasLue6DVfv5y0FVEuxEDxG29Y1+8D8hwBIbSTT92Og5I/A8u7aa66H86CJh
-         CTIQSnSYgU4/qo9oWpjORiObR3Was1RTWBru1doFnE8zXrEMb/qKPP8eTbTHhElU0GLe
-         1vvO2N+LYhMuf/VG3LHuzlUdwGL5VElXRSg6dqIEoTlptbpYL5cnHeND+lmFVatTOhI9
-         bYi6Pj/EZeidXIZV3QsK6lvx1Q0PMO8pNrA5/dXuPU2Y0OKbfG+MribaoA8zWd/q6eie
-         xpLB37J7pD536qO/VO+N9y84bf8yf/YSD8hbxMCZq+Pta05qyjpnFF64F/rQv2rB+NSk
-         JryQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FTu8nhpVPh5fCRzBhXpfj9kU4anJdDZdibBzSiYag/s=;
-        b=LvPA+Q2Vtr6P3FZOiaZfV9hUSiHE3F1qIvMp/FWz9slMShx4eo2gT4wgjKkX4KqNXC
-         8XiHGa/ebH7AOrCAx46iyF15jEpLrXSgJMeRwCelqMad5HoooOii1pqIJ+5BQtdwJv2Q
-         E4QRupcCh1d5FXKWKR5wPU+JtqD4bmlN5ghIOtf3g6uMMw/EtPLl7e3x5MtHfmZ74z9l
-         NjQ/ZQdhGlpUUjlX7CIFAxQna+fcKOR3OTN/DdB/40yXtUfxR30IdFKjSSDWyi5K1n3D
-         OGinp8yZ6R2PZ48Z9Z0ON8Gq2hcwF1zL6N0ChJ81b+GM+dC5wJFzm03HSNheRtDjOYIc
-         N9Ng==
-X-Gm-Message-State: AOAM531cgTe6613LF9VtA2n7zgV331AgwHLk743Kp0BeRoXnRsKDynQr
-        0KCvOEALQc/T97vo2lrunLY20Q==
-X-Google-Smtp-Source: ABdhPJxLBhlLRJV5EZ81MU7GCxLdWOBxTjQoEXFFGHWBBg0qfHICCPTgJ254wpt2+5hAPHYiEZitKw==
-X-Received: by 2002:a05:6402:27d0:b0:419:5184:58ae with SMTP id c16-20020a05640227d000b00419518458aemr45052546ede.314.1649863659774;
-        Wed, 13 Apr 2022 08:27:39 -0700 (PDT)
-Received: from [192.168.0.205] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id r3-20020aa7cb83000000b0041b573e2654sm1300328edt.94.2022.04.13.08.27.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 08:27:39 -0700 (PDT)
-Message-ID: <b415523c-34e3-28a1-bcce-4682e7c67e77@linaro.org>
-Date:   Wed, 13 Apr 2022 17:27:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 09/14] mips: dts: ralink: mt7621: use the new compatible
- string for MT7621 pinctrl
-Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S232010AbiDMPbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:31:31 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328E56338E;
+        Wed, 13 Apr 2022 08:29:10 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 623F81F45A37
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649863748;
+        bh=QkuxM+5pnkSA1ICUnAKMrVwzy8WneSmBDiuAOn1jeUg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=j2P2ES0QUqCA8NlI18oTrBam5MoFphrsbmf+R5RvhI4PZA6bUx1dA6fGxfrwf+jOv
+         7381/YQjBg9oODeEmpBqpo9q515hMr/XGKo2aveT750cxgtfyPMEBXSE1nr2GV/uEf
+         biVW+X12b/5t8N9cKppfWxYGJnZpY17RQG/3uH3pGgbnCa2a3vsP/ksctA4/cfq8G8
+         FK4ewWzrI3bBmVFtZ1feT7weYHHjXrIiGjAc2oBUN+ZNCvB3mIpNunPylDCmUZ2Hw+
+         DTEGJnzrwU9Fb83K950oZ+Ry4cx4N9g5si4BKW1FG9PKa5kB3Wy8znVjkp5PXuVHgM
+         EiNWtT0Xd7AVg==
+Date:   Wed, 13 Apr 2022 11:29:03 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
- <20220413060729.27639-10-arinc.unal@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220413060729.27639-10-arinc.unal@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>
+Subject: Re: [PATCH 1/1] arm64: dts: mt8192: Add vcodec lat and core nodes
+Message-ID: <20220413152903.3pk3ed5a5lgtiyf4@notapiano>
+References: <20220408104124.31395-1-allen-kh.cheng@mediatek.com>
+ <20220408104124.31395-2-allen-kh.cheng@mediatek.com>
+ <20220412230819.vnbdv6wpsg73eqzi@notapiano>
+ <649d747ceddc7fbd3f226f4448874665231ae744.camel@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <649d747ceddc7fbd3f226f4448874665231ae744.camel@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,31 +61,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 08:07, ArÄ±nÃ§ ÃœNAL wrote:
-> Use the new compatible string "ralink,mt7621-pinctrl" for the Ralink MT7621
-> pinctrl subdriver on mt7621.dtsi.
+On Wed, Apr 13, 2022 at 03:21:29PM +0800, allen-kh.cheng wrote:
+> Hi Nícolas,
 > 
-> Signed-off-by: ArÄ±nÃ§ ÃœNAL <arinc.unal@arinc9.com>
-> ---
->  arch/mips/boot/dts/ralink/mt7621.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> On Tue, 2022-04-12 at 19:08 -0400, Nícolas F. R. A. Prado wrote:
+> > Hi Allen,
+> > 
+> > On Fri, Apr 08, 2022 at 06:41:24PM +0800, Allen-KH Cheng wrote:
+> > > Add vcodec lat and core nodes for mt8192 SoC.
+> > > 
+> > > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> > > Reviewed-by: AngeloGioacchino Del Regno <
+> > > angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60
+> > > ++++++++++++++++++++++++
+> > >  1 file changed, 60 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > index 18a58239d6f1..c7f4b2fbb315 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > @@ -1120,6 +1120,66 @@
+> > >  			power-domains = <&spm
+> > > MT8192_POWER_DOMAIN_ISP2>;
+> > >  		};
+> > >  
+> > > +		vcodec_dec: vcodec-dec@16000000 {
+> > > +			compatible = "mediatek,mt8192-vcodec-dec";
+> > > +			reg = <0 0x16000000 0 0x1000>;
+> > > +			mediatek,scp = <&scp>;
+> > > +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> > > +			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0
+> > > 0xfff00000>;
+> > > +			#address-cells = <2>;
+> > > +			#size-cells = <2>;
+> > 
+> > The dt-binding says address-cells and size-cells should be 1. Then
+> > most of the
+> > extra 0s can be dropped from ranges and the children's regs.
+> > 
+> > Other than that,
+> > 
+> > Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > 
+> > Thanks,
+> > Nícolas
+> > 
 > 
-> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> index 3222684915ac..ee2ec78c8952 100644
-> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> @@ -151,7 +151,7 @@ spi0: spi@b00 {
->  	};
->  
->  	pinctrl: pinctrl {
-> -		compatible = "ralink,rt2880-pinmux";
-> +		compatible = "ralink,mt7621-pinctrl";
+> I have checked the description in mediatek,vcodec-subdev-decoder.yaml
+> 
+> address-cells and size-cells are two after the below commit is merged.
+> 
+> media: mediatek,vcodec: Fix addressing cell sizes
+> linux/kernel/git/next/linux-next.git
+> commit/id=a50e431bbc6fc5768ed26be5fab5b149b7b8b1fe
 
-The change is non-bisectable and causes issues all other users of DT
-(other projects, systems etc). This is discouraged in general, so you
-should describe it. The commit msg lacks answer to the main question:
-Why? You focused only on what you are doing, but why you are doing is
-actually more important for such change.
+Hi Allen,
 
-Best regards,
-Krzysztof
+yes, you're right. I missed that commit, sorry. This patch is perfectly fine
+as it is then.
+
+Thanks,
+Nícolas
+
+> 
+> Correct me if I got this wrong.
+> 
+> Thanks,
+> Allen
+> 
+> > > +			ranges = <0 0 0 0x16000000 0 0x26000>;
+> > > +
+> > > +			vcodec_lat: vcodec-lat@10000 {
+> > > +				compatible = "mediatek,mtk-vcodec-lat";
+> > > +				reg = <0x0 0x10000 0 0x800>;
+> > > +				interrupts = <GIC_SPI 426
+> > > IRQ_TYPE_LEVEL_HIGH 0>;
+> > > +				iommus = <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> > > +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > > +					 <&vdecsys_soc
+> > > CLK_VDEC_SOC_VDEC>,
+> > > +					 <&vdecsys_soc
+> > > CLK_VDEC_SOC_LAT>,
+> > > +					 <&vdecsys_soc
+> > > CLK_VDEC_SOC_LARB1>,
+> > > +					 <&topckgen
+> > > CLK_TOP_MAINPLL_D4>;
+> > > +				clock-names = "sel", "soc-vdec", "soc-
+> > > lat", "vdec", "top";
+> > > +				assigned-clocks = <&topckgen
+> > > CLK_TOP_VDEC_SEL>;
+> > > +				assigned-clock-parents = <&topckgen
+> > > CLK_TOP_MAINPLL_D4>;
+> > > +				power-domains = <&spm
+> > > MT8192_POWER_DOMAIN_VDEC>;
+> > > +			};
+> > > +
+> > > +			vcodec_core: vcodec-core@25000 {
+> > > +				compatible = "mediatek,mtk-vcodec-
+> > > core";
+> > > +				reg = <0 0x25000 0 0x1000>;
+> > > +				interrupts = <GIC_SPI 425
+> > > IRQ_TYPE_LEVEL_HIGH 0>;
+> > > +				iommus = <&iommu0
+> > > M4U_PORT_L4_VDEC_MC_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_UFO_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_PP_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_TILE_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_VLD_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_VLD2_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+> > > +					 <&iommu0
+> > > M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+> > > +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > > +					 <&vdecsys CLK_VDEC_VDEC>,
+> > > +					 <&vdecsys CLK_VDEC_LAT>,
+> > > +					 <&vdecsys CLK_VDEC_LARB1>,
+> > > +					 <&topckgen
+> > > CLK_TOP_MAINPLL_D4>;
+> > > +				clock-names = "sel", "soc-vdec", "soc-
+> > > lat", "vdec", "top";
+> > > +				assigned-clocks = <&topckgen
+> > > CLK_TOP_VDEC_SEL>;
+> > > +				assigned-clock-parents = <&topckgen
+> > > CLK_TOP_MAINPLL_D4>;
+> > > +				power-domains = <&spm
+> > > MT8192_POWER_DOMAIN_VDEC2>;
+> > > +			};
+> > > +		};
+> > > +
+> > >  		larb5: larb@1600d000 {
+> > >  			compatible = "mediatek,mt8192-smi-larb";
+> > >  			reg = <0 0x1600d000 0 0x1000>;
+> > > -- 
+> > > 2.18.0
+> > > 
+> > > 
+> 
