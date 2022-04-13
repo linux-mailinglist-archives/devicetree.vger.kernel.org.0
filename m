@@ -2,65 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0B250015A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 23:48:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA9C500160
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 23:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231905AbiDMVuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 17:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48098 "EHLO
+        id S234010AbiDMVvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 17:51:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbiDMVux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 17:50:53 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4B345AF3;
-        Wed, 13 Apr 2022 14:48:31 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so3394017fac.11;
-        Wed, 13 Apr 2022 14:48:31 -0700 (PDT)
+        with ESMTP id S234068AbiDMVvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 17:51:36 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D909A47AE1
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:49:13 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id bg10so6604137ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:49:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gMs2rmBWWmIoOW18P1m2w3YjRnMa95bN+gWj8N2yU/k=;
+        b=lR2kiAbTOIdBj36E6Dy3mUbmR3oIHehaxz1cxShoZAzI4SPRU42Lbk1A2VS8PzepLj
+         rHTlIFE9fqY5EXevEnSfLxM9WrqG6wbvR/j6kKHiQ8Nl2zxWPc+w1cTDj+eSK3O+9TbO
+         Qo8+zpSh7Zt9GI07IFP4eK7xk+76Xmxnto0b8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gZ5IzuZnas4l985nK14wT3+DopEhh7ikMHaxt3BDgXM=;
-        b=jTeD2grer85EVV7c14K1izk+fMAj+iMONrrjYMf2DBxfsSfwZFf2C6fzfLtOggeRKY
-         yAotS7AuhPfkGs0AqwwYDYL1iQy5HMT97/a5ABQLfGGeBRyuCdJHLx8Q+iSB11q4fHtD
-         xvOEV8ngSWpbkOVqRc3MbTeA8kDiT3Bdg+pMS+775nzXS2h3ztpDZn5HlYyCzLm3mibC
-         eOdteqBSr+K6R2RsLf7802e7bxXML5nRpcnBxLg9j8kOzDcbcs/8HwjkgxAtUm9PN+Bj
-         TYCioqh97oevE1xi05pPb/oDnmA7tvGKeoMSS04w8/KAL5c80JMSGWpmS0GNC4gvemc9
-         Ln8Q==
-X-Gm-Message-State: AOAM532DVOQCQcx6bEH7MwmykNPBTd5ZEkZ67ehrulF0mJrSPMYdlfTL
-        aBkDz0fnpZ8jgooXNdt0wQMbE2YkeA==
-X-Google-Smtp-Source: ABdhPJw4ZdAXg+C2H30RcFzAEja9aJehGfKq2X8p4MbBKy7GLUywETryMRUNad86bKsFuDke8FIigA==
-X-Received: by 2002:a05:6870:ea81:b0:db:3e68:7ae0 with SMTP id s1-20020a056870ea8100b000db3e687ae0mr333225oap.9.1649886510444;
-        Wed, 13 Apr 2022 14:48:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id fu17-20020a0568705d9100b000e2b43e7fbasm85105oab.16.2022.04.13.14.48.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 14:48:29 -0700 (PDT)
-Received: (nullmailer pid 4000263 invoked by uid 1000);
-        Wed, 13 Apr 2022 21:48:28 -0000
-Date:   Wed, 13 Apr 2022 16:48:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Drew Fustini <dfustini@baylibre.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Gerlach <d-gerlach@ti.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: wkup-m3-ipc: Add vtt toggle gpio pin
- property
-Message-ID: <YldFLAVMWhcpn1QC@robh.at.kernel.org>
-References: <20220409211215.2529387-1-dfustini@baylibre.com>
- <20220409211215.2529387-2-dfustini@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gMs2rmBWWmIoOW18P1m2w3YjRnMa95bN+gWj8N2yU/k=;
+        b=akCpqMVf3pLqBuSgZksabkIJqwq0CBro9t52kQorJn9UnjEmBvm2jwySlpOaXKsLMs
+         HvrXk3l+H86dK9bpdFPRKhuYcwnyMW5IoITgqy0btuc9eVWTytYzHAH8/ZJAn01mlLUT
+         +/mkL+URHaJGZ1WlPwRmxw2aSgAGiw705zlYb80uYTUH1CY3WtjbBvnismRrUQSGmMcQ
+         fB/wa2TEOQ73J2csb7zw/vT+0b5UV95yCyrueoGOHxmx2pyfHP8cu4ATHpJxi58XO/lS
+         qT0GV197NA62tzHl5ogD0mHriTHCAsB70947TK5lwUvcmgZqnN1cH7dmayUJ/mcOHtx4
+         oQLg==
+X-Gm-Message-State: AOAM532cYLFNiHDWWLOS1DDOB2fYQSTviza8/k0Jhqonbl2T2evelJWk
+        W1H9e3woQ6nUmL6pK8Ksj1ni+sKuM2hHYNc6
+X-Google-Smtp-Source: ABdhPJwKsh9eLwuzSeh0xxmxWzH+kL1hswlUD2HZ+sB12HnoarWQW2KfQ2v3sK6AzCiUPgWDj74LQQ==
+X-Received: by 2002:a17:907:3e03:b0:6da:8c5a:6d4a with SMTP id hp3-20020a1709073e0300b006da8c5a6d4amr41621303ejc.585.1649886552011;
+        Wed, 13 Apr 2022 14:49:12 -0700 (PDT)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
+        by smtp.gmail.com with ESMTPSA id x4-20020a170906b08400b006e493cb583esm41178ejy.47.2022.04.13.14.49.11
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 14:49:11 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id o20-20020a05600c511400b0038ebbbb2ad8so2019138wms.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 14:49:11 -0700 (PDT)
+X-Received: by 2002:a05:600c:3ca4:b0:38e:54d0:406d with SMTP id
+ bg36-20020a05600c3ca400b0038e54d0406dmr119391wmb.199.1649886550796; Wed, 13
+ Apr 2022 14:49:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220409211215.2529387-2-dfustini@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+ <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org>
+In-Reply-To: <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 13 Apr 2022 14:48:57 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
+Message-ID: <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,17 +79,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 09 Apr 2022 14:12:14 -0700, Drew Fustini wrote:
-> Document Wakeup M3 IPC property that indicates a GPIO pin is connected
-> to the enable pin on DDR VTT regulator and can be toggled during low
-> power mode transitions.
-> 
-> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-> [dfustini: converted to YAML, removed unnecessary "ti,needs-vtt-toggle"]
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> ---
->  .../devicetree/bindings/soc/ti/wkup-m3-ipc.yaml     | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
+Hi,
 
-Applied, thanks!
+On Wed, Mar 30, 2022 at 10:25 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 30/03/2022 11:09, Mars Chen wrote:
+> > Initial attempt at Gelarshie device tree.
+> >
+> > BUG=b:225756600
+> > TEST=emerge-strongbad chromeos-kernel-5_4
+> >
+> > Signed-off-by: Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../dts/qcom/sc7180-trogdor-gelarshie-r0.dts  |  15 +
+> >  .../dts/qcom/sc7180-trogdor-gelarshie.dtsi    | 304 ++++++++++++++++++
+> >  3 files changed, 320 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index f9e6343acd03..cf8f88b065c3 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)     += sc7180-trogdor-coachz-r1.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-coachz-r1-lte.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-coachz-r3.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-coachz-r3-lte.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-gelarshie-r0.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-homestar-r2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-homestar-r3.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-homestar-r4.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+> > new file mode 100644
+> > index 000000000000..027d6d563a5f
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+> > @@ -0,0 +1,15 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Google Gelarshie board device tree source
+> > + *
+> > + * Copyright 2022 Google LLC.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sc7180-trogdor-gelarshie.dtsi"
+> > +
+> > +/ {
+> > +     model = "Google Gelarshie (rev0+)";
+> > +     compatible = "google,gelarshie", "qcom,sc7180";
+>
+> Missing bindings. Please document the compatible.
+
+I'm actually kinda curious: is there really a good reason for this? I
+know I haven't been adding things to
+`Documentation/devicetree/bindings/arm/qcom.yaml` for Qualcomm
+Chromebooks.  Ironically, it turns out that the script I typically use
+to invoke checkpatch happens to have "--no-tree" as an argument and
+that seems to disable this check. Doh!
+
+That being said, though, I do wonder a little bit about the value of
+enumerating the top-level compatible like this in a yaml file.
+Certainly the yaml schema validation in general can be quite useful,
+but this top-level listing seems pure overhead. I guess it makes some
+tools happy, but other than that it seems to provide very little
+value...
+
+-Doug
