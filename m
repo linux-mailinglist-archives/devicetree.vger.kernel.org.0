@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0456D4FFE34
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3321A4FFE3A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:54:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232291AbiDMSzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 14:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39282 "EHLO
+        id S229765AbiDMS45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 14:56:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230176AbiDMSzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:55:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD023C493;
-        Wed, 13 Apr 2022 11:53:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B0C1261AA8;
-        Wed, 13 Apr 2022 18:53:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12017C385AC;
-        Wed, 13 Apr 2022 18:53:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649875994;
-        bh=+b/3aEisGHFiXRfEXwGkQ8elGx5edRKC+eZFp8mRdN4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qEJZEnsIXHeUegVdo32QCL6tUzkY0bm9NIWRJija2QSjMOd+J9uvyZp7E4/1SZZuM
-         vPR+rp3xXcKvLwj0cZgkr051fdgbTvxq0Bmgi3Uk1CmRiZ4skeVFLioCuJyBKq7DSx
-         b1ufxihZ1o1t6XhA4Jgf101SoyPB/x/vRdkMDOoT58JL8fJFHhdYrkJMtjn95ktSYx
-         grgqrz2oL5jgQ4fjHXlGUGHgkGrSIlgj3ptkjHiN6tCZibWXc5hbtxMm2fUOvVXqdm
-         kbDUL/z/SUCiY3MrbhaoTtbanRKLKF+tUuSNi86FymuLX5LDDXICmB8OcDNLyhCmfB
-         5smGqTxrSAv8w==
-Received: by mail-io1-f54.google.com with SMTP id k25so2927597iok.8;
-        Wed, 13 Apr 2022 11:53:13 -0700 (PDT)
-X-Gm-Message-State: AOAM532Lbg08rKEvGnXfxNvieGAPGxQGSrwBnTSwW/bLk1Sbior8Q0KB
-        mrKFQXkIMlVmkQivyGrd1RZ/YLKCsZYdC+LWcw==
-X-Google-Smtp-Source: ABdhPJx8aDr1E+tCrRAFbG+lY50PvgkTHBZ9KMQKWYl31B/+g1cB6zkeaCnf+kqIY0ywg9/I8Uks5DznbHfKVJ0teLA=
-X-Received: by 2002:a05:6602:27c5:b0:631:a30f:143a with SMTP id
- l5-20020a05660227c500b00631a30f143amr18552265ios.40.1649875992993; Wed, 13
- Apr 2022 11:53:12 -0700 (PDT)
+        with ESMTP id S237832AbiDMS44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:56:56 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B6D28986
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 11:54:32 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id q3so2728027plg.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 11:54:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OjRjmoePRs+lwK8EcTKG0YznKs3MTFg12MB57s5KKDM=;
+        b=QzXSunD/FqvjvHJiRa7PdbJgVXiIDYc8sERenQLuYbWB3X8ydiTATqwXjJfxWBsXuR
+         5da/1UpqpnptbqjxcVSP7/2uKNwI0vSmchVvMQHmvR7X0ObY54ko+eA3Z0GzdctbhSNd
+         D7pXNIcAKDxbyIZUh7IHU3dDaJ+b6JJSzzLsk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OjRjmoePRs+lwK8EcTKG0YznKs3MTFg12MB57s5KKDM=;
+        b=TiFb9Qf5/9VazDI3E/Ir7zt6V7w0xt9ZNUZ/P8q9M7KfmreLsTXpSSEr5c9oTNr/LP
+         7FxzsTK2nGthU9IoxXguBCtoYZpvn+XVp73SPsesMtzeHaiOLXMizYYM1kRtpdU6ltGN
+         o54U5FUIjkX3QVFoaB/fFrfrhXm0WROOFKf5sjLNitPzeRDNHWeiS0fRiA/AaNTAAEu9
+         eUTVv+82+J3uQTGO8iUH1EhmD4gJoz2HgqB9ovzmLJjWNA1ennHkIPQeLyJ9c+wV2kc8
+         M4xSCwfYUf1UBAbVrco7Sqe7uQMx4ib14W0ytKCLyIal2iDvgA/usEyiTPlv6cJhfoZy
+         cSEA==
+X-Gm-Message-State: AOAM531VER2VIWfjCHrQUou5yeJAI2q0X1iyona1cgAyZQ/JjlmWwRk2
+        jZnmzZMbAwWtg7Rb1gy2UarWxA==
+X-Google-Smtp-Source: ABdhPJwTm1WU1/fk/i6WrkLVnp/GC/1c0njhlohkMlVENV4c29oO/92/fEWBfdM2BG2pBfA7eQZvmg==
+X-Received: by 2002:a17:90a:4403:b0:1ca:a4a3:6824 with SMTP id s3-20020a17090a440300b001caa4a36824mr180631pjg.20.1649876072429;
+        Wed, 13 Apr 2022 11:54:32 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6a4f:9277:743f:c648])
+        by smtp.gmail.com with UTF8SMTPSA id e5-20020aa78c45000000b005058ab75ee9sm18843095pfd.199.2022.04.13.11.54.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 11:54:32 -0700 (PDT)
+Date:   Wed, 13 Apr 2022 11:54:30 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v7 1/4] arm64: dts: qcom: sc7280: Add nodes for soundwire
+ and va tx rx digital macro codecs
+Message-ID: <YlccZmu8T1Puu9Vt@google.com>
+References: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649863277-31615-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-References: <20220413092454.1073-1-tzimmermann@suse.de> <20220413092454.1073-2-tzimmermann@suse.de>
- <CAL_JsqK4oT47Q=XFTZ0a=g3-DiB1JsW7_j9M1qRzpeahhz0muA@mail.gmail.com>
- <b31df06c-6cce-37dd-5ec1-661fdc8151da@suse.de> <CAL_JsqJdYjd=P4Nhd9E+=OjOb2A-=_txBUtWsDL1FWqZ0phD+g@mail.gmail.com>
-In-Reply-To: <CAL_JsqJdYjd=P4Nhd9E+=OjOb2A-=_txBUtWsDL1FWqZ0phD+g@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 13 Apr 2022 13:53:01 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKGXNJFPe3wt4O8ns1xzopNg4AtWYcZWDbtaP+F22omrw@mail.gmail.com>
-Message-ID: <CAL_JsqKGXNJFPe3wt4O8ns1xzopNg4AtWYcZWDbtaP+F22omrw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of: Create platform devices for OF framebuffers
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Helge Deller <deller@gmx.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1649863277-31615-2-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,141 +72,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- eOn Wed, Apr 13, 2022 at 1:46 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Wed, Apr 13, 2022 at 12:58 PM Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> >
-> > Hi
-> >
-> > Am 13.04.22 um 14:51 schrieb Rob Herring:
-> > > On Wed, Apr 13, 2022 at 4:24 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> > >>
-> > >> Create a platform device for each OF-declared framebuffer and have
-> > >> offb bind to these devices. Allows for real hot-unplugging and other
-> > >> drivers besides offb.
-> > >>
-> > >> Originally, offb created framebuffer devices while initializing its
-> > >> module by parsing the OF device tree. No actual Linux device was set
-> > >> up. This tied OF framebuffers to offb and makes writing other drivers
-> > >> for the OF framebuffers complicated. The absence of a Linux device
-> > >> prevented real hot-unplugging. Adding a distinct platform device for
-> > >> each OF framebuffer solves both problems. Specifically, a DRM drivers
-> > >> can now provide graphics output with modern userspace.
-> > >>
-> > >> Some of the offb init code is now located in the OF initialization.
-> > >> There's now also an implementation of of_platform_default_populate_init(),
-> > >> which was missing before. The OF side creates different devices for
-> > >> either OF display nodes or bootx displays as they require different
-> > >> handling by the driver. The offb drivers picks up each type of device
-> > >> and runs the appropriate fbdev initialization.
-> > >>
-> > >> Tested with OF display nodes on qemu's ppc64le target.
-> > >>
-> > >> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> > >> ---
-> > >>   drivers/of/platform.c      | 73 ++++++++++++++++++++++++++--
-> > >>   drivers/video/fbdev/offb.c | 98 +++++++++++++++++++++++++-------------
-> > >>   2 files changed, 134 insertions(+), 37 deletions(-)
-> > >>
-> > >> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > >> index a16b74f32aa9..4c63b9a73587 100644
-> > >> --- a/drivers/of/platform.c
-> > >> +++ b/drivers/of/platform.c
-> > >> @@ -447,6 +447,60 @@ int of_platform_bus_probe(struct device_node *root,
-> > >>   }
-> > >>   EXPORT_SYMBOL(of_platform_bus_probe);
-> > >>
-> > >> +static int __init of_platform_populate_framebuffers(void)
-> > >> +{
-> > >> +       struct device_node *boot_display = NULL;
-> > >> +       struct device_node *node;
-> > >> +       struct platform_device *dev;
-> > >> +       int ret;
-> > >> +
-> > >> +       node = of_get_compatible_child(of_chosen, "simple-framebuffer");
-> > >> +       of_platform_device_create(node, NULL, NULL);
-> > >> +       of_node_put(node);
-> > >> +
-> > >
-> > > The rest is PPC only, so bail out here if !PPC.
-> > >
-> > >> +       /* Check if we have a MacOS display without a node spec */
-> > >> +       if (of_get_property(of_chosen, "linux,bootx-noscreen", NULL)) {
-> > >> +               /*
-> > >> +                * The old code tried to work out which node was the MacOS
-> > >> +                * display based on the address. I'm dropping that since the
-> > >> +                * lack of a node spec only happens with old BootX versions
-> > >> +                * (users can update) and with this code, they'll still get
-> > >> +                * a display (just not the palette hacks).
-> > >> +                */
-> > >> +               dev = platform_device_alloc("bootx-noscreen", 0);
-> > >> +               if (WARN_ON(!dev))
-> > >> +                       return -ENOMEM;
-> > >> +               ret = platform_device_add(dev);
-> > >> +               if (WARN_ON(ret)) {
-> > >> +                       platform_device_put(dev);
-> > >> +                       return ret;
-> > >> +               }
-> > >> +       }
-> > >> +
-> > >> +       /*
-> > >> +        * For OF framebuffers, first create the device for the boot display,
-> > >> +        * then for the other framebuffers. Only fail for the boot display;
-> > >> +        * ignore errors for the rest.
-> > >> +        */
-> > >> +       for_each_node_by_type(node, "display") {
-> > >> +               if (!of_get_property(node, "linux,opened", NULL) ||
-> > >> +                   !of_get_property(node, "linux,boot-display", NULL))
-> > >> +                       continue;
-> > >> +               dev = of_platform_device_create(node, "of-display", NULL);
-> > >> +               if (WARN_ON(!dev))
-> > >> +                       return -ENOMEM;
-> > >> +               boot_display = node;
-> > >> +               break;
-> > >> +       }
-> > >> +       for_each_node_by_type(node, "display") {
-> > >> +               if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
-> > >> +                       continue;
-> > >> +               of_platform_device_create(node, "of-display", NULL);
-> > >> +       }
-> > >> +
-> > >> +       return 0;
-> > >> +}
-> > >> +
-> > >>   /**
-> > >>    * of_platform_populate() - Populate platform_devices from device tree data
-> > >>    * @root: parent of the first level to probe or NULL for the root of the tree
-> > >> @@ -541,9 +595,7 @@ static int __init of_platform_default_populate_init(void)
-> > >>                  of_node_put(node);
-> > >>          }
-> > >>
-> > >> -       node = of_get_compatible_child(of_chosen, "simple-framebuffer");
-> > >> -       of_platform_device_create(node, NULL, NULL);
-> > >> -       of_node_put(node);
-> > >> +       of_platform_populate_framebuffers();
-> > >>
-> > >>          /* Populate everything else. */
-> > >>          of_platform_default_populate(NULL, NULL, NULL);
-> > >
-> > > I'm pretty sure it's just this call that's the problem for PPC though
-> > > none of the above existed when adding this caused a regression. Can we
-> > > remove the ifdef and just make this call conditional on
-> > > !IS_ENABLED(CONFIG_PPC).
-> >
-> > Together with the changes in of_platform_populate_framebuffers(), the
-> > code is more or less an "if-else" depending on PPC. I'll drop
-> > of_platform_populate_framebuffers() from the patch and make a separate
-> > implementation of of_platform_default_populate_init for PPC. Seems like
-> > the easiest solution to me.
->
-> That just moves us farther from PPC ever using
-> of_platform_default_populate_init(). But I don't know that anyone in
-> PPC cares about that, so fine I guess.
+On Wed, Apr 13, 2022 at 08:51:14PM +0530, Srinivasa Rao Mandadapu wrote:
+> SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
+> external codecs using soundwire masters. Add these nodes for sc7280 based
+> platforms audio use case.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 122 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 50fea0e..c0f127f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1980,6 +1980,128 @@
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		lpass_rx_macro: codec@3200000 {
+> +			compatible = "qcom,sc7280-lpass-rx-macro";
+> +			reg = <0 0x03200000 0 0x1000>;
+> +
+> +			status = "disabled";
 
-Actually, no. Make it work with IS_ENABLED(CONFIG_PPC) rather than an
-#ifdef. Currently, I don't have to build this (or any of drivers/of/)
-for PPC because it is IS_ENABLED(CONFIG_PPC) everywhere. Yes, there's
-an #ifdef already, but there's not an #else and no PPC only code
-compiled.
+nit: this is easily missed here inmidst of the other stuff, best place
+it at the end of the node as many other nodes do.
 
-Rob
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&lpass_rx_swr>;
+> +
+> +			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
+> +				 <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
+> +				 <&lpass_va_macro>;
+> +			clock-names = "mclk", "npl", "fsgen";
+> +
+> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
+> +					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
+> +			power-domain-names ="macro", "dcodec";
+
+add space after '='.
+
+> +
+> +			#clock-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +		};
+> +
+> +		swr0: soundwire@3210000 {
+> +			compatible = "qcom,soundwire-v1.6.0";
+> +			reg = <0 0x03210000 0 0x2000>;
+> +
+> +			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&lpass_rx_macro>;
+> +			clock-names = "iface";
+> +
+> +			qcom,din-ports = <0>;
+> +			qcom,dout-ports = <5>;
+> +
+> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
+> +			reset-names = "swr_audio_cgcr";
+
+The resets aren't mentioned in the binding, should they be added?
+
+> +
+> +			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff>;
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x3f 0x1f 0x03 0x03>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x01>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00>;
+> +
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+
+in difference to the other nodes the soundwire ones don't have
+'status = "disabled"', should they be disabled by default?
+
+> +		};
+> +
+> +		lpass_tx_macro: codec@3220000 {
+> +			compatible = "qcom,sc7280-lpass-tx-macro";
+> +			reg = <0 0x03220000 0 0x1000>;
+> +
+> +			status = "disabled";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&lpass_tx_swr>;
+> +
+> +			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
+> +				 <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
+> +				 <&lpass_va_macro>;
+> +			clock-names = "mclk", "npl", "fsgen";
+> +
+> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
+> +					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
+> +			power-domain-names ="macro", "dcodec";
+
+add space after '='
+
+> +
+> +			#clock-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +		};
+> +
+> +		swr1: soundwire@3230000 {
+> +			compatible = "qcom,soundwire-v1.6.0";
+> +			reg = <0 0x03230000 0 0x2000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 130 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "swr_master_irq", "swr_wake_irq";
+
+From the binding
+
+  - interrupt-names:
+        Usage: Optional
+        Value type: boolean
+        Value type: <stringlist>
+        Definition: should be "core" for core and "wakeup" for wake interrupt.
+
+Does the binding need an update?
+
+> +			clocks = <&lpass_tx_macro>;
+> +			clock-names = "iface";
+> +
+> +			qcom,din-ports = <3>;
+> +			qcom,dout-ports = <0>;
+> +
+> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_TX_CGCR>;
+> +			reset-names = "swr_audio_cgcr";
+> +
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x03 0x03>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xff 0x00 0xff>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00>;
+> +			qcom,port-offset = <1>;
+> +
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		lpass_va_macro: codec@3370000 {
+> +			compatible = "qcom,sc7280-lpass-va-macro";
+> +			reg = <0 0x03370000 0 0x1000>;
+> +
+> +			status = "disabled";
+> +			pinctrl-0 = <&lpass_dmic01>;
+> +			pinctrl-names = "default";
+> +
+> +			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>;
+> +			clock-names = "mclk";
+> +
+> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
+> +					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
+> +			power-domain-names ="macro", "dcodec";
+
+add space after '='.
+
+> +
+> +			#clock-cells = <0>;
+> +			#sound-dai-cells = <1>;
+> +		};
+> +
+>  		lpass_ag_noc: interconnect@3c40000 {
+>  			reg = <0 0x03c40000 0 0xf080>;
+>  			compatible = "qcom,sc7280-lpass-ag-noc";
+> -- 
+> 2.7.4
+> 
