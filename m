@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E06794FF8D2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E858D4FF8EE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbiDMOWy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Apr 2022 10:22:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37508 "EHLO
+        id S234344AbiDMOb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 10:31:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236149AbiDMOWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 10:22:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0E437022
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 07:20:11 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nedqK-00064F-1C; Wed, 13 Apr 2022 16:19:36 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nedqH-002nds-0d; Wed, 13 Apr 2022 16:19:31 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nedqE-000Bdk-Kr; Wed, 13 Apr 2022 16:19:30 +0200
-Message-ID: <03af79f89d80d985ebf9adacb77af7c128248d27.camel@pengutronix.de>
-Subject: Re: [PATCH] dt-bindings: Fix array constraints on scalar properties
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Agathe Porte <agathe.porte@nokia.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-hwmon@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-spi@vger.kernel.org
-Date:   Wed, 13 Apr 2022 16:19:30 +0200
-In-Reply-To: <20220413140121.3132837-1-robh@kernel.org>
-References: <20220413140121.3132837-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S229813AbiDMOb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 10:31:27 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA9556221
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 07:29:02 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id j8so2096966pll.11
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 07:29:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W3hJGrmaAvxQ1Iq6K+QFDHPYd+AnBBrGQGYmAYimyFM=;
+        b=Jws5h8+7lkW5dWJUO628L+BorIWyk9T5tBc726AJSWzLf5pJBLWUVKbwW6UOJukFGr
+         waJ+8M/0jtPvdqefqOlUwzauP1OG5BnrNsmDCbbSlwK4hF/t16sPmj8ofalRaLbs+Zdw
+         HlNmGZeBEtRx/Z18Lb5crO21/nhVD91XmaOpeYtJwKYVKsTGb8SBP4BdARSE1+TmbA45
+         hwN1XewpTS2vSKhjD6MFZSWFShNGPmoS+bOZ/Kok9IOeqAHXJSpTKWx4L3TLcT05oTkF
+         Y2kJxSTAJfQ1T1NnpOKijzutYmUy03NGxJNA3pPK/eSMUCrfe/Fbx1cZLfPl608iIEaN
+         cMfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W3hJGrmaAvxQ1Iq6K+QFDHPYd+AnBBrGQGYmAYimyFM=;
+        b=mclVdWRk9G1eaphgKjbYyPClTCsJtGaZQuot2jSW9Wt07mtUGZI+fz+k6eHnGF0myk
+         rQPjWZnX2djs65Xr9H1jZWyrJidN9E14Pwu0SESTrTUsZUDYZBAumfZWgBTBaSQKK6Lx
+         pHsORdBJPZdIlZVQ1wrGz9ML6l6r4uEnoflnj5W8v3s5Nj13ExfQW+n+FNGGGx+mNWsw
+         wXa4sqGa8nXTE5VFgFg4WaHt0Y2+PtOj4FrcZCVQc1qbKKTdqea1rUmcBy+D4pdJxha0
+         TM+YZZF7aAm2/zAiHQgYtlwPINDS7nwCWYHAgrbJurwmv/77y/RDhOPR8P1/Iq7bf4OE
+         0Tiw==
+X-Gm-Message-State: AOAM531/ImPg5WM/W3hzLrjmnjlmqDS5nVKZwWxUp+EdgVyw568yXCOs
+        ilY2MS9ItNA2/RAbT1Q8wdrQvuhFwqDYozvCrFolIA==
+X-Google-Smtp-Source: ABdhPJz3n3+dk2Krw4doJzCu1wCrOBh4/t9lU1aVQm4BPNjr3lisjMW5XOOnjfCrRT56oMgfkVfEXl3aKlZ/ZAOIbR4=
+X-Received: by 2002:a17:902:c94c:b0:154:45c6:fbea with SMTP id
+ i12-20020a170902c94c00b0015445c6fbeamr43212960pla.117.1649860142164; Wed, 13
+ Apr 2022 07:29:02 -0700 (PDT)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20220328120956.1848795-1-xji@analogixsemi.com>
+ <20220328120956.1848795-3-xji@analogixsemi.com> <YkswTpDiPYfdIFtE@robh.at.kernel.org>
+ <20220409044740.GA595530@anxtwsw-Precision-3640-Tower>
+In-Reply-To: <20220409044740.GA595530@anxtwsw-Precision-3640-Tower>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 13 Apr 2022 16:28:51 +0200
+Message-ID: <CAG3jFyt1Srtn2aTFQ6b8Rxc6F_GCzU2mKxiEiWwgskMwHHjj5Q@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: drm/bridge: anx7625: Change bus-type to
+ 7 (DPI)
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, bliang@analogixsemi.com,
+        qwen@analogixsemi.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,57 +76,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2022-04-13 at 09:01 -0500, Rob Herring wrote:
-> Scalar properties shouldn't have array constraints (minItems, maxItems,
-> items). These constraints can simply be dropped with any constraints under
-> 'items' moved up a level.
+On Sat, 9 Apr 2022 at 06:47, Xin Ji <xji@analogixsemi.com> wrote:
 >
-> Cc: Agathe Porte <agathe.porte@nokia.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Olivier Moysan <olivier.moysan@foss.st.com>
-> Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Cc: Yunfei Dong <yunfei.dong@mediatek.com>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: linux-hwmon@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-remoteproc@vger.kernel.org
-> Cc: linux-spi@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml       | 5 ++---
->  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml      | 4 +---
->  Documentation/devicetree/bindings/media/coda.yaml            | 1 -
->  .../devicetree/bindings/media/mediatek,vcodec-decoder.yaml   | 2 --
->  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml   | 2 --
->  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml       | 1 -
->  .../devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml | 4 +---
->  Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml  | 2 --
->  8 files changed, 4 insertions(+), 17 deletions(-)
-> 
-[...]
-> diff --git a/Documentation/devicetree/bindings/media/coda.yaml b/Documentation/devicetree/bindings/media/coda.yaml
-> index 36781ee4617f..c9d5adbc8c4a 100644
-> --- a/Documentation/devicetree/bindings/media/coda.yaml
-> +++ b/Documentation/devicetree/bindings/media/coda.yaml
-> @@ -65,7 +65,6 @@ properties:
->    iram:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description: phandle pointing to the SRAM device node
-> -    maxItems: 1
+> On Mon, Apr 04, 2022 at 12:52:14PM -0500, Rob Herring wrote:
+> > On Mon, Mar 28, 2022 at 08:09:54PM +0800, Xin Ji wrote:
+> > > Change bus-type define for DPI.
+> > >
+> > > Fixes: a43661e7e819 ("dt-bindings:drm/bridge:anx7625:add vendor define")
+> > >
+> > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > > ---
+> > >  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml  | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > index 0d38d6fe3983..4590186c4a0b 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > @@ -106,7 +106,7 @@ properties:
+> > >                remote-endpoint: true
+> > >
+> > >                bus-type:
+> > > -                enum: [1, 5]
+> > > +                enum: [7]
+> >
+> > Changing is an ABI break, but didn't we revert adding this?
+> Hi Rob, sorry, what do you mean about ABI break? Do I need remove this
+> patch in this serial? Or do I need revert patch
+> https://patchwork.freedesktop.org/patch/462331/, I don't know how to do
+> it.
+>
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+I contributed to the confusion about this, let's see if we can clear it up.
 
-regards
-Philipp
+An issue was found related to which enum values were used to represent
+what late in the last release cycle. As a result a revert[1] patch for
+everything touching bus-type in anx7625 was merged.
+
+This patch, does not apply to drm-misc-next due to the revert, and if
+Xin Ji rebases his work on the drm-misc-next there should be no
+ABI-change as this patch when fixed up will introduce bus-type to the
+nax7625 ABI.
+
+Xin: Does this make sense to you?
+
+[1] https://cgit.freedesktop.org/drm/drm-misc/commit/?id=979452fbc43028675b5a5da156f91928b739dea8
