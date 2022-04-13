@@ -2,75 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A2F4FFF5B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAAC4FFF64
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237470AbiDMTdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 15:33:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
+        id S234725AbiDMThz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 15:37:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235849AbiDMTdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:33:39 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFA476282
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:31:17 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id d10so3740929edj.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:31:16 -0700 (PDT)
+        with ESMTP id S238426AbiDMThk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:37:40 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC0D765A6
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:35:17 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id s137so2704644pgs.5
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:35:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=frTEyC0/+CfTIF4PYPNiHQ4Gsfm5fIkYJSxFNrCEuso=;
-        b=USSnSZtoD5qwvH/yvxHC79p7rIcFBfYSAwCS/8l+UAOQVYZUKJ+vDuBaAJB/nJmEPx
-         g7xJs94b53G9SqzrTEyV7LiPRqY0+FlEUHXsFaG0byJs5XO9935tw+7S/EMAJuTtQhFu
-         VjfWoAx3Fgh06C/08DWnLONaqlnuWzNwZGJHbJI9za5M55H9pRP/jioGj6z6SD5mSuf5
-         OhqjpbUnqQeW/s2ZVSve+5lCImK8h2qDomy0YIMCtTsk3zqfpMMDy2LoFmTLoUjvNvp4
-         WpBvZbIOz7I46fmHuumVjEpqpu1SEQkwedZ3gusL5+0cPXdh1QTDfn/NzBsWi6w2TCm3
-         pPRg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4WH7f6JXFremjrBlmUML6pWVJn/974Z6+oDZ1BDIsM0=;
+        b=MxQuCgA+KjXz/suVqxz/KwPy9HtRl6Z4cNYXjCPujEu096i/Gk/uXd0eqR5bOgr6L/
+         sTIWuJ5DPUdMGazPE3msjwL6ZNZ53/DGVWnckKEjq2lWW+yMAFY5TqcP0Xo0yidPz/MY
+         DjQyvRlEGq5TxVA3/Ii13Uq3RijmPH1TBtzpE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=frTEyC0/+CfTIF4PYPNiHQ4Gsfm5fIkYJSxFNrCEuso=;
-        b=FTTwJEDQkTEfWFnerWwJwJu6128W+Xk5mOZY++clDLxNFLG95QeezCqGgrVwv/id3U
-         bDi2K5PvXBRHrRjOphml6G+5xyNUJZQEwymsBdEDeXs0QDxqDqtXmxBDw5jnnM46owTC
-         OA/7Lu6sCPvtjW2lS4B/GcskWWn52ESayNc51QfrMG/f7IPN3YqJbGGYQoN58cN84CPm
-         zNWX/6I7s4PflHP4h073nzIJOsCKhPfveVu+qaO7TGRtxu5FOWTrVFZPkQZCRw1EVSGh
-         0CeuhlcLflvZHNe2ToKkrrbJG/qDrqjEh6OKx/x8rU6B/Oa6FbasqXkapGjNZDGUGtdj
-         38xA==
-X-Gm-Message-State: AOAM5303d4gVg2GK3QC62NRbJtZwY8mFiszFpL/M3qYKs1g8mBYGvlZO
-        CLwm7SeFeA6da35x1YfiAqXEKw==
-X-Google-Smtp-Source: ABdhPJxCWuXB+xuTb6sKG9nbhRjhHzVASERrwIqlT8IubgeDh/aIhOShiVtJmLn6LiaKB+HEOkgWow==
-X-Received: by 2002:a05:6402:5250:b0:41d:8556:4191 with SMTP id t16-20020a056402525000b0041d85564191mr14027035edd.269.1649878275612;
-        Wed, 13 Apr 2022 12:31:15 -0700 (PDT)
-Received: from [192.168.0.207] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id e26-20020a50ec9a000000b004193fe50151sm1584782edr.9.2022.04.13.12.31.14
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4WH7f6JXFremjrBlmUML6pWVJn/974Z6+oDZ1BDIsM0=;
+        b=Y4TgO4wF+hkueulSd4pvo4rgPeZyDJjpLYS/PVAkH1kY4rd71MFO65hJy/BhILH+qs
+         DT8LI2XvTKJf02QaQ177B6B09vWTWK9yYZxYorNGC+2EYlL/53BlJbtPZ/opFTwY9fSm
+         3jSdrXg3tJoSzCrynituBWndqrTSRTEUAbPmrD+N862k5m4d8QtHMR65OcQKUHshgpbx
+         phECikwESNjX5K2T4YKxOS02URNaiwtaJexiaeWkMHGvRQcAxsEBSwwE/CtcML5KlyiB
+         m59++5bC/fS6NulLPVU0rWt1eBoI8VLrs4UivK3DSaJk0jsaAY9WwPnSofiRZsqhWbue
+         gqiQ==
+X-Gm-Message-State: AOAM532bVSkHx1GQGryI/ygv84z6Gx6yj3lbcuhyn33cDXwSJWWKyFQw
+        gDem9Y0PPU86adllWz59XBD8Ug==
+X-Google-Smtp-Source: ABdhPJwTPfFuvyUpXywvV44/zNtujcJtz/ALWc7o9uQbDEcIrUDjnJ+bpl8M/uqMaWB/5K2VTCuubw==
+X-Received: by 2002:a05:6a00:2354:b0:505:c6c3:af87 with SMTP id j20-20020a056a00235400b00505c6c3af87mr367490pfj.78.1649878517206;
+        Wed, 13 Apr 2022 12:35:17 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6a4f:9277:743f:c648])
+        by smtp.gmail.com with UTF8SMTPSA id z13-20020a17090a468d00b001c7db8e6ac7sm3728002pjf.40.2022.04.13.12.35.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 12:31:15 -0700 (PDT)
-Message-ID: <44efe8b6-1712-5b87-f030-2f1328533ee8@linaro.org>
-Date:   Wed, 13 Apr 2022 21:31:13 +0200
+        Wed, 13 Apr 2022 12:35:16 -0700 (PDT)
+Date:   Wed, 13 Apr 2022 12:35:15 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v7 2/4] arm64: dts: qcom: sc7280: Add nodes for wcd9385
+ and max98360a codec
+Message-ID: <Ylcl830KnrzXHpSx@google.com>
+References: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649863277-31615-3-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 24/33] dt-bindings: crypto: convert rockchip-crypto to
- YAML
-Content-Language: en-US
-To:     Corentin Labbe <clabbe@baylibre.com>, heiko@sntech.de,
-        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220413190713.1427956-1-clabbe@baylibre.com>
- <20220413190713.1427956-25-clabbe@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220413190713.1427956-25-clabbe@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1649863277-31615-3-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,44 +72,220 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 21:07, Corentin Labbe wrote:
-> Convert rockchip-crypto to YAML.
+On Wed, Apr 13, 2022 at 08:51:15PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add wcd938x and  max98360a codecs for audio use case on
+> sc7280 based platforms.
+> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+> Add amp_en node for  max98360a codec.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> ---
 
-Thank you for your patch. There is something to discuss/improve.
+Applicable to all you patches: a per-patch change log would be really
+nice for reviewers. It can help them to focus on the parts that have
+actually changed with respect to earlier revisions they might have
+already reviewed.
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3288-crypto
+>  arch/arm64/boot/dts/qcom/sc7280-crd.dts        |  6 ++
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  8 +++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 94 ++++++++++++++++++++++++++
+>  3 files changed, 108 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> index e2efbdd..b944366 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+
+Your branch needs a refresh, this file doesn't exist anymore.
+
+You'll want to change sc7280-crd-r3.dts for the CRD <= 2.x and
+sc7280-herobrine-crd.dts for the CRD >= 3.x
+
+> @@ -84,6 +84,12 @@ ap_ts_pen_1v8: &i2c13 {
+>  	pins = "gpio51";
+>  };
+>  
+> +&wcd938x {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&us_euro_hs_sel>;
+> +	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+> +};
 > +
-> +  reg:
-> +    maxItems: 1
+>  &tlmm {
+>  	tp_int_odl: tp-int-odl {
+>  		pins = "gpio7";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index dc17f20..8e4f822 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -20,6 +20,14 @@
+>  #include "sc7280-chrome-common.dtsi"
+>  
+>  / {
+> +	max98360a: audio-codec-0 {
+> +		compatible = "maxim,max98360a";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&amp_en>;
+> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> +		#sound-dai-cells = <0>;
+> +	};
 > +
-> +  interrupts:
-> +    maxItems: 1
+
+I agreed earlier that sorting by node name is correct, but that wasn't
+entirely true. The nodes should be sorted by name within the 'device'
+section, i.e. after the comment "/* BOARD-SPECIFIC TOP LEVEL NODES */".
+
+>  	chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 110d9e9..6004c08 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -20,6 +20,41 @@
+>  		serial1 = &uart7;
+>  	};
+>  
+> +	max98360a: audio-codec-0 {
+> +		compatible = "maxim,max98360a";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&amp_en>;
+> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> +		#sound-dai-cells = <0>;
+> +	};
 > +
-> +  clocks:
-> +    maxItems: 4
+> +	wcd938x: audio-codec-1 {
+> +		compatible = "qcom,wcd9385-codec";
+> +		#sound-dai-cells = <1>;
 > +
-> +  clock-names:
-> +    maxItems: 4
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wcd_reset_n>, <&wcd_reset_n_sleep>;
 
-This is not needed and dt_bindings_check should complain.
+Shouldn't this be:
 
-> +    items:
-> +      const: aclk
-> +      const: hclk
-> +      const: sclk
-> +      const: apb_pclk
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&wcd_reset_n>;
+		pinctrl-1 = <&wcd_reset_n_sleep>;
+
+?
+
+nit: make the ordering of properties (pinctrl, #sound-dai-cells) and
+spacing within the node consistent for max98360a and wcd938x? Not
+super-important, but since both are codecs and added by the same
+patch, why not :)
+
+> +		reset-gpios = <&tlmm 83 GPIO_ACTIVE_HIGH>;
 > +
-> +  resets:
-> +    maxItems: 1
+> +		qcom,rx-device = <&wcd_rx>;
+> +		qcom,tx-device = <&wcd_tx>;
 > +
-> +  reset-names:
-> +    maxItems: 1
-
-The same.
-
-
-Best regards,
-Krzysztof
+> +		vdd-rxtx-supply = <&vreg_l18b_1p8>;
+> +		vdd-io-supply = <&vreg_l18b_1p8>;
+> +		vdd-buck-supply = <&vreg_l17b_1p8>;
+> +		vdd-mic-bias-supply = <&vreg_bob>;
+> +
+> +		qcom,micbias1-microvolt = <1800000>;
+> +		qcom,micbias2-microvolt = <1800000>;
+> +		qcom,micbias3-microvolt = <1800000>;
+> +		qcom,micbias4-microvolt = <1800000>;
+> +
+> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000
+> +							  500000 500000 500000>;
+> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> +	};
+> +
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  		label = "gpio-keys";
+> @@ -238,6 +273,19 @@
+>  	modem-init;
+>  };
+>  
+> +&lpass_rx_macro {
+> +	status = "okay";
+> +};
+> +
+> +&lpass_tx_macro {
+> +	status = "okay";
+> +};
+> +
+> +&lpass_va_macro {
+> +	status = "okay";
+> +	vdd-micb-supply = <&vreg_bob>;
+> +};
+> +
+>  &pcie1 {
+>  	status = "okay";
+>  	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+> @@ -298,6 +346,24 @@
+>  	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+>  };
+>  
+> +&swr0 {
+> +	wcd_rx: codec@0,4 {
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 4>;
+> +		#sound-dai-cells = <1>;
+> +		qcom,rx-port-mapping = <1 2 3 4 5>;
+> +	};
+> +};
+> +
+> +&swr1 {
+> +	wcd_tx: codec@0,3 {
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 3>;
+> +		#sound-dai-cells = <1>;
+> +		qcom,tx-port-mapping = <1 2 3 4>;
+> +	};
+> +};
+> +
+>  &uart5 {
+>  	compatible = "qcom,geni-debug-uart";
+>  	status = "okay";
+> @@ -561,6 +627,12 @@
+>  };
+>  
+>  &tlmm {
+> +	amp_en: amp-en {
+> +		pins = "gpio63";
+> +		bias-pull-down;
+> +		drive-strength = <2>;
+> +	};
+> +
+>  	bt_en: bt-en {
+>  		pins = "gpio85";
+>  		function = "gpio";
+> @@ -643,5 +715,27 @@
+>  		function = "gpio";
+>  		bias-pull-down;
+>  	};
+> +
+> +	us_euro_hs_sel: us-euro-hs-sel {
+> +		pins = "gpio81";
+> +		function = "gpio";
+> +		bias-pull-down;
+> +		drive-strength = <2>;
+> +	};
+> +
+> +	wcd_reset_n: wcd-reset-n {
+> +		pins = "gpio83";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		output-high;
+> +	};
+> +
+> +	wcd_reset_n_sleep: wcd-reset-n-sleep {
+> +		pins = "gpio83";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+>  };
+>  
+> -- 
+> 2.7.4
+> 
