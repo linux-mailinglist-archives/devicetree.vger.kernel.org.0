@@ -2,167 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5B784FF0F8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 09:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E52474FF0F6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 09:53:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231727AbiDMHzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 03:55:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47110 "EHLO
+        id S230170AbiDMHzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 03:55:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231515AbiDMHzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 03:55:45 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE8572E6AE;
-        Wed, 13 Apr 2022 00:53:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649836378; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=mKct6M+UBGyU7j39wTQrgKyzwdh0KiMVeJk80Z4LzYctoK3TgOmrGQiyfoBVUJJujqzcWW7BqtbrTf9fyQUguhC1uNUmCFnAU7YqYg7ohWVI5miE+jcrFRYe7g6sv8nCWUtMuG/Bb3GWjWNQQV8wUIaRCztSV88wbnJBx9i1F/k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649836378; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=zomQ5tkYUJQV/3TJDTF1FVvqyX+VAC+jOEvBXwvebdU=; 
-        b=lb7QwzK65hotCejcO7hxT4y8YipfdATaywZzQshOxff7OC/Qr+3vImB4C+gZT9WMd0a9FWlcSqN2clsijrn5slsUgcipB1AJs1U2kRSJ7CTTyzt41Cpm4fMav75BM3kh1cXhpypHDPxFr83Puqfo+tyTMPBpdVtAGq/OmyCyqJ4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649836378;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=zomQ5tkYUJQV/3TJDTF1FVvqyX+VAC+jOEvBXwvebdU=;
-        b=e89SmhNJ5FZkqrQW94QrXssLlzSV86kG+fLu1q2zzMgMavE9G/xMjsALSDHA8llN
-        wb273CrdYKeR2l8CZQbKqehIC2veKw3S2gVI1cbRiRq235jizArTzPCXApRX+Ya72tU
-        UtDO92ixvG8Nmvs0ZxEkhjKJ9XJsekSIhVcBFPpo=
-Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649836376347263.13841951297684; Wed, 13 Apr 2022 00:52:56 -0700 (PDT)
-Message-ID: <84088c4c-b4bd-30f3-ce25-d59c55d5898f@arinc9.com>
-Date:   Wed, 13 Apr 2022 10:52:50 +0300
+        with ESMTP id S229455AbiDMHzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 03:55:43 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432072B257;
+        Wed, 13 Apr 2022 00:53:22 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id t2so804930qtw.9;
+        Wed, 13 Apr 2022 00:53:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AMMD5LLs65Bc3u77xPtaDEH/2WOkZ1EKf9yfe6A/VHA=;
+        b=aNOTklpO0FurKQfRPMXTzhgfxg7BcxRkedlNIXcSbk9boUOvj3yfLQSUy8MLdV07IQ
+         szDAScGHyn5JIxJn1oTwG24GCEeD2rLbHe8SGOVvD1MQn9EAokhToS3nGN8hZSdnFwgt
+         kXlDFP+vTyascd9e1gWuXWT+fY+l1tnk6CMg8DcC2OHrjy5iBMUfdeCQQC+lTxDogbDZ
+         arZjpZ3GfmHbWODfhNV0euY4OMFNGlLJBGEHtF8WnoF8Kr7V0hifdBdygdfyVYG829i9
+         IdTemqq94lcODhhccov1sN1MUX0tu9B5myT/iQMD3M8uY5XobXaYNs4sI1YilgFzOn6x
+         3cag==
+X-Gm-Message-State: AOAM530D1e1S3yXf6gb9tJFVam8rRcqt0n9eNFA/REb7anfQqgNYYZIT
+        d1Ih7eeWo00ZiBrUY3IRl5tpJ6Z220JeEw==
+X-Google-Smtp-Source: ABdhPJy0bpHgdejPJiMr/fxjkkJulmMdVMHkm1Nlg9/RCAB7rdoSKUIOH87711TQV2iDyeZczzVE2Q==
+X-Received: by 2002:ac8:6f1a:0:b0:2ef:6eba:2150 with SMTP id bs26-20020ac86f1a000000b002ef6eba2150mr6271839qtb.466.1649836401253;
+        Wed, 13 Apr 2022 00:53:21 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id a9-20020ac85b89000000b002e2072c9dedsm30415864qta.67.2022.04.13.00.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 00:53:20 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id g34so2304630ybj.1;
+        Wed, 13 Apr 2022 00:53:20 -0700 (PDT)
+X-Received: by 2002:a25:2c89:0:b0:641:2884:b52e with SMTP id
+ s131-20020a252c89000000b006412884b52emr13177578ybs.506.1649836400443; Wed, 13
+ Apr 2022 00:53:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 0/14] Refactor Ralink Pinctrl and Add Documentation
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        erkin.bozoglu@xeront.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+References: <20220412193936.63355-1-miquel.raynal@bootlin.com> <20220412193936.63355-6-miquel.raynal@bootlin.com>
+In-Reply-To: <20220412193936.63355-6-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Apr 2022 09:53:09 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
+Message-ID: <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
+Subject: Re: [PATCH v10 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router support
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
- <CAMhs-H_oRzpeqJY8Oe+7Su5v-4B1WPwzOfhrvBC08FVi-O6fVA@mail.gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <CAMhs-H_oRzpeqJY8Oe+7Su5v-4B1WPwzOfhrvBC08FVi-O6fVA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergio,
+Hi Miquel,
 
-On 13/04/2022 09:36, Sergio Paracuellos wrote:
-> Hi Arinç,
-> 
-> On Wed, Apr 13, 2022 at 8:08 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>
->> Hey everyone.
->>
->> This patch series brings complete refactoring to the Ralink pinctrl driver
->> and its subdrivers.
->>
->> The mt7620 pinctrl subdriver supports MT7628 and MT7688 SoCs along with
->> MT7620. These two share the same pin layout. The code used for MT7628 and
->> MT7688 is renamed from MT7628/mt7628an to MT76X8.
->>
->> Ralink pinctrl driver is called rt2880 which is the name of the Ralink
->> RT2880 SoC. A subdriver for the Ralink RT2880 SoC is called rt288x. Rename
->> rt2880 to ralink.
->>
->> Rename code from pinmux to pinctrl for where the operation is not about the
->> muxing of pins.
->>
->> Rename rt288x pinctrl subdriver for the RT2880 SoC to rt2880.
->>
->> Variables for functions include "grp" on the Ralink MT7620 and MT7621
->> subdrivers. Rename them to "func" instead as they define the functions for
->> the pin groups. This is already the case for the other 3 subdrivers;
->> RT2880, RT305x, RT3883.
->>
->> Fix Kconfig to call the subdrivers, well, subdrivers.
->>
->> Add new compatible strings for each subdriver and update DT binding
->> accordingly.
->>
->> Add Ralink pinctrl driver to MAINTAINERS and add me and Sergio as the
->> maintainers.
->>
->> Finally, fix the current rt2880 documentation and add binding for all of
->> the subdrivers.
->>
->> I have the patches here should anyone prefer to read them there:
->> https://github.com/arinc9/linux/commits/ralink-pinctrl-refactor
->>
->> Ralink pinctrl driver and the subdrivers were compile tested.
->> MT7621 pinctrl subdriver was tested on a private mt7621 board.
->> YAML bindings checked with:
->> ARCH=mips CROSS_COMPILE=mips-linux-gnu- make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/ -j$(nproc)
->>
->> Arınç ÜNAL (14):
->>    pinctrl: ralink: rename MT7628(an) functions to MT76X8
->>    pinctrl: ralink: rename pinctrl-rt2880 to pinctrl-ralink
->>    pinctrl: ralink: rename pinmux functions to pinctrl
->>    pinctrl: ralink: rename pinctrl-rt288x to pinctrl-rt2880
->>    pinctrl: ralink: rename variable names for functions on MT7620 and MT7621
->>    pinctrl: ralink: rename driver names to subdrivers
->>    MAINTAINERS: add Ralink pinctrl driver
-> 
-> For all these rename stuff and MAINTAINERS change:
-> 
-> Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> 
->>    pinctrl: ralink: add new compatible strings for each pinctrl subdriver
->>    mips: dts: ralink: mt7621: use the new compatible string for MT7621 pinctrl
->>    dt-bindings: pinctrl: rt2880: fix binding name, pin groups and functions
->>    dt-bindings: pinctrl: add binding for Ralink MT7620 pinctrl
->>    dt-bindings: pinctrl: add binding for Ralink MT7621 pinctrl
->>    dt-bindings: pinctrl: add binding for Ralink RT305X pinctrl
->>    dt-bindings: pinctrl: add binding for Ralink RT3883 pinctrl
-> 
-> I think you cannot change compatible strings because you have to be
-> compatible with previous stuff. That is the reason why when I
-> refactored all of this stuff from 'arch/mips/ralink' into
-> 'drivers/pinctrl' I maintained the same for all of them and only
-> created one binding for all. I know that these SoCs are mostly used in
-> openWRT and the way of doing things there is that when a new version
-> is released a new dtb is also compiled so I understand the motivation
-> of the change itself. In any case, Rob has the last word here, not me
-> :).
+On Tue, Apr 12, 2022 at 9:39 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> The Renesas RZN1 DMA IP is based on a DW core, with eg. an additional
+> dmamux register located in the system control area which can take up to
+> 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> two different peripherals.
+>
+> We need two additional information from the 'dmas' property: the channel
+> (bit in the dmamux register) that must be accessed and the value of the
+> mux for this channel.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-I looked around pinctrl drivers for mediatek. What I see there is that 
-each subdriver has its own compatible string. There's a documentation 
-for each subdriver. Each subdriver contains different pin groups and 
-functions like on ralink. My patch series basically does the same for 
-Ralink.
+Thanks for your patch!
 
-I don't see this patch series causing much of an issue for OpenWrt. 
-They're going to have to update their Ralink DTs with the new compatible 
-strings when they either switch to the next LTS kernel or decide to 
-backport Ralink pinctrl changes to the current LTS kernel.
+> --- /dev/null
+> +++ b/drivers/dma/dw/rzn1-dmamux.c
+> @@ -0,0 +1,160 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Schneider-Electric
+> + * Author: Miquel Raynal <miquel.raynal@bootlin.com
+> + * Based on TI crossbar driver written by Peter Ujfalusi <peter.ujfalusi@ti.com>
+> + */
+> +#include <linux/bitops.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_dma.h>
+> +#include <linux/slab.h>
+> +#include <linux/soc/renesas/r9a06g032-sysctrl.h>
+> +#include <linux/types.h>
+> +
+> +#define RNZ1_DMAMUX_NCELLS 6
+> +#define RZN1_DMAMUX_LINES 64
+> +#define RZN1_DMAMUX_MAX_LINES 16
+> +
+> +struct rzn1_dmamux_data {
+> +       struct dma_router dmarouter;
+> +       unsigned long *used_chans;
 
-Cheers.
-Arınç
+Why a pointer?
+
+> +static int rzn1_dmamux_probe(struct platform_device *pdev)
+> +{
+> +       struct device_node *mux_node = pdev->dev.of_node;
+> +       const struct of_device_id *match;
+> +       struct device_node *dmac_node;
+> +       struct rzn1_dmamux_data *dmamux;
+> +
+> +       dmamux = devm_kzalloc(&pdev->dev, sizeof(*dmamux), GFP_KERNEL);
+> +       if (!dmamux)
+> +               return -ENOMEM;
+> +
+> +       dmamux->used_chans = devm_bitmap_zalloc(&pdev->dev, 2 * RZN1_DMAMUX_MAX_LINES,
+> +                                               GFP_KERNEL);
+
+... Oh, you want to allocate the bitmap separately, although you
+know it's just a single long.
+
+You might as well declare it in rzn1_dmamux_data as:
+
+    unsigned long used_chans[BITS_TO_LONGS(2 * RZN1_DMAMUX_MAX_LINES)];
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
