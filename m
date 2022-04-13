@@ -2,131 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B51A4FFB59
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 319084FFB6E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:37:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230265AbiDMQeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 12:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56836 "EHLO
+        id S235213AbiDMQjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 12:39:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbiDMQeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:34:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E8D5BE76
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 09:31:38 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1nefu5-0004wI-4P; Wed, 13 Apr 2022 18:31:37 +0200
-Message-ID: <11f8bf43-d6f7-12fe-f5da-1f7a397c4317@pengutronix.de>
-Date:   Wed, 13 Apr 2022 18:31:34 +0200
+        with ESMTP id S235243AbiDMQjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:39:23 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82345D64A;
+        Wed, 13 Apr 2022 09:36:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1649867816; x=1681403816;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=SioN7hE4JJ0EbzEEpsQ1nTa8K8QRrunFk5RvqYz6FjE=;
+  b=qSh4h/Gx67jnHDr+Es3enJwuFaRfxEWjXYJXNQiZF0OiiJdsKmZchplY
+   4IwlaDd18/ya8Iknr5yEzvEfW85WCMAE7/KGhLFD5/Zsr67zy2eq/5NdD
+   rdRMvukT5AgstTjJJsjxPzfS7LbB6iiyRy7YXobpzSdUEFvNiYzAiE+6a
+   1C576vdmC2QvnEeIflPWJjBKfzRKd+MIAyLFHgUHZ0WvYRstwprLvftw5
+   pls0FYxfr9MAXNBE7/htEf+kE4ODnPJz/Dw3GGAAPYplrqTFTm9USbwfu
+   5U9OjvaFW7y/SWICI4TxoNRa1g4Bbc4mFl3L0wCT7P81yME9pv/yPSqPJ
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,257,1643698800"; 
+   d="scan'208";a="152546254"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2022 09:36:55 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 13 Apr 2022 09:36:55 -0700
+Received: from [10.12.72.146] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Wed, 13 Apr 2022 09:36:53 -0700
+Message-ID: <703ee79c-3b25-5b1f-dfe1-bfafade468fd@microchip.com>
+Date:   Wed, 13 Apr 2022 18:36:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v3] arm64: dts: imx8mm-evk: add pwm1/backlight support
+Subject: Re: [PATCH v2 1/3] ARM: dts: at91: sama7g5: Swap `rx` and `tx` for
+ `i2c` nodes
 Content-Language: en-US
-To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-amarula@amarulasolutions.com,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        linux-arm-kernel@lists.infradead.org, Li Jun <jun.li@nxp.com>
-References: <20220413160900.36271-1-tommaso.merciai@amarulasolutions.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20220413160900.36271-1-tommaso.merciai@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Sergiu Moga <sergiu.moga@microchip.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@canonical.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>
+References: <20220310114553.184763-1-sergiu.moga@microchip.com>
+ <20220310114553.184763-2-sergiu.moga@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20220310114553.184763-2-sergiu.moga@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Tomasso,
+On 10/03/2022 at 12:45, Sergiu Moga wrote:
+> Swap `rx` and `tx` for the `dma-names` property of the `i2c` nodes
+> in order to maintain consistency across Microchip/Atmel SoC files.
+> 
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Reviewed-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-On 13.04.22 18:08, Tommaso Merciai wrote:
-> Add pwm1/backlight support nodes for imx8mm_evk board.
-> Align with u-boot dts
-> 
-> References:
->  - https://patchwork.ozlabs.org/project/uboot/patch/20220326111911.13720-9-tommaso.merciai@amarulasolutions.com/
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+As it fixes some of the warning in dt schema check in 5.18-rc1, I queue 
+this patch in "fixes" branch for 5.18.
+
+Thanks, best regards,
+   Nicolas
+
 > ---
-> Changes since v1:
->  - Fix commit body
->  - Enable pwm, backlight
+>   arch/arm/boot/dts/sama7g5.dtsi | 18 +++++++++---------
+>   1 file changed, 9 insertions(+), 9 deletions(-)
 > 
-> Changes since v2:
->  - Remove status okay from pwm1,backlight (enable as default)
-> 
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> index 6d67df7692f1..c50d2cc3ca71 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> @@ -59,6 +59,14 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->  		enable-active-high;
->  	};
->  
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm1 0 5000000>;
-> +		brightness-levels = <0 255>;
-> +		num-interpolated-steps = <255>;
-> +		default-brightness-level = <250>;
-> +	};
-> +
->  	ir-receiver {
->  		compatible = "gpio-ir-receiver";
->  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-> @@ -395,6 +403,11 @@ &wdog1 {
->  	status = "okay";
->  };
->  
-> +&pwm1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_backlight>;
-
-imx8mm.dtsi has &pwm1 { status = "disabled" };
-Where is it enabled?
-
-> +};
-> +
->  &iomuxc {
->  	pinctrl_fec1: fec1grp {
->  		fsl,pins = <
-> @@ -549,4 +562,10 @@ pinctrl_wdog: wdoggrp {
->  			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
->  		>;
->  	};
-> +
-> +	pinctrl_backlight: backlightgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT	0x06
-> +		>;
-> +	};
->  };
+> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+> index 4decd3a91a76..f691c8f08d04 100644
+> --- a/arch/arm/boot/dts/sama7g5.dtsi
+> +++ b/arch/arm/boot/dts/sama7g5.dtsi
+> @@ -601,9 +601,9 @@ i2c1: i2c@600 {
+>   				#size-cells = <0>;
+>   				clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
+>   				atmel,fifo-size = <32>;
+> -				dmas = <&dma0 AT91_XDMAC_DT_PERID(7)>,
+> -					<&dma0 AT91_XDMAC_DT_PERID(8)>;
+> -				dma-names = "rx", "tx";
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(8)>,
+> +					<&dma0 AT91_XDMAC_DT_PERID(7)>;
+> +				dma-names = "tx", "rx";
+>   				status = "disabled";
+>   			};
+>   		};
+> @@ -786,9 +786,9 @@ i2c8: i2c@600 {
+>   				#size-cells = <0>;
+>   				clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
+>   				atmel,fifo-size = <32>;
+> -				dmas = <&dma0 AT91_XDMAC_DT_PERID(21)>,
+> -					<&dma0 AT91_XDMAC_DT_PERID(22)>;
+> -				dma-names = "rx", "tx";
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(22)>,
+> +					<&dma0 AT91_XDMAC_DT_PERID(21)>;
+> +				dma-names = "tx", "rx";
+>   				status = "disabled";
+>   			};
+>   		};
+> @@ -810,9 +810,9 @@ i2c9: i2c@600 {
+>   				#size-cells = <0>;
+>   				clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
+>   				atmel,fifo-size = <32>;
+> -				dmas = <&dma0 AT91_XDMAC_DT_PERID(23)>,
+> -					<&dma0 AT91_XDMAC_DT_PERID(24)>;
+> -				dma-names = "rx", "tx";
+> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(24)>,
+> +					<&dma0 AT91_XDMAC_DT_PERID(23)>;
+> +				dma-names = "tx", "rx";
+>   				status = "disabled";
+>   			};
+>   		};
 
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Nicolas Ferre
