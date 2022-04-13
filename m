@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 002FD4FF76D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4CD24FF77A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 15:13:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbiDMNMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 09:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
+        id S232430AbiDMNP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 09:15:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235711AbiDMNMe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:12:34 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE32369FF;
-        Wed, 13 Apr 2022 06:10:12 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8ADB560006;
-        Wed, 13 Apr 2022 13:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649855411;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Zq0/0xA2JZ05vFh/LQxUdxfXIW45kzNdF9iAIigkAL0=;
-        b=dgBzt2BY+uWtcgOkQ2QOiFv5e00IthNbA6vS4ChNlw4ltj7qbgUtlOv/B/NUaeXCCp4Zxi
-        1TY+VRfwlt3APCqV2qUzgd7sPHBMSmzOQLv2NcM1kyyoYy62G2D5jieoZOg8aE+1dhY+Gs
-        4yuF0rUIiiC7rOLbWe7UEfj8Z0FW+LWNwo6uYNx5qM84krPVjIY54oV97xDjciztMEJ6T0
-        HG/MgeAOCE02L4rguZetP3pa5DJ7jf1jY93kgZXcP5se0i1MYZR0yBaoSJeS5ZOyCuCKm4
-        Isz3w7T/SK7tmzwiQrH6dmtYpPHpX1e+y5mVUlTk74dGy/WVc/Gxs+siGs7l/g==
-Date:   Wed, 13 Apr 2022 15:10:07 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
+        with ESMTP id S230502AbiDMNP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 09:15:58 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E573955BC2;
+        Wed, 13 Apr 2022 06:13:33 -0700 (PDT)
+Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Kdjdy4qjrz6842y;
+        Wed, 13 Apr 2022 21:11:18 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Wed, 13 Apr 2022 15:13:31 +0200
+Received: from localhost (10.81.205.148) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 13 Apr
+ 2022 14:13:30 +0100
+Date:   Wed, 13 Apr 2022 14:13:26 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v10 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA
- router support
-Message-ID: <20220413151007.15cc54fd@xps13>
-In-Reply-To: <Ylaom9pRMm0C0Nsz@smile.fi.intel.com>
-References: <20220412193936.63355-1-miquel.raynal@bootlin.com>
-        <20220412193936.63355-6-miquel.raynal@bootlin.com>
-        <CAMuHMdV_KWuDRWtNaL2n8+1y4GbOSSosesd3RPK60i6zYkQPDA@mail.gmail.com>
-        <Ylaom9pRMm0C0Nsz@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <sumit.semwal@linaro.org>, <amit.pundir@linaro.org>,
+        <john.stultz@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH v13 5/9] iio: adc: qcom-spmi-rradc: introduce round
+ robin adc
+Message-ID: <20220413141326.000018af@Huawei.com>
+In-Reply-To: <YlY+k4FcWoT/jEkJ@ripper>
+References: <20220323162820.110806-1-caleb@connolly.tech>
+        <20220323162820.110806-6-caleb@connolly.tech>
+        <20220327160329.6a3866d7@jic23-huawei>
+        <YlY+k4FcWoT/jEkJ@ripper>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.81.205.148]
+X-ClientProxiedBy: lhreml743-chm.china.huawei.com (10.201.108.193) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,33 +65,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Tue, 12 Apr 2022 20:08:03 -0700
+Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
 
-andriy.shevchenko@linux.intel.com wrote on Wed, 13 Apr 2022 13:40:27
-+0300:
+> On Sun 27 Mar 08:03 PDT 2022, Jonathan Cameron wrote:
+> 
+> > On Wed, 23 Mar 2022 16:28:16 +0000
+> > Caleb Connolly <caleb.connolly@linaro.org> wrote:
+> >   
+> > > From: Caleb Connolly <caleb.connolly@linaro.org>
+> > > 
+> > > The Round Robin ADC is responsible for reading data about the rate of
+> > > charge from the USB or DC input ports, it can also read the battery
+> > > ID (resistence), skin temperature and the die temperature of the pmic.
+> > > It is found on the PMI8998 and PM660 Qualcomm PMICs.
+> > > 
+> > > Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>  
+> > Whilst I said this patch was fine a few versions ago I didn't add a tag
+> > on basis I would probably end up picking it up.
+> > 
+> > To make things more flexible, I'll add one and either Lee or I can
+> > do the immutable branch once Lee has had a chance to take a look and
+> > is happy with the mfd parts.
+> > 
+> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >   
+> 
+> Are either of you planning to pick up the driver changes?
+> 
+> The dts changes can be merged independently, so I would prefer to pick
+> those through my tree. But I would like to know that the binding and
+> implementation is agreed upon before doing so.
 
-> On Wed, Apr 13, 2022 at 09:53:09AM +0200, Geert Uytterhoeven wrote:
-> > On Tue, Apr 12, 2022 at 9:39 PM Miquel Raynal <miquel.raynal@bootlin.co=
-m> wrote: =20
->=20
-> ...
->=20
-> > You might as well declare it in rzn1_dmamux_data as:
-> >=20
-> >     unsigned long used_chans[BITS_TO_LONGS(2 * RZN1_DMAMUX_MAX_LINES)];=
- =20
+I need an Ack from Lee for the mfd changes and ideally Stephen for the SPMI
+patch.
 
-Now at the top of the driver I have
+Lee, guessing you are busy, but if you have a chance to check this set over
+that would be great.
 
-#define RZN1_DMAMUX_LINES 64
-#define RZN1_DMAMUX_MAX_LINES 16
+Jonathan
 
-Which does not look right. So FYI I decided to change them to
+> 
+> Thanks,
+> Bjorn
 
-#define RZN1_DMAMUX_MAX_LINES 64
-#define RZN1_DMAMUX_LINES_PER_CTLR 16
-
-which feels much more clear.
-
-Thanks,
-Miqu=C3=A8l
