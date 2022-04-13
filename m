@@ -2,185 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D71B4FEC8F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 03:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC594FECB6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 04:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbiDMByE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 21:54:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54018 "EHLO
+        id S231517AbiDMCId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 22:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbiDMByE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 21:54:04 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E73D28E21;
-        Tue, 12 Apr 2022 18:51:44 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id g17-20020a9d6191000000b005e8d8583c36so243504otk.8;
-        Tue, 12 Apr 2022 18:51:44 -0700 (PDT)
+        with ESMTP id S230115AbiDMCId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 22:08:33 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1492613D
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 19:06:13 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id s137so432902pgs.5
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 19:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bvHovzHUcO6H3lPRXLJZ8Y7xB7Tk6Lw/GhaAvYeEjYA=;
+        b=hZHD2Hq9N4/osAfvypcYWpaffb9Iwed26m/zyImEmdVYtn9zNf3kZTZzfgVCjwcCWp
+         L8qYusrUEUaAlEZzIMw15ruPcBP1voQAhI91PBpwGwXrFAfNazsJPTgZ58RXltkTWAoE
+         WPPG6xDbrpEesB8FPyXI3W4r09q9x5nsKxYMmpap23JF713bMoSNgTDByEOpMcYepZ9B
+         UDlfSjIXfLUqYfYXKWJogLwDBhS5VtByFZTUv5fYVnJZYo+Ut+GXqbTb6xcEI00OWy/9
+         CmXe8t3j+hSG4M9cr1/QpfO5D3cU7eJvMU39+hgjp3KNg/0jBaIhuS8ngyM2L5+H/Rg5
+         S/kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UahXXLoHbUN/uWSsm7wZOky+dlLsgBSITuQWQ2zMJB0=;
-        b=RbvW7rFnb0Pknhq2FRGDsFAOp4Z8bw9S2gR4ZyuMfUJaaF4y+tdoMYn06grL5yUEGb
-         FRJScnnhtjM5/SBizzVsNEh/scGrJ3nUZ4nV3qakGupJZndI6iDACH3X+RAMN7U1rKiV
-         DizDQLFbvOWbpPylQH1I8ErpWsFC5qBPk/SQLdAKAfzF/wLeIwMBdJK3Bo7HqU1fZBXe
-         z9rEdf796krIkuOo6TJCqgNdCKfMcJId1T3QNPLLlU8Um1EpZ4ThyXvVoB2QVasensYS
-         EQxtgOxsGuUS3CgKR7catle/1fPhgZUv3b0x1ZbjBTBQ2GkrJAiK5yxTKaBq0QVgg4EZ
-         oKRw==
-X-Gm-Message-State: AOAM533e/UG8C1JL2+d0BkwjOPqadLGHAjnnxTX46NpTPH4VT97UeiSO
-        bS753WMCk7FADgVNPzvtiA==
-X-Google-Smtp-Source: ABdhPJw1RVVGof7p+rbeor/PJIlx0j0Fab9RqC9/ogqwDg+JRpNnGN3tM2pm/LWQRd82XNA0BI7Bvg==
-X-Received: by 2002:a9d:6c55:0:b0:5e9:200e:af9b with SMTP id g21-20020a9d6c55000000b005e9200eaf9bmr619549otq.351.1649814703406;
-        Tue, 12 Apr 2022 18:51:43 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f44-20020a056871072c00b000e2b638a925sm4113661oap.49.2022.04.12.18.51.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bvHovzHUcO6H3lPRXLJZ8Y7xB7Tk6Lw/GhaAvYeEjYA=;
+        b=JvrWoR1WkjKDeJjvT3qqCq5wS+oXkNcUHSq3xLNAOf5264lxWcjvQglbiK4iXZdDZL
+         7DCBcvVMSn9SM3KwD7ZavOdw8Sr5oRCJaEdoiYetccagnXZajfnpOczyQIjC8kjpOFdf
+         eqW7RxBnerI5kWSa/MgPO/R0BM85Rj9sF0oFV8Od3Oz3Sn5+1xyT6MXH5GEofXAPxLin
+         P+vZwDpKulSYYcTp69O4s+GJKiU6h/mGxfuHyrrZFUOid4K3NjZOhUO3zJHMq96FoWCw
+         snj8wS/fVKP+1fPq423XeQgsJ1U0QOn2uCFMm9CMZsDGNZiEu7yAJ/gpSK2O26z0X2Mq
+         N3sA==
+X-Gm-Message-State: AOAM530U+mm/OS9fvbALXCwi2xepQkBXMl45WPoPAuMbG/zFNT2gLVb7
+        Ki7NlwcIF8UrvYZr83/P4xUxVw==
+X-Google-Smtp-Source: ABdhPJyYI6RSJMSEhpIcDYX5IRNsdNmJUMaEQWhwbeZUpN3xX05VaYx3mQO5Awwt2sUWnnINJqSF4A==
+X-Received: by 2002:a65:6b8e:0:b0:39d:6760:1cd5 with SMTP id d14-20020a656b8e000000b0039d67601cd5mr9669923pgw.379.1649815572575;
+        Tue, 12 Apr 2022 19:06:12 -0700 (PDT)
+Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:669f:cec7:c0c2:1cc])
+        by smtp.gmail.com with ESMTPSA id o3-20020aa79783000000b00505f720bb76sm4234053pfp.215.2022.04.12.19.06.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Apr 2022 18:51:43 -0700 (PDT)
-Received: (nullmailer pid 1411321 invoked by uid 1000);
-        Wed, 13 Apr 2022 01:51:42 -0000
-Date:   Tue, 12 Apr 2022 20:51:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Subject: Re: [PATCH V9 2/6] dt-bindings: mfd: pm8008: Add pm8008 regulator
- bindings
-Message-ID: <YlYsrlAQv/zmipqt@robh.at.kernel.org>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
- <1649166633-25872-3-git-send-email-quic_c_skakit@quicinc.com>
+        Tue, 12 Apr 2022 19:06:12 -0700 (PDT)
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Date:   Tue, 12 Apr 2022 19:06:39 -0700
+Message-Id: <20220413020641.2789408-1-dfustini@baylibre.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1649166633-25872-3-git-send-email-quic_c_skakit@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 07:20:29PM +0530, Satya Priya wrote:
-> Add bindings for pm8008 regulators device.
-> 
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> ---
-> Changes in V8:
->  - This is split from pm8008.yaml binding.
-> 
-> Changes in V9:
->  - Remove description for reg and drop unused phandle from example.
-> 
->  .../bindings/mfd/qcom,pm8008-regulators.yaml       | 84 ++++++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,pm8008-regulators.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008-regulators.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008-regulators.yaml
-> new file mode 100644
-> index 0000000..9a82a8b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008-regulators.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/qcom,pm8008-regulators.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. PM8008 Regulator bindings
-> +
-> +maintainers:
-> +  - Satya Priya <quic_c_skakit@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm Technologies, Inc. PM8008 is an I2C controlled PMIC
-> +  containing 7 LDO regulators. This binding specifies the PM8008
-> +  regulator peripherals of PM8008 device.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,pm8008-regulators
-> +
-> +  reg:
-> +    maxItems: 1
-> +
+TI AM437x SoCs support isolation of the IOs so that control is taken
+from the peripheral they are connected to and overridden by values
+present in the control register for that pad. This series documents a
+new property 'ti,io-isolation' and updates the wkup_m3_ipc driver to 
+inform the CM3 firmware when that property is set.
 
-> +  "#address-cells":
-> +    const: 0
-> +
-> +  "#size-cells":
-> +    const: 0
+A prerequisite for this series is: 
+[PATCH v2 0/2] soc: ti: wkup_m3_ipc: support vtt toggle
+https://lore.kernel.org/lkml/20220409211215.2529387-1-dfustini@baylibre.com/T/
 
-Not needed, you don't have child nodes with 'reg'.
+Dave Gerlach (1):
+  soc: ti: wkup_m3_ipc: Add support for IO Isolation
 
-> +
-> +  vdd_l1_l2-supply:
-> +    description: Input supply phandle of ldo1 and ldo2 regulators.
-> +
-> +  vdd_l3_l4-supply:
-> +    description: Input supply phandle of ldo3 and ldo4 regulators.
-> +
-> +  vdd_l5-supply:
-> +    description: Input supply phandle of ldo5 regulator.
-> +
-> +  vdd_l6-supply:
-> +    description: Input supply phandle of ldo6 regulator.
-> +
-> +  vdd_l7-supply:
-> +    description: Input supply phandle of ldo7 regulator.
-> +
-> +patternProperties:
-> +  "^ldo[1-7]$":
-> +    type: object
-> +    $ref: "../regulator/regulator.yaml#"
+Drew Fustini (1):
+  dt-bindings: wkup-m3-ipc: Add ti,io-isolation property
 
-/schemas/regulator/...
+ .../bindings/soc/ti/wkup-m3-ipc.yaml          | 68 +++++++++++++++++--
+ drivers/soc/ti/wkup_m3_ipc.c                  | 14 +++-
+ include/linux/wkup_m3_ipc.h                   |  1 +
+ 3 files changed, 76 insertions(+), 7 deletions(-)
 
-> +    description: PM8008 regulator peripherals of PM8008 regulator device
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/mfd/qcom-pm8008.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      pmic@9 {
-> +        compatible = "qcom,pm8008-regulators";
-> +        reg = <0x9>;
-> +        #address-cells = <0>;
-> +        #size-cells = <0>;
-> +
-> +        vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-> +        vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-> +        vdd_l5-supply = <&vreg_bob>;
-> +        vdd_l6-supply = <&vreg_bob>;
-> +        vdd_l7-supply = <&vreg_bob>;
-> +
-> +        pm8008_l1: ldo1 {
-> +          regulator-name = "pm8008_l1";
-> +          regulator-min-microvolt = <950000>;
-> +          regulator-max-microvolt = <1300000>;
-> +        };
-> +      };
-> +    };
-> +...
-> -- 
-> 2.7.4
-> 
-> 
+-- 
+2.32.0
+
