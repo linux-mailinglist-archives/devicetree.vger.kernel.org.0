@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B03E64FEFC7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B25444FEFCD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232363AbiDMG3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 02:29:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
+        id S232430AbiDMGaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 02:30:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231881AbiDMG33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:29:29 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7242AD
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 23:27:08 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bh17so1837954ejb.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 23:27:08 -0700 (PDT)
+        with ESMTP id S231625AbiDMGaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:30:22 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3A44093C;
+        Tue, 12 Apr 2022 23:28:02 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id j6so679007qkp.9;
+        Tue, 12 Apr 2022 23:28:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/r3mT06Ib0iS2GFYXsKpaMewiowDgPKKZ6ID5tBYoLY=;
-        b=eYWRaNUCswViJKR7KfIkCVUxCELXj/78KjmSKC5fe9ZvQOJKL0hR/lGqrpg34njTWk
-         Nok5tHTv2Cma7RY/GB+uy7L6wykBRf6C5qMFStw2HXfgzx5unc4eSsL34e+DjxFx/zF+
-         RlZA21b5vNMcwocu1oq6YO6QBo97Jf5gP0BY48P8jKe1uFGiMjne5/GRJOepfgiuzUrc
-         Rd2htUQ19EJPUlIPGGwOEhM3+tJPdI6FZYPjpVPPWc0pHZr2sJRhmnnOVQdwThtSkS45
-         aKhhviGAPbX9ZTGLCu90vtKjWsB1Q0vk7mJn1DKu8Rq80BMGH3AzzBpe9+/VS63QaeVb
-         8E9A==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=IQXd2jV2y0H/jmnC3zsa4bcZYEpr7db5gHWElQ3LxHo=;
+        b=AvEuQTFPadwF9B77e3hFm5DnRzYyP8mYjU5oKInOTekImMPQ9N1mTIms5cmjhh5hfX
+         LkSFJbC8gnLmJpgwY9zA4JI9A+RTpDk5xxPfFD0tF0qxtIC1rK0grKMt/tLDK8cS23fT
+         RulFwQP5jljqMXD5I54GLeZedam6rTu20H2OlNPRx5/9V/Vn8nf/+xNxosavSCJY/SCu
+         +poIEZNxeCdfOF4HvSyXtg1difDMot4a7EYKqtr2rJrY4OKZ+FFp5sutGw0baRndzwRM
+         OmTkbR4cyxBWSnly8W0CvNAabWt3/+9Tr+h92US8UHNUlCwCRzxn0emaPr/vkcSVEKYA
+         vplw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/r3mT06Ib0iS2GFYXsKpaMewiowDgPKKZ6ID5tBYoLY=;
-        b=bw5Usp9okuOkaksTxPE5YQAWlpA9zI+KNaW2YvgJ3SI5GZbgf1Rd+Cw33hG3OjooO8
-         2uI5BBjQ7ADlcAXU5IzzfzaLvwCw9e+Oa9HxdXTntgqfI8HOfpWuBKSmkoKoR5k/xVCj
-         2zWCoTkFgbUYmQavyuMtjiz1luzEfEux4etwla3zgkr/D2X3IOz6xtIMDD/YzhhAEkD8
-         MgD+K5CVqPkqylqpllx5fWXlgkwrVDWUTH57ml3qSCcD9fKEWWZK27p3zwpKS2T08YMg
-         VW0nqRg8lPUoE2ph3hzjXjJldg1PjET+9aVvve6SikATtj+ASDQTK3Wk7y0+b00VY6w5
-         qUOw==
-X-Gm-Message-State: AOAM531xbozJEessbQt1q/k9B+Ahdv+UUrqZmh/q7SX0Qish/bWKUOoX
-        iK+1sD+RmI7zJkbC4EGomWBPLg==
-X-Google-Smtp-Source: ABdhPJwsNHto5y5oS5z3KbHE+spZevz9lmKpJlXpSffcGVFfHIkJR6RLuG/yrzwVppKIMp2voa0vMQ==
-X-Received: by 2002:a17:906:32d8:b0:6ce:d850:f79 with SMTP id k24-20020a17090632d800b006ced8500f79mr36460884ejk.414.1649831227300;
-        Tue, 12 Apr 2022 23:27:07 -0700 (PDT)
-Received: from [192.168.0.201] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id f5-20020a17090624c500b006cee6661b6esm13953547ejb.10.2022.04.12.23.27.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 23:27:06 -0700 (PDT)
-Message-ID: <1fccb130-2807-4376-a1d4-db1d44e6a7ef@linaro.org>
-Date:   Wed, 13 Apr 2022 08:27:05 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=IQXd2jV2y0H/jmnC3zsa4bcZYEpr7db5gHWElQ3LxHo=;
+        b=AYLwmWLEH7leIN+QHqPkA7KzuyvuCxzrza3+nt0Pd2p7QYs8PlGyAENd0jPNES52kk
+         PSf/jgL0814QywtGZpaFRgx3WcpdcNKLpCpIGWR8s0TzdGRNRdKATPAiTt/tXk0onavd
+         XfqecNxVD2/I8qlccAYPR9WnhiKEbgFj2ygg+0/APjJdx17qeE7VBx2UntBTw/JJN37Q
+         skSqNqXbMCfYG55+PNhnkpxsykEHhGHXN7ORBTlh8I362puPJ6DacnifEvDSLb5BuQwX
+         kRtz3MbMDG7DFpttoDhx4HR2i1dbHXa6olQRobv1BeGxRc4JYKZVPpSVUe5/HY02LqGG
+         C5Yw==
+X-Gm-Message-State: AOAM530x+RX0BKWTDc4HkVuVE5e9B2LTjBg095e6p7YbGwBwIlsdrOCL
+        6lgTVOtJu+/djetZHpJ6UGToUO4N6dku5ilm64Y=
+X-Google-Smtp-Source: ABdhPJxSAul1DQiuip/zXWO7y/5rdjzwToJfLdrqCdPR32d03sINv0FlPWqCmtrCOu+ed1zUDp0D9fKwELAyHXivy54=
+X-Received: by 2002:a05:620a:bd5:b0:67d:15ed:2fcd with SMTP id
+ s21-20020a05620a0bd500b0067d15ed2fcdmr5870340qki.81.1649831281235; Tue, 12
+ Apr 2022 23:28:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 6/7] arm64: dts: renesas: r8a779f0: Add UFS node
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Cc:     "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
- <20220412073647.3808493-7-yoshihiro.shimoda.uh@renesas.com>
- <b189e6fc-98b5-9668-d22c-1144d5741071@linaro.org>
- <TYBPR01MB534192EDF0C76F77A797187AD8EC9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYBPR01MB534192EDF0C76F77A797187AD8EC9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220413060729.27639-1-arinc.unal@arinc9.com> <20220413060729.27639-9-arinc.unal@arinc9.com>
+In-Reply-To: <20220413060729.27639-9-arinc.unal@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 13 Apr 2022 08:27:50 +0200
+Message-ID: <CAMhs-H8W990kGWPtVkLLXj4wr0+v8aEgv42K6Ffh+k=misYvGQ@mail.gmail.com>
+Subject: Re: [PATCH 08/14] MAINTAINERS: add Ralink pinctrl driver
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        erkin.bozoglu@xeront.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 02:09, Yoshihiro Shimoda wrote:
->>> +		ufs: scsi@e6860000 {
->>
->> Node name: ufs (it is not a SCSI device, AFAIK).
-> 
-> I got it. I'll fix it.
-> (I had assumed that we should choose a node name from "2.2.2 Generic Names
->  Recommendation" of the ePAPR v1.1 [1]. But, that's wrong. )
-> 
-> [1]
-> https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf
+On Wed, Apr 13, 2022 at 8:08 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
+9.com> wrote:
+>
+> Add a new section for the Ralink pinctrl driver and add me and Sergio as
+> the maintainers.
+>
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> ---
+>  MAINTAINERS | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fd768d43e048..cbd0c3e180bf 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16502,6 +16502,13 @@ L:     linux-mips@vger.kernel.org
+>  S:     Maintained
+>  F:     arch/mips/boot/dts/ralink/mt7621*
+>
+> +RALINK PINCTRL DRIVER
+> +M:     Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> +M:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> +L:     linux-mips@vger.kernel.org
+> +S:     Maintained
+> +F:     drivers/pinctrl/ralink/*
 
-These are examples and at the time written, I am not sure if UFS was
-considered. :) "ufs" is name of a standard, so it is a generic name.
+Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-Best regards,
-Krzysztof
+Thanks,
+    Sergio Paracuellos
