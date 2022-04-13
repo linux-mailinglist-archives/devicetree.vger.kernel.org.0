@@ -2,273 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63CF14FF208
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:37:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D7C4FF20A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:37:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbiDMIjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50084 "EHLO
+        id S232829AbiDMIkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:40:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230465AbiDMIjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:39:21 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C8621E00
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:37:00 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id i27so2419390ejd.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:36:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=romxRiluSB3U0MCTAL9z6l+v5VOVo8m/ALapz+wT32A=;
-        b=lShIAVau+MdOfLw193QaR654f2SmMyCpR65VcSSgQ9T80U096HXyiqN7tFOuAJVcQY
-         NOv1m0HwSDn/80HahOXkffIb6cpa4sGxMqzbnwh5Xn/SbHMFgWbiUh+yt88jpBs5uScl
-         95fGpJ6LPrwODzEP2y81iGlD+Bpp4mvO2S2pdz3vH/gklzF7TCYu2Q7SbMaWdxYgrIPt
-         AWpK5vWspt8rknmp2iWdE1k7bPYWdP2WXoLBoRIR/GZHU35CDyJvxwcFhOWduAjxNDvR
-         Z9fmr2A8rrITyv05jN+T4ojQnpjQBAqFjPg/iJpg/7Q5Yjh+8qFgAegoA5axQXv3FRPf
-         AQaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=romxRiluSB3U0MCTAL9z6l+v5VOVo8m/ALapz+wT32A=;
-        b=S3ekR/5qG5/ZcUEOmNluyFfUpLRe6O8uxSuQA+gaXs04LtCPhK34D7g5WHCpU3ftOz
-         iukJ2i/OMj13+dAqZBxjQ3DwoWOJj/TZNBwnWnM5DY+7H391rkQ4MGr56aiastKaoT03
-         RIz7n4yfKtWHfFflLqSrrXplKq5K4Ir99GUq32H3CTYrVIgQNRSRjlGPGj4utRDbsoX7
-         p7aurJa0Yx46kPlbU9Nxcg7Q08780xpblbVew4hySlK1vZt56lHIcd5x1/SgREyS32Mw
-         EtGhVRUXodePqRj3ZKokHNxWdPoFsis+Ml/GTPbxjSYkxCZFGbBEbVBifVjurjxb/yJV
-         5jVA==
-X-Gm-Message-State: AOAM533Qo+U9OhH9CB6h6L1huNRvkEiv7xjqI6kXK+GZtUwrSwHypIRs
-        RgyJa4RkVs/THwMrZskA5qBPaw==
-X-Google-Smtp-Source: ABdhPJwyO3ujtYZ8zdBnstb0qBwrJbgY3E1o/vvFesiYP0u1IUaep7l2Er6QwXBipThd6b61U3Zw2g==
-X-Received: by 2002:a17:907:3e0d:b0:6e8:cccd:de80 with SMTP id hp13-20020a1709073e0d00b006e8cccdde80mr1163223ejc.162.1649839018538;
-        Wed, 13 Apr 2022 01:36:58 -0700 (PDT)
-Received: from [192.168.0.202] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id m19-20020a170906849300b006e89efedf50sm2556102ejx.171.2022.04.13.01.36.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 01:36:58 -0700 (PDT)
-Message-ID: <bd861601-1c17-1905-b267-8d8ccb444d8b@linaro.org>
-Date:   Wed, 13 Apr 2022 10:36:55 +0200
+        with ESMTP id S230465AbiDMIkK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:40:10 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7273D1C1;
+        Wed, 13 Apr 2022 01:37:50 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23D8YUrX009700;
+        Wed, 13 Apr 2022 03:37:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=mrIRA1340hfFw6D7KOwgZOlOVTGN1/FcgWYXEv0i9B8=;
+ b=em9N7+j70f79V0SIziaFcbFapifvMdI8jdyCor5OO6ks5Yk1wT1/k23p3zcp9L83H27m
+ 493FR+xdaaSutgzIzLbdSdVw+G/VORx8ZxFIZxHRfiuV5DTwxJkWmPx5w6gm1K+HcV7e
+ P6lDHur5UPJsub4mcvGriflkjAL9pQSKzYTQUy46RDxRAu9pGZN9p0ILS0WrrUAOukKm
+ hXqi5v0OrL3a3BHXNeBXPNbM4HENCSx0kdPxGzaYvOtW7l0m0HHZxjkirVCyrGwmvtDA
+ fzLYo+0u/Ml09znZxIvLOyXYjydJNUvuLYGQUa6VFhIVRPSa8TcVMJAlHhE5zJM7QCqT MA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3fb6pycvcu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 13 Apr 2022 03:37:31 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 13 Apr
+ 2022 09:37:29 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via Frontend
+ Transport; Wed, 13 Apr 2022 09:37:29 +0100
+Received: from aryzen.ad.cirrus.com (unknown [198.61.64.152])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 62EDBB06;
+        Wed, 13 Apr 2022 08:37:29 +0000 (UTC)
+From:   Lucas Tanure <tanureal@opensource.cirrus.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lucas Tanure <tanureal@opensource.cirrus.com>
+Subject: [PATCH v7 00/16] Support external boost at CS35l41 ASoC driver
+Date:   Wed, 13 Apr 2022 09:37:12 +0100
+Message-ID: <20220413083728.10730-1-tanureal@opensource.cirrus.com>
+X-Mailer: git-send-email 2.35.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: timer: Update TI timer to yaml
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20220413081042.27088-1-tony@atomide.com>
- <20220413081042.27088-2-tony@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220413081042.27088-2-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: LMNHAWaGGWI6i_wTBr1UFb_1ebBRs6rB
+X-Proofpoint-GUID: LMNHAWaGGWI6i_wTBr1UFb_1ebBRs6rB
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 10:10, Tony Lindgren wrote:
-> Let's update the TI timer binding to use yaml. As this binding is specific
-> to the TI dual-mode timers also known as dm-timers, let's use file name
-> ti,timer-dm.yaml to avoid confusion with other timers.
-> 
-> We add checks for the deprecated ti,hwmods property as done for other TI
-> device driver bindings earlier.
-> 
-> We also correct the issue with the old binding that was out of date for
-> several properties.
-> 
-> The am43 related timers are undocumented, but compatible with the am3
-> timers. Let's add the am43 timers too.
-> 
-> The dm814 and dm816 timers are missing, let's add them.
-> 
-> Some timers on some SoCs are dual mapped, like the ABE timers on omap4
-> and 5. The reg property maxItems must be updated to 2.
-> 
-> The timer clocks can be managed by the parent interconnect target module
-> with no clocks assigned for the timer node. And in some cases, the SoC may
-> need to configure additional system clock for the timer in addition to the
-> functional clock.
-> 
-> The clock names are optional and not specific to the comptible property.
-> For example, dra7 timers on l3 interconnect do not need clock-names, while
-> the timers on dra7 l4 interconnect need them with both being compatible
-> with ti,omap5430-timer.
-> 
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  .../bindings/pwm/pwm-omap-dmtimer.txt         |   2 +-
->  .../bindings/timer/ti,timer-dm.yaml           | 148 ++++++++++++++++++
->  .../devicetree/bindings/timer/ti,timer.txt    |  44 ------
->  3 files changed, 149 insertions(+), 45 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
->  delete mode 100644 Documentation/devicetree/bindings/timer/ti,timer.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt b/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt
-> --- a/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt
-> @@ -2,7 +2,7 @@
->  
->  Required properties:
->  - compatible: Shall contain "ti,omap-dmtimer-pwm".
-> -- ti,timers: phandle to PWM capable OMAP timer. See timer/ti,timer.txt for info
-> +- ti,timers: phandle to PWM capable OMAP timer. See timer/ti,timer-dm.yaml for info
->    about these timers.
->  - #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
->    the cells format.
-> diff --git a/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml b/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
-> new file mode 100644
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/ti,timer-dm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI dual-mode timer
-> +
-> +maintainers:
-> +  - Tony Lindgren <tony@atomide.com>
-> +
-> +description: |
-> +  The TI dual-mode timer is a general purpose timer with PWM capabilities.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ti,am335x-timer
-> +              - ti,am335x-timer-1ms
-> +              - ti,dm814-timer
-> +              - ti,dm816-timer
-> +              - ti,omap2420-timer
-> +              - ti,omap3430-timer
-> +              - ti,omap4430-timer
-> +              - ti,omap5430-timer
-> +      - items:
-> +          - const: ti,am4372-timer
-> +          - const: ti,am335x-timer
-> +      - items:
-> +          - const: ti,am4372-timer-1ms
-> +          - const: ti,am335x-timer-1ms
-> +
-> +  reg:
-> +    items:
-> +      - description: IO address
-> +      - description: L3 to L4 mapping for omap4/5 L4 ABE
-> +    minItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Functional clock
-> +      - description: System clock for omap4/5 and dra7
-> +    minItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fck
-> +      - const: timer_sys_ck
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt if available. The timer PWM features may be usable
-> +      in a limited way even without interrupts.
-> +    maxItems: 1
-> +
-> +  ti,timer-alwon:
-> +    description:
-> +      Timer is always enabled when the SoC is powered. Note that some SoCs like
-> +      am335x can suspend to PM coprocessor RTC only mode and in that case the
-> +      SoC power is cut including timers.
-> +    type: boolean
-> +
-> +  ti,timer-dsp:
-> +    description:
-> +      Timer is routable to the DSP in addition to the operating system.
-> +    type: boolean
-> +
-> +  ti,timer-pwm:
-> +    description:
-> +      Timer has been wired for PWM capability.
-> +    type: boolean
-> +
-> +  ti,timer-secure:
-> +    description:
-> +      Timer access has been limited to secure mode only.
-> +    type: boolean
-> +
-> +  ti,hwmods:
-> +    description:
-> +      Name of the HWMOD associated with timer. This is for legacy
-> +      omap2/3 platforms only.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    deprecated: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - ti,omap3430-timer
-> +                - ti,omap4430-timer
-> +                - ti,omap5430-timer
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: IO address
+Move the support for CS35L41 external boost to its shared library
+for ASoC use.
+This move resulted in cs35l41_hda_reg_sequence being removed,
+and its steps were broken down into regmap writes or functions
+from the library. And hardware configuration struct was unified
+for its use in the shared lib.
+While at it, some minor bugs were found and fixed it.
 
-You can skip the items because they are the same as in properties
-before. Just keep maxItems:1.
+v7 changelog:
+ - Rebased on top v5.18-rc2 tag
+ - Acks from Mark Brown
 
-> +          maxItems: 1
-> +        clocks:
-> +          items:
-> +            - description: Functional clock
+v6 changelog:
+ - Rebased on top of Linux Next with community patches for CS35L41
+ - Document patch acked by Charles Keepax
 
-The same.
+v5 changelog:
+ - Fixed wrong indentation at Documentation patch
+ - Use of consistent prefix
 
-> +          maxItems: 1
-> +        clock-names:
-> +          items:
-> +            - const: fck
+v4 changelog:
+ - Separated GPIO 1 and 2 function enums
 
-The same.
+v3 changelog:
+ - Remove patches already accepted
+ - Improved logic in documentation patch
+ - Documentation patch goes before its code
+ - Fixed missing Signed-off-by
+ - Fixed subject for HDA patches
 
-> +          maxItems: 1
+v2 changelog:
+ - Instead of removing the log, playback actions will log the last regmap access.
+ - Documentation patch with the correct subject line and fixed bug reported by Rob Herring on the
+ provided example.
 
-Rest is good.
+Previous versions:
+ v1: https://lkml.org/lkml/2022/3/3/759
+ v2: https://lkml.org/lkml/2022/3/4/743
+ v3: https://lkml.org/lkml/2022/3/8/975
+ v4: https://lkml.org/lkml/2022/3/17/267
+ v5: https://lkml.org/lkml/2022/3/22/696
+ v6: https://lkml.org/lkml/2022/4/9/114
 
-Best regards,
-Krzysztof
+David Rhodes (1):
+  ASoC: cs35l41: Document CS35l41 External Boost
+
+Lucas Tanure (15):
+  ALSA: cs35l41: Unify hardware configuration
+  ALSA: cs35l41: Check hw_config before using it
+  ALSA: cs35l41: Move cs35l41_gpio_config to shared lib
+  ALSA: hda: cs35l41: Fix I2S params comments
+  ALSA: hda: cs35l41: Always configure the DAI
+  ALSA: hda: cs35l41: Add Boost type flag
+  ALSA: hda: cs35l41: Put the device into safe mode for external boost
+  ALSA: hda: cs35l41: Mute the device before shutdown
+  ALSA: cs35l41: Enable Internal Boost in shared lib
+  ALSA: hda: cs35l41: Move boost config to initialization code
+  ALSA: hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
+  ALSA: hda: cs35l41: Reorganize log for playback actions
+  ALSA: hda: cs35l41: Handle all external boost setups the same way
+  ALSA: hda: cs35l41: Move external boost handling to lib for ASoC use
+  ASoC: cs35l41: Support external boost
+
+ .../bindings/sound/cirrus,cs35l41.yaml        |  44 ++-
+ include/sound/cs35l41.h                       |  59 +++-
+ sound/pci/hda/cs35l41_hda.c                   | 295 ++++++------------
+ sound/pci/hda/cs35l41_hda.h                   |  27 +-
+ sound/soc/codecs/cs35l41-i2c.c                |   4 +-
+ sound/soc/codecs/cs35l41-lib.c                | 190 ++++++++++-
+ sound/soc/codecs/cs35l41-spi.c                |   4 +-
+ sound/soc/codecs/cs35l41.c                    | 166 +++++-----
+ sound/soc/codecs/cs35l41.h                    |   5 +-
+ 9 files changed, 443 insertions(+), 351 deletions(-)
+
+-- 
+2.35.2
+
