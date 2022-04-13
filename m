@@ -2,214 +2,335 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE2B4FF3D9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 11:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E1E4FF3E9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 11:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233696AbiDMJnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 05:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35290 "EHLO
+        id S233267AbiDMJoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 05:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234641AbiDMJnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 05:43:42 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2084.outbound.protection.outlook.com [40.107.236.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D36036695;
-        Wed, 13 Apr 2022 02:41:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kTNehAjbixJ2BRHKOdS3UaKAbqvA1m2txj/XxU/pl18LpWnhU+qspwUK+6xaT+r1zEpa767hNebo3mx9FSQXgThhQKVKP3Q2xZr6MCNsgQ+NGU+QJHaeduLtOITKaV0E0/0KRwVNoSKxg5C37ryESMfgNa14+9mc+3rj7LYnpQtbJZiFBCOkSO2q4Cx5RT29knNevmzbT9E+QluK4wQRsedvZhjgoZv26Gfd3bAC5EhstEkgWANL2cbVXyKyjcUFLAhoeVh286ChEkBiFmpUdIgo6jUeg0qE9ptAnpSce0NHusshpbYRqydzh0t3Ar9owA2H4bG0KRpk6JWC3yqXOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uSWNXPZ5JdkGyK56sc34phNfkcm1OWBMQxvKxmpdRHQ=;
- b=H07/cBxhpSL0bpC3T1QGL8VoUFGaS1Mxnw2ESwHlTVKSJtJxg0wCvKdBQdEkF6t8j7rMcbUHCAl0+RQ0Ric1/aye3FIRVa78s68W0iy/G8EZxWIoFoyTdHYDqihtljzdrOK2pyRA4i+RqrEa+Igt2AXCO6ohTO4v+tqMkZZf0J2i7PbGlwIgApwVbfqsbJT1jqQ1Y0fhTL1lAe8AC9fvFT7CzSBuPlcNzDlfVmRmK9QNjSGhi5QO5j+1sXBDWxSed7f3kMF4ds/GT8s/CWknFsJFFeQUM7kdwjIlrNPJ51nr2n/29PGlen6C3cXzGdTKtuAKvxkE6yYfhN8BzMHQQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.234) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uSWNXPZ5JdkGyK56sc34phNfkcm1OWBMQxvKxmpdRHQ=;
- b=px5reanFlPsFfe0hdV0EyV10YaWNUkPK41HqLk59Jjw1p69PSnWLgw5FvB/iiY5T1aW+yt/ldzLtERoi8VYWnuZgDmzCrkzDIE/gyuFSeegq9kHNLeTQDSuNcJDzp4QjZ6zPOicybGPV8gMwU6rGbpKTfz7c9mE7Hi1E1iQ1ayzI3aAH4R/HpDByMz6g9nJoDsreP5X0LfzpOcYnTCpPXuVd5kDtlip9xi3hU9CXQkqmF1MueqYmGfaGMDifxGEWvjrSbzVuBCQFp3+pg8XQiLTU5yuTd6zH0pu1QjWw7XfL+n8Ulj6OFO3K7oo7D9G/C7K++k64ATn4JcFHlD/eZw==
-Received: from BN9PR03CA0951.namprd03.prod.outlook.com (2603:10b6:408:108::26)
- by DM5PR12MB1673.namprd12.prod.outlook.com (2603:10b6:4:e::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5144.29; Wed, 13 Apr 2022 09:41:18 +0000
-Received: from BN8NAM11FT055.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:108:cafe::6c) by BN9PR03CA0951.outlook.office365.com
- (2603:10b6:408:108::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.18 via Frontend
- Transport; Wed, 13 Apr 2022 09:41:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.234; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.234) by
- BN8NAM11FT055.mail.protection.outlook.com (10.13.177.62) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.5164.19 via Frontend Transport; Wed, 13 Apr 2022 09:41:17 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by DRHQMAIL101.nvidia.com
- (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Wed, 13 Apr
- 2022 09:40:54 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 13 Apr
- 2022 02:40:53 -0700
-Received: from amhetre.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server id 15.2.986.22 via Frontend
- Transport; Wed, 13 Apr 2022 02:40:49 -0700
-From:   Ashish Mhetre <amhetre@nvidia.com>
-To:     <dmitry.osipenko@collabora.com>, <digetx@gmail.com>,
-        <krzysztof.kozlowski@linaro.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <vdumpa@nvidia.com>, <Snikam@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>
-Subject: [Patch v7 4/4] arm64: tegra: Add memory controller channels
-Date:   Wed, 13 Apr 2022 15:10:12 +0530
-Message-ID: <20220413094012.13589-5-amhetre@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220413094012.13589-1-amhetre@nvidia.com>
-References: <20220413094012.13589-1-amhetre@nvidia.com>
-X-NVConfidentiality: public
+        with ESMTP id S233651AbiDMJog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 05:44:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384BC56209;
+        Wed, 13 Apr 2022 02:42:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C8D7561C3D;
+        Wed, 13 Apr 2022 09:42:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 737D4C385A4;
+        Wed, 13 Apr 2022 09:42:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649842933;
+        bh=bZvkiToD1lv0wZ8rV5rLM4SZ1HEgqXqrLMsRJE9huTM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gPYNWDjN4tZYe3KCBcWm4BuoceJVqcoCTceBluSnGvpqBOzhXIkLGDVY3BZbYn95g
+         uzdB6d0F9APfGppJDRjcJIXdDlOOfKftP3FnB3aFvLJ4f8q322jm9wu839tWE2igRb
+         JrBZ0hpHEHd448jkrbjxH8FLM2uoDbyaT9gdfXlZTjmd6joX/shS2VwvuE/1dm6iPP
+         j8vA3EVARlgdmtowbkNT3AaZkY8PcQq3KzGlMSzaMFQ70OQeint06fw7ALhygUiIza
+         rY1/oxoc4BtkyjvGiOeBrcgry8t1KSCK9wQDr5hgdtlaBv5ZwO7weXD3r6VjkQLkrm
+         XB6tyolyuQvfg==
+Date:   Wed, 13 Apr 2022 15:12:09 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com
+Subject: Re: [PATCH v2 2/3] phy: qcom-snps: Add support for overriding phy
+ tuning parameters
+Message-ID: <Ylaa8THv24KEEcJ4@matsya>
+References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1646288011-32242-3-git-send-email-quic_c_sanm@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4c99011a-ae13-45be-db47-08da1d31c27e
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1673:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB16731C8DCF94CAE002983A34CAEC9@DM5PR12MB1673.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ERKHfFs7tEjLvYqfjp1Z6wyA82AUPXx/PeT7dB79YrE0FoFfSPMO02qI3SDeMMcm7+gFesVbVz1jNg/2n0erasPFbXwKX46eSEFM7dhLXoee9GKrYf9r9mbwpg+bzvQPg5vO0Y/L7RDKdVYM5oy4GHs8VHg9PJXHHjYRT14mAUztL7fUkpnIC6Fq/Nvc6TXx4+ziCmo1tWUw07IHf4iMYv/LkfCn3XKoJntp1TtVv/Ay9NwGbUwWFGhHB3FWu6jMT8mYNycxmJEdcZmv95JbjvG092LVp3MTQg4CfS6kznk1z2B9AN8bHx2ZU5Lk9kyyweVyDRCbn/Rdiqwi/djAa+YmwYhjn60+BjtxmBpLozKjxQxMr3axHRbiGk5YAeK8rtVuYUdDPetZrKlCSkaJfOKdBUubx+fGpIzakWTgsIqJ2RCrToeItuD4R3etT2E0RKGMpkmHa72szD85LOUiTdlbpM0bMyshVb3iM478GGsx5qoG5nhwwaqLcHO3397Kq3ZkhvBh2amuuw7qVkI/TnaT+bngY4a6G6ykEhCVl/M6uRImhSxqVtTXD7/gYPGqlTeau7JFxz93vv0eOZ3F+Chn2rRoe3YJRFlkmEEzhCNIF/xbiVhELXqarbpgcrDKuubDQwqHuO/zjGnCTziwdwG0r+GsgifXNSdR78Fan2BzOhmdRDW0Ig4AhZfZ2PHKO+tfF8XKNHJNCmnxjKcwBW1mpTnNSw7jpC2raj9mWW+Vb9nOgpPAF0vVwGGFwDNx6ouEhGPwAothl4masQCqWw==
-X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(47076005)(8676002)(82310400005)(2616005)(5660300002)(6666004)(107886003)(1076003)(8936002)(186003)(83380400001)(70206006)(70586007)(4326008)(336012)(426003)(36756003)(36860700001)(921005)(356005)(26005)(81166007)(2906002)(7696005)(54906003)(110136005)(40460700003)(508600001)(86362001)(316002)(83996005)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2022 09:41:17.8168
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c99011a-ae13-45be-db47-08da1d31c27e
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT055.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1673
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1646288011-32242-3-git-send-email-quic_c_sanm@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From tegra186 onwards, memory controller support multiple channels.
-During the error interrupts from memory controller, corresponding
-channels need to be accessed for logging error info and clearing the
-interrupt.
-So add address and size of these channels in device tree node of
-tegra186, tegra194 and tegra234 memory controller. Also add reg-names
-for each of these reg items which are used by driver for mapping.
+On 03-03-22, 11:43, Sandeep Maheswaram wrote:
+> Added support for overriding x0,x1,x2,x3 params for SNPS PHY by reading
+> values from device tree.
+> 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 192 ++++++++++++++++++++++++++
+>  1 file changed, 192 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
+> index 7e61202..b5aa06d 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
+> @@ -51,6 +51,48 @@
+>  #define USB2_SUSPEND_N				BIT(2)
+>  #define USB2_SUSPEND_N_SEL			BIT(3)
+>  
+> +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0	(0x6c)
+> +
+> +/*USB_PHY_HS_PHY_OVERRIDE_X0 register bits*/
 
-Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra186.dtsi |  8 +++++++-
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 24 +++++++++++++++++++++---
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 24 +++++++++++++++++++++---
- 3 files changed, 49 insertions(+), 7 deletions(-)
+space after /* and before */ (checkpatch.pl --strict would warn you)
+Pls fix it everywhere
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index e9b40f5d79ec..a7b794de1637 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -521,7 +521,13 @@
- 
- 	mc: memory-controller@2c00000 {
- 		compatible = "nvidia,tegra186-mc";
--		reg = <0x0 0x02c00000 0x0 0xb0000>;
-+		reg = <0x0 0x02c00000 0x0 0x10000>,    /* MC-SID */
-+		      <0x0 0x02c10000 0x0 0x10000>,    /* Broadcast channel */
-+		      <0x0 0x02c20000 0x0 0x10000>,    /* MC0 */
-+		      <0x0 0x02c30000 0x0 0x10000>,    /* MC1 */
-+		      <0x0 0x02c40000 0x0 0x10000>,    /* MC2 */
-+		      <0x0 0x02c50000 0x0 0x10000>;    /* MC3 */
-+		reg-names = "sid", "broadcast", "ch0", "ch1", "ch2", "ch3";
- 		interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
- 		status = "disabled";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 1d6be5774fac..26c3a527e99a 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -604,9 +604,27 @@
- 
- 		mc: memory-controller@2c00000 {
- 			compatible = "nvidia,tegra194-mc";
--			reg = <0x02c00000 0x100000>,
--			      <0x02b80000 0x040000>,
--			      <0x01700000 0x100000>;
-+			reg = <0x02c00000 0x10000>,   /* MC-SID */
-+			      <0x02c10000 0x10000>,   /* MC Broadcast*/
-+			      <0x02c20000 0x10000>,   /* MC0 */
-+			      <0x02c30000 0x10000>,   /* MC1 */
-+			      <0x02c40000 0x10000>,   /* MC2 */
-+			      <0x02c50000 0x10000>,   /* MC3 */
-+			      <0x02b80000 0x10000>,   /* MC4 */
-+			      <0x02b90000 0x10000>,   /* MC5 */
-+			      <0x02ba0000 0x10000>,   /* MC6 */
-+			      <0x02bb0000 0x10000>,   /* MC7 */
-+			      <0x01700000 0x10000>,   /* MC8 */
-+			      <0x01710000 0x10000>,   /* MC9 */
-+			      <0x01720000 0x10000>,   /* MC10 */
-+			      <0x01730000 0x10000>,   /* MC11 */
-+			      <0x01740000 0x10000>,   /* MC12 */
-+			      <0x01750000 0x10000>,   /* MC13 */
-+			      <0x01760000 0x10000>,   /* MC14 */
-+			      <0x01770000 0x10000>;   /* MC15 */
-+			reg-names = "sid", "broadcast", "ch0", "ch1", "ch2", "ch3",
-+				    "ch4", "ch5", "ch6", "ch7", "ch8", "ch9", "ch10",
-+				    "ch11", "ch12", "ch13", "ch14", "ch15";
- 			interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
- 			#interconnect-cells = <1>;
- 			status = "disabled";
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 8767dbe2d066..69048b450db2 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -507,9 +507,27 @@
- 
- 		mc: memory-controller@2c00000 {
- 			compatible = "nvidia,tegra234-mc";
--			reg = <0x02c00000 0x100000>,
--			      <0x02b80000 0x040000>,
--			      <0x01700000 0x100000>;
-+			reg = <0x02c00000 0x10000>,   /* MC-SID */
-+			      <0x02c10000 0x10000>,   /* MC Broadcast*/
-+			      <0x02c20000 0x10000>,   /* MC0 */
-+			      <0x02c30000 0x10000>,   /* MC1 */
-+			      <0x02c40000 0x10000>,   /* MC2 */
-+			      <0x02c50000 0x10000>,   /* MC3 */
-+			      <0x02b80000 0x10000>,   /* MC4 */
-+			      <0x02b90000 0x10000>,   /* MC5 */
-+			      <0x02ba0000 0x10000>,   /* MC6 */
-+			      <0x02bb0000 0x10000>,   /* MC7 */
-+			      <0x01700000 0x10000>,   /* MC8 */
-+			      <0x01710000 0x10000>,   /* MC9 */
-+			      <0x01720000 0x10000>,   /* MC10 */
-+			      <0x01730000 0x10000>,   /* MC11 */
-+			      <0x01740000 0x10000>,   /* MC12 */
-+			      <0x01750000 0x10000>,   /* MC13 */
-+			      <0x01760000 0x10000>,   /* MC14 */
-+			      <0x01770000 0x10000>;   /* MC15 */
-+			reg-names = "sid", "broadcast", "ch0", "ch1", "ch2", "ch3",
-+				    "ch4", "ch5", "ch6", "ch7", "ch8", "ch9", "ch10",
-+				    "ch11", "ch12", "ch13", "ch14", "ch15";
- 			interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
- 			#interconnect-cells = <1>;
- 			status = "okay";
+> +#define HS_DISCONNECT_MASK			GENMASK(2, 0)
+> +#define HS_DISCONNECT_SHIFT			0x0
+> +
+> +#define SQUELCH_DETECTOR_MASK			GENMASK(7, 5)
+> +#define SQUELCH_DETECTOR_SHIFT			0x5
+> +
+> +
+> +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1	(0x70)
+> +
+> +/*USB_PHY_HS_PHY_OVERRIDE_X1 register bits*/
+> +#define HS_AMPLITUDE_MASK			GENMASK(3, 0)
+> +#define HS_AMPLITUDE_SHIFT			0x0
+> +
+> +#define PREEMPHASIS_DURATION_MASK		BIT(5)
+> +#define PREEMPHASIS_DURATION_SHIFT		0x5
+> +
+> +#define PREEMPHASIS_AMPLITUDE_MASK		GENMASK(7, 6)
+> +#define PREEMPHASIS_AMPLITUDE_SHIFT		0x6
+> +
+> +
+> +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2	(0x74)
+> +
+> +/*USB_PHY_HS_PHY_OVERRIDE_X2 register bits*/
+> +#define HS_RISE_FALL_MASK			GENMASK(1, 0)
+> +#define HS_RISE_FALL_SHIFT			0x0
+> +
+> +#define HS_CROSSOVER_VOLTAGE_MASK		GENMASK(3, 2)
+> +#define HS_CROSSOVER_VOLTAGE_SHIFT		0x2
+> +
+> +#define HS_OUTPUT_IMPEDANCE_MASK		GENMASK(5, 4)
+> +#define HS_OUTPUT_IMPEDANCE_SHIFT		0x4
+> +
+> +
+> +#define USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X3	(0x78)
+> +
+> +/*USB_PHY_HS_PHY_OVERRIDE_X3 register bits*/
+> +#define LS_FS_OUTPUT_IMPEDANCE_MASK		GENMASK(3, 0)
+> +#define LS_FS_OUTPUT_IMPEDANCE_SHIFT		0x0
+> +
+>  #define USB2_PHY_USB_PHY_CFG0			(0x94)
+>  #define UTMI_PHY_DATAPATH_CTRL_OVERRIDE_EN	BIT(0)
+>  #define UTMI_PHY_CMN_CTRL_OVERRIDE_EN		BIT(1)
+> @@ -65,6 +107,43 @@ static const char * const qcom_snps_hsphy_vreg_names[] = {
+>  
+>  #define SNPS_HS_NUM_VREGS		ARRAY_SIZE(qcom_snps_hsphy_vreg_names)
+>  
+> +/* struct override_param - structure holding snps phy overriding param
+> + * set override true if the  device tree property exists and read and assign
+> + * to value
+> + */
+> +struct override_param {
+> +	bool override;
+> +	u8 value;
+> +};
+> +
+> +/*struct override_params - structure holding snps phy overriding params
+> + * @hs_disconnect: disconnect threshold
+> + * @squelch_detector: threshold to detect valid high-speed data
+> + * @hs_amplitude: high-speed DC level voltage
+> + * @preemphasis_duration: duration for which the HS pre-emphasis current
+> + *  is sourced onto DP<#> or DM<#>
+> + * @preemphasis_amplitude: current sourced to DP<#> and DM<#> after
+> + *  a J-to-K or K-to-J transition.
+> + * @hs_rise_fall_time: rise/fall times of the high-speed waveform
+> + * @hs_crossover_voltage: voltage at which the DP<#> and DM<#>
+> + *  signals cross while transmitting in HS mode
+> + * @hs_output_impedance: driver source impedance to compensate for added series
+> + *  resistance on the USB
+> + * @ls_fs_output_impedance: low and full-speed single-ended source
+> + *  impedance while driving high
+> + */
+> +struct override_params {
+> +	struct override_param hs_disconnect;
+> +	struct override_param squelch_detector;
+> +	struct override_param hs_amplitude;
+> +	struct override_param preemphasis_duration;
+> +	struct override_param preemphasis_amplitude;
+> +	struct override_param hs_rise_fall_time;
+> +	struct override_param hs_crossover_voltage;
+> +	struct override_param hs_output_impedance;
+> +	struct override_param ls_fs_output_impedance;
+> +};
+> +
+>  /**
+>   * struct qcom_snps_hsphy - snps hs phy attributes
+>   *
+> @@ -87,6 +166,7 @@ struct qcom_snps_hsphy {
+>  	struct clk *ref_clk;
+>  	struct reset_control *phy_reset;
+>  	struct regulator_bulk_data vregs[SNPS_HS_NUM_VREGS];
+> +	struct override_params overrides;
+>  
+>  	bool phy_initialized;
+>  	enum phy_mode mode;
+> @@ -175,6 +255,7 @@ static int qcom_snps_hsphy_set_mode(struct phy *phy, enum phy_mode mode,
+>  static int qcom_snps_hsphy_init(struct phy *phy)
+>  {
+>  	struct qcom_snps_hsphy *hsphy = phy_get_drvdata(phy);
+> +	struct override_params *or = &hsphy->overrides;
+>  	int ret;
+>  
+>  	dev_vdbg(&phy->dev, "%s(): Initializing SNPS HS phy\n", __func__);
+> @@ -222,6 +303,60 @@ static int qcom_snps_hsphy_init(struct phy *phy)
+>  	qcom_snps_hsphy_write_mask(hsphy->base, USB2_PHY_USB_PHY_HS_PHY_CTRL1,
+>  					VBUSVLDEXT0, VBUSVLDEXT0);
+>  
+> +	if (or->hs_disconnect.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0,
+> +			HS_DISCONNECT_MASK,
+> +			or->hs_disconnect.value << HS_DISCONNECT_SHIFT);
+> +
+> +	if (or->squelch_detector.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0,
+> +			SQUELCH_DETECTOR_MASK,
+> +			or->squelch_detector.value << SQUELCH_DETECTOR_SHIFT);
+> +
+> +	if (or->hs_amplitude.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1,
+> +			HS_AMPLITUDE_MASK,
+> +			or->hs_amplitude.value << HS_AMPLITUDE_SHIFT);
+> +
+> +	if (or->preemphasis_duration.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1,
+> +			PREEMPHASIS_DURATION_MASK,
+> +			or->preemphasis_duration.value << PREEMPHASIS_DURATION_SHIFT);
+> +
+> +	if (or->preemphasis_amplitude.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X1,
+> +			PREEMPHASIS_AMPLITUDE_MASK,
+> +			or->preemphasis_amplitude.value << PREEMPHASIS_AMPLITUDE_SHIFT);
+> +
+> +	if (or->hs_rise_fall_time.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2,
+> +			HS_RISE_FALL_MASK,
+> +			or->hs_rise_fall_time.value << HS_RISE_FALL_SHIFT);
+> +
+> +	if (or->hs_crossover_voltage.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2,
+> +			HS_CROSSOVER_VOLTAGE_MASK,
+> +			or->hs_crossover_voltage.value << HS_CROSSOVER_VOLTAGE_SHIFT);
+> +
+> +	if (or->hs_output_impedance.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X2,
+> +			HS_OUTPUT_IMPEDANCE_MASK,
+> +			or->hs_output_impedance.value << HS_OUTPUT_IMPEDANCE_SHIFT);
+> +
+> +	if (or->ls_fs_output_impedance.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X3,
+> +			LS_FS_OUTPUT_IMPEDANCE_MASK,
+> +			or->ls_fs_output_impedance.value << LS_FS_OUTPUT_IMPEDANCE_SHIFT);
+> +
+>  	qcom_snps_hsphy_write_mask(hsphy->base,
+>  					USB2_PHY_USB_PHY_HS_PHY_CTRL_COMMON2,
+>  					VREGBYPASS, VREGBYPASS);
+> @@ -292,12 +427,15 @@ static int qcom_snps_hsphy_probe(struct platform_device *pdev)
+>  	struct qcom_snps_hsphy *hsphy;
+>  	struct phy_provider *phy_provider;
+>  	struct phy *generic_phy;
+> +	struct override_params *or;
+>  	int ret, i;
+>  	int num;
+> +	u32 value;
+>  
+>  	hsphy = devm_kzalloc(dev, sizeof(*hsphy), GFP_KERNEL);
+>  	if (!hsphy)
+>  		return -ENOMEM;
+> +	or = &hsphy->overrides;
+>  
+>  	hsphy->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(hsphy->base))
+> @@ -329,6 +467,60 @@ static int qcom_snps_hsphy_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> +	if (!of_property_read_u32(dev->of_node, "qcom,hs-disconnect",
+> +				  &value)) {
+> +		or->hs_disconnect.value = (u8)value;
+> +		or->hs_disconnect.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,squelch-detector",
+> +				  &value)) {
+> +		or->squelch_detector.value = (u8)value;
+> +		or->squelch_detector.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,hs-amplitude",
+> +				  &value)) {
+> +		or->hs_amplitude.value = (u8)value;
+> +		or->hs_amplitude.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,preemphasis-duration",
+> +				  &value)) {
+> +		or->preemphasis_duration.value = (u8)value;
+> +		or->preemphasis_duration.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,preemphasis-amplitude",
+> +				  &value)) {
+> +		or->preemphasis_amplitude.value = (u8)value;
+> +		or->preemphasis_amplitude.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,hs-rise-fall-time",
+> +				  &value)) {
+> +		or->hs_rise_fall_time.value = (u8)value;
+> +		or->hs_rise_fall_time.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,hs-crossover-voltage",
+> +				  &value)) {
+> +		or->hs_crossover_voltage.value = (u8)value;
+> +		or->hs_crossover_voltage.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,hs-output-impedance",
+> +				  &value)) {
+> +		or->hs_output_impedance.value = (u8)value;
+> +		or->hs_output_impedance.override = true;
+> +	}
+> +
+> +	if (!of_property_read_u32(dev->of_node, "qcom,ls-fs-output-impedance",
+> +				  &value)) {
+> +		or->ls_fs_output_impedance.value = (u8)value;
+> +		or->ls_fs_output_impedance.override = true;
+> +	}
+
+Are all these values board specific or IP specific? Can we add these
+values as tables in driver? 
+
+Bjorn what do you think about the above proposal?
+
 -- 
-2.17.1
-
+~Vinod
