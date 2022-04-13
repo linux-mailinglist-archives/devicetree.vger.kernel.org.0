@@ -2,58 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F7D4FFA2A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:29:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8D24FFA64
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 17:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236504AbiDMPbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 11:31:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50950 "EHLO
+        id S236059AbiDMPj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbiDMPbb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:31:31 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328E56338E;
-        Wed, 13 Apr 2022 08:29:10 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 623F81F45A37
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649863748;
-        bh=QkuxM+5pnkSA1ICUnAKMrVwzy8WneSmBDiuAOn1jeUg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j2P2ES0QUqCA8NlI18oTrBam5MoFphrsbmf+R5RvhI4PZA6bUx1dA6fGxfrwf+jOv
-         7381/YQjBg9oODeEmpBqpo9q515hMr/XGKo2aveT750cxgtfyPMEBXSE1nr2GV/uEf
-         biVW+X12b/5t8N9cKppfWxYGJnZpY17RQG/3uH3pGgbnCa2a3vsP/ksctA4/cfq8G8
-         FK4ewWzrI3bBmVFtZ1feT7weYHHjXrIiGjAc2oBUN+ZNCvB3mIpNunPylDCmUZ2Hw+
-         DTEGJnzrwU9Fb83K950oZ+Ry4cx4N9g5si4BKW1FG9PKa5kB3Wy8znVjkp5PXuVHgM
-         EiNWtT0Xd7AVg==
-Date:   Wed, 13 Apr 2022 11:29:03 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH 1/1] arm64: dts: mt8192: Add vcodec lat and core nodes
-Message-ID: <20220413152903.3pk3ed5a5lgtiyf4@notapiano>
-References: <20220408104124.31395-1-allen-kh.cheng@mediatek.com>
- <20220408104124.31395-2-allen-kh.cheng@mediatek.com>
- <20220412230819.vnbdv6wpsg73eqzi@notapiano>
- <649d747ceddc7fbd3f226f4448874665231ae744.camel@mediatek.com>
+        with ESMTP id S231203AbiDMPjz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:39:55 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8EC554BEB
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:37:33 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id b15so2868797edn.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 08:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PO/0MDUIRM3Z0h3PU4eYcvsEMMdjUT2V3VaPhr9z/E0=;
+        b=uZu249qTy6MNrhwunH7p+LQXhXmrsO80rWgRpnSw5DiD3hbfKGkKdgwP4qCDhJcosG
+         1id+AiwWFRQcUvt2is2rxDrfiNygmFCzfPjtkHQyWo9o/8aKwYt2NFGSUaheYFAnv0qw
+         G9zfjPYM47uYz8+FcXJPtTEPc/DGp0TCuUDiaHpGYbU1tFZnTCVzfVXxfRBkv760CyRq
+         lS+Q++xqPwB0O+09Gie6Y9JUnHWESMIY45tGEWA5ACGtR/BAl6R5tuY6OKbP/gveeIXZ
+         rftEEHVAopdd1PKcPDXKBuFXrQORYK+u4GsFj4JYX9g5NALffkMyFfnPBE4fQ8WZLOlh
+         +1HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PO/0MDUIRM3Z0h3PU4eYcvsEMMdjUT2V3VaPhr9z/E0=;
+        b=p2vIx/0LAyKh/xx6xy2TNp5ZpekLKhKIJGc+Oupr0lIbZ2rsMp7hjTjnSi5oZ/THlH
+         iFdslzz9BXlxkIpYYYACLi5pY2sUxINuz0QGEfnjLrVD6hDm5PlW77OvDtKAta4EIMAD
+         rTeVSzRztNwxjCHQt2DWOTClVm+wlt2TghZ9rx/IWMj9/PLJECL8xZMkrDUqpJaNudRd
+         vxQcGvKmT6fXV6t2zck0eD7BOCiWmhyD3HnJbPnM0mDFbQxtLF5ma0xNdu70CEHmiBJJ
+         f7NFe3637Z/PGEIHyOiyqGVVP11oezebBg1YGc/gd/gBQGLSyygyACZ8tguUUw44c0O0
+         kDeA==
+X-Gm-Message-State: AOAM531QoZATR2BeTWA/0EvsyHP4ZMn+SOEnxcnVP/HTOXDlyKkcOjMp
+        Ab78u6vMkCpMhqHkgY9zKi9jVw==
+X-Google-Smtp-Source: ABdhPJxyKrAG9rRVE8mRj679SzmDmAD8xVhn9EsmeCnZGHfphrC6B5qUeqw3KRrzN0aSvsQWiRckTA==
+X-Received: by 2002:aa7:da8d:0:b0:41d:71be:d8bd with SMTP id q13-20020aa7da8d000000b0041d71bed8bdmr20584914eds.71.1649864252388;
+        Wed, 13 Apr 2022 08:37:32 -0700 (PDT)
+Received: from [192.168.0.205] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id dn7-20020a17090794c700b006e8b176143bsm102985ejc.155.2022.04.13.08.37.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 08:37:31 -0700 (PDT)
+Message-ID: <41fa58ee-728b-7f0d-eea7-448c59641d85@linaro.org>
+Date:   Wed, 13 Apr 2022 17:37:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 11/14] dt-bindings: pinctrl: add binding for Ralink MT7620
+ pinctrl
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20220413060729.27639-1-arinc.unal@arinc9.com>
+ <20220413060729.27639-12-arinc.unal@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220413060729.27639-12-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <649d747ceddc7fbd3f226f4448874665231ae744.camel@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,169 +84,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 03:21:29PM +0800, allen-kh.cheng wrote:
-> Hi Nícolas,
+On 13/04/2022 08:07, ArÄ±nÃ§ ÃœNAL wrote:
+> Add binding for the Ralink MT7620 pin controller for MT7620, MT7628 and
+> MT7688 SoCs.
 > 
-> On Tue, 2022-04-12 at 19:08 -0400, Nícolas F. R. A. Prado wrote:
-> > Hi Allen,
-> > 
-> > On Fri, Apr 08, 2022 at 06:41:24PM +0800, Allen-KH Cheng wrote:
-> > > Add vcodec lat and core nodes for mt8192 SoC.
-> > > 
-> > > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60
-> > > ++++++++++++++++++++++++
-> > >  1 file changed, 60 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > index 18a58239d6f1..c7f4b2fbb315 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > @@ -1120,6 +1120,66 @@
-> > >  			power-domains = <&spm
-> > > MT8192_POWER_DOMAIN_ISP2>;
-> > >  		};
-> > >  
-> > > +		vcodec_dec: vcodec-dec@16000000 {
-> > > +			compatible = "mediatek,mt8192-vcodec-dec";
-> > > +			reg = <0 0x16000000 0 0x1000>;
-> > > +			mediatek,scp = <&scp>;
-> > > +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> > > +			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0
-> > > 0xfff00000>;
-> > > +			#address-cells = <2>;
-> > > +			#size-cells = <2>;
-> > 
-> > The dt-binding says address-cells and size-cells should be 1. Then
-> > most of the
-> > extra 0s can be dropped from ranges and the children's regs.
-> > 
-> > Other than that,
-> > 
-> > Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
-> > Thanks,
-> > Nícolas
-> > 
+> Signed-off-by: ArÄ±nÃ§ ÃœNAL <arinc.unal@arinc9.com>
+> ---
+>  .../pinctrl/ralink,mt7620-pinctrl.yaml        | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
 > 
-> I have checked the description in mediatek,vcodec-subdev-decoder.yaml
-> 
-> address-cells and size-cells are two after the below commit is merged.
-> 
-> media: mediatek,vcodec: Fix addressing cell sizes
-> linux/kernel/git/next/linux-next.git
-> commit/id=a50e431bbc6fc5768ed26be5fab5b149b7b8b1fe
+> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..01578b8aa277
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/ralink,mt7620-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Ralink MT7620 Pin Controller
+> +
+> +maintainers:
+> +  - ArÄ±nÃ§ ÃœNAL <arinc.unal@arinc9.com>
+> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> +
+> +description:
+> +  Ralink MT7620 pin controller for MT7620, MT7628 and MT7688 SoCs.
+> +  The pin controller can only set the muxing of pin groups. Muxing indiviual pins
 
-Hi Allen,
+Run spellcheck on original bindings, don't copy same typos.
 
-yes, you're right. I missed that commit, sorry. This patch is perfectly fine
-as it is then.
+> +  is not supported. There is no pinconf support.
+> +
+> +properties:
+> +  compatible:
+> +    const: ralink,mt7620-pinctrl
+> +
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    patternProperties:
+> +      '^(.*-)?pinmux$':
 
-Thanks,
-Nícolas
+Why do you have two levels here? pins->pinmux->actual pin configuration?
+Cannot be something like brcm,bcm636x has?
 
-> 
-> Correct me if I got this wrong.
-> 
-> Thanks,
-> Allen
-> 
-> > > +			ranges = <0 0 0 0x16000000 0 0x26000>;
-> > > +
-> > > +			vcodec_lat: vcodec-lat@10000 {
-> > > +				compatible = "mediatek,mtk-vcodec-lat";
-> > > +				reg = <0x0 0x10000 0 0x800>;
-> > > +				interrupts = <GIC_SPI 426
-> > > IRQ_TYPE_LEVEL_HIGH 0>;
-> > > +				iommus = <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
-> > > +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> > > +					 <&vdecsys_soc
-> > > CLK_VDEC_SOC_VDEC>,
-> > > +					 <&vdecsys_soc
-> > > CLK_VDEC_SOC_LAT>,
-> > > +					 <&vdecsys_soc
-> > > CLK_VDEC_SOC_LARB1>,
-> > > +					 <&topckgen
-> > > CLK_TOP_MAINPLL_D4>;
-> > > +				clock-names = "sel", "soc-vdec", "soc-
-> > > lat", "vdec", "top";
-> > > +				assigned-clocks = <&topckgen
-> > > CLK_TOP_VDEC_SEL>;
-> > > +				assigned-clock-parents = <&topckgen
-> > > CLK_TOP_MAINPLL_D4>;
-> > > +				power-domains = <&spm
-> > > MT8192_POWER_DOMAIN_VDEC>;
-> > > +			};
-> > > +
-> > > +			vcodec_core: vcodec-core@25000 {
-> > > +				compatible = "mediatek,mtk-vcodec-
-> > > core";
-> > > +				reg = <0 0x25000 0 0x1000>;
-> > > +				interrupts = <GIC_SPI 425
-> > > IRQ_TYPE_LEVEL_HIGH 0>;
-> > > +				iommus = <&iommu0
-> > > M4U_PORT_L4_VDEC_MC_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_UFO_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_PP_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_PRED_RD_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_PRED_WR_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_PPWRAP_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_TILE_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_VLD_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_VLD2_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_AVC_MV_EXT>,
-> > > +					 <&iommu0
-> > > M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
-> > > +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> > > +					 <&vdecsys CLK_VDEC_VDEC>,
-> > > +					 <&vdecsys CLK_VDEC_LAT>,
-> > > +					 <&vdecsys CLK_VDEC_LARB1>,
-> > > +					 <&topckgen
-> > > CLK_TOP_MAINPLL_D4>;
-> > > +				clock-names = "sel", "soc-vdec", "soc-
-> > > lat", "vdec", "top";
-> > > +				assigned-clocks = <&topckgen
-> > > CLK_TOP_VDEC_SEL>;
-> > > +				assigned-clock-parents = <&topckgen
-> > > CLK_TOP_MAINPLL_D4>;
-> > > +				power-domains = <&spm
-> > > MT8192_POWER_DOMAIN_VDEC2>;
-> > > +			};
-> > > +		};
-> > > +
-> > >  		larb5: larb@1600d000 {
-> > >  			compatible = "mediatek,mt8192-smi-larb";
-> > >  			reg = <0 0x1600d000 0 0x1000>;
-> > > -- 
-> > > 2.18.0
-> > > 
-> > > 
-> 
+> +        type: object
+> +        description: node for pinctrl.
+> +        $ref: pinmux-node.yaml#
+> +
+> +        properties:
+> +          groups:
+> +            description: The pin group to select.
+
+I wonder where do you configure particular pins because these are
+groups... It's a bit confusing to configure "i2c" group into "i2c" -
+looks obvious.
+
+> +            enum: [
+> +              # For MT7620 SoC
+> +              ephy, i2c, mdio, nd_sd, pa, pcie, rgmii1, rgmii2, spi, spi refclk, uartf, uartlite, wdt, wled,
+> +
+> +              # For MT7628 and MT7688 SoCs
+> +              gpio, i2c, i2s, p0led_an, p0led_kn, p1led_an, p1led_kn, p2led_an, p2led_kn, p3led_an,
+> +              p3led_kn, p4led_an, p4led_kn, perst, pwm0, pwm1, refclk, sdmode, spi, spi cs1, spis, uart0,
+> +              uart1, uart2, wdt, wled_an, wled_kn,
+> +            ]
+> +
+> +          function:
+> +            description: The mux function to select.
+> +            enum: [
+> +              # For MT7620 SoC
+> +              ephy, gpio, gpio i2s, gpio uartf, i2c, i2s uartf, mdio, nand, pa, pcie refclk, pcie rst,
+> +              pcm gpio, pcm i2s, pcm uartf, refclk, rgmii1, rgmii2, sd, spi, spi refclk, uartf, uartlite,
+> +              wdt refclk, wdt rst, wled,
+> +
+> +              # For MT7628 and MT7688 SoCs
+> +              antenna, debug, gpio, i2c, i2s, jtag, p0led_an, p0led_kn, p1led_an, p1led_kn, p2led_an,
+> +              p2led_kn, p3led_an, p3led_kn, p4led_an, p4led_kn, pcie, pcm, perst, pwm, pwm0, pwm1,
+> +              pwm_uart2, refclk, rsvd, sdxc, sdxc d5 d4, sdxc d6, sdxc d7, spi, spi cs1, spis, sw_r, uart0,
+> +              uart1, uart2, utif, wdt, wled_an, wled_kn, -,
+
+All these lines do not fit in 80-character limit. Linux coding style
+still expects this in most of cases.
+
+> +            ]
+> +
+
+Best regards,
+Krzysztof
