@@ -2,105 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 693F54FFD73
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFB0F4FFD7F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232562AbiDMSJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 14:09:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51390 "EHLO
+        id S230224AbiDMSL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 14:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232809AbiDMSJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:09:01 -0400
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1E54C7A4;
-        Wed, 13 Apr 2022 11:06:38 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id f17so5171853ybj.10;
-        Wed, 13 Apr 2022 11:06:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VfKhK3uqPfbVCv99PeforoVikIn2c2jPfy2wcY5O6XQ=;
-        b=IROXXhwF7RTi0KF5eJPG02cvSsZcZnN1pmC4VG7VPBjlF5V8i+SU/Rva2nn7F42hKp
-         oUkAIE6K2DStYXp5I0THDAEFTiPiWP9ThSkmfaP+O1snqRZNTE9eiP7JiMplQ7jH10tC
-         C76Tphv/9vVKVqXQNROfXJjLW5OnJ/ItTDSHqvYXM/DP7eBZjOv3lDpPIkoN3ThkKUfP
-         yNMW1k4tKcV2EAsKkoMuPz1TkFR/XVJyL1irkqsMZQev6s76uqVhvGt8C3Pmz/PUEFc/
-         C/qH+c3GzGH4TIjjMf872ZwMf4zTXE0LE2qM8UuQmLR83z6GEWfGx3P1W9q0Q9WVIEWr
-         h1UA==
-X-Gm-Message-State: AOAM53108I5q+7t+NbZFomqy0Ax/K9UkacqC1Mo+XI8Dfj7Gtd4FbUVA
-        Bxqc+twcQ8IaWRf3xxpj5M8VnaiGW4zDs2P1yfI=
-X-Google-Smtp-Source: ABdhPJyVhsbJNC6CH+LKu5oL5g1G0fNXh+jBfotxvCkl81nkSFlFJP/32iJp4rXNNfAsYouo/NgBrKKwRMHeh+6lGqM=
-X-Received: by 2002:a05:6902:352:b0:63e:94c:883c with SMTP id
- e18-20020a056902035200b0063e094c883cmr81011ybs.365.1649873198214; Wed, 13 Apr
- 2022 11:06:38 -0700 (PDT)
+        with ESMTP id S234392AbiDMSLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:11:25 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD924D262;
+        Wed, 13 Apr 2022 11:09:03 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id D27642160D;
+        Wed, 13 Apr 2022 18:09:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1649873341; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/xSqIm15UUHBxwwqMSdhCX8Bdk86MUM3KIMa8CaDG6o=;
+        b=GHT6yjiL6oakbG0GDeZiJW4qlUvmJSY3TwhqfEgC2Dz+JFlZuoWRlT3A3MopCWeRd6pnFn
+        eejn6y3Od93dT/I2iuxaVz4LHIMzGDi4tkCeLw9No26T9CUtBXdwXyVbTjpuarC6kS6TpA
+        xuyVE1JGM8fnpxQr1CqtHgFnxPsy6Bg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1649873341;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/xSqIm15UUHBxwwqMSdhCX8Bdk86MUM3KIMa8CaDG6o=;
+        b=PH+Ba93kHiNgLZ5NuQlHIApJMDAoFGIAuXnDb4knpTfa8d0yhISaibOc1O3e4jLw38OgtT
+        /y7g66r1j7jCVWCw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 8AA0713AB8;
+        Wed, 13 Apr 2022 18:09:01 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id Dt58IL0RV2ILbgAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Wed, 13 Apr 2022 18:09:01 +0000
+Message-ID: <9d4599d9-e094-e7dd-5b91-282c2679aae4@suse.de>
+Date:   Wed, 13 Apr 2022 20:09:00 +0200
 MIME-Version: 1.0
-References: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
- <YlQyEz3/J0rb2Hew@smile.fi.intel.com> <YlQ69jMduq/evgTt@kroah.com> <YlRNPyxHcNRQE/5A@smile.fi.intel.com>
-In-Reply-To: <YlRNPyxHcNRQE/5A@smile.fi.intel.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Wed, 13 Apr 2022 20:06:27 +0200
-Message-ID: <CAJZ5v0gGc8cVzGgXVuHW6hQ67h9b+HfSj_EqFPCOrTfjYGVOUg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/5] device property: Allow error pointer to be passed
- to fwnode APIs
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Michael Walle <michael@walle.cc>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 2/2] fbdev: Remove hot-unplug workaround for framebuffers
+ without device
+Content-Language: en-US
+To:     Daniel Vetter <daniel@ffwll.ch>,
+        Javier Martinez Canillas <javierm@redhat.com>
+Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        frowand.list@gmail.com, deller@gmx.de,
+        linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, paulus@samba.org, mpe@ellerman.id.au,
+        sam@ravnborg.org, linux@roeck-us.net
+References: <20220413092454.1073-1-tzimmermann@suse.de>
+ <20220413092454.1073-3-tzimmermann@suse.de>
+ <2e183cc9-603d-f038-54aa-5601f11b0484@redhat.com>
+ <Ylb0316ABOhOe1Rb@phenom.ffwll.local>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <Ylb0316ABOhOe1Rb@phenom.ffwll.local>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------xBs0UgV8K6Ld1iE06EpBr7qw"
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 5:49 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Mon, Apr 11, 2022 at 04:28:06PM +0200, Greg Kroah-Hartman wrote:
-> > On Mon, Apr 11, 2022 at 04:50:11PM +0300, Andy Shevchenko wrote:
-> > > On Fri, Apr 08, 2022 at 09:48:40PM +0300, Andy Shevchenko wrote:
-> > > > Some of the fwnode APIs might return an error pointer instead of NULL
-> > > > or valid fwnode handle. The result of such API call may be considered
-> > > > optional and hence the test for it is usually done in a form of
-> > > >
-> > > >   fwnode = fwnode_find_reference(...);
-> > > >   if (IS_ERR(fwnode))
-> > > >           ...error handling...
-> > > >
-> > > > Nevertheless the resulting fwnode may have bumped the reference count
-> > > > and hence caller of the above API is obliged to call fwnode_handle_put().
-> > > > Since fwnode may be not valid either as NULL or error pointer the check
-> > > > has to be performed there. This approach uglifies the code and adds
-> > > > a point of making a mistake, i.e. forgetting about error point case.
-> > > >
-> > > > To prevent this, allow an error pointer to be passed to the fwnode APIs.
-> > >
-> > > Rafael and Greg, if this okay for you, can the first three patches be
-> > > applied, so we will have at least the fix in and consider constification
-> > > a further work?
-> >
-> > Give us a chance, you sent this on friday and are asking about it first
-> > thing Monday morning?
-> >
-> > Please go and review other patches sent on the list to help us catch up.
->
-> OK! Reviewed (actually commented on) a few patches so far.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------xBs0UgV8K6Ld1iE06EpBr7qw
+Content-Type: multipart/mixed; boundary="------------XNH9RfXI1PyYuHJ0PkMtgwSX";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel@ffwll.ch>,
+ Javier Martinez Canillas <javierm@redhat.com>
+Cc: devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ frowand.list@gmail.com, deller@gmx.de, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, robh+dt@kernel.org, paulus@samba.org,
+ mpe@ellerman.id.au, sam@ravnborg.org, linux@roeck-us.net
+Message-ID: <9d4599d9-e094-e7dd-5b91-282c2679aae4@suse.de>
+Subject: Re: [PATCH 2/2] fbdev: Remove hot-unplug workaround for framebuffers
+ without device
+References: <20220413092454.1073-1-tzimmermann@suse.de>
+ <20220413092454.1073-3-tzimmermann@suse.de>
+ <2e183cc9-603d-f038-54aa-5601f11b0484@redhat.com>
+ <Ylb0316ABOhOe1Rb@phenom.ffwll.local>
+In-Reply-To: <Ylb0316ABOhOe1Rb@phenom.ffwll.local>
 
-I've just queued up the first three patches in the series for 5.19.
+--------------XNH9RfXI1PyYuHJ0PkMtgwSX
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Thanks!
+SGkNCg0KQW0gMTMuMDQuMjIgdW0gMTg6MDUgc2NocmllYiBEYW5pZWwgVmV0dGVyOg0KPiBP
+biBXZWQsIEFwciAxMywgMjAyMiBhdCAxMjo1MDo1MFBNICswMjAwLCBKYXZpZXIgTWFydGlu
+ZXogQ2FuaWxsYXMgd3JvdGU6DQo+PiBPbiA0LzEzLzIyIDExOjI0LCBUaG9tYXMgWmltbWVy
+bWFubiB3cm90ZToNCj4+PiBBIHdvcmthcm91bmQgbWFrZXMgZmJkZXYgaG90LXVucGx1Z2dp
+bmcgd29yayBmb3IgZnJhbWVidWZmZXJzIHdpdGhvdXQNCj4+PiBkZXZpY2UuIFRoZSBvbmx5
+IHVzZXIgZm9yIHRoaXMgZmVhdHVyZSB3YXMgb2ZmYi4gQXMgZWFjaCBPRiBmcmFtZWJ1ZmZl
+cg0KPj4+IG5vdyBoYXMgYW4gYXNzb2NpYXRlZCBwbGF0Zm9ybSBkZXZpY2UsIHRoZSB3b3Jr
+YXJvdW5kIGlzIG5vIGxvbmdlcg0KPj4+IG5lZWRlZC4gUmVtb3ZlIGl0LiBFZmZlY3RpdmVs
+eSByZXZlcnRzIGNvbW1pdCAwZjUyNTI4OWZmMGQgKCJmYmRldjogRml4DQo+Pj4gdW5yZWdp
+c3RlcmluZyBvZiBmcmFtZWJ1ZmZlcnMgd2l0aG91dCBkZXZpY2UiKS4NCj4+Pg0KPj4+IFNp
+Z25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0K
+Pj4+IC0tLQ0KPj4+ICAgZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZibWVtLmMgfCA5ICst
+LS0tLS0tLQ0KPj4+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCA4IGRlbGV0
+aW9ucygtKQ0KPj4+DQo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdmlkZW8vZmJkZXYvY29y
+ZS9mYm1lbS5jIGIvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZibWVtLmMNCj4+PiBpbmRl
+eCBiYzZlZDc1MGU5MTUuLmJkZDAwZDM4MWJiYyAxMDA2NDQNCj4+PiAtLS0gYS9kcml2ZXJz
+L3ZpZGVvL2ZiZGV2L2NvcmUvZmJtZW0uYw0KPj4+ICsrKyBiL2RyaXZlcnMvdmlkZW8vZmJk
+ZXYvY29yZS9mYm1lbS5jDQo+Pj4gQEAgLTE1NzksMTQgKzE1NzksNyBAQCBzdGF0aWMgdm9p
+ZCBkb19yZW1vdmVfY29uZmxpY3RpbmdfZnJhbWVidWZmZXJzKHN0cnVjdCBhcGVydHVyZXNf
+c3RydWN0ICphLA0KPj4+ICAgCQkJICogSWYgaXQncyBub3QgYSBwbGF0Zm9ybSBkZXZpY2Us
+IGF0IGxlYXN0IHByaW50IGEgd2FybmluZy4gQQ0KPj4+ICAgCQkJICogZml4IHdvdWxkIGFk
+ZCBjb2RlIHRvIHJlbW92ZSB0aGUgZGV2aWNlIGZyb20gdGhlIHN5c3RlbS4NCj4+PiAgIAkJ
+CSAqLw0KPj4+IC0JCQlpZiAoIWRldmljZSkgew0KPj4+IC0JCQkJLyogVE9ETzogUmVwcmVz
+ZW50IGVhY2ggT0YgZnJhbWVidWZmZXIgYXMgaXRzIG93bg0KPj4+IC0JCQkJICogZGV2aWNl
+IGluIHRoZSBkZXZpY2UgaGllcmFyY2h5LiBGb3Igbm93LCBvZmZiDQo+Pj4gLQkJCQkgKiBk
+b2Vzbid0IGhhdmUgc3VjaCBhIGRldmljZSwgc28gdW5yZWdpc3RlciB0aGUNCj4+PiAtCQkJ
+CSAqIGZyYW1lYnVmZmVyIGFzIGJlZm9yZSB3aXRob3V0IHdhcm5pbmcuDQo+Pj4gLQkJCQkg
+Ki8NCj4+PiAtCQkJCWRvX3VucmVnaXN0ZXJfZnJhbWVidWZmZXIocmVnaXN0ZXJlZF9mYltp
+XSk7DQo+Pg0KPj4gTWF5YmUgd2UgY291bGQgc3RpbGwga2VlcCB0aGlzIGZvciBhIGNvdXBs
+ZSBvZiByZWxlYXNlcyBidXQgd2l0aCBhIGJpZw0KPj4gd2FybmluZyB0aGF0J3Mgbm90IHN1
+cHBvcnRlZCBpbiBjYXNlIHRoZXJlIGFyZSBvdXQtb2YtdHJlZSBkcml2ZXJzIG91dA0KPj4g
+dGhlcmUgdGhhdCBzdGlsbCBkbyB0aGlzID8NCj4+DQo+PiBPciBhdCBsZWFzdCBhIHdhcm5p
+bmcgaWYgdGhlIGRvX3VucmVnaXN0ZXJfZnJhbWVidWZmZXIoKSBjYWxsIGlzIHJlbW92ZWQu
+DQo+IA0KPiBZZWFoIGR5aW5nIHdoaWxlIGhvbGRpbmcgY29uc29sZV9sb2NrIGlzbid0IGZ1
+biwgYW5kIG5vdCBoYXZpbmcgYSBXQVJOX09ODQo+ICsgYmFpbC1vdXQgY29kZSBwcmV0dHkg
+bXVjaCBmb3JjZXMgYnVnIHJlcG9ydGVycyB0byBkbyBhIGJpc2VjdCBoZXJlIHRvDQo+IGdp
+dmUgdXMgc29tZXRoaW5nIG1vcmUgdGhhbiAibWFjaGluZSBkaWVzIGF0IGJvb3Qgd2l0aCBu
+byBtZXNzYWdlcyIuDQo+IA0KPiBJJ2QganVzdCBvdXRyaWdodCBrZWVwIHRoZSBXQVJOX09O
+IGhlcmUgZm9yIDEtMiB5ZWFycyBldmVuIHRvIHJlYWxseSBtYWtlDQo+IHN1cmUgd2UgZ290
+IGFsbCB0aGUgYnVnIHJlcG9ydHMsIHNpbmNlIG9mdGVuIHRoZXNlIG9sZGVyIG1hY2hpbmVz
+IG9ubHkNCj4gdXBkYXRlIG9udG8gTFRTIHJlbGVhc2VzLg0KDQpJZiB0aGF0J3Mgd2hhdCB0
+aGUgY29uc2VudCBpcywgSSdsbCBnbyB3aXRoIGl0Lg0KDQpJJ20ganVzdCBub3Qgc3VyZSBp
+ZiB3ZSB0YWxrIGFib3V0IHRoZSBzYW1lIHByb2JsZW0uIG9mZmIgZGlkbid0IGhhdmUgYSAN
+CnBsYXRmb3JtIGRldmljZSwgc28gd2UgcmVjZW50bHkgYWRkZWQgdGhpcyB3b3JrYXJvdW5k
+IHdpdGggJ2lmIA0KKCFkZXZpY2UpJy4gIEFsbCB0aGUgb3RoZXIgZmJkZXYgZHJpdmVycyBo
+YXZlIGEgcGxhdGZvcm0gZGV2aWNlOyBhbmQgDQphbnl0aGluZyBlbHNlIHRoYXQgY291bGQg
+ZmFpbCBpcyBvdXQtb2YtdHJlZS4gV2UgZG9uJ3QgcmVhbGx5IGNhcmUgYWJvdXQgDQp0aG9z
+ZSBBRkFJSy4NCg0KV2l0aCBvZmZiIGNvbnZlcnRlZCwgd2UgY291bGQgcHJhY3RpY2FsbHkg
+cmVtb3ZlIGFsbCBvZiB0aGUgY2hlY2tzIGhlcmUgDQphbmQgY2FsbCBwbGF0Zm9ybV9kZXZp
+Y2VfdW5yZWdpc3RlcigpIHVuY29uZGl0aW9uYWxseS4NCg0KQmVzdCByZWdhcmRzDQpUaG9t
+YXMNCg0KPiANCj4gQW5kIGl0IG5lZWRzIHRvIGJlIGEgV0FSTl9PTiArIGJhaWwgb3V0IHNp
+bmNlIEJVR19PTiBpcyBhcyBiYWQgYXMganVzdA0KPiBvb3BzaW5nLg0KPiAtRGFuaWVsDQo+
+IA0KPj4NCj4+IFJlZ2FyZGxlc3Mgb2Ygd2hhdCB5b3UgY2hvc2UgdG8gZG8sIHRoZSBwYXRj
+aCBsb29rcyBnb29kIHRvIG1lLg0KPj4NCj4+IFJldmlld2VkLWJ5OiBKYXZpZXIgTWFydGlu
+ZXogQ2FuaWxsYXMgPGphdmllcm1AcmVkaGF0LmNvbT4NCj4+DQo+PiAtLSANCj4+IEJlc3Qg
+cmVnYXJkcywNCj4+DQo+PiBKYXZpZXIgTWFydGluZXogQ2FuaWxsYXMNCj4+IExpbnV4IEVu
+Z2luZWVyaW5nDQo+PiBSZWQgSGF0DQo+Pg0KPiANCg0KLS0gDQpUaG9tYXMgWmltbWVybWFu
+bg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMg
+R2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkN
+CihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90
+ZXYNCg==
+
+--------------XNH9RfXI1PyYuHJ0PkMtgwSX--
+
+--------------xBs0UgV8K6Ld1iE06EpBr7qw
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmJXEbwFAwAAAAAACgkQlh/E3EQov+BV
+7g//WLLPfVRsElxV0IpWC9EUSq2GXnKoXHDzuulQ5/3zyJLkgpx0aJUX3K3HFc5fxkISlCIYJQcO
+WgmT6r0Y7L5PqhHlIhocHuZgKUPRnKOsEfD0xhifyL5Cv7QGFhtdMBb85JEkeU2V3q/MNQ7BrLQV
+JaG5dl0xyE+FFcE7jSK0aLsLJTediZdxWZ27fiO3W54lPG7IEgwPKIRuUjMscWudISg/kDZ5h6Ez
+uoIdittCO3HUp0SUFoScEfpj2OwODYYfcTHy/B6BZEEI1NccWFPknwLAjyeTRxvpdj5EYthlGyKF
+gMOTABOCPWlCoWR7l9F6xtoaZzlEXSAmy7qEOPJzt2Dt2c69bOUJVDEE2nEiSaBZU1L52KfSIxEz
+9Dxy1F6isKBl+Vcy35alEJOPKuy9kgn3e05ptmb/kRSiHQulGq3rbyHSz3bovJcx8rHEutimfvpE
+IRK+7H+BsJWKkx3ChW2+wm23Wb3E5TqqizM1KR1Gu2VTFCLaiOy1ys7wBZAbd+RwYN0nB8NQlQ5I
+gznMTE6+NCugEsle+2KL41TUBKbRjGhFuuA3IkCnPQ0ShJB52QC9XwHqG9ePnYQGRJ2R0S7oCui3
+dAnQnR1sV4jvtRoE5Q/h6U71lC28Nzm7JAz+YfZWfwpBdRoFLnLuAJS77yxOgdIaQrG6BASANg3r
+EeM=
+=QIWW
+-----END PGP SIGNATURE-----
+
+--------------xBs0UgV8K6Ld1iE06EpBr7qw--
