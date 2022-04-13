@@ -2,264 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29EF850026E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 01:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B457500294
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 01:24:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238849AbiDMXUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 19:20:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36324 "EHLO
+        id S235441AbiDMX0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 19:26:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239033AbiDMXUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 19:20:09 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEE125C6A
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 16:17:46 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r13so4651211wrr.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 16:17:46 -0700 (PDT)
+        with ESMTP id S233812AbiDMX0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 19:26:21 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8180E25283
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 16:23:57 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso2103602wml.5
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 16:23:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZnGL6g05ueGQJUWXo+crd1UmH1Z5NBIL0/wB7HAocqA=;
-        b=e72KB5RhHtrfQ16AGd8TNnFJYr8Tjw7kpB7GaYecbISYwNHXl6G6Sz78GEdw6GyNBy
-         omMppHekUDpPfe/HtMMDElsSGCSaZxHHp7vQOLxRSXsOC+gJlL2sKuttOIjoeBzJhBND
-         a3aFv2UL0PePFjqgaa8eNRU3yjBYvVn7ZFaOlgSPvHu6VYD1EA4ZdIWhPbHp8i/gO40u
-         LrfHc0Su+k0zAI/5yLIFEM8jb6ig0Z0mkA4sYF2FVjwWZrArCHVqHV4XUn7uMiypt7s7
-         30SPurHgz0KSIN8xW/S81m52eO8Yj39D+xTDsnefqln+VSeCiIE2dG47hXLLsU1NhHBc
-         RT4w==
+        d=nexus-software-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=lo222dx271RZBM+PZPbGHgrR4V9AewtXM+gxOLvCm2I=;
+        b=ooWghhBZybzJhO95f/a9kEj3SwS/nB5xLnjAEJmxk2pCkHXSJKhVotr3xLroN+oCPB
+         UYZL3OIDjqz1Gld9LKtDX5KNKSCERaHp1FxpyylkebXRmOAE5g9S720tUNeuFKvsOwQE
+         KWn0xZr68MoNTYQhJkCyDiZ6AvwN2dxomuBImwQcziNYTecgrRDbppPHmHPzAqCgCOef
+         8gGRleazPp7Kz34JgXqisq/RrugKKpLxPJYxE4wXu4LBsGObAYUaTwjjSnh8k33E8rul
+         9G4Wt3lMucqiw2epbhhxyJ/EZq+KErmsxmGrYpnjcoQRhlOhGa0dyO7zsLOqP9qhOx0Y
+         KMQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZnGL6g05ueGQJUWXo+crd1UmH1Z5NBIL0/wB7HAocqA=;
-        b=5BWbkXhKR3TuI91vI1Ke9CN1CMwALArdiXtC/AhT064U75PPiKnTmZel2gf4Bsg5lY
-         d9UMwV21roavYj4spnTqJMxuODsbZG8frX6Bo443K9Wm2y/2n6u2E6wE870RWMgAz2Uo
-         S9hQPFuLGryY4eEPGbG4fbfs6xu5ZnFhrGyyGbV7JY9cSfivTWVoJdicd377BRm1G+rQ
-         4Df1yC/hAeunpgI9JZ9HjZzs2ybxUPgmLmf32j5f1JzYri6nYJYf5LfKgw5qhnV4SF6y
-         Dn3AiIfznkxR5QI+QBbNBj6YuMCXIVynFuCERlfrrpfwww1pZZ+bvQszOcwNj+LKpLgj
-         nQ3g==
-X-Gm-Message-State: AOAM5311Rb7V68PEhzYMDrw15D+3EVJc6rJPCPa8C80bvCSTxhs7SId7
-        zNVhgw9F3kqU5K1QB/Rvj9WnoA==
-X-Google-Smtp-Source: ABdhPJyEH4ZX1vS/fGWbVUBXu6zC1IGr5tLPbgOUNgcsVwglgDO4dQgWgFWpBwsb+iE0WQZnnVqKfw==
-X-Received: by 2002:adf:db92:0:b0:205:9c92:f1e3 with SMTP id u18-20020adfdb92000000b002059c92f1e3mr732873wri.515.1649891865424;
-        Wed, 13 Apr 2022 16:17:45 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id c12-20020a05600c0a4c00b00381141f4967sm205184wmq.35.2022.04.13.16.17.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 16:17:44 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
-        jgrahsl@snap.com, bryan.odonoghue@linaro.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sm8250: camss: Add CCI definitions
-Date:   Thu, 14 Apr 2022 00:17:36 +0100
-Message-Id: <20220413231736.991368-4-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
-References: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lo222dx271RZBM+PZPbGHgrR4V9AewtXM+gxOLvCm2I=;
+        b=lA/J9qcAXokceCIJ3AcGnlYuruMK6spYc0Z1qlZpY1ok1OvSSCmPONN0vPNwu8FTbe
+         ITxVwOeGh6u+YLFxhJ4ud+2PwDakCVcoIwAaO+NIMXuUVXbBueINWBNGQvdP1FH957No
+         cOPJ4EQKMb940OQT6Xndy4lfnpqYp7PWL/4MIwBRBOTUZ9gI4uzzVxmmo4c005oF13vM
+         h0D4bmk33vvgT7Nfo2pafyuPgQaY4rYdrzXgAx+1fUsjiWSujotA/KmJuNpOElQRvprz
+         GZ+zcvBaJwLD7wx45J08qdEjDA/HrEhgcdlPKFvFml0uB5MYlJm5Gs6/OBHozAco5hHk
+         oNJA==
+X-Gm-Message-State: AOAM5312LOOaxdMsHZ0Tkxlc0IchvG0SgLLSgY7X0p+HbLWeUEBKNFTd
+        gd9wZpN/KkhounLxKWU3H6EC4g==
+X-Google-Smtp-Source: ABdhPJx9AtbpVH23mBv3sdIAPC89sMV8A13WffMaN6fu2QHhnt3ecmPXXEBIqwUpx9so/cYjn9/cow==
+X-Received: by 2002:a05:600c:489a:b0:38e:bb23:c7df with SMTP id j26-20020a05600c489a00b0038ebb23c7dfmr407567wmp.148.1649892236130;
+        Wed, 13 Apr 2022 16:23:56 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id h2-20020a05600c414200b0038ec7a4f07esm3534850wmm.33.2022.04.13.16.23.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 16:23:55 -0700 (PDT)
+Message-ID: <400bf6af-aa8f-49e2-4c76-c8355468a714@nexus-software.ie>
+Date:   Thu, 14 Apr 2022 00:23:54 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 0/3] Add camss to SM8250 dtsi
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
+        jgrahsl@snap.com
+References: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sm8250 has two CCI busses with two I2C busses apiece.
+On 14/04/2022 00:17, Bryan O'Donoghue wrote:
+> V2:
+> - Change 0xHEX to 0xhex - Bjorn
+> - Merge CCI and CCI pin definitions into one patch - Bjorn
+> - Future pinctrl dropped, moved into dts file for board
+>    which appears more consistent with sdm845-db845 &tlmm{} section - Bjorn, Bryan
+> - Renamed cci0_i2c0/cci0_i2c1 and cci1_ic20/cci1_i2c1 - Bjorn
+> - Grouped CCI pins into cci0_default, cci0_sleep, etc - Bryan
+> 
+> V1:
+> Add in necessary CAMSS, pin and CCI definitions to the SM8250 dtsi.
+> 
+> This is the SoC specific stuff, the platform enablement will be done in a
+> separate drop later.
+> 
+> On the RB5 platform we have validated ~ 30 FPS @ 4K using the SRGGB10P
+> pixel format provided by a Sony IMX577 sensor.
+> 
+> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b%2brb5-dts%2bsensors
+> 
+> Bryan O'Donoghue (3):
+>    arm64: dts: qcom: sm8250: Add camcc DT node
+>    arm64: dts: qcom: sm8250: camss: Add CAMSS block definition
+>    arm64: dts: qcom: sm8250: camss: Add CCI definitions
+> 
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 330 +++++++++++++++++++++++++++
+>   1 file changed, 330 insertions(+)
+> 
 
-Co-developed-by: Julian Grahsl <jgrahsl@snap.com>
-Signed-off-by: Julian Grahsl <jgrahsl@snap.com>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+I forgot the link to the fully bootable tree with working sensor in the 
+overview
+
+Link: 
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b%2brb5-dts%2bsensors-v2
+
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 162 +++++++++++++++++++++++++++
- 1 file changed, 162 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index c69a8a88657a..a05ad923bcab 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3150,6 +3150,88 @@ videocc: clock-controller@abf0000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		cci0: cci@ac4f000 {
-+			compatible = "qcom,sm8250-cci";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg = <0 0x0ac4f000 0 0x1000>;
-+			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc TITAN_TOP_GDSC>;
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CCI_0_CLK>,
-+				 <&camcc CAM_CC_CCI_0_CLK_SRC>;
-+			clock-names = "camnoc_axi",
-+				      "slow_ahb_src",
-+				      "cpas_ahb",
-+				      "cci",
-+				      "cci_src";
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&cci0_default>;
-+			pinctrl-1 = <&cci0_sleep>;
-+
-+			status = "disabled";
-+
-+			cci0_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+
-+			cci0_i2c1: i2c-bus@1 {
-+				reg = <1>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
-+		cci1: cci@ac50000 {
-+			compatible = "qcom,sm8250-cci";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg = <0 0x0ac50000 0 0x1000>;
-+			interrupts = <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc TITAN_TOP_GDSC>;
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CCI_1_CLK>,
-+				 <&camcc CAM_CC_CCI_1_CLK_SRC>;
-+			clock-names = "camnoc_axi",
-+				      "slow_ahb_src",
-+				      "cpas_ahb",
-+				      "cci",
-+				      "cci_src";
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&cci1_default>;
-+			pinctrl-1 = <&cci1_sleep>;
-+
-+			status = "disabled";
-+
-+			cci1_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+
-+			cci1_i2c1: i2c-bus@1 {
-+				reg = <1>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
- 		camss: camss@ac6a000 {
- 			compatible = "qcom,sm8250-camss";
- 			status = "disabled";
-@@ -3687,6 +3769,86 @@ tlmm: pinctrl@f100000 {
- 			gpio-ranges = <&tlmm 0 0 181>;
- 			wakeup-parent = <&pdc>;
- 
-+			cci0_default: cci0-default {
-+				cci0_i2c0_default: cci0-i2c0-default {
-+					/* SDA, SCL */
-+					pins = "gpio101", "gpio102";
-+					function = "cci_i2c";
-+
-+					bias-pull-up;
-+					drive-strength = <2>; /* 2 mA */
-+				};
-+
-+				cci0_i2c1_default: cci0-i2c1-default {
-+					/* SDA, SCL */
-+					pins = "gpio103", "gpio104";
-+					function = "cci_i2c";
-+
-+					bias-pull-up;
-+					drive-strength = <2>; /* 2 mA */
-+				};
-+			};
-+
-+			cci0_sleep: cci0-sleep {
-+				cci0_i2c0_sleep: cci0-i2c0-sleep {
-+					/* SDA, SCL */
-+					pins = "gpio101", "gpio102";
-+					function = "cci_i2c";
-+
-+					drive-strength = <2>; /* 2 mA */
-+					bias-pull-down;
-+				};
-+
-+				cci0_i2c1_sleep: cci0-i2c1-sleep {
-+					/* SDA, SCL */
-+					pins = "gpio103", "gpio104";
-+					function = "cci_i2c";
-+
-+					drive-strength = <2>; /* 2 mA */
-+					bias-pull-down;
-+				};
-+			};
-+
-+			cci1_default: cci1-default {
-+				cci1_i2c0_default: cci1-i2c0-default {
-+					/* SDA, SCL */
-+					pins = "gpio105","gpio106";
-+					function = "cci_i2c";
-+
-+					bias-pull-up;
-+					drive-strength = <2>; /* 2 mA */
-+				};
-+
-+				cci1_i2c1_default: cci1-i2c1-default {
-+					/* SDA, SCL */
-+					pins = "gpio107","gpio108";
-+					function = "cci_i2c";
-+
-+					bias-pull-up;
-+					drive-strength = <2>; /* 2 mA */
-+				};
-+			};
-+
-+			cci1_sleep: cci1-sleep {
-+				cci1_i2c0_sleep: cci1-i2c0-sleep {
-+					/* SDA, SCL */
-+					pins = "gpio105","gpio106";
-+					function = "cci_i2c";
-+
-+					bias-pull-down;
-+					drive-strength = <2>; /* 2 mA */
-+				};
-+
-+				cci1_i2c1_sleep: cci1-i2c1-sleep {
-+					/* SDA, SCL */
-+					pins = "gpio107","gpio108";
-+					function = "cci_i2c";
-+
-+					bias-pull-down;
-+					drive-strength = <2>; /* 2 mA */
-+				};
-+			};
-+
- 			pri_mi2s_active: pri-mi2s-active {
- 				sclk {
- 					pins = "gpio138";
--- 
-2.35.1
-
+bod
