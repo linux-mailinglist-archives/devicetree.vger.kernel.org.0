@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D9F4FF1AE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A19454FF1B2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232770AbiDMIYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
+        id S232910AbiDMIYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:24:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiDMIYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:24:00 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F2323123C;
-        Wed, 13 Apr 2022 01:21:40 -0700 (PDT)
+        with ESMTP id S231671AbiDMIYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:24:38 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0719033E8B;
+        Wed, 13 Apr 2022 01:22:18 -0700 (PDT)
 Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 3AE94210DE;
-        Wed, 13 Apr 2022 08:21:39 +0000 (UTC)
+        by smtp-out2.suse.de (Postfix) with ESMTP id B82E81F856;
+        Wed, 13 Apr 2022 08:22:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1649838099; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+        t=1649838136; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
          mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=jJOTeo9MgnyvEvJ2ZvQ6zBUd5YE6fkQYw26vIwQ/IKM=;
-        b=hGIA8j3bO1oldIFv1hNechuNLHlJuXukvulJOo5MSj7lxM8I0oL9T630KnnMYczpHXUNTp
-        cLSVsY3vEZgMXt9cmF7KbR8Mm9M2AZ1YI/SCPzHcEZt0F9VtjlfWd9pgVP9i7Ke66GPhUw
-        JEHe35aiXjDgJ8PiO2rk1+diTaeQXsk=
+        bh=Nyxqn91jWR/SeRVnquAAnm0K/dAH16E4RF2CT5wYaHQ=;
+        b=nvucMmt7IGSNDyNOunzPeXkDw7UtRAykotadpTgh6KEq0zeiASLATZg2atmFx9r3vu6m9F
+        mcPdmuu9tjzoLL5eQyiBorpdkceYMpnkWfHuPUqjp5C7W8RA85aRVX0Q3hA72b09J2ekdI
+        sV8XvKp3++48YcA+Y+6fZCfb8QbpasQ=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1649838099;
+        s=susede2_ed25519; t=1649838136;
         h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
          mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=jJOTeo9MgnyvEvJ2ZvQ6zBUd5YE6fkQYw26vIwQ/IKM=;
-        b=ej3JAyweVX2uxxa/d/cwBA8vSGyqH/lD19ZMW8aP7Qh44E6ode6l3qg2B6DVr0reinaQao
-        QaR1tw8oqXWC3oBA==
+        bh=Nyxqn91jWR/SeRVnquAAnm0K/dAH16E4RF2CT5wYaHQ=;
+        b=gi+pZ4ykFz4UMyBDnnl63thMw4bvXGP5AQUTvMVBqobzjy2v8ylFNBduFhSLC0oc7Z9L+E
+        0kZlHsbfyUie+iDQ==
 Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
-        by relay2.suse.de (Postfix) with ESMTP id 2DAC4A3B88;
-        Wed, 13 Apr 2022 08:21:39 +0000 (UTC)
-Date:   Wed, 13 Apr 2022 10:21:39 +0200
-Message-ID: <s5hr16175rg.wl-tiwai@suse.de>
+        by relay2.suse.de (Postfix) with ESMTP id AA938A3B82;
+        Wed, 13 Apr 2022 08:22:16 +0000 (UTC)
+Date:   Wed, 13 Apr 2022 10:22:16 +0200
+Message-ID: <s5ho81575qf.wl-tiwai@suse.de>
 From:   Takashi Iwai <tiwai@suse.de>
 To:     <tanureal@opensource.cirrus.com>
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -49,11 +49,12 @@ Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH v6 00/16] Support external boost at CS35l41 ASoC driver
-In-Reply-To: <s5hv8vd766u.wl-tiwai@suse.de>
+In-Reply-To: <s5hr16175rg.wl-tiwai@suse.de>
 References: <20220409091315.1663410-1-tanureal@opensource.cirrus.com>
         <s5h1qy18lpg.wl-tiwai@suse.de>
         <f3926070-34e0-4004-22cb-99f26aec34f4@opensource.cirrus.com>
         <s5hv8vd766u.wl-tiwai@suse.de>
+        <s5hr16175rg.wl-tiwai@suse.de>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
  FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
  (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -69,44 +70,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Apr 2022 10:12:25 +0200,
+On Wed, 13 Apr 2022 10:21:39 +0200,
 Takashi Iwai wrote:
 > 
-> On Wed, 13 Apr 2022 10:10:16 +0200,
-> <tanureal@opensource.cirrus.com> wrote:
+> On Wed, 13 Apr 2022 10:12:25 +0200,
+> Takashi Iwai wrote:
 > > 
-> > On 4/13/22 8:51 AM, Takashi Iwai <tiwai@suse.de> wrote:
-> > > On Sat, 09 Apr 2022 11:12:59 +0200,
-> > > Lucas Tanure wrote:
+> > On Wed, 13 Apr 2022 10:10:16 +0200,
+> > <tanureal@opensource.cirrus.com> wrote:
+> > > 
+> > > On 4/13/22 8:51 AM, Takashi Iwai <tiwai@suse.de> wrote:
+> > > > On Sat, 09 Apr 2022 11:12:59 +0200,
+> > > > Lucas Tanure wrote:
+> > > > >
+> > > > > Move the support for CS35L41 external boost to its shared library
+> > > > > for ASoC use.
+> > > > > This move resulted in cs35l41_hda_reg_sequence being removed,
+> > > > > and its steps were broken down into regmap writes or functions
+> > > > > from the library. And hardware configuration struct was unified
+> > > > > for its use in the shared lib.
+> > > > > While at it, some minor bugs were found and fixed it.
 > > > >
-> > > > Move the support for CS35L41 external boost to its shared library
-> > > > for ASoC use.
-> > > > This move resulted in cs35l41_hda_reg_sequence being removed,
-> > > > and its steps were broken down into regmap writes or functions
-> > > > from the library. And hardware configuration struct was unified
-> > > > for its use in the shared lib.
-> > > > While at it, some minor bugs were found and fixed it.
-> > >
-> > > The patch series seem inapplicable via git am.
-> > > Could you check the setup of your mailer?
-> > >
-> > >
-> > > thanks,
-> > >
-> > > Takashi
-> > >
-> > Hi,
-> > Could you explain how you apply this series? So I can reproduce it and see what's going on.
-> > To apply a series of patches I usually:
+> > > > The patch series seem inapplicable via git am.
+> > > > Could you check the setup of your mailer?
+> > > >
+> > > >
+> > > > thanks,
+> > > >
+> > > > Takashi
+> > > >
+> > > Hi,
+> > > Could you explain how you apply this series? So I can reproduce it and see what's going on.
+> > > To apply a series of patches I usually:
+> > > 
+> > > 1 - Find the patch series on https://patchwork.kernel.org/
+> > > 2 - Click the series button on the right top corner, which will give me the single patch file with all series changes
+> > > 3 - git am ~/Downloads/Support-external-boost-at-CS35l41-ASoC-driver.patch
 > > 
-> > 1 - Find the patch series on https://patchwork.kernel.org/
-> > 2 - Click the series button on the right top corner, which will give me the single patch file with all series changes
-> > 3 - git am ~/Downloads/Support-external-boost-at-CS35l41-ASoC-driver.patch
+> > I tried b4 am and git am.
 > 
-> I tried b4 am and git am.
+> Maybe your patch base isn't aligned with the current upstream.
+> Could you rebase to 5.18-rc2?
 
-Maybe your patch base isn't aligned with the current upstream.
-Could you rebase to 5.18-rc2?
+... and don't forget to pick up Mark's Acks.
 
+
+thanks,
 
 Takashi
