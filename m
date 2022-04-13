@@ -2,113 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA9DB500051
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 22:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0428500097
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 23:08:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237045AbiDMU5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 16:57:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39846 "EHLO
+        id S238881AbiDMVI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 17:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236230AbiDMU5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 16:57:01 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800F4220E0;
-        Wed, 13 Apr 2022 13:54:38 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id s14-20020a17090a880e00b001caaf6d3dd1so7363978pjn.3;
-        Wed, 13 Apr 2022 13:54:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Z8n2FKlH4PPLZudd5wmQXBKFzCBNjhBZWi9v/kIPikk=;
-        b=SapZ8FRGWZ38OHiXjH2V0nZ1xZ+fof7DG0rpw+atdv7R6rTyBDgBymXUCrK00dZoqS
-         UHt7b3BsHtsPUvAV6WzBP18RF7n2S8Yd5L85WtoATnLc9tk4XuBC9GNzARrQdgxLzTYQ
-         5br+Ik1swXuR2oVyTa8oXHNgHpjlQCBsC5N5KRMMLLTQ/3tBpI+SK6+UtoaPE/2BmC1z
-         JwLOIjv6BWN9FzDqcV6QJuA1NpPyKuwKlEuDNH1eq3IKKGR0e1gHPKSt3mVQk5NGOdsQ
-         AqvIETui/UCK2K5epA8zLO20vOQbAmyctvQYlxv4Vbl9/iqS1cB8U9kNHRwQ4ocfr05v
-         1GOg==
+        with ESMTP id S238880AbiDMVIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 17:08:19 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E57CA8567F;
+        Wed, 13 Apr 2022 14:05:45 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id e4so3408707oif.2;
+        Wed, 13 Apr 2022 14:05:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Z8n2FKlH4PPLZudd5wmQXBKFzCBNjhBZWi9v/kIPikk=;
-        b=5XhGibGud4At2iW/M7HR7vziRTatsVDPiaeXpxYIFJ+CMG4PdhOJzJOeAXKLj5CQ/7
-         +g6xtrRxpzrQkbN44AoQi4gS4dvypO4wB2cRiBcnu5R0Nf786EmQewnxV5f0mjkxmPhx
-         JtQrsmG4IrCu9o3jEYQtJOPLgXIvjrF+Nrf+ZKc1Qp+fr72Kq7xMsNFcb1qZNnjKzspR
-         hdCK1YDy3S/Cg7icL6kXV4Sw831e0ulpkjbM7MWQz4fDYOW3g4qM4t31rnT1R1ANkSx+
-         S5w4EanAARCHxEBUvbyRwwGOnL2e35CU9yoU5nkQzaJm6+3BXTMc4k23R6JqYJSTqap3
-         yX4A==
-X-Gm-Message-State: AOAM530iJv4kuEBKAsEtZkS/od7QqxoCQjaZ2+KPugdsqP51AJORleQe
-        DEv3S7sK/q6Ae1nsewVnqWM=
-X-Google-Smtp-Source: ABdhPJz9zFqadNRA+ndtin3mKhcwMF1jk+93aKdbtcYAcws109E/nP5a7ElcKU6Bf/j8DS2xCdRhlw==
-X-Received: by 2002:a17:902:8644:b0:153:9f01:2090 with SMTP id y4-20020a170902864400b001539f012090mr43303158plt.101.1649883277874;
-        Wed, 13 Apr 2022 13:54:37 -0700 (PDT)
-Received: from [172.30.1.44] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id l4-20020a056a0016c400b004f79504ef9csm43549529pfc.3.2022.04.13.13.54.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 13:54:37 -0700 (PDT)
-Message-ID: <924e2208-d939-0243-9780-ae1b8cbd2c49@gmail.com>
-Date:   Thu, 14 Apr 2022 05:54:31 +0900
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gFOeEZI4pNvyN/LTAgs9rmC19q7UkYUYT1AJpJxfpdI=;
+        b=CLMygoQkFZgsg9JIYleQ/To94LdtInmzdM0RwpZCpzVvzNCyqjeHcuZwVNW2eqGrgo
+         h6XsG/emJnvdlU1e+R4GyW1vj0HUgrEJlzXoFJGiOtD+ug7MPOL1MdRV3o7O6nVEWvbH
+         92Ka1+EXAp1BofddkFnvJidBQ7A/pnqUFojJtJ7Ix2j+3tME1dE5xtYvlrGECdoKivpW
+         chHUfy5HIe4layMfrRk122/b45OvX8l6LBmQ4bEqUqKzsYf+0PeGw8b4QcaBcBT5ysCr
+         zO9nPeDYSarqdUyr+yKsUvqrXsYWdXP46aiaNElAT4CRBfV7Wl1O0AH0JRfEquSlaRRt
+         38qw==
+X-Gm-Message-State: AOAM532qyjP+jGApTg6EWXS6jw174s5pWl/ZUBp91oAnNQB7L4IFzq/r
+        aeGMLegu6sZkVQHzNpQZCA==
+X-Google-Smtp-Source: ABdhPJx5RFeYJLnhl//6T0M97AfdmhJRF0naPw/lnbT5EgrjjTgh8f2EadEd00qJESa3eceTDi9c0w==
+X-Received: by 2002:a05:6808:1a26:b0:2da:1bae:5186 with SMTP id bk38-20020a0568081a2600b002da1bae5186mr22287oib.144.1649883945133;
+        Wed, 13 Apr 2022 14:05:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o7-20020a056871078700b000e29ff467dcsm44358oap.50.2022.04.13.14.05.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Apr 2022 14:05:44 -0700 (PDT)
+Received: (nullmailer pid 3917373 invoked by uid 1000);
+        Wed, 13 Apr 2022 21:05:44 -0000
+Date:   Wed, 13 Apr 2022 16:05:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Qualcomm SC8280XP GCC
+ bindings
+Message-ID: <Ylc7KJBXPXNML7UM@robh.at.kernel.org>
+References: <20220408224321.627126-1-bjorn.andersson@linaro.org>
+ <0eb126b3-b323-9614-361a-22c2762b590a@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: devfreq: mediatek: Add mtk cci
- devfreq dt-bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        cw00.choi@samsung.com, krzk+dt@kernel.org, robh+dt@kernel.org,
-        kyungmin.park@samsung.com
-Cc:     khilman@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220408052150.22536-1-johnson.wang@mediatek.com>
- <20220408052150.22536-2-johnson.wang@mediatek.com>
- <855d7daa-45d1-d6d8-32bd-51778cf58392@linaro.org>
- <fe7d2b878c18a42ff36ebd9911ecb562fe29c953.camel@mediatek.com>
- <39152c86-ca11-2792-6b25-ae55ffb47b09@linaro.org>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-In-Reply-To: <39152c86-ca11-2792-6b25-ae55ffb47b09@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0eb126b3-b323-9614-361a-22c2762b590a@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22. 4. 12. 18:17, Krzysztof Kozlowski wrote:
-> On 11/04/2022 14:10, Johnson Wang wrote:
->>> Also please put it in the "interconnect" directory.
->>>
->>
->> I don't really know about "interconnect".
->> However, it looks like a Linux framework about data transfer and "NoC".
->>
->> While this cci driver is more like a power managment which is
->> responsible for adjusting voltages and frequencies.
->> In my opinion, "devfreq" should be more suitable.
->>
->> Please correct me if my understanding is wrong.
+On Sat, Apr 09, 2022 at 06:41:25PM +0200, Krzysztof Kozlowski wrote:
+> On 09/04/2022 00:43, Bjorn Andersson wrote:
+> > Add binding for the Qualcomm SC8280XP Global Clock controller.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  .../bindings/clock/qcom,gcc-sc8280xp.yaml     | 199 +++++++
+> >  include/dt-bindings/clock/qcom,gcc-sc8280xp.h | 496 ++++++++++++++++++
+> >  2 files changed, 695 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+> >  create mode 100644 include/dt-bindings/clock/qcom,gcc-sc8280xp.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+> > new file mode 100644
+> > index 000000000000..44e5f0d0a795
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+> > @@ -0,0 +1,199 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/qcom,gcc-sc8280xp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Global Clock & Reset Controller Binding for SC8280xp
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +
+> > +description: |
+> > +  Qualcomm global clock control module which supports the clocks, resets and
+> > +  power domains on SC8280xp.
+> > +
+> > +  See also:
+> > +  - dt-bindings/clock/qcom,gcc-sc8280xp.h
 > 
-> devfreq is a Linux mechanism, not a real device/hardware. We try to put
-> the bindings in directories/subsystems matching the hardware, therefore
-> devfreq is not appropriate.
+> include/dt-bindings/...
 > 
-> Whether interconnect - or other subsystem - is appropriate, I am not
-> sure. To me this looks exactly like bus bandwidth management and you
-> even use "interconnect" in several places. So interconnect matches.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,gcc-sc8280xp
+> > +
+> 
+> (...)
+> 
+> > +
+> > +  '#power-domain-cells':
+> > +    const: 1
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  protected-clocks:
+> > +    description:
+> > +      Protected clock specifier list as per common clock binding.
+> 
+> There is still no schema with protected-clocks, so you need a type,
+> unless someoone is working on adding this to schema?
 
-I think that 'Documentation/devicetree/bindings/arm/mediatek' is proper.
+The 16th addition always gets caught...
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+I've just added one to dtschema.
+
+Rob
