@@ -2,91 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B60234FFD96
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D34B4FFDAC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234441AbiDMSPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 14:15:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36340 "EHLO
+        id S236243AbiDMSZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 14:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233601AbiDMSPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:15:24 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059DA36E0C;
-        Wed, 13 Apr 2022 11:13:03 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-d6ca46da48so2806677fac.12;
-        Wed, 13 Apr 2022 11:13:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EaNvx9WI08WE4w/5fhJh/+LgqxdrGCkOVNyF+cCJYJY=;
-        b=wMpzL6c2MoUmxONcvmcM8ifvFlRLjquqQjMmZ53IS/23zPYM0g+4fJAqUaBgDH2e9F
-         hDkGYiSIGPrDYgozCZXNVr8XEeegr0bA0eDMzrHMSbNNQa4D1hZUdzpP162gIUW8i2vd
-         +K3zmtiAwdrNtCmabGj+h7+70B1t2EKHX4zOQFFm5bJpKKv0nr9VDoF+ZOef5TecljSa
-         hPpu1XBsZPeq1VQcN3tbWmp7ISHAGO6q4JZoWHuT7KFjfHgu5EqczFBuEJlCiiuqlJWd
-         6ffo0y86a53Wm+wjbflJv0pFz5ji2671lNPUL0hYJdqcGrhENxiG/l7FiArK6GwAVlgK
-         w1vA==
-X-Gm-Message-State: AOAM532yeT9M1P4dTJvy0wTCVdOF8zsFZhcqvDL/2AlfpFK3vH7Qzqhn
-        Sm5qk7eS1941S3Lsjvd0XQKsApgklg==
-X-Google-Smtp-Source: ABdhPJzYPoKmHHmKrndbzmIMKA5MgGd/hjXVyPdpD0ukSYO7eqETW/4pUX012z3LusznCxAKWW08jQ==
-X-Received: by 2002:a05:6870:5b97:b0:e2:5d6:8bbb with SMTP id em23-20020a0568705b9700b000e205d68bbbmr2877oab.82.1649873582226;
-        Wed, 13 Apr 2022 11:13:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j16-20020a544810000000b002fa6ba4317esm1077992oij.44.2022.04.13.11.13.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 11:13:01 -0700 (PDT)
-Received: (nullmailer pid 3578070 invoked by uid 1000);
-        Wed, 13 Apr 2022 18:13:00 -0000
-Date:   Wed, 13 Apr 2022 13:13:00 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Camel Guo <camel.guo@axis.com>
-Cc:     linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, kernel@axis.com,
-        Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add TMP401, TMP411 and TMP43x
-Message-ID: <YlcSrOPf45ht1njU@robh.at.kernel.org>
-References: <20220413114014.2204623-1-camel.guo@axis.com>
- <20220413114014.2204623-2-camel.guo@axis.com>
+        with ESMTP id S232456AbiDMSZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:25:33 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E86339B93;
+        Wed, 13 Apr 2022 11:23:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649874191; x=1681410191;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/+xMj+IKFmTxJpJGVNQWc4V5J5OA4f1IEmIa7d8H4Mk=;
+  b=Qim5kBZ+UE2k4hXTa7QQQvpMULUMqdIYQS7JSDAtZILlJZXSPM+Rm0b4
+   Wno8wbx7SgU/W+8ZDqbByzByZLWM0XhCsoq587dLXOaZrPpGEGQceyK8u
+   zDrXHid8FbAde+yh05iIdQZzuMV4KuWhn8apSAzchTBn6c1LV34w/H5TH
+   jQWpj5HPGWErzv7mPIkjv3Iat5RklaaqpBd/rEPiuYc9PVk6/6WPPc1gG
+   AAcRr0E/H6Z0b20Z4xTdKp6dcrDybOYhMGLI3MOMYP3fJF1WFeiVfUxNt
+   c1f5pj5Eg8ebStgl0cEFjfY8cPxefAKUKCSXScL3e6KYkGNU71I7t7smb
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="261588079"
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; 
+   d="scan'208";a="261588079"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 11:23:10 -0700
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; 
+   d="scan'208";a="661034729"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 11:23:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nehaS-001xbd-Qr;
+        Wed, 13 Apr 2022 21:19:28 +0300
+Date:   Wed, 13 Apr 2022 21:19:28 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>
+Subject: Re: [PATCH v6 4/5] device property: Constify fwnode_handle_get()
+Message-ID: <YlcUMNe5gDsEca4f@smile.fi.intel.com>
+References: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
+ <20220408184844.22829-4-andriy.shevchenko@linux.intel.com>
+ <CAJZ5v0jnyg6n-1QRmVg1tjzu3szsG3DYqYTXAbobbKwkFhTreg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220413114014.2204623-2-camel.guo@axis.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAJZ5v0jnyg6n-1QRmVg1tjzu3szsG3DYqYTXAbobbKwkFhTreg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Apr 2022 13:40:12 +0200, Camel Guo wrote:
-> Document the TMP401, TMP411 and TMP43x device devicetree bindings
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Camel Guo <camel.guo@axis.com>
-> ---
-> 
-> Notes:
->     v3:
->     - Remove unneeded address-cells and size-cells;
->     - Change range of ti,n-factor to [-128, 127];
->     - Remove unneeded 'items' of ti,beta-compensation;
->     - Got Reviewed-by from Krzysztof.
-> 
->     v2:
->     - Fix format and describe hardware properties instead of programming
->       models
-> 
->  .../devicetree/bindings/hwmon/ti,tmp401.yaml  | 105 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp401.yaml
-> 
+On Wed, Apr 13, 2022 at 08:10:22PM +0200, Rafael J. Wysocki wrote:
+> On Fri, Apr 8, 2022 at 8:49 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+...
+
+> > -struct fwnode_handle *fwnode_handle_get(struct fwnode_handle *fwnode)
+> > +struct fwnode_handle *fwnode_handle_get(const struct fwnode_handle *fwnode)
+> >  {
+
+> >         if (!fwnode_has_op(fwnode, get))
+> >                 return fwnode;
+
+^^^^, so it needs a casting, but then we have to comment why is so.
+
+> Why is 0-day complaining about this one?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
