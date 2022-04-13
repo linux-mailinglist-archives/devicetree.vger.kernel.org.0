@@ -2,245 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF0C4FF26C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E771D4FF2BC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:52:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233921AbiDMIpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39110 "EHLO
+        id S229493AbiDMIyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiDMIpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:45:40 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 637C84EF5A;
-        Wed, 13 Apr 2022 01:43:16 -0700 (PDT)
-X-UUID: 0bbbdd5bd93344c480f5c0971460dec0-20220413
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:0530d422-fb45-401b-be82-18cd9bb43ebc,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:faefae9,CLOUDID:516802a9-d103-4e36-82b9-b0e86991b3df,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 0bbbdd5bd93344c480f5c0971460dec0-20220413
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 203685718; Wed, 13 Apr 2022 16:43:12 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 13 Apr 2022 16:43:11 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 13 Apr 2022 16:43:10 +0800
-Message-ID: <1c37ca0eb8fad7afd4eb4e32566d8affd71c894f.camel@mediatek.com>
-Subject: Re: [PATCH v18 03/10] soc: mediatek: add mtk-mmsys support for
- mt8195 vdosys0
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     Dan Carpenter <dan.carpenter@oracle.com>, <kbuild@lists.01.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     <lkp@intel.com>, <kbuild-all@lists.01.org>, <fshao@chromium.org>,
-        "David Airlie" <airlied@linux.ie>, <singo.chang@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <roy-cw.yeh@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <nancy.lin@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <moudy.ho@mediatek.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Date:   Wed, 13 Apr 2022 16:43:10 +0800
-In-Reply-To: <202204130935.urqkcDrG-lkp@intel.com>
-References: <202204130935.urqkcDrG-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S234092AbiDMIye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:54:34 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD70149939;
+        Wed, 13 Apr 2022 01:52:04 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id 7698121110;
+        Wed, 13 Apr 2022 08:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1649839923; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=9GYpfybgqBmDWR1LwtozuNW1NwOcsVxp2JYkv3jb+yY=;
+        b=SRrH+U6/GxLh5gIco/h3NzyN6nL2hY7kKvFftKjks6rLr11sAaM5xBB9AmQ8CZ+yYHvNsB
+        a1IeWuSXON5AXDovDW7as7+RizvxtpTJXhqkfyIgY0Jr2oeuifFxgxwvYg/Tp9QAh6uj9S
+        KY5Pje9vDWz2DQXTlsPgipFmm4SX6qE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1649839923;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=9GYpfybgqBmDWR1LwtozuNW1NwOcsVxp2JYkv3jb+yY=;
+        b=RJtEx7vKdnApwiOUV4wEAhgiR1vk2SsFPNkKs4+FdxjrRWnCW3PXF6TkzPLbm+BpjTMHAX
+        mk20nz1CuzQIOPDQ==
+Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
+        by relay2.suse.de (Postfix) with ESMTP id 613FEA3B95;
+        Wed, 13 Apr 2022 08:52:03 +0000 (UTC)
+Date:   Wed, 13 Apr 2022 10:52:03 +0200
+Message-ID: <s5hilrd74cs.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 00/16] Support external boost at CS35l41 ASoC driver
+In-Reply-To: <20220413083728.10730-1-tanureal@opensource.cirrus.com>
+References: <20220413083728.10730-1-tanureal@opensource.cirrus.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
+ (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
+On Wed, 13 Apr 2022 10:37:12 +0200,
+Lucas Tanure wrote:
+> 
+> Move the support for CS35L41 external boost to its shared library
+> for ASoC use.
+> This move resulted in cs35l41_hda_reg_sequence being removed,
+> and its steps were broken down into regmap writes or functions
+> from the library. And hardware configuration struct was unified
+> for its use in the shared lib.
+> While at it, some minor bugs were found and fixed it.
+> 
+> v7 changelog:
+>  - Rebased on top v5.18-rc2 tag
+>  - Acks from Mark Brown
+> 
+> v6 changelog:
+>  - Rebased on top of Linux Next with community patches for CS35L41
+>  - Document patch acked by Charles Keepax
+> 
+> v5 changelog:
+>  - Fixed wrong indentation at Documentation patch
+>  - Use of consistent prefix
+> 
+> v4 changelog:
+>  - Separated GPIO 1 and 2 function enums
+> 
+> v3 changelog:
+>  - Remove patches already accepted
+>  - Improved logic in documentation patch
+>  - Documentation patch goes before its code
+>  - Fixed missing Signed-off-by
+>  - Fixed subject for HDA patches
+> 
+> v2 changelog:
+>  - Instead of removing the log, playback actions will log the last regmap access.
+>  - Documentation patch with the correct subject line and fixed bug reported by Rob Herring on the
+>  provided example.
+> 
+> Previous versions:
+>  v1: https://lkml.org/lkml/2022/3/3/759
+>  v2: https://lkml.org/lkml/2022/3/4/743
+>  v3: https://lkml.org/lkml/2022/3/8/975
+>  v4: https://lkml.org/lkml/2022/3/17/267
+>  v5: https://lkml.org/lkml/2022/3/22/696
+>  v6: https://lkml.org/lkml/2022/4/9/114
+> 
+> David Rhodes (1):
+>   ASoC: cs35l41: Document CS35l41 External Boost
+> 
+> Lucas Tanure (15):
+>   ALSA: cs35l41: Unify hardware configuration
+>   ALSA: cs35l41: Check hw_config before using it
+>   ALSA: cs35l41: Move cs35l41_gpio_config to shared lib
+>   ALSA: hda: cs35l41: Fix I2S params comments
+>   ALSA: hda: cs35l41: Always configure the DAI
+>   ALSA: hda: cs35l41: Add Boost type flag
+>   ALSA: hda: cs35l41: Put the device into safe mode for external boost
+>   ALSA: hda: cs35l41: Mute the device before shutdown
+>   ALSA: cs35l41: Enable Internal Boost in shared lib
+>   ALSA: hda: cs35l41: Move boost config to initialization code
+>   ALSA: hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
+>   ALSA: hda: cs35l41: Reorganize log for playback actions
+>   ALSA: hda: cs35l41: Handle all external boost setups the same way
+>   ALSA: hda: cs35l41: Move external boost handling to lib for ASoC use
+>   ASoC: cs35l41: Support external boost
 
-Thanks for the reviews.
+Now applied all 16 patches to for-next branch.
 
-On Wed, 2022-04-13 at 09:07 +0300, Dan Carpenter wrote:
-> Hi "jason-jh.lin",
-> 
-> url:    
-> https://urldefense.com/v3/__https://github.com/intel-lab-lkp/linux/commits/jason-jh-lin/Add-Mediatek-Soc-DRM-vdosys0-support-for-mt8195/20220412-183359__;!!CTRNKA9wMg0ARbw!wAjdEcyQM5SvYaLtDA1d-7DTP-0V0x2EYmyKkpr3QDeGXEknO3vUGir-oiGEYodb6RAr$
->  
-> base:   git://anongit.freedesktop.org/drm/drm drm-next
-> config: arc-randconfig-m031-20220411 (
-> https://urldefense.com/v3/__https://download.01.org/0day-ci/archive/20220413/202204130935.urqkcDrG-lkp@intel.com/config__;!!CTRNKA9wMg0ARbw!wAjdEcyQM5SvYaLtDA1d-7DTP-0V0x2EYmyKkpr3QDeGXEknO3vUGir-oiGEYvQ-IvSq$
->  )
-> compiler: arc-elf-gcc (GCC) 11.2.0
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> 
-> smatch warnings:
-> drivers/soc/mediatek/mtk-mmsys.c:315 mtk_mmsys_probe() warn: passing
-> zero to 'PTR_ERR'
-> 
-> vim +/PTR_ERR +315 drivers/soc/mediatek/mtk-mmsys.c
-> 
-> 13032709e23285 Matthias Brugger       2020-03-25  281  static int
-> mtk_mmsys_probe(struct platform_device *pdev)
-> 13032709e23285 Matthias Brugger       2020-03-25  282  {
-> 2c758e301ed95a Enric Balletbo i Serra 2020-03-25  283  	struct
-> device *dev = &pdev->dev;
-> 13032709e23285 Matthias Brugger       2020-03-25  284  	struct
-> platform_device *clks;
-> 667c769246b01c Enric Balletbo i Serra 2020-03-25  285  	struct
-> platform_device *drm;
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  286  	const
-> struct mtk_mmsys_match_data *match_data;
-> ce15e7faa2fc54 CK Hu                  2021-03-17  287  	struct
-> mtk_mmsys *mmsys;
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  288  	struct
-> resource *res;
-> 2c758e301ed95a Enric Balletbo i Serra 2020-03-25  289  	int
-> ret;
-> 2c758e301ed95a Enric Balletbo i Serra 2020-03-25  290  
-> ce15e7faa2fc54 CK Hu                  2021-03-17  291  	mmsys =
-> devm_kzalloc(dev, sizeof(*mmsys), GFP_KERNEL);
-> ce15e7faa2fc54 CK Hu                  2021-03-17  292  	if
-> (!mmsys)
-> ce15e7faa2fc54 CK Hu                  2021-03-17  293  		
-> return -ENOMEM;
-> ce15e7faa2fc54 CK Hu                  2021-03-17  294  
-> ce15e7faa2fc54 CK Hu                  2021-03-17  295  	mmsys-
-> >regs = devm_platform_ioremap_resource(pdev, 0);
-> ce15e7faa2fc54 CK Hu                  2021-03-17  296  	if
-> (IS_ERR(mmsys->regs)) {
-> ce15e7faa2fc54 CK Hu                  2021-03-17  297  		
-> ret = PTR_ERR(mmsys->regs);
-> cc6576029aedc7 Enric Balletbo i Serra 2020-10-06  298  		
-> dev_err(dev, "Failed to ioremap mmsys registers: %d\n", ret);
-> 2c758e301ed95a Enric Balletbo i Serra 2020-03-25  299  		
-> return ret;
-> 2c758e301ed95a Enric Balletbo i Serra 2020-03-25  300  	}
-> 2c758e301ed95a Enric Balletbo i Serra 2020-03-25  301  
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  302  	spin_lo
-> ck_init(&mmsys->lock);
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  303  
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  304  	mmsys-
-> >rcdev.owner = THIS_MODULE;
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  305  	mmsys-
-> >rcdev.nr_resets = 32;
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  306  	mmsys-
-> >rcdev.ops = &mtk_mmsys_reset_ops;
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  307  	mmsys-
-> >rcdev.of_node = pdev->dev.of_node;
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  308  	ret =
-> devm_reset_controller_register(&pdev->dev, &mmsys->rcdev);
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  309  	if
-> (ret) {
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  310  		
-> dev_err(&pdev->dev, "Couldn't register mmsys reset controller: %d\n",
-> ret);
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  311  		
-> return ret;
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  312  	}
-> f27ef2856343e2 Enric Balletbo i Serra 2021-09-30  313  
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  314  	res =
-> platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12 @315  	if
-> (PTR_ERR(res)) {
-> 
-> You probably meant IS_ERR() instead of PTR_ERR().  But actually
-> platform_get_resource() does not return error pointers, it returns
-> NULL so the correct check is:
-> 
-> 	if (!res) {
-> 
-Yes, I missed this fix and I will also apply the fix to 
-mtk_drm_drv.c:639 in [v18,07/10] of this series.
 
-Thank you!
+thanks,
 
-Regards,
-Jason-JH.Lin
-
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  316  		
-> dev_err(dev, "Couldn't get mmsys resource\n");
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  317  		
-> return -EINVAL;
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  318  	}
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  319  	mmsys-
-> >io_start = res->start;
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  320  
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  321  	match_d
-> ata = of_device_get_match_data(dev);
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  322  	if
-> (match_data->num_drv_data > 1) {
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  323  		
-> /* This SoC has multiple mmsys channels */
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  324  		
-> ret = mtk_mmsys_find_match_drvdata(mmsys, match_data);
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  325  		
-> if (ret < 0) {
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  326  		
-> 	dev_err(dev, "Couldn't get match driver data\n");
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  327  		
-> 	return ret;
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  328  		
-> }
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  329  		
-> mmsys->data = match_data->drv_data[ret];
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  330  	} else
-> {
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  331  		
-> dev_dbg(dev, "Using single mmsys channel\n");
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  332  		
-> mmsys->data = match_data->drv_data[0];
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  333  	}
-> 8cfc54a36d3e79 jason-jh.lin           2022-04-12  334  
-> ce15e7faa2fc54 CK Hu                  2021-03-17  335  	platfor
-> m_set_drvdata(pdev, mmsys);
-> 13032709e23285 Matthias Brugger       2020-03-25  336  
-> ce15e7faa2fc54 CK Hu                  2021-03-17  337  	clks =
-> platform_device_register_data(&pdev->dev, mmsys->data->clk_driver,
-> 13032709e23285 Matthias Brugger       2020-03-25  338  		
-> 			     PLATFORM_DEVID_AUTO, NULL, 0);
-> 13032709e23285 Matthias Brugger       2020-03-25  339  	if
-> (IS_ERR(clks))
-> 13032709e23285 Matthias Brugger       2020-03-25  340  		
-> return PTR_ERR(clks);
-> 13032709e23285 Matthias Brugger       2020-03-25  341  
-> 667c769246b01c Enric Balletbo i Serra 2020-03-25  342  	drm =
-> platform_device_register_data(&pdev->dev, "mediatek-drm",
-> 667c769246b01c Enric Balletbo i Serra 2020-03-25  343  		
-> 			    PLATFORM_DEVID_AUTO, NULL, 0);
-> ff34e17cf9bce8 Wei Yongjun            2020-05-06  344  	if
-> (IS_ERR(drm)) {
-> ff34e17cf9bce8 Wei Yongjun            2020-05-06  345  		
-> platform_device_unregister(clks);
-> 667c769246b01c Enric Balletbo i Serra 2020-03-25  346  		
-> return PTR_ERR(drm);
-> ff34e17cf9bce8 Wei Yongjun            2020-05-06  347  	}
-> 667c769246b01c Enric Balletbo i Serra 2020-03-25  348  
-> 13032709e23285 Matthias Brugger       2020-03-25  349  	return
-> 0;
-> 13032709e23285 Matthias Brugger       2020-03-25  350  }
-> 
--- 
-Jason-JH Lin <jason-jh.lin@mediatek.com>
-
+Takashi
