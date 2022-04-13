@@ -2,119 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A19454FF1B2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C58CC4FF1D5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:27:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232910AbiDMIYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:24:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44164 "EHLO
+        id S229632AbiDMI3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:29:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231671AbiDMIYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:24:38 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0719033E8B;
-        Wed, 13 Apr 2022 01:22:18 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id B82E81F856;
-        Wed, 13 Apr 2022 08:22:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1649838136; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Nyxqn91jWR/SeRVnquAAnm0K/dAH16E4RF2CT5wYaHQ=;
-        b=nvucMmt7IGSNDyNOunzPeXkDw7UtRAykotadpTgh6KEq0zeiASLATZg2atmFx9r3vu6m9F
-        mcPdmuu9tjzoLL5eQyiBorpdkceYMpnkWfHuPUqjp5C7W8RA85aRVX0Q3hA72b09J2ekdI
-        sV8XvKp3++48YcA+Y+6fZCfb8QbpasQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1649838136;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Nyxqn91jWR/SeRVnquAAnm0K/dAH16E4RF2CT5wYaHQ=;
-        b=gi+pZ4ykFz4UMyBDnnl63thMw4bvXGP5AQUTvMVBqobzjy2v8ylFNBduFhSLC0oc7Z9L+E
-        0kZlHsbfyUie+iDQ==
-Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
-        by relay2.suse.de (Postfix) with ESMTP id AA938A3B82;
-        Wed, 13 Apr 2022 08:22:16 +0000 (UTC)
-Date:   Wed, 13 Apr 2022 10:22:16 +0200
-Message-ID: <s5ho81575qf.wl-tiwai@suse.de>
-From:   Takashi Iwai <tiwai@suse.de>
-To:     <tanureal@opensource.cirrus.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229958AbiDMI3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:29:43 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84859344DE;
+        Wed, 13 Apr 2022 01:27:22 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id A44341F44F0E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649838441;
+        bh=1AfnyPhY9aZhl5MD9PjUjLmG1rmk6J0oAYjA4S+AzeE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=F3QNXS64YUZpcdCUUIACB3y05+PSICtvWt5z3iXD+vnZ61arDN1ZoTHsaPMJf7WhC
+         Enlp0rde9tmn/BTIf3m6Wz10iWUZyGW9Kd+ncw8o0cNS/azixzp7kxg7/2E0TWkQJ5
+         3sJV7qO5bRbPXqG1G3Z378kJqCWk1wjoIpuFo4GeKFRMPtEL6/Ue+0PgaH2AHgc2u0
+         8MQcpAFB+xpYYm/yNZwyII6HxIFXtRoXpvqNTOCukooSqxlrHKbBUw4D6oRYkHtqwt
+         7vSVAIORhb2r0LjG0zPU0pfgOvf877M7pY4OIjY6Cuj/awBPtySiKEEQEEllU2B9EO
+         N+I4LehjFqd/w==
+Message-ID: <0193f6b6-0019-3080-2615-02225eb4bf3b@collabora.com>
+Date:   Wed, 13 Apr 2022 10:27:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v14 1/6] soc: mediatek: mutex: add common interface to
+ accommodate multiple modules operationg MUTEX
+Content-Language: en-US
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 00/16] Support external boost at CS35l41 ASoC driver
-In-Reply-To: <s5hr16175rg.wl-tiwai@suse.de>
-References: <20220409091315.1663410-1-tanureal@opensource.cirrus.com>
-        <s5h1qy18lpg.wl-tiwai@suse.de>
-        <f3926070-34e0-4004-22cb-99f26aec34f4@opensource.cirrus.com>
-        <s5hv8vd766u.wl-tiwai@suse.de>
-        <s5hr16175rg.wl-tiwai@suse.de>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
- FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
- (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
+        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
+        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220411072403.24016-1-moudy.ho@mediatek.com>
+ <20220411072403.24016-2-moudy.ho@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220411072403.24016-2-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Apr 2022 10:21:39 +0200,
-Takashi Iwai wrote:
+Il 11/04/22 09:23, Moudy Ho ha scritto:
+> In order to allow multiple modules to operate MUTEX hardware through
+> a common interfrace, a flexible index "mtk_mutex_table_index" needs to
+> be added to replace original component ID so that like DDP and MDP
+> can add their own MUTEX table settings independently.
 > 
-> On Wed, 13 Apr 2022 10:12:25 +0200,
-> Takashi Iwai wrote:
-> > 
-> > On Wed, 13 Apr 2022 10:10:16 +0200,
-> > <tanureal@opensource.cirrus.com> wrote:
-> > > 
-> > > On 4/13/22 8:51 AM, Takashi Iwai <tiwai@suse.de> wrote:
-> > > > On Sat, 09 Apr 2022 11:12:59 +0200,
-> > > > Lucas Tanure wrote:
-> > > > >
-> > > > > Move the support for CS35L41 external boost to its shared library
-> > > > > for ASoC use.
-> > > > > This move resulted in cs35l41_hda_reg_sequence being removed,
-> > > > > and its steps were broken down into regmap writes or functions
-> > > > > from the library. And hardware configuration struct was unified
-> > > > > for its use in the shared lib.
-> > > > > While at it, some minor bugs were found and fixed it.
-> > > >
-> > > > The patch series seem inapplicable via git am.
-> > > > Could you check the setup of your mailer?
-> > > >
-> > > >
-> > > > thanks,
-> > > >
-> > > > Takashi
-> > > >
-> > > Hi,
-> > > Could you explain how you apply this series? So I can reproduce it and see what's going on.
-> > > To apply a series of patches I usually:
-> > > 
-> > > 1 - Find the patch series on https://patchwork.kernel.org/
-> > > 2 - Click the series button on the right top corner, which will give me the single patch file with all series changes
-> > > 3 - git am ~/Downloads/Support-external-boost-at-CS35l41-ASoC-driver.patch
-> > 
-> > I tried b4 am and git am.
+> In addition, 4 generic interface "mtk_mutex_set_mod", "mtk_mutex_set_sof",
+> "mtk_mutex_clear_mod" and "mtk_mutex_clear_sof" have been added, which is
+> expected to replace the "mtk_mutex_add_comp" and "mtk_mutex_remove_comp"
+> pair originally dedicated to DDP in the future.
 > 
-> Maybe your patch base isn't aligned with the current upstream.
-> Could you rebase to 5.18-rc2?
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Change-Id: I6a2ab74fccf36248165ce4a6b268d82a1177afc9
+> ---
+>   drivers/soc/mediatek/mtk-mutex.c       | 89 ++++++++++++++++++++++++++
+>   include/linux/soc/mediatek/mtk-mutex.h | 21 ++++++
+>   2 files changed, 110 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+> index aaf8fc1abb43..48a04dce50d5 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -156,6 +156,8 @@ struct mtk_mutex_data {
+>   	const unsigned int *mutex_sof;
+>   	const unsigned int mutex_mod_reg;
+>   	const unsigned int mutex_sof_reg;
+> +	const unsigned int *mutex_table_mod;
+> +	const unsigned int *mutex_table_sof;
+>   	const bool no_clk;
+>   };
+>   
+> @@ -445,6 +447,54 @@ void mtk_mutex_add_comp(struct mtk_mutex *mutex,
+>   }
+>   EXPORT_SYMBOL_GPL(mtk_mutex_add_comp);
+>   
 
-... and don't forget to pick up Mark's Acks.
+Hello Moudy,
+
+Some critical things, and one cleanup.
+
+First of all, the commit title is very long, and it also contains a typo.
+I would go for something like
+"soc: mediatek: mutex: Add common interface for modules setting".
+
+Also, please remove your internal "Change-Id" tag, this is meaningless on
+upstream, hence not applicable here.
+
+Now for the cleanup: I have an idea to make this a bit shorter (and please
+feel free to change function names with something more appropriate, if needed):
+
+static int mtk_mutex_write_mod(struct mtk_mutex *mutex,
+				enum mtk_mutex_table_index idx,
+				bool clear)
+{
 
 
-thanks,
+> +{
+> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
+> +						 mutex[mutex->id]);
+> +	unsigned int reg;
+> +	unsigned int offset;
+> +
+> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
+> +
+> +	if (idx < MUTEX_TABLE_IDX_MDP_RDMA0 ||
+> +	    idx >= MUTEX_TABLE_IDX_MAX) {
+> +		dev_err(mtx->dev, "Not supported MOD table index : %d", idx);
+> +		return;
 
-Takashi
+		return -EINVAL;
+
+> +	}
+> +
+> +	offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg,
+> +				    mutex->id);
+> +
+> +	reg = readl_relaxed(mtx->regs + offset);
+
+if (clear)
+	reg &= ~BIT(mtx->data->mutex_table_mod[idx])
+else
+	reg |= BIT(mtx->data->mutex_table_mod[idx])
+
+> +	reg |= 1 << mtx->data->mutex_table_mod[idx];
+> +	writel_relaxed(reg, mtx->regs + offset);
+> +}
+
+int mtk_mutex_set_mod(struct mtk_mutex *mutex,
+		      enum mtk_mutex_table_index idx)
+{
+	return mtk_mutex_write_mod(mutex, idx, false);
+}
+
+int mtk_mutex_clear_mod(struct mtk_mutex *mutex,
+			enum mtk_mutex_table_index idx)
+{
+	return mtk_mutex_clear_mod(mutex, idx, true);
+}
+
+> +EXPORT_SYMBOL_GPL(mtk_mutex_set_mod);
+> +
+> +void mtk_mutex_set_sof(struct mtk_mutex *mutex,
+> +		       enum mtk_mutex_table_index idx)
+> +{
+> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
+> +						 mutex[mutex->id]);
+> +	unsigned int sof_id;
+> +
+> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
+> +
+> +	if (idx < MUTEX_TABLE_IDX_MDP_RDMA0 ||
+> +	    idx >= MUTEX_TABLE_IDX_MAX) {
+> +		dev_err(mtx->dev, "Not supported SOF table index : %d", idx);
+> +		return;
+> +	}
+> +
+> +	sof_id = mtx->data->mutex_table_sof[idx];
+
+... same changes here, except we'd have something like
+
+if (clear)
+	val = MUTEX_SOF_SINGLE_MODE;
+else
+	val = mtx->data->mutex_sof[sof_id];
+
+	writel_relaxed(val, ...etc)
+
+but feel free to give me valid reasons to not use this approach.
+
+In any case, the code looks ok to me.
+
+
+Regards,
+Angelo
