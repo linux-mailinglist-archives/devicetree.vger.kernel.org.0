@@ -2,173 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D7DD4FF16E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E0F4FF170
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232258AbiDMIKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:10:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        id S229982AbiDMILw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232157AbiDMIKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:10:24 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C72F2E9C2
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:08:03 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so657457wmn.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:08:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lVcO1/lC7e7USSSpiAYT+piKROxqG4y5tiLaA2XBQrE=;
-        b=xp86yr6Vj8c3yGnWzdMbXhYA9IABVafmRxPBYWZDA66yn/TT9oE1TxwiMBfSIowTE+
-         7swhRvEGEieoD/NxJr2V7NaNLxDUBaJ2SuvKCUQa15NixdStDES21jlu9XQMNpgwTD+3
-         sblkIeFTErHZZ8ilgxWd/632xzly4MGYq+PB+uhBQt0guKyKY2lol3PBFUOUejKdOsNF
-         dxVBz+exvq5Z3KyhAwRWQrdZTy2DYOKdwbsDZZOAd7siIp1AivN0DX1nFNFL97EZmEHx
-         Nb9knnh1vMm5V+n0eqxw2W7CUzCXx2XgwjmnjjR22LL761Q+t8Nc8YMUlU3j0UnPQZCR
-         KnTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=lVcO1/lC7e7USSSpiAYT+piKROxqG4y5tiLaA2XBQrE=;
-        b=twobL3Reyoetwk6MEfTuC1aNgQO1/CspSDkZsWo4C8KmQ/PlLo1iLXFfHShGcOu2kP
-         zdSzO7L4RSFpkTpBdsVdE1KV3MMNWah9wPmO02c19ilURrKO7mmxQL1jMsIvsgZ+9gHv
-         f0u/BwVtwZhw+yQUZGrce+CGqEfjwwpG4edL6kuNF3d1dmxMce8fPzddEDNCkGnNTnBb
-         Bg+b3KnXxjVgMjsBefRwGOdAlxfNpOISK9cKzico/XUx0fdWp68UOYnNoh4ityw1nLu/
-         QYOWCO7xO0CPxQrRxqjGClBO8JHgNcpdIRdvLG2slchUSZgCKJiMeLgI2NO4G4q1+h37
-         drEA==
-X-Gm-Message-State: AOAM533xfO4DlZWrJ4sqjofJAH4L0rcCGzwo8tlnpWc0AkwIe8nunLMF
-        IapJ8Kf4Hd4vYNMwuI1uuVF6/Q==
-X-Google-Smtp-Source: ABdhPJyUAS0tkOnj0v7VsHut18QbcF8WjHXmfN7pryvAb2cvBZUa+xjKvFVwLKZrLKTNpq/yna5l3g==
-X-Received: by 2002:a05:600c:1d9d:b0:38e:c8e0:209f with SMTP id p29-20020a05600c1d9d00b0038ec8e0209fmr6642680wms.43.1649837281955;
-        Wed, 13 Apr 2022 01:08:01 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ed2f:f020:8949:72f1:7713:24f8? ([2a01:e34:ed2f:f020:8949:72f1:7713:24f8])
-        by smtp.googlemail.com with ESMTPSA id n68-20020a1c2747000000b0038e6b4d5395sm1776807wmn.16.2022.04.13.01.08.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 01:08:01 -0700 (PDT)
-Message-ID: <d470c4dc-6e16-1bb4-379e-250e2adf3e5f@linaro.org>
-Date:   Wed, 13 Apr 2022 10:07:59 +0200
+        with ESMTP id S230089AbiDMILv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:11:51 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 533C16384;
+        Wed, 13 Apr 2022 01:09:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id D96CF80F5;
+        Wed, 13 Apr 2022 08:06:52 +0000 (UTC)
+Date:   Wed, 13 Apr 2022 11:09:26 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: Update TI timer to yaml
+Message-ID: <YlaFNnpVl/R5onZm@atomide.com>
+References: <20220412131644.59195-1-tony@atomide.com>
+ <20220412131644.59195-2-tony@atomide.com>
+ <1c455b6e-0009-6f8b-15c8-2a352479c5f2@linaro.org>
+ <YlZoA/TX02E+Ey7U@atomide.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
-Content-Language: en-US
-To:     Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org,
-        rui.zhang@intel.com, amitk@kernel.org, kristo@kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, vigneshr@ti.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220412101409.7980-1-j-keerthy@ti.com>
- <20220412101409.7980-2-j-keerthy@ti.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220412101409.7980-2-j-keerthy@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlZoA/TX02E+Ey7U@atomide.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Adding Krzysztof
-
-On 12/04/2022 12:14, Keerthy wrote:
-> Add VTM bindings documentation. In the Voltage Thermal
-> Management Module(VTM), K3 J72XX supplies a voltage
-> reference and a temperature sensor feature that are gathered in the band
-> gap voltage and temperature sensor (VBGAPTS) module. The band
-> gap provides current and voltage reference for its internal
-> circuits and other analog IP blocks. The analog-to-digital
-> converter (ADC) produces an output value that is proportional
-> to the silicon temperature.
+* Tony Lindgren <tony@atomide.com> [220413 06:08]:
+> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [220412 17:04]:
+> > Hmmm, in your previous version I had impression that first clock is not
+> > the same on every flavor. Now it looks the same, so clocks you could
+> > simplify even more:
+> > 1. Define full list in main properties (not in allOf) with minItems:1
+> > 2. Use maxItems:1, for this "else:" case.
+> > 
+> > This could greatly reduce amount of code you need and keep the actual
+> > definition of clocks in main properties (not in allOf; allOf are only to
+> > constrain it).
 > 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->   .../bindings/thermal/ti,j72xx-thermal.yaml    | 62 +++++++++++++++++++
->   1 file changed, 62 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> new file mode 100644
-> index 000000000000..8483c495cb9a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/ti,j72xx-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments J72XX VTM (DTS) binding
-> +
-> +maintainers:
-> +  - Keerthy <j-keerthy@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,j721e-vtm
-> +    oneOf:
-> +      - enum:
-> +          - ti,j721e-vtm
-> +          - ti,j7200-vtm
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - power-domains
-> +  - "#thermal-sensor-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +    wkup_vtm0: wkup_vtm0@42040000 {
-> +        compatible = "ti,j721e-vtm";
-> +        reg = <0x42040000 0x350>,
-> +            <0x42050000 0x350>,
-> +            <0x43000300 0x10>;
-> +        power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
-> +        #thermal-sensor-cells = <1>;
-> +    };
-> +
-> +    mpu_thermal: mpu_thermal {
-> +        polling-delay-passive = <250>; /* milliseconds */
-> +        polling-delay = <500>; /* milliseconds */
-> +        thermal-sensors = <&wkup_vtm0 0>;
-> +
-> +        trips {
-> +                mpu_crit: mpu_crit {
-> +                        temperature = <125000>; /* milliCelsius */
-> +                        hysteresis = <2000>; /* milliCelsius */
-> +                        type = "critical";
-> +                };
-> +        };
-> +    };
-> +...
+> OK thanks I'll check. I think we can assume the first clock is "fck" if
+> it is configured at all.
 
+Yup, this works nicely :) Will send out v4 set.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Thanks,
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Tony
