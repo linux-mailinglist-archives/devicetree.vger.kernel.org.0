@@ -2,109 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FAA84FFE3E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 20:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2760A4FFE71
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 21:07:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235043AbiDMS62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 14:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45974 "EHLO
+        id S236730AbiDMTJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 15:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231339AbiDMS62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 14:58:28 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E70B5C647;
-        Wed, 13 Apr 2022 11:56:06 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id m16-20020a9d73d0000000b005f8edc0599eso80783otk.11;
-        Wed, 13 Apr 2022 11:56:06 -0700 (PDT)
+        with ESMTP id S232238AbiDMTJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 15:09:46 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9B06E4E4
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:07:23 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id m33-20020a05600c3b2100b0038ec0218103so1760385wms.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 12:07:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VTPr3m/S0BGE4rHVT3R7JCsuYjNSptwx0algC29rCig=;
+        b=v2uVvXJycyac1gbVQqLZdI38/uzuJ9skXiIPXFhlCSewK0xqrdfLrcxw27X/1Godto
+         VJRqxXICMmllGYPYdUT4Ls8FC3yDY3Q+BsATnr+z5ctjntqs5nrBKMn+vbeXxZ7PJuYT
+         LEIYlEEtgLUYu9lYAOi9QM72ZpLp/4pEmyLatoqx0OBNnVevZ7xZnJuN8BWsqi9r5ZTX
+         WloZN66tmFyLL6BCiLEjc1rvsEfSwccX6uAqKxwTEifg4gG8646xo452RKibBcpm2JAR
+         nG3QjI/4HfAAb/dZKAopgcKaUttAR/72hDeIcMBJJgkRqsr0qU27UN+AFoylzL8pu3FM
+         NfwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HMhybcheRcGSweV7LIGaBaLpBUWrj9ciib2Np2r6dcs=;
-        b=1Lzq3ab+j0kS6HEBk+0wrU3c1vmfJha3ky6XUh2fcyV2vrRjhFAf+NdX5WlS/C8ykg
-         9bjUWChepWXwBkvKhJhmU75daUhEK3DKmfdMcbBMLPO4RPs8IqQLz7UrEOwObyIFxFLH
-         fnbOBnqjYhzxAsVg03w6quahvAvPlQLuUDxEomw8+71ZC81+gGRS1ygLY31ci4YAIPK2
-         5PtlQUfKCGcSDq1lt8BdptBdwNpj+Q80iGATFKuoOw7v+LiI/ruMup0bnAowVLgKUf+i
-         egIbIm6fcoliG6/23uR0QaBNiwSqiG6/gWUvtM0KatLHWRCMbb0zxYe5nBi2+etiQPYK
-         Y+Zg==
-X-Gm-Message-State: AOAM533GIbKy8LcqJvClGD5r9ffhbLnAJcBnZQHUEGz41uQAYLSxdTf9
-        wTCA0wQXP4/RIfSJR9/Zjg==
-X-Google-Smtp-Source: ABdhPJxyYSAicqv+uK0Jwen+s6Jag+PUSCGdYsmme/IUpuB5pEHHNG02Yy9wTNLZ5QVh3u92QLUNIA==
-X-Received: by 2002:a05:6830:1b78:b0:5c9:48b3:8ab with SMTP id d24-20020a0568301b7800b005c948b308abmr15533851ote.235.1649876165337;
-        Wed, 13 Apr 2022 11:56:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bg39-20020a056820082700b00324c8eba341sm14432288oob.18.2022.04.13.11.56.04
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VTPr3m/S0BGE4rHVT3R7JCsuYjNSptwx0algC29rCig=;
+        b=3aN3MCVzJZ217X1Oyr/lA361UQDm35ziMLvfcNMVIEfStnnBhcq4gGeaKa3AOziVDg
+         vooxUEK+8OlOpR+XymIMcwUp0Wv8K4Frdyrt96QO1yjcOpwu+qHN27RAWMEYRt3umrbn
+         NeeQ8pUijCyLkc2JlbXBN845te99FL1L7W/wT0wwLgKHcX6N8Bv+irTbgAJXkY8hU/hF
+         exohcBAdS3Yf9UOj/Zol7fBjOYtgKpuPdp+0H7G6THxWihmJWyN/gtmskWGibUIphIPb
+         jTFOl/bFdc8m/4kOshQCgjoeQx59GJvhdmRVtfh81bLLTSGCCHq2n+EpoTXk/USp18V4
+         ah6w==
+X-Gm-Message-State: AOAM533h6WF8fr1e/YWGAzJ0AIGFmIL6wHNF2/cEmPxPBBNab+u1lDgv
+        etabk06Dz82VsFJTLqLOl2tsPA==
+X-Google-Smtp-Source: ABdhPJy3Zm0d9WLFXlxY8wjdG5QcmyfAeFG5RnJbTiNY5DAeOozBTazEP8+Gnbptt0o1bwwfdklLKg==
+X-Received: by 2002:a1c:2744:0:b0:382:a9b7:1c8a with SMTP id n65-20020a1c2744000000b00382a9b71c8amr127289wmn.187.1649876841577;
+        Wed, 13 Apr 2022 12:07:21 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o29-20020a05600c511d00b0038e3532b23csm3551852wms.15.2022.04.13.12.07.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Apr 2022 11:56:05 -0700 (PDT)
-Received: (nullmailer pid 3641502 invoked by uid 1000);
-        Wed, 13 Apr 2022 18:56:04 -0000
-Date:   Wed, 13 Apr 2022 13:56:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: thermal: uniphier: Use
- unevaluatedProperties and common bindings
-Message-ID: <YlccxAQ9adSZh22F@robh.at.kernel.org>
-References: <1649317533-21139-1-git-send-email-hayashi.kunihiko@socionext.com>
+        Wed, 13 Apr 2022 12:07:20 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v5 00/33] crypto: rockchip: permit to pass self-tests
+Date:   Wed, 13 Apr 2022 19:06:40 +0000
+Message-Id: <20220413190713.1427956-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1649317533-21139-1-git-send-email-hayashi.kunihiko@socionext.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 04:45:33PM +0900, Kunihiko Hayashi wrote:
-> This adds common bindings thermal-sensor.yaml and this is preferred for
-> unevaluatedProperties instead of additionalProperties.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../bindings/thermal/socionext,uniphier-thermal.yaml         | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml b/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
-> index c5b25ce44956..537c93da1397 100644
-> --- a/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/socionext,uniphier-thermal.yaml
-> @@ -14,6 +14,9 @@ description: |
->  maintainers:
->    - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->  
-> +allOf:
-> +  - $ref: "thermal-sensor.yaml#"
+Hello
 
-No advantage to adding this as this schema still has to define the value 
-for "#thermal-sensor-cells".
+The rockchip crypto driver is broken and do not pass self-tests.
+This serie's goal is to permit to become usable and pass self-tests.
 
-> +
->  properties:
->    compatible:
->      enum:
-> @@ -40,7 +43,7 @@ required:
->    - interrupts
->    - "#thermal-sensor-cells"
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> -- 
-> 2.25.1
-> 
-> 
+This whole serie is tested on a rk3328-rock64, rk3288-miqi and
+rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+
+Since I didnt own rk3399 hardware, I worked on an emulated one until I
+grab some co-worker rk3399 board.
+People wanting to test this serie without the hardware can try my qemu branch at
+https://github.com/montjoie/qemu/tree/rkcrypto
+
+Regards
+
+Changes since v1:
+- select CRYPTO_ENGINE
+- forgot to free fallbacks TFMs
+- fixed kernel test robots warning
+- add the PM patch
+
+Changes since v2:
+- Added DMA clock back to 3288 since it dont work without it
+- fallback needed to select CBC and ECB configs
+- Added support for rk3399
+- Added more patch (style, read_poll_timeout)
+
+Changes since v3:
+- full rewrite of support for RK3399
+- splited dt-binding patch in two
+
+Changes since v4:
+- Another full rewrite of support for RK3399
+- Fixed dt-binding from Krzysztof Kozlowski's comments
+- Use readl_poll_timeout() instead of read_poll_timeout()
+- Rewrite the fallback SG tests
+
+Corentin Labbe (33):
+  crypto: rockchip: use dev_err for error message about interrupt
+  crypto: rockchip: do not use uninitialized variable
+  crypto: rockchip: do not do custom power management
+  crypto: rockchip: fix privete/private typo
+  crypto: rockchip: do not store mode globally
+  crypto: rockchip: add fallback for cipher
+  crypto: rockchip: add fallback for ahash
+  crypto: rockchip: better handle cipher key
+  crypto: rockchip: remove non-aligned handling
+  crypto: rockchip: rework by using crypto_engine
+  crypto: rockchip: rewrite type
+  crypto: rockchip: add debugfs
+  crypto: rockchip: introduce PM
+  crypto: rockchip: handle reset also in PM
+  crypto: rockchip: use clk_bulk to simplify clock management
+  crypto: rockchip: add myself as maintainer
+  crypto: rockchip: use read_poll_timeout
+  crypto: rockchip: fix style issue
+  crypto: rockchip: add support for rk3328
+  crypto: rockchip: rename ablk functions to cipher
+  crypto: rockchip: rework rk_handle_req function
+  crypto: rockchip: use a rk_crypto_info variable instead of lot of
+    indirection
+  crypto: rockchip: use the rk_crypto_info given as parameter
+  dt-bindings: crypto: convert rockchip-crypto to YAML
+  dt-bindings: crypto: rockchip: convert to new driver bindings
+  clk: rk3399: use proper crypto0 name
+  arm64: dts: rockchip: add rk3328 crypto node
+  arm64: dts: rockchip: rk3399: add crypto node
+  crypto: rockchip: store crypto_info in request context
+  crypto: rockchip: Check for clocks numbers and their frequencies
+  crypto: rockchip: rk_ahash_reg_init use crypto_info from parameter
+  crypto: rockchip: permit to have more than one reset
+  crypto: rockchip: Add support for RK3399
+
+ .../crypto/rockchip,rk3288-crypto.yaml        | 133 +++++
+ .../bindings/crypto/rockchip-crypto.txt       |  28 -
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |  11 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  20 +
+ drivers/crypto/Kconfig                        |  15 +
+ drivers/crypto/rockchip/rk3288_crypto.c       | 511 ++++++++--------
+ drivers/crypto/rockchip/rk3288_crypto.h       | 107 ++--
+ drivers/crypto/rockchip/rk3288_crypto_ahash.c | 267 +++++----
+ .../crypto/rockchip/rk3288_crypto_skcipher.c  | 543 ++++++++++--------
+ include/dt-bindings/clock/rk3399-cru.h        |   6 +-
+ 11 files changed, 953 insertions(+), 695 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+ delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+
+-- 
+2.35.1
+
