@@ -2,66 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 943D34FF4AD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622A74FF4B4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 12:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234884AbiDMKbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 06:31:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
+        id S231814AbiDMKhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 06:37:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231784AbiDMKbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:31:21 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB5F48E43;
-        Wed, 13 Apr 2022 03:29:00 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id c15so1597552ljr.9;
-        Wed, 13 Apr 2022 03:29:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=EM7/SkV+6s8Fu4/Dfl5qBS4N2VHhPA4O2DL1nEyVo2k=;
-        b=mfZBR/gOmqrb4LoArxZ87H0Edrk2ihZ7Wt+hM2vGmacHp2oyqu5JvXKQ1i5wqNjucO
-         3ou7Brx94NqT3kldGgDq2vqU0Rk48pZo6EjPCLegaYysbwO+XCZw6Pz0zIezLKBx8jH8
-         OatEOn8td1HkPm94zJxCQfib+P6sxhWlEPDFE84HDuPpQrP8VnKo2WEviu6qJ704GmhJ
-         b31TdXo/OK/DgljXRo8Qt57H8igBEw8vwhNuCgmHmweDK9zhtdR2deZhf4zltoPGgz94
-         SADIjqAxfhsV4Y1vO5URpUbh25UyXZfvNvTo6ndLJJaNeo+OLry0pPkxUGc+NVkBvw84
-         f1Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=EM7/SkV+6s8Fu4/Dfl5qBS4N2VHhPA4O2DL1nEyVo2k=;
-        b=2ktwG514WE7meNSJ2gwfxoG5Zsfxp1G9BQ1cb6XzLYu2w2x6oyZKri6X/BZJCGOBdJ
-         V/SbliITV1UtdwGpRhVXnrfnSKbBKnEWgixh6ioTDTPxdJQGov0fZ8Lzkqz/XRkE0p9B
-         talXbg92v+DPviZbnSsd5IpsKqjsII/zjRBXIzQqHyzFIWteaq+ZN5NbCaT/M58cGg/B
-         S1rUSAtLww7HiPut5itS+D19mnmeXlfneIWkfPHfZ/vlpthnVZpsPYcBosL53FUJmPpF
-         9NmUoX53UapX/qzSSiaVdbqTj2196p2GwPUzFcI9vR6odlWh5u1j3aO0X+Z1MIL3wHky
-         0mJw==
-X-Gm-Message-State: AOAM531waMvfhrVi7PUA1p55HKGmpF7pGjVnBHW4CkaIincf1NTBKKsK
-        tvokjY8cMBVxswD0KqKCzNWWVu5D+N75CD4ouSI=
-X-Google-Smtp-Source: ABdhPJwqUtCWbhPewkf5rtBPPchoYH7LOsk6rspm6E15jH2QMeReIE9r1CchdIILTsp+lMrd1B4YDV5/FCDZUJvtUbg=
-X-Received: by 2002:a2e:9103:0:b0:24b:6b46:3a32 with SMTP id
- m3-20020a2e9103000000b0024b6b463a32mr5919541ljg.349.1649845738913; Wed, 13
- Apr 2022 03:28:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220412045228.35306-1-patrick.wang.shcn@gmail.com>
- <CAL_JsqJ3Vi18RizzkKok5Rg8AM3U3Eytaunqk-5RF795ma=wcA@mail.gmail.com> <CAGcnep_Hp0UcoZ5beJ8AMX-4Axt-m47M8_Tdg-RPoNqqvjpgZg@mail.gmail.com>
-In-Reply-To: <CAGcnep_Hp0UcoZ5beJ8AMX-4Axt-m47M8_Tdg-RPoNqqvjpgZg@mail.gmail.com>
-From:   patrick wang <patrick.wang.shcn@gmail.com>
-Date:   Wed, 13 Apr 2022 18:28:47 +0800
-Message-ID: <CAGcnep9BW9+wam0Lu2njqpX_3fZPrEvsbs5hg66X0hTNqG3JwQ@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: do not reserve memory below MIN_MEMBLOCK_ADDR
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mike Rapoport <rppt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S229632AbiDMKhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 06:37:01 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60087.outbound.protection.outlook.com [40.107.6.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2B6B7E0;
+        Wed, 13 Apr 2022 03:34:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hPpNrDKb4RIvqcIIOQf7mMj/eN73DpDzPeT/nZJ5asstzG8ZE9SZAZd6k8I0MW1dqpDJ0H0NpC+vu5beyCvdJ0cSrQSQLw3yXN31bi1I0+U4n9tMRdlRuVQ1a5U3VNW/ch6Xb5A4s6w7x0lgWG+kfA6y7Z5kXrrf0MMtk3I5L1aF2vHPR/cBj/IZecBat7RylYsZCUDZczgS+S8TuHqt8+tGN4yIOn4qKjiLVyA3hCPkQp5pG1poKs8rnH/hbPue8P+hxWeQrbGkh6iFGhqlHNUulGTX4CQxN9kXINU2Q6swJYhF3+4tYAScAsuGAuXYavYXaKT/MEeEawM4Sjm6aQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zH0fBmJ8vS9g/T/kqTLSX8mj95ftY43JlQ2jZM5/v6k=;
+ b=kud2+eNW/rYWJ8ku6XfaMMg2FEuovt/aNF7PDEnTRMSAPK/F5hWFWxUtUfpuYMXzHxPwX684JGjCLNYt0CSbRHONhL9VKlnaYIUhz8ol5b5nYzictBYKmwp3zfH5KNMOy0LvFJS63QiRPdKNc8styJdm+MM8tpWEXS/YrBx4m58S5NDgKX/7+lMdnR3Wlweg388/eKlImAhdDwwiT/wUYNIyGjGwUO84Qw2fE36EuJp7+BRpsh+/FZ/b9lBNZkHP+pkKf/G79yrMjuzFH0djiT9gUPvnz5uS0HnmFKVIrA0JRNqNJIYhQMXUjewZWzP8LYZ9C9ZP+6akRyUnGekmsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zH0fBmJ8vS9g/T/kqTLSX8mj95ftY43JlQ2jZM5/v6k=;
+ b=kqaAYLjgZc2xhGsiRBx9qEWLRI1sdmCDJdzPBolePZOJ6nwp1Oxn4lBO6Bi1QNGNmIoIKxQPAO6+IXOAuZ9yNjJP2/UgQl7CPig+zr25JIy7H6M7yJBsVsNRHLQDZwisROXVNgKjvhm8bpI1YP/fExORtBksAdUFMS62uoVitCM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by AS8PR04MB8691.eurprd04.prod.outlook.com (2603:10a6:20b:42a::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Wed, 13 Apr
+ 2022 10:34:36 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::a9d1:199:574b:502f]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::a9d1:199:574b:502f%6]) with mapi id 15.20.5144.029; Wed, 13 Apr 2022
+ 10:34:36 +0000
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc@vger.kernel.org, <netdev@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 00/13] arm64: dts: Add i.MX8DXL initial support
+Date:   Wed, 13 Apr 2022 13:33:43 +0300
+Message-Id: <20220413103356.3433637-1-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AM6PR04CA0047.eurprd04.prod.outlook.com
+ (2603:10a6:20b:f0::24) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 389b128d-e6bd-4478-438a-08da1d3934ec
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8691:EE_
+X-Microsoft-Antispam-PRVS: <AS8PR04MB8691266C6BECD4C89C23968BF6EC9@AS8PR04MB8691.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vh9CmFf+C7HUVYsmiOe+PSybltQkWTgoiWZE/cODsafx9CbLbNeMgeYx4Zn41sKrx7pWM8zxHwJ0CBheU62SninlGjf7UWfVKDA9royQ4xD1U3nwa7uzWuMW1BvZ5UN0CXTEck6G217ydcfcKC4D/xGhqmnoQm0QSjTJBKKD/xQF63pZoG5lEC/VBGJEKLi3q92esCwaW03tAzI5skIKYNg00z91lZD0Fq+902wE4MUkB6oIBXfKAdgHWARgbf7hHzNEcPMXt3RKGtvKb22RDqtB/NIPS/6BhOzZ70otgbD6Pl/+aEKQhdwDm/34N6IB/yiO8KMbXlhgJjUVahBx739MuBbcPtiWTAoFoAVXLP27OiVDERam6J/hCPfucT9sXIitNCxuP3YhUJvqDcabx+oFpTQ+sA2GHuZyXoGLXBfbeB1A3skzM6d9YZIKZIm7rbb6W/w8YYuyvW9GVNRHmlvmx1KJRChAZFu1A25oNmbVPd9ueymXF25ASGOODNBrGyPnJeEwLiYGeit05qcNaz+Pgi3XrJ/NpRhPbrga6DyIKOrhReVQQpF+XBlrcTLl5bKmU9k8tccmPHYnJT5bjpv7J+4LhsgtexZlOQwEOukUAELMdz3UXPJpbswY2GHkiFIMLPPV9ZOpcXao3lxX32DCTM5O3+MLQg3h6XBJlOCfmXb49mKwbse4/ZTC+fO8X1XDAbf3W+E7MevT0O2/Hw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6486002)(38350700002)(38100700002)(4326008)(66476007)(66946007)(66556008)(316002)(54906003)(110136005)(508600001)(1076003)(8676002)(26005)(186003)(2616005)(52116002)(6512007)(6506007)(6666004)(86362001)(2906002)(44832011)(7416002)(5660300002)(36756003)(8936002)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uU/slZoP7lQAnJLfWkesxIugvFfP6P9IIQHWuxl/PVpDgBvqPfesS+bA/I5Y?=
+ =?us-ascii?Q?u16ZtuBElaHe2Am6PLB1pd1o/qV+VvVcY3MI7qUh2dobOq8E7Hw60NXwrA0W?=
+ =?us-ascii?Q?33A+cAI38c52id4IaU9BkJAnxPKnBye9PopCeYuHjrBq91BOI7cO9BZlwv9x?=
+ =?us-ascii?Q?QQYrr1ldMRGYlp7PiQXbYAz3/Q74PbJgA9twrkOn3YSbwXYQ5Zl9ZbUyJtzG?=
+ =?us-ascii?Q?gWxAMpPKPm5H5jWoqFx01FV8YF8Nff9uCBQDUaRG4uiOUismnXZ078ozkSZd?=
+ =?us-ascii?Q?6YgBPAfaW0I8GPO5vhG3pS08n5dfbkej6hD6RTQSFeFk9hKqdE7iuTCjZrry?=
+ =?us-ascii?Q?zUX+A+CTjHQYhPuVcd6Y34O9g5CZTZnV9mWCRfr3pM7VigI2LZlDStepQpGl?=
+ =?us-ascii?Q?Gwg7YePj4TNzOnQxOjh9X5NOMT6t76YuBnfsRaoq5agEHKokwYmbQQ73MUPO?=
+ =?us-ascii?Q?SgMwT+2eZrHJjw1HI7DcrdNV/1ZT5+xb1PAsWby6XVMOsn44n0x5XY19rmem?=
+ =?us-ascii?Q?2PQX6M4DceDHZANeAW0kWY/IVhX1Cv1PvwYIIIHaWpvU/XBjQC9reqpZDdqG?=
+ =?us-ascii?Q?a7STQ2wW+AtdbJaZD90sl4OFJpXXFl9wIx87gwU8ip0pNgXlbCYRzgJuVCs8?=
+ =?us-ascii?Q?uomz+hCPm1EDNz3latpuDkKLvKOmqE0pUVCZWGf2OpVmehuMhMoRYPVJ8JlR?=
+ =?us-ascii?Q?b7bgL/1mixHgPRIB3CyuZFuWF1mMM/N0z/LPi3d8/M/MStOJhZo/WkmOdes1?=
+ =?us-ascii?Q?NPnGuBKAVNM7i9gepo+JtYY/DI9+MVopRr9LoYtZ925/+GoTEKyonfHQUTA5?=
+ =?us-ascii?Q?AhmG1tFRRhrxtWxEJQpnsW3e6nWo/fgyraEyaXsvENbIACnLHVAS1cNsOcQ4?=
+ =?us-ascii?Q?msE5fEeQJX6ARONDr6th8/POcquV1eVBLhbe2x1vyZ8NBpcsP13Z/lF8yTno?=
+ =?us-ascii?Q?yXfWw8b7d01dWkffI8I0/DKXG89Awc5pgLqXz1uaio5Ewz2YgsJn1zw99KD2?=
+ =?us-ascii?Q?oAoJ3Rnxvv69UIqy1Zm8pEmTWedYo9lb2B8W6RkCIOoDsyQ+7XBX0FW+p3KB?=
+ =?us-ascii?Q?qOcjO6CVZtgIfT7svcS2ITcMDqVr0LSDsXfR6OUmV2JK+vi1G0kuN0PcFRZ9?=
+ =?us-ascii?Q?K3WsHtOrFJgZIuRRAKHZMU7G38ZYecPjbiPgq6BuieqdelcZCxSZSKEXDLmd?=
+ =?us-ascii?Q?JtftvxHurT+lB/uTk+ff/EGbmLCtdDTRUMkcHGN64J521z86rGd64mVoC/Kw?=
+ =?us-ascii?Q?HbfBbPTyrwkdh/EVlxzQSnGNcwMFeai8TMGLwWAF3YjKE1tDa4oDfyVMQHHk?=
+ =?us-ascii?Q?jdmW441j4M9Q5g18CQMqH0Zt/3/aI0gw4J9r8xUQTX6RiyAqayAzhqzXsSda?=
+ =?us-ascii?Q?qZHzi00/txhC9fMzB162nnmrfteuUqkcBMzvAM1bQxSSz/uIUz7lxFlFvUGs?=
+ =?us-ascii?Q?XLNTkwKbY3TpyUggperYtmbdPRI0a1XpPN6SfBfeEZCNFo1ptJhVVZAWpZ44?=
+ =?us-ascii?Q?n2/9lOLhm+uZoP1IuoAfU8EIt7IJRl9aD67vlVDz0cGZ+pv8zwKxFjhM7u+8?=
+ =?us-ascii?Q?4/CUSzxoECS/JgIaJZzkJbTOcCIVV3LcHa4+LBIHNAGVbXJbm/G9xHVVQz3j?=
+ =?us-ascii?Q?JWRo9DnKMVSTeYA3FNjCQygpWqQFbbUtQjGRRQpm3HcACzS4nbGxh7CC84IY?=
+ =?us-ascii?Q?QvfETqrugiOJtgzGupEb7rgIwap2I9dMhTj6hf/xTQEXzQ1PEHsJLJYc6+P3?=
+ =?us-ascii?Q?BEDbmTZyTw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 389b128d-e6bd-4478-438a-08da1d3934ec
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2022 10:34:36.6461
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JBsNLr3K0pehVvG8i+Qf/TmnVeB0uS2F2FChFM57elx833WTHSEBBCxBSZLJ0fKXKR1NLsNz3SGXkUu/3FQ2Vw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8691
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,168 +123,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 12:06 AM patrick wang
-<patrick.wang.shcn@gmail.com> wrote:
->
-> I check the code again, it's not about  reserved memory, it's the calling=
- of
-> kmemleak_alloc_phys, this api is for lowmem, added in commit 9099daed9c6.
->
-> So I think the address should be checked before kmemleak_alloc_phys,
-> only the range in lowmem should be passed to the  kmemleak api.
->
-> if (size &&
->     early_init_dt_reserve_memory_arch(base, size, nomap) =3D=3D 0) {
-> pr_debug("Reserved memory: reserved region for node '%s': base %pa,
-> size %lu MiB\n",
-> uname, &base, (unsigned long)(size / SZ_1M));
-> if (!nomap)
-> kmemleak_alloc_phys(base, size, 0, 0); // here to check
-> }
->
+Changes since v5:
+ * dropped clk_csr from bindings docs and devicetree node
+ * added bindings docs for EVK board, ocotp, scu-pd, eshc, fec
+   mxs-usb-phy, ci-hdrc-usb2 and usbmisc
+ * the fsl,imx8dxl-db-pmu compatible will be documented once the
+   driver will be sent upstream
 
-Since the kmemleak_alloc_phys api is only for lowmem, this should be
-handled by itself.
+Abel Vesa (8):
+  arm64: dts: freescale: Add adma subsystem dtsi for imx8dxl
+  dt-bindings: fsl: scu: Add i.MX8DXL ocotp and scu-pd binding
+  dt-bindings: arm: Document i.MX8DXL EVK board binding
+  dt-bindings: mmc: imx-esdhc: Add i.MX8DXL compatible string
+  dt-bindings: net: fec: Add i.MX8DXL compatible string
+  dt-bindings: phy: mxs-usb-phy: Add i.MX8DXL compatible string
+  dt-bindings: usb: ci-hdrc-usb2: Add i.MX8DXL compatible string
+  dt-bindings: usb: usbmisc-imx: Add i.MX8DXL compatible string
 
-I will post a patch to kmemleak.
+Jacky Bai (5):
+  arm64: dts: freescale: Add the top level dtsi support for imx8dxl
+  arm64: dts: freescale: Add the imx8dxl connectivity subsys dtsi
+  arm64: dts: freescale: Add ddr subsys dtsi for imx8dxl
+  arm64: dts: freescale: Add lsio subsys dtsi for imx8dxl
+  arm64: dts: freescale: Add i.MX8DXL evk board support
 
->
->
-> Rob Herring <robh+dt@kernel.org> =E4=BA=8E2022=E5=B9=B44=E6=9C=8812=E6=97=
-=A5=E5=91=A8=E4=BA=8C 20:31=E5=86=99=E9=81=93=EF=BC=9A
-> >
-> > +Mike Rapoport
-> >
-> > On Mon, Apr 11, 2022 at 11:52 PM Patrick Wang
-> > <patrick.wang.shcn@gmail.com> wrote:
-> > >
-> > > Dt reserve memory without base checking, which will trigger an oops i=
-n
-> > > kmemleak when the base address is below MIN_MEMBLOCK_ADDR:
-> >
-> > Why does the caller need to know what this address is? Shouldn't
-> > memblock handle all this internally?
+ .../bindings/arm/freescale/fsl,scu.txt        |   4 +-
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   1 +
+ .../devicetree/bindings/net/fsl,fec.yaml      |   4 +
+ .../devicetree/bindings/phy/mxs-usb-phy.txt   |   1 +
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt  |   1 +
+ .../devicetree/bindings/usb/usbmisc-imx.txt   |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 266 ++++++++++++++++++
+ .../boot/dts/freescale/imx8dxl-ss-adma.dtsi   |  52 ++++
+ .../boot/dts/freescale/imx8dxl-ss-conn.dtsi   | 134 +++++++++
+ .../boot/dts/freescale/imx8dxl-ss-ddr.dtsi    |  36 +++
+ .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   |  78 +++++
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi    | 241 ++++++++++++++++
+ 14 files changed, 826 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl.dtsi
 
-early_init_dt_add_memory_arch() handled this.
+--
+2.34.1
 
-
-> >
-> > What about when EFI memory maps are used?
-
-If reserved memory should be handled, this should also be handled too, I th=
-ink.
-
-Thanks
-
-> >
-> > >
-> > > # echo scan > /sys/kernel/debug/kmemleak
-> > > [   54.888353] Unable to handle kernel paging request at virtual addr=
-ess ff5fffffffe00000
-> > > [   54.888932] Oops [#1]
-> > > [   54.889102] Modules linked in:
-> > > [   54.889326] CPU: 2 PID: 134 Comm: bash Not tainted 5.18.0-rc1-next=
--20220407 #33
-> > > [   54.889620] Hardware name: riscv-virtio,qemu (DT)
-> > > [   54.889901] epc : scan_block+0x74/0x15c
-> > > [   54.890215]  ra : scan_block+0x72/0x15c
-> > > [   54.890390] epc : ffffffff801e5806 ra : ffffffff801e5804 sp : ff20=
-0000104abc30
-> > > [   54.890607]  gp : ffffffff815cd4e8 tp : ff60000004cfa340 t0 : 0000=
-000000000200
-> > > [   54.890835]  t1 : 00aaaaaac23954cc t2 : 00000000000003ff s0 : ff20=
-0000104abc90
-> > > [   54.891024]  s1 : ffffffff81b0ff28 a0 : 0000000000000000 a1 : ff5f=
-ffffffe01000
-> > > [   54.891201]  a2 : ffffffff81b0ff28 a3 : 0000000000000002 a4 : 0000=
-000000000001
-> > > [   54.891377]  a5 : 0000000000000000 a6 : ff200000104abd7c a7 : 0000=
-000000000005
-> > > [   54.891552]  s2 : ff5fffffffe00ff9 s3 : ffffffff815cd998 s4 : ffff=
-ffff815d0e90
-> > > [   54.891727]  s5 : ffffffff81b0ff28 s6 : 0000000000000020 s7 : ffff=
-ffff815d0eb0
-> > > [   54.891903]  s8 : ffffffffffffffff s9 : ff5fffffffe00000 s10: ff5f=
-ffffffe01000
-> > > [   54.892078]  s11: 0000000000000022 t3 : 00ffffffaa17db4c t4 : 0000=
-00000000000f
-> > > [   54.892271]  t5 : 0000000000000001 t6 : 0000000000000000
-> > > [   54.892408] status: 0000000000000100 badaddr: ff5fffffffe00000 cau=
-se: 000000000000000d
-> > > [   54.892643] [<ffffffff801e5a1c>] scan_gray_list+0x12e/0x1a6
-> > > [   54.892824] [<ffffffff801e5d3e>] kmemleak_scan+0x2aa/0x57e
-> > > [   54.892961] [<ffffffff801e633c>] kmemleak_write+0x32a/0x40c
-> > > [   54.893096] [<ffffffff803915ac>] full_proxy_write+0x56/0x82
-> > > [   54.893235] [<ffffffff801ef456>] vfs_write+0xa6/0x2a6
-> > > [   54.893362] [<ffffffff801ef880>] ksys_write+0x6c/0xe2
-> > > [   54.893487] [<ffffffff801ef918>] sys_write+0x22/0x2a
-> > > [   54.893609] [<ffffffff8000397c>] ret_from_syscall+0x0/0x2
-> > > [   54.894183] ---[ end trace 0000000000000000 ]---
-> > >
-> > > Add base checking and ignore the range lower than MIN_MEMBLOCK_ADDR.
-> > >
-> > > Signed-off-by: Patrick Wang <patrick.wang.shcn@gmail.com>
-> > > ---
-> > >  drivers/of/fdt.c | 27 ++++++++++++++++++++-------
-> > >  1 file changed, 20 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index ec315b060..296c4ab8e 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -33,6 +33,13 @@
-> > >
-> > >  #include "of_private.h"
-> > >
-> > > +#ifndef MIN_MEMBLOCK_ADDR
-> > > +#define MIN_MEMBLOCK_ADDR      __pa(PAGE_OFFSET)
-> > > +#endif
-> > > +#ifndef MAX_MEMBLOCK_ADDR
-> > > +#define MAX_MEMBLOCK_ADDR      ((phys_addr_t)~0)
-> > > +#endif
-> > > +
-> > >  /*
-> > >   * of_fdt_limit_memory - limit the number of regions in the /memory =
-node
-> > >   * @limit: maximum entries
-> > > @@ -480,6 +487,19 @@ static u32 of_fdt_crc32;
-> > >  static int __init early_init_dt_reserve_memory_arch(phys_addr_t base=
-,
-> > >                                         phys_addr_t size, bool nomap)
-> > >  {
-> > > +       const u64 phys_offset =3D MIN_MEMBLOCK_ADDR;
-> > > +
-> > > +       if (base < phys_offset) {
-> > > +               pr_warn("Ignoring reserved memory range 0x%llx - 0x%l=
-lx\n",
-> > > +                       base, phys_offset);
-> > > +               size =3D (phys_offset - base) < size ?
-> > > +                       size - (phys_offset - base) : 0;
-> > > +               base =3D phys_offset;
-> > > +
-> > > +               if (!size)
-> > > +                       return -EFAULT;
-> > > +       }
-> > > +
-> > >         if (nomap) {
-> > >                 /*
-> > >                  * If the memory is already reserved (by another regi=
-on), we
-> > > @@ -1198,13 +1218,6 @@ int __init early_init_dt_scan_chosen(char *cmd=
-line)
-> > >         return 0;
-> > >  }
-> > >
-> > > -#ifndef MIN_MEMBLOCK_ADDR
-> > > -#define MIN_MEMBLOCK_ADDR      __pa(PAGE_OFFSET)
-> > > -#endif
-> > > -#ifndef MAX_MEMBLOCK_ADDR
-> > > -#define MAX_MEMBLOCK_ADDR      ((phys_addr_t)~0)
-> > > -#endif
-> > > -
-> > >  void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
-> > >  {
-> > >         const u64 phys_offset =3D MIN_MEMBLOCK_ADDR;
-> > > --
-> > > 2.25.1
-> > >
