@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C504FF00E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A81A4FF010
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 08:45:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233093AbiDMGqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 02:46:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37282 "EHLO
+        id S232815AbiDMGrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 02:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231713AbiDMGqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:46:51 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428B755B5
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 23:44:30 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id ks6so1963634ejb.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 23:44:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6abcq3O1EPjgdyhvzwdMxIPAFt88vyijjAyZY43AuF8=;
-        b=Wt62uSnDI6mF9aPfsYg8UJ2HGrg13xt4FC/mICdOpCq+n3WzWL7WjLN7seYgvq57sY
-         LVpsm8o669ydMUIUtWhsQ3dIj2Nopm1UpYoC0vJKxjvN42vEWon0906aC+SfmSaWwgLk
-         PcjmD70YuXsolSi5ncH5XTV1fL0abGJcszxWlQ8WSsKLJpt2dCPTqZRIlx/4TCUgBrEr
-         xozL2+xwDAzTVqn7puWbHaYoq3GlURch1LALTwGRkqdV3inqZgIi2/NwJWdrOw6+IZ2R
-         JXgBfgsx/v2aoOj1JYEntsqDN3uTDoTntDZ8Z8GiD7Tzrgo9Cqs0r6b6kzXe0231nYwR
-         9Egg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6abcq3O1EPjgdyhvzwdMxIPAFt88vyijjAyZY43AuF8=;
-        b=pJoOAGtuQQYG/GKWjLEg6UF36UMHv8VJBKtndXtK0SWmSYU9cFtuGRAtRwD1tBr9ac
-         3T2guJNEOtOu2DZcfVQfGALNMgyp5kjf/aOpK26pr2hD0qrqnQSc61liO3/w6XougrKx
-         P6pXtt6dcAiG+drAnCtx+hcMsBnXKM5qWjyKbiO9hVlT0iTvn+MIO6L9fKzoqqg3aBCT
-         Z08Kk63+aTgMQZUBspOAUFR9uKORWHddGWC2niv2gWlYasipVDNTueEt7O9Q2LFSiBJm
-         5ll3bW6+ez6cLEv4XRUQ8BTTu9gqVqYNsw9tuwJtGiMGZ12mmaZCqD7aeQt1BLwQ0/dT
-         OomA==
-X-Gm-Message-State: AOAM533wgNUOYeTQ4XL/aug+byT+zhS6+CQv065s4Q/8HuNRmhFJlkC8
-        RGFs9FVd2gEons1ltCuwb3gNcQ==
-X-Google-Smtp-Source: ABdhPJweDresjgbp+7Botd2PLPWg/Px8U48d3x0QNr+ZrvuJBrlwIfDunDoMxl8QXTsz9V7vhps5vQ==
-X-Received: by 2002:a17:906:d108:b0:6e8:7765:a70b with SMTP id b8-20020a170906d10800b006e87765a70bmr15802157ejz.436.1649832268884;
-        Tue, 12 Apr 2022 23:44:28 -0700 (PDT)
-Received: from [192.168.0.201] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id qf21-20020a1709077f1500b006e84ee40742sm5918659ejc.218.2022.04.12.23.44.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Apr 2022 23:44:28 -0700 (PDT)
-Message-ID: <e289c59c-96fe-38f0-8be3-7c1ba416817f@linaro.org>
-Date:   Wed, 13 Apr 2022 08:44:27 +0200
+        with ESMTP id S231713AbiDMGrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 02:47:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C76362FC;
+        Tue, 12 Apr 2022 23:45:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C1C461D26;
+        Wed, 13 Apr 2022 06:45:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9FEC385A3;
+        Wed, 13 Apr 2022 06:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649832306;
+        bh=r2vW3ZbHso9uGN1E9szsNGXBN90bOBs2BYM7Wg9/Kng=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oG2beXM740vxSU2IPV+mku2PjnBvJPvVqKyXuUXoCiEmPAYxA7EMCHKd09m1LVyz+
+         2QT0QDL5NAApHR+hRBJFcIrd+++CnbdyHoZckTtM2wY6D3VWMXGkYRg3zLP337P0rO
+         C9zv7j0uCmoSnwx5KDmfgpDic4HVRJZ4e8UORwsf/k1WaWHkTfh9IM+twvyW/izMwF
+         Iv0H0d36WzRPZ5jsePA2vY5o5hprUGuh/jcqv5WDh+l5LcqkRhH6G2oRfI/OP3tXxZ
+         ex2Qqd5i0WbRRCZL4pMg2VIXSwPfSYwYQrYCZujxkz0zrnSWpYv1xEdA2JWu/6VBpv
+         jSj8pbdep6ePQ==
+Date:   Wed, 13 Apr 2022 12:15:01 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     wangseok.lee@samsung.com,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>,
+        =?utf-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
+Subject: Re: [PATCH 0/5] Add support for Axis, ARTPEC-8 PCIe driver
+Message-ID: <YlZxbXI77vSbKNsY@matsya>
+References: <564c7092-d6a3-7766-d83f-9762075d055f@kernel.org>
+ <0716d9e4-24e1-d16c-162c-00a8664296e1@kernel.org>
+ <20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p7>
+ <20220328090200epcms2p8637d2a2e09a3a627be776586b80c8adf@epcms2p8>
+ <CGME20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p4>
+ <20220328112918epcms2p44bfdd6ef74c14f04bae6a475054860b6@epcms2p4>
+ <fd3478ba-ebb9-c1bf-1823-dc03de80b76e@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 5/9] dt-bindings: clk: mpfs: add defines for two new
- clocks
-Content-Language: en-US
-To:     Conor Dooley <mail@conchuod.ie>, Conor.Dooley@microchip.com,
-        mturquette@baylibre.com, sboyd@kernel.org, aou@eecs.berkeley.edu,
-        paul.walmsley@sifive.com, palmer@rivosinc.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     Daire.McNamara@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220411085916.941433-1-conor.dooley@microchip.com>
- <20220411085916.941433-6-conor.dooley@microchip.com>
- <d49f38e7-5fd9-4e9a-cc20-2c839eb53712@linaro.org>
- <2e1b0207-dfb3-4cc5-d306-d2b0c6ed8cfd@microchip.com>
- <25feb189-4d97-f9b1-518e-69aae9a274e0@linaro.org>
- <74695e55-0b59-9236-be19-b02060ad4177@microchip.com>
- <ba518d4d-0f92-0d34-029c-c477c84db81d@linaro.org>
- <f2c0c8ba-bdfd-faeb-cdff-ed3fe5215029@conchuod.ie>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f2c0c8ba-bdfd-faeb-cdff-ed3fe5215029@conchuod.ie>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fd3478ba-ebb9-c1bf-1823-dc03de80b76e@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,26 +74,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 20:29, Conor Dooley wrote:
-> The way it's implemented is a bit interconnected and none of the three
-> blocks would satisfy a "self contained" constraint. Eg. The rtcref
-> divider's control reg sits between two registers responsible for the
-> CLK_CPU -> CLK_CFM clocks but it's input clock mux is in the same 
-> sub-block as the MSSPLL.
+On 28-03-22, 13:40, Krzysztof Kozlowski wrote:
+> On 28/03/2022 13:29, 이왕석 wrote:
+> >> --------- Original Message ---------
+> >> Sender : Krzysztof Kozlowski <krzk@kernel.org>
+> >> Date : 2022-03-28 18:38 (GMT+9)
+> >> Title : Re: [PATCH 0/5] Add support for Axis, ARTPEC-8 PCIe driver
+> >>
+> >> On 28/03/2022 11:02, 이왕석 wrote:
+> >>>>  --------- Original Message ---------
+> >>>>  Sender : Krzysztof Kozlowski <krzk@kernel.org>
+> >>>>  Date : 2022-03-28 16:12 (GMT+9)
+> >>>>  Title : Re: [PATCH 0/5] Add support for Axis, ARTPEC-8 PCIe driver
+> >>>>
+> >>>>  On 28/03/2022 03:44, 이왕석 wrote:
+> >>>>>   This series patches include newly PCIe support for Axis ARTPEC-8 SoC.
+> >>>>>   ARTPEC-8 is the SoC platform of Axis Communications.
+> >>>>>   PCIe controller driver and phy driver have been newly added.
+> >>>>>   There is also a new MAINTAINER in the addition of phy driver.
+> >>>>>   PCIe controller is designed based on Design-Ware PCIe controller IP
+> >>>>>   and PCIe phy is desinged based on SAMSUNG PHY IP.
+> >>>>>   It also includes modifications to the Design-Ware controller driver to 
+> >>>>>   run the 64bit-based ARTPEC-8 PCIe controller driver.
+> >>>>>   It consists of 6 patches in total.
+> >>>>>   
+> >>>>>   This series has been tested on AXIS SW bring-up board 
+> >>>>>   with ARTPEC-8 chipset.
+> >>>>
+> >>>>  You lost mail threading. This makes reading this difficult for us. Plus
+> >>>>  you sent something non-applicable (patch #2), so please resend.
+> >>>>
+> >>>>  Knowing recent Samsung reluctance to extend existing drivers and always
+> >>>>  duplicate, please provide description/analysis why this driver cannot be
+> >>>>  combined with existing driver. The answer like: we need several syscon
+> >>>>  because we do not implement other frameworks (like interconnect) are not
+> >>>>  valid.
+> >>>>
+> >>>>  Best regards,
+> >>>>  Krzysztof
+> >>>  
+> >>>  Hello, Krzysztof
+> >>>  Thanks for your review.
+> >>>  
+> >>>  patch#2 was sent to the wrong format so sent again.
+> >>>  Sorry for causing confusion.
+> >>  
+> >> The first sending was HTML. Second was broken text, so still not working.
+> >>
+> >> Please resend everything with proper threading.
+> > 
+> > Hello, Krzysztof
+> > 
+> > I sent patch#2 three times.
+> > due to the influence of the email system,
+> > there was something wrong with the first and second mails.
+> > Sorry for causing confusion.
+> > Did you receive the third patch i sent you?
 > 
-> I guess its better put that each of the three are sub-blocks of a self
-> contained clock controller for the mss core complex. There are several
-> other clock domains on the chip which would have distinct clock
-> controllers & may be added to this header in the future, if letting
-> Linux control them makes any sense. For example, clocks in (and used for
-> the clocking of) the fpga fabric.
-> 
-> This controller is a single node in the device tree. Sounds like
-> reordering it numerically makes the most sense then - I'll resend
-> tomorrow if that's okay.
+> Maybe, I don't know. It's not threaded so it's difficult to find it
+> among other 100 emails...
 
-Yes.
+Correct, this is spread over whole list, please resend the whole series
+in a single shot without threading being broken
 
-
-Best regards,
-Krzysztof
+-- 
+~Vinod
