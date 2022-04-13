@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 319084FFB6E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8C34FFB9E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 18:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235213AbiDMQjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 12:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38604 "EHLO
+        id S232702AbiDMQsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 12:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235243AbiDMQjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:39:23 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82345D64A;
-        Wed, 13 Apr 2022 09:36:56 -0700 (PDT)
+        with ESMTP id S237078AbiDMQrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 12:47:31 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7736948B
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 09:45:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649867816; x=1681403816;
+  t=1649868306; x=1681404306;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=SioN7hE4JJ0EbzEEpsQ1nTa8K8QRrunFk5RvqYz6FjE=;
-  b=qSh4h/Gx67jnHDr+Es3enJwuFaRfxEWjXYJXNQiZF0OiiJdsKmZchplY
-   4IwlaDd18/ya8Iknr5yEzvEfW85WCMAE7/KGhLFD5/Zsr67zy2eq/5NdD
-   rdRMvukT5AgstTjJJsjxPzfS7LbB6iiyRy7YXobpzSdUEFvNiYzAiE+6a
-   1C576vdmC2QvnEeIflPWJjBKfzRKd+MIAyLFHgUHZ0WvYRstwprLvftw5
-   pls0FYxfr9MAXNBE7/htEf+kE4ODnPJz/Dw3GGAAPYplrqTFTm9USbwfu
-   5U9OjvaFW7y/SWICI4TxoNRa1g4Bbc4mFl3L0wCT7P81yME9pv/yPSqPJ
-   w==;
+  bh=aa06mSmCxQVUAJSKFbISrcxjwrjolahdE4p3gf3sExo=;
+  b=THskDsISjU60+IlroAb7pYLhVM+tzVeTEOG/YbBQCAhmIguwpJ/PvJDy
+   ZsU4FeDFRJ5+i5C6ntHZFZj0Tw6TDqQrEAHuGb6uhb2S8QWDSdOl+cRlA
+   hmEnVltEo/aOcojBiLfNFLbGzFnOVYnEbNeH974uZ0hp0sOZjHZvjLLhW
+   IJPMzU88NwYMPiygsRmj/uRUzZYa4+cYi8GYxnKhcaeDQ6BOhdej026Ii
+   ucb7lT/Ca6lPupk73TLrIRtfiOV/oLBIOxXOoRKdQUpicZpONZHDYz5fz
+   NjjEIU8zhZGm1mLOhDRH/rg62Ub8+MKcJW4c2LmHe3n95ThEAxXDuolx1
+   g==;
 X-IronPort-AV: E=Sophos;i="5.90,257,1643698800"; 
-   d="scan'208";a="152546254"
+   d="scan'208";a="160001748"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2022 09:36:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2022 09:45:04 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 13 Apr 2022 09:36:55 -0700
-Received: from [10.12.72.146] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Wed, 13 Apr 2022 09:36:53 -0700
-Message-ID: <703ee79c-3b25-5b1f-dfe1-bfafade468fd@microchip.com>
-Date:   Wed, 13 Apr 2022 18:36:52 +0200
+ 15.1.2375.17; Wed, 13 Apr 2022 09:45:03 -0700
+Received: from [10.12.72.146] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Wed, 13 Apr 2022 09:45:01 -0700
+Message-ID: <2ece2c68-789e-9df9-dd22-c1da5d402179@microchip.com>
+Date:   Wed, 13 Apr 2022 18:45:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/3] ARM: dts: at91: sama7g5: Swap `rx` and `tx` for
- `i2c` nodes
+Subject: Re: [PATCH v2 0/2] ARM: dts: at91: Fixes for AT91SAM9G20-EK DTS
 Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@canonical.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>
-References: <20220310114553.184763-1-sergiu.moga@microchip.com>
- <20220310114553.184763-2-sergiu.moga@microchip.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220404102806.581374-1-broonie@kernel.org>
 From:   Nicolas Ferre <nicolas.ferre@microchip.com>
 Organization: microchip
-In-Reply-To: <20220310114553.184763-2-sergiu.moga@microchip.com>
+In-Reply-To: <20220404102806.581374-1-broonie@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -71,67 +69,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2022 at 12:45, Sergiu Moga wrote:
-> Swap `rx` and `tx` for the `dma-names` property of the `i2c` nodes
-> in order to maintain consistency across Microchip/Atmel SoC files.
+On 04/04/2022 at 12:28, Mark Brown wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> Reviewed-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> The DT description for the audio subsystem on the AT91SAM9G20-EK
+> reference board is a bit bitrotted, the clocking for the WM8731 audio
+> CODEC is not described. Previously this was handled in the machine
+> driver but at some point in the transition to the common clock framework
+> that code was broken and rendered mostly redundant so the first patch
+> adds a mapping of the MCLK on the CODEC which is used via existing code
+> in it's driver.
+> 
+> We also have some warnings on the WM8731, EEPROM and the MMC from the
+> regulator framework since the supplies on the board aren't described.
+> These don't fundamentally matter since they are fixed voltage regulators
+> and not controlled by software at runtime but it's nicer to fix them.
+> 
+> v2:
+>   - Rebase onto v5.18-rc1.
+>   - Also cover the serial EEPROM supply which is requested by that driver.
+> 
+> Mark Brown (2):
+>    ARM: dts: at91: Map MCLK for wm8731 on at91sam9g20ek
+>    ARM: dts: at91: Describe regulators on at91sam9g20ek
 
+For the whole series:
 Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-As it fixes some of the warning in dt schema check in 5.18-rc1, I queue 
-this patch in "fixes" branch for 5.18.
 
-Thanks, best regards,
+I'm gonna queue these patches for 5.18 "fixes".
+
+Thanks a lot Mark, that's really appreciated!
+Best regards,
    Nicolas
 
-> ---
->   arch/arm/boot/dts/sama7g5.dtsi | 18 +++++++++---------
->   1 file changed, 9 insertions(+), 9 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-> index 4decd3a91a76..f691c8f08d04 100644
-> --- a/arch/arm/boot/dts/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/sama7g5.dtsi
-> @@ -601,9 +601,9 @@ i2c1: i2c@600 {
->   				#size-cells = <0>;
->   				clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
->   				atmel,fifo-size = <32>;
-> -				dmas = <&dma0 AT91_XDMAC_DT_PERID(7)>,
-> -					<&dma0 AT91_XDMAC_DT_PERID(8)>;
-> -				dma-names = "rx", "tx";
-> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(8)>,
-> +					<&dma0 AT91_XDMAC_DT_PERID(7)>;
-> +				dma-names = "tx", "rx";
->   				status = "disabled";
->   			};
->   		};
-> @@ -786,9 +786,9 @@ i2c8: i2c@600 {
->   				#size-cells = <0>;
->   				clocks = <&pmc PMC_TYPE_PERIPHERAL 46>;
->   				atmel,fifo-size = <32>;
-> -				dmas = <&dma0 AT91_XDMAC_DT_PERID(21)>,
-> -					<&dma0 AT91_XDMAC_DT_PERID(22)>;
-> -				dma-names = "rx", "tx";
-> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(22)>,
-> +					<&dma0 AT91_XDMAC_DT_PERID(21)>;
-> +				dma-names = "tx", "rx";
->   				status = "disabled";
->   			};
->   		};
-> @@ -810,9 +810,9 @@ i2c9: i2c@600 {
->   				#size-cells = <0>;
->   				clocks = <&pmc PMC_TYPE_PERIPHERAL 47>;
->   				atmel,fifo-size = <32>;
-> -				dmas = <&dma0 AT91_XDMAC_DT_PERID(23)>,
-> -					<&dma0 AT91_XDMAC_DT_PERID(24)>;
-> -				dma-names = "rx", "tx";
-> +				dmas = <&dma0 AT91_XDMAC_DT_PERID(24)>,
-> +					<&dma0 AT91_XDMAC_DT_PERID(23)>;
-> +				dma-names = "tx", "rx";
->   				status = "disabled";
->   			};
->   		};
+>   arch/arm/boot/dts/at91sam9g20ek_common.dtsi | 43 +++++++++++++++++++++
+>   1 file changed, 43 insertions(+)
+> 
+> 
+> base-commit: 3123109284176b1532874591f7c81f3837bbdc17
+> --
+> 2.30.2
+> 
 
 
 -- 
