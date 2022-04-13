@@ -2,109 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 531724FF983
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED644FF992
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 16:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236326AbiDMO6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 10:58:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47486 "EHLO
+        id S235481AbiDMPBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 11:01:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234367AbiDMO6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 10:58:32 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998CEE0DD;
-        Wed, 13 Apr 2022 07:56:10 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id lc2so4454796ejb.12;
-        Wed, 13 Apr 2022 07:56:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MXDRi2nnaXpmTvbxw2dgQTuBsMOOy1/I/di9bKsVPUE=;
-        b=aNT4a0hgVXfh34wZO4AZcl1QySQWNDk20i5GSbAIzd2DwalGkhx9rNpgQcY2d5X/Es
-         YH7KJkEKSwa8QSOIOJZ2KTBGsURATGKY+3c8Wlr4686FygRAdCrBO+/wtuUoAn6FLLzC
-         bgpnPRHuWU9oRCSpR3JE9aIgeGO/2lFWdzaNQHwy+9oxHZ3QKCsRs+Qu+7d8STG+ForU
-         VQi++3nMWQkfT4ldLBdkkWSohKGnj67yA2y1MJ5TlpY4Tk2LmuS3KVPSwCHtxcn/Moth
-         dY+FTaeqQxIGkOoJLGchWgxgjMGRT4eUN0MNF2a00uL5nMLLUrZoy7Fx7JABHMlxyJ1v
-         JWzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MXDRi2nnaXpmTvbxw2dgQTuBsMOOy1/I/di9bKsVPUE=;
-        b=JMWgBjXu51DlrRJ5s7NnjAQWPhH6f1Bz+w3mN9IAahfJ+/iaqkaj5jte0554wM3Nd2
-         FQSQVYAK3+L6RnS/G3AZHpRJG7lZdPbc7rKt9SJhDq6r23NqkiqfaaLlbdtt7fR1K0R4
-         GdT5IUF01PYFRk083nJhY0pON9VW8Xgojm7WLvTCimDdhDFTeIaizHhqy06aY481jn+j
-         dhQPmHm8yFm+65dO9kK5rtLzob0WplICXjeN7FG9xEjdG2A5qt+ej9kILEJ3vVb1Ok2a
-         sYWhsjgCLyWdVsXlM9Ca30Cb3eJGt5K7GqctaHq8HlEjlkxRwnqy+dxqrEckNeZZYfMB
-         /1tw==
-X-Gm-Message-State: AOAM533PN0en3Ju+C8JMbDA+WwquoF2SjYBDQjM4sqkRtuPBqnu4ah8W
-        Zlw7L7oyLEqq4daH9uOZtxVfkNlnPYXuXa2cgf0=
-X-Google-Smtp-Source: ABdhPJw/adFhHAFsrTBlvFb8K2Wp4aBtafuEsINtvoCqxDo4Bqx/NK9WXjmFzlIXM+HAr6LfzmtFTxoLfgW1ulNTuj8=
-X-Received: by 2002:a17:907:e8d:b0:6e0:19e7:9549 with SMTP id
- ho13-20020a1709070e8d00b006e019e79549mr39432086ejc.44.1649861769049; Wed, 13
- Apr 2022 07:56:09 -0700 (PDT)
+        with ESMTP id S233433AbiDMPBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 11:01:34 -0400
+X-Greylist: delayed 105489 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 13 Apr 2022 07:59:12 PDT
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365C764703;
+        Wed, 13 Apr 2022 07:59:11 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 5685D6000E;
+        Wed, 13 Apr 2022 14:59:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649861950;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=g7zAjg3ptZqqrWECXfvJR9zNVfSPbwQ7SWTZx29xlQw=;
+        b=lLKO1tiYqkxNFatSDu3YABe8z+IJcYzcMFfiRBJyfwpjfsCMhg4tS0rdi16QpgPGc+zSow
+        tzBio5kSuE/21Fu1qtgYez39H6SGGJKYc/21qQZPB4ruSEDotfseb8I+nyVHMewf/eANH8
+        3zWc0lmIRpQcOnuqu0kwc1t1xc3vFFp6+jZrSDUKfdYoAMUjZqqB+2f4SFJJQATew93bTg
+        +istpAtNWovwKwzWGYyZ5bJRy8y5tUj4k19/agTTQ5aydkY5IZaNq6EEDP1AvXPaXyZhgB
+        NZ+w7sd+PYh7nty9BrCSvkFMwidgEE1LnNCJ2RhWg4xubwn1BjSya5gqdJc86Q==
+Date:   Wed, 13 Apr 2022 16:59:07 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Sergey Shtylyov <s.shtylyov@omp.ru>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH 3/6] PCI: rcar-gen2: Add R9A06G032 support
+Message-ID: <20220413165907.183c39f5@bootlin.com>
+In-Reply-To: <75be60ce-d9b2-b9a0-c897-3cc904889db6@omp.ru>
+References: <20220412094029.287562-1-herve.codina@bootlin.com>
+        <20220412094029.287562-4-herve.codina@bootlin.com>
+        <75be60ce-d9b2-b9a0-c897-3cc904889db6@omp.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20220413094011.185269-1-cosmin.tanislav@analog.com> <20220413094011.185269-2-cosmin.tanislav@analog.com>
-In-Reply-To: <20220413094011.185269-2-cosmin.tanislav@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 13 Apr 2022 17:51:57 +0300
-Message-ID: <CAHp75VexJBnAqoQ53=_nif=bso0-cNj4EsTbUwKGKxfNq_Fvyw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] iio: ABI: adc: ad4130: document filter_mode{,_available}
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 4:17 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+Hi Sergey,
 
-It's good you provided documentation, but I think the part "ABI:" is
-not needed in the Subject.
+On Wed, 13 Apr 2022 12:08:01 +0300
+Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
 
-> AD4130-8 is an ultra-low power, high precision,
-> measurement solution for low bandwidth battery
-> operated applications.
->
-> The fully integrated AFE (Analog Front-End)
-> includes a multiplexer for up to 16 single-ended
-> or 8 differential inputs, PGA (Programmable Gain
-> Amplifier), 24-bit Sigma-Delta ADC, on-chip
-> reference and oscillator, selectable filter
-> options, smart sequencer, sensor biasing and
-> excitation options, diagnostics, and a FIFO
-> buffer.
+> Hello!
+>=20
+> On 4/12/22 12:40 PM, Herve Codina wrote:
+>=20
+> > Add Renesas R9A06G032 SoC support to the Renesas R-Car gen2 PCI
+> > bridge driver.
+> > The Renesas RZ/N1D (R9A06G032) internal PCI bridge is compatible
+> > with the one available in the R-Car Gen2 family.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  drivers/pci/controller/pci-rcar-gen2.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/drivers/pci/controller/pci-rcar-gen2.c b/drivers/pci/contr=
+oller/pci-rcar-gen2.c
+> > index 528bc3780e01..586e4785a57f 100644
+> > --- a/drivers/pci/controller/pci-rcar-gen2.c
+> > +++ b/drivers/pci/controller/pci-rcar-gen2.c
+> > @@ -352,6 +352,8 @@ static const struct of_device_id rcar_pci_of_match[=
+] =3D {
+> >  	{ .compatible =3D "renesas,pci-r8a7791", },
+> >  	{ .compatible =3D "renesas,pci-r8a7794", },
+> >  	{ .compatible =3D "renesas,pci-rcar-gen2", },
+> > +	{ .compatible =3D "renesas,pci-r9a06g032", }, =20
+>=20
+>    Do we really need this one here? Isn't it covered by the next item?
 
-Indentation issue as per patch 1.
+Yes, this one is not needed.
+Miqu=C3=A8l did the same remark too.
 
-...
+I will remove '.compatible =3D "renesas,pci-r9a06g032"' in v2.
 
-> +               Set the filter mode of the differential channel. When the filter
-> +               mode changes, the in_voltageY-voltageZ_sampling_frequency and
-> +               in_voltageY-voltageZ_sampling_frequency_available attributes
-> +               might also change to accomodate the new filter mode.
+Regards,
+Herve
 
-accommodate
-
-> +               If the current sampling frequency is out of range for the new
-> +               filter mode, the sampling frequency will be changed to the
-> +               closest valid one.
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+>=20
+> > +	{ .compatible =3D "renesas,pci-rzn1", },
+> >  	{ },
+> >  };
+> >   =20
+>=20
