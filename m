@@ -2,179 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 662C84FEDFB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 05:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DF74FEDF0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 05:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232196AbiDMD6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 23:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46012 "EHLO
+        id S232204AbiDMD5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 23:57:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229700AbiDMD6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 23:58:40 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3EF13DD1;
-        Tue, 12 Apr 2022 20:56:20 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7E8CD5C0219;
-        Tue, 12 Apr 2022 23:56:19 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 12 Apr 2022 23:56:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1649822179; x=1649908579; bh=Fp
-        hEGeu2TKs5vrPfK6f45SzuLyN0QBXdvH1zTwhivJo=; b=baW0b+RpuNN2H2Vxi1
-        MMXpw+XcqM1AgkazBgfVkZRH9ktKe+N5FE7XeC6QmyQS0I9WEq5xm+UIw0dbU1nL
-        da4P7mBqCmCFgXxz6lVDcVSLJ17t3cW/wIl2ReOP64hrMPl8EjkcRy6Yef+fGBwg
-        o49/Oj0vHLzv9T5h3DtK28MbjHY3q9gHOge2SJPQLhZEUb2ciaTCY2wUlXFBNKYR
-        XZopA10DQyLLVnXTCtOuXbxyRpdq282+/7coM0Vsd9my9O4CnS+avvv2wjXiu1Pc
-        w8dtxapyWRAeVb7fJI4+mb6pTDUEnoJqiAnMqe8T4w3YI6g+VC/9yYqjmNJiiprT
-        qD5A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1649822179; x=1649908579; bh=FphEGeu2TKs5vrPfK6f45SzuLyN0QBXdvH1
-        zTwhivJo=; b=OrzQU1+t/IQ4ke5pVMjODv71ZUVAmqgKqvBNR+Wt1JA0fU24j49
-        yZozH6FvFa0IX4nIQKZD/s7yt0Fh7D0ABvslJqHZ2f6/a8lZbE/nRzPOa2URBueW
-        AbdDuH1oENdc/zlhuws4OtDWlCbPtJX+XUHvsyDhD8+rHSIMQPJvfu2rr2vY1Oak
-        POzstT2lQ4Il+mQLZl7F9Oo/dKbX2IZe4YkNu/0+E/0leHiE0b/Af0+PkkXIPJdY
-        Uhw3rslX5XIqHf7FqD5IaZHaOVSFugi0XmzJPlOF40I4G2Nu+Hz7jyPa05Y9lMak
-        epjGoGaxdpUKTHIc8SaxQSD14aeS9xEZ8cw==
-X-ME-Sender: <xms:40lWYpJDiSXEt7WysQlbDDjtq6Z9QH5QH2U9gKeY5_Ta3kwg0nG97A>
-    <xme:40lWYlINtXwSFJvfkh3hiH5lCrJuT8nC0wpHERITiVETyrQ7WtlQrWukyM7RnY11K
-    mi4eVg15vJbGK3HkA>
-X-ME-Received: <xmr:40lWYhuwBh4ZVKbztHIbH6_LASuoA5rcFNqCG1D9FQA3anuiBTShkx31Np1pJmfrOVZrurq8NNZuaMcu6iNGUXTeN0WU0UaoQXwc6_dez1wRNZOKLM4fevJ-l4eLqCppN3Hz_Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekledgjeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:40lWYqap2NKEUJt1dX3UELB7Trah-pG9ux2Vz8irTslCNIHBUcdgmA>
-    <xmx:40lWYgYk9wPIb_NThFm3tZy2SVRbuksyPOoOtaN7yBJHr1VG8havkw>
-    <xmx:40lWYuBWBqXiegJXWpjZnBT7PYHgreZVp6OApiNdnV9-2z3tgJvEfw>
-    <xmx:40lWYlOx9qPtDW69LBwZttykHQoYNAmQnh1wUrIQtqiPo8TDwhUbGQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 12 Apr 2022 23:56:18 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: pinenote: Add USB and TCPC
-Date:   Tue, 12 Apr 2022 22:56:14 -0500
-Message-Id: <20220413035614.31045-3-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220413035614.31045-1-samuel@sholland.org>
-References: <20220413035614.31045-1-samuel@sholland.org>
+        with ESMTP id S232170AbiDMD51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 23:57:27 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BF4D13CCE
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 20:55:07 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id b188so803956oia.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 20:55:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=FvzKmQHaXA0DZABJVytp1jfjqBhOZKxzqyShV5ysPaI=;
+        b=OAYW9UBBpw4A+iCY4I5EaWlkldsxeOp+anBKmwX62Q0TRRCSFVHoTCU5lunO/PwDLx
+         o9Lq+MXt+IxvKdH0+TdwOTFmR5YDmI6ZONy2//sJsfgol5+xR2NEjtKeNDnKFkHRMyLX
+         uQV14/xbRAHLShTXWvkTeNZPc7KBdG+lJ2ai5PR/UXkH2YMusFSkfEqo/SBYzYCMwiRZ
+         4CwUcjqa5I8qMkUoPikziGCvExKSgudLFV/G9BqZmw6fXq1ERAJUJUcr8gfAmhDtNXAO
+         U/SWYihomjkSpBd2ZLvLsVY6dBsmG35qBse0B1wtgjTr82HNcKu1hl4mrtjzl7oddirx
+         0AMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FvzKmQHaXA0DZABJVytp1jfjqBhOZKxzqyShV5ysPaI=;
+        b=7Mja+juIjJ92iAlADg5Cu3SyyOsLVprqvxyBh9keIFWq32VxyDqD9Pw84k3+EZOSgI
+         lUcbmo3svhso77fjdzSgc4s3w+SiQp1TwHIJLksqIn+pJLNKKj26v1Pr/oSFvhtHpC4+
+         svpUJ58fRoSC2n6z0ZGeNToHJEV2kwVtIPD6KU/8wmQh6JzzNLpj5x9ut+CnYaEmQRUk
+         kNDSWskE6C+04Se2rfu72noinKiIgezwd3tru+wdU081jaUUugmBrsxn4LI9lvq8I5r6
+         pPEkpRy35kDcrCZJ9vhOpu7kdYPBrWJRbJZDPGBMCRLkidok20D1zHxRk2qx7WaWW7fM
+         K9VQ==
+X-Gm-Message-State: AOAM531EFu9vu9MHftCXPdm9sdu+eNXC+STZoO88nIcpOeIWiQgGdw4i
+        nci1y4sxS0kK14REkLTgd2orXw==
+X-Google-Smtp-Source: ABdhPJytHv9MYWBDz80W+4BG+BN0cR8bkxDn1ifdKRCOmARN+MzL0v9/ak+9qWlwCN1TEpvdUahlHA==
+X-Received: by 2002:a05:6808:1201:b0:2f9:ef08:1a4f with SMTP id a1-20020a056808120100b002f9ef081a4fmr3263265oil.192.1649822106718;
+        Tue, 12 Apr 2022 20:55:06 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id e9-20020a056820060900b003216277bfdasm13576747oow.19.2022.04.12.20.55.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 20:55:06 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 20:57:20 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8350: Add GENI I2C/SPI DMA
+ channels
+Message-ID: <YlZKIKR1iHO+Btwk@ripper>
+References: <20220412215137.2385831-1-bjorn.andersson@linaro.org>
+ <20220412215137.2385831-2-bjorn.andersson@linaro.org>
+ <YlZALC0DdSPB9n+/@matsya>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlZALC0DdSPB9n+/@matsya>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PineNote has a USB Type-C port connected to the first USB 2.0 OTG PHY
-and XHCI controller via a Willsemi WUSB3801 Type-C port controller.
-Add support for it.
+On Tue 12 Apr 20:14 PDT 2022, Vinod Koul wrote:
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+> On 12-04-22, 14:51, Bjorn Andersson wrote:
+> > The GENI I2C and SPI controllers may use the GPI DMA engine, define the
+> > rx and tx channels for these controllers to enable this.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8350.dtsi | 108 +++++++++++++++++++++++++++
+> >  1 file changed, 108 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > index 7e585d9e4c68..8547c0b2f060 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > @@ -721,6 +721,9 @@ i2c14: i2c@880000 {
+> >  				pinctrl-names = "default";
+> >  				pinctrl-0 = <&qup_i2c14_default>;
+> >  				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
+> > +				dmas = <&gpi_dma2 0 0 QCOM_GPI_I2C>,
+> > +				       <&gpi_dma2 1 0 QCOM_GPI_I2C>;
+> > +				dma-names = "tx", "rx";
+> 
+> I have been thinking about this. I dont feel this is right approach here
+> as this is board dependent and having the firmware loaded on the board..
+> 
+> This was tested on HDK and can fail in MTP or other boards.. which might
+> be in FIFO mode
+> 
 
- .../boot/dts/rockchip/rk3566-pinenote.dtsi    | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
+But if the controller is in FIFO mode, then !fifo_disable so we wouldn't
+try to pick up the dmas. And in the opposite case, i.e. when
+fifo_disable, the introduction of the GPI implementation meant that the
+i2c driver wouldn't no longer probe without the dmas specified.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-index adc0e7d39fb3..e01668e6e5f9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-@@ -466,6 +466,39 @@ led@1 {
- 			default-brightness = <0>;
- 		};
- 	};
-+
-+	wusb3801: tcpc@60 {
-+		compatible = "willsemi,wusb3801";
-+		reg = <0x60>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&tcpc_int_l>;
-+		pinctrl-names = "default";
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			vbus-supply = <&otg_switch>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			typec-power-opmode = "default";
-+			pd-disable;
-+
-+			ports {
-+				#address-cells = <0x1>;
-+				#size-cells = <0x0>;
-+
-+				port@0 {
-+					reg = <0x0>;
-+
-+					typec_hs_usb2phy0: endpoint {
-+						remote-endpoint = <&usb2phy0_typec_hs>;
-+					};
-+				};
-+			};
-+		};
-+	};
- };
- 
- &i2c5 {
-@@ -572,6 +605,12 @@ wifi_enable_h: wifi-enable-h {
- 		};
- 	};
- 
-+	tcpc {
-+		tcpc_int_l: tcpc-int-l {
-+			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	vcc-wl {
- 		vcc_wl_pin: vcc-wl-pin {
- 			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-@@ -659,3 +698,22 @@ bluetooth {
- &uart2 {
- 	status = "okay";
- };
-+
-+&usb_host0_xhci {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	status = "okay";
-+
-+	port {
-+		usb2phy0_typec_hs: endpoint {
-+			remote-endpoint = <&typec_hs_usb2phy0>;
-+		};
-+	};
-+};
--- 
-2.35.1
+Unfortunately we don't have any i2c busses enabled on the MTP currently,
+so I'm not able to validate this easily.
 
+
+For the SPI driver though, the same logic is used to invoke
+spi_geni_grab_gpi_chan(). So dmas will only be considered if
+fifo_disabled is set.
+
+That said, in the even that the SPI driver finds a fifo_disabled
+controller and dma_request_chan() returns an error, we will fall back to
+fifo mode instead. I'm not sure if that's desirable...
+
+If that makes sense, we should at least handle EPROBE_DEFER instead of
+falling through to fifo mode.
+
+Regards,
+Bjorn
+
+> So, I think it might be apt to move these to board dtsi.. what do you
+> think?
+> 
+> -- 
+> ~Vinod
