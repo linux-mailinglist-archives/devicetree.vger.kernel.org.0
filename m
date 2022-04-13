@@ -2,139 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E771D4FF2BC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A9BF4FF2CC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 10:56:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbiDMIyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 04:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36064 "EHLO
+        id S232965AbiDMI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 04:58:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234092AbiDMIye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:54:34 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD70149939;
-        Wed, 13 Apr 2022 01:52:04 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 7698121110;
-        Wed, 13 Apr 2022 08:52:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1649839923; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=9GYpfybgqBmDWR1LwtozuNW1NwOcsVxp2JYkv3jb+yY=;
-        b=SRrH+U6/GxLh5gIco/h3NzyN6nL2hY7kKvFftKjks6rLr11sAaM5xBB9AmQ8CZ+yYHvNsB
-        a1IeWuSXON5AXDovDW7as7+RizvxtpTJXhqkfyIgY0Jr2oeuifFxgxwvYg/Tp9QAh6uj9S
-        KY5Pje9vDWz2DQXTlsPgipFmm4SX6qE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1649839923;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=9GYpfybgqBmDWR1LwtozuNW1NwOcsVxp2JYkv3jb+yY=;
-        b=RJtEx7vKdnApwiOUV4wEAhgiR1vk2SsFPNkKs4+FdxjrRWnCW3PXF6TkzPLbm+BpjTMHAX
-        mk20nz1CuzQIOPDQ==
-Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
-        by relay2.suse.de (Postfix) with ESMTP id 613FEA3B95;
-        Wed, 13 Apr 2022 08:52:03 +0000 (UTC)
-Date:   Wed, 13 Apr 2022 10:52:03 +0200
-Message-ID: <s5hilrd74cs.wl-tiwai@suse.de>
-From:   Takashi Iwai <tiwai@suse.de>
-To:     Lucas Tanure <tanureal@opensource.cirrus.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229899AbiDMI6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 04:58:44 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB4704C407
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:56:23 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id h11so1364102ljb.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 01:56:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pW/YXqDQlANPBYShRmBV2kdR37gC3CSOvx43OZDkAhE=;
+        b=qh42nCIWLGN1ZO8hf0HKW2TozddfXNaIBL9zBdN2j8n60oMeBN/ONPfQS1qzMtVYXb
+         HDixcST50N9KtLPWYqQxHI2Qyjva/qMxKOMgpJ7AAs8DMV4chKNTmaPrex/fFApFPGFY
+         aUsZCgsZBjlxrs6ob5iJX5Noga9W/z2l4AJfUsiokfmWZEl0XfR8IKthQQU8afNzrJQt
+         z0K6VqLO8h3TIQYl1NTbqD2J/PRdSJEoZBJqgvu0XThoT+Ptyd8NNfwfcoYPWpBbSgF2
+         NzzvcGl2G3XA5zDizGPbxtHgFGc1cd7gEI5BVBRTlD2eD5MZMu7cEbc3KKAk5sDV7r7S
+         qWsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pW/YXqDQlANPBYShRmBV2kdR37gC3CSOvx43OZDkAhE=;
+        b=iPQ3amk0dBRZ2czEmsRMqMj8YYlOD0X3iPY8G3F4WAdCcyYqJOOBKfzqqgvtoAhgcd
+         RmDUcuGXddLTFH725qUfVVyLzOpWPo+/Vplj3nzDO29uh6cBX35D1gilMeDjzF9I454Y
+         L0LBSAWB4m0/Q/i8L9bIHBV8yygaEi3lN+b7ekg4YrdPBvFyDTu90J0Y7jpNvWqstXjO
+         A4kgi4r7JCnjPWKvRqX0pjggQ1ZnTNrKlhke4y0h0So5tJIuhkXbMdrE/TAJ+kfa8y8E
+         UTv4LUMPaC7YJW+tiwafCnirVfCL4KGKWJCMZa7k7lvRP+8LlryfbsSYeGeJUkqD3/Zm
+         LWRA==
+X-Gm-Message-State: AOAM532i37J2j4gJjrSGeE5m/TJ0ydcIf29VABehbaJqY3jl7NypLCC7
+        rFd95sznGLfihuaurd82YQE1Jw==
+X-Google-Smtp-Source: ABdhPJwNr3fF1U5cyt61pQkVfOd9PYDX8/VX7j47apbjMQcNns5dZH+kozuz5AHC6Jhsli2ImOC+SA==
+X-Received: by 2002:a05:651c:4d2:b0:24b:5de1:222 with SMTP id e18-20020a05651c04d200b0024b5de10222mr10509562lji.38.1649840182020;
+        Wed, 13 Apr 2022 01:56:22 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id c3-20020a056512104300b0044a3582c9ecsm4034584lfb.219.2022.04.13.01.56.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 01:56:21 -0700 (PDT)
+Message-ID: <e0ab19b3-0ae4-efd4-4035-44c8a5aec443@linaro.org>
+Date:   Wed, 13 Apr 2022 11:56:21 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 17/18] ARM: dts: qcom: add ipq8064-v2.0 dtsi
+Content-Language: en-GB
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 00/16] Support external boost at CS35l41 ASoC driver
-In-Reply-To: <20220413083728.10730-1-tanureal@opensource.cirrus.com>
-References: <20220413083728.10730-1-tanureal@opensource.cirrus.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
- FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
- (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jonathan McDowell <noodles@earth.li>
+References: <20220309190152.7998-1-ansuelsmth@gmail.com>
+ <20220309190152.7998-18-ansuelsmth@gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220309190152.7998-18-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Apr 2022 10:37:12 +0200,
-Lucas Tanure wrote:
+On 09/03/2022 22:01, Ansuel Smith wrote:
+> Many devices are based on the v2.0 of the ipq8064 SoC. Main difference
+> is a change in the pci compatible and different way to configre the usb
+> phy.
 > 
-> Move the support for CS35L41 external boost to its shared library
-> for ASoC use.
-> This move resulted in cs35l41_hda_reg_sequence being removed,
-> and its steps were broken down into regmap writes or functions
-> from the library. And hardware configuration struct was unified
-> for its use in the shared lib.
-> While at it, some minor bugs were found and fixed it.
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Tested-by: Jonathan McDowell <noodles@earth.li>
+> ---
+>   arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi | 70 ++++++++++++++++++++++++
+>   1 file changed, 70 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
 > 
-> v7 changelog:
->  - Rebased on top v5.18-rc2 tag
->  - Acks from Mark Brown
-> 
-> v6 changelog:
->  - Rebased on top of Linux Next with community patches for CS35L41
->  - Document patch acked by Charles Keepax
-> 
-> v5 changelog:
->  - Fixed wrong indentation at Documentation patch
->  - Use of consistent prefix
-> 
-> v4 changelog:
->  - Separated GPIO 1 and 2 function enums
-> 
-> v3 changelog:
->  - Remove patches already accepted
->  - Improved logic in documentation patch
->  - Documentation patch goes before its code
->  - Fixed missing Signed-off-by
->  - Fixed subject for HDA patches
-> 
-> v2 changelog:
->  - Instead of removing the log, playback actions will log the last regmap access.
->  - Documentation patch with the correct subject line and fixed bug reported by Rob Herring on the
->  provided example.
-> 
-> Previous versions:
->  v1: https://lkml.org/lkml/2022/3/3/759
->  v2: https://lkml.org/lkml/2022/3/4/743
->  v3: https://lkml.org/lkml/2022/3/8/975
->  v4: https://lkml.org/lkml/2022/3/17/267
->  v5: https://lkml.org/lkml/2022/3/22/696
->  v6: https://lkml.org/lkml/2022/4/9/114
-> 
-> David Rhodes (1):
->   ASoC: cs35l41: Document CS35l41 External Boost
-> 
-> Lucas Tanure (15):
->   ALSA: cs35l41: Unify hardware configuration
->   ALSA: cs35l41: Check hw_config before using it
->   ALSA: cs35l41: Move cs35l41_gpio_config to shared lib
->   ALSA: hda: cs35l41: Fix I2S params comments
->   ALSA: hda: cs35l41: Always configure the DAI
->   ALSA: hda: cs35l41: Add Boost type flag
->   ALSA: hda: cs35l41: Put the device into safe mode for external boost
->   ALSA: hda: cs35l41: Mute the device before shutdown
->   ALSA: cs35l41: Enable Internal Boost in shared lib
->   ALSA: hda: cs35l41: Move boost config to initialization code
->   ALSA: hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
->   ALSA: hda: cs35l41: Reorganize log for playback actions
->   ALSA: hda: cs35l41: Handle all external boost setups the same way
->   ALSA: hda: cs35l41: Move external boost handling to lib for ASoC use
->   ASoC: cs35l41: Support external boost
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+> new file mode 100644
+> index 000000000000..c082c3cd1a19
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+> @@ -0,0 +1,70 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include "qcom-ipq8064.dtsi"
+> +
+> +/ {
+> +	aliases {
+> +		serial0 = &gsbi4_serial;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
 
-Now applied all 16 patches to for-next branch.
+I'd expect that /aliases and /chosen should go to the board dts files.
+I see that ipq8064-v1.0.dtsi also is a mixture of SoC-specific nodes and 
+board details (gpio, leds, aliases, etc.). I think it should be split 
+into ipq8064-v1.0.dtsi and ipq8064-common.dtsi (or 
+ipq8064-v1.0-common.dtsi). This file also should contain just SoC 
+specifics, not the enablement of individual devices.
+
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		rsvd@41200000 {
+> +			reg = <0x41200000 0x300000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&gsbi4 {
+> +	qcom,mode = <GSBI_PROT_I2C_UART>;
+> +	status = "okay";
+> +
+> +	serial@16340000 {
+> +		status = "okay";
+> +	};
+> +	/*
+> +	 * The i2c device on gsbi4 should not be enabled.
+> +	 * On ipq806x designs gsbi4 i2c is meant for exclusive
+> +	 * RPM usage. Turning this on in kernel manifests as
+> +	 * i2c failure for the RPM.
+> +	 */
+> +};
+> +
+> +&CPU_SPC {
+> +	status = "okay";
+> +};
+> +
+> +&pcie0 {
+> +	compatible = "qcom,pcie-ipq8064-v2";
+> +};
+> +
+> +&pcie1 {
+> +	compatible = "qcom,pcie-ipq8064-v2";
+> +};
+> +
+> +&pcie2 {
+> +	compatible = "qcom,pcie-ipq8064-v2";
+> +};
+> +
+> +&sata {
+> +	ports-implemented = <0x1>;
+> +};
+> +
+> +&ss_phy_0 {
+> +	qcom,rx-eq = <2>;
+> +	qcom,tx-deamp_3_5db = <32>;
+> +	qcom,mpll = <5>;
+> +};
+> +
+> +&ss_phy_1 {
+> +	qcom,rx-eq = <2>;
+> +	qcom,tx-deamp_3_5db = <32>;
+> +	qcom,mpll = <5>;
+> +};
 
 
-thanks,
-
-Takashi
+-- 
+With best wishes
+Dmitry
