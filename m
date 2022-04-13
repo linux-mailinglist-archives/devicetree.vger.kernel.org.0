@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D4D24FED15
-	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 04:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8254FED35
+	for <lists+devicetree@lfdr.de>; Wed, 13 Apr 2022 04:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbiDMCkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Apr 2022 22:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
+        id S230100AbiDMC4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Apr 2022 22:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231774AbiDMCj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 22:39:59 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C48F289A5;
-        Tue, 12 Apr 2022 19:37:39 -0700 (PDT)
-X-UUID: a0f3cbe8811c475eb05eb35344298732-20220413
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:54ef5d47-2b1f-4752-8970-6073c675dae7,OB:0,LO
-        B:10,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,
-        ACTION:release,TS:75
-X-CID-INFO: VERSION:1.1.4,REQID:54ef5d47-2b1f-4752-8970-6073c675dae7,OB:0,LOB:
-        10,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,
-        ACTION:quarantine,TS:75
-X-CID-META: VersionHash:faefae9,CLOUDID:b6373278-0afa-4dca-bdec-ca54c998425a,C
-        OID:a844d427e8a7,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
-        le:nil,QS:0,BEC:nil
-X-UUID: a0f3cbe8811c475eb05eb35344298732-20220413
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1189912167; Wed, 13 Apr 2022 10:37:34 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 13 Apr 2022 10:37:32 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 13 Apr 2022 10:37:30 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2, 3/3] media: mediatek: vcodec: add h264 decoder driver for mt8186
-Date:   Wed, 13 Apr 2022 10:37:20 +0800
-Message-ID: <20220413023720.29297-4-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220413023720.29297-1-yunfei.dong@mediatek.com>
-References: <20220413023720.29297-1-yunfei.dong@mediatek.com>
+        with ESMTP id S230305AbiDMC4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Apr 2022 22:56:08 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE9850B17
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 19:53:47 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id e4so757351oif.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Apr 2022 19:53:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZoH8e8r4UIOSvPUE6COhhCPVOxGvag/JlmUFDcc7v9c=;
+        b=QdRxIJieaKx4DXmHDy84cGdCn24f19EMkeavNCtFBqNUAdnGVAUekrpFfrz/No5U/r
+         eDj85Ma17HgGu4D1Y8CvyqKvOFa+K2dD+FzrUHl103iuVEy8Cox+W8ZdEy3emrWOjrJs
+         7rCo/uP5Skz7su7QAbMSBDYNWFnV1N2HlbCa6p4t0E0DURPDDap2b7DEOE5LG7UzvhJ/
+         XkMB1gPkMfpUpvmAO83ynGfFvWlz30yK6F93DX0GvXSRsglxV3eaEj0JCHOMBkh/pLTF
+         UclsLdrxrkCJyhhbOSgKGc8alF4XW7ENEJWRzBAUS2skbauB1BpRlwmWL/r75iBuapcQ
+         e1KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZoH8e8r4UIOSvPUE6COhhCPVOxGvag/JlmUFDcc7v9c=;
+        b=fzBnFia0XpwOjniejUDSbVEuOJ8sRAeaPNTWrIOl8rEGIWyJfrOLhGKCgJY3MeQV1/
+         1uA5pUqBXhsrMjNGVO8OzprB58gxCZkpoE/7Kpjs+5xsnPPSYj5J4/hNrbOUKVc1YwQ8
+         mF1AvQDORZW0huL6CuaaB86qnsQ1ttOalFeEJKfZLgr2dZi/JriokqX13LfkuSIePtW+
+         g/Y4W7m8LrVTEvKtnvhNDqxcs8AUHhmwIQEbzGwaUy1VXaE+4nG16AI1hzOQmGZAUSdH
+         xou2ZWlDoznDyqLaxnfQYka+oCo5i5o3jIvk8oLi1JeALJiYFTi6As4ErbX6mIB7RVeZ
+         HSKg==
+X-Gm-Message-State: AOAM531xyE4KHjERYfQ1FIjqaOx+bx752V6thPY15CF/SuZEIcVXADfj
+        oEqGtfyo3wkLggZyo87C/OPQzQ==
+X-Google-Smtp-Source: ABdhPJzqVaavPu18pxeAvlFROAK09XbgwwbuCORaHWi4EHwzighR1lI37Zi49s2G9WeToQOOTWV3dw==
+X-Received: by 2002:a05:6808:1b21:b0:2d9:fd1b:c85d with SMTP id bx33-20020a0568081b2100b002d9fd1bc85dmr3162274oib.174.1649818427322;
+        Tue, 12 Apr 2022 19:53:47 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id eq37-20020a056870a92500b000c6699dad62sm14850209oab.41.2022.04.12.19.53.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Apr 2022 19:53:46 -0700 (PDT)
+Date:   Tue, 12 Apr 2022 21:53:45 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: clock: add QCOM SM8450 camera clock
+ bindings
+Message-ID: <YlY7OYSc4vlUQe+O@builder.lan>
+References: <20220314114211.1636574-1-vladimir.zapolskiy@linaro.org>
+ <20220314114211.1636574-2-vladimir.zapolskiy@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220314114211.1636574-2-vladimir.zapolskiy@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,230 +74,291 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add h264 decode driver to support mt8186. For the architecture
-is single core, need to add new interface to decode.
+On Mon 14 Mar 06:42 CDT 2022, Vladimir Zapolskiy wrote:
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../vcodec/vdec/vdec_h264_req_multi_if.c      | 177 +++++++++++++++++-
- 1 file changed, 176 insertions(+), 1 deletion(-)
+> The change adds device tree bindings for camera clock controller
+> found on SM8450 SoC.
+> 
 
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-index 757443dbbbf5..e199620b076d 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-@@ -140,6 +140,9 @@ struct vdec_h264_slice_share_info {
-  * @vsi:		vsi used for lat
-  * @vsi_core:		vsi used for core
-  *
-+ * @vsi_ctx:		Local VSI data for this decoding context
-+ * @h264_slice_param:	the parameters that hardware use to decode
-+ *
-  * @resolution_changed:resolution changed
-  * @realloc_mv_buf:	reallocate mv buffer
-  * @cap_num_planes:	number of capture queue plane
-@@ -157,6 +160,9 @@ struct vdec_h264_slice_inst {
- 	struct vdec_h264_slice_vsi *vsi;
- 	struct vdec_h264_slice_vsi *vsi_core;
- 
-+	struct vdec_h264_slice_vsi vsi_ctx;
-+	struct vdec_h264_slice_lat_dec_param h264_slice_param;
-+
- 	unsigned int resolution_changed;
- 	unsigned int realloc_mv_buf;
- 	unsigned int cap_num_planes;
-@@ -208,6 +214,61 @@ static int vdec_h264_slice_fill_decode_parameters(struct vdec_h264_slice_inst *i
- 	return 0;
- }
- 
-+static int get_vdec_sig_decode_parameters(struct vdec_h264_slice_inst *inst)
-+{
-+	const struct v4l2_ctrl_h264_decode_params *dec_params;
-+	const struct v4l2_ctrl_h264_sps *sps;
-+	const struct v4l2_ctrl_h264_pps *pps;
-+	const struct v4l2_ctrl_h264_scaling_matrix *scaling_matrix;
-+	struct vdec_h264_slice_lat_dec_param *slice_param = &inst->h264_slice_param;
-+	struct v4l2_h264_reflist_builder reflist_builder;
-+	u8 *p0_reflist = slice_param->decode_params.ref_pic_list_p0;
-+	u8 *b0_reflist = slice_param->decode_params.ref_pic_list_b0;
-+	u8 *b1_reflist = slice_param->decode_params.ref_pic_list_b1;
-+
-+	dec_params =
-+		mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_DECODE_PARAMS);
-+	if (IS_ERR(dec_params))
-+		return PTR_ERR(dec_params);
-+
-+	sps = mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_SPS);
-+	if (IS_ERR(sps))
-+		return PTR_ERR(sps);
-+
-+	pps = mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_PPS);
-+	if (IS_ERR(pps))
-+		return PTR_ERR(pps);
-+
-+	scaling_matrix =
-+		mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_SCALING_MATRIX);
-+	if (IS_ERR(scaling_matrix))
-+		return PTR_ERR(scaling_matrix);
-+
-+	mtk_vdec_h264_update_dpb(dec_params, inst->dpb);
-+
-+	mtk_vdec_h264_copy_sps_params(&slice_param->sps, sps);
-+	mtk_vdec_h264_copy_pps_params(&slice_param->pps, pps);
-+	mtk_vdec_h264_copy_scaling_matrix(&slice_param->scaling_matrix, scaling_matrix);
-+
-+	mtk_vdec_h264_copy_decode_params(&slice_param->decode_params, dec_params, inst->dpb);
-+	mtk_vdec_h264_fill_dpb_info(inst->ctx, &slice_param->decode_params,
-+				    slice_param->h264_dpb_info);
-+
-+	/* Build the reference lists */
-+	v4l2_h264_init_reflist_builder(&reflist_builder, dec_params, sps, inst->dpb);
-+	v4l2_h264_build_p_ref_list(&reflist_builder, p0_reflist);
-+
-+	v4l2_h264_build_b_ref_lists(&reflist_builder, b0_reflist, b1_reflist);
-+	/* Adapt the built lists to the firmware's expectations */
-+	mtk_vdec_h264_fixup_ref_list(p0_reflist, reflist_builder.num_valid);
-+	mtk_vdec_h264_fixup_ref_list(b0_reflist, reflist_builder.num_valid);
-+	mtk_vdec_h264_fixup_ref_list(b1_reflist, reflist_builder.num_valid);
-+	memcpy(&inst->vsi_ctx.h264_slice_params, slice_param,
-+	       sizeof(inst->vsi_ctx.h264_slice_params));
-+
-+	return 0;
-+}
-+
- static void vdec_h264_slice_fill_decode_reflist(struct vdec_h264_slice_inst *inst,
- 						struct vdec_h264_slice_lat_dec_param *slice_param,
- 						struct vdec_h264_slice_share_info *share_info)
-@@ -596,6 +657,120 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	return err;
- }
- 
-+static int vdec_h264_slice_single_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
-+					 struct vdec_fb *unused, bool *res_chg)
-+{
-+	struct vdec_h264_slice_inst *inst = h_vdec;
-+	struct vdec_vpu_inst *vpu = &inst->vpu;
-+	struct mtk_video_dec_buf *src_buf_info, *dst_buf_info;
-+	struct vdec_fb *fb;
-+	unsigned char *buf;
-+	unsigned int nal_start_idx, data[2], i;
-+	u64 y_fb_dma, c_fb_dma;
-+	struct mtk_vcodec_mem *mem;
-+	int err;
-+
-+	/* bs NULL means flush decoder */
-+	if (!bs)
-+		return vpu_dec_reset(vpu);
-+
-+	fb = inst->ctx->dev->vdec_pdata->get_cap_buffer(inst->ctx);
-+	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-+	dst_buf_info = container_of(fb, struct mtk_video_dec_buf, frame_buffer);
-+
-+	y_fb_dma = fb ? (u64)fb->base_y.dma_addr : 0;
-+	c_fb_dma = fb ? (u64)fb->base_c.dma_addr : 0;
-+	mtk_vcodec_debug(inst, "+ [%d] FB y_dma=%llx c_dma=%llx va=0x%llx",
-+			 inst->ctx->decoded_frame_cnt, y_fb_dma, c_fb_dma, (u64)fb);
-+
-+	inst->vsi_ctx.dec.bs_buf_addr = (u64)bs->dma_addr;
-+	inst->vsi_ctx.dec.bs_buf_size = bs->size;
-+	inst->vsi_ctx.dec.y_fb_dma = y_fb_dma;
-+	inst->vsi_ctx.dec.c_fb_dma = c_fb_dma;
-+	inst->vsi_ctx.dec.vdec_fb_va = (u64)(uintptr_t)fb;
-+
-+	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb,
-+				   &dst_buf_info->m2m_buf.vb, true);
-+	err = get_vdec_sig_decode_parameters(inst);
-+	if (err)
-+		goto err_free_fb_out;
-+
-+	buf = (unsigned char *)bs->va;
-+	nal_start_idx = mtk_vdec_h264_find_start_code(buf, bs->size);
-+	if (nal_start_idx < 0) {
-+		err = -EINVAL;
-+		goto err_free_fb_out;
-+	}
-+	inst->vsi_ctx.dec.nal_info = buf[nal_start_idx];
-+
-+	*res_chg = inst->resolution_changed;
-+	if (inst->resolution_changed) {
-+		mtk_vcodec_debug(inst, "- resolution changed -");
-+		if (inst->realloc_mv_buf) {
-+			err = vdec_h264_slice_alloc_mv_buf(inst, &inst->ctx->picinfo);
-+			inst->realloc_mv_buf = false;
-+			if (err)
-+				goto err_free_fb_out;
-+		}
-+		inst->resolution_changed = false;
-+
-+		for (i = 0; i < H264_MAX_MV_NUM; i++) {
-+			mem = &inst->mv_buf[i];
-+			inst->vsi_ctx.mv_buf_dma[i] = mem->dma_addr;
-+		}
-+	}
-+
-+	memcpy_toio(inst->vpu.vsi, &inst->vsi_ctx, sizeof(inst->vsi_ctx));
-+	err = vpu_dec_start(vpu, data, 2);
-+	if (err)
-+		goto err_free_fb_out;
-+
-+	/* wait decoder done interrupt */
-+	err = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
-+					   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
-+	if (err)
-+		mtk_vcodec_err(inst, "decode timeout: pic_%d",
-+			       inst->ctx->decoded_frame_cnt);
-+
-+	inst->vsi->dec.timeout = !!err;
-+	err = vpu_dec_end(vpu);
-+	if (err)
-+		goto err_free_fb_out;
-+
-+	memcpy_fromio(&inst->vsi_ctx, inst->vpu.vsi, sizeof(inst->vsi_ctx));
-+	mtk_vcodec_debug(inst, "pic[%d] crc: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x",
-+			 inst->ctx->decoded_frame_cnt,
-+			 inst->vsi_ctx.dec.crc[0], inst->vsi_ctx.dec.crc[1],
-+			 inst->vsi_ctx.dec.crc[2], inst->vsi_ctx.dec.crc[3],
-+			 inst->vsi_ctx.dec.crc[4], inst->vsi_ctx.dec.crc[5],
-+			 inst->vsi_ctx.dec.crc[6], inst->vsi_ctx.dec.crc[7]);
-+
-+	inst->ctx->decoded_frame_cnt++;
-+	return 0;
-+
-+err_free_fb_out:
-+	mtk_vcodec_err(inst, "dec frame number: %d err: %d",
-+		       inst->ctx->decoded_frame_cnt, err);
-+	return err;
-+}
-+
-+static int vdec_h264_slice_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
-+				  struct vdec_fb *unused, bool *res_chg)
-+{
-+	struct vdec_h264_slice_inst *inst = h_vdec;
-+	int ret;
-+
-+	if (!h_vdec)
-+		return -EINVAL;
-+
-+	if (inst->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_PURE_SINGLE_CORE)
-+		ret = vdec_h264_slice_single_decode(h_vdec, bs, unused, res_chg);
-+	else
-+		ret = vdec_h264_slice_lat_decode(h_vdec, bs, unused, res_chg);
-+
-+	return ret;
-+}
-+
- static int vdec_h264_slice_get_param(void *h_vdec, enum vdec_get_param_type type,
- 				     void *out)
- {
-@@ -620,7 +795,7 @@ static int vdec_h264_slice_get_param(void *h_vdec, enum vdec_get_param_type type
- 
- const struct vdec_common_if vdec_h264_slice_multi_if = {
- 	.init		= vdec_h264_slice_init,
--	.decode		= vdec_h264_slice_lat_decode,
-+	.decode		= vdec_h264_slice_decode,
- 	.get_param	= vdec_h264_slice_get_param,
- 	.deinit		= vdec_h264_slice_deinit,
- };
--- 
-2.18.0
+This series looks good to me. I had some very minor suggestions on
+the driver implementation side, please fix those up and address the DT
+warning reported by Rob, so we can get an ack from the DT maintainers.
 
+Thanks,
+Bjorn
+
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+> Changes from v1 to v2:
+> * updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+> * changed qcom,camcc-sm8450.h license to dual one.
+> 
+>  .../bindings/clock/qcom,camcc-sm8450.yaml     |  89 ++++++++++
+>  include/dt-bindings/clock/qcom,camcc-sm8450.h | 159 ++++++++++++++++++
+>  2 files changed, 248 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8450.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml
+> new file mode 100644
+> index 000000000000..2ea0fc12dd69
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,camcc-sm8450.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Camera Clock & Reset Controller Binding for SM8450
+> +
+> +maintainers:
+> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +
+> +description: |
+> +  Qualcomm camera clock control module which supports the clocks, resets and
+> +  power domains on SM8450.
+> +
+> +  See also dt-bindings/clock/qcom,camcc-sm8450.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8450-camcc
+> +
+> +  clocks:
+> +    items:
+> +      - description: Camera AHB clock from GCC
+> +      - description: Board XO source
+> +      - description: Board active XO source
+> +      - description: Sleep clock source
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +      - const: bi_tcxo
+> +      - const: bi_tcxo_ao
+> +      - const: sleep_clk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +    description:
+> +      A phandle and PM domain specifier for the MMCX power domain.
+> +
+> +  required-opps:
+> +    description:
+> +      A phandle to an OPP node describing required MMCX performance point.
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - required-opps
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +    clock-controller@ade0000 {
+> +      compatible = "qcom,sm8450-camcc";
+> +      reg = <0 0xade0000 0 0x20000>;
+> +      clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+> +               <&rpmhcc RPMH_CXO_CLK>,
+> +               <&rpmhcc RPMH_CXO_CLK_A>,
+> +               <&sleep_clk>;
+> +      clock-names = "iface", bi_tcxo", "bi_tcxo_ao", "sleep_clk";
+> +      power-domains = <&rpmhpd SM8450_MMCX>;
+> +      required-opps = <&rpmhpd_opp_low_svs>;
+> +      #clock-cells = <1>;
+> +      #reset-cells = <1>;
+> +      #power-domain-cells = <1>;
+> +    };
+> +...
+> diff --git a/include/dt-bindings/clock/qcom,camcc-sm8450.h b/include/dt-bindings/clock/qcom,camcc-sm8450.h
+> new file mode 100644
+> index 000000000000..7ff67acf301a
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,camcc-sm8450.h
+> @@ -0,0 +1,159 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8450_H
+> +#define _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8450_H
+> +
+> +/* CAM_CC clocks */
+> +#define CAM_CC_BPS_AHB_CLK					0
+> +#define CAM_CC_BPS_CLK						1
+> +#define CAM_CC_BPS_CLK_SRC					2
+> +#define CAM_CC_BPS_FAST_AHB_CLK					3
+> +#define CAM_CC_CAMNOC_AXI_CLK					4
+> +#define CAM_CC_CAMNOC_AXI_CLK_SRC				5
+> +#define CAM_CC_CAMNOC_DCD_XO_CLK				6
+> +#define CAM_CC_CCI_0_CLK					7
+> +#define CAM_CC_CCI_0_CLK_SRC					8
+> +#define CAM_CC_CCI_1_CLK					9
+> +#define CAM_CC_CCI_1_CLK_SRC					10
+> +#define CAM_CC_CORE_AHB_CLK					11
+> +#define CAM_CC_CPAS_AHB_CLK					12
+> +#define CAM_CC_CPAS_BPS_CLK					13
+> +#define CAM_CC_CPAS_FAST_AHB_CLK				14
+> +#define CAM_CC_CPAS_IFE_0_CLK					15
+> +#define CAM_CC_CPAS_IFE_1_CLK					16
+> +#define CAM_CC_CPAS_IFE_2_CLK					17
+> +#define CAM_CC_CPAS_IFE_LITE_CLK				18
+> +#define CAM_CC_CPAS_IPE_NPS_CLK					19
+> +#define CAM_CC_CPAS_SBI_CLK					20
+> +#define CAM_CC_CPAS_SFE_0_CLK					21
+> +#define CAM_CC_CPAS_SFE_1_CLK					22
+> +#define CAM_CC_CPHY_RX_CLK_SRC					23
+> +#define CAM_CC_CSI0PHYTIMER_CLK					24
+> +#define CAM_CC_CSI0PHYTIMER_CLK_SRC				25
+> +#define CAM_CC_CSI1PHYTIMER_CLK					26
+> +#define CAM_CC_CSI1PHYTIMER_CLK_SRC				27
+> +#define CAM_CC_CSI2PHYTIMER_CLK					28
+> +#define CAM_CC_CSI2PHYTIMER_CLK_SRC				29
+> +#define CAM_CC_CSI3PHYTIMER_CLK					30
+> +#define CAM_CC_CSI3PHYTIMER_CLK_SRC				31
+> +#define CAM_CC_CSI4PHYTIMER_CLK					32
+> +#define CAM_CC_CSI4PHYTIMER_CLK_SRC				33
+> +#define CAM_CC_CSI5PHYTIMER_CLK					34
+> +#define CAM_CC_CSI5PHYTIMER_CLK_SRC				35
+> +#define CAM_CC_CSID_CLK						36
+> +#define CAM_CC_CSID_CLK_SRC					37
+> +#define CAM_CC_CSID_CSIPHY_RX_CLK				38
+> +#define CAM_CC_CSIPHY0_CLK					39
+> +#define CAM_CC_CSIPHY1_CLK					40
+> +#define CAM_CC_CSIPHY2_CLK					41
+> +#define CAM_CC_CSIPHY3_CLK					42
+> +#define CAM_CC_CSIPHY4_CLK					43
+> +#define CAM_CC_CSIPHY5_CLK					44
+> +#define CAM_CC_FAST_AHB_CLK_SRC					45
+> +#define CAM_CC_GDSC_CLK						46
+> +#define CAM_CC_ICP_AHB_CLK					47
+> +#define CAM_CC_ICP_CLK						48
+> +#define CAM_CC_ICP_CLK_SRC					49
+> +#define CAM_CC_IFE_0_CLK					50
+> +#define CAM_CC_IFE_0_CLK_SRC					51
+> +#define CAM_CC_IFE_0_DSP_CLK					52
+> +#define CAM_CC_IFE_0_FAST_AHB_CLK				53
+> +#define CAM_CC_IFE_1_CLK					54
+> +#define CAM_CC_IFE_1_CLK_SRC					55
+> +#define CAM_CC_IFE_1_DSP_CLK					56
+> +#define CAM_CC_IFE_1_FAST_AHB_CLK				57
+> +#define CAM_CC_IFE_2_CLK					58
+> +#define CAM_CC_IFE_2_CLK_SRC					59
+> +#define CAM_CC_IFE_2_DSP_CLK					60
+> +#define CAM_CC_IFE_2_FAST_AHB_CLK				61
+> +#define CAM_CC_IFE_LITE_AHB_CLK					62
+> +#define CAM_CC_IFE_LITE_CLK					63
+> +#define CAM_CC_IFE_LITE_CLK_SRC					64
+> +#define CAM_CC_IFE_LITE_CPHY_RX_CLK				65
+> +#define CAM_CC_IFE_LITE_CSID_CLK				66
+> +#define CAM_CC_IFE_LITE_CSID_CLK_SRC				67
+> +#define CAM_CC_IPE_NPS_AHB_CLK					68
+> +#define CAM_CC_IPE_NPS_CLK					69
+> +#define CAM_CC_IPE_NPS_CLK_SRC					70
+> +#define CAM_CC_IPE_NPS_FAST_AHB_CLK				71
+> +#define CAM_CC_IPE_PPS_CLK					72
+> +#define CAM_CC_IPE_PPS_FAST_AHB_CLK				73
+> +#define CAM_CC_JPEG_CLK						74
+> +#define CAM_CC_JPEG_CLK_SRC					75
+> +#define CAM_CC_MCLK0_CLK					76
+> +#define CAM_CC_MCLK0_CLK_SRC					77
+> +#define CAM_CC_MCLK1_CLK					78
+> +#define CAM_CC_MCLK1_CLK_SRC					79
+> +#define CAM_CC_MCLK2_CLK					80
+> +#define CAM_CC_MCLK2_CLK_SRC					81
+> +#define CAM_CC_MCLK3_CLK					82
+> +#define CAM_CC_MCLK3_CLK_SRC					83
+> +#define CAM_CC_MCLK4_CLK					84
+> +#define CAM_CC_MCLK4_CLK_SRC					85
+> +#define CAM_CC_MCLK5_CLK					86
+> +#define CAM_CC_MCLK5_CLK_SRC					87
+> +#define CAM_CC_MCLK6_CLK					88
+> +#define CAM_CC_MCLK6_CLK_SRC					89
+> +#define CAM_CC_MCLK7_CLK					90
+> +#define CAM_CC_MCLK7_CLK_SRC					91
+> +#define CAM_CC_PLL0						92
+> +#define CAM_CC_PLL0_OUT_EVEN					93
+> +#define CAM_CC_PLL0_OUT_ODD					94
+> +#define CAM_CC_PLL1						95
+> +#define CAM_CC_PLL1_OUT_EVEN					96
+> +#define CAM_CC_PLL2						97
+> +#define CAM_CC_PLL3						98
+> +#define CAM_CC_PLL3_OUT_EVEN					99
+> +#define CAM_CC_PLL4						100
+> +#define CAM_CC_PLL4_OUT_EVEN					101
+> +#define CAM_CC_PLL5						102
+> +#define CAM_CC_PLL5_OUT_EVEN					103
+> +#define CAM_CC_PLL6						104
+> +#define CAM_CC_PLL6_OUT_EVEN					105
+> +#define CAM_CC_PLL7						106
+> +#define CAM_CC_PLL7_OUT_EVEN					107
+> +#define CAM_CC_PLL8						108
+> +#define CAM_CC_PLL8_OUT_EVEN					109
+> +#define CAM_CC_QDSS_DEBUG_CLK					110
+> +#define CAM_CC_QDSS_DEBUG_CLK_SRC				111
+> +#define CAM_CC_QDSS_DEBUG_XO_CLK				112
+> +#define CAM_CC_SBI_AHB_CLK					113
+> +#define CAM_CC_SBI_CLK						114
+> +#define CAM_CC_SFE_0_CLK					115
+> +#define CAM_CC_SFE_0_CLK_SRC					116
+> +#define CAM_CC_SFE_0_FAST_AHB_CLK				117
+> +#define CAM_CC_SFE_1_CLK					118
+> +#define CAM_CC_SFE_1_CLK_SRC					119
+> +#define CAM_CC_SFE_1_FAST_AHB_CLK				120
+> +#define CAM_CC_SLEEP_CLK					121
+> +#define CAM_CC_SLEEP_CLK_SRC					122
+> +#define CAM_CC_SLOW_AHB_CLK_SRC					123
+> +#define CAM_CC_XO_CLK_SRC					124
+> +
+> +/* CAM_CC resets */
+> +#define CAM_CC_BPS_BCR						0
+> +#define CAM_CC_ICP_BCR						1
+> +#define CAM_CC_IFE_0_BCR					2
+> +#define CAM_CC_IFE_1_BCR					3
+> +#define CAM_CC_IFE_2_BCR					4
+> +#define CAM_CC_IPE_0_BCR					5
+> +#define CAM_CC_QDSS_DEBUG_BCR					6
+> +#define CAM_CC_SBI_BCR						7
+> +#define CAM_CC_SFE_0_BCR					8
+> +#define CAM_CC_SFE_1_BCR					9
+> +
+> +/* CAM_CC GDSCRs */
+> +#define BPS_GDSC		0
+> +#define IPE_0_GDSC		1
+> +#define SBI_GDSC		2
+> +#define IFE_0_GDSC		3
+> +#define IFE_1_GDSC		4
+> +#define IFE_2_GDSC		5
+> +#define SFE_0_GDSC		6
+> +#define SFE_1_GDSC		7
+> +#define TITAN_TOP_GDSC		8
+> +
+> +#endif
+> -- 
+> 2.33.0
+> 
