@@ -2,130 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01E5A500894
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 027B45008AF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236976AbiDNIpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:45:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
+        id S240029AbiDNIsc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Apr 2022 04:48:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241076AbiDNIpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:45:02 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5862865815;
-        Thu, 14 Apr 2022 01:42:38 -0700 (PDT)
-Received: from zn.tnic (p2e55d808.dip0.t-ipconnect.de [46.85.216.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id A24041EC059E;
-        Thu, 14 Apr 2022 10:42:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1649925752;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=iMtDxFcYv+APnoa3Wtnursj/Bjt7HnoJKgSy8sOg09k=;
-        b=iWEpQoD6e+RGn4KnAod0Tzo8cY5o3l2637By3+nm3vVOVZ5BY9D5nnZrUh6hPapCXhvcXr
-        eUTHY8CzY7ADMIUU+nsOTU8lOLLFc6byoo/xHbcvJ4S0fK++JJnJ9tRkK0E0P05qfvHxCW
-        oOHbjiGznE0bwTVRnnjat96iG1WyQpY=
-Date:   Thu, 14 Apr 2022 10:42:32 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Medad Young <medadyoung@gmail.com>,
-        Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-Message-ID: <YlfeXVSkUC2B4xH2@zn.tnic>
-References: <20220322030152.19018-1-ctcchien@nuvoton.com>
- <20220322030152.19018-4-ctcchien@nuvoton.com>
- <a06441fc-85cf-9386-e362-4a90e855aa19@molgen.mpg.de>
- <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
+        with ESMTP id S236287AbiDNIsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:48:31 -0400
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB3319034;
+        Thu, 14 Apr 2022 01:46:07 -0700 (PDT)
+Received: by mail-qv1-f41.google.com with SMTP id c1so3529796qvl.3;
+        Thu, 14 Apr 2022 01:46:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=k4RiddBxTlplmCUwfOPae3vR0/GMxp3cgfJfRb5yM9Y=;
+        b=hd4ko3zV1OtIWp8ClIpk0841VLsn/hIXqV/hAnB5hcVabh8/MNGbwhW14OHBnW1RDV
+         EUzZUeblSfiy8gPgLrFHTgUAoMCWdW5OGElnA34cvRsic/h3Do/NgIGJU4im1liTssjk
+         T1iNi6Nt8HH0/5a7aT0i5Iojpi6yvGCmcCDjyFyU3PWS8NsH65FV1G482ttztpSQa8W7
+         WZCn5DWL+czclPXscXiRF/xuW0qUcLbvKOJUCExEOBWmuw0U/v0Q583FXkKpTh5feXuh
+         RCJOEUviQub3qxHPIZBw//8SrpyJ4B+Kr5r/Jc1dT+tOnwIvVceMb/9HJKGNBGq4xTCB
+         dBWw==
+X-Gm-Message-State: AOAM530Y2Q6nj43trRtKBpva+vCnS19bnZeMoUedZZrzwMzdhcb+qXFY
+        TrtM+Pe0Uqkl2itiX6oiGP4JEIwijDPnJg==
+X-Google-Smtp-Source: ABdhPJxPJtq8fTec3tKZMxBpOi1IkM5gTOZJ9/afJF+sIvIePVm+xkWWDlKTGsYX3qbIQtCqPV6FFw==
+X-Received: by 2002:ad4:5347:0:b0:42c:4711:5eb5 with SMTP id v7-20020ad45347000000b0042c47115eb5mr2310705qvs.101.1649925966706;
+        Thu, 14 Apr 2022 01:46:06 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id q8-20020a05622a04c800b002e06d7c1eabsm905448qtx.16.2022.04.14.01.46.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 01:46:06 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id g34so8249353ybj.1;
+        Thu, 14 Apr 2022 01:46:06 -0700 (PDT)
+X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
+ p9-20020a259e89000000b0063cad37a5demr979130ybq.342.1649925965987; Thu, 14 Apr
+ 2022 01:46:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220414074011.500533-1-herve.codina@bootlin.com> <20220414074011.500533-2-herve.codina@bootlin.com>
+In-Reply-To: <20220414074011.500533-2-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 14 Apr 2022 10:45:54 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW8q5AjDtTE83yVPfmgnQy02UgLSns33z06WMFBUULWEw@mail.gmail.com>
+Message-ID: <CAMuHMdW8q5AjDtTE83yVPfmgnQy02UgLSns33z06WMFBUULWEw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] PCI: rcar-gen2: Add support for clocks
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 09:55:05AM +0800, Medad Young wrote:
-> > > +                             if (mtype == MEM_TYPE_DDR4)
-> > > +                                     dimm->mtype = MEM_DDR4;
-> > > +                             else
-> > > +                                     dimm->mtype = MEM_EMPTY;
-> >
-> > Use ternary operator?
-> >
-> >      dimm-mtype = (mtype == MEM_TYPE_DDR4) ? MEM_DDR4 : MEM_EMPTY;
+Hi Hervé,
 
-Ternary operator is less readable than a plain and simple if-else.
+Thanks for your patch!
 
-> > > +{
-> > > +     struct priv_data *priv = mci->pvt_info;
-> > > +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-> > > +     u64 err_c_addr = 0x0;
-> >
-> > size_t
-> 
-> OK
+On Thu, Apr 14, 2022 at 9:40 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> The PCI rcar-gen2 does not call any clk_prepare_enable().
 
-Why is size_t? error address doesn't have anything to do with a
-sizeof(), array indexing or loop counting.
+Correct, this driver manages the clocks indirectly through Runtime PM.
 
-It is an error address and having it in an u64 tells you exactly what
-its quantity is.
+> This lead to an access failure when the driver tries to access
+> the IP (at least on a RZ/N1D platform).
 
-So can we stop the silliness pls?
+I expect adding
 
-> > > +static irqreturn_t edac_ecc_isr(int irq, void *dev_id)
-> > > +{
-> > > +     struct mem_ctl_info *mci = dev_id;
-> > > +     struct priv_data *priv = mci->pvt_info;
-> > > +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-> > > +     u32 intr_status;
-> > > +     u32 val;
-> > > +
-> > > +     /* Check the intr status and confirm ECC error intr */
-> > > +     intr_status = readl(priv->reg + npcm_chip->ecc_ctl_int_status);
-> > > +
-> > > +     edac_dbg(3, "InterruptStatus : 0x%x\n", intr_status);
-> >
-> > Remove the space before the colon? Maybe use:
-> >
-> > "Interrupt status (intr_status): 0x%x\n"
+    power-domans = <&sysctrl>;
 
-And repeat "interrupt status"? Also silly. The question to ask
-yourselves should always be: is this error message helpful enough to its
-intended recipients.
+to the pci_usb node makes this patch redundant.
 
-When I see
+Gr{oetje,eeting}s,
 
-  "Interrupt status (intr_status): 0x%x\n"
+                        Geert
 
-in my code, I go: "hm, where does this message come from?" because it
-ain't helpful enough. So I have to go stare at the code too.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-I hope you're catching my drift.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
