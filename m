@@ -2,73 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C595B5006B6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 621805006BB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236285AbiDNHOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:14:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40144 "EHLO
+        id S239697AbiDNHPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:15:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbiDNHOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:14:43 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37FA1FA65
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:12:18 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id w4so5596773wrg.12
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:12:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dCJ1KboKpQ4PJ5jQsLTtGQGQXlAWxcagYMhUrW9HAic=;
-        b=oJ17x9e47tqvew1pe+2e6aGlgBDU8Tkricf6mjcdYk74yZUlzrEvYfFoG69wM6CmR5
-         rYr3+oQXjyzokgt4YMmdeEhi63lw3b6VytJg+D7DE/hdkzkzWMur2GYuS9QpXU9yCDOQ
-         kYNrCDoEdV/KmtfNk5aOYFPgGao14Epbgm1F/giK5mtQ8NUsLIInmlfonFUwDB9hHzeb
-         mQaMTNZ61gNjmyAjruRQXik9uXhwaTOtrenGYTPAdbEmY4+7kd3NC0uoiqc8dwpwQrgL
-         nIeaNAIJsFETj3YdF9uahTZJnooBMgBmw3D7UMbBX6ZHtWUq8zYXtn3Y8RJVahW6mPQQ
-         qvWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dCJ1KboKpQ4PJ5jQsLTtGQGQXlAWxcagYMhUrW9HAic=;
-        b=aGe8ldsc6VFEKvJOxwCsxQoLe0a6Yn+/iqpJeJHnEuJ26TCnHcSV4S7ExE8hD3lQHu
-         sfbOJWBR+YH5LYAtka5DcWkzm9OiNMUVS+cKd6yuGwN0SFP5Y0l9ZfLCh3QnEyHciM+K
-         NrR7z6jFlypiWkqs/C03GdGj6IZ+B4E+DObL3zJ14v9Psq3O9RelmnDmpLmM+ClUkUuI
-         qIuCQl3g1zc/E6/+k9RAWOJtMGuRgETtgdqwnZvAeFQ5H56iVwcTxMAE1o4+6NZc8EmI
-         Iuo15FopAK3OkeV7CngbLuZ3XRo3XyYOH7BWU8K8b8DrUCzdh5QGmC1PwGB+6EqAvle1
-         ij2Q==
-X-Gm-Message-State: AOAM531vXlS5MNB8ZC++UE18k5cUtHyACIW2UW6mrG28dVQgXBeptkxy
-        Z/78HMcLD2b/olRAJ8smY4bHRg==
-X-Google-Smtp-Source: ABdhPJz2T3ggR3EfQcyK8DZzQ70TOwRDF0jFwIKD4Leh6qiISJ4TwbdD+/EurpSgsibrMvFkRCc6nw==
-X-Received: by 2002:adf:d1e2:0:b0:204:1a8c:7498 with SMTP id g2-20020adfd1e2000000b002041a8c7498mr979932wrd.530.1649920337169;
-        Thu, 14 Apr 2022 00:12:17 -0700 (PDT)
-Received: from [192.168.1.41] (176-182-171-101.abo.bbox.fr. [176.182.171.101])
-        by smtp.googlemail.com with ESMTPSA id j16-20020a05600c191000b0038ca3500494sm6267917wmq.27.2022.04.14.00.12.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 00:12:16 -0700 (PDT)
-Message-ID: <5ddeb940-670f-2eda-6ba0-567c28406a61@linaro.org>
-Date:   Thu, 14 Apr 2022 09:12:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v7 1/2] thermal: Add thermal driver for Sunplus SP7021
+        with ESMTP id S237098AbiDNHPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:15:45 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2137.outbound.protection.outlook.com [40.107.114.137])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB810AE51;
+        Thu, 14 Apr 2022 00:13:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BT+WdA/a0w6DKFL19RR3iH5VDPThwTPtL5u7OkyL7d/RdP6JfDsGAi3EXDMQz+3qVvqtkSUJnJiShDz/hWjPFzxk6ZFVkvIofBSE8EtSspAKw7/UCnCsFnp1vu/7/yzkTNbbzalJGy5W8SIUfnLD+fDpORUe3auLTkfS5l+DUuBG7gByvFh6dI/Pzm3YhA9hoMwSLVbXya9so14ejogF5hhKwfFtXtuILiaBBn3jAKMxnJGxvoUKobVSkJsLBBLKPZrZoRXFtQbfASLEeqQBDdq9x0NcEjdFT3KlIZQp2mk6Gj1EowTIQa9lGAvd3QU1xxibRdeLHeo18h67DcijIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=perhVsqWBRyTIQEGAbeKyszuRRchJjkt9kKFDUT88JM=;
+ b=hrzTsqwTHTIHv+Y9qo401pK/WXZFzIPK+GrTgMBEOyUnEp2kuMqsJeDY7x6zETiwcjCSyLafc6j3eKwi4iLPdSIqoe4aMyOGnV1QUSUabqjTVaNqCiIAduC9DAE0NwiD6EpzH8tuXfIQz+7F3GnYRmIydf2fx1oGiKVKRVemRCUJ8v0CPA6GOm76wf+Mx4Qg0BeZUIiGMt3Bao4L36L9Lr65W26tq61wBkSrrnM62y8s1obnayiV1TGPchKxLNnfeQbHx9WRAI5qFzl9Z1xpTxuieNDpRHq+Frq+mGY1PHWTyNmfF4caTCToIFm13x9Zh/82eM9LnzGc9PbG2TyNYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=perhVsqWBRyTIQEGAbeKyszuRRchJjkt9kKFDUT88JM=;
+ b=ECZlMAjKESXW5eKFELgE4CorJ5TsV7XXwqJVVTGn1dSvlKFVOVrzTnL48KhZ2BudUP812qKmvI7EhvPnIIEkdznyKUpjulmsg+XciOR+sVOW90MAG2Y2TemHx0xESqkDlKE3+ld5ifwJTJWC1hLyrEJT6P+z4qe9EikXADgvY/g=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYCPR01MB9601.jpnprd01.prod.outlook.com (2603:1096:400:192::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Thu, 14 Apr
+ 2022 07:13:18 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b129:a6f3:c39e:98db]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b129:a6f3:c39e:98db%4]) with mapi id 15.20.5144.030; Thu, 14 Apr 2022
+ 07:13:18 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH v2 0/7] Add RZ/G2L Display support
+Thread-Topic: [PATCH v2 0/7] Add RZ/G2L Display support
+Thread-Index: AQHYOTdMes34AyJXZke2fdKSEJXJZazvK6Dg
+Date:   Thu, 14 Apr 2022 07:13:18 +0000
+Message-ID: <OS0PR01MB5922F835EA2DE122DAABAD8586EF9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20220316131100.30685-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220316131100.30685-1-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Li-hao Kuo <lhjeff911@gmail.com>, krzk@kernel.org,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com
-References: <cover.1649662002.git.lhjeff911@gmail.com>
- <c59e0a5c53f055b7159bc896083538d1f8ac9ad8.1649662002.git.lhjeff911@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <c59e0a5c53f055b7159bc896083538d1f8ac9ad8.1649662002.git.lhjeff911@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8b9028d5-e7fe-4e94-27c4-08da1de64035
+x-ms-traffictypediagnostic: TYCPR01MB9601:EE_
+x-microsoft-antispam-prvs: <TYCPR01MB9601DCB4A039AF4899A9C2B886EF9@TYCPR01MB9601.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Tu4lszYD1L3mSNDakGS2w4wLpHQZEa3iHp+etGBM1RA0gxw/hQWMBXKxC/YG64VDKt3Fczxl1J8N93SWb7/XI2Z2uCU5k+VEQ8y89QT55pR2IVHd6wqADny4/6XNZuMiSWGFHsFwHQuuxSAZoUG0BMsHu73ACeVNpY97A2tC8lTlVBNILwKinJnTjRg9tFUlLLQrBroPC3CAt/n2OnJqURNS9lFx5uZlNhO5jZB1Uz0WsUOcbf4x7woep4wibXoN+3PPPqw2N4TAFgHJ1yTv8pcbVlWvHxk71oHDdXrHLTLFc/+ko5NOGE8tSxGs8FA4pSyKZxrt/LUY0UhR+Tfgbov865ougliciCxcRsxEZWGQiKBiZxvrDhNIN91r2+NKOufIxv27/v/wNylyA7IxNpQW/ngcZvc6DBBv7yjHTCmUB9qscH0drAa6tu4zEubrDG97d521Zxqa9rT8mz0c4aa+QA88CHOMR9Op5fZ8ft2hjWeaRGh3HYmtxmY04cX+bXHIyrZf0kFtCRdC+ipHMmncMfrz8sPqri73j7D7PuClO35vrEM2RLY7F4B/3zVMVcvEIFxhiK2uOO/W4xT2N6JqHENQ9NuEZqq+p3XT34jTigPaHhafBYCCFDFwXiDavUJDTGYYugVs/Iz3cJ9YRWmr33LWaIGwxaYFjHqbCytjTaAiTdS2rILKVbJwh92HgSFyi1cvtQZmhhPY0D9rH8qV98w7g46wkCoEqXavfaJykVu3c7FPPEluY+IzrloOw7FV3KK131cBm3pDC+9TZj3DXj8KOqmuCf9hBnfVsVU=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(26005)(71200400001)(107886003)(316002)(186003)(86362001)(4326008)(52536014)(38100700002)(8936002)(8676002)(38070700005)(6506007)(9686003)(7696005)(83380400001)(5660300002)(122000001)(66446008)(55016003)(66946007)(2906002)(64756008)(66476007)(66556008)(54906003)(110136005)(76116006)(45080400002)(508600001)(33656002)(966005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?NpV9S1NGri9/o6G9ZWwL9ixGoqeXtVzMFh70EfFhYz2y+2vfwjoc7s00R6wX?=
+ =?us-ascii?Q?u+I0yHMq+eAnm9gscYQMUnAT3xUmIclnJODVRzpL9fkTGUb8PgkVEnyaZpfS?=
+ =?us-ascii?Q?5mLF58b/rL07jJ5KHLvetENCA6pMWSgzD34MIDwLwsfZjfF560TPp4fh3Riu?=
+ =?us-ascii?Q?PH9/Y1oChGf+wsomFPFcaPt2usRWyBFhfWVcUT5rp5948yO/SDbOzQS05DKR?=
+ =?us-ascii?Q?KZ8mY2myImDg8vWQeYpJzwL2/GClHhTsaFi5v5+CybaIS50dvQP4ifxDpdpw?=
+ =?us-ascii?Q?XxQp3BHi39ZlRZUWCN3YSuRkUC6/OqwNrwR6zthl+IDUt7cw7AWv3X7d0k8R?=
+ =?us-ascii?Q?fBm9rew63frVha57pD7PkORC45nEpBIt/mZzMghe3kiFYwp72iCCypLPj+Iy?=
+ =?us-ascii?Q?hXw10KrPUliq+isodsgtvzNCey52VM62+IBwfHnk4p0TY8iNyuFMIczpB6zQ?=
+ =?us-ascii?Q?H6MS21tscQ6ARW78oyT9Vc3kw69N7VsVNlBfHVqS4QMVEMSLM4gfa90FKWPL?=
+ =?us-ascii?Q?Up1CdanXgPTXFwsYecnvFEYX2e9kdB6+T+SKywQ74Cc5/wz/kGzmzkYRXROL?=
+ =?us-ascii?Q?EoiKuCUBWq6ccTAEEl0kvHoFIr23Ym4MTFsIa4uM6W/Pgi0l6oiqpou6eT4h?=
+ =?us-ascii?Q?/4tZWddc5v5W/dZOfISF0v1L4v2Y5Te4qykn9osfAnOUrLfQeblrf1gTWVgl?=
+ =?us-ascii?Q?RATwT/E1YZDnufHhV+39adnsJ26+fZ2SH4R5HmXCwL2DsS9tTwuyg7WPa3cL?=
+ =?us-ascii?Q?gnU1bpwrSZh/O7wrJx8m62izswm37ffHb0ds8O57irxabkoIJlPpAJwUAAMA?=
+ =?us-ascii?Q?6mK4bfqsxJR2fwZvZITKdBSWNN81KErYeEOyKyBjSJcsCrhOVDmcE4+D7aad?=
+ =?us-ascii?Q?dD57vGq8lB35u5t+9OilwR7pSrscEVZ5y71kudwa/HGSNsOwCq9zEavshqIa?=
+ =?us-ascii?Q?jH+dDk+deuH9UBlLdJI6zBnpYRaK/lgCUcfdv2ubZXWZjT9h3c1FyVuE8xI2?=
+ =?us-ascii?Q?64W2SY4wFvjoQZnkiTT6GmvRn7vvicnQg5AAK+Am1Fs45Uv1iQaY9QyrVMyY?=
+ =?us-ascii?Q?mjEmeQUbRXnu3L8D1sPUWWk9sCwNlBkuqjQOWy4Pim4qM8HI2T1g0HECclwu?=
+ =?us-ascii?Q?E5lakGSASF+QAqVcXxxtqeungqpIBirBaDcb5mfVu3kekkiijmhe/+cwmXEj?=
+ =?us-ascii?Q?QAcRL7DWDHG8O6chTj88Kxtq+pmhr/3o6RXcbX94kKaWagnqT/lYaijuEK71?=
+ =?us-ascii?Q?B/YRNjHtJBft5pcXmJqtymPSS4XlobOQfTL/9Nm6olKYI1DSc1ObwBH32zsa?=
+ =?us-ascii?Q?GBjfExdI2K7/Kb2ZJWDzM/KfnEDbpCxJaEED54UjQoPYYeJwvpxVUkG4kEll?=
+ =?us-ascii?Q?AnsHRtwoSu57HZTSdcxCWDxP9bUmppnjjmivPC7Z8y9POQbPac8bLWHGV1yp?=
+ =?us-ascii?Q?xK605RgGDpJ8XO9q25c+4zjoIQidzaO39KQ4XjU7YEgK0hftVhFKXsTU59gD?=
+ =?us-ascii?Q?Mh0xUckvfTZ6nOJwHsEeUxMrhvif1KwK/sC/+X9o5xwp8zTV0Ih02yBjCjfG?=
+ =?us-ascii?Q?RCC9TCArq723C0Uvd6P3fgwS5EpYxSLrBQXQ/F7jbXZZRjOtOjtgyPpbaS3C?=
+ =?us-ascii?Q?d81c7CPCdI1plJQJrbYt596Xe3lOhHZgjg+gZMk8mJC2aXiUmkxrYbPY1iTA?=
+ =?us-ascii?Q?aN84VflXhzywwJwwX6Th0F1+tg+WTbwaf8b1nD6b3DACaVM17e8o3PcUUaWb?=
+ =?us-ascii?Q?rDxunuHhUy0QJ3akIe63eJLiEfEYtsI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b9028d5-e7fe-4e94-27c4-08da1de64035
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2022 07:13:18.2318
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Bhzni2c/eI0zvbwpIKuA2KUSFA5RTo3eV3epyMj+YyaCzJcH9arqHdGzGndaFVvRikeoBuAWBLuUL19WfBRLWZNgmCUGEzqpQ+CKVquREcU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9601
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,260 +130,152 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/04/2022 10:52, Li-hao Kuo wrote:
-> Add thermal driver for Sunplus SP7021.
+Hi All,
 
-Already asked previously : please give a more detailed description of 
-the sensor
+Gentle ping, Are we happy with this patch series?
 
-I've commented again this patch. There are some comments which are not 
-taken into account from my previous review on v4
+Cheers,
+Biju
 
+> Subject: [PATCH v2 0/7] Add RZ/G2L Display support
+>=20
+> RZ/G2L LCD controller composed of Frame compression Processor(FCPVD),
+> Video signal processor (VSPD) and Display unit(DU). The output of LCDC is
+> connected to Display parallel interface and MIPI link video interface.
+>=20
+> This patch series aims to add basic display support on RZ/G2L SMARC EVK
+> platform. The output from DSI is connected to ADV7535.
+>=20
+> The DU controller is similar to R-Car as it is connected to VSPD, so
+> reusing most of R-Car code with new CRTC driver specific to RZ/G2L
+>=20
+> v1->v2:
+>  * Based on [1], all references to 'rzg2l_lcdc' replaced with 'rzg2l_du'
+>  * Updated commit description for bindings
+>  * Removed LCDC references from bindings
+>  * Changed clock name from du.0->aclk from bindings
+>  * Changed reset name from du.0->du from bindings
+>  * Replaced crtc_helper_funcs->rcar_crtc_helper_funcs
+>  * Updated macro DRM_RZG2L_LCDC->DRM_RZG2L_DU
+>  * Replaced rzg2l-lcdc-drm->rzg2l-du-drm
+>  * Added forward declaration for struct reset_control
+>=20
+> [1]
+> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
+wor
+> k.kernel.org%2Fproject%2Flinux-renesas-soc%2Fpatch%2F20220312084205.31462=
+-
+> 2-
+> biju.das.jz%40bp.renesas.com%2F&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.ren=
+esa
+> s.com%7C619fcf75486d47a9954408da074e6e1b%7C53d82571da1947e49cb4625a166a4a=
+2
+> a%7C0%7C0%7C637830330678043182%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMD=
+A
+> iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3D3zlHOf=
+dKJ
+> XLmDLGaMbbw%2BDUxQreKIEtvGUHNSuukDmg%3D&amp;reserved=3D0
+>=20
+> RFC->v1:
+>  * Changed  minItems->maxItems for renesas,vsps.
+>  * Added RZ/G2L LCDC driver with special handling for CRTC reusing
+>    most of RCar DU code
+>  * Fixed the comments for num_rpf from rpf's->RPFs/ and vsp->VSP.
+> RFC:
+>=20
+> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
+wor
+> k.kernel.org%2Fproject%2Flinux-renesas-soc%2Fpatch%2F20220112174612.10773=
+-
+> 18-
+> biju.das.jz%40bp.renesas.com%2F&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.ren=
+esa
+> s.com%7C619fcf75486d47a9954408da074e6e1b%7C53d82571da1947e49cb4625a166a4a=
+2
+> a%7C0%7C0%7C637830330678043182%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMD=
+A
+> iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DSXadiM=
+Rg%
+> 2Fw%2Fnt3R6K02Zke67CSFqIQtt34si2RCqyH0%3D&amp;reserved=3D0
+>=20
+> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
+wor
+> k.kernel.org%2Fproject%2Flinux-renesas-soc%2Fpatch%2F20220112174612.10773=
+-
+> 12-
+> biju.das.jz%40bp.renesas.com%2F&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.ren=
+esa
+> s.com%7C619fcf75486d47a9954408da074e6e1b%7C53d82571da1947e49cb4625a166a4a=
+2
+> a%7C0%7C0%7C637830330678043182%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMD=
+A
+> iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DuRkp8h=
+imf
+> 53knLtbWBxfRa4HGY3SxmyLT5FBrpmFtqg%3D&amp;reserved=3D0
+>=20
+> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
+wor
+> k.kernel.org%2Fproject%2Flinux-renesas-soc%2Fpatch%2F20220112174612.10773=
+-
+> 13-
+> biju.das.jz%40bp.renesas.com%2F&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.ren=
+esa
+> s.com%7C619fcf75486d47a9954408da074e6e1b%7C53d82571da1947e49cb4625a166a4a=
+2
+> a%7C0%7C0%7C637830330678043182%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMD=
+A
+> iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DMQAEyp=
+28C
+> rxHTvdHtarXlO6j0CkpCXZuqVHcbNWkXYI%3D&amp;reserved=3D0
+>=20
+> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
+wor
+> k.kernel.org%2Fproject%2Flinux-renesas-soc%2Fpatch%2F20220112174612.10773=
+-
+> 19-
+> biju.das.jz%40bp.renesas.com%2F&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.ren=
+esa
+> s.com%7C619fcf75486d47a9954408da074e6e1b%7C53d82571da1947e49cb4625a166a4a=
+2
+> a%7C0%7C0%7C637830330678043182%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMD=
+A
+> iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3D1y%2Bd=
+5Yb
+> UoXnMZL97%2F4LTcG8IDtze%2FW%2BwzHRXBEbUgSw%3D&amp;reserved=3D0
+>=20
+> Biju Das (7):
+>   dt-bindings: display: renesas,du: Document r9a07g044l bindings
+>   drm: rcar-du: Add num_rpf to struct rcar_du_device_info
+>   drm: rcar-du: Add max_width and max_height to struct
+>     rcar_du_device_info
+>   drm: rcar-du: Move rcar_du_output_name() to rcar_du_common.c
+>   drm: rcar-du: Factorise rcar_du_{atomic_check,modeset_init}
+>   drm: rcar-du: Factorise
+>     rcar_du_vsp{complete,enable,plane_atomic_check}
+>   drm: rcar-du: Add RZ/G2L DU Support
+>=20
+>  .../bindings/display/renesas,du.yaml          |  54 ++
+>  drivers/gpu/drm/rcar-du/Kconfig               |  18 +-
+>  drivers/gpu/drm/rcar-du/Makefile              |  13 +
+>  drivers/gpu/drm/rcar-du/rcar_du_common.c      |  30 +
+>  drivers/gpu/drm/rcar-du/rcar_du_crtc.h        |   8 +
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.c         | 100 ++-
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.h         |  31 +
+>  drivers/gpu/drm/rcar-du/rcar_du_kms.c         |  23 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_plane.h       |  12 +
+>  drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |  18 +-
+>  drivers/gpu/drm/rcar-du/rzg2l_du_crtc.c       | 705 ++++++++++++++++++
+>  drivers/gpu/drm/rcar-du/rzg2l_du_drv.c        | 221 ++++++
+>  drivers/gpu/drm/rcar-du/rzg2l_du_plane.c      |  82 ++
+>  drivers/gpu/drm/rcar-du/rzg2l_du_regs.h       |  64 ++
+>  14 files changed, 1334 insertions(+), 45 deletions(-)  create mode 10064=
+4
+> drivers/gpu/drm/rcar-du/rcar_du_common.c
+>  create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_crtc.c
+>  create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_drv.c
+>  create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_plane.c
+>  create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_regs.h
+>=20
+> --
+> 2.17.1
 
-> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
-> ---
-> Changes in v7:
->   - Modify yaml file.
-> 
->   MAINTAINERS                       |   6 ++
->   drivers/thermal/Kconfig           |  10 +++
->   drivers/thermal/Makefile          |   1 +
->   drivers/thermal/sunplus_thermal.c | 139 ++++++++++++++++++++++++++++++++++++++
->   4 files changed, 156 insertions(+)
->   create mode 100644 drivers/thermal/sunplus_thermal.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 61d9f11..307570c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18885,6 +18885,12 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
->   F:	drivers/spi/spi-sunplus-sp7021.c
->   
-> +SUNPLUS THERMAL DRIVER
-> +M:	Li-hao Kuo <lhjeff911@gmail.com>
-> +L:	linux-pm@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/thermal/sunplus_thermal.c
-> +
->   SUNPLUS UART DRIVER
->   M:	Hammer Hsieh <hammerh0314@gmail.com>
->   S:	Maintained
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index e37691e..66316c3 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -502,4 +502,14 @@ config KHADAS_MCU_FAN_THERMAL
->   	  If you say yes here you get support for the FAN controlled
->   	  by the Microcontroller found on the Khadas VIM boards.
->   
-> +config SUNPLUS_THERMAL
-> +	tristate "Sunplus thermal drivers"
-> +	depends on SOC_SP7021 || COMPILE_TEST
-> +	help
-> +	  This the Sunplus SP7021 thermal driver, which supports the primitive
-> +	  temperature sensor embedded in Sunplus SP7021 SoC.
-> +
-> +	  If you have a Sunplus SP7021 platform say Y here and enable this option
-> +	  to have support for thermal management
-> +
->   endif
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index f0c36a1..38a76f9 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -61,3 +61,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
->   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
->   obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
->   obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
-> +obj-$(CONFIG_SUNPLUS_THERMAL)	+= sunplus_thermal.o
-> diff --git a/drivers/thermal/sunplus_thermal.c b/drivers/thermal/sunplus_thermal.c
-> new file mode 100644
-> index 0000000..9a9b348
-> --- /dev/null
-> +++ b/drivers/thermal/sunplus_thermal.c
-> @@ -0,0 +1,139 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) Sunplus Inc.
-> + * Author: Li-hao Kuo <lhjeff911@gmail.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/thermal.h>
-
-Already commented, check the headers above.
-
-> +#define DISABLE_THERMAL		(BIT(31) | BIT(15))
-> +#define ENABLE_THERMAL		BIT(31)
-> +#define SP_THERMAL_MASK		GENMASK(10, 0)
-> +#define SP_TCODE_HIGH_MASK	GENMASK(10, 8)
-> +#define SP_TCODE_LOW_MASK	GENMASK(7, 0)
-> +
-> +#define TEMP_RATE		608
-> +#define TEMP_BASE		3500
-> +#define TEMP_OTP_BASE		1518
-> +
-> +#define SP_THERMAL_CTL0_REG	0x0000
-> +#define SP_THERMAL_STS0_REG	0x0030
-> +
-> +/* common data structures */
-> +struct sp_thermal_data {
-> +	struct thermal_zone_device *pcb_tz;
-
-field not used outside of the function checking the return code of 
-sensor register
-
-> +	struct platform_device *pdev;
-
-field not used
-
-> +	enum thermal_device_mode mode;
-
-field not used
-
-> +	void __iomem *regs;
-> +	int otp_temp0;
-> +	u32 id;
-> +};
-> +
-> +static int sp7021_get_otp_temp_coef(struct sp_thermal_data *sp_data, struct device *dev)
-> +{
-> +	struct nvmem_cell *cell;
-> +	ssize_t otp_l;
-> +	char *otp_v;
-> +
-> +	cell = nvmem_cell_get(dev, "calib");
-> +	if (IS_ERR(cell))
-> +		return PTR_ERR(cell);
-> +
-> +	otp_v = nvmem_cell_read(cell, &otp_l);
-> +	nvmem_cell_put(cell);
-
-See my previous comments in v4, this is wrong. Move the nvmem_cell_put() 
-after FIELD_PREP() ... below where otp_v is no longer used.
-
-> +	if (otp_l < 3)
-> +		return -EINVAL;
-
-Please replace '3' by a macro
-
-Why this check is needed by the way ? Sounds like only 0 and 1 indexes 
-are used here.
-
-> +	sp_data->otp_temp0 = FIELD_PREP(SP_TCODE_LOW_MASK, otp_v[0]) |
-> +			     FIELD_PREP(SP_TCODE_HIGH_MASK, otp_v[1]);
-> +	if (sp_data->otp_temp0 == 0)
-> +		sp_data->otp_temp0 = TEMP_OTP_BASE;
-> +	return 0;
-> +}
-> +
-> +/*
-> + *When remanufacturing, the 35 degree T_CODE will be read and stored in nvcell.
-> + *TEMP_RATE is the SP7021 temperature slope.
-> + *T_CODE : 11 digits in total
-> + */
-
-nit: space after '*'
-
-Please elaborate the comment, it is still unclear
-
-> +
-> +static int sp_thermal_get_sensor_temp(void *data, int *temp)
-> +{
-> +	struct sp_thermal_data *sp_data = data;
-> +	int t_code;
-> +
-> +	t_code = readl(sp_data->regs + SP_THERMAL_STS0_REG);
-> +	t_code = FIELD_GET(SP_THERMAL_MASK, t_code);
-> +	*temp = ((sp_data->otp_temp0 - t_code) * 10000 / TEMP_RATE) + TEMP_BASE;
-> +	*temp *= 10;
-> +	return 0;
-> +}
-> +
-> +static const struct thermal_zone_of_device_ops sp_of_thermal_ops = {
-> +	.get_temp = sp_thermal_get_sensor_temp,
-> +};
-> +
-> +static int sp_thermal_register_sensor(struct platform_device *pdev,
-> +				      struct sp_thermal_data *data, int index)
-
-Adding a function to wrap another function is pointless in this case. It 
-is simpler to directly call devm_thermal_zone_of_sensor_register() from 
-the probe function
-
-> +{
-> +	data->id = index;
-> +	data->pcb_tz = devm_thermal_zone_of_sensor_register(&pdev->dev,
-> +							    data->id,
-> +							    data, &sp_of_thermal_ops);
-> +	if (IS_ERR_OR_NULL(data->pcb_tz))
-> +		return PTR_ERR(data->pcb_tz);
-> +	return 0;
-> +}
-> +
-> +static int sp7021_thermal_probe(struct platform_device *pdev)
-> +{
-> +	struct sp_thermal_data *sp_data;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	sp_data = devm_kzalloc(&pdev->dev, sizeof(*sp_data), GFP_KERNEL);
-> +	if (!sp_data)
-> +		return -ENOMEM;
-> +
-> +	sp_data->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(sp_data->regs)) {
-> +		dev_err(&pdev->dev, "resource get fail\n");
-> +		return PTR_ERR(sp_data->regs);
-> +	}
-> +
-> +	writel(ENABLE_THERMAL, sp_data->regs + SP_THERMAL_CTL0_REG);
-> +
-> +	platform_set_drvdata(pdev, sp_data);
-> +	ret = sp7021_get_otp_temp_coef(sp_data, &pdev->dev);
-> +	if (ret)
-> +		return ret;
-
-Add some space to let the code easier to read
-
-> +	ret = sp_thermal_register_sensor(pdev, sp_data, 0);
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id of_sp7021_thermal_ids[] = {
-> +	{ .compatible = "sunplus,sp7021-thermal" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, of_sp7021_thermal_ids);
-> +
-> +static struct platform_driver sp7021_thermal_driver = {
-> +	.probe	= sp7021_thermal_probe,
-
-and .remove ?
-
-> +	.driver	= {
-> +		.name	= "sp7021-thermal",
-> +		.of_match_table = of_sp7021_thermal_ids,
-> +		},
-> +};
-> +module_platform_driver(sp7021_thermal_driver);
-> +
-> +MODULE_AUTHOR("Li-hao Kuo <lhjeff911@gmail.com>");
-> +MODULE_DESCRIPTION("Thermal driver for SP7021 SoC");
-> +MODULE_LICENSE("GPL");
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
