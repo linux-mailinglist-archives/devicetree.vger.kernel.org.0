@@ -2,77 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABBC5018A0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 18:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23EF650188E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 18:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230455AbiDNQPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 12:15:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S236977AbiDNQZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 12:25:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347424AbiDNQJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 12:09:57 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCD2FA217;
-        Thu, 14 Apr 2022 08:53:15 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id z2so1457102oic.6;
-        Thu, 14 Apr 2022 08:53:15 -0700 (PDT)
+        with ESMTP id S245730AbiDNQOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 12:14:17 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EC3C31F2;
+        Thu, 14 Apr 2022 08:57:25 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-dacc470e03so5686062fac.5;
+        Thu, 14 Apr 2022 08:57:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=aJBwSvQ9K7ADQjEr30YYPw9oyPFj+rQRKPrYGiFxjgk=;
-        b=LGzQAwcXRa8LbJPwYUv/uF1ytkuMvrYiI7rOzNZXAL8PJTaEABkfF0RjhTH8PgG7le
-         6BpnpFyR+HZErLM5Tgo7/nFESlz85BjhVe1bQm/6K+ta8YTAskP9xQEB0IU8CWAxszZp
-         hlCbvJMF7O2WyujL4PFAl1NsS0X2zdzDGRv4SzedSTLYFs+yulT7Vyhw6hqMXT5wVVgJ
-         8O4ESENypdW2m/FNUpq7oZnJ2TkcfPJlJfpxxAEJf4z+SKNeBjhwMU7AMUcxck3+pIw7
-         xB+cMdnk5HcDEQqHrDRA5cKiE2gcz9WcDsrgH9d9uBFEwFejS5gRYsn7+RJiOZ0bqfaQ
-         puig==
-X-Gm-Message-State: AOAM530THVJDNx8Pjr/YvatsX+hnGcD9IF7JQNj2awaMgqTMdK++We4w
-        lGtEWcIq/eUp313scx86JZq4em6XRQ==
-X-Google-Smtp-Source: ABdhPJytijnI1Q94voFZOf7ePryvYTbB8w+h0jGC4akXV6bQy4qDmrmXfy7hz3oBnTTMo4w9MDK58Q==
-X-Received: by 2002:a05:6808:151f:b0:2fa:7d82:62a3 with SMTP id u31-20020a056808151f00b002fa7d8262a3mr1600273oiw.293.1649951594346;
-        Thu, 14 Apr 2022 08:53:14 -0700 (PDT)
+        bh=m/HgJFU5eyBdqThPB7Gif/3NbbgBxIgCKOJJWS03GxI=;
+        b=h4zUXu3avlhZ8qSHZhOr5ForkeDLpTq09ixAxVLBvIGtEpJqxmnuLoKGZ8VGBOkbxg
+         tijkkAhzgo/tFPqWvDv0KzhJX/+ov/95v5zRQm9Nio+xtH+gG1RacpY2Yi5chJ0l9PED
+         Kno78itgn7apNHbcV8pCUWmwEFTteLTN8KxQPoTynFgEZucnlM7D1wEKhK5NCd/zSU4n
+         AaA/NHgH+LSGsbiXcJf2vKADrjB9r+HVaAq7uZ9E0G9YYbaSb9/naso5G4ixMFrHVr8m
+         nIHH9H1ChBAtdP7HiP8LFEsLX769vc5cn1UdInAJZ7Qgf+SVB4r2yvW9M7QTYonZgAUN
+         uqcA==
+X-Gm-Message-State: AOAM530YId9DWhiijYjRa8y97cyDo9JWR6oxUb7B5KPf/1HJJahlnc1m
+        69SZvjc0c96itAPtXDlBwg==
+X-Google-Smtp-Source: ABdhPJyQchtfSX/mwpYjIzUd1rTj7rtUPQjMM1F1iQB/k7vCs37gybUojwv5hvsA8UyY6S1hVlutSg==
+X-Received: by 2002:a05:6870:f2a9:b0:e5:8106:4486 with SMTP id u41-20020a056870f2a900b000e581064486mr1102887oap.109.1649951843522;
+        Thu, 14 Apr 2022 08:57:23 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r8-20020a05683001c800b005cdadc2a837sm130913ota.70.2022.04.14.08.53.13
+        by smtp.gmail.com with ESMTPSA id c19-20020a9d7853000000b005cdbc0f02ccsm144090otm.68.2022.04.14.08.57.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 08:53:13 -0700 (PDT)
-Received: (nullmailer pid 2123568 invoked by uid 1000);
-        Thu, 14 Apr 2022 15:53:13 -0000
-Date:   Thu, 14 Apr 2022 10:53:13 -0500
+        Thu, 14 Apr 2022 08:57:23 -0700 (PDT)
+Received: (nullmailer pid 2129759 invoked by uid 1000);
+        Thu, 14 Apr 2022 15:57:22 -0000
+Date:   Thu, 14 Apr 2022 10:57:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: Add TI K3 RTC devicetree bindings
+To:     "J, KEERTHY" <j-keerthy@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, amitk@kernel.org,
+        kristo@kernel.org, linux-pm@vger.kernel.org, vigneshr@ti.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
  documentation
-Message-ID: <YlhDafvp34uv+X5/@robh.at.kernel.org>
-References: <20220412073138.25027-1-nm@ti.com>
- <20220412073138.25027-2-nm@ti.com>
+Message-ID: <YlhEYq8pGsuoA2mv@robh.at.kernel.org>
+References: <20220412101409.7980-1-j-keerthy@ti.com>
+ <20220412101409.7980-2-j-keerthy@ti.com>
+ <17474b72-d823-e1ff-9831-c5f9f887fccd@linaro.org>
+ <54d597e9-5cad-fc44-954d-7de45018fdcf@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220412073138.25027-2-nm@ti.com>
+In-Reply-To: <54d597e9-5cad-fc44-954d-7de45018fdcf@ti.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 12, 2022 at 02:31:37AM -0500, Nishanth Menon wrote:
-> This adds the documentation for the devicetree bindings of the Texas
-> Instruments RTC modules on K3 family of SoCs such as AM62x SoCs or
-> newer.
+On Wed, Apr 13, 2022 at 05:34:20PM +0530, J, KEERTHY wrote:
+> 
+> 
+> On 4/13/2022 3:43 PM, Krzysztof Kozlowski wrote:
+> > On 12/04/2022 12:14, Keerthy wrote:
+> > > Add VTM bindings documentation. In the Voltage Thermal
+> > > Management Module(VTM), K3 J72XX supplies a voltage
+> > > reference and a temperature sensor feature that are gathered in the band
+> > > gap voltage and temperature sensor (VBGAPTS) module. The band
+> > > gap provides current and voltage reference for its internal
+> > > circuits and other analog IP blocks. The analog-to-digital
+> > > converter (ADC) produces an output value that is proportional
+> > > to the silicon temperature.
+> > > 
+> > > Signed-off-by: Keerthy <j-keerthy@ti.com>
+> > > ---
+> > >   .../bindings/thermal/ti,j72xx-thermal.yaml    | 62 +++++++++++++++++++
+> > >   1 file changed, 62 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> > > new file mode 100644
+> > > index 000000000000..8483c495cb9a
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> > > @@ -0,0 +1,62 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/thermal/ti,j72xx-thermal.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Texas Instruments J72XX VTM (DTS) binding
+> > > +
+> > > +maintainers:
+> > > +  - Keerthy <j-keerthy@ti.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: ti,j721e-vtm
+> > > +    oneOf:
+> > > +      - enum:
+> > > +          - ti,j721e-vtm
+> > > +          - ti,j7200-vtm
+> > 
+> > It seems you resent this ignoring all of Rob's comments. In changelog of
+> > cover letter you wrote "Fixed all the comments on v4" but it's not true.
+> > Maybe you sent us old patch?
+> > 
+> > Anyway, you need to follow Rob's comments.
+> 
+> Krzysztof,
+> 
+> Apologies. Some issues with my mailbox. Rob's response didn't reach me for
+> some reason.
 
-'devicetree bindings documentation' in the subject is redundant. You 
-already said that with 'dt-bindings'.
+Maybe because I'm still banned by TI. Just had another bounce a few days 
+ago.
 
 Rob
