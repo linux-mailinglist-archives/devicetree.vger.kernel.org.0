@@ -2,187 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B5E501A16
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F22501A19
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241391AbiDNRjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 13:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59496 "EHLO
+        id S244253AbiDNRk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 13:40:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241689AbiDNRjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:39:24 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F4F0DFDC4
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 10:36:58 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id u15so11357041ejf.11
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 10:36:58 -0700 (PDT)
+        with ESMTP id S243626AbiDNRkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:40:55 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD47E09AE
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 10:38:30 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id h15-20020a17090a054f00b001cb7cd2b11dso6319488pjf.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 10:38:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=a6LSgL+JLYAGp+l4yu2Nh28fCa+u8RFJE0TZw9Q53wk=;
-        b=G/Eg3nOk8HCQBnHwrmCrnvNukQ4tgDIdrs+WKLqgpcaN5KWFZ6WMG9a8AKDRCCiTiE
-         hewSUK1FQR5+TTha+likMiMzDv8u/xGc6E2LqSvKUpCnwtH5uANmfEjtzw44+29Ow2Ji
-         Z3o9c5cVrMAov8BEnyodAN3o6+5o9wmuMxCNQ=
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=6cP6rPHM/3I1cr6A8gYwghHQ30VEbvEwF7m06d7J3og=;
+        b=hJGiPzmW5cJktEmkCeH0rMHJv5HpzVw5qjCU43g1L30c5okR/3K7yqxnnyaungFA2f
+         SxgwUyNrSXHH93dCED+3BXpqiVC80HBRqXML+7zUZK66SPAzMpDxsQ1llF1ado2omeBT
+         kN6RHgzIg4dOlt16etG7ySCms2DWxUMINBWKw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=a6LSgL+JLYAGp+l4yu2Nh28fCa+u8RFJE0TZw9Q53wk=;
-        b=0X0kT8KnSINc4/yrHaXMh+LnegrasiwPJW3d86Uxt8NIqzc5bp+hptoiXrGDuNNmHp
-         Kvw8WEfjE8S9wRLL10rxnKdq1TQtrDvaS+Nrby7T1JmPR4kVM/kz0uwZnBDHAadfCc1c
-         MbZaup7bfWzeKv9gC8u7FveVuxvnAOjU3sQmMfxPsHTLQxixNvu1pJkX1tANd248kM+O
-         Ra5n9jlMylHubW9C065/m8u5fBiFCbURAAbzxXlGR3++/Ajg8PFd2Xd1CI9cXF/fbq5L
-         En5uVYyGxF4/NBF7VkZ+NJW2gD2PHO69rtbR2mgyiQixMh3npi3aYk4a6lb4NuLegSdF
-         yctw==
-X-Gm-Message-State: AOAM532zeuPEKkesQ43C5e+I4fFSsNP1DC2QgayjSa+Qt5X3E+Pt4fLe
-        j/QsLARXC0x+xofytt7bxtlN3Wp2VwJAPMll53k=
-X-Google-Smtp-Source: ABdhPJzowfbsYBnQIX0nSGUR0R4K8ERrHmfRfy9mS8nRJPGPveE9P3wMCRdbtTw1//7BmzQj+ug/lA==
-X-Received: by 2002:a17:907:86ab:b0:6e8:d60e:d6c3 with SMTP id qa43-20020a17090786ab00b006e8d60ed6c3mr3201387ejc.346.1649957816634;
-        Thu, 14 Apr 2022 10:36:56 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id r17-20020a1709067fd100b006e88d3eefe6sm837730ejs.205.2022.04.14.10.36.54
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=6cP6rPHM/3I1cr6A8gYwghHQ30VEbvEwF7m06d7J3og=;
+        b=6KEGhNlmx+Rw8kbN/Y4Qppn3HlQJHdAS4hOShNYKVrJU3y7/K6N6ogIPSOvokIx7Ou
+         +liTXsQf9OAGbhKTll3QVMZmp9tcf/u3xG0+3dc9B9Bb8ER2ELWTLB+cMt0Kd6GOCpDm
+         sP0ctCLVuny+WXCkju8XUFKdtX+lER8+2Q+o06NZnDOKsgRdLAtoEY0DJnIhifDuILiv
+         CHc9W99U5/Gj7JzO24woxmsRjyPQ/VGM5OnSxtzuOXuArMGK0OcxyuiaESOE/AIQJlmI
+         iyCVajFnAImR3cnQEDpfvdnONYAd4TFzkQsRYZCRo7GsaCPqnMWwHVWfM3Vmcln5gTi6
+         4xDg==
+X-Gm-Message-State: AOAM530SeMryKUPVrEf9eUDNtZGnxFuWTTFIbyEJVxD+0FNibqXIIQmw
+        dz8VCG8u22TjDyFoX4BnpJjtXgSoRjoXIA==
+X-Google-Smtp-Source: ABdhPJwmvd8y2HFEnQmhqqnhkEIF9euBlfFcl40whxcLCXafJ4RQ6X+netV4idg6Q59OLgicnI8QZA==
+X-Received: by 2002:a17:902:c412:b0:158:72da:6fdd with SMTP id k18-20020a170902c41200b0015872da6fddmr18270064plk.165.1649957909318;
+        Thu, 14 Apr 2022 10:38:29 -0700 (PDT)
+Received: from [10.67.99.21] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id k25-20020aa790d9000000b00508232aecedsm481518pfk.67.2022.04.14.10.38.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 10:36:55 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id u3so7915837wrg.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 10:36:54 -0700 (PDT)
-X-Received: by 2002:a05:6000:1c15:b0:207:849a:648b with SMTP id
- ba21-20020a0560001c1500b00207849a648bmr2776001wrb.513.1649957814133; Thu, 14
- Apr 2022 10:36:54 -0700 (PDT)
+        Thu, 14 Apr 2022 10:38:27 -0700 (PDT)
+Message-ID: <cd628e0f-0724-caf3-1b18-481609c14457@broadcom.com>
+Date:   Thu, 14 Apr 2022 10:38:25 -0700
 MIME-Version: 1.0
-References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
- <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org> <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
- <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org>
-In-Reply-To: <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 14 Apr 2022 10:36:41 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
-Message-ID: <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: add bcmbca device tree binding
+ document
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Joel Peshkin <joel.peshkin@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Dan Beygelman <dan.beygelman@broadcom.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220413192645.7067-1-william.zhang@broadcom.com>
+ <20220413192645.7067-2-william.zhang@broadcom.com>
+ <0de21e5a-f169-2830-2a8b-e92c2d309260@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+In-Reply-To: <0de21e5a-f169-2830-2a8b-e92c2d309260@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000001becfb05dca0c3bb"
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--0000000000001becfb05dca0c3bb
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 14, 2022 at 12:10 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/04/2022 23:48, Doug Anderson wrote:
-> > I'm actually kinda curious: is there really a good reason for this? I
-> > know I haven't been adding things to
-> > `Documentation/devicetree/bindings/arm/qcom.yaml` for Qualcomm
-> > Chromebooks.  Ironically, it turns out that the script I typically use
-> > to invoke checkpatch happens to have "--no-tree" as an argument and
-> > that seems to disable this check. Doh!
-> >
-> > That being said, though, I do wonder a little bit about the value of
-> > enumerating the top-level compatible like this in a yaml file.
-> > Certainly the yaml schema validation in general can be quite useful,
-> > but this top-level listing seems pure overhead. I guess it makes some
-> > tools happy, but other than that it seems to provide very little
-> > value...
->
-> If compatible is not part of ABI, it is allowed to change in whatever
-> shape one wishes. In such case, how can anyone (e.g. user-space)
-> identify the board? Model name? Also not part of ABI (not documented)...
+Hi Krzysztof,
 
-Hmm, it is a good question. I guess one issue is that the way
-Chromebooks interact with the bootloader it's not trivially easy to
-enumerate what exactly the compatible will be in this hardcoded list.
-It all has to do with the whole "revision" and "sku" scheme the
-bootloader on ARM Chromebooks uses. For example, on one Chromebook I
-have the bootloader prints out:
+Yeah I saw your ack.  I guess I should put an ack-by in this v2 set? 
+Still new to the upstream process and thanks for your help!
 
-Compat preference: google,lazor-rev5-sku6 google,lazor-rev5
-google,lazor-sku6 google,lazor
+William
 
-What that means is that:
+On 4/14/22 00:29, Krzysztof Kozlowski wrote:
+> On 13/04/2022 21:26, William Zhang wrote:
+>> Add arch bcmbca device tree binding document for Broadcom ARM based
+>> broadband SoC chipsets. In this change, only BCM47622 is added. Other
+>> chipsets will be added in the future.
+>>
+>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> 
+> I gave you here an ack. What happened?
+> 
+> 
+> Best regards,
+> Krzysztof
 
-1. The bootloader will first look for 'google,lazor-rev5-sku6'. If it
-finds a dts with that compatible it will pick it.
+--0000000000001becfb05dca0c3bb
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-2. The bootloader will then look for 'google,lazor-rev5'. If it finds
-a dts with that compatible it will pick it.
-
-3. The bootloader will then look for 'google,lazor-sku6'. If it finds
-a dts with that compatible it will pick it.
-
-4. Finally, the bootloader will look for 'google,lazor'.
-
-There's a method to the madness. Among other things, this allows
-revving the board revision for a change to the board even if it
-_should_ be invisible to software. The rule is always that the
-"newest" device tree that's in Linux is always listed _without_ a
-board revision number. An example might help.
-
-a) Assume '-rev5' is the newest revision available. In Linux this
-would be the only dts that advertises "google,lazor" (with no -rev).
-Previous dts file would advertise "-rev3" or "-rev4" or whatever.
-
-b) We need to spin the board for something that should be invisible to
-software. Just in case, HW guys change the board strappings to -rev6.
-This works _seamlessly_ because the newest dts file always advertises
-just "google,lazor"
-
-c) We spin the board for something that's _not_ invisible. It will be
-"-rev7". Now, we go back and add "-rev5" and "-rev6" to the old board
-dts file and remove the advertisement for "google,lazor". We create a
-new dts file for -rev7 that advertises "google,lazor".
-
-Now we can certainly argue back and forth above the above scheme and
-how it's terrible and/or great, but it definitely works pretty well
-and it's what we've been doing for a while now. Before that we used to
-proactively add a whole bunch of "future" revisions "just in case".
-That was definitely worse and had the same problem that we'd have to
-shuffle compatibles. See, for instance `rk3288-veyron-jerry.dts`.
-
-One thing we _definitely_ don't want to do is to give HW _any_
-incentive to make board spins _without_ changing the revision. HW
-sometimes makes spins without first involving software and if it
-doesn't boot because they updated the board ID then someone in China
-will just put the old ID in and ship it off. That's bad.
-
---
-
-But I guess this doesn't answer your question: how can userspace
-identify what board this is running? I don't have an answer to that,
-but I guess I'd say that the top-level "compatible" isn't really it.
-If nothing else, I think just from the definition it's not guaranteed
-to be right, is it? From the spec: "Specifies a list of platform
-architectures with which this platform is compatible." The key thing
-is "a list". If this can be a list of things then how can you use it
-to uniquely identify what one board you're on? If all of the things
-that are different between two boards are things that are probable
-(eDP panels, USB devices, PCIe devices) then two very different boards
-could have the exact same device tree, right? ...and you could have
-one device tree that lists the compatible of both boards?
-
-That all being said, I think that on Chrome OS the userspace tools
-_do_ some amount of parsing of the compatible strings here. For
-Chromebooks they leverage the fact that they understand the above
-scheme and thus can figure things out. I think they also use things
-like `/proc/device-tree/firmware/coreboot/board-id` and
-`/proc/device-tree/firmware/coreboot/sku-id`. That doesn't seem to be
-documented, though. :(
-
-I guess the question is, though, why do you need to know what board you're on?
-
--Doug
+MIIQcAYJKoZIhvcNAQcCoIIQYTCCEF0CAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg3HMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
+MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
+rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
+aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
+e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
+cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
+MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
+KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
+/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
+TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
+YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
+b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
+c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
+CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
+BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
+jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
+9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
+/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
+jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
+AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
+dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
+MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
+IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
+XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
+J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
+nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBU8wggQ3oAMCAQICDDbx5fpN++xs1+5IgzANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMTAyMjIwODA1MjJaFw0yMjA5MDUwODEwMTZaMIGQ
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xFjAUBgNVBAMTDVdpbGxpYW0gWmhhbmcxKTAnBgkqhkiG9w0B
+CQEWGndpbGxpYW0uemhhbmdAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEA4fxIZbzNLvB+7yJE8mbojRaOoaK1uZy1/etc55NzisSJJfY36BAlb7LlMDsza2/BcjXh
+lSACuzeOyI8sy2pKHGt5SZCMHeHaxP8q4ZNR6EGz7+5Lopw6ies8fkDoZ/XFIHpfU2eKcIYrxI25
+bTaYAPDA50BHTPDFzPNkWEIIQaSBBkk55bndnMmB/pPR/IhKjLefDIhIsiWLrvQstTiSf7iUCwMf
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJXY4AfCINbvH6iQcpx9m5EDC/h7
+1choEy2N9fPHKy17MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDQxNDE3MzgyOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCvHuFah7s5K1ReLeB5tXR4JVfB1YqUz28mz5v9St/In4JI
+ZPdGJTSTlBmSTSkkBVLctrgRjREwkM+F7qzy823uFkvke/zyVOrgLOmTNfV1/SyMokyTv7iGVzSQ
+WWwbQIaqe86ytKT8EMqF50PDmwUuXGzgI0nljpYseG0YS2tUEr+NR/VjISJe/+DmCpbnkOo8PPrQ
+fkQBzXNUIJySH/jhEILGUi+uXgwfd8oNhMTieQK0bf2dSXcofcv7GUrUDciWhmIt2h5vcP1glO0L
+erwPM5AyEVuC8Nd5sWphdj+VSVR7uQBJiRLtrUgVeRBDuedP7+NsfNhRGutEvvoHJwQj
+--0000000000001becfb05dca0c3bb--
