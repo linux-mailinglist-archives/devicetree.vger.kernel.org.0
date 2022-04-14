@@ -2,177 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED41501DAA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:49:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB30B501DBA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243501AbiDNVu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 17:50:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43506 "EHLO
+        id S239329AbiDNVx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 17:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237142AbiDNVu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:50:56 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EB895A04
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:48:29 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id n8so5804184plh.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:48:29 -0700 (PDT)
+        with ESMTP id S237250AbiDNVx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:53:57 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AFCA377E8
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:51:31 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id g18so12441936ejc.10
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:date:message-id:mime-version;
-        bh=waPudPlVhHtHMA9moxAZ6Byzf/Q9LiHGndFwnvJTw84=;
-        b=sq26syXLy4lhHszxXm4VE59PlRWIiN0fJq/WC5AsgDkzVY+FMzC6W8M4G+c9XhxJ7M
-         RPa8qQV3RjWQEkANg49pLuYOPJbqHWpDom/qBhXcNiTU2x/EUP7vMzD8EaTfWnWQopXg
-         6RzI1HzBPjwsvZa5bVcRJlJkLO3FFHQYq5GbP/A+l8WjhxU64qfiE5ATq+qhBzIoJa+p
-         5piiW3jrqQXYxkj6b2iWx54liMxXtnSnkXoh5h0JG+ag9jvbyNIOEYFHQ2xS5N2VzCEQ
-         m0x0W90S9aYJ86OUJVnVBt19ASYxD+EqdjdzGQfCt2UusLeecEGN9+WyVUK2leOCsIpM
-         wlJQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IWv2Ppbp50uTzsTbYA0OggS+HfcMIlPvUJ7mUKY3HEI=;
+        b=jpVPYefQu+vId/3f5egszIn+HK5nNmft6hktSoVVoMwB7NsgD6J+XSQn5+0NH/VWpy
+         VXjCbtOuADG+DrniheywOPAuqHUYmIbMlmpQM4SZTG2ymrScPAO9N3TVG4g4LXgCf37m
+         1z3OH2jWXmMbPBBx9Yi2sjclyIwaE72EoZKY4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:date:message-id
-         :mime-version;
-        bh=waPudPlVhHtHMA9moxAZ6Byzf/Q9LiHGndFwnvJTw84=;
-        b=MIZERabRqjNWz7y/gMuJjXiKhHbGXJJaH257QivFzUa+v65lRs7OBiJD8gnQpuhn5w
-         B11EF7BykZ1dxYheTyzMAfPsEsIe9AICMjlehyH1e0kMdr1poe4X/0q49DEc93Nk0R39
-         LlyiQvyvpoLNhag23lYzKSbpK/EZdr2ECxdye1Rh62TvZVd0WDB8i9qb1oa2ftx5mIG0
-         brNNRsAl13I+kvx/EoOs3MqI9Z9+++RZ5xRemvIDDET0czYHg49Ggp0uOe8LgeBISTzS
-         kypD3hhpI4grUHuOedqG/MwINFm0wGo3x/iDSI5ien/8Agc0ru7oYi1VuuK09fsOWCaC
-         YSHw==
-X-Gm-Message-State: AOAM531jlkn44B06ticwaBXCSspnbIamSr38QCB3h28jMqzQkv6tPtjD
-        sHNbA5WhApXR7QBgFc3vTvGjug==
-X-Google-Smtp-Source: ABdhPJzrSS547mp4Ducl8jVLogQ25Z5tF6TpXhzlX/3f9wSauuf4/iNhSVnZHTPi6dTUidziqtR1IA==
-X-Received: by 2002:a17:90b:4c45:b0:1cd:4fa3:6ee4 with SMTP id np5-20020a17090b4c4500b001cd4fa36ee4mr663031pjb.96.1649972908766;
-        Thu, 14 Apr 2022 14:48:28 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id k4-20020a17090a3e8400b001cd37f6c0b7sm2717486pjc.46.2022.04.14.14.48.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 14:48:28 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
-        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
-In-Reply-To: <12c630946ce9d7b8c80143615496238759323981.camel@mediatek.com>
-Date:   Thu, 14 Apr 2022 14:48:27 -0700
-Message-ID: <7hbkx3fiac.fsf@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IWv2Ppbp50uTzsTbYA0OggS+HfcMIlPvUJ7mUKY3HEI=;
+        b=QcHTEtYD2ufRn8ldMZGw88NZu/Li4+QMOdUUUsgOtxZWtlgltcrvzNwc+23KG7Uaoq
+         o68HBVGw4DzgiINRrZ3hz0/q7mZsG5sAN7U70S8BvmFq2iJcbUnVndDyGluFU8F8tl8S
+         fqmlaQoGlvSM+wXYfsLjnt6cc/uQTr8P5zacYIXc57nEJuE2yPeUXfnRyZpghxaQJFLS
+         zNFVJ0I80sG5m/106n4xyGH23mZwQz+PRPNU1LmUgmN/3v7KAJtDhQUdvExGg9mkv4M4
+         VBZtL3HshJx4YOsoxm8ts4aQbLxtZwdRR+Xqc551U+fsXdWtxRzCmjtYDVT2JPHUgWNo
+         ryfg==
+X-Gm-Message-State: AOAM530BMKnV9CQFBgcVci+mAVsLGJX7Tf7CanYEoLURXWPwUwv2sQCO
+        PltIczmm4O2n0bbJHyIV0dj/cDfLBsGAh+lvUhU=
+X-Google-Smtp-Source: ABdhPJxeowkjwtwKX3Kqkxe8t5RbHKnGKeRQ+EEjz7n6APo0AfzAIT+jj07ouXnTvLsTSnoh3hHO+A==
+X-Received: by 2002:a17:907:1b1b:b0:6e4:7fac:6ce0 with SMTP id mp27-20020a1709071b1b00b006e47fac6ce0mr3941351ejc.617.1649973089444;
+        Thu, 14 Apr 2022 14:51:29 -0700 (PDT)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
+        by smtp.gmail.com with ESMTPSA id c13-20020a17090654cd00b006e0db351d01sm1056104ejp.124.2022.04.14.14.51.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 14:51:28 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id u17-20020a05600c211100b0038eaf4cdaaeso6801741wml.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:51:28 -0700 (PDT)
+X-Received: by 2002:a05:600c:4f10:b0:38c:ae36:d305 with SMTP id
+ l16-20020a05600c4f1000b0038cae36d305mr499148wmq.34.1649973087758; Thu, 14 Apr
+ 2022 14:51:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1649938766-6768-2-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=Wmiv2WGhFCLYmXbWESNOh5FfobjNme85aU6YtN1SLVDA@mail.gmail.com>
+ <81c3a9fb-4c92-6969-c715-ca085322f9c6@linaro.org> <CAE-0n50obe_aqzwQY-X1yH4emjjOErOJ_wj9sQe=HoWEZ3vjTw@mail.gmail.com>
+ <CAD=FV=U4qtst5q--_1794Pdjsc7b_JMRAh+X_vr-9qJx5NtOrw@mail.gmail.com> <56453228-d4b2-c7e4-7b72-6de8637f2def@linaro.org>
+In-Reply-To: <56453228-d4b2-c7e4-7b72-6de8637f2def@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 14 Apr 2022 14:51:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XjVb7tP4acjOQgg2_8oCbOxqTopJE1PUKdf2noQCHg=Q@mail.gmail.com>
+Message-ID: <CAD=FV=XjVb7tP4acjOQgg2_8oCbOxqTopJE1PUKdf2noQCHg=Q@mail.gmail.com>
+Subject: Re: [PATCH v7 1/4] drm/msm/dp: Add eDP support via aux_bus
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        Aravind Venkateswaran <quic_aravindh@quicinc.com>,
+        Steev Klimaszewski <steev@kali.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
+Hi,
 
-> On Wed, 2022-04-13 at 14:41 -0700, Kevin Hilman wrote:
->> Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
->> 
->> [...]
->> 
->> > From the Chanwoo's devfreq passive govonor series, it's impossible
->> > to
->> > let cci devreq probed done before cpufreq because the passive
->> > govonor
->> > will search for cpufreq node and use it.
->> > 
->> > Ref: function: cpufreq_passive_register_notifier()
->> > 
->> > 
-> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing&id=b670978ddc43eb0c60735c3af6e4a370603ab673__;!!CTRNKA9wMg0ARbw!z58Lc1p9REo88oHn-NkxroN_fBd0TsHYmhscNZwnWwT71ecRkTeqZ6vFl5l7HpkTdM6t$
->> >  
->> 
->> Well this is a problem, because CCI depends on CPUfreq, but CPUfreq
->> depends on CCI, so one of them has to load and then wait for the
->> other.
->> 
->> > After I discuss with Angelo and Jia-wei, we think we are keeping
->> > the
->> > function in target_index and if the cci is not ready we will use
->> > the
->> > voltage which is set by bootloader to prevent high freqeuncy low
->> > voltage crash. And then we can keep seting the target frequency.
->> > 
->> 
->>  > We assume the setting of bootloader is correct and we can do this.
->> 
->> I'm still not crazy about this because you're lying to the CPUfreq
->> framework.  It's requesting one OPP, but you're not setting that,
->> you're
->> just keeping the bootloader frequency.
->> 
->> In my earlier reply, I gave two other options for handling this.
->> 
->> 1) set a (temporary) constraint on the voltage regulator so that it
->> cannot change.
->> 
->> or more clean, IMO:
->> 
->> 2) set a CPUfreq policy that restricts available OPPs to ones that
->> will
->> not break CCI.
->> 
->> Either of these solutions allow you to load the CPUfreq driver early,
->> and then wait for the CCI driver to be ready before removing the
->> restrictions.
+On Thu, Apr 14, 2022 at 2:16 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 >
-> Hello Kevin,
+> > Hmm, interesting. Probably for DRM_BRIDGE_OP_MODES that will work?
+> > It's definitely worth confirming but from my reading of the code it
+> > _probably_ wouldn't hurt.
+> >
+> > One thing someone would want to confirm would be what would happen if
+> > we move this code and the panel code to implement DRM_BRIDGE_OP_EDID
+> > properly. It looks as if both actually ought to be implementing that
+> > instead of DRM_BRIDGE_OP_MODES, at least in some cases. A fix for a
+> > future day. Could we get into trouble if one moved before the other?
+> > Then the panel would no longer override the eDP controller and the eDP
+> > controller would try to read from a possibly unpowered panel?
 >
-> I think I do not describe this clearly.
-> The proposal is:
+> That would depend on the way the get_edid would be implemented in DP
+> driver. Currently the edid is cached via the
+> dp_display_process_hpd_high() -> dp_panel_read_sink_caps() call chain.
 >
-> In cpufreq probe:
-> we record the voltage value which is set by bootloader.
+> With this patchset, the dp_hpd_plug_handle() ->
+> dp_display_usbpd_configure_cb() -> dp_display_process_hpd_high() will be
+> called too late for the get_modes/get_edid (from dp_bridge's enable() op).
 >
-> In mtk_cpufreq_set_target():
-> We do NOT directly return 0.
-> Instead, we will find the voltage of target cpufreq and use the value
-> max(booting voltage, target cpufreq voltage)
+> There is another issue. drm_panel has only get_modes() callback, so
+> panel_bridge can not implement get_edid() unless we extend the panel
+> interface (which might be a good idea).
+
+Ah, that makes sense and explains why the current panel code does the
+EDID reading in its get_modes() function even though get_modes() is
+_documented_ that it doesn't read the EDID. ;-) I guess it's another
+of the "let's move some people over to the new way but we'll keep the
+old code working". Definitely makes it hard to understand at times.
+
+
+> > For hotplug/detect I'm even less confident that setting the bits would
+> > be harmless. I haven't sat down and traced everything, but from what I
+> > can see the panel _doesn't_ set these bits, does it? I believe that
+> > the rule is that when every bridge in the chain _doesn't_ implement
+> > detect/hotplug that the panel is always present. The moment someone
+> > says "hey, I can detect" then it suddenly becomes _not_ always
+> > present. Yes, I guess we could have the panel implement "detect" and
+> > return true, but I'm not convinced that's actually better...
 >
-> mtk_cpufreq_set_target() {
-> 	/* NOT return 0 if !is_ccifreq_ready */
-> 	....
-> 	vproc = get voltage of target cpufreq from opp.
->
-> 	if (ccifreq_supported && !is_ccifreq_ready)
-> 		vproc = max(vproc, vproc_on_boot)
->
-> 	//setting voltage and target frequency
-> 	....
-> }
+> I think it makes sense to implement OP_DETECT in panel bridge (that
+> always returns connector_status_connected) at least to override the
+> possible detect ops in previous bridges.
 
-You explained this well, but it's still not an appropriate solution IMO,
-because you're still not setting the target that is requested by the
-CPUfreq core.
+So I truly don't know the right answer, but are you sure that's the
+best design? I _think_ that panel_bridge is used for all kinds of
+panels, right? So what if there's some type of display that uses a
+panel but there's still a mechanism that supports physical detection
+of the panel? By implementing "detect" in the generic panel_bridge
+then you're _preventing_ anyone higher up in the chain from
+implementing it and you're forcing it to be "always connected".
 
-The job of ->set_target() is to set the frequency *requested by CPUfreq
-core*.  If you cannot do that, you should return failure.  What you posted
-in the original patch and what you're proposing here is to ignore the
-frequency passed to ->set_target() and do something else.  In the
-orignal patch, you propose do to nothing.  Now, you're ignoring the 
-target passed in and setting something else.  In both cases, the CPUfreq
-core things you have successfuly set the frequency requested, but you
-have not.  This means there's a mismatch between what the CPUfreq core &
-governer things the frequency is and what is actually set.  *This* is
-the part that I think is wrong.
+For instance, we could come up with a new display standard called
+"pluggable eDP" that is just like eDP except that you can physically
+detect it. This imaginary new display standard is different from DP
+because it has eDP power sequencing (fully powers the display off when
+the screen is off) but it's hot pluggable! It introduces a new pin
+that goes to the DP controller called RT-HPD for "really, truly hot
+plug detect" that works even when the panel is off. The existing "HPD"
+pin continues to mean that the panel is read to communicate. If the
+drm_panel hardcodes "always connected" then I can't implement my
+"pluggable eDP" system, right? However, if we leave it just like it is
+today then my new system would be easy to implement. ;-)
 
-Instead, the proper way of restricting available frequencies is to use
-governors or policies.  This ensures that the core & governors are
-aligned with what the platform driver actually does.
+The above example is obviously not truly a real one but I guess my
+point is that I find it more intuitive / useful to say that we should
+only implement "detect" if we truly think we can detect and that if
+nobody says they can detect then we must be always connected.
 
-As I proposed earlier, I think a clean solution to this problem is to
-create a temporary policy at probe time that restricts the available
-OPPs based on what the current CCI freq/voltage are.  Once CCI driver is
-loaded and working, this policy can be removed.
+As an aside; I think in general it's not always easy to fit every
+possible graphics system into these "bridge chains" and the simple
+sequence of pre-enable, enable, etc, so we have to do our best and
+accept the fact that sometimes we'll need special cases. Dave
+Stephenson's patches [1] should tell us that, at least.
 
-Kevin
+[1] https://lore.kernel.org/all/cover.1646406653.git.dave.stevenson@raspberrypi.com/
 
 
+-Doug
