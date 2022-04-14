@@ -2,230 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60FC450085B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7663500864
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:31:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbiDNIbZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Apr 2022 04:31:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
+        id S234075AbiDNIeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:34:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbiDNIbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:31:24 -0400
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5184A5F8F5;
-        Thu, 14 Apr 2022 01:29:00 -0700 (PDT)
-Received: by mail-qv1-f48.google.com with SMTP id i14so3469208qvk.13;
-        Thu, 14 Apr 2022 01:29:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=K4jhu4FAbusiwXx4SNoJui+7n/4ZIgbjfyFZftFmys0=;
-        b=JrcpXosUGEQQVkkg7zGuv18azwIIm1RZrl8OIuzJ9kbcLPIDng9AEhg1pDrdvA7etV
-         w6g0vpJftJtP/M3UF21AlSJxXt6t1q9786eV6BMAlYCbk/r3dHgJqHv/Xd4g8gvqe2gR
-         /R4xD4QZSmfMexnJHbfY3fE/ZXqmGMGj8Gm93lm5pShGEeQVm7/Q0JBCINJD+QE2QKIN
-         9oZfy+aBN09kLJMzGUX1uJ2rNc7wXAgBiT2kG6l5jAzmm4ZxneNZTOnh7vF+fTEM/LAo
-         q3qnrtBjBcE4bmlLn+1TbeRIh0YYfNIql9ubgwn2Y64PAaDYsxv5jY0lYaM7bg2t7JAj
-         UObw==
-X-Gm-Message-State: AOAM533erq02vBBT5raJIDY/o57HdGr3v6kvZ2OemC35KrC7fYsb/LwM
-        jzaU8e7tRZG4Xfycb/qETcFSPWYSvL9v2w==
-X-Google-Smtp-Source: ABdhPJxF0bn1PAHoUKUoBadVoOG0HnPUZBjOTykhlucx9KNCLS1t5tBBdzcRNM9kM1iT4SsjPs2xjw==
-X-Received: by 2002:a05:6214:c48:b0:440:cded:f2ab with SMTP id r8-20020a0562140c4800b00440cdedf2abmr11685831qvj.18.1649924939228;
-        Thu, 14 Apr 2022 01:28:59 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id j188-20020a3755c5000000b0067d1c76a09fsm679326qkb.74.2022.04.14.01.28.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 01:28:59 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2ebf3746f87so47737447b3.6;
-        Thu, 14 Apr 2022 01:28:58 -0700 (PDT)
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr1106796ywb.132.1649924938578; Thu, 14
- Apr 2022 01:28:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220414074011.500533-1-herve.codina@bootlin.com> <20220414074011.500533-3-herve.codina@bootlin.com>
-In-Reply-To: <20220414074011.500533-3-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 14 Apr 2022 10:28:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUhr7emtsxoxGP5EH2EzNK=PM_7+-32cesecjQjoW1ryQ@mail.gmail.com>
-Message-ID: <CAMuHMdUhr7emtsxoxGP5EH2EzNK=PM_7+-32cesecjQjoW1ryQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] dt-bindings: PCI: renesas-pci-usb: Convert
- bindings to json-schema
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S232467AbiDNIeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:34:03 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369755D5E6;
+        Thu, 14 Apr 2022 01:31:38 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23E8VRjL045901;
+        Thu, 14 Apr 2022 03:31:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649925087;
+        bh=+RAZBRGAPF3I3env6XUTMQi/ezO5Z3mUOIrvoshpHeA=;
+        h=From:To:CC:Subject:Date;
+        b=eubK0QgELYtIXyTQ5VodkX3kVjbUeydrpmR2q7eCVLJ9zt3S96PBb7OB4Kyl3tYLt
+         NwYmDI6gmbU3uU3imnuUt8OVblmT261slFvvDnOThJ0AIgoPz0DYn0uL3MCAyuTZkj
+         xvTxXs1t2mcuzPltr1hqjAf2ApnqnAh4Sqc7zvSo=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23E8VRhc013924
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 14 Apr 2022 03:31:27 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 14
+ Apr 2022 03:31:26 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 14 Apr 2022 03:31:26 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23E8VLNm025547;
+        Thu, 14 Apr 2022 03:31:22 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Saranya Gopal <saranya.gopal@intel.com>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] typec: tipd: Add support for polling
+Date:   Thu, 14 Apr 2022 14:01:16 +0530
+Message-ID: <20220414083120.22535-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hervé,
+The following series of patches add support for polling in the tipd
+driver. The driver switches to polling by default, when interrupts
+property is not populated.
 
-On Thu, Apr 14, 2022 at 9:40 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> Convert Renesas PCI bridge bindings documentation to json-schema.
-> Also name it 'renesas,pci-usb' as it is specifically used to
-> connect the PCI USB controllers to AHB bus.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Link to RFC patch posted earlier,
+- https://patchwork.kernel.org/project/linux-usb/patch/20220412145059.4717-1-a-govindraju@ti.com/
 
-Thanks a lot for tackling this DT binding file!
+Changes since RFC patch,
+- Added patch to make the required changes in dt-bindings to make
+  interrupts optional
+- Changed to using (client->irq) to decide whether interrupts or
+  polling should be used instead of switching to polling based on
+  the return value while requesting irq line.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml
-> @@ -0,0 +1,134 @@
-> +# SPDX-License-Identifier: GPL-2.0
+Aswath Govindraju (2):
+  dt-bindings: usb: tps6598x: Make the interrupts property optional
+  usb: typec: tipd: Add support for polling interrupts status when
+    interrupt line is not connected
 
-scripts/checkpatch.pl says:
-WARNING: DT binding documents should be licensed (GPL-2.0-only OR BSD-2-Clause)
+ .../devicetree/bindings/usb/ti,tps6598x.yaml  |  4 +-
+ drivers/usb/typec/tipd/core.c                 | 99 ++++++++++++++++---
+ 2 files changed, 90 insertions(+), 13 deletions(-)
 
-> +  reg:
-> +    description: |
-> +      A list of physical regions to access the device. The first is
-> +      the operational registers for the OHCI/EHCI controllers and the
-> +      second is for the bridge configuration and control registers.
-> +    minItems: 2
-> +    maxItems: 2
+-- 
+2.17.1
 
-reg:
-  items:
-    - description: Operational registers for the OHCI/EHCI controllers.
-    - description: Bridge configuration and control registers.
-
-> +
-> +  interrupts:
-> +    description: Interrupt for the device.
-
-maxItems: 1
-
-The description is not needed.
-
-> +
-> +  interrupt-map:
-> +    description: |
-> +      Standard property used to define the mapping of the PCI interrupts
-> +      to the GIC interrupts.
-> +
-> +  interrupt-map-mask:
-> +    description:
-> +      Standard property that helps to define the interrupt mapping.
-> +
-> +  clocks:
-> +    description: The reference to the device clock.
-
-maxItems: 1
-
-The description is not needed.
-
-Missing "resets" and "power-domains" properties.
-
-Missing description of the child nodes.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - clocks
-
-Missing "resets" and "power-domains".
-
-> +  - bus-range
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - "#interrupt-cells"
-> +
-> +unevaluatedProperties: false
-
-Why doesn't "make dtbs_check" complain about the presence of
-e.g. "resets" in the actual DTS files?
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-
-I think you should drop this (and the corresponding high addresses
-below).
-
-> +
-> +        pci0: pci@ee090000  {
-> +            compatible = "renesas,pci-r8a7790", "renesas,pci-rcar-gen2";
-> +            device_type = "pci";
-> +            clocks = <&cpg CPG_MOD 703>;
-> +            reg = <0 0xee090000 0 0xc00>,
-> +                  <0 0xee080000 0 0x1100>;
-> +            interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-
-                        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-                        resets = <&cpg 703>;
-
-> +            status = "disabled";
-> +
-> +            bus-range = <0 0>;
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            #interrupt-cells = <1>;
-> +            ranges = <0x02000000 0 0xee080000 0 0xee080000 0 0x00010000>;
-> +            dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 0 0x40000000>;
-> +            interrupt-map-mask = <0xf800 0 0 0x7>;
-> +            interrupt-map = <0x0000 0 0 1 &gic GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <0x0800 0 0 1 &gic GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <0x1000 0 0 2 &gic GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +            usb@1,0 {
-> +                reg = <0x800 0 0 0 0>;
-> +                phys = <&usb0 0>;
-> +                phy-names = "usb";
-> +            };
-> +
-
-ERROR: trailing whitespace
-#249: FILE: Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml:127:
-+            $
-
-> +            usb@2,0 {
-> +                reg = <0x1000 0 0 0 0>;
-> +                phys = <&usb0 0>;
-> +                phy-names = "usb";
-> +            };
-> +        };
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
