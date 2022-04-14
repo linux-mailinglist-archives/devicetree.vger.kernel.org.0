@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6899501ABB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 20:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 092A2501AC8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 20:06:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344335AbiDNSF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 14:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57718 "EHLO
+        id S241478AbiDNSJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 14:09:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242386AbiDNSF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 14:05:26 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B0AE994D;
-        Thu, 14 Apr 2022 11:03:00 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id n17so2111846ljc.11;
-        Thu, 14 Apr 2022 11:02:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kAsULcyFDYOOcncKyenYwJA/62360c0X8slk6jZuPw8=;
-        b=k9KgEm4O/Gb3n5g5+GivmFNzLum7cNzINb/+FzxcZAMcIYhf3EgV5W1SrisnF6hgS8
-         Ha+KwRhey9rCHwrDflbfIJuIZvOhYUGnihtC10n2CjtRGzV0FZ5feYLvtHMlIi1wnRbf
-         A0rn4SHV/2Ado0nN3skHa1Vgt1jlEZRQtdcfteYx7bx2d+CZPxVZpgTDVE27NVto7ci7
-         mt1H/r1cHas2/l+NQqX2DUvilvljqCmr5UEP9wSlxkXB901PI0d484ySe5UP5q1dKPRF
-         ZMnl9Yj+ePFeeJmvyc3/DkFLbygCEAgFavl3p3pystVzXfAQGw4sBFkQFUvGEtLMaw4h
-         B68A==
+        with ESMTP id S234685AbiDNSJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 14:09:20 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8480FA147B
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 11:06:55 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id g16-20020a9d6b10000000b00601ded2a06fso852754otp.6
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 11:06:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kAsULcyFDYOOcncKyenYwJA/62360c0X8slk6jZuPw8=;
-        b=eCOFxTlEa0NsG/JFDvlJFaMmbGkD0DyUk3xKUrLeTdXJ1TjwIq/fAnkwiI7NbwLVbi
-         eJ3nnrOrVzZdHOPeDp6MVyn6WagF00NuxSME3uY87mmJm1IvwH3Zs5vJOHl1HsL0bCO7
-         AMn8gmMSSyCaVs2Wh8j4PKd80E4zajFU9jUCsl39SljdEfEswWaRyvOes37KCFdcLX5G
-         0BA6EstzWRmiV/80ERBf9RtzlSXhp8lB4h5maKzGotrOW01mEXM8Tr+ghI3I5NSPCIE0
-         p7rdIEiZRwaEiT7BwS+MFTXElprKUvsoRdkQsYzTXPnBXhTGHZbE9slfipyqiXuF5HW7
-         77Wg==
-X-Gm-Message-State: AOAM5320qQBIcvD4SWAVXLnZqmuT9dT+bnPGLzdoKMNfuRpTqbA7z2Z9
-        3Sb90s43YKooSObqLbj+pQbE5pdCzUA=
-X-Google-Smtp-Source: ABdhPJxKQKV/BEWQSLgwZ1HQxYFqeMN+mFpDZqAhcm5NETqJ9CknUCMTkdmI6B0Dp58+3QfbGxLE+w==
-X-Received: by 2002:a05:651c:1544:b0:24c:8644:4046 with SMTP id y4-20020a05651c154400b0024c86444046mr2221156ljp.366.1649959378338;
-        Thu, 14 Apr 2022 11:02:58 -0700 (PDT)
-Received: from [192.168.0.122] ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id v6-20020a2ea446000000b0024b0abb3984sm56334ljn.134.2022.04.14.11.02.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 11:02:57 -0700 (PDT)
-Message-ID: <37fb7d5b-dbaa-0b8c-2ed6-6f1a462d7a62@gmail.com>
-Date:   Thu, 14 Apr 2022 21:02:49 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=b3DTIioDgFyWyQnrZwEcmDcPrOg7/lr+qgW5fY+/aoc=;
+        b=3AJJvVt8gXPUQfNidrJOVjvaN4QnNLLiEd6ntUWNR6pewcFLjEFy7ORiqdKFJ1L6q6
+         a2ICFmo119oe5Tp5hW41m4fo2r1rgUmhLmyZcJlifBkWkm2MRKL0+J6tn72036PqbSFZ
+         LE5iXVaQO8F/i+5Yek0nJ/K+FA5pJ45IUFn3GV1I3wj1Ji3gKAxaahUH5Cw6Y6jDS3J/
+         Q8t2gWexQYzfm62a6/qvY5dQcMrUOQe3618ulTZMsiPY02o9wHUo8emRGX0vnpkqESMP
+         7H/UX8yffT0MOkBB1YyayZJsCQYNZQchkuwzzv3ERLCE+zjvSf1pUDz0V3aR5orOho3C
+         0ysQ==
+X-Gm-Message-State: AOAM531+vc6e0up40/oqsRJbYK979y+wSI7wKTHv/XoJTxXNrg0nE0w+
+        qeFbu+0uq5SkVf0mw/G5Vg==
+X-Google-Smtp-Source: ABdhPJyluZ4IEmOA3A8HMJyUIpSciCWmK5X8IflrC6vQXDgA5F5KhkrGNErfVaVHY2CzQWCly0zZQQ==
+X-Received: by 2002:a9d:be7:0:b0:5cf:bb74:6f4 with SMTP id 94-20020a9d0be7000000b005cfbb7406f4mr1401358oth.145.1649959614719;
+        Thu, 14 Apr 2022 11:06:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a19-20020a0568301dd300b0060131a30a1dsm269166otj.67.2022.04.14.11.06.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 11:06:54 -0700 (PDT)
+Received: (nullmailer pid 2345150 invoked by uid 1000);
+        Thu, 14 Apr 2022 18:06:53 -0000
+Date:   Thu, 14 Apr 2022 13:06:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
+ based Menlo board
+Message-ID: <YlhivWKTmMOq0tex@robh.at.kernel.org>
+References: <20220414033132.548071-1-marex@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 4/4] regulator: sm5703-regulator: Add regulators support
- for SM5703 MFD
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org
-References: <20220414170616.23319-1-markuss.broks@gmail.com>
- <20220414170616.23319-5-markuss.broks@gmail.com>
- <YlhfMkBqst87qvtD@sirena.org.uk>
-From:   Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <YlhfMkBqst87qvtD@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220414033132.548071-1-marex@denx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+On Thu, 14 Apr 2022 05:31:31 +0200, Marek Vasut wrote:
+> Add DT compatible string for board based on the Toradex Verdin iMX8M
+> Mini SoM, the MX8Menlo. The board is a compatible replacement for
+> i.MX53 M53Menlo and features USB, multiple UARTs, ethernet, LEDs,
+> SD and eMMC.
+> 
+> Reviewed-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: devicetree@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Expand comment with Verdin SoM note
+> V3: - Add RB by Fabio
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-On 4/14/22 20:51, Mark Brown wrote:
-> On Thu, Apr 14, 2022 at 08:06:15PM +0300, Markuss Broks wrote:
->
->> +++ b/drivers/regulator/Makefile
->> @@ -173,5 +173,6 @@ obj-$(CONFIG_REGULATOR_WM831X) += wm831x-ldo.o
->>   obj-$(CONFIG_REGULATOR_WM8350) += wm8350-regulator.o
->>   obj-$(CONFIG_REGULATOR_WM8400) += wm8400-regulator.o
->>   obj-$(CONFIG_REGULATOR_WM8994) += wm8994-regulator.o
->> +obj-$(CONFIG_REGULATOR_SM5703) += sm5703-regulator.o
->>   
-> Please keep the Kconfig and Makefile sorted.
->
->> +static const int sm5703_buck_voltagemap[] = {
->> +	1000000, 1000000, 1000000, 1000000,
->> +	1000000, 1000000, 1000000, 1000000,
->> +	1000000, 1000000, 1000000, 1100000,
->> +	1200000, 1300000, 1400000, 1500000,
->> +	1600000, 1700000, 1800000, 1900000,
->> +	2000000, 2100000, 2200000, 2300000,
->> +	2400000, 2500000, 2600000, 2700000,
->> +	2800000, 2900000, 3000000, 3000000,
->> +};
-> Are the repeated values at the ends of the array actually valid or do
-> they indicate the part being driven out of spec?  If it's out of spec
-> then it's better to exclude them since otherwise we might choose one of
-> those values when configuring a voltage which may not actually work as
-> desired.
-
-I am pretty sure those values are valid. This voltage map is taken 
-directly from the downstream driver (I wish I had actual 
-documentation...) , which also backs it by saying 32 voltage levels are 
-supported. However, I find it rather improper to have separate values 
-which result in same voltage level. Still, I'm not sure something like 
-selector offset exists in struct regulator_desc or elsewhere.
-
-- Markuss
-
+Acked-by: Rob Herring <robh@kernel.org>
