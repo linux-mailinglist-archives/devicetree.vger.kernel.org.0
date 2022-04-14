@@ -2,146 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 981F5501EDE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 01:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 347F9501EEA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 01:16:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347433AbiDNXIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 19:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45990 "EHLO
+        id S244649AbiDNXSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 19:18:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347445AbiDNXIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 19:08:41 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A5AAA037
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 16:06:13 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id DAA042C0650;
-        Thu, 14 Apr 2022 23:06:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1649977570;
-        bh=wM1gUAUK5fiJFyGOgqOfrElIDMcVpkW5bkW1WhrC3TQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=U88lg85UZj1INYaRuQnOMzM3F9iiVPr7R+L5iG+YlK3nFxuz53GLU3oVP8K+XX1BR
-         1pkblkj0IN/Lmi81Dki7RS9nDdx9NGA8dgY+PZoPI6cLaXkENcxINeU6tvy9voqMWD
-         VMotunS1ITMIaSm1vSZpvIPT4iS8BVuwZOrukZl6qEKTgwXwaThnU1U5BBClUxFE8Z
-         g+ga+CwBj1xzP5kHcm+N/WdY5L7vMvbaBL3+zK6Nd3F9bIFVql+yNznmGkz89m0C+n
-         fTC77S4Ee1djWkCmQ/pCg/GsRo+BLGwZK6z3J/+DTtiMO7e/DZ0TCDcvwDABspeXtO
-         QCz48P1pimtmA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6258a8e20004>; Fri, 15 Apr 2022 11:06:10 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id B81F513EE37;
-        Fri, 15 Apr 2022 11:06:10 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 63EFD2A2679; Fri, 15 Apr 2022 11:06:07 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH 4/4] dt-bindings: mmc: convert sdhci-dove to JSON schema
-Date:   Fri, 15 Apr 2022 11:06:03 +1200
-Message-Id: <20220414230603.567049-5-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220414230603.567049-1-chris.packham@alliedtelesis.co.nz>
-References: <20220414230603.567049-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S240552AbiDNXSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 19:18:49 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACCDAC907;
+        Thu, 14 Apr 2022 16:16:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=CFuW2Yfm9w5+kjCNJGdTozdGvIwhLZUxIXX3CCrU31k=; b=fw
+        lAINokVw/geP2JhxUmI9Ru88RDoIbh3GzNFWpBnjymIOnkJr6Oh+JipuG1hcV6q+Ka9vUgP2iyc59
+        M8CeeMzMCbY80OrIk+qSqhPmKATuCzhUMZkQRJoPV7uz1izxLmhKwWe718/5gYSqiBzSOlHRAtOyQ
+        Oi4wLHGvsQvDaZw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nf8h9-00Ft3S-Nv; Fri, 15 Apr 2022 01:16:11 +0200
+Date:   Fri, 15 Apr 2022 01:16:11 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 07/12] net: dsa: rzn1-a5psw: add statistics
+ support
+Message-ID: <YlirO7VrfyUH33rV@lunn.ch>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-8-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L59jvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=z0gMJWrwH1QA:10 a=gEfo2CItAAAA:8 a=KKAkSRfTAAAA:8 a=RGhaJwkFiXH1yVd61u0A:9 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220414122250.158113-8-clement.leger@bootlin.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the sdhci-dove binding to JSON schema.
+On Thu, Apr 14, 2022 at 02:22:45PM +0200, Clément Léger wrote:
+> Add per-port statistics. This support requries to add a stat lock since
+> statistics are stored in two 32 bits registers, the hi part one being
+> global and latched when accessing the lo part.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  drivers/net/dsa/rzn1_a5psw.c | 101 +++++++++++++++++++++++++++++++++++
+>  drivers/net/dsa/rzn1_a5psw.h |   2 +
+>  2 files changed, 103 insertions(+)
+> 
+> diff --git a/drivers/net/dsa/rzn1_a5psw.c b/drivers/net/dsa/rzn1_a5psw.c
+> index 5bee999f7050..7ab7d9054427 100644
+> --- a/drivers/net/dsa/rzn1_a5psw.c
+> +++ b/drivers/net/dsa/rzn1_a5psw.c
+> @@ -16,6 +16,59 @@
+>  
+>  #include "rzn1_a5psw.h"
+>  
+> +struct a5psw_stats {
+> +	u16 offset;
+> +	const char *name;
+> +};
+> +
+> +#define STAT_DESC(_offset, _name) {.offset = _offset, .name = _name}
+> +
+> +static const struct a5psw_stats a5psw_stats[] = {
+> +	STAT_DESC(0x868, "aFrameTransmitted"),
+> +	STAT_DESC(0x86C, "aFrameReceived"),
+> +	STAT_DESC(0x8BC, "etherStatsetherStatsOversizePktsDropEvents"),
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- .../bindings/mmc/marvell,dove-sdhci.yaml      | 38 +++++++++++++++++++
- .../devicetree/bindings/mmc/sdhci-dove.txt    | 14 -------
- 2 files changed, 38 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mmc/marvell,dove-sd=
-hci.yaml
- delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-dove.txt
+> +};
 
-diff --git a/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yam=
-l b/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
-new file mode 100644
-index 000000000000..b3a762b528fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/marvell,dove-sdhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell sdhci-dove controller
-+
-+maintainers:
-+  - Ulf Hansson <ulf.hansson@linaro.org>
-+
-+allOf:
-+  - $ref: mmc-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: marvell,dove-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    sdio0: mmc@92000 {
-+      compatible =3D "marvell,dove-sdhci";
-+      reg =3D <0x92000 0x100>;
-+      interrupts =3D <35>;
-+    };
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-dove.txt b/Docum=
-entation/devicetree/bindings/mmc/sdhci-dove.txt
-deleted file mode 100644
-index ae9aab9abcd7..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-dove.txt
-+++ /dev/null
-@@ -1,14 +0,0 @@
--* Marvell sdhci-dove controller
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the sdhci-pxav2 and sdhci-pxav3 drivers.
--
--- compatible: Should be "marvell,dove-sdhci".
--
--Example:
--
--sdio0: sdio@92000 {
--	compatible =3D "marvell,dove-sdhci";
--	reg =3D <0x92000 0x100>;
--	interrupts =3D <35>;
--};
---=20
-2.35.1
 
+> +static void a5psw_get_strings(struct dsa_switch *ds, int port, u32 stringset,
+> +			      uint8_t *data)
+> +{
+> +	unsigned int u;
+> +
+> +	if (stringset != ETH_SS_STATS)
+> +		return;
+> +
+> +	for (u = 0; u < ARRAY_SIZE(a5psw_stats); u++) {
+> +		strncpy(data + u * ETH_GSTRING_LEN, a5psw_stats[u].name,
+> +			ETH_GSTRING_LEN);
+> +	}
+
+The kernel strncpy() is like the user space one. It does not add a
+NULL if the string is longer than ETH_GSTRING_LEN and it needs to
+truncate. So there is a danger here.
+
+What you find most drivers do is
+
+struct a5psw_stats {
+	u16 offset;
+	const char name[ETH_GSTRING_LEN];
+};
+
+You should then get a compiler warning/error if you string is ever
+longer than allowed. And use memcpy() rather than strcpy(), which is
+faster anyway. But you do use up a bit more memory.
+
+> +static void a5psw_get_ethtool_stats(struct dsa_switch *ds, int port,
+> +				    uint64_t *data)
+> +{
+> +	struct a5psw *a5psw = ds->priv;
+> +	u32 reg_lo, reg_hi;
+> +	unsigned int u;
+> +
+> +	for (u = 0; u < ARRAY_SIZE(a5psw_stats); u++) {
+> +		/* A5PSW_STATS_HIWORD is global and thus, access must be
+> +		 * exclusive
+> +		 */
+
+Could you explain that a bit more. The RTNL lock will prevent two
+parallel calls to this function.
+
+> +		spin_lock(&a5psw->stats_lock);
+> +		reg_lo = a5psw_reg_readl(a5psw, a5psw_stats[u].offset +
+> +					 A5PSW_PORT_OFFSET(port));
+> +		/* A5PSW_STATS_HIWORD is latched on stat read */
+> +		reg_hi = a5psw_reg_readl(a5psw, A5PSW_STATS_HIWORD);
+> +
+> +		data[u] = ((u64)reg_hi << 32) | reg_lo;
+> +		spin_unlock(&a5psw->stats_lock);
+> +	}
+> +}
+
+  Andrew
