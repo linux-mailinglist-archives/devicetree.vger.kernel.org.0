@@ -2,125 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0BB5008BA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E97C5008BF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240491AbiDNIwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:52:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55710 "EHLO
+        id S241122AbiDNIxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:53:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236287AbiDNIwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:52:14 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2089.outbound.protection.outlook.com [40.107.22.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4289A3BF81
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 01:49:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BRCsfEbX0pUdOYA+PsJesWHw2D6haANHcyw+2r34eNc+a0FaLqEgsqCvt6POrwwBt427lIVzAiLA6gLcIhZJs5EQcROOSz472CJyc2NW58wQBVKAuxhx/VihyrVINss5LMrUc5jWlPgDKIi3gusbJM6asyICi37wUHmNhuMXa9y/eg0V2GQA5Z+6wn28iw8sCQ/ELSVyla7GBZ3egmGv3XOnGhcPdJNLVuEtEiIWgMTCM+yWfLFD/4MJJo0YRSYuFJWIwoyNIE5OZGpR0eEdnYnUo4YSnlqZPGIRsGJI6fkTUVFIfup41pFDocCcVi8OVV/0p7p+/G9/Yind3sH8/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=As/SslT5PpKnS3/zlI799UeXtOEcy3+UwZFw2yhiitc=;
- b=LBFON8yJvdbzNwye+o5ylmUkicliIi1RP1Lkq9HpPgpkIka9RvaMBI3cfLTkNFwiPBcdV4hAIHUZgrRSKc7YhElviEwylmDr7eytdc7nOHo1mUPnnybA6UHlx+AWiEuvZfxc7R0VakLI6IvjpGqawuJ7uMAYC0QFvN0dXUx6n+8G7Jli6nVpkRSZgqTGzPVw1zwud53phtlgiH/TylkeAXdszoTYGU65q2pJaGVXQScUE3jvGtInHv5V4xQ0ahfkA7g0klMSIXU7y0EaZ6/6bSuzJTFSCYofNGaFiaxlsasyc4EFaOwwiY0v2ylf20TX6QWWWUOYHENgDJcbl0N0EA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=As/SslT5PpKnS3/zlI799UeXtOEcy3+UwZFw2yhiitc=;
- b=gsxjhRHtdW4hMcBy8MkcahhxCUdasxFkiAxc7cxn/h00miW8OAMrerhTWWKNsbcHNM2SBjuX0zgZpJjbZPSle2PbDg2SSyIKQWXYrsN/hZmiegkQHZmmkNVQmLRL1s/yKXVlzwfGePPUWL0mpVXt3S5QCJSu2WCeAocAtRsj4TE=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM0PR04MB6627.eurprd04.prod.outlook.com (2603:10a6:208:174::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Thu, 14 Apr
- 2022 08:49:47 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::389f:e6eb:a7a2:61b6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::389f:e6eb:a7a2:61b6%8]) with mapi id 15.20.5144.029; Thu, 14 Apr 2022
- 08:49:47 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Marek Vasut <marex@denx.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Fabio Estevam <festevam@denx.de>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v3 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
- based Menlo board
-Thread-Topic: [PATCH v3 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
- based Menlo board
-Thread-Index: AQHYT7Ax6jXFufk8fUKS9RxK4nGzmazvGR0Q
-Date:   Thu, 14 Apr 2022 08:49:47 +0000
-Message-ID: <DU0PR04MB9417E4FEA12E6C46A561024888EF9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20220414033132.548071-1-marex@denx.de>
-In-Reply-To: <20220414033132.548071-1-marex@denx.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: abfd8b34-f636-4058-2acd-08da1df3badc
-x-ms-traffictypediagnostic: AM0PR04MB6627:EE_
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-microsoft-antispam-prvs: <AM0PR04MB66275E2086D5042BF48D96CF88EF9@AM0PR04MB6627.eurprd04.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 64+xrQcMPnr6a5iHEILIEa8ZTpOViwLpDD+Ze/Cd6Q+nv6EXLduhc8C1W4CIXEVpd4BuFWRbXeILienrFI2UhKP76aVdw6SUEQfKKAkmIC3QaB1VPvZB+9gZUQPQlzsHxFmkfJBoNw6I+Zy3YNgfF/J7p2RJLwK56DMi4JS3TCbWP+yId4/KHUEykpbtq6GbqhXTQ0zAu4XrIlZBJkNflpcwSle9YD1xiNKvfLjuG5ynBugJWb4jS24ny/5PdPv30Q0SJt+5SvNCIsoJAgTEh7KAAOuX1g9wDlTNMraCfg1Dvd2enUmkk118zZms/Erj+KKHflJ6fhgyDqmbtd7oOIqsB6p99Z0UeuO+sGmZBdoa9VvUSIgkip8zT8/i8673TU25WUTcfQ/OF3kOVmPJbRa+aIOZuNyt47uZ7SzkYtGA2C/MTTONo/aq4tVixo8EHJuD43iPF9iVQkxEyAuT5FLjIenE3jry3YspXX3fgogx90Zd6BFGYflUOzWh0xrauOWtpOQwQgAwL3mY+oo8aZfTNCh7ZQEvEs4ipXIgs0VpzqJrWelCpYfLxzuYvohZZthISSqLhXSWqeTuPWRj6UqBqK5bDarbAr6VWuSUifCdZyKLXlAnlEhvPrHYG8dmsixNvSpIE7sRbAZExtnf/wxZIJJabAEfysMGPy69sNtPxYDgzJL/u9OCKr3myz5MI9SaXUxnlkUhCCDnZWZopA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4326008)(8676002)(52536014)(26005)(186003)(8936002)(66446008)(66476007)(76116006)(66556008)(66946007)(64756008)(71200400001)(38100700002)(44832011)(9686003)(508600001)(5660300002)(122000001)(7696005)(55016003)(6506007)(110136005)(54906003)(2906002)(33656002)(316002)(38070700005)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HKbiSy/Hmc5sEhWgB6DZ4PLipvyYIw+CGw9Zi1BfXs7q7f1B9IRj/e5qIoJp?=
- =?us-ascii?Q?zWYntWpbacYMTy0zpCPIfUE5ZYbraQP+F3+wcaXKe8X/2AusjfPFmQv3WsdU?=
- =?us-ascii?Q?+cygkJKRPffa9sHmLx+jv9BKaSC6LxF8N4aE1V2jMflMmDK7L6m2qlqcKIYB?=
- =?us-ascii?Q?YBmAuO7ufGsy56KTshJ7DAEIKyUP/MhTiPldelzGHH/1HQhR+VmASYj2aSlG?=
- =?us-ascii?Q?upzodrOxDPXlPgUlfFYbscEgAxLM7qqceJNM+JAW6sf3Xefev52Ktju2xHIP?=
- =?us-ascii?Q?uvvkcqw/Kpi08LpvDJlspU9zU70R4APycyy4yeu1QtI4Sr+YrQUkxCLmmIY6?=
- =?us-ascii?Q?1Eo+eaI9jgmCrGwzkstoUWrmlpxzXItPp9kq4qS0DO5L444NO4Lt4AAY24dk?=
- =?us-ascii?Q?WdlTj4Vet5CEw0lc0r7Pw0krhglQwr0g3d7hqMq2tMwwBjAwU4R4tFad407n?=
- =?us-ascii?Q?ewchEf9SxLVTtmZBj3GySQexGx4BriHC4H/8VLSyCNkySE3yRnLXRERc+cOb?=
- =?us-ascii?Q?STTr/EbvAlODie0q0XGL7K3A45Vo6QXNGv9lYucYTkzC1klx1C7Vzcw+oFwh?=
- =?us-ascii?Q?ApJlV7D4OfNiLLtfuLbr1Ty9/p5YB8/P0/cna2G0kNWVDQyY3glBNLzVmOFq?=
- =?us-ascii?Q?flS1ysIn6TO6guLXHSFk56UGr3XpwEFjTFylnoUKF+PWVCuWn8iHoMq+lygh?=
- =?us-ascii?Q?bAEoZjga7XP1tpd4kn9I/JP6XevQeS8E5dgoG7B8POWEIN6FfWzUI0705q6O?=
- =?us-ascii?Q?FnlL5q9aA5cX0X6G2PObl2FlSE06hVynLHd49AettBW1ScwhHwB/dhVpKfbs?=
- =?us-ascii?Q?iIjL9KZVJ522bLIib8Mq3n0qVYsu7s/6f1O4T6Bezuzx1uURshyWh16VIx+J?=
- =?us-ascii?Q?nULdOjunmoIO6wCcmxIlQJYVkXLKiGag87sHPBiIqZNjsOfaSE0xVUd2duKx?=
- =?us-ascii?Q?x1qxmSq97VQo1zaS+c1dkWyUq+iht4KO7nW78YHvJs1kuOyPbEZ1mMbRgIcr?=
- =?us-ascii?Q?6ijqnOAJspltEMVbJuXgRUqmHANflLq6EQTmQAXYJtAKG4hBtqq0nFsfryxg?=
- =?us-ascii?Q?pAIvbZXqRA0Tb8XHaRwQVyQnjoirOMhVutWJT2MrBvC97fivq869bEy/pjFb?=
- =?us-ascii?Q?px4FF1F12ureMeBjZmH3Gk27JSFD+jAaQ5xBUfMoAGLWgiCAhwJUTBk0PDzh?=
- =?us-ascii?Q?fWn89qqEMpwIGWJk5hlDXAGybzV9DNwthDUQiPMzFiENcfsCxDxViQzG2wsD?=
- =?us-ascii?Q?TtruPi0npJerF31xduX2cuq0Y+ANGD3IBFTq7VwJ9tzAosPpnM0hWa2JegQh?=
- =?us-ascii?Q?rugrS+Vm+U9HJOYFSnIJ/DWh7u6QAQHbx/ADaKDT6eo/eN1U0Wc5wdudg9/q?=
- =?us-ascii?Q?b6/5cUGq1xSwlIfvGlnD0BYPa4Il3Q0SVsdZ0G3pG91rhyhrblH1W6VU1imN?=
- =?us-ascii?Q?AfBcHPhdfoFYpiPQs8klBrIef4/nUKZfXVfoBoWrO4XX1hbQNA7tIrqE1fOW?=
- =?us-ascii?Q?6UY7vzEEk9c10uOb13g6ry6zKrbbqN9oVe+YP0NlDTEygGBHTvHyUPsstLiD?=
- =?us-ascii?Q?okiG7gQu/SRkSapd4/8AD424f+ZK0rptRI/xjwnW8azI95KKBCK0MdezTNC0?=
- =?us-ascii?Q?jXCfUkenyk8E5Q2ckVbZqwfpN59pVgW6o4y3I1v2l6j2irTGC7PMx4e275zu?=
- =?us-ascii?Q?vhnAmo4ER12h00Qg4QCj+Xf7JWTw78RkbWUeDADtFkiYWWDA00KLBaUAsxYh?=
- =?us-ascii?Q?bTdEjAh9Uw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S241148AbiDNIwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:52:44 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5993EA94;
+        Thu, 14 Apr 2022 01:50:19 -0700 (PDT)
+X-UUID: 66d2ab736fc943f0adeeb52f37531326-20220414
+X-UUID: 66d2ab736fc943f0adeeb52f37531326-20220414
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 690631683; Thu, 14 Apr 2022 16:50:14 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 14 Apr 2022 16:50:13 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 14 Apr 2022 16:50:12 +0800
+Message-ID: <fef6b07a3ef90be11db69cca4eca40428571659d.camel@mediatek.com>
+Subject: Re: [PATCH v5 2/2] phy: mediatek: Add PCIe PHY driver
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Wei-Shun Chang <weishunc@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Thu, 14 Apr 2022 16:50:12 +0800
+In-Reply-To: <YlRkOU/w8X57SAIj@matsya>
+References: <20220326022728.2969-1-jianjun.wang@mediatek.com>
+         <20220326022728.2969-3-jianjun.wang@mediatek.com> <YlRkOU/w8X57SAIj@matsya>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: abfd8b34-f636-4058-2acd-08da1df3badc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2022 08:49:47.4346
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: l5NICqYR2ovw70dKhxccwEgaMFMM6efWAIIHZ8JcURMSx/cPWjuhQGzydZdUAQEaGGuqbV4blNyZ9ckAxUyF0g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6627
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,53 +64,383 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: [PATCH v3 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
-> based Menlo board
->=20
-> Add DT compatible string for board based on the Toradex Verdin iMX8M Mini
-> SoM, the MX8Menlo. The board is a compatible replacement for
-> i.MX53 M53Menlo and features USB, multiple UARTs, ethernet, LEDs, SD and
-> eMMC.
->=20
-> Reviewed-by: Fabio Estevam <festevam@denx.de>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Fabio Estevam <festevam@denx.de>
-> Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: devicetree@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
+On Mon, 2022-04-11 at 22:54 +0530, Vinod Koul wrote:
+> On 26-03-22, 10:27, Jianjun Wang wrote:
+> > Add PCIe GEN3 PHY driver support on MediaTek chipsets.
+> > 
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  drivers/phy/mediatek/Kconfig        |  11 ++
+> >  drivers/phy/mediatek/Makefile       |   1 +
+> >  drivers/phy/mediatek/phy-mtk-pcie.c | 272
+> > ++++++++++++++++++++++++++++
+> >  3 files changed, 284 insertions(+)
+> >  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
+> > 
+> > diff --git a/drivers/phy/mediatek/Kconfig
+> > b/drivers/phy/mediatek/Kconfig
+> > index 55f8e6c048ab..387ed1b3f2cc 100644
+> > --- a/drivers/phy/mediatek/Kconfig
+> > +++ b/drivers/phy/mediatek/Kconfig
+> > @@ -55,3 +55,14 @@ config PHY_MTK_MIPI_DSI
+> >  	select GENERIC_PHY
+> >  	help
+> >  	  Support MIPI DSI for Mediatek SoCs.
+> > +
+> > +config PHY_MTK_PCIE
+> > +	tristate "MediaTek PCIe-PHY Driver"
+> > +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +	depends on OF
+> > +	select GENERIC_PHY
+> > +	help
+> > +	  Say 'Y' here to add support for MediaTek PCIe PHY driver.
+> > +	  This driver create the basic PHY instance and provides
+> > initialize
+> > +	  callback for PCIe GEN3 port, it supports software efuse
+> > +	  initialization.
+> > diff --git a/drivers/phy/mediatek/Makefile
+> > b/drivers/phy/mediatek/Makefile
+> > index ace660fbed3a..788c13147f63 100644
+> > --- a/drivers/phy/mediatek/Makefile
+> > +++ b/drivers/phy/mediatek/Makefile
+> > @@ -6,6 +6,7 @@
+> >  obj-$(CONFIG_PHY_MTK_TPHY)		+= phy-mtk-tphy.o
+> >  obj-$(CONFIG_PHY_MTK_UFS)		+= phy-mtk-ufs.o
+> >  obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-xsphy.o
+> > +obj-$(CONFIG_PHY_MTK_PCIE)		+= phy-mtk-pcie.o
+> >  
+> >  phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
+> >  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
+> > diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c
+> > b/drivers/phy/mediatek/phy-mtk-pcie.c
+> > new file mode 100644
+> > index 000000000000..d288655b6cff
+> > --- /dev/null
+> > +++ b/drivers/phy/mediatek/phy-mtk-pcie.c
+> > @@ -0,0 +1,272 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2022 MediaTek Inc.
+> > + * Author: Jianjun Wang <jianjun.wang@mediatek.com>
+> > + */
+> > +
+> > +#include <linux/bits.h>
+> > +#include <linux/compiler_types.h>
+> 
+> Why do you need this header
 
-Acked-by: Peng Fan <peng.fan@nxp.com>
+I'll remove them in the next version, thanks.
 
-> ---
-> V2: - Expand comment with Verdin SoM note
-> V3: - Add RB by Fabio
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index b6cc341153624..4f5837071062d 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -819,6 +819,7 @@ properties:
->                - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
->                - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
->                - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) S=
-OM
-> +              - menlo,mx8menlo            # i.MX8MM Menlo board with Ver=
-din SoM
->                - toradex,verdin-imx8mm     # Verdin iMX8M Mini Modules
->                - toradex,verdin-imx8mm-nonwifi  # Verdin iMX8M Mini Modul=
-es
-> without Wi-Fi / BT
->                - toradex,verdin-imx8mm-wifi  # Verdin iMX8M Mini Wi-Fi / =
-BT Modules
-> --
-> 2.35.1
+> 
+> > +#include <linux/module.h>
+> > +#include <linux/nvmem-consumer.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/phy/phy.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/slab.h>
+> > +
+> > +#include "phy-mtk-io.h"
+> > +
+> > +#define PEXTP_ANA_GLB_00_REG		0x9000
+> > +#define PEXTP_ANA_LN0_TRX_REG		0xa000
+> > +#define PEXTP_ANA_TX_OFFSET		0x04
+> > +#define PEXTP_ANA_RX_OFFSET		0x3c
+> > +#define PEXTP_ANA_LANE_OFFSET		0x100
+> > +
+> > +/* PEXTP_GLB_00_REG[28:24] Internal Resistor Selection of TX Bias
+> > Current */
+> > +#define EFUSE_GLB_INTR_SEL		GENMASK(28, 24)
+> > +#define EFUSE_GLB_INTR_VAL(x)		((0x1f & (x)) << 24)
+> 
+> There are nice macros in bitfield.h which you can use to set/get
+> value
+
+Thanks for the suggestion, that's really helpful, I'll replace them
+with the macros in bitfield.h.
+
+> 
+> > +
+> > +/* PEXTP_ANA_LN_RX_REG[3:0] RX impedance selection */
+> > +#define EFUSE_LN_RX_SEL			GENMASK(3, 0)
+> > +#define EFUSE_LN_RX_VAL(x)		(0xf & (x))
+> > +
+> > +/* PEXTP_ANA_LN_TX_REG[5:2] TX PMOS impedance selection */
+> > +#define EFUSE_LN_TX_PMOS_SEL		GENMASK(5, 2)
+> > +#define EFUSE_LN_TX_PMOS_VAL(x)		((0xf & (x)) << 2)
+> > +
+> > +/* PEXTP_ANA_LN_TX_REG[11:8] TX NMOS impedance selection */
+> > +#define EFUSE_LN_TX_NMOS_SEL		GENMASK(11, 8)
+> > +#define EFUSE_LN_TX_NMOS_VAL(x)		((0xf & (x)) << 8)
+> > +
+> > +/**
+> > + * struct mtk_pcie_lane_efuse - eFuse data for each lane
+> > + * @tx_pmos: TX PMOS impedance selection data
+> > + * @tx_nmos: TX NMOS impedance selection data
+> > + * @rx_data: RX impedance selection data
+> > + * @lane_efuse_supported: software eFuse data is supported for
+> > this lane
+> > + */
+> > +struct mtk_pcie_lane_efuse {
+> > +	u32 tx_pmos;
+> > +	u32 tx_nmos;
+> > +	u32 rx_data;
+> > +	bool lane_efuse_supported;
+> > +};
+> > +
+> > +/**
+> > + * struct mtk_pcie_phy_data - phy data for each SoC
+> > + * @num_lanes: supported lane numbers
+> > + * @sw_efuse_supported: support software to load eFuse data
+> > + */
+> > +struct mtk_pcie_phy_data {
+> > +	int num_lanes;
+> > +	bool sw_efuse_supported;
+> > +};
+> > +
+> > +/**
+> > + * struct mtk_pcie_phy - PCIe phy driver main structure
+> > + * @dev: pointer to device
+> > + * @phy: pointer to generic phy
+> > + * @sif_base: IO mapped register base address of system interface
+> > + * @data: pointer to SoC dependent data
+> > + * @sw_efuse_en: software eFuse enable status
+> > + * @efuse_glb_intr: internal resistor selection of TX bias current
+> > data
+> > + * @efuse: pointer to eFuse data for each lane
+> > + */
+> > +struct mtk_pcie_phy {
+> > +	struct device *dev;
+> > +	struct phy *phy;
+> > +	void __iomem *sif_base;
+> > +	const struct mtk_pcie_phy_data *data;
+> > +
+> > +	bool sw_efuse_en;
+> > +	u32 efuse_glb_intr;
+> > +	struct mtk_pcie_lane_efuse *efuse;
+> > +};
+> > +
+> > +static void mtk_pcie_efuse_set_lane(struct mtk_pcie_phy *pcie_phy,
+> > +				    unsigned int lane)
+> > +{
+> > +	struct mtk_pcie_lane_efuse *data = &pcie_phy->efuse[lane];
+> > +	void __iomem *addr;
+> > +
+> > +	if (!data->lane_efuse_supported)
+> > +		return;
+> > +
+> > +	addr = pcie_phy->sif_base + PEXTP_ANA_LN0_TRX_REG +
+> > +	       lane * PEXTP_ANA_LANE_OFFSET;
+> > +
+> > +	mtk_phy_update_bits(addr + PEXTP_ANA_TX_OFFSET,
+> > EFUSE_LN_TX_PMOS_SEL,
+> > +			    EFUSE_LN_TX_PMOS_VAL(data->tx_pmos));
+> > +
+> > +	mtk_phy_update_bits(addr + PEXTP_ANA_TX_OFFSET,
+> > EFUSE_LN_TX_NMOS_SEL,
+> > +			    EFUSE_LN_TX_NMOS_VAL(data->tx_nmos));
+> > +
+> > +	mtk_phy_update_bits(addr + PEXTP_ANA_RX_OFFSET,
+> > EFUSE_LN_RX_SEL,
+> > +			    EFUSE_LN_RX_VAL(data->rx_data));
+> > +}
+> > +
+> > +/**
+> > + * mtk_pcie_phy_init() - Initialize the phy
+> > + * @phy: the phy to be initialized
+> > + *
+> > + * Initialize the phy by setting the efuse data.
+> > + * The hardware settings will be reset during suspend, it should
+> > be
+> > + * reinitialized when the consumer calls phy_init() again on
+> > resume.
+> > + */
+> > +static int mtk_pcie_phy_init(struct phy *phy)
+> > +{
+> > +	struct mtk_pcie_phy *pcie_phy = phy_get_drvdata(phy);
+> > +	int i;
+> > +
+> > +	if (!pcie_phy->sw_efuse_en)
+> > +		return 0;
+> > +
+> > +	/* Set global data */
+> > +	mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_GLB_00_REG,
+> > +			    EFUSE_GLB_INTR_SEL,
+> > +			    EFUSE_GLB_INTR_VAL(pcie_phy-
+> > >efuse_glb_intr));
+> > +
+> > +	for (i = 0; i < pcie_phy->data->num_lanes; i++)
+> > +		mtk_pcie_efuse_set_lane(pcie_phy, i);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct phy_ops mtk_pcie_phy_ops = {
+> > +	.init	= mtk_pcie_phy_init,
+> 
+> Only init for this phy? no power up/down either??
+
+Yes, we only need this init to setting its efuse data.
+
+> 
+> 
+> > +	.owner	= THIS_MODULE,
+> > +};
+> > +
+> > +static int mtk_pcie_efuse_read_for_lane(struct mtk_pcie_phy
+> > *pcie_phy,
+> > +					unsigned int lane)
+> > +{
+> > +	struct mtk_pcie_lane_efuse *efuse = &pcie_phy->efuse[lane];
+> > +	struct device *dev = pcie_phy->dev;
+> > +	char efuse_id[16];
+> > +	int ret;
+> > +
+> > +	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_pmos", lane);
+> > +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
+> > >tx_pmos);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to read %s\n",
+> > efuse_id);
+> > +
+> > +	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_nmos", lane);
+> > +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
+> > >tx_nmos);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to read %s\n",
+> > efuse_id);
+> > +
+> > +	snprintf(efuse_id, sizeof(efuse_id), "rx_ln%d", lane);
+> > +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
+> > >rx_data);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to read %s\n",
+> > efuse_id);
+> > +
+> > +	if (!(efuse->tx_pmos || efuse->tx_nmos || efuse->rx_data))
+> > +		return dev_err_probe(dev, -EINVAL,
+> > +				     "No eFuse data found for lane%d,
+> > but dts enable it\n",
+> > +				     lane);
+> > +
+> > +	efuse->lane_efuse_supported = true;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int mtk_pcie_read_efuse(struct mtk_pcie_phy *pcie_phy)
+> > +{
+> > +	struct device *dev = pcie_phy->dev;
+> > +	bool nvmem_enabled;
+> > +	int ret, i;
+> > +
+> > +	/* nvmem data is optional */
+> > +	nvmem_enabled = device_property_read_bool(dev, "nvmem-cells");
+> > +	if (!nvmem_enabled)
+> > +		return 0;
+> > +
+> > +	ret = nvmem_cell_read_variable_le_u32(dev, "glb_intr",
+> > +					      &pcie_phy-
+> > >efuse_glb_intr);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to read
+> > glb_intr\n");
+> > +
+> > +	pcie_phy->sw_efuse_en = true;
+> > +
+> > +	pcie_phy->efuse = devm_kzalloc(dev, pcie_phy->data->num_lanes *
+> > +				       sizeof(*pcie_phy->efuse),
+> > GFP_KERNEL);
+> > +	if (!pcie_phy->efuse)
+> > +		return -ENOMEM;
+> > +
+> > +	for (i = 0; i < pcie_phy->data->num_lanes; i++) {
+> > +		ret = mtk_pcie_efuse_read_for_lane(pcie_phy, i);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int mtk_pcie_phy_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct phy_provider *provider;
+> > +	struct mtk_pcie_phy *pcie_phy;
+> > +	int ret;
+> > +
+> > +	pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
+> > +	if (!pcie_phy)
+> > +		return -ENOMEM;
+> > +
+> > +	pcie_phy->sif_base =
+> > devm_platform_ioremap_resource_byname(pdev, "sif");
+> > +	if (IS_ERR(pcie_phy->sif_base))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->sif_base),
+> > +				     "Failed to map phy-sif base\n");
+> > +
+> > +	pcie_phy->phy = devm_phy_create(dev, dev->of_node,
+> > &mtk_pcie_phy_ops);
+> > +	if (IS_ERR(pcie_phy->phy))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
+> > +				     "Failed to create PCIe phy\n");
+> > +
+> > +	pcie_phy->dev = dev;
+> > +	pcie_phy->data = of_device_get_match_data(dev);
+> > +	if (!pcie_phy->data)
+> > +		return dev_err_probe(dev, -EINVAL, "Failed to get phy
+> > data\n");
+> > +
+> > +	if (pcie_phy->data->sw_efuse_supported) {
+> > +		/*
+> > +		 * Failed to read the efuse data is not a fatal
+> > problem,
+> > +		 * ignore the failure and keep going.
+> > +		 */
+> > +		ret = mtk_pcie_read_efuse(pcie_phy);
+> > +		if (ret == -EPROBE_DEFER)
+> > +			return ret;
+> > +	}
+> > +
+> > +	phy_set_drvdata(pcie_phy->phy, pcie_phy);
+> > +
+> > +	provider = devm_of_phy_provider_register(dev,
+> > of_phy_simple_xlate);
+> > +	if (IS_ERR(provider))
+> > +		return dev_err_probe(dev, PTR_ERR(provider),
+> > +				     "PCIe phy probe failed\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct mtk_pcie_phy_data mt8195_data = {
+> > +	.num_lanes = 2,
+> > +	.sw_efuse_supported = true,
+> > +};
+> > +
+> > +static const struct of_device_id mtk_pcie_phy_of_match[] = {
+> > +	{ .compatible = "mediatek,mt8195-pcie-phy", .data =
+> > &mt8195_data },
+> > +	{ },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
+> > +
+> > +static struct platform_driver mtk_pcie_phy_driver = {
+> > +	.probe	= mtk_pcie_phy_probe,
+> > +	.driver	= {
+> > +		.name = "mtk-pcie-phy",
+> > +		.of_match_table = mtk_pcie_phy_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(mtk_pcie_phy_driver);
+> > +
+> > +MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
+> > +MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
+> > +MODULE_LICENSE("GPL v2");
+> > -- 
+> > 2.18.0
+> 
+> 
 
