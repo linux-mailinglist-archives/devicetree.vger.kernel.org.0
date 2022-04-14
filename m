@@ -2,144 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5E43500D24
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 14:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B157500D50
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 14:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241402AbiDNM1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 08:27:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60190 "EHLO
+        id S243373AbiDNMaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 08:30:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbiDNM1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 08:27:02 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2072.outbound.protection.outlook.com [40.107.236.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339E8286E1;
-        Thu, 14 Apr 2022 05:24:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CmkElGjh/WWTBRX0U9HBF10rPpP+TYpUUrkdqWECxEYowQNCY6KAyTUA0fSM27mec6i8kpUfM+xgrAvkA1535SD6iE/YlfS6GhrKlkGESijOHcIyXy2QxknXmumbRC6P55AcjQhPBByYgstvD078HHDFIdIuKvlwapsHZtO9mO9tVS6j+sZG+/neOmUfOlgiuj738e3/fB6AF4NSFdzrm20ziXGbxw4h3/wdrzyPeEwARDRn3hCt5425qGP9tFxApxBwFvNmpIAA4TQEoL2GlETyzVyKEoz8mxMcojjSye1x+lHmIfGvXSNS73GKHx4kqy5nfHwiK0vTa037IV4eJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ddq+j1XRQJK7pIKJcbZKZMT4tN5Uj/7H9aRm7PlQXWs=;
- b=JVSY+jlsgQl2mGkd+2wrXC66N+8phV61o4JP/4yYGf1Q1Yf9yjJbJuXeIejVHrbzSlMhd+aK0q03VMX9hQX5/aHDb/EEcyRAy2U7NmJ7b/M9M9FIGB9nXuba1J/X3dh3RIXZ2AfTqJkGvk8wwxB12HpKTx+ygoyx7Jt0b9D7usNyMbFDW6bUlM9JghfCS+N6KrM+6bjLUNa4XKKEhnx40lzwwSL62X9opTLlR0LRBXSWkZCnoNgh8AlW16XrpdUasO+Bw04zQs1uk+0K4wAJ17IysWK3lBjy95ZJNzmJnq5sT4Xobmqc/CfC9JVNr6KDnSkgYkxUbR+f49kMGYeZXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S242775AbiDNMaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 08:30:12 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5634E90CC6;
+        Thu, 14 Apr 2022 05:27:20 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id c12so4508799plr.6;
+        Thu, 14 Apr 2022 05:27:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ddq+j1XRQJK7pIKJcbZKZMT4tN5Uj/7H9aRm7PlQXWs=;
- b=W+CZM1QDv2SDlLVNx4olRKkT5bnCpEaQhHQ1l19ZClN3XOdspg7kGc0KmreFJ36Bzu/+jkiv/4DNjud/bjclVOdkufUAmRatN1kp0p30bwjIdLU4EtSSYDwAgwya8iZjBdbVoyfyHKwz/h2ADS87553+csQRKCFV2w6HkEz2LM8=
-Received: from SN7P222CA0022.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:124::7)
- by CY4PR02MB2263.namprd02.prod.outlook.com (2603:10b6:903:f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Thu, 14 Apr
- 2022 12:24:35 +0000
-Received: from SN1NAM02FT0003.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:124:cafe::27) by SN7P222CA0022.outlook.office365.com
- (2603:10b6:806:124::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.18 via Frontend
- Transport; Thu, 14 Apr 2022 12:24:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0003.mail.protection.outlook.com (10.97.4.80) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5164.19 via Frontend Transport; Thu, 14 Apr 2022 12:24:34 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 14 Apr 2022 05:24:33 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 14 Apr 2022 05:24:33 -0700
-Envelope-to: git@xilinx.com,
- krzk+dt@kernel.org,
- robh+dt@kernel.org,
- vkoul@kernel.org,
- devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Received: from [172.23.64.6] (port=53815 helo=xhdvnc106.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <radhey.shyam.pandey@xilinx.com>)
-        id 1neyWX-0003df-4J; Thu, 14 Apr 2022 05:24:33 -0700
-Received: by xhdvnc106.xilinx.com (Postfix, from userid 13245)
-        id 5C97661054; Thu, 14 Apr 2022 17:54:32 +0530 (IST)
-From:   Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>
-CC:     <michal.simek@xilinx.com>, <radhey.shyam.pandey@xilinx.com>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <git@xilinx.com>
-Subject: [PATCH] dt-bindings: dmaengine: xilinx_dma: Add MCMDA channel ID index description
-Date:   Thu, 14 Apr 2022 17:54:21 +0530
-Message-ID: <1649939061-6675-1-git-send-email-radhey.shyam.pandey@xilinx.com>
-X-Mailer: git-send-email 2.1.1
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hgmXgR00QIvN0EExWeBXD0io2j2TnCvQ61c8fzNW+rY=;
+        b=lBhx+rdb4hdC3YMcxjpgviIlzjH0B9ZCqf6Ct2MgxT6NghOvYjqU/940zldXEfAO19
+         znO6rFvRm5qAn4o3HeiO/V4nGgKVwz7szCyvQLz7t3izCfFxpwXGk8JcQ6MGD32qpPib
+         9dX0ACO7neSZP56wSm2/RKkt2YLUCWLoqY2zo3UPOcv0lZ0eWknBFoqwBLH/yiL6DmdG
+         bsYFyJP8IcPQKQGhhEFgLOwkD1H4eiYctXBaMR+VqANA5qQJUke0MQTS6A4sAlFyXKaT
+         GmgRKADylZasl7QhsHQ6e7ykXicekGuaUyQwpQaYbxz5VtYFQAnhx7h9EC1L1H0GYQXg
+         qSMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hgmXgR00QIvN0EExWeBXD0io2j2TnCvQ61c8fzNW+rY=;
+        b=SOtLp/61/dhu1HYa7LMDJJjfO/S+2IdwvRqHgMOqdHWJdVSr9vn+xVPxkdlspdpZpD
+         x65jimiydVbtP9PtchDjGBlgDBwg76n+N+emRY1PFg1mu0vtjpWbx9MTEt19c5SmJ1BL
+         0Fm72z6QfaQitMZN1yMia22DrX8sYxZCi9tHWMTmPOQHWN3WnvuiZzPicsGh2wHoM61T
+         +kXbUadqEvNaIsEFChX1rD45NN0r+bmzUWMMuoI/9RX6ymJsJ4o6W1khR6Rge2dFtqum
+         oi8g9TLGBvX11Sd9G13O/elRJuCWu+5oFlRi7l3dz0IISExYAD9q+UZ8EApjNCAoi5R4
+         XsbQ==
+X-Gm-Message-State: AOAM530k6dRqKHK4C/aVSA3QtwJVictcoWQ+kELwVlUk9jmCSzAD3ygW
+        RP7XZwWAy2g6QUqQbIgqRnHaOGhaVQA=
+X-Google-Smtp-Source: ABdhPJwaCAGXUNk5NBVP//O6IYwtnSgFoauuQgLqwkJQkCTYfcsq+wKr4HFi6STjucSyAflguiB0/w==
+X-Received: by 2002:a17:90b:1d11:b0:1cd:9d72:3f40 with SMTP id on17-20020a17090b1d1100b001cd9d723f40mr3442196pjb.99.1649939239780;
+        Thu, 14 Apr 2022 05:27:19 -0700 (PDT)
+Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id pi2-20020a17090b1e4200b001c7b15928e0sm6265826pjb.23.2022.04.14.05.27.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 05:27:19 -0700 (PDT)
+From:   Cixi Geng <gengcixi@gmail.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        orsonzhai@gmail.com, baolin.wang7@gmail.com, zhang.lyra@gmail.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V2 0/3] Add ums512 clocks and relative bindings file
+Date:   Thu, 14 Apr 2022 20:26:54 +0800
+Message-Id: <20220414122657.526406-1-gengcixi@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e7647f3a-f5d8-4ced-465c-08da1e11bc46
-X-MS-TrafficTypeDiagnostic: CY4PR02MB2263:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR02MB226321C1C88A22AC3DDFAB91C7EF9@CY4PR02MB2263.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qO7dFrQtZ5ZJlvVt+qv6bT2ksG8z/3BcfwRM2Ce3ib8f3TCyI/bkYqy5I1QkaRkbaHDzQNdjNQffP79DLh0IObt9w3ebZNgNvhgmW+Lqmug5P7mU/jsKb2ftuD0N1GKvNuZXG8AKjqt7+dmIAq3cE9t4kEjdwPIX3ZBclQTPq14tcxS/ebkSCFuwcn6Yz2YKh0zeflSP93DIK2pyEoufjYy6fIw9GodK6lxS9vD6ejKEFPlKW8c11XbpEImEf819il1xUp2G3NuOEkhqamkB02nKQCA+/+aHTtp0v7XsYC02z0eZkpepRk1NhLprw2tfQFbxIo1YnZR6nP3dMLn3JY18hgS5gFBTCMIE7IcMacmNavjbeDqTZOqTMHHC/njTjiiVSgw/2AgDSO+tk0y22LSmbPudF8xtI0Z32ZsC3JsiLcNc0mu2DojyKfK6oYmwEYV3aj1OVfAR/c7jJuv2DdZtuuhcBRhKRrTNJ7LSIgL31Wq3UTjXQ5qodxwf9ilqGScL/VsaabMILK6Z3cHAj+wNIcBJIa5a7EvRMZPjV26Q0vAW9oPuk6ddC7ICXcsfldQTNhTa3YVsz+614WW84UlDuC/Vj1h9d8DMSaWCLm8tDfVlhOPRc+k/QiKxNnKvdZHDtGkbSWMWAvisgf0pqARa0lXviouhX82u/XYK5hinFZKs+hnxHnFB4+XKKLNAw6Esq43OhUUyt6PNGBAKzQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(2906002)(6266002)(426003)(8936002)(508600001)(36860700001)(8676002)(4326008)(70586007)(47076005)(70206006)(26005)(6666004)(5660300002)(186003)(40460700003)(36756003)(110136005)(107886003)(54906003)(7636003)(2616005)(83380400001)(42186006)(356005)(82310400005)(316002)(336012)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 12:24:34.7564
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7647f3a-f5d8-4ced-465c-08da1e11bc46
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0003.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR02MB2263
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MCDMA IP provides up to 16 multiple channels of data movement each on
-MM2S and S2MM paths. Inline with implementation, in the binding add
-description for the channel ID start index and mention that it's fixed
-irrespective of the MCDMA IP configuration(number of read/write channels).
+From: Cixi Geng <cixi.geng1@unisoc.com>
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
----
- Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+This patchset is add the UMS512 clocks support
 
-diff --git a/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt b/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-index 325aca52cd43..d1700a5c36bf 100644
---- a/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-+++ b/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-@@ -110,7 +110,11 @@ axi_vdma_0: axivdma@40030000 {
- Required properties:
- - dmas: a list of <[Video DMA device phandle] [Channel ID]> pairs,
- 	where Channel ID is '0' for write/tx and '1' for read/rx
--	channel.
-+	channel. For MCMDA, MM2S channel(write/tx) ID start from
-+	'0' and is in [0-15] range. S2MM channel(read/rx) ID start
-+	from '16' and is in [16-31] range. These channels ID are
-+	fixed irrespective of IP configuration.
-+
- - dma-names: a list of DMA channel names, one per "dmas" entry
- 
- Example:
+v2 changes:
+  adjust description and add the "sprd,ums512-glbregs,syscon,simple-mfd"
+  compatibles to fix match failed logs in the dt_binding_check.
+  add the property license and copyright notice.
+
+Cixi Geng (3):
+  dt-bindings: clk: sprd: Add bindings for ums512 clock controller
+  clk: sprd: Add dt-bindings include file for UMS512
+  clk: sprd: Add clocks support for UMS512
+
+ .../bindings/clock/sprd,ums512-clk.yaml       |  108 +
+ drivers/clk/sprd/Kconfig                      |    6 +
+ drivers/clk/sprd/Makefile                     |    1 +
+ drivers/clk/sprd/ums512-clk.c                 | 2199 +++++++++++++++++
+ include/dt-bindings/clock/sprd,ums512-clk.h   |  397 +++
+ 5 files changed, 2711 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+ create mode 100644 drivers/clk/sprd/ums512-clk.c
+ create mode 100644 include/dt-bindings/clock/sprd,ums512-clk.h
+
 -- 
-2.7.4
+2.25.1
 
