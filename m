@@ -2,88 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8025E50138A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85909501113
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 16:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244677AbiDNOG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 10:06:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35924 "EHLO
+        id S242542AbiDNOGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 10:06:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345413AbiDNNuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:50:12 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAA9A66CB
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 06:44:06 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso3209162wml.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 06:44:05 -0700 (PDT)
+        with ESMTP id S1343613AbiDNNuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:50:20 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B574A6E30;
+        Thu, 14 Apr 2022 06:44:11 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id v4so6418729edl.7;
+        Thu, 14 Apr 2022 06:44:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MtBAJnFEqMmsR8zChqlpd88AeYKbytaIa73T69IiwUs=;
-        b=zG6wTndHYS5H3tj7P7Bm1rx0CqJYlfJmM5pgzaPIMlvAEVzBVL0MAs2bND/+R/2S1n
-         eJs/hGE/I5yMx9SP/qjEmG9UYXyOX1Hd/C1eMJkpuKCfrxhbgNGN1jPbRsTIOV/0n8JE
-         279GaGFcnFb37GV+6K1GHFfSR8XxRPFwbir2lOHXS2DqAvTN0qbvD2JG9IR/U8/hjspf
-         9EMx8Ce10GhoIvzrmlXkcfJeEQ9hV1bjDl+IfmvPzQV+KAMxPb8ZLOwyEH7TLDbY0mGy
-         GDLAdgEG9FNTPuZQ4PaO/ZStnPgN0lDGkwv9GIGwY9N8+bZ7U2AnnXHZwpN9cF3v8pRF
-         mM3Q==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=5coa3OBWaIiXyJ1TJsvTvbGW8ucgi9WcCkL0M7ii1Ac=;
+        b=nrNu1svoISX1APZ50+JiEAl8u9jDBuz8d9Cxyz6EuUVB/sY5Ykf1r7CgRiowPFTY7b
+         Le13noEzoOmLbca8xuw39YtKrgs0gf7eyF8i9mrtfw9PfEVfNzNGnWZWLLCi7Uyu1S/R
+         dkY13N/1vInqBApx9uuZC8/NyKPQnhECC1m92z8HhjLbrRs8IXLm/2ILivrKpx2n7cLZ
+         +SRLPDxhRyaCwRTV3DHRoJbFxLdqC77dEBsT6JLzRN5a30di6rb3TcTuaGL80D5+ZMUr
+         rfa9qUZc4fdOfvWdibJ5h82FWUEhD1TPBSUCg6qzSlS1F/dP3TLhd2LyxItRws/6H+NE
+         pXvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=MtBAJnFEqMmsR8zChqlpd88AeYKbytaIa73T69IiwUs=;
-        b=EauntO3nhNoXhDRXTRFiiEKs3og/E8LpxjvfqN7MJb8TJK23xSLTTT48ZEk0805m7l
-         f7SHuDRQH7hrPsqMDwy0kTXTIblnhqr2giLSoDf31dSXdNBEb17m1ovxlfPbA6wsrrdk
-         kfvURnqfJf2UmANCW6CG0X0rZPsdveFRFwTb24hf/Bb8yTyWTWdkCXkqAVRZm35/Qr0d
-         zmY8msEZE8QJNveE2c0pMPHri1r4Ns4Ru8TjNCNcuJnz1hYtwy3Xkon5qikNCsiWRqm6
-         KN8+1bUUMFhNtuB7PPl0tO1tRFP7N0Cq8bsCFDaWKgovACS+clYH/3rohZg9xl7DKC2j
-         QOtQ==
-X-Gm-Message-State: AOAM532LAD2sLP9W29w0q+rLwCRRg5VXMWrLDvGU2cyySiP1NPTJfDv0
-        E21K2NIf9W+qAtRvHkIEm3EPeQ==
-X-Google-Smtp-Source: ABdhPJzfwQRFFqzeBVonENZunrSC8oNdYnabR9Z/zXNGMJBliuJyVGpaPPv+1R7Z/PmS0p8U+aXhJw==
-X-Received: by 2002:a05:600c:2113:b0:38e:bc71:2b0 with SMTP id u19-20020a05600c211300b0038ebc7102b0mr3168107wml.153.1649943844444;
-        Thu, 14 Apr 2022 06:44:04 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id 7-20020a05600c024700b0038ec0c4a2e7sm5445783wmj.11.2022.04.14.06.44.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 06:44:03 -0700 (PDT)
-Message-ID: <39cae749-67ef-13d7-2648-01c6e9603887@linaro.org>
-Date:   Thu, 14 Apr 2022 14:44:00 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5coa3OBWaIiXyJ1TJsvTvbGW8ucgi9WcCkL0M7ii1Ac=;
+        b=FXATKJ5mMijKM6wWHzdFqlCK4ndW2L/hDWuCB88nqbhtgOAYhoJ15azNbZJlDJgZgw
+         FP51ynXGtbakXVvs4fVzDSiY/luKb4nkUMBX3mMKCA+QsIygADWwLskyOCLoNTG5cGCJ
+         8l3q8D0rd9wmRIosNeSKYoUHEIsgMwL18ThJSV2cOPdt2FCSoCTer7YHAHPhb8zwTnig
+         pUQ0cpJGHRlT6yfP015E1IBj6qhXDFLxeY6EvnhkrTi585DkrDmJyClY4NP9dYCgRd3x
+         Tg4RdqoMmvRKFQ01XYw6oYsFDztACsSZrqBXO0zDp2BJ+0mtfHIoMALZJyz6bFOkDx6F
+         qgjQ==
+X-Gm-Message-State: AOAM530DOHgC9fv09MUkdGDS+xM1PJ3fJvpvwHTTf4noVVnRXaUp2mTp
+        SvU48P2TRcdutRufO0gpVZw=
+X-Google-Smtp-Source: ABdhPJzkQUDBsDWQTu01bvGCEc2uVQV5houVOM1xZHAxz4SHp+vELS6VLTdLSUAfysTUbV9b6QBWNA==
+X-Received: by 2002:a05:6402:5c9:b0:420:aac6:257b with SMTP id n9-20020a05640205c900b00420aac6257bmr3086166edx.128.1649943849435;
+        Thu, 14 Apr 2022 06:44:09 -0700 (PDT)
+Received: from skbuf ([188.26.57.45])
+        by smtp.gmail.com with ESMTPSA id k14-20020a50e18e000000b0041b6f23f7f6sm1039363edl.22.2022.04.14.06.44.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 06:44:09 -0700 (PDT)
+Date:   Thu, 14 Apr 2022 16:44:06 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 01/12] net: dsa: add support for Renesas RZ/N1
+ A5PSW switch tag code
+Message-ID: <20220414134406.qk6zxlmsqwaamg4c@skbuf>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-2-clement.leger@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v3 2/2] media: i2c: imx412: Add bulk regulator support
-Content-Language: en-US
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, robert.foss@linaro.org, hfink@snap.com,
-        jgrahsl@snap.com, dmitry.baryshkov@linaro.org,
-        vladimir.zapolskiy@linaro.org
-References: <20220414124505.1329295-1-bryan.odonoghue@linaro.org>
- <20220414124505.1329295-3-bryan.odonoghue@linaro.org>
- <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220414122250.158113-2-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 14:00, Sakari Ailus wrote:
->>   	ret = clk_prepare_enable(imx412->inclk);
->>   	if (ret) {
->> +		regulator_bulk_disable(imx412->num_supplies,
->> +				       imx412->supplies);
-> As the function already has an error handling section using labels, this
-> should go there as well.
+On Thu, Apr 14, 2022 at 02:22:39PM +0200, Clément Léger wrote:
+> Add DSA tag code for Renesas RZ/N1 Advanced 5 port switch. This switch
+> uses a special VLAN type followed by 6 bytes which contains other
+> useful information (port, timestamp, etc).
 > 
-Are you asking to move regulator_bulk_disable() to error_reset ?
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+
+Please squash this with the next patch.
+
+>  include/net/dsa.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/net/dsa.h b/include/net/dsa.h
+> index 934958fda962..2aa8eaae4eb9 100644
+> --- a/include/net/dsa.h
+> +++ b/include/net/dsa.h
+> @@ -53,6 +53,7 @@ struct phylink_link_state;
+>  #define DSA_TAG_PROTO_SJA1110_VALUE		23
+>  #define DSA_TAG_PROTO_RTL8_4_VALUE		24
+>  #define DSA_TAG_PROTO_RTL8_4T_VALUE		25
+> +#define DSA_TAG_PROTO_RZN1_A5PSW_VALUE		26
+>  
+>  enum dsa_tag_protocol {
+>  	DSA_TAG_PROTO_NONE		= DSA_TAG_PROTO_NONE_VALUE,
+> @@ -81,6 +82,7 @@ enum dsa_tag_protocol {
+>  	DSA_TAG_PROTO_SJA1110		= DSA_TAG_PROTO_SJA1110_VALUE,
+>  	DSA_TAG_PROTO_RTL8_4		= DSA_TAG_PROTO_RTL8_4_VALUE,
+>  	DSA_TAG_PROTO_RTL8_4T		= DSA_TAG_PROTO_RTL8_4T_VALUE,
+> +	DSA_TAG_PROTO_RZN1_A5PSW	= DSA_TAG_PROTO_RZN1_A5PSW_VALUE,
+>  };
+>  
+>  struct dsa_switch;
+> -- 
+> 2.34.1
+> 
