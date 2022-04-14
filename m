@@ -2,177 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A445015FF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53A25015FD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239015AbiDNOqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 10:46:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
+        id S234582AbiDNOqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 10:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349425AbiDNOUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 10:20:08 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A4C3A56C5
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 07:11:14 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id c7so7150252wrd.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 07:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eo7d7o1OtMwpdqCJpbeEvNSKLWc67zY7+ZWCbWv5/Vw=;
-        b=no20RHpAWyr7dmRwZcAyyvT/XfIpQ4WWpxEG0H2Dh6T3UtAyaRgLIfHAGUsyHbZTVM
-         KCLD+4C3ko3DOU2Bm0va1jbS7oD+rP1huS9RinSCzibGxawrsRFLMfBlpCBI8GtS5Uww
-         K0TwJ6bYUCBfBO5cPqETHY9s9x1jGcgh4NERrbUvIz7gIQd4JdPJDar3fV64xx/MY+tQ
-         QdRU9goJjnm53J2V42hQbU69ISn4F6OBn6Ta3xcbGDFamI8y7mV4MoJhPPVXGqFObbex
-         LNTwMj+xDntKsHMrXfCtUEZGJxNG6I/++3snZ/tFdBhNJbDiiAOV/EbZEtKj/CniqJHu
-         73Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eo7d7o1OtMwpdqCJpbeEvNSKLWc67zY7+ZWCbWv5/Vw=;
-        b=KXBjXFhwyihJUS/iNFyk/OiqEYUmdzZsXjocFlF9NoKEcmcn0IIYHD6g2oN+hufEYG
-         G54hjgrW7jazQUAxJcW1v9C0NVoqwo9KPIqoAGFsw7JJ7R60hNlPRzthaRe8FF3rycPI
-         bu32jFkgHAziIJVfTS7miFpAWSIixSeHZfAuPFPxj6bXUd2Y1ZtGXtEn78jDwtQjf5Nn
-         gpobcC1LdexfrPO53xFj7DJAiI04QfDSYlYiNqnp89Ib1LfNR/ue2OkVpMJcDs9MoQF8
-         uUWjibeDmrsU+wUMW/R0oqJAjA0kyyjQ5ta//r/MPOlXkGUOOD9LPwG7+9WfVHOw/JjA
-         AuMg==
-X-Gm-Message-State: AOAM5324UdPMhUFjwSgohkTW4iLzOqprg18Oufa3hSEHL9f/ThUFFUWO
-        abMco8BhDE2dM4kyq5Kqu4E93w==
-X-Google-Smtp-Source: ABdhPJxvwdBc7TM4mXUFIoa4vM2Rwncv3jQRMspQhnRgTXJMH2YJHDlPL8r/i+CCRw3DqK6KFkLetQ==
-X-Received: by 2002:a5d:4882:0:b0:207:97dd:111c with SMTP id g2-20020a5d4882000000b0020797dd111cmr2420435wrq.115.1649945472992;
+        with ESMTP id S1349432AbiDNOUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 10:20:09 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC899BBAC;
         Thu, 14 Apr 2022 07:11:12 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id 61-20020adf8043000000b00205e1d92a41sm1934551wrk.74.2022.04.14.07.11.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 07:11:12 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     sakari.ailus@iki.fi, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
-        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v4 2/3] media: i2c: imx412: Add bulk regulator support
-Date:   Thu, 14 Apr 2022 15:11:07 +0100
-Message-Id: <20220414141108.1365476-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220414141108.1365476-1-bryan.odonoghue@linaro.org>
-References: <20220414141108.1365476-1-bryan.odonoghue@linaro.org>
+Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id A5B533EEFB;
+        Thu, 14 Apr 2022 16:11:09 +0200 (CEST)
+Date:   Thu, 14 Apr 2022 16:11:07 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        Vinod Koul <vkoul@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: sm8350-sagami: UFS phy - add
+ 'vdda-pll-supply' & 'vdda-phy-supply'
+Message-ID: <20220414141107.sazz72sl6giehpjx@SoMainline.org>
+References: <20220414122928.349126-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220414122928.349126-1-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depending on the platform we may need to enable and disable three separate
-regulators for the imx412.
+On 2022-04-14 17:59:28, Bhupesh Sharma wrote:
+> As suggested by Bjorn during review of [1], the vdda-pll-supply' &
+> 'vdda-phy-supply' supplies denote the power for the bus and the
+> clock of the UFS PHY.
+> 
+> For pdx215 to have a functional UFS [..] safe to assume [..]
 
-- DOVDD
-Digital I/O power
+By "functional" you are referring to sending a certain UFS command that
+accidentally wipes the bootloader [1] [2], turning the device into a
+_very_ expensive (+$1000) paperweight?
 
-- AVDD
-Analog power
+[1]: https://lore.kernel.org/lkml/20211111184630.605035-1-konrad.dybcio@somainline.org/
+[2]: https://github.com/kholk/kernel/commit/2e7a9ee1c91a016baa0b826a7752ec45663a0561
 
-- DVDD
-Digital core power
+> In absence of the same 'make dtbs_check' leads to following warnings:
+> 
+> arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml:
+>  phy-wrapper@88e9000: 'vdda-phy-supply' is a required property
+> 
+> arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml:
+>  phy-wrapper@88e9000: 'vdda-pll-supply' is a required property
+> 
+> [1]. https://lore.kernel.org/lkml/20220228123019.382037-9-bhupesh.sharma@linaro.org/
+> 
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: konrad.dybcio@somainline.org
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> index 90b13cbe2fa6..238ac9380ca2 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> @@ -3,6 +3,7 @@
+>   * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
+>   */
+>  
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include "sm8350.dtsi"
+>  #include "pm8350.dtsi"
+>  #include "pm8350b.dtsi"
+> @@ -75,6 +76,27 @@ ramoops@ffc00000 {
+>  	};
+>  };
+>  
+> +&apps_rsc {
+> +	pm8350-rpmh-regulators {
+> +		compatible = "qcom,pm8350-rpmh-regulators";
+> +		qcom,pmic-id = "b";
+> +
+> +		vreg_l1b_0p88: ldo1 {
+> +			regulator-name = "vreg_l1b_0p88";
+> +			regulator-min-microvolt = <912000>;
+> +			regulator-max-microvolt = <920000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l6b_1p2: ldo6 {
+> +			regulator-name = "vreg_l6b_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1208000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +	};
+> +};
+> +
+>  &adsp {
+>  	status = "okay";
+>  	firmware-name = "qcom/adsp.mbn";
+> @@ -256,4 +278,7 @@ &usb_1_hsphy {
+>  
+>  &usb_1_qmpphy {
+>  	status = "okay";
+> +
+> +	vdda-phy-supply = <&vreg_l6b_1p2>;
+> +	vdda-pll-supply = <&vreg_l1b_0p88>;
 
-The addition of these regulators shouldn't affect existing users using
-fixed-on/firmware-controlled regulators.
+I'm probably understanding your patch wrong, but this is the USB phy,
+not the UFS phy?  The warning from dtbs_check on `phy-wrapper@88e9000`
+is also the `qmp-usb3-phy`, not the `qmp-ufs-phy` - seems this patch has
+little to do with UFS after all?
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/i2c/imx412.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-index be3f6ea55559..6d0746d6c634 100644
---- a/drivers/media/i2c/imx412.c
-+++ b/drivers/media/i2c/imx412.c
-@@ -11,6 +11,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-fwnode.h>
-@@ -101,6 +102,12 @@ struct imx412_mode {
- 	struct imx412_reg_list reg_list;
- };
- 
-+static const char * const imx412_supply_names[] = {
-+	"dovdd",	/* Digital I/O power */
-+	"avdd",		/* Analog power */
-+	"dvdd",		/* Digital core power */
-+};
-+
- /**
-  * struct imx412 - imx412 sensor device structure
-  * @dev: Pointer to generic device
-@@ -128,6 +135,8 @@ struct imx412 {
- 	struct media_pad pad;
- 	struct gpio_desc *reset_gpio;
- 	struct clk *inclk;
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(imx412_supply_names)];
-+	unsigned int num_supplies;
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	struct v4l2_ctrl *link_freq_ctrl;
- 	struct v4l2_ctrl *pclk_ctrl;
-@@ -946,6 +955,16 @@ static int imx412_parse_hw_config(struct imx412 *imx412)
- 		return -EINVAL;
- 	}
- 
-+	/* Get optional DT defined regulators */
-+	imx412->num_supplies = ARRAY_SIZE(imx412_supply_names);
-+	for (i = 0; i < imx412->num_supplies; i++)
-+		imx412->supplies[i].supply = imx412_supply_names[i];
-+
-+	ret = devm_regulator_bulk_get(imx412->dev, imx412->num_supplies,
-+				      imx412->supplies);
-+	if (ret)
-+		return ret;
-+
- 	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
- 	if (!ep)
- 		return -ENXIO;
-@@ -1011,6 +1030,12 @@ static int imx412_power_on(struct device *dev)
- 	struct imx412 *imx412 = to_imx412(sd);
- 	int ret;
- 
-+	ret = regulator_bulk_enable(imx412->num_supplies, imx412->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		return ret;
-+	}
-+
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
- 
- 	ret = clk_prepare_enable(imx412->inclk);
-@@ -1025,6 +1050,7 @@ static int imx412_power_on(struct device *dev)
- 
- error_reset:
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 0);
-+	regulator_bulk_disable(imx412->num_supplies, imx412->supplies);
- 
- 	return ret;
- }
-@@ -1044,6 +1070,8 @@ static int imx412_power_off(struct device *dev)
- 
- 	clk_disable_unprepare(imx412->inclk);
- 
-+	regulator_bulk_disable(imx412->num_supplies, imx412->supplies);
-+
- 	return 0;
- }
- 
--- 
-2.35.1
-
+>  };
+> -- 
+> 2.35.1
+> 
