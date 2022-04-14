@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0461650087F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01E5A500894
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239367AbiDNIlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:41:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45022 "EHLO
+        id S236976AbiDNIpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:45:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233337AbiDNIlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:41:17 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172E664706;
-        Thu, 14 Apr 2022 01:38:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649925521; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=NvD+He9LTHj4iPrpnA0nshq/DhpIAe2/QeIQIih2Va3vqj5AZCXdwggyysDWJF195Jcz4EizJ0tJlP2G/qLtn/OSOeFol1tRye3EDPEcbBboRd/hbQ5Oz8EU9AkZ7Zx8D90l7bB4zg4sYNnBhSd0jP9GhnI6gGMvkdKwNnWUH+s=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649925521; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=YYffcehGFoYVVT+n2RAolMjOhDAqqdJAaaNaFG5yQqU=; 
-        b=ZLJ4342N5Q9Y4GPwgmzX2YMiWc2c4O8QTVwobaJN0dnZ6YgMJzyq2D9iCFpWqrThViLJp/jgnS9VKSpHVODVB74iI1b9ITvhSK+cHTg4cmlQXMIHRWy3L6UB9Edu8QCnJjPh3ZKE/ueSmZ0SyRWPSohw/E3rBRW4I6gevYm2v/Y=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649925521;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=YYffcehGFoYVVT+n2RAolMjOhDAqqdJAaaNaFG5yQqU=;
-        b=J0GqQTvciMcJUvBhIOBR9sw9kTm2fxjym5o68F4guSg+XqOUesLPNJSQXA1Em2VQ
-        mn5dZwh+e6q6uOFVmIb56Qv7EU6Dn2/9mfNQSTH8rRtG2hq2pDLYJNzRSLvv6oV3vIV
-        KU1B6Tzuem1YRfp35dZtFgBP3vUl8WEUiha9HsdU=
-Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649925519751170.1146785751522; Thu, 14 Apr 2022 01:38:39 -0700 (PDT)
-Message-ID: <8eb29967-83ca-97c5-d6b9-808cf3ddeb16@arinc9.com>
-Date:   Thu, 14 Apr 2022 11:38:33 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 09/14] mips: dts: ralink: mt7621: use the new compatible
- string for MT7621 pinctrl
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S241076AbiDNIpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:45:02 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5862865815;
+        Thu, 14 Apr 2022 01:42:38 -0700 (PDT)
+Received: from zn.tnic (p2e55d808.dip0.t-ipconnect.de [46.85.216.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id A24041EC059E;
+        Thu, 14 Apr 2022 10:42:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1649925752;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=iMtDxFcYv+APnoa3Wtnursj/Bjt7HnoJKgSy8sOg09k=;
+        b=iWEpQoD6e+RGn4KnAod0Tzo8cY5o3l2637By3+nm3vVOVZ5BY9D5nnZrUh6hPapCXhvcXr
+        eUTHY8CzY7ADMIUU+nsOTU8lOLLFc6byoo/xHbcvJ4S0fK++JJnJ9tRkK0E0P05qfvHxCW
+        oOHbjiGznE0bwTVRnnjat96iG1WyQpY=
+Date:   Thu, 14 Apr 2022 10:42:32 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Medad Young <medadyoung@gmail.com>,
+        Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
- <20220413060729.27639-10-arinc.unal@arinc9.com>
- <b415523c-34e3-28a1-bcce-4682e7c67e77@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <b415523c-34e3-28a1-bcce-4682e7c67e77@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>
+Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+Message-ID: <YlfeXVSkUC2B4xH2@zn.tnic>
+References: <20220322030152.19018-1-ctcchien@nuvoton.com>
+ <20220322030152.19018-4-ctcchien@nuvoton.com>
+ <a06441fc-85cf-9386-e362-4a90e855aa19@molgen.mpg.de>
+ <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,40 +65,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 14, 2022 at 09:55:05AM +0800, Medad Young wrote:
+> > > +                             if (mtype == MEM_TYPE_DDR4)
+> > > +                                     dimm->mtype = MEM_DDR4;
+> > > +                             else
+> > > +                                     dimm->mtype = MEM_EMPTY;
+> >
+> > Use ternary operator?
+> >
+> >      dimm-mtype = (mtype == MEM_TYPE_DDR4) ? MEM_DDR4 : MEM_EMPTY;
 
+Ternary operator is less readable than a plain and simple if-else.
 
-On 13/04/2022 18:27, Krzysztof Kozlowski wrote:
-> On 13/04/2022 08:07, Arınç ÜNAL wrote:
->> Use the new compatible string "ralink,mt7621-pinctrl" for the Ralink MT7621
->> pinctrl subdriver on mt7621.dtsi.
->>
->> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->> ---
->>   arch/mips/boot/dts/ralink/mt7621.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
->> index 3222684915ac..ee2ec78c8952 100644
->> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
->> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
->> @@ -151,7 +151,7 @@ spi0: spi@b00 {
->>   	};
->>   
->>   	pinctrl: pinctrl {
->> -		compatible = "ralink,rt2880-pinmux";
->> +		compatible = "ralink,mt7621-pinctrl";
+> > > +{
+> > > +     struct priv_data *priv = mci->pvt_info;
+> > > +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
+> > > +     u64 err_c_addr = 0x0;
+> >
+> > size_t
 > 
-> The change is non-bisectable and causes issues all other users of DT
-> (other projects, systems etc). This is discouraged in general, so you
-> should describe it. The commit msg lacks answer to the main question:
-> Why? You focused only on what you are doing, but why you are doing is
-> actually more important for such change.
+> OK
 
-As it's seen on any other pinctrl subdriver that calls code from a main 
-driver, each subdriver needs to have a different compatible string. We 
-don't want the same compatible string to match a different subdriver's 
-pinmux data as it's not for our SoC.
+Why is size_t? error address doesn't have anything to do with a
+sizeof(), array indexing or loop counting.
 
-I'll add what I typed above to the commit log.
+It is an error address and having it in an u64 tells you exactly what
+its quantity is.
 
-Arınç
+So can we stop the silliness pls?
+
+> > > +static irqreturn_t edac_ecc_isr(int irq, void *dev_id)
+> > > +{
+> > > +     struct mem_ctl_info *mci = dev_id;
+> > > +     struct priv_data *priv = mci->pvt_info;
+> > > +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
+> > > +     u32 intr_status;
+> > > +     u32 val;
+> > > +
+> > > +     /* Check the intr status and confirm ECC error intr */
+> > > +     intr_status = readl(priv->reg + npcm_chip->ecc_ctl_int_status);
+> > > +
+> > > +     edac_dbg(3, "InterruptStatus : 0x%x\n", intr_status);
+> >
+> > Remove the space before the colon? Maybe use:
+> >
+> > "Interrupt status (intr_status): 0x%x\n"
+
+And repeat "interrupt status"? Also silly. The question to ask
+yourselves should always be: is this error message helpful enough to its
+intended recipients.
+
+When I see
+
+  "Interrupt status (intr_status): 0x%x\n"
+
+in my code, I go: "hm, where does this message come from?" because it
+ain't helpful enough. So I have to go stare at the code too.
+
+I hope you're catching my drift.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
