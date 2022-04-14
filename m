@@ -2,123 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E235C50076E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2277D500768
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238294AbiDNHpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:45:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60320 "EHLO
+        id S240799AbiDNHqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:46:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240708AbiDNHoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:44:01 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C27F5C357;
-        Thu, 14 Apr 2022 00:41:12 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id lc2so8362984ejb.12;
-        Thu, 14 Apr 2022 00:41:12 -0700 (PDT)
+        with ESMTP id S240801AbiDNHp7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:45:59 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9765EBEF
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:41:41 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id n17so62706ljc.11
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:41:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hsjfJ6kNyOdmk849dkXwmpwJx9bBByejcTJHu02YdnI=;
-        b=OOBFZscKCDVHuImiGxP4PahXd3VpmRBSqVBz0rxiuq7OgqnedoqYRC8XpPwzi4tXcf
-         cUoDpUA1jZqnPD1nBNrWjqNwVroHsRrlBgKu60+gffwg97pevSxwTUphb0qSbiYeGQKa
-         3YBOiLsr7YPWI7dv+QUgvUq20iYagdNq5n3kK+m8li9FDM9L4PpoYWuzERD4L5Nj3yz0
-         D/9jdIhTA4Il+/5bsbmj5/Q++mWJknGQXHBELqzt3v1InF+BrXRqoWXfByJhKYRGBpm/
-         SKL+eju+TOWUisO41z7uh73l2lWyZU0jcihVxK0BOnrPLb3zan7w6IJoCQIEyI+aT0fC
-         iTdg==
+        bh=tTicuqi+crlbiDa0+dPNlHvr6bdpjS4CywgqkLHMy6Q=;
+        b=nS8Fz/JYk9rXaQLofLGBu++Y5GXD58mwqI4IcrdNUdhICZ1a1Qk7LJ+HBhj0uy3GuY
+         HzgPjG6Y7fxn3mFzYECHUoZxIRFH5XSBwI8eicml4zoAGDmkxw2GzRlCFpcCfDO8jkXE
+         CZ5P6uO5S+AGFPEXAJufCK8uAEwBYHJ8lR9O/1L74Fg71X2ZebYNYSUgmdeBNykJKP61
+         GeYGx4L+OvN0SMk1CCrgureq7wYfI+QI6QnumDj8DW1h88Mqokze1P9GBsuulHNFUDif
+         OLePMutmqkfFJ2bh1RSWn9EGzWBcTXH4vEOluQXqUxIzYPPjaGOJo4WQNAXXsM8uwgEl
+         2dYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=hsjfJ6kNyOdmk849dkXwmpwJx9bBByejcTJHu02YdnI=;
-        b=p8ixT4yY6vvDBRi2InwVWBO1e7rn+nNraRVlCrAx60uN/tfj9odCki25ea9AthM5JA
-         1P0YwDfA+AbIHZfjMWvUjHwEb0b77X3LDt47/qygUV+p78jF+nMqV0k4kLE/cvhuKP2x
-         4NZjKaj5VDx5TBH1Ay9NZRzZL1ZkF53ydOLcDxs/oPuId32BjInDedfjw868+i3uiWjM
-         ofNthCjOHLVhqcT0vs0HFGWVKbtuYNUYh1Ym+H7ba+LdsTdhVZan8RcHBzkYACX8eZvp
-         qBo3KO6wf06LPRk6oN3u4NdrIv84hXbtcf9eu7ZusFDeXwBLkG1/oWgaTJb5prjhj+YJ
-         UDMg==
-X-Gm-Message-State: AOAM530TgwRt2n6l+G62EwTNabxSmV6wMWf2zUF/RU+YKKW8Qfe3VO16
-        rkbgU/H7YXLS3DOOi6Fb+GA=
-X-Google-Smtp-Source: ABdhPJyaJYKew2SO25i61AvtBgkDD8PLjatVIn+03272639bqiiIjwjiKiJpaQuYUMWnL9efVxDhTw==
-X-Received: by 2002:a17:906:7304:b0:6e0:6918:ef6f with SMTP id di4-20020a170906730400b006e06918ef6fmr1222274ejc.370.1649922070582;
-        Thu, 14 Apr 2022 00:41:10 -0700 (PDT)
-Received: from [192.168.0.182] ([188.24.22.234])
-        by smtp.gmail.com with ESMTPSA id lb4-20020a170907784400b006e0d13f65e5sm370876ejc.167.2022.04.14.00.41.09
+        bh=tTicuqi+crlbiDa0+dPNlHvr6bdpjS4CywgqkLHMy6Q=;
+        b=vUKZ4Ksn0BPw/2hLVgGHMV61XFSNbQxjKx8KddajpqHBtCiLdtAbf6r8Zav+yTgbxx
+         u0FxnsZyH8HLvhedBGcjEM9c9QxLeVmeu7Su2uKdz+yq82wxtXLaK+cqU2QlrJebWez+
+         iKtXniSbfU9fYFai/HLwO2J3KeYSGhvwwrZ50V0xcn2VAaZWW2XS2Ph56iiZd08EOsIV
+         FFkyOBfWwTGR97ppFTMNp+C9ezsBU890/OgEDQ798rlzCE/sl+slI/ES7B99qP8ft9Bk
+         lT0+BGfr+rt4HY49YHJzT4jrRayhgVikwPaDijAkM0D7KKQ6/prlZm8O5vaFW+0t3wAa
+         mCrg==
+X-Gm-Message-State: AOAM532X7geZ34NPZq2DbsQmGGMuQpIy3rgKmmFLriHWM3ofo4mxA+dJ
+        t0hGCjQ9ntr0FytnlX44Llcbcg==
+X-Google-Smtp-Source: ABdhPJygwGtzxX7j/r6knGkBXy29wY5o7YTjU8DbJDefKV4sIm7bYOgx0X0gfKSJv+Wv1atNeFxoXw==
+X-Received: by 2002:a05:651c:994:b0:24a:fc47:d6ca with SMTP id b20-20020a05651c099400b0024afc47d6camr876809ljq.297.1649922099742;
+        Thu, 14 Apr 2022 00:41:39 -0700 (PDT)
+Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
+        by smtp.gmail.com with ESMTPSA id i7-20020ac25d27000000b00450abeb4267sm151889lfb.140.2022.04.14.00.41.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 00:41:10 -0700 (PDT)
-Message-ID: <0de7fcb5-0d5f-d8b3-448a-2bc14cef21ee@gmail.com>
-Date:   Thu, 14 Apr 2022 10:41:09 +0300
+        Thu, 14 Apr 2022 00:41:39 -0700 (PDT)
+Message-ID: <358215a0-6f00-7594-bd4e-8f4e8be93473@linaro.org>
+Date:   Thu, 14 Apr 2022 10:41:30 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v1 2/3] iio: ABI: adc: ad4130: document
- filter_mode{,_available}
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sm8250: Add camcc DT node
 Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-References: <20220413094011.185269-1-cosmin.tanislav@analog.com>
- <20220413094011.185269-2-cosmin.tanislav@analog.com>
- <CAHp75VexJBnAqoQ53=_nif=bso0-cNj4EsTbUwKGKxfNq_Fvyw@mail.gmail.com>
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <CAHp75VexJBnAqoQ53=_nif=bso0-cNj4EsTbUwKGKxfNq_Fvyw@mail.gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
+        jgrahsl@snap.com
+References: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
+ <20220413231736.991368-2-bryan.odonoghue@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20220413231736.991368-2-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Bryan,
 
+On 4/14/22 02:17, Bryan O'Donoghue wrote:
+> Add the camcc DT node for the Camera Clock Controller on sm8250.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index af8f22636436..906bc8ed25b7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -19,6 +19,7 @@
+>   #include <dt-bindings/sound/qcom,q6afe.h>
+>   #include <dt-bindings/thermal/thermal.h>
+>   #include <dt-bindings/clock/qcom,videocc-sm8250.h>
+> +#include <dt-bindings/clock/qcom,camcc-sm8250.h>
 
-On 4/13/22 17:51, Andy Shevchenko wrote:
-> On Wed, Apr 13, 2022 at 4:17 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
-> 
-> It's good you provided documentation, but I think the part "ABI:" is
-> not needed in the Subject.
-> 
+please swap the two last lines to get a bit better alphanumeric order, it
+might be a good idea to sort out all the include directives.
 
-Then I guess I could merge this patch into the driver patch?
+>   / {
+>   	interrupt-parent = <&intc>;
+> @@ -3149,6 +3150,20 @@ videocc: clock-controller@abf0000 {
+>   			#power-domain-cells = <1>;
+>   		};
+>   
+> +		camcc: clock-controller@ad00000 {
+> +			compatible = "qcom,sm8250-camcc";
+> +			reg = <0 0x0ad00000 0 0x10000>;
+> +			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
 
->> AD4130-8 is an ultra-low power, high precision,
->> measurement solution for low bandwidth battery
->> operated applications.
->>
->> The fully integrated AFE (Analog Front-End)
->> includes a multiplexer for up to 16 single-ended
->> or 8 differential inputs, PGA (Programmable Gain
->> Amplifier), 24-bit Sigma-Delta ADC, on-chip
->> reference and oscillator, selectable filter
->> options, smart sequencer, sensor biasing and
->> excitation options, diagnostics, and a FIFO
->> buffer.
-> 
-> Indentation issue as per patch 1.
-> 
-> ...
-> 
->> +               Set the filter mode of the differential channel. When the filter
->> +               mode changes, the in_voltageY-voltageZ_sampling_frequency and
->> +               in_voltageY-voltageZ_sampling_frequency_available attributes
->> +               might also change to accomodate the new filter mode.
-> 
-> accommodate
-> 
->> +               If the current sampling frequency is out of range for the new
->> +               filter mode, the sampling frequency will be changed to the
->> +               closest valid one.
-> 
-> 
+I believe it should be GCC_CAMERA_AHB_CLK.
+
+> +				 <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK_A>;
+> +			clock-names = "iface", "bi_tcxo", "bi_tcxo_ao";
+
+I see that the driver references to "sleep_clk", which won't be found
+automatically, since it's name is "sleep-clk", so, it might be reasonable
+to add it to the list.
+
+> +			power-domains = <&rpmhpd SM8250_MMCX>;
+> +			required-opps = <&rpmhpd_opp_low_svs>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+>   		mdss: mdss@ae00000 {
+>   			compatible = "qcom,sm8250-mdss";
+>   			reg = <0 0x0ae00000 0 0x1000>;
+
+--
+Best wishes,
+Vladimir
