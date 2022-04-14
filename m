@@ -2,78 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91E79501B27
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 20:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6193C501B4A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 20:50:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbiDNSiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 14:38:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32890 "EHLO
+        id S245259AbiDNSw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 14:52:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344681AbiDNSiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 14:38:18 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D398DB2DE
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 11:35:52 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id r18so7175085ljp.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 11:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ub6If+332buCinL/3BXFdLheY3JvRpim3Rm/PFZigx8=;
-        b=VW0aRD7T+wcgoxrACJ+GbC5nEhZz3dZ7wQQS9PmN3Yp3GTV6Jk4ywSz15b+DZBMoQb
-         wMzZ1VCWy91Ms7DQr4LkBc2a+7wil12P0S0jXGGGLcSW4d0uS+sOrz1FZ8FFtLchnu0y
-         UEf1kqhXcfjYqj/buCV535ziHLyFkIEbJT+SYJeA5bZ69QGJMAYQ4SO0fCj/TyxJ9bCu
-         Dtu/MBUfpOjbqseGSIww986b2BrQC95y5la7c06t3yD1N+a18s7s3ueSYrakxZCkQSWT
-         I47aMFIM23p0MECgsnCvo6iKhCjXMWw0tf4aghtgqfS/q/vu3zlBNsmXdvZWwnwcd3+u
-         U9Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ub6If+332buCinL/3BXFdLheY3JvRpim3Rm/PFZigx8=;
-        b=KBCWMyZ27br/Ijx4NiB4Cip2Kf07+DrblIU1vISfJCnzbnwLMT5wDEUfY5ElQ0/jM8
-         gzEyNbNQ+l+nz4k4l8OG8zS/Y6TTyhslH1V44y3kKHqTa/tyjQ0h0jgtOY9w8aNVoOI0
-         1om7rCGm+gJqHd994TwjOiuoetMrlyl5VCtl5GcTLlNbfE4PlJqnHIrKUYNMhMuLbEZw
-         zin0LU9vCmYxbLw6SyUYs7XWJ8d3YpGPyxWaeX6g4ZIytuKdMXeMLQ+099fKZJap9YqY
-         7C5A3XhSjklSVi0UJ8ycKXK5PHB1zBA9oYRB09jEFc7x6uaBkPt+v/cHYrPkHmnZRSQ6
-         GFlA==
-X-Gm-Message-State: AOAM533S6PHKyqGnfsC+z02c2Ny51ZRnAAeR/Z8Y3YvY2nzoXTW1aUDI
-        SvDQ/kcesxwcODZ5z14ERMlx0Q==
-X-Google-Smtp-Source: ABdhPJwnBrxe1rilJp4LSDGlMmGx8LSGayKb/qSUyY7bJqK7KoNxlLsSnCtEArQ2G1HSu4DTCDZzNQ==
-X-Received: by 2002:a2e:141e:0:b0:24b:6256:3898 with SMTP id u30-20020a2e141e000000b0024b62563898mr2265515ljd.436.1649961350505;
-        Thu, 14 Apr 2022 11:35:50 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s1-20020ac24641000000b0046d10a0bba2sm71865lfo.176.2022.04.14.11.35.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 11:35:50 -0700 (PDT)
-Message-ID: <27e4cc57-bdfe-42b6-d3eb-0d447ab6c6ca@linaro.org>
-Date:   Thu, 14 Apr 2022 21:35:49 +0300
+        with ESMTP id S237165AbiDNSwY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 14:52:24 -0400
+Received: from out28-197.mail.aliyun.com (out28-197.mail.aliyun.com [115.124.28.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D1FD3D48A;
+        Thu, 14 Apr 2022 11:49:41 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1454297|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0132996-0.00728371-0.979417;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047190;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.NQnX3.j_1649962165;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NQnX3.j_1649962165)
+          by smtp.aliyun-inc.com(33.40.38.164);
+          Fri, 15 Apr 2022 02:49:38 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, reimu@sudomaker.com
+Subject: [PATCH v5 0/3] Add SMP/SMT support for Ingenic sysost driver.
+Date:   Fri, 15 Apr 2022 02:49:22 +0800
+Message-Id: <1649962165-111806-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: delete incorrect ufs
- interconnect fields
-Content-Language: en-GB
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220407172145.31903-1-jonathan@marek.ca>
- <YlXmTbKwYtvLSjgp@builder.lan>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YlXmTbKwYtvLSjgp@builder.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,57 +43,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 23:51, Bjorn Andersson wrote:
-> On Thu 07 Apr 12:21 CDT 2022, Jonathan Marek wrote:
-> 
->> Upstream sm8450.dtsi has #interconnect-cells = <2>; so these are wrong.
->> Ignored and undocumented with upstream UFS driver so delete for now.
->>
-> 
-> Just to clarify, the binding do document interconnects and the property
-> should be there in the end. v1 (why isn't this marked v2?) was correct.
-> 
-> What I asked for was a statement on why it should be picked up for
-> v5.18-rc (as Dmitry requested).
+1.On the hardware of X2000 SoC, the OST has been split into
+  two parts, two 32bit timers for clockevent and one 64bit
+  timer for clocksource (with different addresses), so it
+  not appropriate to use only one "ingenic,x2000-ost", just
+  remove it, then introduce "ingenic,x2000-ost32" and
+  "ingenic,x2000-ost64".
+2.The OST in Ingenic XBurst®2 SoCs has a global timer and
+  up to 16 event timers, add support for the event timers.
+3.Add dt-bindings and compatible strings for the X1600 SoC,
+  the X1700 SoC, the X1830 SoC, the X2000 SoC, the X2500 SoC.
 
-I have a slight preference for fixing the icc rather than dropping it.
+v4->v5:
+Fix warnings reported-by: kernel test robot <lkp@intel.com>.
 
-However I'm fine with either of the patches.
+周琰杰 (Zhou Yanjie) (3):
+  dt-bindings: timer: Remove unreasonable binding.
+  dt-bindings: timer: Add bindings for new Ingenic SoCs.
+  clocksource: Ingenic: Add SMP/SMT support for sysost driver.
 
-The ufs/qcom,ufs.yaml describes these interconnects (basing on the 
-sm8450 if I understand correctly). Thus if decide to drop interconnect 
-properties, we should also update the binding.
-
-
-> 
-> Regards,
-> Bjorn
-> 
->> Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
->> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 3 ---
->>   1 file changed, 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> index 2c18e1ef9e82d..90cdbec3cac99 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> @@ -1663,9 +1663,6 @@ ufs_mem_hc: ufshc@1d84000 {
->>   
->>   			iommus = <&apps_smmu 0xe0 0x0>;
->>   
->> -			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
->> -					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
->> -			interconnect-names = "ufs-ddr", "cpu-ufs";
->>   			clock-names =
->>   				"core_clk",
->>   				"bus_aggr_clk",
->> -- 
->> 2.26.1
->>
-
+ .../devicetree/bindings/timer/ingenic,sysost.yaml  |   8 +-
+ drivers/clocksource/ingenic-sysost.c               | 405 ++++++++++++++++-----
+ 2 files changed, 313 insertions(+), 100 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.7.4
+
