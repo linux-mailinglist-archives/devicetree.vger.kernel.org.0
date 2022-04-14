@@ -2,137 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79260501BC3
+	by mail.lfdr.de (Postfix) with ESMTP id 306FA501BC2
 	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345163AbiDNTWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 15:22:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52168 "EHLO
+        id S1345242AbiDNTXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 15:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345161AbiDNTWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:22:09 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2179A145C;
-        Thu, 14 Apr 2022 12:19:43 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id b21so10776932lfb.5;
-        Thu, 14 Apr 2022 12:19:43 -0700 (PDT)
+        with ESMTP id S1345204AbiDNTXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:23:00 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8783DA7778
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:20:34 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id bu29so10848205lfb.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:20:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=R46jQ8Mh8wQzPdylSEViVF+ujde6F3v3VBI24iINPTM=;
-        b=QRWLAqmejMzVP/VaSSlfrFYwEo3OK4Yf6F7LquH6LbczOkSkbq/vAsvvcBkQZ3ISuO
-         wk/F7z7KZoaZjO6jJEtsC8Z8u0HmEeGUEZBJ+5uIIL8d4EZc/Xy5CV+958+05d7Oh+3w
-         0MTx5F+/q1lMyyGoE/T8SwKtQsZ+ljloGYnRMXgZR3RSh42S3JxNeguRIyZ8pSqxFcSJ
-         lbwOzjD3LaDkuMdE7Vsq66i//JMVvHCxYJln9faVJVA4/8+FWK/0SSS5ZAme/0sNPB8x
-         GZApoZF4cbZLwHjguo+2oIvkWDrnYDqQpErg124vnNNbbDISEkGcSHd43FjTBLZC5Hys
-         u53A==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=vp0QTlQ+Ul12qwBiTeo6WQhXUXb0oDOX5cKNXB8aPjA=;
+        b=vtTVHj80EGxNxKDlWGtszG3FwMg4Ey5uQHChZ2COAtQ3UUZTlIFf0z5PGKPiraBznp
+         nlnwtsO3/u7tW7hBz/zuev7xxyVez2a1UV4nWJzEA+tbDF+toFxvgf3oS+Ph+MAcVJqx
+         6pLvnc9UJe5jn4SBNdLYPN5Qax2ShWH+dQdCyYir+zNtxeCkS/MloXri0Byr1k6CWrQn
+         DIvXAWCR+AUnhw9m8COyU5g0yWa8VV81TuALFXgSzmLsSb/ODZY/kz9XdUipaRxtpkJK
+         cqtoJaVQNx9rfchIoRjAhYaGI2BQb5x1lxq0/4EC3hHEbQsLJBz8UJhBvQ6QjuJxevF5
+         4v5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=R46jQ8Mh8wQzPdylSEViVF+ujde6F3v3VBI24iINPTM=;
-        b=hf6PxSD7Vr7l87OdoD9NNJAEBJLCSBtglmXXyciZgeR8YbFzBIItfG6L+sfFBz2XPF
-         fbPD5Qzl+OU1DGp3fYvqI7KBFg8JOxBUVq9TlFquxisAfBEDp80evlAgI4rfTAj496WM
-         nnw1vVTr7quXAc9RFq8OtoIKjuOnPgYjSxrUBL9IUf5+IISdN0PvQzUKOKoojggKRc3j
-         7pT9qMp2u5r1+9xCRhk3yQv//bpGDTGGdTjNZSxCez3jPJirsmv060b1XqUy53tPkJMF
-         Zu5P9TSNpZpCNogzMn4vy22cLvnDSL003YhApzrdozA9VdAcRo76pQ45NFjsh0jEOxMr
-         y83g==
-X-Gm-Message-State: AOAM5325wk9UfePDAfFCHcp9KUHUKOvTPR0rrBYwDrLM42FDI637jiXD
-        jk8fbsTkJjJ0yxxIJFzRaQ4=
-X-Google-Smtp-Source: ABdhPJwDFkGrudp03NZzkhnvIn/IK69FMZdjURZkh3p/wuKd/xnIHAcuOjWitfBhsfM9796bR6Fn5A==
-X-Received: by 2002:a05:6512:169a:b0:44a:fea7:50a5 with SMTP id bu26-20020a056512169a00b0044afea750a5mr2825082lfb.498.1649963981876;
-        Thu, 14 Apr 2022 12:19:41 -0700 (PDT)
-Received: from otyshchenko.router ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id l3-20020a194943000000b0046b928d2795sm85001lfj.67.2022.04.14.12.19.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 14 Apr 2022 12:19:41 -0700 (PDT)
-From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
-To:     xen-devel@lists.xenproject.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>
-Subject: [RFC PATCH 3/6] dt-bindings: xen: Add xen,dev-domid property description for xen-virtio layer
-Date:   Thu, 14 Apr 2022 22:19:30 +0300
-Message-Id: <1649963973-22879-4-git-send-email-olekstysh@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649963973-22879-1-git-send-email-olekstysh@gmail.com>
-References: <1649963973-22879-1-git-send-email-olekstysh@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=vp0QTlQ+Ul12qwBiTeo6WQhXUXb0oDOX5cKNXB8aPjA=;
+        b=GZGkRrr9UdwiwwgnRLF5mYUotgRWE6GmNeB5y0BBsTdA3XUm10ip4pxf6kw4Drt+s/
+         O4RteUstsMG8/tQww8NWGdPTOlTM2sa1xiOW83XpXiGnjAyPqvdmg4sv6bgeVFiywgtc
+         BBli31OX+dpL9nhADzcPaNuddq/kkyFX0D8UvckNCVNKWUeqIxIZX305GElSHXoxyfWz
+         BeOFLZ4YcYGFJWk0G0JjihBc7eQpMnkwNjxu1oBYFnRr+ygsydxrZRExP1L7ltxEXllb
+         AcevGfVFpXAlFaUiLTEsqrVhnHDeZRr2SIMureSTYAdtW3l/4VieqamRZa8qCQxOq2/a
+         DruA==
+X-Gm-Message-State: AOAM530rPBZbJiWa4SodRaK1H4xAeGLCT3S/ihlFNzoOU/fCZhLQOKUw
+        83tn15fRbpQ5xb2Yv8AsDFYyyQ==
+X-Google-Smtp-Source: ABdhPJxo5MHFE963Dq+Wyme7Ct5D7t+GPbOhgBQl/OVd4GpTcR+TbNjtlAMv2Dy5gtjdWO+O9T8iPA==
+X-Received: by 2002:a05:6512:4024:b0:46b:fc7e:a455 with SMTP id br36-20020a056512402400b0046bfc7ea455mr2937396lfb.156.1649964032785;
+        Thu, 14 Apr 2022 12:20:32 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id t1-20020a19dc01000000b0046ba600f866sm83561lfg.180.2022.04.14.12.20.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 12:20:32 -0700 (PDT)
+Message-ID: <20afcd97-4b8d-f770-151a-268b893b7c5a@linaro.org>
+Date:   Thu, 14 Apr 2022 22:20:31 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v7 0/4] Add support for the eDP panel over aux_bus
+Content-Language: en-GB
+To:     Doug Anderson <dianders@chromium.org>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
+        Steev Klimaszewski <steev@kali.org>
+References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=Ui6BAsnTaJ2_TMh1Tnjtaw7FR92aWoUysS+UT=c0qB3Q@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <CAD=FV=Ui6BAsnTaJ2_TMh1Tnjtaw7FR92aWoUysS+UT=c0qB3Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+On 14/04/2022 19:40, Doug Anderson wrote:
+> Hi,
+> 
+> On Thu, Apr 14, 2022 at 5:19 AM Sankeerth Billakanti
+> <quic_sbillaka@quicinc.com> wrote:
+>>
+>> This series adds support for generic eDP panel over aux_bus.
+>>
+>> These changes are dependent on the following series:
+>> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=613654&state=*
+> 
+> You're basically depending on the last two patches of that series.
+> What's the plan there? In patchwork they're marked as "Not
+> Applicable". If they're good to go, maybe we should land them? If not,
+> maybe you should include them (with Dmitry as the author, of course)
+> at the beginning of your series?
 
-Introduce Xen specific binding for the virtio-mmio device to be used
-by Xen virtio support driver in a subsequent commit.
+No, please do not resend patches. The patches in question are marked as 
+'Not applicable' as they are really not applicable to Bjorn's tree.
+It would be better to point to the correct patchwork:
 
-This binding specifies the ID of Xen domain where the corresponding
-device (backend) resides. This is needed for the option to restrict
-memory access using Xen grant mappings to work.
+https://patchwork.freedesktop.org/series/98585/
 
-Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
----
- .../devicetree/bindings/virtio/xen,dev-domid.yaml  | 39 ++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml
+Note those patches still lack the R-B tag. I can include them anyway, 
+basing on Sankeerth's Tested-by tag, but the formal R-B would also be good.
 
-diff --git a/Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml b/Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml
-new file mode 100644
-index 00000000..78be993
---- /dev/null
-+++ b/Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/virtio/xen,dev-domid.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xen specific binding for the virtio device
-+
-+maintainers:
-+  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-+
-+select: true
-+
-+description:
-+  This binding specifies the ID of Xen domain where the corresponding device
-+  (backend) resides. This is needed for the option to restrict memory access
-+  using Xen grant mappings to work.
-+
-+  Note that current and generic "iommus" bindings are mutually exclusive, since
-+  the restricted memory access model on Xen behaves as a kind of software IOMMU.
-+
-+properties:
-+  xen,dev-domid:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Should contain the ID of device's domain.
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    virtio_block@3000 {
-+            compatible = "virtio,mmio";
-+            reg = <0x3000 0x100>;
-+            interrupts = <41>;
-+
-+            /* The device is located in Xen domain with ID 1 */
-+            xen,dev-domid = <1>;
-+    };
+
+> 
+> 
+>> Sankeerth Billakanti (4):
+>>    drm/msm/dp: Add eDP support via aux_bus
+>>    drm/msm/dp: Support only IRQ_HPD and REPLUG interrupts for eDP
+>>    drm/msm/dp: wait for hpd high before aux transaction
+>>    Support the eDP modes given by panel
+> 
+> One of these things is not like the others. One of these things just
+> doesn't belong. Can you spot which patch is missing the prefix by
+> looking at the subject line of all 4 patches? ;-)
+
+:-)
+
+
 -- 
-2.7.4
-
+With best wishes
+Dmitry
