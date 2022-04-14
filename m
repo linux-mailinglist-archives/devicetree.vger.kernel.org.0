@@ -2,65 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71139500695
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A654650068F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232237AbiDNHKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36138 "EHLO
+        id S240225AbiDNHJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:09:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230502AbiDNHKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:10:34 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D18D73A72D
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:08:00 -0700 (PDT)
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(1174:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Thu, 14 Apr 2022 15:05:15 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Thu, 14 Apr 2022 15:06:12 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.018; Thu, 14 Apr 2022 15:06:12 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH v13 4/9] dt-bindings: clock: Add bindings for SP7021 clock
- driver
-Thread-Topic: [PATCH v13 4/9] dt-bindings: clock: Add bindings for SP7021
- clock driver
-Thread-Index: AQHYTXFtZBGBuhiVAkyYeiqgxa8/hazs4N6AgAIgI/A=
-Date:   Thu, 14 Apr 2022 07:06:12 +0000
-Message-ID: <b1b85440f7d647a0adf014b091e31c10@cqplus1.com>
-References: <cover.1649659095.git.qinjian@cqplus1.com>
- <f8d5675d1bc32962af6379f78a171ed35b181ebc.1649659095.git.qinjian@cqplus1.com>
- <c2a7f2e0-1a21-bb0c-9221-c184cfaa3626@linaro.org>
-In-Reply-To: <c2a7f2e0-1a21-bb0c-9221-c184cfaa3626@linaro.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S240220AbiDNHJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:09:45 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3033534BAC
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:07:20 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id z12so5193022edl.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:07:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=N59VpskwVzxKvrwhY6+QNdNZxdpuBQRHq8FPB+3/fNY=;
+        b=V1rTg1vM2pH5UT/dmwyv12wBruW0s5c72LNfIVSnl31+6Daq5+wA1Wfcx7PTEsK8/E
+         jEhpU7fQw2TV8ov0/70msTwUsCz++T6sxGF+AJ+S3K1x1dwX0WIoEj98YeUgldpEhPJ4
+         8ipRFssbu1ExGGEdIriOaks65x1NrDVea64Itvx6YYRky2JydYFXRCidvgIvj1HqZ0sE
+         okIAQHdvzLZx2uynd7ea0Rzufe12K7Kx+AFpDK/cbCrIng/FjpfnCPH5hC5E3WtGaArU
+         6uhdaUZFgDdzne239bw57hT8MXslYXF06PDPNQgFP8PY9mgAbZSQVtD+k+9Y8gq/J1YT
+         tAbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=N59VpskwVzxKvrwhY6+QNdNZxdpuBQRHq8FPB+3/fNY=;
+        b=6W/MTlOAobTa0BUGLb3d9yfF00E51EJl5inyBNSvTTgT0TkdMDcWP0UCI9IwzL3boy
+         trzjqe6wM1NPZhfm/QR8JOyFZoHkHa+6xzEBavzD2cyHqwHuVW7kDBApG5T7UqX7OfkR
+         bFzyJ41QvC3qR/8RN+bIsSh3BA5S893PlX3kz8yjbhpUPHqNJkubxsG3+SPg7LVJB+QO
+         1TUz2FuZp1SuJnaUeuG3ZNoTedYmSGwLNjOU8M9ATciJTREuHXe8YIHeZUmTUhoPR/BQ
+         s2q8+LhsrxJ7WC37bdC7hOrTOzoWthzEQ+F+dxkBZITuID2WPO2s0WvEtbAVgrSI5/sJ
+         2tpA==
+X-Gm-Message-State: AOAM530DFVEZgeKsC8uzjgHlxkHaqX2oXtY9k8hWqAVT1WuJfBcr/Xtl
+        jNG9PKE2XjElTpsBI5uzPXsr9g==
+X-Google-Smtp-Source: ABdhPJzInxt/pldRqvrXl3OI1n1SZfZ22+rbQStVtA37uKDx5GjqIyzOwuCsVR6yIHoUVd75Lfl5uQ==
+X-Received: by 2002:aa7:cac8:0:b0:410:cc6c:6512 with SMTP id l8-20020aa7cac8000000b00410cc6c6512mr1462205edt.408.1649920038730;
+        Thu, 14 Apr 2022 00:07:18 -0700 (PDT)
+Received: from [192.168.0.209] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id o3-20020a170906774300b006e79ea98369sm349759ejn.151.2022.04.14.00.07.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 00:07:18 -0700 (PDT)
+Message-ID: <b7718ca1-c502-67a1-993c-460a6c55cc5e@linaro.org>
+Date:   Thu, 14 Apr 2022 09:07:16 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 4/4] dt-bindings: soc: qcom,rpmh-rsc: convert to dtschema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vamsi krishna Lanka <quic_vamslank@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220411085935.130072-1-krzysztof.kozlowski@linaro.org>
+ <20220411085935.130072-4-krzysztof.kozlowski@linaro.org>
+ <Yldyccqaqgcj/Kvc@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yldyccqaqgcj/Kvc@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,8 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQo+ID4gKyNpZm5kZWYgX0RUX0JJTkRJTkdTX0NMT0NLX1NVTlBMVVNfU1A3MDIxX0gNCj4gPiAr
-I2RlZmluZSBfRFRfQklORElOR1NfQ0xPQ0tfU1VOUExVU19TUDcwMjFfSA0KPiA+ICsNCj4gPiAr
-I2RlZmluZSBYVEFMICAgICAgICAgICAgMjcwMDAwMDANCj4gDQo+IFRoaXMgbG9va3MgbGlrZSBm
-cmVxdWVuY3kgd2hpY2ggdXN1YWxseSBkb2VzIG5vdCBiZWxvbmcgdG8gYmluZGluZ3MuIFdoeQ0K
-PiBkbyB5b3UgbmVlZCBpdCBoZXJlPw0KPiANCg0KT0ssIEknbGwgcmVtb3ZlIGl0Lg0K
+On 14/04/2022 03:01, Rob Herring wrote:
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+>> new file mode 100644
+>> index 000000000000..f5ecf4a8c377
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+>> @@ -0,0 +1,272 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+> 
+> Surely this file was all QCom or QCom LT authors and can be dual 
+> licensed. After all, it was QCom that complained to me about GPL only 
+> DT licensing...
+
+I'll work on this.
+
+Best regards,
+Krzysztof
