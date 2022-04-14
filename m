@@ -2,69 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 316D15009D0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 11:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A45500A17
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 11:42:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241749AbiDNJbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 05:31:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56548 "EHLO
+        id S241885AbiDNJol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 05:44:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241757AbiDNJbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 05:31:03 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C0876F4AA
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 02:28:38 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id k22so6090008wrd.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 02:28:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UBu9bKNpcsjBxVmcDi5TeRQJe5h4mzqRMvKt6Hs6yfk=;
-        b=Vewj5Dz7RSg+PeiaWemyvRfbGJIw6goI02YIUIlexhdopKGfuz5QFxWlU/cRgzOEMQ
-         xe4qzReYV1rdCqIdlEwfz8aURRc2+/ASmpJOzJV5zpHGv3JwVlzxiTjxTrcd9QzSqdv8
-         Zrr/R2ylnxbeTnZ3QFqDHi8umJN4S7DQCp8Io=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UBu9bKNpcsjBxVmcDi5TeRQJe5h4mzqRMvKt6Hs6yfk=;
-        b=V/xD1TkoVrrtj6U6zPXCV7oPeMOVYDCln1CM75z7XvVsKH7+mQ2393Kg4WOF+4PjUZ
-         deZj6r3IBemjEq/WdkQupy0KZn88iJGPE916w+XTPiAydoMdZq3EQhUtRzVg6HOo9gPq
-         OQWky89t6G3CcEJSo6tE9sI2VpukuGr+RSd1yPjKUZnKNrTdqJcAgOgWtO40v95yT5e1
-         hfY0YslRBbMb1tSZwvdvLh7RuLseED2m1pFln+t6nRSa8LBpoRqiQw1O0FA8P6VoHYZp
-         tXrfXhW3i6puLpSDLJrlkIOJekUE/QBg/KUopFTtd3NadY9Qp59X2WJVHyVQyN5GlsdL
-         P99g==
-X-Gm-Message-State: AOAM530Xr9mb6gt8ozLNeWHT5lvAmWSgre1hEVEeVzvPKac+bVLzAMTr
-        gOdWqSsF8y1VaKUG5602ODe1QA==
-X-Google-Smtp-Source: ABdhPJzkPWbyQ3uEjfLiHNYske8Ws1jqaNiWmEv6M26tsYDiZ4KBw96HdYn2xvcVVHlNlUsXbquqjA==
-X-Received: by 2002:a05:6000:1445:b0:204:1ca1:67b0 with SMTP id v5-20020a056000144500b002041ca167b0mr1376719wrx.507.1649928516912;
-        Thu, 14 Apr 2022 02:28:36 -0700 (PDT)
-Received: from fabiobaltieri-linux.lan ([37.228.205.1])
-        by smtp.gmail.com with ESMTPSA id bg8-20020a05600c3c8800b0038e4c5967besm1698099wmb.3.2022.04.14.02.28.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 02:28:36 -0700 (PDT)
-From:   Fabio Baltieri <fabiobaltieri@chromium.org>
-To:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Fabio Baltieri <fabiobaltieri@chromium.org>
-Subject: [PATCH v4 4/4] arm64: dts: address cros-ec-pwm channels by type
-Date:   Thu, 14 Apr 2022 09:28:31 +0000
-Message-Id: <20220414092831.3717684-5-fabiobaltieri@chromium.org>
-X-Mailer: git-send-email 2.36.0.rc0.470.gd361397f0d-goog
-In-Reply-To: <20220414092831.3717684-1-fabiobaltieri@chromium.org>
-References: <20220414092831.3717684-1-fabiobaltieri@chromium.org>
+        with ESMTP id S241790AbiDNJoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 05:44:37 -0400
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30087.outbound.protection.outlook.com [40.107.3.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220A052E65;
+        Thu, 14 Apr 2022 02:42:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JwCUr9/8diN1CsLryRRM5KwnOp6t6F7cg394BI9LvjgdXOzpi8ROnjNPf5y4D7qIZt0MhJ+DCswKSBeQJeE/TEJAaoUxrWdbsTthUBuf1VT8KI5aX8F3W3tjLKXJ2NCXu2uMsGI1d9Ol/Ay8Q8kQc6Ap8U943mP1q6jlwePbwr6WE2PJ+c0cj7dI35cbo/Z0WLM/lFmhM3M9TCHEbdpJCtDqzuvrCspiM5vSYgJWYSQIDstzkqzRnn0ktJL2B1xa7nWYLggDjyljdSTQbwOtkWqEh2WzAl6F+Bnr4PsRhHK64uG+qNIexTV3yZBqvKkyn+ublw3UuM6AEUCDmQ+bOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fcOYjYs7y+R/LCf00rRmfpdI0I2/j/I4QN50Sj1qkPI=;
+ b=PNLSzXLPIiD/1SjA4D3etsBQdljCJV0iGhGadcg8yC+jGEaf+i/qasZHCN+IGt3FXB3v5U0GTe39w712wMXobEbg0ixFmcffB5+2ljhJp5RJK8g9HP2zZiD8yZqkX7lIaDIKIfNOt//Fm1Km8mCK5TA2Q3MfDB5SiuknQzSUQ/RTDIxuEyXy1Xi7Ob4LKghlhJBhYnOZ/uFpyRo+AfTf5am5h9ESDA18v2maZEozGDwLipMxVlnk2+0jlyUKqtGImjvxnCKQB6LIhhIP6+P9gSm7Lf3+X8S+LBQUwvf2HCzSw07hYI/H7HFglXnakfOXDF2GYBmKrKqnVR2mOZzEOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fcOYjYs7y+R/LCf00rRmfpdI0I2/j/I4QN50Sj1qkPI=;
+ b=Bwbd+NBhLGlBiA8xSnJCipM5TIF4JbdxEM41g5dsCuOvsCEreZK3OjSRSjwr/E7tGzQimCVGmWMAF/FisGkdaVk3xLmXxmB8mCXbX8hgHkR9O4KeebLDvhjy1Od6nGjzehD5hF3OdreevoBFltJGB+qgnfEXhaxt7l6iVNNMKUk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS4PR04MB9244.eurprd04.prod.outlook.com (2603:10a6:20b:4e3::9)
+ by AM0PR04MB5412.eurprd04.prod.outlook.com (2603:10a6:208:10f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Thu, 14 Apr
+ 2022 09:42:09 +0000
+Received: from AS4PR04MB9244.eurprd04.prod.outlook.com
+ ([fe80::2188:f19d:32be:35af]) by AS4PR04MB9244.eurprd04.prod.outlook.com
+ ([fe80::2188:f19d:32be:35af%5]) with mapi id 15.20.5144.027; Thu, 14 Apr 2022
+ 09:42:08 +0000
+Message-ID: <80bcabe7-5761-7244-c6ea-1b5893395170@oss.nxp.com>
+Date:   Thu, 14 Apr 2022 12:42:06 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] media: imx-jpeg: Encoder support to set jpeg quality
+Content-Language: en-US
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220406094623.7887-1-ming.qian@nxp.com>
+From:   "mirela.rabulea@oss.nxp.com" <mirela.rabulea@oss.nxp.com>
+In-Reply-To: <20220406094623.7887-1-ming.qian@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR10CA0069.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:15::22) To AS4PR04MB9244.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4e3::9)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9ed80de1-e5e7-4b56-3d0d-08da1dfb0b06
+X-MS-TrafficTypeDiagnostic: AM0PR04MB5412:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <AM0PR04MB5412BE1234F969353299C431CEEF9@AM0PR04MB5412.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1pGBn7UMK++u5/ZnEl0SZr5BEpRqMpf9TcWbSCrblrtD6wg2bWKioj8b51I+6gpInIU6meAIrcHFbEXvc14g6U75M6R306zU2CKcT8dsVhMyPaX8/ZFu3yrMjW8D3EiCro1EJIF7x/5rkxAnlT0S3S6q/jeUIgbuB1rR1IyPjxLHHTEmRmOpWZKP+hAxlknfqMhhTF/EVzRROSghzKDo30ghsH+TpjsTgmlDKhrr68CCl3W6bUb2jiWkycsmQ6CGNZceU3UtwsVai7vHtdPp6i6SfDDrTYOA4lXvYSYEUECQTs9vquiEwc82cAIsr4u8nqTxe2pjCKkAIV+Cxcw2ukYKtT5oGK/kpWa64unoA7F9bX8vaA+6wbP5CEQP5OhWt93pPiBKBqHGQFm1BHneXctobTVQtMhLbmvnv23Ve1TDD0OPu5aT0p7Bsse9gfTzimrwVylO5qwdIfSMoBMIA1vAh1gO2983Jm7hpL6JTT9mhS2McgQWv4hRJCiye3q5lCm8xk1nDZbLKqLo3z2jdgFZfzfKtRgywBgrS8kDvOP0xl47x9oj6u17Fafg3BS8NshkQXhy5r9R31N3d+xAlq903UWg10pCDFahIvJo8eQwAqjKW1RLjyjY2sT9AfU4+6UQvCvXkrlHhbWMKbGhkNxRaEfi9nRxILJSlXnRMQ6SVdLFE+/vAovtaesAe8L9/FMHgoxAf8vvlvixncLQa/PI0ja166rTAq+2VRmuH3pnbsmuC3EwLX7ww1s/LCWxqXf6K660occLcwfxtlWTvw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9244.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(316002)(4326008)(66946007)(8676002)(66556008)(66476007)(2906002)(7416002)(86362001)(31696002)(5660300002)(8936002)(38350700002)(38100700002)(83380400001)(6512007)(6506007)(53546011)(2616005)(186003)(52116002)(26005)(508600001)(6486002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eEUraFNXdVpnSVkrRzF4NWQvYTJBSWNuK3l1Snh1QmtHZjdaa0hZVkFCZCtx?=
+ =?utf-8?B?QUtHMkZHanQ5RVFXUXJ3VFZIekpJOEwxTVNYREdRNUNDK213Zzc0RVB5NzRy?=
+ =?utf-8?B?TURBRjdCMGxYRHowR0RpdFFkaGwrV0ZwYUNXZ0g4ZVpGSWZqVjRaYkJmcWJa?=
+ =?utf-8?B?TTRyRFV2cVBBSHhUdmFFZFZqVVBjMEtGZU1BaGVuaU5INTFzZFBjQzZTem8w?=
+ =?utf-8?B?cUtWM3V5djJ3MXg4NFo5VmlKZm94TGprandJdFJVNnRDeGVRaHdsZ2tPa0Mw?=
+ =?utf-8?B?NHRKcFNhdVlQdlp3STVUWnhDY3RvVWJIazVGdFpvUlVWd0loRWEwUXdPUzhX?=
+ =?utf-8?B?amtmMUhhUWZadGRXYldPM1pObXdvUHZDOWZKWHBsajhic2ZDSW1CUE1iUGpZ?=
+ =?utf-8?B?QXZxb2l2Y2UxWFVhWjIwL2ZrdERaZ1dXZks0WnpuQjVTSko4K0x1VVEraTBF?=
+ =?utf-8?B?SGZJTU13cWJaTFE4ajBEeW1obEUzZFdvdG9iQmNBY2lLOW5FcDBpWHJneVFI?=
+ =?utf-8?B?V0ZmdDZSM21jbnZTdjhRMmw0SVlyamlicXZYb2k2RXRpVkhzVUF4aXp4SUFx?=
+ =?utf-8?B?VFFGR2pSNWUyMnQxYjdhSE1QNVdGa2lLUmc0TXRLR3h5ZE1TOXlhZ1pSSHJR?=
+ =?utf-8?B?SC9wSmFYcmdaQlIrQjZuMXZQa3VGMGtSdUVMRXloYTlFZ0JaeUZZbmtnS0hU?=
+ =?utf-8?B?Sk51S0JTUXU4OHcyZ3Zka1RNWXlsKzFUdjEzaXFPMUtnWGVIWHpsVUVYTkNO?=
+ =?utf-8?B?bjZNb2pvcytoR3ZiYXNtT0xXaWZSY2g1M2dld3c5aEJMbjIvRCswNHc0UWhX?=
+ =?utf-8?B?ZThCRGxKamVpazR4SEtSTkNaUnpGTS9xQllVWmhFMmtJeEo0TjJTZ0V0U0Rx?=
+ =?utf-8?B?N1dOTXEwdXEwcVN1cUNMa2FJQUtsOW1oWlhBOXd6Z3JUQXVXV2FUNUNUOEJa?=
+ =?utf-8?B?V2N0THJ4aUhORDVma0FaM2pzTTJhbEtLVlJWM0xBUFcyTnR1VVMvUFpzN0dR?=
+ =?utf-8?B?QW00YmJXTmNYUkFERGVsMVFzbHV6MUI5ckt4bERadHovL3JYN3EwMWQ0REEz?=
+ =?utf-8?B?LzBMeUtVYlBWa25EZUgya1Uza05SMGQxbERHL0dyaVJpTm9pU3NoNGpqMVRj?=
+ =?utf-8?B?TkpPUDVKelVYTDlveVJqSmZNdWRnN3Axa3ltRGNReFVRZkE2ZEtmWnkwSDN3?=
+ =?utf-8?B?RTFKTjd5V2RLN2ptTUk0UGIvUFhOVHhHMGVuc29jeFloN3N6dCtpRFFnRldx?=
+ =?utf-8?B?S3MzbTlRUXZJeC9ZYTM5WHpmRmp0S2tqVVBRSElnS2p2dGFNN1dPb0NjNkV3?=
+ =?utf-8?B?T3BYd2lOb0o0TU0rU2R0WGhyYW5JSnhiamIya2ZzSklzYWJ0dzRzUEJ4ZFFD?=
+ =?utf-8?B?L2lZQ3VSNFNybFM2aFB2TFpRcWVQTGh3dUJuZUZUODZTck1GQXk2RjJ3QjRV?=
+ =?utf-8?B?ZEVTdVJ0eWgxaHdOQ21rV0h6TWR5OGVMaEpzY2RWUjBkNXc4MHhJQ0xwSnpl?=
+ =?utf-8?B?VVVRRktwREJqSUVLWnNpa1JmcTBUbzVQYkY3OFhwUXh5Q3RVUmxQaVdUM09V?=
+ =?utf-8?B?K1FaSk5KbHJRbWNBZ0hNa0NxV3dvQ255ZGF3QWgxK0FQR04xeENQaW8rOWJQ?=
+ =?utf-8?B?bFE1bWJiTitrRWJhZGROYnA1S0poMmM3QkpET0dqUGswdkFyU0VqUm40UVRq?=
+ =?utf-8?B?MTlUTDBhdVFpcHd2VWZRREgyYXp5YWJpdVdHRVltMnl2TkdqT2hZYTZkRmd1?=
+ =?utf-8?B?b3c1UFV2S3dHZXZEQnBsMElmOHB3RnJOMm9NZlB6a0Y2YkxRZFhjazQwbjZT?=
+ =?utf-8?B?elRCMlo1MlYyeEZJV0MvS2x6RWpmN29vZEZVd0gyOWFjOFdraVZWd0loSGxF?=
+ =?utf-8?B?MUVvZVJSc01JQUQzVG1wbVc3NmxtQjQxMkNVUjBDeHpqTEFDL3lpcFh1WGI2?=
+ =?utf-8?B?UnhrTVpHVjV5NUNsRGZ3VDNxNC9kRnBoSWhGSXA0b2J3L2lBMER2cjRCNzda?=
+ =?utf-8?B?dllXeVBTMThJKzBTQnRRVkg1NHBURmtyN2lZZVYveTNlTExLMU1ILzZ5MWZS?=
+ =?utf-8?B?MTZHQmluUC9zdy9sZXdlbGR5bFdkVkdtYUtrRXhhZ0NPQlhEOFhoV05YOFl0?=
+ =?utf-8?B?SlkvMjg4YzMydjV1RzhYcldmKytWS2xHZ2lTcjc5QTNLUlJaYVNnUkF2bUYr?=
+ =?utf-8?B?dWRmZ1RYcUJuMkdnaUpnYlM0SzhlWko3T2NGeENIYTFzQktjaFZGQS9zR3FK?=
+ =?utf-8?B?MWd6Nk9pdFNjazlwRWZEbW1CbE9OZlRVUGUrNTNHOTRtTXV1MGdWZmd0MVRl?=
+ =?utf-8?B?K1hnSjhnM0FQeDkvaFREZUZXRnJjc3l0SXI3RXFEU2JYcHM5dlZiOUU3aVZw?=
+ =?utf-8?Q?ae/hwDjRx7TmvmC4=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ed80de1-e5e7-4b56-3d0d-08da1dfb0b06
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9244.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 09:42:08.8113
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AM/7Sr7EwkPQBjOBjMEqZVvSy/gO1eJOlqwcI8lfC9MLraQqQ7mGOCxovO2jI8EKXR6BJ8fphPfcQ7ZU3WDjxA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5412
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,311 +134,183 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update various cros-ec-pwm board definitions to address the keyboard and
-screen backlight PWM channels by type rather than channel number. This
-makes the instance independent by the actual hardware configuration,
-relying on the EC firmware to pick the right channel, and allows
-dropping few dtsi overrides as a consequence.
+Hi Ming,
 
-Changed the node label used to cros_ec_pwm_type to avoid ambiguity about
-the pwm cell meaning.
+On 06.04.2022 12:46, Ming Qian wrote:
+> Implement V4L2_CID_JPEG_COMPRESSION_QUALITY
+> to set jpeg quality
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> ---
+>   .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c | 11 ++--
+>   .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h |  1 +
+>   .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 50 +++++++++++++++++++
+>   .../media/platform/nxp/imx-jpeg/mxc-jpeg.h    |  2 +
+>   4 files changed, 61 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
+> index 29c604b1b179..c482228262a3 100644
+> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
+> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
+> @@ -100,9 +100,6 @@ void mxc_jpeg_enc_mode_conf(struct device *dev, void __iomem *reg)
+>   
+>   	/* all markers and segments */
+>   	writel(0x3ff, reg + CAST_CFG_MODE);
+> -
+> -	/* quality factor */
+> -	writel(0x4b, reg + CAST_QUALITY);
+>   }
+>   
+>   void mxc_jpeg_enc_mode_go(struct device *dev, void __iomem *reg)
+> @@ -114,6 +111,14 @@ void mxc_jpeg_enc_mode_go(struct device *dev, void __iomem *reg)
+>   	writel(0x140, reg + CAST_MODE);
+>   }
+>   
+> +void mxc_jpeg_enc_set_quality(struct device *dev, void __iomem *reg, u8 quality)
+> +{
+> +	dev_dbg(dev, "CAST Encoder Quality %d...\n", quality);
+> +
+> +	/* quality factor */
+> +	writel(quality, reg + CAST_QUALITY);
+> +}
+> +
+>   void mxc_jpeg_dec_mode_go(struct device *dev, void __iomem *reg)
+>   {
+>   	dev_dbg(dev, "CAST Decoder GO...\n");
+> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
+> index ae70d3a0dc24..356e40140987 100644
+> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
+> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
+> @@ -119,6 +119,7 @@ int mxc_jpeg_enable(void __iomem *reg);
+>   void wait_frmdone(struct device *dev, void __iomem *reg);
+>   void mxc_jpeg_enc_mode_conf(struct device *dev, void __iomem *reg);
+>   void mxc_jpeg_enc_mode_go(struct device *dev, void __iomem *reg);
+> +void mxc_jpeg_enc_set_quality(struct device *dev, void __iomem *reg, u8 quality);
+>   void mxc_jpeg_dec_mode_go(struct device *dev, void __iomem *reg);
+>   int mxc_jpeg_get_slot(void __iomem *reg);
+>   u32 mxc_jpeg_get_offset(void __iomem *reg, int slot);
+> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+> index 0c3a1efbeae7..ccc26372e178 100644
+> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+> @@ -624,6 +624,7 @@ static irqreturn_t mxc_jpeg_dec_irq(int irq, void *priv)
+>   	    ctx->enc_state == MXC_JPEG_ENC_CONF) {
+>   		ctx->enc_state = MXC_JPEG_ENCODING;
+>   		dev_dbg(dev, "Encoder config finished. Start encoding...\n");
+> +		mxc_jpeg_enc_set_quality(dev, reg, ctx->jpeg_quality);
 
-Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
----
- .../dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts    | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi   | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi           | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi      | 4 ----
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi             | 9 +++++----
- .../boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts      | 7 ++++---
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi           | 7 ++++---
- arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi           | 4 ++--
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi               | 7 ++++---
- arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts          | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi  | 5 +++--
- arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts        | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi             | 1 +
- 13 files changed, 28 insertions(+), 33 deletions(-)
+I think the setting of the quality should be moved in device_run, to 
+keep the interrupt handler lean, I checked it works fine after:
+dev_dbg(dev, "Encoder config finished. Start encoding...\n");
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-index dec11a4eb59e..e2554a313deb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-@@ -15,13 +15,13 @@ pwmleds {
- 		compatible = "pwm-leds";
- 		keyboard_backlight: keyboard-backlight {
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
- };
- 
--&cros_ec_pwm {
-+&cros_ec_pwm_type {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-index 8f7bf33f607d..8474bd3af6eb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-@@ -92,8 +92,8 @@ volume_up {
- };
- 
- &cros_ec {
--	cros_ec_pwm: ec-pwm {
--		compatible = "google,cros-ec-pwm";
-+	cros_ec_pwm_type: ec-pwm {
-+		compatible = "google,cros-ec-pwm-type";
- 		#pwm-cells = <1>;
- 		status = "disabled";
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 0f9480f91261..ff54687ab8bf 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include "mt8183.dtsi"
- #include "mt6358.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index c81805ef2250..aea7c66d95e0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -77,10 +77,6 @@ &ap_spi_fp {
- 	status = "okay";
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
- &camcc {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 732e1181af48..6552e0025f84 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include <dt-bindings/sound/sc7180-lpass.h>
- 
-@@ -316,7 +317,7 @@ backlight: backlight {
- 		num-interpolated-steps = <64>;
- 		default-brightness-level = <951>;
- 
--		pwms = <&cros_ec_pwm 1>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
- 		pinctrl-names = "default";
-@@ -354,7 +355,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -637,8 +638,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-index 1779d96c30f6..628ef990433b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-@@ -11,6 +11,7 @@
- #include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-@@ -336,7 +337,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -705,8 +706,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index dc17f2079695..eb4b0e17adec 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -15,6 +15,7 @@
- 
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- 
- #include "sc7280-qcard.dtsi"
- #include "sc7280-chrome-common.dtsi"
-@@ -288,7 +289,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -421,8 +422,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-index a7c346aa3b02..a797f09e1328 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-@@ -20,8 +20,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index e7e4cc5936aa..a57951a50cd6 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sdm845.dtsi"
- 
-@@ -27,7 +28,7 @@ chosen {
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&cros_ec_pwm 0>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		enable-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
- 		pinctrl-names = "default";
-@@ -708,8 +709,8 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ec_ap_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: pwm {
--			compatible = "google,cros-ec-pwm";
-+		cros_ec_pwm_type: pwm {
-+			compatible = "google,cros-ec-pwm-type";
- 			#pwm-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-index 31ebb4e5fd33..5a076c2564f6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-@@ -55,10 +55,6 @@ trackpad: trackpad@15 {
- 	};
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
- &cpu_alert0 {
- 	temperature = <65000>;
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-index 3355fb90fa54..28eda361dfe1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-@@ -198,6 +198,7 @@ backlight: backlight {
- 		power-supply = <&pp3300_disp>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bl_en>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		pwm-delay-us = <10000>;
- 	};
- 
-@@ -462,8 +463,8 @@ ap_i2c_tp: &i2c5 {
- };
- 
- &cros_ec {
--	cros_ec_pwm: pwm {
--		compatible = "google,cros-ec-pwm";
-+	cros_ec_pwm_type: pwm {
-+		compatible = "google,cros-ec-pwm-type";
- 		#pwm-cells = <1>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-index 6863689df06f..e959a33af34b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-@@ -84,10 +84,6 @@ thermistor_ppvar_litcpu: thermistor-ppvar-litcpu {
- 	};
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 1>;
--};
--
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&bt_host_wake_l>, <&cpu1_pen_eject>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-index 162f08bca0d4..181159e9982d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include "rk3399.dtsi"
- #include "rk3399-op1-opp.dtsi"
- 
--- 
-2.35.1.1178.g4f1659d476-goog
+>   		mxc_jpeg_enc_mode_go(dev, reg);
+>   		goto job_unlock;
+>   	}
+> @@ -1563,6 +1564,44 @@ static void mxc_jpeg_set_default_params(struct mxc_jpeg_ctx *ctx)
+>   	}
+>   }
+>   
+> +static int mxc_jpeg_s_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct mxc_jpeg_ctx *ctx =
+> +		container_of(ctrl->handler, struct mxc_jpeg_ctx, ctrl_handler);
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_JPEG_COMPRESSION_QUALITY:
 
+Looks like this is allowed for decoder, which is not ok, maybe return 
+-EINVAL for decoder.
+
+> +		ctx->jpeg_quality = ctrl->val;
+> +		break;
+> +	default:
+> +		dev_err(ctx->mxc_jpeg->dev, "Invalid control, id = %d, val = %d\n",
+> +			ctrl->id, ctrl->val);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops mxc_jpeg_ctrl_ops = {
+> +	.s_ctrl = mxc_jpeg_s_ctrl,
+> +};
+> +
+> +static void mxc_jpeg_encode_ctrls(struct mxc_jpeg_ctx *ctx)
+> +{
+> +	v4l2_ctrl_new_std(&ctx->ctrl_handler, &mxc_jpeg_ctrl_ops,
+> +			  V4L2_CID_JPEG_COMPRESSION_QUALITY, 1, 100, 1, 75);
+
+The v4l2_ctrl_new_std may return an error, which is not checked here 
+(NULL is returned and @hdl->error is set...), please fix.
+
+> +}
+> +
+> +static int mxc_jpeg_ctrls_setup(struct mxc_jpeg_ctx *ctx)
+> +{
+> +	v4l2_ctrl_handler_init(&ctx->ctrl_handler, 2);
+
+ctrl_handler has a lock member, which could be setup here.
+
+> +
+> +	if (ctx->mxc_jpeg->mode == MXC_JPEG_ENCODE)
+> +		mxc_jpeg_encode_ctrls(ctx);
+> +
+> +	return v4l2_ctrl_handler_setup(&ctx->ctrl_handler);
+> +}
+> +
+>   static int mxc_jpeg_open(struct file *file)
+>   {
+>   	struct mxc_jpeg_dev *mxc_jpeg = video_drvdata(file);
+> @@ -1594,6 +1633,12 @@ static int mxc_jpeg_open(struct file *file)
+>   		goto error;
+>   	}
+>   
+> +	ret = mxc_jpeg_ctrls_setup(ctx);
+> +	if (ret) {
+> +		dev_err(ctx->mxc_jpeg->dev, "failed to setup mxc jpeg controls\n");
+> +		goto err_ctrls_setup;
+> +	}
+> +	ctx->fh.ctrl_handler = &ctx->ctrl_handler;
+>   	mxc_jpeg_set_default_params(ctx);
+>   	ctx->slot = MXC_MAX_SLOTS; /* slot not allocated yet */
+>   
+> @@ -1605,6 +1650,8 @@ static int mxc_jpeg_open(struct file *file)
+>   
+>   	return 0;
+>   
+> +err_ctrls_setup:
+> +	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
+>   error:
+>   	v4l2_fh_del(&ctx->fh);
+>   	v4l2_fh_exit(&ctx->fh);
+> @@ -1962,6 +2009,8 @@ static int mxc_jpeg_subscribe_event(struct v4l2_fh *fh,
+>   		return v4l2_event_subscribe(fh, sub, 0, NULL);
+>   	case V4L2_EVENT_SOURCE_CHANGE:
+>   		return v4l2_src_change_event_subscribe(fh, sub);
+> +	case V4L2_EVENT_CTRL:
+> +		return v4l2_ctrl_subscribe_event(fh, sub);
+>   	default:
+>   		return -EINVAL;
+>   	}
+> @@ -2035,6 +2084,7 @@ static int mxc_jpeg_release(struct file *file)
+>   	else
+>   		dev_dbg(dev, "Release JPEG encoder instance on slot %d.",
+>   			ctx->slot);
+> +	v4l2_ctrl_handler_free(&ctx->ctrl_handler);
+>   	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
+>   	v4l2_fh_del(&ctx->fh);
+>   	v4l2_fh_exit(&ctx->fh);
+> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
+> index 9ae56e6e0fbe..9c9da32b2125 100644
+> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
+> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
+> @@ -96,6 +96,8 @@ struct mxc_jpeg_ctx {
+>   	unsigned int			slot;
+>   	unsigned int			source_change;
+>   	bool				header_parsed;
+> +	struct v4l2_ctrl_handler	ctrl_handler;
+> +	u8				jpeg_quality;
+>   };
+>   
+>   struct mxc_jpeg_slot_data {
