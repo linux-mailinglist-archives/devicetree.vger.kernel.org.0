@@ -2,127 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85909501113
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 16:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB284501200
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242542AbiDNOGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 10:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
+        id S235071AbiDNOGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 10:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343613AbiDNNuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:50:20 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B574A6E30;
-        Thu, 14 Apr 2022 06:44:11 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id v4so6418729edl.7;
-        Thu, 14 Apr 2022 06:44:11 -0700 (PDT)
+        with ESMTP id S1346237AbiDNN4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:56:06 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115E0B0A70;
+        Thu, 14 Apr 2022 06:46:13 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 21so6471091edv.1;
+        Thu, 14 Apr 2022 06:46:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=5coa3OBWaIiXyJ1TJsvTvbGW8ucgi9WcCkL0M7ii1Ac=;
-        b=nrNu1svoISX1APZ50+JiEAl8u9jDBuz8d9Cxyz6EuUVB/sY5Ykf1r7CgRiowPFTY7b
-         Le13noEzoOmLbca8xuw39YtKrgs0gf7eyF8i9mrtfw9PfEVfNzNGnWZWLLCi7Uyu1S/R
-         dkY13N/1vInqBApx9uuZC8/NyKPQnhECC1m92z8HhjLbrRs8IXLm/2ILivrKpx2n7cLZ
-         +SRLPDxhRyaCwRTV3DHRoJbFxLdqC77dEBsT6JLzRN5a30di6rb3TcTuaGL80D5+ZMUr
-         rfa9qUZc4fdOfvWdibJ5h82FWUEhD1TPBSUCg6qzSlS1F/dP3TLhd2LyxItRws/6H+NE
-         pXvQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8971MOMZxe8ny/GbZyrl9W3T/ga8R+8j2kZQrMH59YY=;
+        b=VYSEPCPdidBLauO5Wo9kny4AC5GPOq1kV3qgrR05UiNdJNZFy+Ly+Fs/4ODbYQUYo9
+         ZzGWKaahTO52NP+gta5HFse3u7r3MW4BHh/BhVbu7i6S8G00b1aNXFQ6L7v709h4yREW
+         Rzff2SHB0AxSg3thExjDZ6dd5V84600P/3wwxUGi4voiqd1/ndHuCQ9DNWZHRxm9g3r4
+         +bLjBb18OS3VGGZ1U6fBqH9e/EEyNdMt9n3iwCV865VJbLm6qmFWMG1sx/FcFG5JpJkY
+         UzFmTYV4DLMSVsBu4iLkvAADMQlS6tFm0kogL67zc36zWwlfBU+8+KbvD5M86vL1nR4+
+         xVfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=5coa3OBWaIiXyJ1TJsvTvbGW8ucgi9WcCkL0M7ii1Ac=;
-        b=FXATKJ5mMijKM6wWHzdFqlCK4ndW2L/hDWuCB88nqbhtgOAYhoJ15azNbZJlDJgZgw
-         FP51ynXGtbakXVvs4fVzDSiY/luKb4nkUMBX3mMKCA+QsIygADWwLskyOCLoNTG5cGCJ
-         8l3q8D0rd9wmRIosNeSKYoUHEIsgMwL18ThJSV2cOPdt2FCSoCTer7YHAHPhb8zwTnig
-         pUQ0cpJGHRlT6yfP015E1IBj6qhXDFLxeY6EvnhkrTi585DkrDmJyClY4NP9dYCgRd3x
-         Tg4RdqoMmvRKFQ01XYw6oYsFDztACsSZrqBXO0zDp2BJ+0mtfHIoMALZJyz6bFOkDx6F
-         qgjQ==
-X-Gm-Message-State: AOAM530DOHgC9fv09MUkdGDS+xM1PJ3fJvpvwHTTf4noVVnRXaUp2mTp
-        SvU48P2TRcdutRufO0gpVZw=
-X-Google-Smtp-Source: ABdhPJzkQUDBsDWQTu01bvGCEc2uVQV5houVOM1xZHAxz4SHp+vELS6VLTdLSUAfysTUbV9b6QBWNA==
-X-Received: by 2002:a05:6402:5c9:b0:420:aac6:257b with SMTP id n9-20020a05640205c900b00420aac6257bmr3086166edx.128.1649943849435;
-        Thu, 14 Apr 2022 06:44:09 -0700 (PDT)
-Received: from skbuf ([188.26.57.45])
-        by smtp.gmail.com with ESMTPSA id k14-20020a50e18e000000b0041b6f23f7f6sm1039363edl.22.2022.04.14.06.44.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 06:44:09 -0700 (PDT)
-Date:   Thu, 14 Apr 2022 16:44:06 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 01/12] net: dsa: add support for Renesas RZ/N1
- A5PSW switch tag code
-Message-ID: <20220414134406.qk6zxlmsqwaamg4c@skbuf>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
- <20220414122250.158113-2-clement.leger@bootlin.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8971MOMZxe8ny/GbZyrl9W3T/ga8R+8j2kZQrMH59YY=;
+        b=Wx6k4njRos4DGfy4qn+knjborJKyLsn0PlvzTaImO6Nt/3zUMFLq6sJoTKmkXF/ijG
+         Lbk9cYHocBsHQbP6BY+nQYFtVPrDZpO+Lhcb7guDKwO3gvbBa3kQoqv6WuVB9m/wTP9H
+         xclWsMozelBvm9Vu4zZTqBRyHVm/QFu73SJo8FlP89K3anCKia6/iSRkoHRhyGwXTwMX
+         yEqgnpIdx6lOEPPYsxaYLGih5+gMgOnWQWUrSO3SfPFMt/tRzBaZw3eNT7L19aCC7otu
+         K6k5YzsR3Z1ZyNKEHdJAUaYBsEBK6su6YThR1KJigmRJZJtMeklE/wh5yov89LtcQv7q
+         J6rw==
+X-Gm-Message-State: AOAM5315iPnjwtbfzgIKXpTg4wfDxfveGEPZwhYG+H9/ll7dV6YwH+fF
+        2ZNLiRNoL+6S9XRLzDN1sWsVvzNlI4uTx3bOGXw=
+X-Google-Smtp-Source: ABdhPJylfPV678F4xdZmfc1hw6sU/WM4TROFlt3eNeAuggaOYOkrMV1UHEQRqSaCKp+O/eP8yn/eeOKXd7ddj+14m3U=
+X-Received: by 2002:a05:6402:27d1:b0:419:1b02:4a04 with SMTP id
+ c17-20020a05640227d100b004191b024a04mr3037825ede.218.1649943971848; Thu, 14
+ Apr 2022 06:46:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220414122250.158113-2-clement.leger@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+References: <20220413094011.185269-1-cosmin.tanislav@analog.com>
+ <20220413094011.185269-3-cosmin.tanislav@analog.com> <CAHp75VfzX8u45J3634yN5p-QTeT7w0Bos27OxeWOsb3MQ2VRVw@mail.gmail.com>
+ <80196942-4c33-7625-3945-86ce5b7b347f@gmail.com>
+In-Reply-To: <80196942-4c33-7625-3945-86ce5b7b347f@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 14 Apr 2022 16:45:35 +0300
+Message-ID: <CAHp75VfAjvJz2KHYfDM+-8D+hSBtdKJm521EBY3VgCfUsAgt8Q@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] iio: adc: ad4130: add AD4130 driver
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,PDS_OTHER_BAD_TLD,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 02:22:39PM +0200, Clément Léger wrote:
-> Add DSA tag code for Renesas RZ/N1 Advanced 5 port switch. This switch
-> uses a special VLAN type followed by 6 bytes which contains other
-> useful information (port, timestamp, etc).
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
+On Thu, Apr 14, 2022 at 2:06 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+> On 4/13/22 18:41, Andy Shevchenko wrote:
+> > On Wed, Apr 13, 2022 at 1:41 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-Please squash this with the next patch.
+...
 
->  include/net/dsa.h | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/include/net/dsa.h b/include/net/dsa.h
-> index 934958fda962..2aa8eaae4eb9 100644
-> --- a/include/net/dsa.h
-> +++ b/include/net/dsa.h
-> @@ -53,6 +53,7 @@ struct phylink_link_state;
->  #define DSA_TAG_PROTO_SJA1110_VALUE		23
->  #define DSA_TAG_PROTO_RTL8_4_VALUE		24
->  #define DSA_TAG_PROTO_RTL8_4T_VALUE		25
-> +#define DSA_TAG_PROTO_RZN1_A5PSW_VALUE		26
->  
->  enum dsa_tag_protocol {
->  	DSA_TAG_PROTO_NONE		= DSA_TAG_PROTO_NONE_VALUE,
-> @@ -81,6 +82,7 @@ enum dsa_tag_protocol {
->  	DSA_TAG_PROTO_SJA1110		= DSA_TAG_PROTO_SJA1110_VALUE,
->  	DSA_TAG_PROTO_RTL8_4		= DSA_TAG_PROTO_RTL8_4_VALUE,
->  	DSA_TAG_PROTO_RTL8_4T		= DSA_TAG_PROTO_RTL8_4T_VALUE,
-> +	DSA_TAG_PROTO_RZN1_A5PSW	= DSA_TAG_PROTO_RZN1_A5PSW_VALUE,
->  };
->  
->  struct dsa_switch;
-> -- 
-> 2.34.1
-> 
+> >> +#define AD4130_8_NAME                  "ad4130-8"
+> >
+> > What the meaning of -8 ? Is it number of channels? Or is it part of
+> > the official model (part number)? Can we see, btw, Datasheet: tag with
+> > a corresponding link in the commit message?
+>
+> That's just the name specified in the datasheet. I honestly don't have
+> much of an idea about why it is like that. Also, I already put the
+> datasheet in the .yaml documentation.
+
+That's cool!
+
+> Do you really also want it
+> in each commit message too?
+
+No, just in this one.
+
+...
+
+> >> +#define AD4130_RESET_CLK_COUNT         64
+> >> +#define AD4130_RESET_BUF_SIZE          (AD4130_RESET_CLK_COUNT / 8)
+> >
+> > To be more precise shouldn't the above need to have DIV_ROUND_UP() ?
+>
+> Does it look like 64 / 8 needs any rounding?
+
+Currently no, but if someone puts 63 there or 65, what would be the outcome?
+OTOH, you may add a static assert to guarantee that CLK_COUNT is multiple of 8.
+
+...
+
+> >> +#define AD4130_FREQ_FACTOR             1000000000ull
+> >> +#define AD4130_DB3_FACTOR              1000
+> >
+> > Ditto.
+>
+> AD4130_DB3_FACTOR is unit-less. In the datasheet, the relation between
+> sampling frequency and 3db frequency is represented as a 0.xyz value,
+> hence why the db3_div values and 1000 factor.
+
+But does the above mean MILLI or KILO? Similar for the FREQ factor.
+
+...
+
+> >> +       int                             samp_freq_avail_len;
+> >> +       int                             samp_freq_avail[3][2];
+
+> >> +       int                             db3_freq_avail_len;
+> >> +       int                             db3_freq_avail[3][2];
+> >
+> > These 3:s can be defined?
+> >
+> I could define IIO_AVAIL_RANGE_LEN and IIO_AVAIL_SINGLE_LEN and then
+> define another IIO_AVAIL_LEN that is the max between the two.
+> But that's just over-complicating it, really.
+
+I was talking only about 3:s (out array). IIRC I saw 3 hard coded in
+the driver, but not sure if its meaning is the same. Might be still
+good to define.
+
+...
+
+> >> +       if (reg >= ARRAY_SIZE(ad4130_reg_size))
+> >> +               return -EINVAL;
+> >
+> > When this condition is true?
+>
+> When the user tries reading a register from direct_reg_access
+> that hasn't had its size defined.
+
+But how is it possible? Is the reg parameter taken directly from the user?
+
+...
+
+> >> +       regmap_update_bits(st->regmap, AD4130_REG_IO_CONTROL, mask,
+> >> +                          value ? mask : 0);
+> >
+> > One line?
+> >
+> > No error check?
+>
+> I actually can't think of a scenario where this would fail. It doesn't
+> if the chip is not even connected.
+
+Why to check errors in many other cases then? Be consistent one way or
+the other.
+
+...
+
+> >> +       if (setup_info->enabled_channels)
+> >> +               return -EINVAL;
+> >
+> > -EBUSY?
+> >
+>
+> Eh, I don't think so. It would be pretty impossible for the code to hit
+> this if statement, taking into account the ad4130_find_slot() logic.
+> I could as well not have it at all.
+
+If it's a dead code, we do not want it.
+
+...
+
+> >> + out:
+> >
+> > out_unlock: ?
+> > Ditto for similar cases.
+>
+> There's a single label in the function, and there's a mutex being
+> taken, and, logically, the mutex must be released on the exit path.
+> It's clear what the label is for to me.
+
+Wasn't clear to me until I went to the end of each of them (who
+guarantees that's the case for all of them?).
+
+...
+
+> >> +               *val = st->bipolar ? -(1 << (chan->scan_type.realbits - 1)) : 0;
+> >
+> > Hmm... It seems like specific way to have a sign_extended, or actually
+> > reduced) mask.
+> > Can you rewrite it with the (potential)UB-free approach?
+> >
+> > (Note, that if realbits == 32, this will have a lot of fun in
+> > accordance with C standard.)
+>
+> Can you elaborate on this? The purpose of this statement is to shift the
+> results so that, when bipolar configuration is enabled, the raw value is
+> offset with 1 << (realbits - 1) towards negative.
+>
+> For the 24bit chips, 0x800000 becomes 0x000000.
+>
+> Maybe you misread it as left shift on a negative number? The number
+> is turned negative only after the shift...
+
+1 << 31 is UB in accordance with the C standard.
+
+And the magic above seems to me the opposite to what sign_extend()
+does. Maybe even providing a general function for sign_comact() or so
+(you name it) would be also nice to have.
+
+...
+
+> >> +       ret = regmap_update_bits(st->regmap, AD4130_REG_FIFO_CONTROL,
+> >> +                                AD4130_WATERMARK_MASK,
+> >> +                                FIELD_PREP(AD4130_WATERMARK_MASK,
+> >> +                                           ad4130_watermark_reg_val(eff)));
+> >
+> > Temporary variable for mask?
+>
+> You mean for value?
+
+      mask = AD4130_WATERMARK_MASK;
+
+      ret = regmap_update_bits(st->regmap, AD4130_REG_FIFO_CONTROL,
+                               mask, FIELD_PREP(mask,
+ad4130_watermark_reg_val(eff)));
+
+...
+
+> >> +       if (ret <= 0)
+> >
+> > = 0 ?! Can you elaborate, please, this case taking into account below?
+> >
+>
+> I guess I just did it because voltage = 0 doesn't make sense and would
+> make scale be 0.0.
+
+Again, what's the meaning of having it in the conjunction with
+dev_err_probe() call?
+
+> >> +               return dev_err_probe(dev, ret, "Cannot use reference %u\n",
+> >> +                                    ref_sel);
+
+It's confusing. I believe you need two different messages if you want
+to handle the 0 case.
+
+...
+
+> >> +static int ad4130_parse_fw_children(struct iio_dev *indio_dev)
+> >> +{
+> >> +       struct ad4130_state *st = iio_priv(indio_dev);
+> >> +       struct device *dev = &st->spi->dev;
+> >> +       struct fwnode_handle *child;
+> >> +       int ret;
+> >> +
+> >> +       indio_dev->channels = st->chans;
+> >> +
+> >> +       device_for_each_child_node(dev, child) {
+> >> +               ret = ad4130_parse_fw_channel(indio_dev, child);
+> >> +               if (ret)
+> >> +                       break;
+> >> +       }
+> >
+> >> +       fwnode_handle_put(child);
+> >
+> > There is no need to put fwnode if child is NULL. Moreover, the above
+> > pattern might be percepted wrongly, i.e. one may think that
+> > fwnode_handle_put() is a must after a loop.
+> >
+>
+> fwnode_handle_put already checks if the child is NULL. Why do the same
+> check twice?
+
+Exactly my point. Why do you check it twice?
+
+...
+
+> > Can you explain why regmap locking is needed?
+
+> Am I supposed to set .disable_locking = true since SPI has its own
+> locking?
+
+You tell me. I have no idea of what the locking schema is being used
+in your code.
+
+-- 
+With Best Regards,
+Andy Shevchenko
