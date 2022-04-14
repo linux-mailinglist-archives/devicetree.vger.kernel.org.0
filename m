@@ -2,159 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B9A501966
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 024F450196D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242767AbiDNRDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 13:03:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51440 "EHLO
+        id S242523AbiDNRDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 13:03:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244405AbiDNRCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:02:36 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BA4646D;
-        Thu, 14 Apr 2022 09:38:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649954254; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=Efq3hAgZ3JW72GIjcSqmPNhOXvfV0qLZnaUMdx5YXtI6lHY9j8oOWB71TPPFwpF05yK0MoXU18FA3hyw0Qeikt9BTCBKfOhYtY9EhkawPzO2Le9P5ebktcpAd1vdiX0LLhrTG9olKbj2bHm56lrrLTHNHq3tZNOvZF7y1VTXvZE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649954254; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=M6x4pm1vbOy3um3QdMOsMA8jgAP9SJyU0JGvXSzrgKQ=; 
-        b=kZoXga6nOdc/2RaQbkfLKPCXZnNpumUj8B6d9pGc2EU3sA+UFU64Lar9dQW2sUkvAKzk5KnkBp8PJzL5ONxgQ6ngpK/INUMhAHl3rI2CRVmGB0a6uGc44Whj8b8YH1wa7+QLf1Aqk+8DnIWTW41FMEhT2VyBvLw3qAiLi59ZK44=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649954254;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=M6x4pm1vbOy3um3QdMOsMA8jgAP9SJyU0JGvXSzrgKQ=;
-        b=SkCb1ICmhSpTm8ptaGnPJ2s4AbmDHUPiDTmCtBRWilsQZHMDL0wMv2RjWabWCO6H
-        QPyJ+f8aOObEv84FgwlyK3oFzu6myK1zrK7RY47vf8yyQlx4yEAYIytsTo+6mJzdhy+
-        KIbGxLC1o1pf0CFHsBAwJZPzLFSltPjep3Rltn3Y=
-Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649954252283729.6912314444173; Thu, 14 Apr 2022 09:37:32 -0700 (PDT)
-Message-ID: <87c9bf7e-f290-7d38-0844-7a7243688f5a@arinc9.com>
-Date:   Thu, 14 Apr 2022 19:37:25 +0300
+        with ESMTP id S243010AbiDNRDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:03:18 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F98F1D0E9
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:39:38 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id t11so11078316eju.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:39:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/81+PkkPmPe/TTQwrTB+sxyYxn9iTbpRvnVkvTg+pC8=;
+        b=B9wDWH42g9YW9AI0Nss9bPg2ke9AcgJPM27MaTf5FcLd2cYA8sez9IWCsZ1KH5qcqa
+         Lu+dH/ZYnrkVAhHHkskGQMRfl28OXKQ8/hvdgxC+Gd1N0dqNrZq14l0edVEEzLsBFvGP
+         IU9Ox5r96ULPR95h7HSZz6dMttqUaACHn8hkw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/81+PkkPmPe/TTQwrTB+sxyYxn9iTbpRvnVkvTg+pC8=;
+        b=PLA7wOxTs2pD6j5Wb2VP5h9agkIuXTddL4WZwhdj3fqkvW7BRgvLspksX1S8BQkbnO
+         2BsIT69EaHY4SAcO4PFjeHGTU8JtLTuDjbgRXG6oqpp6h4h8Cm1OsOH2dQkb4E1mAoBd
+         tXpjc18kjHXemmEUP61g9VaaXF5Oy01dj5p4/RJZoQUL/8GGz13/XlytBErwvnW7sNxz
+         nl2k6djFV3GkuXUluEk/6Bo8F6o6qT7bYXYaCJUrijEH7PCB6emOWrE2hgCpfJ4OHUZX
+         STDUCDqKbC6l8ZjgBlcprc6I5nYYDb96n+BTz1F5ZNDs4ct5oXIfDn/IX/uHtJUSD+I2
+         diAw==
+X-Gm-Message-State: AOAM532AxV7Cpi08XyC2pfwDMTudM+/u9RbFId64DjpPMLdJnXYdKY4S
+        eeXaphhGEcTNHA8E5/VYaVMFUOZkCnwxTH7u
+X-Google-Smtp-Source: ABdhPJxA9hUKpEZnkjvuPNjikYtMa+xUtyQxnzz+zw9pKF2Db5Y3bKGTbXHOTNXSyntmgMn4YMPK3w==
+X-Received: by 2002:a17:906:57c1:b0:6d6:da73:e9c0 with SMTP id u1-20020a17090657c100b006d6da73e9c0mr3137323ejr.45.1649954376611;
+        Thu, 14 Apr 2022 09:39:36 -0700 (PDT)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
+        by smtp.gmail.com with ESMTPSA id z11-20020a50e68b000000b00412ec8b2180sm1236541edm.90.2022.04.14.09.39.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 09:39:33 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id r13so7677542wrr.9
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:39:31 -0700 (PDT)
+X-Received: by 2002:a05:6000:1c15:b0:207:849a:648b with SMTP id
+ ba21-20020a0560001c1500b00207849a648bmr2610564wrb.513.1649954370738; Thu, 14
+ Apr 2022 09:39:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 10/14] dt-bindings: pinctrl: rt2880: fix binding name, pin
- groups and functions
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
- <20220413060729.27639-11-arinc.unal@arinc9.com>
- <ba7cd13f-d216-0ac6-97e1-6c13f1e15f38@linaro.org>
- <550b20f2-098e-0f25-ad9f-3ff523879cb7@arinc9.com>
- <YlhJGerakzbsXwnv@robh.at.kernel.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <YlhJGerakzbsXwnv@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com> <1649938766-6768-2-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1649938766-6768-2-git-send-email-quic_sbillaka@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 14 Apr 2022 09:39:18 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wmiv2WGhFCLYmXbWESNOh5FfobjNme85aU6YtN1SLVDA@mail.gmail.com>
+Message-ID: <CAD=FV=Wmiv2WGhFCLYmXbWESNOh5FfobjNme85aU6YtN1SLVDA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/4] drm/msm/dp: Add eDP support via aux_bus
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
+        Steev Klimaszewski <steev@kali.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 19:17, Rob Herring wrote:
-> On Thu, Apr 14, 2022 at 11:34:31AM +0300, Arınç ÜNAL wrote:
->> On 13/04/2022 18:25, Krzysztof Kozlowski wrote:
->>> On 13/04/2022 08:07, Arınç ÜNAL wrote:
->>>> Change binding name from ralink,rt2880-pinmux to ralink,rt2880-pinctrl.
->>>> This is the binding for the Ralink RT2880 pinctrl subdriver.
->>>
->>> What I don't see here is why you are doing this. pinmux/pinctrl have the
->>> same meaning, I guess?
->>
->> What I understand is pinmux is rather a specific term for the muxing of pins
->> or pin groups. Pinctrl is what we prefer here since the term is more
->> inclusive of what the subdriver does: controlling pins. Any mediatek
->> driver/subdriver is called pinctrl so I'm not doing something uncommon.
-> 
-> The correct name is really whatever the h/w block is called, not
-> whatever we've come up with for some class of devices.
-> 
->>
->>>
->>>>
->>>> Current pin group and function bindings are for MT7621. Put bindings for
->>>> RT2880 instead.
->>>>
->>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>> ---
->>>>    ...pinmux.yaml => ralink,rt2880-pinctrl.yaml} | 24 +++++++++----------
->>>>    1 file changed, 12 insertions(+), 12 deletions(-)
->>>>    rename Documentation/devicetree/bindings/pinctrl/{ralink,rt2880-pinmux.yaml => ralink,rt2880-pinctrl.yaml} (56%)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml
->>>> similarity index 56%
->>>> rename from Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml
->>>> rename to Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml
->>>> index 9de8b0c075e2..c657bbf9fdda 100644
->>>> --- a/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinmux.yaml
->>>> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml
->>>> @@ -1,21 +1,23 @@
->>>>    # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>>    %YAML 1.2
->>>>    ---
->>>> -$id: http://devicetree.org/schemas/pinctrl/ralink,rt2880-pinmux.yaml#
->>>> +$id: http://devicetree.org/schemas/pinctrl/ralink,rt2880-pinctrl.yaml#
->>>>    $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> -title: Ralink rt2880 pinmux controller
->>>> +title: Ralink RT2880 Pin Controller
->>>>    maintainers:
->>>> +  - Arınç ÜNAL <arinc.unal@arinc9.com>
->>>
->>> Mention this in commit msg.
->>
->> Will do.
->>
->>>
->>>>      - Sergio Paracuellos <sergio.paracuellos@gmail.com>
->>>>    description:
->>>> -  The rt2880 pinmux can only set the muxing of pin groups. Muxing indiviual pins
->>>> +  Ralink RT2880 pin controller for RT2880 SoC.
->>>> +  The pin controller can only set the muxing of pin groups. Muxing indiviual pins
->>>>      is not supported. There is no pinconf support.
->>>>    properties:
->>>>      compatible:
->>>> -    const: ralink,rt2880-pinmux
->>>> +    const: ralink,rt2880-pinctrl
->>>
->>> you need to deprecate old property and add a new one.
->>
->> Do we really have to? That property name was inaccurate from the start. I
->> don't see a reason to keep it being referred to on the binding.
-> 
-> It's an ABI. There are exceptions, but you've got to spell out the
-> reasoning in the commit message.
+Hi,
 
-Oh, I thought by deprecating, I was supposed to keep the old one on the 
-YAML binding. I'll properly explain the reason in the commit message.
+On Thu, Apr 14, 2022 at 5:20 AM Sankeerth Billakanti
+<quic_sbillaka@quicinc.com> wrote:
+>
+> @@ -1530,6 +1532,60 @@ void msm_dp_debugfs_init(struct msm_dp *dp_display, struct drm_minor *minor)
+>         }
+>  }
+>
+> +static int dp_display_get_next_bridge(struct msm_dp *dp)
+> +{
+> +       int rc;
+> +       struct dp_display_private *dp_priv;
+> +       struct device_node *aux_bus;
+> +       struct device *dev;
+> +
+> +       dp_priv = container_of(dp, struct dp_display_private, dp_display);
+> +       dev = &dp_priv->pdev->dev;
+> +       aux_bus = of_get_child_by_name(dev->of_node, "aux-bus");
+> +
+> +       if (aux_bus && dp->is_edp) {
+> +               dp_display_host_init(dp_priv);
+> +               dp_catalog_ctrl_hpd_config(dp_priv->catalog);
+> +               dp_display_host_phy_init(dp_priv);
+> +               enable_irq(dp_priv->irq);
+> +
+> +               rc = devm_of_dp_aux_populate_ep_devices(dp_priv->aux);
+> +               of_node_put(aux_bus);
+> +               if (rc) {
+> +                       disable_irq(dp_priv->irq);
+> +                       dp_display_host_phy_exit(dp_priv);
+> +                       dp_display_host_deinit(dp_priv);
+> +                       return rc;
+> +               }
+> +       } else if (dp->is_edp) {
+> +               DRM_ERROR("eDP aux_bus not found\n");
+> +               return -ENODEV;
+> +       }
+> +
+> +       /*
+> +        * External bridges are mandatory for eDP interfaces: one has to
+> +        * provide at least an eDP panel (which gets wrapped into panel-bridge).
+> +        *
+> +        * For DisplayPort interfaces external bridges are optional, so
+> +        * silently ignore an error if one is not present (-ENODEV).
+> +        */
+> +       rc = dp_parser_find_next_bridge(dp_priv->parser);
 
-> 
-> Really, who cares. It's just a unique identifier. Unless you also had a
-> h/w block called 'pinmux' in addition to a 'pinctrl' block it doesn't
-> matter. We could use just GUIDs instead.
+This gets into the same problem that Dmitry pointed out that ps8640
+has that's addressed by my recent series [1].  Namely it's not
+guaranteed that the panel will have finished probing by the time
+devm_of_dp_aux_populate_ep_devices() finishes probing. I don't think
+it's going to be really solvable without the bigger rewrite that we've
+been discussing, though. ...it's probably OK to land something like
+what you have here, but it might at least deserve a comment in the
+code?
 
-Understood, thanks Rob!
+[1] https://lore.kernel.org/r/20220409023628.2104952-1-dianders@chromium.org
 
-Arınç
+
+> +       if (rc == -ENODEV) {
+> +               if (dp->is_edp) {
+> +                       DRM_ERROR("eDP: next bridge is not present\n");
+> +                       return rc;
+> +               }
+> +       } else if (rc) {
+> +               if (rc != -EPROBE_DEFER)
+> +                       DRM_ERROR("DP: error parsing next bridge: %d\n", rc);
+> +               return rc;
+
+In both of your two error returns here isn't it a problem that you don't do:
+
+  disable_irq(dp_priv->irq);
+  dp_display_host_phy_exit(dp_priv);
+  dp_display_host_deinit(dp_priv);
+
+Should probably at least fix that clear error before landing, unless
+I'm misunderstanding and there's some reason not to do that?
+
+
+As discussed previously, I'm not convinced that we've covered every
+corner case for properly doing and undoing the above things. I'm
+hoping that once we do the cleanup and move to pm_runtime() management
+that it will be cleaned up?
+
+
+> @@ -114,10 +114,12 @@ struct drm_bridge *dp_bridge_init(struct msm_dp *dp_display, struct drm_device *
+>         bridge->funcs = &dp_bridge_ops;
+>         bridge->type = dp_display->connector_type;
+>
+> -       bridge->ops =
+> -               DRM_BRIDGE_OP_DETECT |
+> -               DRM_BRIDGE_OP_HPD |
+> -               DRM_BRIDGE_OP_MODES;
+> +       if (!dp_display->is_edp) {
+> +               bridge->ops =
+> +                       DRM_BRIDGE_OP_DETECT |
+> +                       DRM_BRIDGE_OP_HPD |
+> +                       DRM_BRIDGE_OP_MODES;
+
+Given that Dmitry had questions about why eDP has different ops in his
+previous review of this code, the above probably deserves an inline
+code comment. If you want to use my wording, you could paste this into
+your code:
+
+  /*
+   * Many ops only make sense for DP. Why?
+   * - Detect/HPD are used by DRM to know if a display is _physically_
+   *   there, not whether the display is powered on / finished initting.
+   *   On eDP we assume the display is always there because you can't
+   *   know until power is applied. If we don't implement the ops DRM will
+   *   assume our display is always there.
+   * - Currently eDP mode reading is driven by the panel driver. This
+   *   allows the panel driver to properly power itself on to read the
+   *   modes.
+   */
+
+
+Overall: as discussed, I think that the current implementation is a
+bit fragile and might have some wrong corner cases since it's hard for
+me to reason about exactly when we init/de-init things. Even if it
+works great, the fact that it's hard to reason about isn't wonderful.
+That being said, I honestly believe that would benefit upstream to get
+this landed and iterate on it. I don't think this should be causing
+any existing behavior to be _worse_ and getting it landed upstream
+will keep more people focused on the same codebase.
+
+
+-Doug
