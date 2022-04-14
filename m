@@ -2,240 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C71501BAA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79260501BC3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343572AbiDNTSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 15:18:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48820 "EHLO
+        id S1345163AbiDNTWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 15:22:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244689AbiDNTSo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:18:44 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FB274858
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:16:18 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id bj36so1370438ljb.13
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:16:18 -0700 (PDT)
+        with ESMTP id S1345161AbiDNTWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:22:09 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2179A145C;
+        Thu, 14 Apr 2022 12:19:43 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id b21so10776932lfb.5;
+        Thu, 14 Apr 2022 12:19:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Bg3pIFeTzT//HbKwWCEHAIkaUbYJ3pWWpwNU7Ml5vAQ=;
-        b=WPzP0fe2uMKEvL5ZZcgNNzS6qaoGWJD2VI8g2MX2HQk5rbapaoZU9F+xtpacwy8/HL
-         7tbmQoi339fQYqSkQJNhJVziAGuJsadkYu6TpLEG5oWbH/Xj6f9e2/Y3Q79ZW0mbeYZN
-         J+Zq3CuUE6Rqab6hXqahDM+2WU8umC4yUzsinJRtKKFDca4joKJ/e6ucn0iAgHN/MsF3
-         ffBixIHyk6pikFh0SGx9rgmKd2TOp8wHTfEYelmRylu81qzX0BMolOhItO6lIHWUhnQu
-         e806r3asQwOpKnX4/q+0+Nq33O3Ha4uM0hvnwGhWhi0wwOxjzV9hfyaFqLSQY3S6iaXL
-         mbpw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=R46jQ8Mh8wQzPdylSEViVF+ujde6F3v3VBI24iINPTM=;
+        b=QRWLAqmejMzVP/VaSSlfrFYwEo3OK4Yf6F7LquH6LbczOkSkbq/vAsvvcBkQZ3ISuO
+         wk/F7z7KZoaZjO6jJEtsC8Z8u0HmEeGUEZBJ+5uIIL8d4EZc/Xy5CV+958+05d7Oh+3w
+         0MTx5F+/q1lMyyGoE/T8SwKtQsZ+ljloGYnRMXgZR3RSh42S3JxNeguRIyZ8pSqxFcSJ
+         lbwOzjD3LaDkuMdE7Vsq66i//JMVvHCxYJln9faVJVA4/8+FWK/0SSS5ZAme/0sNPB8x
+         GZApoZF4cbZLwHjguo+2oIvkWDrnYDqQpErg124vnNNbbDISEkGcSHd43FjTBLZC5Hys
+         u53A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Bg3pIFeTzT//HbKwWCEHAIkaUbYJ3pWWpwNU7Ml5vAQ=;
-        b=gxDnM9W80xWx9mxQjIkzRFSviGbf2BrSFLPTiwph0WAxiClFv/3zemHkADh3w8/osA
-         t2ms6C29PJpwJzXOawt3+YYlJpfn7koQNIsAI1gronpzsAjSXcWbKBDOZqUH/nnEQKCd
-         y8YBATUnp8baR6k3Fa1e11UzA3HXVSPXrbvae0EQ6FgAQU0i9Oy/p77h613l2aPkAF2R
-         p/X3pMluGldMVOw3AwoqLGm2SzFZkjfpLuhHF6oTZOmjsOoHx7uN7vW87L9LfqnehfV4
-         1OSqa21M1dYR1XxTlyM+n/OqprqjcToGRPGVf0d/R9U/yPCCqc+zuGTsYmkhIUBnPxhO
-         LqiA==
-X-Gm-Message-State: AOAM533t3aTf0rx9v16RI99BmZlW9BW8NpV7VROukgY9V4sJArGK77/o
-        bZgAGL04ZbhOzWnxcc0IBKwe3w==
-X-Google-Smtp-Source: ABdhPJwCcXj/X0oKSCh0WiYxt2A7l/CnbKesBM8o3oPwik74L0XgKrhmwWkXu0JYcSgqzRmerJwzUw==
-X-Received: by 2002:a05:651c:2115:b0:24c:8e91:d14d with SMTP id a21-20020a05651c211500b0024c8e91d14dmr2513845ljq.165.1649963776067;
-        Thu, 14 Apr 2022 12:16:16 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x5-20020a0565123f8500b0045cb9e46b1csm81335lfa.268.2022.04.14.12.16.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 12:16:15 -0700 (PDT)
-Message-ID: <81c3a9fb-4c92-6969-c715-ca085322f9c6@linaro.org>
-Date:   Thu, 14 Apr 2022 22:16:14 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v7 1/4] drm/msm/dp: Add eDP support via aux_bus
-Content-Language: en-GB
-To:     Doug Anderson <dianders@chromium.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        Steev Klimaszewski <steev@kali.org>
-References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com>
- <1649938766-6768-2-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=Wmiv2WGhFCLYmXbWESNOh5FfobjNme85aU6YtN1SLVDA@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAD=FV=Wmiv2WGhFCLYmXbWESNOh5FfobjNme85aU6YtN1SLVDA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=R46jQ8Mh8wQzPdylSEViVF+ujde6F3v3VBI24iINPTM=;
+        b=hf6PxSD7Vr7l87OdoD9NNJAEBJLCSBtglmXXyciZgeR8YbFzBIItfG6L+sfFBz2XPF
+         fbPD5Qzl+OU1DGp3fYvqI7KBFg8JOxBUVq9TlFquxisAfBEDp80evlAgI4rfTAj496WM
+         nnw1vVTr7quXAc9RFq8OtoIKjuOnPgYjSxrUBL9IUf5+IISdN0PvQzUKOKoojggKRc3j
+         7pT9qMp2u5r1+9xCRhk3yQv//bpGDTGGdTjNZSxCez3jPJirsmv060b1XqUy53tPkJMF
+         Zu5P9TSNpZpCNogzMn4vy22cLvnDSL003YhApzrdozA9VdAcRo76pQ45NFjsh0jEOxMr
+         y83g==
+X-Gm-Message-State: AOAM5325wk9UfePDAfFCHcp9KUHUKOvTPR0rrBYwDrLM42FDI637jiXD
+        jk8fbsTkJjJ0yxxIJFzRaQ4=
+X-Google-Smtp-Source: ABdhPJwDFkGrudp03NZzkhnvIn/IK69FMZdjURZkh3p/wuKd/xnIHAcuOjWitfBhsfM9796bR6Fn5A==
+X-Received: by 2002:a05:6512:169a:b0:44a:fea7:50a5 with SMTP id bu26-20020a056512169a00b0044afea750a5mr2825082lfb.498.1649963981876;
+        Thu, 14 Apr 2022 12:19:41 -0700 (PDT)
+Received: from otyshchenko.router ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id l3-20020a194943000000b0046b928d2795sm85001lfj.67.2022.04.14.12.19.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 Apr 2022 12:19:41 -0700 (PDT)
+From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
+To:     xen-devel@lists.xenproject.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>
+Subject: [RFC PATCH 3/6] dt-bindings: xen: Add xen,dev-domid property description for xen-virtio layer
+Date:   Thu, 14 Apr 2022 22:19:30 +0300
+Message-Id: <1649963973-22879-4-git-send-email-olekstysh@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1649963973-22879-1-git-send-email-olekstysh@gmail.com>
+References: <1649963973-22879-1-git-send-email-olekstysh@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 19:39, Doug Anderson wrote:
-> Hi,
-> 
-> On Thu, Apr 14, 2022 at 5:20 AM Sankeerth Billakanti
-> <quic_sbillaka@quicinc.com> wrote:
->>
->> @@ -1530,6 +1532,60 @@ void msm_dp_debugfs_init(struct msm_dp *dp_display, struct drm_minor *minor)
->>          }
->>   }
->>
->> +static int dp_display_get_next_bridge(struct msm_dp *dp)
->> +{
->> +       int rc;
->> +       struct dp_display_private *dp_priv;
->> +       struct device_node *aux_bus;
->> +       struct device *dev;
->> +
->> +       dp_priv = container_of(dp, struct dp_display_private, dp_display);
->> +       dev = &dp_priv->pdev->dev;
->> +       aux_bus = of_get_child_by_name(dev->of_node, "aux-bus");
->> +
->> +       if (aux_bus && dp->is_edp) {
->> +               dp_display_host_init(dp_priv);
->> +               dp_catalog_ctrl_hpd_config(dp_priv->catalog);
->> +               dp_display_host_phy_init(dp_priv);
->> +               enable_irq(dp_priv->irq);
->> +
->> +               rc = devm_of_dp_aux_populate_ep_devices(dp_priv->aux);
->> +               of_node_put(aux_bus);
->> +               if (rc) {
->> +                       disable_irq(dp_priv->irq);
->> +                       dp_display_host_phy_exit(dp_priv);
->> +                       dp_display_host_deinit(dp_priv);
->> +                       return rc;
->> +               }
->> +       } else if (dp->is_edp) {
->> +               DRM_ERROR("eDP aux_bus not found\n");
->> +               return -ENODEV;
->> +       }
->> +
->> +       /*
->> +        * External bridges are mandatory for eDP interfaces: one has to
->> +        * provide at least an eDP panel (which gets wrapped into panel-bridge).
->> +        *
->> +        * For DisplayPort interfaces external bridges are optional, so
->> +        * silently ignore an error if one is not present (-ENODEV).
->> +        */
->> +       rc = dp_parser_find_next_bridge(dp_priv->parser);
-> 
-> This gets into the same problem that Dmitry pointed out that ps8640
-> has that's addressed by my recent series [1].  Namely it's not
-> guaranteed that the panel will have finished probing by the time
-> devm_of_dp_aux_populate_ep_devices() finishes probing. I don't think
-> it's going to be really solvable without the bigger rewrite that we've
-> been discussing, though. ...it's probably OK to land something like
-> what you have here, but it might at least deserve a comment in the
-> code?
-> 
-> [1] https://lore.kernel.org/r/20220409023628.2104952-1-dianders@chromium.org
+From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
-We agreed that rework would follow up in a timely manner if these 
-patches are applied. However a comment would be still a good thing.
+Introduce Xen specific binding for the virtio-mmio device to be used
+by Xen virtio support driver in a subsequent commit.
 
-> 
-> 
->> +       if (rc == -ENODEV) {
->> +               if (dp->is_edp) {
->> +                       DRM_ERROR("eDP: next bridge is not present\n");
->> +                       return rc;
->> +               }
->> +       } else if (rc) {
->> +               if (rc != -EPROBE_DEFER)
->> +                       DRM_ERROR("DP: error parsing next bridge: %d\n", rc);
->> +               return rc;
-> 
-> In both of your two error returns here isn't it a problem that you don't do:
-> 
->    disable_irq(dp_priv->irq);
->    dp_display_host_phy_exit(dp_priv);
->    dp_display_host_deinit(dp_priv);
-> 
-> Should probably at least fix that clear error before landing, unless
-> I'm misunderstanding and there's some reason not to do that?
-> 
-> 
-> As discussed previously, I'm not convinced that we've covered every
-> corner case for properly doing and undoing the above things. I'm
-> hoping that once we do the cleanup and move to pm_runtime() management
-> that it will be cleaned up?
-> 
-> 
->> @@ -114,10 +114,12 @@ struct drm_bridge *dp_bridge_init(struct msm_dp *dp_display, struct drm_device *
->>          bridge->funcs = &dp_bridge_ops;
->>          bridge->type = dp_display->connector_type;
->>
->> -       bridge->ops =
->> -               DRM_BRIDGE_OP_DETECT |
->> -               DRM_BRIDGE_OP_HPD |
->> -               DRM_BRIDGE_OP_MODES;
->> +       if (!dp_display->is_edp) {
->> +               bridge->ops =
->> +                       DRM_BRIDGE_OP_DETECT |
->> +                       DRM_BRIDGE_OP_HPD |
->> +                       DRM_BRIDGE_OP_MODES;
-> 
-> Given that Dmitry had questions about why eDP has different ops in his
-> previous review of this code, the above probably deserves an inline
-> code comment. If you want to use my wording, you could paste this into
-> your code:
-> 
->    /*
->     * Many ops only make sense for DP. Why?
->     * - Detect/HPD are used by DRM to know if a display is _physically_
->     *   there, not whether the display is powered on / finished initting.
->     *   On eDP we assume the display is always there because you can't
->     *   know until power is applied. If we don't implement the ops DRM will
->     *   assume our display is always there.
->     * - Currently eDP mode reading is driven by the panel driver. This
->     *   allows the panel driver to properly power itself on to read the
->     *   modes.
->     */
+This binding specifies the ID of Xen domain where the corresponding
+device (backend) resides. This is needed for the option to restrict
+memory access using Xen grant mappings to work.
 
-I think it's too verbose and a bit incorrect.
-This is a bit saner:
-/*
-  * These ops do not make sense for eDP, since they are provided
-  * by the panel-bridge corresponding to the attached eDP panel.
-  */
+Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+---
+ .../devicetree/bindings/virtio/xen,dev-domid.yaml  | 39 ++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml
 
-My question was whether we really need to disable them for eDP since for 
-eDP the detect and and get_modes will be overridden anyway.
-
-> Overall: as discussed, I think that the current implementation is a
-> bit fragile and might have some wrong corner cases since it's hard for
-> me to reason about exactly when we init/de-init things. Even if it
-> works great, the fact that it's hard to reason about isn't wonderful.
-> That being said, I honestly believe that would benefit upstream to get
-> this landed and iterate on it. I don't think this should be causing
-> any existing behavior to be _worse_ and getting it landed upstream
-> will keep more people focused on the same codebase.
-> 
-> 
-> -Doug
-
-
+diff --git a/Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml b/Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml
+new file mode 100644
+index 00000000..78be993
+--- /dev/null
++++ b/Documentation/devicetree/bindings/virtio/xen,dev-domid.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/virtio/xen,dev-domid.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xen specific binding for the virtio device
++
++maintainers:
++  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
++
++select: true
++
++description:
++  This binding specifies the ID of Xen domain where the corresponding device
++  (backend) resides. This is needed for the option to restrict memory access
++  using Xen grant mappings to work.
++
++  Note that current and generic "iommus" bindings are mutually exclusive, since
++  the restricted memory access model on Xen behaves as a kind of software IOMMU.
++
++properties:
++  xen,dev-domid:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Should contain the ID of device's domain.
++
++additionalProperties: true
++
++examples:
++  - |
++    virtio_block@3000 {
++            compatible = "virtio,mmio";
++            reg = <0x3000 0x100>;
++            interrupts = <41>;
++
++            /* The device is located in Xen domain with ID 1 */
++            xen,dev-domid = <1>;
++    };
 -- 
-With best wishes
-Dmitry
+2.7.4
+
