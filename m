@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFA0501978
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB4D501973
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:01:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242293AbiDNREn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 13:04:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54910 "EHLO
+        id S244332AbiDNRES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 13:04:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242285AbiDNRDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:03:44 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72129A56FB
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:10 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id z99so7088380ede.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:10 -0700 (PDT)
+        with ESMTP id S243048AbiDNREL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:04:11 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D08AC905
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:27 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id s25so6615527edi.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=sMT54nF1SMSOMqMYCZmgi8xN7eOCKvvK35fHMg+oHcc=;
-        b=HSJ9f0E6ehW76H552h3PgIs14xn6y6HwbJiaJF0oa3iCxtOPhzg/D2glMXnfa5V7zs
-         2ydypI+2zeXrr0g9B4UWfLJdZ34Qn5AYYeaah1j314JBM4begDsciAwS3BG0HazrznFc
-         uoig8EHfEzKP8qEFJ3HrxOKUff/q+RBzzM2nM=
+        bh=uNCknelIIQ0A0jhcGpNkNt/itvQulq3csLsSq+jMi4k=;
+        b=OFD1FNp9YuGu2v7rR5vIDLHqSlz5x0ooKxLOUUFLXVcVscIABJa9XczVMvEG6Hdpic
+         QEwuykdd5CFYaIM4fwYl2u3dNKd7uLY+YmmM3txQhfvMJ2+kl0ds92uwsXIkXH97bUKc
+         WjRgnLpsfAzXQuHotizBIDeTEdVOmrYFEECKE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=sMT54nF1SMSOMqMYCZmgi8xN7eOCKvvK35fHMg+oHcc=;
-        b=L1XvgsUA8g2Ce6O3xF716DAq+NU5p+NOMKfglbpdywQ47g6CjbUxTJeX+IWXY/bKn0
-         t2CuIobwOpZnwAD/3gqChepR702+zEvYDG0ydHNwlUT0UIe2aB7r3Z7mtNhfaR/m9ARV
-         pmaqwtxYa9gIB+oEcwaNrdaTKYeCq8eWvokNLeErzkckc89CEmkydUSlKVRHLds0tB8N
-         WZb9/MbpGat4/0piHuIIuK0FOE3URg2D/DGxolMFoFQBt0pR9idtlELxKtwxndFDCjJ7
-         G2N/Un1MwS95VTYsX0SigNQV6CG06GcVile+1XnxY+JT1aR8skhYhmRbZd2Y8qtwwUYe
-         c2gA==
-X-Gm-Message-State: AOAM532vWUrgsHn/cUQAR+mG+8bgsrcmDU3GNtAMt9mY2QRGZZf2brdA
-        X6R2igT2+9LXBT73GYbVB7TlwnCFYR/iW7Mp
-X-Google-Smtp-Source: ABdhPJy42AjoCwNSdbzM3/6r488LOY/eadenC5iMQoB4VbTm+u7sj/2HCer2tQSOAibDVyxumVcuuQ==
-X-Received: by 2002:a05:6402:2065:b0:407:eb07:740 with SMTP id bd5-20020a056402206500b00407eb070740mr3950712edb.406.1649954408685;
-        Thu, 14 Apr 2022 09:40:08 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id z22-20020a1709063ad600b006e8867caa5dsm778997ejd.72.2022.04.14.09.40.05
+        bh=uNCknelIIQ0A0jhcGpNkNt/itvQulq3csLsSq+jMi4k=;
+        b=kkPKByAJ5uucrhdxEILnVDmLogvxlwucXhKjVsYZxKCniVBw7dKVeBUYHo9J+FiO5t
+         mdI/arspFAZTKpXYXvFPILbBVB/vq1lBD5wqvEV+TATUcaRqFYz7jb19z5JpHbnhnDdw
+         v2MWIHwikGtQsc/KPkM3gLnh3NblEwxLgIOtvbAR1u7iZQ8jbOm6cahQhAclWh8hS0TD
+         J60YD95fn468WJI4WSL6tb+9KoCV8YqQyHP4VRVINmd8ootQCfxse65ViCmSRSXy/ksj
+         kmN+7SvywnV/y/UZJkm/SNnJ39Tp7GwzpTx3d5yEYPe2w0vQb2wzFL3TLwNwh9BF+2Bb
+         L9uw==
+X-Gm-Message-State: AOAM533CE6pFrgBE1TgCu1yaCIEvRpYejfCdUdK62H9HlbaAZr4rRfgD
+        vsUp3859o4rL91g/TrgD7FarxCJYuIZt+zEZ
+X-Google-Smtp-Source: ABdhPJyQB7DOPuE0y2RNpH5Ohur8gTB+xXhB5XQM0Giz5mZcdlyTztDMaw+XpPqbsh1CMp2VJxWYYQ==
+X-Received: by 2002:aa7:cac8:0:b0:410:cc6c:6512 with SMTP id l8-20020aa7cac8000000b00410cc6c6512mr3921248edt.408.1649954425314;
+        Thu, 14 Apr 2022 09:40:25 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
+        by smtp.gmail.com with ESMTPSA id q14-20020a17090622ce00b006e898c912e5sm776807eja.217.2022.04.14.09.40.19
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 09:40:06 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id i20so7666393wrb.13
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:05 -0700 (PDT)
-X-Received: by 2002:a5d:64ce:0:b0:208:fff6:22cb with SMTP id
- f14-20020a5d64ce000000b00208fff622cbmr2751540wri.301.1649954404806; Thu, 14
- Apr 2022 09:40:04 -0700 (PDT)
+        Thu, 14 Apr 2022 09:40:21 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id i20so7667164wrb.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:19 -0700 (PDT)
+X-Received: by 2002:adf:c14d:0:b0:207:a28f:f5dd with SMTP id
+ w13-20020adfc14d000000b00207a28ff5ddmr2647776wre.679.1649954418519; Thu, 14
+ Apr 2022 09:40:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com> <1649938766-6768-4-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1649938766-6768-4-git-send-email-quic_sbillaka@quicinc.com>
+References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com> <1649938766-6768-5-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1649938766-6768-5-git-send-email-quic_sbillaka@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 14 Apr 2022 09:39:52 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Wv57p-A=zniSKZYStRSPby7vSE-SqZQ-JVuQsO+MbK+A@mail.gmail.com>
-Message-ID: <CAD=FV=Wv57p-A=zniSKZYStRSPby7vSE-SqZQ-JVuQsO+MbK+A@mail.gmail.com>
-Subject: Re: [PATCH v7 3/4] drm/msm/dp: wait for hpd high before aux transaction
+Date:   Thu, 14 Apr 2022 09:40:04 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xrsnk0PYENn5Een1xdUc9B1DKy8jvd1itKbFkvHAivMg@mail.gmail.com>
+Message-ID: <CAD=FV=Xrsnk0PYENn5Een1xdUc9B1DKy8jvd1itKbFkvHAivMg@mail.gmail.com>
+Subject: Re: [PATCH v7 4/4] Support the eDP modes given by panel
 To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>,
@@ -93,103 +93,44 @@ Hi,
 On Thu, Apr 14, 2022 at 5:20 AM Sankeerth Billakanti
 <quic_sbillaka@quicinc.com> wrote:
 >
-> The source device should ensure the sink is ready before proceeding to
-> read the sink capability or perform any aux transactions. The sink
-> will indicate its readiness by asserting the HPD line. The controller
-> driver needs to wait for the hpd line to be asserted by the sink before
-> it performs any aux transactions.
->
-> The eDP sink is assumed to be always connected. It needs power from the
-> source and its HPD line will be asserted only after the panel is powered
-> on. The panel power will be enabled from the panel-edp driver and only
-> after that, the hpd line will be asserted.
->
-> Whereas for DP, the sink can be hotplugged and unplugged anytime. The hpd
-> line gets asserted to indicate the sink is connected and ready. Hence
-> there is no need to wait for the hpd line to be asserted for a DP sink.
+> The eDP controller does not have a reliable way keep panel
+> powered on to read the sink capabilities. So, the controller
+> driver cannot validate if a mode can be supported by the
+> source. We will rely on the panel driver to populate only
+> the supported modes for now.
 >
 > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 > ---
-
-It might be worth mentioning "after the cut" that we may eventually
-end up changing the rules if people like my proposal [1]. However,
-what your code is doing here for eDP is correct as things are
-currently intended to work and it would make sense to land it while we
-debate about whether we want to add the is_hpd_asserted() callback
-like my patch does.
-
-[1] https://lore.kernel.org/r/20220408193536.RFC.3.Icf57bb12233a47727013c6ab69eebf803e22ebc1@changeid/
-
-
-> Changes in v7:
->   - add a comment to say why the wait si done for eDP
->   - correct the commit text
+>  drivers/gpu/drm/msm/dp/dp_display.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> Changes in v6:
->   - Wait for hpd high only for eDP
->   - Split into smaller patches
->
->  drivers/gpu/drm/msm/dp/dp_aux.c     | 21 ++++++++++++++++++++-
->  drivers/gpu/drm/msm/dp/dp_aux.h     |  3 ++-
->  drivers/gpu/drm/msm/dp/dp_catalog.c | 13 +++++++++++++
->  drivers/gpu/drm/msm/dp/dp_catalog.h |  1 +
->  drivers/gpu/drm/msm/dp/dp_display.c |  2 +-
->  5 files changed, 37 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/dp/dp_aux.c b/drivers/gpu/drm/msm/dp/dp_aux.c
-> index 6d36f63..cf0739f 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_aux.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_aux.c
-> @@ -36,6 +36,7 @@ struct dp_aux_private {
->         bool initted;
->         u32 offset;
->         u32 segment;
-> +       bool is_edp;
-
-Kinda nitty, but can you put it next to the other booleans? This will
-help with structure packing.
-
-
->         struct drm_dp_aux dp_aux;
->  };
-> @@ -337,6 +338,22 @@ static ssize_t dp_aux_transfer(struct drm_dp_aux *dp_aux,
->                 goto exit;
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index c7277f0..0f18a16 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -998,6 +998,14 @@ enum drm_mode_status dp_bridge_mode_valid(struct drm_bridge *bridge,
+>                 return -EINVAL;
 >         }
 >
 > +       /*
-> +        * For eDP it's important to give a reasonably long wait here for HPD
-> +        * to be asserted. This is because the panel driver may have _just_
-> +        * turned on the panel and then tried to do an AUX transfer. The panel
-> +        * driver has no way of knowing when the panel is ready, so it's up
-> +        * to us to wait. For DP we never get into this situation so let's
-> +        * avoid ever doing the extra long wait for DP.
+> +        * The eDP controller currently does not have a reliable way of
+> +        * enabling panel power to read sink capabilities. So, we rely
+> +        * on the panel driver to populate only supported modes for now.
 > +        */
-> +       if (aux->is_edp) {
-> +               ret = dp_catalog_aux_wait_for_hpd_connect_state(aux->catalog);
-> +               if (ret) {
-> +                       DRM_DEBUG_DP("Panel not ready for aux transactions\n");
-> +                       goto exit;
-> +               }
-> +       }
-> +
->         dp_aux_update_offset_and_segment(aux, msg);
->         dp_aux_transfer_helper(aux, msg, true);
->
-> @@ -491,7 +508,8 @@ void dp_aux_unregister(struct drm_dp_aux *dp_aux)
->         drm_dp_aux_unregister(dp_aux);
->  }
->
-> -struct drm_dp_aux *dp_aux_get(struct device *dev, struct dp_catalog *catalog)
-> +struct drm_dp_aux *dp_aux_get(struct device *dev, struct dp_catalog *catalog,
-> +                               bool is_edp)
+> +       if (dp->is_edp)
+> +               return MODE_OK;
 
-nit: I think indentation rules for this file are that the type of the
-argument for the 2nd line should line up right under the 1st. Thus you
-should delete one tab character and insert 6 spaces before the "bool".
+As discussed out-of-band, I agree that this is the right thing for now
+and making this assumption won't break anything. In general the set of
+eDP panels is known ahead of time it's fairly unlikely someone would
+set things up so that a panel couldn't use the mode it was reporting.
 
-Similar in other places, like your header file.
+Longer term we should figure out a way to solve this but it doesn't
+have to be today. To properly implement mode_valid() we've got to
+combine knowledge from the panel (mostly rates supported and number of
+lanes supported) with the controller (rates supported, number of lanes
+supported/hooked up on this board).
 
-
-Stuff above is all nits and this looks right to me. I'm happy with:
+In any case:
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
