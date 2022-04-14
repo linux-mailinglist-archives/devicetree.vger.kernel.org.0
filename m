@@ -2,116 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E886501B74
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:01:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E4FF501BA1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240683AbiDNTCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 15:02:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36376 "EHLO
+        id S232417AbiDNTRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 15:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240201AbiDNTCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:02:13 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A17335DD1;
-        Thu, 14 Apr 2022 11:59:47 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id w23-20020a056830111700b00603c6d1ce73so38341otq.9;
-        Thu, 14 Apr 2022 11:59:47 -0700 (PDT)
+        with ESMTP id S239818AbiDNTRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:17:15 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9461356C02
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:14:47 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id mp16-20020a17090b191000b001cb5efbcab6so10082275pjb.4
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:14:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OLpoNikIwKzHyxOkuuLmqnVg9l69T4aIpkTmaIZU6cI=;
+        b=36P/S+TPGjuP18o4mfymROCEfJKxomfzeZgS8zhE51/8vWk21IADf9c/9tJGPRsyUW
+         quaFJ74T08IZ6XsilNDIyiIi2N0yKFNspdo6lYalpBWd3EQjK4zAeO5T3rVvyzD1tN6s
+         5mvciKzugNEvwPIGzaUbPrrco/Nu43QutjtEGT3busF9wGRkLl2BsYtkZ9tLwPF4OEzD
+         lGkzSwQ/HvKC6JIy/Lt/t0YV8YqA1x/4QEBjmbkguV+G/1r2gHqPRPToW1aXkBZZ2utN
+         S/kt0hCn0CgmfOlrZDpfgH4zc/kDpuFKumminBBjIXvTLJvpiNxRXueWmQiZAJnMuzzv
+         fVNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=pHUh2xfElfPjM6pU2gjEs6VjREPddKoYEwJGkBqvcYE=;
-        b=DO9xEE1dpXZLuubX7Tbh9FEKQbcdE61dH8UxxFLS+u1pOemX52edHM1SYV6xHWSn5o
-         Y07ZeNcZKwxV+ml2FHWAkoZgSp6qFOxsG9J6upWqGlpHaZVlBt9eTXzNG6Rdqr5qcO8J
-         UH0mfEWrk1+485wUsdsseiYBrCyMQAR3FXOkTRgYGfjzaJxwBKG9CzMyfvA2FTf5J5EU
-         4xXX33zGqoYSy1UxHICri3wJ9ORsRqkekqGC0A1DGmaKbQcEMToZEBxSw3lmS7PQv7KY
-         9i3YxLzMfX2TqS1tuhQT9HFX6K2zxQx4qe9Fi3LKG2eIf1ri7UMsU1ef92loDayWbC/9
-         fCvA==
-X-Gm-Message-State: AOAM530FtZzIjnznOfoqusi6kwVt+LNDfLfYVsXG8YtbRX7ktX/f/Qe9
-        XxcvLoTEGdPhKxEZNI0hSA==
-X-Google-Smtp-Source: ABdhPJwxFAMtv8DAm3ujwrIJQGNBj431vuTsaLB8T0RGyUluEn6mJTkhlDsvH5C1eCLdJS3pLptDFQ==
-X-Received: by 2002:a05:6830:245e:b0:601:8b3:65e2 with SMTP id x30-20020a056830245e00b0060108b365e2mr1424662otr.255.1649962786597;
-        Thu, 14 Apr 2022 11:59:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r8-20020a05683001c800b005cdadc2a837sm308728ota.70.2022.04.14.11.59.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OLpoNikIwKzHyxOkuuLmqnVg9l69T4aIpkTmaIZU6cI=;
+        b=zDLzzuhjwsQ5ZbrpspaQyxadnVxwS7Qg0w6IgukSbPRUIc9RtJO906fAzU6t1+GpFl
+         BmhFQ/Uz3wkdkvE+JvPeBPm893wu+HL3LGorqiZttegN0Mms063C3eRR5WUm6P6O7eNk
+         8ONxEtSLaFqP2DP7BqUbTPgc56FXWre8Q5Y/2vhIzlE5XmiJh7I6y807qARZtT24RN5w
+         CVFbFEmuO0wrgTVWhPKmwYIYiWZtC2BX3uILHF+QPRHvQQ+88rZw8Fd7XKiww7BiQ8wX
+         KTHIXNe0rMl9rEIK5ChPVTfT2Gi7qRX9L9GSNSKKNPEA7KH1Q8vVdCWr8xjhNUWYwmQa
+         qv6w==
+X-Gm-Message-State: AOAM532jdcqyjvZIda3xlzSTsxxdwOOHcIkFrZyYmgFAhRl5MbsDHJ52
+        t+svh+p5EZJrAzX+tL0nWAUjjg==
+X-Google-Smtp-Source: ABdhPJwPtSuZ0eBGCgl7AiJMO7dVGNMmnw3CbwKeP2CO7PB8SMhgf/CJnXhWpKDI0Ntmta4j4oiy9g==
+X-Received: by 2002:a17:902:e2d3:b0:158:9fcc:e0f9 with SMTP id l19-20020a170902e2d300b001589fcce0f9mr9669561plc.9.1649963687062;
+        Thu, 14 Apr 2022 12:14:47 -0700 (PDT)
+Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:5b60:6a76:138d:2646])
+        by smtp.gmail.com with ESMTPSA id e12-20020a056a001a8c00b004fab88d7de8sm614148pfv.132.2022.04.14.12.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 11:59:46 -0700 (PDT)
-Received: (nullmailer pid 2441851 invoked by uid 1000);
-        Thu, 14 Apr 2022 18:59:45 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org,
-        Herve Codina <herve.codina@bootlin.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-renesas-soc@vger.kernel.org,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20220414122250.158113-4-clement.leger@bootlin.com>
-References: <20220414122250.158113-1-clement.leger@bootlin.com> <20220414122250.158113-4-clement.leger@bootlin.com>
-Subject: Re: [PATCH net-next 03/12] dt-bindings: net: pcs: add bindings for Renesas RZ/N1 MII converter
-Date:   Thu, 14 Apr 2022 13:59:45 -0500
-Message-Id: <1649962785.207360.2441850.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Thu, 14 Apr 2022 12:14:46 -0700 (PDT)
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH v2 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Date:   Thu, 14 Apr 2022 12:12:48 -0700
+Message-Id: <20220414191250.2969282-1-dfustini@baylibre.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Apr 2022 14:22:41 +0200, Clément Léger wrote:
-> This MII converter can be found on the RZ/N1 processor family. The MII
-> converter ports are declared as subnodes which are then referenced by
-> users of the PCS driver such as the switch.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
->  .../bindings/net/pcs/renesas,rzn1-miic.yaml   | 95 +++++++++++++++++++
->  include/dt-bindings/net/pcs-rzn1-miic.h       | 19 ++++
->  2 files changed, 114 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
->  create mode 100644 include/dt-bindings/net/pcs-rzn1-miic.h
-> 
+TI AM437x SoCs support isolation of the IOs so that control is taken
+from the peripheral they are connected to and overridden by values
+present in the control register for that pad. This series documents a
+new property 'ti,set-io-isolation' and updates the wkup_m3_ipc driver to
+inform the CM3 firmware when that property is set.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+A prerequisite for this series is:
+[PATCH v2 0/2] soc: ti: wkup_m3_ipc: support vtt toggle
+https://lore.kernel.org/lkml/20220409211215.2529387-1-dfustini@baylibre.com/T/
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml:18:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-./Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml:95:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+Changes from v1:
+- correct typo of 'ti,set-io-isolation' property
+- make 'ti,set-io-isolation' only valid for 'ti,am4372-wkup-m3-ipc'
 
-dtschema/dtc warnings/errors:
+Dave Gerlach (1):
+  soc: ti: wkup_m3_ipc: Add support for IO Isolation
 
-doc reference errors (make refcheckdocs):
+Drew Fustini (1):
+  dt-bindings: wkup-m3-ipc: Add ti,set-io-isolation property
 
-See https://patchwork.ozlabs.org/patch/
+ .../bindings/soc/ti/wkup-m3-ipc.yaml          | 79 +++++++++++++++++--
+ drivers/soc/ti/wkup_m3_ipc.c                  | 14 +++-
+ include/linux/wkup_m3_ipc.h                   |  1 +
+ 3 files changed, 87 insertions(+), 7 deletions(-)
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.32.0
 
