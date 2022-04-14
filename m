@@ -2,156 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E195C5009A9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 11:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4CB45009C7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 11:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241700AbiDNJZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 05:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52150 "EHLO
+        id S241756AbiDNJbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 05:31:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241698AbiDNJZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 05:25:39 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2067.outbound.protection.outlook.com [40.107.237.67])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96896EC71;
-        Thu, 14 Apr 2022 02:23:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jtrPFAaPIGRnJ7HXkh1ezmzHLxjGIO4DxGK1CzJG4siE/TrhNV2jJP8MylDh3dj0kmx25jpp/VyzYbY9xi0/C3dhgdVKcpgU0zgRF5bMcouptV1p9PTWRaL+/kci+zgrHFCDtu3/8qR9yT4hQc99um7AnfQYNDMAi8JlMHYroRaddz5d3k4zRJFjs9TpUuN6CszAKsChZ/poOW9LblwM8SDwEBLtJ3Bu/g+2POLZaMsXh9UM9v5JMU/t66dWu7p/1Jh8gpmthWbxWnaG+MsCpFxtR+jFzWjavFea4ccEF/MRSThfvIu22xlRtuKaZi4iPfa/gNNvIhIN2qnxZU+Qcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1z6AsS4oK/LQJhpZLMtqPdqAZn51YGn/cbV5LB61NJY=;
- b=erX/na49zv8HViApyPjSSRVbLbJ9MzX2s3KX66WnEd6xUn0bVEJrJ9YV/n4DnYSR915CWhCRmSzT7nAaD6dtroB7wjOn+J1Q9n0r7hASQ6LNOgeDoFlvzxqnK4bNMW4x17yAgE1GcC10QPCcIrx4+KZbZH09VeBy99/gtiwM+LDp3sU+inqlKjFgRdelSVhXgE3H8SfDyrkZlBbYkgzESXZxITobr60m1u3IbsGJgV0HDGgfTLOFMNpyEyfSY+KrOLPWSkjgPLm0mAO8aje+ZS7IXHVPT9nV2DTO1BaQMRDxrva8r89NdsqJvV/l+3BhU1ttf/o87Ujzgx7JQGqABQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S237249AbiDNJbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 05:31:00 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC8D6E346
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 02:28:35 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id q3so5437573wrj.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 02:28:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1z6AsS4oK/LQJhpZLMtqPdqAZn51YGn/cbV5LB61NJY=;
- b=kTEeNg0n4yRkUbzv2j3vB46JlKbNU7lJ9rnrhlJr8oHhvMhfAtcueO5Tkl1ynepyNztNOhwlNR/lzb7EfzBct0x3YMVhNQCv+QLKlUQ+ccG3MBZdKugoCUqs/cdKCJdqs5SHoBG3cnkpLdFL4acSPyAxNOjBswA2R0YfweeoQ+k=
-Received: from SN7PR04CA0197.namprd04.prod.outlook.com (2603:10b6:806:126::22)
- by PH0PR02MB7126.namprd02.prod.outlook.com (2603:10b6:510:13::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Thu, 14 Apr
- 2022 09:23:11 +0000
-Received: from SN1NAM02FT0041.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:126:cafe::44) by SN7PR04CA0197.outlook.office365.com
- (2603:10b6:806:126::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.18 via Frontend
- Transport; Thu, 14 Apr 2022 09:23:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0041.mail.protection.outlook.com (10.97.5.44) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5164.19 via Frontend Transport; Thu, 14 Apr 2022 09:23:11 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 14 Apr 2022 02:23:10 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 14 Apr 2022 02:23:10 -0700
-Envelope-to: linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- lorenzo.pieralisi@arm.com,
- bhelgaas@google.com,
- robh@kernel.org
-Received: from [10.140.9.2] (port=38782 helo=xhdbharatku40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <bharat.kumar.gogada@xilinx.com>)
-        id 1nevgz-0008Tv-L2; Thu, 14 Apr 2022 02:23:10 -0700
-From:   Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <michals@xilinx.com>, <robh@kernel.org>,
-        Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-Subject: [PATCH v1 3/3] dt-bindings: PCI: xilinx-cpm: Change reg property order
-Date:   Thu, 14 Apr 2022 14:52:52 +0530
-Message-ID: <20220414092252.12174-4-bharat.kumar.gogada@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220414092252.12174-1-bharat.kumar.gogada@xilinx.com>
-References: <20220414092252.12174-1-bharat.kumar.gogada@xilinx.com>
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VQ1Ns6exvywbj5YVrqChmYabRv4bnzV6d00OZRotDxk=;
+        b=hTP08ZMDNByzNE+rOxyiJkLh1x9yUlo716JKFvue1wfejnxuRwmCzb7ZFTk/YjVQ12
+         o0vKMBgoU7iyS3t3bwVhu8mymoFVKPqcLc+2zW4wk+RKx8fYE1YrW8DF/2m6HL9s4cqc
+         GuuuZMODv27K+4dioFQboC6aH4spw0V4bj74Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VQ1Ns6exvywbj5YVrqChmYabRv4bnzV6d00OZRotDxk=;
+        b=XeLdvC/7hE7mAQZfo6e5dpKJBs4F8V/wzim1qxTZg70Wx+6yG4iWA5//vp9milXaZD
+         owvzwvtw6iBrj8Jc7nYkUSwW3r8tshIhwQ44yjHRZIiNfy3OngW/zrz7ydWeFl+P7kHF
+         o8R7asbt4AX2AsYjothBusLyNabkFv0ZbcSdNAJ2RQ1YxD+A1b8hqXpUINLA4buEHf0q
+         eiB/Tm0WHBPG7nEKFrRYPS4dhvy9KLeXIPLYZ58wa6WwvyuC8yThfEBKkoUTH/TreQmR
+         Iv+lLPhbp44mNZW0+8bdblSgB/2qsZwWshcycpBkx8SrXIFXHRWOxZvvDZs0vtIt7uaH
+         mfDw==
+X-Gm-Message-State: AOAM531EXTKyoC9BhSLWC7mQBylhbBeubg8IrcwRdd92dILz/47W/76i
+        TWA5KDqOy275vQpf6WJ8c3mR4w==
+X-Google-Smtp-Source: ABdhPJxNm30rXQDMpWZpc08ebVbqvKPBKcHSxDG4T9G3LivzhKHgSKTkBAvQOg/b3BVjtkQeWuwuEA==
+X-Received: by 2002:a05:6000:1202:b0:207:a5f6:fc0 with SMTP id e2-20020a056000120200b00207a5f60fc0mr1410782wrx.438.1649928513656;
+        Thu, 14 Apr 2022 02:28:33 -0700 (PDT)
+Received: from fabiobaltieri-linux.lan ([37.228.205.1])
+        by smtp.gmail.com with ESMTPSA id bg8-20020a05600c3c8800b0038e4c5967besm1698099wmb.3.2022.04.14.02.28.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 02:28:33 -0700 (PDT)
+From:   Fabio Baltieri <fabiobaltieri@chromium.org>
+To:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Fabio Baltieri <fabiobaltieri@chromium.org>
+Subject: [PATCH v4 0/4] Add channel type support to pwm-cros-ec
+Date:   Thu, 14 Apr 2022 09:28:27 +0000
+Message-Id: <20220414092831.3717684-1-fabiobaltieri@chromium.org>
+X-Mailer: git-send-email 2.36.0.rc0.470.gd361397f0d-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: df315099-f6e2-4af9-0580-08da1df86560
-X-MS-TrafficTypeDiagnostic: PH0PR02MB7126:EE_
-X-Microsoft-Antispam-PRVS: <PH0PR02MB7126903A3C7557CD7ED96D98A5EF9@PH0PR02MB7126.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MupmPpmc1fjW71HO34W0ZTAbetOYcmMGbMaJnZcitfPRt5wn+DvFZeIy1cT9O/PbORa5bTpF1ZI6QV4j9Xo6Wz7zfmyi/TBRl4SGX4snuSWc2+hGMDdzKvuSQktqKvDugpX7sOav6u8mJ8B/5tIAvgJIyDLBB2KLYagvv5IeBXWhFX97KQiIk4vv2HGxZhuHf/urt3MS9Fslp1LkZ7xjeDay9BGGQraFVY+iyOoilTF+8fxfgsvieX/7zttG8aCT1kWdj6RSEZ0V3R6eNeAPgP36VJ/Jlh+ESL0r+sStH98gCz9gYtWsuaK64knfs7y+2IK5eYftBpCFpGctwHBOvMWfmLP0rpmjaiFmpFTuZG8BucGKVCJQrkq1du86gzDiEDd2gVxQ71ys0I/Tgm3aO5TZUbuFCUfdQHnZb1+vDueakFMLZBRTpa/ZUrXVZlEr0uNoWzuIggD0prSkzku15BHFrps+g1pOVkL9MNJikVLlkmJeF1HJx8DPJiU+laWxRsxzGRdsiZa2wD0gRf/e58wgKSfN0d2DtOkmT9Bfy8FM0OT1PFqyDabSIrYEjQWtRW+E5PufWHMBfhzeyfdwfVUHAdgh6PNEBeJYOVosW8NYWEuzF4gE2hGsjfGv03eSRzR9MCN2N/zmxEn8DvYAiSHY4xs6esZm3f6+KMnrMLhq1hopBkFqhz6IVQovtJmuVpHYoqbGxFVRu+kLYilG2A==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(36756003)(110136005)(83380400001)(54906003)(4326008)(8676002)(336012)(426003)(47076005)(1076003)(5660300002)(70206006)(508600001)(82310400005)(70586007)(6666004)(36860700001)(7696005)(2906002)(2616005)(107886003)(40460700003)(103116003)(356005)(7636003)(9786002)(8936002)(26005)(186003)(316002)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 09:23:11.5451
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: df315099-f6e2-4af9-0580-08da1df86560
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0041.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7126
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe cpm reg property name before cfg reg property to align with
-node name.
+Hi,
 
-Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
----
- .../devicetree/bindings/pci/xilinx-versal-cpm.yaml     | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+The ChromiumOS EC PWM host command protocol supports specifying the
+requested PWM by type rather than channel. [1]
 
-diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-index 4ebcc838a1f6..a3bc6ed9cf95 100644
---- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-+++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-@@ -18,13 +18,13 @@ properties:
- 
-   reg:
-     items:
--      - description: Configuration space region and bridge registers.
-       - description: CPM system level control and status registers.
-+      - description: Configuration space region and bridge registers.
- 
-   reg-names:
-     items:
--      - const: cfg
-       - const: cpm_slcr
-+      - const: cfg
- 
-   interrupts:
-     maxItems: 1
-@@ -86,9 +86,9 @@ examples:
-                        ranges = <0x02000000 0x0 0xe0000000 0x0 0xe0000000 0x0 0x10000000>,
-                                 <0x43000000 0x80 0x00000000 0x80 0x00000000 0x0 0x80000000>;
-                        msi-map = <0x0 &its_gic 0x0 0x10000>;
--                       reg = <0x6 0x00000000 0x0 0x10000000>,
--                             <0x0 0xfca10000 0x0 0x1000>;
--                       reg-names = "cfg", "cpm_slcr";
-+                       reg = <0x0 0xfca10000 0x0 0x1000>,
-+                             <0x6 0x00000000 0x0 0x10000000>;
-+                       reg-names = "cpm_slcr", "cfg";
-                        pcie_intc_0: interrupt-controller {
-                                #address-cells = <0>;
-                                #interrupt-cells = <1>;
+This series adds support for specifying PWM by type rather than channel
+number in the pwm-cros-ec driver, which abstracts the node definitions
+from the actual hardware configuration from the kernel perspective,
+aligns the API with the one used by the bootloader, and allows removing
+some dtsi overrides.
+
+Tested on a sc7180-trogdor board, build tested on x86.
+
+Changes from v3:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=631131)
+- actually reworded patch 2 commit description
+- reworked patch 2 to use of_device_is_compatible() instead of compatible .data
+
+Changes from v2:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=627837)
+- reworded patch 2 commit description
+- reworked the driver and dt documentation to use a new compatible rather than
+  boolean property
+- dropped the comment about build test only, tested on actual hardware
+  (trogdor), build test on x86 (with CONFIG_OF=n).
+
+Changes from v1:
+(https://patchwork.kernel.org/project/chrome-platform/list/?series=625182)
+- fixed the dt include file license
+- fixed the property name (s/_/-/)
+- rebased on current linus tree (few dts files changed from a soc tree
+  pull, so patch 4 needs a recent base to apply correctly)
+
+[1] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/ec/common/pwm.c;l=24
+[2] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/depthcharge/src/drivers/ec/cros/ec.c;l=1271-1273
+
+Fabio Baltieri (4):
+  dt-bindings: add mfd/cros_ec definitions
+  pwm: pwm-cros-ec: add channel type support
+  dt-bindings: update google,cros-ec-pwm documentation
+  arm64: dts: address cros-ec-pwm channels by type
+
+ .../bindings/pwm/google,cros-ec-pwm.yaml      |  9 +-
+ .../mt8183-kukui-jacuzzi-fennel-sku1.dts      |  4 +-
+ .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    |  4 +-
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  4 -
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  9 +-
+ .../qcom/sc7280-herobrine-herobrine-r0.dts    |  7 +-
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  7 +-
+ .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi |  4 +-
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  7 +-
+ .../boot/dts/rockchip/rk3399-gru-bob.dts      |  4 -
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  5 +-
+ .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  4 -
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  1 +
+ drivers/pwm/pwm-cros-ec.c                     | 82 +++++++++++++++----
+ include/dt-bindings/mfd/cros_ec.h             | 18 ++++
+ 16 files changed, 121 insertions(+), 49 deletions(-)
+ create mode 100644 include/dt-bindings/mfd/cros_ec.h
+
 -- 
-2.17.1
+2.35.1.1178.g4f1659d476-goog
 
