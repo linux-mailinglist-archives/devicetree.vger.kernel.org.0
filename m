@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBDE501981
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CFA0501978
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243053AbiDNRF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 13:05:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
+        id S242293AbiDNREn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 13:04:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244302AbiDNRFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:05:39 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8E2393D1
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:46:53 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bv19so11178849ejb.6
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:46:53 -0700 (PDT)
+        with ESMTP id S242285AbiDNRDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:03:44 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72129A56FB
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:10 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id z99so7088380ede.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nYg934FepxhPHJYVYrZutxuJmtuv3DcX7+LrwvmwUiI=;
-        b=eGFM3ztMn9Emo9AjWCLBFf6FEEMtubNIu4UVefX1GeJ26mF6dhm/kQWOM5JylyVuYl
-         AHn+lsZ0Yi4quPDxF8v/hLAKDCzF3fDmkLwshBHfrSsZIyCpo3q5P97DH5qN01gnoVSV
-         2s/CAcL2joy6KFQjXDYCrSGLKApreqzCGzpJc=
+        bh=sMT54nF1SMSOMqMYCZmgi8xN7eOCKvvK35fHMg+oHcc=;
+        b=HSJ9f0E6ehW76H552h3PgIs14xn6y6HwbJiaJF0oa3iCxtOPhzg/D2glMXnfa5V7zs
+         2ydypI+2zeXrr0g9B4UWfLJdZ34Qn5AYYeaah1j314JBM4begDsciAwS3BG0HazrznFc
+         uoig8EHfEzKP8qEFJ3HrxOKUff/q+RBzzM2nM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nYg934FepxhPHJYVYrZutxuJmtuv3DcX7+LrwvmwUiI=;
-        b=rwbvideEb/7eOTCh2059oQ+LCLQsMIvatE95KMYLSL9V3vMzgBmhozHnexIieoV2FL
-         B73t3nplSRDMGWvAc3eZZAs7984RwSKF/kyNVbv+wFw+bRJnc4Ntfty0OW/+DHXOArzr
-         E+u0IEZJqCQW1tntTiluSOfvdPlO9sWzUo0hJPsdH+fzdi8AaBKM1hNHvOfg5hPKDCLg
-         s9dg+lQWbP4CXayQtfTQV26d17WE1wS/ykxzX/D5ne9gDD24KKlzPDm1Tpl3F6dw7YyT
-         wdY215Egcr0jPqBE4dqB75rUxWHba2+u7Lz/vyoDuGYo17Dh7EVD7Ske/H6OX48+D3rZ
-         wSfg==
-X-Gm-Message-State: AOAM532vb2rbMDKp46yoEBn6Fk8pu2oKPoqblOMQ8OkV7D3Tjrxqm/ly
-        PEfOnH8uh8+qAW1lV4X5LAvgEm4dxBLQLllEXLc=
-X-Google-Smtp-Source: ABdhPJwOrUTKUAFGwpcIDs9oRNJnrirXGo2s5gQ+e0UwHTBwcv42l5VjYl1AYgnS64QNs7HRaOYQAQ==
-X-Received: by 2002:a17:906:16cc:b0:6ce:e607:ff02 with SMTP id t12-20020a17090616cc00b006cee607ff02mr3033673ejd.418.1649954812011;
-        Thu, 14 Apr 2022 09:46:52 -0700 (PDT)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
-        by smtp.gmail.com with ESMTPSA id v6-20020a17090690c600b006e8a4cdb77dsm770305ejw.225.2022.04.14.09.46.51
+        bh=sMT54nF1SMSOMqMYCZmgi8xN7eOCKvvK35fHMg+oHcc=;
+        b=L1XvgsUA8g2Ce6O3xF716DAq+NU5p+NOMKfglbpdywQ47g6CjbUxTJeX+IWXY/bKn0
+         t2CuIobwOpZnwAD/3gqChepR702+zEvYDG0ydHNwlUT0UIe2aB7r3Z7mtNhfaR/m9ARV
+         pmaqwtxYa9gIB+oEcwaNrdaTKYeCq8eWvokNLeErzkckc89CEmkydUSlKVRHLds0tB8N
+         WZb9/MbpGat4/0piHuIIuK0FOE3URg2D/DGxolMFoFQBt0pR9idtlELxKtwxndFDCjJ7
+         G2N/Un1MwS95VTYsX0SigNQV6CG06GcVile+1XnxY+JT1aR8skhYhmRbZd2Y8qtwwUYe
+         c2gA==
+X-Gm-Message-State: AOAM532vWUrgsHn/cUQAR+mG+8bgsrcmDU3GNtAMt9mY2QRGZZf2brdA
+        X6R2igT2+9LXBT73GYbVB7TlwnCFYR/iW7Mp
+X-Google-Smtp-Source: ABdhPJy42AjoCwNSdbzM3/6r488LOY/eadenC5iMQoB4VbTm+u7sj/2HCer2tQSOAibDVyxumVcuuQ==
+X-Received: by 2002:a05:6402:2065:b0:407:eb07:740 with SMTP id bd5-20020a056402206500b00407eb070740mr3950712edb.406.1649954408685;
+        Thu, 14 Apr 2022 09:40:08 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id z22-20020a1709063ad600b006e8867caa5dsm778997ejd.72.2022.04.14.09.40.05
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 09:46:51 -0700 (PDT)
-Received: by mail-wm1-f44.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so3604685wmn.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:46:51 -0700 (PDT)
-X-Received: by 2002:a05:600c:502b:b0:38f:f7c6:3609 with SMTP id
- n43-20020a05600c502b00b0038ff7c63609mr3225672wmr.15.1649954388394; Thu, 14
- Apr 2022 09:39:48 -0700 (PDT)
+        Thu, 14 Apr 2022 09:40:06 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id i20so7666393wrb.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 09:40:05 -0700 (PDT)
+X-Received: by 2002:a5d:64ce:0:b0:208:fff6:22cb with SMTP id
+ f14-20020a5d64ce000000b00208fff622cbmr2751540wri.301.1649954404806; Thu, 14
+ Apr 2022 09:40:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com> <1649938766-6768-3-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1649938766-6768-3-git-send-email-quic_sbillaka@quicinc.com>
+References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com> <1649938766-6768-4-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1649938766-6768-4-git-send-email-quic_sbillaka@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 14 Apr 2022 09:39:36 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Uc+qVKH7fAkqtB+Y_jHpWXy5tOABRCN=8TH1bibAp+8Q@mail.gmail.com>
-Message-ID: <CAD=FV=Uc+qVKH7fAkqtB+Y_jHpWXy5tOABRCN=8TH1bibAp+8Q@mail.gmail.com>
-Subject: Re: [PATCH v7 2/4] drm/msm/dp: Support only IRQ_HPD and REPLUG
- interrupts for eDP
+Date:   Thu, 14 Apr 2022 09:39:52 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wv57p-A=zniSKZYStRSPby7vSE-SqZQ-JVuQsO+MbK+A@mail.gmail.com>
+Message-ID: <CAD=FV=Wv57p-A=zniSKZYStRSPby7vSE-SqZQ-JVuQsO+MbK+A@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] drm/msm/dp: wait for hpd high before aux transaction
 To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>,
@@ -94,83 +93,103 @@ Hi,
 On Thu, Apr 14, 2022 at 5:20 AM Sankeerth Billakanti
 <quic_sbillaka@quicinc.com> wrote:
 >
-> The panel-edp enables the eDP panel power during probe, get_modes
-> and enable.
-
-Technically the panel-edp powers on the panel in pre_enable()
-
-
-> The eDP connect and disconnect interrupts for the eDP/DP
-> controller are directly dependent on panel power. As eDP display can be
-> assumed as always connected, the controller driver can skip the eDP
-> connect and disconnect interrupts. Any disruption in the link status
-> will be indicated via the IRQ_HPD interrupts.
+> The source device should ensure the sink is ready before proceeding to
+> read the sink capability or perform any aux transactions. The sink
+> will indicate its readiness by asserting the HPD line. The controller
+> driver needs to wait for the hpd line to be asserted by the sink before
+> it performs any aux transactions.
 >
-> So, the eDP controller driver can just enable the IRQ_HPD and replug
-> interrupts. The DP controller driver still needs to enable all the
-> interrupts.
+> The eDP sink is assumed to be always connected. It needs power from the
+> source and its HPD line will be asserted only after the panel is powered
+> on. The panel power will be enabled from the panel-edp driver and only
+> after that, the hpd line will be asserted.
+>
+> Whereas for DP, the sink can be hotplugged and unplugged anytime. The hpd
+> line gets asserted to indicate the sink is connected and ready. Hence
+> there is no need to wait for the hpd line to be asserted for a DP sink.
 >
 > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 > ---
->
+
+It might be worth mentioning "after the cut" that we may eventually
+end up changing the rules if people like my proposal [1]. However,
+what your code is doing here for eDP is correct as things are
+currently intended to work and it would make sense to land it while we
+debate about whether we want to add the is_hpd_asserted() callback
+like my patch does.
+
+[1] https://lore.kernel.org/r/20220408193536.RFC.3.Icf57bb12233a47727013c6ab69eebf803e22ebc1@changeid/
+
+
 > Changes in v7:
->   - reordered the patch in the series
->   - modified the return statement for isr
->   - connector check modified to just check for eDP
+>   - add a comment to say why the wait si done for eDP
+>   - correct the commit text
 >
->  drivers/gpu/drm/msm/dp/dp_catalog.c |  9 +++------
->  drivers/gpu/drm/msm/dp/dp_display.c | 22 +++++++++++++++++++++-
->  2 files changed, 24 insertions(+), 7 deletions(-)
+> Changes in v6:
+>   - Wait for hpd high only for eDP
+>   - Split into smaller patches
 >
-> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> index fac815f..07f2389 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> @@ -569,10 +569,6 @@ void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog)
+>  drivers/gpu/drm/msm/dp/dp_aux.c     | 21 ++++++++++++++++++++-
+>  drivers/gpu/drm/msm/dp/dp_aux.h     |  3 ++-
+>  drivers/gpu/drm/msm/dp/dp_catalog.c | 13 +++++++++++++
+>  drivers/gpu/drm/msm/dp/dp_catalog.h |  1 +
+>  drivers/gpu/drm/msm/dp/dp_display.c |  2 +-
+>  5 files changed, 37 insertions(+), 3 deletions(-)
 >
->         u32 reftimer = dp_read_aux(catalog, REG_DP_DP_HPD_REFTIMER);
->
-> -       /* enable HPD plug and unplug interrupts */
-> -       dp_catalog_hpd_config_intr(dp_catalog,
-> -               DP_DP_HPD_PLUG_INT_MASK | DP_DP_HPD_UNPLUG_INT_MASK, true);
-> -
->         /* Configure REFTIMER and enable it */
->         reftimer |= DP_DP_HPD_REFTIMER_ENABLE;
->         dp_write_aux(catalog, REG_DP_DP_HPD_REFTIMER, reftimer);
-> @@ -599,13 +595,14 @@ u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog)
->  {
->         struct dp_catalog_private *catalog = container_of(dp_catalog,
->                                 struct dp_catalog_private, dp_catalog);
-> -       int isr = 0;
-> +       int isr, mask;
->
->         isr = dp_read_aux(catalog, REG_DP_DP_HPD_INT_STATUS);
->         dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
->                                  (isr & DP_DP_HPD_INT_MASK));
-> +       mask = dp_read_aux(catalog, REG_DP_DP_HPD_INT_MASK);
->
-> -       return isr;
-> +       return isr & (mask | ~DP_DP_HPD_INT_MASK);
+> diff --git a/drivers/gpu/drm/msm/dp/dp_aux.c b/drivers/gpu/drm/msm/dp/dp_aux.c
+> index 6d36f63..cf0739f 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_aux.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_aux.c
+> @@ -36,6 +36,7 @@ struct dp_aux_private {
+>         bool initted;
+>         u32 offset;
+>         u32 segment;
+> +       bool is_edp;
 
-Please add a comment above this explaining what the goal of the above
-statement is. I guess it's something like this, though you might want
-to modify it to remove snark and insert the real reason unless you
-like being snarky:
-
-  /*
-   * Report the raw status of all interrupts (AKA we still report the
-   * interrupt as asserted even if it's masked) _except_ for HPD-related.
-   * interrupts. We only report HPD-related interrupts if they're
-   * unmasked. We do it this way because we thought it would be extra
-   * confusing for readers of this code and we were bribed by Mordac to
-   * confuse you.  OK, maybe that's not true. We actually do it this way
-   * because of <insert your compelling reason here>.
-   */
-
-Along the same lines as my comments in patch #1, I don't have a great
-feel for exactly when the various HPD bits are enabled / disabled and
-it feels like it need to be made super obvious / well documented. That
-being said, I'd be OK w/ that happening in the proposed cleanup.
+Kinda nitty, but can you put it next to the other booleans? This will
+help with structure packing.
 
 
--Doug
+>         struct drm_dp_aux dp_aux;
+>  };
+> @@ -337,6 +338,22 @@ static ssize_t dp_aux_transfer(struct drm_dp_aux *dp_aux,
+>                 goto exit;
+>         }
+>
+> +       /*
+> +        * For eDP it's important to give a reasonably long wait here for HPD
+> +        * to be asserted. This is because the panel driver may have _just_
+> +        * turned on the panel and then tried to do an AUX transfer. The panel
+> +        * driver has no way of knowing when the panel is ready, so it's up
+> +        * to us to wait. For DP we never get into this situation so let's
+> +        * avoid ever doing the extra long wait for DP.
+> +        */
+> +       if (aux->is_edp) {
+> +               ret = dp_catalog_aux_wait_for_hpd_connect_state(aux->catalog);
+> +               if (ret) {
+> +                       DRM_DEBUG_DP("Panel not ready for aux transactions\n");
+> +                       goto exit;
+> +               }
+> +       }
+> +
+>         dp_aux_update_offset_and_segment(aux, msg);
+>         dp_aux_transfer_helper(aux, msg, true);
+>
+> @@ -491,7 +508,8 @@ void dp_aux_unregister(struct drm_dp_aux *dp_aux)
+>         drm_dp_aux_unregister(dp_aux);
+>  }
+>
+> -struct drm_dp_aux *dp_aux_get(struct device *dev, struct dp_catalog *catalog)
+> +struct drm_dp_aux *dp_aux_get(struct device *dev, struct dp_catalog *catalog,
+> +                               bool is_edp)
+
+nit: I think indentation rules for this file are that the type of the
+argument for the 2nd line should line up right under the 1st. Thus you
+should delete one tab character and insert 6 spaces before the "bool".
+
+Similar in other places, like your header file.
+
+
+Stuff above is all nits and this looks right to me. I'm happy with:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
