@@ -2,121 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E96DC501A89
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E7C501A8F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:54:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243273AbiDNRzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 13:55:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48732 "EHLO
+        id S1344163AbiDNR4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 13:56:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242032AbiDNRzG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:55:06 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B0C6EA75C;
-        Thu, 14 Apr 2022 10:52:39 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1649958757; bh=6C6PdBrdjpVD+lDLvCPNyZNWgXILs8pi8aPP0Tgp7b4=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=fK6IYtcazQmhRt8qRgxHB5m3SJz42BhC54qK2Y6vVu0LIsJH5deQAcZlPl45WMt+X
-         Is1cuRiFSq/6NpORZ26A5ao+ymQfWM6WXdUSxz4opAgk3skNIzNcf/eFbSeTBDIOz3
-         hD+abQvC3nKril/fb+Y0rUta35cg2lhEfq1zAZxs=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH v2 1/2] dt-bindings: dma: Add Apple ADMAC
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <85DF53F6-74BA-4D8D-8E8E-DFD67B24DA19@cutebit.org>
-Date:   Thu, 14 Apr 2022 19:52:36 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S1344141AbiDNR4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:56:18 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE0CEAC9B;
+        Thu, 14 Apr 2022 10:53:53 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id w127so6171920oig.10;
+        Thu, 14 Apr 2022 10:53:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LDb6a54Kbel4HFnWgqEnQRC1KuI8HmYdyvPnVqEyvNM=;
+        b=RPjvYP1iMaRnISHqZiIUrdazy+j72GCIkPX5Wsm0lakMzKln0OInBGrkAiikfMySHB
+         G6sqQTr2XF8Dyv8fWq+4Ym8NYdyHrBsNodoKbZMI10XXGxZKQ4XJscoN36E1lQcgMiiw
+         tK56L95nSfKGX6FFuw3wsX3MNfNAnZBX9kICJXVyoaKU/h2miL7JVK5TgjRs9xFWrkiD
+         dmnv9xHPOGbAKs1ddo8537A8yzkpmsvt+BvVtm25mDzrr80vvhSmj0X2Tv+3wWz6a06a
+         TjPVA+1+E8gq/rohRg7946k69guYGLIzI4slwxIcrn1zrF2ke6ufgf+xJzdEVYfAZ7Cz
+         mZVw==
+X-Gm-Message-State: AOAM531AxBANnxX5+jbZ0Cbu6NNwFJbCdjbKVO+eocXHVWkXFemPjEL/
+        U4lX9VmS3pPthPpb1wFukA==
+X-Google-Smtp-Source: ABdhPJyG5OxYiytphJidoOSVhiPpd6J458I+J5CA5KHBqlbSmUD1awtoYmV8QXhgL5wR6MeqIR3cOA==
+X-Received: by 2002:aca:b507:0:b0:2fa:6d40:4b40 with SMTP id e7-20020acab507000000b002fa6d404b40mr1885135oif.246.1649958832439;
+        Thu, 14 Apr 2022 10:53:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id nd8-20020a056871440800b000e2b75759f1sm891690oab.38.2022.04.14.10.53.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 10:53:52 -0700 (PDT)
+Received: (nullmailer pid 2307872 invoked by uid 1000);
+        Thu, 14 Apr 2022 17:53:51 -0000
+Date:   Thu, 14 Apr 2022 12:53:51 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A9849767-1A50-4C57-AE40-3DD7FB475130@cutebit.org>
-References: <20220411222204.96860-1-povik+lin@cutebit.org>
- <20220411222204.96860-2-povik+lin@cutebit.org>
- <YlhBLJQVYvTGlx4o@robh.at.kernel.org>
- <85DF53F6-74BA-4D8D-8E8E-DFD67B24DA19@cutebit.org>
-To:     Rob Herring <robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>,
+        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: pci: remove fallback from Rockchip
+ DesignWare binding
+Message-ID: <Ylhfr51RME+YAjOG@robh.at.kernel.org>
+References: <20220413133731.242870-1-pgwipeout@gmail.com>
+ <20220413133731.242870-2-pgwipeout@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220413133731.242870-2-pgwipeout@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Apr 13, 2022 at 09:37:28AM -0400, Peter Geis wrote:
+> The snps,dw-pcie binds to a standalone driver.
+> It is not fully compatible with the Rockchip implementation and causes a
+> hang if it binds to the device.
+> 
+> Remove this binding as a valid fallback.
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index 142bbe577763..8dc11fed8a3c 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -32,7 +32,6 @@ properties:
+>    compatible:
+>      items:
+>        - const: rockchip,rk3568-pcie
+> -      - const: snps,dw-pcie
 
-> On 14. 4. 2022, at 19:23, Martin Povi=C5=A1er <povik@cutebit.org> =
-wrote:
->=20
->>=20
->> On 14. 4. 2022, at 17:43, Rob Herring <robh@kernel.org> wrote:
->>=20
->> On Tue, Apr 12, 2022 at 12:22:03AM +0200, Martin Povi=C5=A1er wrote:
->>> Apple's Audio DMA Controller (ADMAC) is used to fetch and store =
-audio
->>> samples on SoCs from the "Apple Silicon" family.
->>>=20
->>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
->>> ---
->>>=20
->>> After the v1 discussion, I dropped the =
-apple,internal-irq-destination
->>> property and instead the index of the usable interrupt is now =
-signified
->>> by prepending -1 entries to the interrupts=3D list. This works when =
-I do
->>> it like this:
->>>=20
->>> interrupt-parent =3D <&aic>;
->>> interrupts =3D <AIC_IRQ 0xffffffff 0>,
->>> <AIC_IRQ 626 IRQ_TYPE_LEVEL_HIGH>;
->>=20
->>=20
->> BTW, just use '-1'. dtc takes negative values (and other =
-expressions).
->=20
-> Ha! <-1> didn=E2=80=99t work for me but <(-1)> does.
->=20
->>=20
->>>=20
->>> I would find it neat to do it like this:
->>>=20
->>> interrupts-extended =3D <0xffffffff>,
->>> <&aic AIC_IRQ 626 IRQ_TYPE_LEVEL_HIGH>;
->>>=20
->>> but unfortunately the kernel doesn't pick up on it:
->>>=20
->>> [ 0.767964] apple-admac 238200000.dma-controller: error -6: IRQ =
-index 0 not found
->>> [ 0.773943] apple-admac 238200000.dma-controller: error -6: IRQ =
-index 1 not found
->>> [ 0.780154] apple-admac 238200000.dma-controller: error -6: IRQ =
-index 2 not found
->>> [ 0.786367] apple-admac 238200000.dma-controller: error -6: IRQ =
-index 3 not found
->>> [ 0.788592] apple-admac 238200000.dma-controller: error -6: no =
-usable interrupt
->>=20
->> We should make this case work. It is less fragile IMO as it doesn't=20=
+With this, you no longer need 'select' so please drop it too.
 
->> depend on the provider's translation of cells.
->=20
-> Then I may send some patch to that end.
-
-Turns out there=E2=80=99s no need. Passing in <0> in place of a phandle =
-reference
-looks like what we want:
-=
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dr=
-ivers/of/base.c?h=3Dv5.18-rc2#n1334
-
-(Confirmed by testing to do the right thing with the IRQs.)
-
-Martin=
+>  
+>    reg:
+>      items:
+> @@ -110,7 +109,7 @@ examples:
+>          #size-cells = <2>;
+>  
+>          pcie3x2: pcie@fe280000 {
+> -            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
+> +            compatible = "rockchip,rk3568-pcie";
+>              reg = <0x3 0xc0800000 0x0 0x390000>,
+>                    <0x0 0xfe280000 0x0 0x10000>,
+>                    <0x3 0x80000000 0x0 0x100000>;
+> -- 
+> 2.25.1
+> 
+> 
