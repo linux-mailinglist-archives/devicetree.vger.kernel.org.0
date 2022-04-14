@@ -2,291 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12EE8501CC0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 22:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15DFA501CCF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 22:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239691AbiDNUiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 16:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51712 "EHLO
+        id S1346471AbiDNUjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 16:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346712AbiDNUiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 16:38:00 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B85D76FE;
-        Thu, 14 Apr 2022 13:35:33 -0700 (PDT)
-Received: from [IPV6:2a00:5f00:102:0:10b3:10ff:fe5d:4ec1] (unknown [IPv6:2a00:5f00:102:0:10b3:10ff:fe5d:4ec1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        with ESMTP id S239274AbiDNUjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 16:39:08 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA85E2F72;
+        Thu, 14 Apr 2022 13:36:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 8B4C81F47BB7;
-        Thu, 14 Apr 2022 21:35:31 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649968532;
-        bh=qrJuq+TdBPOPEgxeXMIXpPq14MtpTaIIqGv7fMzG5N0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KEy3Jfazo178h+z/RcU4grXOmPu8axeJ8ZF+U54D6fCrNr5G3sXQtBGIUhsS4PUZC
-         baGS/JB99l8PxMYJk2P7b7dG4jAp7xYGuHznHLt7Bv3WxvyAEV11oKWY3HhBik3SPT
-         QJE5xn0vI8zBGgCMgTOINpluymHHTkts+sERPsOeaBrGVv5xu5CP/81udK+YoPxzRK
-         i0Yuv2PX4jpaVgsYJSoAoQvMKzviYUHZ00mHw7q8ORAkrxZ6a3icGRMyXmLqof8BO9
-         YD8hxRqtoq3XYlxJozl9K5J+iZHAaly9rLZ/t0GEFzsv5DIjTzrWj1mcyf9L15A9M0
-         fDlY2OiOtMYNw==
-Message-ID: <49b6c8f6-7c77-b503-7d1a-f0edf89dadac@collabora.com>
-Date:   Thu, 14 Apr 2022 23:35:28 +0300
+        by ams.source.kernel.org (Postfix) with ESMTPS id C3BFAB8293E;
+        Thu, 14 Apr 2022 20:36:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 573B5C385A1;
+        Thu, 14 Apr 2022 20:36:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649968599;
+        bh=0YOUcX1s+MakPztIpP6ZGkf5l+r7N3LY6huJ438u3gE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SFX8IfO7A6lIiz20UEEOHyavGrH//NtmZf0Ki54L0u4FBuu5DKoqH/kehrkh27AVX
+         98xok0tBD6AEAas5XX5Sgpdyk3twGgLijE02NDR2v592aVnwgTy8aLP4QqtXdA15KC
+         ERLxPe/ELkNJTC9Aa1SSSNi++YTHjPlHClLG4IGlEi6yA/MowGfDalYMPsFKSgv2UN
+         3/cTPrR5UFZqvgC5UVZZRD5n5EB9vOisR22/6vFU+N+R2/TAKkdsArjAvMuzD8kZaW
+         7b8YMnA/FL511ONoM+vvpFI2BCIFUY1YdTeS2wzh9+QjsZCGiaFgIVFBJYYyZFVGg/
+         ElBSRk35oOUsA==
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nf6Ci-004Phs-Sn; Thu, 14 Apr 2022 21:36:36 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [Patch v7 3/4] dt-bindings: memory: Update reg/reg-names
- validation
-Content-Language: en-US
-To:     Ashish Mhetre <amhetre@nvidia.com>, Rob Herring <robh@kernel.org>
-Cc:     digetx@gmail.com, krzysztof.kozlowski@linaro.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220413094012.13589-1-amhetre@nvidia.com>
- <20220413094012.13589-4-amhetre@nvidia.com>
- <YlbSGEBKgpVC51dZ@robh.at.kernel.org>
- <b050247d-a62c-62e7-7750-24cefcc93506@collabora.com>
- <71fc3efb-5110-287e-0422-10c1ae90139c@nvidia.com>
- <ae1d1098-f8b5-f41a-c33b-0f4863a43d5e@collabora.com>
- <e0faf79f-99e6-a0b6-0842-ec9de644f7f3@nvidia.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <e0faf79f-99e6-a0b6-0842-ec9de644f7f3@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Date:   Thu, 14 Apr 2022 21:36:36 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] PCI: dwc: rockchip: add legacy interrupt support
+In-Reply-To: <20220413133731.242870-3-pgwipeout@gmail.com>
+References: <20220413133731.242870-1-pgwipeout@gmail.com>
+ <20220413133731.242870-3-pgwipeout@gmail.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <c493261cef27714181a523545dab6d0e@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: pgwipeout@gmail.com, lorenzo.pieralisi@arm.com, robh@kernel.org, kw@linux.com, bhelgaas@google.com, heiko@sntech.de, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 4/14/22 07:07, Ashish Mhetre wrote:
+On 2022-04-13 14:37, Peter Geis wrote:
+> The legacy interrupts on the rk356x pcie controller are handled by a
+> single muxed interrupt. Add irq domain support to the pcie-dw-rockchip
+> driver to support the virtual domain.
 > 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 123 +++++++++++++++++-
+>  1 file changed, 121 insertions(+), 2 deletions(-)
 > 
-> On 4/14/2022 2:39 AM, Dmitry Osipenko wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> On 4/13/22 19:17, Ashish Mhetre wrote:
->>>
->>>
->>> On 4/13/2022 7:34 PM, Dmitry Osipenko wrote:
->>>> External email: Use caution opening links or attachments
->>>>
->>>>
->>>> On 4/13/22 16:37, Rob Herring wrote:
->>>>> On Wed, Apr 13, 2022 at 03:10:11PM +0530, Ashish Mhetre wrote:
->>>>>>   From tegra186 onwards, memory controller support multiple channels.
->>>>>> Reg items are updated with address and size of these channels.
->>>>>> Tegra186 has overall 5 memory controller channels. Tegra194 and
->>>>>> tegra234
->>>>>> have overall 17 memory controller channels each.
->>>>>> There is 1 reg item for memory controller stream-id registers.
->>>>>> So update the reg maxItems to 18 in tegra186 devicetree
->>>>>> documentation.
->>>>>> Also update validation for reg-names added for these corresponding
->>>>>> reg
->>>>>> items.
->>>>>
->>>>> Somehow your subject should indicate this is for Tegra.
->>>>>
->>>>>>
->>>>>> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
->>>>>> ---
->>>>>>    .../nvidia,tegra186-mc.yaml                   | 80
->>>>>> +++++++++++++++++--
->>>>>>    1 file changed, 74 insertions(+), 6 deletions(-)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>
->>>>>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>
->>>>>>
->>>>>> index 13c4c82fd0d3..c7cfa6c2cd81 100644
->>>>>> ---
->>>>>> a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>
->>>>>>
->>>>>> +++
->>>>>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
->>>>>>
->>>>>>
->>>>>> @@ -34,8 +34,12 @@ properties:
->>>>>>              - nvidia,tegra234-mc
->>>>>>
->>>>>>      reg:
->>>>>> -    minItems: 1
->>>>>> -    maxItems: 3
->>>>>> +    minItems: 6
->>>>>
->>>>> You just broke current users.
->>>>>
->>>>>> +    maxItems: 18
->>>>>> +
->>>>>> +  reg-names:
->>>>>> +    minItems: 6
->>>>>> +    maxItems: 18
->>>>>>
->>>>>>      interrupts:
->>>>>>        items:
->>>>>> @@ -142,7 +146,18 @@ allOf:
->>>>>>        then:
->>>>>>          properties:
->>>>>>            reg:
->>>>>> -          maxItems: 1
->>>>>> +          maxItems: 6
->>>>>> +          description: 5 memory controller channels and 1 for
->>>>>> stream-id registers
->>>>>> +
->>>>>> +        reg-names:
->>>>>> +          maxItems: 6
->>>>>> +          items:
->>>>>> +            - const: sid
->>>>>> +            - const: broadcast
->>>>>> +            - const: ch0
->>>>>> +            - const: ch1
->>>>>> +            - const: ch2
->>>>>> +            - const: ch3
->>>>>>
->>>>>>      - if:
->>>>>>          properties:
->>>>>> @@ -151,7 +166,30 @@ allOf:
->>>>>>        then:
->>>>>>          properties:
->>>>>>            reg:
->>>>>> -          minItems: 3
->>>>>> +          minItems: 18
->>>>>> +          description: 17 memory controller channels and 1 for
->>>>>> stream-id registers
->>>>>> +
->>>>>> +        reg-names:
->>>>>> +          minItems: 18
->>>>>> +          items:
->>>>>> +            - const: sid
->>>>>> +            - const: broadcast
->>>>>> +            - const: ch0
->>>>>> +            - const: ch1
->>>>>> +            - const: ch2
->>>>>> +            - const: ch3
->>>>>> +            - const: ch4
->>>>>> +            - const: ch5
->>>>>> +            - const: ch6
->>>>>> +            - const: ch7
->>>>>> +            - const: ch8
->>>>>> +            - const: ch9
->>>>>> +            - const: ch10
->>>>>> +            - const: ch11
->>>>>> +            - const: ch12
->>>>>> +            - const: ch13
->>>>>> +            - const: ch14
->>>>>> +            - const: ch15
->>>>>>
->>>>>>      - if:
->>>>>>          properties:
->>>>>> @@ -160,13 +198,37 @@ allOf:
->>>>>>        then:
->>>>>>          properties:
->>>>>>            reg:
->>>>>> -          minItems: 3
->>>>>> +          minItems: 18
->>>>>> +          description: 17 memory controller channels and 1 for
->>>>>> stream-id registers
->>>>>> +
->>>>>> +        reg-names:
->>>>>> +          minItems: 18
->>>>>> +          items:
->>>>>> +            - const: sid
->>>>>> +            - const: broadcast
->>>>>> +            - const: ch0
->>>>>> +            - const: ch1
->>>>>> +            - const: ch2
->>>>>> +            - const: ch3
->>>>>> +            - const: ch4
->>>>>> +            - const: ch5
->>>>>> +            - const: ch6
->>>>>> +            - const: ch7
->>>>>> +            - const: ch8
->>>>>> +            - const: ch9
->>>>>> +            - const: ch10
->>>>>> +            - const: ch11
->>>>>> +            - const: ch12
->>>>>> +            - const: ch13
->>>>>> +            - const: ch14
->>>>>> +            - const: ch15
->>>>>>
->>>>>>    additionalProperties: false
->>>>>>
->>>>>>    required:
->>>>>>      - compatible
->>>>>>      - reg
->>>>>> +  - reg-names
->>>>>
->>>>> New, added properties cannot be required. That's an ABI break.
->>>>>
->>>>>>      - interrupts
->>>>>>      - "#address-cells"
->>>>>>      - "#size-cells"
->>>>>> @@ -182,7 +244,13 @@ examples:
->>>>>>
->>>>>>            memory-controller@2c00000 {
->>>>>>                compatible = "nvidia,tegra186-mc";
->>>>>> -            reg = <0x0 0x02c00000 0x0 0xb0000>;
->>>>>> +            reg = <0x0 0x02c00000 0x0 0x10000>,    /* MC-SID */
->>>>>> +                  <0x0 0x02c10000 0x0 0x10000>,    /* Broadcast
->>>>>> channel */
->>>>>> +                  <0x0 0x02c20000 0x0 0x10000>,    /* MC0 */
->>>>>> +                  <0x0 0x02c30000 0x0 0x10000>,    /* MC1 */
->>>>>> +                  <0x0 0x02c40000 0x0 0x10000>,    /* MC2 */
->>>>>> +                  <0x0 0x02c50000 0x0 0x10000>;    /* MC3 */
->>>>>> +            reg-names = "sid", "broadcast", "ch0", "ch1", "ch2",
->>>>>> "ch3";
->>>>>>                interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
->>>>>>
->>>>>>                #address-cells = <2>;
->>>>>> -- 
->>>>>> 2.17.1
->>>>>>
->>>>
->>>> Oh, wait.. I didn't notice that the new reg ranges are only
->>>> splitting up
->>>> the old ranges. Previously it appeared to me that these are the new
->>>> ranges.
->>>>   > Ashish, in this case you don't need to change the regs in the DT at
->>>> all.
->>>> Instead, you need to specify the per-channel reg-base offsets in the
->>>> driver code.
->>>
->>> Yes, it's kind of splitting up the old ranges and straight forward for
->>> Tegra186. But on Tegra194 and Tegra234 the old address is not in single
->>> range. It's already split across 3 ranges. We have to choose right range
->>> and add channel offsets to that range in order to read interrupts.
->>> So I went with the approach of splitting the regs in DT itself as per
->>> the channels because that way they can be mapped in a single loop and
->>> used easily.
->>> If we want to specify per-channel reg-base offsets then that would be
->>> per-SOC. Also we would need to choose correct reg-range for Tegra194 and
->>> Tegra234 and have a way to maintain offsets of channels from those
->>> respective reg-ranges.
->>
->> That is not nice too. Should be better to switch to the new DT scheme,
->> since those channels weren't used by older kernels. It's okay to change
->> the binding ABI in this case then, driver will continue to work for the
->> older dtbs.
+> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> index c9b341e55cbb..a8b1dc03d3cc 100644
+> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> @@ -10,9 +10,12 @@
 > 
-> So the current DTS and binding changes are fine?
-
-It's fine to me. Doesn't hurt to explain in the commit message that the
-ABI change is intended and it's compatible with the previous ABI.
-
->> Have you tested driver using the older dtbs?
+>  #include <linux/clk.h>
+>  #include <linux/gpio/consumer.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> @@ -36,10 +39,13 @@
+>  #define PCIE_LINKUP			(PCIE_SMLH_LINKUP | PCIE_RDLH_LINKUP)
+>  #define PCIE_L0S_ENTRY			0x11
+>  #define PCIE_CLIENT_GENERAL_CONTROL	0x0
+> +#define PCIE_CLIENT_INTR_STATUS_LEGACY	0x8
+> +#define PCIE_CLIENT_INTR_MASK_LEGACY	0x1c
+>  #define PCIE_CLIENT_GENERAL_DEBUG	0x104
+> -#define PCIE_CLIENT_HOT_RESET_CTRL      0x180
+> +#define PCIE_CLIENT_HOT_RESET_CTRL	0x180
+>  #define PCIE_CLIENT_LTSSM_STATUS	0x300
+> -#define PCIE_LTSSM_ENABLE_ENHANCE       BIT(4)
+> +#define PCIE_LEGACY_INT_ENABLE		GENMASK(3, 0)
+> +#define PCIE_LTSSM_ENABLE_ENHANCE	BIT(4)
+>  #define PCIE_LTSSM_STATUS_MASK		GENMASK(5, 0)
 > 
-> Yes, the driver is tested with old dtb and it's working fine.
+>  struct rockchip_pcie {
+> @@ -51,6 +57,8 @@ struct rockchip_pcie {
+>  	struct reset_control		*rst;
+>  	struct gpio_desc		*rst_gpio;
+>  	struct regulator                *vpcie3v3;
+> +	struct irq_domain		*irq_domain;
+> +	raw_spinlock_t			irq_lock;
+>  };
+> 
+>  static int rockchip_pcie_readl_apb(struct rockchip_pcie *rockchip,
+> @@ -65,6 +73,105 @@ static void rockchip_pcie_writel_apb(struct
+> rockchip_pcie *rockchip,
+>  	writel_relaxed(val, rockchip->apb_base + reg);
+>  }
+> 
+> +static void rockchip_pcie_legacy_int_handler(struct irq_desc *desc)
+> +{
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct rockchip_pcie *rockchip = irq_desc_get_handler_data(desc);
+> +	struct device *dev = rockchip->pci.dev;
+> +	u32 reg;
+> +	u32 hwirq;
+> +	u32 virq;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	reg = rockchip_pcie_readl_apb(rockchip, 
+> PCIE_CLIENT_INTR_STATUS_LEGACY);
+> +
+> +	while (reg) {
+> +		hwirq = ffs(reg) - 1;
+> +		reg &= ~BIT(hwirq);
 
-Ok
+The whole construct would be better served by for_each_set_bit().
+
+> +
+> +		virq = irq_find_mapping(rockchip->irq_domain, hwirq);
+> +		if (virq)
+> +			generic_handle_irq(virq);
+
+Please replace this with generic_handle_domain_irq().
+
+> +		else
+> +			dev_err(dev, "unexpected IRQ, INT%d\n", hwirq);
+
+This hardly serves any purpose. At best, this is a debug statement.
+At worse, this is a DoS. In any case, please remove it.
+
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void rockchip_intx_mask(struct irq_data *data)
+> +{
+> +	struct rockchip_pcie *rockchip = irq_data_get_irq_chip_data(data);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	/* disable legacy interrupts */
+> +	raw_spin_lock_irqsave(&rockchip->irq_lock, flags);
+> +	val = HIWORD_UPDATE_BIT(PCIE_LEGACY_INT_ENABLE);
+> +	val |= PCIE_LEGACY_INT_ENABLE;
+> +	rockchip_pcie_writel_apb(rockchip, val, 
+> PCIE_CLIENT_INTR_MASK_LEGACY);
+> +	raw_spin_unlock_irqrestore(&rockchip->irq_lock, flags);
+> +};
+> +
+> +static void rockchip_intx_unmask(struct irq_data *data)
+> +{
+> +	struct rockchip_pcie *rockchip = irq_data_get_irq_chip_data(data);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	/* enable legacy interrupts */
+> +	raw_spin_lock_irqsave(&rockchip->irq_lock, flags);
+> +	val = HIWORD_UPDATE_BIT(PCIE_LEGACY_INT_ENABLE);
+> +	val &= ~PCIE_LEGACY_INT_ENABLE;
+> +	rockchip_pcie_writel_apb(rockchip, val, 
+> PCIE_CLIENT_INTR_MASK_LEGACY);
+> +	raw_spin_unlock_irqrestore(&rockchip->irq_lock, flags);
+> +};
+> +
+> +static struct irq_chip rockchip_intx_irq_chip = {
+> +	.flags			= IRQCHIP_SKIP_SET_WAKE | IRQCHIP_MASK_ON_SUSPEND,
+> +	.irq_mask		= rockchip_intx_mask,
+> +	.irq_unmask		= rockchip_intx_unmask,
+> +	.name			= "INTx",
+
+For consistency, please place 'name' at the top, and 'flags' at the end.
+
+> +};
+> +
+> +static int rockchip_pcie_intx_map(struct irq_domain *domain, unsigned 
+> int irq,
+> +				  irq_hw_number_t hwirq)
+> +{
+> +	irq_set_chip_and_handler(irq, &rockchip_intx_irq_chip, 
+> handle_simple_irq);
+
+Why isn't this a *level* handler, as per the PCI spec?
+
+> +	irq_set_chip_data(irq, domain->host_data);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops intx_domain_ops = {
+> +	.map = rockchip_pcie_intx_map,
+> +};
+> +
+> +static int rockchip_pcie_init_irq_domain(struct rockchip_pcie 
+> *rockchip)
+> +{
+> +	struct device *dev = rockchip->pci.dev;
+> +	struct device_node *intc;
+> +
+> +	raw_spin_lock_init(&rockchip->irq_lock);
+> +
+> +	intc = of_get_child_by_name(dev->of_node, 
+> "legacy-interrupt-controller");
+> +	if (!intc) {
+> +		dev_err(dev, "missing child interrupt-controller node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	rockchip->irq_domain = irq_domain_add_linear(intc, PCI_NUM_INTX,
+> +						    &intx_domain_ops, rockchip);
+> +	of_node_put(intc);
+> +	if (!rockchip->irq_domain) {
+> +		dev_err(dev, "failed to get a INTx IRQ domain\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static void rockchip_pcie_enable_ltssm(struct rockchip_pcie *rockchip)
+>  {
+>  	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_ENABLE_LTSSM,
+> @@ -111,7 +218,19 @@ static int rockchip_pcie_host_init(struct 
+> pcie_port *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>  	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
+> +	struct device *dev = rockchip->pci.dev;
+>  	u32 val = HIWORD_UPDATE_BIT(PCIE_LTSSM_ENABLE_ENHANCE);
+> +	int irq, ret;
+> +
+> +	irq = of_irq_get_byname(dev->of_node, "legacy");
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	irq_set_chained_handler_and_data(irq,
+> rockchip_pcie_legacy_int_handler, rockchip);
+> +
+
+Installing the handler before the domain is instantiated is
+unlikely to end well if you have a pending interrupt...
+
+> +	ret = rockchip_pcie_init_irq_domain(rockchip);
+> +	if (ret < 0)
+> +		dev_err(dev, "failed to init irq domain\n");
+> 
+>  	/* LTSSM enable control mode */
+>  	rockchip_pcie_writel_apb(rockchip, val, PCIE_CLIENT_HOT_RESET_CTRL);
+
+Thanks,
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
