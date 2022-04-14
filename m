@@ -2,126 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF8B500E5D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 15:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD38500EF2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 15:21:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243125AbiDNNMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 09:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34066 "EHLO
+        id S244114AbiDNNXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 09:23:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243150AbiDNNMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:12:18 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56E91AF13;
-        Thu, 14 Apr 2022 06:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649941791; x=1681477791;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=v5CxLQbfWtXiVq/sE32vce32MQXtkQXZiAcw0x85tOs=;
-  b=N6qy/l1225/WvWy3yBeDGBeEe6Bkv2vmF1gju1TpaH+T4SfCMBVcppF+
-   /6ZEjL7q3kDV5CEtp2WeuSA+8wwlSQWpk1+kq14aK7+gMfWkwIWJwge9I
-   uH+RtlXd8SSIncmUFyJ1SYyi9mmdyX89ozsai7PcTG4CB4dF8XW6EAO9z
-   2psrP+I52C/3aqrOSldPpdK7pSFTs/A0At188MAd//hf7OIx/BChXGt2T
-   0vf1UPyn4WMDWE/8wxzkP1n05q9xgKgmjta5AJ56TMdhlKDOc2DvWCHDo
-   KmKjouJewl8WiidNeBnuupAH8fXRaawNUtRPGJrk9JNVdxQrXGtLMNIOV
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="244810465"
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; 
-   d="scan'208";a="244810465"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2022 06:09:51 -0700
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; 
-   d="scan'208";a="508401064"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2022 06:09:48 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nezEH-002KKY-Gu;
-        Thu, 14 Apr 2022 16:09:45 +0300
-Date:   Thu, 14 Apr 2022 16:09:45 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>
-Subject: Re: [PATCH v6 4/5] device property: Constify fwnode_handle_get()
-Message-ID: <YlgdGb/vKfdCXXx1@smile.fi.intel.com>
-References: <20220408184844.22829-1-andriy.shevchenko@linux.intel.com>
- <20220408184844.22829-4-andriy.shevchenko@linux.intel.com>
- <CAJZ5v0jnyg6n-1QRmVg1tjzu3szsG3DYqYTXAbobbKwkFhTreg@mail.gmail.com>
- <YlcUMNe5gDsEca4f@smile.fi.intel.com>
- <YlcVFRQ9wJIH+sjI@smile.fi.intel.com>
- <YldE6L7MbgS0NXQY@paasikivi.fi.intel.com>
+        with ESMTP id S244147AbiDNNWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:22:33 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3277D986CF;
+        Thu, 14 Apr 2022 06:17:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649942274; x=1681478274;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=9DrEjC40Tj4WgLi+0EQZfgUYf1059TdFj1Rn7P1f4VM=;
+  b=H0GHhuwulA+VW7EAl6AgQh+EuQ9veN7EIAqRw5445uDY3RxxUSx8USNr
+   xCzoRmp7Wc3g0CtuEYPT0okxPEwkny+Ww1I6rpfX0SFdnD4Mj5viUChrQ
+   d4rjW9kv/ZWn0gPlJTtiG4gMqxmrbY6KD7+8lRwD5NOblTDOGubIgLzGb
+   Y=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 14 Apr 2022 06:17:54 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2022 06:17:53 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 14 Apr 2022 06:17:53 -0700
+Received: from [10.216.51.243] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 14 Apr
+ 2022 06:17:48 -0700
+Message-ID: <b03ae0d0-070c-fb74-e272-4901fd085008@quicinc.com>
+Date:   Thu, 14 Apr 2022 18:47:45 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YldE6L7MbgS0NXQY@paasikivi.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v9 2/2] arm64: dts: qcom: sc7280: add lpass lpi pin
+ controller node
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1649861047-7811-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649861047-7811-3-git-send-email-quic_srivasam@quicinc.com>
+ <YlcHhhFLcryXqxEC@google.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <YlcHhhFLcryXqxEC@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 12:47:20AM +0300, Sakari Ailus wrote:
-> On Wed, Apr 13, 2022 at 09:23:17PM +0300, Andy Shevchenko wrote:
-> > On Wed, Apr 13, 2022 at 09:19:28PM +0300, Andy Shevchenko wrote:
-> > > On Wed, Apr 13, 2022 at 08:10:22PM +0200, Rafael J. Wysocki wrote:
-> > > > On Fri, Apr 8, 2022 at 8:49 PM Andy Shevchenko
-> > > > <andriy.shevchenko@linux.intel.com> wrote:
 
-...
-
-> > > > > -struct fwnode_handle *fwnode_handle_get(struct fwnode_handle *fwnode)
-> > > > > +struct fwnode_handle *fwnode_handle_get(const struct fwnode_handle *fwnode)
-> > > > >  {
-> > > 
-> > > > >         if (!fwnode_has_op(fwnode, get))
-> > > > >                 return fwnode;
-> > > 
-> > > ^^^^, so it needs a casting, but then we have to comment why is so.
-> > 
-> > Note, it means that the fwnode parameter either invalid or has no given option.
-> > It's not a problem to drop casting in the first case, but the second one should
-> > be justified and Sakari wants to be sure that the initial container is not
-> > const, which seems can't be achieved even with the original code.
-> 
-> I wonder if I'm missing something. The fwnode argument originally was not
-> const here.
-
-Yes, and our discussion went to the direction of what const qualifier implies
-here. I assume that the const means that we do not modify the fwnode object,
-while its container is another story which we have no influence on. You, if
-I read your messages correctly, insisting that const here implies that the
-container object is const as well.
-
-Reading current implementation I see now, that with children APIs we have
-two pointers passed, while with parent APIs only a single one. In children
-API due to above is easy to use const qualifier for the first argument.
-Parent APIs missed that and hence have this problem that we can't constify
-their parameters.
-
-to_of_node() expects const parameter while returns non-const container.
-Is it a subtle issue there? (I believe it should be consistent then)
-
-This patch and the followed one can be moved without understanding why
-we need the non-const parameter there.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+On 4/13/2022 10:55 PM, Matthias Kaehlcke wrote:
+Thanks for your time Matthias!!!
+> On Wed, Apr 13, 2022 at 08:14:07PM +0530, Srinivasa Rao Mandadapu wrote:
+>> Add LPASS LPI pinctrl node required for Audio functionality on sc7280
+>> based platforms.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  84 ++++++++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi     | 107 +++++++++++++++++++++++++++++++
+>>   2 files changed, 191 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 6e6cfeda..50fea0e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -1987,6 +1987,113 @@
+>>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>>   		};
+>>   
+>> +		lpass_tlmm: pinctrl@33c0000 {
+>> +			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
+>> +			reg = <0 0x033c0000 0x0 0x20000>,
+>> +				<0 0x03550000 0x0 0x10000>;
+>> +			gpio-controller;
+>> +			#gpio-cells = <2>;
+>> +			gpio-ranges = <&lpass_tlmm 0 0 15>;
+>> +
+>> +			#clock-cells = <1>;
+>> +
+>> +			lpass_dmic01: lpass-dmic01 {
+> For the node names the 'lpass-' prefix is redundant as you remarked
+> earlier, since they are inside the 'lpass_tlmm' node. It's only useful
+> for the labels, which can be used in other .dts[i] files where the
+> context might not be evident.
+Okay. will do accordingly.
