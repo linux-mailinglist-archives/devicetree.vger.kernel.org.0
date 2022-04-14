@@ -2,136 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8275F50156B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:41:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8025E50138A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232165AbiDNOGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 10:06:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58632 "EHLO
+        id S244677AbiDNOG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 10:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345131AbiDNNpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:45:11 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 502D8140DE;
-        Thu, 14 Apr 2022 06:42:45 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 047581BF20C;
-        Thu, 14 Apr 2022 13:42:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649943763;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=uf/NUgWHuhWSypo4uHHoAgWnaBAtZS72tioBfXir5rw=;
-        b=RH9+J969PE/jWaLdsCV+Jg1ttNMgnWmL2DqDCmlGulbszBjD9NE52I2J8RVKtHvaLsECs9
-        S8j67gnG0CdrH/urV5Uw8cdGR4XfehozZgFSA6Eg7ukBmemeWcBtEsm45Q6wloI5KV7rbX
-        Fy1xTIHQyDpWpZ7/AthMJAEHBuy4ptwTA4uoeVdplikQzQx5jG5FeLj+uPWcStSohLc28N
-        KAAWjoFcxPN+HmjvfAAD+dE+5eo8GyyKzsL/4WqsfD4BjmhB6//KozDJPHWWWcoYawa3FI
-        wwZPzGot1uDZ4YL894ldPzkehTWSGlL7VU3yYbmpYpXogF/aXiFowNMKUC6JKQ==
-Date:   Thu, 14 Apr 2022 15:42:32 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 1/8] PCI: rcar-gen2: Add support for clocks
-Message-ID: <20220414154232.098a4451@bootlin.com>
-In-Reply-To: <CAMuHMdUCvJ6rAwnV=w9iFqnm=c0U_BpGiYEw109shsrWAeUJCA@mail.gmail.com>
-References: <20220414074011.500533-1-herve.codina@bootlin.com>
-        <20220414074011.500533-2-herve.codina@bootlin.com>
-        <CAMuHMdW8q5AjDtTE83yVPfmgnQy02UgLSns33z06WMFBUULWEw@mail.gmail.com>
-        <20220414132534.35467781@bootlin.com>
-        <CAMuHMdUCvJ6rAwnV=w9iFqnm=c0U_BpGiYEw109shsrWAeUJCA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
+        with ESMTP id S1345413AbiDNNuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:50:12 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAA9A66CB
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 06:44:06 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso3209162wml.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 06:44:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=MtBAJnFEqMmsR8zChqlpd88AeYKbytaIa73T69IiwUs=;
+        b=zG6wTndHYS5H3tj7P7Bm1rx0CqJYlfJmM5pgzaPIMlvAEVzBVL0MAs2bND/+R/2S1n
+         eJs/hGE/I5yMx9SP/qjEmG9UYXyOX1Hd/C1eMJkpuKCfrxhbgNGN1jPbRsTIOV/0n8JE
+         279GaGFcnFb37GV+6K1GHFfSR8XxRPFwbir2lOHXS2DqAvTN0qbvD2JG9IR/U8/hjspf
+         9EMx8Ce10GhoIvzrmlXkcfJeEQ9hV1bjDl+IfmvPzQV+KAMxPb8ZLOwyEH7TLDbY0mGy
+         GDLAdgEG9FNTPuZQ4PaO/ZStnPgN0lDGkwv9GIGwY9N8+bZ7U2AnnXHZwpN9cF3v8pRF
+         mM3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MtBAJnFEqMmsR8zChqlpd88AeYKbytaIa73T69IiwUs=;
+        b=EauntO3nhNoXhDRXTRFiiEKs3og/E8LpxjvfqN7MJb8TJK23xSLTTT48ZEk0805m7l
+         f7SHuDRQH7hrPsqMDwy0kTXTIblnhqr2giLSoDf31dSXdNBEb17m1ovxlfPbA6wsrrdk
+         kfvURnqfJf2UmANCW6CG0X0rZPsdveFRFwTb24hf/Bb8yTyWTWdkCXkqAVRZm35/Qr0d
+         zmY8msEZE8QJNveE2c0pMPHri1r4Ns4Ru8TjNCNcuJnz1hYtwy3Xkon5qikNCsiWRqm6
+         KN8+1bUUMFhNtuB7PPl0tO1tRFP7N0Cq8bsCFDaWKgovACS+clYH/3rohZg9xl7DKC2j
+         QOtQ==
+X-Gm-Message-State: AOAM532LAD2sLP9W29w0q+rLwCRRg5VXMWrLDvGU2cyySiP1NPTJfDv0
+        E21K2NIf9W+qAtRvHkIEm3EPeQ==
+X-Google-Smtp-Source: ABdhPJzfwQRFFqzeBVonENZunrSC8oNdYnabR9Z/zXNGMJBliuJyVGpaPPv+1R7Z/PmS0p8U+aXhJw==
+X-Received: by 2002:a05:600c:2113:b0:38e:bc71:2b0 with SMTP id u19-20020a05600c211300b0038ebc7102b0mr3168107wml.153.1649943844444;
+        Thu, 14 Apr 2022 06:44:04 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id 7-20020a05600c024700b0038ec0c4a2e7sm5445783wmj.11.2022.04.14.06.44.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 06:44:03 -0700 (PDT)
+Message-ID: <39cae749-67ef-13d7-2648-01c6e9603887@linaro.org>
+Date:   Thu, 14 Apr 2022 14:44:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v3 2/2] media: i2c: imx412: Add bulk regulator support
+Content-Language: en-US
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robert.foss@linaro.org, hfink@snap.com,
+        jgrahsl@snap.com, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+References: <20220414124505.1329295-1-bryan.odonoghue@linaro.org>
+ <20220414124505.1329295-3-bryan.odonoghue@linaro.org>
+ <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Thu, 14 Apr 2022 13:48:22 +0200
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-
-> Hi Herv=C3=A9,
->=20
-> On Thu, Apr 14, 2022 at 1:29 PM Herve Codina <herve.codina@bootlin.com> w=
-rote:
-> > On Thu, 14 Apr 2022 10:45:54 +0200
-> > Geert Uytterhoeven <geert@linux-m68k.org> wrote: =20
-> > > On Thu, Apr 14, 2022 at 9:40 AM Herve Codina <herve.codina@bootlin.co=
-m> wrote: =20
-> > > > The PCI rcar-gen2 does not call any clk_prepare_enable(). =20
-> > >
-> > > Correct, this driver manages the clocks indirectly through Runtime PM.
-> > > =20
-> > > > This lead to an access failure when the driver tries to access
-> > > > the IP (at least on a RZ/N1D platform). =20
-> > >
-> > > I expect adding
-> > >
-> > >     power-domans =3D <&sysctrl>;
-> > >
-> > > to the pci_usb node makes this patch redundant. =20
-> >
-> > Seems not enough.
-> > I tried what you suggest :
-> >  - Added 'power-domains =3D <&systrl>;' to the pci_usb node
-> >  - Added missing '#power-domain-cells =3D <0>;' to sysctrl node
-> >  - Reverted my patch.
-> >
-> > The system crashed at boot: =20
->=20
-> > [    0.832958] Unhandled fault: external abort on non-linefetch (0x1008=
-) at 0x90b5f848 =20
->=20
-> That's indeed a typical symptom of accessing a module's registers
-> while the module's clock is disabled.
->=20
-> > I also added a trace printk in r9a06g032-clocks.c and
-> > r9a06g032_attach_dev() was never called.
-> >
-> > Did I miss to set something ? =20
->=20
-> Do you have CONFIG_PM and CONFIG_PM_GENERIC_DOMAINS
-> enabled?
-> Apparently ARCH_RZN1 does not select these options yet.
->=20
-
-Thanks a lot for pointing this.
-
-I added select CONFIG_PM and CONFIG_PM_GENERIC_DOMAINS
-in ARCH_RZN1 and it works.
-
-I will remove my patch calling clk_bulk_prepare_enable() and
-add some new patches to enable power domains in the v3 series.
-
-Regards,
-Herv=C3=A9
-
+On 14/04/2022 14:00, Sakari Ailus wrote:
+>>   	ret = clk_prepare_enable(imx412->inclk);
+>>   	if (ret) {
+>> +		regulator_bulk_disable(imx412->num_supplies,
+>> +				       imx412->supplies);
+> As the function already has an error handling section using labels, this
+> should go there as well.
+> 
+Are you asking to move regulator_bulk_disable() to error_reset ?
