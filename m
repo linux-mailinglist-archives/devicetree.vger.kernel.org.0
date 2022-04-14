@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C649500C2F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 13:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B69C6500C41
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 13:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbiDNLc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 07:32:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53344 "EHLO
+        id S233724AbiDNLlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 07:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbiDNLc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 07:32:56 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766473B554;
-        Thu, 14 Apr 2022 04:30:28 -0700 (PDT)
-X-UUID: 07e456226ac141088f6f5809255d7a44-20220414
-X-UUID: 07e456226ac141088f6f5809255d7a44-20220414
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1569299293; Thu, 14 Apr 2022 19:30:22 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 14 Apr 2022 19:30:21 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 Apr
- 2022 19:30:20 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 14 Apr 2022 19:30:20 +0800
-Message-ID: <4374e31115bbcbd783003cd5c648163a1f4ff0d1.camel@mediatek.com>
-Subject: Re: [PATCH V2 11/15] cpufreq: mediatek: Update logic of
- voltage_tracking()
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Kevin Hilman <khilman@baylibre.com>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-CC:     <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
-        <roger.lu@mediatek.com>, <hsinyi@google.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 14 Apr 2022 19:30:20 +0800
-In-Reply-To: <7hczhr5lm3.fsf@baylibre.com>
-References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
-         <20220408045908.21671-12-rex-bc.chen@mediatek.com>
-         <7hczhr5lm3.fsf@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231670AbiDNLlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 07:41:02 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A775005C;
+        Thu, 14 Apr 2022 04:38:38 -0700 (PDT)
+Received: from zn.tnic (p2e55d808.dip0.t-ipconnect.de [46.85.216.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 6EAE91EC05ED;
+        Thu, 14 Apr 2022 13:38:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1649936312;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=0Hl05umU2syxAI+1OIMnnkGsv+ehYVJTrPIGPjL6hfE=;
+        b=XVXbnfJ7zMO83ctVjsYBJutLwMcdmE66nOizpvn6CdwJWKxcCbYEYRMHy61F8Z/tQwqbiK
+        5YnPdUN4xefU0lNQehzIs2bZ/v/MFQEJtYESwPsubHOugm18JRodamHRqSh0CV2l6rOK8q
+        kT8o6AyOrETt43BN/3RN/GzHz0MDnFo=
+Date:   Thu, 14 Apr 2022 13:38:32 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     Medad Young <medadyoung@gmail.com>, rric@kernel.org,
+        James Morse <james.morse@arm.com>, tony.luck@intel.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+Message-ID: <YlgHuFIsEl8yvUxV@zn.tnic>
+References: <20220322030152.19018-1-ctcchien@nuvoton.com>
+ <20220322030152.19018-4-ctcchien@nuvoton.com>
+ <a06441fc-85cf-9386-e362-4a90e855aa19@molgen.mpg.de>
+ <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
+ <YlfeXVSkUC2B4xH2@zn.tnic>
+ <14d07709-07ef-21a8-ad74-0f56447cf6dd@molgen.mpg.de>
+ <Ylf0Sc7fqv25Ay05@zn.tnic>
+ <c77b6667-25ff-70c4-2312-9262d88b1859@molgen.mpg.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c77b6667-25ff-70c4-2312-9262d88b1859@molgen.mpg.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-04-08 at 14:08 -0700, Kevin Hilman wrote:
-> Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
-> 
-> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> > 
-> > - Remove VOLT_TOL because CCI may share the same sram and vproc
-> >   regulators with CPU. Therefore, set the max voltage in
-> >   regulator_set_voltage() to the proc{sram}_max_volt.
-> 
-> This could you a bit more detailed explanation.  Why does VOLT_TOL
-> get
-> in the way when regulators are shared between CPU & CCI?
+On Thu, Apr 14, 2022 at 12:44:13PM +0200, Paul Menzel wrote:
+> I am all for more elaborate log messages, but have the feeling, you think I
+> am not? Where does the misunderstanding come from?
 
-Hello Kevin,
+I don't know. Judging by this reply of yours, the misunderstanding is
+considerable.
 
-Here we use 'sram_min_volt' and 'sram_max_volt' to determine the
-voltage boundary of sram regulator.
-And use (sram_min_volt - min_volt_shift) and 'proc_max_volt' to
-determine the voltage boundary of vproc regulator.
-We use them as platform data to replace VOLT_TOL (voltage tolerance)
-when determing the voltage boundary and invoking regulator_set_voltage.
+So I'm going to ask you nicely: for the future and for the code I
+maintain, please try hard not to confuse submitters.
 
-I will add this to commit message in next version.
+Thanks!
 
-> 
-> > - Move comparison of new and old voltages to
-> >   mtk_cpufreq_voltage_tracking().
-> 
-> Why?  And how is this related to the above change?  Seems to me that
-> it
-> belongs in a separate patch.
-> 
-> Kevin
+-- 
+Regards/Gruss,
+    Boris.
 
-I think there are some mistake for this.
-I will remove this commit message in next version.
-
-BRs,
-Rex
-
+https://people.kernel.org/tglx/notes-about-netiquette
