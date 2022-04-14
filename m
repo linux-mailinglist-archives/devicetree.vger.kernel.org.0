@@ -2,84 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FBD2500478
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 04:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E7050048D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 05:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233268AbiDNC6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 22:58:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39266 "EHLO
+        id S233939AbiDNDNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 23:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232667AbiDNC6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 22:58:43 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 614AD1B7B9
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 19:56:19 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 813CB8005D;
-        Thu, 14 Apr 2022 04:56:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1649904976;
-        bh=L/YTxbbuCa3z2i2ikZPjgb7/9DKYZ/fTUdjk9LFeHyM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fDgWJpZhPLBWn03F1RZO2+kzbiM/6F5OqH4a38QlDQQwHWDs3ZgDRLcX6eKyrN+TC
-         JHXpUigUIbFhl26fD/Y+mTSRLN+3xwLunbkVqEW1AC9FuBrTdCAFrEt6kXjUm1BOAa
-         1ufIRZtawKuUCChgIpOTW9rWpi2w9pw2QaZFMqIIUuxoHfETJ+usJUn4NtJ3uYNcBC
-         FcwOgPbN793Mg7dG1u/J/x1FdGimmtnOy3IgWcY1N/SF3k72gJe1lIxTxTqEK9x7Ae
-         O6NnI4YI5fj0Vm0Dld6uVoaRh95zEZerPYkOwezEAEgZCSOBcWEz84gD3sKElbD3n9
-         uKtjn/VWL2S0A==
+        with ESMTP id S239672AbiDNDNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 23:13:52 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886BE377F8;
+        Wed, 13 Apr 2022 20:11:28 -0700 (PDT)
+X-UUID: 750af9d05ecc4b85b9ebdc41c75ac785-20220414
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:b937fe5a-2ed4-43cb-bd44-5af024acbb39,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:80
+X-CID-INFO: VERSION:1.1.4,REQID:b937fe5a-2ed4-43cb-bd44-5af024acbb39,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:80
+X-CID-META: VersionHash:faefae9,CLOUDID:b1f615a9-d103-4e36-82b9-b0e86991b3df,C
+        OID:7f4f53e1987f,Recheck:0,SF:13|15|28|16|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: 750af9d05ecc4b85b9ebdc41c75ac785-20220414
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 224678600; Thu, 14 Apr 2022 11:11:22 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 14 Apr 2022 11:11:21 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 14 Apr 2022 11:11:21 +0800
+Message-ID: <69dd1710a7f1c1715e079ece159fc527c7fecb4c.camel@mediatek.com>
+Subject: Re: [PATCH v18 02/10] dt-bindings: arm: mediatek: mmsys: add mt8195
+ SoC binding
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Fabien Parent <fparent@baylibre.com>,
+        CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?= 
+        <ck.hu@mediatek.com>,
+        "Rex-BC Chen =?UTF-8?Q?=28=E9=99=B3=E6=9F=8F=E8=BE=B0=29?=" 
+        <Rex-BC.Chen@mediatek.com>,
+        Yongqiang Niu =?UTF-8?Q?=28=E7=89=9B=E6=B0=B8=E5=BC=BA=29?= 
+        <yongqiang.niu@mediatek.com>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "fshao@chromium.org" <fshao@chromium.org>,
+        Moudy Ho =?UTF-8?Q?=28=E4=BD=95=E5=AE=97=E5=8E=9F=29?= 
+        <Moudy.Ho@mediatek.com>,
+        Roy-CW Yeh =?UTF-8?Q?=28=E8=91=89=E4=B8=AD=E7=91=8B=29?= 
+        <Roy-CW.Yeh@mediatek.com>,
+        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
+        <Nancy.Lin@mediatek.com>,
+        Singo Chang =?UTF-8?Q?=28=E5=BC=B5=E8=88=88=E5=9C=8B=29?= 
+        <Singo.Chang@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 14 Apr 2022 11:11:21 +0800
+In-Reply-To: <20220412103114.19922-3-jason-jh.lin@mediatek.com>
+References: <20220412103114.19922-1-jason-jh.lin@mediatek.com>
+         <20220412103114.19922-3-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 13 Apr 2022 23:56:16 -0300
-From:   Fabio Estevam <festevam@denx.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
- based Menlo board
-In-Reply-To: <20220414001237.280866-1-marex@denx.de>
-References: <20220414001237.280866-1-marex@denx.de>
-Message-ID: <6e92716836b87312818c00e0caa90c0e@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hello Rob, Krzysztof,
 
-On 13/04/2022 21:12, Marek Vasut wrote:
-> Add DT compatible string for board based on the Toradex Verdin iMX8M
-> Mini SoM, the MX8Menlo. The board is a compatible replacement for
-> i.MX53 M53Menlo and features USB, multiple UARTs, ethernet, LEDs,
-> SD and eMMC.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Fabio Estevam <festevam@denx.de>
-> Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: devicetree@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
+I found the dt-binding patches in this series never appeared in
+devicetree-bindings patchwork and trigger the dt-binding check bot.
 
-Reviewed-by: Fabio Estevam <festevam@denx.de>
+Do you know the reason for this?
+Could you help me with this and let me know what should I do to solve
+this problem?
+
+Thanks.
+
+Regards,
+Jason-JH.Lin
+
