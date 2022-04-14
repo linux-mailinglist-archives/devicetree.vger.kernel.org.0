@@ -2,594 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4265006A7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C595B5006B6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240267AbiDNHMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:12:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37888 "EHLO
+        id S236285AbiDNHOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:14:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240262AbiDNHMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:12:01 -0400
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30078.outbound.protection.outlook.com [40.107.3.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7ECAB84B;
-        Thu, 14 Apr 2022 00:09:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pr5uYfoSaBf1QdByodfh/vfKeIxcsNTjf6rQiJAWogrL7Her0Im/omOONJAYF59ncS3TKFkDa60i8TjutvQDdF74iK7H4U5BWDzHRBOcdM37yW0Lvccz6V283T/9XfTxntcTCdpF0VvavxoiX5ApNvf/sgWl4sorww+xup5d4PouUGlkNj7thcFcW8YUo2FaFSqNUqmNY0bPYRs5BczSjKWgKyGDLJEJrpne+9kyhyhsQqCuwpnDJEigBcP//+ftRgmOKdLf4GKCSac6p4bGlMYhucqCeJnILefaTj+uBp/HZyStjbKvnjuzPPeayH4EhxU3oLuwEXnBRp/sbVDF4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0L4vMIUf1mDanswpJo8fhPsQYyiOeSJQ+w6SBa7SJpo=;
- b=jqo7KkJ0TLJ/Dny2WltxeGKYw8BXpGUlHU24ZvpYUy5K2x2MmEYw1yrPyDMB8zBizKvwfg0FRjOOqXj0nMX1XK5hGIMMETSIBeONn5jgK/q0jkHHwjjNgP5buX0EFPHDsSnnnZuuDty7gGsRZTosB9PUTl2hknNNin402u29lUCbrALFj4dUxhxP68Mn5bCjNkKqy9fCDqOcWXnhf6zR1GRmc7EOWg62TDc4WFWgmGje8uiHvH4Am3opwRliGoKdYlHMaaepMDat5J2gZxucwb0VefVTTIdH1N2amG/4KSm8q47/nPAFkbeiohWm183MIfc0SziWehSk1DX/PwHWmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0L4vMIUf1mDanswpJo8fhPsQYyiOeSJQ+w6SBa7SJpo=;
- b=f0CJA6bzdNcM4Ct7ZC5N1RXly0heC5qZZ0LA6b3mTdaAOuwhslHEXrMSjJSwpoQX+ZMGoMtk/UjymuN/WjuXO+O2q0jjLFtF4N/DCESV4jtkAWjuWYXAUoUL42TbFjR+WRiIDPcD/csA6t1Zf5rJmA9hLsZWGppVJtUWtEmvclU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AM5PR04MB3027.eurprd04.prod.outlook.com (2603:10a6:206:b::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Thu, 14 Apr
- 2022 07:09:32 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::b09c:8ffe:8e02:7387]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::b09c:8ffe:8e02:7387%9]) with mapi id 15.20.5164.018; Thu, 14 Apr 2022
- 07:09:31 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, andrzej.hajda@intel.com,
-        narmstrong@baylibre.com, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
-        robert.chiras@nxp.com, martin.kepplinger@puri.sm
-Subject: [PATCH v8 5/5] phy: freescale: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode support
-Date:   Thu, 14 Apr 2022 15:10:39 +0800
-Message-Id: <20220414071039.423271-6-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220414071039.423271-1-victor.liu@nxp.com>
-References: <20220414071039.423271-1-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR06CA0005.apcprd06.prod.outlook.com
- (2603:1096:4:186::12) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+        with ESMTP id S229875AbiDNHOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:14:43 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37FA1FA65
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:12:18 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id w4so5596773wrg.12
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dCJ1KboKpQ4PJ5jQsLTtGQGQXlAWxcagYMhUrW9HAic=;
+        b=oJ17x9e47tqvew1pe+2e6aGlgBDU8Tkricf6mjcdYk74yZUlzrEvYfFoG69wM6CmR5
+         rYr3+oQXjyzokgt4YMmdeEhi63lw3b6VytJg+D7DE/hdkzkzWMur2GYuS9QpXU9yCDOQ
+         kYNrCDoEdV/KmtfNk5aOYFPgGao14Epbgm1F/giK5mtQ8NUsLIInmlfonFUwDB9hHzeb
+         mQaMTNZ61gNjmyAjruRQXik9uXhwaTOtrenGYTPAdbEmY4+7kd3NC0uoiqc8dwpwQrgL
+         nIeaNAIJsFETj3YdF9uahTZJnooBMgBmw3D7UMbBX6ZHtWUq8zYXtn3Y8RJVahW6mPQQ
+         qvWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dCJ1KboKpQ4PJ5jQsLTtGQGQXlAWxcagYMhUrW9HAic=;
+        b=aGe8ldsc6VFEKvJOxwCsxQoLe0a6Yn+/iqpJeJHnEuJ26TCnHcSV4S7ExE8hD3lQHu
+         sfbOJWBR+YH5LYAtka5DcWkzm9OiNMUVS+cKd6yuGwN0SFP5Y0l9ZfLCh3QnEyHciM+K
+         NrR7z6jFlypiWkqs/C03GdGj6IZ+B4E+DObL3zJ14v9Psq3O9RelmnDmpLmM+ClUkUuI
+         qIuCQl3g1zc/E6/+k9RAWOJtMGuRgETtgdqwnZvAeFQ5H56iVwcTxMAE1o4+6NZc8EmI
+         Iuo15FopAK3OkeV7CngbLuZ3XRo3XyYOH7BWU8K8b8DrUCzdh5QGmC1PwGB+6EqAvle1
+         ij2Q==
+X-Gm-Message-State: AOAM531vXlS5MNB8ZC++UE18k5cUtHyACIW2UW6mrG28dVQgXBeptkxy
+        Z/78HMcLD2b/olRAJ8smY4bHRg==
+X-Google-Smtp-Source: ABdhPJz2T3ggR3EfQcyK8DZzQ70TOwRDF0jFwIKD4Leh6qiISJ4TwbdD+/EurpSgsibrMvFkRCc6nw==
+X-Received: by 2002:adf:d1e2:0:b0:204:1a8c:7498 with SMTP id g2-20020adfd1e2000000b002041a8c7498mr979932wrd.530.1649920337169;
+        Thu, 14 Apr 2022 00:12:17 -0700 (PDT)
+Received: from [192.168.1.41] (176-182-171-101.abo.bbox.fr. [176.182.171.101])
+        by smtp.googlemail.com with ESMTPSA id j16-20020a05600c191000b0038ca3500494sm6267917wmq.27.2022.04.14.00.12.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Apr 2022 00:12:16 -0700 (PDT)
+Message-ID: <5ddeb940-670f-2eda-6ba0-567c28406a61@linaro.org>
+Date:   Thu, 14 Apr 2022 09:12:14 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4231c9ce-e569-4f99-c831-08da1de5b917
-X-MS-TrafficTypeDiagnostic: AM5PR04MB3027:EE_
-X-Microsoft-Antispam-PRVS: <AM5PR04MB30279075F6FD164BA8483A7A98EF9@AM5PR04MB3027.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 71+iB3LFxeml02siSB9JJMbxXqAcA7flVoLuhYqItQX8IsTSSC67j/4123JW2cDYEhAqQdnAa5IFML32wr6Xy7MhGrmyHNGzLU08G8xf4SexaOQ83FD+c8XH43URpVx9bOPX2PwaeWlkJRhDtJ04NTYO0QCPpfgLBZwAE51qeRojyks4/Zb8VDcMOFNf8/PcLW2bY0qC3ab/8azTYFheR5sI1EUJl150g1l5BRw0D5KL8BdIarPp4TBlfGF1kKd4EQUg8OKDjowhi+mZHJXlhJ1YxbzMcHDtQmFw+ioZal9aTinUrveRk2Hv86o2IwbCCjBGlPoKpmLYeLhIMAwrBvipDn9qaMW4rNymRB4ZXchgNmmt/HbMHtRHrubulebTsJsgqAEWxHMCkq/xJXPFwB1IvhcHgdUf33CJOEIJHj4gkAAqTGZW0cDQoFy+ZJypQGnkPYPy6deHVi6zcm7Vjn6qj/l+1rozr0oiNPyQePhW5alc2xEidA+wWqRDoTJ4vdu+wrpD4oiKRRCVOR5H6zTicCKNFtyrD3sVLC8eJE+JDBX3CRDsM8f6/DYGifcX3nTqr4W/+kOwJYM8N1101V/KgZWBqvH3cOkpPsyVWI/yDsA4Ky7CTMrzbHA5b7Csf/P0kmWvujwg2OM/LydUwygUHC1mdmM3gg6MfRXd4ArqmferDW00W7Y0Y34Uxb+Q3lbDJUVtETA6c7mG95AvcA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(316002)(8936002)(7416002)(66476007)(4326008)(508600001)(8676002)(66946007)(36756003)(38100700002)(38350700002)(66556008)(6486002)(83380400001)(52116002)(5660300002)(6512007)(2616005)(26005)(66574015)(30864003)(186003)(86362001)(6506007)(1076003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b0pqVG1ta2FybndhTzNQeXRjdkxDNVFYYk11Tk9KSTN6V3BDN1l2UW0xR01U?=
- =?utf-8?B?a1lMakp5enowRUFVWjRzOUF3ellFWlVNdlp4VTFzbkk4UlRJUTA5dXQvVnY3?=
- =?utf-8?B?UzZCODZQaHFlTW1ZNUZDMUhVbHR0SzZZclFVRjVtbzRhanlwY2lyNDZXUE43?=
- =?utf-8?B?Y2JONEJhQmdjcm9Kcmd0YURwbm02NjZRaG1rd3kvZVcrWERCU1RoMlg4V2o3?=
- =?utf-8?B?ZWppWldPU3BRdmxqTDNBZDRzWHN5REgyaXhvSEQ4MHMyNnVSS3VkVGl6RFN4?=
- =?utf-8?B?SUtvUWoyUFJCWGxxZUh4SDJhZTJKTDZIcEI2ZG5NV0l1VXljNTFBUXZyZmhX?=
- =?utf-8?B?ZmFhUHBRQjh0UG5YZExERXdBeVNIdUFvNXdCUUlJaFVsSVMzczd6MlZqdzhH?=
- =?utf-8?B?Ry9tUm1MSzRGcVQ2SzB1WFUxT3MvNDdHN0RyMXg4K05qYktoTk1laE5Ya0tl?=
- =?utf-8?B?VlZJMEVVMm1UQ1RPQ1RjVUtzK0x0UnZuQzRaR01BVEhiZVZPa3VOcHVwMVhO?=
- =?utf-8?B?QXR4UGFzME1Sb3hRa3pxME1xc1hqblNWWkRzWWVkUXY3NGM1YUhzVmYvNFZO?=
- =?utf-8?B?LytlSGdWWkx0YnlLQjhQd29HaWZpY0k0WmNydnFIczZzSDRRZVllckpXcG5H?=
- =?utf-8?B?Mk9iRGNyU2F2VnNQRUdhOG5sRTJSeEpxNGFkNWRhZDJQUTlpMDY4Ny9aU1VM?=
- =?utf-8?B?cE1iK3RsL25FbkR1OFd5bzd0NFJKVjhvTEFjVUZBK0xnaUpNQWtmd3czQ0xM?=
- =?utf-8?B?a01ySnRPcUhiTzAzTUgwbWduMnNoYkdwVWdsL203MUZWUFVMVFRTY0MzK1Ba?=
- =?utf-8?B?aFVSVktONzh2VW91dkQvdTRXdG5sa1BRMHNXWHZXVFBBdzFOVDZzRkgwRk9S?=
- =?utf-8?B?TzY1Y2JKMHlJVXNVRlFDQm1aby9Fb1BYOS9ZZVJRS2M0OHR6QVZVMDJNNTJI?=
- =?utf-8?B?TWJlSFo4c2lJeUJkMEFMOW5Ccm5ubnJkOUtveUtwQUpqNi9hb3NSd25sanJH?=
- =?utf-8?B?WGhwMGtjT3FLbWE2OWNuMjJXL2NEMW9RcEdYVGxhR1hvSGlqL3dwcWU1WlJF?=
- =?utf-8?B?WHE3ZTAxQUJHa0hGRTVXTkJMLy9xemNqVHY0WVlkMDRqbEx1M0prdWFZV0ZG?=
- =?utf-8?B?UG5vSW5RN1BHTjdwTFRBUjMwSE1obmp3L1FKSm4xRnVEbzhzVVRYdWYzZ1NB?=
- =?utf-8?B?UHMwcVltU1lYWnpqblZzVEhuZ1R4Yjdya1RNcU1yb0NuNlV5aVNIdkg2ME01?=
- =?utf-8?B?M0pCM2pWY2FjbWFtQldIRGovWWw4Wm9uQU1heDBsU0ZIVnhwNXhYMDBDQjQw?=
- =?utf-8?B?aHZWOTR1Mkt6T3g0TTB1NUZqWndHOXNnK2dZNG9MMnZ5cFRpTnVLNVhSdVRy?=
- =?utf-8?B?cjlYV1JWMHNjMGJLZXM4SFNrN1praFJFdkhVUzBibktRcHZhemJaNGFnaWhi?=
- =?utf-8?B?cmEzdTRlaTZHd2VPQXpQM0hnYU8xd2ZOMU1PNVVMMVNldGFSaHVYYlBvc2tL?=
- =?utf-8?B?dklnaUduRlpiRUpJQll3dzNTYnU5RXB6NEo4eDZEaXJMSnF2ZXhWZ09xcndR?=
- =?utf-8?B?YS9PV0UvTm5Uc1VJQm45QU5DOUdZaXdlNG85c016eDNZMUFRQ3BlbS9GQVVU?=
- =?utf-8?B?ZUt2WmVScTRQaTNidjQremU1U2FiamhVTWhLY3VOTWJ2aWZRWlJwUDhFUzFi?=
- =?utf-8?B?MURLbmlBaVpzeXp2dStyK1JUaVpvU29OaVp5YjNKVzFLKzAwRk1VcFlIOTBM?=
- =?utf-8?B?QkRaRE94U0lLRThMdFpWR2pGUXJhcEpHMFN3aFR2VEs1TDhZKzFVb0VQZ2Fo?=
- =?utf-8?B?TXhxZ1FzaXlXZVdOUkFITGNQSnpVcTZkL0VybDRPSE5wVnhSSHBHK3FLaGNU?=
- =?utf-8?B?clZsWmRxK1F1SjF6cGIzZVg0T0JsYmNYVVNwSWVGd3VPY01SOEtpd0NRSFZ6?=
- =?utf-8?B?VzB4MTBNQTJhTnd0ejFZUHU1U1FJOURvb2RmdVhFZTNRNzlXbWpjenhIM3Z6?=
- =?utf-8?B?WWpGN0hiY05GTjdnbVNQVFNETm9JZVNvaGQ1ZUNWNmdybVkybHpTeCtXSVFa?=
- =?utf-8?B?Nm1uZzVsMStCU1ZhTXJ0ODJmN0grQ0krNzNKdUh6SjEzZ3hWdlJJblBQZHIy?=
- =?utf-8?B?Zmx1WGZONjBwMEE4aFBGMmNXMzlGVlV1VkJnODZZNFlkcVorWU1BTklJck4v?=
- =?utf-8?B?YTVWRFpDTXhpcktpTDJlQm5OK0Q0OW0xVzBPSmlHVStDdWVncG5DS1JPa2Rr?=
- =?utf-8?B?MWExYUdFUmFybVAwSVltVnZaVkFDRkI0YXVOWnZheVcxVWVWLzFDaVNpMVNP?=
- =?utf-8?B?ZUxabEM5MnhqOUlHdWc2dzFydm1JaVRkbzVpTTZqbHlYNTVWTWt6QT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4231c9ce-e569-4f99-c831-08da1de5b917
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 07:09:31.8905
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Oig5/gaXJnSAFwS/uQdpnU9GlM7Uj84eAFpdaF4NVwewUu/oUB8nCK4gPtZvg752AdEDpb6wTlFbvM8ojY0/kw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3027
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v7 1/2] thermal: Add thermal driver for Sunplus SP7021
+Content-Language: en-US
+To:     Li-hao Kuo <lhjeff911@gmail.com>, krzk@kernel.org,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com
+References: <cover.1649662002.git.lhjeff911@gmail.com>
+ <c59e0a5c53f055b7159bc896083538d1f8ac9ad8.1649662002.git.lhjeff911@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <c59e0a5c53f055b7159bc896083538d1f8ac9ad8.1649662002.git.lhjeff911@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8qxp SoC embeds a Mixel MIPI DPHY + LVDS PHY combo which supports
-either a MIPI DSI display or a LVDS display.  The PHY mode is controlled
-by SCU firmware and the driver would call a SCU firmware function to
-configure the PHY mode.  The single LVDS PHY has 4 data lanes to support
-a LVDS display.  Also, with a master LVDS PHY and a slave LVDS PHY, they
-may work together to support a LVDS display with 8 data lanes(usually, dual
-LVDS link display).  Note that this patch supports the LVDS PHY mode only
-for the i.MX8qxp Mixel combo PHY, i.e., the MIPI DPHY mode is yet to be
-supported, so for now error would be returned from ->set_mode() if MIPI
-DPHY mode is passed over to it for the combo PHY.
+On 11/04/2022 10:52, Li-hao Kuo wrote:
+> Add thermal driver for Sunplus SP7021.
 
-Cc: Guido Günther <agx@sigxcpu.org>
-Cc: Robert Chiras <robert.chiras@nxp.com>
-Cc: Kishon Vijay Abraham I <kishon@ti.com>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Reviewed-by: Guido Günther <agx@sigxcpu.org>
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v7->v8:
-* No change.
+Already asked previously : please give a more detailed description of 
+the sensor
 
-v6->v7:
-* Use marco instead of magic number for CCM and CA values.
-* Suppress 'checkpatch --strict' warnings.
-* Check !opts in mixel_dphy_configure().
+I've commented again this patch. There are some comments which are not 
+taken into account from my previous review on v4
 
-v5->v6:
-* No change.
 
-v4->v5:
-* No change.
+> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+> ---
+> Changes in v7:
+>   - Modify yaml file.
+> 
+>   MAINTAINERS                       |   6 ++
+>   drivers/thermal/Kconfig           |  10 +++
+>   drivers/thermal/Makefile          |   1 +
+>   drivers/thermal/sunplus_thermal.c | 139 ++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 156 insertions(+)
+>   create mode 100644 drivers/thermal/sunplus_thermal.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 61d9f11..307570c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18885,6 +18885,12 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+>   F:	drivers/spi/spi-sunplus-sp7021.c
+>   
+> +SUNPLUS THERMAL DRIVER
+> +M:	Li-hao Kuo <lhjeff911@gmail.com>
+> +L:	linux-pm@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/thermal/sunplus_thermal.c
+> +
+>   SUNPLUS UART DRIVER
+>   M:	Hammer Hsieh <hammerh0314@gmail.com>
+>   S:	Maintained
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index e37691e..66316c3 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -502,4 +502,14 @@ config KHADAS_MCU_FAN_THERMAL
+>   	  If you say yes here you get support for the FAN controlled
+>   	  by the Microcontroller found on the Khadas VIM boards.
+>   
+> +config SUNPLUS_THERMAL
+> +	tristate "Sunplus thermal drivers"
+> +	depends on SOC_SP7021 || COMPILE_TEST
+> +	help
+> +	  This the Sunplus SP7021 thermal driver, which supports the primitive
+> +	  temperature sensor embedded in Sunplus SP7021 SoC.
+> +
+> +	  If you have a Sunplus SP7021 platform say Y here and enable this option
+> +	  to have support for thermal management
+> +
+>   endif
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index f0c36a1..38a76f9 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -61,3 +61,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+>   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+>   obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
+>   obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
+> +obj-$(CONFIG_SUNPLUS_THERMAL)	+= sunplus_thermal.o
+> diff --git a/drivers/thermal/sunplus_thermal.c b/drivers/thermal/sunplus_thermal.c
+> new file mode 100644
+> index 0000000..9a9b348
+> --- /dev/null
+> +++ b/drivers/thermal/sunplus_thermal.c
+> @@ -0,0 +1,139 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Sunplus Inc.
+> + * Author: Li-hao Kuo <lhjeff911@gmail.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/thermal.h>
 
-v3->v4:
-* Add Guido's R-b tag.
+Already commented, check the headers above.
 
-v2->v3:
-* Improve readability of mixel_dphy_set_mode(). (Guido)
+> +#define DISABLE_THERMAL		(BIT(31) | BIT(15))
+> +#define ENABLE_THERMAL		BIT(31)
+> +#define SP_THERMAL_MASK		GENMASK(10, 0)
+> +#define SP_TCODE_HIGH_MASK	GENMASK(10, 8)
+> +#define SP_TCODE_LOW_MASK	GENMASK(7, 0)
+> +
+> +#define TEMP_RATE		608
+> +#define TEMP_BASE		3500
+> +#define TEMP_OTP_BASE		1518
+> +
+> +#define SP_THERMAL_CTL0_REG	0x0000
+> +#define SP_THERMAL_STS0_REG	0x0030
+> +
+> +/* common data structures */
+> +struct sp_thermal_data {
+> +	struct thermal_zone_device *pcb_tz;
 
-v1->v2:
-* Print invalid PHY mode in dmesg. (Guido)
+field not used outside of the function checking the return code of 
+sensor register
 
- .../phy/freescale/phy-fsl-imx8-mipi-dphy.c    | 276 +++++++++++++++++-
- 1 file changed, 265 insertions(+), 11 deletions(-)
+> +	struct platform_device *pdev;
 
-diff --git a/drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c b/drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
-index a95572b397ca..e625b32889bf 100644
---- a/drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
-@@ -4,17 +4,33 @@
-  * Copyright 2019 Purism SPC
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/delay.h>
-+#include <linux/firmware/imx/ipc.h>
-+#include <linux/firmware/imx/svc/misc.h>
- #include <linux/io.h>
- #include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_platform.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-+#include <dt-bindings/firmware/imx/rsrc.h>
-+
-+/* Control and Status Registers(CSR) */
-+#define PHY_CTRL			0x00
-+#define  CCM_MASK			GENMASK(7, 5)
-+#define  CCM(n)				FIELD_PREP(CCM_MASK, (n))
-+#define  CCM_1_2V			0x5
-+#define  CA_MASK			GENMASK(4, 2)
-+#define  CA_3_51MA			0x4
-+#define  CA(n)				FIELD_PREP(CA_MASK, (n))
-+#define  RFB				BIT(1)
-+#define  LVDS_EN			BIT(0)
- 
- /* DPHY registers */
- #define DPHY_PD_DPHY			0x00
-@@ -55,8 +71,15 @@
- #define PWR_ON	0
- #define PWR_OFF	1
- 
-+#define MIN_VCO_FREQ 640000000
-+#define MAX_VCO_FREQ 1500000000
-+
-+#define MIN_LVDS_REFCLK_FREQ 24000000
-+#define MAX_LVDS_REFCLK_FREQ 150000000
-+
- enum mixel_dphy_devtype {
- 	MIXEL_IMX8MQ,
-+	MIXEL_IMX8QXP,
- };
- 
- struct mixel_dphy_devdata {
-@@ -65,6 +88,7 @@ struct mixel_dphy_devdata {
- 	u8 reg_rxlprp;
- 	u8 reg_rxcdrp;
- 	u8 reg_rxhs_settle;
-+	bool is_combo;	/* MIPI DPHY and LVDS PHY combo */
- };
- 
- static const struct mixel_dphy_devdata mixel_dphy_devdata[] = {
-@@ -74,6 +98,10 @@ static const struct mixel_dphy_devdata mixel_dphy_devdata[] = {
- 		.reg_rxlprp = 0x40,
- 		.reg_rxcdrp = 0x44,
- 		.reg_rxhs_settle = 0x48,
-+		.is_combo = false,
-+	},
-+	[MIXEL_IMX8QXP] = {
-+		.is_combo = true,
- 	},
- };
- 
-@@ -95,8 +123,12 @@ struct mixel_dphy_cfg {
- struct mixel_dphy_priv {
- 	struct mixel_dphy_cfg cfg;
- 	struct regmap *regmap;
-+	struct regmap *lvds_regmap;
- 	struct clk *phy_ref_clk;
- 	const struct mixel_dphy_devdata *devdata;
-+	struct imx_sc_ipc *ipc_handle;
-+	bool is_slave;
-+	int id;
- };
- 
- static const struct regmap_config mixel_dphy_regmap_config = {
-@@ -317,7 +349,8 @@ static int mixel_dphy_set_pll_params(struct phy *phy)
- 	return 0;
- }
- 
--static int mixel_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-+static int
-+mixel_dphy_configure_mipi_dphy(struct phy *phy, union phy_configure_opts *opts)
- {
- 	struct mixel_dphy_priv *priv = phy_get_drvdata(phy);
- 	struct mixel_dphy_cfg cfg = { 0 };
-@@ -345,15 +378,126 @@ static int mixel_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
- 	return 0;
- }
- 
-+static int
-+mixel_dphy_configure_lvds_phy(struct phy *phy, union phy_configure_opts *opts)
-+{
-+	struct mixel_dphy_priv *priv = phy_get_drvdata(phy);
-+	struct phy_configure_opts_lvds *lvds_opts = &opts->lvds;
-+	unsigned long data_rate;
-+	unsigned long fvco;
-+	u32 rsc;
-+	u32 co;
-+	int ret;
-+
-+	priv->is_slave = lvds_opts->is_slave;
-+
-+	/* LVDS interface pins */
-+	regmap_write(priv->lvds_regmap, PHY_CTRL,
-+		     CCM(CCM_1_2V) | CA(CA_3_51MA) | RFB);
-+
-+	/* enable MODE8 only for slave LVDS PHY */
-+	rsc = priv->id ? IMX_SC_R_MIPI_1 : IMX_SC_R_MIPI_0;
-+	ret = imx_sc_misc_set_control(priv->ipc_handle, rsc, IMX_SC_C_DUAL_MODE,
-+				      lvds_opts->is_slave);
-+	if (ret) {
-+		dev_err(&phy->dev, "Failed to configure MODE8: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/*
-+	 * Choose an appropriate divider ratio to meet the requirement of
-+	 * PLL VCO frequency range.
-+	 *
-+	 *  -----  640MHz ~ 1500MHz   ------------      ---------------
-+	 * | VCO | ----------------> | CO divider | -> | LVDS data rate|
-+	 *  -----       FVCO          ------------      ---------------
-+	 *                            1/2/4/8 div     7 * differential_clk_rate
-+	 */
-+	data_rate = 7 * lvds_opts->differential_clk_rate;
-+	for (co = 1; co <= 8; co *= 2) {
-+		fvco = data_rate * co;
-+
-+		if (fvco >= MIN_VCO_FREQ)
-+			break;
-+	}
-+
-+	if (fvco < MIN_VCO_FREQ || fvco > MAX_VCO_FREQ) {
-+		dev_err(&phy->dev, "VCO frequency %lu is out of range\n", fvco);
-+		return -ERANGE;
-+	}
-+
-+	/*
-+	 * CO is configurable, while CN and CM are not,
-+	 * as fixed ratios 1 and 7 are applied respectively.
-+	 */
-+	phy_write(phy, __ffs(co), DPHY_CO);
-+
-+	/* set reference clock rate */
-+	clk_set_rate(priv->phy_ref_clk, lvds_opts->differential_clk_rate);
-+
-+	return ret;
-+}
-+
-+static int mixel_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-+{
-+	if (!opts) {
-+		dev_err(&phy->dev, "No configuration options\n");
-+		return -EINVAL;
-+	}
-+
-+	if (phy->attrs.mode == PHY_MODE_MIPI_DPHY)
-+		return mixel_dphy_configure_mipi_dphy(phy, opts);
-+	else if (phy->attrs.mode == PHY_MODE_LVDS)
-+		return mixel_dphy_configure_lvds_phy(phy, opts);
-+
-+	dev_err(&phy->dev,
-+		"Failed to configure PHY with invalid PHY mode: %d\n", phy->attrs.mode);
-+
-+	return -EINVAL;
-+}
-+
-+static int
-+mixel_dphy_validate_lvds_phy(struct phy *phy, union phy_configure_opts *opts)
-+{
-+	struct phy_configure_opts_lvds *lvds_cfg = &opts->lvds;
-+
-+	if (lvds_cfg->bits_per_lane_and_dclk_cycle != 7) {
-+		dev_err(&phy->dev, "Invalid bits per LVDS data lane: %u\n",
-+			lvds_cfg->bits_per_lane_and_dclk_cycle);
-+		return -EINVAL;
-+	}
-+
-+	if (lvds_cfg->lanes != 4) {
-+		dev_err(&phy->dev, "Invalid LVDS data lanes: %u\n", lvds_cfg->lanes);
-+		return -EINVAL;
-+	}
-+
-+	if (lvds_cfg->differential_clk_rate < MIN_LVDS_REFCLK_FREQ ||
-+	    lvds_cfg->differential_clk_rate > MAX_LVDS_REFCLK_FREQ) {
-+		dev_err(&phy->dev,
-+			"Invalid LVDS differential clock rate: %lu\n",
-+			lvds_cfg->differential_clk_rate);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int mixel_dphy_validate(struct phy *phy, enum phy_mode mode, int submode,
- 			       union phy_configure_opts *opts)
- {
--	struct mixel_dphy_cfg cfg = { 0 };
-+	if (mode == PHY_MODE_MIPI_DPHY) {
-+		struct mixel_dphy_cfg mipi_dphy_cfg = { 0 };
- 
--	if (mode != PHY_MODE_MIPI_DPHY)
--		return -EINVAL;
-+		return mixel_dphy_config_from_opts(phy, &opts->mipi_dphy,
-+						   &mipi_dphy_cfg);
-+	} else if (mode == PHY_MODE_LVDS) {
-+		return mixel_dphy_validate_lvds_phy(phy, opts);
-+	}
- 
--	return mixel_dphy_config_from_opts(phy, &opts->mipi_dphy, &cfg);
-+	dev_err(&phy->dev,
-+		"Failed to validate PHY with invalid PHY mode: %d\n", mode);
-+	return -EINVAL;
- }
- 
- static int mixel_dphy_init(struct phy *phy)
-@@ -373,26 +517,74 @@ static int mixel_dphy_exit(struct phy *phy)
- 	return 0;
- }
- 
--static int mixel_dphy_power_on(struct phy *phy)
-+static int mixel_dphy_power_on_mipi_dphy(struct phy *phy)
- {
- 	struct mixel_dphy_priv *priv = phy_get_drvdata(phy);
- 	u32 locked;
- 	int ret;
- 
--	ret = clk_prepare_enable(priv->phy_ref_clk);
--	if (ret < 0)
--		return ret;
--
- 	phy_write(phy, PWR_ON, DPHY_PD_PLL);
- 	ret = regmap_read_poll_timeout(priv->regmap, DPHY_LOCK, locked,
- 				       locked, PLL_LOCK_SLEEP,
- 				       PLL_LOCK_TIMEOUT);
- 	if (ret < 0) {
- 		dev_err(&phy->dev, "Could not get DPHY lock (%d)!\n", ret);
--		goto clock_disable;
-+		return ret;
- 	}
- 	phy_write(phy, PWR_ON, DPHY_PD_DPHY);
- 
-+	return 0;
-+}
-+
-+static int mixel_dphy_power_on_lvds_phy(struct phy *phy)
-+{
-+	struct mixel_dphy_priv *priv = phy_get_drvdata(phy);
-+	u32 locked;
-+	int ret;
-+
-+	regmap_update_bits(priv->lvds_regmap, PHY_CTRL, LVDS_EN, LVDS_EN);
-+
-+	phy_write(phy, PWR_ON, DPHY_PD_DPHY);
-+	phy_write(phy, PWR_ON, DPHY_PD_PLL);
-+
-+	/* do not wait for slave LVDS PHY being locked */
-+	if (priv->is_slave)
-+		return 0;
-+
-+	ret = regmap_read_poll_timeout(priv->regmap, DPHY_LOCK, locked,
-+				       locked, PLL_LOCK_SLEEP,
-+				       PLL_LOCK_TIMEOUT);
-+	if (ret < 0) {
-+		dev_err(&phy->dev, "Could not get LVDS PHY lock (%d)!\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mixel_dphy_power_on(struct phy *phy)
-+{
-+	struct mixel_dphy_priv *priv = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->phy_ref_clk);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (phy->attrs.mode == PHY_MODE_MIPI_DPHY) {
-+		ret = mixel_dphy_power_on_mipi_dphy(phy);
-+	} else if (phy->attrs.mode == PHY_MODE_LVDS) {
-+		ret = mixel_dphy_power_on_lvds_phy(phy);
-+	} else {
-+		dev_err(&phy->dev,
-+			"Failed to power on PHY with invalid PHY mode: %d\n",
-+							phy->attrs.mode);
-+		ret = -EINVAL;
-+	}
-+
-+	if (ret)
-+		goto clock_disable;
-+
- 	return 0;
- clock_disable:
- 	clk_disable_unprepare(priv->phy_ref_clk);
-@@ -406,16 +598,51 @@ static int mixel_dphy_power_off(struct phy *phy)
- 	phy_write(phy, PWR_OFF, DPHY_PD_PLL);
- 	phy_write(phy, PWR_OFF, DPHY_PD_DPHY);
- 
-+	if (phy->attrs.mode == PHY_MODE_LVDS)
-+		regmap_update_bits(priv->lvds_regmap, PHY_CTRL, LVDS_EN, 0);
-+
- 	clk_disable_unprepare(priv->phy_ref_clk);
- 
- 	return 0;
- }
- 
-+static int mixel_dphy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-+{
-+	struct mixel_dphy_priv *priv = phy_get_drvdata(phy);
-+	int ret;
-+
-+	if (priv->devdata->is_combo && mode != PHY_MODE_LVDS) {
-+		dev_err(&phy->dev, "Failed to set PHY mode for combo PHY\n");
-+		return -EINVAL;
-+	}
-+
-+	if (!priv->devdata->is_combo && mode != PHY_MODE_MIPI_DPHY) {
-+		dev_err(&phy->dev, "Failed to set PHY mode to MIPI DPHY\n");
-+		return -EINVAL;
-+	}
-+
-+	if (priv->devdata->is_combo) {
-+		u32 rsc = priv->id ? IMX_SC_R_MIPI_1 : IMX_SC_R_MIPI_0;
-+
-+		ret = imx_sc_misc_set_control(priv->ipc_handle,
-+					      rsc, IMX_SC_C_MODE,
-+					      mode == PHY_MODE_LVDS);
-+		if (ret) {
-+			dev_err(&phy->dev,
-+				"Failed to set PHY mode via SCU ipc: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static const struct phy_ops mixel_dphy_phy_ops = {
- 	.init = mixel_dphy_init,
- 	.exit = mixel_dphy_exit,
- 	.power_on = mixel_dphy_power_on,
- 	.power_off = mixel_dphy_power_off,
-+	.set_mode = mixel_dphy_set_mode,
- 	.configure = mixel_dphy_configure,
- 	.validate = mixel_dphy_validate,
- 	.owner = THIS_MODULE,
-@@ -424,6 +651,8 @@ static const struct phy_ops mixel_dphy_phy_ops = {
- static const struct of_device_id mixel_dphy_of_match[] = {
- 	{ .compatible = "fsl,imx8mq-mipi-dphy",
- 	  .data = &mixel_dphy_devdata[MIXEL_IMX8MQ] },
-+	{ .compatible = "fsl,imx8qxp-mipi-dphy",
-+	  .data = &mixel_dphy_devdata[MIXEL_IMX8QXP] },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, mixel_dphy_of_match);
-@@ -436,6 +665,7 @@ static int mixel_dphy_probe(struct platform_device *pdev)
- 	struct mixel_dphy_priv *priv;
- 	struct phy *phy;
- 	void __iomem *base;
-+	int ret;
- 
- 	if (!np)
- 		return -ENODEV;
-@@ -467,6 +697,30 @@ static int mixel_dphy_probe(struct platform_device *pdev)
- 	dev_dbg(dev, "phy_ref clock rate: %lu\n",
- 		clk_get_rate(priv->phy_ref_clk));
- 
-+	if (priv->devdata->is_combo) {
-+		priv->lvds_regmap =
-+			syscon_regmap_lookup_by_phandle(np, "fsl,syscon");
-+		if (IS_ERR(priv->lvds_regmap)) {
-+			ret = PTR_ERR(priv->lvds_regmap);
-+			dev_err_probe(dev, ret, "Failed to get LVDS regmap\n");
-+			return ret;
-+		}
-+
-+		priv->id = of_alias_get_id(np, "mipi_dphy");
-+		if (priv->id < 0) {
-+			dev_err(dev, "Failed to get phy node alias id: %d\n",
-+				priv->id);
-+			return priv->id;
-+		}
-+
-+		ret = imx_scu_get_handle(&priv->ipc_handle);
-+		if (ret) {
-+			dev_err_probe(dev, ret,
-+				      "Failed to get SCU ipc handle\n");
-+			return ret;
-+		}
-+	}
-+
- 	dev_set_drvdata(dev, priv);
- 
- 	phy = devm_phy_create(dev, np, &mixel_dphy_phy_ops);
+field not used
+
+> +	enum thermal_device_mode mode;
+
+field not used
+
+> +	void __iomem *regs;
+> +	int otp_temp0;
+> +	u32 id;
+> +};
+> +
+> +static int sp7021_get_otp_temp_coef(struct sp_thermal_data *sp_data, struct device *dev)
+> +{
+> +	struct nvmem_cell *cell;
+> +	ssize_t otp_l;
+> +	char *otp_v;
+> +
+> +	cell = nvmem_cell_get(dev, "calib");
+> +	if (IS_ERR(cell))
+> +		return PTR_ERR(cell);
+> +
+> +	otp_v = nvmem_cell_read(cell, &otp_l);
+> +	nvmem_cell_put(cell);
+
+See my previous comments in v4, this is wrong. Move the nvmem_cell_put() 
+after FIELD_PREP() ... below where otp_v is no longer used.
+
+> +	if (otp_l < 3)
+> +		return -EINVAL;
+
+Please replace '3' by a macro
+
+Why this check is needed by the way ? Sounds like only 0 and 1 indexes 
+are used here.
+
+> +	sp_data->otp_temp0 = FIELD_PREP(SP_TCODE_LOW_MASK, otp_v[0]) |
+> +			     FIELD_PREP(SP_TCODE_HIGH_MASK, otp_v[1]);
+> +	if (sp_data->otp_temp0 == 0)
+> +		sp_data->otp_temp0 = TEMP_OTP_BASE;
+> +	return 0;
+> +}
+> +
+> +/*
+> + *When remanufacturing, the 35 degree T_CODE will be read and stored in nvcell.
+> + *TEMP_RATE is the SP7021 temperature slope.
+> + *T_CODE : 11 digits in total
+> + */
+
+nit: space after '*'
+
+Please elaborate the comment, it is still unclear
+
+> +
+> +static int sp_thermal_get_sensor_temp(void *data, int *temp)
+> +{
+> +	struct sp_thermal_data *sp_data = data;
+> +	int t_code;
+> +
+> +	t_code = readl(sp_data->regs + SP_THERMAL_STS0_REG);
+> +	t_code = FIELD_GET(SP_THERMAL_MASK, t_code);
+> +	*temp = ((sp_data->otp_temp0 - t_code) * 10000 / TEMP_RATE) + TEMP_BASE;
+> +	*temp *= 10;
+> +	return 0;
+> +}
+> +
+> +static const struct thermal_zone_of_device_ops sp_of_thermal_ops = {
+> +	.get_temp = sp_thermal_get_sensor_temp,
+> +};
+> +
+> +static int sp_thermal_register_sensor(struct platform_device *pdev,
+> +				      struct sp_thermal_data *data, int index)
+
+Adding a function to wrap another function is pointless in this case. It 
+is simpler to directly call devm_thermal_zone_of_sensor_register() from 
+the probe function
+
+> +{
+> +	data->id = index;
+> +	data->pcb_tz = devm_thermal_zone_of_sensor_register(&pdev->dev,
+> +							    data->id,
+> +							    data, &sp_of_thermal_ops);
+> +	if (IS_ERR_OR_NULL(data->pcb_tz))
+> +		return PTR_ERR(data->pcb_tz);
+> +	return 0;
+> +}
+> +
+> +static int sp7021_thermal_probe(struct platform_device *pdev)
+> +{
+> +	struct sp_thermal_data *sp_data;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	sp_data = devm_kzalloc(&pdev->dev, sizeof(*sp_data), GFP_KERNEL);
+> +	if (!sp_data)
+> +		return -ENOMEM;
+> +
+> +	sp_data->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(sp_data->regs)) {
+> +		dev_err(&pdev->dev, "resource get fail\n");
+> +		return PTR_ERR(sp_data->regs);
+> +	}
+> +
+> +	writel(ENABLE_THERMAL, sp_data->regs + SP_THERMAL_CTL0_REG);
+> +
+> +	platform_set_drvdata(pdev, sp_data);
+> +	ret = sp7021_get_otp_temp_coef(sp_data, &pdev->dev);
+> +	if (ret)
+> +		return ret;
+
+Add some space to let the code easier to read
+
+> +	ret = sp_thermal_register_sensor(pdev, sp_data, 0);
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id of_sp7021_thermal_ids[] = {
+> +	{ .compatible = "sunplus,sp7021-thermal" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, of_sp7021_thermal_ids);
+> +
+> +static struct platform_driver sp7021_thermal_driver = {
+> +	.probe	= sp7021_thermal_probe,
+
+and .remove ?
+
+> +	.driver	= {
+> +		.name	= "sp7021-thermal",
+> +		.of_match_table = of_sp7021_thermal_ids,
+> +		},
+> +};
+> +module_platform_driver(sp7021_thermal_driver);
+> +
+> +MODULE_AUTHOR("Li-hao Kuo <lhjeff911@gmail.com>");
+> +MODULE_DESCRIPTION("Thermal driver for SP7021 SoC");
+> +MODULE_LICENSE("GPL");
+
+
 -- 
-2.25.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
