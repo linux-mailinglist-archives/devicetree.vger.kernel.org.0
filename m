@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A07875010D4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 16:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 067C4501251
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244812AbiDNNgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 09:36:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57740 "EHLO
+        id S244547AbiDNOGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 10:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344150AbiDNNal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:30:41 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BADFE6;
-        Thu, 14 Apr 2022 06:28:16 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so5209497fac.11;
-        Thu, 14 Apr 2022 06:28:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=1uOhWs8cm16131L6dfi8BY/Hr1kwqioEhMv1kPjh21A=;
-        b=n5HIYEo0RplCPe63s7fiDIbFnbQl/vT4PiFq0QMHxuT4cCGZg6fZoCveh01zMR2pYb
-         qvCUC+1b361Vjhzr09bJmwlLJbl3wbP3WnXUIm/7fme8x6Av3I0UmX+DskRV0JAvxEXm
-         hPpfm9bH486vFn0ITdpKeVKLqXDLz6L7KUAkl6TrvDxPaiXJNKDGyROje6bTwzIziknT
-         WMxlSeXeKRtKPlh/FRqhdz4JePFYl+o52e+is6JLKzJPU7dHcHTqiZ+4eMwE7+9k4Hhu
-         HIB7I+ChBKux+ZBx6+XQh3C0HWO3YhYCNHDsnGuNc6OQWUFjT2SSP9hHgt9IzKpbESFS
-         79vw==
-X-Gm-Message-State: AOAM531VBeulcAsz02HQ08hu4/4UqmvD4Rtfio0b/tz4Y/ISHI75VVDE
-        ofVO2GxNYL/nzx+qauan0g==
-X-Google-Smtp-Source: ABdhPJyH1P7seZTuHtknt0P9RpLaIUL8KvuTzAmz12RLMFPKbN6I+QpfZtLgjNxlPTOvprxh63GYuQ==
-X-Received: by 2002:a05:6870:d0ce:b0:de:79e2:7ec7 with SMTP id k14-20020a056870d0ce00b000de79e27ec7mr1224269oaa.245.1649942895544;
-        Thu, 14 Apr 2022 06:28:15 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o8-20020a05680803c800b00321034c99a6sm8965oie.3.2022.04.14.06.28.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 06:28:15 -0700 (PDT)
-Received: (nullmailer pid 1863786 invoked by uid 1000);
-        Thu, 14 Apr 2022 13:28:14 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20220413190713.1427956-25-clabbe@baylibre.com>
-References: <20220413190713.1427956-1-clabbe@baylibre.com> <20220413190713.1427956-25-clabbe@baylibre.com>
-Subject: Re: [PATCH v5 24/33] dt-bindings: crypto: convert rockchip-crypto to YAML
-Date:   Thu, 14 Apr 2022 08:28:14 -0500
-Message-Id: <1649942894.398402.1863785.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S1344006AbiDNNjd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:39:33 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0180F8BF43;
+        Thu, 14 Apr 2022 06:36:35 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23EDaRD6009825;
+        Thu, 14 Apr 2022 08:36:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649943387;
+        bh=MuALufS27IYgRFCVcWUTMGjvsiQ0FveOuIy4CrAFgDw=;
+        h=From:To:CC:Subject:Date;
+        b=Yhnd6VQ1qFoZzKaZaOQhZB1XEdaKwKaZsSzdMsHHEQ0AOogWYuBLBwS5oqU6SI54c
+         PTZeapLtoRnF5E3SNV9BhCzswE/Ra3dPCBR8fSnLTxbYNvzICsUs1g6Ebyysmx1p9l
+         /O0T2vdVxLTx6wmC1ZRrIPsUMlTEXST6YNmsUfa0=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23EDaRQp007336
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 14 Apr 2022 08:36:27 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 14
+ Apr 2022 08:36:27 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 14 Apr 2022 08:36:27 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23EDaON6056137;
+        Thu, 14 Apr 2022 08:36:24 -0500
+From:   Aparna M <a-m1@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <praneeth@ti.com>, <nikhil.nd@ti.com>
+Subject: [RESEND PATCH v3] arm64: dts: ti: k3-am642-sk: Enable WLAN connected to SDHCI0
+Date:   Thu, 14 Apr 2022 19:06:12 +0530
+Message-ID: <20220414133612.13365-1-a-m1@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,82 +62,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Apr 2022 19:07:04 +0000, Corentin Labbe wrote:
-> Convert rockchip-crypto to YAML.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
->  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
->  2 files changed, 66 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
->  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
-> 
+From: Kishon Vijay Abraham I <kishon@ti.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+WL1837 module is connected to SDHCI0 in AM642 SK. Enable it here.
+This will enable the WiFi functionaliy on the board.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml:30:7: [error] duplication of key "const" in mapping (key-duplicates)
-./Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml:31:7: [error] duplication of key "const" in mapping (key-duplicates)
-./Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml:32:7: [error] duplication of key "const" in mapping (key-duplicates)
+Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Signed-off-by: Aparna M <a-m1@ti.com>
+---
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.example.dts'
-Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml: found duplicate key "const" with value "hclk" (original value: "aclk")
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
-    testtree = dtschema.load(filename, line_number=line_number)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 912, in load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 131, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 674, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 445, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 263, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 294, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 29, column 7
-found duplicate key "const" with value "hclk" (original value: "aclk")
-  in "<unicode string>", line 30, column 7
+v3 RESEND: rebased on top of v5.18-rc2
+v2 -> v3: Use generic node names for the regulators as per DT Specs
+v1 -> v2: Add "From" tag in commit message
 
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts | 62 ++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 74, in <module>
-    ret = check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
-    print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
-AttributeError: 'DuplicateKeyError' object has no attribute 'path'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml: ignoring, error parsing file
-make: *** [Makefile:1401: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+index 1d7db8bf3a5c..59f506cbd275 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+@@ -125,6 +125,31 @@
+ 		vin-supply = <&vcc_3v3_sys>;
+ 		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
+ 	};
++
++	com8_ls_en: regulator-1 {
++		compatible = "regulator-fixed";
++		regulator-name = "com8_ls_en";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		regulator-boot-on;
++		pinctrl-0 = <&main_com8_ls_en_pins_default>;
++		pinctrl-names = "default";
++		gpio = <&main_gpio0 62 GPIO_ACTIVE_LOW>;
++	};
++
++	wlan_en: regulator-2 {
++		/* output of SN74AVC4T245RSVR */
++		compatible = "regulator-fixed";
++		regulator-name = "wlan_en";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		enable-active-high;
++		pinctrl-0 = <&main_wlan_en_pins_default>;
++		pinctrl-names = "default";
++		vin-supply = <&com8_ls_en>;
++		gpio = <&main_gpio0 48 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &main_pmx0 {
+@@ -216,6 +241,23 @@
+ 			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
+ 		>;
+ 	};
++	main_wlan_en_pins_default: main-wlan-en-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x00c4, PIN_OUTPUT_PULLUP, 7) /* (V8) GPIO0_48 */
++		>;
++	};
++
++	main_com8_ls_en_pins_default: main-com8-ls-en-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x00fc, PIN_OUTPUT, 7) /* (U7) PRG1_PRU0_GPO17.GPIO0_62 */
++		>;
++	};
++
++	main_wlan_pins_default: main-wlan-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x00bc, PIN_INPUT, 7) /* (U8) GPIO0_46 */
++		>;
++	};
+ };
+ 
+ &mcu_uart0 {
+@@ -293,6 +335,26 @@
+ 	status = "reserved";
+ };
+ 
++&sdhci0 {
++	vmmc-supply = <&wlan_en>;
++	bus-width = <4>;
++	non-removable;
++	cap-power-off-card;
++	keep-power-in-suspend;
++	ti,driver-strength-ohm = <50>;
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++	wlcore: wlcore@2 {
++		compatible = "ti,wl1837";
++		reg = <2>;
++		pinctrl-0 = <&main_wlan_pins_default>;
++		pinctrl-names = "default";
++		interrupt-parent = <&main_gpio0>;
++		interrupts = <46 IRQ_TYPE_EDGE_FALLING>;
++	};
++};
++
+ &sdhci1 {
+ 	/* SD/MMC */
+ 	vmmc-supply = <&vdd_mmc1>;
+-- 
+2.17.1
 
