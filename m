@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2D35017CE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 18:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1BA35017C8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 18:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238799AbiDNPuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 11:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58312 "EHLO
+        id S235152AbiDNPu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 11:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344683AbiDNPjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 11:39:20 -0400
-Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705BD433A1
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 08:16:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1649949409; x=1681485409;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=iYec80PJQH6rxvX/OaQmAixOdX4LN48hjcV/HrL4vFw=;
-  b=Ctm6HeUQ7e0EAm26DFRpFgeJJ1kkn1X9Exb8TmuPcvxJTudTNdEBMIaK
-   O5cZsojiMBsTfXxWd4Ph9e0hfnulmbvjlPm5dibgz4xqWk2OZcBmh2Ppo
-   /HGPDAgWLVXlTXLYqJgaFALd4UpXeMcmpuGkOS7ZOb3c9OGzYjv4k5hnT
-   rSD1L42RsjuQRJbNfHHiCgjtnUl1RtZNfRKX8WaZYpvrj/XE8m+OKcD+z
-   k2DXPoMcV8zyaWylfwip/hppCp6XWzmmHzzrogOuobTK2+sosjSZeuFBq
-   TJ2qbB7psw1Uohlyr5HHejnMsHsLVDQv/i3UMxI2YRySK63ossQC+8H8C
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,260,1643644800"; 
-   d="scan'208";a="309887717"
-Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 14 Apr 2022 23:16:48 +0800
-IronPort-SDR: tUhATW2EiBWaY1ofzYXQN3KpjnVpnpHb3ZAT+wgD+A6dlUGkh1v9Ql1oyvSDyKai38FWaSEDcx
- ga8JEdkJ/ukt6MUAkFG8V3W7UFSg2E/TBWDOac6mc759671Dc7rLUe6JW4IpNHl03PrbOsw4OV
- l/DZvd8DIasnG2NkTdliRIa6lRzhn4YxDRZuNMae29WUMWKT+vpqu4JNnmDpvMT2JS4aYTHOxb
- irN67DPv/+EWZkR9Si3GGw5DEGNokbDDcyCIn+hql/hd+rzEOUj4jg95jh5OY0DCSBMnj8FcLu
- iMvmFk8sgKyYL0fh3heHQ427
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Apr 2022 07:48:01 -0700
-IronPort-SDR: A4SysRNAyrMZ1jbwnAGGOFL7qmGl1pz2l4bHnQ1SNYk6pK1Mj3j1iJRqZqJs7dATyRyPgb2kVb
- Xba79PTuJQaBQPwDMYDSCNXwu4ADfG/X/8faX4JwafjgNjS2RmAGbH/KQNoAghsqCF8UjogYdQ
- ngP69Sm4hpGnuDosDKY0Tgl4iSIWcuOEacR7cznkYEw4Dxx1UBc9rwOnMXKl3IMKqtFxTFMaQK
- k9CRJqu7ZOyhx/LBpImamW164d04JplOPVkZzXkZrMx3ZCp7q97mKvuIBGMaojVWKZiHkqctBr
- vzc=
-WDCIronportException: Internal
-Received: from unknown (HELO x1-carbon.wdc.com) ([10.225.164.21])
-  by uls-op-cesaip02.wdc.com with ESMTP; 14 Apr 2022 08:16:46 -0700
-From:   Niklas Cassel <niklas.cassel@wdc.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     Niklas Cassel <niklas.cassel@wdc.com>,
-        Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH] dt-bindings: riscv: Add mmu-type riscv,sv57
-Date:   Thu, 14 Apr 2022 17:16:38 +0200
-Message-Id: <20220414151639.1359969-1-niklas.cassel@wdc.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1348944AbiDNPkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 11:40:12 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BFBC5583;
+        Thu, 14 Apr 2022 08:19:00 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id 12so5699020oix.12;
+        Thu, 14 Apr 2022 08:19:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=rTnbii0TkfiP0IgylH+LPQeyfK4chNSMZIeQMu2dlZ0=;
+        b=44Lvk3aKbxtOBzPkD6hHm1CjWoWpgA2QoNMfqHRlgXnizhX3EsCyxHVnWDrEIuFXZm
+         OKSKF4h0xAwKNpzt8GbSoFbgZsmTbNDz1GtOV5S0ZkB8M6fFedYV8Yz1LTp4NzMNlmml
+         xLJz1eR0hN8/+MRc9t087Y/+QNhiOgMIcu5YLWG8cbXEiAuZyW8Ppp1zRBKBwRvjQ1MK
+         0Jsf1Uj/PGGIz/+qgviNF3h9+NwbCYm7YkPEWVCnDNuA9oGJ/maWtdjJWYj7LG2wQlNb
+         WDaNDTnh3Jr4cjrm68uhWtIzKOxNPXp0zM+QPN45OyFobk68bnRaT3N6NATyVEBQPWmi
+         cG1A==
+X-Gm-Message-State: AOAM5337BI4i00pmA/TgLak4RiYeZCtyuB0uTv8alrQdJGGz8JsgKKAy
+        sPCyM5TH9XBS6myCBshuMg==
+X-Google-Smtp-Source: ABdhPJx97/FQcjk9Be6OMKujrhUC85sEPYMS6H5cAeRSjdGYelkOgG068e0xOR/WfxQnx5K/o4EfsQ==
+X-Received: by 2002:aca:2418:0:b0:2ee:f7da:795f with SMTP id n24-20020aca2418000000b002eef7da795fmr1833724oic.276.1649949539942;
+        Thu, 14 Apr 2022 08:18:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c19-20020a9d7853000000b005cdbc0f02ccsm106314otm.68.2022.04.14.08.18.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 08:18:59 -0700 (PDT)
+Received: (nullmailer pid 2073887 invoked by uid 1000);
+        Thu, 14 Apr 2022 15:18:58 -0000
+Date:   Thu, 14 Apr 2022 10:18:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v13 4/9] dt-bindings: clock: Add bindings for SP7021
+ clock driver
+Message-ID: <Ylg7Yl9GmgpOFipk@robh.at.kernel.org>
+References: <cover.1649659095.git.qinjian@cqplus1.com>
+ <f8d5675d1bc32962af6379f78a171ed35b181ebc.1649659095.git.qinjian@cqplus1.com>
+ <c2a7f2e0-1a21-bb0c-9221-c184cfaa3626@linaro.org>
+ <b1b85440f7d647a0adf014b091e31c10@cqplus1.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <b1b85440f7d647a0adf014b091e31c10@cqplus1.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sv57 is defined in the RISC-V Privileged Specification document.
+On Thu, Apr 14, 2022 at 07:06:12AM +0000, qinjian[覃健] wrote:
+> 
+> > > +#ifndef _DT_BINDINGS_CLOCK_SUNPLUS_SP7021_H
+> > > +#define _DT_BINDINGS_CLOCK_SUNPLUS_SP7021_H
+> > > +
+> > > +#define XTAL            27000000
+> > 
+> > This looks like frequency which usually does not belong to bindings. Why
+> > do you need it here?
+> > 
+> 
+> OK, I'll remove it.
 
-Additionally, commit 011f09d12052 ("riscv: mm: Set sv57 on defaultly")
-changed the default MMU mode to sv57, if supported by current hardware.
+If that's the input frequency to the clock controller and it could 
+possibly change, then it should be defined in DT with a 'fixed-clock' 
+node and 'clocks' property in the clock controller.
 
-Add riscv,sv57 to the list of valid mmu-type values.
-
-Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index d632ac76532e..3100fa233ca4 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -61,6 +61,7 @@ properties:
-       - riscv,sv32
-       - riscv,sv39
-       - riscv,sv48
-+      - riscv,sv57
-       - riscv,none
- 
-   riscv,isa:
--- 
-2.35.1
+Rob
 
