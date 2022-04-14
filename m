@@ -2,87 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 306FA501BC2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:21:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5777F501BE3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 21:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345242AbiDNTXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 15:23:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53836 "EHLO
+        id S1345339AbiDNT05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 15:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345204AbiDNTXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:23:00 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8783DA7778
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:20:34 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id bu29so10848205lfb.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:20:34 -0700 (PDT)
+        with ESMTP id S238387AbiDNT04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 15:26:56 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7097645
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:24:29 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so3862225wmn.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 12:24:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=vp0QTlQ+Ul12qwBiTeo6WQhXUXb0oDOX5cKNXB8aPjA=;
-        b=vtTVHj80EGxNxKDlWGtszG3FwMg4Ey5uQHChZ2COAtQ3UUZTlIFf0z5PGKPiraBznp
-         nlnwtsO3/u7tW7hBz/zuev7xxyVez2a1UV4nWJzEA+tbDF+toFxvgf3oS+Ph+MAcVJqx
-         6pLvnc9UJe5jn4SBNdLYPN5Qax2ShWH+dQdCyYir+zNtxeCkS/MloXri0Byr1k6CWrQn
-         DIvXAWCR+AUnhw9m8COyU5g0yWa8VV81TuALFXgSzmLsSb/ODZY/kz9XdUipaRxtpkJK
-         cqtoJaVQNx9rfchIoRjAhYaGI2BQb5x1lxq0/4EC3hHEbQsLJBz8UJhBvQ6QjuJxevF5
-         4v5A==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TzIdGf0orlPzlsnGm4d1/wOp9Ug675hNbMOMT58Ay5o=;
+        b=anV+lLXHdPoCvNvo4uqR9yVnraezCiI/gR7f3+/73+6+e/d+CvXkykdbFlf45Cak9p
+         yT/StOCyPW9e06boapRmdlJRlJoo9WnJYC5nAZfit00iz+WieHSZA23/C1Ws48LVJH7I
+         o3k9PJAs5zpKNhfC1/M859nQEVYjTW6pQhAYA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=vp0QTlQ+Ul12qwBiTeo6WQhXUXb0oDOX5cKNXB8aPjA=;
-        b=GZGkRrr9UdwiwwgnRLF5mYUotgRWE6GmNeB5y0BBsTdA3XUm10ip4pxf6kw4Drt+s/
-         O4RteUstsMG8/tQww8NWGdPTOlTM2sa1xiOW83XpXiGnjAyPqvdmg4sv6bgeVFiywgtc
-         BBli31OX+dpL9nhADzcPaNuddq/kkyFX0D8UvckNCVNKWUeqIxIZX305GElSHXoxyfWz
-         BeOFLZ4YcYGFJWk0G0JjihBc7eQpMnkwNjxu1oBYFnRr+ygsydxrZRExP1L7ltxEXllb
-         AcevGfVFpXAlFaUiLTEsqrVhnHDeZRr2SIMureSTYAdtW3l/4VieqamRZa8qCQxOq2/a
-         DruA==
-X-Gm-Message-State: AOAM530rPBZbJiWa4SodRaK1H4xAeGLCT3S/ihlFNzoOU/fCZhLQOKUw
-        83tn15fRbpQ5xb2Yv8AsDFYyyQ==
-X-Google-Smtp-Source: ABdhPJxo5MHFE963Dq+Wyme7Ct5D7t+GPbOhgBQl/OVd4GpTcR+TbNjtlAMv2Dy5gtjdWO+O9T8iPA==
-X-Received: by 2002:a05:6512:4024:b0:46b:fc7e:a455 with SMTP id br36-20020a056512402400b0046bfc7ea455mr2937396lfb.156.1649964032785;
-        Thu, 14 Apr 2022 12:20:32 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t1-20020a19dc01000000b0046ba600f866sm83561lfg.180.2022.04.14.12.20.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 12:20:32 -0700 (PDT)
-Message-ID: <20afcd97-4b8d-f770-151a-268b893b7c5a@linaro.org>
-Date:   Thu, 14 Apr 2022 22:20:31 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TzIdGf0orlPzlsnGm4d1/wOp9Ug675hNbMOMT58Ay5o=;
+        b=biv+a+luQQx97MognEKlH3Lbwm3s5EbEzKA10LDoL8WP9h5IMdVwGmf1sRGuZ4L98F
+         HIwocig0U+DXRYf1L1eOQn/nzx++T1gn6yqeMEdBum72MEyTESiEkdswziMvbepiLQzv
+         FxEQfMF9fMuoxg4NC+FtlUmmN8xVHTuBi4xwz+LQqA/zgIwog6cbv0YfxFP4KzjaxIfv
+         DUeizBFBK20P8dwLfVFZg7W7Amk3pNxIsNR56dliru0/vpzhYn1/ChZUcZJYxXJT35s5
+         2zHsCxcM+NrIpkgXebe6bA+JN1Uz7Cw5mMnxoX3aLPRaZaACuT7d3XqC8YW3OsVVMw/l
+         W3UQ==
+X-Gm-Message-State: AOAM533D3AVP2rBi1v6c9Gf/QVFGFJ3jcUWYxJcSfa7U4jaJZNL2X9db
+        keqvfQfm4o7DYnKx9lD+85Ok6w==
+X-Google-Smtp-Source: ABdhPJxgazeepxjQX/HIuYCUv+KWXKHE1HKC70Rms9bSy5mDaYHGosh9IMV8XRSLBN/aN4BdLq7q8w==
+X-Received: by 2002:a05:600c:1e85:b0:38c:ef05:ba5d with SMTP id be5-20020a05600c1e8500b0038cef05ba5dmr74515wmb.119.1649964268274;
+        Thu, 14 Apr 2022 12:24:28 -0700 (PDT)
+Received: from google.com ([37.228.205.1])
+        by smtp.gmail.com with ESMTPSA id v13-20020adfe28d000000b0020375f27a5asm2608680wri.4.2022.04.14.12.24.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 12:24:27 -0700 (PDT)
+Date:   Thu, 14 Apr 2022 19:24:25 +0000
+From:   Fabio Baltieri <fabiobaltieri@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Guenter Roeck <groeck@chromium.org>, linux-pwm@vger.kernel.org,
+        chrome-platform@lists.linux.dev
+Subject: Re: [PATCH v4 3/4] dt-bindings: update google,cros-ec-pwm
+ documentation
+Message-ID: <Ylh06cG7bII6rG77@google.com>
+References: <20220414092831.3717684-1-fabiobaltieri@chromium.org>
+ <20220414092831.3717684-4-fabiobaltieri@chromium.org>
+ <1649938809.993469.1698375.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v7 0/4] Add support for the eDP panel over aux_bus
-Content-Language: en-GB
-To:     Doug Anderson <dianders@chromium.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        Steev Klimaszewski <steev@kali.org>
-References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=Ui6BAsnTaJ2_TMh1Tnjtaw7FR92aWoUysS+UT=c0qB3Q@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAD=FV=Ui6BAsnTaJ2_TMh1Tnjtaw7FR92aWoUysS+UT=c0qB3Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1649938809.993469.1698375.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,48 +76,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 19:40, Doug Anderson wrote:
-> Hi,
+On Thu, Apr 14, 2022 at 07:20:09AM -0500, Rob Herring wrote:
+> On Thu, 14 Apr 2022 09:28:30 +0000, Fabio Baltieri wrote:
+> > Update google,cros-ec-pwm node documentation to mention the
+> > google,cros-ec-pwm-type compatible.
+> > 
+> > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+> > ---
+> >  .../devicetree/bindings/pwm/google,cros-ec-pwm.yaml      | 9 ++++++++-
+> >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > 
 > 
-> On Thu, Apr 14, 2022 at 5:19 AM Sankeerth Billakanti
-> <quic_sbillaka@quicinc.com> wrote:
->>
->> This series adds support for generic eDP panel over aux_bus.
->>
->> These changes are dependent on the following series:
->> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=613654&state=*
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> You're basically depending on the last two patches of that series.
-> What's the plan there? In patchwork they're marked as "Not
-> Applicable". If they're good to go, maybe we should land them? If not,
-> maybe you should include them (with Dmitry as the author, of course)
-> at the beginning of your series?
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml:27:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml:30:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> 
+> dtschema/dtc warnings/errors:
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
 
-No, please do not resend patches. The patches in question are marked as 
-'Not applicable' as they are really not applicable to Bjorn's tree.
-It would be better to point to the correct patchwork:
+Missed out on that, will fix and resend.
 
-https://patchwork.freedesktop.org/series/98585/
-
-Note those patches still lack the R-B tag. I can include them anyway, 
-basing on Sankeerth's Tested-by tag, but the formal R-B would also be good.
-
+Thanks!
 
 > 
+> pip3 install dtschema --upgrade
 > 
->> Sankeerth Billakanti (4):
->>    drm/msm/dp: Add eDP support via aux_bus
->>    drm/msm/dp: Support only IRQ_HPD and REPLUG interrupts for eDP
->>    drm/msm/dp: wait for hpd high before aux transaction
->>    Support the eDP modes given by panel
+> Please check and re-submit.
 > 
-> One of these things is not like the others. One of these things just
-> doesn't belong. Can you spot which patch is missing the prefix by
-> looking at the subject line of all 4 patches? ;-)
-
-:-)
-
 
 -- 
-With best wishes
-Dmitry
+Fabio Baltieri
