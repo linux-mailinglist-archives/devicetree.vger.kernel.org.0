@@ -2,111 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88C7B500AD0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 12:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D662500AD8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 12:16:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbiDNKSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 06:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55710 "EHLO
+        id S242155AbiDNKTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 06:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242187AbiDNKSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 06:18:07 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A08085468D;
-        Thu, 14 Apr 2022 03:15:42 -0700 (PDT)
-Received: from zn.tnic (p2e55d808.dip0.t-ipconnect.de [46.85.216.8])
+        with ESMTP id S242144AbiDNKTF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 06:19:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06EEF6EC43;
+        Thu, 14 Apr 2022 03:16:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2EF031EC05ED;
-        Thu, 14 Apr 2022 12:15:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1649931337;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tcvILpawoy/EPkGkLSEhvv0Kdz440+lEpC25Pt/VCcQ=;
-        b=BKlCWqNGE/Ep1cvt/qOcZSftYkpVpT+iOaYR+yPMnEQ2cHucqhZKpKdJv8W07gJQDPVYvY
-        Dr8UoJLd4dHuOT55Ag1YvyTF/N5fAIOfsrgpfRzbWwcDBRa3ipPH5RrN/IQk8hzgpR6BuV
-        4zWAZ+lq9tJFmmI4yxAiLuAR+/7If2o=
-Date:   Thu, 14 Apr 2022 12:15:37 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     Medad Young <medadyoung@gmail.com>, rric@kernel.org,
-        James Morse <james.morse@arm.com>, tony.luck@intel.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C04D61E6D;
+        Thu, 14 Apr 2022 10:16:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9AEAC385A8;
+        Thu, 14 Apr 2022 10:16:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649931400;
+        bh=k5IGeL3/e80yqo6jzrVq7sF7AFRVxWGY/Q3M40TAa3k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=t/ZgTAm9DkbG8QpOHlqconyMLVjbS/CTb2CySNonxa9GxAZ94lGb0K6rVTDEBy1Mt
+         tl2c6OkM4uU/G8i25MsGbeKvWxceAMEfjxWSBXsELMvFvmiyhn4LYCzW0zFCqVGTbu
+         HT6E+GR52xWC5bVXiAoJwrseyLrovkw2U6+B4RFWuLi9hgPkjeY/yEUB2MCAXjpvHW
+         c4/1HVM0coZsO/WmjCqvLG5JxH197e35lOCo9aI14gF8stLh4L9Tb7MO6VLb+tq46q
+         bxOkzH7pI4xGsok7sthgQEaaX9jY6OFBMuK6MAhg6HBTgSSYHokjDGMwmHX8phOcVU
+         Rv+9O1XwJUanQ==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-Message-ID: <Ylf0Sc7fqv25Ay05@zn.tnic>
-References: <20220322030152.19018-1-ctcchien@nuvoton.com>
- <20220322030152.19018-4-ctcchien@nuvoton.com>
- <a06441fc-85cf-9386-e362-4a90e855aa19@molgen.mpg.de>
- <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
- <YlfeXVSkUC2B4xH2@zn.tnic>
- <14d07709-07ef-21a8-ad74-0f56447cf6dd@molgen.mpg.de>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] arm64: dts: qcom: sm8450: Add QUP and DMA nodes
+Date:   Thu, 14 Apr 2022 15:46:23 +0530
+Message-Id: <20220414101630.1189052-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <14d07709-07ef-21a8-ad74-0f56447cf6dd@molgen.mpg.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 10:56:43AM +0200, Paul Menzel wrote:
-> No idea, why you had to ask this question, while you statement before
-> already made the point.
+This series adds the gpi_dma nodes followed by the i2c and spi nodes for the
+three qups found in the SM8450 SoC.
 
-You've told Medad one thing. I told him the complete opposite. Medad as
-new submitter gets confused. And I don't want patch submitters to get
-confused by review.
+While at it, iommus was missing for qup0/qup1, so fix that up too.
 
-So, if you're unsure about a review feedback, don't give it pls.
+Lastly enable the spi and i2c nodes found on the QRD board.
 
-> Sorry I do not get your point. Would you elaborate on the debug message so
-> it’s more useful?
+Vinod Koul (7):
+  arm64: dts: qcom: sm8450: Add gpi_dma nodes
+  arm64: dts: qcom: sm8450: Fix missing iommus for qup
+  arm64: dts: qcom: sm8450: Add qup nodes for qup0
+  arm64: dts: qcom: sm8450: Add qup nodes for qup1
+  arm64: dts: qcom: sm8450: Add qup nodes for qup2
+  arm64: dts: qcom: sm8450: Fix missing iommus for qup1
+  arm64: dts: qcom: sm8450-qrd: Enable spi and i2c nodes
 
-Just think of the big picture: is my error message useful enough for
-debugging or would I have to go and add more info to it so that I can
-debug an issue?
-
-Example:
-
-There is
-
-	edac_dbg(3, "InterruptStatus : 0x%x\n", intr_status);
-
-now.
-
-Now, how about this?
-
-        edac_dbg(3, "dev: %s, id: %s: IRQ: %d, interrupt status: 0x%x\n",
-                 mci->dev_name, mci->ctl_name, irq, intr_status);
-
-Which one, do you think, is more helpful to a person trying to debug any
-potential issue with the interrupt handler and the ECCs it is supposed
-to issue?
-
-Thx.
+ arch/arm64/boot/dts/qcom/sm8450-qrd.dts |   24 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi    | 1240 +++++++++++++++++++++++
+ 2 files changed, 1264 insertions(+)
 
 -- 
-Regards/Gruss,
-    Boris.
+2.34.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
