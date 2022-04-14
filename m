@@ -2,265 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E8450077D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB884500780
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:46:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236904AbiDNHtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S237878AbiDNHtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 14 Apr 2022 03:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60904 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241393AbiDNHsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:48:16 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 401133C4B5
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:45:14 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id b21so7650820lfb.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VsJZVv9Fp+w5mZRNrHqB2RrnmbQjqZaqJf7SJY1IHwU=;
-        b=bNKLdmwWS2mP4BOZRWUzvsAhXX3XkrXP86Tl4m8VpVW/RIhT56+TknjVkqAbPtHSQp
-         gE9jXJdg+iruufoXKRU9wqoSbvso/HqEMBJnnS66KQjTb+eOE2Qi1HvgmxFRnlaqEUjL
-         ppRzQQFMWrzByuekrk9Q30mlXm1OFt8ZADqsoFqDtrV6IkQQPMN5i+4jjPn1kWZNw/8k
-         Njm8W532m5SvrVtjcYjswpb6jhQ2hdIlPx2K1vgV57JjtdMuul8JM2EefmoWBH3BmIoi
-         NhAl83pFCAyM7UN9VV30XYI8Cijl9rnxr5KMxMLHrZ1TVHYKunws8D7eqEIzcpwICdo5
-         yChQ==
+        with ESMTP id S241412AbiDNHsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:48:17 -0400
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B83D5E747;
+        Thu, 14 Apr 2022 00:45:25 -0700 (PDT)
+Received: by mail-qv1-f46.google.com with SMTP id b17so3448192qvp.6;
+        Thu, 14 Apr 2022 00:45:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VsJZVv9Fp+w5mZRNrHqB2RrnmbQjqZaqJf7SJY1IHwU=;
-        b=GugciW8SaFEOA6L4w1TSakdWVA0eU77H8Dq445z3gH4wEouOfzkcKpK77QgpzD2Lnz
-         du9iiK508St3vk7oBvVwEPnNckrjE23X+GgQ5g+pfWP37cByMpVmOvG3piBug59QYhkq
-         VRGxg7hie1gr+DNzpX3Ylos+xf73Jms4jVWXtYBzlydrqVuW8k338KKAXdRD1yJh5T05
-         nQ/vvuaOUyotHKWeeRDUkD1X1iiEoqyTLFterEzH56JZc2gNxibWqtFHaPtrBinLStE0
-         Kd8VRAA+2EF66Jp75LgROLakbXdcYneFot5wGA7cgjkQTJV6R7aIt1wc1Bsx+AKMF0Z+
-         gpBw==
-X-Gm-Message-State: AOAM530aBn9BJfSqFK4OLkjDSt74R2fe1VtVfnoJCKot1iK8hTBisA3e
-        ViIoAzcBKTVdy+3UNMvHfJsMrw==
-X-Google-Smtp-Source: ABdhPJx1gONvZ7scsNJIkPnaxXsh8o2ETyU9I4MImuFKUDZqaP1VsA9C1q+oK3TVcrt5iN5JC13pfw==
-X-Received: by 2002:a05:6512:2829:b0:46d:2b1:e85d with SMTP id cf41-20020a056512282900b0046d02b1e85dmr1093350lfb.303.1649922312456;
-        Thu, 14 Apr 2022 00:45:12 -0700 (PDT)
-Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
-        by smtp.gmail.com with ESMTPSA id p20-20020a056512329400b0046ba6832cf6sm152797lfe.155.2022.04.14.00.45.11
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=33XiQJpPXpQ4UXAsE/8HG8mnWkmeJLCo8tle8iDLH6E=;
+        b=EFpANksrW1VbvO7aMoUIS6ITKTb1VX1rgZGPyT51VSSSdy32r66kdAiHk7coRFgilA
+         bIiwJ6XWIzTCRUxw9Rd2Bzh3os5fKUl3eeoRpFQ5otrjITPupuakNVFQZvT9Ejup7sfl
+         sn8NoSUu/dP0ohHFFMRMSxqGF5NPFSmEML9xU+J26mZVtHnBmfgAmFf1vo6ab06QFH/B
+         3heO/iwpSrrd7Acjuq+sbq6z7MzQzPJSWa0qJLAbN4jesG3Kwj9ncFq1P+Aro4T8Diik
+         bRHhVKTfp+6suypOB6xbXPdsnXbkBXzm66JndmnNMT/sq3miWf/ZPuuGjQlbxfMfg3l5
+         PtOA==
+X-Gm-Message-State: AOAM531kvUwTn9vOsl0G4n9PnH+HsVSY/pnZCRLf5iSdQnphJyX2tzf+
+        WKB2ri3O9696NRvSa5+1FxUlgZ/tJAHNiw==
+X-Google-Smtp-Source: ABdhPJze7sAfMZlfYoPURb3BaJRsqXK9C2HRxARDtgEfgHDldAFu/OqANhyCMaHpsvyyVQW/x2G9mA==
+X-Received: by 2002:a05:6214:11a9:b0:444:3f30:8ae7 with SMTP id u9-20020a05621411a900b004443f308ae7mr2152815qvv.79.1649922324447;
+        Thu, 14 Apr 2022 00:45:24 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id q123-20020a378e81000000b0067eb3d6f605sm629654qkd.0.2022.04.14.00.45.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 00:45:12 -0700 (PDT)
-Message-ID: <13ad033e-cd5d-3a8c-b036-50a3ac4245c0@linaro.org>
-Date:   Thu, 14 Apr 2022 10:45:11 +0300
+        Thu, 14 Apr 2022 00:45:24 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-2ef4a241cc5so39838017b3.2;
+        Thu, 14 Apr 2022 00:45:24 -0700 (PDT)
+X-Received: by 2002:a0d:e743:0:b0:2eb:3106:9b32 with SMTP id
+ q64-20020a0de743000000b002eb31069b32mr1030313ywe.512.1649922323841; Thu, 14
+ Apr 2022 00:45:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250: camss: Add CAMSS block
- definition
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
-        jgrahsl@snap.com
-References: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
- <20220413231736.991368-3-bryan.odonoghue@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20220413231736.991368-3-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <5861565a79a2bdadc07ae84e23e6d96dbb764823.1649680949.git.geert+renesas@glider.be>
+ <95580a26-8595-1fa1-5e3d-112ceb767ae6@opensource.wdc.com>
+In-Reply-To: <95580a26-8595-1fa1-5e3d-112ceb767ae6@opensource.wdc.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 14 Apr 2022 09:45:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVwnwGdbZQ37U0zPm9ORQ7jaF=e7xas=1nhbFn+_MW6Bw@mail.gmail.com>
+Message-ID: <CAMuHMdVwnwGdbZQ37U0zPm9ORQ7jaF=e7xas=1nhbFn+_MW6Bw@mail.gmail.com>
+Subject: Re: [WARNING: UNSCANNABLE EXTRACTION FAILED][PATCH v2] dt-bindings:
+ ata: renesas,rcar-sata: Add r8a774e1 support
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-ide@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marian-Cristian Rotariu 
+        <marian-cristian.rotariu.rb@bp.renesas.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
+Hi Damien,
 
-On 4/14/22 02:17, Bryan O'Donoghue wrote:
-> Adds a CAMSS definition block.
-> 
-> Co-developed-by: Julian Grahsl <jgrahsl@snap.com>
-> Signed-off-by: Julian Grahsl <jgrahsl@snap.com>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 153 +++++++++++++++++++++++++++
->   1 file changed, 153 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 906bc8ed25b7..c69a8a88657a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3150,6 +3150,159 @@ videocc: clock-controller@abf0000 {
->   			#power-domain-cells = <1>;
->   		};
->   
-> +		camss: camss@ac6a000 {
-> +			compatible = "qcom,sm8250-camss";
-> +			status = "disabled";
-> +
-> +			reg = <0 0xac6a000 0 0x2000>,
-> +			      <0 0xac6c000 0 0x2000>,
-> +			      <0 0xac6e000 0 0x1000>,
-> +			      <0 0xac70000 0 0x1000>,
-> +			      <0 0xac72000 0 0x1000>,
-> +			      <0 0xac74000 0 0x1000>,
-> +			      <0 0xacb4000 0 0xd000>,
-> +			      <0 0xacc3000 0 0xd000>,
-> +			      <0 0xacd9000 0 0x2200>,
-> +			      <0 0xacdb200 0 0x2200>;
-> +			reg-names = "csiphy0",
-> +				    "csiphy1",
-> +				    "csiphy2",
-> +				    "csiphy3",
-> +				    "csiphy4",
-> +				    "csiphy5",
-> +				    "vfe0",
-> +				    "vfe1",
-> +				    "vfe_lite0",
-> +				    "vfe_lite1";
-> +
-> +			interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "csiphy0",
-> +					  "csiphy1",
-> +					  "csiphy2",
-> +					  "csiphy3",
-> +					  "csiphy4",
-> +					  "csiphy5",
-> +					  "csid0",
-> +					  "csid1",
-> +					  "csid2",
-> +					  "csid3",
-> +					  "vfe0",
-> +					  "vfe1",
-> +					  "vfe_lite0",
-> +					  "vfe_lite1";
-> +
-> +			power-domains = <&camcc IFE_0_GDSC>,
-> +					<&camcc IFE_1_GDSC>,
-> +					<&camcc TITAN_TOP_GDSC>;
-> +
+On Thu, Apr 14, 2022 at 3:23 AM Damien Le Moal
+<damien.lemoal@opensource.wdc.com> wrote:
+> On 4/11/22 21:43, Geert Uytterhoeven wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document SATA support for the RZ/G2H SoC, no driver change required.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
+>
+> I queued this is for-5.19. Does it need to go as a 5.18 fix ?
 
-do you need to add 'power-domain-names' property here as well?
+Thank you!
+No need to queue it as a fix, silencing "make dtbs_check" is a multi-year
+project ;-)
 
-> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-> +				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
-> +				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
-> +				 <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
-> +				 <&camcc CAM_CC_CORE_AHB_CLK>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
-> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
-> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
-> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY3_CLK>,
-> +				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY4_CLK>,
-> +				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY5_CLK>,
-> +				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_IFE_0_AHB_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_AREG_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_AHB_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_AREG_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-> +
-> +			clock-names = "cam_ahb_clk",
-> +				      "cam_hf_axi",
-> +				      "cam_sf_axi",
-> +				      "camnoc_axi",
-> +				      "camnoc_axi_src",
-> +				      "core_ahb",
-> +				      "cpas_ahb",
-> +				      "csiphy0",
-> +				      "csiphy0_timer",
-> +				      "csiphy1",
-> +				      "csiphy1_timer",
-> +				      "csiphy2",
-> +				      "csiphy2_timer",
-> +				      "csiphy3",
-> +				      "csiphy3_timer",
-> +				      "csiphy4",
-> +				      "csiphy4_timer",
-> +				      "csiphy5",
-> +				      "csiphy5_timer",
-> +				      "slow_ahb_src",
-> +				      "vfe0_ahb",
-> +				      "vfe0_axi",
-> +				      "vfe0",
-> +				      "vfe0_cphy_rx",
-> +				      "vfe0_csid",
-> +				      "vfe0_areg",
-> +				      "vfe1_ahb",
-> +				      "vfe1_axi",
-> +				      "vfe1",
-> +				      "vfe1_cphy_rx",
-> +				      "vfe1_csid",
-> +				      "vfe1_areg",
-> +				      "vfe_lite_ahb",
-> +				      "vfe_lite_axi",
-> +				      "vfe_lite",
-> +				      "vfe_lite_cphy_rx",
-> +				      "vfe_lite_csid";
-> +
-> +			iommus = <&apps_smmu 0x800 0x400>,
-> +				 <&apps_smmu 0x801 0x400>,
-> +				 <&apps_smmu 0x840 0x400>,
-> +				 <&apps_smmu 0x841 0x400>,
-> +				 <&apps_smmu 0xc00 0x400>,
-> +				 <&apps_smmu 0xc01 0x400>,
-> +				 <&apps_smmu 0xc40 0x400>,
-> +				 <&apps_smmu 0xc41 0x400>;
-> +
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
-> +					<&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
-> +					<&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
-> +					<&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
+Gr{oetje,eeting}s,
 
-Recently there was a discussion on the list that interconnects are 2-cells,
-if so, the array above should be updated accordingly.
-
-> +			interconnect-names = "cam_ahb",
-> +					     "cam_hf_0_mnoc",
-> +					     "cam_sf_0_mnoc",
-> +					     "cam_sf_icp_mnoc";
-> +		};
-> +
->   		camcc: clock-controller@ad00000 {
->   			compatible = "qcom,sm8250-camcc";
->   			reg = <0 0x0ad00000 0 0x10000>;
+                        Geert
 
 --
-Best wishes,
-Vladimir
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
