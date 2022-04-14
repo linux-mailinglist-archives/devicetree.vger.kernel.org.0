@@ -2,55 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA350501D50
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62E35501D7B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:32:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346875AbiDNVV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 17:21:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42532 "EHLO
+        id S229943AbiDNVeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 17:34:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345666AbiDNVV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:21:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5E1E6160;
-        Thu, 14 Apr 2022 14:19:01 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 154A21F47CE5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649971140;
-        bh=2xKknOtDpSR8eQDaiaIyagDa3TimNCOxCV05QM9h4w4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GGsh8woUuFVu9AByGubOp4z01sVpeiC5ATFwD3L5+80wsbyGo9tpii4Btn190Ebzv
-         2GPkMFbNnHvjbsYOMSOKEG2n4Fm4Tc86Y1u0kvXPRuLGcyd6SUg/k8fGngKGJJEc81
-         y/GE3JTd6QrkuZRVLX/RjMCmR9H9pf9HuxY1VDb9BaXMUDzUavxbXp7Pc58Yj1sz/Y
-         x3UK4OJ/HFXulBdjHewAJfPJiJSrXIiWWrUGZ+tcX7o+7eSzBJ356XO4K7aCVjwwd6
-         YljzroGf/EjaE/QxQt3cXTEtU5wP2vlXYGoOuvdpG1owipTanYuqW4zl27y9aQfEkZ
-         YmpQOIxAeEA9w==
-Date:   Thu, 14 Apr 2022 17:18:55 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: mt8192: Add mmc device nodes
-Message-ID: <20220414211855.5crksjgvar3ugayq@notapiano>
-References: <20220407113703.26423-1-allen-kh.cheng@mediatek.com>
- <20220407113703.26423-2-allen-kh.cheng@mediatek.com>
+        with ESMTP id S1345555AbiDNVeR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:34:17 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682962DD64
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:31:51 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id n8so5771475plh.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:31:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tgK86hMG//HjfRr9J5TwzgXURgYX1s8RvV8/jTvjJYw=;
+        b=YN3OVTQL8wtJWgsUgLD1/s3/NtlwJPIYw5qezMLHAXOyRjBYCcewUPYCgLhO7alpbP
+         AOtcg8+0Pqksl8l8ezIrKM8G6UyaJ/Aogz8EYeSOZbX1sfQIDaCnCPLInwX9+F0OnXS3
+         A3Mn7KodlK3jPPdJon2blcRiw7xfl9E86Lczx5dvlod2ueoHLUSi0UzVGLrI/F6KKGBt
+         buoC8oui8cD86jyJQJvI1EjnqZPMwxsgNCo88hYFptVqUEZJNozyaMPhfHQCggK4K67g
+         lXUit/i3AOyy/UvGb6GWNo/nTqxBahLOPr7bLeT3YbLLiM32D9Q34D1Q7Ax1lFBXGS6v
+         F0PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tgK86hMG//HjfRr9J5TwzgXURgYX1s8RvV8/jTvjJYw=;
+        b=tb7dtHo86kfdgYj9EqpLKe2xJQd33BqSuQY3+9IVSOaAYpySB5/ysEDYkZNr80VQim
+         8iEszbaaOUa++LUZdpn5FcjINZsFnEEJPtJ9s4S+48p05/hvnW8aWZSPzRLAhf5+rvX6
+         1xRb2oKiPkVRbIHyTOKiGdcoZIZaAKi1SLHR+B9OvnRxSrgjJYmgGom/+1oPyQmX5APW
+         wHol8YRnvu9TcFtw1PTVLUTanBfqr4RU2wRzJadXFUe2QrR7/XrjrmDIrTjmAJIF69IT
+         vzmtfJHfKtjgi0QEqE+2NpPA/UXXM7wrZXNoUGnlNbJr51SZSV/tfdbFRM6QLU2MOaKH
+         wjSw==
+X-Gm-Message-State: AOAM532jrl/QruFWDWVA3pPNUVfRqiwas+tdOZN4SGJPsAZpGaa8IHl9
+        Bi2pLWpu7WJiDdjuD2c2w7+k2Q==
+X-Google-Smtp-Source: ABdhPJxJlElCuqPlYrpiKX7K8Z+B9LpesYf90WrnsrpSabzgcIMmc2ZEW/cyieCHqlD4vlTe0A7+Dw==
+X-Received: by 2002:a17:90a:e7cf:b0:1cd:3eb9:ce79 with SMTP id kb15-20020a17090ae7cf00b001cd3eb9ce79mr589946pjb.88.1649971910824;
+        Thu, 14 Apr 2022 14:31:50 -0700 (PDT)
+Received: from localhost.localdomain ([223.233.64.97])
+        by smtp.gmail.com with ESMTPSA id 5-20020a631045000000b0039d942d18f0sm2673706pgq.48.2022.04.14.14.31.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 14:31:50 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 0/2] arm64: dts/qcom: Enable uSD card support for SA8155p-ADP board
+Date:   Fri, 15 Apr 2022 03:01:37 +0530
+Message-Id: <20220414213139.476240-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220407113703.26423-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,68 +69,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 07:37:03PM +0800, Allen-KH Cheng wrote:
-> In mt8192 SoC, mmc driver dose not use the MSDC module to control
-> clock. It will read/write register to enable/disable clock. Also
-> there is no other device of mt8192 using MSDC controller.
-> 
-> We add mmc nodes for mt8192 SoC and remove the clock-controller in
-> dts for avoid a duplicate unit-address(11f60000) warning.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Changes since v1:
+-----------------
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20220403144151.92572-1-bhupesh.sharma@linaro.org/
+- Fixed the IOMMU sid value, to ensure that no ADMA error is observed
+  when the microSD card is detected on the board.
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+This patchset enables the microSD card support for SA8155p-ADP board
+via the SDHC2 controller found on the SoC.
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 34 +++++++++++++++++++++---
->  1 file changed, 30 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index a6da7b04b9d4..18a58239d6f1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -985,10 +985,36 @@
->  			#clock-cells = <1>;
->  		};
->  
-> -		msdc: clock-controller@11f60000 {
-> -			compatible = "mediatek,mt8192-msdc";
-> -			reg = <0 0x11f60000 0 0x1000>;
-> -			#clock-cells = <1>;
-> +		mmc0: mmc@11f60000 {
-> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
-> +			reg = <0 0x11f60000 0 0x1000>, <0 0x11f50000 0 0x1000>;
-> +			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>,
-> +				 <&msdc_top CLK_MSDC_TOP_H_MST_0P>,
-> +				 <&msdc_top CLK_MSDC_TOP_SRC_0P>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC0>,
-> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
-> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
-> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
-> +				      "pclk_cg", "axi_cg", "ahb_cg";
-> +			status = "disabled";
-> +		};
-> +
-> +		mmc1: mmc@11f70000 {
-> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
-> +			reg = <0 0x11f70000 0 0x1000>, <0 0x11c70000 0 0x1000>;
-> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>,
-> +				 <&msdc_top CLK_MSDC_TOP_H_MST_1P>,
-> +				 <&msdc_top CLK_MSDC_TOP_SRC_1P>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC1>,
-> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
-> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
-> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
-> +				      "pclk_cg", "axi_cg", "ahb_cg";
-> +			status = "disabled";
->  		};
->  
->  		mfgcfg: clock-controller@13fbf000 {
-> -- 
-> 2.18.0
-> 
-> 
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+
+Bhupesh Sharma (2):
+  arm64: dts: qcom: sm8150: Add support for SDC2
+  arm64: dts: qcom: sa8155p-adp: Add support for uSD card
+
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 68 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi     | 45 ++++++++++++++++
+ 2 files changed, 113 insertions(+)
+
+-- 
+2.35.1
+
