@@ -2,110 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AC2500628
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 08:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3AC3500633
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 08:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240002AbiDNGgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 02:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
+        id S232107AbiDNGiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 02:38:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238320AbiDNGgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 02:36:17 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBEBCB9F
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 23:33:53 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id s25so4617553edi.13
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 23:33:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=D/ipfU28h+YDs/vQIG6JpjOGobV5kM+7VxkHsaNF4ec=;
-        b=lZLxBSicwQ6JPl/gDsf9rr5+CGdgLAmoNPUZUVHZK8g5tXZJmEny8FUdllZsxJeUfL
-         M36irxT2X0vs9gudKyATRAU3b8XDS+BBkTrtvuZ0RP9pvKTY0RyWQN3sNs7QGkPA9qVb
-         GmHcYJ677mTEUSgLs+n/kGTCrhJw+aVjKfE7OQbUIZB0iCeZtgvWUjXTwlis+OCrvzvw
-         X4zVznSHvIOGIVB7cqueULuRBc3jXtWoDlVpQeZo1TN71MzCYkJ+CAU4kBuQwsE23Uua
-         cQvhydwvxhZTzFkgtZV1uyBs9IL29U1EjZvGfqAPiYLm+HdDAzkMkVMX4OL9KPTY2t9I
-         8nFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=D/ipfU28h+YDs/vQIG6JpjOGobV5kM+7VxkHsaNF4ec=;
-        b=LdfS6EXSSYLjXL+FwPW7fK6bnUk4QgHIB13ltuJhWkuClmKZ+RYYQRuEt6ZnQsyRrV
-         PT9KAnBGBqgL+1a+lTLCGHYPsDGo8r/eXiFb6EKYhI2jmpsAui0bAFwuQaypevDYZ5Mo
-         cjEgEQn70OtQhCgtKzltc9sp44WOLs5ulfpTerDXt0igY5xqXD20qCBbM9VsCDzPPV3C
-         snhWGhD6HBwRg3v8vcxvwTTG1Muyap3RI19NgfJAyRP4nDsgJqnhbd3iRaXa7XIBGwJH
-         kHZYfNnTNPHDhTdpTO4KkSpfVVg+aBKabCvseQeiD3smlKhbMUjXjc+5hTznTdZJuPHb
-         lpzg==
-X-Gm-Message-State: AOAM531wmf2d5Z/c9NrojvWCi1Usy2McoI/PZGyrtG+iiQhWsJesPhZg
-        x18O0tegwZGLmm4fGLGJidxN/g==
-X-Google-Smtp-Source: ABdhPJwI0GhVFonB/NHPCfl4LSJUKJAZdcyNcDL79mP/DnGRcGHRwDgh7BGiywroN2IPiIZTffK5sw==
-X-Received: by 2002:a05:6402:40c9:b0:419:4b81:162e with SMTP id z9-20020a05640240c900b004194b81162emr1368483edb.380.1649918032495;
-        Wed, 13 Apr 2022 23:33:52 -0700 (PDT)
-Received: from [192.168.0.208] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id b5-20020a17090630c500b006e8044fa76bsm332851ejb.143.2022.04.13.23.33.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Apr 2022 23:33:52 -0700 (PDT)
-Message-ID: <02953ce1-0a43-5918-d139-35afd5f15b5b@linaro.org>
-Date:   Thu, 14 Apr 2022 08:33:50 +0200
+        with ESMTP id S240067AbiDNGiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 02:38:08 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150077.outbound.protection.outlook.com [40.107.15.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E313F301;
+        Wed, 13 Apr 2022 23:35:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GzdmnTZQp+LmK+yLgvCpGH9B27ojtqxVbA7EWmdoIrnkhEa0CFnX/yEsUgOmYTnTioLRBcrhBfpesWPBAzuIgDEihgAOo6MJmUZzIdnIGBnEhSH+fmFSnd6moTmbgfkaEiYuvmcoA4CYGed4wE8acLEpheeeVlJ8iU+11ztmVhbf7323xxd98R25ZyL9fiK+IX+0m4lLkdzxTmtXW+Q02sXR08WqzuqtC1MIK2Ssdxv9iO7nXCDzs5PgQsuEjVIDFHJVHCwbp6lrnokTwDdMOiDWExjdKS5xxPxF8kE3iHC+TzflycRpA2sE0ytRR4b4T+vOchonSpvm3h9ic4kIHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yZEH8pckfb45IjilW+y76+7EinGytbJHFblhK2lI1kg=;
+ b=I6+qSffDFzzQBRXlpyMOj6pO2PbnwCYrhVTAC8bU6jsGuGCZC0/M9BUkNmOhGuqgymS/8tuk2r649n9BeF46khsAligxflvBr03MLkOJEvFxNo0ARiOMsOkEg0IZi0gCamyMHFW7gvmGyEaQ3GBqLRqtsJ/gA/eMVt6ZyoMIdByAwrtwQhMcwimuXarH1rljyDqbSJGuZC4ARZMlVCP+7uBqmk+ZdeYI0oZn7uHafzoy20hJV75RzujIttDeEvYXGVgJJJh19WuvE89OkcSXaGS2LAJYyV1TS3V5v45rOxaQ4flHVJEw1rMuQXl8b55MZGOu2JsB1oqSfuunBn6tVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yZEH8pckfb45IjilW+y76+7EinGytbJHFblhK2lI1kg=;
+ b=hOgHyyR5ddakCU3CI8p/0spOcwzWX2HfjrIBuBUTpLpu9+NKS4q/R27vGSTCfxYzKPBuFRL0YiaeKqgntLUhvt5ihbd4woy/gHkbwtOjtokVv6kdwqdohJ1X5GsIVLPKHUaiM3NKgqGugkQoUPZYsAsgCgz3FIf+CeJJx0/VfWQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM6PR04MB5782.eurprd04.prod.outlook.com (2603:10a6:20b:aa::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.30; Thu, 14 Apr
+ 2022 06:35:41 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387%9]) with mapi id 15.20.5164.018; Thu, 14 Apr 2022
+ 06:35:41 +0000
+Message-ID: <1bd1ab210eae96fdd0280b9ef6876ae918d48cb3.camel@nxp.com>
+Subject: Re: [PATCH v6 resend 2/5] phy: Add LVDS configuration options
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
+        robh+dt@kernel.org, andrzej.hajda@intel.com,
+        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
+        daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        agx@sigxcpu.org, robert.chiras@nxp.com, martin.kepplinger@puri.sm,
+        robert.foss@linaro.org
+Date:   Thu, 14 Apr 2022 14:35:29 +0800
+In-Reply-To: <YlezKAw+W8HOa322@matsya>
+References: <20220402052451.2517469-1-victor.liu@nxp.com>
+         <20220402052451.2517469-3-victor.liu@nxp.com> <YlZpnrKt9NbHZv26@matsya>
+         <d77b41d911e126331138ddaca146a581d316bd09.camel@nxp.com>
+         <YlaqwoFCfusFgIIe@matsya>
+         <a2731b2d77f9bf2adf36f0c05cb5e3b14a5a91a9.camel@nxp.com>
+         <YlezKAw+W8HOa322@matsya>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: HKAPR04CA0004.apcprd04.prod.outlook.com
+ (2603:1096:203:d0::14) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 11/14] dt-bindings: pinctrl: add binding for Ralink MT7620
- pinctrl
-Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
- <20220413060729.27639-12-arinc.unal@arinc9.com>
- <41fa58ee-728b-7f0d-eea7-448c59641d85@linaro.org>
- <0dd1da16-232b-d634-3146-bf91e58c9543@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0dd1da16-232b-d634-3146-bf91e58c9543@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8b21b07f-45e4-4a59-7091-08da1de0ff04
+X-MS-TrafficTypeDiagnostic: AM6PR04MB5782:EE_
+X-Microsoft-Antispam-PRVS: <AM6PR04MB5782C49E5919CDB84D5617A798EF9@AM6PR04MB5782.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DfXLCfGGtFzWQSedK/1qqAyfZzMlFfPXbsMtYteOxpifr3f9NHafhFxPZwftOIpHUO8IxThpjYVIeULasP2dLv1c6vOfSuFjILOwSYe62J/tWRWAifNw9v4IxQQEi4oUvD0GcKRx+ADmVAjdUDhi6gOLG62WWGiKpOZNW2yklOkD9Fe/7SIlzT+EnXxMxf6tVllG0FX21jgRfrN8eR3lzCalSqVDA5EPVP0GmQ/NGWrTDgFGepAuZZI1aEIXREbyPEaa0MCAI9cqETumObSBdRRUuNvfVF+1F25+4IIudXU42owrEQni7ltY71HWWGTH5wYkONMA134KC0Wl0X9vpufbwnUAC00NpzRXxWKq3g3TNCvB+97fmIjCK+MQMPhm2/xW0HCtZuGvSBUqzIbPo+vr+lH4hhBQ8YBtEUeYe2HP/1Uwn2xRSRbbpIwIUhk60COq6cysKfPp7mlNUf4SZa9/iRXXX5eOmOj0Zm4lubr8dvz44B65aMM9bZSDqBhhb69aeg0761R/uawYvwy5BrXu9rJI8iknQOxvjxHQxvV9tlybiBa3DSSFE2BDoVDNHJpYVcWUGQENssc0lBY6EhZxydHrTk1AuZkuLYnclBvKqjQQSgFcJ5hhWkSIHdyfLn7QQFTlgcWi+dF3qPc/3TxqrtBSCa2MFuixLgxeYYIKc0HTT6DTD1KFXniJpDSIXdz/VJmo0ybCvLJ6LYLiHCOzVpE/uoHbiXjPisyg/b0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38100700002)(66476007)(66946007)(66556008)(26005)(186003)(86362001)(8676002)(4326008)(508600001)(6486002)(8936002)(36756003)(316002)(7416002)(2906002)(2616005)(6512007)(83380400001)(6916009)(52116002)(6666004)(6506007)(53546011)(38350700002)(5660300002)(99106002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R0JZQTA4dTRRaFZDOXdmNGFDcUlFRXhpU1dEeml6eG5zWkNDUTVoYlJLR2Fa?=
+ =?utf-8?B?azNVY3UxbVg2Z2JUM2hOMlNpblFZRFhLeHI1MW13OWViUmRCaHcrUk9JY25a?=
+ =?utf-8?B?RHd4NU45cDRWcU9NL2tpM04xcEpTQmc2UDdhYzM5QUtBWXdmSFFhbTl4T3dh?=
+ =?utf-8?B?UGl4T3dqSncvSllQcVBid1NpQlFNSWprTUluRHdSTlJDcm85ZHNIM3FuWjht?=
+ =?utf-8?B?MUcrYnd2RDlSZzlvQlkvbzF0aGRKcDM2L2xlN0tuUmxienJKeDRHVS9Jd3ZT?=
+ =?utf-8?B?MlhsN1h0Rkk2akx6Ym11L2QxQXRkYVRXQ0s2V1pJN1FUb0k0K1FoK1kyOStX?=
+ =?utf-8?B?WkExd2RwanhvQ0pHWGFDaDRkZW43bERvUkR2RHFvUUtheEk0T2FWb2RkZUZ5?=
+ =?utf-8?B?VXRwdi9ZREhvbFA3OHJqaGpRWXJBVXJwQW5MMjBMMnFqRFF2dXBNbXhBdDFB?=
+ =?utf-8?B?cXNEU2RaK2pGZGhKY01Qck1LY2drZkcvM2ZxNUdNTXRpOTZHcEZQWEM0N1V0?=
+ =?utf-8?B?d2VuS25wUUJhc3BHanZJdjNBbEk3YTBXeUxGdnoxa1ViTVBVUDhsOWF3M2hW?=
+ =?utf-8?B?OEp0b2llUTczbnFTTVg4Y2VlY0I2bnRKMFNEbjVqSWd3OTcvY0JYNW1hZjJu?=
+ =?utf-8?B?MEdsK1oyalZZaVVqbmpsWDR3ZU5kVFFZYzVzVGd5WlVTVEd1QkZNeDlySXpk?=
+ =?utf-8?B?WDNpREw3SVFnLzcza0I0b3F5dTV5VWpDRkhiaG1iOVh1VGx5TG5jbXBZczRl?=
+ =?utf-8?B?N2NUdk9XRmFoM2lCaGQ5TUlQQXc0Q2Q4d2daVzZRMTBuTk5LL0ZuUGVMM1BB?=
+ =?utf-8?B?c0VIQ1pzZVNKekZ2di9sV1pkcW5TcWFEeDRhb012dmhxeVYvN1RuaS8zNVdq?=
+ =?utf-8?B?dXZPTkFtcGc5djFuWm5yRnlrUFRHazhEdUJWMkN0N2tLdXhQR25hUUVLZjQz?=
+ =?utf-8?B?MGJlZDFRSDlLUTBCbWNpRjVjZzZDLy9HYXhEWHRXMm83b2hKcXVNOUN4dlFU?=
+ =?utf-8?B?aWwvQzdhVWdUbk04c1lNTjMvRkYrT1A4RHdCSzZvVDNscmZ2Si81TzNIYWxw?=
+ =?utf-8?B?ZnRLWi9ISlNrVm9XRE5vMnJsREJPTWhMMjJOTjI2bklSaHdGWVEvSlgrRytS?=
+ =?utf-8?B?SCt0Vy93MTlxZ25CdFc1VFY1aDloM2FKL2g1TUV3eDNUUVdYZTFaMWp6bldP?=
+ =?utf-8?B?My9ZZEN0Tk5uV2hhY0h4RnBtU1dMbnY3U1N5c2swY3NOTFYyNlZEd20vRHZj?=
+ =?utf-8?B?Y2pJeVVPU2x0bE51dmYzTHRYUHloNXIxd2hjNlppQWEwaFVuQTM5bjNQRzRv?=
+ =?utf-8?B?aUFNUVhSZ2czU2J5UXBXamVlWEc1ZDdOeTlSTnZkUE1lRUtNOEgxQWgxekR1?=
+ =?utf-8?B?WCs2ZUJFRDI2MDFVZXlqRU9LcnFsRTVuZUxXYURZRE9DRjlCaWd1UjRQOFU2?=
+ =?utf-8?B?aHhqdUZkSXlydjVrY2I5QUhPNWgyM0VRWXZuZE43b2l3b1ZHbU5RY1IwWEky?=
+ =?utf-8?B?Z2pkaTdjbXVFS1NzeDhkbTdlV2VTM0pVVFZ2S1dJZVhhZFNmbUlBclkvdXBz?=
+ =?utf-8?B?SGdaN2Z0VURLN0FNL0ZOWmRlWkRldXpGbUoxVUN6aFlYbUZQd0hDajd5S0Iz?=
+ =?utf-8?B?NXlPY1I1a3JnVCtFUHRpU2M3Z2kvam42QXFEejBtUmRtSWxYcXpJZEJnWlEy?=
+ =?utf-8?B?SVIwVTBCNm1zZ0wyMHVXeEhZanh1MDNXbFg3bHp5UXkydGNJNU1LMHFxbzkw?=
+ =?utf-8?B?eWFNUDVVUHMrWHVvbHQvdmZzVUg1RWVURFAzUkVVMVhCTmdVck92N25ZY2dp?=
+ =?utf-8?B?ZmlOUWxDeFJqQWhwT2ZrUmF2MzRERUY3SytNbGlUN3djMFJMbFNnTXF0UWhE?=
+ =?utf-8?B?YWxoWHhNdVI1SzlRU2hCWklNeHcrS1d1OWN1Y0txUGV2SEtjVXMrdmpFUkVU?=
+ =?utf-8?B?MU1LZE94WVoxc2xTRzdNblNPa29aampZQStncnZYM0JTcXkyanVzdlBkK2o1?=
+ =?utf-8?B?cDF2TWRIcXEyWmxGUXlsM29XbGVKcisrZXB5Szk0N1NRdkI0K2VhNWVtRkVF?=
+ =?utf-8?B?cEVkdHg0WmFkS2FFb2pwQkxRWTd3cnpiWmFDdmw4bm4rY3VUbW9lVUFCRXdS?=
+ =?utf-8?B?ZjgxVnZDcGlkUjdvMU5YMndLUkxtNldseVh2N2ExNzJGN29nVFpOUUEwa1Yx?=
+ =?utf-8?B?TjZKZTVCbGhqSFc5Vk82R29ZTHZ1YnRJYy82UDlac1U1VnVlSkhyUGRYOUpY?=
+ =?utf-8?B?eG1NS0oydHc2bjcvTlNabndodVFRTFhyelo1eWhvWVREbXNHTEpNZEF4aWFH?=
+ =?utf-8?B?eHc3UXVBRURTZFc5dXZuTWltV3cwT0lETEpVTW5vTWRyZDVIWU1FQT09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b21b07f-45e4-4a59-7091-08da1de0ff04
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 06:35:41.8000
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RkB7V2kZiy1fMV8ODwU9rssbVnAXIalaG7qZ4g4nOgQBGm8mgPVBwAffjquBeUSvRD5el5Lh0/zdVYk6U34lHw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5782
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 03:52, Arınç ÜNAL wrote:
->>
->>> +  is not supported. There is no pinconf support.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ralink,mt7620-pinctrl
->>> +
->>> +patternProperties:
->>> +  '-pins$':
->>> +    type: object
->>> +    patternProperties:
->>> +      '^(.*-)?pinmux$':
->>
->> Why do you have two levels here? pins->pinmux->actual pin configuration?
+On Thu, 2022-04-14 at 11:07 +0530, Vinod Koul wrote:
+> On 13-04-22, 20:39, Liu Ying wrote:
+> > On Wed, 2022-04-13 at 16:19 +0530, Vinod Koul wrote:
+> > > On 13-04-22, 18:04, Liu Ying wrote:
+> > > > Hi Vinod,
+> > > > 
+> > > > On Wed, 2022-04-13 at 11:41 +0530, Vinod Koul wrote:
+> > > > > On 02-04-22, 13:24, Liu Ying wrote:
+> > > > > > This patch allows LVDS PHYs to be configured through
+> > > > > > the generic functions and through a custom structure
+> > > > > > added to the generic union.
+> > > > > > 
+> > > > > > The parameters added here are based on common LVDS PHY
+> > > > > > implementation practices.  The set of parameters
+> > > > > > should cover all potential users.
+> > > > > > 
+> > > > > > Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> > > > > > Cc: Vinod Koul <vkoul@kernel.org>
+> > > > > > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > > > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > > > > ---
+> > 
+> > [...]
+> > 
+> > > > > > + */
+> > > > > > +
+> > > > > > +#ifndef __PHY_LVDS_H_
+> > > > > > +#define __PHY_LVDS_H_
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * struct phy_configure_opts_lvds - LVDS configuration set
+> > > > > > + * @bits_per_lane_and_dclk_cycle:	Number of bits per data
+> > > > > > lane
+> > > > > > and
+> > > > > > + *					differential clock
+> > > > > > cycle.
+> > > > > 
+> > > > > What does it mean by bits per data lane and differential
+> > > > > clock
+> > > > > cycle?
+> > > > 
+> > > > Please check
+> > > > Documentation/devicetree/bindings/display/panel/lvds.yaml.
+> > > > lvds.yaml metions slot.  'bits_per_lane_and_dclk_cycle' means
+> > > > the
+> > > > number of slots.  But, I don't find the word 'slot' in my lvds
+> > > > relevant
+> > > > specs which mentioned in lvds.yaml, so 'slots' is probably not
+> > > > a
+> > > > generic name(lvds.yaml is for display panel).  So, I use
+> > > > 'bits_per_lane_and_dclk_cycle' as the name tells what it means.
+> > > 
+> > > variable name is fine, explanation for bit per lane and
+> > > differential
+> > > clock cycle didnt help, maybe add better explanation of what this
+> > > variable means
+> > 
+> > I may add an example diagram as below...
 > 
-> Yes, pins->pinmux->pin-configuration is currently how it's done.
+> Not really a diagram, you can add if you like.. But something which
+> explains in a sentence or few about the variable.
 
-It is currently done? Aren't you bringing here new bindings and new
-driver support?
+Ok, no diagram.
 
-Best regards,
-Krzysztof
+> 
+> bits per lane per differential clock cycle ?
+
+Ok, will use this explaination.
+
+Regards,
+Liu Ying
+
