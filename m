@@ -2,56 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 056EF500C67
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 13:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D93500C75
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 13:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbiDNLxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 07:53:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59156 "EHLO
+        id S242814AbiDNL4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 07:56:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbiDNLxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 07:53:35 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C2754BD0;
-        Thu, 14 Apr 2022 04:51:11 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 1EEEC1F47996
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649937067;
-        bh=FQo3+DfDK/439bMdjsIJSbbQW7m+3RsLgRDDfki4H+U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YtZBD7RNl720F69+xtlmXyfdDxjpi1ksA1V3yHN1HBA6AEH5w+VeB7DI9ibavjKHp
-         ZjGwaDwxN6p4gy8x8MbJRnoAamqkn+diH9XzFHyDYHLNqyUhI5IkEXRuv1V9yIzUDU
-         AYKcVdlaGGJYKVZd0ruW3n8o5eHJ/KA0XifmgbWE0Zi+B8mz0QSBmBpFmHyQTnPCGV
-         qiWeXeq4ZGX5n+lMeRiDzj4II7gDE09xt+ks3FgMSN1jDl1LJ5P3bgAvEVMRBgwHdA
-         5FFEZ0UDm6uyqdjercTqlpjz0C2WX369JjI3QCtFbS/aax9x7MO9bYwmNdz+pG65OE
-         re3ANfGXiXIIA==
-Message-ID: <ee2f0819-8c9e-4160-c4ae-fb4ad0da3f3b@collabora.com>
-Date:   Thu, 14 Apr 2022 13:51:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v6 1/2] dt-bindings: Add DT schema for Arm Mali Valhall
- GPU
-Content-Language: en-US
-To:     Nick Fan <Nick.Fan@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232035AbiDNL4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 07:56:14 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB5B887AF;
+        Thu, 14 Apr 2022 04:53:49 -0700 (PDT)
+X-UUID: 2a3feb5c5ba6403a8358d36008dc8a07-20220414
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:10da4593-4ebc-457d-a26d-8552cbbea70d,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:25,RT:0,SF:95,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:100
+X-CID-INFO: VERSION:1.1.4,REQID:10da4593-4ebc-457d-a26d-8552cbbea70d,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:25,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:100
+X-CID-META: VersionHash:faefae9,CLOUDID:dade25a9-d103-4e36-82b9-b0e86991b3df,C
+        OID:7a0f8d2109bd,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:5,Fil
+        e:nil,QS:0,BEC:nil
+X-UUID: 2a3feb5c5ba6403a8358d36008dc8a07-20220414
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1247441206; Thu, 14 Apr 2022 19:53:42 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 14 Apr 2022 19:53:41 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 Apr
+ 2022 19:53:41 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 14 Apr 2022 19:53:41 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
-        wenst@chromium.org, linux-arm-kernel@lists.infradead.org
-References: <20220414025023.11516-1-Nick.Fan@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220414025023.11516-1-Nick.Fan@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 0/2] remoteproc: mediatek: allow different SCP firmware names
+Date:   Thu, 14 Apr 2022 19:53:37 +0800
+Message-ID: <20220414115339.5536-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,26 +68,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/04/22 04:50, Nick Fan ha scritto:
-> Add devicetree schema for Arm Mali Valhall GPU
-> 
-> Define a compatible string for the Mali Valhall GPU
-> for MediaTek's SoC platform.
-> 
-> Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
+The SCP needs firmware which differs between platforms and SoCs. Add a new
+property "firmware-name" to allow the DT to specify the platform/board specific
+path to this firmware file.
 
-Hello Nick,
-Unfortunately, this binding is completely wrong.
+The firmware-name property is optional and the code falls back to the
+old filename if the property isn't present.
 
-First of all, there's no arm,mali-valhall driver upstream - this will be managed
-by panfrost later, yes, but right now there's no support.
-Then, you're also setting opp-microvolt in a way that will never (or, at least,
-not anytime soon) be supported by the upstream driver, as it manages only one
-supply for devfreq scaling.
+Base on tag: next-20220412, linux-next/master
 
-Besides, please don't push bindings that have no upstream driver, especially if
-these are for downstream drivers requiring proprietary components, while a
-completely open source implementation is in the works.
+Allen-KH Cheng (2):
+  dt-bindings: remoteproc: mediatek: dd firmware-name property
+  remoteproc: mediatek: allow reading firmware-name from DT
 
-Regards,
-Angelo
+ Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 7 +++++++
+ drivers/remoteproc/mtk_scp.c                              | 7 ++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+-- 
+2.18.0
+
