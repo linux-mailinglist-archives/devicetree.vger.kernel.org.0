@@ -2,117 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 467AD5006EF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AAFD5006F4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238640AbiDNHfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:35:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51802 "EHLO
+        id S240379AbiDNHgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:36:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240359AbiDNHfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:35:23 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C3256203
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:32:59 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id bh17so8368897ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:32:59 -0700 (PDT)
+        with ESMTP id S240370AbiDNHgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:36:48 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCF4B47
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:34:22 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id q20so2494587wmq.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:34:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rkD4Wf92TMGep0/30NQKr7VRz7II9sGrZbor54Q/xRk=;
-        b=iN9ypiMERw5LppW8cGKW2C4wiIosRgrFUgiAzntqy98BwV3KiLvz8YHWdXEPfbAWR0
-         T2zV42oKntNo1RlRC+y9adviLE60XYLhRW4vd62wUizmPmRT7P/qj0+nDUejLIm3xvpB
-         GWtD+janBmy2XM0vMj5SVD598QN1RbL8sv3536IoiomAjFkNn3U0z2sq3xYBtbllse3M
-         qcyTVxGdH7hGJq99xeA4TH0oUmPoeWWmJ3vZKoK2bhpHn/XyCv15Lx3IS2HWFD4HX2kP
-         k7gZSHoas+NooDlufDv95yksWuL3Nv5Nn4TE+W+WdHoDLQUSGIyd3s+6C/NaKPrIzKFK
-         VoIQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=KeMi8W+p20zdR41YZoRj2EapY7imNsLYkAgQIQsIzqY=;
+        b=ZSyVl+ze+9OCHR+mC7bKpoZB8zAjJtZb3cjRoecDIu+T+eTBVmv1k2hpIKvSfGX9LV
+         FGdMW2jORj5xj2UJwpsSk21zSBV9biudWkVj8cttDmc2pK3jFeLOGvzxUwR5/SxEPNmV
+         u+OIGEzKIwi9Pwfr+BNdXiz3YCODn5ovtQQJNSK5vrL0y4MnO6n9Lw6IlN8JkrQYTHDu
+         pSGfwnNJrTHS0dIIYQyr/0ubmNVF3ZVZ7bhfYWbzJylhsouMoa6GiE/lq6vLsRLJcqOk
+         U4WGYvNSteo5DKoajkc/b9gp6gw+mhMigqDVXvF//aeF5cAw+oqFtnl2lY+VYpcph9FX
+         gUOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rkD4Wf92TMGep0/30NQKr7VRz7II9sGrZbor54Q/xRk=;
-        b=VmJRP11IMP9uh0Kd6r3+KyA+HMHjEzQilLSRXnh6FmwFrAVuJ2fsuIFjJz5+oErd5I
-         hpU+5Y7ekGLRMZulrHmQPD8PU74tbXQ2yN+r3CEQpev2pN4aDf92LlFUiFI8syz5fHs6
-         CHxbLMcBa9IFgk/cJwurLXGiE3gXDMsgl1PWttn/ESAbDjdqRfCSMjZmdwRf163Y0L68
-         CygwGqrMvYyzsPmnqh3Cw+in90UKTwcicahFx3o8l4y7Hx9os0U4yXnUgQw/zO+uBzHQ
-         bCAWLXvTi3YKCaWKY6R6NDDpXZR12/HS3dzz06d2PIDiM2mSN00MKzUlnK097wG1NJa/
-         /k7A==
-X-Gm-Message-State: AOAM533+tOx9VOh1F52PIrQJn977qODOgVbYaaQ3lbIdcTiT7cZClGTH
-        +PjfL2T1OHvO46IErLYxole3Aw==
-X-Google-Smtp-Source: ABdhPJyIhl5iB1oiTjY3Q/tXc13WAFkiAsoQlqVDVD1KjollmUpxx3kXZwJP7vY5xYASFKFZXckXwg==
-X-Received: by 2002:a17:907:a427:b0:6db:572b:df24 with SMTP id sg39-20020a170907a42700b006db572bdf24mr1233433ejc.193.1649921577860;
-        Thu, 14 Apr 2022 00:32:57 -0700 (PDT)
-Received: from [192.168.0.209] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id n5-20020a1709061d0500b006e87591ca21sm364707ejh.192.2022.04.14.00.32.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 00:32:57 -0700 (PDT)
-Message-ID: <76ea346b-0645-97b5-f8fb-5b46b4bcc80b@linaro.org>
-Date:   Thu, 14 Apr 2022 09:32:56 +0200
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=KeMi8W+p20zdR41YZoRj2EapY7imNsLYkAgQIQsIzqY=;
+        b=SKtsAAzjQkMrnlel4RF78DSEkvfcAHeDffVVIN09HOXLRjuI0ngVbJcO9PTOjxoimo
+         SfTZFeZTF7hki1qe1vOGGs8P2IasQOC+ob9ZVzumsHQIFtCZC5aw8o4q/qqOz6K0oMrB
+         f5T0tYIBOQbA/G6fGk7+q9TvOAFUH3N+IhNYjB+QqWyqS8yWrBoYME+D3AH54Xeu8BjJ
+         nbUBXEyZqyTCnsvl545IG+PF+XKpspWCKYMs3OMtY3dZKVf0k67PwbOeDw53w6fRRT7f
+         PfBeDJ7avuuTsEJQbAJlq34UkQLm0o1Tf0OhnuxhaOheL+LEB2fEB6aoTvsTPUm8Dj7t
+         1tRw==
+X-Gm-Message-State: AOAM533ltaM5zm1bRlhb6yz6J6it0fp5qKAVXTsQo5FWGgZkQES9EjnJ
+        hkD7OG5Wsku6zbqnVYwm++Ielu7aqlo2xYFuyQ==
+X-Google-Smtp-Source: ABdhPJzAk3/1pbfniNfYT03+eWWXl9kPkTLYoNLCc2HC7MtvPAILJ4Uvu9fY7EORUVOSDN3q87QPnDKla6pPDdVIfWc=
+X-Received: by 2002:a7b:cc0d:0:b0:381:220e:a3a0 with SMTP id
+ f13-20020a7bcc0d000000b00381220ea3a0mr1859448wmh.59.1649921660958; Thu, 14
+ Apr 2022 00:34:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: dwc2: Add bindings for new Ingenic
- SoCs.
-Content-Language: en-US
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Zhou Yanjie <zhouyanjie@wanyeetech.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        hminas@synopsys.com, Rob Herring <robh+dt@kernel.org>,
-        linux-usb@vger.kernel.org, linux-mips <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, dragancecavac@yahoo.com,
-        dongsheng.qiu@ingenic.com, qipengzhen <aric.pzqi@ingenic.com>,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, reimu@sudomaker.com
-References: <1649788201-87620-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1649788201-87620-2-git-send-email-zhouyanjie@wanyeetech.com>
- <6F03670F-9040-4560-AD78-CC7A03EC678F@goldelico.com>
- <c79a8ff7-7a3f-9627-f910-dbbf942e34cb@wanyeetech.com>
- <0AE74BF9-46F1-44EC-8E5F-40EA12851AD0@goldelico.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0AE74BF9-46F1-44EC-8E5F-40EA12851AD0@goldelico.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Received: by 2002:a5d:64cb:0:0:0:0:0 with HTTP; Thu, 14 Apr 2022 00:34:19
+ -0700 (PDT)
+Reply-To: danielseyba@yahoo.com
+From:   Seyba Daniel <ouedraogoissa.bf@gmail.com>
+Date:   Thu, 14 Apr 2022 09:34:19 +0200
+Message-ID: <CAPdK0pZexGtjySoF5bV1mZ65p1Pcj+sM_g4xVedgc210-vCVWQ@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:342 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [ouedraogoissa.bf[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.7 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 21:30, H. Nikolaus Schaller wrote:
-> So we need "snps,dwc2" to get any driver match and I thought the "ingenic,jz4780-otg" is redundant.
-> 
-> But maintainers convinced me to keep it as a dummy compatible in the .dtsi for potential future
-> specialization (which does not exist and seems not to be necessary). 
+Hello,
 
-Isn't exactly the next patch 2/2 using such specialization?
+I am so sorry contacting you in this means especially when we have never
+met before. I urgently seek your service to represent me in investing in
+your region / country and you will be rewarded for your service without
+affecting your present job with very little time invested in it.
 
-> Unless I can convince them 
-> that this is never ever needed. Which is beyond my knowledge and almost everyone.
-> 
-> So we can't remove the "snps,dwc2" here.
-> 
-> Well, we can with more work elsewhere.
-> You have to extend the dwc2_of_match_table to include all ingenic devices.
-> 
-> Therefore we now know 3 potential solutions:
-> a) remove "ingenic,jz4780-otg" from jz4780.dtsi (my proposal)
-> b) add "ingenic,jz4780-otg" to dwc2.yaml together with "snps,dwc2" (your proposal + my suggestion here)
-> c) add only "ingenic,jz4780-otg" to dwc2.yaml and extend the match table in drivers//usb/dwc2/params.c (new proposals)
-> 
-> From consistency point of view I think variant b) is the right one. a) was rejected and c) only adds redundant code.
+My interest is in buying real estate, private schools or companies with
+potentials for rapid growth in long terms.
 
-c) was already proposed by Zhou, so if you think the code is not correct
-(the params for jz4780) maybe nack it there, so we will know that driver
-needs fixes.
+So please confirm interest by responding back.
 
-Best regards,
-Krzysztof
+My dearest regards
+
+Seyba Daniel
