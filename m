@@ -2,104 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F7B6500CFD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 14:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C00C500CFF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 14:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243095AbiDNMWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 08:22:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55208 "EHLO
+        id S243103AbiDNMWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 08:22:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243178AbiDNMWs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 08:22:48 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BB0B65167;
-        Thu, 14 Apr 2022 05:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649938824; x=1681474824;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=KlJZfmC6j3K6ts3F6kJZdzJDkVnIINRSALGaXn75HeI=;
-  b=i5vuJZ1ve2hdMyKgW+e0qK3jyp1+B5DtNLcmfK6xGaHgNx206+WfZSAO
-   vduSbso70HUeh3epFrVj28T0RGYIw1RC0Xh2pywe8A9GfmfNclwF8FOd3
-   HACS6Js+RoUtXIYc3/lOfjJ95nwoAhjwxTliCplq645eR95hDYQa9Xj37
-   I=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 14 Apr 2022 05:20:24 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2022 05:20:23 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 14 Apr 2022 05:20:23 -0700
-Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 14 Apr 2022 05:20:16 -0700
-From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <robdclark@gmail.com>, <seanpaul@chromium.org>,
-        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
-        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
-        <quic_khsieh@quicinc.com>, <bjorn.andersson@linaro.org>,
-        <sean@poorly.run>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dmitry.baryshkov@linaro.org>, <quic_vproddut@quicinc.com>,
-        <quic_aravindh@quicinc.com>, <steev@kali.org>
-Subject: [PATCH v7 4/4] Support the eDP modes given by panel
-Date:   Thu, 14 Apr 2022 17:49:26 +0530
-Message-ID: <1649938766-6768-5-git-send-email-quic_sbillaka@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com>
-References: <1649938766-6768-1-git-send-email-quic_sbillaka@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S243135AbiDNMWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 08:22:36 -0400
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98E461A35;
+        Thu, 14 Apr 2022 05:20:11 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id i23-20020a9d6117000000b005cb58c354e6so3228155otj.10;
+        Thu, 14 Apr 2022 05:20:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=jfLbrErxPSU2rAmAIkQlwSpxDTxXq1N0X3SRKecv6Z4=;
+        b=vDCoZ9Z9NDMfzmpIkDELDPmzvXbuLKczzKTQ/AMaK4dm99B4jI1YsBn7Nk1hv2imhC
+         Ely/fp9YgB65xSsXBMPEF6dt2iwOQI+woDDkRmPcmTA+TRB2ZqGDeJfo2vVCpbeynBcZ
+         MgzcmF3ZyyipQD5Ts6cQUJhCCiMXJl4fniO5N2euejjHvgkWfbvBoiu2MH8PBowfX1SG
+         Ky7qwuu3HZqQANZzK4KxEEiA/yLBtd6Tj3vj/ftrA56TB3G5Fy+pcxa3H2kEv/7Zktsa
+         96RUtTzMfQjVM7hSjwXHxBOjeM4A/HpGBHd8W+wZEU9+yOOS5ROxuK9yQWfolNPAE0UZ
+         66Sw==
+X-Gm-Message-State: AOAM532jTCeAQXSBX3y+8VV4W6W5imn//DjaWk3EAFgf6Px/+5PREZmv
+        h/97VXcP9oBVxfvu1S5Yvw==
+X-Google-Smtp-Source: ABdhPJx4xNkKUWm+NeTCrYVhzwHAgxx56YjSw9GyjrDqz1yynrl/Dd9TI9a4RWdAO/Sp46NmcGS/cg==
+X-Received: by 2002:a9d:75cd:0:b0:5c9:61fa:3a42 with SMTP id c13-20020a9d75cd000000b005c961fa3a42mr823491otl.15.1649938811097;
+        Thu, 14 Apr 2022 05:20:11 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p129-20020a4a2f87000000b003332606e636sm616848oop.2.2022.04.14.05.20.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 05:20:10 -0700 (PDT)
+Received: (nullmailer pid 1698373 invoked by uid 1000);
+        Thu, 14 Apr 2022 12:20:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>
+In-Reply-To: <20220414085106.18621-10-marcel@ziswiler.com>
+References: <20220414085106.18621-1-marcel@ziswiler.com> <20220414085106.18621-10-marcel@ziswiler.com>
+Subject: Re: [PATCH v1 09/14] dt-bindings: arm: fsl: add toradex,colibri-imx6ull
+Date:   Thu, 14 Apr 2022 07:20:09 -0500
+Message-Id: <1649938809.981246.1698372.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The eDP controller does not have a reliable way keep panel
-powered on to read the sink capabilities. So, the controller
-driver cannot validate if a mode can be supported by the
-source. We will rely on the panel driver to populate only
-the supported modes for now.
+On Thu, 14 Apr 2022 10:51:01 +0200, Marcel Ziswiler wrote:
+> From: Denys Drozdov <denys.drozdov@toradex.com>
+> 
+> Add toradex,colibri-imx6ull for carrier board dts,
+> including aster, iris and iris-v2 device tree,
+> wifi and nonwifi variants for NAND and eMMC modules.
+> 
+> Signed-off-by: Denys Drozdov <denys.drozdov@toradex.com>
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> ---
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          | 23 +++++++++++++------
+>  1 file changed, 16 insertions(+), 7 deletions(-)
+> 
 
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
----
- drivers/gpu/drm/msm/dp/dp_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index c7277f0..0f18a16 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -998,6 +998,14 @@ enum drm_mode_status dp_bridge_mode_valid(struct drm_bridge *bridge,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * The eDP controller currently does not have a reliable way of
-+	 * enabling panel power to read sink capabilities. So, we rely
-+	 * on the panel driver to populate only supported modes for now.
-+	 */
-+	if (dp->is_edp)
-+		return MODE_OK;
-+
- 	if ((dp->max_pclk_khz <= 0) ||
- 			(dp->max_pclk_khz > DP_MAX_PIXEL_CLK_KHZ) ||
- 			(mode->clock > dp->max_pclk_khz))
--- 
-2.7.4
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/fsl.yaml:666:111: [warning] line too long (113 > 110 characters) (line-length)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
