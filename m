@@ -2,110 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88E7C501A8F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12CC8501A96
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 19:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344163AbiDNR4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 13:56:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50070 "EHLO
+        id S241328AbiDNR6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 13:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344141AbiDNR4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:56:18 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE0CEAC9B;
-        Thu, 14 Apr 2022 10:53:53 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id w127so6171920oig.10;
-        Thu, 14 Apr 2022 10:53:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LDb6a54Kbel4HFnWgqEnQRC1KuI8HmYdyvPnVqEyvNM=;
-        b=RPjvYP1iMaRnISHqZiIUrdazy+j72GCIkPX5Wsm0lakMzKln0OInBGrkAiikfMySHB
-         G6sqQTr2XF8Dyv8fWq+4Ym8NYdyHrBsNodoKbZMI10XXGxZKQ4XJscoN36E1lQcgMiiw
-         tK56L95nSfKGX6FFuw3wsX3MNfNAnZBX9kICJXVyoaKU/h2miL7JVK5TgjRs9xFWrkiD
-         dmnv9xHPOGbAKs1ddo8537A8yzkpmsvt+BvVtm25mDzrr80vvhSmj0X2Tv+3wWz6a06a
-         TjPVA+1+E8gq/rohRg7946k69guYGLIzI4slwxIcrn1zrF2ke6ufgf+xJzdEVYfAZ7Cz
-         mZVw==
-X-Gm-Message-State: AOAM531AxBANnxX5+jbZ0Cbu6NNwFJbCdjbKVO+eocXHVWkXFemPjEL/
-        U4lX9VmS3pPthPpb1wFukA==
-X-Google-Smtp-Source: ABdhPJyG5OxYiytphJidoOSVhiPpd6J458I+J5CA5KHBqlbSmUD1awtoYmV8QXhgL5wR6MeqIR3cOA==
-X-Received: by 2002:aca:b507:0:b0:2fa:6d40:4b40 with SMTP id e7-20020acab507000000b002fa6d404b40mr1885135oif.246.1649958832439;
-        Thu, 14 Apr 2022 10:53:52 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id nd8-20020a056871440800b000e2b75759f1sm891690oab.38.2022.04.14.10.53.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 10:53:52 -0700 (PDT)
-Received: (nullmailer pid 2307872 invoked by uid 1000);
-        Thu, 14 Apr 2022 17:53:51 -0000
-Date:   Thu, 14 Apr 2022 12:53:51 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S242987AbiDNR6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 13:58:30 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C6EEBAE9;
+        Thu, 14 Apr 2022 10:56:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=aQRTF3v6WmLQmOeCEhYv0QQbxEyOXWbbjzXVmNY/wkY=; b=llHpHdqzvNcD5E/zBlEkbGwDwZ
+        awyXGRCalKzGpXgpJTKnZ1Rx/jFaigc2ycwIal82CfULTfB8c8gFABKUaog+NQp4WzZii1IHVQvcW
+        btE28fS7pwXTvi6nR1tRlX5C1gea8womMd8aK4vhZJrp6RJfTyCNZuCT5xsWLxk1EoBw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nf3hD-00FrML-U9; Thu, 14 Apr 2022 19:55:55 +0200
+Date:   Thu, 14 Apr 2022 19:55:55 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>,
-        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: pci: remove fallback from Rockchip
- DesignWare binding
-Message-ID: <Ylhfr51RME+YAjOG@robh.at.kernel.org>
-References: <20220413133731.242870-1-pgwipeout@gmail.com>
- <20220413133731.242870-2-pgwipeout@gmail.com>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+        Laurent Gonzales <laurent.gonzales@non.se.com>,
+        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: Re: [PATCH net-next 06/12] net: dsa: rzn1-a5psw: add Renesas RZ/N1
+ advanced 5 port switch driver
+Message-ID: <YlhgK3sTKHU3CNUM@lunn.ch>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-7-clement.leger@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220413133731.242870-2-pgwipeout@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220414122250.158113-7-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 09:37:28AM -0400, Peter Geis wrote:
-> The snps,dw-pcie binds to a standalone driver.
-> It is not fully compatible with the Rockchip implementation and causes a
-> hang if it binds to the device.
-> 
-> Remove this binding as a valid fallback.
-> 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> index 142bbe577763..8dc11fed8a3c 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> @@ -32,7 +32,6 @@ properties:
->    compatible:
->      items:
->        - const: rockchip,rk3568-pcie
-> -      - const: snps,dw-pcie
+ +static int a5psw_mdio_reset(struct mii_bus *bus)
+> +{
+> +	struct a5psw *a5psw = bus->priv;
+> +	unsigned long rate;
+> +	unsigned long div;
+> +	u32 cfgstatus;
+> +
+> +	rate = clk_get_rate(a5psw->hclk);
+> +	div = ((rate / a5psw->mdio_freq) / 2);
+> +	if (div >= 511 || div <= 5) {
+> +		dev_err(a5psw->dev, "MDIO clock div %ld out of range\n", div);
+> +		return -ERANGE;
+> +	}
+> +
+> +	cfgstatus = FIELD_PREP(A5PSW_MDIO_CFG_STATUS_CLKDIV, div);
+> +
+> +	a5psw_reg_writel(a5psw, A5PSW_MDIO_CFG_STATUS, cfgstatus);
 
-With this, you no longer need 'select' so please drop it too.
+I don't see anything here which does an actual reset. So i think this
+function has the wrong name. Please also pass the frequency as a
+parameter, because at a quick glance it was not easy to see where it
+was used. There does not seem to be any need to store it in a5psw.
 
->  
->    reg:
->      items:
-> @@ -110,7 +109,7 @@ examples:
->          #size-cells = <2>;
->  
->          pcie3x2: pcie@fe280000 {
-> -            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
-> +            compatible = "rockchip,rk3568-pcie";
->              reg = <0x3 0xc0800000 0x0 0x390000>,
->                    <0x0 0xfe280000 0x0 0x10000>,
->                    <0x3 0x80000000 0x0 0x100000>;
-> -- 
-> 2.25.1
-> 
-> 
+> +static int a5psw_probe_mdio(struct a5psw *a5psw)
+> +{
+> +	struct device *dev = a5psw->dev;
+> +	struct device_node *mdio_node;
+> +	struct mii_bus *bus;
+> +	int err;
+> +
+> +	if (of_property_read_u32(dev->of_node, "clock-frequency",
+> +				 &a5psw->mdio_freq))
+> +		a5psw->mdio_freq = A5PSW_MDIO_DEF_FREQ;
+> +
+> +	bus = devm_mdiobus_alloc(dev);
+> +	if (!bus)
+> +		return -ENOMEM;
+> +
+> +	bus->name = "a5psw_mdio";
+> +	bus->read = a5psw_mdio_read;
+> +	bus->write = a5psw_mdio_write;
+> +	bus->reset = a5psw_mdio_reset;
+
+As far as i can see, the read and write functions don't support
+C45. Please return -EOPNOTSUPP if they are passed C45 addresses.
+
+     Andrew
