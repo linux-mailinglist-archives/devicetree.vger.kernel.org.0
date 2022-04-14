@@ -2,158 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 482D1501DA7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED41501DAA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239225AbiDNVsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 17:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39084 "EHLO
+        id S243501AbiDNVu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 17:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237706AbiDNVsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:48:08 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C8DF939B8
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:45:42 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id r18so7692955ljp.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:45:42 -0700 (PDT)
+        with ESMTP id S237142AbiDNVu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:50:56 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EB895A04
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:48:29 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id n8so5804184plh.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:48:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=P6S9KRqkX7A9YoKgU2PmWjCc953BNXu29WrskqsElFU=;
-        b=BYSt7/9CMe6e1cOZOoavQDCxmhu1x78HdprHlMXMk1ysdygv7tLT2SflcRXutu3rLu
-         hRE3Doq7jUXTsKnTmS7BenvXMDIbceuHBh18m/k6KMy/KGSryz5BaxeKvlh/uaZxy5JL
-         hqHvJ0A5TGC7XCcJCXnwQK9qtOqz8ClbchKQU8L1Fzrw2XD9n8YhQ6zWLgYZhnOnOcFR
-         EdB4bf36VfA/J7m5aIzTDpB/P9Jwcg+70XcWCKdAk1Myt6+COEmQC/7pedRK6axH0O2p
-         wRnJG/w91gYmqwZZxjXObg16Cufuo/sSoGf3xBoxxrqzlgFVtcw8JAdm9m58+I53GrMw
-         /zSQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:date:message-id:mime-version;
+        bh=waPudPlVhHtHMA9moxAZ6Byzf/Q9LiHGndFwnvJTw84=;
+        b=sq26syXLy4lhHszxXm4VE59PlRWIiN0fJq/WC5AsgDkzVY+FMzC6W8M4G+c9XhxJ7M
+         RPa8qQV3RjWQEkANg49pLuYOPJbqHWpDom/qBhXcNiTU2x/EUP7vMzD8EaTfWnWQopXg
+         6RzI1HzBPjwsvZa5bVcRJlJkLO3FFHQYq5GbP/A+l8WjhxU64qfiE5ATq+qhBzIoJa+p
+         5piiW3jrqQXYxkj6b2iWx54liMxXtnSnkXoh5h0JG+ag9jvbyNIOEYFHQ2xS5N2VzCEQ
+         m0x0W90S9aYJ86OUJVnVBt19ASYxD+EqdjdzGQfCt2UusLeecEGN9+WyVUK2leOCsIpM
+         wlJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=P6S9KRqkX7A9YoKgU2PmWjCc953BNXu29WrskqsElFU=;
-        b=lBXjJbdN4stwm3Y1rRdemqkONfFikc7gAaBDFitQkyZCKrSPzWnjxtccMZ6GqL6ei5
-         R7KrMNHq0a82IJK8/hoHZjeOo2v0uyxLk+maR2QXVQObh2+ioU04b9+RMX2zd3bAmoB+
-         +bL1ek2kmhvMz79Zp2LClBy1vOX1M0p0DyEKT4snNFzVXmfUKm7mAWMSP938n+66FUiW
-         iXzjrbkxIullvvNUMrKLbNFifKSd90e4efBsPd4Teee8FnF/eIpT7vR5mIpgTOe/+8ly
-         6GlWfHWAhP1XiEfVCtXWrMy6DXsXlCzmzwa4rueUyipTKJU+yalzal25fX/r1wDzeM6d
-         3bkQ==
-X-Gm-Message-State: AOAM530W16fNmAZaxO+QHt+AXLeFMdaWVRXZBPK1IMJIfdXQEFMvbIlf
-        I5D5yqP6cBNOMQWNHNKqal8FyQ==
-X-Google-Smtp-Source: ABdhPJzW86vujFH03PxD99Oeby+xWsKew7UCfjWbhtO6O52/RZMhu/hElz9UH1L8JcIPVmipfKkBdw==
-X-Received: by 2002:a2e:6a08:0:b0:24d:14af:4be4 with SMTP id f8-20020a2e6a08000000b0024d14af4be4mr2754201ljc.24.1649972740518;
-        Thu, 14 Apr 2022 14:45:40 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id u3-20020a196003000000b0046d02774aa4sm119327lfb.37.2022.04.14.14.45.39
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:date:message-id
+         :mime-version;
+        bh=waPudPlVhHtHMA9moxAZ6Byzf/Q9LiHGndFwnvJTw84=;
+        b=MIZERabRqjNWz7y/gMuJjXiKhHbGXJJaH257QivFzUa+v65lRs7OBiJD8gnQpuhn5w
+         B11EF7BykZ1dxYheTyzMAfPsEsIe9AICMjlehyH1e0kMdr1poe4X/0q49DEc93Nk0R39
+         LlyiQvyvpoLNhag23lYzKSbpK/EZdr2ECxdye1Rh62TvZVd0WDB8i9qb1oa2ftx5mIG0
+         brNNRsAl13I+kvx/EoOs3MqI9Z9+++RZ5xRemvIDDET0czYHg49Ggp0uOe8LgeBISTzS
+         kypD3hhpI4grUHuOedqG/MwINFm0wGo3x/iDSI5ien/8Agc0ru7oYi1VuuK09fsOWCaC
+         YSHw==
+X-Gm-Message-State: AOAM531jlkn44B06ticwaBXCSspnbIamSr38QCB3h28jMqzQkv6tPtjD
+        sHNbA5WhApXR7QBgFc3vTvGjug==
+X-Google-Smtp-Source: ABdhPJzrSS547mp4Ducl8jVLogQ25Z5tF6TpXhzlX/3f9wSauuf4/iNhSVnZHTPi6dTUidziqtR1IA==
+X-Received: by 2002:a17:90b:4c45:b0:1cd:4fa3:6ee4 with SMTP id np5-20020a17090b4c4500b001cd4fa36ee4mr663031pjb.96.1649972908766;
+        Thu, 14 Apr 2022 14:48:28 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id k4-20020a17090a3e8400b001cd37f6c0b7sm2717486pjc.46.2022.04.14.14.48.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 14:45:39 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Johan Hovold <johan@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: gnss: Add Broacom BCM4751 family bindings
-Date:   Thu, 14 Apr 2022 23:43:37 +0200
-Message-Id: <20220414214337.311880-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        Thu, 14 Apr 2022 14:48:28 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
+In-Reply-To: <12c630946ce9d7b8c80143615496238759323981.camel@mediatek.com>
+Date:   Thu, 14 Apr 2022 14:48:27 -0700
+Message-ID: <7hbkx3fiac.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Broadcom BCM4751 family of (A-)GPS chips have been around for
-some years. The latest iteration BCM4753 is for example mounted
-on the Huawei HiKey970.
+Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/gnss/brcm,bcm4751.yaml           | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gnss/brcm,bcm4751.yaml
+> On Wed, 2022-04-13 at 14:41 -0700, Kevin Hilman wrote:
+>> Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
+>> 
+>> [...]
+>> 
+>> > From the Chanwoo's devfreq passive govonor series, it's impossible
+>> > to
+>> > let cci devreq probed done before cpufreq because the passive
+>> > govonor
+>> > will search for cpufreq node and use it.
+>> > 
+>> > Ref: function: cpufreq_passive_register_notifier()
+>> > 
+>> > 
+> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing&id=b670978ddc43eb0c60735c3af6e4a370603ab673__;!!CTRNKA9wMg0ARbw!z58Lc1p9REo88oHn-NkxroN_fBd0TsHYmhscNZwnWwT71ecRkTeqZ6vFl5l7HpkTdM6t$
+>> >  
+>> 
+>> Well this is a problem, because CCI depends on CPUfreq, but CPUfreq
+>> depends on CCI, so one of them has to load and then wait for the
+>> other.
+>> 
+>> > After I discuss with Angelo and Jia-wei, we think we are keeping
+>> > the
+>> > function in target_index and if the cci is not ready we will use
+>> > the
+>> > voltage which is set by bootloader to prevent high freqeuncy low
+>> > voltage crash. And then we can keep seting the target frequency.
+>> > 
+>> 
+>>  > We assume the setting of bootloader is correct and we can do this.
+>> 
+>> I'm still not crazy about this because you're lying to the CPUfreq
+>> framework.  It's requesting one OPP, but you're not setting that,
+>> you're
+>> just keeping the bootloader frequency.
+>> 
+>> In my earlier reply, I gave two other options for handling this.
+>> 
+>> 1) set a (temporary) constraint on the voltage regulator so that it
+>> cannot change.
+>> 
+>> or more clean, IMO:
+>> 
+>> 2) set a CPUfreq policy that restricts available OPPs to ones that
+>> will
+>> not break CCI.
+>> 
+>> Either of these solutions allow you to load the CPUfreq driver early,
+>> and then wait for the CCI driver to be ready before removing the
+>> restrictions.
+>
+> Hello Kevin,
+>
+> I think I do not describe this clearly.
+> The proposal is:
+>
+> In cpufreq probe:
+> we record the voltage value which is set by bootloader.
+>
+> In mtk_cpufreq_set_target():
+> We do NOT directly return 0.
+> Instead, we will find the voltage of target cpufreq and use the value
+> max(booting voltage, target cpufreq voltage)
+>
+> mtk_cpufreq_set_target() {
+> 	/* NOT return 0 if !is_ccifreq_ready */
+> 	....
+> 	vproc = get voltage of target cpufreq from opp.
+>
+> 	if (ccifreq_supported && !is_ccifreq_ready)
+> 		vproc = max(vproc, vproc_on_boot)
+>
+> 	//setting voltage and target frequency
+> 	....
+> }
 
-diff --git a/Documentation/devicetree/bindings/gnss/brcm,bcm4751.yaml b/Documentation/devicetree/bindings/gnss/brcm,bcm4751.yaml
-new file mode 100644
-index 000000000000..f06a4acf21cf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gnss/brcm,bcm4751.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gnss/brcm,bcm4751.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM4751 family GNSS Receiver Device Tree Bindings
-+
-+maintainers:
-+  - Johan Hovold <johan@kernel.org>
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  Broadcom GPS chips can be used over the UART or I2C bus. The UART
-+  bus requires CTS/RTS support. The number of the capsule is more
-+  elaborate than the compatibles BCM4751 may be printed
-+  BCM4751IFBG for example.
-+
-+allOf:
-+  - $ref: gnss-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm4751
-+      - brcm,bcm4752
-+      - brcm,bcm4753
-+
-+  reg:
-+    description:
-+      The I2C Address, not required on UART buses.
-+
-+  vdd-auxin-supply:
-+    description:
-+      Main voltage supply, pin name VDD_AUXIN, typically connected
-+      directly to a battery such as LiIon 3.8V battery or a 2.6V supply.
-+
-+  vddio-supply:
-+    description:
-+      IO voltage supply, pin name VDDIO, typically 1.8V
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: An optional active low reset line, should be flagged with
-+      GPIO_ACTIVE_LOW.
-+
-+  enable-gpios:
-+    description: Enable GPIO line, connected to pins named REGPU or NSTANDBY.
-+      If the line is active low such as NSTANDBY, it should be tagged
-+      GPIO_ACTIVE_LOW.
-+
-+required:
-+  - compatible
-+  - enable-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    serial {
-+        gnss {
-+            compatible = "brcm,bcm4751";
-+            vdd-auxin-supply = <&vbat>;
-+            reset-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-+            enable-gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
-+            current-speed = <38400>;
-+        };
-+    };
--- 
-2.35.1
+You explained this well, but it's still not an appropriate solution IMO,
+because you're still not setting the target that is requested by the
+CPUfreq core.
+
+The job of ->set_target() is to set the frequency *requested by CPUfreq
+core*.  If you cannot do that, you should return failure.  What you posted
+in the original patch and what you're proposing here is to ignore the
+frequency passed to ->set_target() and do something else.  In the
+orignal patch, you propose do to nothing.  Now, you're ignoring the 
+target passed in and setting something else.  In both cases, the CPUfreq
+core things you have successfuly set the frequency requested, but you
+have not.  This means there's a mismatch between what the CPUfreq core &
+governer things the frequency is and what is actually set.  *This* is
+the part that I think is wrong.
+
+Instead, the proper way of restricting available frequencies is to use
+governors or policies.  This ensures that the core & governors are
+aligned with what the platform driver actually does.
+
+As I proposed earlier, I think a clean solution to this problem is to
+create a temporary policy at probe time that restricts the available
+OPPs based on what the current CCI freq/voltage are.  Once CCI driver is
+loaded and working, this policy can be removed.
+
+Kevin
+
 
