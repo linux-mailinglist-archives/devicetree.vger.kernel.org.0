@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF6950078B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B559500795
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238280AbiDNHwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:52:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50970 "EHLO
+        id S234998AbiDNHyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:54:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiDNHwA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:52:00 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF019FD11
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:49:35 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id x17so7629595lfa.10
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:49:35 -0700 (PDT)
+        with ESMTP id S240482AbiDNHyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:54:22 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA97236B78
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:51:58 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id u18so5309617eda.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:51:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=olsqjnfTW1Sapn7IlWji5fIBaB42c1CouCJ9BQCXslw=;
-        b=pGwrytT8OWlmqDi7DCgWX76E/vuXFMW+0bGki7yD/NtDJYbt1y9CgBM8HD9ZitvBGh
-         mNpUcXt/g6ymKqKdm62uqpGdzj1zHtVLEJymPhWe2pl8j1F6x6PFOdRMX9p1/XYrnI38
-         MSKQ9NBD4DW9JRmnpyIPYwz7VMOWtaf0DIzTUcay07FhMqEY+HubSpWShNxLJBUKSVEL
-         ansgT/AaNlL5JOeOLRoAMxvi8zLyPTBK7/5+Q4oO2mHzeTX9Lke8+4rF7DTommLoHTmg
-         giqEaN6K9WPRvT03DjEWmu6p/dnCnbuTLdIn0n4smOxPk7zZ/OPYzdBl8BiHMax8djeC
-         QJXA==
+        bh=4kA3CM2rqbmneB8L2UH1I3TcMQuTf5ivjchAoMqbX7U=;
+        b=x3EmNIl39+e060P3gumsTLBwQ/dYp5pzbB8c9v6xqbd9tPLnuQwxOwOpuCx/0b9HRg
+         XDYlj9eut824d9ZK2O1rXfgSacT517UotlzV6646kvrpdm9RbBzMokpzEL3kxZ3/kSIs
+         Ko/yz6scKpqOVk9BuV5YoHTBhAAV/r+MpzIBhlMa5nP09ao8C2k/dV5iT6P++V734EYQ
+         eoNwqRnF/6o5j8VQkL0Y/O61t0s27qvT4wJQ2XRhvqEdDAeQy+PkTqxC0icPgIhNnua1
+         6blTx/E1YKCHJd89Az7mazOLDQq/ECeuTs+7xPcLhe6WaSHolaHJeeRim3vD/b/AyyT8
+         Ce5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=olsqjnfTW1Sapn7IlWji5fIBaB42c1CouCJ9BQCXslw=;
-        b=Vga5mKvplM80sQW9LKagKyFkEMwChcwgUJAgHh7fQnvjbDn2WM6h4GAZhmDfqoiQ95
-         1DHBE+kn8X/dWQ2xtfKUe08nqE8OzU3P7y9P5u0xEP9xOAVKKeVD0U0h4QVW4siT9wff
-         b4rIiUAradaIqqjYrJfbL+AL4s9kPayc7xGPamn5pMc9h53AsMi6UqHw7H1gyrBa8Vmg
-         l5KB+ynE6gmlfjA59TDNmtNXvvAgeB2Ln1wtC2AiEXsznNhLiauTToSNVFJPcRNJb/LF
-         JM3ci6z9eGyLLnXrwqJjLmmvIVUaI9dWG/jwSKHAXMnybqrSR52GCiyov9ioGnl3JePW
-         78LQ==
-X-Gm-Message-State: AOAM530GN1DJPGO5JuIYxrsM3aulEeDOYm72d6tL2tFr7SR99Ggwe4Si
-        hYeD0pBbHmkRcXkiXHYJUtlnQQ==
-X-Google-Smtp-Source: ABdhPJz1d7r5W2/bnuL98bp+994FEgPdnuMBcjh1vqKEgavft7oGZ9DkOT94ljJL59tC7BZkqttzCg==
-X-Received: by 2002:a05:6512:3995:b0:44a:e5c8:e696 with SMTP id j21-20020a056512399500b0044ae5c8e696mr1111511lfu.539.1649922574202;
-        Thu, 14 Apr 2022 00:49:34 -0700 (PDT)
-Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
-        by smtp.gmail.com with ESMTPSA id 6-20020ac24d46000000b0046bb728b873sm151672lfp.252.2022.04.14.00.49.33
+        bh=4kA3CM2rqbmneB8L2UH1I3TcMQuTf5ivjchAoMqbX7U=;
+        b=hEKHNgZAnitWYCaFe3uxRYdAq0DGisDXb2Z9i91n330A88i4tyY9CQ0s7KihG8RIVy
+         rSlbuzR0Npm0P8jMopMcV2OSvn7vQXAUzx5B0s300H0ViKyw3nBnfBKlNUikdIOJZF0q
+         3LU3jQw2pO9g2zNC32Nv4RZrTn/uCiLWwCPV7BZc5A1K7pIpLLNHYIzZxCpMLQV3eUIN
+         0ADeeM/PwLzUQM9DDXDUaZTUGFD0/a2NzgNGwI70d1iOgp426gjMypgmTi/M8U9WtGuB
+         YvuZXjLm8qYTJLUmFhH0mdAz8wM6xsaFoMT1Ou3oIme2y7yXV6pa46x1EyDywA22zRiH
+         EuFg==
+X-Gm-Message-State: AOAM530UQMr65ybcfVunQItU8cSs8mTD0EathrsukoDc9FBOXvctO8ah
+        lC7Uio2TrKGwRY02KFvzq28ph9Z8hzSS1HyT
+X-Google-Smtp-Source: ABdhPJyQHEbyUkRlPGNxcTF+ftkjVPdnxvbiROEmFI7FfJTEOfPhnkdz2kLA7/nMBMeanSfXPrNSnw==
+X-Received: by 2002:a05:6402:128f:b0:41d:7e85:8421 with SMTP id w15-20020a056402128f00b0041d7e858421mr1616661edv.352.1649922717401;
+        Thu, 14 Apr 2022 00:51:57 -0700 (PDT)
+Received: from [192.168.0.209] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id lg4-20020a170906f88400b006e869103240sm378635ejb.131.2022.04.14.00.51.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 00:49:33 -0700 (PDT)
-Message-ID: <d6d49398-2b9e-863c-f343-d95580540151@linaro.org>
-Date:   Thu, 14 Apr 2022 10:49:33 +0300
+        Thu, 14 Apr 2022 00:51:57 -0700 (PDT)
+Message-ID: <61be2078-1b3a-4049-6b14-5947ea64cf33@linaro.org>
+Date:   Thu, 14 Apr 2022 09:51:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm8250: camss: Add CCI
- definitions
+Subject: Re: [PATCH v2 1/7] dt-bindings: ufs: Document Renesas R-Car UFS host
+ controller
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
-        jgrahsl@snap.com
-References: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
- <20220413231736.991368-4-bryan.odonoghue@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20220413231736.991368-4-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20220414023115.4190736-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220414023115.4190736-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220414023115.4190736-2-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,207 +78,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
-
-On 4/14/22 02:17, Bryan O'Donoghue wrote:
-> sm8250 has two CCI busses with two I2C busses apiece.
+On 14/04/2022 04:31, Yoshihiro Shimoda wrote:
+> Document Renesas R-Car UFS host controller for R-Car S4-8 (r8a779f0).
 > 
-> Co-developed-by: Julian Grahsl <jgrahsl@snap.com>
-> Signed-off-by: Julian Grahsl <jgrahsl@snap.com>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 162 +++++++++++++++++++++++++++
->   1 file changed, 162 insertions(+)
+>  .../devicetree/bindings/ufs/renesas,ufs.yaml  | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index c69a8a88657a..a05ad923bcab 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3150,6 +3150,88 @@ videocc: clock-controller@abf0000 {
->   			#power-domain-cells = <1>;
->   		};
->   
-> +		cci0: cci@ac4f000 {
-> +			compatible = "qcom,sm8250-cci";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			reg = <0 0x0ac4f000 0 0x1000>;
-> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
-> +
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&cci0_default>;
-> +			pinctrl-1 = <&cci0_sleep>;
-> +
 
-like as anywhere else it might be better to place 'pinctrl-names' after the
-'pinctrl-*' properties.
 
-> +			status = "disabled";
-> +
-> +			cci0_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci0_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		cci1: cci@ac50000 {
-> +			compatible = "qcom,sm8250-cci";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			reg = <0 0x0ac50000 0 0x1000>;
-> +			interrupts = <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_1_CLK>,
-> +				 <&camcc CAM_CC_CCI_1_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
-> +
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&cci1_default>;
-> +			pinctrl-1 = <&cci1_sleep>;
-> +
-> +			status = "disabled";
-> +
-> +			cci1_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci1_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
->   		camss: camss@ac6a000 {
->   			compatible = "qcom,sm8250-camss";
->   			status = "disabled";
-> @@ -3687,6 +3769,86 @@ tlmm: pinctrl@f100000 {
->   			gpio-ranges = <&tlmm 0 0 181>;
->   			wakeup-parent = <&pdc>;
->   
-> +			cci0_default: cci0-default {
-> +				cci0_i2c0_default: cci0-i2c0-default {
-> +					/* SDA, SCL */
-> +					pins = "gpio101", "gpio102";
-> +					function = "cci_i2c";
-> +
-> +					bias-pull-up;
-> +					drive-strength = <2>; /* 2 mA */
-> +				};
-> +
-> +				cci0_i2c1_default: cci0-i2c1-default {
-> +					/* SDA, SCL */
-> +					pins = "gpio103", "gpio104";
-> +					function = "cci_i2c";
-> +
-> +					bias-pull-up;
-> +					drive-strength = <2>; /* 2 mA */
-> +				};
-> +			};
-> +
-> +			cci0_sleep: cci0-sleep {
-> +				cci0_i2c0_sleep: cci0-i2c0-sleep {
-> +					/* SDA, SCL */
-> +					pins = "gpio101", "gpio102";
-> +					function = "cci_i2c";
-> +
-> +					drive-strength = <2>; /* 2 mA */
-> +					bias-pull-down;
-> +				};
-> +
-> +				cci0_i2c1_sleep: cci0-i2c1-sleep {
-> +					/* SDA, SCL */
-> +					pins = "gpio103", "gpio104";
-> +					function = "cci_i2c";
-> +
-> +					drive-strength = <2>; /* 2 mA */
-> +					bias-pull-down;
-> +				};
-> +			};
-> +
-> +			cci1_default: cci1-default {
-> +				cci1_i2c0_default: cci1-i2c0-default {
-> +					/* SDA, SCL */
-> +					pins = "gpio105","gpio106";
-> +					function = "cci_i2c";
-> +
-> +					bias-pull-up;
-> +					drive-strength = <2>; /* 2 mA */
-> +				};
-> +
-> +				cci1_i2c1_default: cci1-i2c1-default {
-> +					/* SDA, SCL */
-> +					pins = "gpio107","gpio108";
-> +					function = "cci_i2c";
-> +
-> +					bias-pull-up;
-> +					drive-strength = <2>; /* 2 mA */
-> +				};
-> +			};
-> +
-> +			cci1_sleep: cci1-sleep {
-> +				cci1_i2c0_sleep: cci1-i2c0-sleep {
-> +					/* SDA, SCL */
-> +					pins = "gpio105","gpio106";
-> +					function = "cci_i2c";
-> +
-> +					bias-pull-down;
-> +					drive-strength = <2>; /* 2 mA */
-> +				};
-> +
-> +				cci1_i2c1_sleep: cci1-i2c1-sleep {
-> +					/* SDA, SCL */
-> +					pins = "gpio107","gpio108";
-> +					function = "cci_i2c";
-> +
-> +					bias-pull-down;
-> +					drive-strength = <2>; /* 2 mA */
-> +				};
-> +			};
-> +
->   			pri_mi2s_active: pri-mi2s-active {
->   				sclk {
->   					pins = "gpio138";
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Please feel free to add my
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-
---
-Best wishes,
-Vladimir
+Best regards,
+Krzysztof
