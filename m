@@ -2,188 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC3B5017D4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 18:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2D35017CE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 18:04:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240966AbiDNPuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 11:50:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53028 "EHLO
+        id S238799AbiDNPuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 11:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243690AbiDNPi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 11:38:26 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E295F1FA61;
-        Thu, 14 Apr 2022 08:15:40 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D88736000C;
-        Thu, 14 Apr 2022 15:15:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649949339;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Kldf5IEa3yAZkGIRecTUUIoT+f9V5tcdBTTm3Fj/R0E=;
-        b=KfauuI8udm5OMo/y2S7FtmFocxXA/lFKzTmOSteFep9LasMRYCoO3NSxkZE/5aLMkW9nYR
-        MQkfXzScE5Qe31vWvX6SmMQFEQtHou+UGO9iyU+1WMmzn+8yFEGDSI4rFKMrSQ1WJU7I89
-        qqiDNFx3A7qIX03nL2GLRHuCXQJyfQedxYH+ikaozYt5a3f9UOHhgbTQLgmbWMCYRa2nJw
-        O22a9HqvWw7copMKG1nxE0KIBJB+emaChGyGyM9kW1PK1zbpF8ndwOqhDt9CCN6vjH5mXD
-        SvAQrt4vE/GDbBNdMOCqt/b0Qh45nyOyrfG5u6I5pfjsy4U14AQ2gUhpRxgnqg==
-Date:   Thu, 14 Apr 2022 17:14:08 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 04/12] net: pcs: add Renesas MII converter
- driver
-Message-ID: <20220414171408.59716a52@fixe.home>
-In-Reply-To: <YlgYRGVuHQCwp7FQ@shell.armlinux.org.uk>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
-        <20220414122250.158113-5-clement.leger@bootlin.com>
-        <YlgYRGVuHQCwp7FQ@shell.armlinux.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S1344683AbiDNPjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 11:39:20 -0400
+Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705BD433A1
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 08:16:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1649949409; x=1681485409;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iYec80PJQH6rxvX/OaQmAixOdX4LN48hjcV/HrL4vFw=;
+  b=Ctm6HeUQ7e0EAm26DFRpFgeJJ1kkn1X9Exb8TmuPcvxJTudTNdEBMIaK
+   O5cZsojiMBsTfXxWd4Ph9e0hfnulmbvjlPm5dibgz4xqWk2OZcBmh2Ppo
+   /HGPDAgWLVXlTXLYqJgaFALd4UpXeMcmpuGkOS7ZOb3c9OGzYjv4k5hnT
+   rSD1L42RsjuQRJbNfHHiCgjtnUl1RtZNfRKX8WaZYpvrj/XE8m+OKcD+z
+   k2DXPoMcV8zyaWylfwip/hppCp6XWzmmHzzrogOuobTK2+sosjSZeuFBq
+   TJ2qbB7psw1Uohlyr5HHejnMsHsLVDQv/i3UMxI2YRySK63ossQC+8H8C
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,260,1643644800"; 
+   d="scan'208";a="309887717"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 14 Apr 2022 23:16:48 +0800
+IronPort-SDR: tUhATW2EiBWaY1ofzYXQN3KpjnVpnpHb3ZAT+wgD+A6dlUGkh1v9Ql1oyvSDyKai38FWaSEDcx
+ ga8JEdkJ/ukt6MUAkFG8V3W7UFSg2E/TBWDOac6mc759671Dc7rLUe6JW4IpNHl03PrbOsw4OV
+ l/DZvd8DIasnG2NkTdliRIa6lRzhn4YxDRZuNMae29WUMWKT+vpqu4JNnmDpvMT2JS4aYTHOxb
+ irN67DPv/+EWZkR9Si3GGw5DEGNokbDDcyCIn+hql/hd+rzEOUj4jg95jh5OY0DCSBMnj8FcLu
+ iMvmFk8sgKyYL0fh3heHQ427
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Apr 2022 07:48:01 -0700
+IronPort-SDR: A4SysRNAyrMZ1jbwnAGGOFL7qmGl1pz2l4bHnQ1SNYk6pK1Mj3j1iJRqZqJs7dATyRyPgb2kVb
+ Xba79PTuJQaBQPwDMYDSCNXwu4ADfG/X/8faX4JwafjgNjS2RmAGbH/KQNoAghsqCF8UjogYdQ
+ ngP69Sm4hpGnuDosDKY0Tgl4iSIWcuOEacR7cznkYEw4Dxx1UBc9rwOnMXKl3IMKqtFxTFMaQK
+ k9CRJqu7ZOyhx/LBpImamW164d04JplOPVkZzXkZrMx3ZCp7q97mKvuIBGMaojVWKZiHkqctBr
+ vzc=
+WDCIronportException: Internal
+Received: from unknown (HELO x1-carbon.wdc.com) ([10.225.164.21])
+  by uls-op-cesaip02.wdc.com with ESMTP; 14 Apr 2022 08:16:46 -0700
+From:   Niklas Cassel <niklas.cassel@wdc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     Niklas Cassel <niklas.cassel@wdc.com>,
+        Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH] dt-bindings: riscv: Add mmu-type riscv,sv57
+Date:   Thu, 14 Apr 2022 17:16:38 +0200
+Message-Id: <20220414151639.1359969-1-niklas.cassel@wdc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Thu, 14 Apr 2022 13:49:08 +0100,
-"Russell King (Oracle)" <linux@armlinux.org.uk> a =C3=A9crit :
+sv57 is defined in the RISC-V Privileged Specification document.
 
-> On Thu, Apr 14, 2022 at 02:22:42PM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
-> > Add PCS driver for the MII converter that is present on Renesas RZ/N1
-> > SoC. This MII converter is reponsible of converting MII to RMII/RGMII
-> > or act as a MII passtrough. Exposing it as a PCS allows to reuse it
-> > in both the switch driver and the stmmac driver. Currently, this driver
-> > only allows the PCS to be used by the dual Cortex-A7 subsystem since
-> > the register locking system is not used. =20
->=20
-> Hi,
->=20
-> > +#define MIIC_CONVCTRL_CONV_MODE		GENMASK(4, 0)
-> > +#define CONV_MODE_MII			0
-> > +#define CONV_MODE_RMII			BIT(2)
-> > +#define CONV_MODE_RGMII			BIT(3)
-> > +#define CONV_MODE_10MBPS		0
-> > +#define CONV_MODE_100MBPS		BIT(0)
-> > +#define CONV_MODE_1000MBPS		BIT(1) =20
->=20
-> Is this really a single 4-bit wide field? It looks like two 2-bit fields
-> to me.
+Additionally, commit 011f09d12052 ("riscv: mm: Set sv57 on defaultly")
+changed the default MMU mode to sv57, if supported by current hardware.
 
-You are right, the datasheet presents that as a single bitfield but
-that can be split.
+Add riscv,sv57 to the list of valid mmu-type values.
 
->=20
-> > +#define phylink_pcs_to_miic_port(pcs) container_of((pcs), struct miic_=
-port, pcs) =20
->=20
-> I prefer a helper function to a preprocessor macro for that, but I'm not
-> going to insist on that point.
+Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+---
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Acked.
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index d632ac76532e..3100fa233ca4 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -61,6 +61,7 @@ properties:
+       - riscv,sv32
+       - riscv,sv39
+       - riscv,sv48
++      - riscv,sv57
+       - riscv,none
+ 
+   riscv,isa:
+-- 
+2.35.1
 
->=20
-> > +static void miic_link_up(struct phylink_pcs *pcs, unsigned int mode,
-> > +			 phy_interface_t interface, int speed, int duplex)
-> > +{
-> > +	struct miic_port *miic_port =3D phylink_pcs_to_miic_port(pcs);
-> > +	struct miic *miic =3D miic_port->miic;
-> > +	int port =3D miic_port->port;
-> > +	u32 val =3D 0;
-> > +
-> > +	if (duplex =3D=3D DUPLEX_FULL)
-> > +		val |=3D MIIC_CONVCTRL_FULLD;
-> > +
-> > +	switch (interface) {
-> > +	case PHY_INTERFACE_MODE_RMII:
-> > +		val |=3D CONV_MODE_RMII;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +		val |=3D CONV_MODE_RGMII;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_MII:
-> > +		val |=3D CONV_MODE_MII;
-> > +		break;
-> > +	default:
-> > +		dev_err(miic->dev, "Unsupported interface %s\n",
-> > +			phy_modes(interface));
-> > +		return;
-> > +	} =20
->=20
-> Why are you re-decoding the interface mode? The interface mode won't
-> change as a result of a call to link-up. Changing the interface mode
-> is a major configuration event that will always see a call to your
-> miic_config() function first.
-
-Indeed, seems stupid, I will simply keep the mode bits once split from
-speed.
-
-[...]
-
-> > +};
-> > +
-> > +struct phylink_pcs *miic_create(struct device_node *np)
-> > +{
-> > +	struct platform_device *pdev;
-> > +	struct miic_port *miic_port;
-> > +	struct device_node *pcs_np;
-> > +	u32 port;
-> > +
-> > +	if (of_property_read_u32(np, "reg", &port))
-> > +		return ERR_PTR(-EINVAL);
-> > +
-> > +	if (port >=3D MIIC_MAX_NR_PORTS)
-> > +		return ERR_PTR(-EINVAL);
-> > +
-> > +	/* The PCS pdev is attached to the parent node */
-> > +	pcs_np =3D of_get_parent(np);
-> > +	if (!pcs_np)
-> > +		return ERR_PTR(-EINVAL);
-> > +
-> > +	pdev =3D of_find_device_by_node(pcs_np);
-> > +	if (!pdev || !platform_get_drvdata(pdev))
-> > +		return ERR_PTR(-EPROBE_DEFER); =20
->=20
-> It would be a good idea to have a comment in the probe function to say
-> that this relies on platform_set_drvdata() being the very last thing
-> after a point where initialisation is complete and we won't fail.
-
-Yep, sounds like a good idea.
-
->=20
-> Thanks!
->=20
-
-Thanks for the review,
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
