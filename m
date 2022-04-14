@@ -2,120 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7513500CA3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 14:00:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA2D500CD9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 14:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242956AbiDNMB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 08:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
+        id S239774AbiDNMQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 08:16:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242901AbiDNMBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 08:01:05 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D129888F7;
-        Thu, 14 Apr 2022 04:58:39 -0700 (PDT)
-Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.57])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KfHxV665DzgYHt;
-        Thu, 14 Apr 2022 19:56:46 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 14 Apr 2022 19:58:37 +0800
-Received: from thunder-town.china.huawei.com (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 14 Apr 2022 19:58:36 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: [PATCH v22 9/9] docs: kdump: Update the crashkernel description for arm64
-Date:   Thu, 14 Apr 2022 19:57:20 +0800
-Message-ID: <20220414115720.1887-10-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20220414115720.1887-1-thunder.leizhen@huawei.com>
-References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+        with ESMTP id S232670AbiDNMQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 08:16:56 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76653881;
+        Thu, 14 Apr 2022 05:14:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9AA44B82934;
+        Thu, 14 Apr 2022 12:14:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E23C5C385A1;
+        Thu, 14 Apr 2022 12:14:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649938468;
+        bh=/lJMbuqCUvWBZpDnchq4yA5y4o3tnZsGQzcMlBudlhc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rhIklwqG0vK08DiwAvIq46xKLUt/JvMV2fvNoRox7yLjyIuBlgwssXE0jQyTaduf4
+         Fj1e02mps6gNkaGfUaj6v6PTuxnFMAMwKHAbjPKt/VLqfruZ7oE+jWVgGRnwbXpShI
+         Er/kXcujqDv91ZI+JRntMtLeZs9O8AJ9oz7sObp8FOZQlwldfJB6UvKiS0YuDf2SuH
+         G7l84ppQyR0cUJQTn2PipFZABkvqO0PJbcumc01QZDk28aybHtHipO6xZxUPSyPP4i
+         SDplQYQAFZdiFIEQsMO6jQaW05ZjpLSZPQJBYZQrL5HWN9CwvWJUa4ZhKHP2dGSTqw
+         3fnzX95jTG8LA==
+Date:   Thu, 14 Apr 2022 15:13:20 +0300
+From:   Jarkko Sakkinen <jarkko@kernel.org>
+To:     Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     Lukas Wunner <lukas@wunner.de>,
+        Lino Sanfilippo <LinoSanfilippo@gmx.de>, peterhuewe@gmx.de,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stefanb@linux.ibm.com,
+        p.rosenberger@kunbus.com
+Subject: Re: [PATCH 1/5] tpm: add functions to set and unset the tpm chips
+ reset state
+Message-ID: <YlgPxX3xCPUyR2F6@kernel.org>
+References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
+ <20220407111849.5676-2-LinoSanfilippo@gmx.de>
+ <20220407142526.GW64706@ziepe.ca>
+ <20220410171123.GA24453@wunner.de>
+ <20220411114741.GA64706@ziepe.ca>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411114741.GA64706@ziepe.ca>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now arm64 has added support for "crashkernel=X,high" and
-"crashkernel=Y,low", and implements "crashkernel=X[@offset]" in the
-same way as x86. So update the Documentation.
+On Mon, Apr 11, 2022 at 08:47:41AM -0300, Jason Gunthorpe wrote:
+> On Sun, Apr 10, 2022 at 07:11:23PM +0200, Lukas Wunner wrote:
+> > On Thu, Apr 07, 2022 at 11:25:26AM -0300, Jason Gunthorpe wrote:
+> > > On Thu, Apr 07, 2022 at 01:18:45PM +0200, Lino Sanfilippo wrote:
+> > > > Currently it is not possible to set the tpm chips reset state from within
+> > > > the driver. This is problematic if the chip is still in reset after the
+> > > > system comes up. This may e.g. happen if the reset line is pulled into
+> > > > reset state by a pin configuration in the device tree.
+> > > 
+> > > This kind of system is badly misdesigned.
+> > > 
+> > > TPM PCRs fundementally cannot work if the TPM reset line is under
+> > > software control.
+> > 
+> > Not every system which incorporates a TPM wants to use or is even capable
+> > of measuring software state of any kind or perform secure boot.
+> > 
+> > Those systems may merely want to use the TPM to store key material.
+> 
+> Then maybe the TPM driver should make it clear somehow that the PCRs
+> don't work in these systems.
+> 
+> It is really dangerous to add capabilities like this that should
+> never, ever be used in sanely designed systems.
+> 
+> Jason
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-Acked-by: Baoquan He <bhe@redhat.com>
----
- Documentation/admin-guide/kernel-parameters.txt | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+I agree. That niche should do the bad things with oot patches.
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 3f1cc5e317ed4a5..ae0aa63ffe82f59 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -795,7 +795,7 @@
- 			memory region [offset, offset + size] for that kernel
- 			image. If '@offset' is omitted, then a suitable offset
- 			is selected automatically.
--			[KNL, X86-64] Select a region under 4G first, and
-+			[KNL, X86-64, ARM64] Select a region under 4G first, and
- 			fall back to reserve region above 4G when '@offset'
- 			hasn't been specified.
- 			See Documentation/admin-guide/kdump/kdump.rst for further details.
-@@ -808,20 +808,20 @@
- 			Documentation/admin-guide/kdump/kdump.rst for an example.
- 
- 	crashkernel=size[KMG],high
--			[KNL, X86-64] range could be above 4G. Allow kernel
-+			[KNL, X86-64, ARM64] range could be above 4G. Allow kernel
- 			to allocate physical memory region from top, so could
- 			be above 4G if system have more than 4G ram installed.
- 			Otherwise memory region will be allocated below 4G, if
- 			available.
- 			It will be ignored if crashkernel=X is specified.
- 	crashkernel=size[KMG],low
--			[KNL, X86-64] range under 4G. When crashkernel=X,high
-+			[KNL, X86-64, ARM64] range under 4G. When crashkernel=X,high
- 			is passed, kernel could allocate physical memory region
- 			above 4G, that cause second kernel crash on system
- 			that require some amount of low memory, e.g. swiotlb
- 			requires at least 64M+32K low memory, also enough extra
- 			low memory is needed to make sure DMA buffers for 32-bit
--			devices won't run out. Kernel would try to allocate at
-+			devices won't run out. Kernel would try to allocate
- 			at least 256M below 4G automatically.
- 			This one let user to specify own low range under 4G
- 			for second kernel instead.
--- 
-2.25.1
-
+BR, Jarkko
