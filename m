@@ -2,80 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2535A5008F0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC6F5008F7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238697AbiDNI6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:58:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37568 "EHLO
+        id S234223AbiDNI7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237997AbiDNI6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:58:07 -0400
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9370965D24;
-        Thu, 14 Apr 2022 01:55:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1649926543;
-  x=1681462543;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EKQ0yqkEdK1AucptjfCwr+qtiem+dTCzWK8vM9EwHXY=;
-  b=P4ZNCc46Nr9gF/ml4sK0EFqnqBR2gdLjypk88I6GoOCU9AMQtELRXCxX
-   4sVs9hEE5NaNp3ULGXpO8vs+y7M5rIbeL3lwI2ckGKHKmIxd5aQQdQoq9
-   h3bsArq8QjuphTV61KD4kFfIl8HqigQqxH6u8DLO8dlDAiHQDrcBRjHo0
-   omZnyIHvw5pWXqce6dAMZHPBPzaI5970yO+XAmNC4oczEdhTA3bWY9Zti
-   dx4K95M19hiB8WmpUaxbwVtv1o/fowO5lJVaRLb5uFsrrNhw/r1GwkVJy
-   O7dr7uXhBRB3S4LiPyJPTgRVNJoFvbgfzq0mvhLmN606ufr1qb3QD7pBl
-   g==;
-Date:   Thu, 14 Apr 2022 10:55:40 +0200
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "wsa@kernel.org" <wsa@kernel.org>, kernel <kernel@axis.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: add property to avoid device
- detection
-Message-ID: <20220414085539.GA7392@axis.com>
-References: <20220412085046.1110127-1-vincent.whitchurch@axis.com>
- <20220412085046.1110127-2-vincent.whitchurch@axis.com>
- <YlXtobiXIyObF/7+@robh.at.kernel.org>
+        with ESMTP id S241248AbiDNI7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:59:12 -0400
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E9B68322;
+        Thu, 14 Apr 2022 01:56:45 -0700 (PDT)
+Received: from [192.168.0.2] (ip5f5ae8d7.dynamic.kabel-deutschland.de [95.90.232.215])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: pmenzel)
+        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 12B9961EA1936;
+        Thu, 14 Apr 2022 10:56:44 +0200 (CEST)
+Message-ID: <14d07709-07ef-21a8-ad74-0f56447cf6dd@molgen.mpg.de>
+Date:   Thu, 14 Apr 2022 10:56:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YlXtobiXIyObF/7+@robh.at.kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+Content-Language: en-US
+To:     Borislav Petkov <bp@alien8.de>, Medad Young <medadyoung@gmail.com>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>
+References: <20220322030152.19018-1-ctcchien@nuvoton.com>
+ <20220322030152.19018-4-ctcchien@nuvoton.com>
+ <a06441fc-85cf-9386-e362-4a90e855aa19@molgen.mpg.de>
+ <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
+ <YlfeXVSkUC2B4xH2@zn.tnic>
+From:   Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <YlfeXVSkUC2B4xH2@zn.tnic>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 12, 2022 at 11:22:41PM +0200, Rob Herring wrote:
-> On Tue, Apr 12, 2022 at 10:50:45AM +0200, Vincent Whitchurch wrote:
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-> > index fc3dd7ec0445..960d1d5c9362 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-> > @@ -72,6 +72,10 @@ wants to support one of the below features, it should adapt these bindings.
-> >  	this information to adapt power management to keep the arbitration awake
-> >  	all the time, for example. Can not be combined with 'single-master'.
-> >  
-> > +- no-detect
-> > +	states that no other devices are present on this bus other than the
-> > +	ones listed in the devicetree.
-> 
-> This belongs in the schema instead:
-> 
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml
+Dear Borislav,
 
-OK, thank you, I've sent a PR[0] now, but I must admit I don't quite
-understand how this property differs from the other ones in this file
-which aren't documented there.
 
-[0] https://github.com/devicetree-org/dt-schema/pull/72
+Am 14.04.22 um 10:42 schrieb Borislav Petkov:
+> On Thu, Apr 14, 2022 at 09:55:05AM +0800, Medad Young wrote:
+>>>> +                             if (mtype == MEM_TYPE_DDR4)
+>>>> +                                     dimm->mtype = MEM_DDR4;
+>>>> +                             else
+>>>> +                                     dimm->mtype = MEM_EMPTY;
+>>>
+>>> Use ternary operator?
+>>>
+>>>       dimm-mtype = (mtype == MEM_TYPE_DDR4) ? MEM_DDR4 : MEM_EMPTY;
+> 
+> Ternary operator is less readable than a plain and simple if-else.
+> 
+>>>> +{
+>>>> +     struct priv_data *priv = mci->pvt_info;
+>>>> +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
+>>>> +     u64 err_c_addr = 0x0;
+>>>
+>>> size_t
+>>
+>> OK
+> 
+> Why is size_t? error address doesn't have anything to do with a
+> sizeof(), array indexing or loop counting.
+> 
+> It is an error address and having it in an u64 tells you exactly what
+> its quantity is.
+
+Good point. Sorry for missing that.
+
+> So can we stop the silliness pls?
+
+No idea, why you had to ask this question, while you statement before 
+already made the point.
+
+>>>> +static irqreturn_t edac_ecc_isr(int irq, void *dev_id)
+>>>> +{
+>>>> +     struct mem_ctl_info *mci = dev_id;
+>>>> +     struct priv_data *priv = mci->pvt_info;
+>>>> +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
+>>>> +     u32 intr_status;
+>>>> +     u32 val;
+>>>> +
+>>>> +     /* Check the intr status and confirm ECC error intr */
+>>>> +     intr_status = readl(priv->reg + npcm_chip->ecc_ctl_int_status);
+>>>> +
+>>>> +     edac_dbg(3, "InterruptStatus : 0x%x\n", intr_status);
+>>>
+>>> Remove the space before the colon? Maybe use:
+>>>
+>>> "Interrupt status (intr_status): 0x%x\n"
+> 
+> And repeat "interrupt status"? Also silly. The question to ask
+> yourselves should always be: is this error message helpful enough to its
+> intended recipients.
+> 
+> When I see
+> 
+>    "Interrupt status (intr_status): 0x%x\n"
+> 
+> in my code, I go: "hm, where does this message come from?" because it
+> ain't helpful enough. So I have to go stare at the code too.
+> 
+> I hope you're catching my drift.
+
+Sorry I do not get your point. Would you elaborate on the debug message 
+so it’s more useful? Or would you keep `InterruptStatus`, or – as it’s a 
+debug message – use the variable name? My point was mainly about, why 
+not use the variable name directly in the debug message, and the space 
+before the colon.
+
+
+Kind regards,
+
+Paul
