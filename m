@@ -2,171 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED897501DD4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E4C501E2B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 00:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235021AbiDNWB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 18:01:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39654 "EHLO
+        id S239560AbiDNWXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 18:23:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241976AbiDNWB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 18:01:28 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788D18CCEE;
-        Thu, 14 Apr 2022 14:59:02 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 170F420045;
-        Fri, 15 Apr 2022 00:59:00 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1649973540;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5hifFW0DYRLP6QBZQ9XcpeIgOAJncYgFqZASZgCVWkE=;
-        b=BGJFpjwpfLPHdl8iCMgYTO5SnhrXTS1wwZKt3ZlR1JyWxhQ+E7Qe059DUG5zolm92IlL8o
-        XKR2JI2nvPQcWntqhxXlKWcfvgd9C6rdhO6+EhN48bHSpwRwvfARz/36O0j264eBu4MAGd
-        i9Nv6Gbg3QHGLcdlyaz9sPEmRecmJyA=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2D53F634C91;
-        Fri, 15 Apr 2022 00:58:59 +0300 (EEST)
-Date:   Fri, 15 Apr 2022 00:58:58 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, robert.foss@linaro.org, hfink@snap.com,
-        jgrahsl@snap.com, dmitry.baryshkov@linaro.org,
-        vladimir.zapolskiy@linaro.org
-Subject: Re: [PATCH v3 2/2] media: i2c: imx412: Add bulk regulator support
-Message-ID: <YliZIqg201pDH1aH@valkosipuli.retiisi.eu>
-References: <20220414124505.1329295-1-bryan.odonoghue@linaro.org>
- <20220414124505.1329295-3-bryan.odonoghue@linaro.org>
- <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
- <39cae749-67ef-13d7-2648-01c6e9603887@linaro.org>
- <Ylgn8u5Au0EqUkLj@valkosipuli.retiisi.eu>
- <831e3857-9ee7-c760-ef2e-3b235b57b907@linaro.org>
- <YlgssKI+WVeRTda6@valkosipuli.retiisi.eu>
- <784b5caf-1e1a-e57c-126e-4b28bc6ff7f8@linaro.org>
+        with ESMTP id S237524AbiDNWXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 18:23:15 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE4CB6E42
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 15:20:48 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id t25so11407181lfg.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 15:20:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=vcgSbNvaHRRfttnUp0w6vE44Y97i5rBw7lAz8clVxQE=;
+        b=LKZuFHf/FU09drKt6y76l9fsIJ+xR9zA+f6WmQy8TjDT36YZf1JZL3ysyIjzkLs6GU
+         f7mQl/9gp9agwEa6KhpqNE6swOpq6eeyI4bDYH8IpUVDbLNdOTYOUU402Zv5rKNPrRK+
+         gL8VJXh7lek44thDh/1QsAJx5eV1o6av/50SnaJ1GPFG9aG5txSQ2rkMlUQdKp3/jWXJ
+         e6ZkSjho+Xf8RRNbIjEanjCuJdP865TdnrY7pG2Yew6XQdgXuTOlIOMrx+JbfLd/gCiE
+         XwWyyGysE3mCb+aE3ELboiKY+qJtmIofMFaYd1b3j+wpmex30GdkIwvrcPDvXka1khRw
+         s4GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=vcgSbNvaHRRfttnUp0w6vE44Y97i5rBw7lAz8clVxQE=;
+        b=VpWboNxpnKQ4OEJ49mxP8zj48C4RwZigJE0RzjeavEbhPLjpHmJ3jBKp+Yrk96Awcr
+         f7wBw78bao/44EziqcwnhrYIYFZ2RBAKfUXQwJiPYAxXyYuBLAqD94dGJjUZjB++V5jU
+         mnxcvTFrq+wsr/o774EGhmY8SfY5u8Uf5pgRzPQW5znuJFiCmAyoUAwdMqtmvVMN7X5e
+         gluxO/M87Q8iwXXBq7N87Wh+TSzHDg3bcmLYyNy9mvV66FD2hCf6tM55dP5wTqjDI0xO
+         6Y9LlsD1mGiViuUBVnPsJxncoGwBxD0VA1sj7xyhPfNJCfSl0JfUF+3oWq07Py6tpuyQ
+         7Z3w==
+X-Gm-Message-State: AOAM530dTDTkLK6IxwXLX81yB1wmhKTDvjh1ezIK38yhbQwqqC7EXb8P
+        pK8SK+iGxofnz65nSGZw/erNHA==
+X-Google-Smtp-Source: ABdhPJzxXsrg1cm1SzZruk4CmsiWdY1s6C8z/MaOzITjlvuFUwJ+OT0+UPcEAsSZ+9lIrViTieB7VQ==
+X-Received: by 2002:a05:6512:3b0f:b0:46b:b8cd:951e with SMTP id f15-20020a0565123b0f00b0046bb8cd951emr3143100lfv.584.1649974847255;
+        Thu, 14 Apr 2022 15:20:47 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id j18-20020a056512029200b0046b9ba1c0edsm125169lfp.224.2022.04.14.15.20.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 15:20:46 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Subject: [PATCH 1/5 v3] dt-bindings: clock: u8500: Add clkout clock bindings
+Date:   Fri, 15 Apr 2022 00:17:47 +0200
+Message-Id: <20220414221751.323525-2-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220414221751.323525-1-linus.walleij@linaro.org>
+References: <20220414221751.323525-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <784b5caf-1e1a-e57c-126e-4b28bc6ff7f8@linaro.org>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1649973540;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5hifFW0DYRLP6QBZQ9XcpeIgOAJncYgFqZASZgCVWkE=;
-        b=T06yiq8Cu3w7/Qx7hKeOdbQpdlsN4muDLvnVj0LdVDWsYIxK7GZ/w6tADKXlu2AruBvrZu
-        cJ4mUUmK7AA1+BJudzMEwVx0Gud7FSrzThpaHlHaAG3pw2kV5qOg4oq0gJ0SSSqkBWOsFj
-        Cs6f2emAuZlCcmGKBLTRmfLcGyXXUAU=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1649973540; a=rsa-sha256; cv=none;
-        b=I0CbLKyJ0OgL1feMpV5Vc/c2jKtSstmqoldmOrpKK8qk8ARTA9I1tqvVPAgE5+nEknPl5o
-        lGDihDCED8ysP4w4Rl85jAIzU5QsjSR4Apxzhlp1+uLliS1nLTpZ+lRahZVmeEnhmkS4fW
-        HNV75qncFsON0aoisKzizkQE4TBbvUU=
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
+This adds device tree bindings for the externally routed clocks
+CLKOUT1 and CLKOUT2 clocks found in the DB8500.
 
-On Thu, Apr 14, 2022 at 03:50:50PM +0100, Bryan O'Donoghue wrote:
-> On 14/04/2022 15:16, Sakari Ailus wrote:
-> > On Thu, Apr 14, 2022 at 03:04:10PM +0100, Bryan O'Donoghue wrote:
-> > > On 14/04/2022 14:56, Sakari Ailus wrote:
-> > > > On Thu, Apr 14, 2022 at 02:44:00PM +0100, Bryan O'Donoghue wrote:
-> > > > > On 14/04/2022 14:00, Sakari Ailus wrote:
-> > > > > > >     	ret = clk_prepare_enable(imx412->inclk);
-> > > > > > >     	if (ret) {
-> > > > > > > +		regulator_bulk_disable(imx412->num_supplies,
-> > > > > > > +				       imx412->supplies);
-> > > > > > As the function already has an error handling section using labels, this
-> > > > > > should go there as well.
-> > > > > > 
-> > > > > Are you asking to move regulator_bulk_disable() to error_reset ?
-> > > > 
-> > > > No. You'll need another label.
-> > > > 
-> > > 
-> > > Hmm.
-> > > 
-> > > I think another label is not required, have a look at V4.
-> > 
-> > Ah, yes, indeed. There's just a single location where this will be needed.
-> > 
-> > On another note, gpiod_set_value_cansleep() seems to enable reset in
-> > resume and disable it in suspend. I.e. the polarity is wrong.
-> > 
-> 
-> Agreed, the polarity looks wrong - in my DTS right now I have ACTIVE_HIGH
-> for the relevant GPIO.
-> 
-> For example if I do this
-> 
-> @@ -1363,7 +1363,7 @@ camera@1a {
->                 compatible = "sony,imx412";
->                 reg = <0x1a>;
-> 
-> -               reset-gpios = <&tlmm 78 GPIO_ACTIVE_HIGH>;
-> +               reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
->                 pinctrl-names = "default", "suspend";
->                 pinctrl-0 = <&cam2_default>;
->                 pinctrl-1 = <&cam2_suspend>;
-> diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-> index a9cdf4694d58..1442b416f5aa 100644
-> --- a/drivers/media/i2c/imx412.c
-> +++ b/drivers/media/i2c/imx412.c
-> @@ -1036,7 +1036,7 @@ static int imx412_power_on(struct device *dev)
->                 return ret;
->         }
-> 
-> -       gpiod_set_value_cansleep(imx412->reset_gpio, 1);
-> +       gpiod_set_value_cansleep(imx412->reset_gpio, 0);
-> 
->         ret = clk_prepare_enable(imx412->inclk);
->         if (ret) {
-> @@ -1049,7 +1049,7 @@ static int imx412_power_on(struct device *dev)
->         return 0;
-> 
->  error_reset:
-> -       gpiod_set_value_cansleep(imx412->reset_gpio, 0);
-> +       gpiod_set_value_cansleep(imx412->reset_gpio, 1);
->         regulator_bulk_disable(imx412->num_supplies, imx412->supplies);
-> 
->         return ret;
-> @@ -1068,7 +1068,7 @@ static int imx412_power_off(struct device *dev)
-> 
->         clk_disable_unprepare(imx412->inclk);
-> 
-> -       gpiod_set_value_cansleep(imx412->reset_gpio, 0);
-> +       gpiod_set_value_cansleep(imx412->reset_gpio, 1);
-> 
-> Seems like changing the logic would negatively affect the Intel people.
-> Might have to churn ACPI to change that logic..
-> 
-> Easier probably to leave as is and define as ACTIVE_HIGH in DTS
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Pick up Ulf's ACK.
+ChangeLog v1->v2:
+- Push the description of the clock-cells down under the clock-cells
+  subnode.
+- Add an example, as this was missing and requested.
+---
+ .../bindings/clock/stericsson,u8500-clks.yaml | 57 +++++++++++++++++++
+ include/dt-bindings/clock/ste-db8500-clkout.h | 17 ++++++
+ 2 files changed, 74 insertions(+)
+ create mode 100644 include/dt-bindings/clock/ste-db8500-clkout.h
 
-It's still wrong and should be fixed. It seems there are no boards in the
-DT source in the kernel using this sensor. These changes seem fine to me.
-
-I'm not really worried about ACPI: it's unlikely the GPIO is even declared
-for the sensor, and instead is controlled in AML. There can of course be
-bugs in ACPI tables, too...
-
+diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+index 9bc95a308477..2150307219a0 100644
+--- a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
++++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+@@ -109,6 +109,25 @@ properties:
+ 
+     additionalProperties: false
+ 
++  clkout-clock:
++    description: A subnode with three clock cells for externally routed clocks,
++      output clocks. These are two PRCMU-internal clocks that can be divided and
++      muxed out on the pads of the DB8500 SoC.
++    type: object
++
++    properties:
++      '#clock-cells':
++        description:
++          The first cell indicates which output clock we are using,
++          possible values are 0 (CLKOUT1) and 1 (CLKOUT2).
++          The second cell indicates which clock we want to use as source,
++          possible values are 0 thru 7, see the defines for the different
++          source clocks.
++          The third cell is a divider, legal values are 1 thru 63.
++        const: 3
++
++    additionalProperties: false
++
+ required:
+   - compatible
+   - reg
+@@ -119,3 +138,41 @@ required:
+   - smp-twd-clock
+ 
+ additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/ste-db8500-clkout.h>
++    clocks@8012 {
++      compatible = "stericsson,u8500-clks";
++      reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
++            <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
++            <0xa03cf000 0x1000>;
++
++      prcmu_clk: prcmu-clock {
++        #clock-cells = <1>;
++      };
++
++      prcc_pclk: prcc-periph-clock {
++        #clock-cells = <2>;
++      };
++
++      prcc_kclk: prcc-kernel-clock {
++        #clock-cells = <2>;
++      };
++
++      prcc_reset: prcc-reset-controller {
++        #reset-cells = <2>;
++      };
++
++      rtc_clk: rtc32k-clock {
++        #clock-cells = <0>;
++      };
++
++      smp_twd_clk: smp-twd-clock {
++        #clock-cells = <0>;
++      };
++
++      clkout_clk: clkout-clock {
++        #clock-cells = <3>;
++      };
++    };
+diff --git a/include/dt-bindings/clock/ste-db8500-clkout.h b/include/dt-bindings/clock/ste-db8500-clkout.h
+new file mode 100644
+index 000000000000..ca07cb2bd1bc
+--- /dev/null
++++ b/include/dt-bindings/clock/ste-db8500-clkout.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __STE_CLK_DB8500_CLKOUT_H__
++#define __STE_CLK_DB8500_CLKOUT_H__
++
++#define DB8500_CLKOUT_1			0
++#define DB8500_CLKOUT_2			1
++
++#define DB8500_CLKOUT_SRC_CLK38M	0
++#define DB8500_CLKOUT_SRC_ACLK		1
++#define DB8500_CLKOUT_SRC_SYSCLK	2
++#define DB8500_CLKOUT_SRC_LCDCLK	3
++#define DB8500_CLKOUT_SRC_SDMMCCLK	4
++#define DB8500_CLKOUT_SRC_TVCLK		5
++#define DB8500_CLKOUT_SRC_TIMCLK	6
++#define DB8500_CLKOUT_SRC_CLK009	7
++
++#endif
 -- 
-Sakari Ailus
+2.35.1
+
