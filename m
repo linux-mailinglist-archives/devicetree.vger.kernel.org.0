@@ -2,97 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A712C501ED2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 01:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4769501ED8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 01:06:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347419AbiDNXHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 19:07:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42936 "EHLO
+        id S1347424AbiDNXIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 19:08:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345432AbiDNXHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 19:07:50 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B448C7E4
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 16:05:23 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id r13so8758885wrr.9
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 16:05:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cqbncAiho8303q0iTDUorkGh7mctfY5GQfcEt9FjT+k=;
-        b=IE32e1xGSGVvvIiGpD6JFstnFc5A9cOCySq/7l5Pe75wqBayA+WDwkbnlm1c4E1E6l
-         eMnpsXBqTwJbCwN2VnNsfPnf3TjvBYKT/QcROivUUyzG/0UX7wzcD946hO6sZuRmIg0w
-         J/T9U1Qzz10DmDua7VwNKutgPsgPhrDzRAQVzXSgyW1vbrteS2ZdxHyQ+ZuVte5EemKD
-         HsfB/UhVG4156NFXSY995j4FbyruJKZjIFMDbUSdgStab+jVBLtAvtxPhsRzO2oJ/mw2
-         YSwOgvii2+zqSkYGqe+9oAS/aGblRYa6eLBAORugR8zkpuueaZIiFyeHUUGih2gsaKtI
-         Gbgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cqbncAiho8303q0iTDUorkGh7mctfY5GQfcEt9FjT+k=;
-        b=FWTDjyNs+/T0dsCcXpHyeL3OrTbQxPX7dpE8SrE4sA/sYokeRtKSRHvlAfsvlRgNae
-         9F1eBA/orbiKmbRUUjnpgqZP0YeVzQ9lEFeU1GFxR1jrDO1u4IxKq1i57K4+P3VhgNWn
-         I1ZpOjRPJD2NhEV435/ttuEojZWU3jZIai0b68DVloBepNY3kfX5io1UxH7dM/qyotD5
-         l8zUIcyCqGHd/eRm5UWijpbiAv3xYvyU8NsetKzq6DImcVuMDDl94zbkpKkvRkpJ+OCC
-         iQY/hmpcrIJ/hfg6eo1NrdIdZV92gcjklXN7gZDF3rQXJkqcRS0TxaaNipI5BkLI9FIj
-         h+Lw==
-X-Gm-Message-State: AOAM532rJrrIa3Dx+s1gk9h/ljIDEOmvgB6BJUBznx2qjobAzy5U+Xie
-        1BpXTr59Q2dGZurZSgCgn90vZw==
-X-Google-Smtp-Source: ABdhPJxVfwm1SwCIjdsCx34k6DzMct33pFlxb5jhfPbOYUIJC8uLwKA033nFbjut0YWM4nCi4ncqog==
-X-Received: by 2002:adf:e189:0:b0:207:a0e8:be49 with SMTP id az9-20020adfe189000000b00207a0e8be49mr3562055wrb.130.1649977522587;
-        Thu, 14 Apr 2022 16:05:22 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id i4-20020a05600c354400b0038e9c5924d6sm6965445wmq.29.2022.04.14.16.05.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 16:05:21 -0700 (PDT)
-Message-ID: <9de68f8f-edc3-6318-d7ad-43a66ef5d4a8@linaro.org>
-Date:   Fri, 15 Apr 2022 00:05:20 +0100
+        with ESMTP id S1347432AbiDNXIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 19:08:41 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD9988CD8F
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 16:06:13 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 331F02C02EB;
+        Thu, 14 Apr 2022 23:06:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1649977570;
+        bh=QMOImhl/kNS0gQ0GSE27P0W8zdDKCfw1R+mRixl3y0I=;
+        h=From:To:Cc:Subject:Date:From;
+        b=r4jGRX3ZJkFx8A+XdSa8ISnr7i/IwMD9l0+WMgLdCLu2tuWbmPoMXvcAWSv/tqyHH
+         l6TUQcUWhbFtpnIgCv9SlvB9UoZHseQNx3whoYz1lcIAELg+t4ZTe3xUf8MKh9yBaJ
+         es891XOjEnbuOLjOnUf/ps1dQ0phRJBFeIS0KLOyo6XT6eVgFyImv5dGgZOfeTh4Sv
+         bNiHpK7nkPlvzsyinDDutsHrNDc5h2ddqCd1UlVXfJYauzxoxT9g1HEXvk5Ig3B0OV
+         +7k8jTafBExDuSyX1xnWo8Apzx01QeJ+bfx1KHvD3RDz+lbJuXdkIaAZvOq4qZrEjS
+         yt+z9lkCtM6vw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6258a8e20000>; Fri, 15 Apr 2022 11:06:10 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 0778513EE37;
+        Fri, 15 Apr 2022 11:06:10 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id A5A0A2A2679; Fri, 15 Apr 2022 11:06:06 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/4] dt-bindings: mmc: Convert orion/dove bindings to JSON schema
+Date:   Fri, 15 Apr 2022 11:05:59 +1200
+Message-Id: <20220414230603.567049-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sm8250: Add camcc DT node
-Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
-        jgrahsl@snap.com
-References: <20220413231736.991368-1-bryan.odonoghue@linaro.org>
- <20220413231736.991368-2-bryan.odonoghue@linaro.org>
- <358215a0-6f00-7594-bd4e-8f4e8be93473@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <358215a0-6f00-7594-bd4e-8f4e8be93473@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L59jvNb8 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=z0gMJWrwH1QA:10 a=rAFvr4r3g9_3rt3GYfIA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 08:41, Vladimir Zapolskiy wrote:
->> +            clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-> 
-> I believe it should be GCC_CAMERA_AHB_CLK.
-> 
->> +                 <&rpmhcc RPMH_CXO_CLK>,
->> +                 <&rpmhcc RPMH_CXO_CLK_A>;
->> +            clock-names = "iface", "bi_tcxo", "bi_tcxo_ao";
-> 
-> I see that the driver references to "sleep_clk", which won't be found
-> automatically, since it's name is "sleep-clk", so, it might be reasonable
-> to add it to the list.
+This is a small series converting the device tree bindings for the orion =
+and
+dove sdhci controllers to JSON schema.
 
-Yep agreed.
+The first 2 patches update the dtsi files to use a node name enforces by =
+the
+schema. The next 2 patches convert the old text binding to JSON schema.
 
----
-bod
+Chris Packham (4):
+  ARM: dts: mvebu: Update mvsdio node names to match schema
+  ARM: dts: dove: Update sdio-host node names to match schema
+  dt-bindings: mmc: convert orion-sdio to JSON schema
+  dt-bindings: mmc: convert sdhci-dove to JSON schema
+
+ .../bindings/mmc/marvell,dove-sdhci.yaml      | 38 ++++++++++++++++
+ .../bindings/mmc/marvell,orion-sdio.yaml      | 43 +++++++++++++++++++
+ .../devicetree/bindings/mmc/orion-sdio.txt    | 16 -------
+ .../devicetree/bindings/mmc/sdhci-dove.txt    | 14 ------
+ arch/arm/boot/dts/armada-370-xp.dtsi          |  2 +-
+ arch/arm/boot/dts/armada-375.dtsi             |  2 +-
+ arch/arm/boot/dts/dove.dtsi                   |  4 +-
+ arch/arm/boot/dts/kirkwood-6192.dtsi          |  2 +-
+ arch/arm/boot/dts/kirkwood-6281.dtsi          |  2 +-
+ arch/arm/boot/dts/kirkwood-6282.dtsi          |  2 +-
+ 10 files changed, 88 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/marvell,dove-sd=
+hci.yaml
+ create mode 100644 Documentation/devicetree/bindings/mmc/marvell,orion-s=
+dio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/orion-sdio.txt
+ delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-dove.txt
+
+--=20
+2.35.1
+
