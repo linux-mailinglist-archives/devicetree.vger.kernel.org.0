@@ -2,149 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF115008DC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2535A5008F0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241309AbiDNIzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:55:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58558 "EHLO
+        id S238697AbiDNI6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241282AbiDNIyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:54:55 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C036A049;
-        Thu, 14 Apr 2022 01:52:22 -0700 (PDT)
-Received: from toolbox.toradex.int ([31.10.206.124]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1N8oCQ-1nz3LP3x4g-015t9W;
- Thu, 14 Apr 2022 10:52:06 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 14/14] ARM: dts: imx6ull-colibri: move gpio-keys node to som dtsi
-Date:   Thu, 14 Apr 2022 10:51:06 +0200
-Message-Id: <20220414085106.18621-15-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220414085106.18621-1-marcel@ziswiler.com>
-References: <20220414085106.18621-1-marcel@ziswiler.com>
+        with ESMTP id S237997AbiDNI6H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:58:07 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9370965D24;
+        Thu, 14 Apr 2022 01:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1649926543;
+  x=1681462543;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EKQ0yqkEdK1AucptjfCwr+qtiem+dTCzWK8vM9EwHXY=;
+  b=P4ZNCc46Nr9gF/ml4sK0EFqnqBR2gdLjypk88I6GoOCU9AMQtELRXCxX
+   4sVs9hEE5NaNp3ULGXpO8vs+y7M5rIbeL3lwI2ckGKHKmIxd5aQQdQoq9
+   h3bsArq8QjuphTV61KD4kFfIl8HqigQqxH6u8DLO8dlDAiHQDrcBRjHo0
+   omZnyIHvw5pWXqce6dAMZHPBPzaI5970yO+XAmNC4oczEdhTA3bWY9Zti
+   dx4K95M19hiB8WmpUaxbwVtv1o/fowO5lJVaRLb5uFsrrNhw/r1GwkVJy
+   O7dr7uXhBRB3S4LiPyJPTgRVNJoFvbgfzq0mvhLmN606ufr1qb3QD7pBl
+   g==;
+Date:   Thu, 14 Apr 2022 10:55:40 +0200
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "wsa@kernel.org" <wsa@kernel.org>, kernel <kernel@axis.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: add property to avoid device
+ detection
+Message-ID: <20220414085539.GA7392@axis.com>
+References: <20220412085046.1110127-1-vincent.whitchurch@axis.com>
+ <20220412085046.1110127-2-vincent.whitchurch@axis.com>
+ <YlXtobiXIyObF/7+@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:t4Eu9Yla157sKjIMqXBTLTyk1QFmNGXZN6GQRUh6lSLFewEOTC3
- 6fESAbwY56Rx70TRW+51iAM3scxk8ubUD/nxQgWlOLMFocN6e+mN1p/uhLmzjvv3et4pbn4
- szXY4CRMVIyDY3YISCc6pUnk7NXSuN7XBh2Yg26qvWPIMUt50b4ZoeBcEIr6VdJDXD+9g2u
- N1S7cjLtKuMq0aFMeIAXA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:3O2Al+diOKo=:RQPRgZ8d6Ud+DZpszriMn6
- WSHcbCE43LBvtegma1TK9LwjI/I37GN4rgTlstVndzi2oMRYHeEOdBopRece2XQcP3A7uZdui
- hNeoOWh0C/MX5KyDXLYGAXMhvDJgG6fQBOtacY/l9AfWaFXxUOdmI2JjK9rIRwmv6Lt25dC0h
- l6aTxTfxXHO6HODWay6z/AS3e78yyC9CJS1B4krkkFav4g1RDn7PQb6U/0zr57cE3IP6YLoGg
- uyYFGJQpMaJCdoURISLJkHplMo5BX4X4E2Ur6y8iiXhVBQWw4FonqsQBtAWVYt4Y8OYxyuQVB
- +NlibE9c/ckMrR1e/WVS0PxwjIFZnHGRFtzRMSHH9ymeq1OvStSNR1gEHwocZkZ34Ry6sM91Y
- sCbO2cr6Nl5mvXOWzEZZ4dHnV5jUHO3AbG3joSHj+Qr2e7+nngNjvY8gX/rHPTi4kuOUFtXAK
- 7Ty/GYoLU1Tx1gCUjtWKVr3pOkKcVLyOripv+nYyuB1ng0FCzPvJgUu4j8qiRS2C51J0aAXm0
- mCD0WBQ4RUfNUQx3PJN3BiL3uekmE/wD32f0efAJYZ1SNJx0Ed1r4Wp9CXDUqkYnvwghjngg1
- pDshWNN8gMb4i8LvMIUu232PowVX0eRjN/jE5SdJ9J7xa0XcuZbSZdEUWESgxM9QlnVmjWswd
- HkAYq1dbfq4QRk+2jZSMCdEmk4NRs3O9BiQ0A5j+xb3pNFmKjNlANDkyiNgApgxJgznz2g4M4
- tq26hyzhefwaDftvd6hk75Wt65j+oXnIF9OJrEE8eTZboS2Plsw8zznCGtpaOvb/hviShSqH3
- EAnYI7AfT5LLMk/r5W+ALtibUC6Gw==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <YlXtobiXIyObF/7+@robh.at.kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On Tue, Apr 12, 2022 at 11:22:41PM +0200, Rob Herring wrote:
+> On Tue, Apr 12, 2022 at 10:50:45AM +0200, Vincent Whitchurch wrote:
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+> > index fc3dd7ec0445..960d1d5c9362 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c.txt
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+> > @@ -72,6 +72,10 @@ wants to support one of the below features, it should adapt these bindings.
+> >  	this information to adapt power management to keep the arbitration awake
+> >  	all the time, for example. Can not be combined with 'single-master'.
+> >  
+> > +- no-detect
+> > +	states that no other devices are present on this bus other than the
+> > +	ones listed in the devicetree.
+> 
+> This belongs in the schema instead:
+> 
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml
 
-The gpio-keys define module level wake-up pin functionality. Move it
-from the carrier board dts file to the Som dtsi file.
-While at it, also re-order the properties in the gpio-keys node
-alphabetically and rename to sub-node from power to wakeup.
+OK, thank you, I've sent a PR[0] now, but I must admit I don't quite
+understand how this property differs from the other ones in this file
+which aren't documented there.
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
-
- arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi | 15 ---------------
- arch/arm/boot/dts/imx6ull-colibri.dtsi         | 16 +++++++++++++++-
- 2 files changed, 15 insertions(+), 16 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-index 08197c66af12..e29907428c20 100644
---- a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-@@ -8,20 +8,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	gpio-keys {
--		compatible = "gpio-keys";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_snvs_gpiokeys>;
--
--		power {
--			label = "Wake-Up";
--			gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
--			linux,code = <KEY_WAKEUP>;
--			debounce-interval = <10>;
--			wakeup-source;
--		};
--	};
--
- 	/* fixed crystal dedicated to mcp2515 */
- 	clk16m: clk16m {
- 		compatible = "fixed-clock";
-@@ -29,7 +15,6 @@ clk16m: clk16m {
- 		clock-frequency = <16000000>;
- 	};
- 
--
- 	reg_3v3: regulator-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "3.3V";
-diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-index f6fbc5c0e1ee..300c28db8e7a 100644
---- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-@@ -24,6 +24,20 @@ backlight: backlight {
- 		status = "okay";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_snvs_gpiokeys>;
-+
-+		wakeup {
-+			debounce-interval = <10>;
-+			gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>; /* SODIMM 45 */
-+			label = "Wake-Up";
-+			linux,code = <KEY_WAKEUP>;
-+			wakeup-source;
-+		};
-+	};
-+
- 	panel_dpi: panel-dpi {
- 		compatible = "edt,et057090dhu";
- 		backlight = <&backlight>;
-@@ -707,7 +721,7 @@ MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x130b0
- 
- 	pinctrl_snvs_gpiokeys: snvs-gpiokeys-grp {
- 		fsl,pins = <
--			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x130a0	/* SODIMM 45 */
-+			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x130a0	/* SODIMM 45 / WAKE_UP */
- 		>;
- 	};
- 
--- 
-2.35.1
-
+[0] https://github.com/devicetree-org/dt-schema/pull/72
