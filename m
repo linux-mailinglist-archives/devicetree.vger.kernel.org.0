@@ -2,67 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFDBB501D89
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7B4D501D91
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:38:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346616AbiDNVe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 17:34:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52550 "EHLO
+        id S235858AbiDNVkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 17:40:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346902AbiDNVe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:34:26 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 630432E9CC
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:31:59 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id l127so4214468pfl.6
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:31:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p5umN/eT2yUlngm37Zc5I2AOTVEAYdcyPGsqi0WLgoI=;
-        b=rq+D7FgkQSefBxCU9ED8GK3ke8819zxBSsQDmlKMR6RzAanoJ+pIUhWFqGsCQRhn5a
-         T1b7M5p10Q77JtdA+STmiITCnnYLP6ygw3UTMjerkhQXYddkvRMnkJeGapa7QFumdrGh
-         uDZTSRHXa8+a8A5EkfScSm663N4mBd8FOwtVbbFIvJF+ZPytgmvX3awgIv4nS2WWQVen
-         pZvOtGqUVgroB423PTIhk9DOg8BEofQy3l+7udrziRMjslAvX81WFVWviAu9V3nroG8a
-         o5S3EjLJkXdKv9ZU3s6c/By0RoiEBt/i7gIOBzjTaLxqwLHB7WaWP7E13jAH90UG1KeV
-         2kHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p5umN/eT2yUlngm37Zc5I2AOTVEAYdcyPGsqi0WLgoI=;
-        b=aGyzn6jdWzB+98yTcYC+NwKN74YZ/fDYUwmZHfU/qL6QGvK3Nhr1o9IsQe5nIEh2hQ
-         Du3lzBnW6trFPa0ZGv4o8eC38/QR/l6bxPcgJa0BHRm3B16aEZ9XUuldO9CUldk2bQkh
-         GMC21y4g+2MwGNIe5/PKkDB/A0N2q8HvHiwVcLxGP2zXmz56lpAaRHoj3rJ76Te06mft
-         lqg/EGwX2etlfTkBdt3ucoWPB9uVI/BNBqrAYFx70XuKUyOWi+M9jc2u8ZbZJHPf2PC6
-         yeBOIzZGuigzLxvg//D/RcC/vpyVwy/bpfkN3nHsKSb/Ib/W6rX4dJbtW5vwkrzhb/ZE
-         T1ug==
-X-Gm-Message-State: AOAM5311aOSnaqoCctt+aAqToagBnpaUmz1oz6CWd2g/BRSMAWg1Jrge
-        SvovKUt6lj6SGeuHTF/bqldJIA==
-X-Google-Smtp-Source: ABdhPJytmCsb/e3RCFrNvI0gjCXUWASIQxycQtme8apNI4BdaG6KnfjbK3+CC7ZKEbaqbGCHu/IH5A==
-X-Received: by 2002:a63:4721:0:b0:382:70fa:479d with SMTP id u33-20020a634721000000b0038270fa479dmr3916862pga.259.1649971918877;
-        Thu, 14 Apr 2022 14:31:58 -0700 (PDT)
-Received: from localhost.localdomain ([223.233.64.97])
-        by smtp.gmail.com with ESMTPSA id 5-20020a631045000000b0039d942d18f0sm2673706pgq.48.2022.04.14.14.31.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 14:31:58 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sa8155p-adp: Add support for uSD card
-Date:   Fri, 15 Apr 2022 03:01:39 +0530
-Message-Id: <20220414213139.476240-3-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220414213139.476240-1-bhupesh.sharma@linaro.org>
-References: <20220414213139.476240-1-bhupesh.sharma@linaro.org>
+        with ESMTP id S232240AbiDNVko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:40:44 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE7536948E
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:38:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 75FECB82B97
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 21:38:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F7FCC385A5
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 21:38:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649972295;
+        bh=7W9A83g3H9DW2XT2t9gYyV0uNVkAOsg2y4hcEO3j4es=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KfToX/X+dPwBquuRB8t8Q9XVF4MxxRwUP/7H+OOXiAKDWrH8pNz0+2oMmK5nzTb0+
+         3n06s9anx83tPh0xCZ1GfEdW4dqJKB22/kuecsYXqS5mgq7iLtFjE1SlROtiIdi5D9
+         fOe4rs4NbSp6k+LS95jukJ/NTZvtX2/b1+6v0Pddpg6OQ1ojAmZJkZY+pi3+8Niffy
+         tDuD55Gjwuo/O8IywlY74MlbbYheU90/H8u3q5HlM4kotAKCgghM9qLvD7W08SPGv0
+         c1zrZ1irOs8/aSzGDM5P3It4Ta7MtYR/aZklxiq5jl163kRmYZTRme2bY+mL7I4yHt
+         Py+jzqj+c5e3A==
+Received: by mail-oi1-f177.google.com with SMTP id q189so6793760oia.9
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:38:15 -0700 (PDT)
+X-Gm-Message-State: AOAM530qOrbsFmfCyijLMW5h7KlFTtT0i5NVCKfH2FpfKCh/UqtYrKa0
+        Mzc4DasduauHwiHBYF8k+6stJQWFmIVOlfKcYg==
+X-Google-Smtp-Source: ABdhPJwLc1FO2yTnUOhYA75wJGxUBZjBFCydzppuOxvoC7enoPS0wBQHDbqGYtVjsaM60LjW8EfK8+qHfOAFFRTqZm8=
+X-Received: by 2002:a05:6808:1402:b0:2da:b72:74f2 with SMTP id
+ w2-20020a056808140200b002da0b7274f2mr266409oiv.113.1649972294191; Thu, 14 Apr
+ 2022 14:38:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <08fd5b71-9f9e-7635-747c-65ba7ee287d6@quicinc.com>
+ <CAL_JsqLy+DfCqHKiVzs4TYx+PLmstAEjnujA=fR+NDrZKrFwSw@mail.gmail.com> <faa491b6-50fc-eccb-5c79-0abdc868f0bd@quicinc.com>
+In-Reply-To: <faa491b6-50fc-eccb-5c79-0abdc868f0bd@quicinc.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 14 Apr 2022 16:38:01 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKT9inH+YRdp8-Pk+6cHtOJN=YYLL5xBP45D5pD6Hs4YQ@mail.gmail.com>
+Message-ID: <CAL_JsqKT9inH+YRdp8-Pk+6cHtOJN=YYLL5xBP45D5pD6Hs4YQ@mail.gmail.com>
+Subject: Re: dt-schema checks with dtbo source files
+To:     "T.Michael Turney" <quic_mturney@quicinc.com>
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,102 +61,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for uSD card on SA8155p-ADP board using the SDHC2
-interface.
+On Wed, Apr 13, 2022 at 7:32 PM T.Michael Turney
+<quic_mturney@quicinc.com> wrote:
+>
+>
+> >>
+> >> I'm assuming dt-schema is looking for a root node and the required
+> >> properties in the root node and not finding it in the overlay file.
+> >
+> > Indeed. The required property errors would be easy to handle. We do
+> > that already for disabled nodes as they may be incomplete.
+> >
+>
+> Can you point me to example of handling required property errors for
+> disabled nodes?  Is this in schema or meta-schema files or ??
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 68 ++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+dt-validate does the filtering.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-index 8756c2b25c7e..b561a8139cb9 100644
---- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-@@ -317,6 +317,20 @@ &remoteproc_cdsp {
- 	firmware-name = "qcom/sa8155p/cdsp.mdt";
- };
- 
-+&sdhc_2 {
-+	status = "okay";
-+
-+	cd-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_on>;
-+	pinctrl-1 = <&sdc2_off>;
-+	vqmmc-supply = <&vreg_l13c_2p96>; /* IO line power */
-+	vmmc-supply = <&vreg_l17a_2p96>;  /* Card power line */
-+	bus-width = <4>;
-+	no-sdio;
-+	no-emmc;
-+};
-+
- &uart2 {
- 	status = "okay";
- };
-@@ -390,6 +404,60 @@ &usb_2_qmpphy {
- &tlmm {
- 	gpio-reserved-ranges = <0 4>;
- 
-+	sdc2_on: sdc2_on {
-+		clk {
-+			pins = "sdc2_clk";
-+			bias-disable;		/* No pull */
-+			drive-strength = <16>;	/* 16 MA */
-+		};
-+
-+		cmd {
-+			pins = "sdc2_cmd";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <16>;	/* 16 MA */
-+		};
-+
-+		data {
-+			pins = "sdc2_data";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <16>;	/* 16 MA */
-+		};
-+
-+		sd-cd {
-+			pins = "gpio96";
-+			function = "gpio";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+	};
-+
-+	sdc2_off: sdc2_off {
-+		clk {
-+			pins = "sdc2_clk";
-+			bias-disable;		/* No pull */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+
-+		cmd {
-+			pins = "sdc2_cmd";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+
-+		data {
-+			pins = "sdc2_data";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+
-+		sd-cd {
-+			pins = "gpio96";
-+			function = "gpio";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+	};
-+
- 	usb2phy_ac_en1_default: usb2phy_ac_en1_default {
- 		mux {
- 			pins = "gpio113";
--- 
-2.35.1
+> >> Is there a basic incompatibility between dt-schema and overlay support,
+> >> or is this cockpit error?
+> >
+> > A lot depends on how you are using overlays. If you are using them to
+> > add random properties on existing nodes (which isn't something that
+> > can easily work at runtime), that's not going to work for validating
+> > the overlay on its own (nor the base DT, if the base DT is not valid
+> > on its own). If the overlays are adding complete nodes or subtrees
+> > such as for an expansion card, then I would expect the overlay can
+> > mostly be validated with perhaps some tweaks. The former case only
+> > makes sense to validate the DT with overlays applied. If you look at
+> > the overlay build support in the kernel, you'll see all the overlays
+> > are applied at build time.
+> >
+>
+> The base DT would be valid and pass dt-schema checks as well as dtc
+> syntax and semantic warnings.  This DT would define a v1.0 SOC.
+> Possible overlays to apply would be if newer SOC version required
+> changes or if a platform introduced new nodes/properties.
 
+You could have issues if you have board specific, required properties.
+I guess the SOC DT can have defaults or the node disabled if that's
+required.
+
+> The overlays would be applied at runtime and most overlay files would be
+> similar to example I provided, where an existing node in base DT has a
+> property changed or added.  I suppose we could provide a root node in
+> the overlay files to satisfy the dt-schema checks but were hoping to
+> avoid this as it adds to the runtime footprint of these files and
+> minimizing this footprint is one of the reasons we are embracing overlays.
+
+If footprint is your main concern I have to wonder if doing that
+automatically would be better than manually maintaining the split
+between overlays and base DTs. Imagine a tool that's passed N DTBs and
+it extracts everything common between the N DTBs into a base DTB and N
+overlays. Such a tool would not be hard to implement.
+
+> Are you indicating it is a "fool's errand" to try to do dt-schema checks
+> on an arbitrary overlay file that has no other context associated, other
+> than the few nodes/properties being added or changed?  I guess if the
+> overlay file doesn't include a compatible property then dt-schema has
+> nothing to work with and if a compatible property is provided and the
+> overlay doesn't include all of the required properties, dt-schema is
+> going to flag these as error cases anyway?
+
+I think it's going to depend on what the overlays look like. You could
+do some validation as some schemas are always applied, but vendor
+specific properties for example would mostly not get checked without
+compatible to match on. Common properties could have at least type
+checks.
+
+Don't you want to check that all the combinations of base DT and
+overlays can be applied before you deploy them to a running system? If
+you do that, then you can run the schema checks too.
+
+> I am concerned about this:
+>  > If you are using them to
+>  > add random properties on existing nodes (which isn't something that
+>  > can easily work at runtime),
+> This is exactly our basic use-case for overlays, we are planning on
+> using the APIs in fdt_overlay.c at runtime.  Are you suggesting this
+> isn't a robust use of the overlay support?
+
+If 'at runtime' means before anything uses the DT (or parts that could
+be modified), then it is fine. It's allowing modifications at any
+point in time that's problematic (and why there's not a general
+purpose overlay applying interface exposed to userspace) If a driver
+already probed and a new property shows up, how do you handle that?
+Applying at runtime in early boot is fine.
+
+Rob
