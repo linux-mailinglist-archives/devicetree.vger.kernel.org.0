@@ -2,124 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3940150129F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2EF5501569
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 17:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242602AbiDNOGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 10:06:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45626 "EHLO
+        id S244591AbiDNOGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 10:06:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347775AbiDNN7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:59:32 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 508E0A94E2;
-        Thu, 14 Apr 2022 06:53:34 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-de3eda6b5dso5358057fac.0;
-        Thu, 14 Apr 2022 06:53:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=b1fmOcvfq0NdewvcCb3vlwr8j3wXB3tS/OMfuj5UtlU=;
-        b=B4G9li+gyic+mSIfiDt75rSpudFsnOWwJ7ui948V4BCvvQ9ogMh576WM3NT7WVQawS
-         qH7jiCfqSLZHNzxzb2VglvSjOMPdXLFiscWNQSBiw7abCELKFIFBii7QbntOdMGIfIIt
-         fhKtB1hw9sumOC28HIv9OCu9rJeVV/CCKxwEr1QSjX2q/6AQF6bRmT3czZKIWyHGhOWF
-         Z6CBdz6+aF/m07kkftdrnMK+Wphqobs0Uz55I9kb3RFt1Xbb0ow2cDboF7V1tswoz2tR
-         YO25DI9Vr/YXVeURLOCnW41JQ1gwzW2O4VmTzgLOegLtGsEpcEXUylrTl7JFguScQFef
-         y5gg==
-X-Gm-Message-State: AOAM533q/uDNCmCuldrfwio48l45CZOY9PB6AdNMAj95uQraIkC0ItCA
-        G6QUtFuiUMt0sxNRwXPS4JDMFURt0w==
-X-Google-Smtp-Source: ABdhPJww3qRkZtGwfjpNEzvqRQvkbI1fLP9z/+5tzeS5Pt2GbgkyVjc2xc9Y0mylgugZ+aaXYPsliQ==
-X-Received: by 2002:a05:6870:5712:b0:de:2cbd:c39b with SMTP id k18-20020a056870571200b000de2cbdc39bmr1331317oap.180.1649944413585;
-        Thu, 14 Apr 2022 06:53:33 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05683014ce00b005b23657f66esm30059otq.31.2022.04.14.06.53.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 06:53:33 -0700 (PDT)
-Received: (nullmailer pid 1898802 invoked by uid 1000);
-        Thu, 14 Apr 2022 13:53:32 -0000
-Date:   Thu, 14 Apr 2022 08:53:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Kartik <kkartik@nvidia.com>
-Cc:     jassisinghbrar@gmail.com, krzk+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: tegra186-hsp: add type for shared
- mailboxes
-Message-ID: <YlgnXKGHqcCgItlb@robh.at.kernel.org>
-References: <1649921757-16919-1-git-send-email-kkartik@nvidia.com>
- <1649921757-16919-3-git-send-email-kkartik@nvidia.com>
+        with ESMTP id S242957AbiDNN7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:59:33 -0400
+X-Greylist: delayed 3333 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Apr 2022 06:56:05 PDT
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E2919284;
+        Thu, 14 Apr 2022 06:56:05 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 755B02008B;
+        Thu, 14 Apr 2022 16:56:03 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1649944563;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=pzWMTLC6LFaR3H8Uy4uBjTgIQEPZiQVD5nKLVZZb/4Y=;
+        b=HCqHMuJ6Lz2KcRmpmEEbv2NE364UE5FfLBJmWjPyozDxEMR/YZk97XvgrF3LIJtkGBcSVS
+        UIQgq9qayF4YDf+Z1rw54RdtWCdAiRK/t00YfPa5o3PgFv5n4j/wMXo0hNZJ9rHN1Lzva3
+        I4BZmNU64G6bClA9IqLUYIpM8Qk4V5A=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id CC72B634C91;
+        Thu, 14 Apr 2022 16:56:02 +0300 (EEST)
+Date:   Thu, 14 Apr 2022 16:56:02 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robert.foss@linaro.org, hfink@snap.com,
+        jgrahsl@snap.com, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Subject: Re: [PATCH v3 2/2] media: i2c: imx412: Add bulk regulator support
+Message-ID: <Ylgn8u5Au0EqUkLj@valkosipuli.retiisi.eu>
+References: <20220414124505.1329295-1-bryan.odonoghue@linaro.org>
+ <20220414124505.1329295-3-bryan.odonoghue@linaro.org>
+ <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
+ <39cae749-67ef-13d7-2648-01c6e9603887@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1649921757-16919-3-git-send-email-kkartik@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <39cae749-67ef-13d7-2648-01c6e9603887@linaro.org>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1649944563;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=pzWMTLC6LFaR3H8Uy4uBjTgIQEPZiQVD5nKLVZZb/4Y=;
+        b=LAy0w3ICvTs2KQ73+5QHFjnmD++eSIn/B5Cet5WFhRRIaqSklmQPO9ALao5VRL16Fc7FvP
+        cUVXdvB0fBnyES0c11BL49sUqaQC8a0KgSpBmV1feA1j4MsqO3B0m+5cd7uNr9XUfVKKYg
+        VIwHs0KqNMBEo9jqXhrNu1zbPFzVMx4=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1649944563; a=rsa-sha256; cv=none;
+        b=F7bi+vVp7kwJTmE3buqm5LIitDoz9hHN/EaaySvkK1l18b58O7Nd6WgK5gPQpfID7vnQys
+        1Xt9Dk3juKz+B/B/38q+ytCNy3eucExoUfMfRg/V+CHsEP/pfXDXwJj7+B/pao+XouXzS/
+        qeqwSgiwq1fbPoVWi67lSAz24d3QxNc=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 01:05:56PM +0530, Kartik wrote:
-> Tegra234 supports sending/receiving 32-bit and 128-bit data over
-> a shared mailbox. Based on the data size to be used, clients need
-> to specify the type of shared mailbox in the device tree.
-> 
-> Add a macro for 128-bit shared mailbox. Mailbox clients can use this
-> macro as a flag in device tree to enable 128-bit data support for a
-> shared mailbox.
-> 
-> Signed-off-by: Kartik <kkartik@nvidia.com>
+On Thu, Apr 14, 2022 at 02:44:00PM +0100, Bryan O'Donoghue wrote:
+> On 14/04/2022 14:00, Sakari Ailus wrote:
+> > >   	ret = clk_prepare_enable(imx412->inclk);
+> > >   	if (ret) {
+> > > +		regulator_bulk_disable(imx412->num_supplies,
+> > > +				       imx412->supplies);
+> > As the function already has an error handling section using labels, this
+> > should go there as well.
+> > 
+> Are you asking to move regulator_bulk_disable() to error_reset ?
 
-Need a full name here.
+No. You'll need another label.
 
-> ---
->  .../devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml | 9 +++++++++
->  include/dt-bindings/mailbox/tegra186-hsp.h               | 5 +++++
->  2 files changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-> index 9f7a7296b57f..a3e87516d637 100644
-> --- a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-> @@ -26,6 +26,15 @@ description: |
->    second cell is used to identify the mailbox that the client is going
->    to use.
->  
-> +  For shared mailboxes, the first cell composed of two fields:
-> +    - bits 15..8:
-> +        A bit mask of flags that further specifies the type of shared
-> +        mailbox to be used (based on the data size). If no flag is
-> +        specified then, 32-bit shared mailbox is used.
-> +    - bits 7..0:
-> +        Defines the type of the mailbox to be used. This field should be
-> +        TEGRA_HSP_MBOX_TYPE_SM for shared mailboxes.
-> +
->    For doorbells, the second cell specifies the index of the doorbell to
->    use.
->  
-> diff --git a/include/dt-bindings/mailbox/tegra186-hsp.h b/include/dt-bindings/mailbox/tegra186-hsp.h
-> index 3bdec7a84d35..b9ccae2aa9e2 100644
-> --- a/include/dt-bindings/mailbox/tegra186-hsp.h
-> +++ b/include/dt-bindings/mailbox/tegra186-hsp.h
-> @@ -15,6 +15,11 @@
->  #define TEGRA_HSP_MBOX_TYPE_SS 0x2
->  #define TEGRA_HSP_MBOX_TYPE_AS 0x3
->  
-> +/*
-> + * These define the types of shared mailbox supported based on data size.
-> + */
-> +#define TEGRA_HSP_MBOX_TYPE_SM_128BIT (1 << 8)
-> +
->  /*
->   * These defines represent the bit associated with the given master ID in the
->   * doorbell registers.
-> -- 
-> 2.17.1
-> 
-> 
+-- 
+Sakari Ailus
