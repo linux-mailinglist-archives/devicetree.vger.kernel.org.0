@@ -2,102 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42361501DCF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED897501DD4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:59:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236030AbiDNV6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 17:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33446 "EHLO
+        id S235021AbiDNWB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 18:01:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbiDNV6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:58:16 -0400
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E489F8A30C
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:55:50 -0700 (PDT)
-Received: by mail-pj1-f54.google.com with SMTP id o5so6321069pjr.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:55:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=p4J2D9Y15bbl4a0Y5YpwKfGg6ieiA8wDXYDXSztcbAg=;
-        b=rGelGfqKHb1fJKmbEArIUR/nXL/HdWswsTGysZAAdWLya7stjK2qHfmz9k4Y3NIZN7
-         1q+1qEEymaB/yFnVYMR63C7QmFNFF1MOouwAfouDkfv+Z97oCgouj0dW11ApGwFqy1pr
-         KtLmnolO7tEbm19pRl53bqn8STLjd7PlpJE+uhhzZjXMa0WBTKEweZeaiyH2rm5Dxjq6
-         +x2i9+fe9ZNtuJUSgkTG3mv4tfoa7fwuCq6CPSTL8psI0Z4AuQJBF3FvwxT8SeXlFu/g
-         n6uPDFlDP3kKFpitDdBj1TDpFqySkW8rMcG+EV43zeKLSgGzJDI6a9a/GOAopH2appDy
-         5g0g==
-X-Gm-Message-State: AOAM531VinDoJ2b2Ui2XH3wIlTJMyV2dkOo95TtYfGAEhZiSvPjBqg7y
-        sEQ9rXgzXTFMLFneqNgomFy1vg==
-X-Google-Smtp-Source: ABdhPJyib/M2xHCFWUypNYp+D6C2ZjbS7N2LMqLSJuQA+fqFc93KdJyuod9xrHqWJH5vlAixigjz8w==
-X-Received: by 2002:a17:902:b7c4:b0:158:c493:e0fd with SMTP id v4-20020a170902b7c400b00158c493e0fdmr2748522plz.20.1649973350236;
-        Thu, 14 Apr 2022 14:55:50 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id s24-20020a17090a441800b001ca9b5724a6sm2711383pjg.36.2022.04.14.14.55.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 14:55:49 -0700 (PDT)
-From:   Kevin Hilman <khilman@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        cw00.choi@samsung.com, krzk+dt@kernel.org, robh+dt@kernel.org,
-        kyungmin.park@samsung.com
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: devfreq: mediatek: Add mtk cci
- devfreq dt-bindings
-In-Reply-To: <39152c86-ca11-2792-6b25-ae55ffb47b09@linaro.org>
-References: <20220408052150.22536-1-johnson.wang@mediatek.com>
- <20220408052150.22536-2-johnson.wang@mediatek.com>
- <855d7daa-45d1-d6d8-32bd-51778cf58392@linaro.org>
- <fe7d2b878c18a42ff36ebd9911ecb562fe29c953.camel@mediatek.com>
- <39152c86-ca11-2792-6b25-ae55ffb47b09@linaro.org>
-Date:   Thu, 14 Apr 2022 14:55:49 -0700
-Message-ID: <7h8rs7fhy2.fsf@baylibre.com>
+        with ESMTP id S241976AbiDNWB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 18:01:28 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788D18CCEE;
+        Thu, 14 Apr 2022 14:59:02 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 170F420045;
+        Fri, 15 Apr 2022 00:59:00 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1649973540;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=5hifFW0DYRLP6QBZQ9XcpeIgOAJncYgFqZASZgCVWkE=;
+        b=BGJFpjwpfLPHdl8iCMgYTO5SnhrXTS1wwZKt3ZlR1JyWxhQ+E7Qe059DUG5zolm92IlL8o
+        XKR2JI2nvPQcWntqhxXlKWcfvgd9C6rdhO6+EhN48bHSpwRwvfARz/36O0j264eBu4MAGd
+        i9Nv6Gbg3QHGLcdlyaz9sPEmRecmJyA=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2D53F634C91;
+        Fri, 15 Apr 2022 00:58:59 +0300 (EEST)
+Date:   Fri, 15 Apr 2022 00:58:58 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robert.foss@linaro.org, hfink@snap.com,
+        jgrahsl@snap.com, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Subject: Re: [PATCH v3 2/2] media: i2c: imx412: Add bulk regulator support
+Message-ID: <YliZIqg201pDH1aH@valkosipuli.retiisi.eu>
+References: <20220414124505.1329295-1-bryan.odonoghue@linaro.org>
+ <20220414124505.1329295-3-bryan.odonoghue@linaro.org>
+ <Ylga7FVsbK6znD/+@valkosipuli.retiisi.eu>
+ <39cae749-67ef-13d7-2648-01c6e9603887@linaro.org>
+ <Ylgn8u5Au0EqUkLj@valkosipuli.retiisi.eu>
+ <831e3857-9ee7-c760-ef2e-3b235b57b907@linaro.org>
+ <YlgssKI+WVeRTda6@valkosipuli.retiisi.eu>
+ <784b5caf-1e1a-e57c-126e-4b28bc6ff7f8@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <784b5caf-1e1a-e57c-126e-4b28bc6ff7f8@linaro.org>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1649973540;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=5hifFW0DYRLP6QBZQ9XcpeIgOAJncYgFqZASZgCVWkE=;
+        b=T06yiq8Cu3w7/Qx7hKeOdbQpdlsN4muDLvnVj0LdVDWsYIxK7GZ/w6tADKXlu2AruBvrZu
+        cJ4mUUmK7AA1+BJudzMEwVx0Gud7FSrzThpaHlHaAG3pw2kV5qOg4oq0gJ0SSSqkBWOsFj
+        Cs6f2emAuZlCcmGKBLTRmfLcGyXXUAU=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1649973540; a=rsa-sha256; cv=none;
+        b=I0CbLKyJ0OgL1feMpV5Vc/c2jKtSstmqoldmOrpKK8qk8ARTA9I1tqvVPAgE5+nEknPl5o
+        lGDihDCED8ysP4w4Rl85jAIzU5QsjSR4Apxzhlp1+uLliS1nLTpZ+lRahZVmeEnhmkS4fW
+        HNV75qncFsON0aoisKzizkQE4TBbvUU=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+Hi Bryan,
 
-> On 11/04/2022 14:10, Johnson Wang wrote:
->>> Also please put it in the "interconnect" directory.
->>>
->> 
->> I don't really know about "interconnect".
->> However, it looks like a Linux framework about data transfer and "NoC".
->> 
->> While this cci driver is more like a power managment which is
->> responsible for adjusting voltages and frequencies.
->> In my opinion, "devfreq" should be more suitable.
->> 
->> Please correct me if my understanding is wrong.
->
-> devfreq is a Linux mechanism, not a real device/hardware. We try to put
-> the bindings in directories/subsystems matching the hardware, therefore
-> devfreq is not appropriate.
->
-> Whether interconnect - or other subsystem - is appropriate, I am not
-> sure. To me this looks exactly like bus bandwidth management and you
-> even use "interconnect" in several places. So interconnect matches.
+On Thu, Apr 14, 2022 at 03:50:50PM +0100, Bryan O'Donoghue wrote:
+> On 14/04/2022 15:16, Sakari Ailus wrote:
+> > On Thu, Apr 14, 2022 at 03:04:10PM +0100, Bryan O'Donoghue wrote:
+> > > On 14/04/2022 14:56, Sakari Ailus wrote:
+> > > > On Thu, Apr 14, 2022 at 02:44:00PM +0100, Bryan O'Donoghue wrote:
+> > > > > On 14/04/2022 14:00, Sakari Ailus wrote:
+> > > > > > >     	ret = clk_prepare_enable(imx412->inclk);
+> > > > > > >     	if (ret) {
+> > > > > > > +		regulator_bulk_disable(imx412->num_supplies,
+> > > > > > > +				       imx412->supplies);
+> > > > > > As the function already has an error handling section using labels, this
+> > > > > > should go there as well.
+> > > > > > 
+> > > > > Are you asking to move regulator_bulk_disable() to error_reset ?
+> > > > 
+> > > > No. You'll need another label.
+> > > > 
+> > > 
+> > > Hmm.
+> > > 
+> > > I think another label is not required, have a look at V4.
+> > 
+> > Ah, yes, indeed. There's just a single location where this will be needed.
+> > 
+> > On another note, gpiod_set_value_cansleep() seems to enable reset in
+> > resume and disable it in suspend. I.e. the polarity is wrong.
+> > 
+> 
+> Agreed, the polarity looks wrong - in my DTS right now I have ACTIVE_HIGH
+> for the relevant GPIO.
+> 
+> For example if I do this
+> 
+> @@ -1363,7 +1363,7 @@ camera@1a {
+>                 compatible = "sony,imx412";
+>                 reg = <0x1a>;
+> 
+> -               reset-gpios = <&tlmm 78 GPIO_ACTIVE_HIGH>;
+> +               reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
+>                 pinctrl-names = "default", "suspend";
+>                 pinctrl-0 = <&cam2_default>;
+>                 pinctrl-1 = <&cam2_suspend>;
+> diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
+> index a9cdf4694d58..1442b416f5aa 100644
+> --- a/drivers/media/i2c/imx412.c
+> +++ b/drivers/media/i2c/imx412.c
+> @@ -1036,7 +1036,7 @@ static int imx412_power_on(struct device *dev)
+>                 return ret;
+>         }
+> 
+> -       gpiod_set_value_cansleep(imx412->reset_gpio, 1);
+> +       gpiod_set_value_cansleep(imx412->reset_gpio, 0);
+> 
+>         ret = clk_prepare_enable(imx412->inclk);
+>         if (ret) {
+> @@ -1049,7 +1049,7 @@ static int imx412_power_on(struct device *dev)
+>         return 0;
+> 
+>  error_reset:
+> -       gpiod_set_value_cansleep(imx412->reset_gpio, 0);
+> +       gpiod_set_value_cansleep(imx412->reset_gpio, 1);
+>         regulator_bulk_disable(imx412->num_supplies, imx412->supplies);
+> 
+>         return ret;
+> @@ -1068,7 +1068,7 @@ static int imx412_power_off(struct device *dev)
+> 
+>         clk_disable_unprepare(imx412->inclk);
+> 
+> -       gpiod_set_value_cansleep(imx412->reset_gpio, 0);
+> +       gpiod_set_value_cansleep(imx412->reset_gpio, 1);
+> 
+> Seems like changing the logic would negatively affect the Intel people.
+> Might have to churn ACPI to change that logic..
+> 
+> Easier probably to leave as is and define as ACTIVE_HIGH in DTS
 
-I agree with Krzysztof that "interconnect" is the right place.
+It's still wrong and should be fixed. It seems there are no boards in the
+DT source in the kernel using this sensor. These changes seem fine to me.
 
-I'm pretty sure CCI stands for "cache coherent interconnect".  At least
-that's what it means for the Arm IP.  The Mediatek IP being described
-here certainly seems like the same thing.  It's just that the only
-aspects being described (so far) are the DVFS parts.  Even so, I still
-think it belongs in "interconnect"
+I'm not really worried about ACPI: it's unlikely the GPIO is even declared
+for the sensor, and instead is controlled in AML. There can of course be
+bugs in ACPI tables, too...
 
-Kevin
-
-
+-- 
+Sakari Ailus
