@@ -2,94 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA93500B0A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 12:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B93DD500B2C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 12:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236302AbiDNK2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 06:28:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51782 "EHLO
+        id S231349AbiDNKey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 06:34:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242268AbiDNK1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 06:27:39 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BFC6C94D;
-        Thu, 14 Apr 2022 03:25:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 12164B82893;
-        Thu, 14 Apr 2022 10:25:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1574BC385A5;
-        Thu, 14 Apr 2022 10:25:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649931911;
-        bh=ng1Q70SgjCwX1SpN3Nel10OKN/RIdygk7E6v7+91XKY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XoDrMFCmgB05vL1RkeyygBoyUreaPJaBwTlXdODyGe2QGsgJDWxXGhBRZIZbZM9Qx
-         +WwGjIluBjWWNsqUwiS+nf7cyYL9DkF5MZUuACtOR5BcsILqBbjyfXdQj4zjXuNZfX
-         l3aUGNs+xU7Ep94iluERMqtRD24mP24FtPbaozFO70n5TSQwU0y6B+DlTS8NeRMwaa
-         spgUHMF0xDRhcRE34JLtogtxV98EMsJFWMPogYWWfvQO01nmyIX8ivQX0afxjv2e0F
-         plj2S9BpDf9Xxtwndv6HnkTQaVZ4RNq1Pz8Uz+FetcHU3G8UNoO8zmWwz7N7NCU60B
-         d/Zc5bI06YIAw==
-Date:   Thu, 14 Apr 2022 15:55:06 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dmaengine: qcom: gpi: Add minItems for
- interrupts
-Message-ID: <Ylf2gsJ+Ks0wz6i3@matsya>
-References: <20220414064235.1182195-1-vkoul@kernel.org>
- <0598d1bb-cd7c-1414-910c-ae6bedc8295d@linaro.org>
+        with ESMTP id S242302AbiDNKev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 06:34:51 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B986542D;
+        Thu, 14 Apr 2022 03:32:26 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23EAWGiU118299;
+        Thu, 14 Apr 2022 05:32:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649932336;
+        bh=ddddJ7TATIJxXslnlLmWzV1vziFazwEocG5NL9EQV8w=;
+        h=From:To:CC:Subject:Date;
+        b=u+5BGrV0RJ0I4Nq7AtT0at+I6eVFcsc2qPSfWGj3sfe/fsu0jb177oD5c2LlmMMLi
+         ys3Evv1PgJo2fmtKHyB+pbsS1s+FurjWflz/KME0bLxFLjJo0Z1Lj6jvI9n9SU5nWY
+         U6isoXamIMgGfMiVRNpNbLQqhEO+BG81lyxS230w=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23EAWGOY011608
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 14 Apr 2022 05:32:16 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 14
+ Apr 2022 05:32:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 14 Apr 2022 05:32:16 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23EAWC6W097041;
+        Thu, 14 Apr 2022 05:32:13 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/2] AM62: Add support for AM62 USB wrapper driver
+Date:   Thu, 14 Apr 2022 16:02:07 +0530
+Message-ID: <20220414103211.16202-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0598d1bb-cd7c-1414-910c-ae6bedc8295d@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14-04-22, 09:36, Krzysztof Kozlowski wrote:
-> On 14/04/2022 08:42, Vinod Koul wrote:
-> > Add the minItems for interrupts property as well. In the absence of
-> > this, we get warning if interrupts are less than 13
-> > 
-> > arch/arm64/boot/dts/qcom/qrb5165-rb5.dtb:
-> > dma-controller@800000: interrupts: [[0, 588, 4], [0, 589, 4], [0, 590,
-> > 4], [0, 591, 4], [0, 592, 4], [0, 593, 4], [0, 594, 4], [0, 595, 4], [0,
-> >   596, 4], [0, 597, 4]] is too short
-> > 
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> > index 8a790ffbdaac..7d2fc4eb5530 100644
-> > --- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> > @@ -32,6 +32,7 @@ properties:
-> >    interrupts:
-> >      description:
-> >        Interrupt lines for each GPI instance
-> > +    minItems: 1
-> 
-> This should be some real case minimum, not just 1. Unless really only
-> one interrupt is also possible in existing variations?
+The following series of patches add support for AM62 USB wrapper driver
+and its corresponding bindings.
 
-So that depends on the channels available to use which can be worst case
-of 1. Maximum is 13.. Most of the controllers are between 12-13, but we
-dont want to change binding in future if controller has lesser channels
-right?
+changes since v3:
+- Removed the VBUS_VALID interrupt servicing as mode valid bit
+  need not be switched based on the connect/disconnect event.
+  The mode valid bit is being set during probe and cleared
+  during remove
+- As VBUS_VALID interrupt is not being used, removed the interrupts
+  property from the bindings. As there is change in the dt-bindings
+  I did not pick the reviewed-by tags from the earlier version of
+  the series.
+
+changes since v2:
+- Removed the implementation of detecting the role from the wrapper
+  driver and moved the implementation to using linux,extcon-usb-gpio
+  driver for role detection.
+- Updated the binding documentation and example to reflect the same.
+
+changes since v1:
+- Fixed the error with dev_pm_ops uninitialization, in patch 2.
+  This was reported by kernel test bot
+- In patch 1, made correction in grammer of clocks property description
+  and added maxItems in the interrupts property based on comments
+  received from Roger
+- In patch 1, corrected the title, fixed the description of
+  ti,syscon-phy-pll-refclk, added pattern properties and child node
+  in the example based on the comments from Krzysztof. 
+
+Aswath Govindraju (2):
+  dt-bindings: usb: Add documentation for AM62 USB Wrapper module
+  drivers: usb: dwc3: Add AM62 USB wrapper driver
+
+ .../devicetree/bindings/usb/ti,am62-usb.yaml  | 103 ++++++
+ drivers/usb/dwc3/Kconfig                      |   9 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-am62.c                  | 332 ++++++++++++++++++
+ 4 files changed, 445 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+ create mode 100644 drivers/usb/dwc3/dwc3-am62.c
 
 -- 
-~Vinod
+2.17.1
+
