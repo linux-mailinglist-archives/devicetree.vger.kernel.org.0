@@ -2,164 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50A87501D13
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6F96501D2F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 23:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240238AbiDNVHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 17:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
+        id S243781AbiDNVNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 17:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236725AbiDNVHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:07:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F213CFC2
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 14:04:51 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nf6dq-0007gi-Kc; Thu, 14 Apr 2022 23:04:38 +0200
-Message-ID: <542969d58ad05c496ae19256f87ea217eb9b7642.camel@pengutronix.de>
-Subject: Re: [PATCH v2 6/7] arm64: dts: imx8mp-evk: Add PCIe support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Richard Zhu <hongxing.zhu@nxp.com>, p.zabel@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, vkoul@kernel.org,
-        alexander.stein@ew.tq-group.com
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Date:   Thu, 14 Apr 2022 23:04:37 +0200
-In-Reply-To: <1646644054-24421-7-git-send-email-hongxing.zhu@nxp.com>
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
-         <1646644054-24421-7-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S239334AbiDNVNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 17:13:51 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583DBD4C9C;
+        Thu, 14 Apr 2022 14:11:25 -0700 (PDT)
+Received: from [IPV6:2a00:5f00:102:0:10b3:10ff:fe5d:4ec1] (unknown [IPv6:2a00:5f00:102:0:10b3:10ff:fe5d:4ec1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dmitry.osipenko)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 709731F47CE5;
+        Thu, 14 Apr 2022 22:11:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649970684;
+        bh=5xMkEzAZOGJAMLJhGhAudl6cnOUM32tr6wt4093X+gQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ET0VcdH+/kERMVBvFDuX5GP2+bIBO/hnjxu5R2aRJ1L714Ma6JcvgT8N6CbbE6vjx
+         3WGgpoXR23wdqcgmXX0hLTQ95DDegk+u/kFiMQdeYAR1VuOIDxiPLdWkhe6aQhdTmv
+         wLklu7f9Q2PpGD8U25SBbHv4rzzvAOTHHsd88ONQVx82hi+av3CHPHo/EFCGhT9tEj
+         3voKPmvokc0TD4ftQTkj16ltXfWrZpiBroOkGVrz9YAvdJ1rjm7Wbqj/L+gBj2D/AC
+         hRflNckxeF6lNOyB9WLI4XIwZP12jovSJHy0JY3qGXXhrwyF6Q1r5lNHSZxtl+5dVu
+         P0A4hnOSfjudA==
+Message-ID: <a4059c30-b660-cad4-4c5d-3b100ac164bf@collabora.com>
+Date:   Fri, 15 Apr 2022 00:11:18 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v7 1/4] memory: tegra: Add memory controller channels
+ support
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>, digetx@gmail.com,
+        krzysztof.kozlowski@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220413094012.13589-1-amhetre@nvidia.com>
+ <20220413094012.13589-2-amhetre@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220413094012.13589-2-amhetre@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, dem 07.03.2022 um 17:07 +0800 schrieb Richard Zhu:
-> Add PCIe support on i.MX8MP EVK board.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 55 ++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index 2eb943210678..ed77455a3f73 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -5,6 +5,7 @@
+On 4/13/22 12:40, Ashish Mhetre wrote:
 >  
->  /dts-v1/;
->  
-> +#include <dt-bindings/phy/phy-imx8-pcie.h>
->  #include "imx8mp.dtsi"
->  
->  / {
-> @@ -33,6 +34,12 @@ memory@40000000 {
->  		      <0x1 0x00000000 0 0xc0000000>;
->  	};
->  
-> +	pcie0_refclk: pcie0-refclk {
-> +		compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <100000000>;
-> +	};
+> +static int tegra186_mc_map_regs(struct tegra_mc *mc)
+> +{
+> +	struct platform_device *pdev = to_platform_device(mc->dev);
+> +	int i;
 > +
->  	reg_can1_stby: regulator-can1-stby {
->  		compatible = "regulator-fixed";
->  		regulator-name = "can1-stby";
-> @@ -55,6 +62,17 @@ reg_can2_stby: regulator-can2-stby {
->  		enable-active-high;
->  	};
->  
-> +	reg_pcie0: regulator-pcie {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pcie0_reg>;
-> +		regulator-name = "MPCIE_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 6 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
+> +	mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev, "broadcast");
+> +	if (IS_ERR(mc->bcast_ch_regs)) {
+> +		if (PTR_ERR(mc->bcast_ch_regs) == -EINVAL) {
+> +			dev_warn(&pdev->dev, "Broadcast channel is missing, please update your device-tree\n");
+> +			return 0;
+> +		}
+> +		return PTR_ERR(mc->bcast_ch_regs);
+> +	}
 > +
->  	reg_usdhc2_vmmc: regulator-usdhc2 {
->  		compatible = "regulator-fixed";
->  		pinctrl-names = "default";
-> @@ -297,6 +315,30 @@ pca6416: gpio@20 {
->  	};
->  };
->  
-> +&pcie_phy {
-> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-> +	clocks = <&pcie0_refclk>;
-> +	clock-names = "ref";
-> +	status = "okay";
-> +};
+> +	mc->ch_regs = devm_kcalloc(mc->dev, mc->soc->num_channels,
+> +				   sizeof(void __iomem *), GFP_KERNEL);
+> +	if (!mc->ch_regs)
+> +		return -ENOMEM;
 > +
-> +&pcie{
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pcie0>;
-> +	reset-gpio = <&gpio2 7 GPIO_ACTIVE_LOW>;
-> +	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-> +		 <&clk IMX8MP_CLK_PCIE_ROOT>,
-> +		 <&clk IMX8MP_CLK_HSIO_AXI>;
-> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
-> +	assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
-> +			  <&clk IMX8MP_CLK_PCIE_AUX>;
-> +	assigned-clock-rates = <500000000>, <10000000>;
-> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>,
+> +	for (i = 0; i < mc->soc->num_channels; i++) {
+> +		char name[4];
+> +
+> +		sprintf(name, "ch%u", i);
 
-You don't need to set the IMX8MP_CLK_HSIO_AXI clock rate here, that's
-already don't by the power-domain, as it is keeping this bus clock
-active. Only need to set the PCIE_AUX rate here.
-
-Regards,
-Lucas
-
-> +				 <&clk IMX8MP_SYS_PLL2_50M>;
-> +	vpcie-supply = <&reg_pcie0>;
-> +	status = "okay";
-> +};
-> +
->  &snvs_pwrkey {
->  	status = "okay";
->  };
-> @@ -442,6 +484,19 @@ MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c3
->  		>;
->  	};
->  
-> +	pinctrl_pcie0: pcie0grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C4_SCL__PCIE_CLKREQ_B	0x61 /* open drain, pull up */
-> +			MX8MP_IOMUXC_SD1_DATA5__GPIO2_IO07	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_pcie0_reg: pcie0reggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x41
-> +		>;
-> +	};
-> +
->  	pinctrl_pmic: pmicgrp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
-
-
+name[5], otherwise you corrupting stack. Use snprintf(name, sizeof(name)).
