@@ -2,100 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B62C05008BD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951B35008C8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238968AbiDNIxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55962 "EHLO
+        id S240271AbiDNIyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:54:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241180AbiDNIw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:52:57 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A10773EA94;
-        Thu, 14 Apr 2022 01:50:29 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 3680332021A2;
-        Thu, 14 Apr 2022 04:50:24 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 14 Apr 2022 04:50:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1649926223; x=1650012623; bh=4Y+8/2uD1Y
-        tYRl+58dKMeVsJagqKJpfyVF7oil0g2YM=; b=SIkFmEG2CQVxGeY3OoI6O16PQc
-        pVwOq1jTuora+mm5Cc4C4rPGWXY7/XnWlNioZOgqdRvIoHSYLaPzn0R38uiQg4aL
-        wGGFfBGntaedbGtAw/waKBCiTUxCe9Mto5bkr+lFY3/XUOiR7mKxXJlh9ju70Mb+
-        m75jiY/V9U26EYxqGASyNudaKa9lUibShk/9Vd+dvI5qyocH9BVmM6YL/eK9CxRQ
-        srJDD/iAl4cq8WkIizOU6oFxvvZr8xwYW79tb2LkI6/b1p0SUEDp6FWUtakGFq1G
-        R/YlVUGLU2i0Suy/6vr+2n+ka/F79eC4IgO8gBwlQ4MqJ5i2AGfyoOFSyttw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1649926223; x=
-        1650012623; bh=4Y+8/2uD1YtYRl+58dKMeVsJagqKJpfyVF7oil0g2YM=; b=e
-        tNZjnTjsC7yx0JTglNtx8nwQkzOrAWUqObC+QkCI7GIYXICPps0bnR6BRJcLh5wF
-        zbFrkqVvUHeAP8lX55sH9RqLf12BFRYjAZU2/1clnyxZwRvqbXxbO/2kQ+05yQak
-        Sq8GqcmrH6jMH4XbpCT6HN9/7WOnpn0NOsHtHNDWPgLYzW6WqEoxvgglnKyAC12H
-        QVefW0vj3AKnwGNWBRC/jUX/GUMfZGy9NxLBwUZ4xGjzQbuJ03K/rLefL7Pst1it
-        lDGj/jphdhnqJr/Z2JfeLQhR3XSj1roxfgbjGRYHJ0T98B0VF60f+FnvjUYj+yH1
-        noD0kWjsOvxTQBGt7dQMg==
-X-ME-Sender: <xms:TeBXYtz_JlfVXijmwS4yt0sOM2r6-86aLydLQjCf3Kg1tLweRWYy8A>
-    <xme:TeBXYtS0QBT_C_yF8lySF6C0I3W4ZEzl18gFun7rDpVmRXkvlPxPxhr_u7CruTvKe
-    9mRtBgMmqSx7BFXiFc>
-X-ME-Received: <xmr:TeBXYnXO00Rrao8VhUuiq8ZCmT_CrkiDUT1pV4Dp5Nvb1umBszlVCLMpIf52eio6FqSixpaHtQNPiYvogeYIzLGjlY3jILfv4ojFfOI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudelfedgtdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:TeBXYvhxa6jAGwWMpR119D-jocIBvJfm8X9DG9OHHgErt0vXlfQxrw>
-    <xmx:TeBXYvAaCJvbtlFPVc7hickbCnX4bhmhXHSAWDHTQTOj2oUx0pwyvw>
-    <xmx:TeBXYoK0zcBnh4dmjhEugNIGumHwDI9-9_KHgtrhiVhtcbeeDubgAg>
-    <xmx:T-BXYhw4RflmNs4IxO-QU7iGCtafpljCvnVFg6t3Iy9MgSBqXlyVuw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 14 Apr 2022 04:50:20 -0400 (EDT)
-Date:   Thu, 14 Apr 2022 10:50:18 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Alistair Francis <alistair@alistair23.me>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
+        with ESMTP id S241143AbiDNIyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:54:08 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE4A03EA94;
+        Thu, 14 Apr 2022 01:51:44 -0700 (PDT)
+Received: from toolbox.toradex.int ([31.10.206.124]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MFc70-1njrxI0mQo-00H5x4;
+ Thu, 14 Apr 2022 10:51:18 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Liang Chen <cl@rock-chips.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 00/16] drm/rockchip: Rockchip EBC ("E-Book
- Controller") display driver
-Message-ID: <20220414085018.ayjvscgdkoen5nw5@houat>
-References: <20220413221916.50995-1-samuel@sholland.org>
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: [PATCH v1 00/14] ARM: dts: imx6ull-colibri: device tree improvements
+Date:   Thu, 14 Apr 2022 10:50:52 +0200
+Message-Id: <20220414085106.18621-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3cdzwf66iytxiuuf"
-Content-Disposition: inline
-In-Reply-To: <20220413221916.50995-1-samuel@sholland.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:WE16+ZQJRmZcKEpcR+IBZAwg/kPIhDKQlWD6Xd3hAlZtkaA2iCg
+ kS+XkflY2jpGPPUAZcVPQWdVu6Tp31Iai7cUNFkdhTVxMYaH4hQSXRj03aTjg8m0KMXSuhM
+ hfK4B/ltMVbENFJarCyOvvGRe66cX2/KbJWx6XkmD3Vz4qNV5rll0FJn90Smlu5t0XRA79s
+ b+59wn7Wv7bVmx8in66YA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:QmARRcSywKk=:L7Vr7YsBqbSfU+1H154dEH
+ prT/y3sSEKljD8ZPC4e6bxTr3X2O6gnt2uolcTQ++CVP/DW5SGyO+zKnUPQ6jxbQuw690t6/M
+ rVvpgrwgtHpRPTT280oC0kDrt5ZCQalcoTZ7QPwswDYYRsJw6uv1RmJEmsfQIyvMQuYC8NFjR
+ F/MDi3XTt6sd23FmszeojmyXJ9OP5zw6Qt6MwYniTIgMFQNY7WBQ2sQFtkKyfDZCMMT5ygjCz
+ m78lu8jM0RA2kU3ZeCcRK9PMoNeSn9Y7eOkx7PLe2lR6hgKNByY+lx6SGcwBvwIfO6PpBmp4g
+ F+xHjb9gKmNZDGPg+/l7nGt8J2BdkCTUnFmK6862oct4j1Kowj5rieKRVWcuDYqoWDZGW/Lsu
+ cAr1t9gdMAyJWlafzLTsdMYAwnj8z6ib3jAExdxtlR7Lp/xvf2XgLLCwvobBgQRkVcEvngHKp
+ NHmsk6qGih2Pk0bxTY9U5rdTCinZBFPC5F9t2sUgR1GbCZisCnGyylFfFY+0S4rcVko7Cifug
+ 8GvKDb+3lRKViVojl/V8AUuLShycXI3/N8VDYxW/1v3nT6itrSK+4Dzaq5t/6se+fWLGf2PK3
+ 8M30zIXSjWI2cCfUKtBMdGdV6Nfq5kcBI8dIq2ScYuRQJCA4CZ3nd60/xP7cHOgro0uHBjlTh
+ F1fSuyCl/iLp8z3+zRd4V2RGOkL0tsM799ybZz1Tg4FHrzdQZ7i3fBNjOWDgvmviIxS0=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,335 +70,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
---3cdzwf66iytxiuuf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 13, 2022 at 05:19:00PM -0500, Samuel Holland wrote:
-> This series adds a DRM driver for the electrophoretic display controller
-> found in a few different Rockchip SoCs, specifically the RK3566/RK3568
-> variant[0] used by the PineNote tablet[1].
->=20
-> This is my first real involvement with the DRM subsystem, so please let
-> me know where I am misunderstanding things.
->=20
-> This is now the second SoC-integrated EPD controller with a DRM driver
-> submission -- the first one being the i.MX6 EPDC[2]. I want to thank
-> Andreas for sending that series, and for his advice while writing this
-> driver.
->=20
-> One goal I have with sending this series is to discuss how to support
-> EPDs more generally within the DRM subsystem, so the interfaces with
-> panels and PMICs and waveform LUTs can be controller-independent.
->=20
-> My understanding is that the i.MX6 EPDC series is at least partly based
-> on the downstream vendor driver. This driver is a clean-sheet design for
-> hardware with different (read: fewer) capabilities, so we took some
-> different design paths, but we ran into many of the same sharp edges.
->=20
-> Here are some of the areas I would like input on:
->=20
-> Panel Lifecycle
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Panels use prepare/unprepare callbacks for their power supply. EPDs
-> should only be powered up when the display contents are changed. Should
-> the controller call both drm_panel_(un)prepare during each atomic update
-> when the framebuffer is dirty?
->=20
-> Similarly, panel enable/disable callbacks are tied to backlight state.
-> For an EPD, it makes sense to have the backlight enabled while the panel
-> is powered down (because the contents are static). Is it acceptable to
-> call drm_panel_{en,dis}able while the panel is not prepared?
->=20
-> With panel_bridge, the "normal" callback ordering is enforced, and tied
-> to the atomic state, so neither of these is possible.
->=20
-> As a result, neither the backlight nor the voltage regulators are tied
-> to the panel. The panel's regulators are consumed by the EBC itself.
+This is a general update of the Colibri iMX6ULL device tree files.
 
-At least to manage the power state, that looks fairly similar to what we
-have already to enter / exit from panel self refresh, so maybe we can
-leverage that infrastructure?
+The Toradex Colibri family is composed of a SoM that can be plugged on
+various carrier boards, with carrier boards allowing multiple optional
+accessories (e.g. display, camera, ...).
 
-And thus we would have something like enabling the backlight when we
-prepare the panel, but only enable / disable the regulator when we exit
-/ enter PSR mode?
+The device tree sources are structured into a SoM dtsi and a carrier dts
+which then includes the SoM dtsi. The SoM dtsi defines and enables the
+functionality self-contained on the SoM and prepares for the
+functionality provided by the carrier HW or accessories so that the
+carrier dts then can enable or amend nodes provided. Accessories are
+enabled in overlays depending on HW configuration.
 
-Would that make sense?
+Please find the following colibri-imx6ull device trees improvements:
 
-> Panel Timing Parameters
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> EPDs have more timing parameters than LCDs, and there are several
-> different ways of labeling these parameters. See for example the timing
-> diagrams on pp. 2237-2239 of the RK3568 TRM[0], the descriptions in the
-> ED103TC2 panel datasheet[3], and the submitted EPDC bindings[2].
->=20
-> Both the EPDC and EBC vendor drivers put all of the timing parameters in
-> the controller's OF node. There is no panel device/node.
->=20
-> I was able to squeeze everything needed for my specific case into a
-> struct drm_display_mode (see patches 5 and 14), but I don't know if this
-> is an acceptable use of those fields, or if will work with other
-> controllers. Is adding more fields to drm_display_mode an option?
->=20
-> See also the discussion of "dumb" LCD TCONs below.
+- MMC/SD
+The original Colibri specification only defined 3.3 volt TTL signaling
+and relied on external on-carrier pull-ups for the SD_DATA[0..3] lines.
+The latest carrier boards like Iris V2 on the other hand are now UHS-I
+compliant by leaving such external on-carrier pull-ups away relying on
+module- or even SoC-level ones which pull up to resp. signaling voltage.
+In such cases, the carrier board-level device tree may explicitly delete
+the no-1-8-v property to enable full UHS-I support.
+Also, fix SD/MMC regulator for the carrier boards using UHS-I modes.
 
-Reading that datasheet and patch series, it's not clear to me whether
-it's just a set of generic parameters for E-ink display, or if it's some
-hardware specific representation of those timings.
+- FEC
+Provide a proper phy-supply for the FEC, actually switched by the 50 Mhz
+RMII interface clock using a regulator-fixed-clock that is now properly
+stated. The reference commit for such regulator can be found at commit
+8959e5324485 ("regulator: fixed: add possibility to enable by clock").
 
-Generally speaking, drm_display_mode is an approximation of what the
-timings are. The exact clock rate for example will be widely different
-between RGB, HDMI or MIPI-DSI (with or without burst). I think that as
-long as you can derive a drm_display_mode from those parameters, and can
-infer those parameters from a drm_display_mode, you can definitely reuse
-it.
+- I2C
+Switched on 22 kOhm pull-ups and lower the I2C frequency to 40 kHz to
+get more reliable communication.
 
-> Panel Connector Type / Media Bus Format
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> The EBC supports either an 8-bit or 16-bit wide data bus, where each
-> pair of data lines represents the source driver polarity (positive,
-> negative, or neutral) for a pixel.
->=20
-> The only effect of the data bus width is the number of pixels that are
-> transferred per clock cycle. It has no impact on the number of possible
-> grayscale levels.
->=20
-> How does that translate to DRM_MODE_CONNECTOR_* or MEDIA_BUS_FMT_*?
+- Atmel Touchscreen
+The Toradex 7" Capacitive and 10" LVDS touch screens are Atmel MXT
+peripherals available on the I2C bus for touchscreen events. Add
+atmel_mxt_ts node to the module-level device tree. Also, provide pinmux
+configuration for the INT/RST inputs from SODIMM pins 106/107 for most
+carrier boards or an external touchscreen adapter inputs configured to
+SODIMM pins 28/30.
 
-We'll probably want a separate connector mode, but you could add a
-parameter on the OF-graph endpoint to set the media bus format.
 
-> Panel Reflection
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> The ED103TC2 panel scans from right to left. Currently, there is no API
-> or OF property to represent this. I can add something similar to
-> drm_panel_orientation.
+Denys Drozdov (5):
+  ARM: dts: imx6ull-colibri: add touchscreen device nodes
+  ARM: dts: imx6ull-colibri: update device trees to support overlays
+  dt-bindings: arm: fsl: add toradex,colibri-imx6ull
+  ARM: dts: imx6ull-colibri: add support for toradex iris carrier boards
+  ARM: dts: imx6ull-colibri: add support for toradex aster carrier
+    boards
 
-Yeah, leveraging DRM_MODE_REFLECT_X into something similar to
-drm_panel_orientation makes sense
+Marcel Ziswiler (3):
+  ARM: dts: imx6ull-colibri: fix nand bch geometry
+  ARM: dts: imx6ull-colibri: add/update some comments
+  ARM: dts: imx6ull-colibri: move gpio-keys node to som dtsi
 
-> Should this be exposed to userspace? It is acceptable for the kernel
-> driver to flip the image when blitting from the framebuffer?
+Max Krummenacher (2):
+  ARM: dts: imx6ull-colibri: fix vqmmc regulator
+  ARM: dts: imx6ull-colibri: change touch i2c parameters
 
-I'm not sure about whether or not we should expose it to userspace. I'd
-say yes, but I'll leave it to others :)
+Oleksandr Suvorov (1):
+  ARM: dts: imx6ull-colibri: add gpio-line-names
 
-> CRTC "active" and "enabled" states
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> What do these states mean in the context of an EPD? Currently, the
-> driver ignores "active" and clears the screen to solid white when the
-> CRTC is disabled.
->=20
-> The vendor drivers can switch to a user-provided image when the CRTC is
-> disabled. Is this something that can/should be supported upstream? If
-> so, how? Would userspace provide the image to the kernel, or just tell
-> the kernel not to clear the screen?
+Philippe Schenker (3):
+  ARM: dts: imx6ull-colibri: use pull-down for adc pins
+  ARM: dts: imx6ull-colibri: add phy-supply to fec
+  ARM: dts: imx6ull-colibri: update usdhc1 pixmux and signaling
 
-I think the semantics are that whenever the CRTC is disabled, the panel
-is expected to be blank.
+ .../devicetree/bindings/arm/fsl.yaml          |  23 +-
+ arch/arm/boot/dts/Makefile                    |   9 +
+ arch/arm/boot/dts/imx6ull-colibri-aster.dts   |  20 ++
+ arch/arm/boot/dts/imx6ull-colibri-aster.dtsi  | 145 +++++++++++++
+ .../boot/dts/imx6ull-colibri-emmc-aster.dts   |  17 ++
+ .../boot/dts/imx6ull-colibri-emmc-iris-v2.dts |  17 ++
+ .../boot/dts/imx6ull-colibri-emmc-iris.dts    |  17 ++
+ .../dts/imx6ull-colibri-emmc-nonwifi.dtsi     |   8 +-
+ arch/arm/boot/dts/imx6ull-colibri-eval-v3.dts |   6 +-
+ .../arm/boot/dts/imx6ull-colibri-eval-v3.dtsi |  63 +-----
+ arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts |  28 +++
+ .../arm/boot/dts/imx6ull-colibri-iris-v2.dtsi |  27 +++
+ arch/arm/boot/dts/imx6ull-colibri-iris.dts    |  20 ++
+ arch/arm/boot/dts/imx6ull-colibri-iris.dtsi   | 132 ++++++++++++
+ .../arm/boot/dts/imx6ull-colibri-nonwifi.dtsi | 145 ++++++++++++-
+ .../boot/dts/imx6ull-colibri-wifi-aster.dts   |  20 ++
+ .../boot/dts/imx6ull-colibri-wifi-eval-v3.dts |   4 +-
+ .../boot/dts/imx6ull-colibri-wifi-iris-v2.dts |  28 +++
+ .../boot/dts/imx6ull-colibri-wifi-iris.dts    |  20 ++
+ arch/arm/boot/dts/imx6ull-colibri-wifi.dtsi   | 144 ++++++++++++-
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        | 198 ++++++++++++++----
+ 21 files changed, 964 insertions(+), 127 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-aster.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-aster.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-aster.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-iris-v2.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-iris.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris-v2.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris-v2.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-iris.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dts
 
-Leaving an image on after it's been disabled would have a bunch of
-side-effects we probably don't want. For example, let's assume we have
-that support, an application sets a "disabled image" and quits. Should
-we leave the content on? If so, for how long exactly?
+-- 
+2.35.1
 
-Either way, this is likely to be doable with PSR as well, so I think
-it's a bit out of scope of this series for now.
-
-> VBLANK Events and Asynchronous Commits
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> When should the VBLANK event complete? When the pixels have been blitted
-> to the kernel's shadow buffer? When the first frame of the waveform is
-> sent to the panel? When the last frame is sent to the panel?
->=20
-> Currently, the driver is taking the first option, letting
-> drm_atomic_helper_fake_vblank() send the VBLANK event without waiting on
-> the refresh thread. This is the only way I was able to get good
-> performance with existing userspace.
-
-I've been having the same kind of discussions in private lately, so I'm
-interested by the answer as well :)
-
-It would be worth looking into the SPI/I2C panels for this, since it's
-basically the same case.
-
-> Waveform Loading
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Waveform files are calibrated for each batch of panels. So while a
-> single waveform file may be "good enough" for all panels of a certain
-> model, the correctly-calibrated file will have better image quality.
->=20
-> I don't know of a good way to choose the calibrated file. Even the
-> board's compatible string may not be specific enough, if the board is
-> manufactured with multiple batches of panels.
->=20
-> Maybe the filename should just be the panel compatible, and the user is
-> responsible for putting the right file there? In that case, how should I
-> get the compatible string from the panel_bridge? Traverse the OF graph
-> myself?
-
-It's not really clear to me what panel_bridge has to do with it? I'm
-assuming that file has to be uploaded some way or another to the
-encoder?
-
-If so, yeah, you should just follow through the OF-graph and use the
-panel compatible. We have a similar case already with panel-mipi-dbi
-(even though it's standalone)
-
-> There is also the issue that different controllers need the waveform
-> data in different formats. ".wbf" appears to be the format provided by
-> PVI/eInk, the panel manufacturer. The Rockchip EBC hardware expects a
-> single waveform in a flat array, so the driver has to extract/decompress
-> that from the .wbf file (this is done in patch 1). On the other hand,
-> the i.MX EPDC expects a ".wrf" file containing multiple waveforms[8].
->=20
-> I propose that the waveform file on disk should always be what was
-> shipped with the panel -- the .wbf file -- and any extracting or
-> reformatting is done in the kernel.
-
-Any kind of parsing in the kernel from a file you have no control over
-always irks me :)
-
-Why and how are those files different in the first place?
-
-> Waveform Selection From Userspace
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> EPDs use different waveforms for different purposes: high-quality
-> grayscale vs. monochrome text vs. dithered monochrome video. How can
-> userspace select which waveform to use? Should this be a plane property?
->
-> It is also likely that userspace will want to use different waveforms at
-> the same time for different parts of the screen, for example a fast
-> monochrome waveform for the drawing area of a note-taking app, but a
-> grayscale waveform for surrounding UI and window manager.
->=20
-> I believe the i.MX6 EPDC supports multiple planes, each with their own
-> waveform choice. That seems like a good abstraction,
-
-I agree
-
-> but the EBC only supports one plane in hardware. So using this
-> abstraction with the EBC would require blending pixels and doing
-> waveform lookups in software.
-
-Not really? You'd have a single plane available, with only one waveform
-pick for that plane?
-
-> Blitting/Blending in Software
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> There are multiple layers to this topic (pun slightly intended):
->  1) Today's userspace does not expect a grayscale framebuffer.
->     Currently, the driver advertises XRGB8888 and converts to Y4
->     in software. This seems to match other drivers (e.g. repaper).
->
->  2) Ignoring what userspace "wants", the closest existing format is
->     DRM_FORMAT_R8. Geert sent a series[4] adding DRM_FORMAT_R1 through
->     DRM_FORMAT_R4 (patch 9), which I believe are the "correct" formats
->     to use.
->=20
->  3) The RK356x SoCs have an "RGA" hardware block that can do the
->     RGB-to-grayscale conversion, and also RGB-to-dithered-monochrome
->     which is needed for animation/video. Currently this is exposed with
->     a V4L2 platform driver. Can this be inserted into the pipeline in a
->     way that is transparent to userspace? Or must some userspace library
->     be responsible for setting up the RGA =3D> EBC pipeline?
-
-I'm very interested in this answer as well :)
-
-I think the current consensus is that it's up to userspace to set this
-up though.
-
->  4) Supporting multiple planes (for multiple concurrent waveforms)
->     implies blending in software. Is that acceptable?
->=20
->  5) Thoughts on SIMD-optimized blitting and waveform lookup functions?
->=20
->  5) Currently the driver uses kmalloc() and dma_sync_single_for_device()
->     for its buffers, because it needs both fast reads and fast writes to
->     several of them. Maybe cma_alloc() or dma_alloc_from_contiguous()
->     would be more appropriate, but I don't see any drivers using those
->     directly.
-
-cma_alloc isn't meant to be used directly by drivers anyway, one of the
-main reason being that CMA might not be available (or desirable) in the
-first place on the platform the code will run.
-
-The most common option would be dma_alloc_coherent. It often means that
-the buffer will be mapped non-cacheable, so it kills the access
-performances. So it completely depends on your access patterns whether
-it makes sense in your driver or not. kmalloc + dma_sync_single or
-dma_map_single is also a valid option.
-
-> EPDs connected to "dumb" LCD TCONs
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> This topic is mostly related to my first patch. Some boards exist that
-> hook up an EPD to a normal LCD TCON, not a dedicated EPD controller. For
-> example, there's the reMarkable 2[5] and some PocketBook models[6][7].
->=20
-> I have some concerns about this:
->  1) If we put EPD panel timings in panel drivers (e.g. panel-simple),
->     can the same timings work with LCD TCONs and EPD controllers?
-
-I'll think we'll need a separate panel driver for this anyway
-
->     For example: one cycle of the 16-bit data bus is "one pixel" to an
->     LCD controller, but is "8 pixels" to an EPD controller. So there is
->     a factor-of-8 difference in horizontal resolution depending on your
->     perspective. Should we have the "number of pixel clock cycles" or
->     "number of pixels" in .hdisplay/.htotal in the panel timings?
->=20
->     Patch 14 adds a panel with "number of pixels" horizontal resolution,
->     so the correct resolution is reported to userspace, but the existing
->     eink_vb3300_kca_timing in panel-simple.c appears to use "number of
->     pixel clocks" for its horizontal resolution. This makes the panel
->     timing definitions incompatible across controllers.
->=20
->  2) Using fbdev/fbcon with an EPD hooked up to an LCD TCON will have
->     unintended consequences, and possibly damage the panel. Currently,
->     there is no way to mark the framebuffer as expecting "source driver
->     polarity waveforms" and not pixel data. Is there a specific
->     DRM_FORMAT_* we should use for these cases to prevent accidental use
->     by userspace?
->=20
->     Or should we disallow this entirely, and have some wrapper layer to
->     do the waveform lookups in kernelspace?
->=20
->     I like the wrapper layer idea because it allows normal userspace and
->     fbcon to work. It would not be much new code, especially since this
->     driver already supports doing the whole pipeline in software. So
->     that's why I wrote a separate helper library; I hope this code can
->     be reused.
-
-If exposing the panel as a KMS connector can damage the display, I don't
-think we should expose it at all. Even a property or something won't
-work, because older applications won't know about that property and will
-try to use it anyway.
-
-So whatever the solution is, it can't be "you have to know that this
-device is special, or else...". The default, trivial, case where an
-application just comes up and tries to display something should somewhat
-work (even if it might be a bit absurd, like ignoring non_desktop)
-
-Maxime
-
---3cdzwf66iytxiuuf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYlfgSgAKCRDj7w1vZxhR
-xdhbAQDVkafK4wDsEuAHd71/DbRRF+PtVnfeho42KWv9fkF4kAD/SpcQgdAiCgmq
-gaYbMgDMtjsJPiJelmJkMJUi5um01Ak=
-=pyuo
------END PGP SIGNATURE-----
-
---3cdzwf66iytxiuuf--
