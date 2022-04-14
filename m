@@ -2,98 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2501500E41
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 15:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67915500E4B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 15:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243682AbiDNNDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 09:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
+        id S237533AbiDNNEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 09:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243063AbiDNNDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:03:18 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4E157144;
-        Thu, 14 Apr 2022 06:00:51 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id q129so5277128oif.4;
-        Thu, 14 Apr 2022 06:00:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1jt0wr2Jj0rpKwBXfActCjc+WpJa+bt9YCx6ZomSA98=;
-        b=aXXtMF2QhN2gUcMkGT1cB7bG567JLhJIAYyPJ+dxR7OcMGqdcdE8znORSdMd5nf5lK
-         mBM2eLOBT4eXPqVCb8snZoFp6qdINmYCBifu6Kt8v93qAKxl8w7DAks8ftgbmpLomip8
-         bBMxM/TGScbC/rLdBGjZGjC8EA/pb5NJf9MCRpISrGjzXS613tqjRQRrzfYLEVi2xnlZ
-         y+4lcXy9EltkDmQ+XNQ4Z0qhm2/l3khnG+YPzIP/HSi5RsfEgpZzh1L5UlNUpAUZEnc5
-         EsJmg4799a1PeBJQvMju8ekcJfZp4jWa+J/QL9CbwmTid9HUHKNWP8BRdGvIpEIeZyuD
-         8iDA==
-X-Gm-Message-State: AOAM532YaoFEf7Fb91XPlIAgBPIdKKQpgyf5yBkdFEJRi6KqlUtw1+zz
-        VYnvjmHhKLL7Mqp0v21evA==
-X-Google-Smtp-Source: ABdhPJzDoL3AtjsnkGtQrPML0IWDdiP+U1HX/0wjf3Z8mMWnd+R0AmVehr0xJQoKPXHCe70MpIVezg==
-X-Received: by 2002:a05:6808:bd2:b0:2f7:59fd:2f1b with SMTP id o18-20020a0568080bd200b002f759fd2f1bmr1464140oik.217.1649941251138;
-        Thu, 14 Apr 2022 06:00:51 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eq37-20020a056870a92500b000c6699dad62sm642170oab.41.2022.04.14.06.00.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Apr 2022 06:00:50 -0700 (PDT)
-Received: (nullmailer pid 1755668 invoked by uid 1000);
-        Thu, 14 Apr 2022 13:00:50 -0000
-Date:   Thu, 14 Apr 2022 08:00:50 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
+        with ESMTP id S232078AbiDNNEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 09:04:50 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2075F8EB67;
+        Thu, 14 Apr 2022 06:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=se7TDjKdD4lTbs4/EAs3EJoTc89hcEiop1DKf6IJ6Ts=; b=O24dwONDjdolTVYJL/Mivk0Css
+        Nam3xqr0eUKo8jnldPTeolq4WDbIxlwcwk2ZvbLTynj3gOn8SRkPyuY2xpVFiHkisvZqLR6e96TpZ
+        iROwj/LKQwBHC+aUkXGrfIYm2lRQ1wWUaWwIv6ZKyGAxPzDmVgqgNjupkad6z4uXeYQ+RsbNqcIIm
+        h1guXKEYNI1lRPmhu/Z0AWZDKKi6Ky88Hddzh0K6yR2quLxW5i3GKNrTf3tCc/TuH9ngsHT9zhOZS
+        vCdRX3d6WVkPGIi1Zd3sAHCMe6ZCla7x6BJrtBvNBOijo3EeHFWRnOOun6b/wu+WU2f1XxP8ZASRL
+        FDEipquA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58262)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1nez70-0004Zy-SF; Thu, 14 Apr 2022 14:02:14 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1nez6w-0004KB-Vf; Thu, 14 Apr 2022 14:02:10 +0100
+Date:   Thu, 14 Apr 2022 14:02:10 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] dt-bindings: display: ssd1307fb: Extend schema
- for SPI controllers
-Message-ID: <YlgbAhXKUs1/Ct58@robh.at.kernel.org>
-References: <20220413162359.325021-1-javierm@redhat.com>
- <20220413162359.325021-3-javierm@redhat.com>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+        Laurent Gonzales <laurent.gonzales@non.se.com>,
+        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: Re: [PATCH net-next 06/12] net: dsa: rzn1-a5psw: add Renesas RZ/N1
+ advanced 5 port switch driver
+Message-ID: <YlgbUiXzHa0UNRK+@shell.armlinux.org.uk>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-7-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220413162359.325021-3-javierm@redhat.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220414122250.158113-7-clement.leger@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Apr 2022 18:23:55 +0200, Javier Martinez Canillas wrote:
-> The Solomon SSD130x OLED displays can either have an I2C or SPI interface,
-> add to the schema the properties and examples for OLED devices under SPI.
+On Thu, Apr 14, 2022 at 02:22:44PM +0200, Clément Léger wrote:
+> Add Renesas RZ/N1 advanced 5 port switch driver. This switch handles 5
+> ports including 1 CPU management port. A MDIO bus is also exposed by
+> this switch and allows to communicate with PHYs connected to the ports.
+> Each switch port (except for the CPU management ports) are connected to
+> the MII converter.
 > 
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> 
-> Changes in v4:
-> - Add a description for the dc-gpios property for SPI (Geert Uytterhoeven)
-> 
-> Changes in v3:
-> - Add a comment to the properties required for SPI (Geert Uytterhoeven)
-> 
-> Changes in v2:
-> - Don't add compatible strings with an "-spi" suffix (Geert Uytterhoeven)
-> 
->  .../bindings/display/solomon,ssd1307fb.yaml   | 42 ++++++++++++++++++-
->  1 file changed, 40 insertions(+), 2 deletions(-)
-> 
+> This driver include basic bridging support, more support will be added
+> later (vlan, etc).
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This patch looks to me like it needs to be updated...
+
+> +static void a5psw_phylink_validate(struct dsa_switch *ds, int port,
+> +				   unsigned long *supported,
+> +				   struct phylink_link_state *state)
+> +{
+> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask) = { 0 };
+> +
+> +	phylink_set_port_modes(mask);
+> +
+> +	phylink_set(mask, Autoneg);
+> +	phylink_set(mask, Pause);
+> +	phylink_set(mask, Asym_Pause);
+> +
+> +	phylink_set(mask, 1000baseT_Full);
+> +	if (!dsa_is_cpu_port(ds, port)) {
+> +		phylink_set(mask, 10baseT_Half);
+> +		phylink_set(mask, 10baseT_Full);
+> +		phylink_set(mask, 100baseT_Half);
+> +		phylink_set(mask, 100baseT_Full);
+> +	}
+
+If the port supports e.g. RGMII (as it does via the media converter)
+then it also supports 1000baseX modes as well - because a PHY attached
+to the RGMII port can convert to 1000baseX.
+
+> +
+> +	linkmode_and(supported, supported, mask);
+> +	linkmode_and(state->advertising, state->advertising, mask);
+> +}
+
+This basically means "I support every phy_interface_t mode that has ever
+been implemented" which surely is not what you want. I doubt from the
+above that you support 10GBASE-KR for example.
+
+Please instead implement the .phylink_get_caps DSA switch interface, and
+fill in the config->supported_interfaces for all interface modes that
+the port supports (that including the media converter as well) and the
+config->mac_capabilities members.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
