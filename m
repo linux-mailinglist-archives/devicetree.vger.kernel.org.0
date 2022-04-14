@@ -2,92 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FFE5500708
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE5650071D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 09:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240436AbiDNHjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 03:39:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54878 "EHLO
+        id S240497AbiDNHnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 03:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240427AbiDNHjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:39:05 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14A956C1D
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:36:39 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z99so5259116ede.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 00:36:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gy7AkBu7bAXBU0y3wAkFQ5PlduSnOoydEHQ9dHG0xqU=;
-        b=zBKde8JUkVKVlpgHIy6ft1h9KyiEPQ8x3AXpkjobSHYAeGM6icbkw3E6IJ1RH6dqmM
-         3KH6n20js6DSceg0j8p74wH7vBnBBOOPIZ29lWuNsWblzEdgYYFgW8WWqEJ7eISN9/z/
-         ZNN1dLcvHHLV/cUhush3kMfQD/DqN/h1GsdB6f0mFFDPVNVh+yHYdl+Gifg2owlbDZ/l
-         FiMC88SMJ8AyjGlVrPi77bCa8VKocDQ6I/n9+FbXZM/TepmI2WEIG1Tl+OZsdD8d/cTQ
-         9YuFRB4IdpJ0gYAoXG6G8zGJ24xVlIrm/w2Od6J8laEpvkVhBYghr3EA7yRwIXftchCS
-         U5gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gy7AkBu7bAXBU0y3wAkFQ5PlduSnOoydEHQ9dHG0xqU=;
-        b=BEBdv7R1P/unqTTn/4WIM32CGdMKDxeTFEmuVn9SDhQhK1bMlNTH0hyAnfap8T5tyF
-         T6uoCW5owxgR80VtVy+ovzkJy3g8PEN7fX+BxR1wbIzL9otGbh5GkXUWvQvTIUhCqm9O
-         4uS2o3aJdsmz2UvE00O5FustuiMol8iqcfriosNrmAl0EJH/d03v5dXq4qzEUkwldUlC
-         S+rDiXc+dq2SmxYZmezb/eLGYC2hUUellzTNCUugrPznpzG3eX65HfO6J8eQwkiIp6RN
-         MTU1+RblXDIK8RJXxjvcR+fs0urFd12wSqw1qiHXpTetIPGNfFbUllq6j1kddO5VJ+5S
-         HrbQ==
-X-Gm-Message-State: AOAM5308CrghB5YI08pPvvEKQgCxi8OEjf3oRBQYs0xFRFEEfLbXEsV6
-        MpnobP5bsNdhkW6nYHz1k9RFhA==
-X-Google-Smtp-Source: ABdhPJxVkieNFrCUgPtdH8sa6eUkB8QCY/095ocDDMYsh57rFUNDZ8O3DDoHtABO6gVaXsAwHX4/fA==
-X-Received: by 2002:a50:cc82:0:b0:41d:5fca:10c3 with SMTP id q2-20020a50cc82000000b0041d5fca10c3mr1563726edi.373.1649921798496;
-        Thu, 14 Apr 2022 00:36:38 -0700 (PDT)
-Received: from [192.168.0.209] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id k22-20020a508ad6000000b00420bd71e06bsm653456edk.79.2022.04.14.00.36.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 00:36:38 -0700 (PDT)
-Message-ID: <34a14968-e939-3e22-9385-e31be1a96bbd@linaro.org>
-Date:   Thu, 14 Apr 2022 09:36:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: dmaengine: qcom: gpi: add compatible for
- sc7280
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S240541AbiDNHmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 03:42:47 -0400
+X-Greylist: delayed 60624 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Apr 2022 00:40:23 PDT
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0B840931;
+        Thu, 14 Apr 2022 00:40:22 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 538A91C0005;
+        Thu, 14 Apr 2022 07:40:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649922021;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Rq+ltxRhp3LsK2RX5rxuOzGtedDWpOrBc28SFp5i+i8=;
+        b=arTbcMZiBsjtNMjJGQQQJpwzV9vLsoSnNN8re9d33XbbwOjOmkNoxL/QYcVkZURGAq9URo
+        Ye4bZxAj9Aj/Iga+wCvi7vKED4twsZ3YtaeME3Sxk7u2fhX3n7RGxiH5fRbSA/CGipN2Lx
+        cvptcxz5wRrsULGIsffsBw4yoOKXwHjKB9Q2uKV2eLQseg6EirqdibK7DvD76Ldx7deIL2
+        HrqykM5KMQ31E54EmAG6vj0ob4wzZ6S0fn1qdyp6wppgSoEZRR0mOWaF1JmdeVWZ9XL0Ys
+        K9y//3XUNuMwAx5mekMrmyTXy8ix9RFVUkPVXwvoLpu0lyJtd+Zv5I/ZtW/Mbw==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220414064216.1182177-1-vkoul@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220414064216.1182177-1-vkoul@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v2 0/8] RZN1 USB Host support
+Date:   Thu, 14 Apr 2022 09:40:03 +0200
+Message-Id: <20220414074011.500533-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 08:42, Vinod Koul wrote:
-> Document the compatible for GPI DMA controller on SC7280 SoC
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Hi,
 
+This series add support for the USB Host controllers available on
+RZN1 (r9a06g032) SOC.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+These USB Host controllers are PCI OHCI/EHCI controllers located
+behind a bridge.
 
+Regards,
+Herve
 
-Best regards,
-Krzysztof
+Changes v2:
+- Convert bindings to json-schema
+- Update clocks description
+- Remove unneeded '.compatible = "renesas,pci-r9a06g032"'
+
+Herve Codina (8):
+  PCI: rcar-gen2: Add support for clocks
+  dt-bindings: PCI: renesas-pci-usb: Convert bindings to json-schema
+  dt-bindings: PCI: renesas-pci-usb: Allow multiple clocks
+  dt-bindings: PCI: renesas-pci-usb: Add device tree support for
+    r9a06g032
+  PCI: rcar-gen2: Add R9A06G032 support
+  ARM: dts: r9a06g032: Add internal PCI bridge node
+  ARM: dts: r9a06g032: Add USB PHY DT support
+  ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
+
+ .../devicetree/bindings/pci/pci-rcar-gen2.txt |  84 -----------
+ .../bindings/pci/renesas,pci-usb.yaml         | 139 ++++++++++++++++++
+ arch/arm/boot/dts/r9a06g032.dtsi              |  46 ++++++
+ drivers/pci/controller/pci-rcar-gen2.c        |  29 +++-
+ 4 files changed, 212 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/pci-rcar-gen2.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml
+
+-- 
+2.35.1
+
