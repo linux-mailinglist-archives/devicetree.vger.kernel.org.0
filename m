@@ -2,342 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C6F5007FF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4233050080E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238385AbiDNILS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43886 "EHLO
+        id S240510AbiDNIPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 04:15:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237449AbiDNILL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:11:11 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5325848393;
-        Thu, 14 Apr 2022 01:08:42 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 0A3251C0013;
-        Thu, 14 Apr 2022 08:08:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649923721;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=epQ7ur/IC+M7rUzwT/LZw6lANOz+LVhuy2A10k1/oeQ=;
-        b=kII6LdfSA0CEkzlRuXQjWlIv0Kik6u9RQCp7n/U/AgCEvR+PAXFvUNY+yFR7bYCy7lggmS
-        z/2U1yA5R7X8KxnVlhFx3pPgfRHNcO80Trg7reBraLCF8jGez7WVLtD26ywYABSXKyfkPj
-        vxaQRhc3OLPYmpzFqvLtEf1MJUjVZHV86paWs4ydhNUZU7hPx7vFF1EYYrVJRNWKZccssd
-        +7miUHmCjYbZOEMmP0va8EOFpJPwQuhqRUAse6AA0DGtcJGaBhQyGifVzixSgPbluU3nSk
-        gXQr0/j+C8PKaZgA28ZMRfZ2B8YGWeJNgGYWssxJLRFMlX/Op82MMjZjMj0Ydg==
-Date:   Thu, 14 Apr 2022 10:08:35 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>
-Subject: Re: [PATCH v2 2/8] dt-bindings: PCI: renesas-pci-usb: Convert
- bindings to json-schema
-Message-ID: <20220414100835.4c2efa3b@xps13>
-In-Reply-To: <20220414074011.500533-3-herve.codina@bootlin.com>
-References: <20220414074011.500533-1-herve.codina@bootlin.com>
-        <20220414074011.500533-3-herve.codina@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S240204AbiDNIPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:15:31 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68A550475
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 01:13:07 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1neub8-0005xp-0N; Thu, 14 Apr 2022 10:13:02 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1neub6-0002oL-38; Thu, 14 Apr 2022 10:13:00 +0200
+Date:   Thu, 14 Apr 2022 10:13:00 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Alex Bee <knaerzche@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v10 12/24] drm/rockchip: dw_hdmi: drop mode_valid hook
+Message-ID: <20220414081300.GI4012@pengutronix.de>
+References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
+ <20220408112238.1274817-13-s.hauer@pengutronix.de>
+ <8fac5d72-c635-521c-e7d1-a3980a4ed719@gmail.com>
+ <20220411075357.GQ4012@pengutronix.de>
+ <2b0f0eba-87fe-e2c4-d951-2b090b827ca6@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2b0f0eba-87fe-e2c4-d951-2b090b827ca6@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:11:46 up 14 days, 20:41, 60 users,  load average: 0.48, 0.29,
+ 0.21
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Herv=C3=A9,
+On Mon, Apr 11, 2022 at 07:00:51PM +0200, Alex Bee wrote:
+> Am 11.04.22 um 09:53 schrieb Sascha Hauer:
+> > On Sun, Apr 10, 2022 at 01:31:23PM +0200, Alex Bee wrote:
+> >> Am 08.04.22 um 13:22 schrieb Sascha Hauer:
+> >>> The driver checks if the pixel clock of the given mode matches an entry
+> >>> in the mpll config table. The frequencies in the mpll table are meant as
+> >>> a frequency range up to which the entry works, not as a frequency that
+> >>> must match the pixel clock. The downstream Kernel also does not have
+> >>> this check, so drop it to allow for more display resolutions.
+> >>>
+> >>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> >>> ---
+> >>>
+> >> You're correct: That frequency is meant to be greater or equal. But I'm
+> >> not sure if it makes sense to completely drop it - what happens for
+> >> clocks rates > 600 MHz which might be supported by later generation
+> >> sinks (HDMI 2.1 or later)?
+> >> As these are not supported by the IPs/PHYs currently supported by that
+> >> driver a reason a simple
+> >>
+> >>         int i;
+> >>
+> >>
+> >>
+> >>         for (i = 0; mpll_cfg[i].mpixelclock != (~0UL); i++) {
+> >>
+> >> -               if (pclk == mpll_cfg[i].mpixelclock) {
+> >>
+> >> +               if (pclk >= mpll_cfg[i].mpixelclock) {
+> > 
+> > Should be <=
+> 
+> Sure, sorry 'bout that.
+> > 
+> > No other user currently in the tree has this check.
+> I dont't think that's true - it might not be checked against mpll table,
+> but max pixelclocks are checked in meson_encoder_hdmi_mode_valid for
+> amlogic, in sun8i_dw_hdmi_mode_valid_a83t and
+> sun8i_dw_hdmi_mode_valid_h6 for allwinner and rcar_hdmi_mode_valid for
+> rcar platform. There is no other point in rockchip dw-hdmi platform
+> driver where this is currently checked.
+> 
+> > hdmi_phy_configure_dwc_hdmi_3d_tx() has this:
+> > 
+> >> 	/* PLL/MPLL Cfg - always match on final entry */
+> >> 	for (; mpll_config->mpixelclock != ~0UL; mpll_config++)
+> >> 		if (mpixelclock <= mpll_config->mpixelclock)
+> >> 			break;
+> >>
+> >> 	for (; curr_ctrl->mpixelclock != ~0UL; curr_ctrl++)
+> >> 		if (mpixelclock <= curr_ctrl->mpixelclock)
+> >> 			break;
+> >>
+> >> 	for (; phy_config->mpixelclock != ~0UL; phy_config++)
+> >> 		if (mpixelclock <= phy_config->mpixelclock)
+> >> 			break;
+> >>
+> >> 	if (mpll_config->mpixelclock == ~0UL ||
+> >> 	    curr_ctrl->mpixelclock == ~0UL ||
+> >> 	    phy_config->mpixelclock == ~0UL)
+> >> 		return -EINVAL;
+> > 
+> > This means we already have this check and others already in the generic
+> > part of the dw-hdmi driver. Should we maybe do the above in
+> > dw_hdmi_bridge_mode_valid() instead of doing it in the users?
+> I guess that's not possible, due to the different kind of phys which are
+> used for dw-hdmi. The checks you are refering to, are only done for dw
+> hdmi tx phys, but not for "vendor phys" (like for RK3328 and RK3228, for
+> example) - those have have own drivers which are handled only in dw-hdmi
+> platform driver.
+> Therefore this check should remain here for Rockchip also.
 
-herve.codina@bootlin.com wrote on Thu, 14 Apr 2022 09:40:05 +0200:
+Ok, agreed. I'll keep the check for the next round and just replace
+the == with <=.
 
-> Convert Renesas PCI bridge bindings documentation to json-schema.
-> Also name it 'renesas,pci-usb' as it is specifically used to
-> connect the PCI USB controllers to AHB bus.
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  .../devicetree/bindings/pci/pci-rcar-gen2.txt |  84 -----------
->  .../bindings/pci/renesas,pci-usb.yaml         | 134 ++++++++++++++++++
->  2 files changed, 134 insertions(+), 84 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pci/pci-rcar-gen2.t=
-xt
->  create mode 100644 Documentation/devicetree/bindings/pci/renesas,pci-usb=
-.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/pci-rcar-gen2.txt b/Do=
-cumentation/devicetree/bindings/pci/pci-rcar-gen2.txt
-> deleted file mode 100644
-> index aeba38f0a387..000000000000
-> --- a/Documentation/devicetree/bindings/pci/pci-rcar-gen2.txt
-> +++ /dev/null
-> @@ -1,84 +0,0 @@
-> -Renesas AHB to PCI bridge
-> --------------------------
-> -
-> -This is the bridge used internally to connect the USB controllers to the
-> -AHB. There is one bridge instance per USB port connected to the internal
-> -OHCI and EHCI controllers.
-> -
-> -Required properties:
-> -- compatible: "renesas,pci-r8a7742" for the R8A7742 SoC;
-> -	      "renesas,pci-r8a7743" for the R8A7743 SoC;
-> -	      "renesas,pci-r8a7744" for the R8A7744 SoC;
-> -	      "renesas,pci-r8a7745" for the R8A7745 SoC;
-> -	      "renesas,pci-r8a7790" for the R8A7790 SoC;
-> -	      "renesas,pci-r8a7791" for the R8A7791 SoC;
-> -	      "renesas,pci-r8a7793" for the R8A7793 SoC;
-> -	      "renesas,pci-r8a7794" for the R8A7794 SoC;
-> -	      "renesas,pci-rcar-gen2" for a generic R-Car Gen2 or
-> -				      RZ/G1 compatible device.
-> -
-> -
-> -	      When compatible with the generic version, nodes must list the
-> -	      SoC-specific version corresponding to the platform first
-> -	      followed by the generic version.
-> -
-> -- reg:	A list of physical regions to access the device: the first is
-> -	the operational registers for the OHCI/EHCI controllers and the
-> -	second is for the bridge configuration and control registers.
-> -- interrupts: interrupt for the device.
-> -- clocks: The reference to the device clock.
-> -- bus-range: The PCI bus number range; as this is a single bus, the range
-> -	     should be specified as the same value twice.
-> -- #address-cells: must be 3.
-> -- #size-cells: must be 2.
-> -- #interrupt-cells: must be 1.
-> -- interrupt-map: standard property used to define the mapping of the PCI
-> -  interrupts to the GIC interrupts.
-> -- interrupt-map-mask: standard property that helps to define the interru=
-pt
-> -  mapping.
-> -
-> -Optional properties:
-> -- dma-ranges: a single range for the inbound memory region. If not suppl=
-ied,
-> -  defaults to 1GiB at 0x40000000. Note there are hardware restrictions o=
-n the
-> -  allowed combinations of address and size.
-> -
-> -Example SoC configuration:
-> -
-> -	pci0: pci@ee090000  {
-> -		compatible =3D "renesas,pci-r8a7790", "renesas,pci-rcar-gen2";
-> -		clocks =3D <&mstp7_clks R8A7790_CLK_EHCI>;
-> -		reg =3D <0x0 0xee090000 0x0 0xc00>,
-> -		      <0x0 0xee080000 0x0 0x1100>;
-> -		interrupts =3D <0 108 IRQ_TYPE_LEVEL_HIGH>;
-> -		status =3D "disabled";
-> -
-> -		bus-range =3D <0 0>;
-> -		#address-cells =3D <3>;
-> -		#size-cells =3D <2>;
-> -		#interrupt-cells =3D <1>;
-> -		dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 0 0x40000000>;
-> -		interrupt-map-mask =3D <0xff00 0 0 0x7>;
-> -		interrupt-map =3D <0x0000 0 0 1 &gic 0 108 IRQ_TYPE_LEVEL_HIGH
-> -				 0x0800 0 0 1 &gic 0 108 IRQ_TYPE_LEVEL_HIGH
-> -				 0x1000 0 0 2 &gic 0 108 IRQ_TYPE_LEVEL_HIGH>;
-> -
-> -		usb@1,0 {
-> -			reg =3D <0x800 0 0 0 0>;
-> -			phys =3D <&usb0 0>;
-> -			phy-names =3D "usb";
-> -		};
-> -
-> -		usb@2,0 {
-> -			reg =3D <0x1000 0 0 0 0>;
-> -			phys =3D <&usb0 0>;
-> -			phy-names =3D "usb";
-> -		};
-> -	};
-> -
-> -Example board setup:
-> -
-> -&pci0 {
-> -	status =3D "okay";
-> -	pinctrl-0 =3D <&usb0_pins>;
-> -	pinctrl-names =3D "default";
-> -};
-> diff --git a/Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml b=
-/Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml
-> new file mode 100644
-> index 000000000000..3f8d79b746c7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml
-> @@ -0,0 +1,134 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/renesas,pci-usb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas AHB to PCI bridge
-> +
-> +maintainers:
-> +  - Marek Vasut <marek.vasut+renesas@gmail.com>
-> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> +
-> +description: |
-> +  This is the bridge used internally to connect the USB controllers to t=
-he
-> +  AHB. There is one bridge instance per USB port connected to the intern=
-al
-> +  OHCI and EHCI controllers.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,pci-r8a7742      # RZ/G1H
-> +              - renesas,pci-r8a7743      # RZ/G1M
-> +              - renesas,pci-r8a7744      # RZ/G1N
-> +              - renesas,pci-r8a7745      # RZ/G1E
-> +              - renesas,pci-r8a7790      # R-Car H2
-> +              - renesas,pci-r8a7791      # R-Car M2-W
-> +              - renesas,pci-r8a7793      # R-Car M2-N
-> +              - renesas,pci-r8a7794      # R-Car E2
-> +          - const: renesas,pci-rcar-gen2 # R-Car Gen2 and RZ/G1
-> +
-> +  reg:
-> +    description: |
-> +      A list of physical regions to access the device. The first is
-> +      the operational registers for the OHCI/EHCI controllers and the
-> +      second is for the bridge configuration and control registers.
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    description: Interrupt for the device.
+Sascha
 
-When the description is rather straightforward (like "this is the main
-interrupt/clock") I don't think a description is expected. A number
-however might be useful, I believe.
-
-> +
-> +  interrupt-map:
-> +    description: |
-> +      Standard property used to define the mapping of the PCI interrupts
-> +      to the GIC interrupts.
-> +
-> +  interrupt-map-mask:
-> +    description:
-> +      Standard property that helps to define the interrupt mapping.
-> +
-> +  clocks:
-> +    description: The reference to the device clock.
-
-Maybe maxItems: 1 ?
-
-> +
-> +  bus-range:
-> +    description: |
-> +      The PCI bus number range; as this is a single bus, the range
-> +      should be specified as the same value twice.
-> +
-> +  "#address-cells":
-> +    const: 3
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  dma-ranges:
-> +    description: |
-> +      A single range for the inbound memory region. If not supplied,
-> +      defaults to 1GiB at 0x40000000. Note there are hardware restrictio=
-ns on
-> +      the allowed combinations of address and size.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - clocks
-> +  - bus-range
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - "#interrupt-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-> +
-> +    bus {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        pci0: pci@ee090000  {
-> +            compatible =3D "renesas,pci-r8a7790", "renesas,pci-rcar-gen2=
-";
-> +            device_type =3D "pci";
-> +            clocks =3D <&cpg CPG_MOD 703>;
-> +            reg =3D <0 0xee090000 0 0xc00>,
-> +                  <0 0xee080000 0 0x1100>;
-> +            interrupts =3D <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-> +            status =3D "disabled";
-> +
-> +            bus-range =3D <0 0>;
-> +            #address-cells =3D <3>;
-> +            #size-cells =3D <2>;
-> +            #interrupt-cells =3D <1>;
-> +            ranges =3D <0x02000000 0 0xee080000 0 0xee080000 0 0x0001000=
-0>;
-> +            dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 0 0x400=
-00000>;
-> +            interrupt-map-mask =3D <0xf800 0 0 0x7>;
-> +            interrupt-map =3D <0x0000 0 0 1 &gic GIC_SPI 108 IRQ_TYPE_LE=
-VEL_HIGH>,
-> +                            <0x0800 0 0 1 &gic GIC_SPI 108 IRQ_TYPE_LEVE=
-L_HIGH>,
-> +                            <0x1000 0 0 2 &gic GIC_SPI 108 IRQ_TYPE_LEVE=
-L_HIGH>;
-> +
-> +            usb@1,0 {
-> +                reg =3D <0x800 0 0 0 0>;
-> +                phys =3D <&usb0 0>;
-> +                phy-names =3D "usb";
-> +            };
-> +           =20
-> +            usb@2,0 {
-> +                reg =3D <0x1000 0 0 0 0>;
-> +                phys =3D <&usb0 0>;
-> +                phy-names =3D "usb";
-> +            };
-> +        };
-> +    };
-
-
-Thanks,
-Miqu=C3=A8l
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
