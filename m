@@ -2,144 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7201F50039A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 03:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD025003D8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 03:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230412AbiDNB0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Apr 2022 21:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56904 "EHLO
+        id S239532AbiDNBzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Apr 2022 21:55:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbiDNB0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 21:26:00 -0400
-Received: from esa5.hgst.iphmx.com (esa5.hgst.iphmx.com [216.71.153.144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21FEF52B00
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 18:23:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1649899414; x=1681435414;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=gTiDrR+9+HtrXE6ySpJjfWH7TrMfuwUMNxxOhskx1yg=;
-  b=aJnhP0MyZYhoeAjhvCOFPL4XzRMzECn0Vr/ICC/hYEqP6IBXGtZaZTRQ
-   jKFGpJqz44zuQrt91t0rnBocaJru3pjnocN9xD85l8r2BjDCaNMAI0nMN
-   dli2pIuf+seM6sLXTmp9AdAi0V65O8CBc+Iy1h2sucJgNRjNe+rWZHxr1
-   xfFUw2roSX9WeJJeZoaECr3uxbjv8B+G5AFoOacWoH9XJZiKWyigzil7C
-   yT0VhveTGIVdZJ7VayXenZDvVCdaM8U5MTDgiHmS7sKsHoow4joFQMLeM
-   M71+4CgItN7UbSnFDxXs5YMsb0ga9UfHaMlnQG9A3FL4J3DO5lCf9JQBZ
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,258,1643644800"; 
-   d="scan'208";a="197870342"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 14 Apr 2022 09:23:34 +0800
-IronPort-SDR: GfgOdvuQ4Iu3qiJs/VfuYvoj94n8wImpBeA1Kc4yOvQYLO/wY9v2X6QhVr1ibHdFm0BReFq3Rs
- 5MH26Jkn+PuT2SSs0AMMFIAENuiXiRWXjH56GR8W2faXtJF3rkYfKCWXhid+21ci0+B05GKyRa
- VbxmTzB7VbSX8acqBeF22jwrEPVuNTxdJTanBKRgUITO71XPBOBuMFuTyIgpXbu08+Y7S5kFNq
- e6KGGuTN77JGud/gf+xH2Lp4RYnFdjqT6mou9JbdIaMFCxcUF+YSY5KM/GKtqbBm027gztXGz9
- pQJxPXKrLpoxp38MxgAVuKHj
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Apr 2022 17:54:00 -0700
-IronPort-SDR: Wc0ccQTyrLxjSQFFVZ+OgweaiCHrPsQI5BdJDLf63ThGPNi4TRE3YklsbQXbXa5fgCoy3592X+
- JkWe9cVT/DHHy4RpoXf0ghUPKFYUwxlmib5Opo8VbQsALH5ELkqZbt75dXpUsVmFhWVNwwU2A1
- 3ji5JMfae7XEEoGSC59vgM+ZuZcY2h96d0zA8B4CrjtluggoweNqDLMhXzNcuQkJ5nGs3FpnGB
- WIYLiSQDYf49SH/BSijUPgiyOaPXK+QDf49vTd4LvL3Cx67H6YF9B2vzBvYNi+Qq9lpMkGHdf2
- /3Y=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Apr 2022 18:23:34 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Kf1ts62jlz1SVnx
-        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 18:23:33 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1649899412; x=1652491413; bh=gTiDrR+9+HtrXE6ySpJjfWH7TrMfuwUMNxx
-        Ohskx1yg=; b=ucSbep5Mx2fZ1X+e19OVTxJ0IgBWFSbPXTKoc8lGMgvArgjjSIb
-        sRer6ztuMtwsrILhFSpHtuevLHSwRkbyi43HaC5mQP/tXfu0n2oO6rXg2hbXwjj6
-        blHeMlvFeaN/Q6rmrPVY7wCllmO8h42ExCdIBGokWWj3GywCZYiQgYBTbcRWjWJO
-        0+AbnB8zfki6UsBNQ586nrjRRjUWk2oeC3PJl84www7ckLKr16E0s/M/p9dKmj6l
-        kg5AbYq0K/M5QN2+iQbPDR9oHaIc1Ti/Q97cKNNY24ed7BTF+waqLjJ7dvTZ/jEP
-        g/NcJ7z5RbmoAVtUhGKeOVH0Df4Tv7wluNQ==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id wMy29bBsTlrY for <devicetree@vger.kernel.org>;
-        Wed, 13 Apr 2022 18:23:32 -0700 (PDT)
-Received: from [10.225.163.9] (unknown [10.225.163.9])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Kf1tq37zQz1Rvlx;
-        Wed, 13 Apr 2022 18:23:31 -0700 (PDT)
-Message-ID: <95580a26-8595-1fa1-5e3d-112ceb767ae6@opensource.wdc.com>
-Date:   Thu, 14 Apr 2022 10:23:30 +0900
+        with ESMTP id S239305AbiDNBzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Apr 2022 21:55:45 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21310222AD;
+        Wed, 13 Apr 2022 18:53:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1649901172; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=bHZeQVx3jN/0wqWfKct9TVkWDEcH+rjxGHeM8N+jHNXvYp6dZCkiYT+4xsgi/M6zk2/5/F8Gbb8iGtqVcnoS7QlRKYBbCk8EcHk7iMo3k5Q/F+SNWrWf8E5Mxk9baVJYgmvz02mx2FzV4oWRYLo/bSk01LYObJsfkq3qjcRxrTg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1649901172; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=0xSGVUhPZgbHPwFpu89X2W24g/jYetTI1SnOG7J0k5Q=; 
+        b=ILB/ySvWfxHiIPL83uUkzbN8L/mTJgBOejD3WRxH3mJN3jVDzNnv/VWUdXP+HquPTa5qleBfxgX6rW7KHijHVxh/3jeddiw9NqTNhl1YrLC3KwxhINwMBflnbI8sbyCEdUwm6AjItoCOQvnxlRktb3nxmk2LKFkMwHlvpm72oc8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649901172;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=0xSGVUhPZgbHPwFpu89X2W24g/jYetTI1SnOG7J0k5Q=;
+        b=YUrfkzFvJtEXiXaFmuqIesisz2N7XAQ47Y8mWmLX0uNtY6ey2bE5ketmWQrjAmsg
+        BS913aoLOTbtOLVY73+hsdm+aD+ihx/W3yFSch0hfxqFIfTVPKQ3yCOMzOPMBsCtivx
+        UUbfiHkTr7wtIXKp0l415ajJXf8zHBP/TxyYFa+A=
+Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1649901171025892.4263236824818; Wed, 13 Apr 2022 18:52:51 -0700 (PDT)
+Message-ID: <0dd1da16-232b-d634-3146-bf91e58c9543@arinc9.com>
+Date:   Thu, 14 Apr 2022 04:52:45 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [WARNING: UNSCANNABLE EXTRACTION FAILED][PATCH v2] dt-bindings:
- ata: renesas,rcar-sata: Add r8a774e1 support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 11/14] dt-bindings: pinctrl: add binding for Ralink MT7620
+ pinctrl
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-ide@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marian-Cristian Rotariu 
-        <marian-cristian.rotariu.rb@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-References: <5861565a79a2bdadc07ae84e23e6d96dbb764823.1649680949.git.geert+renesas@glider.be>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <5861565a79a2bdadc07ae84e23e6d96dbb764823.1649680949.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20220413060729.27639-1-arinc.unal@arinc9.com>
+ <20220413060729.27639-12-arinc.unal@arinc9.com>
+ <41fa58ee-728b-7f0d-eea7-448c59641d85@linaro.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <41fa58ee-728b-7f0d-eea7-448c59641d85@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/22 21:43, Geert Uytterhoeven wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 13/04/2022 18:37, Krzysztof Kozlowski wrote:
+> On 13/04/2022 08:07, Arınç ÜNAL wrote:
+>> Add binding for the Ralink MT7620 pin controller for MT7620, MT7628 and
+>> MT7688 SoCs.
+>>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> ---
+>>   .../pinctrl/ralink,mt7620-pinctrl.yaml        | 87 +++++++++++++++++++
+>>   1 file changed, 87 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
+>> new file mode 100644
+>> index 000000000000..01578b8aa277
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
+>> @@ -0,0 +1,87 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/ralink,mt7620-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Ralink MT7620 Pin Controller
+>> +
+>> +maintainers:
+>> +  - Arınç ÜNAL <arinc.unal@arinc9.com>
+>> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>> +
+>> +description:
+>> +  Ralink MT7620 pin controller for MT7620, MT7628 and MT7688 SoCs.
+>> +  The pin controller can only set the muxing of pin groups. Muxing indiviual pins
 > 
-> Document SATA support for the RZ/G2H SoC, no driver change required.
+> Run spellcheck on original bindings, don't copy same typos.
+
+Will address, thanks!
+
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-
-I queued this is for-5.19. Does it need to go as a 5.18 fix ?
-
-
-> ---
-> v2:
->   - Add Acked-by.
-> ---
->  Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>> +  is not supported. There is no pinconf support.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ralink,mt7620-pinctrl
+>> +
+>> +patternProperties:
+>> +  '-pins$':
+>> +    type: object
+>> +    patternProperties:
+>> +      '^(.*-)?pinmux$':
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> index c060c7914cae6573..c4e4a9eab658056d 100644
-> --- a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> +++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - items:
->            - enum:
->                - renesas,sata-r8a774b1     # RZ/G2N
-> +              - renesas,sata-r8a774e1     # RZ/G2H
->                - renesas,sata-r8a7795      # R-Car H3
->                - renesas,sata-r8a77965     # R-Car M3-N
->            - const: renesas,rcar-gen3-sata # generic R-Car Gen3 or RZ/G2
+> Why do you have two levels here? pins->pinmux->actual pin configuration?
 
+Yes, pins->pinmux->pin-configuration is currently how it's done.
 
--- 
-Damien Le Moal
-Western Digital Research
+> Cannot be something like brcm,bcm636x has?
+
+Dunno, I'll take a look.
+
+> 
+>> +        type: object
+>> +        description: node for pinctrl.
+>> +        $ref: pinmux-node.yaml#
+>> +
+>> +        properties:
+>> +          groups:
+>> +            description: The pin group to select.
+> 
+> I wonder where do you configure particular pins because these are
+> groups... It's a bit confusing to configure "i2c" group into "i2c" -
+> looks obvious.
+
+We don't configure each pin particularly. Ralink driver only supports 
+muxing certain functions for certain pin groups as hinted on the binding 
+description.
+
+> 
+>> +            enum: [
+>> +              # For MT7620 SoC
+>> +              ephy, i2c, mdio, nd_sd, pa, pcie, rgmii1, rgmii2, spi, spi refclk, uartf, uartlite, wdt, wled,
+>> +
+>> +              # For MT7628 and MT7688 SoCs
+>> +              gpio, i2c, i2s, p0led_an, p0led_kn, p1led_an, p1led_kn, p2led_an, p2led_kn, p3led_an,
+>> +              p3led_kn, p4led_an, p4led_kn, perst, pwm0, pwm1, refclk, sdmode, spi, spi cs1, spis, uart0,
+>> +              uart1, uart2, wdt, wled_an, wled_kn,
+>> +            ]
+>> +
+>> +          function:
+>> +            description: The mux function to select.
+>> +            enum: [
+>> +              # For MT7620 SoC
+>> +              ephy, gpio, gpio i2s, gpio uartf, i2c, i2s uartf, mdio, nand, pa, pcie refclk, pcie rst,
+>> +              pcm gpio, pcm i2s, pcm uartf, refclk, rgmii1, rgmii2, sd, spi, spi refclk, uartf, uartlite,
+>> +              wdt refclk, wdt rst, wled,
+>> +
+>> +              # For MT7628 and MT7688 SoCs
+>> +              antenna, debug, gpio, i2c, i2s, jtag, p0led_an, p0led_kn, p1led_an, p1led_kn, p2led_an,
+>> +              p2led_kn, p3led_an, p3led_kn, p4led_an, p4led_kn, pcie, pcm, perst, pwm, pwm0, pwm1,
+>> +              pwm_uart2, refclk, rsvd, sdxc, sdxc d5 d4, sdxc d6, sdxc d7, spi, spi cs1, spis, sw_r, uart0,
+>> +              uart1, uart2, utif, wdt, wled_an, wled_kn, -,
+> 
+> All these lines do not fit in 80-character limit. Linux coding style
+> still expects this in most of cases.
+
+Ok, dt_binding_check warns after 110 characters so I made it fit that. 
+I'll update to 80.
+
+Arınç
