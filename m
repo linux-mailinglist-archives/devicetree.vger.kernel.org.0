@@ -2,140 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBC6F5008F7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC824500903
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 10:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234223AbiDNI7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 04:59:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
+        id S238172AbiDNJAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 05:00:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241248AbiDNI7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 04:59:12 -0400
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E9B68322;
-        Thu, 14 Apr 2022 01:56:45 -0700 (PDT)
-Received: from [192.168.0.2] (ip5f5ae8d7.dynamic.kabel-deutschland.de [95.90.232.215])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 12B9961EA1936;
-        Thu, 14 Apr 2022 10:56:44 +0200 (CEST)
-Message-ID: <14d07709-07ef-21a8-ad74-0f56447cf6dd@molgen.mpg.de>
-Date:   Thu, 14 Apr 2022 10:56:43 +0200
+        with ESMTP id S241323AbiDNJAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 05:00:50 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BEED16AA75;
+        Thu, 14 Apr 2022 01:58:13 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id A21D980A4;
+        Thu, 14 Apr 2022 08:55:34 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH v5 0/2] Convert TI dmtimer binding to yaml
+Date:   Thu, 14 Apr 2022 11:58:05 +0300
+Message-Id: <20220414085807.7389-1-tony@atomide.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-Content-Language: en-US
-To:     Borislav Petkov <bp@alien8.de>, Medad Young <medadyoung@gmail.com>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-References: <20220322030152.19018-1-ctcchien@nuvoton.com>
- <20220322030152.19018-4-ctcchien@nuvoton.com>
- <a06441fc-85cf-9386-e362-4a90e855aa19@molgen.mpg.de>
- <CAHpyw9fQVbS1Cpv0ULQc2=vK8LsG6n7tgP+J9AboUupDAPT27Q@mail.gmail.com>
- <YlfeXVSkUC2B4xH2@zn.tnic>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <YlfeXVSkUC2B4xH2@zn.tnic>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Borislav,
+Hi,
+
+Here are v5 changes for TI dmtimer.
+
+Regards,
+
+Tony
 
 
-Am 14.04.22 um 10:42 schrieb Borislav Petkov:
-> On Thu, Apr 14, 2022 at 09:55:05AM +0800, Medad Young wrote:
->>>> +                             if (mtype == MEM_TYPE_DDR4)
->>>> +                                     dimm->mtype = MEM_DDR4;
->>>> +                             else
->>>> +                                     dimm->mtype = MEM_EMPTY;
->>>
->>> Use ternary operator?
->>>
->>>       dimm-mtype = (mtype == MEM_TYPE_DDR4) ? MEM_DDR4 : MEM_EMPTY;
-> 
-> Ternary operator is less readable than a plain and simple if-else.
-> 
->>>> +{
->>>> +     struct priv_data *priv = mci->pvt_info;
->>>> +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
->>>> +     u64 err_c_addr = 0x0;
->>>
->>> size_t
->>
->> OK
-> 
-> Why is size_t? error address doesn't have anything to do with a
-> sizeof(), array indexing or loop counting.
-> 
-> It is an error address and having it in an u64 tells you exactly what
-> its quantity is.
+Changes since v1:
 
-Good point. Sorry for missing that.
+- Improve yaml for various checks based on comments from Krzysztof
+  and Nishanth
 
-> So can we stop the silliness pls?
+- Add checks for am4 timer as pointed out by Krzysztof and Rob
 
-No idea, why you had to ask this question, while you statement before 
-already made the point.
+- Split am6 additions into a separate patch as suggested by Krzysztof
 
->>>> +static irqreturn_t edac_ecc_isr(int irq, void *dev_id)
->>>> +{
->>>> +     struct mem_ctl_info *mci = dev_id;
->>>> +     struct priv_data *priv = mci->pvt_info;
->>>> +     const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
->>>> +     u32 intr_status;
->>>> +     u32 val;
->>>> +
->>>> +     /* Check the intr status and confirm ECC error intr */
->>>> +     intr_status = readl(priv->reg + npcm_chip->ecc_ctl_int_status);
->>>> +
->>>> +     edac_dbg(3, "InterruptStatus : 0x%x\n", intr_status);
->>>
->>> Remove the space before the colon? Maybe use:
->>>
->>> "Interrupt status (intr_status): 0x%x\n"
-> 
-> And repeat "interrupt status"? Also silly. The question to ask
-> yourselves should always be: is this error message helpful enough to its
-> intended recipients.
-> 
-> When I see
-> 
->    "Interrupt status (intr_status): 0x%x\n"
-> 
-> in my code, I go: "hm, where does this message come from?" because it
-> ain't helpful enough. So I have to go stare at the code too.
-> 
-> I hope you're catching my drift.
+Changes since v2:
 
-Sorry I do not get your point. Would you elaborate on the debug message 
-so it’s more useful? Or would you keep `InterruptStatus`, or – as it’s a 
-debug message – use the variable name? My point was mainly about, why 
-not use the variable name directly in the debug message, and the space 
-before the colon.
+- Improve yaml for more checks based on comments from Grygorii and
+  Krzysztof
+
+Changes since v3:
+
+- Simplify constraints for reg, clocks and clock-names as suggested by
+  Krzysztof
+
+- Use version number for patches too as suggested by Rob
+
+Changes since v4:
+
+- Drop duplicated items as noted by Krzysztof
 
 
-Kind regards,
+Tony Lindgren (2):
+  dt-bindings: timer: Update TI timer to yaml
+  dt-bindings: timer: Add compatible for am6 for TI timer-dm
 
-Paul
+ .../bindings/pwm/pwm-omap-dmtimer.txt         |   2 +-
+ .../bindings/timer/ti,timer-dm.yaml           | 152 ++++++++++++++++++
+ .../devicetree/bindings/timer/ti,timer.txt    |  44 -----
+ 3 files changed, 153 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/ti,timer.txt
+
+-- 
+2.35.1
