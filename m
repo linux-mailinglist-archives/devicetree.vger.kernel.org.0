@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD339500618
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 08:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67AC2500628
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 08:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232538AbiDNG2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 02:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
+        id S240002AbiDNGgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 02:36:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231788AbiDNG2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 02:28:07 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE0822288;
-        Wed, 13 Apr 2022 23:25:43 -0700 (PDT)
-X-UUID: 0671cb57c3d94dae9c7d71dbde9fb4db-20220414
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:0b3c4655-9a90-43fd-aabb-d10c699e7197,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:2,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:2
-X-CID-META: VersionHash:faefae9,CLOUDID:7b4d5978-0afa-4dca-bdec-ca54c998425a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:4,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 0671cb57c3d94dae9c7d71dbde9fb4db-20220414
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 685369214; Thu, 14 Apr 2022 14:25:36 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 14 Apr 2022 14:25:36 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 Apr
- 2022 14:25:35 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 14 Apr 2022 14:25:35 +0800
-Message-ID: <5fa51ff6aab0d54e4edd8fc6fed00d4718ceb9dc.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] soc: mediatek: svs: add support for mt8186
-From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Roger Lu <roger.lu@mediatek.com>,
-        Kevin Hilman <khilman@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>
-Date:   Thu, 14 Apr 2022 14:25:35 +0800
-In-Reply-To: <138aad1c-63d7-371a-ff41-4fd7022d365d@collabora.com>
-References: <20220412112127.21570-1-jia-wei.chang@mediatek.com>
-         <20220412112127.21570-3-jia-wei.chang@mediatek.com>
-         <138aad1c-63d7-371a-ff41-4fd7022d365d@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S238320AbiDNGgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 02:36:17 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBEBCB9F
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 23:33:53 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id s25so4617553edi.13
+        for <devicetree@vger.kernel.org>; Wed, 13 Apr 2022 23:33:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=D/ipfU28h+YDs/vQIG6JpjOGobV5kM+7VxkHsaNF4ec=;
+        b=lZLxBSicwQ6JPl/gDsf9rr5+CGdgLAmoNPUZUVHZK8g5tXZJmEny8FUdllZsxJeUfL
+         M36irxT2X0vs9gudKyATRAU3b8XDS+BBkTrtvuZ0RP9pvKTY0RyWQN3sNs7QGkPA9qVb
+         GmHcYJ677mTEUSgLs+n/kGTCrhJw+aVjKfE7OQbUIZB0iCeZtgvWUjXTwlis+OCrvzvw
+         X4zVznSHvIOGIVB7cqueULuRBc3jXtWoDlVpQeZo1TN71MzCYkJ+CAU4kBuQwsE23Uua
+         cQvhydwvxhZTzFkgtZV1uyBs9IL29U1EjZvGfqAPiYLm+HdDAzkMkVMX4OL9KPTY2t9I
+         8nFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=D/ipfU28h+YDs/vQIG6JpjOGobV5kM+7VxkHsaNF4ec=;
+        b=LdfS6EXSSYLjXL+FwPW7fK6bnUk4QgHIB13ltuJhWkuClmKZ+RYYQRuEt6ZnQsyRrV
+         PT9KAnBGBqgL+1a+lTLCGHYPsDGo8r/eXiFb6EKYhI2jmpsAui0bAFwuQaypevDYZ5Mo
+         cjEgEQn70OtQhCgtKzltc9sp44WOLs5ulfpTerDXt0igY5xqXD20qCBbM9VsCDzPPV3C
+         snhWGhD6HBwRg3v8vcxvwTTG1Muyap3RI19NgfJAyRP4nDsgJqnhbd3iRaXa7XIBGwJH
+         kHZYfNnTNPHDhTdpTO4KkSpfVVg+aBKabCvseQeiD3smlKhbMUjXjc+5hTznTdZJuPHb
+         lpzg==
+X-Gm-Message-State: AOAM531wmf2d5Z/c9NrojvWCi1Usy2McoI/PZGyrtG+iiQhWsJesPhZg
+        x18O0tegwZGLmm4fGLGJidxN/g==
+X-Google-Smtp-Source: ABdhPJwI0GhVFonB/NHPCfl4LSJUKJAZdcyNcDL79mP/DnGRcGHRwDgh7BGiywroN2IPiIZTffK5sw==
+X-Received: by 2002:a05:6402:40c9:b0:419:4b81:162e with SMTP id z9-20020a05640240c900b004194b81162emr1368483edb.380.1649918032495;
+        Wed, 13 Apr 2022 23:33:52 -0700 (PDT)
+Received: from [192.168.0.208] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id b5-20020a17090630c500b006e8044fa76bsm332851ejb.143.2022.04.13.23.33.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 23:33:52 -0700 (PDT)
+Message-ID: <02953ce1-0a43-5918-d139-35afd5f15b5b@linaro.org>
+Date:   Thu, 14 Apr 2022 08:33:50 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 11/14] dt-bindings: pinctrl: add binding for Ralink MT7620
+ pinctrl
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20220413060729.27639-1-arinc.unal@arinc9.com>
+ <20220413060729.27639-12-arinc.unal@arinc9.com>
+ <41fa58ee-728b-7f0d-eea7-448c59641d85@linaro.org>
+ <0dd1da16-232b-d634-3146-bf91e58c9543@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0dd1da16-232b-d634-3146-bf91e58c9543@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,30 +86,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-04-12 at 17:30 +0200, AngeloGioacchino Del Regno wrote:
-> Il 12/04/22 13:21, Tim Chang ha scritto:
-> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> > 
-> > MT8186 svs has a number of banks which used as optimization of opp
-> > voltage table for corresponding dvfs drivers.
-> > MT8186 svs big core uses 2-line high bank and low bank to optimize
-> > the
-> > voltage of opp table for higher and lower frequency respectively.
-> > 
-> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+On 14/04/2022 03:52, Arınç ÜNAL wrote:
+>>
+>>> +  is not supported. There is no pinconf support.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ralink,mt7620-pinctrl
+>>> +
+>>> +patternProperties:
+>>> +  '-pins$':
+>>> +    type: object
+>>> +    patternProperties:
+>>> +      '^(.*-)?pinmux$':
+>>
+>> Why do you have two levels here? pins->pinmux->actual pin configuration?
 > 
-> For the code only, as I am unable to test:
-> 
+> Yes, pins->pinmux->pin-configuration is currently how it's done.
 
-Hi AngeloGioacchino,
+It is currently done? Aren't you bringing here new bindings and new
+driver support?
 
-I provided the svs content in mt8186.dtsi on chromebook prototype as an
-example in previous response.  You can refer to it for urgent usage.
-I will update it in my series in the future version.
-
-Thanks.
-
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> 
-
+Best regards,
+Krzysztof
