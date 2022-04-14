@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6125500BCC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 13:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62FA4500C02
+	for <lists+devicetree@lfdr.de>; Thu, 14 Apr 2022 13:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242369AbiDNLJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 07:09:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38860 "EHLO
+        id S242215AbiDNLWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 07:22:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242508AbiDNLJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 07:09:24 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E78A75E46;
-        Thu, 14 Apr 2022 04:06:59 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id r13so9340161ejd.5;
-        Thu, 14 Apr 2022 04:06:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=h6li49GO+Yuu8/Gu2RI9P4F8EHFsoe8mNrfNFsBoaEQ=;
-        b=J3YiI/Aduboip8Fe/28g3PUO0GxjjT1udJyJ+kDkob1fp32qgS0b45o4jIC5YyhP87
-         QIt8pk1VLkhLgU5BfghAJVunD1smiKzrQ427WKNHjrwtrYdUzc0q7/t4DkP/Dm8+JLsL
-         WiaaNaxfsB0C2TTN3/mxf5v2/wDPBb51uuUYpACeI3ScRNdXCBkjDH9jxN0gLlmkZSXU
-         KYm27G3sBbT3LIzRF6LZFF/30/G9x63iLchy2dfpRkPWnAo2LFxQPhe11D+YDY6APiZa
-         WT7MVck1Cml+wdKJmVPPCc2oj0DuzGPO2jglwGgNY0zr16ruflQrEDQUGKRNFVNs4a1z
-         DIRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=h6li49GO+Yuu8/Gu2RI9P4F8EHFsoe8mNrfNFsBoaEQ=;
-        b=YWVd19RAL6z8VeVv7M4qq4l4BNSmclDSPQ1wpeYX/p4tiqjY7zlUvNqbfZ3owO0KVk
-         0UpX8J5fhD8h3NX4DVnJ2uGcw5NFyeHdzOvKRGP8HGwIWnEoCtvs6AVVcVsQCaHtFwnj
-         zUaoCMD4lUdIz3QidymmcWMrdJtr4SIjgpuEL/78kbUKatdzAQN2nh5wN+ywGnRT5wiA
-         GoI017/QVFp5CoBn1jtWJiXE3L406Ul0tTgD+0793nVqQ2L9bljEk5IpF0NgH4xtFPJ1
-         j1wsqRTyVYp8K1AWRjE29g1Npy7IsZuKZYspAjTWmmPzPExY2QH7J5Rh4aD1Ic7kuake
-         OuYQ==
-X-Gm-Message-State: AOAM530QrS2UKoIU96FArVyTSgX0Ch1nK5aDQSfIIduQk93QWid6atyP
-        G8dlcP2FTqtScyPuH6JiJsk=
-X-Google-Smtp-Source: ABdhPJwzG01/rI+lB+WNrI4o/gRYNsXqeU+tovc3Necnl1+JDkWbcxz+TUTkCiPGGL+vawI5WStPUg==
-X-Received: by 2002:a17:906:d54e:b0:6db:b241:c0e2 with SMTP id cr14-20020a170906d54e00b006dbb241c0e2mr1771665ejc.724.1649934417588;
-        Thu, 14 Apr 2022 04:06:57 -0700 (PDT)
-Received: from [192.168.0.182] ([188.24.22.234])
-        by smtp.gmail.com with ESMTPSA id u4-20020aa7db84000000b004136c2c357csm871029edt.70.2022.04.14.04.06.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Apr 2022 04:06:57 -0700 (PDT)
-Message-ID: <80196942-4c33-7625-3945-86ce5b7b347f@gmail.com>
-Date:   Thu, 14 Apr 2022 14:06:56 +0300
+        with ESMTP id S242599AbiDNLWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 07:22:09 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D4A1EC6F;
+        Thu, 14 Apr 2022 04:19:39 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 38EF8240002;
+        Thu, 14 Apr 2022 11:19:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649935177;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZXu+LLMNfkUfWr3T7CXhJ1D/5v2k50j/CT0WpseHv5E=;
+        b=GX1HCgY+ayJUwFdp5ht4sKpJN8GAVyXJ8Qr37WNL14jWfOSKoRPTXPcgeB115Q+tRIzp7o
+        61e8s1FfJbEg0Zdsa6zhLCVOQx6nvfFRKo4TM49Cr+qSkNTiimx+D6uVNxhriG1EuxoXLP
+        MzpOxKIgnFB7vVKycvuQxsoVJTkfPzTR0qn4XQg5JfZu50Mzg7WpTM6p8aeHrtzwBakVQD
+        iOb/5ebsjHceMBSPFdhKZq66equNp/gxywTEU9V1APU20UQ0hZ3iDn27kTZZZ8qtyidEd9
+        UuK3818tlpALWD+uyCLiWpM9tHF/S4kpO6mt5FHeimTxfBwkv60g1p5xDKTA9g==
+Date:   Thu, 14 Apr 2022 13:19:32 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        linux-rtc@vger.kernel.org,
+        Michel Pollet <michel.pollet@bp.renesas.com>
+Subject: Re: [PATCH 3/7] rtc: rzn1: Add new RTC driver
+Message-ID: <20220414131932.5f5285d4@xps13>
+In-Reply-To: <Ylbw3bEc+QK4m9hX@mail.local>
+References: <20220405184716.1578385-1-miquel.raynal@bootlin.com>
+        <20220405184716.1578385-4-miquel.raynal@bootlin.com>
+        <Yk1UXjTk32Vc9+/k@mail.local>
+        <20220413172327.73d1fcc1@xps13>
+        <Ylbw3bEc+QK4m9hX@mail.local>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v1 3/3] iio: adc: ad4130: add AD4130 driver
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-References: <20220413094011.185269-1-cosmin.tanislav@analog.com>
- <20220413094011.185269-3-cosmin.tanislav@analog.com>
- <CAHp75VfzX8u45J3634yN5p-QTeT7w0Bos27OxeWOsb3MQ2VRVw@mail.gmail.com>
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <CAHp75VfzX8u45J3634yN5p-QTeT7w0Bos27OxeWOsb3MQ2VRVw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,351 +74,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alex,
 
+alexandre.belloni@bootlin.com wrote on Wed, 13 Apr 2022 17:48:45 +0200:
 
-On 4/13/22 18:41, Andy Shevchenko wrote:
-> On Wed, Apr 13, 2022 at 1:41 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
-> >
->> +#include <linux/property.h>
->> +#include <linux/regmap.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/spi/spi.h>
->> +
->> +#include <linux/iio/iio.h>
->> +#include <linux/iio/sysfs.h>
-> 
-> ...
-> 
->> +#define AD4130_8_NAME                  "ad4130-8"
-> 
-> What the meaning of -8 ? Is it number of channels? Or is it part of
-> the official model (part number)? Can we see, btw, Datasheet: tag with
-> a corresponding link in the commit message?
-> 
+> Hi Miqu=C3=A8l,
+>=20
+> On 13/04/2022 17:23:27+0200, Miquel Raynal wrote:
+> > > > +static int rzn1_rtc_probe(struct platform_device *pdev)
+> > > > +{
+> > > > +	struct rzn1_rtc *rtc;
+> > > > +	int ret;
+> > > > +
+> > > > +	rtc =3D devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
+> > > > +	if (!rtc)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	platform_set_drvdata(pdev, rtc);
+> > > > +
+> > > > +	rtc->clk =3D devm_clk_get(&pdev->dev, "hclk");
+> > > > +	if (IS_ERR(rtc->clk))
+> > > > +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk), "Missing hcl=
+k\n");
+> > > > +
+> > > > +	rtc->base =3D devm_platform_ioremap_resource(pdev, 0);
+> > > > +	if (IS_ERR(rtc->base))
+> > > > +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->base), "Missing re=
+g\n");
+> > > > +
+> > > > +	rtc->rtcdev =3D devm_rtc_allocate_device(&pdev->dev);
+> > > > +	if (IS_ERR(rtc->rtcdev))
+> > > > +		return PTR_ERR(rtc);
+> > > > +
+> > > > +	rtc->rtcdev->range_max =3D 3178591199UL; /* 100 years */   =20
+> > >=20
+> > > I'm not sure how you came to this value, this is 2070-09-22T05:59:59.
+> > > I'm pretty sure the RTC will not fail at that time. Also, the comment
+> > > seems fishy. =20
+> >=20
+> > The RTC itself as no "starting point", but just a counter that can
+> > count up to 100. So the max range is start-year + 100 years. But at
+> > this point I don't yet have access to the start-year value. What's
+> > your advise? =20
+>=20
+> The question is why is this limited to 100 years? My guess is that it
+> doesn't handle leap years properly if this is the case, there is only
+> one range that works, this is 2000-01-01 to 2099-12-31 like many other
+> RTCs.
 
-That's just the name specified in the datasheet. I honestly don't have
-much of an idea about why it is like that. Also, I already put the
-datasheet in the .yaml documentation. Do you really also want it
-in each commit message too?
+I don't know the real reason, actually there is just written that the
+"year" register counts up from 00 to 99 (in bcd).
 
-> 
->> +#define AD4130_RESET_CLK_COUNT         64
->> +#define AD4130_RESET_BUF_SIZE          (AD4130_RESET_CLK_COUNT / 8)
-> 
-> To be more precise shouldn't the above need to have DIV_ROUND_UP() ?
-> 
+> You can run rtc-range from rtc-tools after removing range_max to find
+> out.
 
-Does it look like 64 / 8 needs any rounding?
+Here is the result. It fails at 2069, which I believe means "100 years"
+from 1970. So what do you conclude with this? Shall I use
+rtc_time64_to_tm(2069-12-31 23:59:59) as the range_max value?
 
-> ...
-> 
->> +#define AD4130_FREQ_FACTOR             1000000000ull
->> +#define AD4130_DB3_FACTOR              1000
-> 
-> Ditto.
+# rtc-range=20
 
-AD4130_DB3_FACTOR is unit-less. In the datasheet, the relation between
-sampling frequency and 3db frequency is represented as a 0.xyz value,
-hence why the db3_div values and 1000 factor.
+Testing 2000-02-28 23:59:59.
+OK
 
-> 
->> +enum ad4130_fifo_mode {
->> +       AD4130_FIFO_MODE_DISABLED = 0b00,
->> +       AD4130_FIFO_MODE_WATERMARK = 0b01,
->> +};
->> +
->> +enum ad4130_mode {
->> +       AD4130_MODE_CONTINUOUS = 0b0000,
->> +       AD4130_MODE_IDLE = 0b0100,
->> +};
-> 
-> 0b?! Hmm... Not that this is bad, just not so usual :-)
-> 
+Testing 2038-01-19 03:14:07.
+OK
 
-I always use 0b to be consistent with the datasheet values which are
-represented in binary. I think it makes it easier to not mess up
-when initially translating the datasheet into code and later when
-cross-checking with the datasheet.
+Testing 2069-12-31 23:59:59.
+KO RTC_RD_TIME returned 22 (line 124)
 
-> 
->> +struct ad4130_filter_config {
->> +       enum ad4130_filter_mode         filter_mode;
->> +       unsigned int                    odr_div;
->> +       unsigned int                    fs_max;
->> +       unsigned int                    db3_div;
->> +       enum iio_available_type         samp_freq_avail_type;
->> +       int                             samp_freq_avail_len;
->> +       int                             samp_freq_avail[3][2];
->> +       enum iio_available_type         db3_freq_avail_type;
->> +       int                             db3_freq_avail_len;
->> +       int                             db3_freq_avail[3][2];
-> 
-> These 3:s can be defined?
->
-I could define IIO_AVAIL_RANGE_LEN and IIO_AVAIL_SINGLE_LEN and then
-define another IIO_AVAIL_LEN that is the max between the two.
-But that's just over-complicating it, really.
-
-> ...
-> 
-> 
->> +static int ad4130_get_reg_size(struct ad4130_state *st, unsigned int reg,
->> +                              unsigned int *size)
->> +{
-> 
->> +       if (reg >= ARRAY_SIZE(ad4130_reg_size))
->> +               return -EINVAL;
-> 
-> When this condition is true?
-
-When the user tries reading a register from direct_reg_access
-that hasn't had its size defined.
-
-> 
->> +       regmap_update_bits(st->regmap, AD4130_REG_IO_CONTROL, mask,
->> +                          value ? mask : 0);
-> 
-> One line?
-> 
-> No error check?
-> 
-
-I actually can't think of a scenario where this would fail. It doesn't
-if the chip is not even connected.
-
-> 
->> +       if (setup_info->enabled_channels)
->> +               return -EINVAL;
-> 
-> -EBUSY?
-> 
-
-Eh, I don't think so. It would be pretty impossible for the code to hit
-this if statement, taking into account the ad4130_find_slot() logic.
-I could as well not have it at all.
-
-> 
->> +static void ad4130_freq_to_fs(enum ad4130_filter_mode filter_mode,
->> +                             int val, int val2, unsigned int *fs, bool db3)
->> +{
->> +       const struct ad4130_filter_config *filter_config =
->> +               &ad4130_filter_configs[filter_mode];
->> +       unsigned long long dividend, divisor;
->> +       int temp;
->> +
->> +       dividend = filter_config->fs_max * filter_config->odr_div *
->> +                  (val * AD4130_FREQ_FACTOR + val2);
->> +       divisor = AD4130_MAX_ODR * AD4130_FREQ_FACTOR;
->> +
->> +       if (db3) {
->> +               dividend *= AD4130_DB3_FACTOR;
->> +               divisor *= filter_config->db3_div;
->> +       }
->> +
->> +       temp = AD4130_FS_MIN + filter_config->fs_max -
->> +              DIV64_U64_ROUND_CLOSEST(dividend, divisor);
->> +
->> +       if (temp < AD4130_FS_MIN)
->> +               temp = AD4130_FS_MIN;
->> +       else if (temp > filter_config->fs_max)
->> +               temp = filter_config->fs_max;
->> +
->> +       *fs = temp;
-> 
-> Would be nice to put a comment explaining the math behind this code.
-> 
->> +}
->> +
->> +static void ad4130_fs_to_freq(enum ad4130_filter_mode filter_mode,
->> +                             unsigned int fs, int *val, int *val2, bool db3)
->> +{
->> +       const struct ad4130_filter_config *filter_config =
->> +               &ad4130_filter_configs[filter_mode];
->> +       unsigned int dividend, divisor;
->> +       u64 temp;
->> +
->> +       dividend = (filter_config->fs_max - fs + AD4130_FS_MIN) *
->> +                  AD4130_MAX_ODR;
->> +       divisor = filter_config->fs_max * filter_config->odr_div;
->> +
->> +       if (db3) {
->> +               dividend *= filter_config->db3_div;
->> +               divisor *= AD4130_DB3_FACTOR;
->> +       }
->> +
->> +       temp = div_u64(dividend * AD4130_FREQ_FACTOR, divisor);
->> +       *val = div_u64_rem(temp, AD4130_FREQ_FACTOR, val2);
-> 
-> 
-> Ditto.
-> 
-I'll see what I can come up with.
-
-> 
->> + out:
-> 
-> out_unlock: ?
-> Ditto for similar cases.
-
-There's a single label in the function, and there's a mutex being
-taken, and, logically, the mutex must be released on the exit path.
-It's clear what the label is for to me.
-
-> 
->> +               *val = st->bipolar ? -(1 << (chan->scan_type.realbits - 1)) : 0;
-> 
-> Hmm... It seems like specific way to have a sign_extended, or actually
-> reduced) mask.
-> Can you rewrite it with the (potential)UB-free approach?
-> 
-> (Note, that if realbits == 32, this will have a lot of fun in
-> accordance with C standard.)
-> 
-
-Can you elaborate on this? The purpose of this statement is to shift the
-results so that, when bipolar configuration is enabled, the raw value is
-offset with 1 << (realbits - 1) towards negative.
-
-For the 24bit chips, 0x800000 becomes 0x000000.
-
-Maybe you misread it as left shift on a negative number? The number
-is turned negative only after the shift...
-
-> ...
-> 
->> +               *vals = (int *)st->scale_tbls[setup_info->ref_sel];
-> 
-> Can we get rid of casting here and in the similar cases?
-> 
-
-I feel like scale_tbls is best defined as an array of two-element
-arrays. Because its type is IIO_VAL_FRACTIONAL.
-But obviously the IIO framework can't take this case into account by
-itself, so we cast it so it receives what it wants.
-
-> 
->> +
->> +       if (val > AD4130_FIFO_SIZE)
->> +               return -EINVAL;
->> +
->> +       /*
->> +        * Always set watermark to a multiple of the number of enabled channels
->> +        * to avoid making the FIFO unaligned.
->> +        */
->> +       eff = rounddown(val, st->num_enabled_channels);
->> +
->> +       mutex_lock(&st->lock);
->> +
->> +       ret = regmap_update_bits(st->regmap, AD4130_REG_FIFO_CONTROL,
->> +                                AD4130_WATERMARK_MASK,
->> +                                FIELD_PREP(AD4130_WATERMARK_MASK,
->> +                                           ad4130_watermark_reg_val(eff)));
-> 
-> Temporary variable for mask?
-> 
-
-You mean for value?
-
-> 
->> +static int ad4130_get_ref_voltage(struct ad4130_state *st,
->> +                                 enum ad4130_ref_sel ref_sel,
->> +                                 unsigned int *ref_uv)
->> +{
->> +       struct device *dev = &st->spi->dev;
->> +       int ret;
->> +
->> +       switch (ref_sel) {
->> +       case AD4130_REF_REFIN1:
->> +               ret = regulator_get_voltage(st->regulators[2].consumer);
->> +               break;
->> +       case AD4130_REF_REFIN2:
->> +               ret = regulator_get_voltage(st->regulators[3].consumer);
->> +               break;
->> +       case AD4130_REF_AVDD_AVSS:
->> +               ret = regulator_get_voltage(st->regulators[0].consumer);
->> +               break;
->> +       case AD4130_REF_REFOUT_AVSS:
-> 
->> +               if (!st->int_ref_en) {
->> +                       ret = -EINVAL;
->> +                       break;
->> +               }
->> +
->> +               ret = st->int_ref_uv;
->> +               break;
-> 
-> Can be one if-else instead.
-> 
->> +       default:
->> +               ret = -EINVAL;
->> +               break;
->> +       }
->> +
->> +       if (ret <= 0)
-> 
-> = 0 ?! Can you elaborate, please, this case taking into account below?
-> 
-
-I guess I just did it because voltage = 0 doesn't make sense and would
-make scale be 0.0.
-
-
->> +               return dev_err_probe(dev, ret, "Cannot use reference %u\n",
->> +                                    ref_sel);
->> +
->> +       if (ref_uv)
->> +               *ref_uv = ret;
->> +
->> +       return 0;
->> +}
-> 
-
-> 
->> +       fwnode_property_read_u32(child, "adi,excitation-pin-0",
->> +                                &chan_info->iout0);
-> 
-> No default and/or error check?
-> 
-> ...
-> 
->> +       fwnode_property_read_u32(child, "adi,excitation-pin-1",
->> +                                &chan_info->iout1);
-> 
-> Ditto.
-
-Default is 0, just like the register defaults.
-
-> 
-> ...
-> 
->> +static int ad4130_parse_fw_children(struct iio_dev *indio_dev)
->> +{
->> +       struct ad4130_state *st = iio_priv(indio_dev);
->> +       struct device *dev = &st->spi->dev;
->> +       struct fwnode_handle *child;
->> +       int ret;
->> +
->> +       indio_dev->channels = st->chans;
->> +
->> +       device_for_each_child_node(dev, child) {
->> +               ret = ad4130_parse_fw_channel(indio_dev, child);
->> +               if (ret)
->> +                       break;
->> +       }
-> 
->> +       fwnode_handle_put(child);
-> 
-> There is no need to put fwnode if child is NULL. Moreover, the above
-> pattern might be percepted wrongly, i.e. one may think that
-> fwnode_handle_put() is a must after a loop.
-> 
-
-fwnode_handle_put already checks if the child is NULL. Why do the same
-check twice?
-
-> 
-> Can you explain why regmap locking is needed?
-> 
-
-Am I supposed to set .disable_locking = true since SPI has its own
-locking?
+Thanks,
+Miqu=C3=A8l
