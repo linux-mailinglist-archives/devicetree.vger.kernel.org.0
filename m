@@ -2,149 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8282B502554
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 08:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D8DD502559
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 08:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344324AbiDOGNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 02:13:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50938 "EHLO
+        id S1346065AbiDOGP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 02:15:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344205AbiDOGNx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 02:13:53 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028FE9D0EE
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 23:11:26 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id c125so280967iof.9
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 23:11:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Hth57rc9flgI5m/YWiERoaDPCoaY7k8I1BMtgGL+V+Y=;
-        b=msTzY8eSFKW/3mFmZ9lVowCymgcEumQdHKnLmPoK2AIQM5U2BaaSAmtjO2PKaxVJlz
-         2ES6raB6JnSfMCwORjUEBdMJCP/IKWm7oEkIpJi7Ccsa63N57Xk5Z7E4OYu8Sgfv605W
-         X2EpJ5uI7jXptNEMkbCMggrukuselAizifurv9hRWvp20KQQjqGEI/tiObfvLIU2zRvm
-         Yz6zO6HUX37CkAlBqIEJvy8HvscIiG16enT7d45uHZVgVelRnaPR8dEjuElmtFPTrwqb
-         BHHk0qAUzLAqSiDOfu0DgaJBrsy0J2AbneaUcCebHcM0ughM68guTlvQCenAdyULrrCn
-         hI3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Hth57rc9flgI5m/YWiERoaDPCoaY7k8I1BMtgGL+V+Y=;
-        b=PhIn7PT/5jwIPs6VYI2uveg5p667ZbB6WLotE6bVMD2C4+HDh2zCrD7+B5NR3BZhAR
-         HWvLOoHiOW58xZbeB3/X1OnzHDzQtDni5Gehw+vBYmA0q8Wg0Obl+kWMZPJ8mQSvFKNh
-         3HKYaW/qxFRmPsaw+/5fP/7fwUti4O/T+oiy9EfmVBT/pkG3uTbxsF8PcMl/XwW9BJmO
-         NKBuQnpoP/JaMo5CX0bIabs7S+c9E89TyHtIqGvK6xtbitDvxpQQYtONi7lYWADL5zqQ
-         O5DG4u4QFl4X1NLRAWQGzxgVYbVXF1JR4LywroCzJV34EUh8vWjYZkxjnEt6JhDdSpy3
-         CfRQ==
-X-Gm-Message-State: AOAM532rV65AcgXDg6TNvMlxdOz575IsVANlF/2Y4YIhTCbI7/ssPTEF
-        zHLtemtSTU4hmZH4Yh+HfpcPbRe8o2Y+P8CWqgLNTw==
-X-Google-Smtp-Source: ABdhPJyZ09w41DsSsnD+yZXGRzZeRuMf7sXpcaFWmdYFro5NPh1kmpFg/dv3eWJHhL0eqh7mxqj1hftj0f6IdG4RkOs=
-X-Received: by 2002:a05:6638:2509:b0:328:5838:f080 with SMTP id
- v9-20020a056638250900b003285838f080mr281369jat.163.1650003084905; Thu, 14 Apr
- 2022 23:11:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220415055916.28350-1-rex-bc.chen@mediatek.com>
- <20220415055916.28350-15-rex-bc.chen@mediatek.com> <CACb=7PXmA_n-xAb+ZkRJdTXu=Enbf6NbyxVa3VC1zmJwsrgQ1w@mail.gmail.com>
-In-Reply-To: <CACb=7PXmA_n-xAb+ZkRJdTXu=Enbf6NbyxVa3VC1zmJwsrgQ1w@mail.gmail.com>
-From:   Hsin-Yi Wang <hsinyi@google.com>
-Date:   Fri, 15 Apr 2022 14:10:58 +0800
-Message-ID: <CACb=7PX_qNOk+XhxZUj_OrCnn1Fqw_4P-3Dc4pQLBTYQkY4qfw@mail.gmail.com>
-Subject: Re: [PATCH V3 14/15] arm64: dts: mediatek: Add MediaTek CCI node for MT8183
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     rafael@kernel.org, Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tim Chang <jia-wei.chang@mediatek.com>, roger.lu@mediatek.com,
-        Kevin Hilman <khilman@baylibre.com>,
-        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
+        with ESMTP id S234910AbiDOGP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 02:15:27 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F7A9E9F8;
+        Thu, 14 Apr 2022 23:12:59 -0700 (PDT)
+X-UUID: ac95d6237a614672ad087c29d7a8d6ca-20220415
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:709456b6-9699-4958-a882-5a186cbd5162,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:039b3aa9-d103-4e36-82b9-b0e86991b3df,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: ac95d6237a614672ad087c29d7a8d6ca-20220415
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2078804141; Fri, 15 Apr 2022 14:12:54 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 15 Apr 2022 14:12:53 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 15 Apr 2022 14:12:53 +0800
+Message-ID: <e40e760a4674dd0562c46f285c2193c26f52fb41.camel@mediatek.com>
+Subject: Re: [PATCH v2 2/2] remoteproc: mediatek: allow reading
+ firmware-name from DT
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Mathieu Poirier" <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>
+Date:   Fri, 15 Apr 2022 14:12:53 +0800
+In-Reply-To: <20220414122140.6114-3-allen-kh.cheng@mediatek.com>
+References: <20220414122140.6114-1-allen-kh.cheng@mediatek.com>
+         <20220414122140.6114-3-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 15, 2022 at 2:06 PM Hsin-Yi Wang <hsinyi@google.com> wrote:
->
-> On Fri, Apr 15, 2022 at 1:59 PM Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
-> >
-> > Add MediaTek CCI devfreq node for MT8183.
-> >
-> > Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8183-evb.dts    | 4 ++++
-> >  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi       | 7 +++++++
-> >  3 files changed, 15 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > index 8953dbf84f3e..7ac9864db9de 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > @@ -412,6 +412,10 @@
-> >
-> >  };
-> >
-> > +&cci {
-> > +       proc-supply = <&mt6358_vproc12_reg>;
-> > +};
-> > +
-> >  &cpu0 {
-> >         proc-supply = <&mt6358_vproc12_reg>;
-> >  };
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > index 0f9480f91261..4786a32ee975 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > @@ -230,6 +230,10 @@
-> >         status = "okay";
-> >  };
-> >
-> > +&cci {
-> > +       proc-supply = <&mt6358_vproc12_reg>;
-> > +};
-> > +
-> >  &cpu0 {
-> >         proc-supply = <&mt6358_vproc12_reg>;
-> >  };
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 4ae3305d16d2..334728413582 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -280,6 +280,13 @@
-> >                 };
-> >         };
-> >
-> > +       cci: cci {
-> > +               compatible = "mediatek,mt8183-cci";
-> > +               clocks = <&apmixedsys CLK_APMIXED_CCIPLL>;
-> > +               clock-names = "cci_clock";
-> > +               operating-points-v2 = <&cci_opp>;
->
-> hi Rex,
->
-> cci_opp is not defined in dts.
->
-It's in the previous patch. Please ignore this comment.
+On Thu, 2022-04-14 at 20:21 +0800, Allen-KH Cheng wrote:
+> The SCP firmware blob differs between platforms and SoCs. We add
+> support in the SCP driver for reading the path of firmware file from
+> DT in order to allow these files to live in a generic file system
+> (or linux-firmware).
+> 
+> The firmware-name property is optional and the code falls back to the
+> old filename if the property isn't present.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> 
 
-> > +       };
-> > +
-> >         cpus {
-> >                 #address-cells = <1>;
-> >                 #size-cells = <0>;
-> > --
-> > 2.18.0
-> >
+Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+
