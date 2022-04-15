@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2213502C0D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF44B502C19
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354522AbiDOOnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 10:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
+        id S1349655AbiDOOr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 10:47:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354712AbiDOOm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:42:58 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF213700F;
-        Fri, 15 Apr 2022 07:40:24 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 974ECE000B;
-        Fri, 15 Apr 2022 14:40:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650033622;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zanZazVS+F6yO9Vb+0jek4QpQxEnTAcQmwRfYFhBd+k=;
-        b=XvjgWF12omvcB0S9wdZocsVRAM1fWYoHiR3MF0fsHo3P2MRQFyfstVNy00SFVoUnaYfNn5
-        DHTXUF6jawn9JnEU+1oqAbtBVncahboURiQbPA8my6MYgJfBtZa7dJYGANrQGdr2VlYBUO
-        h6jCzl9nA6Oc98wTw2G+Nthu3s1C5LycIA7OUXethKZt4aeXqiQzdpThwIS3Giy5cuXfJW
-        7fgNfwBtv3eQ3VWNQqBJe43/w+CMLSJuooTGyXCGiaStd+/42BLmNRw5wWflmuNrJUnDS7
-        IXLGtSXkRqiUo9FnvBUtdVr8XG8qvaPy51ebNxVCCOqaHDI+dbpqhktihqA2oA==
-Date:   Fri, 15 Apr 2022 16:38:53 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S244648AbiDOOr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:47:59 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25A05F258;
+        Fri, 15 Apr 2022 07:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1650033923;
+        bh=U7dqB8UZdHHYcktusZM81tIBeUrwtsptS8hwCJ84BSQ=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=X43BrQnSncztZRJImZpjxVHAH4tdWwC1mg3TK029fQVe5t3Vsm9FjvLrhx1LEseRl
+         QXPfB7Jer8/hIawzsUUqBVtQ7yDc93uB5N4pUNDpvz8lrsR0rGA9KuxxhOZ3zAfjFN
+         UHgXT6/cKRSYVcOMTG+oxIkxyh6zXU1S5UAzb7mQ=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([185.66.193.41]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MVNAr-1nY3652vVH-00SPdx; Fri, 15
+ Apr 2022 16:45:22 +0200
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     openbmc@lists.ozlabs.org,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Joel Stanley <joel@jms.id.au>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
- converter
-Message-ID: <20220415163853.683c0b6d@fixe.home>
-In-Reply-To: <Yll+Tpnwo5410B9H@lunn.ch>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
-        <20220414122250.158113-10-clement.leger@bootlin.com>
-        <YlismVi8y3Vf6PZ0@lunn.ch>
-        <20220415102453.1b5b3f77@fixe.home>
-        <Yll+Tpnwo5410B9H@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        devicetree@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: wpcm450: Enable watchdog by default
+Date:   Fri, 15 Apr 2022 16:45:18 +0200
+Message-Id: <20220415144518.800035-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+X-Provags-ID: V03:K1:CqVTFanuaMJnC1Z6w6sDj9tgxzWu5GijeIxMguqHBnYYhkokfWw
+ 13tsuJUSsMhUZHv9NqBNLVpb4mWXfv/4FM0Slnurg0XLe0f+cd1Ijr/BA6uqo8niJv/WkSS
+ vvNGpE45FSMC8RJxIIifsvhtGOjXKJIypse3Zi8A4X4OfD0OkX+UipgN1ReTx2U/ULSbWjK
+ 33I7CLc4644inmVlcDM3w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:k0u6G8bhtF8=:gQf5rUo2ESTDBT5j/PSKzU
+ ZDyzaomijA0GaJAK8H9BD/W7hd9L5qQHMABuFYjd9yfPED4sXdF2zWGKKfK40pc0/s1nQcl7V
+ OWtWhWa3Hjj4D+hAX5yD/Gn78cO+m43TxQ5mwEmLiyv6//mlcgpqkvXZOwcWFcKmfO8f0EGsL
+ FoHmeFcOsgcIS7mc5/n3DBE6Yl1qdsJfTZYoA/gBa8u0qmmZo2iQ6LB4eH4FnB8REIx14QADY
+ LFVDxGFUk5LGHMKbMgkAnqqCw/jFs2yY4JsV8anpp2ygRnJna2aix3pNBoz2Gv43JEmwo2wtR
+ ikrc/pnOn69utRlcOmTCrOPcZ97+I1rxWDWdUOnWAH3klnvdsdjKkEgLjWynb2AvHE8GZ4AtS
+ UldfvYt2fXdLVXz+H+iOaEGuX1wT1WXNWRYAenpnfsYHVCKFckPsFLGlJTylkKkHJ2yo09G1t
+ 9Si+98H3s6d0SvYevTylcyrl8tjGsBgruDdv0ssvyWqM9EXMdOw4gnEy6ITO2MS9tq2gWPles
+ LvoS3jKlqNJ775sCcTOtSJoxt7g23sCnSl5DibHJPvfaufNgEA4vMrYdVFq5Og3dofheMusep
+ egV5jnJ6gxe4ZG2kOOzWlUZ+vPLa7sZbQvgQlitj1mTWdVldmdCWr126OCdrfXVL2b2ipBZUN
+ PTNvG3YZHVsx0qvN5qR0hZF/svIvtNvrwSYxPZ/B7R620gFLQtZP4LyzlBtXwf0O1SYOdscy6
+ MEm53gzskZdy6oRVcnd63SVjqJgTkC6yZlSDY65vyznx7Rx6Z9pSB1cyOov8OuFg0ydhqw2bl
+ pw0KtSs8FP/rkSx7S4NmNd2aN1SzZdoTcvyz1+QHp1mIsdH+qdE3RGTG5ttojm9TsjQbLkkoy
+ kCiZoXJul+9fAjctV4oHCGR0vagTTQr8vntt5B0DQbadpASq+Dgr3RkP3/rYXFV2PJLSiUYWO
+ qxgIsPC9YdGTxUj/MahYG1Ke2qkIR9Frc0kUCh3/LpZRT2uI7gKAyLF/9ziZUAnqGuNe+nB8O
+ 4bkns7XGwhAaVJc73tfO2RRWSzxPfIS9sF83+wmdX0Bvisgu3uotsqFf6fnlcc/xNURD2J63e
+ 3r1iclEMSgGxec=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,110 +71,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, 15 Apr 2022 16:16:46 +0200,
-Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
+The watchdog timer is always usable, regardless of board design, so
+there is no point in marking the watchdog device as disabled-by-default
+in nuvoton-wpcm450.dtsi.
 
-> On Fri, Apr 15, 2022 at 10:24:53AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
-> > Le Fri, 15 Apr 2022 01:22:01 +0200,
-> > Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
-> >  =20
-> > > On Thu, Apr 14, 2022 at 02:22:47PM +0200, Cl=C3=A9ment L=C3=A9ger wro=
-te: =20
-> > > > Add the MII converter node which describes the MII converter that is
-> > > > present on the RZ/N1 SoC.   =20
-> > >=20
-> > > Do you have a board which actually uses this? I just noticed that
-> > > renesas,miic-cfg-mode is missing, it is a required property, but maybe
-> > > the board .dts file provides it?
-> > >=20
-> > >     Andrew =20
-> >=20
-> > Hi Andrew, yes, I have a board that defines and use that. =20
->=20
-> Great. Do you plan to mainline it? It is always nice to see a user.
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+=2D--
 
-Although we are working on a specific customer board, we will probably
-try to mailine this support for the RZ/N1D-DB.
+v2:
+- add Reviewed-by tag
 
->=20
-> > The
-> > renesas,miic-cfg-mode actually configures the muxes that are present on
-> > the SoC. They allows to mux the various ethernet components (Sercos
-> > Controller, HSR Controller, Ethercat, GMAC1, RTOS-GMAC).
-> > All these muxes are actually controller by a single register
-> > CONVCTRL_MODE. You can actually see the muxes that are present in the
-> > manual [1] at Section 8 and the CONVCTRL_MODE possible values are listed
-> > on page 180.
-> >=20
-> > This seems to be something that is board dependent because the muxing
-> > controls the MII converter outputs which depends on the board layout. =
-=20
->=20
-> Does it also mux the MDIO lines as well?
+v1:
+- https://lore.kernel.org/lkml/20220128221054.2002911-1-j.neuschaefer@gmx.=
+net/
+=2D--
+ arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts | 4 ----
+ arch/arm/boot/dts/nuvoton-wpcm450.dtsi                      | 1 -
+ 2 files changed, 5 deletions(-)
 
-Nope, the MDIO lines are muxed using the pinctrl driver.
+diff --git a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts b=
+/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
+index 3ee61251a16d0..1ae7ae4804275 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
++++ b/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
+@@ -77,7 +77,3 @@ &serial1 {
+ 	/* "Serial over LAN" port. Connected to ttyS2 of the host system. */
+ 	status =3D "okay";
+ };
+-
+-&watchdog0 {
+-	status =3D "okay";
+-};
+diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
+voton-wpcm450.dtsi
+index 57943bf5aa4a9..1c63ab14c4383 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
++++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
+@@ -83,7 +83,6 @@ watchdog0: watchdog@b800101c {
+ 			interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
+ 			reg =3D <0xb800101c 0x4>;
+ 			clocks =3D <&clk24m>;
+-			status =3D "disabled";
+ 		};
 
->=20
-> We might want to consider the name 'mux'. Linux already has the
-> concept of a mux, e.g. an MDIO mux, and i2c mux etc. These muxes have
-> one master device, which with the aid of the mux you can connect to
-> multiple busses. And at runtime you flip the mux as needed to access
-> the devices on the multiple slave busses. For MDIO you typically see
-> this when you have multiple Ethernet switch, each has its own slave
-> MDIO bus, and you use the mux to connect the single SOC MDIO bus
-> master to the various slave busses as needed to perform a bus
-> transaction. I2C is similar, you can have multiple SFPs, either with
-> there own IC2 bus, connected via a mux to a single I2C bus controller
-> on the SoC.
->=20
-> I've not looked at the data sheet yet, but it sounds like it operates
-> in a different way, so we might want to avoid 'mux'.
+ 		aic: interrupt-controller@b8002000 {
+=2D-
+2.35.1
 
-Indeed, Let's not refer to it as mux in the code at all. If using your
-proposal below, I guess we could avoid that.
-
->=20
-> > I'm open to any modification for this setup which does not really fit
-> > any abstraction that I may have seen.
-> >=20
-> > [1]
-> > https://www.renesas.com/us/en/document/mah/rzn1d-group-rzn1s-group-rzn1=
-l-group-users-manual-system-introduction-multiplexing-electrical-and =20
->=20
-> O.K, looking at figure 8.1.
->=20
-> What the user wants to express is something like:
->=20
-> Connect MI_CONV5 to SECOS PORTA
-> Connect MI_CONV4 to ETHCAT PORTB
-> Connect MI_CONV3 to SWITCH PORTC
-> Connect MI_CONV2 to SWITCH PORTD
->=20
-> plus maybe
->=20
-> Connect SWITCH PORTIN to RTOS
-
-Yes, that is correct.
-
->=20
-> So i guess i would express the DT bindings like this, 5 values, and
-> let the driver then try to figure out the value you need to put in the
-> register, or return -EINVAL. For DT bindings we try to avoid magic
-> values which get written into registers. We prefer a higher level
-> description, and then let the driver figure out how to actually
-> implement that.
-
-Ok, looks like a more flexible way to doing it. Let's go with something
-like this:
-
-renesas,miic-port-connection =3D <PORTIN_GMAC2>, <MAC2>, <SWITCH_PORTC>,
-<SWITCH_PORTB>, <SWITCH_PORTA>;
-
-
-
-
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
