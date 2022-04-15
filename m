@@ -2,127 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF3E502658
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 09:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEEAC502678
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 10:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239824AbiDOHr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 03:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33642 "EHLO
+        id S1351286AbiDOIGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 04:06:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235169AbiDOHrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 03:47:55 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2108.outbound.protection.outlook.com [40.107.113.108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C0107B540;
-        Fri, 15 Apr 2022 00:45:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=muhTtN0EBNPxJKUIe5IMNVYqO15lRXtVCOSNGDE6wD/IJpH/ZWAZi0PLx5OijYoTLvUqnuDxIuCqtz2dSJ7nHp4kW29bYkNtEPLHWqGzlFjeikkW4NZo11mUkYfI6fZe0BDNh0GTsqxOCQBqgbU73ROGy7k58iMnaR+QdkFwJ3YaobyixvB4Ln5YL6mgdLCn+Z2MZlyPzIFnzyIoOTgEVu7NVtNfWszP+SK+n/UqFlm65tQWOpspsd/+XkLWfzN+YFYcHYH16xnXRXaJdGv2hP8ZQ0tKbt8Wbh2sq0FjBMu3po3631oqMkUFEQZNoyfjz1VE8E4g7SPt7d612Co76Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rmV9f+6nYUuw2LDks05Jl3v5cuyFJ3VBiTALlGU/rXo=;
- b=a5Tr4hVFxrpY/L84070UX8eR7cZT45LXQfNfQU/+cUfQViEr2dZbaWgphy711f+yN73IFmRei3GQ0DXoa6Amrj05Z4OHnXHu5v5fIpVDyG4QB5x1DgCRzOWQlH/+nmWLKY9dgRTmd+yNoKsYDXVhUv2jFT2mX6+3WSONxOqiSGM3IM2QXzdkRw+QL04WxwZ3VC545G40i5lrQRTNI4rnKzLgpAF8T9bKlLxHVlm+52+q8XyXuyV8hssZ/uHKvcGKMxF9Xdpe0+sZ9+5z+j0h0vh3mu+Q4D6Oqk/SWSfWQWwY6woKnXSW1/0Gdk40LRjQnl2p/h1H4+PZErTDFEGNuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rmV9f+6nYUuw2LDks05Jl3v5cuyFJ3VBiTALlGU/rXo=;
- b=D+3XMjeY20Sq3cZSxzSGvTMZU0TOLJv9LbQpIgGBZ6g+ATZX8J2iR+xD+5FXUTerPHu0zAZOGZbLt8gedVXFWPDEYk6wMzpzyH083ztLKtzzrSVHH0rdRbBPzlKb8H3b680he2MjaeOLlCUbb4JWxldPUWuxX9/6NfywhzmwyzU=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYWPR01MB9526.jpnprd01.prod.outlook.com
- (2603:1096:400:1a7::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.27; Fri, 15 Apr
- 2022 07:45:24 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf%8]) with mapi id 15.20.5164.020; Fri, 15 Apr 2022
- 07:45:24 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Christoph Hellwig <hch@infradead.org>
-CC:     "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 2/7] ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
-Thread-Topic: [PATCH 2/7] ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
-Thread-Index: AQHYTkAe2bP/bIrOo0qCqgHyt2tjcazwjGmAgAAM2aA=
-Date:   Fri, 15 Apr 2022 07:45:24 +0000
-Message-ID: <TYBPR01MB5341AFC795E746B85DA98D20D8EE9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
- <20220412073647.3808493-3-yoshihiro.shimoda.uh@renesas.com>
- <YlkUo5fK2cFOCsAI@infradead.org>
-In-Reply-To: <YlkUo5fK2cFOCsAI@infradead.org>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bc11adab-7deb-427b-4408-08da1eb3e695
-x-ms-traffictypediagnostic: TYWPR01MB9526:EE_
-x-microsoft-antispam-prvs: <TYWPR01MB9526A94C44988F238A84E472D8EE9@TYWPR01MB9526.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lNt27c0Hknke1ROQTwlR2J+jsTbQulr416YUTScWLl/g7/Bv00bG3a/1HmDtSW2709meQ2D7KY2B+hk0oCL7cYmj6axiILawiPDP/OMIgc3q8sGCyAprGsZLGRMjkGamXiWxT9nKbs6JHhAyyxUKDTGTTnraEg8ccIjwXj2JzIsYgsqdGxHqygVUBsqKjWdRBGtoamIneUywqGE+woWyVzVfNJykXs1yA70F94Ro37vZfy6lFoYFYwVgrPtmh0lqzvIkWYLFVef69i099Pe4wLB+1wH0aHzDXGqXmPMh/XeUZoHDZILdEQ1oPd78lrCx8Ei2HHAQw1oh/nuW0+0WiHyGVZYlSFg4CTys9PFOeLel/HpMwx+NkvanSqE8LSPpCa1w3W91iw8MrTsQcFTMn740ZableR+OkzSFcZ8o8aQRzeV93YntDSnMsMB7pT+RaJXPWU3Y6QCxUNe1LuMHHZBloJESZss3wyc8WZGu5jkIk+LolEfrlfyQD4vHUClhH0TZlbtOo+h16YdN48v889q9X4mZSPcO78lY7nCgs6wfS+CMUuh1rXKrzK7/Y2U8+EvtWLDsvz0jETXXgqG81g/rMCn6SqH5DPUP00TPlPBNuz4uoMoEJ0Ek/3UgtFsd8qoiJXClGRDj3vZARU1lYnWiukEY77vzfI/rFnlAK1jroe5YYWxVwvF06MgPoUQ+X3sg/+ajvDo5lkkzXwZpdA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(76116006)(8676002)(64756008)(55016003)(7416002)(508600001)(122000001)(6506007)(71200400001)(7696005)(2906002)(9686003)(33656002)(38070700005)(52536014)(66556008)(83380400001)(66946007)(54906003)(38100700002)(66476007)(6916009)(66446008)(4326008)(86362001)(5660300002)(186003)(8936002)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?5xvEZNROdXDJp/gZUA4dD0tkZanj5cuqFFdqW98qAcFaRfV2nbSclO19Ohjg?=
- =?us-ascii?Q?f8P8MqxLhrCLfvn9ZemPh5ABHPQ7LGGtnx2mmMvDrb+47tEPwSngehZ2WgPH?=
- =?us-ascii?Q?/q1VU3ldssP4DPcJB9fdLWh1VoQ+d1yXvspY3F3E2xVfZoLBZHtQEAXr9jHk?=
- =?us-ascii?Q?6d/OhEZfU8oow6423w+5KQMALTpFg8LPjaZQEN4ahBxR6dV+Itoh+K0EDxzd?=
- =?us-ascii?Q?XI1p4B/7SUgHzVuXA7Rg+eUkaVhRdZp2sgUnGC55agoY3I2bH+61ZJ+jWj3k?=
- =?us-ascii?Q?TOZEt3h+l+ot33ls1a4534uPPiTWdLtAESO0/Oy2g17ZqHJ0Wemw9sZkOPlI?=
- =?us-ascii?Q?HQAlI0w09a02yxcaMX0j32bHkByFlHTv5miVUX+dUaXpSH0o6ZUNZDgLn070?=
- =?us-ascii?Q?4XiPbQeRYkgvTO0VaCzRvKeeUyrs8HbFUCIft1+Ior96dfyFN7ZXRtT5V2uU?=
- =?us-ascii?Q?d9TcC/8iEoFpaHPQ2qaXLEuV+m00z39iqv/3gtMNWLgc5xMR4RxFK88E4vFw?=
- =?us-ascii?Q?fwMCFoJP5AxDaDssh17sPnl30xIidriqr/yN7zoZshiztWFctnY56BrbjDHG?=
- =?us-ascii?Q?QDw2uBlax+gqb2Pw6DPsoegiFclyt/N464NsXCm2CYJbQba4tVXrBWUgHIw/?=
- =?us-ascii?Q?+Ge36J/9rzc6fiqMmRWaxbk16vqRmefZVnWkGiT6W7omfXslBULcEZHsadD4?=
- =?us-ascii?Q?r56PF0PkPj1w9XEOT9YGU8q7D+z66iv7/yZdCyqhVq2roq5pm4wTT1+oKyFi?=
- =?us-ascii?Q?ZINH7RCSUrz2V25Cf1gDCaO7AValbWPPnMTTGfHlPxOipYQBbeKCXPFhPS/c?=
- =?us-ascii?Q?LgOwshAG9e2QMFbuhNnFi/0Z8kmbDBQ1lAbGVLPC4EDqIbJpQMjkwQ2QDb0w?=
- =?us-ascii?Q?ikif8U+VOHvRKbS45WrziqAppqB1U2WsGa8iPy5nQG0NOGmmKNN/RPIkalYn?=
- =?us-ascii?Q?lUYOZRIXJnyIYwrCtCpzg7Ak5QX5CIS4PCp6ib2TUvq/XA4Jm4aVyJ7yOhIH?=
- =?us-ascii?Q?PaT1bqWiTRtYshCpU1NiLoGVD9m32Wd+CeYkfSvIw2oyOJ3Ad/TFKnp3ypSz?=
- =?us-ascii?Q?bcwsjevH00onQnQGpdzaO52dAV/ogv+u0HUPsL0XNRnfYv473lNZuMCohsnF?=
- =?us-ascii?Q?Uzd79zI4DKHl0tjmvtsooNMFTAe1A08/TI4hPVlK//fiEgPMxLiHGwgvANVH?=
- =?us-ascii?Q?jO4h1LclB0uvFpQ4nDxMoaMKVcyZhGu8E6+ipZY9eFLD8VnPGCWCeDA2tJ7R?=
- =?us-ascii?Q?MevfZ9rjEUk4/JAll77MP56pyLIkO8WlyKajbp940kUi0cNBPglBMy87/CQI?=
- =?us-ascii?Q?vC28jajLGToerFmhy7Wl2xgBURj7VEoYIANEzwo+qAhZoykGb2awmNYUte0c?=
- =?us-ascii?Q?f1igC+eVqcO45gYhaobLW6zJgclAqo3jnscSohS+4VYJjexFJXsSbaTiWwKP?=
- =?us-ascii?Q?MWU+0ngwa43C/LX8oieVE5Zd3v/9RrSOzJI5EVlzdMkUrZVtXOrHF5WdbLsq?=
- =?us-ascii?Q?84FDk5LZdOv4eDL2rrUorxTgrv1UanRYsPFxKnZ6C8wWnjrAQLnp7YWFZAbv?=
- =?us-ascii?Q?OlJgU9ec+h/2/UVY+8SqG7qIe7WCcVPntD0uLGr7Fj0Fh/rkTGPYHMSB5d1E?=
- =?us-ascii?Q?FZiPxLu/m6Q2Rc9/ImU8lrNoH76qkfWOt3VAcAYUQ3bp8jAj02LuKrNKp3Io?=
- =?us-ascii?Q?g/P7T+uZSNMmbwDxITYGsg63uvzMCPEgNN7IegHe/BLWimMT3FsHdGQWMSky?=
- =?us-ascii?Q?27TytVVUUoekMhaKcvyyYiWVsz9yt0ztCSul2v6N1QR+6J2jaNl5qXtkDxmE?=
-x-ms-exchange-antispam-messagedata-1: tHNC6BJvONSH/7/HFoGihIZod3WE3yYD6C0=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S244921AbiDOIGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 04:06:09 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3A0159A61;
+        Fri, 15 Apr 2022 01:03:40 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23F83J9P130367;
+        Fri, 15 Apr 2022 03:03:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650009799;
+        bh=NTy+10/rvDVv3oXf+hx+iRizmeAw7E8r66BdzQEdhq4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=lsgpdF1FJ4rrxua3gRmJL4ijFC0xjqwg+yoeNRIs7RAZg7aCcKfkFLO+rKrxvK3jZ
+         pCCSHj1sbaeeuTEvQbhDXS5kBoaxp+4lMVDtD5UKa0XQr1Nw22H2SVTD/98dPFF7cI
+         uZ1W7QA7Gv4Zv+e8s/Eo3mNXBigRf3xqzicj7G80=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23F83J0n002373
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 15 Apr 2022 03:03:19 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 15
+ Apr 2022 03:03:19 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 15 Apr 2022 03:03:19 -0500
+Received: from [10.250.235.115] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23F83Fn4088810;
+        Fri, 15 Apr 2022 03:03:16 -0500
+Message-ID: <b0ae635f-461f-be80-ebff-a548c9dd66af@ti.com>
+Date:   Fri, 15 Apr 2022 13:33:14 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc11adab-7deb-427b-4408-08da1eb3e695
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2022 07:45:24.2399
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: T84AdxDhGbpSf9PKuEl2LBn5HxeYkwvkhnKx25Zf6F2TVeyczrT+fAEdXHcDbRPHCvlyCIDI5bcyQqMu/UvjEID7AUYPhVUmm2cFt/QnBBLtivFyPX59pK+GwGy/M+tr
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9526
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 2/2] rtc: Introduce ti-k3-rtc
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20220412073138.25027-1-nm@ti.com>
+ <20220412073138.25027-3-nm@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20220412073138.25027-3-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -130,41 +70,206 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christoph,
+Hi,
 
-> From: Christoph Hellwig, Sent: Friday, April 15, 2022 3:46 PM
->=20
-> On Tue, Apr 12, 2022 at 04:36:42PM +0900, Yoshihiro Shimoda wrote:
-> > Add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS for a broken host controller
-> > of the 64-bit addressing supported capability.
->=20
-> Why can't you just clear MASK_64_ADDRESSING_SUPPORT for this case?
+On 12/04/22 1:01 pm, Nishanth Menon wrote:
+> +/**
+> + * k3rtc_fence  - Ensure a register sync took place between the two domains
+> + * @priv:      pointer to priv data
+> + *
+> + * Return: 0 if the sync took place, else returns -ETIMEDOUT
+> + */
+> +static int k3rtc_fence(struct ti_k3_rtc *priv)
+> +{
+> +	u32 timeout = priv->sync_timeout_us;
+> +	u32 mask = K3RTC_RD_PEND_BIT | K3RTC_WR_PEND_BIT;
+> +	u32 val = 0;
+> +
+> +	while (timeout--) {
+> +		val = k3rtc_readl(priv, REG_K3RTC_SYNCPEND);
+> +		if (!(val & mask))
+> +			return 0;
+> +		usleep_range(1, 2);
+> +	}
 
-Unfortunately, the register (REG_CONTROLLER_CAPABILITIES) is read-only.
-So, software cannot clear MASK_64_ADDRESSING_SUPPORT on the register.
-I am also asking a person in charge of hardware why the MASK_64_ADDRESSING_=
-SUPPORT
-is set now, but I didn't get any feedback yet...
+readl_poll_timeout() ?
 
-However, we can add the following code instead. Perhaps, it's better than t=
-he current patch?
+> +
+> +	pr_err("RTC Fence timeout: 0x%08x\n", val);
 
----
---- a/drivers/scsi/ufs/ufshcd.c
-+++ b/drivers/scsi/ufs/ufshcd.c
-@@ -2201,6 +2201,9 @@ static inline int ufshcd_hba_capabilities(struct ufs_=
-hba *hba)
- 	((hba->capabilities & MASK_TASK_MANAGEMENT_REQUEST_SLOTS) >> 16) + 1;
- 	hba->reserved_slot =3D hba->nutrs - 1;
-=20
-+	if (hba->quirks & UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS)
-+		hba->capabilities &=3D ~MASK_64_ADDRESSING_SUPPORT;
-+
- 	/* Read crypto capabilities */
- 	err =3D ufshcd_hba_init_crypto_capabilities(hba);
- 	if (err)
----
+Can we use dev_err()?  Provides better indication of the driver throwing
+error.
 
-Best regards,
-Yoshihiro Shimoda
+> +	return -ETIMEDOUT;
+> +}
+> +
+> +static inline int k3rtc_check_unlocked(struct ti_k3_rtc *priv)
+> +{
+> +	u32 val;
+> +
+> +	val = k3rtc_readl(priv, REG_K3RTC_GENERAL_CTL);
+> +	return (val & K3RTC_UNLOCK_BIT) ? 0 : 1;
+> +}
+> +
+> +static int k3rtc_unlock_rtc(struct ti_k3_rtc *priv)
+> +{
+> +	u32 timeout = priv->sync_timeout_us;
+> +	int ret;
+> +
+> +	ret = k3rtc_check_unlocked(priv);
+> +	if (!ret)
+> +		return ret;
+> +
+> +	k3rtc_writel(priv, REG_K3RTC_KICK0, K3RTC_KICK0_UNLOCK_VALUE);
+> +	k3rtc_writel(priv, REG_K3RTC_KICK1, K3RTC_KICK1_UNLOCK_VALUE);
+> +
+> +	/* Skip fence since we are going to check the unlock bit as fence */
+> +	while (timeout--) {
+> +		ret = k3rtc_check_unlocked(priv);
+> +		if (!ret)
+> +			return ret;
+> +		usleep_range(1, 2);
+> +	}
 
+readl_poll_timeout() ?
+
+> +
+> +	return -ETIMEDOUT;
+> +}
+> +
+> +static int k3rtc_configure(struct device *dev)
+> +{
+> +	int ret;
+> +	u32 ctl;
+> +	struct ti_k3_rtc *priv = dev_get_drvdata(dev);
+> +
+> +	/*
+> +	 * HWBUG: The compare statemachine is broken if the RTC module
+> +	 * is NOT unlocked in under one second of boot - which is pretty long
+> +	 * time from the perspective of Linux driver (module load, u-boot
+> +	 * shell all can take much longer than this.
+> +	 *
+> +	 * In such occurrence, it is assumed that the RTC module is un-usable
+> +	 */
+> +	if (priv->soc->unlock_irq_erratum) {
+> +		ret = k3rtc_check_unlocked(priv);
+> +		/* If there is an error OR if we are locked, return error */
+> +		if (ret) {
+> +			dev_err(dev, HW_ERR "Erratum i2327 unlock QUIRK! Cannot operate!!\n");
+> +			return -EFAULT;
+> +		}
+> +	} else {
+> +		/* May Need to explicitly unlock first time */
+> +		ret = k3rtc_unlock_rtc(priv);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to unlock(%d)!\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	/* Enable Shadow register sync on 32k clk boundary */
+> +	ctl = k3rtc_readl(priv, REG_K3RTC_GENERAL_CTL);
+> +	ctl |= K3RTC_O32K_OSC_DEP_EN_BIT;
+> +	k3rtc_writel(priv, REG_K3RTC_GENERAL_CTL, ctl);
+> +
+> +	/*
+> +	 * Wait at least 2 clk sync time before proceeding further programming.
+> +	 * This ensures that the 32k based sync is active.
+> +	 */
+> +	usleep_range(priv->sync_timeout_us, priv->sync_timeout_us + 5);
+> +
+> +	/* We need to ensure fence here to make sure sync here */
+> +	ret = k3rtc_fence(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed fence osc_dep enable(%d) - is 32k clk working?!\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Lets just make sure we get consistent time value */
+> +	ctl &= ~K3RTC_CNT_FMODE_MASK;
+> +	/*
+> +	 * FMODE setting: Reading lower seconds will freeze value on higher
+> +	 * seconds. This also implies that we must *ALWAYS* read lower seconds
+> +	 * prior to reading higher seconds
+> +	 */
+> +	ctl |= K3RTC_CNT_FMODE_S_CNT_VALUE;
+> +	k3rtc_writel(priv, REG_K3RTC_GENERAL_CTL, ctl);
+> +
+> +	/* Clear any spurious IRQ sources if any */
+> +	k3rtc_writel(priv, REG_K3RTC_IRQSTATUS_SYS,
+> +		     K3RTC_EVENT_ON_OFF_BIT | K3RTC_EVENT_OFF_ON_BIT);
+> +	/* Disable all IRQs */
+> +	k3rtc_writel(priv, REG_K3RTC_IRQENABLE_CLR_SYS,
+> +		     K3RTC_EVENT_ON_OFF_BIT | K3RTC_EVENT_OFF_ON_BIT);
+> +
+> +	/* And.. Let us Sync the writes in */
+> +	ret = k3rtc_fence(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to fence(%d)!\n", ret);
+> +		return ret;
+
+nit: this can be dropped as next statement will return error code anyway
+
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+
+[...]
+
+> +
+> +static const struct ti_k3_rtc_soc_data ti_k3_am62_data = {
+> +	.unlock_irq_erratum = true,
+> +};
+> +
+> +static const struct of_device_id ti_k3_rtc_of_match_table[] = {
+> +	{.compatible = "ti,am62-rtc", .data = &ti_k3_am62_data},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, ti_k3_rtc_of_match_table);
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int ti_k3_rtc_suspend(struct device *dev)
+
+ __maybe_unused preferred instead of #ifdef for better compile coverage
+but upto you.
+
+> +{
+> +	struct ti_k3_rtc *priv = dev_get_drvdata(dev);
+> +
+> +	if (device_may_wakeup(dev))
+> +		enable_irq_wake(priv->irq);
+> +	return 0;
+> +}
+> +
+> +static int ti_k3_rtc_resume(struct device *dev)
+> +{
+> +	struct ti_k3_rtc *priv = dev_get_drvdata(dev);
+> +
+> +	if (device_may_wakeup(dev))
+> +		disable_irq_wake(priv->irq);
+> +	return 0;
+> +}
+> +#endif
+> +
+> +static SIMPLE_DEV_PM_OPS(ti_k3_rtc_pm_ops, ti_k3_rtc_suspend, ti_k3_rtc_resume);
+> +
+> +static struct platform_driver ti_k3_rtc_driver = {
+> +	.probe = ti_k3_rtc_probe,
+> +	.driver = {
+> +		   .name = "rtc-ti-k3",
+> +		   .of_match_table = ti_k3_rtc_of_match_table,
+> +		   .pm = &ti_k3_rtc_pm_ops,
+> +		   },
+Extra tab?
+
+> +};
+> +module_platform_driver(ti_k3_rtc_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("TI K3 RTC driver");
+> +MODULE_AUTHOR("Nishanth Menon");
+> +MODULE_ALIAS("platform:rtc-ti-k3");
+> -- 2.31.1
