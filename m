@@ -2,143 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 093B9502591
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 08:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E1A95025D2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 08:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350438AbiDOGbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 02:31:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51418 "EHLO
+        id S1350790AbiDOGsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 02:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236018AbiDOGbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 02:31:36 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA1E50456;
-        Thu, 14 Apr 2022 23:29:08 -0700 (PDT)
-X-UUID: b225d94715c9430390a03777fc3720d7-20220415
-X-UUID: b225d94715c9430390a03777fc3720d7-20220415
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 113088385; Fri, 15 Apr 2022 14:29:05 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 15 Apr 2022 14:29:04 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 15 Apr
- 2022 14:29:03 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 15 Apr 2022 14:29:03 +0800
-Message-ID: <e1be95ddcdd01cf859e4d18bea95f8f55cd9ed1d.camel@mediatek.com>
-Subject: Re: [PATCH V3 10/15] cpufreq: mediatek: Add counter to prevent
- infinite loop when tracking voltage
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@google.com>
-CC:     <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tim Chang <jia-wei.chang@mediatek.com>,
-        <roger.lu@mediatek.com>, Kevin Hilman <khilman@baylibre.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 15 Apr 2022 14:29:03 +0800
-In-Reply-To: <CACb=7PXykpUgZ+QG93Bd-vWstq2V-k6G0zTg+D1q2WchJHPbig@mail.gmail.com>
-References: <20220415055916.28350-1-rex-bc.chen@mediatek.com>
-         <20220415055916.28350-11-rex-bc.chen@mediatek.com>
-         <CACb=7PXykpUgZ+QG93Bd-vWstq2V-k6G0zTg+D1q2WchJHPbig@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1350811AbiDOGse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 02:48:34 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8255BB53D7;
+        Thu, 14 Apr 2022 23:46:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=0GMCl4FT7i83gQyY/lyNePAQBYdHzfcz8xZ5oYWUOPs=; b=KQ7LnthuGiA11srXZ/gBIINT9P
+        ZPEy+pg4ZpBUB7M8tgOFaD4pdbYF3gpRGBWNJAFL9Ah40w8Wqy+Cu2b2fzazJlPdOUUqzNQjOEZlT
+        lyvJ/LbdaP3Df969G92anDGVZ9eg6hoG2Pk9v8W1V55qnsouQPebU5/KWO776LIc/bPt1Zy3T8yYV
+        LTAN9C6MiXg5krIhJqK70F6s3KfW512dQ1TXQJFrnXutZ+WiRgzHC3xFAzwmZwgh6l7bTwac8Ofzz
+        5eA7DeyAi4ZXVOK+c1OiNj3JEDKHhnhje8ada5SSflX8OGrUt59/UHWk6UhgftpudwgOjbp7rEB21
+        Ss3t5pVQ==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1nfFiN-0095x3-33; Fri, 15 Apr 2022 06:45:55 +0000
+Date:   Thu, 14 Apr 2022 23:45:55 -0700
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/7] ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
+Message-ID: <YlkUo5fK2cFOCsAI@infradead.org>
+References: <20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220412073647.3808493-3-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220412073647.3808493-3-yoshihiro.shimoda.uh@renesas.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-04-15 at 14:14 +0800, Hsin-Yi Wang wrote:
-> On Fri, Apr 15, 2022 at 1:59 PM Rex-BC Chen <rex-bc.chen@mediatek.com
-> > wrote:
-> > 
-> > To prevent infinite loop when tracking voltage, we calculate the
-> > maximum
-> > value for each platform data.
-> > We assume min voltage is 0 and tracking target voltage using
-> > min_volt_shift for each iteration.
-> > The retry_max is 3 times of expeted iteration count.
-> > 
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  drivers/cpufreq/mediatek-cpufreq.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > 
-> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
-> > b/drivers/cpufreq/mediatek-cpufreq.c
-> > index cc44a7a9427a..d4c00237e862 100644
-> > --- a/drivers/cpufreq/mediatek-cpufreq.c
-> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
-> > @@ -86,6 +86,16 @@ static int mtk_cpufreq_voltage_tracking(struct
-> > mtk_cpu_dvfs_info *info,
-> >         struct regulator *proc_reg = info->proc_reg;
-> >         struct regulator *sram_reg = info->sram_reg;
-> >         int pre_vproc, pre_vsram, new_vsram, vsram, vproc, ret;
-> > +       int retry_max;
-> > +
-> > +       /*
-> > +        * We assume min voltage is 0 and tracking target voltage
-> > using
-> > +        * min_volt_shift for each iteration.
-> > +        * The retry_max is 3 times of expeted iteration count.
-> > +        */
-> > +       retry_max = 3 * DIV_ROUND_UP(max(info->soc_data-
-> > >sram_max_volt,
-> > +                                        info->soc_data-
-> > >proc_max_volt),
-> > +                                    info->soc_data-
-> > >min_volt_shift);
-> 
-> mtk_cpufreq_voltage_tracking() will be called very frequently.
-> retry_max is the same every time mtk_cpufreq_voltage_tracking() is
-> called. Is it better to calculate before and store in
-> mtk_cpu_dvfs_info?
-> 
+On Tue, Apr 12, 2022 at 04:36:42PM +0900, Yoshihiro Shimoda wrote:
+> Add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS for a broken host controller
+> of the 64-bit addressing supported capability.
 
-Hello Hsin-Yi,
-
-Thanks for your reviwew.
-I will do this in next version.
-
-BRs,
-Rex
-
-> > 
-> >         pre_vproc = regulator_get_voltage(proc_reg);
-> >         if (pre_vproc < 0) {
-> > @@ -151,6 +161,12 @@ static int mtk_cpufreq_voltage_tracking(struct
-> > mtk_cpu_dvfs_info *info,
-> > 
-> >                 pre_vproc = vproc;
-> >                 pre_vsram = vsram;
-> > +
-> > +               if (--retry_max < 0) {
-> > +                       dev_err(info->cpu_dev,
-> > +                               "over loop count, failed to set
-> > voltage\n");
-> > +                       return -EINVAL;
-> > +               }
-> >         } while (vproc != new_vproc || vsram != new_vsram);
-> > 
-> >         return 0;
-> > --
-> > 2.18.0
-> > 
-
+Why can't you just clear MASK_64_ADDRESSING_SUPPORT for this case?
