@@ -2,115 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA891502FBE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 22:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0084D5031A9
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 01:10:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351716AbiDOU0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 16:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39092 "EHLO
+        id S1354229AbiDOVJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 17:09:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352560AbiDOU0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 16:26:07 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1B8DCE21
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 13:23:37 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id bj24so3803669oib.11
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 13:23:37 -0700 (PDT)
+        with ESMTP id S1354199AbiDOVI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 17:08:58 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E319716D4;
+        Fri, 15 Apr 2022 14:06:28 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id c1so7179235qvl.3;
+        Fri, 15 Apr 2022 14:06:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=eRleA2ofzoX2IeccF8Nd0DI1ypt5SFTqVlhM+d2F6FM=;
-        b=XnjjU3BEIFNFHO4V5/9HYSGf34YL0Ta6fBTy7JezgNXWtbJozrn2X+kKN3COKD/6Mw
-         0g3S/LZNC18iO903GQVANxofB3P2gEIFPUCr2SkDRQv7jDmkOctENUSmNJHkL21OK4vn
-         9KkZgrVxopxtNkwv/xa6n24eck21wdBeHGGoM=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=UMYeeN0iZUy6EfrHqDAGGWFWHi99PGIp7rnql4YH69k=;
+        b=jVy4wLQXJ5Xiw1bj4CpGcPN5pnCX6r59sOQO66Jz2Vvt9y4Tzwih3hlFcvyeCRD4Hr
+         LG25pmwmM7+PyhWhkrHsXBYgNA8egqCTX/GQpcuiu6Z3xr6hQaQ674okap8z7lUy6jWH
+         cI/MZpMTQQiQEtnnhPPF3nS2ALkqeJB3ADFpyVw3h1HJRB32It3hjvY5e+/WxOe6LS9p
+         ZArv72BnSZ4UFPQCo6s86Gyg39ezv/dxU+L7EUHvsIKugHNqdCRkYJ+3Ut1aZ4aXxcsg
+         YsXNTagZdOsdTXEW82dZ0JfC00y5Xlc3ZGqxfiowc/pXWOgMcQN9oy4bonSI9KD2lUHy
+         eLhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=eRleA2ofzoX2IeccF8Nd0DI1ypt5SFTqVlhM+d2F6FM=;
-        b=tXLJv6XsAgl8bWJLHUl7N3lDQz4DKeuRJp9ICO7kAElQBAIeXsXcHMD+B1jh/Zywnk
-         QxmC3Nii49eiTX9pOYDFJH2bi4KqIti/Yj4wYq9sLHbzJIAm+9EZUe8ZtGlgyOhuNfaI
-         5ZyFOltzvNcGoyEmWWDaGpnyGZfDP3j528p1ScnacyUYALeYXGKA/XJf9haNiXSV0ecG
-         w6MDoXj6XihS52lsBpmsKo74KxsncZK1o53lbiH09ftz++e/+OtwM1kBbeeRBYf/koPX
-         /uSISXcMV4yeOeibuMaewdIzyCX7ZowROEERZDK8HyA4jpIWuwLV/QJt/r2sjxYNjGH6
-         79Ng==
-X-Gm-Message-State: AOAM5329PiuBoi8WpjlZm9rgxCA/P/lVZi38CJjIpGmrzPeE3tpORn4A
-        lx/m6B5yjfOLGel0yFmIe1gCPi52syeYnUy97sKDTA==
-X-Google-Smtp-Source: ABdhPJwl3Y2g621FA23XrMTwjotGB1KiG0Bug1QLCnjYGEe0Y+cwQI4zgqrP1VtkPaj+lMHht+J7CylHQEwxOjQVKCo=
-X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
- n62-20020acabd41000000b002ecff42814fmr290395oif.63.1650054217338; Fri, 15 Apr
- 2022 13:23:37 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 15 Apr 2022 13:23:36 -0700
-MIME-Version: 1.0
-In-Reply-To: <20220202053207.14256-1-tdas@codeaurora.org>
-References: <20220202053207.14256-1-tdas@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 15 Apr 2022 13:23:36 -0700
-Message-ID: <CAE-0n52T9Z+LS3KMVeSBsad=Em3e27J=rEzHTB0WS-b5M=owFQ@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio
- clock controllers
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=UMYeeN0iZUy6EfrHqDAGGWFWHi99PGIp7rnql4YH69k=;
+        b=RcPyowM++aUzcItkjHClM99r3cz5ZHL7xWaSpH9m2whrBoYaolL32YEaXva+2zfxdS
+         Su+9j7+zgaCyjTmOeGCcBjO/nFeiZUlJs3/j1xPxwSlAghDKvdHpgMze1tT/7kiPzav7
+         3zyI/A/T61m3yuE0fgFNYhdO4Rf459sSAipWVSz71OgSUOP4K5ADQYCkyQut2TZTGIOI
+         3tEffpKr9xy+L/zoO/IQm7l3MAnwYq1MbDCL28sz3KQ4gy4DFmjwq/NAuoT1HEgC6kxW
+         zlThGO3LAopczSNdFyHTMdBokvZKAScDUNMqRql1GDTWhfXtkoGG9P62pUZLRzKD8CPw
+         fIxQ==
+X-Gm-Message-State: AOAM530IzjX+0BvzMNeNiuTWOmLIH6ZgIc+e6EeYnfVSk6r3NMAA++kw
+        b8nShnyrRe9CDIqCit6jTJvXaueLnaDEz6Gs
+X-Google-Smtp-Source: ABdhPJxbrMCYX9pst0yUUj30dL5YGetX2lKuySfQVgVFm/cqlONSsHjg0w3yNcEDpoX2+Hn5wU7qSw==
+X-Received: by 2002:a05:6214:2aa5:b0:446:3a3d:bdf with SMTP id js5-20020a0562142aa500b004463a3d0bdfmr499333qvb.55.1650056787492;
+        Fri, 15 Apr 2022 14:06:27 -0700 (PDT)
+Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
+        by smtp.gmail.com with ESMTPSA id w8-20020a05620a148800b0069c4884c990sm2838664qkj.108.2022.04.15.14.06.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 14:06:27 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>
+Cc:     linux-rockchip@lists.infradead.org,
+        Peter Geis <pgwipeout@gmail.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/4] dt-bindings: pci: remove fallback from Rockchip DesignWare binding
+Date:   Fri, 15 Apr 2022 17:06:18 -0400
+Message-Id: <20220415210621.538109-2-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220415210621.538109-1-pgwipeout@gmail.com>
+References: <20220415210621.538109-1-pgwipeout@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2022-02-01 21:32:07)
-> Add the low pass audio clock controller device nodes.
->
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
-> ---
->  * Fix unwanted extra spaces in reg property.
->  * Fix lpass_aon node clock phandle <&lpasscc> to <&lpasscore>
->
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 43 ++++++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 937c2e0e93eb..0d8a0d9d0f89 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1744,6 +1746,47 @@
->                         #clock-cells = <1>;
->                 };
->
-> +               lpass_audiocc: clock-controller@3300000 {
-> +                       compatible = "qcom,sc7280-lpassaudiocc";
-> +                       reg = <0 0x03300000 0 0x30000>;
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +                              <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
-> +                       clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
-> +                       power-domains = <&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-> +                       #clock-cells = <1>;
-> +                       #power-domain-cells = <1>;
-> +               };
-> +
-> +               lpass_aon: clock-controller@3380000 {
-> +                       compatible = "qcom,sc7280-lpassaoncc";
-> +                       reg = <0 0x03380000 0 0x30000>;
+The snps,dw-pcie binds to a standalone driver.
+It is not fully compatible with the Rockchip implementation and causes a
+hang if it binds to the device.
 
-I see that this region overlaps with the third region of lpasscc@3000000
-in this file. That means the driver for this clk controller doesn't
-probe. I don't know what the correct fix is, but it's either remove this
-node and move the driver contents to lpasscc or remove the region from
-lpasscc and provide those clks from this node.
+Remove this binding as a valid fallback.
 
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +                              <&rpmhcc RPMH_CXO_CLK_A>,
-> +                              <&lpasscore LPASS_CORE_CC_CORE_CLK>;
-> +                       clock-names = "bi_tcxo", "bi_tcxo_ao", "iface";
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+---
+ .../devicetree/bindings/pci/rockchip-dw-pcie.yaml    | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+index 142bbe577763..bc0a9d1db750 100644
+--- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+@@ -19,20 +19,10 @@ description: |+
+ allOf:
+   - $ref: /schemas/pci/pci-bus.yaml#
+ 
+-# We need a select here so we don't match all nodes with 'snps,dw-pcie'
+-select:
+-  properties:
+-    compatible:
+-      contains:
+-        const: rockchip,rk3568-pcie
+-  required:
+-    - compatible
+-
+ properties:
+   compatible:
+     items:
+       - const: rockchip,rk3568-pcie
+-      - const: snps,dw-pcie
+ 
+   reg:
+     items:
+@@ -110,7 +100,7 @@ examples:
+         #size-cells = <2>;
+ 
+         pcie3x2: pcie@fe280000 {
+-            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
++            compatible = "rockchip,rk3568-pcie";
+             reg = <0x3 0xc0800000 0x0 0x390000>,
+                   <0x0 0xfe280000 0x0 0x10000>,
+                   <0x3 0x80000000 0x0 0x100000>;
+-- 
+2.25.1
+
