@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEAC4503308
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 07:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2A1503345
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 07:48:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356556AbiDOXdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 19:33:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59498 "EHLO
+        id S1356657AbiDOXqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 19:46:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350264AbiDOXdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 19:33:33 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F7B4EF69
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 16:31:01 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id c23so8189580plo.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 16:31:01 -0700 (PDT)
+        with ESMTP id S1356652AbiDOXqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 19:46:36 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFB1AB6E4C
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 16:44:06 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id c12so8157789plr.6
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 16:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=JK6vmV6CXxSuLt5gndd3I1PiZrARcDydn2Wml9uJek8=;
-        b=f/GXfSwM+5LX/W7A1esUlhdeSMjoxf1vJrysnBaF+q9BlCzCoB9Uqgs/oQoHFeGBbG
-         HN/LUnNyWa4ZWN7AOwZ0ZwIhHs6BKIEtSPOdjpBTOLprCH4vf9iZWhd5lxPYKN4EeBxX
-         +vHUTD/PYLRWSbsAQf5HaTBEls5y1dy9o1+ZA=
+        bh=w2QrILTyqQ+Pt7TX+dc/u5nUBhPOOUFyhDJl0/uG8KA=;
+        b=WQYEUw+TfPdba4M0qoV3YoYNx0EokWXTwcm94AT/cqahCQWwwjBWEbOZD4bvmT0NFb
+         Xcx5ODn0k7YRALA13OhixgkDU8uYYogteOunDDY5goCtmJyK/qUBiMez/8Ex2AWPKxfs
+         zWYTFOtjGivIKkh9dDxV5C6NheZrsC87+NjXM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JK6vmV6CXxSuLt5gndd3I1PiZrARcDydn2Wml9uJek8=;
-        b=uCc9r++pHRSRuQdaT9ruZgGXbaJh1fUN3MM+NzU788bW0gE2pHfz/kPpiTyErKHfL5
-         CIeD//ugVSzQo7niqJ36HzW7EBlE2fRybEols6yU6rii3Ejq+JT+nQxPxtsnEKRH+qGu
-         it06+kNaHEeqyXD19y1zpW4nOL/fkJpkkZqAlmiJLEMAjC276kJHeqFaZCuD9cXoiuVI
-         GyLO/UiIQXaVbJ9r52qCOisPK1d6+RUxNTBJYWnojifEJM/OOaF2yceAB9QFh/Qbs5Ah
-         OXSl9DBpO9eA2pJnEgH+6B7e+ErzGp5fahEhxOpPme3q1fZwjCxEohTr7FCHlLRhLqnF
-         aoiQ==
-X-Gm-Message-State: AOAM533KgKflgCMZBVPdhVvIFE9G2+zMavadhRzp6US9LdXblR+aMaeM
-        qKWeuTYccyuiUOXvJSJ4C09dmg==
-X-Google-Smtp-Source: ABdhPJwpzWjVGLQj1ej7a1CNmp4Aw0aH9mAFpi57+mfdJpa3vF8S709hIIbPjez02GS3l1QWAJhWuQ==
-X-Received: by 2002:a17:90a:e7ca:b0:1d1:22ce:86c3 with SMTP id kb10-20020a17090ae7ca00b001d122ce86c3mr4346128pjb.10.1650065460896;
-        Fri, 15 Apr 2022 16:31:00 -0700 (PDT)
+        bh=w2QrILTyqQ+Pt7TX+dc/u5nUBhPOOUFyhDJl0/uG8KA=;
+        b=zkNO45pCRucGZeoXTGKLIqBnjxfxBWUTwgrWJFRIUlpm1X5p0nBRyuQam/rpaLQHCb
+         Enf43zLOJlEIT0nLj+9ts9/JvdV0rtsBVqg+3MfaTYzyeXYWAT86tdnZlLfox0y2kPH+
+         /gk6nQ9hxjISr9Q1ylPp9lWyeKUanMmHamoVwONr9UxjhcdR7iA2LEwlvG45IVrx0Vfe
+         KR+huLsD1SkEwTN3ofLnoJRtyexo3YNeLhH8eiRqmQ1wSOex7B4b7Ra8KiEE9otLCYJz
+         hbSQrgJ7urgaDbIjqOSk5/pcWAZw0fMCOUxbhQoEe+gBAAA0slU4u9leXPWTIK9WeNRb
+         LK/A==
+X-Gm-Message-State: AOAM530pQapgr07eB/aezzzWt4JfZuwj5p44IHXyD8/kXRVUTg4UPcjC
+        5byW2AT3OmaYtMfd0xwxosz3OQ==
+X-Google-Smtp-Source: ABdhPJx5DUqDtUFoTZutT3tV3A+5mldSPzpeVrsrxCdXDbVcaqBeXAPd4TrSNpEqM3FQkJq1z1ovDg==
+X-Received: by 2002:a17:90b:1b44:b0:1cd:49b8:42b8 with SMTP id nv4-20020a17090b1b4400b001cd49b842b8mr1313605pjb.102.1650066246324;
+        Fri, 15 Apr 2022 16:44:06 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:b27a:b3e7:2e3e:e4be])
-        by smtp.gmail.com with UTF8SMTPSA id i5-20020a17090a2a0500b001cba3ac9366sm9571478pjd.10.2022.04.15.16.30.58
+        by smtp.gmail.com with UTF8SMTPSA id k10-20020a056a00168a00b004f7e2a550ccsm3938967pfc.78.2022.04.15.16.44.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Apr 2022 16:31:00 -0700 (PDT)
-Date:   Fri, 15 Apr 2022 16:30:57 -0700
+        Fri, 15 Apr 2022 16:44:05 -0700 (PDT)
+Date:   Fri, 15 Apr 2022 16:44:03 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
@@ -57,17 +57,17 @@ Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         Linus Walleij <linus.walleij@linaro.org>,
         linux-gpio@vger.kernel.org,
         Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v12 6/7] pinctrl: qcom: Add SC7280 lpass pin configuration
-Message-ID: <YloAMeEdb2kGvDSY@google.com>
+Subject: Re: [PATCH v12 7/7] pinctrl: qcom: Update clock voting as optional
+Message-ID: <YloDQ7V7JTNYkjWu@google.com>
 References: <1647447426-23425-1-git-send-email-quic_srivasam@quicinc.com>
- <1647447426-23425-7-git-send-email-quic_srivasam@quicinc.com>
+ <1647447426-23425-8-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1647447426-23425-7-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1647447426-23425-8-git-send-email-quic_srivasam@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,45 +75,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 16, 2022 at 09:47:05PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add pin control support for SC7280 LPASS LPI.
+On Wed, Mar 16, 2022 at 09:47:06PM +0530, Srinivasa Rao Mandadapu wrote:
+> Update bulk clock voting to optional voting as ADSP bypass platform doesn't
+> need macro and decodec clocks, as these macro and dcodec GDSC switches are
+> maintained as power domains and operated from lpass clock drivers.
 > 
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-
->
-> ...
->
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> new file mode 100644
-> index 0000000..d67ff25
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
->
-> ...
-
-> +/* sc7280 variant specific data */
-
-nit: the comment is a bit redundant in a sc7280 specific driver
-
-> +static const struct pinctrl_pin_desc sc7280_lpi_pins[] = {
-> +	PINCTRL_PIN(0, "gpio0"),
-> +	PINCTRL_PIN(1, "gpio1"),
-> +	PINCTRL_PIN(2, "gpio2"),
-> +	PINCTRL_PIN(3, "gpio3"),
-> +	PINCTRL_PIN(4, "gpio4"),
-> +	PINCTRL_PIN(5, "gpio5"),
-> +	PINCTRL_PIN(6, "gpio6"),
-> +	PINCTRL_PIN(7, "gpio7"),
-> +	PINCTRL_PIN(8, "gpio8"),
-> +	PINCTRL_PIN(9, "gpio9"),
-> +	PINCTRL_PIN(10, "gpio10"),
-> +	PINCTRL_PIN(11, "gpio11"),
-> +	PINCTRL_PIN(12, "gpio12"),
-> +	PINCTRL_PIN(13, "gpio13"),
-> +	PINCTRL_PIN(14, "gpio14"),
-> +};
-> +
 
 Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
