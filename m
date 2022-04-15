@@ -2,68 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E44A501F9C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 02:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 120C5501FD8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 02:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348007AbiDOA3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 20:29:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50132 "EHLO
+        id S1348243AbiDOA6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 20:58:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348000AbiDOA3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 20:29:46 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 600F2AA028
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 17:27:17 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id k13so7157688oiw.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 17:27:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=ecB85TjFOoEdrDWJrtTUF1PXXrdqEfK4sDFcXt5+qKE=;
-        b=fku3Xt7rwGqcME8HQ8VBrzznxzqSzK+Co60fZXeiAWXkBsYOwM7X/xn8XvhXV+/HzQ
-         nJ9iZKbdRH0YNkXvmuGCb1z8/BFIEFV82+I865XdI0m/vWU5DEoVKEDGKVFSzxKL8zW6
-         vJnvB9ZsrOpTTM5X2mSxgQCMT/8fs79gmJ4DI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=ecB85TjFOoEdrDWJrtTUF1PXXrdqEfK4sDFcXt5+qKE=;
-        b=JLf5nH+ippGAVllM5t+TnGSZzfEqKkuLrMpPp7igxK6Z8IG3cTBoE5hRqy3Z1AtezF
-         z3cbuDuJ49Na6qQT2zTsyZG+sbQ+K3Owev3RRT45iIN3EKxk7tVlP5P54xlPze3FKgBT
-         N93eLgj795NAFXIfQceTKeYSEW2Gi5o0/M4FRm8GHWelEriCPrCHD6csrhh97WweLOzY
-         Q7SBEnJWufKBwmg4faCeGo9bWc74mP4n7Iy9a2/xLpfOMCfFWSVKXNhge17bOTKuFwBE
-         n4FI4+zbO2ERA2H76teAVXUKJxKWsmPyWQZYTNUxoWfDqwYS2HdWkN5dIdYhgTjIjvgC
-         Ejxg==
-X-Gm-Message-State: AOAM533tg+jpOeoawKf427lq+V4t9MeyZPL4koYVAbucV6hu4yGKIRK1
-        dtjx0ZmMb33wZO5QFVGJlJNQs9WV2NDgEwrp9cNDWA==
-X-Google-Smtp-Source: ABdhPJzGWdLsFqdMc54YYDdUNKDcK7Tu1YScfUrnt8SX0agXNParLR9WPPtoOVbZlG+k3nsRAjJgtEdjRVT5HhXLpeM=
-X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
- n62-20020acabd41000000b002ecff42814fmr540883oif.63.1649982436634; Thu, 14 Apr
- 2022 17:27:16 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 14 Apr 2022 17:27:16 -0700
+        with ESMTP id S239622AbiDOA6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 20:58:11 -0400
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 88353B9191;
+        Thu, 14 Apr 2022 17:55:43 -0700 (PDT)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 15 Apr 2022 09:55:41 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 9EBCA2058443;
+        Fri, 15 Apr 2022 09:55:41 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 15 Apr 2022 09:55:41 +0900
+Received: from [10.212.183.90] (unknown [10.212.183.90])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id CC679B62B7;
+        Fri, 15 Apr 2022 09:55:40 +0900 (JST)
+Subject: Re: [PATCH v2 2/3] dt-bindings: PCI: uniphier-ep: Clean up reg,
+ clocks, resets, and their names using compatible string
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1649294553-17310-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1649294553-17310-3-git-send-email-hayashi.kunihiko@socionext.com>
+ <YlX3uxZzmnb1nM/R@robh.at.kernel.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <d4eb8a3e-ca20-77be-0ae1-84d520f46aa5@socionext.com>
+Date:   Fri, 15 Apr 2022 09:55:40 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <1649939418-19861-9-git-send-email-quic_c_skakit@quicinc.com>
-References: <1649939418-19861-1-git-send-email-quic_c_skakit@quicinc.com> <1649939418-19861-9-git-send-email-quic_c_skakit@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 14 Apr 2022 17:27:16 -0700
-Message-ID: <CAE-0n51o8a7vwZ_XFwx+RxQUnvZsgxOpopgm+Yg7kQSFm6q21g@mail.gmail.com>
-Subject: Re: [PATCH V10 8/9] arm64: dts: qcom: pm8008: Add base dts file
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <YlX3uxZzmnb1nM/R@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,36 +55,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2022-04-14 05:30:17)
-> diff --git a/arch/arm64/boot/dts/qcom/pm8008.dtsi b/arch/arm64/boot/dts/qcom/pm8008.dtsi
-> new file mode 100644
-> index 0000000..7b4fe68
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pm8008.dtsi
-> @@ -0,0 +1,42 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +// Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> +
-> +&pm8008_bus {
-> +       pm8008: pmic@8 {
-> +               compatible = "qcom,pm8008";
-> +               reg = <0x8>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +               #interrupt-cells = <2>;
-> +
-> +               pm8008_regulators: regulators {
+Hi Rob,
 
-Container nodes without a compatible string are frowned upon. How about
-we add
+On 2022/04/13 7:05, Rob Herring wrote:
+> On Thu, Apr 07, 2022 at 10:22:32AM +0900, Kunihiko Hayashi wrote:
+>> Instead of "oneOf:" choices, use "allOf:" and "if:" to define reg,
+> clocks,
+>> resets, and their names that can be taken by the compatible string.
+>>
+>> The order of their names doesn't change here.
+>>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> ---
+>>   .../pci/socionext,uniphier-pcie-ep.yaml       | 84 ++++++++++++-------
+>>   1 file changed, 56 insertions(+), 28 deletions(-)
+>>
+>> diff --git
+> a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
+> b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
+>> index 437e61618d06..49a5b2ca266c 100644
+>> ---
+> a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
+>> +++
+> b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
+>> @@ -15,9 +15,6 @@ description: |
+>>   maintainers:
+>>     - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>   
+>> -allOf:
+>> -  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
+>> -
+>>   properties:
+>>     compatible:
+>>       enum:
+>> @@ -28,41 +25,19 @@ properties:
+>>       minItems: 4
+>>       maxItems: 5
+>>   
+>> -  reg-names:
+>> -    oneOf:
+>> -      - items:
+>> -          - const: dbi
+>> -          - const: dbi2
+>> -          - const: link
+>> -          - const: addr_space
+>> -      - items:
+>> -          - const: dbi
+>> -          - const: dbi2
+>> -          - const: link
+>> -          - const: addr_space
+>> -          - const: atu
+> 
+> This could be just:
+> 
+>        minItems: 4
+>        items:
+>          - const: dbi
+>          - const: dbi2
+>          - const: link
+>          - const: addr_space
+>          - const: atu
+> 
+> Then the if/then can have just 'minItems: 5' or 'maxItems: 4' for each
+> case. I prefer the if/then schemas to be minimal.
 
-			compatible = "qcom,pm8008-regulators"
+I've got it. It means writing a common description, and writing
+only the constraints in if/then. I'll rewrite it next.
 
-and then this can populated by the driver in the
-devm_of_platform_populate() call that's already there.
+Thank you,
 
-
-> +                       pm8008_l1: ldo1 {
-> +                               regulator-name = "pm8008_l1";
-> +                       };
-> +
+---
+Best Regards
+Kunihiko Hayashi
