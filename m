@@ -2,204 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78FC35028B9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 13:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC9F15028BC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 13:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352634AbiDOLOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 07:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        id S1349151AbiDOLQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 07:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352602AbiDOLOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 07:14:05 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFB69D04F
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 04:11:36 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id k5so13543581lfg.9
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 04:11:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=8rKWtpqqPYYEzbZqAeN0/yV6I0K22SlsHKssE8lnJN8=;
-        b=pDHtljXSqA2HodN7HlG9y1B6GuMhsGZLlJlcQxYhLqTRpqtwwwIiwZkqkDt+BtbyUa
-         6eRkeCSVa3ae11sqFhXiYTh+8Xzc2OzqBoCgVrGPCqzk5rfM0bD6B0B0NMucrOBNfeTm
-         C0nSat3ITXMgyD+l2uohx8g0p5x5aiawkiwckJPuWEPp2xj+lkaIUpmHpRKrOOjYGucH
-         udN3Dr5Uj5713A6k95503LUwavhxTkAg/sinqN+adya0s3DcIe2IYE1wxcIb2drIsPax
-         299KRPW0MDSW+XDgsYOsQCOeEKdVI0zeB+ksQNJdhbb482AruEYHDm4Xf9Z/rV3b9KF7
-         4x0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=8rKWtpqqPYYEzbZqAeN0/yV6I0K22SlsHKssE8lnJN8=;
-        b=gRmVQzZoRQrPCn9KPJEoRwvHHH0PwYEelVFMdp5DAhsXCxt6JKCkkumjj59+6Tofvf
-         aMj/EY8EUhKkzeNmTZMgXvQWxBH+jIhsKGCV7Lt5Rp3V229eX8UCkQJd1Tcs/IKnF/Hm
-         MQW9ZAXLVaa0CKUHYRIOofCEKZrSltkdluhvZONMaLqg//b0eRYGqGNgm4qhj7cnLY9I
-         cbP1V5zjhI9I1nBLIFkuZf2A7s4ORXG8T8l/gGmMz8ynw4sbd9MfV1sNLdeQNY5zZSL9
-         zxY/k+YyVHs1+4F6Z0isTPtGB7mRH0eAwRNq7NdKcBDlDcFs5Insi4dRa2xqJ8b/j4KL
-         irPA==
-X-Gm-Message-State: AOAM532fQuVQOihifnys0OE7uDQpX1zGyoiDNYstjbLx+4M/lBRkuvGx
-        WEgEBIa8sS12Rcp2kHqsC/M=
-X-Google-Smtp-Source: ABdhPJxbKlylx4tyVwT8241mw9KFsamD4RsvG/OQBJ3XGgGjiFSEPufVIE5jgl5DuiHaSAE+Zmp23w==
-X-Received: by 2002:a05:6512:1188:b0:44a:3457:3a0b with SMTP id g8-20020a056512118800b0044a34573a0bmr4827072lfr.427.1650021095018;
-        Fri, 15 Apr 2022 04:11:35 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id 25-20020ac24d59000000b0046d06f31bc2sm293850lfp.282.2022.04.15.04.11.33
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 15 Apr 2022 04:11:34 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <CAPj87rNatQ9KjDSnYQTh4+FOUcPTerbzH3m8AuAF_BPbM1xxGg@mail.gmail.com>
-Date:   Fri, 15 Apr 2022 13:11:32 +0200
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Lucas Stach <lst@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <EE789168-EEFD-4231-96D5-9E62AED6D08C@gmail.com>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220401125205.GL4012@pengutronix.de>
- <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
- <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
- <20220408080748.GA2387@pengutronix.de> <20220408120021.GO4012@pengutronix.de>
- <B3E76A7A-9B62-4E6F-9472-00B6298689C5@gmail.com>
- <20220411090800.GR4012@pengutronix.de>
- <5929E7A7-776E-4BCB-92C8-A1CE05774FE3@gmail.com>
- <20220412075034.GS4012@pengutronix.de>
- <e2ef484b60fe9c5fc077240a26bd18275974dc4a.camel@pengutronix.de>
- <EF0F8E87-2618-4E5E-807D-259FEEC0FB24@gmail.com>
- <CAPj87rNatQ9KjDSnYQTh4+FOUcPTerbzH3m8AuAF_BPbM1xxGg@mail.gmail.com>
-To:     Daniel Stone <daniel@fooishbar.org>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        with ESMTP id S245413AbiDOLQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 07:16:35 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DA69D04F;
+        Fri, 15 Apr 2022 04:14:07 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (85-76-71-107-nat.elisa-mobile.fi [85.76.71.107])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8E5F8482;
+        Fri, 15 Apr 2022 13:14:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1650021244;
+        bh=qzpqaJiap4/DKYJZDwgAmyj6MPeXNP+N02wxXKN4cGo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RQwxV/pyn48mqyN34K9eBfLiqTeSEKCeQs2dYVMVOKOt3zyUPzkSuuPPueR9onMY1
+         klR6ZwpxkTgBST0aPM6/Shielw3JNBv8sn9C1AdKnkzpV5Yk8D8o4O4kR6CC7vOExD
+         pnvFlVQS84Rb8pOUfPf6zjT8i1jY6Mw7dVo7Qc88=
+Date:   Fri, 15 Apr 2022 14:14:01 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: display: renesas,du: Document
+ r9a07g044l bindings
+Message-ID: <YllTed2IIAwWva6F@pendragon.ideasonboard.com>
+References: <20220316131100.30685-1-biju.das.jz@bp.renesas.com>
+ <20220316131100.30685-2-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220316131100.30685-2-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Biju,
 
+Thank you for the patch.
 
-> Wiadomo=C5=9B=C4=87 napisana przez Daniel Stone <daniel@fooishbar.org> =
-w dniu 12.04.2022, o godz. 13:30:
->=20
->> Testing Sacha patch (see today's email from Sascha) i'm getting
->>=20
->> Qt: EGL Error : Could not create the egl surface: error =3D 0x3009
->>=20
->> i'm reading this as: Qt tries allocate EGL surface and EGL returns =
-error.
->> or i'm wrong?
->=20
-> Correct, that's EGL_BAD_MATCH. There are very few ways that can
-> happen; by far the most likely is that Qt has chosen an EGLConfig
-> which does not correctly correspond to the format. (If it was an
-> impossible format/modifier combination, then this would be already
-> caught when allocating the gbm_surface.)
->=20
-> Either way, it seems quite clear that the VOP2 driver is totally fine
-> here, and that you have a Qt (likely) or Mesa (tbh less likely) issue
-> to debug to get the app working.
->=20
-> Cheers,
-> Daniel
+On Wed, Mar 16, 2022 at 01:10:54PM +0000, Biju Das wrote:
+> Extend the Renesas DU display bindings to support the r9a07g044l
+> DU module found on RZ/G2L LCDC.
 
-Thx Daniel!
+Stupid question, but as this DU and the R-Car DU are completely
+different pieces of hardware, wouldn't a separate bindings file make
+sense ?
 
-Indeed - this is probably another case where I see: writing DRM planes =
-rendering mediaplayer with help of Qt is (too)corner case for Qt....
+The DT description in this patch looks good to me.
 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Updated commit description.
+>  * Removed LCDC references
+>  * Changed clock name from du.0->aclk
+>  * Changed reset name from du.0->du
+> RFC->v1:
+>  * Changed  minItems->maxItems for renesas,vsps.
+> RFC:
+>  https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-18-biju.das.jz@bp.renesas.com/
+> ---
+>  .../bindings/display/renesas,du.yaml          | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> index 13efea574584..f560608bf4e8 100644
+> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> @@ -40,6 +40,7 @@ properties:
+>        - renesas,du-r8a77990 # for R-Car E3 compatible DU
+>        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+>        - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+> +      - renesas,du-r9a07g044l # for RZ/G2L compatible DU
+>  
+>    reg:
+>      maxItems: 1
+> @@ -824,6 +825,59 @@ allOf:
+>          - reset-names
+>          - renesas,vsps
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,du-r9a07g044l
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Main clock
+> +            - description: Register access clock
+> +            - description: Video clock
+> +
+> +        clock-names:
+> +          items:
+> +            - const: aclk
+> +            - const: pclk
+> +            - const: vclk
+> +
+> +        interrupts:
+> +          maxItems: 1
+> +
+> +        resets:
+> +          maxItems: 1
+> +
+> +        reset-names:
+> +          items:
+> +            - const: du
+> +
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DPAD 0
+> +            port@1:
+> +              description: DSI 0
+> +            port@2: false
+> +            port@3: false
+> +
+> +          required:
+> +            - port@0
+> +            - port@1
+> +
+> +        renesas,vsps:
+> +          maxItems: 1
+> +
+> +      required:
+> +        - clock-names
+> +        - interrupts
+> +        - resets
+> +        - reset-names
+> +        - renesas,vsps
+> +
+>  additionalProperties: false
+>  
+>  examples:
 
-@all
+-- 
+Regards,
 
-Looking on Qt sources it looks to me this format should be supported:
-
-=
-https://code.qt.io/cgit/qt/qtbase.git/tree/src/platformsupport/kmsconvenie=
-nce/qkmsdevice.cpp?h=3D5.15.2#n380
-
-Interesting that with custom Qt config1: "format": "argb8888",
-DRI state shows: format=3DAR24 little-endian (0x34325241)
-
-UI is OK, playback is OK. OSD not visible (*)
-
-custom config2: "format": "abgr8888"=20
-Qt crashes with EGL_BAD_MATCH
-
-So it looks forcing some Qt formats works while other - not.=20
-
-Looking why this:
-
-Qt logging says nothing.
-export MESA_DEBUG=3D1 gives no any message. I'm a lost here a bit...
-
-
-
-But from a bit more distant perspective:
-
-1. Sascha concludes in (*) that issue is most probably in format =
-negotiation by app.
-
-2. imho app probably correctly negotiates accordingly to inputs it gets =
-from providers (DRM) and clients (mesa).=20
-Test with patch excluding
-DRM_FORMAT_XRGB8888,
-DRM_FORMAT_ARGB8888,
-shows imho proper app reaction on this (new format elected; but Qt fails =
-with this format). Indirectly i conclude app logic is ok....
-
-3. Sum of p1 & p2 tells me:
-i need to add extra logic in format election to specifically deal with =
-constrains of rk356x (see explanation in (*))
-   =20
-4. Even if i implement p3 - then user world - (this using Qt) - will be =
-not happy as:
-- majority users are using pre-build Qt
-- I don't believe Trolltech will fix this soon
-
-So i see following path:
- =20
-we will verify is issue of Qt with abgr8888 an Qt root cause issue,
-
-If Yes - then:
-	- Investigate is there reasonable way to workaround with this =
-outside of Qt?
-If not - then:
-	- conclude: vop2 - due Qt bug - will not work ok with Qt until =
-Qt will be fixed.
-
-=20
-If you think this make sense - i need some help with: verify is issue of =
-Qt with abgr8888 an Qt root cause issue
-
-let me know what you think
-
-
-
-(*)
-Sascha mentioned:
-> Somehow negotiation of the format goes wrong. Applications shouldn't
-> pick these formats when the GPU is used for rendering. I don't know =
-how
-> and where this should be fixed properly, but your application should =
-use
-> DRM_FORMAT_ABGR8888 aka AB24 aka PIPE_FORMAT_R8G8B8A8_UNORM instead of
-> DRM_FORMAT_ARGB8888 aka AR24 aka PIPE_FORMAT_B8G8R8A8_UNORM.
-
-
+Laurent Pinchart
