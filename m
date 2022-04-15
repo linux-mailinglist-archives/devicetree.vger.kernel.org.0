@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF44B502C19
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7654B502C35
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 17:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349655AbiDOOr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 10:47:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38276 "EHLO
+        id S1354736AbiDOPDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 11:03:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244648AbiDOOr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:47:59 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25A05F258;
-        Fri, 15 Apr 2022 07:45:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1650033923;
-        bh=U7dqB8UZdHHYcktusZM81tIBeUrwtsptS8hwCJ84BSQ=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=X43BrQnSncztZRJImZpjxVHAH4tdWwC1mg3TK029fQVe5t3Vsm9FjvLrhx1LEseRl
-         QXPfB7Jer8/hIawzsUUqBVtQ7yDc93uB5N4pUNDpvz8lrsR0rGA9KuxxhOZ3zAfjFN
-         UHgXT6/cKRSYVcOMTG+oxIkxyh6zXU1S5UAzb7mQ=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([185.66.193.41]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MVNAr-1nY3652vVH-00SPdx; Fri, 15
- Apr 2022 16:45:22 +0200
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     openbmc@lists.ozlabs.org,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234253AbiDOPDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 11:03:04 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7608BE09
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 08:00:35 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id u17-20020a05600c211100b0038eaf4cdaaeso7919009wml.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 08:00:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=pOFJlUG0A7QE7n1DqwtNq6lGe7UbdV1x9FZG4NLdjq0=;
+        b=C3Rd6fa+TyiCPz2nh952O06n04xSU85OcT8gdCDnJl3vrQtyobdCztxYFW/ki5CrUz
+         OPnO01Xm5LnfP+xIwxnZKXDCmfBQbxE1vgVvvQjqLnLgeCg+tCHgHe4ujvygpH8kN18y
+         tbghWMAdRlWWMwbX45jLKzDkdQc32hIVagPbvN2H3JhElX7Ojkn1o0GwIhr6A17HTXiX
+         5pIsV7KCoIKYBWWE7Tw2cPIbRcaeHoVadIScJoweOTYsprFq8AjD3AUfMzYtYcCFXhV2
+         l8Rw/ti9oLq6wiAv7eUIs6042BmH8E5ToM3d3ZvJNcgAieYiaq66ziFxzqMJAHU+NYZS
+         rI4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=pOFJlUG0A7QE7n1DqwtNq6lGe7UbdV1x9FZG4NLdjq0=;
+        b=6oZdz4vmuW3cWGonBEpWFjq08/NFKMlKnhwdNa9nGlznlTjdj8LxvYfdpTWT6WlikA
+         V+ZEBK6Z5PJqpiuSUqRxzxZfOWB74eog/pd+AsuA8+u7guomPNw571I/SAbh1L4Y6W7T
+         ePyVyoK2yjL+JP50Y8bF8CArKgCSmys3Dj7bj2/DrKqiGkWGzUVmBJB54cXTdkhivD6U
+         +TBFAEIN+bRUG5C3xer6D+YZ0aZXAJf1osg+MNfmkGCRsf4QUP0fKeYVjSlWyxFzSn8n
+         dgS4071idDm0WeA8bWCPcLNDjb6MvXfdomaBr9ZxQhdVv2HeJPF6bvwStcyO2mT0iEyv
+         ZOCw==
+X-Gm-Message-State: AOAM530oHdw9cVSTBzCsdQBoRSneMU3xxwRZbkWBQVNzkRguuViGqVYi
+        hCVVU74IrujugNM83CDthA+QYg==
+X-Google-Smtp-Source: ABdhPJyKsCTiFSBRJqjvHjzUp5YXFv3nqiDeVyn0nKnk7EurInzgFuGGF0dlnJQuQwacVAgmXT0Aag==
+X-Received: by 2002:a7b:ce02:0:b0:381:2007:f75c with SMTP id m2-20020a7bce02000000b003812007f75cmr3741111wmc.6.1650034833905;
+        Fri, 15 Apr 2022 08:00:33 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id n2-20020a5d6b82000000b0020a7e34ef20sm1579664wrx.47.2022.04.15.08.00.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 08:00:33 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: wpcm450: Enable watchdog by default
-Date:   Fri, 15 Apr 2022 16:45:18 +0200
-Message-Id: <20220415144518.800035-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.35.1
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 1/4] dt-bindings: arm64: dts: mediatek: Add mt8195-demo board
+Date:   Fri, 15 Apr 2022 17:00:00 +0200
+Message-Id: <20220415150003.1793063-2-fparent@baylibre.com>
+X-Mailer: git-send-email 2.35.2
+In-Reply-To: <20220415150003.1793063-1-fparent@baylibre.com>
+References: <20220415150003.1793063-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:CqVTFanuaMJnC1Z6w6sDj9tgxzWu5GijeIxMguqHBnYYhkokfWw
- 13tsuJUSsMhUZHv9NqBNLVpb4mWXfv/4FM0Slnurg0XLe0f+cd1Ijr/BA6uqo8niJv/WkSS
- vvNGpE45FSMC8RJxIIifsvhtGOjXKJIypse3Zi8A4X4OfD0OkX+UipgN1ReTx2U/ULSbWjK
- 33I7CLc4644inmVlcDM3w==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:k0u6G8bhtF8=:gQf5rUo2ESTDBT5j/PSKzU
- ZDyzaomijA0GaJAK8H9BD/W7hd9L5qQHMABuFYjd9yfPED4sXdF2zWGKKfK40pc0/s1nQcl7V
- OWtWhWa3Hjj4D+hAX5yD/Gn78cO+m43TxQ5mwEmLiyv6//mlcgpqkvXZOwcWFcKmfO8f0EGsL
- FoHmeFcOsgcIS7mc5/n3DBE6Yl1qdsJfTZYoA/gBa8u0qmmZo2iQ6LB4eH4FnB8REIx14QADY
- LFVDxGFUk5LGHMKbMgkAnqqCw/jFs2yY4JsV8anpp2ygRnJna2aix3pNBoz2Gv43JEmwo2wtR
- ikrc/pnOn69utRlcOmTCrOPcZ97+I1rxWDWdUOnWAH3klnvdsdjKkEgLjWynb2AvHE8GZ4AtS
- UldfvYt2fXdLVXz+H+iOaEGuX1wT1WXNWRYAenpnfsYHVCKFckPsFLGlJTylkKkHJ2yo09G1t
- 9Si+98H3s6d0SvYevTylcyrl8tjGsBgruDdv0ssvyWqM9EXMdOw4gnEy6ITO2MS9tq2gWPles
- LvoS3jKlqNJ775sCcTOtSJoxt7g23sCnSl5DibHJPvfaufNgEA4vMrYdVFq5Og3dofheMusep
- egV5jnJ6gxe4ZG2kOOzWlUZ+vPLa7sZbQvgQlitj1mTWdVldmdCWr126OCdrfXVL2b2ipBZUN
- PTNvG3YZHVsx0qvN5qR0hZF/svIvtNvrwSYxPZ/B7R620gFLQtZP4LyzlBtXwf0O1SYOdscy6
- MEm53gzskZdy6oRVcnd63SVjqJgTkC6yZlSDY65vyznx7Rx6Z9pSB1cyOov8OuFg0ydhqw2bl
- pw0KtSs8FP/rkSx7S4NmNd2aN1SzZdoTcvyz1+QHp1mIsdH+qdE3RGTG5ttojm9TsjQbLkkoy
- kCiZoXJul+9fAjctV4oHCGR0vagTTQr8vntt5B0DQbadpASq+Dgr3RkP3/rYXFV2PJLSiUYWO
- qxgIsPC9YdGTxUj/MahYG1Ke2qkIR9Frc0kUCh3/LpZRT2uI7gKAyLF/9ziZUAnqGuNe+nB8O
- 4bkns7XGwhAaVJc73tfO2RRWSzxPfIS9sF83+wmdX0Bvisgu3uotsqFf6fnlcc/xNURD2J63e
- 3r1iclEMSgGxec=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,51 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The watchdog timer is always usable, regardless of board design, so
-there is no point in marking the watchdog device as disabled-by-default
-in nuvoton-wpcm450.dtsi.
+Add bindings for the MediaTek mt8195-demo board.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-Reviewed-by: Joel Stanley <joel@jms.id.au>
-=2D--
-
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+v3: no changes
 v2:
-- add Reviewed-by tag
+ * move compatible next to the MT8195-EVB compatible
 
-v1:
-- https://lore.kernel.org/lkml/20220128221054.2002911-1-j.neuschaefer@gmx.=
-net/
-=2D--
- arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts | 4 ----
- arch/arm/boot/dts/nuvoton-wpcm450.dtsi                      | 1 -
- 2 files changed, 5 deletions(-)
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts b=
-/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-index 3ee61251a16d0..1ae7ae4804275 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-@@ -77,7 +77,3 @@ &serial1 {
- 	/* "Serial over LAN" port. Connected to ttyS2 of the host system. */
- 	status =3D "okay";
- };
--
--&watchdog0 {
--	status =3D "okay";
--};
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
-voton-wpcm450.dtsi
-index 57943bf5aa4a9..1c63ab14c4383 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-@@ -83,7 +83,6 @@ watchdog0: watchdog@b800101c {
- 			interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
- 			reg =3D <0xb800101c 0x4>;
- 			clocks =3D <&clk24m>;
--			status =3D "disabled";
- 		};
-
- 		aic: interrupt-controller@b8002000 {
-=2D-
-2.35.1
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index ab0593c77321..024a45300da5 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -133,6 +133,7 @@ properties:
+           - const: mediatek,mt8183
+       - items:
+           - enum:
++              - mediatek,mt8195-demo
+               - mediatek,mt8195-evb
+           - const: mediatek,mt8195
+       - description: Google Burnet (HP Chromebook x360 11MK G3 EE)
+-- 
+2.35.2
 
