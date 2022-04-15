@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1653550285D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 12:33:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894C1502875
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 12:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240535AbiDOKf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 06:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58336 "EHLO
+        id S1352396AbiDOKwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 06:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234985AbiDOKf1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 06:35:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7E6BBE35;
-        Fri, 15 Apr 2022 03:32:59 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D30FB1F47E6A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1650018778;
-        bh=PusWeJyfelc4rfVn7gOGkQ7kuEx7Hrcz3WTXt8Ey8L0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ckhrRylc/UTSgvMkkm0H3vUvmwHOwtr9KqhZQphh5cY9omGVjk/7fb6hbOZRSDbmZ
-         /ZS0eO0GC1KOjl5b5vKFUxDOcxo3gjga06JSHTMA/nIQ7134imG3YjJ5oV4CUVE5t6
-         Lhdvy3ruRrW2xcV/69esiO31cDid+w5uVV3U3fXHHetKVF+CjAbkeHC3M2xgwv3twG
-         eHYg6z5RYXTKh5XE5bGV8JcIfQPn1CmTE/gfQi+xTMOwyNAUA9v9f75hpY2mex523U
-         JXT6k8UHaqljI511CqduDUCZu1UOpF+f5krcYSvc7N+20g5FEcjNdRYuwPwGQY/fGt
-         jcUzXAH8lczoA==
-Message-ID: <45b11fdc-4b81-86eb-81ce-ef9e32faa51f@collabora.com>
-Date:   Fri, 15 Apr 2022 12:32:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v19 08/10] soc: mediatek: add DDP_DOMPONENT_DITHER0 enum
- for mt8195 vdosys0
-Content-Language: en-US
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        with ESMTP id S1352397AbiDOKwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 06:52:39 -0400
+Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760CF344DD;
+        Fri, 15 Apr 2022 03:50:10 -0700 (PDT)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout4.routing.net (Postfix) with ESMTP id 90FCB10081B;
+        Fri, 15 Apr 2022 10:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1650019807;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=rWSR2rltVSUqvyGXpreg4LKaYlPdzHCHZKQnQuzQnac=;
+        b=xUd3kNr59wxtB4msvT494ZDjLtPGFK2Eao5k2wCfFkX797f0ZGnEx7MqIRLZRGsNmeoq/W
+        HwUfWTLtSNjBicxyr4ZSq0QYmBhKX7lVsQkxLxOBpH7TAtpV4lw0IDwN+xALSspcFa/WeV
+        bLFQvXcg0Su6INsAnWX9cg51/g3bJew=
+Received: from localhost.localdomain (fttx-pool-217.61.153.244.bambit.de [217.61.153.244])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 641E3100501;
+        Fri, 15 Apr 2022 10:50:06 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     CK Hu <ck.hu@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220415083911.5186-1-jason-jh.lin@mediatek.com>
- <20220415083911.5186-9-jason-jh.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220415083911.5186-9-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Add hdmi Support for BPI-R2-Pro
+Date:   Fri, 15 Apr 2022 12:49:48 +0200
+Message-Id: <20220415104951.27104-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 56e09033-23d0-4d9f-9f04-5ff42bb46aaa
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/04/22 10:39, jason-jh.lin ha scritto:
-> The mmsys routing table of mt8195 vdosys0 has 2 DITHER components,
-> so mmsys need to add DDP_COMPONENT_DITHER1 and change all usages of
-> DITHER enum form DDP_COMPONENT_DITHER to DDP_COMPONENT_DITHER0.
-> 
-> But its header need to keep DDP_COMPONENT_DITHER enum
-> until drm/mediatek also changed it.
-> 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This Series adds changes to Device  tree for Bananapi-R2-Pro to support
+HDMI output.
+
+It is based on "drm/rockchip: RK356x VOP2 support"
+v10:
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=630407
+
+Frank Wunderlich (3):
+  arm64: dts: rockchip: set display regulators to always-on on
+    BPI-R2-Pro
+  arm64: dts: rockchip: enable vop2 and hdmi tx on BPI-R2-Pro
+  arm64: dts: rockchip: enable the gpu on BPI-R2-Pro
+
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+
+-- 
+2.25.1
 
