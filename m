@@ -2,43 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998EB502BCE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:24:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ACF6502BFB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:34:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354499AbiDOOZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 10:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52000 "EHLO
+        id S1354532AbiDOOfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 10:35:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354571AbiDOOZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:25:05 -0400
-Received: from out28-195.mail.aliyun.com (out28-195.mail.aliyun.com [115.124.28.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDB7D1CCF;
-        Fri, 15 Apr 2022 07:22:25 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07483269|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0236375-0.00029974-0.976063;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.NRMqfXs_1650032541;
-Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NRMqfXs_1650032541)
-          by smtp.aliyun-inc.com(33.32.109.194);
-          Fri, 15 Apr 2022 22:22:22 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     broonie@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        paul@crapouillou.net, contact@artur-rojek.eu,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, reimu@sudomaker.com
-Subject: [PATCH 3/3] SPI: Ingenic: Add support for new Ingenic SoCs.
-Date:   Fri, 15 Apr 2022 22:22:08 +0800
-Message-Id: <1650032528-118220-4-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1650032528-118220-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1650032528-118220-1-git-send-email-zhouyanjie@wanyeetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        with ESMTP id S1354530AbiDOOfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:35:14 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FD528BE1F;
+        Fri, 15 Apr 2022 07:32:45 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id r85so3353124oie.7;
+        Fri, 15 Apr 2022 07:32:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=WRvWFCZM+CSlWmbu28ZW3agDB/Ioh2AgkDnpKocjFBE=;
+        b=jbcLuV3Q33imNNoipA7PL6D0OzXNktu2DR7dSHO9IkecfyJcPHJt/9+dDFvoobsr7H
+         Nq7G6NU+jDIi11X4bqKkJiRVyMB/53DdL8vRDRED3JwkCcyC5WM/JRwW7n9LywWC1XOC
+         dtPT/rEYmu9Sz3ZlvlsnEmpcjegaq/82SgS+/C0670WXdmBfWQvG2b71Iih6GVBtX3n6
+         TlXZt/rI1UvHvqLyZxfTzL39oYxBz264i5CckM0QBycBXeZ+NmGKjRDq+ulou9D5uL9C
+         U72SJl3Teq9T5HtltRv+LuXefcC+LS9dOyCqLVxqhvUUsukevZxDudvc78wQEmL2LwoF
+         3hiA==
+X-Gm-Message-State: AOAM531604cjovVKnXK1w14lBwXqkvuSNDeaty/OSf26DvTlmsZsKcnV
+        sXDrN8VhcOcEHyan+46E5g==
+X-Google-Smtp-Source: ABdhPJy+M+qLnqcZGHZA2zAZsZUD29gfwCAun1jdghPH9Ok1etH7dNXYHty41fGiEXQm7/IucVah8g==
+X-Received: by 2002:a05:6808:211f:b0:2da:84f6:9eed with SMTP id r31-20020a056808211f00b002da84f69eedmr1597872oiw.239.1650033164763;
+        Fri, 15 Apr 2022 07:32:44 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bf35-20020a056808192300b002fa282123b7sm1178973oib.2.2022.04.15.07.32.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 07:32:44 -0700 (PDT)
+Received: (nullmailer pid 251789 invoked by uid 1000);
+        Fri, 15 Apr 2022 14:32:41 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     robh+dt@kernel.org, sebastian.hesselbarth@gmail.com,
+        ulf.hansson@linaro.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        andrew@lunn.ch, linux-mmc@vger.kernel.org,
+        gregory.clement@bootlin.com, krzk+dt@kernel.org
+In-Reply-To: <20220414230603.567049-4-chris.packham@alliedtelesis.co.nz>
+References: <20220414230603.567049-1-chris.packham@alliedtelesis.co.nz> <20220414230603.567049-4-chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH 3/4] dt-bindings: mmc: convert orion-sdio to JSON schema
+Date:   Fri, 15 Apr 2022 09:32:41 -0500
+Message-Id: <1650033161.788328.251788.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,156 +61,261 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1.Since it would be dangerous to specify a newer SoC's compatible
-  string as the fallback of an older SoC's compatible string, we
-  add support for the "ingenic,jz4775-spi" compatible string in
-  the driver.
+On Fri, 15 Apr 2022 11:06:02 +1200, Chris Packham wrote:
+> Convert the orion-sdio binding to JSON schema.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  .../bindings/mmc/marvell,orion-sdio.yaml      | 43 +++++++++++++++++++
+>  .../devicetree/bindings/mmc/orion-sdio.txt    | 16 -------
+>  2 files changed, 43 insertions(+), 16 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,orion-sdio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/orion-sdio.txt
+> 
 
-  This will permit to support the JZ4775 by having:
-  compatible = "ingenic,jz4775-spi";
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-  Instead of doing:
-  compatible = "ingenic,jz4775-spi", "ingenic,jz4780-spi";
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-2.Add support for probing the spi-ingenic driver on the X1000 SoC
-  from Ingenic. From the X1000 SoC onwards, the maximum frequency
-  allowed by the SSI module of Ingenic SoCs has been changed from
-  54MHz to 50MHz. So "max_speed_hz" is introduced in "jz_soc_info"
-  to set different maximum frequency values.
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-3.Add support for probing the spi-ingenic driver on the X2000 SoC
-  from Ingenic. The X2000 SoC has only one native chip select line,
-  so "max_native_cs" is introduced in "jz_soc_info" to set different
-  maximum number of native chip select lines.
 
-4.Because of the introduction of support for the X-series SoCs, the
-  current driver is not only applicable to the JZ-series SoCs, so
-  the description texts has been modified to avoid misunderstanding.
+mvsdio@90000: $nodename:0: 'mvsdio@90000' does not match '^mmc(@.*)?$'
+	arch/arm/boot/dts/kirkwood-b3.dtb
+	arch/arm/boot/dts/kirkwood-blackarmor-nas220.dtb
+	arch/arm/boot/dts/kirkwood-c200-v1.dtb
+	arch/arm/boot/dts/kirkwood-cloudbox.dtb
+	arch/arm/boot/dts/kirkwood-d2net.dtb
+	arch/arm/boot/dts/kirkwood-db-88f6281.dtb
+	arch/arm/boot/dts/kirkwood-db-88f6282.dtb
+	arch/arm/boot/dts/kirkwood-dir665.dtb
+	arch/arm/boot/dts/kirkwood-dns320.dtb
+	arch/arm/boot/dts/kirkwood-dns325.dtb
+	arch/arm/boot/dts/kirkwood-dockstar.dtb
+	arch/arm/boot/dts/kirkwood-dreamplug.dtb
+	arch/arm/boot/dts/kirkwood-ds109.dtb
+	arch/arm/boot/dts/kirkwood-ds110jv10.dtb
+	arch/arm/boot/dts/kirkwood-ds111.dtb
+	arch/arm/boot/dts/kirkwood-ds112.dtb
+	arch/arm/boot/dts/kirkwood-ds209.dtb
+	arch/arm/boot/dts/kirkwood-ds210.dtb
+	arch/arm/boot/dts/kirkwood-ds212.dtb
+	arch/arm/boot/dts/kirkwood-ds212j.dtb
+	arch/arm/boot/dts/kirkwood-ds409.dtb
+	arch/arm/boot/dts/kirkwood-ds409slim.dtb
+	arch/arm/boot/dts/kirkwood-ds411.dtb
+	arch/arm/boot/dts/kirkwood-ds411j.dtb
+	arch/arm/boot/dts/kirkwood-ds411slim.dtb
+	arch/arm/boot/dts/kirkwood-goflexnet.dtb
+	arch/arm/boot/dts/kirkwood-guruplug-server-plus.dtb
+	arch/arm/boot/dts/kirkwood-ib62x0.dtb
+	arch/arm/boot/dts/kirkwood-iconnect.dtb
+	arch/arm/boot/dts/kirkwood-iomega_ix2_200.dtb
+	arch/arm/boot/dts/kirkwood-is2.dtb
+	arch/arm/boot/dts/kirkwood-l-50.dtb
+	arch/arm/boot/dts/kirkwood-laplug.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lsqvl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lsvl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lswsxl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lswvl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lswxl.dtb
+	arch/arm/boot/dts/kirkwood-linksys-viper.dtb
+	arch/arm/boot/dts/kirkwood-lschlv2.dtb
+	arch/arm/boot/dts/kirkwood-lsxhl.dtb
+	arch/arm/boot/dts/kirkwood-mplcec4.dtb
+	arch/arm/boot/dts/kirkwood-mv88f6281gtw-ge.dtb
+	arch/arm/boot/dts/kirkwood-nas2big.dtb
+	arch/arm/boot/dts/kirkwood-net2big.dtb
+	arch/arm/boot/dts/kirkwood-net5big.dtb
+	arch/arm/boot/dts/kirkwood-netgear_readynas_duo_v2.dtb
+	arch/arm/boot/dts/kirkwood-netgear_readynas_nv+_v2.dtb
+	arch/arm/boot/dts/kirkwood-ns2.dtb
+	arch/arm/boot/dts/kirkwood-ns2lite.dtb
+	arch/arm/boot/dts/kirkwood-ns2max.dtb
+	arch/arm/boot/dts/kirkwood-ns2mini.dtb
+	arch/arm/boot/dts/kirkwood-nsa310a.dtb
+	arch/arm/boot/dts/kirkwood-nsa310.dtb
+	arch/arm/boot/dts/kirkwood-nsa320.dtb
+	arch/arm/boot/dts/kirkwood-nsa325.dtb
+	arch/arm/boot/dts/kirkwood-openblocks_a6.dtb
+	arch/arm/boot/dts/kirkwood-openblocks_a7.dtb
+	arch/arm/boot/dts/kirkwood-openrd-base.dtb
+	arch/arm/boot/dts/kirkwood-openrd-client.dtb
+	arch/arm/boot/dts/kirkwood-openrd-ultimate.dtb
+	arch/arm/boot/dts/kirkwood-pogo_e02.dtb
+	arch/arm/boot/dts/kirkwood-pogoplug-series-4.dtb
+	arch/arm/boot/dts/kirkwood-rd88f6192.dtb
+	arch/arm/boot/dts/kirkwood-rd88f6281-a.dtb
+	arch/arm/boot/dts/kirkwood-rd88f6281-z0.dtb
+	arch/arm/boot/dts/kirkwood-rs212.dtb
+	arch/arm/boot/dts/kirkwood-rs409.dtb
+	arch/arm/boot/dts/kirkwood-rs411.dtb
+	arch/arm/boot/dts/kirkwood-sheevaplug.dtb
+	arch/arm/boot/dts/kirkwood-sheevaplug-esata.dtb
+	arch/arm/boot/dts/kirkwood-t5325.dtb
+	arch/arm/boot/dts/kirkwood-topkick.dtb
+	arch/arm/boot/dts/kirkwood-ts219-6281.dtb
+	arch/arm/boot/dts/kirkwood-ts219-6282.dtb
+	arch/arm/boot/dts/kirkwood-ts419-6281.dtb
+	arch/arm/boot/dts/kirkwood-ts419-6282.dtb
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
- drivers/spi/Kconfig       |  4 ++--
- drivers/spi/spi-ingenic.c | 42 +++++++++++++++++++++++++++++++++++++-----
- 2 files changed, 39 insertions(+), 7 deletions(-)
+mvsdio@90000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed', 'broken-cd' were unexpected)
+	arch/arm/boot/dts/kirkwood-dreamplug.dtb
+	arch/arm/boot/dts/kirkwood-sheevaplug.dtb
+	arch/arm/boot/dts/kirkwood-topkick.dtb
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index d2815eb..cca92a8 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -419,10 +419,10 @@ config SPI_IMX
- 	  This enables support for the Freescale i.MX SPI controllers.
- 
- config SPI_INGENIC
--	tristate "Ingenic JZ47xx SoCs SPI controller"
-+	tristate "Ingenic SoCs SPI controller"
- 	depends on MACH_INGENIC || COMPILE_TEST
- 	help
--	  This enables support for the Ingenic JZ47xx SoCs SPI controller.
-+	  This enables support for the Ingenic SoCs SPI controller.
- 
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called spi-ingenic.
-diff --git a/drivers/spi/spi-ingenic.c b/drivers/spi/spi-ingenic.c
-index 672e4ed..ff507c8 100644
---- a/drivers/spi/spi-ingenic.c
-+++ b/drivers/spi/spi-ingenic.c
-@@ -1,8 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * SPI bus driver for the Ingenic JZ47xx SoCs
-+ * SPI bus driver for the Ingenic SoCs
-  * Copyright (c) 2017-2021 Artur Rojek <contact@artur-rojek.eu>
-  * Copyright (c) 2017-2021 Paul Cercueil <paul@crapouillou.net>
-+ * Copyright (c) 2022 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-  */
- 
- #include <linux/clk.h>
-@@ -52,6 +53,9 @@ struct jz_soc_info {
- 	u32 bits_per_word_mask;
- 	struct reg_field flen_field;
- 	bool has_trendian;
-+
-+	unsigned int max_speed_hz;
-+	unsigned int max_native_cs;
- };
- 
- struct ingenic_spi {
-@@ -418,7 +422,7 @@ static int spi_ingenic_probe(struct platform_device *pdev)
- 
- 	if (of_property_read_u32(dev->of_node, "num-cs", &num_cs)) {
- 		dev_warn(dev, "Number of chip select lines not specified.\n");
--		num_cs = 2;
-+		num_cs = pdata->max_native_cs;
- 	}
- 
- 	platform_set_drvdata(pdev, ctlr);
-@@ -433,9 +437,9 @@ static int spi_ingenic_probe(struct platform_device *pdev)
- 	ctlr->max_dma_len = SPI_INGENIC_FIFO_SIZE;
- 	ctlr->bits_per_word_mask = pdata->bits_per_word_mask;
- 	ctlr->min_speed_hz = 7200;
--	ctlr->max_speed_hz = 54000000;
-+	ctlr->max_speed_hz = pdata->max_speed_hz;
- 	ctlr->use_gpio_descriptors = true;
--	ctlr->max_native_cs = 2;
-+	ctlr->max_native_cs = pdata->max_native_cs;
- 	ctlr->num_chipselect = num_cs;
- 	ctlr->dev.of_node = pdev->dev.of_node;
- 
-@@ -459,17 +463,44 @@ static const struct jz_soc_info jz4750_soc_info = {
- 	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 17),
- 	.flen_field = REG_FIELD(REG_SSICR1, 4, 7),
- 	.has_trendian = false,
-+
-+	.max_speed_hz = 54000000,
-+	.max_native_cs = 2,
- };
- 
- static const struct jz_soc_info jz4780_soc_info = {
- 	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 32),
- 	.flen_field = REG_FIELD(REG_SSICR1, 3, 7),
- 	.has_trendian = true,
-+
-+	.max_speed_hz = 54000000,
-+	.max_native_cs = 2,
-+};
-+
-+static const struct jz_soc_info x1000_soc_info = {
-+	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 32),
-+	.flen_field = REG_FIELD(REG_SSICR1, 3, 7),
-+	.has_trendian = true,
-+
-+	.max_speed_hz = 50000000,
-+	.max_native_cs = 2,
-+};
-+
-+static const struct jz_soc_info x2000_soc_info = {
-+	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 32),
-+	.flen_field = REG_FIELD(REG_SSICR1, 3, 7),
-+	.has_trendian = true,
-+
-+	.max_speed_hz = 50000000,
-+	.max_native_cs = 1,
- };
- 
- static const struct of_device_id spi_ingenic_of_match[] = {
- 	{ .compatible = "ingenic,jz4750-spi", .data = &jz4750_soc_info },
-+	{ .compatible = "ingenic,jz4775-spi", .data = &jz4780_soc_info },
- 	{ .compatible = "ingenic,jz4780-spi", .data = &jz4780_soc_info },
-+	{ .compatible = "ingenic,x1000-spi", .data = &x1000_soc_info },
-+	{ .compatible = "ingenic,x2000-spi", .data = &x2000_soc_info },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, spi_ingenic_of_match);
-@@ -483,7 +514,8 @@ static struct platform_driver spi_ingenic_driver = {
- };
- 
- module_platform_driver(spi_ingenic_driver);
--MODULE_DESCRIPTION("SPI bus driver for the Ingenic JZ47xx SoCs");
-+MODULE_DESCRIPTION("SPI bus driver for the Ingenic SoCs");
- MODULE_AUTHOR("Artur Rojek <contact@artur-rojek.eu>");
- MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
-+MODULE_AUTHOR("周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>");
- MODULE_LICENSE("GPL");
--- 
-2.7.4
+mvsdio@90000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed', 'cd-gpios' were unexpected)
+	arch/arm/boot/dts/kirkwood-l-50.dtb
+	arch/arm/boot/dts/kirkwood-mplcec4.dtb
+	arch/arm/boot/dts/kirkwood-openrd-base.dtb
+	arch/arm/boot/dts/kirkwood-openrd-client.dtb
+	arch/arm/boot/dts/kirkwood-openrd-ultimate.dtb
+	arch/arm/boot/dts/kirkwood-rd88f6281-a.dtb
+	arch/arm/boot/dts/kirkwood-rd88f6281-z0.dtb
+
+mvsdio@90000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed', 'cd-gpios', 'wp-gpios' were unexpected)
+	arch/arm/boot/dts/kirkwood-pogoplug-series-4.dtb
+	arch/arm/boot/dts/kirkwood-sheevaplug-esata.dtb
+
+mvsdio@90000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed', 'non-removable' were unexpected)
+	arch/arm/boot/dts/kirkwood-guruplug-server-plus.dtb
+
+mvsdio@90000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed' were unexpected)
+	arch/arm/boot/dts/kirkwood-b3.dtb
+	arch/arm/boot/dts/kirkwood-blackarmor-nas220.dtb
+	arch/arm/boot/dts/kirkwood-c200-v1.dtb
+	arch/arm/boot/dts/kirkwood-cloudbox.dtb
+	arch/arm/boot/dts/kirkwood-d2net.dtb
+	arch/arm/boot/dts/kirkwood-dir665.dtb
+	arch/arm/boot/dts/kirkwood-dns320.dtb
+	arch/arm/boot/dts/kirkwood-dns325.dtb
+	arch/arm/boot/dts/kirkwood-dockstar.dtb
+	arch/arm/boot/dts/kirkwood-ds109.dtb
+	arch/arm/boot/dts/kirkwood-ds110jv10.dtb
+	arch/arm/boot/dts/kirkwood-ds111.dtb
+	arch/arm/boot/dts/kirkwood-ds112.dtb
+	arch/arm/boot/dts/kirkwood-ds209.dtb
+	arch/arm/boot/dts/kirkwood-ds210.dtb
+	arch/arm/boot/dts/kirkwood-ds212.dtb
+	arch/arm/boot/dts/kirkwood-ds212j.dtb
+	arch/arm/boot/dts/kirkwood-ds409.dtb
+	arch/arm/boot/dts/kirkwood-ds409slim.dtb
+	arch/arm/boot/dts/kirkwood-ds411.dtb
+	arch/arm/boot/dts/kirkwood-ds411j.dtb
+	arch/arm/boot/dts/kirkwood-ds411slim.dtb
+	arch/arm/boot/dts/kirkwood-goflexnet.dtb
+	arch/arm/boot/dts/kirkwood-ib62x0.dtb
+	arch/arm/boot/dts/kirkwood-iconnect.dtb
+	arch/arm/boot/dts/kirkwood-iomega_ix2_200.dtb
+	arch/arm/boot/dts/kirkwood-is2.dtb
+	arch/arm/boot/dts/kirkwood-laplug.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lsqvl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lsvl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lswsxl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lswvl.dtb
+	arch/arm/boot/dts/kirkwood-linkstation-lswxl.dtb
+	arch/arm/boot/dts/kirkwood-linksys-viper.dtb
+	arch/arm/boot/dts/kirkwood-lschlv2.dtb
+	arch/arm/boot/dts/kirkwood-lsxhl.dtb
+	arch/arm/boot/dts/kirkwood-mv88f6281gtw-ge.dtb
+	arch/arm/boot/dts/kirkwood-nas2big.dtb
+	arch/arm/boot/dts/kirkwood-net2big.dtb
+	arch/arm/boot/dts/kirkwood-net5big.dtb
+	arch/arm/boot/dts/kirkwood-netgear_readynas_duo_v2.dtb
+	arch/arm/boot/dts/kirkwood-netgear_readynas_nv+_v2.dtb
+	arch/arm/boot/dts/kirkwood-ns2.dtb
+	arch/arm/boot/dts/kirkwood-ns2lite.dtb
+	arch/arm/boot/dts/kirkwood-ns2max.dtb
+	arch/arm/boot/dts/kirkwood-ns2mini.dtb
+	arch/arm/boot/dts/kirkwood-nsa310a.dtb
+	arch/arm/boot/dts/kirkwood-nsa310.dtb
+	arch/arm/boot/dts/kirkwood-nsa320.dtb
+	arch/arm/boot/dts/kirkwood-nsa325.dtb
+	arch/arm/boot/dts/kirkwood-openblocks_a6.dtb
+	arch/arm/boot/dts/kirkwood-openblocks_a7.dtb
+	arch/arm/boot/dts/kirkwood-pogo_e02.dtb
+	arch/arm/boot/dts/kirkwood-rd88f6192.dtb
+	arch/arm/boot/dts/kirkwood-rs212.dtb
+	arch/arm/boot/dts/kirkwood-rs409.dtb
+	arch/arm/boot/dts/kirkwood-rs411.dtb
+	arch/arm/boot/dts/kirkwood-t5325.dtb
+	arch/arm/boot/dts/kirkwood-ts219-6281.dtb
+	arch/arm/boot/dts/kirkwood-ts219-6282.dtb
+	arch/arm/boot/dts/kirkwood-ts419-6281.dtb
+	arch/arm/boot/dts/kirkwood-ts419-6282.dtb
+
+mvsdio@90000: Unevaluated properties are not allowed ('wp-gpios', 'cd-gpios', 'bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed' were unexpected)
+	arch/arm/boot/dts/kirkwood-db-88f6281.dtb
+	arch/arm/boot/dts/kirkwood-db-88f6282.dtb
+
+mvsdio@d4000: $nodename:0: 'mvsdio@d4000' does not match '^mmc(@.*)?$'
+	arch/arm/boot/dts/armada-370-c200-v2.dtb
+	arch/arm/boot/dts/armada-370-db.dtb
+	arch/arm/boot/dts/armada-370-dlink-dns327l.dtb
+	arch/arm/boot/dts/armada-370-mirabox.dtb
+	arch/arm/boot/dts/armada-370-netgear-rn102.dtb
+	arch/arm/boot/dts/armada-370-netgear-rn104.dtb
+	arch/arm/boot/dts/armada-370-rd.dtb
+	arch/arm/boot/dts/armada-370-seagate-nas-2bay.dtb
+	arch/arm/boot/dts/armada-370-seagate-nas-4bay.dtb
+	arch/arm/boot/dts/armada-370-seagate-personal-cloud-2bay.dtb
+	arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtb
+	arch/arm/boot/dts/armada-370-synology-ds213j.dtb
+	arch/arm/boot/dts/armada-375-db.dtb
+	arch/arm/boot/dts/armada-xp-axpwifiap.dtb
+	arch/arm/boot/dts/armada-xp-crs305-1g-4s-bit.dtb
+	arch/arm/boot/dts/armada-xp-crs305-1g-4s.dtb
+	arch/arm/boot/dts/armada-xp-crs326-24g-2s-bit.dtb
+	arch/arm/boot/dts/armada-xp-crs326-24g-2s.dtb
+	arch/arm/boot/dts/armada-xp-crs328-4c-20s-4s-bit.dtb
+	arch/arm/boot/dts/armada-xp-crs328-4c-20s-4s.dtb
+	arch/arm/boot/dts/armada-xp-db.dtb
+	arch/arm/boot/dts/armada-xp-db-dxbc2.dtb
+	arch/arm/boot/dts/armada-xp-db-xc3-24g4xg.dtb
+	arch/arm/boot/dts/armada-xp-gp.dtb
+	arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dtb
+	arch/arm/boot/dts/armada-xp-linksys-mamba.dtb
+	arch/arm/boot/dts/armada-xp-matrix.dtb
+	arch/arm/boot/dts/armada-xp-netgear-rn2120.dtb
+	arch/arm/boot/dts/armada-xp-openblocks-ax3-4.dtb
+	arch/arm/boot/dts/armada-xp-synology-ds414.dtb
+
+mvsdio@d4000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed', 'broken-cd' were unexpected)
+	arch/arm/boot/dts/armada-370-db.dtb
+	arch/arm/boot/dts/armada-370-mirabox.dtb
+	arch/arm/boot/dts/armada-370-rd.dtb
+	arch/arm/boot/dts/armada-xp-db.dtb
+	arch/arm/boot/dts/armada-xp-db-dxbc2.dtb
+
+mvsdio@d4000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed', 'cd-gpios', 'wp-gpios' were unexpected)
+	arch/arm/boot/dts/armada-375-db.dtb
+
+mvsdio@d4000: Unevaluated properties are not allowed ('bus-width', 'cap-sdio-irq', 'cap-sd-highspeed', 'cap-mmc-highspeed' were unexpected)
+	arch/arm/boot/dts/armada-370-c200-v2.dtb
+	arch/arm/boot/dts/armada-370-dlink-dns327l.dtb
+	arch/arm/boot/dts/armada-370-netgear-rn102.dtb
+	arch/arm/boot/dts/armada-370-netgear-rn104.dtb
+	arch/arm/boot/dts/armada-370-seagate-nas-2bay.dtb
+	arch/arm/boot/dts/armada-370-seagate-nas-4bay.dtb
+	arch/arm/boot/dts/armada-370-seagate-personal-cloud-2bay.dtb
+	arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtb
+	arch/arm/boot/dts/armada-370-synology-ds213j.dtb
+	arch/arm/boot/dts/armada-xp-axpwifiap.dtb
+	arch/arm/boot/dts/armada-xp-crs305-1g-4s-bit.dtb
+	arch/arm/boot/dts/armada-xp-crs305-1g-4s.dtb
+	arch/arm/boot/dts/armada-xp-crs326-24g-2s-bit.dtb
+	arch/arm/boot/dts/armada-xp-crs326-24g-2s.dtb
+	arch/arm/boot/dts/armada-xp-crs328-4c-20s-4s-bit.dtb
+	arch/arm/boot/dts/armada-xp-crs328-4c-20s-4s.dtb
+	arch/arm/boot/dts/armada-xp-db-xc3-24g4xg.dtb
+	arch/arm/boot/dts/armada-xp-gp.dtb
+	arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dtb
+	arch/arm/boot/dts/armada-xp-linksys-mamba.dtb
+	arch/arm/boot/dts/armada-xp-matrix.dtb
+	arch/arm/boot/dts/armada-xp-netgear-rn2120.dtb
+	arch/arm/boot/dts/armada-xp-openblocks-ax3-4.dtb
+	arch/arm/boot/dts/armada-xp-synology-ds414.dtb
 
