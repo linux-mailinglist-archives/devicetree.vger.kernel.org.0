@@ -2,114 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E2BF502DA9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 18:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C30502DE2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 18:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237533AbiDOQW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 12:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57942 "EHLO
+        id S1355912AbiDOQqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 12:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234081AbiDOQW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 12:22:29 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51C197B9B;
-        Fri, 15 Apr 2022 09:19:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=AD7y6t2FutZNo1iQOFDe7kMGydOzNTbvIMGGb73fJwc=; b=IsUPJRGn6OPxvSAfo8oh365+38
-        KRuGWw3/46cDX/h4srLR9RLzY0wFgH9PGJhHtQG9VTHIujzL3S7c3Hl1nBUU7CB3gw0miFUjmKomR
-        koW3L8q1IGnkC3A4uPFEaRO3f/4SrQDFeNGbCWb7uEZJZCOa97p/4WID+kJeECjYtTBM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nfOfi-00FziH-F0; Fri, 15 Apr 2022 18:19:46 +0200
-Date:   Fri, 15 Apr 2022 18:19:46 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S1355918AbiDOQqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 12:46:35 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6786DCE23;
+        Fri, 15 Apr 2022 09:44:05 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id k5so14785420lfg.9;
+        Fri, 15 Apr 2022 09:44:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iBWwF27MwSuL5C7aP5ZZTL4T7IqFoYwfQe6tUlw2pWI=;
+        b=TkVr8aTJFS9IbJCuBrXCpGEPamxYbyEAMjEiJu0qXzB9gw4xbchJ8On8xUp6zkdSHX
+         WOA/TmTPa3pnldsg+uUpMzSQ4UMHROtPuaxMDZZftMNRw5B+GUNr9UGGgFlXmuRxpiqm
+         kFOB5il2AXyWD19g/EQrck/K0nQTTyytvYBNKvNXQrpJg6qClcEAmmkGdC/hzFpDKlni
+         /iv9VUDudkTEgw4vtPlsES43r2Ji7ln9dEz7i+Ad94DKFjiuM3S2Sdovq/F752kul4Sz
+         WolbRwGQwtcTdGVtBDMG7UOVU1XCgu7NXDbJIDhZdfz9I0s8v79w1PG5Smq61ivAHwMr
+         Kr/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iBWwF27MwSuL5C7aP5ZZTL4T7IqFoYwfQe6tUlw2pWI=;
+        b=mWXuli9AIaFqg7M/osNuDvH9qoxKlmU/OTiGbIvRKVXv4AtvGYDCSMaidvcfTfi1bw
+         0xLHO++2NIAKiP0PpZ+b05jPwReywFHXtKLYKw5UN8Wrgj/WENP/GSK0PKVto4PV1uxB
+         lFdSNHdPZ0qW7ooSio7i05l5wav/Odg4UEobfk6aFoq1xhJqQHG1aXLVhFo1T/E0ZoPo
+         uyBo2FGOZ0PUI8o9OhIl/nVmfGlq4eVduaoTxkEjjQ6Hl8nycrdp2nctJHiyQCm4CsAR
+         C1d05Dvamtb2144BOLa8wUTopKN0qTGCwM8x5C98yYoiBN7H/aOk+70hs9SWT7Uvn6DR
+         pHoA==
+X-Gm-Message-State: AOAM530Mx0oMU/9ykBZP7TW3NtnmR/Bv5agZ32L6cQGwngWzMWlZDFk2
+        qKPe28Uezf57cxYST1jDpNdizltLlew=
+X-Google-Smtp-Source: ABdhPJzGuwNvorSCO5VVz/QXWE6SE1/vY+Z2IZvVpYBCS+XgK0zpRShss1brS9/434H4FFsuCPrOIA==
+X-Received: by 2002:a05:6512:686:b0:46e:c9cf:7112 with SMTP id t6-20020a056512068600b0046ec9cf7112mr3065146lfe.662.1650041043829;
+        Fri, 15 Apr 2022 09:44:03 -0700 (PDT)
+Received: from nergzd-desktop.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id h22-20020a056512339600b0046bc4ceaeb6sm383787lfg.27.2022.04.15.09.44.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 09:44:03 -0700 (PDT)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
- converter
-Message-ID: <YlmbIjoIZ8Xb4Kh/@lunn.ch>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
- <20220414122250.158113-10-clement.leger@bootlin.com>
- <YlismVi8y3Vf6PZ0@lunn.ch>
- <20220415102453.1b5b3f77@fixe.home>
- <Yll+Tpnwo5410B9H@lunn.ch>
- <20220415163853.683c0b6d@fixe.home>
- <YlmLWv4Hsm2uk8pa@lunn.ch>
- <20220415172954.64e53086@fixe.home>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/4] Add support for Silicon Mitus SM5703 MFD
+Date:   Fri, 15 Apr 2022 19:43:51 +0300
+Message-Id: <20220415164356.25165-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220415172954.64e53086@fixe.home>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I think it would be good to modify it like this:
-> 
-> eth-miic@44030000 {
->     ...
->   converters {
->     mii_conv0: mii-conv@0 {
->       // Even if useless, maybe keeping it for the sake of coherency
->       renesas,miic-input = <MIIC_GMAC1>;
->       reg = <0>;
->     };
+This series adds support for Silicon Mitus SM5703 MFD and the
+appropriate device-tree bindings. This only adds support for the
+regulator module, leaving room for other modules implemented in
+future (code for other modules is really not ready for submission
+right now). Silicon Mitus SM5703 is used on various mobile phones,
+mostly Samsung Galaxy (J5 (2015, 2016), On7, J7 (2015, 2016) ...).
 
-This is not a 'bus', so using reg, and @0, etc is i think wrong.  You
-just have a collection of properties.
+v2:
+- mfd bindings: add "SM5703" to the title
+- mfd bindings: indent the example
+- regulators/Makefile: sort alphabetically
+v3:
+- mfd bindings: fix an error in example: there should be no 
+newline between #size-cells and #address-cells and the node
 
->     mii_conv1: mii-conv@1 {
->       renesas,miic-input = <SWITCH_PORTA>;
->       reg = <1>;
->     };
->     mii_conv2: mii-conv@2 {
->       renesas,miic-input = <SWITCH_PORTB>;
->       reg = <2>;
->     };
->     mii_conv3: mii-conv@3 {
->       renesas,miic-input = <SWITCH_PORTC>;
->       reg = <3>;
->     };
->     mii_conv4: mii-conv@4 {
->       renesas,miic-input = <SWITCH_PORTD>;
->       reg = <4>;
->     };
->   };
-> 
-> This way, it remains tied to the MII converter output port definition. I
-> guess that the yaml definitions would still allow to restrict the values
-> available per nodes. Validation for the final combination is probably
-> more difficult to do using yaml.
+Markuss Broks (4):
+  dt-bindings: regulator: Add bindings for Silicon Mitus SM5703
+    regulators
+  dt-bindings: mfd: Add bindings for Silicon Mitus SM5703 MFD
+  mfd: sm5703: Add support for SM5703 MFD
+  regulator: sm5703-regulator: Add regulators support for SM5703 MFD
 
-I doubt you can do full validation in YAML. But you can at least limit
-some of the errors. You need to do full validation in the driver
-anyway.
+ .../bindings/mfd/siliconmitus,sm5703.yaml     |  91 ++++++++++
+ .../siliconmitus,sm5703-regulator.yaml        |  48 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/mfd/Kconfig                           |  12 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/sm5703.c                          |  81 +++++++++
+ drivers/regulator/Kconfig                     |   7 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sm5703-regulator.c          | 162 ++++++++++++++++++
+ include/linux/mfd/sm5703.h                    | 105 ++++++++++++
+ 10 files changed, 516 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+ create mode 100644 drivers/mfd/sm5703.c
+ create mode 100644 drivers/regulator/sm5703-regulator.c
+ create mode 100644 include/linux/mfd/sm5703.h
 
-	Andrew
+-- 
+2.35.1
+
