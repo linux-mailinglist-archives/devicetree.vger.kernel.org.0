@@ -2,179 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7D9502943
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 14:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D378B502952
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 14:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349935AbiDOMDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 08:03:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33926 "EHLO
+        id S1352881AbiDOMEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 08:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353087AbiDOMDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 08:03:14 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C024C6A434
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 05:00:03 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id g18so10404995wrb.10
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 05:00:03 -0700 (PDT)
+        with ESMTP id S1350001AbiDOMET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 08:04:19 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EBD0BABBC;
+        Fri, 15 Apr 2022 05:01:51 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id bh17so15028334ejb.8;
+        Fri, 15 Apr 2022 05:01:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=d1y641nRGtjN50xjMNw5/o57jqZADQ8uigdFPEkJTyU=;
-        b=gymdzLmCMoEPCVTZMbYMa+Yc3PkIVZg2v+9QxYPYaBgIWr2uhGjeotsMXVo0ja1kWu
-         kjwdhjc7tFhfE5IpC9Rtw3rLNRqz86f0GSdLXvhXjJ5d7QgnPLNBEv1OvqyPezFr5SPJ
-         9EWNFSi6uyHmdxaloiVggwcF3mM/Ta/ikHNiemO45TC8FGCs2/lJyLgJrSQTgvbhjfsK
-         IQQwgbfo2dXFnDbs/M2x7bf140VtGAUSToqcRrvWRC2FE+M0xhFNjt6uYyTTIuBQcOYD
-         aaNNwTVuwLfcLO9K/n2OD+nvI7plEc/6pcvQxK0gFTPKgegJH8ZqNDr5ygvVM4PL/BC+
-         xSSQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=uFnOdniEZzhGeU5i8rjIFmrAW7TBeR5ZN2MyiZEBz8s=;
+        b=QmH5eyS6qYvGoAUvZaEGDQRhd/r3cGiozR5StIR2pL+myyqJG9BTGRDJmZxm69SlpJ
+         eMsL6vgo8v3UZ+Q/365PBPdL7j3EwNIwIcxg8L31y5LQ3odXiOKK9tSe8Qt7kqP0g/MB
+         umgSfRMNvuBh/w2LkcpFokbrehctAmyWHw0ZMyHvoz4SCmxMzbRRtv5GA76B7tNn4VMw
+         l4VRI/H9h6vZvG3uN2x1azOm0MownhxdqEtcLbsWIthkEruZn4DNqHyeeS1zen7dnoln
+         201PmuODCCyP0mTufJt1/hJWW/jrEL2HxTzmY+ZSD1yLX9E69LZbaOKJ3YS5UCgG7lHK
+         /YuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=d1y641nRGtjN50xjMNw5/o57jqZADQ8uigdFPEkJTyU=;
-        b=w7HcJxb6iv76C9DgLaDHzORfRjcOjhGyehj9d1LewkUnqc5YvFQqlc5neOk1s8Rtyv
-         Rh58DjwFJV1kW+5PnEhgsyPHsH8f7+mbVm//qMYsfK6f4lPm4dAQZyTTtQhry2gUE3f9
-         z1I/nbvIunLAqq+NNrbQT+jJKt80bygJUqjIDQ2NT85GQk8uhOrHKDb0SfPLjQ+CMa1z
-         7e5sNZsNaxFfXiCNNP6Cpe1V1UbmHbjRYPuzMiCYSTaiN3+cnj4bvlPlei/o342Ke2Od
-         ytNZRYzQjESrC/HZwSJaNtmUpNNKxMTw29btjj9eb0xuG9y6aGwOScq2dF16Ovbw0U/E
-         lHZw==
-X-Gm-Message-State: AOAM531+qD4KOUCRkHIqo96amp57GRTF40mIYEKp3TOd332Oo8Ij1pPX
-        m3Qqt/dfmXiiNH+NnH911nTcmA==
-X-Google-Smtp-Source: ABdhPJyH6Ovh1R3/6pCX22brV+JOSgbCvt1cq88CdvUGW7aioz3V9VJIJO98IwqosBm8jbVa4CEe3w==
-X-Received: by 2002:adf:f54a:0:b0:207:a746:e7 with SMTP id j10-20020adff54a000000b00207a74600e7mr5650813wrp.82.1650024002354;
-        Fri, 15 Apr 2022 05:00:02 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id bg8-20020a05600c3c8800b0038e4c5967besm5328568wmb.3.2022.04.15.05.00.01
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uFnOdniEZzhGeU5i8rjIFmrAW7TBeR5ZN2MyiZEBz8s=;
+        b=E5YntJr2iX3s56P0rPey91OfQgUcdboRE1spGCTrHVeuBes+OtdpzU7xShbSM51wnD
+         ZUSv4IccUuV2UlY+vFSLlrCsp/fhVzPfPwPVgmnK2p4GCPnW7szLsOYnp4K7BcuMYfFo
+         cm/mj/mf6GN/25qZe2Up4l4EptZ2wFJgnWcX5eXJEhQxx9Z31IE3EoLnx8US196a6LfU
+         BSr1LTWEavQZEHTVesF5h7mfjbn8MxfF/WCc7b2ArpKSUKyuKR+hvb4idAEC8GEnygcu
+         qBmmsna/wrUVedfKPcSoc47459mJ6zAW4cZ6AgcAXsfMcLQlG4Alk6IMN4ZCh8zgv2jD
+         QBEA==
+X-Gm-Message-State: AOAM532hEAQ39xXBrayPaKup5r4jOWFQXhT+UFLM96U3qMrPsjtux4cW
+        QIc4AUOxNAhfBEPFUS+CkTk=
+X-Google-Smtp-Source: ABdhPJweeKsXPOQXAEMTT5hXE3XzWzlnimZHxheCku1KYqIKD3sLxxG2xOgv9/bmAZIgA+Kh66Aesg==
+X-Received: by 2002:a17:907:3f09:b0:6e8:4725:8247 with SMTP id hq9-20020a1709073f0900b006e847258247mr5856586ejc.605.1650024109987;
+        Fri, 15 Apr 2022 05:01:49 -0700 (PDT)
+Received: from skbuf ([188.26.57.45])
+        by smtp.gmail.com with ESMTPSA id q9-20020a170906770900b006d20acf7e2bsm1602517ejm.200.2022.04.15.05.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Apr 2022 05:00:01 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     sakari.ailus@iki.fi, jacopo@jmondi.org, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
-        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v5 4/4] media: i2c: imx412: Add bulk regulator support
-Date:   Fri, 15 Apr 2022 12:59:54 +0100
-Message-Id: <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220415115954.1649217-1-bryan.odonoghue@linaro.org>
-References: <20220415115954.1649217-1-bryan.odonoghue@linaro.org>
+        Fri, 15 Apr 2022 05:01:49 -0700 (PDT)
+Date:   Fri, 15 Apr 2022 15:01:47 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+        Jean-Pierre Geslin <jean-pierre.geslin@non.se.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: Re: [PATCH net-next 06/12] net: dsa: rzn1-a5psw: add Renesas RZ/N1
+ advanced 5 port switch driver
+Message-ID: <20220415120147.7ya2rwtxcldahh4n@skbuf>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-7-clement.leger@bootlin.com>
+ <20220414144709.tpxiiaiy2hu4n7fd@skbuf>
+ <20220415113453.1a076746@fixe.home>
+ <20220415105503.ztl4zhoyua2qzelt@skbuf>
+ <YllQtjybAOF/ePfG@shell.armlinux.org.uk>
+ <20220415111419.twrlknxuto4pri63@skbuf>
+ <YllVsiN7YhaUkvQe@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YllVsiN7YhaUkvQe@shell.armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depending on the platform we may need to enable and disable three separate
-regulators for the imx412.
+On Fri, Apr 15, 2022 at 12:23:30PM +0100, Russell King (Oracle) wrote:
+> If ->shutdown has been called, the system is going down, and userspace
+> is probably already dead.
 
-- DOVDD
-Digital I/O power
+There isn't anything preventing ->remove from being called after ->shutdown
+has been called.
 
-- AVDD
-Analog power
+It all starts with the pattern that some driver authors prefer, which is
+to redirect their ->shutdown method to ->remove. They argue that it
+provides for a well-tested common path, so in turn, this pattern is
+quite widespread and I'm not one to argue for removing it.
 
-- DVDD
-Digital core power
+When such driver (redirecting ->shutdown to ->remove) is a bus driver
+(SPI, I2C, lately even the fsl-mc bus), the implication is that the
+controller will be unregistered on shutdown. To unregister a bus, you
+need to unregister all devices on the bus too.
 
-The addition of these regulators shouldn't affect existing users using
-fixed-on/firmware-controlled regulators.
+Due to implicit device ordering on the dpm_list, the ->shutdown() method
+of children on said bus has already executed, now we're in the context
+of the ->shutdown() procedure of the bus driver itself.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/i2c/imx412.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+You can argue "hey, that's SPI/I2C and this is a platform driver, there
+isn't any bus that unregisters on shutdown here", and you may have a
+point there. But platform devices aren't just memory-mapped devices,
+they can also be children of mfd devices on SPI/I2C buses. So in theory
+you can see this pattern happen on platform devices as well.
 
-diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-index 84279a680873..1795a6180d60 100644
---- a/drivers/media/i2c/imx412.c
-+++ b/drivers/media/i2c/imx412.c
-@@ -11,6 +11,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-fwnode.h>
-@@ -101,6 +102,12 @@ struct imx412_mode {
- 	struct imx412_reg_list reg_list;
- };
- 
-+static const char * const imx412_supply_names[] = {
-+	"dovdd",	/* Digital I/O power */
-+	"avdd",		/* Analog power */
-+	"dvdd",		/* Digital core power */
-+};
-+
- /**
-  * struct imx412 - imx412 sensor device structure
-  * @dev: Pointer to generic device
-@@ -128,6 +135,7 @@ struct imx412 {
- 	struct media_pad pad;
- 	struct gpio_desc *reset_gpio;
- 	struct clk *inclk;
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(imx412_supply_names)];
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	struct v4l2_ctrl *link_freq_ctrl;
- 	struct v4l2_ctrl *pclk_ctrl;
-@@ -946,6 +954,16 @@ static int imx412_parse_hw_config(struct imx412 *imx412)
- 		return -EINVAL;
- 	}
- 
-+	/* Get optional DT defined regulators */
-+	for (i = 0; i < ARRAY_SIZE(imx412_supply_names); i++)
-+		imx412->supplies[i].supply = imx412_supply_names[i];
-+
-+	ret = devm_regulator_bulk_get(imx412->dev,
-+				      ARRAY_SIZE(imx412_supply_names),
-+				      imx412->supplies);
-+	if (ret)
-+		return ret;
-+
- 	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
- 	if (!ep)
- 		return -ENXIO;
-@@ -1011,6 +1029,13 @@ static int imx412_power_on(struct device *dev)
- 	struct imx412 *imx412 = to_imx412(sd);
- 	int ret;
- 
-+	ret = regulator_bulk_enable(ARRAY_SIZE(imx412_supply_names),
-+				    imx412->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		return ret;
-+	}
-+
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 0);
- 
- 	ret = clk_prepare_enable(imx412->inclk);
-@@ -1025,6 +1050,8 @@ static int imx412_power_on(struct device *dev)
- 
- error_reset:
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(imx412_supply_names),
-+			       imx412->supplies);
- 
- 	return ret;
- }
-@@ -1044,6 +1071,9 @@ static int imx412_power_off(struct device *dev)
- 
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
- 
-+	regulator_bulk_disable(ARRAY_SIZE(imx412_supply_names),
-+			       imx412->supplies);
-+
- 	return 0;
- }
- 
--- 
-2.35.1
-
+This is the reason why I insist for uniformity in the DSA layer in the
+way that shutdown is handled. People copy and paste code a lot, and by
+leaving them with less variance in the code that they copy, subtle
+differences that are not understood but do matter are less likely to
+creep in.
