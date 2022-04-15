@@ -2,144 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E3D502BF6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2213502C0D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 16:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354498AbiDOOfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 10:35:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55430 "EHLO
+        id S1354522AbiDOOnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 10:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354467AbiDOOfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:35:13 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DEA52E6BC;
-        Fri, 15 Apr 2022 07:32:44 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so8212679fac.11;
-        Fri, 15 Apr 2022 07:32:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=lbNCJKTZYftED6nJP7xJB0YB8KniXXh2gE8PdNUGElw=;
-        b=AYTA5XquIe4BE89aDG6iofq8xdojzmh56SZpijhy9a1hwdzPz1qgzRF7Ot/TZXXpne
-         K1UggUNzdRGD7gF3baLIJ0lsZ23kBF8IivEIgEjQlB5DFFJdTrM5hylniyr/oG0fieVD
-         M36p8xa08yvL4xcFn9plmOU3MmH64li0dKS+NvxT5Pr1yoctKihuW0LBXdTd7jxLR8N2
-         GwCRUIZRr8BGtsL4CcNvuW6Uc55Od2NTTt12QBQ0mQC4Hh5grpmEA27avhQsPrPgv8rN
-         TLJ8J1qStL9j/v4a/uijQ39MC99OTzB0KWBSoApMq6zUlWIraLqeYVIkAyf3go9WC1Yp
-         NvUg==
-X-Gm-Message-State: AOAM531QNDavm5yGFVNEOuwRYTEiks7uWeE8yS/QhYOyWe/4mrAXh3ch
-        iSzuiAZj7YgAOvuckuE5Ow==
-X-Google-Smtp-Source: ABdhPJwRpfaOMjkZ+7Xx+M8ZEg1DeCSRF0lXPpuofoYKaeq05NhtGS9O2aRewKCJCA6W90xxlw3rzA==
-X-Received: by 2002:a05:6870:600a:b0:d7:4895:75be with SMTP id t10-20020a056870600a00b000d7489575bemr1482571oaa.35.1650033163767;
-        Fri, 15 Apr 2022 07:32:43 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m22-20020a9d73d6000000b006028f49a6fcsm1138070otk.4.2022.04.15.07.32.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Apr 2022 07:32:43 -0700 (PDT)
-Received: (nullmailer pid 251791 invoked by uid 1000);
-        Fri, 15 Apr 2022 14:32:41 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     robh+dt@kernel.org, sebastian.hesselbarth@gmail.com,
-        andrew@lunn.ch, devicetree@vger.kernel.org, krzk+dt@kernel.org,
-        ulf.hansson@linaro.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, gregory.clement@bootlin.com,
-        linux-mmc@vger.kernel.org
-In-Reply-To: <20220414230603.567049-5-chris.packham@alliedtelesis.co.nz>
-References: <20220414230603.567049-1-chris.packham@alliedtelesis.co.nz> <20220414230603.567049-5-chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH 4/4] dt-bindings: mmc: convert sdhci-dove to JSON schema
-Date:   Fri, 15 Apr 2022 09:32:41 -0500
-Message-Id: <1650033161.801334.251790.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S1354712AbiDOOm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 10:42:58 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF213700F;
+        Fri, 15 Apr 2022 07:40:24 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 974ECE000B;
+        Fri, 15 Apr 2022 14:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650033622;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=zanZazVS+F6yO9Vb+0jek4QpQxEnTAcQmwRfYFhBd+k=;
+        b=XvjgWF12omvcB0S9wdZocsVRAM1fWYoHiR3MF0fsHo3P2MRQFyfstVNy00SFVoUnaYfNn5
+        DHTXUF6jawn9JnEU+1oqAbtBVncahboURiQbPA8my6MYgJfBtZa7dJYGANrQGdr2VlYBUO
+        h6jCzl9nA6Oc98wTw2G+Nthu3s1C5LycIA7OUXethKZt4aeXqiQzdpThwIS3Giy5cuXfJW
+        7fgNfwBtv3eQ3VWNQqBJe43/w+CMLSJuooTGyXCGiaStd+/42BLmNRw5wWflmuNrJUnDS7
+        IXLGtSXkRqiUo9FnvBUtdVr8XG8qvaPy51ebNxVCCOqaHDI+dbpqhktihqA2oA==
+Date:   Fri, 15 Apr 2022 16:38:53 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
+ converter
+Message-ID: <20220415163853.683c0b6d@fixe.home>
+In-Reply-To: <Yll+Tpnwo5410B9H@lunn.ch>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+        <20220414122250.158113-10-clement.leger@bootlin.com>
+        <YlismVi8y3Vf6PZ0@lunn.ch>
+        <20220415102453.1b5b3f77@fixe.home>
+        <Yll+Tpnwo5410B9H@lunn.ch>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 11:06:03 +1200, Chris Packham wrote:
-> Convert the sdhci-dove binding to JSON schema.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->  .../bindings/mmc/marvell,dove-sdhci.yaml      | 38 +++++++++++++++++++
->  .../devicetree/bindings/mmc/sdhci-dove.txt    | 14 -------
->  2 files changed, 38 insertions(+), 14 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-dove.txt
-> 
+Le Fri, 15 Apr 2022 16:16:46 +0200,
+Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+> On Fri, Apr 15, 2022 at 10:24:53AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
+> > Le Fri, 15 Apr 2022 01:22:01 +0200,
+> > Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
+> >  =20
+> > > On Thu, Apr 14, 2022 at 02:22:47PM +0200, Cl=C3=A9ment L=C3=A9ger wro=
+te: =20
+> > > > Add the MII converter node which describes the MII converter that is
+> > > > present on the RZ/N1 SoC.   =20
+> > >=20
+> > > Do you have a board which actually uses this? I just noticed that
+> > > renesas,miic-cfg-mode is missing, it is a required property, but maybe
+> > > the board .dts file provides it?
+> > >=20
+> > >     Andrew =20
+> >=20
+> > Hi Andrew, yes, I have a board that defines and use that. =20
+>=20
+> Great. Do you plan to mainline it? It is always nice to see a user.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+Although we are working on a specific customer board, we will probably
+try to mailine this support for the RZ/N1D-DB.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+>=20
+> > The
+> > renesas,miic-cfg-mode actually configures the muxes that are present on
+> > the SoC. They allows to mux the various ethernet components (Sercos
+> > Controller, HSR Controller, Ethercat, GMAC1, RTOS-GMAC).
+> > All these muxes are actually controller by a single register
+> > CONVCTRL_MODE. You can actually see the muxes that are present in the
+> > manual [1] at Section 8 and the CONVCTRL_MODE possible values are listed
+> > on page 180.
+> >=20
+> > This seems to be something that is board dependent because the muxing
+> > controls the MII converter outputs which depends on the board layout. =
+=20
+>=20
+> Does it also mux the MDIO lines as well?
+
+Nope, the MDIO lines are muxed using the pinctrl driver.
+
+>=20
+> We might want to consider the name 'mux'. Linux already has the
+> concept of a mux, e.g. an MDIO mux, and i2c mux etc. These muxes have
+> one master device, which with the aid of the mux you can connect to
+> multiple busses. And at runtime you flip the mux as needed to access
+> the devices on the multiple slave busses. For MDIO you typically see
+> this when you have multiple Ethernet switch, each has its own slave
+> MDIO bus, and you use the mux to connect the single SOC MDIO bus
+> master to the various slave busses as needed to perform a bus
+> transaction. I2C is similar, you can have multiple SFPs, either with
+> there own IC2 bus, connected via a mux to a single I2C bus controller
+> on the SoC.
+>=20
+> I've not looked at the data sheet yet, but it sounds like it operates
+> in a different way, so we might want to avoid 'mux'.
+
+Indeed, Let's not refer to it as mux in the code at all. If using your
+proposal below, I guess we could avoid that.
+
+>=20
+> > I'm open to any modification for this setup which does not really fit
+> > any abstraction that I may have seen.
+> >=20
+> > [1]
+> > https://www.renesas.com/us/en/document/mah/rzn1d-group-rzn1s-group-rzn1=
+l-group-users-manual-system-introduction-multiplexing-electrical-and =20
+>=20
+> O.K, looking at figure 8.1.
+>=20
+> What the user wants to express is something like:
+>=20
+> Connect MI_CONV5 to SECOS PORTA
+> Connect MI_CONV4 to ETHCAT PORTB
+> Connect MI_CONV3 to SWITCH PORTC
+> Connect MI_CONV2 to SWITCH PORTD
+>=20
+> plus maybe
+>=20
+> Connect SWITCH PORTIN to RTOS
+
+Yes, that is correct.
+
+>=20
+> So i guess i would express the DT bindings like this, 5 values, and
+> let the driver then try to figure out the value you need to put in the
+> register, or return -EINVAL. For DT bindings we try to avoid magic
+> values which get written into registers. We prefer a higher level
+> description, and then let the driver figure out how to actually
+> implement that.
+
+Ok, looks like a more flexible way to doing it. Let's go with something
+like this:
+
+renesas,miic-port-connection =3D <PORTIN_GMAC2>, <MAC2>, <SWITCH_PORTC>,
+<SWITCH_PORTB>, <SWITCH_PORTA>;
 
 
-sdio-host@90000: $nodename:0: 'sdio-host@90000' does not match '^mmc(@.*)?$'
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-cubox-es.dtb
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-d3plug.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-	arch/arm/boot/dts/dove-sbc-a510.dtb
 
-sdio-host@90000: interrupts: [[36], [38]] is too long
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-cubox-es.dtb
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-d3plug.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-	arch/arm/boot/dts/dove-sbc-a510.dtb
 
-sdio-host@90000: Unevaluated properties are not allowed ('interrupts', 'clocks', 'non-removable', 'bus-width' were unexpected)
-	arch/arm/boot/dts/dove-d2plug.dtb
 
-sdio-host@90000: Unevaluated properties are not allowed ('interrupts', 'clocks', 'non-removable', 'vmmc-supply', 'reset-gpio' were unexpected)
-	arch/arm/boot/dts/dove-sbc-a510.dtb
-
-sdio-host@90000: Unevaluated properties are not allowed ('interrupts', 'clocks', 'non-removable' were unexpected)
-	arch/arm/boot/dts/dove-d3plug.dtb
-
-sdio-host@90000: Unevaluated properties are not allowed ('interrupts', 'clocks' were unexpected)
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-cubox-es.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-
-sdio-host@92000: $nodename:0: 'sdio-host@92000' does not match '^mmc(@.*)?$'
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-cubox-es.dtb
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-d3plug.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-	arch/arm/boot/dts/dove-sbc-a510.dtb
-
-sdio-host@92000: interrupts: [[35], [37]] is too long
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-cubox-es.dtb
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-d3plug.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-	arch/arm/boot/dts/dove-sbc-a510.dtb
-
-sdio-host@92000: Unevaluated properties are not allowed ('interrupts', 'clocks', 'cd-gpios' were unexpected)
-	arch/arm/boot/dts/dove-cubox-es.dtb
-
-sdio-host@92000: Unevaluated properties are not allowed ('interrupts', 'clocks', 'non-removable', 'bus-width' were unexpected)
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-d3plug.dtb
-
-sdio-host@92000: Unevaluated properties are not allowed ('interrupts', 'clocks', 'vmmc-supply', 'wp-gpios' were unexpected)
-	arch/arm/boot/dts/dove-sbc-a510.dtb
-
-sdio-host@92000: Unevaluated properties are not allowed ('interrupts', 'clocks' were unexpected)
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
