@@ -2,50 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3688550200E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 03:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 670D250203C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 03:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236757AbiDOBTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 21:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38794 "EHLO
+        id S1348528AbiDOB6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 21:58:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231893AbiDOBTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 21:19:53 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 335C79027F;
-        Thu, 14 Apr 2022 18:17:27 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 15 Apr 2022 10:17:26 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id A23162058443;
-        Fri, 15 Apr 2022 10:17:26 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 15 Apr 2022 10:17:26 +0900
-Received: from [10.212.183.90] (unknown [10.212.183.90])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id A9E54B62B7;
-        Fri, 15 Apr 2022 10:17:25 +0900 (JST)
-Subject: Re: [PATCH] dt-bindings: interrrupt-controller: uniphier-aidet: Use
- unevaluatedProperties
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <1649317664-21391-1-git-send-email-hayashi.kunihiko@socionext.com>
- <Ylcf0QOBAne6fKQr@robh.at.kernel.org>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <2005f406-0117-b0eb-cc4b-2a921cf6528c@socionext.com>
-Date:   Fri, 15 Apr 2022 10:17:25 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S1348522AbiDOB6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 21:58:44 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0836CAD116
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 18:56:17 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id z2so2885080oic.6
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 18:56:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=zb5VRa9j2WpBHtiOkYhvOFGcHzF1H645EcsaS5Prt90=;
+        b=Ld64SqixvFcrmCytaQr8+TbODVWCbNOIXbWvATydO1fa79oXg8DW1mO577xwFv/J9v
+         7ywgj38vU9v/e0NbdmLTAEZQ74eqUAcGxb5yaIAx9gV19P3sNQxBfYpI51P7xXnjJ2fH
+         OkrL+Z0EEeX4xdmgPtgW3gyVgoevkXEVd8Imk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=zb5VRa9j2WpBHtiOkYhvOFGcHzF1H645EcsaS5Prt90=;
+        b=1ZjjJOcKAjtyMgkr6d0+2sxEfnHBp0Cfrsvpd7xb7YOGvxmYNBLgD/2CUXAG9Z5taB
+         GzGfogZlWUSa63pNsryu80ZLCajZuxVLTCY38i7EbRgDdKA3vWLrjx0quCjWvhctUafO
+         oPi+ApBqZkn/duhlJp9pIaN49wYIYvtby3Aoq2LBRXlip47BxnWw7iK9G/7tL6grjkgu
+         bSdRq15dIcjxn9aKyjEIFQf13B0k+/rmrRbvnLGuw0XpA78/fjEBXonaRiI5XyN5C6VV
+         k9dYcdC7aHSs2T02J2qBFgF4tiQFDLb8LZQFYwpvfDBgQZUPxlmDFCMHLmMvgQ8SJNRp
+         7j+Q==
+X-Gm-Message-State: AOAM533Krw7FaUTn7HO1A1JQLh1XA9epo2pi+1qQ6AQo4ksQwDDh2MWz
+        lmUq3dNa23mlSItru2lu6MldGUHr/A9WPs4TjJ9ZZA==
+X-Google-Smtp-Source: ABdhPJzSo+f10NdPVe/fodZNohcKYB8P57215emKTGiEa1TbINGw0Ry/S2UzvI7a3f/4JIwLSmjQNz+6CI80KKnn1Qk=
+X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
+ n62-20020acabd41000000b002ecff42814fmr660742oif.63.1649987776048; Thu, 14 Apr
+ 2022 18:56:16 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 14 Apr 2022 18:56:15 -0700
 MIME-Version: 1.0
-In-Reply-To: <Ylcf0QOBAne6fKQr@robh.at.kernel.org>
-Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <1649863277-31615-4-git-send-email-quic_srivasam@quicinc.com>
+References: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com> <1649863277-31615-4-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 14 Apr 2022 18:56:15 -0700
+Message-ID: <CAE-0n51B_QdU7tjgFgXQ0aaBOzs=XoFHwcmrDhnDe4FVJNiytg@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] arm64: dts: qcom: sc7280: Add lpass cpu node
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        robh+dt@kernel.org, srinivas.kandagatla@linaro.org
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,43 +69,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Quoting Srinivasa Rao Mandadapu (2022-04-13 08:21:16)
+> Add lpass cpu node for audio on sc7280 based platforms.
+>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> ---
 
-On 2022/04/14 4:09, Rob Herring wrote:
-> On Thu, Apr 07, 2022 at 04:47:44PM +0900, Kunihiko Hayashi wrote:
->> This refers common bindings, so this is preferred for
->> unevaluatedProperties instead of additionalProperties.
->>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> ---
->>   .../bindings/interrupt-controller/socionext,uniphier-aidet.yaml | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git
-> a/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphie
-> r-aidet.yaml
-> b/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphie
-> r-aidet.yaml
->> index f89ebde76dab..77f2d58a9c3f 100644
->> ---
-> a/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphie
-> r-aidet.yaml
->> +++
-> b/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphie
-> r-aidet.yaml
->> @@ -49,7 +49,7 @@ required:
->>     - interrupt-controller
->>     - '#interrupt-cells'
->>   
->> -additionalProperties: false
->> +unevaluatedProperties: false
-> 
-> As mentioned elsewhere, not necessary here.
-
-Yes, I withdraw this patch for the same reason.
-
-Thank you,
-
----
-Best Regards
-Kunihiko Hayashi
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
