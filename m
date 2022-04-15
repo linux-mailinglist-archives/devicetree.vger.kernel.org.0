@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC1FB501F77
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 02:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74FE9501F8B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 02:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348017AbiDOANJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 20:13:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37868 "EHLO
+        id S1343847AbiDOAY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 20:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235851AbiDOAMe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 20:12:34 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F754275E3
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 17:10:05 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id w127so7075578oig.10
-        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 17:10:05 -0700 (PDT)
+        with ESMTP id S243369AbiDOAY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 20:24:26 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A869A56DB
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 17:21:59 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id w127so7095545oig.10
+        for <devicetree@vger.kernel.org>; Thu, 14 Apr 2022 17:21:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=6sga8ftndk8vtvx+W3R7gg8jxRC7DJXugsbes7nhBXQ=;
-        b=l/OJaJEMJuIxkKbI41XC1yk4B5atKv9xuBaVDrSQnmUa6ApdnPZGbgsFNWWtl0Y32t
-         2uhDHpzRAob1wqAGSp0LCZssCCEFpOJe5c2b7fe27oHplkIrQRJWfLIj7ZEUrS8Sq5p9
-         sTOcFmiBXl5Y+uJx2arJt+cZEZAUuELFanK1o=
+        bh=5IY6NjAmBdKOWKLPZC4vSegCFmTBaHiuffNg+ZPVhK8=;
+        b=OpM/G7lrum+gAuf/Tgr7b+sNM4gBzyRjfd8kvR1GptQWN3t7mBFb/MReudzOES0WZW
+         riaA6E3ew9i59KjjonWseF1NBr9MM6OTkEF+adgzoozTW4wIaPnmhnNWweJqhd7ahatF
+         LhJXZbg/KCUNbw7jmLMXWqGHIBp/vHDu1tmKg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=6sga8ftndk8vtvx+W3R7gg8jxRC7DJXugsbes7nhBXQ=;
-        b=KT7mrU5NGdKuc3zncE3X83DS+hkPY9eVCiV/imY1J/tW4bflAJhYGqppk9GWQ2xcV5
-         abQXjJMqRwr6dnhvK04uQ7QDyg0p9ScFQ9jmNbqGELb3X0NQGRv8QiG3+kffluxYU4vQ
-         bDICjZqKsWS109qmLwz644+7aHjomtnaMaZhAVsfsD3f8AvRKe1056yjHfHfpCI0Pwmy
-         dOFUrjSNJZhNSHg0Tdoz9Q5qDwYf2leYfp0WhP71VTV/mTiZVrN45xxxLN1Gi0unb6HJ
-         WI/2BAdE7wOuSBry56BRJmUzfiDJyCiw6Qhgucx2CZxOeXVBF+j6z4Jo70uB9U9geWso
-         LCiw==
-X-Gm-Message-State: AOAM533qP5l1Jsth4kZs6IGEw0OrUt1zRBWKeaaSzqAC9we/L4bpoMew
-        wlDegsdCkyAG1KPNhgby5aX1M1JOtnBg4VqBwDivqw==
-X-Google-Smtp-Source: ABdhPJymbaf6NLHP66wW8lvpB5W/WVW2uTuj/EQkoXXOwQgytb/AicoR9wghg6OFqgUtOg1YyKgB2vugeV27/mYgqVE=
+        bh=5IY6NjAmBdKOWKLPZC4vSegCFmTBaHiuffNg+ZPVhK8=;
+        b=rciaryyF9KXFPFLWD1kZ4ERA4p6FASe+aY2wyKawBKOWtLmsqgZF0q9ujo8ucbx2du
+         1xlXNShBylEasWsXKNZ1PgOmLUVqBJJU1Bd5VodX7oG9ChoC5/o/yh/c/nut8Zrq4BW3
+         /ksZl50r1SyAbYzAVg090G+Bz1U1i/3q6fCj4UcYxNLQd9oV0Qf1Gsawptuu0wm33aJl
+         pMGOmk5DiXBWxxJFIYHhAGDzh35sXtUSUaAG3H27QZI9VCkKfNY2XzSGjNqnAKHSQxBk
+         GTtrFnN4WIR8Fvk4qyVVePgwc88dcWmuwaLH3PzrN7whDTeBdr59eZBHWkRNEFOrSZPM
+         YEOg==
+X-Gm-Message-State: AOAM531X9SxPZkplK+wcd+y0Xadi4Hfm4n+deyvHTW24GTGn4pEDUOaX
+        a+4Zv2QY9F+5mO8g0Y4Gy0+lPBcjjm6kO1Ca+5lXfA==
+X-Google-Smtp-Source: ABdhPJypIgNktBkjnWGia6IlIC4oP1CFagyk369HzHgNIecVsreGAFXzA81xFS5Zq3NdSuja/lvLT8LdgX+fKFgpGUo=
 X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
- n62-20020acabd41000000b002ecff42814fmr515213oif.63.1649981404878; Thu, 14 Apr
- 2022 17:10:04 -0700 (PDT)
+ n62-20020acabd41000000b002ecff42814fmr533554oif.63.1649982118589; Thu, 14 Apr
+ 2022 17:21:58 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 14 Apr 2022 17:10:04 -0700
+ HTTPREST; Thu, 14 Apr 2022 17:21:58 -0700
 MIME-Version: 1.0
-In-Reply-To: <1649939418-19861-5-git-send-email-quic_c_skakit@quicinc.com>
-References: <1649939418-19861-1-git-send-email-quic_c_skakit@quicinc.com> <1649939418-19861-5-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1649939418-19861-6-git-send-email-quic_c_skakit@quicinc.com>
+References: <1649939418-19861-1-git-send-email-quic_c_skakit@quicinc.com> <1649939418-19861-6-git-send-email-quic_c_skakit@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Thu, 14 Apr 2022 17:10:04 -0700
-Message-ID: <CAE-0n50HR6w-v3ub8HR_K2PsqqTTrVAaQa0pZ7QjY39WmkDyQQ@mail.gmail.com>
-Subject: Re: [PATCH V10 4/9] mfd: pm8008: Add reset-gpios
+Date:   Thu, 14 Apr 2022 17:21:57 -0700
+Message-ID: <CAE-0n531GVMuuR6HM2ezjOPJCg7S-rD3eaEKWzrYsnM-jwQHKw@mail.gmail.com>
+Subject: Re: [PATCH V10 5/9] mfd: pm8008: Use i2c_new_dummy_device() API
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Satya Priya <quic_c_skakit@quicinc.com>
@@ -71,35 +71,175 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2022-04-14 05:30:13)
+Quoting Satya Priya (2022-04-14 05:30:14)
+> Use i2c_new_dummy_device() to register clients along with
+> the main mfd device.
+
+Why?
+
+>
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> ---
+> Changes in V10:
+>  - Implement i2c_new_dummy_device to register extra clients.
+>
+>  drivers/mfd/qcom-pm8008.c       | 54 +++++++++++++++++++++++++++++++++--------
+>  include/linux/mfd/qcom_pm8008.h | 13 ++++++++++
+>  2 files changed, 57 insertions(+), 10 deletions(-)
+>  create mode 100644 include/linux/mfd/qcom_pm8008.h
+>
 > diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
-> index c472d7f..97a72da 100644
+> index 97a72da..ca5240d 100644
 > --- a/drivers/mfd/qcom-pm8008.c
 > +++ b/drivers/mfd/qcom-pm8008.c
-> @@ -239,6 +241,13 @@ static int pm8008_probe(struct i2c_client *client)
->                         dev_err(chip->dev, "Failed to probe irq periphs: %d\n", rc);
+> @@ -56,8 +57,10 @@ enum {
+>  #define PM8008_PERIPH_OFFSET(paddr)    (paddr - PM8008_PERIPH_0_BASE)
+>
+>  struct pm8008_data {
+> +       bool ready;
+>         struct device *dev;
+> -       struct regmap *regmap;
+> +       struct i2c_client *clients[PM8008_NUM_CLIENTS];
+> +       struct regmap *regmap[PM8008_NUM_CLIENTS];
+>         struct gpio_desc *reset_gpio;
+>         int irq;
+>         struct regmap_irq_chip_data *irq_data;
+> @@ -152,9 +155,20 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+>         .max_register   = 0xFFFF,
+>  };
+>
+> +struct regmap *pm8008_get_regmap(struct pm8008_data *chip, u8 sid)
+> +{
+> +       if (!chip || !chip->ready) {
+
+Is it even possible?
+
+> +               pr_err("pm8008 chip not initialized\n");
+> +               return NULL;
+> +       }
+> +
+> +       return chip->regmap[sid];
+> +}
+> +
+>  static int pm8008_init(struct pm8008_data *chip)
+>  {
+>         int rc;
+> +       struct regmap *regmap = pm8008_get_regmap(chip, PM8008_INFRA_SID);
+>
+>         /*
+>          * Set TEMP_ALARM peripheral's TYPE so that the regmap-irq framework
+> @@ -162,19 +176,19 @@ static int pm8008_init(struct pm8008_data *chip)
+>          * This is required to enable the writing of TYPE registers in
+>          * regmap_irq_sync_unlock().
+>          */
+> -       rc = regmap_write(chip->regmap,
+> +       rc = regmap_write(regmap,
+>                          (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
+>                          BIT(0));
+>         if (rc)
+>                 return rc;
+>
+>         /* Do the same for GPIO1 and GPIO2 peripherals */
+> -       rc = regmap_write(chip->regmap,
+> +       rc = regmap_write(regmap,
+>                          (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>         if (rc)
+>                 return rc;
+>
+> -       rc = regmap_write(chip->regmap,
+> +       rc = regmap_write(regmap,
+>                          (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>
+>         return rc;
+> @@ -186,6 +200,7 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>         int rc, i;
+>         struct regmap_irq_type *type;
+>         struct regmap_irq_chip_data *irq_data;
+> +       struct regmap *regmap = pm8008_get_regmap(chip, PM8008_INFRA_SID);
+
+Instead of calling pm8008_get_regmap() many times why not pass the
+regmap through from pm8008_probe_irq_peripherals() called in probe? At
+that point we could remove the regmap pointer from struct pm8008_data?
+
+>
+>         rc = pm8008_init(chip);
+>         if (rc) {
+> @@ -209,7 +224,7 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>                                 IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
 >         }
 >
-> +       chip->reset_gpio = devm_gpiod_get(chip->dev, "reset", GPIOD_OUT_HIGH);
-> +       if (IS_ERR(chip->reset_gpio)) {
-> +               dev_err(chip->dev, "failed to acquire reset gpio\n");
+> -       rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client_irq,
+> +       rc = devm_regmap_add_irq_chip(chip->dev, regmap, client_irq,
+>                         IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
+>         if (rc) {
+>                 dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
+> @@ -221,19 +236,38 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>
+>  static int pm8008_probe(struct i2c_client *client)
+>  {
+> -       int rc;
+> +       int rc, i;
+>         struct pm8008_data *chip;
+> +       struct device_node *node = client->dev.of_node;
+>
+>         chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+>         if (!chip)
+>                 return -ENOMEM;
+>
+>         chip->dev = &client->dev;
+> -       chip->regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> -       if (!chip->regmap)
+> -               return -ENODEV;
+>
+> -       i2c_set_clientdata(client, chip);
+> +       for (i = 0; i < PM8008_NUM_CLIENTS; i++) {
 
-The API looks to print debug messages. This print doesn't look required.
+This is 2. Why do we have a loop? Just register the i2c client for
+pm8008_infra first and then make a dummy for the second address without
+the loop and the indentation. Are there going to be more i2c clients?
 
-> +               return PTR_ERR(chip->reset_gpio);
-> +       }
-> +       gpiod_set_value(chip->reset_gpio, 1);
-
-Does this do anything? Does this work just as well?
-
-	reset_gpio = devm_gpiod_get(chip->dev, "reset", GPIOD_OUT_LOW);
-	if (IS_ERR(reset_gpio))
-		return PTR_ERR(reset_gpio);
-
-Note that there's no point to store the reset gpio in the structure if
-it won't be used outside of probe. This should work fine? I used
-GPIOD_OUT_LOW to indicate that the reset should be returned to this
-function deasserted, i.e. taking the PMIC out of reset.
-
+> +               if (i == 0) {
+> +                       chip->clients[i] = client;
+> +               } else {
+> +                       chip->clients[i] = i2c_new_dummy_device(client->adapter,
+> +                                                               client->addr + i);
+> +                       if (IS_ERR(chip->clients[i])) {
+> +                               dev_err(&client->dev, "can't attach client %d\n", i);
+> +                               return PTR_ERR(chip->clients[i]);
+> +                       }
+> +                       chip->clients[i]->dev.of_node = of_node_get(node);
+> +               }
 > +
->         return devm_of_platform_populate(chip->dev);
+> +               chip->regmap[i] = devm_regmap_init_i2c(chip->clients[i],
+> +                                                       &qcom_mfd_regmap_cfg);
+> +               if (!chip->regmap[i])
+> +                       return -ENODEV;
+> +
+> +               i2c_set_clientdata(chip->clients[i], chip);
+> +       }
+> +
+> +       chip->ready = true;
+>
+>         if (of_property_read_bool(chip->dev->of_node, "interrupt-controller")) {
+>                 rc = pm8008_probe_irq_peripherals(chip, client->irq);
+> diff --git a/include/linux/mfd/qcom_pm8008.h b/include/linux/mfd/qcom_pm8008.h
+> new file mode 100644
+> index 0000000..bc64f01
+> --- /dev/null
+> +++ b/include/linux/mfd/qcom_pm8008.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __QCOM_PM8008_H__
+> +#define __QCOM_PM8008_H__
+> +
+> +#define PM8008_INFRA_SID       0
+> +#define PM8008_REGULATORS_SID  1
+> +
+> +#define PM8008_NUM_CLIENTS     2
+> +
+> +struct pm8008_data;
+> +struct regmap *pm8008_get_regmap(struct pm8008_data *chip, u8 sid);
+
+Could this be avoided if the regulator driver used
+dev_get_regmap(&pdev->dev.parent, "regulator") to find the regmap named
+"regulator" of the parent device, i.e. pm8008-infra.
