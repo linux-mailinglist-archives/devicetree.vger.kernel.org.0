@@ -2,159 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD65E502C64
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 17:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1998502C67
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 17:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343538AbiDOPO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 11:14:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58548 "EHLO
+        id S1354882AbiDOPPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 11:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354869AbiDOPOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 11:14:55 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2E0AACB5;
-        Fri, 15 Apr 2022 08:12:25 -0700 (PDT)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9C41D20007;
-        Fri, 15 Apr 2022 15:12:19 +0000 (UTC)
-Date:   Fri, 15 Apr 2022 17:12:17 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     sakari.ailus@iki.fi, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
-        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org
-Subject: Re: [PATCH v5 4/4] media: i2c: imx412: Add bulk regulator support
-Message-ID: <20220415151217.syr3vtmtsrwoelol@uno.localdomain>
-References: <20220415115954.1649217-1-bryan.odonoghue@linaro.org>
- <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
+        with ESMTP id S1354869AbiDOPPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 11:15:03 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828FCA94D8;
+        Fri, 15 Apr 2022 08:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=G5odVXCmYv7IxL9XjE1lXTsoDOBab8u1hsAiewC6LXU=; b=r2J75mQ8F4AQGg9k+MGpoR0I3D
+        KNYWPoy8LxUbv6rpa5ytd0edhJ/QxThFo8R39jvwhgFP1bMa0C+qUJFPnDfELV8jLJx3UWx3nu5t9
+        UjKFfvScRgHwdig2CbsECNwAjO+ymRCaPbPFLfNFAwzUDlYnxebj49epjmNzF9aofNXk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nfNcY-00Fz5H-67; Fri, 15 Apr 2022 17:12:26 +0200
+Date:   Fri, 15 Apr 2022 17:12:26 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
+ converter
+Message-ID: <YlmLWv4Hsm2uk8pa@lunn.ch>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-10-clement.leger@bootlin.com>
+ <YlismVi8y3Vf6PZ0@lunn.ch>
+ <20220415102453.1b5b3f77@fixe.home>
+ <Yll+Tpnwo5410B9H@lunn.ch>
+ <20220415163853.683c0b6d@fixe.home>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220415115954.1649217-5-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220415163853.683c0b6d@fixe.home>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Bryan
+> Ok, looks like a more flexible way to doing it. Let's go with something
+> like this:
+> 
+> renesas,miic-port-connection = <PORTIN_GMAC2>, <MAC2>, <SWITCH_PORTC>,
+> <SWITCH_PORTB>, <SWITCH_PORTA>;
 
-On Fri, Apr 15, 2022 at 12:59:54PM +0100, Bryan O'Donoghue wrote:
-> Depending on the platform we may need to enable and disable three separate
-> regulators for the imx412.
->
-> - DOVDD
-> Digital I/O power
->
-> - AVDD
-> Analog power
->
-> - DVDD
-> Digital core power
->
-> The addition of these regulators shouldn't affect existing users using
-> fixed-on/firmware-controlled regulators.
->
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Not all combinations are possible. In fact, there is a limited choice
+for each value. So consider getting the yaml tools to help you by
+listing what is valid for each setting. You might need a different
+format than. Also, this format it is not clear what each value refers
+to.
 
-Thanks
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+renesas,miic-port-connection-mii-conv1 = <PORTIN_GMAC2>;
+renesas,miic-port-connection-mii-conv2 = <MAC2>;
+renesas,miic-port-connection-mii-conv3 = <SWITCH_PORTC>;
+renesas,miic-port-connection-mii-conv4 = <SWITCH_PORTB>;
+renesas,miic-port-connection-mii-conv5 = <SWITCH_PORTA>;
 
-Cheers
-   j
+is more sense documenting, and i suspect easier to make the validator
+work for you.
 
-> ---
->  drivers/media/i2c/imx412.c | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
->
-> diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-> index 84279a680873..1795a6180d60 100644
-> --- a/drivers/media/i2c/imx412.c
-> +++ b/drivers/media/i2c/imx412.c
-> @@ -11,6 +11,7 @@
->  #include <linux/i2c.h>
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
->
->  #include <media/v4l2-ctrls.h>
->  #include <media/v4l2-fwnode.h>
-> @@ -101,6 +102,12 @@ struct imx412_mode {
->  	struct imx412_reg_list reg_list;
->  };
->
-> +static const char * const imx412_supply_names[] = {
-> +	"dovdd",	/* Digital I/O power */
-> +	"avdd",		/* Analog power */
-> +	"dvdd",		/* Digital core power */
-> +};
-> +
->  /**
->   * struct imx412 - imx412 sensor device structure
->   * @dev: Pointer to generic device
-> @@ -128,6 +135,7 @@ struct imx412 {
->  	struct media_pad pad;
->  	struct gpio_desc *reset_gpio;
->  	struct clk *inclk;
-> +	struct regulator_bulk_data supplies[ARRAY_SIZE(imx412_supply_names)];
->  	struct v4l2_ctrl_handler ctrl_handler;
->  	struct v4l2_ctrl *link_freq_ctrl;
->  	struct v4l2_ctrl *pclk_ctrl;
-> @@ -946,6 +954,16 @@ static int imx412_parse_hw_config(struct imx412 *imx412)
->  		return -EINVAL;
->  	}
->
-> +	/* Get optional DT defined regulators */
-> +	for (i = 0; i < ARRAY_SIZE(imx412_supply_names); i++)
-> +		imx412->supplies[i].supply = imx412_supply_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(imx412->dev,
-> +				      ARRAY_SIZE(imx412_supply_names),
-> +				      imx412->supplies);
-> +	if (ret)
-> +		return ret;
-> +
->  	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
->  	if (!ep)
->  		return -ENXIO;
-> @@ -1011,6 +1029,13 @@ static int imx412_power_on(struct device *dev)
->  	struct imx412 *imx412 = to_imx412(sd);
->  	int ret;
->
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(imx412_supply_names),
-> +				    imx412->supplies);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to enable regulators\n");
-> +		return ret;
-> +	}
-> +
->  	gpiod_set_value_cansleep(imx412->reset_gpio, 0);
->
->  	ret = clk_prepare_enable(imx412->inclk);
-> @@ -1025,6 +1050,8 @@ static int imx412_power_on(struct device *dev)
->
->  error_reset:
->  	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
-> +	regulator_bulk_disable(ARRAY_SIZE(imx412_supply_names),
-> +			       imx412->supplies);
->
->  	return ret;
->  }
-> @@ -1044,6 +1071,9 @@ static int imx412_power_off(struct device *dev)
->
->  	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
->
-> +	regulator_bulk_disable(ARRAY_SIZE(imx412_supply_names),
-> +			       imx412->supplies);
-> +
->  	return 0;
->  }
->
-> --
-> 2.35.1
->
+	Andrew
