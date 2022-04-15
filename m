@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2595D502DF6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 18:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A40D502DF2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 18:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236184AbiDOQt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 12:49:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
+        id S1354392AbiDOQtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 12:49:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236848AbiDOQt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 12:49:28 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD24EDD965
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 09:46:59 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so5341938wmn.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 09:46:59 -0700 (PDT)
+        with ESMTP id S244570AbiDOQta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 12:49:30 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2656CDD96C
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 09:47:01 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id x18so3408723wrc.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 09:47:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0YVTZuOLoiyCZMX8irQh+b1jiRskPTrKxz7ZWC6mBJA=;
-        b=Qxe5+pjd3u6+SKZ7OdhYM2CPiFtMb6e1tzNK7Znu0My1oBQP0o+u1oAD94NBw9z7G7
-         auusW0baIcKFoomLMq6GwsSUdAScP/aaDOGficDhwHIAtAFmijN4YtkJLrwxS0b6NiKe
-         ydveakqBo533ylUq+MNnseox45xmSsdX4b2CJBIyfxWeF7qgYYK4sDaeI8gCa0kCe4G3
-         2EhugtqBl4LuHs92peA4/MZjeUbU5nV5pg8USHPQEfBFa5Kye16gWhnmCSMd3lOvZs1R
-         kGlnBGD6hTVqVN+dpmUtYAXTm9X9C/fF98OwFsR/jLDG8Bi7MBpbfSJzZbJ2hPpLh4LQ
-         dUvA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=vB6otgN6KYMTsyvfy8Rm2UY11rcsammOuJhzDpIaLBk=;
+        b=U5ttExxfGAO73CicJ6gCH58uzFTGudxUSjM0u+LuSZcVFWwiVVf5SvGzcwNn29Ozbe
+         O+4Yb4NTWj39cX38QcbH3iRjuNOH7GWoWwJT+14PYiYBD19dd0adrg7tFYfC3SJigK15
+         G+fUsaCqyVS9BRcOSGv3mWf8Msxhdd0CjAy4PUXvMgq6g5SWGcmuOe/GKhJ8q+kcja+z
+         fkI0PgAILmVGAI6Qg96PM6+IFsusf8cm6PqwZLiRQMfsXxiPb2y+h9ygNpz0MGyB3c2W
+         RJpVM/nJzcptU3qg0bzTj/LtI9OWBndWh4MfBpnL7IA8trh6DEWlDY42Z+C51VDEizvV
+         JexA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0YVTZuOLoiyCZMX8irQh+b1jiRskPTrKxz7ZWC6mBJA=;
-        b=ptu/JdbQokDsXbXrU6TnJNYyJ8SliquTuhWiNcLA7OiOvO4KhEicv5k6qtU3O9mNjc
-         1OGbugxPUod3treOl+5PS1WW15NRzUy6950X3JANhK8mtYyiqprDgxj+2fyzsWl5sHrl
-         +6MuO73rRRKLOE+ROGE9wDc5Z/pLLs6TvYzKbz5yue5Tpm+nudIPxtI4MS4ycHOnM+Gm
-         LC3hW+LPKntNAZxYZtctXXS3IzlyzDoiOrzlNWYiTKzZmftv9xHFxZpVVQ78dLuy2Qsd
-         z/nOSkEzmnaLjpstlu1OfNt07bFwi/DVHQJsVMyR7Jh5b2eqzrXwxtWYbI7d233JEmbC
-         jphw==
-X-Gm-Message-State: AOAM530RufVAnyI727OkdV/i7HScbypG5/+sBDCl5y6+0vULBBx0EeJl
-        kYQmVsGTAXGLspfh+y1M+76TvQ==
-X-Google-Smtp-Source: ABdhPJxMg0dIBO545V9JxBtbIjeMp62EC9M6df3elh8a7MbsqeMeBApiAcRQ3y3rb4tgCHbogzAZRA==
-X-Received: by 2002:a05:600c:1e86:b0:391:62c4:fb72 with SMTP id be6-20020a05600c1e8600b0039162c4fb72mr3732642wmb.119.1650041218450;
-        Fri, 15 Apr 2022 09:46:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=vB6otgN6KYMTsyvfy8Rm2UY11rcsammOuJhzDpIaLBk=;
+        b=OmC+BK/jASmmkeu+mBdk/YKtC5YIDnxsFHQLBYtOerRObaSpXpRhihLdbXU7V1/ogp
+         hFr7DXRpkuU0I30bKiXwrSiNjw0rUZBvx07Vt2nbMswrF1uNInEtP7hQ7tX4RXxQf3by
+         k5ASfy0WnPTLCxf4fI6xnHQeHdkprYpF61rWY9LVx8HDWWHk8m2PboJTcE2kPbXAfGK1
+         vGvKdQ3XrBN8YrWxnDs3rOhCt3fxyFjJTYKj9uYuKKW4SgGT0ZXShQa8sykrghtLdYSb
+         rn5xfbky1RY3j60uRcCJ5znp3wI95BJXPQauafVYFenT0xMxuS5SEwFnbEO5EZLy3rbq
+         F5jQ==
+X-Gm-Message-State: AOAM5324OcnhBNjY5eCF+YmamEYFfZKxSRb0h172uJVLvYDy792lWeeM
+        XdfztluA3PTbWVcTXH4uwr+OWw==
+X-Google-Smtp-Source: ABdhPJxU0icA1dSMc5GujYLgmolhkVIGWOUgzZPV55JrRNVHvBfJLVaAz9OOR1gmfms9h3+rfagH+g==
+X-Received: by 2002:adf:f9c6:0:b0:207:b63c:77a3 with SMTP id w6-20020adff9c6000000b00207b63c77a3mr42584wrr.665.1650041219672;
+        Fri, 15 Apr 2022 09:46:59 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b0038cb8b38f9fsm9180041wmq.21.2022.04.15.09.46.57
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b0038cb8b38f9fsm9180041wmq.21.2022.04.15.09.46.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Apr 2022 09:46:57 -0700 (PDT)
+        Fri, 15 Apr 2022 09:46:59 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     vladimir.zapolskiy@linaro.org, agross@kernel.org,
         bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
         jgrahsl@snap.com, bryan.odonoghue@linaro.org
-Subject: [PATCH v3 0/3] Add camss to SM8250 dtsi 
-Date:   Fri, 15 Apr 2022 17:46:52 +0100
-Message-Id: <20220415164655.1679628-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 1/3] arm64: dts: qcom: sm8250: Add camcc DT node
+Date:   Fri, 15 Apr 2022 17:46:53 +0100
+Message-Id: <20220415164655.1679628-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220415164655.1679628-1-bryan.odonoghue@linaro.org>
+References: <20220415164655.1679628-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -69,45 +71,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-V3:
-- Reorder new DTS include to be alphabetised - Vladimir
-- Place pinctrl-names after pinctrl reference - Vladimir
-- GCC_VIDEO_AHB_CK -> GCC_CAMERA_AHB_CLK - Vladimir
-- Adds suggested sleep_clk - Vladimir
-- interconnect-cells - I believe is correct as-is - Bryan
-- power-domain-names - not added camss does dev_pm_domain_attach_by_id() - Bryan
-- Added Reviewed-by to #3 as indicated - Vladimir
+Add the camcc DT node for the Camera Clock Controller on sm8250.
 
-Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b-sm8250-camss-dts-v3
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-V2:
-- Change 0xHEX to 0xhex - Bjorn
-- Merge CCI and CCI pin definitions into one patch - Bjorn
-- Future pinctrl dropped, moved into dts file for board
-  which appears more consistent with sdm845-db845 &tlmm{} section - Bjorn, Bryan
-- Renamed cci0_i2c0/cci0_i2c1 and cci1_ic20/cci1_i2c1 - Bjorn
-- Grouped CCI pins into cci0_default, cci0_sleep, etc - Bryan
-
-V1:
-Add in necessary CAMSS, pin and CCI definitions to the SM8250 dtsi.
-
-This is the SoC specific stuff, the platform enablement will be done in a
-separate drop later.
-
-On the RB5 platform we have validated ~ 30 FPS @ 4K using the SRGGB10P
-pixel format provided by a Sony IMX577 sensor.
-
-Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b%2brb5-dts%2bsensors
-
-
-Bryan O'Donoghue (3):
-  arm64: dts: qcom: sm8250: Add camcc DT node
-  arm64: dts: qcom: sm8250: camss: Add CAMSS block definition
-  arm64: dts: qcom: sm8250: camss: Add CCI definitions
-
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 331 +++++++++++++++++++++++++++
- 1 file changed, 331 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index af8f22636436..401e17f849f3 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -18,6 +18,7 @@
+ #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+ #include <dt-bindings/thermal/thermal.h>
++#include <dt-bindings/clock/qcom,camcc-sm8250.h>
+ #include <dt-bindings/clock/qcom,videocc-sm8250.h>
+ 
+ / {
+@@ -3149,6 +3150,21 @@ videocc: clock-controller@abf0000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		camcc: clock-controller@ad00000 {
++			compatible = "qcom,sm8250-camcc";
++			reg = <0 0x0ad00000 0 0x10000>;
++			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK_A>,
++				 <&sleep_clk>;
++			clock-names = "iface", "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
++			power-domains = <&rpmhpd SM8250_MMCX>;
++			required-opps = <&rpmhpd_opp_low_svs>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
+ 		mdss: mdss@ae00000 {
+ 			compatible = "qcom,sm8250-mdss";
+ 			reg = <0 0x0ae00000 0 0x1000>;
 -- 
 2.35.1
 
