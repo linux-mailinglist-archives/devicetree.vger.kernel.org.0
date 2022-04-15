@@ -2,57 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B16BD502085
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 04:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECBCF5020C9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 04:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348689AbiDOCd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Apr 2022 22:33:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46736 "EHLO
+        id S1348975AbiDOC7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Apr 2022 22:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348706AbiDOCd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 22:33:56 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB393A5F0;
-        Thu, 14 Apr 2022 19:31:26 -0700 (PDT)
-X-UUID: 149aa723d4ab405889f2674279dab145-20220415
-X-UUID: 149aa723d4ab405889f2674279dab145-20220415
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2035343171; Fri, 15 Apr 2022 10:31:19 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 15 Apr 2022 10:31:18 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 15 Apr
- 2022 10:31:18 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 15 Apr 2022 10:31:18 +0800
-Message-ID: <3fc36d6b803ff3e1bef601839aaca3f4f03e62ad.camel@mediatek.com>
-Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Kevin Hilman <khilman@baylibre.com>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-CC:     <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
-        <roger.lu@mediatek.com>, <hsinyi@google.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 15 Apr 2022 10:31:18 +0800
-In-Reply-To: <7hbkx3fiac.fsf@baylibre.com>
-References: <7hbkx3fiac.fsf@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234379AbiDOC7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Apr 2022 22:59:10 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2089.outbound.protection.outlook.com [40.107.22.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B1EB18B6;
+        Thu, 14 Apr 2022 19:56:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kbwlRSRJmhZm73mCfd0cD9LgEiP3M6KYsATSsPLYX7V7tsJM1hZFHwjrwZh0A0onVoetALS0IkpoW7zF6rhiF+tUuVn6GBGtoWP0C28VNYZEeZhJDlsJ6ZqV+nlSdzYx4qRPAhWZ5DcvIhF+OyCFuf2VyMSSxt0S31w0L6Jn/vP0D+KN1HL7nUEm5QTpT6fCPB7CfYPeCuUIN/ZwG7ch/FuvCR+V+Vriu2+94hINRMp9tHVxzUmttdViCZlDLjGE+uP3fIepw121HvhLsNVPUi7BA29TDtZw1JjWRt0lx4+NN34c8L0yUKZPS1TXRjhjQBXNq+UBj5+bgG/EDBRJ9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ihiURGwiw2sax1zrl8u0rLtR+PFsndv08LJdk5kLK10=;
+ b=NMMU9voJe6KUfcF0QAoRPztE6ujvKuZ8JUlb1ZNsogDApdcmbSASSOBOFis0EMpwNSTozQ1BOzWA10Rpi/ClNAPXdKJ7OLsY/4tKkhWnCWy/MGGujtEi3j7TRUf5FksyV+8mxQirZYoFJoSDvgibko8jWvGpezmavWbOXZ6xBHC9Z1nKj8S0I9H6msNDarviUX7tvTfXdU2u/IdEFOD5LNq1EQ+km1K7Z8yV4dxTaaVO2RP3IJ9DkUy5YZT97qgE+aQWd5MSqw/jd+1bbSr++qTLECVns6xF8y2cl9jZbFNgQIvrcOoruWYB+MEDsQuazVhZHdd9aHsYCTXZ7sz++w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ihiURGwiw2sax1zrl8u0rLtR+PFsndv08LJdk5kLK10=;
+ b=eC3ivhHR4CAs/qM99H77mRUiKCuKDHRvL86D8pBm0P7/6zswgbVTFlCQitepWnmnSzodYb+y3UFox9/ulZ/PcHkU6267Q9dNhNlNDj6KTk9M/bIxY6DOGt+fWcaHFEBogruwF51bshrzID8IthYNhQM8nOfuvJOCKrLZTLOuhKI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6477.eurprd04.prod.outlook.com (2603:10a6:803:11e::14)
+ by DB3PR0402MB3770.eurprd04.prod.outlook.com (2603:10a6:8:12::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.30; Fri, 15 Apr
+ 2022 02:56:40 +0000
+Received: from VE1PR04MB6477.eurprd04.prod.outlook.com
+ ([fe80::60ad:e5ec:cdfd:1b01]) by VE1PR04MB6477.eurprd04.prod.outlook.com
+ ([fe80::60ad:e5ec:cdfd:1b01%3]) with mapi id 15.20.5164.020; Fri, 15 Apr 2022
+ 02:56:40 +0000
+From:   Changming Huang <jerry.huang@nxp.com>
+To:     robh+dt@kernel.org, krzk+dt@kernel.org, shawnguo@kernel.org,
+        festevam@gmail.com, marcel.ziswiler@toradex.com,
+        l.stach@pengutronix.de, tharvey@gateworks.com,
+        alexander.stein@ew.tq-group.com, ariel.dalessandro@collabora.com,
+        matthias.schiffer@ew.tq-group.com, cniedermaier@dh-electronics.com,
+        sebastian.reichel@collabora.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Changming Huang <jerry.huang@nxp.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2 v3] dt-bindings: arm: fsl: add ls1021a-iot board
+Date:   Fri, 15 Apr 2022 10:55:59 +0800
+Message-Id: <20220415025600.2019912-1-jerry.huang@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR02CA0010.eurprd02.prod.outlook.com
+ (2603:10a6:208:3e::23) To VE1PR04MB6477.eurprd04.prod.outlook.com
+ (2603:10a6:803:11e::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 66fe5d74-5a43-4d9e-dfcc-08da1e8b906a
+X-MS-TrafficTypeDiagnostic: DB3PR0402MB3770:EE_
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-Microsoft-Antispam-PRVS: <DB3PR0402MB3770AB4F4B7D8C3DB8629353FEEE9@DB3PR0402MB3770.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JuTNPirkraFFip4V3TITH+csc34ccFStbClzi8HFBELY31dOjQ5TVjV3VTqCETWX3WYFokIcsPWjE0WBbzSULMHghG6qKFGBETxc20OtJ5X8pqN4jgyhjzKNgaDst+HdC1zH7lX/av2JRixiB8qWBOhgV5AwR0IxywHPeFq764s+DRWldwOVd2Owwc4D1Hox3YCUPXdUN8DVczFbXFaNsJecatHpxBslAAeBFqwaPW5Gi+Ih4L9vEguM4QJm2gSdajR6SPB7J6p4+HYUbH28Q5SkGp5wrr9EwnZVt0eGp6JrbbrJpApFug4AucjC9kcDYBBjmUk+ZnYxU0LGIte82I7ykOF7DNISFR9k9KqAQ+Z466IDeaWyOGR3GpfeWFkErO2gXWOHxoROY8JEpVMHrmLUmNnXNNpMOFcBhdbMC77TSpgwvhstuaaZk/4/8a4ztWsXZ1Iisv8yY3JOMMEp788s4qFo8noPGo7Rd4oaXKy2S3habsy9dKUyjHAfmDBmdJ1SI1V3AgR/EJ31D5IadVsgUeTCg4tWKy+z9NkEgF1d4kkGsxC56dAgMZvffJTZ5Jwq2JEs2CpabzP6FN309KnANay9KCE/BO35V0KBcglgXAxx1mkfXhJ7kwm8hZfqasFGpgmsNvZxGO1itDXrDvsQQfdQSEGr9C1FnwH/jQKmm12tVHiobl5o1Vsp0cfhB69HTqlEfxm34p/uecNBkA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8676002)(36756003)(6486002)(52116002)(5660300002)(66946007)(921005)(6666004)(2616005)(186003)(1076003)(83380400001)(66556008)(316002)(508600001)(54906003)(26005)(2906002)(6506007)(66476007)(6512007)(4326008)(38350700002)(38100700002)(86362001)(7416002)(4744005)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?U27gjZmkpcUV0NamOIbdX5HpYZ3GysUqWcaNOsqlRkYi4OoR//tJ+tNb4SSC?=
+ =?us-ascii?Q?1giYh6O2a/zko10UHv+SV/ryhX0xzZgKowxeKQDZMyCJxkG16r/we5o0NFV6?=
+ =?us-ascii?Q?UhU1dOapDr04vfngOFExIXkS4H0d53dHBQKtoSF7qeTib1p2aL8e1HHN7xN/?=
+ =?us-ascii?Q?PNXGj+FyhWEmhTFt0DSwXGpPWeyD0wYgxd5768ZPPN0wwiqTOVSk85JYdtgs?=
+ =?us-ascii?Q?4sH0EcboR1d8hO79UXmk3XgBvrX+UxUgTfjnvPohKms6eyykEwOSfooFJ7+E?=
+ =?us-ascii?Q?1AYGcqb56zp+GyvyxNzipJpdsEEnd7As9+vBQZVwtqKFDLczHkO9gmxsAQWp?=
+ =?us-ascii?Q?h8vZlzdXsLgP5jOANEXts9ow6VFIPQWrr69WcHCb5wfov6QOSFW412wBm0y6?=
+ =?us-ascii?Q?6w8VjlzOOnBgDnphtd45+nUsUQSOdS0fR7FmFYxqDW8ahhQ5Zk28slZhtqC7?=
+ =?us-ascii?Q?aY3CDT3G5PpSGzGJQK/0ESAS/A5wVL9I5Btt5waNMu3+JsLfvYT4Ac9bOT/G?=
+ =?us-ascii?Q?2deDmL4y/orsCLf6DQsJ9xbAkva+JFeBO3hVYYuXAwFw2mjJOvYZs0MDINKk?=
+ =?us-ascii?Q?eQ2+VZvVzhsXiQdtHFkBibOSsgxusIBNC7mS36VIm4l4RbMd6+kjgU0Z5ZqX?=
+ =?us-ascii?Q?76NR5DJMri5SPQx0FCnc2pFgRnbx6j4/kUIo/C/VS52TUKfWrLEeiHxvUe1I?=
+ =?us-ascii?Q?d+6DETL+Lxf/2bdOJRbBVxnnrs4LzOp8tgxj09zx8wgF0BTdoGF9GMyEkDuJ?=
+ =?us-ascii?Q?IBj8uQoep3wNted0ge2QuxyWAhz1CcivXeH3fMnmRM1Tu98QzOQ9ef1fJ2Ke?=
+ =?us-ascii?Q?+uhby6qwsm6NBEwwYjToqfjBb98li1DyZupQMgSD7A1HL497fjnRVfAByE/N?=
+ =?us-ascii?Q?4tqJHtuE5s06NZGR8mlMoLe+qqhrKlgKcHYQt968h8osSGdl3gcqMokGvKck?=
+ =?us-ascii?Q?oafHFYlbObGCcdKUegNNiY6AqWDvuJ/LX5cjypaS2dE6v1Ovf4YFB8exX0dU?=
+ =?us-ascii?Q?x75+i5OTmtT/mZ5nD9FiDwPoVcxeqnsMXa/ofATsVZAoWyTBgNdBXbbaLEj8?=
+ =?us-ascii?Q?r+dU64H7ASQ5eAJVx4nUB5lqhbNLo7/ixg4LmwlxLp9lM+Lzn6AaDlQUAQUy?=
+ =?us-ascii?Q?yslK1wLiNjSPvk+G76hlLJvOa76ZiRLkiJrYTMt1y/6BjtYX39Wsv1Uttyb0?=
+ =?us-ascii?Q?sEXiKCAXTjJMtb9FSvYhT2qlQDPNT/AmSyNAE9L82pLwC1SX4W8kHEgXTHS2?=
+ =?us-ascii?Q?EsCexR0CTVyNrrJ6cFQe2Je+Unk0wmAHwxKzy/M9AuqC6kZWoFESDu+htfdw?=
+ =?us-ascii?Q?S3ydbjU1xK416Lbx6rgfvfttCccJEt2stIUQEIAloVslkfPuaVo7rw8V9k5V?=
+ =?us-ascii?Q?jOhH65vfC5S+Qz8n4ZuE7RYbvMBRd2R008Wvn0a+CMUCOcC9jigZovhBNxqI?=
+ =?us-ascii?Q?ZrfKi5P0t4Z++QEukphmaTcJtqRF2teQMqWO2ixAa4EcPqDiRQdVWd8sPnj7?=
+ =?us-ascii?Q?3ysMaU7cN62fRHrlmVJx8BGEeOF7vLvPi45RI56b75h1kS8WOB4AiMExu3BL?=
+ =?us-ascii?Q?bMbJouLDU53dqgGsEw6RbJuj+6PnYSgD72s+yw4U5yRLY5eN4F4hmbUJxAUQ?=
+ =?us-ascii?Q?TVwKbU4ycKrOWRJgisfaY1EY3Ta/vG9eaJ7xVlXYt0E8nO6gFtoeSj9CSVJi?=
+ =?us-ascii?Q?jo8tBzJjusYb2JeBAgkdjrX3BySdT2H+y8Z94e/FcFKVtGHf+a3EmLTyPBqD?=
+ =?us-ascii?Q?DpXgFPpSlA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66fe5d74-5a43-4d9e-dfcc-08da1e8b906a
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6477.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2022 02:56:40.2463
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QWaG2nhIICaqBktSQkdQSz8eNfdlpjHcHoqXS9M/SwL3MixQMHYe+CsWZ6bxURP/zQqVE+kuZ1qs5UzX04nJrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3770
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,206 +123,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-04-14 at 14:48 -0700, Kevin Hilman wrote:
-> Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
-> 
-> > On Wed, 2022-04-13 at 14:41 -0700, Kevin Hilman wrote:
-> > > Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
-> > > 
-> > > [...]
-> > > 
-> > > > From the Chanwoo's devfreq passive govonor series, it's
-> > > > impossible
-> > > > to
-> > > > let cci devreq probed done before cpufreq because the passive
-> > > > govonor
-> > > > will search for cpufreq node and use it.
-> > > > 
-> > > > Ref: function: cpufreq_passive_register_notifier()
-> > > > 
-> > > > 
-> > 
-> > 
-https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing&id=b670978ddc43eb0c60735c3af6e4a370603ab673__;!!CTRNKA9wMg0ARbw!z58Lc1p9REo88oHn-NkxroN_fBd0TsHYmhscNZwnWwT71ecRkTeqZ6vFl5l7HpkTdM6t$
-> > > >  
-> > > 
-> > > Well this is a problem, because CCI depends on CPUfreq, but
-> > > CPUfreq
-> > > depends on CCI, so one of them has to load and then wait for the
-> > > other.
-> > > 
-> > > > After I discuss with Angelo and Jia-wei, we think we are
-> > > > keeping
-> > > > the
-> > > > function in target_index and if the cci is not ready we will
-> > > > use
-> > > > the
-> > > > voltage which is set by bootloader to prevent high freqeuncy
-> > > > low
-> > > > voltage crash. And then we can keep seting the target
-> > > > frequency.
-> > > > 
-> > > 
-> > >  > We assume the setting of bootloader is correct and we can do
-> > > this.
-> > > 
-> > > I'm still not crazy about this because you're lying to the
-> > > CPUfreq
-> > > framework.  It's requesting one OPP, but you're not setting that,
-> > > you're
-> > > just keeping the bootloader frequency.
-> > > 
-> > > In my earlier reply, I gave two other options for handling this.
-> > > 
-> > > 1) set a (temporary) constraint on the voltage regulator so that
-> > > it
-> > > cannot change.
-> > > 
-> > > or more clean, IMO:
-> > > 
-> > > 2) set a CPUfreq policy that restricts available OPPs to ones
-> > > that
-> > > will
-> > > not break CCI.
-> > > 
-> > > Either of these solutions allow you to load the CPUfreq driver
-> > > early,
-> > > and then wait for the CCI driver to be ready before removing the
-> > > restrictions.
-> > 
-> > Hello Kevin,
-> > 
-> > I think I do not describe this clearly.
-> > The proposal is:
-> > 
-> > In cpufreq probe:
-> > we record the voltage value which is set by bootloader.
-> > 
-> > In mtk_cpufreq_set_target():
-> > We do NOT directly return 0.
-> > Instead, we will find the voltage of target cpufreq and use the
-> > value
-> > max(booting voltage, target cpufreq voltage)
-> > 
-> > mtk_cpufreq_set_target() {
-> > 	/* NOT return 0 if !is_ccifreq_ready */
-> > 	....
-> > 	vproc = get voltage of target cpufreq from opp.
-> > 
-> > 	if (ccifreq_supported && !is_ccifreq_ready)
-> > 		vproc = max(vproc, vproc_on_boot)
-> > 
-> > 	//setting voltage and target frequency
-> > 	....
-> > }
-> 
-> You explained this well, but it's still not an appropriate solution
-> IMO,
-> because you're still not setting the target that is requested by the
-> CPUfreq core.
-> 
-> The job of ->set_target() is to set the frequency *requested by
-> CPUfreq
-> core*.  If you cannot do that, you should return failure.  What you
-> posted
-> in the original patch and what you're proposing here is to ignore the
-> frequency passed to ->set_target() and do something else.  In the
-> orignal patch, you propose do to nothing.  Now, you're ignoring the 
-> target passed in and setting something else.  In both cases, the
-> CPUfreq
-> core things you have successfuly set the frequency requested, but you
-> have not.  This means there's a mismatch between what the CPUfreq
-> core &
-> governer things the frequency is and what is actually set.  *This* is
-> the part that I think is wrong.
-> 
-> Instead, the proper way of restricting available frequencies is to
-> use
-> governors or policies.  This ensures that the core & governors are
-> aligned with what the platform driver actually does.
-> 
-> As I proposed earlier, I think a clean solution to this problem is to
-> create a temporary policy at probe time that restricts the available
-> OPPs based on what the current CCI freq/voltage are.  Once CCI driver
-> is
-> loaded and working, this policy can be removed.
-> 
-> Kevin
-> 
-> 
+Add the board ls1021a-iot in the binding docuemnt.
 
-Hello Kevin,
+Signed-off-by: Changming Huang <jerry.huang@nxp.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+changes in v2:
+  - adjust the location in the alphabetic order
 
-In new proposal, we DO set the cpufreq passed by cpufreq core.
-We just not set the corresponding voltage of target frequency which
-is lookedup from opp table.
-Actually, because of the shared regulator, corresponding voltage is
-not always set.
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-I take this for example:
-----------
-Assumption:
-- The opp table and voltage in this example are just a example,
-  and it is not for any actual SoCs.
-- We just use one regulator instead of two. (like proc and sram)
-- cpufreq and mediatek cci devfreq share the same regulator_0.
-
-OPP table for cpufreq:
-target freq => min reguired voltage
-2.0GHz => 1.0V
-1.8GHZ => 0.9V
-1.5GHz => 0.6V
-
-OPP table for mediatek cci devfreq:
-target freq => min reguired voltage
-1.4GHz => 1.2V
-1.0GHz => 0.8V
-
-1. For normal case:
-   (regulator_0 is already registered by cpufreq and cci)
-   - When the cpufreq want to adjust to 1.5GHz, from the opp table the
-     voltage sholud be 0.6V.
-   - When the cci want to adjust to 1.4GHz, from the opp table the
-     voltage sholud be 1.2V.
-   - cpufreq driver use the regulator_set_voltage() to set the
-     voltage, but the function will use 1.2V(ref:[1])
-
-2. For our new proposed solution:
-   (regulator_0 is registered by cpufreq but is not registered by cci)
-   - Assume the freqs when booting to kernel are:
-     1.8GHz for cpufreq (min 0.9V) and 1.0GHz for cci (min 0.8V).
-     The voltage when booting to kernel(voltage_on_boot) should be 0.9V
-	 to let cpufreq and cci work correctly.
-   - When cpufreq want to set target freq to 1.5GHz the voltage from
-     opp table is 0.6V and we compare this voltage with
-voltage_on_boot(0.9V).
-	 We will choose the max voltage 0.9V to prevent crash issue.
-	 (This is original covered by regulator_set_voltage()
-	  if regulator_0 is registered by both cci and cpufre.)
-	- When the voltage is choosed, we will set the cpufreq to
-1.5GHz while
-	  the voltage is safe for both cpufreq and cci.
-----------
-
-In summary, we think it's a proper solution to cover the situation
-when cci is not probed.
-
-I think there is something to improve:
-We can choose to lookup cci opp table using cci freq to determine
-the voltage instead of voltage_on_boot.
-But IMO, it's not neccessary to register cci opp table inside cpufreq
-driver just for the short period.
-
-Because I finish to prepare other patches and I think we also can
-take a look at other patches which are including some cleanup, I will
-send next version today.
-If there is any concern and question, we can discuss in next version.
-
-Thanks for your big support!
-
-[1]:
-https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L4022
-
-BRs,
-Rex
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 08bdd30e511c..242dd99c272c 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -999,6 +999,7 @@ properties:
+       - description: LS1021A based Boards
+         items:
+           - enum:
++              - fsl,ls1021a-iot
+               - fsl,ls1021a-moxa-uc-8410a
+               - fsl,ls1021a-qds
+               - fsl,ls1021a-tsn
+-- 
+2.25.1
 
