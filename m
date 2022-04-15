@@ -2,113 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9719502DFB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 18:47:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2595D502DF6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Apr 2022 18:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245227AbiDOQtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 12:49:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57912 "EHLO
+        id S236184AbiDOQt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 12:49:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355970AbiDOQtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 12:49:40 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37DD2DD966;
-        Fri, 15 Apr 2022 09:47:11 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E9570C0006;
-        Fri, 15 Apr 2022 16:47:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650041229;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=kqx76FGCWY9T5n5gaf7tqiaERTtvIFYRxivjOi7DJAY=;
-        b=VQQ8Xiqp2cyrNI9GijO8dGgMuIEA9uZZMevCeq4Kk4x41bLZRA4yZrXc5DNgKVzCtFfSEf
-        V9pEhQLWxgPvK9g47UAZ4O8MOwn29FgqNbhuF5GyiM3ZyXRCq0HWRWBdIiVqq18+Q5i8BY
-        lLxadXlbVEES0uc4EVOh5cJh/d7L9hRAO+NOtk6eVoYz1VAyboG1o0hyo0PrgLwUXR0iaZ
-        FSeWqsFaz1rBbC7L1I0V6d9MzrrWLEqOwz//c/Epv0LQYy5Z9idsu1KU6YPb+Qd7/XqPoR
-        L/ihZTkUgUcRS8DvD3BSzcNp5ApDefEBGWY9w/US9S1fe8ez5tEKPQXu8GK84A==
-Date:   Fri, 15 Apr 2022 18:45:41 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
- converter
-Message-ID: <20220415184541.0a6928f5@fixe.home>
-In-Reply-To: <YlmbIjoIZ8Xb4Kh/@lunn.ch>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
-        <20220414122250.158113-10-clement.leger@bootlin.com>
-        <YlismVi8y3Vf6PZ0@lunn.ch>
-        <20220415102453.1b5b3f77@fixe.home>
-        <Yll+Tpnwo5410B9H@lunn.ch>
-        <20220415163853.683c0b6d@fixe.home>
-        <YlmLWv4Hsm2uk8pa@lunn.ch>
-        <20220415172954.64e53086@fixe.home>
-        <YlmbIjoIZ8Xb4Kh/@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S236848AbiDOQt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 12:49:28 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD24EDD965
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 09:46:59 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so5341938wmn.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 09:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0YVTZuOLoiyCZMX8irQh+b1jiRskPTrKxz7ZWC6mBJA=;
+        b=Qxe5+pjd3u6+SKZ7OdhYM2CPiFtMb6e1tzNK7Znu0My1oBQP0o+u1oAD94NBw9z7G7
+         auusW0baIcKFoomLMq6GwsSUdAScP/aaDOGficDhwHIAtAFmijN4YtkJLrwxS0b6NiKe
+         ydveakqBo533ylUq+MNnseox45xmSsdX4b2CJBIyfxWeF7qgYYK4sDaeI8gCa0kCe4G3
+         2EhugtqBl4LuHs92peA4/MZjeUbU5nV5pg8USHPQEfBFa5Kye16gWhnmCSMd3lOvZs1R
+         kGlnBGD6hTVqVN+dpmUtYAXTm9X9C/fF98OwFsR/jLDG8Bi7MBpbfSJzZbJ2hPpLh4LQ
+         dUvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0YVTZuOLoiyCZMX8irQh+b1jiRskPTrKxz7ZWC6mBJA=;
+        b=ptu/JdbQokDsXbXrU6TnJNYyJ8SliquTuhWiNcLA7OiOvO4KhEicv5k6qtU3O9mNjc
+         1OGbugxPUod3treOl+5PS1WW15NRzUy6950X3JANhK8mtYyiqprDgxj+2fyzsWl5sHrl
+         +6MuO73rRRKLOE+ROGE9wDc5Z/pLLs6TvYzKbz5yue5Tpm+nudIPxtI4MS4ycHOnM+Gm
+         LC3hW+LPKntNAZxYZtctXXS3IzlyzDoiOrzlNWYiTKzZmftv9xHFxZpVVQ78dLuy2Qsd
+         z/nOSkEzmnaLjpstlu1OfNt07bFwi/DVHQJsVMyR7Jh5b2eqzrXwxtWYbI7d233JEmbC
+         jphw==
+X-Gm-Message-State: AOAM530RufVAnyI727OkdV/i7HScbypG5/+sBDCl5y6+0vULBBx0EeJl
+        kYQmVsGTAXGLspfh+y1M+76TvQ==
+X-Google-Smtp-Source: ABdhPJxMg0dIBO545V9JxBtbIjeMp62EC9M6df3elh8a7MbsqeMeBApiAcRQ3y3rb4tgCHbogzAZRA==
+X-Received: by 2002:a05:600c:1e86:b0:391:62c4:fb72 with SMTP id be6-20020a05600c1e8600b0039162c4fb72mr3732642wmb.119.1650041218450;
+        Fri, 15 Apr 2022 09:46:58 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b0038cb8b38f9fsm9180041wmq.21.2022.04.15.09.46.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 09:46:57 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     vladimir.zapolskiy@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     dmitry.baryshkov@linaro.org, jonathan@marek.ca, hfink@snap.com,
+        jgrahsl@snap.com, bryan.odonoghue@linaro.org
+Subject: [PATCH v3 0/3] Add camss to SM8250 dtsi 
+Date:   Fri, 15 Apr 2022 17:46:52 +0100
+Message-Id: <20220415164655.1679628-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, 15 Apr 2022 18:19:46 +0200,
-Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
+V3:
+- Reorder new DTS include to be alphabetised - Vladimir
+- Place pinctrl-names after pinctrl reference - Vladimir
+- GCC_VIDEO_AHB_CK -> GCC_CAMERA_AHB_CLK - Vladimir
+- Adds suggested sleep_clk - Vladimir
+- interconnect-cells - I believe is correct as-is - Bryan
+- power-domain-names - not added camss does dev_pm_domain_attach_by_id() - Bryan
+- Added Reviewed-by to #3 as indicated - Vladimir
 
-> > I think it would be good to modify it like this:
-> >=20
-> > eth-miic@44030000 {
-> >     ...
-> >   converters {
-> >     mii_conv0: mii-conv@0 {
-> >       // Even if useless, maybe keeping it for the sake of coherency
-> >       renesas,miic-input =3D <MIIC_GMAC1>;
-> >       reg =3D <0>;
-> >     }; =20
->=20
-> This is not a 'bus', so using reg, and @0, etc is i think wrong.  You
-> just have a collection of properties.
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b-sm8250-camss-dts-v3
 
-Agreed, but this is the same thing that is done for DSA ports (at least
-I think). It uses reg which describe the port number, this is not a
-real bus per se, it only refer to port indices.
+V2:
+- Change 0xHEX to 0xhex - Bjorn
+- Merge CCI and CCI pin definitions into one patch - Bjorn
+- Future pinctrl dropped, moved into dts file for board
+  which appears more consistent with sdm845-db845 &tlmm{} section - Bjorn, Bryan
+- Renamed cci0_i2c0/cci0_i2c1 and cci1_ic20/cci1_i2c1 - Bjorn
+- Grouped CCI pins into cci0_default, cci0_sleep, etc - Bryan
 
-But if you think this should not be done like this, what do you propose
-then ? These nodes are also reference from "pcs-handle" properties in
-switch to retrieve the PCS. Would you suggest using something like
-pcs-handle =3D <&eth_miic port_index> and remove the nodes then ?
+V1:
+Add in necessary CAMSS, pin and CCI definitions to the SM8250 dtsi.
 
-Thanks,
+This is the SoC specific stuff, the platform enablement will be done in a
+separate drop later.
+
+On the RB5 platform we have validated ~ 30 FPS @ 4K using the SRGGB10P
+pixel format provided by a Sony IMX577 sensor.
+
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=br-v5.19b%2brb5-dts%2bsensors
 
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+Bryan O'Donoghue (3):
+  arm64: dts: qcom: sm8250: Add camcc DT node
+  arm64: dts: qcom: sm8250: camss: Add CAMSS block definition
+  arm64: dts: qcom: sm8250: camss: Add CCI definitions
+
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 331 +++++++++++++++++++++++++++
+ 1 file changed, 331 insertions(+)
+
+-- 
+2.35.1
+
