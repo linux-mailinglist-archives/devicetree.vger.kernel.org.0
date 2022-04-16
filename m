@@ -2,131 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C575503479
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 08:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC1C503513
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 10:01:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiDPGgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 02:36:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40032 "EHLO
+        id S230296AbiDPIDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 04:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbiDPGgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 02:36:22 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4E9FCBDF;
-        Fri, 15 Apr 2022 23:33:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1650090811; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=PRTj/8X5oT9ghucpa9TjEtg1cHLA5CGkoLFMilBXYpLb8aes+SKJKQMIvfiqk4a5RM2AEMlMgqQ8tRwVn/tlYgRoqsfhmjU9UvVjR042lYGR27Rf84F6VLDe1LwgQZzjDjbBLcsqmU4QgepmdnOynPRACNOSbIEe+KOwUQm7HF4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1650090811; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=5eFjRektgYNgCLk42++Y+sC5sKU1miyrndgi5UTjNys=; 
-        b=ghDFT4u6cSiMID29YiOIK9qypI8UgPrJ7tOBeGjzbTJVfz4TYhEIrQZepA8zT0FowvNkmi9xX/suEkz1O6GeCRBl6LZ1/E6LzAz9fyeo+QYnkeQd4UlYUyFtNCXCshAxw0nMg13uA5UjlUJQmuvnwrLfStPBXMdOZQBMnKW4b58=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1650090811;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=5eFjRektgYNgCLk42++Y+sC5sKU1miyrndgi5UTjNys=;
-        b=NmyvQpyIPVKnZUsT2Urqf8dAeGi6xQwW5eGG6Ht3cY/NU5aeKV0a/wcnOYgb7SLM
-        xgwj9JQNNgurzqDyNxVVA+U8XXlOKxNRwyyodEM6Qu2gT4bKOqIN/Auh6c0hIxplUW/
-        64Cu4GW3uEOzwVWQyNT92/x6aIO2LhrcJ5FuIcio=
-Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1650090809904755.2901823257303; Fri, 15 Apr 2022 23:33:29 -0700 (PDT)
-Message-ID: <d2287e43-9794-c46a-e924-6f5b50e21c16@arinc9.com>
-Date:   Sat, 16 Apr 2022 09:33:20 +0300
+        with ESMTP id S230305AbiDPIDs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 04:03:48 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A1B100E29;
+        Sat, 16 Apr 2022 01:01:15 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id k5so17041743lfg.9;
+        Sat, 16 Apr 2022 01:01:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MXlAdpQLGQGUUo4/nFrsdLnsJFw/wYKXZIo/9dWMKPs=;
+        b=GlWDVh4mGOslT9x+9Cf/M39/Uru7iSzMMGf0MsIHsJOECxtBIQEKSiOhQ6d5pbdf4j
+         0Q4ZSqwrihtygT0jrukCM2I5zVYNwWIr+kQ9Vt/kp3uXZwNjlTgFSu1injKGGeDyIW7w
+         l1qnOjTfmeatmweRiq24gZCi7q6JE9tLgmNi0SvW/Up+I0yjZLEIR58qIBBomdv5S+On
+         o6HQSqmfwHSo2KYKzD3onll3iGoNhgFDBt+GBdRV0h5xCFZ7DjwqXq/3/TE9n4v7T1+2
+         1jE2ZhXcJvn5NewsRez8HY/igateUo1vk+AZ087w895RzKsn83MZsPgSNi2LQnx9IZo6
+         xO2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MXlAdpQLGQGUUo4/nFrsdLnsJFw/wYKXZIo/9dWMKPs=;
+        b=3AjgWXLADfJDv+on13NN3zfZ47SZfUsp17pNBe7w//lEtWWxzNUgzz0VddMAXpb0HE
+         T0EK+G3fhpD9yZ+xYN8dOK1JWd3PubTEmmp0L3LypROMNIzFpck8EX4M8+K/fDxrGP6t
+         K1xJGRcHocCafbGOBNNjWS/fE5KFELlr1KqgozvnwQSkbpQf92G/FB5PsTATTLvYJpo5
+         /afb3mHAvEFGhAQW2I2gLEeR9m3Cf93yXZ2VRxSJNPuwCVmbybfYctNZPB44ukVfJOFo
+         ZLJQ+/WRQHsukEZ7nzMevMFXsuY8OhpYfxNE1pwq3Gls16C5tzScV9Bp9gjHtt0RQ/wk
+         sYyQ==
+X-Gm-Message-State: AOAM533FHeMdhLJw31EoD4cX2ivBL1srpuBbDxO8YuM2EJTLggq1LB2J
+        5Pq7JXUFwCBbNcbtKPSpNdgt99RgsR6fdA==
+X-Google-Smtp-Source: ABdhPJz6CVXoHDhAV9Gyik5pPZg9sjhX0loL8jq9bIV8r8fjCmT8MZhcpEDiC1lO6R2UIgUS5k4BJQ==
+X-Received: by 2002:a05:6512:3c87:b0:46c:fde0:5d2e with SMTP id h7-20020a0565123c8700b0046cfde05d2emr1683544lfv.525.1650096073460;
+        Sat, 16 Apr 2022 01:01:13 -0700 (PDT)
+Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
+        by smtp.gmail.com with ESMTPSA id t25-20020a19dc19000000b0044a16b068c7sm593375lfg.117.2022.04.16.01.01.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Apr 2022 01:01:11 -0700 (PDT)
+Date:   Sat, 16 Apr 2022 11:01:09 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Joe Perches <joe@perches.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/16] PCI: dwc: Add more verbose link-up message
+Message-ID: <20220416080109.pqnuojor6lewltr3@mobilestation>
+References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324013734.18234-4-Sergey.Semin@baikalelectronics.ru>
+ <8569d431ce4e1d64ae271f0498c7a0395d2c5c7e.camel@perches.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup
- compatible strings
-Content-Language: en-US
-To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        netdev@vger.kernel.org
-Cc:     linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-References: <20220416062504.19005-1-luizluca@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20220416062504.19005-1-luizluca@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8569d431ce4e1d64ae271f0498c7a0395d2c5c7e.camel@perches.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/04/2022 09:25, Luiz Angelo Daros de Luca wrote:
-> Compatible strings are used to help the driver find the chip ID/version
-> register for each chip family. After that, the driver can setup the
-> switch accordingly. Keep only the first supported model for each family
-> as a compatible string and reference other chip models in the
-> description.
+On Mon, Mar 28, 2022 at 04:31:53PM -0700, Joe Perches wrote:
+> On Thu, 2022-03-24 at 04:37 +0300, Serge Semin wrote:
+> > Printing just "link up" isn't that much informative especially when it
+> > comes to working with the PCI Express bus. Even if the link is up, due to
+> > multiple reasons the bus performance can degrade to slower speeds or to
+> > narrower width than both Root Port and its partner is capable of. In that
+> > case it would be handy to know the link specifications as early as
+> > possible. So let's add a more verbose message to the busy-wait link-state
+> > method, which will contain the link speed generation and the PCIe bus
+> > width in case if the link up state is discovered. Otherwise an error will
+> > be printed to the system log.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > ---
+> >  drivers/pci/controller/dwc/pcie-designware.c | 22 +++++++++++++++-----
+> >  1 file changed, 17 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> []
+> > @@ -528,14 +528,26 @@ int dw_pcie_wait_for_link(struct dw_pcie *pci)
+> >  
+> >  	/* Check if the link is up or not */
+> >  	for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
+> > -		if (dw_pcie_link_up(pci)) {
+> > -			dev_info(pci->dev, "Link up\n");
+> > -			return 0;
+> > -		}
+> > +		if (dw_pcie_link_up(pci))
+> > +			break;
+> > +
+> >  		usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
+> >  	}
+> >  
+> > -	dev_info(pci->dev, "Phy link never came up\n");
+> > +	if (retries < LINK_WAIT_MAX_RETRIES) {
+> > +		u32 offset, val;
+> > +
+> > +		offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> > +		val = dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKSTA);
+> > +
+> > +		dev_info(pci->dev, "PCIe Gen.%u x%u link up\n",
+> > +			 FIELD_GET(PCI_EXP_LNKSTA_CLS, val),
+> > +			 FIELD_GET(PCI_EXP_LNKSTA_NLW, val));
+> > +
+> > +		return 0;
+> > +	}
+> > +
+> > +	dev_err(pci->dev, "Phy link never came up\n");
+> >  
+> >  	return -ETIMEDOUT;
+> >  }
 > 
-> CC: devicetree@vger.kernel.org
-> Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
-> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> ---
->   .../devicetree/bindings/net/dsa/realtek.yaml  | 33 +++++++------------
->   1 file changed, 12 insertions(+), 21 deletions(-)
+
+> IMO: it's generally bette to test the error condition and unindent
+> the typical return.
+
+Absolutely right. Thanks for noticing that. No idea why I haven't done
+the way you said 'cause it seems neater, more maintainable than what I
+suggested here.
+
+-Sergey
+
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> index 8756060895a8..9bf862abb496 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> @@ -27,32 +27,23 @@ description:
->     The realtek-mdio driver is an MDIO driver and it must be inserted inside
->     an MDIO node.
->   
-> +  The compatibility string is used only to find an identification register,
-> +  (chip ID and version) which is at a different MDIO base address in different
-> +  switch families. The driver then uses the chip ID/version to device how to
-> +  drive the switch.
-
-I think you meant to say "decide how to drive the switch"?
-
-> +
->   properties:
->     compatible:
->       enum:
->         - realtek,rtl8365mb
-> -      - realtek,rtl8366
->         - realtek,rtl8366rb
-> -      - realtek,rtl8366s
-> -      - realtek,rtl8367
-> -      - realtek,rtl8367b
-> -      - realtek,rtl8367rb
-> -      - realtek,rtl8367s
-> -      - realtek,rtl8368s
-> -      - realtek,rtl8369
-> -      - realtek,rtl8370
->       description: |
-> -      realtek,rtl8365mb: 4+1 ports
-> -      realtek,rtl8366: 5+1 ports
-> -      realtek,rtl8366rb: 5+1 ports
-> -      realtek,rtl8366s: 5+1 ports
-> -      realtek,rtl8367:
-> -      realtek,rtl8367b:
-> -      realtek,rtl8367rb: 5+2 ports
-> -      realtek,rtl8367s: 5+2 ports
-> -      realtek,rtl8368s: 8 ports
-> -      realtek,rtl8369: 8+1 ports
-> -      realtek,rtl8370: 8+2 ports
-> +      realtek,rtl8365mb:
-> +        Use with models RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB,
-> +        RTL8364NB, RTL8364NB-VB, RTL8365MB, RTL8366SC, RTL8367RB-VB, RTL8367S,
-> +        RTL8367SB, RTL8370MB, RTL8310SR
-> +      realtek,rtl8367rb:
-> +        Use with models RTL8366RB, RTL8366S
-
-You kept rtl8366rb string but defined description for rtl8367rb.
-
-Arınç
+> 	if (retries >= LINK_WAIT_MAX_RETRIES) {
+> 		dev_err(pci->dev, "Phy link never came up\n");
+> 		return -ETIMEDOUT;
+> 	}
+> 
+> 	offset = ...
+> 	val = ...
+> 	dev_info(...)
+> 
+> 	return 0;
+> }
+> 
