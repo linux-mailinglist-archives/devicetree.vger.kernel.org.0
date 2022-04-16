@@ -2,104 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA5E35032DE
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 07:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 162F450336C
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 07:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231229AbiDPAiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 20:38:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41852 "EHLO
+        id S229469AbiDPCEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Apr 2022 22:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230425AbiDPAh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 20:37:59 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704643A1BE
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 17:35:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 92D3EB80ED0
-        for <devicetree@vger.kernel.org>; Sat, 16 Apr 2022 00:30:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E029EC385A5;
-        Sat, 16 Apr 2022 00:30:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650069032;
-        bh=gQSFkzWaSCzU6UI9kfwlgCZeTrqeUZGpegqf+xzbLAQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=mK4bZmXVRMVSWKWTH9TVzcmpV3DnUZkbRpvjz/DD1T5ZhThWoNd9U4H+7uNIdVfJL
-         INCK0P8w24MupU6S4o6rd8p8V9WrGLwDR0Dj/Y1EBCtyPALbRi0PRtMtjIvGjzoSE5
-         Af+REMEn7gGqdACUEpoqRnfM1zaKsRfoNlIftOmN8LzZTeG/GtFFliec/nLvK+TmsZ
-         fO1XYmboB8vsYUfaKDLCUZv9zULTPj7wY+YGbxnqNtnwXpNcZOv7oXKofSjNUjrWVJ
-         /HfMju5Ot8B0JfMq554EeAxRdXPhd6G788cbgzCAyyt4XGu9+Z21QZ7oTnUUjNouzp
-         DFwB07UstNwnA==
-From:   Stefano Stabellini <sstabellini@kernel.org>
-To:     robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     sstabellini@kernel.org, devicetree@vger.kernel.org, julien@xen.org,
-        xen-devel@lists.xenproject.org,
-        Stefano Stabellini <stefano.stabellini@xilinx.com>
-Subject: [PATCH v2] of: of_property_read_string return -ENODATA when !length
-Date:   Fri, 15 Apr 2022 17:30:28 -0700
-Message-Id: <20220416003028.1315268-1-sstabellini@kernel.org>
+        with ESMTP id S229456AbiDPCEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 22:04:38 -0400
+Received: from mail-oa1-x42.google.com (mail-oa1-x42.google.com [IPv6:2001:4860:4864:20::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E871342FE;
+        Fri, 15 Apr 2022 18:54:02 -0700 (PDT)
+Received: by mail-oa1-x42.google.com with SMTP id 586e51a60fabf-e2a00f2cc8so9417551fac.4;
+        Fri, 15 Apr 2022 18:54:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5Les2UL23YeIevDhG3Z2Qgn1FSs69ezvIqCdvr/g4ho=;
+        b=X3pmP/83JNw068wUc0Dwc/eB1hfDmcO0c7h4P4CWTRPTAL9Lwi/6sNoDY75uG413G4
+         u2Ac+RYGI4qc8tjzxtrBNe+ZmwHZ3JvQSl68DtyM0QcLoMW8cF4XbiFCBc/b2jtXxAvg
+         czslVbtiqNZg3f+gAuSFakzhJRLu0q+WjfDr+or82OnN2qakZxO9vmcgaaiaxH6p7a1i
+         EetP7YF73mPGYAEFAOB26josOoVQuyXIuM9H93FI0sZigrGMYUwfaNeRxspjwbR4Xo1s
+         njR/j1fNgzalQdZZkJN+QoozaLKI4rR8G47kaRFhQv+kuQuvdbzN7mN9tqnuOwrkMlP6
+         QuYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5Les2UL23YeIevDhG3Z2Qgn1FSs69ezvIqCdvr/g4ho=;
+        b=fFUU9dlTfPhgFYhiZCK3ZF7ATbDAf+tEwiICQRHdeADouXf5iz28sTCliD5nPMK94m
+         e83Qh01IITk5plnHTQuMpPxSCfYrY4ovn7IG0yDhC445RuR/iegtRLVMGD4N3QiwQ6JX
+         JUyHYriejEfmdhbP6jji2K8kSJCT7iidS5BEg4SjfATKiuTcxZSI+hmdw1muJgdA7rhY
+         CeZOTCMeqEy5UFFWtuAjdbOL6kKJaxa1jDS5Ly3iI0xa/Oz6jP51tX/32AgXX1bsJeJj
+         OtfldqkwivQrd+CEuQs/MidO/ni+xdtVL/aBIdDBZHKrM78nssm4sfrnCTRdcMlLEUYC
+         NxdQ==
+X-Gm-Message-State: AOAM532vJ0hDTC7XEmRkID+mZAuEy53sxcA5egW6BILGvYGhB1vP4/a4
+        ryMXsU7P6SOkr+4xqH14bDaAuP2M/X+c/A==
+X-Google-Smtp-Source: ABdhPJykxiXYmn1N3ukz/dW55wNY1Lgeg6tCAhkCY9X2N73Pqr000lp0esog3uKXrWyO9G0bDcFVRw==
+X-Received: by 2002:a17:90b:164f:b0:1c7:8d27:91fc with SMTP id il15-20020a17090b164f00b001c78d2791fcmr6869325pjb.228.1650069643984;
+        Fri, 15 Apr 2022 17:40:43 -0700 (PDT)
+Received: from localhost.localdomain (c-73-241-94-58.hsd1.ca.comcast.net. [73.241.94.58])
+        by smtp.gmail.com with ESMTPSA id b10-20020a056a00114a00b004f784ba5e6asm4222482pfm.17.2022.04.15.17.40.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 17:40:43 -0700 (PDT)
+From:   Ryan Lee <ryan.lee.analog@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, ckeepax@opensource.cirrus.com,
+        tanureal@opensource.cirrus.com, cy_huang@richtek.com,
+        pierre-louis.bossart@linux.intel.com,
+        drhodes@opensource.cirrus.com, pbrobinson@gmail.com,
+        hdegoede@redhat.com, lukas.bulwahn@gmail.com, stephan@gerhold.net,
+        arnd@arndb.de, ryan.lee.analog@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ryans.lee@analog.com
+Subject: [PATCH 1/2] ASoC: dt-bindings: max98396: add amplifier driver
+Date:   Fri, 15 Apr 2022 17:40:23 -0700
+Message-Id: <20220416004024.210418-1-ryan.lee.analog@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefano Stabellini <stefano.stabellini@xilinx.com>
+From: Ryan Lee <ryans.lee@analog.com>
 
-When the length of the string is zero of_property_read_string should
-return -ENODATA according to the description of the function.
+This patch adds dt-bindings information for Analog Devices MAX98396
+and MAX98397 Smart Amplifier.
 
-However, of_property_read_string doesn't check prop->length. If
-prop->length is zero, return -ENODATA.
-
-Without this patch the following command in u-boot:
-
-fdt set /chosen/node property-name
-
-results in of_property_read_string returning -EILSEQ when attempting to
-read property-name. With this patch, it returns -ENODATA as expected.
-
-Signed-off-by: Stefano Stabellini <stefano.stabellini@xilinx.com>
+Signed-off-by: Ryan Lee <ryans.lee@analog.com>
 ---
-Changes in v2:
-- use prop instead pp
-- drop value check
-- update function header documentation
----
- drivers/of/property.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../bindings/sound/adi,max98396.yaml          | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,max98396.yaml
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 8e90071de6ed..84903dad96a4 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -431,6 +431,9 @@ EXPORT_SYMBOL_GPL(of_property_read_variable_u64_array);
-  * property does not have a value, and -EILSEQ if the string is not
-  * null-terminated within the length of the property data.
-  *
-+ * Note that the empty string "" has length of 1, thus -ENODATA cannot
-+ * be interpreted as an empty string.
-+ *
-  * The out_string pointer is modified only if a valid string can be decoded.
-  */
- int of_property_read_string(const struct device_node *np, const char *propname,
-@@ -439,7 +442,7 @@ int of_property_read_string(const struct device_node *np, const char *propname,
- 	const struct property *prop = of_find_property(np, propname, NULL);
- 	if (!prop)
- 		return -EINVAL;
--	if (!prop->value)
-+	if (!prop->length)
- 		return -ENODATA;
- 	if (strnlen(prop->value, prop->length) >= prop->length)
- 		return -EILSEQ;
+diff --git a/Documentation/devicetree/bindings/sound/adi,max98396.yaml b/Documentation/devicetree/bindings/sound/adi,max98396.yaml
+new file mode 100644
+index 000000000000..4aee32f43ad1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/adi,max98396.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/adi,max98396.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX98396 Speaker Amplifier Device Tree Bindings
++
++maintainers:
++  - Ryan Lee <ryans.lee@analog.com>
++
++description:
++  The MAX98396 is a mono Class-DG speaker amplifier with I/V sense.
++  The device provides a PCM interface for audio data and a standard
++  I2C interface for control data communication.
++  The MAX98397 is a variant of MAX98396 with wide input supply range.
++
++properties:
++  compatible:
++    enum:
++      - adi,max98396
++      - adi,max98397
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++  adi,vmon-slot-no:
++    description: slot number of the voltage sense monitor
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,imon-slot-no:
++    description: slot number of the current sense monitor
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,spkfb-slot-no:
++    description: slot number of speaker DSP monitor
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,interleave-mode:
++    type: boolean
++    description: For cases where a single combined channel for the I/V sense data is not sufficient,
++                the device can also be configured to share a single data output channel on alternating frames.
++                In this configuration, the current and voltage data will be frame interleaved on a single output channel.
++    default: false
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        max98396: amplifier@39 {
++            compatible = "adi,max98396";
++            reg = <0x39>;
++            adi,vmon-slot-no = <0>;
++            adi,imon-slot-no = <1>;
++            adi,interleave-mode = <0>;
++            reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
++        };
++        max98397: amplifier@3c {
++            compatible = "adi,max98397";
++            reg = <0x3c>;
++            adi,vmon-slot-no = <0>;
++            adi,imon-slot-no = <1>;
++            adi,interleave-mode = <0>;
++            reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
++        };
++    };
++
 -- 
 2.25.1
 
