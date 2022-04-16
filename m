@@ -2,145 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2930C50346D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 08:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C575503479
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 08:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbiDPG16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 02:27:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43216 "EHLO
+        id S229763AbiDPGgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 02:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiDPG15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 02:27:57 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28512FFD7;
-        Fri, 15 Apr 2022 23:25:26 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id c21-20020a056830001500b005f8f6757c22so4780633otp.1;
-        Fri, 15 Apr 2022 23:25:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=m4zdO4FwkXc6f31oyTAiz2VllA8ZYggkDmpwHP6e3l0=;
-        b=UvQ+CJPJoipRoQQ0NzsNb4fFpaMMJvCwFv8wyp1EqBS09HzBgSMwp7j4C0DBDUEKdb
-         jdl4ckSmWDssKhUjO2csA7griZHKqwXKnj/ptiOUZ/MYdUZZm4vkmnCYT1q6GPdTiid7
-         p68q+YxyqkAusXydN7g8xMxv6Ceh1wCvaHvsMVtVslDgX7iHc9hJ9gR3yioBqqS4iRFU
-         +ZZbFJuBDIQ/dXYyxzv6gsR9pXYVFCfbWFCvfNwLJCvdazSslPqXCCcd6F9eiWW6cxCa
-         cDWeP7sSQqNM4V0VKlpKe+Q4IkfJouDn/FCi1qieB2TGeiKvaty+iG3v7xWUgyhYMXPD
-         llag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=m4zdO4FwkXc6f31oyTAiz2VllA8ZYggkDmpwHP6e3l0=;
-        b=wA8iRAwLvRXTXSfIoZDDUBnDVECL6QLY5oh6qu6Mjtp+YExAAU7Pol1sWZudqgEB+V
-         gMcAL9XBJ2mXtfXXFKX6e88uDbKArdA4VqkeBme+nhfzwPz5z5zTn2ofzCrcr/OcjTau
-         IyToudAD/Rizf121Vp2BOredbVI+Vbg0j9u4d02Ydc7nnXWi3E+8ymafV6NbZtpwS5Bb
-         GQqbhB4rYAyWoBz4sM/k7qMlMznaqHPafQr3z+GSLgRFTlHRYv6gXDTWIcRzBbj9IJqM
-         pBIxDweiSbs6PlfP1W4dNBOHBQRDmIOGf3gYEGo0Gg8IXcAPKrOePF9MsIrq9es5mov0
-         bzhg==
-X-Gm-Message-State: AOAM531CFE9iwDVectbB978XhsHNE7fvvbf0b9pPMgPXlVPGJAQIMBGq
-        ishU/DE2z0o0umBCwJX7yXN08nuLW3R6tQ==
-X-Google-Smtp-Source: ABdhPJyyzl+3t88BO1OKQfFLwpNwUnEOGBmT4YDeHYJLC6De6hGKwrinKLZHZnB3myLcXNuVuK5PVA==
-X-Received: by 2002:a9d:62c:0:b0:5e6:b611:ff6b with SMTP id 41-20020a9d062c000000b005e6b611ff6bmr765880otn.210.1650090325940;
-        Fri, 15 Apr 2022 23:25:25 -0700 (PDT)
-Received: from tresc043793.tre-sc.gov.br (187-049-235-234.floripa.net.br. [187.49.235.234])
-        by smtp.gmail.com with ESMTPSA id 6-20020aca0706000000b002f9d20b3134sm1838928oih.7.2022.04.15.23.25.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Apr 2022 23:25:22 -0700 (PDT)
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-To:     netdev@vger.kernel.org
+        with ESMTP id S229659AbiDPGgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 02:36:22 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4E9FCBDF;
+        Fri, 15 Apr 2022 23:33:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1650090811; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=PRTj/8X5oT9ghucpa9TjEtg1cHLA5CGkoLFMilBXYpLb8aes+SKJKQMIvfiqk4a5RM2AEMlMgqQ8tRwVn/tlYgRoqsfhmjU9UvVjR042lYGR27Rf84F6VLDe1LwgQZzjDjbBLcsqmU4QgepmdnOynPRACNOSbIEe+KOwUQm7HF4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1650090811; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=5eFjRektgYNgCLk42++Y+sC5sKU1miyrndgi5UTjNys=; 
+        b=ghDFT4u6cSiMID29YiOIK9qypI8UgPrJ7tOBeGjzbTJVfz4TYhEIrQZepA8zT0FowvNkmi9xX/suEkz1O6GeCRBl6LZ1/E6LzAz9fyeo+QYnkeQd4UlYUyFtNCXCshAxw0nMg13uA5UjlUJQmuvnwrLfStPBXMdOZQBMnKW4b58=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1650090811;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=5eFjRektgYNgCLk42++Y+sC5sKU1miyrndgi5UTjNys=;
+        b=NmyvQpyIPVKnZUsT2Urqf8dAeGi6xQwW5eGG6Ht3cY/NU5aeKV0a/wcnOYgb7SLM
+        xgwj9JQNNgurzqDyNxVVA+U8XXlOKxNRwyyodEM6Qu2gT4bKOqIN/Auh6c0hIxplUW/
+        64Cu4GW3uEOzwVWQyNT92/x6aIO2LhrcJ5FuIcio=
+Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1650090809904755.2901823257303; Fri, 15 Apr 2022 23:33:29 -0700 (PDT)
+Message-ID: <d2287e43-9794-c46a-e924-6f5b50e21c16@arinc9.com>
+Date:   Sat, 16 Apr 2022 09:33:20 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup
+ compatible strings
+Content-Language: en-US
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        netdev@vger.kernel.org
 Cc:     linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
         vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
         davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, arinc.unal@arinc9.com,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup compatible strings
-Date:   Sat, 16 Apr 2022 03:25:03 -0300
-Message-Id: <20220416062504.19005-1-luizluca@gmail.com>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+References: <20220416062504.19005-1-luizluca@gmail.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20220416062504.19005-1-luizluca@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compatible strings are used to help the driver find the chip ID/version
-register for each chip family. After that, the driver can setup the
-switch accordingly. Keep only the first supported model for each family
-as a compatible string and reference other chip models in the
-description.
+On 16/04/2022 09:25, Luiz Angelo Daros de Luca wrote:
+> Compatible strings are used to help the driver find the chip ID/version
+> register for each chip family. After that, the driver can setup the
+> switch accordingly. Keep only the first supported model for each family
+> as a compatible string and reference other chip models in the
+> description.
+> 
+> CC: devicetree@vger.kernel.org
+> Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> ---
+>   .../devicetree/bindings/net/dsa/realtek.yaml  | 33 +++++++------------
+>   1 file changed, 12 insertions(+), 21 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> index 8756060895a8..9bf862abb496 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> @@ -27,32 +27,23 @@ description:
+>     The realtek-mdio driver is an MDIO driver and it must be inserted inside
+>     an MDIO node.
+>   
+> +  The compatibility string is used only to find an identification register,
+> +  (chip ID and version) which is at a different MDIO base address in different
+> +  switch families. The driver then uses the chip ID/version to device how to
+> +  drive the switch.
 
-CC: devicetree@vger.kernel.org
-Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
-Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
----
- .../devicetree/bindings/net/dsa/realtek.yaml  | 33 +++++++------------
- 1 file changed, 12 insertions(+), 21 deletions(-)
+I think you meant to say "decide how to drive the switch"?
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-index 8756060895a8..9bf862abb496 100644
---- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-@@ -27,32 +27,23 @@ description:
-   The realtek-mdio driver is an MDIO driver and it must be inserted inside
-   an MDIO node.
- 
-+  The compatibility string is used only to find an identification register,
-+  (chip ID and version) which is at a different MDIO base address in different
-+  switch families. The driver then uses the chip ID/version to device how to
-+  drive the switch.
-+
- properties:
-   compatible:
-     enum:
-       - realtek,rtl8365mb
--      - realtek,rtl8366
-       - realtek,rtl8366rb
--      - realtek,rtl8366s
--      - realtek,rtl8367
--      - realtek,rtl8367b
--      - realtek,rtl8367rb
--      - realtek,rtl8367s
--      - realtek,rtl8368s
--      - realtek,rtl8369
--      - realtek,rtl8370
-     description: |
--      realtek,rtl8365mb: 4+1 ports
--      realtek,rtl8366: 5+1 ports
--      realtek,rtl8366rb: 5+1 ports
--      realtek,rtl8366s: 5+1 ports
--      realtek,rtl8367:
--      realtek,rtl8367b:
--      realtek,rtl8367rb: 5+2 ports
--      realtek,rtl8367s: 5+2 ports
--      realtek,rtl8368s: 8 ports
--      realtek,rtl8369: 8+1 ports
--      realtek,rtl8370: 8+2 ports
-+      realtek,rtl8365mb:
-+        Use with models RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB,
-+        RTL8364NB, RTL8364NB-VB, RTL8365MB, RTL8366SC, RTL8367RB-VB, RTL8367S,
-+        RTL8367SB, RTL8370MB, RTL8310SR
-+      realtek,rtl8367rb:
-+        Use with models RTL8366RB, RTL8366S
- 
-   mdc-gpios:
-     description: GPIO line for the MDC clock line.
-@@ -335,7 +326,7 @@ examples:
-             #size-cells = <0>;
- 
-             switch@29 {
--                    compatible = "realtek,rtl8367s";
-+                    compatible = "realtek,rtl8365mb";
-                     reg = <29>;
- 
-                     reset-gpios = <&gpio2 20 GPIO_ACTIVE_LOW>;
--- 
-2.35.1
+> +
+>   properties:
+>     compatible:
+>       enum:
+>         - realtek,rtl8365mb
+> -      - realtek,rtl8366
+>         - realtek,rtl8366rb
+> -      - realtek,rtl8366s
+> -      - realtek,rtl8367
+> -      - realtek,rtl8367b
+> -      - realtek,rtl8367rb
+> -      - realtek,rtl8367s
+> -      - realtek,rtl8368s
+> -      - realtek,rtl8369
+> -      - realtek,rtl8370
+>       description: |
+> -      realtek,rtl8365mb: 4+1 ports
+> -      realtek,rtl8366: 5+1 ports
+> -      realtek,rtl8366rb: 5+1 ports
+> -      realtek,rtl8366s: 5+1 ports
+> -      realtek,rtl8367:
+> -      realtek,rtl8367b:
+> -      realtek,rtl8367rb: 5+2 ports
+> -      realtek,rtl8367s: 5+2 ports
+> -      realtek,rtl8368s: 8 ports
+> -      realtek,rtl8369: 8+1 ports
+> -      realtek,rtl8370: 8+2 ports
+> +      realtek,rtl8365mb:
+> +        Use with models RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB,
+> +        RTL8364NB, RTL8364NB-VB, RTL8365MB, RTL8366SC, RTL8367RB-VB, RTL8367S,
+> +        RTL8367SB, RTL8370MB, RTL8310SR
+> +      realtek,rtl8367rb:
+> +        Use with models RTL8366RB, RTL8366S
 
+You kept rtl8366rb string but defined description for rtl8367rb.
+
+Arınç
