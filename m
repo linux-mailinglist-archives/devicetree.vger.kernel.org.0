@@ -2,63 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E8C850459E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 00:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD4705045AD
+	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 00:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbiDPWUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 18:20:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
+        id S231486AbiDPW3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 18:29:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiDPWUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 18:20:14 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2E9E6D;
-        Sat, 16 Apr 2022 15:17:41 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-e5bdd14b59so1531796fac.11;
-        Sat, 16 Apr 2022 15:17:41 -0700 (PDT)
+        with ESMTP id S231652AbiDPW3K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 18:29:10 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6551EAD5;
+        Sat, 16 Apr 2022 15:26:37 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-df02f7e2c9so11025459fac.10;
+        Sat, 16 Apr 2022 15:26:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=7dPcFs565C9c1WFXikvbzN8qlHn8qJL0dUAk+7Q/+p0=;
-        b=TLa8UZ+sDlYr2yJBFVXvUBIghsB7i2bPqTGG1iR/sCGk4iZ2FkeCD+NfOv2EHeIJqZ
-         iQy25dTUbdizs7rTfsbnWCg1MqeR+MtYE1KQGh8NqsRFP4hb3+g/H7IyaKbdVUok6B74
-         vAA2IRQiCSSaY4ISdvhU0M48IK2EV6sRyT4KuZcGU+T9f/+XdjC5pTDoC+RiIQoO0KhX
-         iBKoBHkU5dZHStc1GcaOQkYKlY1tjaHcsAD/su3T49L3smtpEa10rRpfwnG1rkAqM5Xo
-         6KhPQ8bZw7/ayxE7eLA7RDpcw90s9AJa+lN8CgTNeG92Zp070zEi5nFCA2NS91k1mAaC
-         8fUw==
-X-Gm-Message-State: AOAM533j8tJmKmRHusEarV5p/Uj79+/Jtcf0fcX7fZfawBgc4wYjKxm6
-        Ozx//qzQPv2PJvI6Wdrl1w==
-X-Google-Smtp-Source: ABdhPJzcOBOFLYRBnjRkFKYm36bRA1+9aCycXC6AAhf5bxP7oOLONMn2t+h7bqsghdRFSNm7zPU0jg==
-X-Received: by 2002:a05:6871:58c:b0:e3:25e9:6792 with SMTP id u12-20020a056871058c00b000e325e96792mr3791936oan.147.1650147460477;
-        Sat, 16 Apr 2022 15:17:40 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=hvCxCwUFHQkLQBr7J+w+QCRRJE2MrOWyjavx4Ay8QBM=;
+        b=mTvMciFX4PLTzgBdWTBt+DJ4YdwIkipOTVq53aedV1bWIVafyPyQCAcSDqGQpYx66y
+         HsAEestO6oxfJjYB46hnoVxFTKZ/vNxAqcohBe27PyfQA/Xnek7T+FyTKURY38qs2a0u
+         8244jSQ9t9Bm1D6qJrjoVf1Ht0g9gUGRA4YsSgJzASV9NfTmBWp+jOKHtMB9u4070iPo
+         An5rO/hf9YDjl2yBX+oASAhzu8d2FG6CaE0ZG6eFAb27rLqLkPK1ol7yGKsvuKGnwnes
+         8O+IA4CGw7H5uor1s8DJdLQ27zRsAXzm4EVphuSGhhpnk3zKgxnRnara0Ra/gF6ULAC8
+         04EA==
+X-Gm-Message-State: AOAM530WocB+p3/GXwP3vSL3vQwuA7+BVTpDbl+iuRPuSnBgiTTvRQuz
+        EmBhW1Zy1OFg3LbWsj5bqw==
+X-Google-Smtp-Source: ABdhPJwAU+czzeOWm0Hjm+2PAnXqqQ5eDd7fmD0UgJ0du/QHi33EB6DpQFfnsgngMtOCoGpqeirsxg==
+X-Received: by 2002:a05:6870:d1c9:b0:e5:9f16:c94f with SMTP id b9-20020a056870d1c900b000e59f16c94fmr1885553oac.273.1650147996776;
+        Sat, 16 Apr 2022 15:26:36 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id os2-20020a0568707d0200b000e42ef7cff2sm2727982oab.43.2022.04.16.15.17.39
+        by smtp.gmail.com with ESMTPSA id hq6-20020a0568709b0600b000e59102e1bbsm1894823oab.22.2022.04.16.15.26.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Apr 2022 15:17:40 -0700 (PDT)
-Received: (nullmailer pid 3544946 invoked by uid 1000);
-        Sat, 16 Apr 2022 22:17:39 -0000
+        Sat, 16 Apr 2022 15:26:36 -0700 (PDT)
+Received: (nullmailer pid 3557472 invoked by uid 1000);
+        Sat, 16 Apr 2022 22:26:35 -0000
+Date:   Sat, 16 Apr 2022 17:26:35 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>
-In-Reply-To: <20220415153708.637804-2-paul.kocialkowski@bootlin.com>
-References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com> <20220415153708.637804-2-paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: media: Add Allwinner A31 ISP bindings documentation
-Date:   Sat, 16 Apr 2022 17:17:39 -0500
-Message-Id: <1650147459.143664.3544945.nullmailer@robh.at.kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v5.18, take 2
+Message-ID: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -70,38 +60,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 17:37:05 +0200, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the Allwinner A31 Image
-> Signal Processor (ISP).
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../media/allwinner,sun6i-a31-isp.yaml        | 117 ++++++++++++++++++
->  1 file changed, 117 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> 
+Linus,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Please pull a few more DT fixes.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml:73:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml:75:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+Rob
 
-dtschema/dtc warnings/errors:
 
-doc reference errors (make refcheckdocs):
+The following changes since commit 3123109284176b1532874591f7c81f3837bbdc17:
 
-See https://patchwork.ozlabs.org/patch/
+  Linux 5.18-rc1 (2022-04-03 14:08:21 -0700)
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+are available in the Git repository at:
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-2
 
-pip3 install dtschema --upgrade
+for you to fetch changes up to 652980b1541c5a02e6410647c7daf840c06d724a:
 
-Please check and re-submit.
+  dt-bindings: display: panel-timing: Define a single type for properties (2022-04-14 16:04:52 -0500)
 
+----------------------------------------------------------------
+Devicetree fixes for v5.18, part 2:
+
+- Fix scalar property schemas with array constraints
+
+- Fix 'enum' lists with duplicate entries
+
+- Fix incomplete if/then/else schemas
+
+- Add Renesas RZ/V2L SoC support to Mali Bifrost binding
+
+- Maintainers update for Marvell irqchip
+
+----------------------------------------------------------------
+Dongjin Yang (1):
+      dt-bindings: net: snps: remove duplicate name
+
+Geert Uytterhoeven (1):
+      dt-bindings: power: renesas,apmu: Fix cpus property limits
+
+Krzysztof Kozlowski (2):
+      dt-bindings: extcon: maxim,max77843: fix ports type
+      dt-bindings: irqchip: mrvl,intc: refresh maintainers
+
+Lad Prabhakar (1):
+      dt-bindings: gpu: mali-bifrost: Document RZ/V2L SoC
+
+Rob Herring (4):
+      dt-bindings: Fix incomplete if/then/else schemas
+      dt-bindings: Fix 'enum' lists with duplicate entries
+      dt-bindings: Fix array constraints on scalar properties
+      dt-bindings: display: panel-timing: Define a single type for properties
+
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.yaml     |  1 -
+ Documentation/devicetree/bindings/bus/ti-sysc.yaml |  1 -
+ .../bindings/display/panel/panel-timing.yaml       | 42 +++++------
+ .../devicetree/bindings/extcon/maxim,max77843.yaml |  2 +-
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  5 +-
+ .../devicetree/bindings/hwmon/ti,tmp464.yaml       |  5 +-
+ .../devicetree/bindings/iio/adc/adi,ad7476.yaml    |  1 +
+ .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml       | 12 ++--
+ .../devicetree/bindings/iio/dac/adi,ad5360.yaml    |  6 +-
+ .../devicetree/bindings/interconnect/qcom,rpm.yaml | 84 +++++++++++-----------
+ .../bindings/interrupt-controller/mrvl,intc.yaml   |  6 +-
+ Documentation/devicetree/bindings/media/coda.yaml  |  1 -
+ .../bindings/media/mediatek,vcodec-decoder.yaml    |  2 -
+ .../bindings/media/mediatek,vcodec-encoder.yaml    |  3 -
+ .../media/mediatek,vcodec-subdev-decoder.yaml      |  1 -
+ .../bindings/mmc/nvidia,tegra20-sdhci.yaml         |  2 +
+ .../devicetree/bindings/net/snps,dwmac.yaml        |  6 +-
+ .../devicetree/bindings/net/ti,davinci-mdio.yaml   |  1 +
+ .../bindings/phy/nvidia,tegra20-usb-phy.yaml       | 20 +++---
+ .../devicetree/bindings/phy/qcom,usb-hs-phy.yaml   | 32 +++++----
+ .../devicetree/bindings/pinctrl/cirrus,madera.yaml | 11 ++-
+ .../devicetree/bindings/power/renesas,apmu.yaml    |  3 +-
+ .../devicetree/bindings/power/supply/bq2415x.yaml  |  1 -
+ .../bindings/regulator/fixed-regulator.yaml        | 34 ++++-----
+ .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  |  4 +-
+ .../devicetree/bindings/sound/st,stm32-sai.yaml    |  6 +-
+ .../devicetree/bindings/spi/renesas,sh-msiof.yaml  |  2 -
+ Documentation/devicetree/bindings/sram/sram.yaml   | 16 ++---
+ 28 files changed, 145 insertions(+), 165 deletions(-)
