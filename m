@@ -2,63 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B29695036ED
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 15:57:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 621E5503709
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 16:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232181AbiDPN6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 09:58:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
+        id S232259AbiDPOPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 10:15:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbiDPN6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 09:58:13 -0400
-Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1F23C739;
-        Sat, 16 Apr 2022 06:55:41 -0700 (PDT)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout4.routing.net (Postfix) with ESMTP id 755D91008DF;
-        Sat, 16 Apr 2022 13:55:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1650117339;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=JyHwYPoep9BFDLoB0ZMsq8j0Yw86x9S39Cqz1XCAImc=;
-        b=CgGX7EPzowNcfoFBExgbpTHJElkMO5owp4RgN5tZOFLWgF6weR58wvqVNTPBwCuyUBNSFT
-        6IglZyfCJOeC3mCqGvnVapmYeW2o+QCIbaXMVJULpRzscQk59TRNe8se4aIKFsNx+1lmHK
-        C51JplIIR2eRn54hk3iXGYC9meo1mD4=
-Received: from localhost.localdomain (fttx-pool-217.61.150.108.bambit.de [217.61.150.108])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 1945C1005BA;
-        Sat, 16 Apr 2022 13:55:38 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: [RFC/RFT 6/6] arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro
-Date:   Sat, 16 Apr 2022 15:54:58 +0200
-Message-Id: <20220416135458.104048-7-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220416135458.104048-1-linux@fw-web.de>
-References: <20220416135458.104048-1-linux@fw-web.de>
+        with ESMTP id S232233AbiDPOPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 10:15:42 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE92D22BFF;
+        Sat, 16 Apr 2022 07:13:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=zm2yFV2VwgH65tCV5Rk2TxjgewNSgK3t1gG4Iq5BCRg=; b=dJqtS7kzsDpnj59SZIr+57C8WM
+        LxFu4O9+H8k6pV8wocsFTasNDvECqI71OO9gH7yKw/o6YvDlBYYs/3T8HnGhAF1GKzkBuJbTImBs8
+        CsGaJNeDm/EAa3Ki+rz30xW7NWGTLJBMGiL+U/o/OEtuiosJQ4p7Xxio5Bzh4CWA9X78=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nfjAb-00G6o2-BN; Sat, 16 Apr 2022 16:13:01 +0200
+Date:   Sat, 16 Apr 2022 16:13:01 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org,
+        alsi@bang-olufsen.dk, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, arinc.unal@arinc9.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup
+ compatible strings
+Message-ID: <YlrO7Q/a9bK0pWIA@lunn.ch>
+References: <20220416062504.19005-1-luizluca@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 62954ed6-c7f0-49ee-8548-52a70c509b55
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220416062504.19005-1-luizluca@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,113 +51,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Sat, Apr 16, 2022 at 03:25:03AM -0300, Luiz Angelo Daros de Luca wrote:
+> Compatible strings are used to help the driver find the chip ID/version
+> register for each chip family. After that, the driver can setup the
+> switch accordingly. Keep only the first supported model for each family
+> as a compatible string and reference other chip models in the
+> description.
 
-Add Nodes to Bananapi-R2-Pro board to support PCIe v3 and
-set pcie regulators to always on.
+It would be good to mention here that these compatible strings have
+never been used in a released kernel, so it is safe to remove them.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
+That is the sort of information which makes the job of reviewing
+patches simpler. It is great to have the answers to questions you
+cannot see directly from the code in the commit message.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index 2700fb18a3bc..e3a0f7d219a2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -74,6 +74,67 @@ vcc5v0_sys: vcc5v0-sys {
- 		vin-supply = <&dc_12v>;
- 	};
- 
-+	pcie30_avdd0v9: pcie30-avdd0v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd0v9";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	pcie30_avdd1v8: pcie30-avdd1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	/* pi6c pcie clock generator feeds both ports */
-+	vcc3v3_pi6c_05: vcc3v3_pi6c_05-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <20000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* actually fed by vcc3v3_sys, dependent on pi6c clock generator */
-+	vcc3v3_minipcie: vcc3v3_minipcie-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_minipcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <5000>;
-+		vin-supply = <&vcc3v3_pi6c_05>;
-+	};
-+
-+	/* actually fed by vcc3v3_sys, dependent on pi6c clock generator */
-+	vcc3v3_ngff: vcc3v3_ngff-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_ngff";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PC1 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <5000>;
-+		vin-supply = <&vcc3v3_pi6c_05>;
-+	};
-+
- 	vbus: vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vbus";
-@@ -411,6 +472,24 @@ rgmii_phy1: ethernet-phy@0 {
- 	};
- };
- 
-+&pcie30phy {
-+       status = "okay";
-+};
-+
-+&pcie3x1 {
-+	rockchip,bifurcation;
-+	reset-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_ngff>;
-+	status = "okay";
-+};
-+
-+&pcie3x2 {
-+	rockchip,bifurcation;
-+	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_minipcie>;
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	leds {
- 		blue_led_pin: blue-led-pin {
--- 
-2.25.1
-
+       Andrew
