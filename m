@@ -2,67 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 621E5503709
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 16:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3EA50370D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 16:20:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232259AbiDPOPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 10:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
+        id S232267AbiDPOXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 10:23:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232233AbiDPOPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 10:15:42 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE92D22BFF;
-        Sat, 16 Apr 2022 07:13:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=zm2yFV2VwgH65tCV5Rk2TxjgewNSgK3t1gG4Iq5BCRg=; b=dJqtS7kzsDpnj59SZIr+57C8WM
-        LxFu4O9+H8k6pV8wocsFTasNDvECqI71OO9gH7yKw/o6YvDlBYYs/3T8HnGhAF1GKzkBuJbTImBs8
-        CsGaJNeDm/EAa3Ki+rz30xW7NWGTLJBMGiL+U/o/OEtuiosJQ4p7Xxio5Bzh4CWA9X78=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nfjAb-00G6o2-BN; Sat, 16 Apr 2022 16:13:01 +0200
-Date:   Sat, 16 Apr 2022 16:13:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org,
-        alsi@bang-olufsen.dk, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, arinc.unal@arinc9.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup
- compatible strings
-Message-ID: <YlrO7Q/a9bK0pWIA@lunn.ch>
-References: <20220416062504.19005-1-luizluca@gmail.com>
+        with ESMTP id S232263AbiDPOXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 10:23:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F9B82C137;
+        Sat, 16 Apr 2022 07:20:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3553160F50;
+        Sat, 16 Apr 2022 14:20:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B553C385A3;
+        Sat, 16 Apr 2022 14:20:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650118847;
+        bh=cWFwLZ0gsVucA5Es4p84LruYFLWbrqoMEwSN0TuIkzU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XDzfBSksXEI8qGNWOHFtln3WMB9rNV8dHxdESNVd28Tycyp8gxI14j+GAueK0vdoo
+         x52nmuvKOi1hSqYc4FyW+ZiFl8k9MsO6fSGIxXICkqa6xj2UgMJf5g8fpAvC7hc3Qm
+         6rf3JtbNezGuA1rUkmYwsSVbkciLwK3jKixYXM7M3VFWOjiTTOM7OJuwHxIGmN6cKe
+         7SmTLyrYHEoJrDm01TEbyaZQsSC4a+KXjSLcnqqvQOz2juxXRUqxltuzwlYBj2pg7S
+         jFrMzs+50pBrPEHMhJYcpE1TjyCDemN3Sd0etL4BxaocQo/aNlKeyMr6pZhU2jH7Rr
+         TxBv3XBppqQgA==
+Received: by mail-ed1-f51.google.com with SMTP id b15so12878302edn.4;
+        Sat, 16 Apr 2022 07:20:47 -0700 (PDT)
+X-Gm-Message-State: AOAM533szeMmJ8UzTxnuAh1mNffiQMnXPTMHY67baiGTF2b+7EVaUpk0
+        UlfHq2WtEN5yI9cgHXCeabBLCLnDfmVs7SmzJw==
+X-Google-Smtp-Source: ABdhPJwQkbTe35To395M3KGFQV4l935J7hGJqs1dYrMx9rEk+J0ELzSpWfOjk+VIW7myhFOyzkXfRd5cnptK29wlYcI=
+X-Received: by 2002:a05:6402:350d:b0:419:547f:134a with SMTP id
+ b13-20020a056402350d00b00419547f134amr3964452edd.405.1650118845815; Sat, 16
+ Apr 2022 07:20:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220416062504.19005-1-luizluca@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220411035843.19847-1-rex-bc.chen@mediatek.com>
+ <20220411035843.19847-2-rex-bc.chen@mediatek.com> <YldWhNA6SwNBGXa8@robh.at.kernel.org>
+In-Reply-To: <YldWhNA6SwNBGXa8@robh.at.kernel.org>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sat, 16 Apr 2022 22:20:38 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8L1EVvAOvD757o3kTq=AKf20yAsDGbuHFQ_mdkfoKwOg@mail.gmail.com>
+Message-ID: <CAAOTY_8L1EVvAOvD757o3kTq=AKf20yAsDGbuHFQ_mdkfoKwOg@mail.gmail.com>
+Subject: Re: [PATCH V2 1/3] dt-bindings: display: mediatek: Update disp_aal
+ binding for MT8183
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        allen-kh.cheng@mediatek.com,
+        linux-kernel <linux-kernel@vger.kernel.org>, krzk+dt@kernel.org,
+        David Airlie <airlied@linux.ie>,
+        DTML <devicetree@vger.kernel.org>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jason-JH Lin <jason-jh.lin@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 16, 2022 at 03:25:03AM -0300, Luiz Angelo Daros de Luca wrote:
-> Compatible strings are used to help the driver find the chip ID/version
-> register for each chip family. After that, the driver can setup the
-> switch accordingly. Keep only the first supported model for each family
-> as a compatible string and reference other chip models in the
-> description.
+Rob Herring <robh@kernel.org> =E6=96=BC 2022=E5=B9=B44=E6=9C=8814=E6=97=A5 =
+=E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=887:02=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, 11 Apr 2022 11:58:41 +0800, Rex-BC Chen wrote:
+> > The driver data of MT8183 and MT8173 are different.
+> >
+> > For MT8173, the gamma module is inside disp_aal. When we need to adjust
+> > gamma value, we need to use "has_gamma" to control gamma function
+> > inside disp_aal to adjust the gamma value.
+> >
+> > For successors like MT8183, disp_gamma is separated from disp_aal. We
+> > just need to control disp_gamma directly and don't need to control gamm=
+a
+> > function inside disp_aal.
+> >
+> > With this modification, the driver doesn't require any functional chang=
+es.
+> > We only update the dt-binding and DTS node to make it clear.
+> >
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> > ---
+> >  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml  | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-It would be good to mention here that these compatible strings have
-never been used in a released kernel, so it is safe to remove them.
+Applied to mediatek-drm-next [1], thanks.
 
-That is the sort of information which makes the job of reviewing
-patches simpler. It is great to have the answers to questions you
-cannot see directly from the code in the commit message.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-       Andrew
+Regards,
+Chun-Kuang.
