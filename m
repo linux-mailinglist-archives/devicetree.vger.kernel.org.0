@@ -2,85 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C6A5503391
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 07:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2930C50346D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 08:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbiDPDWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Apr 2022 23:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40740 "EHLO
+        id S229654AbiDPG16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 02:27:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiDPDWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Apr 2022 23:22:02 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D5A46B14
-        for <devicetree@vger.kernel.org>; Fri, 15 Apr 2022 20:19:31 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2EBEC83565;
-        Sat, 16 Apr 2022 05:19:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1650079168;
-        bh=hxF74ylULQ3yui5ldLbWM5gtde9X93MvI53seDsuTiI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=KFPyAl3HugPrHv2BiOHmbeNKcHlUg+9s+VjXb+xiNX7sqUSIzhWeYt6C8GS02PV5F
-         ydsjreMWFqSasIodi2P9ZZQjkZyyaYtc1q9LlDt4UeU7Nhl83iNEvrZpMs7N0Vrapx
-         h5CtmAOXYBVQJ216gaNDR+sPZH959w01Sv2XQKB0pES7mPS1qKsEvhoLL07pr5CU/Y
-         dxKeNFucaQOa9Ec+e5j5P1sWZEA1GonTTWD3FG4+VL9fTlQCu9434+yDK7o6pzAQto
-         xyUyrj4aKgOZ0681UjJDI4/IetqsIDlGhLm0gu7ezS0ywFN00pkB8KHspeNcqjk9Uj
-         CYofSCmN3uLZw==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
+        with ESMTP id S229379AbiDPG15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 02:27:57 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28512FFD7;
+        Fri, 15 Apr 2022 23:25:26 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id c21-20020a056830001500b005f8f6757c22so4780633otp.1;
+        Fri, 15 Apr 2022 23:25:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m4zdO4FwkXc6f31oyTAiz2VllA8ZYggkDmpwHP6e3l0=;
+        b=UvQ+CJPJoipRoQQ0NzsNb4fFpaMMJvCwFv8wyp1EqBS09HzBgSMwp7j4C0DBDUEKdb
+         jdl4ckSmWDssKhUjO2csA7griZHKqwXKnj/ptiOUZ/MYdUZZm4vkmnCYT1q6GPdTiid7
+         p68q+YxyqkAusXydN7g8xMxv6Ceh1wCvaHvsMVtVslDgX7iHc9hJ9gR3yioBqqS4iRFU
+         +ZZbFJuBDIQ/dXYyxzv6gsR9pXYVFCfbWFCvfNwLJCvdazSslPqXCCcd6F9eiWW6cxCa
+         cDWeP7sSQqNM4V0VKlpKe+Q4IkfJouDn/FCi1qieB2TGeiKvaty+iG3v7xWUgyhYMXPD
+         llag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m4zdO4FwkXc6f31oyTAiz2VllA8ZYggkDmpwHP6e3l0=;
+        b=wA8iRAwLvRXTXSfIoZDDUBnDVECL6QLY5oh6qu6Mjtp+YExAAU7Pol1sWZudqgEB+V
+         gMcAL9XBJ2mXtfXXFKX6e88uDbKArdA4VqkeBme+nhfzwPz5z5zTn2ofzCrcr/OcjTau
+         IyToudAD/Rizf121Vp2BOredbVI+Vbg0j9u4d02Ydc7nnXWi3E+8ymafV6NbZtpwS5Bb
+         GQqbhB4rYAyWoBz4sM/k7qMlMznaqHPafQr3z+GSLgRFTlHRYv6gXDTWIcRzBbj9IJqM
+         pBIxDweiSbs6PlfP1W4dNBOHBQRDmIOGf3gYEGo0Gg8IXcAPKrOePF9MsIrq9es5mov0
+         bzhg==
+X-Gm-Message-State: AOAM531CFE9iwDVectbB978XhsHNE7fvvbf0b9pPMgPXlVPGJAQIMBGq
+        ishU/DE2z0o0umBCwJX7yXN08nuLW3R6tQ==
+X-Google-Smtp-Source: ABdhPJyyzl+3t88BO1OKQfFLwpNwUnEOGBmT4YDeHYJLC6De6hGKwrinKLZHZnB3myLcXNuVuK5PVA==
+X-Received: by 2002:a9d:62c:0:b0:5e6:b611:ff6b with SMTP id 41-20020a9d062c000000b005e6b611ff6bmr765880otn.210.1650090325940;
+        Fri, 15 Apr 2022 23:25:25 -0700 (PDT)
+Received: from tresc043793.tre-sc.gov.br (187-049-235-234.floripa.net.br. [187.49.235.234])
+        by smtp.gmail.com with ESMTPSA id 6-20020aca0706000000b002f9d20b3134sm1838928oih.7.2022.04.15.23.25.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Apr 2022 23:25:22 -0700 (PDT)
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
+        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, arinc.unal@arinc9.com,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: display: simple: Add DataImage FG040346DSSWBG04 compatible string
-Date:   Sat, 16 Apr 2022 05:19:18 +0200
-Message-Id: <20220416031919.670192-1-marex@denx.de>
+Subject: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup compatible strings
+Date:   Sat, 16 Apr 2022 03:25:03 -0300
+Message-Id: <20220416062504.19005-1-luizluca@gmail.com>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DataImage FG040346DSSWBG04 4.3" 480x272 TFT LCD 24bit DPI panel
-compatible string.
+Compatible strings are used to help the driver find the chip ID/version
+register for each chip family. After that, the driver can setup the
+switch accordingly. Keep only the first supported model for each family
+as a compatible string and reference other chip models in the
+description.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
+CC: devicetree@vger.kernel.org
+Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
+Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
 ---
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/net/dsa/realtek.yaml  | 33 +++++++------------
+ 1 file changed, 12 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 1eb9dd4f8f58e..cfe7bb9f89de6 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -105,6 +105,8 @@ properties:
-       - chunghwa,claa101wb01
-         # Chunghwa Picture Tubes Ltd. 10.1" WXGA TFT LCD panel
-       - chunghwa,claa101wb03
-+        # DataImage, Inc. 4.3" WQVGA (480x272) TFT LCD panel with 24-bit parallel interface.
-+      - dataimage,fg040346dsswbg04
-         # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
-       - dataimage,scf0700c48ggu18
-         # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
+diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+index 8756060895a8..9bf862abb496 100644
+--- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+@@ -27,32 +27,23 @@ description:
+   The realtek-mdio driver is an MDIO driver and it must be inserted inside
+   an MDIO node.
+ 
++  The compatibility string is used only to find an identification register,
++  (chip ID and version) which is at a different MDIO base address in different
++  switch families. The driver then uses the chip ID/version to device how to
++  drive the switch.
++
+ properties:
+   compatible:
+     enum:
+       - realtek,rtl8365mb
+-      - realtek,rtl8366
+       - realtek,rtl8366rb
+-      - realtek,rtl8366s
+-      - realtek,rtl8367
+-      - realtek,rtl8367b
+-      - realtek,rtl8367rb
+-      - realtek,rtl8367s
+-      - realtek,rtl8368s
+-      - realtek,rtl8369
+-      - realtek,rtl8370
+     description: |
+-      realtek,rtl8365mb: 4+1 ports
+-      realtek,rtl8366: 5+1 ports
+-      realtek,rtl8366rb: 5+1 ports
+-      realtek,rtl8366s: 5+1 ports
+-      realtek,rtl8367:
+-      realtek,rtl8367b:
+-      realtek,rtl8367rb: 5+2 ports
+-      realtek,rtl8367s: 5+2 ports
+-      realtek,rtl8368s: 8 ports
+-      realtek,rtl8369: 8+1 ports
+-      realtek,rtl8370: 8+2 ports
++      realtek,rtl8365mb:
++        Use with models RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB,
++        RTL8364NB, RTL8364NB-VB, RTL8365MB, RTL8366SC, RTL8367RB-VB, RTL8367S,
++        RTL8367SB, RTL8370MB, RTL8310SR
++      realtek,rtl8367rb:
++        Use with models RTL8366RB, RTL8366S
+ 
+   mdc-gpios:
+     description: GPIO line for the MDC clock line.
+@@ -335,7 +326,7 @@ examples:
+             #size-cells = <0>;
+ 
+             switch@29 {
+-                    compatible = "realtek,rtl8367s";
++                    compatible = "realtek,rtl8365mb";
+                     reg = <29>;
+ 
+                     reset-gpios = <&gpio2 20 GPIO_ACTIVE_LOW>;
 -- 
 2.35.1
 
