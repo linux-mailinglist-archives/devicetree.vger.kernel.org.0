@@ -2,83 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9839B503652
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 13:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C947503674
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 14:04:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231754AbiDPL2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 07:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42770 "EHLO
+        id S231506AbiDPL5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 07:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231752AbiDPL2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 07:28:43 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D4A3E0DF
-        for <devicetree@vger.kernel.org>; Sat, 16 Apr 2022 04:26:11 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id bg9so10585708pgb.9
-        for <devicetree@vger.kernel.org>; Sat, 16 Apr 2022 04:26:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=6vYx3JbvVsiL3zhGAbJQC+kPjCGgnDC5DdXmocu9kt0=;
-        b=FtctIQ0FnMDY9bdwWMRWq1bfsMqzeBrjYtMrHQB8F4oW+igs18W/0mSpbn9YULSEuT
-         Gh0Dqu9j3kGm1xPjk+ySe4Imgw1DFdo4PlsrR2qOoD5aWUZLTvIchJf/knqArageNINB
-         l2ugpGMK4sm8XD0tjnQEyYXv4SvcWZadFP7f4Fuj4vnM3W5FAXNUIabPRMiolgscl2sm
-         WLuX1dV4fG/EpLDiUF7RlYd9fMgpGEvhLHmvTAZcPw25hR0hPthoELCPVCpI9Lf5V6nl
-         uIGkFnTiIo25MZkabNl2zIhCcS3PU3HY2HiVD5LwQFDHMQvutBg3UWREHaUtktORYOuf
-         Jv9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=6vYx3JbvVsiL3zhGAbJQC+kPjCGgnDC5DdXmocu9kt0=;
-        b=fN/c9cZXQdFTKmhKT08irLlFEw2csoNMjWbuf9IJ1X0HwV0XgRbbG7QCngEEmjd5gx
-         FYZ+8R5NemrbqyOw2KaAVA6/kFR1m/qK6YJYEW/n1oZILuWHw9xxX8nLczc34nbnnjqT
-         xhMSZ/ULyX1lA0qP+CvZFHTbYy97QKO3nRjD5LtluS6RrS8NFlQNdwTCZ/n8MIJbq8w1
-         VGUYiz89785n0tkCfihVucE5+HvH8acxRGE20pv9wShJiAjQKZRRvYQokR1UO41kMP8l
-         H7ML3uwLUSSw89HgZu6y5/MRIKZv8MZhpLl4qSU4Yidh3HC46/Dkq1Kt3uxlQFWMvGkz
-         Z8vg==
-X-Gm-Message-State: AOAM5331PqrW1PQqdnBY9IJYo8IzVMsrjPZOfKPXNn/Y81VnXceCjQ5k
-        KMuJWEACqJmrNC1xChOjCrdj4PHmEjmHjI3taZ8=
-X-Google-Smtp-Source: ABdhPJyn7EYzzxA1fhTDUCNVJ7A06l/t0Cv7eu6yMckv/jH5uPqfH+ABA7ocEcdWI46AZr670OK/jiu1hpkBV/7v7w4=
-X-Received: by 2002:a65:4947:0:b0:3a4:dd71:be90 with SMTP id
- q7-20020a654947000000b003a4dd71be90mr1726416pgs.449.1650108371107; Sat, 16
- Apr 2022 04:26:11 -0700 (PDT)
+        with ESMTP id S230085AbiDPL5w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 07:57:52 -0400
+Received: from out28-169.mail.aliyun.com (out28-169.mail.aliyun.com [115.124.28.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D78433A26;
+        Sat, 16 Apr 2022 04:55:19 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.0743753|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0592862-0.00168624-0.939028;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.NRpv9hL_1650110114;
+Received: from 192.168.30.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NRpv9hL_1650110114)
+          by smtp.aliyun-inc.com(33.40.31.76);
+          Sat, 16 Apr 2022 19:55:16 +0800
+Subject: Re: [PATCH 1/3] SPI: Ingenic: Add support for use GPIO as chip select
+ line.
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        contact@artur-rojek.eu, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, reimu@sudomaker.com
+References: <1650032528-118220-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1650032528-118220-2-git-send-email-zhouyanjie@wanyeetech.com>
+ <61ZDAR.SD20HFTWMIBH3@crapouillou.net>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <d7926a1d-c5e3-6519-6a52-1bd3ca3cf773@wanyeetech.com>
+Date:   Sat, 16 Apr 2022 19:55:13 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Sender: barrlucasnubueke2@gmail.com
-Received: by 2002:a05:6a10:43d5:0:0:0:0 with HTTP; Sat, 16 Apr 2022 04:26:10
- -0700 (PDT)
-From:   "MR. EDWARD" <edward.esqchambers@gmail.com>
-Date:   Sat, 16 Apr 2022 12:26:10 +0100
-X-Google-Sender-Auth: kwbD4rQ31p3N664-3G6naOipKCY
-Message-ID: <CAHcyid9GV0-=zHcyOujncQ-9eeKk7+OOtH5F6R+offecwWHidg@mail.gmail.com>
-Subject: =?UTF-8?B?VsOhxb5lbsO9IHDFmcOtamVtY2kh?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_40,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLY,HK_NAME_FM_MR_MRS,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <61ZDAR.SD20HFTWMIBH3@crapouillou.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Zdrav=C3=ADm V=C3=A1s, kone=C4=8Dn=C4=9B z=C3=ADsk=C3=A1m d=C4=9Bdick=C3=BD=
- fond s pomoc=C3=AD nov=C3=A9ho partnera.
-Mezit=C3=ADm nemohu zapomenout na va=C5=A1e minul=C3=A9 =C3=BAsil=C3=AD, ab=
-yste mi pomohli
-z=C3=ADskat fond, a=C4=8Dkoli jsme v minulosti neusp=C4=9Bli kv=C5=AFli ned=
-ostatku d=C5=AFv=C4=9Bry
-mezi n=C3=A1mi. Nyn=C3=AD chci, abyste nal=C3=A9hav=C4=9B kontaktoval m=C3=
-=A9ho ctihodn=C3=A9ho otce
-Solomona na jeho e-mailov=C3=A9 adrese ( rev.christlovesolomon@gmail.com )
-Nechal jsem mu v p=C3=A9=C4=8Di o v=C3=A1s =C4=8D=C3=A1stku 800 000 $, tak=
-=C5=BEe ho kontaktujte a
-dejte mu pokyn, aby v=C3=A1m p=C5=99evedl celou =C4=8D=C3=A1stku.
+Hi Paul,
 
-Pane Edwarde
+On 2022/4/15 下午11:00, Paul Cercueil wrote:
+> Hi Zhou,
+>
+> Le ven., avril 15 2022 at 22:22:06 +0800, 周琰杰 (Zhou Yanjie) 
+> <zhouyanjie@wanyeetech.com> a écrit :
+>> Add support for using GPIOs as chip select lines on Ingenic SoCs.
+>>
+>> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>> ---
+>>  drivers/spi/spi-ingenic.c | 11 +++++++++--
+>>  1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-ingenic.c b/drivers/spi/spi-ingenic.c
+>> index 03077a7..672e4ed 100644
+>> --- a/drivers/spi/spi-ingenic.c
+>> +++ b/drivers/spi/spi-ingenic.c
+>> @@ -380,7 +380,7 @@ static int spi_ingenic_probe(struct 
+>> platform_device *pdev)
+>>      struct spi_controller *ctlr;
+>>      struct ingenic_spi *priv;
+>>      void __iomem *base;
+>> -    int ret;
+>> +    int num_cs, ret;
+>>
+>>      pdata = of_device_get_match_data(dev);
+>>      if (!pdata) {
+>> @@ -416,6 +416,11 @@ static int spi_ingenic_probe(struct 
+>> platform_device *pdev)
+>>      if (IS_ERR(priv->flen_field))
+>>          return PTR_ERR(priv->flen_field);
+>>
+>> +    if (of_property_read_u32(dev->of_node, "num-cs", &num_cs)) {
+>> +        dev_warn(dev, "Number of chip select lines not specified.\n");
+>> +        num_cs = 2;
+>> +    }
+>> +
+>>      platform_set_drvdata(pdev, ctlr);
+>>
+>>      ctlr->prepare_transfer_hardware = spi_ingenic_prepare_hardware;
+>> @@ -429,7 +434,9 @@ static int spi_ingenic_probe(struct 
+>> platform_device *pdev)
+>>      ctlr->bits_per_word_mask = pdata->bits_per_word_mask;
+>>      ctlr->min_speed_hz = 7200;
+>>      ctlr->max_speed_hz = 54000000;
+>> -    ctlr->num_chipselect = 2;
+>> +    ctlr->use_gpio_descriptors = true;
+>
+> I wonder if this should be set conditionally instead. Maybe set it to 
+> "true" if the "num-cs" property exists?
+>
+
+I'm not too sure, but it seems some other drivers like "spi-sun6i.c", 
+"spi-stm32.c", "spi-s3c64xx.c", "spi-pic32.c", etc. set it unconditionally.
+
+
+> The rest looks good to me.
+>
+> Cheers,
+> -Paul
+>
+>> +    ctlr->max_native_cs = 2;
+>> +    ctlr->num_chipselect = num_cs;
+>>      ctlr->dev.of_node = pdev->dev.of_node;
+>>
+>>      if (spi_ingenic_request_dma(ctlr, dev))
+>> -- 
+>> 2.7.4
+>>
+>
