@@ -2,149 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4CB50377E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 18:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C591850378B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Apr 2022 18:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232513AbiDPQVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 12:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39854 "EHLO
+        id S232573AbiDPQhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 12:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbiDPQV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 12:21:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4CEE0E8;
-        Sat, 16 Apr 2022 09:18:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 37639B80022;
-        Sat, 16 Apr 2022 16:18:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6965C385A1;
-        Sat, 16 Apr 2022 16:18:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650125933;
-        bh=hZUjVSzOWisnpzTgPjHtWLSekh5zsdbQd0T6QOdJffo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=WAk6vBqJ+IMN/mIW+qtY3a2YI+Jdzd81m45+obkp8eFOqYzz5784yvCNrXnO6dThs
-         EADnRuea8IXYABZz6MplD8jLADUvHj92oS6UfMxy3xKy4BA3foB6Rnr1Gh6tkd8cPQ
-         U70RfmP3kmJZEw/M1wYH+XRQayq8aEwQdV6CMtWedih64YYMJICKb2csOMg4aJiXUi
-         JgIIskKrYKGoowAmV/HArcuUnCNTgpu0MNZ1yOTl2Cd6V3vfs6ml1xv67wpp5US4/p
-         XXCOvZC8d6DL2S1afTn2x3aw3f/FkETK1xj48liZYY5XPSKSsG7Lr6BZJWIEh0AGuT
-         S9R6W5nJEmQjg==
-Date:   Sat, 16 Apr 2022 17:26:51 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 2/2] iio: stk3310: Export near level property for
- proximity sensor
-Message-ID: <20220416172651.695d4439@jic23-huawei>
-In-Reply-To: <20220415085018.35063-3-arnaud.ferraris@collabora.com>
-References: <20220415085018.35063-1-arnaud.ferraris@collabora.com>
-        <20220415085018.35063-3-arnaud.ferraris@collabora.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232556AbiDPQhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 12:37:17 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A5DF0A;
+        Sat, 16 Apr 2022 09:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1650126882; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=w9/FAC8Z5gAmmI9gbu3oEtXUZTvFVNJbIuuy5fMe1ds=;
+        b=Q87IUL2WHqAgSNCHIRolTQ15nDpeBxyLuTY4MpL0/tMalB7nYJiiPJ0dWOHZeBGy/YEgId
+        f70Cj1on4xPfg/xT6mn3X+B83cxSp1ZJpnbdB+QGy3KauXGTj/NfEG3qREOQwiisoIgoxW
+        ollpzdJyBI460j1Fssn0R6QMsv9m0b8=
+Date:   Sat, 16 Apr 2022 17:34:31 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v3 1/3] dt-bindings: dwc2: Add bindings for new Ingenic
+ SoCs.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     gregkh@linuxfoundation.org, hminas@synopsys.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
+        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dragancecavac@yahoo.com, hns@goldelico.com,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, reimu@sudomaker.com
+Message-Id: <J1YFAR.2881WOMSYUZM2@crapouillou.net>
+In-Reply-To: <1649964337-114337-2-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1649964337-114337-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1649964337-114337-2-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 10:50:18 +0200
-Arnaud Ferraris <arnaud.ferraris@collabora.com> wrote:
+Hi Zhou,
 
-> This makes the value from which an object should be considered "near"
-> available to userspace. This hardware-dependent value should be set
-> in the device-tree.
-> 
-> Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Hi Arnaud,
-
-Minor request to slightly modify how you do this inline.
-Otherwise looks good to me.
-
-Thanks,
-
-Jonathan
-
+Le ven., avril 15 2022 at 03:25:35 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou=
+ Yanjie)=20
+<zhouyanjie@wanyeetech.com> a =C3=A9crit :
+> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000
+> SoC, the X1600 SoC, the X1700 SoC, the X1830 SoC, and the X2000 SoC
+> from Ingenic.
+>=20
+> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
+eetech.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/iio/light/stk3310.c | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/drivers/iio/light/stk3310.c b/drivers/iio/light/stk3310.c
-> index 1d02dfbc29d1..7792456323ef 100644
-> --- a/drivers/iio/light/stk3310.c
-> +++ b/drivers/iio/light/stk3310.c
-> @@ -106,6 +106,7 @@ struct stk3310_data {
->  	struct mutex lock;
->  	bool als_enabled;
->  	bool ps_enabled;
-> +	uint32_t ps_near_level;
->  	u64 timestamp;
->  	struct regmap *regmap;
->  	struct regmap_field *reg_state;
-> @@ -135,6 +136,25 @@ static const struct iio_event_spec stk3310_events[] = {
->  	},
->  };
->  
-> +static ssize_t stk3310_read_near_level(struct iio_dev *indio_dev,
-> +				       uintptr_t priv,
-> +				       const struct iio_chan_spec *chan,
-> +				       char *buf)
-> +{
-> +	struct stk3310_data *data = iio_priv(indio_dev);
-> +
-> +	return sprintf(buf, "%u\n", data->ps_near_level);
-> +}
-> +
-> +static const struct iio_chan_spec_ext_info stk3310_ext_info[] = {
-> +	{
-> +		.name = "nearlevel",
-> +		.shared = IIO_SEPARATE,
-> +		.read = stk3310_read_near_level,
-> +	},
-> +	{ /* sentinel */ }
-> +};
-> +
->  static const struct iio_chan_spec stk3310_channels[] = {
->  	{
->  		.type = IIO_LIGHT,
-> @@ -151,6 +171,7 @@ static const struct iio_chan_spec stk3310_channels[] = {
->  			BIT(IIO_CHAN_INFO_INT_TIME),
->  		.event_spec = stk3310_events,
->  		.num_event_specs = ARRAY_SIZE(stk3310_events),
-> +		.ext_info = stk3310_ext_info,
->  	}
->  };
->  
-> @@ -581,6 +602,11 @@ static int stk3310_probe(struct i2c_client *client,
->  	data = iio_priv(indio_dev);
->  	data->client = client;
->  	i2c_set_clientdata(client, indio_dev);
-> +
-> +	if (device_property_read_u32(&client->dev, "proximity-near-level",
-> +				     &data->ps_near_level))
-> +		data->ps_near_level = 0;
+>=20
+> Notes:
+>     v1->v2:
+>     Add Rob Herring's Acked-by.
+>=20
+>     v2->v3:
+>     No change.
+>=20
+>  Documentation/devicetree/bindings/usb/dwc2.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml=20
+> b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> index 4cebce6..c6e8c0b 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> @@ -17,6 +17,13 @@ properties:
+>      oneOf:
+>        - const: brcm,bcm2835-usb
+>        - const: hisilicon,hi6220-usb
+> +      - const: ingenic,jz4775-otg
+> +      - const: ingenic,jz4780-otg
+> +      - const: ingenic,x1000-otg
 
-Prefer this pattern.
+The driver handles the JZ4775, JZ4780 and X1000 the exact same way.=20
+Maybe the latter two should use the JZ4775 string as the fallback? Do=20
+you know if the IP cores are any different?
 
-	data->ps_near_level = 0;
-	device_property_read_u32(&client->dev, "proximity-near-level",
-				 &data->ps_near_level);
-taking advantage of the fact that the output won't be set unless
-the property read succeeds.
+> +      - const: ingenic,x1600-otg
+> +      - const: ingenic,x1700-otg
+> +      - const: ingenic,x1830-otg
 
-> +
->  	mutex_init(&data->lock);
->  
->  	ret = stk3310_regmap_init(data);
+Same here (and btw, first time I hear about the X1600 and X1700 ;))
+
+Cheers,
+-Paul
+
+> +      - const: ingenic,x2000-otg
+>        - items:
+>            - const: rockchip,rk3066-usb
+>            - const: snps,dwc2
+> --
+> 2.7.4
+>=20
+
 
