@@ -2,61 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8059F5045C4
-	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 01:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4BD05045CD
+	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 02:12:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbiDPXd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 19:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S233137AbiDQAOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 20:14:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbiDPXdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 19:33:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D72722C105;
-        Sat, 16 Apr 2022 16:30:51 -0700 (PDT)
+        with ESMTP id S233190AbiDQAOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 20:14:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA6F55775;
+        Sat, 16 Apr 2022 17:12:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 89FC1B80A0B;
-        Sat, 16 Apr 2022 23:30:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E860DC385A3;
-        Sat, 16 Apr 2022 23:30:48 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B8F50B80A08;
+        Sun, 17 Apr 2022 00:12:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E47CC385AC;
+        Sun, 17 Apr 2022 00:12:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650151849;
-        bh=nd58mF27wY5dwLAgcNLOqzjElU7YpZR3Sqgx6KMTHsQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=CxkZ57ZY0YSf0tqM3LLSzmXfOTlRCIFafAFh8ewm7kECNWlAsOQD0hn8/YaEa8D4/
-         AkZ/SBqlDh/2qX0SyhIKeKoPhP+u06oXkDlw+w57iVvLuG0o8JcwQxqr56MtjN7s2D
-         IgFYIjIrJmvRY7bWhgVfaXR8KWnPWhMheaW8ePLY1tbfBcEokJrVf9lZ4DhFvdihXV
-         9BFdl8PU4cWHxHRFiit2boF1OrYIEUFhWXF53ey1CcV3B+LYW2EbAsx68TkMTvO3f3
-         6osWFM2d7qpf4Z4laoiC86U+Wsm194awp7BmnnCYBtVPaiKVzgrtjDs/FWrBW2Ipe6
-         /Iu4b2l2XBuEg==
-Date:   Sat, 16 Apr 2022 18:30:47 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [RFC/RFT 4/6] PCI: rockchip-dwc: add pcie bifurcation
-Message-ID: <20220416233047.GA938296@bhelgaas>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220416135458.104048-5-linux@fw-web.de>
+        s=k20201202; t=1650154322;
+        bh=0fHr7bqbijKghkRRoAuFYYVqr2tK7VyD3vAKWbneVmM=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=UaVeKWir+HP00VGF0gmjPTcwqQLc5OMgh+pk/zoffiV/himROF8Et1kLZv2UxabOO
+         JeINrRb834R4APY2YGFcl2ZwVpUeG7bNIse6Kd4iLrva1JKV41IODOQJrd7M2/Vfz/
+         QHEW/B8WE4A/3oI9U8gEqS3sienhkc+93nYdSYD+L7Mnw+SKtA4rCK4/b1cnqwEPbQ
+         NwEHkU6GoSjQnbRTXLcCGR/VfSEFOwfh+V0teY6+XtmBb4GYuW3kx3AHzfsfXx5U5e
+         Kei3wyJHB1AoXXhB+KcIaYnSnfYugL235zRE8175bE5UapWd9QN5sGMGnDn45/o3Dt
+         YrGcMeeAHJnyw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5B3A0E7399D;
+        Sun, 17 Apr 2022 00:12:02 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v5.18, take 2
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
+References: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-2
+X-PR-Tracked-Commit-Id: 652980b1541c5a02e6410647c7daf840c06d724a
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: a2c29ccd9477861b16ddc02c411a6c9665250558
+Message-Id: <165015432236.20129.3790348596362231864.pr-tracker-bot@kernel.org>
+Date:   Sun, 17 Apr 2022 00:12:02 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,75 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 16, 2022 at 03:54:56PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> PCIe Lanes can be split to 2 slots with bifurcation.
-> Add support for this in existing pcie driver.
+The pull request you sent on Sat, 16 Apr 2022 17:26:35 -0500:
 
-Please s/pcie/PCIe/ in subject and above to be consistent.  You also
-have kind of a random usage in other patches.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-2
 
-Mention the DT property used for this in the commit log.
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/a2c29ccd9477861b16ddc02c411a6c9665250558
 
-Is the "rockchip,bifurcation" DT property something that should be
-generalized so it's not rockchip-specific?  Other controllers are
-likely to support similar functionality.
+Thank you!
 
-> Co-developed-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> index 863374604fb1..1b0c2115b32e 100644
-> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> @@ -20,6 +20,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/reset.h>
-> +#include <linux/phy/pcie.h>
->  
->  #include "pcie-designware.h"
->  
-> @@ -59,6 +60,7 @@ struct rockchip_pcie {
->  	struct regulator                *vpcie3v3;
->  	struct irq_domain		*irq_domain;
->  	raw_spinlock_t			irq_lock;
-> +	bool				bifurcation;
->  };
->  
->  static int rockchip_pcie_readl_apb(struct rockchip_pcie *rockchip,
-> @@ -273,6 +275,12 @@ static int rockchip_pcie_phy_init(struct rockchip_pcie *rockchip)
->  		return dev_err_probe(dev, PTR_ERR(rockchip->phy),
->  				     "missing PHY\n");
->  
-> +	if (rockchip->bifurcation) {
-> +		ret = phy_set_mode_ext(rockchip->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_BIFURCATION);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->  	ret = phy_init(rockchip->phy);
->  	if (ret < 0)
->  		return ret;
-> @@ -345,6 +353,9 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> +	if (device_property_read_bool(dev, "rockchip,bifurcation"))
-> +		rockchip->bifurcation = true;
-> +
->  	ret = rockchip_pcie_phy_init(rockchip);
->  	if (ret)
->  		goto disable_regulator;
-> -- 
-> 2.25.1
-> 
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
