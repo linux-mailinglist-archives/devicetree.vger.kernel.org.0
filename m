@@ -2,75 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4BD05045CD
-	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 02:12:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532075045F4
+	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 03:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233137AbiDQAOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Apr 2022 20:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56568 "EHLO
+        id S233110AbiDQBsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Apr 2022 21:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233190AbiDQAOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 20:14:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA6F55775;
-        Sat, 16 Apr 2022 17:12:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233233AbiDQBsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Apr 2022 21:48:53 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2F6BDD
+        for <devicetree@vger.kernel.org>; Sat, 16 Apr 2022 18:46:18 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B8F50B80A08;
-        Sun, 17 Apr 2022 00:12:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E47CC385AC;
-        Sun, 17 Apr 2022 00:12:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650154322;
-        bh=0fHr7bqbijKghkRRoAuFYYVqr2tK7VyD3vAKWbneVmM=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=UaVeKWir+HP00VGF0gmjPTcwqQLc5OMgh+pk/zoffiV/himROF8Et1kLZv2UxabOO
-         JeINrRb834R4APY2YGFcl2ZwVpUeG7bNIse6Kd4iLrva1JKV41IODOQJrd7M2/Vfz/
-         QHEW/B8WE4A/3oI9U8gEqS3sienhkc+93nYdSYD+L7Mnw+SKtA4rCK4/b1cnqwEPbQ
-         NwEHkU6GoSjQnbRTXLcCGR/VfSEFOwfh+V0teY6+XtmBb4GYuW3kx3AHzfsfXx5U5e
-         Kei3wyJHB1AoXXhB+KcIaYnSnfYugL235zRE8175bE5UapWd9QN5sGMGnDn45/o3Dt
-         YrGcMeeAHJnyw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5B3A0E7399D;
-        Sun, 17 Apr 2022 00:12:02 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.18, take 2
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
-References: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <YltCm/NZ+tnI6dzn@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-2
-X-PR-Tracked-Commit-Id: 652980b1541c5a02e6410647c7daf840c06d724a
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: a2c29ccd9477861b16ddc02c411a6c9665250558
-Message-Id: <165015432236.20129.3790348596362231864.pr-tracker-bot@kernel.org>
-Date:   Sun, 17 Apr 2022 00:12:02 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id F0B1583DD4;
+        Sun, 17 Apr 2022 03:46:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650159975;
+        bh=lEbT4dO7y5t630eH2MqKOkOpu8ppY3RM4ap1vLg/OT0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fmXfeasHAjKpaiKOOuqI4lkG89s4tsPy5bMk3oz1h4qXLlwpb+Zu1/u4lbEoCIGnc
+         pjvS7Rh4lnISvDj+QLmqvO0x5uSd3soy10wtfmnXJVciEVxew/r/cWgrDpKcGepT+f
+         W48L1XtWULG+LhnaL1S8mxaDOoE5W8V28DC6RLGSRmBmJYUBeMmyYYJh0SVculLREs
+         /uD9LFuN6+k5vb0FHVJa6arZE6csjaOy/462zzOAyKWzlNKjk/gOex4vic7eGaiY2V
+         AQBwgQ5wfIY+xx1puSaKafZh7ybtFtiDoxPVDDVaIJvOJ6kJ7Sh5KuNGOVaehPtuOx
+         qeUAhB+GTm9Lw==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
+Date:   Sun, 17 Apr 2022 03:45:49 +0200
+Message-Id: <20220417014550.293773-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Sat, 16 Apr 2022 17:26:35 -0500:
+Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
+and is completely different from the LCDIFv3 found in i.MX23 in that it
+has a completely scrambled register layout compared to all previous LCDIF
+variants. The new LCDIFv3 also supports 36bit address space. However,
+except for the complete bit reshuffling, this is still LCDIF and it still
+works like one.
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.18-2
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robby Cai <robby.cai@nxp.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Stefan Agner <stefan@agner.ch>
+Cc: devicetree@vger.kernel.org
+---
+V2: No change
+---
+ Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/a2c29ccd9477861b16ddc02c411a6c9665250558
-
-Thank you!
-
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index 900a56cae80e6..876015a44a1e6 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -20,6 +20,7 @@ properties:
+           - fsl,imx23-lcdif
+           - fsl,imx28-lcdif
+           - fsl,imx6sx-lcdif
++          - fsl,imx8mp-lcdif
+       - items:
+           - enum:
+               - fsl,imx6sl-lcdif
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.35.1
+
