@@ -2,126 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA3D5048A5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 19:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 952985048BA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 20:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbiDQRzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Apr 2022 13:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54158 "EHLO
+        id S231299AbiDQSAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Apr 2022 14:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231895AbiDQRy6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 13:54:58 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D2201A7;
-        Sun, 17 Apr 2022 10:52:22 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id n17so9769718ljc.11;
-        Sun, 17 Apr 2022 10:52:22 -0700 (PDT)
+        with ESMTP id S230373AbiDQSAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 14:00:41 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9B11AF1C
+        for <devicetree@vger.kernel.org>; Sun, 17 Apr 2022 10:58:04 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id t11so23489418eju.13
+        for <devicetree@vger.kernel.org>; Sun, 17 Apr 2022 10:58:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IZcS1862k/wOZXv/1MDZH2jzk4RBMFR/rIwyADVF1tM=;
-        b=c5wBxrs+myyz+cehvr7adR+iHhrVPmrSAcQyhSuI0tCfIFBHr+kQonM7ZapnzMu6hK
-         VTepduyqYRCgvQKVn4wBxhxqzSaF85Q5pP0FwjV5d7pGN0ALfpOrkLIwu5uFfcDb/P6F
-         2ec/AuOPy4bIQmp+9lLXtGHfUVig5HzpLTsbg3ZrSTwi0Gye0Ccc640hT4YQZM3RSg5s
-         T5AZJvPH8lXNcP77vH/DQS5FfZdPDkMTXPWvAwJKdut1xLeddN67TMHbCkk7sZMBpLui
-         XA8i6tvGiFeCOZiPcMWz36iRsim34kNW7g1mQTf32htOwDsORlFu/OurBu3fZ8yG4OCg
-         ht9Q==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=nSubeHyIkbDyezCXTtI5pe5KWL/Nm+X5yHUcXHqauxY=;
+        b=KmCxtqwiDxG8GCSszSnyyyohTIwtJgrR4dUoq6Pfw2NqgZdygFjyj52fymLpmFKQyV
+         o1D/vivFHFxicCfzDfW2EdM5J1v7O0OsXJUF3UJhWq9NTWJDMwaCar9U4Yh6/o0wc+PI
+         85xJa78Im2Lp7png/Ov+RZ3TQZdRvx1ByVbt1flSmuoYsi4//TUWig18ZBv/nqedKgm0
+         heXVjbAGS90FAg9SFPZZMv4aBG/o+oHmzpswH931UpQXPd+Vt4h2ibwDESMDVYyjPN08
+         o4X/bShbg7lG7u+Cv9wZrJf7GOwbQKFzT3aG9hxhfmd+ZRdEI0MY+PsbNoef/hz1LuP+
+         +yZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IZcS1862k/wOZXv/1MDZH2jzk4RBMFR/rIwyADVF1tM=;
-        b=w9C5lX4sFWWzy+8yyEeMBEORDdOqy6vhuBu/Rpgx3rNUR+zluJJMrYZWRGe53WYJS1
-         1QuPbZcjKvC/bN+yvEaAPZwIwK9z8zNwQwEpjbQIW+SPTAhbipyv5WQQK96HtnujZVGo
-         TGqw2+JKwdYfr2h0V2HImL+U1y38FHWKe7f6Ls0e2P3WCX5gV3KuDHjVZNjN5DdSgFeJ
-         krTvKiYFI6CGD4NutYh9h14E1kwJkpfPHlKuwMIJkL5Cz7FokFHrU3KLIlPwOUfbc6DU
-         qs6tQdq3Lz25AAMFlu+uy+hrpqouTtUpVp5bwRh8v9pZRVpAMsLkr+ueO+ZFvEdFFOHm
-         F2Uw==
-X-Gm-Message-State: AOAM530r9VdelNmH+ixA5GzYsVbWAZuV8HbtcHBsyvtQSTa6O+aB6gHq
-        QnKUuCv1Sfk0/6oHDrZhYSo=
-X-Google-Smtp-Source: ABdhPJwl+zeVHdLsYsIQO9j/HfEbk61S41aUMvo2tIXvVDXpxCbV5pZ2B4dJP/52nbkfTRVemrlkNg==
-X-Received: by 2002:a05:651c:b29:b0:24b:6aaf:f200 with SMTP id b41-20020a05651c0b2900b0024b6aaff200mr5226345ljr.168.1650217940142;
-        Sun, 17 Apr 2022 10:52:20 -0700 (PDT)
-Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
-        by smtp.gmail.com with ESMTPSA id v4-20020a2e7a04000000b0024db637f51bsm330973ljc.84.2022.04.17.10.52.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Apr 2022 10:52:19 -0700 (PDT)
-Date:   Sun, 17 Apr 2022 20:52:17 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 10/16] PCI: dwc: Drop iATU regions enumeration -
- dw_pcie_region_type
-Message-ID: <20220417175217.zho6vzovfkoypo7q@mobilestation>
-References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
- <20220324013734.18234-11-Sergey.Semin@baikalelectronics.ru>
- <YkMmRrF0e7WyvKsO@robh.at.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nSubeHyIkbDyezCXTtI5pe5KWL/Nm+X5yHUcXHqauxY=;
+        b=OAvsBSIrYrj1GPcDsf/y9BEcG6+KjEEoi+wl2bEu5eAYK0dPVdtrjiRkUAtGGP7tlw
+         jaag2bjwE0FzGJy8ke8eWk8GpZUwmK+PAlF6QeZvkJClIrsjXJQmq8hbcJGsiN4Uh64m
+         rfthV2xITOjHxdaqJJFQrIFf1WL3LEAT/lq7RT8dY5cHn9wBwGr7dapvJTiH3lSOpQuw
+         hRnRjRSDNDQ2umUskg60MjY19WneGyQg1pd5HpOORd69cRwkW/l14VwFPkXByRYfo1LC
+         9OS137C/tEtuDW5dT+B/5fmLLjTGjtGCfGBNRaYpTvi9/3LC8SIzDyYN9WqaaseL7A1C
+         l8og==
+X-Gm-Message-State: AOAM531zeegEi5q1jQSM0yft3aCzzfArPfLu5RAyLyRQqpTgLjg7hohD
+        0MND5hEu1oY6XkP0ZgcibM5L9Q==
+X-Google-Smtp-Source: ABdhPJwn4RYMuzx1OPkO0KuwJKryizP0RNdSa0rqni5YB3lwpEj/clUpmf0tuoUU1d7TDzbh6UlCZg==
+X-Received: by 2002:a17:906:c113:b0:6d7:7b53:9cb with SMTP id do19-20020a170906c11300b006d77b5309cbmr6634960ejc.197.1650218283093;
+        Sun, 17 Apr 2022 10:58:03 -0700 (PDT)
+Received: from [192.168.0.216] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id bf11-20020a0564021a4b00b00423e997a3ccsm80153edb.19.2022.04.17.10.58.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 17 Apr 2022 10:58:02 -0700 (PDT)
+Message-ID: <1cecb0c3-2925-765f-0654-37d5703b75b8@linaro.org>
+Date:   Sun, 17 Apr 2022 19:58:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YkMmRrF0e7WyvKsO@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] ARM: dts: keystone: fix case in SPI NOR node
+ compatible
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220407143140.295092-1-krzysztof.kozlowski@linaro.org>
+ <20220407143140.295092-2-krzysztof.kozlowski@linaro.org>
+ <20220415185439.4hsfnllhplfcpwvk@encrypt>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220415185439.4hsfnllhplfcpwvk@encrypt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 10:31:18AM -0500, Rob Herring wrote:
-> On Thu, Mar 24, 2022 at 04:37:28AM +0300, Serge Semin wrote:
-> > There is no point in having the dw_pcie_region_type enumeration for almost
-> > the same reasons as it was stated for dw_pcie_as_type. First of all it's
-> > redundant since the driver already has a set of macro declared which
-> > describe the possible inbound and outbound iATU regions. Having an
-> > addition abstraction just needlessly complicates the code. Secondly
-> > checking the region index passed to the dw_pcie_disable_atu() method for
-> > validity is pointless since the erroneous situation will be just
-> > ignored in the current code implementation. So to speak let's drop the
-> > redundant dw_pcie_region_type enumeration replacing it with the direct
-> > iATU direction macro usage.
-> > 
-> > While at it we suggest to convert the dw_pcie_disable_atu() method to
-> > being more consistent with the dw_pcie_readl_atu{_ib}() and
-> > dw_pcie_readl_atu{_ob}() functions by having the direction parameter
-> > specified ahead of the region index. Thus the code will be a little bit
-> > more pleasant to read.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-designware-ep.c  |  4 ++--
-> >  .../pci/controller/dwc/pcie-designware-host.c    |  2 +-
-> >  drivers/pci/controller/dwc/pcie-designware.c     | 16 +---------------
-> >  drivers/pci/controller/dwc/pcie-designware.h     |  9 +--------
-> >  4 files changed, 5 insertions(+), 26 deletions(-)
+On 15/04/2022 20:54, Nishanth Menon wrote:
+> 
+> I have no idea how this works. There is no documentation for the
+> compatible, So I am guessing adding it to Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml 
+> is appropriate prior to replacing  with "micron,n25q128a11", "jedec,spi-nor";
+
+Compatible is documented in jedec,spi-nor.yaml (through pattern),
+although it should be followed by "jedec,spi-nor", according to schema.
+I did not fix that missing compatible fallback, because I did not want
+to break any setup (I cannot test it), but adding the fallback seems
+harmless/safe.
+> 
+> $ git grep micron,n25q128a11 .
+> arch/arm/boot/dts/imx6qdl-aristainetos.dtsi:            compatible = "micron,n25q128a11", "jedec,spi-nor";
+> arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi:           compatible = "micron,n25q128a11", "jedec,spi-nor";
+> arch/arm/boot/dts/keystone-k2e-evm.dts:         compatible = "micron,n25q128a11";
+> arch/arm/boot/dts/keystone-k2hk-evm.dts:                compatible = "micron,n25q128a11";
+> arch/arm/boot/dts/keystone-k2l-evm.dts:         compatible = "micron,n25q128a11";
+> arch/powerpc/boot/dts/fsl/t1024qds.dts:                         compatible = "micron,n25q128a11", "jedec,spi-nor";  /* 16MB */
+> arch/powerpc/boot/dts/fsl/t104xqds.dtsi:                                compatible = "micron,n25q128a11", "jedec,spi-nor";
+> arch/powerpc/boot/dts/fsl/t208xqds.dtsi:                                compatible = "micron,n25q128a11", "jedec,spi-nor"; /* 16MB */
+> 
 > 
 
-> This answers my question. I would have expected this to come before the 
-> previous patch, but if it's easier to do it this way it's fine.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I thought about placing this patch before the previous one, but it
-turned a bit easier for me to split the changes in the reverse order.
-It has made this patch a bit smaller and more coherent. But seeing you
-weren't happy with too many changes in the previous patch I'll do as
-you suggest and change the patches order. Since the patch content will
-be changed I won't add your reviewed-by tag there on v2. So please
-consider re-reviewing it one more time.
-
--Sergey
-
+Best regards,
+Krzysztof
