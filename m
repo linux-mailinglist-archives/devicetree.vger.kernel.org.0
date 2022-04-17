@@ -2,49 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9993504763
-	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 11:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C3D504772
+	for <lists+devicetree@lfdr.de>; Sun, 17 Apr 2022 11:53:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233810AbiDQJaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Apr 2022 05:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46582 "EHLO
+        id S233839AbiDQJ4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Apr 2022 05:56:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233795AbiDQJaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 05:30:17 -0400
-Received: from out28-101.mail.aliyun.com (out28-101.mail.aliyun.com [115.124.28.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D65A387A1;
-        Sun, 17 Apr 2022 02:27:41 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09126422|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0227706-0.0250717-0.952158;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047201;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=18;RT=18;SR=0;TI=SMTPD_---.NSFwFyR_1650187655;
-Received: from 192.168.30.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NSFwFyR_1650187655)
-          by smtp.aliyun-inc.com(33.37.71.29);
-          Sun, 17 Apr 2022 17:27:36 +0800
-Subject: Re: [PATCH v3 1/3] dt-bindings: dwc2: Add bindings for new Ingenic
- SoCs.
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     gregkh@linuxfoundation.org, hminas@synopsys.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
-        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dragancecavac@yahoo.com, hns@goldelico.com,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, reimu@sudomaker.com
-References: <1649964337-114337-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1649964337-114337-2-git-send-email-zhouyanjie@wanyeetech.com>
- <J1YFAR.2881WOMSYUZM2@crapouillou.net>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <62d961c6-6c3e-393e-2348-cb874320316e@wanyeetech.com>
-Date:   Sun, 17 Apr 2022 17:27:34 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <J1YFAR.2881WOMSYUZM2@crapouillou.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        with ESMTP id S233831AbiDQJ4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 05:56:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41073192A9;
+        Sun, 17 Apr 2022 02:53:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D5F56119F;
+        Sun, 17 Apr 2022 09:53:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACD52C385A4;
+        Sun, 17 Apr 2022 09:53:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650189218;
+        bh=FPGOhka1OfYKDPNYUqhjOQxntwkCKuERgN9/gaL5oSg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HgDNqPoSVC6yUBvDb277MAk2tXdnzWa6RDRmSgAORvgkQfuPFpApvZ0sgp/RrpPPB
+         l/7G+BKz6qFBbS574Ug2iPK7+nZJkkIEtpSE0T9Syr+PnjYZTqrp0aQf9YGuw3Of+1
+         HKGD5zISkwWiOVzzSKG2+ENb9mxUY2QMNUDhxeXtTlEXlYdSAByXbS50tM7lRxwveW
+         vt4xYdCdD4OnBY4RTpySsDELcQJB2IrP2Ejm5285ueuY5SVixjUypbLldxZDLSIN5q
+         W+jqV12QHWnO5GKPMj/0S/0ebhdH2CPxFz9WRXh7tPSWbgmbsylbH5WCwuCWMUSiEP
+         EGzwP8E8UWf6A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1ng1b6-004qUr-8n; Sun, 17 Apr 2022 10:53:36 +0100
+Date:   Sun, 17 Apr 2022 10:53:35 +0100
+Message-ID: <87zgkk9gtc.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 2/4] PCI: dwc: rockchip: add legacy interrupt support
+In-Reply-To: <CAMdYzYo+YeAgT92baMOoWpra230wro_WynRcajL-__9RNkeE9Q@mail.gmail.com>
+References: <20220416110507.642398-1-pgwipeout@gmail.com>
+        <20220416110507.642398-3-pgwipeout@gmail.com>
+        <308e9c47197d4f7ae5a31cfcb5a10886@kernel.org>
+        <CAMdYzYo+YeAgT92baMOoWpra230wro_WynRcajL-__9RNkeE9Q@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: pgwipeout@gmail.com, lorenzo.pieralisi@arm.com, robh@kernel.org, kw@linux.com, bhelgaas@google.com, heiko@sntech.de, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,109 +75,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Sat, 16 Apr 2022 14:24:26 +0100,
+Peter Geis <pgwipeout@gmail.com> wrote:
+> 
+> On Sat, Apr 16, 2022 at 8:54 AM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > Peter,
+> >
+> > May I suggest that you slow down on the number of versions you send?
+> > This is the 7th in 5 days, the 3rd today.
+> >
+> > At this stage, this is entirely counterproductive.
+> 
+> Apologies, I'll be sure to be at least one cup of coffee in before
+> doing early morning code.
 
-On 2022/4/17 上午12:34, Paul Cercueil wrote:
-> Hi Zhou,
->
-> Le ven., avril 15 2022 at 03:25:35 +0800, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com> a écrit :
->> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000
->> SoC, the X1600 SoC, the X1700 SoC, the X1830 SoC, and the X2000 SoC
->> from Ingenic.
->>
->> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>
->> Notes:
->>     v1->v2:
->>     Add Rob Herring's Acked-by.
->>
->>     v2->v3:
->>     No change.
->>
->>  Documentation/devicetree/bindings/usb/dwc2.yaml | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml 
->> b/Documentation/devicetree/bindings/usb/dwc2.yaml
->> index 4cebce6..c6e8c0b 100644
->> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
->> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
->> @@ -17,6 +17,13 @@ properties:
->>      oneOf:
->>        - const: brcm,bcm2835-usb
->>        - const: hisilicon,hi6220-usb
->> +      - const: ingenic,jz4775-otg
->> +      - const: ingenic,jz4780-otg
->> +      - const: ingenic,x1000-otg
->
-> The driver handles the JZ4775, JZ4780 and X1000 the exact same way. 
-> Maybe the latter two should use the JZ4775 string as the fallback? Do 
-> you know if the IP cores are any different?
->
+Even with a steady intake of coffee, there is a pretty clear policy
+around the frequency of patch submission, see [1].
 
- From the manual, it seems that JZ4775 and JZ4780 should have the same 
-specifications,
-but in fact, the behavior of JZ4775 and JZ4780 is different, especially 
-if the JZ4780
-does not turn off overcurrent detection, there will be a high 
-probability of affecting
-the use, while the JZ4775 does not have this problem, so I think they 
-should actually
-be different.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n337
 
-The manual of X1000 shows that it has only 8 endpoints, which is 
-different from JZ4775
-and JZ4780.
+There is no hard enforcement of this process, but that should give you
+an idea of how to deal with it. In any case, 7 series in less than a
+week is a clear sign that this series should be *ignored*, as the
+author is likely to post yet another one in the next few hours.
 
- From the experimental results, it seems that the three of them can use 
-the same set of
-parameters, but in order to avoid hidden dangers that have not been 
-found for the time
-being, I think it seems necessary to keep three independent compatible 
-strings.
+> 
+> >
+> > On 2022-04-16 12:05, Peter Geis wrote:
+> > > The legacy interrupts on the rk356x pcie controller are handled by a
+> > > single muxed interrupt. Add irq domain support to the pcie-dw-rockchip
+> > > driver to support the virtual domain.
+> > >
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 112 +++++++++++++++++-
+> > >  1 file changed, 110 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > index c9b341e55cbb..863374604fb1 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > @@ -10,9 +10,12 @@
+> > >
+> > >  #include <linux/clk.h>
+> > >  #include <linux/gpio/consumer.h>
+> > > +#include <linux/irqchip/chained_irq.h>
+> > > +#include <linux/irqdomain.h>
+> > >  #include <linux/mfd/syscon.h>
+> > >  #include <linux/module.h>
+> > >  #include <linux/of_device.h>
+> > > +#include <linux/of_irq.h>
+> > >  #include <linux/phy/phy.h>
+> > >  #include <linux/platform_device.h>
+> > >  #include <linux/regmap.h>
+> > > @@ -36,10 +39,13 @@
+> > >  #define PCIE_LINKUP                  (PCIE_SMLH_LINKUP | PCIE_RDLH_LINKUP)
+> > >  #define PCIE_L0S_ENTRY                       0x11
+> > >  #define PCIE_CLIENT_GENERAL_CONTROL  0x0
+> > > +#define PCIE_CLIENT_INTR_STATUS_LEGACY       0x8
+> > > +#define PCIE_CLIENT_INTR_MASK_LEGACY 0x1c
+> > >  #define PCIE_CLIENT_GENERAL_DEBUG    0x104
+> > > -#define PCIE_CLIENT_HOT_RESET_CTRL      0x180
+> > > +#define PCIE_CLIENT_HOT_RESET_CTRL   0x180
+> > >  #define PCIE_CLIENT_LTSSM_STATUS     0x300
+> > > -#define PCIE_LTSSM_ENABLE_ENHANCE       BIT(4)
+> > > +#define PCIE_LEGACY_INT_ENABLE               GENMASK(3, 0)
+> > > +#define PCIE_LTSSM_ENABLE_ENHANCE    BIT(4)
+> > >  #define PCIE_LTSSM_STATUS_MASK               GENMASK(5, 0)
+> > >
+> > >  struct rockchip_pcie {
+> > > @@ -51,6 +57,8 @@ struct rockchip_pcie {
+> > >       struct reset_control            *rst;
+> > >       struct gpio_desc                *rst_gpio;
+> > >       struct regulator                *vpcie3v3;
+> > > +     struct irq_domain               *irq_domain;
+> > > +     raw_spinlock_t                  irq_lock;
+> > >  };
+> > >
+> > >  static int rockchip_pcie_readl_apb(struct rockchip_pcie *rockchip,
+> > > @@ -65,6 +73,94 @@ static void rockchip_pcie_writel_apb(struct
+> > > rockchip_pcie *rockchip,
+> > >       writel_relaxed(val, rockchip->apb_base + reg);
+> > >  }
+> > >
+> > > +static void rockchip_pcie_legacy_int_handler(struct irq_desc *desc)
+> > > +{
+> > > +     struct irq_chip *chip = irq_desc_get_chip(desc);
+> > > +     struct rockchip_pcie *rockchip = irq_desc_get_handler_data(desc);
+> > > +     unsigned long reg, hwirq;
+> > > +
+> > > +     chained_irq_enter(chip, desc);
+> > > +
+> > > +     reg = rockchip_pcie_readl_apb(rockchip,
+> > > PCIE_CLIENT_INTR_STATUS_LEGACY);
+> > > +
+> > > +     for_each_set_bit(hwirq, &reg, 8)
+> >
+> > 8? And yet:
+> >
+> > #define PCI_NUM_INTX        4
+> >
+> > So whatever bits are set above bit 3, you are feeding garbage
+> > to the irqdomain code.
+> 
+> There are 8 bits in total, the top four are for the TX interrupts, for
+> which EP mode is not yet supported by the driver.
 
+So why aren't they excluded from the set of bits that you look at?
 
->> +      - const: ingenic,x1600-otg
->> +      - const: ingenic,x1700-otg
->> +      - const: ingenic,x1830-otg
->
-> Same here (and btw, first time I hear about the X1600 and X1700 ;))
+> I can constrain this further and let it be expanded when that support
+> is added, if that works for you?
 
+Well, you can't have INTx interrupts in EP mode (that's a TLP going
+out of the device, and not something that is signalled *to* the
+CPU). So the two should be mutually exclusive.
 
-The OTG of X1600 and X1700 seem to be the same, I will remove the 
-compatibility string
-of X1700 in the next version, but the device tree of X1830 in Ingenic 
-SDK is configured
-with different parameters from X1600/X1700, so I believe the X1830 
-should be a little
-different from the X1600/X1700, so although the experimental results 
-show that the three
-of them seem to be able to use the same parameters, it seems that it is 
-more appropriate
-to keep the compatibe string of X1830.
+> 
+> >
+> > > +             generic_handle_domain_irq(rockchip->irq_domain, hwirq);
+> > > +
+> > > +     chained_irq_exit(chip, desc);
+> > > +}
+> > > +
+> > > +static void rockchip_intx_mask(struct irq_data *data)
+> > > +{
+> > > +     struct rockchip_pcie *rockchip = irq_data_get_irq_chip_data(data);
+> > > +     unsigned long flags;
+> > > +     u32 val;
+> > > +
+> > > +     /* disable legacy interrupts */
+> > > +     raw_spin_lock_irqsave(&rockchip->irq_lock, flags);
+> > > +     val = HIWORD_UPDATE_BIT(PCIE_LEGACY_INT_ENABLE);
+> > > +     val |= PCIE_LEGACY_INT_ENABLE;
+> > > +     rockchip_pcie_writel_apb(rockchip, val,
+> > > PCIE_CLIENT_INTR_MASK_LEGACY);
+> > > +     raw_spin_unlock_irqrestore(&rockchip->irq_lock, flags);
+> >
+> > This is completely busted. INTx lines must be controlled individually.
+> > If I disable one device's INTx output, I don't want to see the
+> > interrupt firing because another one has had its own enabled.
+> 
+> Okay, that makes sense. I'm hitting the entire block when it should be
+> the individual IRQ.
+> I also notice some drivers protect this with a spinlock while others
+> do not, how should this be handled?
 
-I also heard about the X1600 and X1700 not long ago. From the existing 
-information, the
-X1600 should be the only SoC with CAN in the known models of Ingenic. 
-And the X1700 is
-more like an SoC that focuses on display applications.
+It obviously depends on how the HW. works. If this is a shared
+register using a RMW sequence, then you need some form of mutual
+exclusion in order to preserve the atomicity of the update.
 
+If the HW supports updating the masks using a set of hot bits (with
+separate clear/set registers), than there is no need for locking.  In
+your case PCIE_CLIENT_INTR_MASK_LEGACY seems to support this odd
+"write-enable" feature which can probably be used to implement a
+lockless access, something like:
 
-Thanks and best regards!
+	void mask(struct irq_data *d)
+	{
+		u32 val = BIT(d->hwirq + 16) | BIT(d->hwirq);
+		writel_relaxed(val, ...);
+	}
 
+	void mask(struct irq_data *d)
+	{
+		u32 val = BIT(d->hwirq + 16);
+		writel_relaxed(val, ...);
+	}
 
->
-> Cheers,
-> -Paul
->
->> +      - const: ingenic,x2000-otg
->>        - items:
->>            - const: rockchip,rk3066-usb
->>            - const: snps,dwc2
->> -- 
->> 2.7.4
->>
->
+Another thing is that it is completely unclear to me what initialises
+these interrupts the first place (INTR_MASK_LEGACY, INTR_EN_LEGACY).
+Are you relying on the firmware to do that for you?
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
