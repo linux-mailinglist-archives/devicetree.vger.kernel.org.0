@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 495EC505AA5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CC87505AAC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242135AbiDRPMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 11:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48716 "EHLO
+        id S1345228AbiDRPO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 11:14:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345216AbiDRPMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:12:12 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB38236163
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 07:07:44 -0700 (PDT)
+        with ESMTP id S1345308AbiDRPOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:14:37 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68692F39A;
+        Mon, 18 Apr 2022 07:09:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650290864; x=1681826864;
+  t=1650290992; x=1681826992;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=cdeeIaTUkflc7ywKWKQ2FVLqMbw9WyQuhVvIi8noo7s=;
-  b=K0Pi0ZmBwfx19WU9mtrbHJiEgXtdV1IlzZIlLaL9hpRKcdCW20LiKxAD
-   Cx09ryYW06083pYsaMrh7HT2YvtW+7UHzbetKUZUL20eZ8D9eB9pdGTOW
-   /aZ4DRJLymKtOqdo43uEI+lOBMrk9UHne02Dy9mWpQsm0CFohL2vmP1EP
-   w=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 18 Apr 2022 07:07:44 -0700
+  bh=wo7n7i7NcFwEADL9B4t8WYMscex9ezkkM2mITVauwjY=;
+  b=UEUslPdvpCwEU4GVoJ6HVUcA5JVplu7d9kuQiquJ4yYPozk0PYDqYLRq
+   W1SSBawNtYAGWl59FtPPdzs5x9gQDBiRLrglSsLw3L2hLITys4lV2EB8X
+   fhPtBfozunbrtedDpSpnQnCDPLKTynZQW5Ozz6U6rhnnYFKBO/vxK966V
+   0=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 18 Apr 2022 07:09:52 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2022 07:07:43 -0700
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2022 07:09:51 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 18 Apr 2022 07:07:43 -0700
-Received: from [10.110.52.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ 15.2.986.22; Mon, 18 Apr 2022 07:09:51 -0700
+Received: from [10.216.27.177] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 18 Apr
- 2022 07:07:42 -0700
-Message-ID: <697daba9-c07d-5a41-305e-95b1dcfa1c50@quicinc.com>
-Date:   Mon, 18 Apr 2022 07:07:36 -0700
+ 2022 07:09:46 -0700
+Message-ID: <78b1e04c-e7d0-a81d-799e-5c570c2bf106@quicinc.com>
+Date:   Mon, 18 Apr 2022 19:39:44 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: sc7280: Add dt nodes for sound
+ card
 Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Joel Stanley <joel@jms.id.au>
-CC:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>
-References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
- <CACRpkdZff-TbnNHO6Q590ubyH51+yqN68DOghazVKvYoHMBekw@mail.gmail.com>
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-In-Reply-To: <CACRpkdZff-TbnNHO6Q590ubyH51+yqN68DOghazVKvYoHMBekw@mail.gmail.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649863277-31615-5-git-send-email-quic_srivasam@quicinc.com>
+ <Ylc/aR0hUGa6OKBO@google.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <Ylc/aR0hUGa6OKBO@google.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
@@ -73,28 +74,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
 
-On 4/17/2022 4:28 PM, Linus Walleij wrote:
-> Hi Jae,
-> 
-> On Tue, Mar 29, 2022 at 7:40 PM Jae Hyun Yoo <quic_jaehyoo@quicinc.com> wrote:
-> 
->> Jae Hyun Yoo (5):
->>    pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
->>    dt-bindings: pinctrl: aspeed-g6: remove FWQSPID group
->>    dt-bindings: pinctrl: aspeed-g6: add FWQSPI function/group
->>    pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
-> 
-> These four patches applied to the pinctrl tree.
-> 
-> Please funnel patches 1, 6, 7 through the SoC tree.
+On 4/14/2022 2:53 AM, Matthias Kaehlcke wrote:
+Thanks for your time Matthias!!!
+> On Wed, Apr 13, 2022 at 08:51:17PM +0530, Srinivasa Rao Mandadapu wrote:
+>> Add dt nodes for sound card support, which is using WCD938x headset
+>> playback, capture, I2S speaker playback and DMICs via VA macro.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280-crd.dts  | 23 ++++++++
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 93 ++++++++++++++++++++++++++++++++
+>>   2 files changed, 116 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+>> index b944366..1e16854 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> You need to refresh your tree, this file has been renamed to
+> sc7280-crd-r3.dts. That DT is for the CRD <= 2.x, newer versions
+> use sc7280-herobrine-crd.dts.
+Okay. will update accordingly.
+>
+>> @@ -90,6 +90,29 @@ ap_ts_pen_1v8: &i2c13 {
+>>   	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+>>   };
+>>   
+>> +&sound {
+>> +	audio-routing =
+>> +		"IN1_HPHL", "HPHL_OUT",
+>> +		"IN2_HPHR", "HPHR_OUT",
+>> +		"AMIC1", "MIC BIAS1",
+>> +		"AMIC2", "MIC BIAS2",
+>> +		"VA DMIC0", "MIC BIAS1",
+>> +		"VA DMIC1", "MIC BIAS1",
+>> +		"VA DMIC2", "MIC BIAS3",
+>> +		"VA DMIC3", "MIC BIAS3",
+>> +		"TX SWR_ADC0", "ADC1_OUTPUT",
+>> +		"TX SWR_ADC1", "ADC2_OUTPUT",
+>> +		"TX SWR_ADC2", "ADC3_OUTPUT",
+>> +		"TX SWR_DMIC0", "DMIC1_OUTPUT",
+>> +		"TX SWR_DMIC1", "DMIC2_OUTPUT",
+>> +		"TX SWR_DMIC2", "DMIC3_OUTPUT",
+>> +		"TX SWR_DMIC3", "DMIC4_OUTPUT",
+>> +		"TX SWR_DMIC4", "DMIC5_OUTPUT",
+>> +		"TX SWR_DMIC5", "DMIC6_OUTPUT",
+>> +		"TX SWR_DMIC6", "DMIC7_OUTPUT",
+>> +		"TX SWR_DMIC7", "DMIC8_OUTPUT";
+>> +};
+>> +
+>>   &tlmm {
+>>   	tp_int_odl: tp-int-odl {
+>>   		pins = "gpio7";
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> index cf62d06..a7c884a 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> @@ -84,6 +84,99 @@
+>>   		pinctrl-names = "default";
+>>   		pinctrl-0 = <&nvme_pwren>;
+>>   	};
+>> +
+>> +	sound: sound {
+>> +		compatible = "google,sc7280-herobrine";
+>> +		model = "sc7280-wcd938x-max98360a-1mic";
+>> +
+>> +		audio-routing =
+>> +			"IN1_HPHL", "HPHL_OUT",
+>> +			"IN2_HPHR", "HPHR_OUT",
+>> +			"AMIC1", "MIC BIAS1",
+>> +			"AMIC2", "MIC BIAS2",
+>> +			"VA DMIC0", "MIC BIAS3",
+>> +			"VA DMIC1", "MIC BIAS3",
+>> +			"VA DMIC2", "MIC BIAS1",
+>> +			"VA DMIC3", "MIC BIAS1",
+>> +			"TX SWR_ADC0", "ADC1_OUTPUT",
+>> +			"TX SWR_ADC1", "ADC2_OUTPUT",
+>> +			"TX SWR_ADC2", "ADC3_OUTPUT",
+>> +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
+>> +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
+>> +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
+>> +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
+>> +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
+>> +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
+>> +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
+>> +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
+>> +
+>> +		qcom,msm-mbhc-hphl-swh = <1>;
+>> +		qcom,msm-mbhc-gnd-swh = <1>;
+>> +
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		#sound-dai-cells = <0>;
+>> +
+>> +		dai-link@1 {
+>> +			link-name = "MAX98360A";
+>> +			reg = <MI2S_SECONDARY>;
+> Dumb question: is this value actually used? A quick glance through
+> qcom_snd_parse_of() suggests it isn't. And the CPU DAI id is already
+> specified in the 'sound-dai' property below.
+>
+> In a quick test I replaced the corresponding 'reg' values in
+> sc7180-trogdor.dtsi with 'random' values and audio playback on
+> my coachz (sc7180-trogdor-coachz-r3.dts) still works ...
 
-Thanks a lot!
+Yes. agree that it's not being used. But i am not sure of general syntax 
+followed.
 
-Hi Joel,
-Can you please include 1, 6 and 7 in the next pull request of Aspeed
-SoC tree?
+for now  will delete it.
 
-Thanks,
-Jae
+>
+>> +			cpu {
+>> +				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
+>> +			};
+>> +
+>> +			codec {
+>> +				sound-dai = <&max98360a>;
+>> +			};
+>> +		};
+>> +
+>> +		dai-link@5 {
+>> +			link-name = "DisplayPort";
+>> +			reg = <LPASS_DP_RX>;
+> nit: add an empty line (in all links) to separate the properties from the node
+Okay.
+>
+>> +			cpu {
+>> +				sound-dai = <&lpass_cpu LPASS_DP_RX>;
+>> +			};
+>> +
+>> +			codec {
+>> +				sound-dai = <&mdss_dp>;
+>> +			};
+>> +		};
+>> +
+>> +		dai-link@6 {
+>> +			link-name = "WCD9385 Playback";
+>> +			reg = <LPASS_CDC_DMA_RX0>;
+>> +			cpu {
+>> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_RX0>;
+>> +			};
+>> +
+>> +			codec {
+>> +				sound-dai = <&wcd938x 0>, <&swr0 0>, <&lpass_rx_macro 0>;
+>> +			};
+>> +		};
+>> +
+>> +		dai-link@19 {
+>> +			link-name = "WCD9385 Capture";
+>> +			reg = <LPASS_CDC_DMA_TX3>;
+>> +			cpu {
+>> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_TX3>;
+>> +			};
+>> +
+>> +			codec {
+>> +				sound-dai = <&wcd938x 1>, <&swr1 0>, <&lpass_tx_macro 0>;
+>> +			};
+>> +		};
+>> +
+>> +		dai-link@25 {
+>> +			link-name = "DMIC";
+>> +			reg = <LPASS_CDC_DMA_VA_TX0>;
+>> +			cpu {
+>> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
+>> +			};
+>> +
+>> +			codec {
+>> +				sound-dai = <&lpass_va_macro 0>;
+>> +			};
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &apps_rsc {
+>> -- 
+>> 2.7.4
+>>
