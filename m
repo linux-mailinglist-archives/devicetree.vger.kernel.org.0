@@ -2,83 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D85C505C7D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 18:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 524AE505CA0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 18:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234709AbiDRQhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 12:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38014 "EHLO
+        id S1346373AbiDRQr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 12:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238138AbiDRQhL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:37:11 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C4B231377;
-        Mon, 18 Apr 2022 09:34:32 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id k23so27789824ejd.3;
-        Mon, 18 Apr 2022 09:34:32 -0700 (PDT)
+        with ESMTP id S1346403AbiDRQr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:47:57 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE79E30F49
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 09:45:17 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id j71so6322635pge.11
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 09:45:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Vc1/uJ90DYtW5k4IaJRODfqMSNp6eKUlYbKQbzA11n0=;
-        b=o0i3eE61fiSCrCyF/xPgvH5k7NIpTbfVylZ3e6fhDcS0T4pzayzX/ldIjKRT8mNKvt
-         P1ZvYoID4e5gLtOkD0H0JC8dYrCk7fbg/Zzfq8BWUWFjsjmPk0D6rlF5caR1ciKlRSwS
-         sZ844hpWHh2Mxd7iMWtE3dcxaNot5y+0HkvzQNaFQK1yKq1/b2fnBKlmLYCoX+B5FA1K
-         SNuLq91l5rGYOShiOCZ/u6b3QNBXWyoIAkTBU5LeeexUc9j1k9W95Ba02i2PLyK+q3hM
-         D6CXsSgErbvCGwB74hon8yvzxmP37KS9g7OIqIBLT2+8StvFS2oXlEJLrXWHKuRXuCPY
-         95AQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4xwTXGyMiRwQRbK7umG3ZynWZ3Dw576AsZDOR95/gXU=;
+        b=B2EWZ80+i+OxKDK4aG1UbaOkuqHEb3Qp0nagwb7VyMcVLJCoOV5edrOdNc4hq5gp/4
+         37HAOe2WOYlwTQPlhCzMHONQzGpLuG6MpmUTAIXlmeuWi+TEP1aE9eZNDeVnq8ekL9Vh
+         ky6BvKBDjOwM3WC59Xcofqh6srmpHLzTtdDVA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Vc1/uJ90DYtW5k4IaJRODfqMSNp6eKUlYbKQbzA11n0=;
-        b=AAwz6U0kx3EwKoLoukJg5ngWIBcdlCgX/8ibMUa4eHK24slg4It6PYaxqSrx1kI4uW
-         mPdgUWFUs0b5yWpx5KbJKkehNVA1X6J6Texi/Riy6oPus9upZG3voESbmqXsGlvC/xjo
-         0ruj7PYMZ8TcUNMi683Df45nnfmsXemCcwAJf7sUQH/ann1PVJjswe6pJ15m3yaZ9z2g
-         At9hRkW+JvR1jgBpBYI2SQrh4k1le2g7F0zhYMy8+g+lklocMQzBrTi9WMnjuxlqUyJN
-         dQY+QjBJYlFXtrUod47uySJ6/83fhavGO0ZFqGf2u1d3mzc7WYScjz6BuwvkqAACrvOk
-         HqPA==
-X-Gm-Message-State: AOAM530ELs/Pph2gUsNRxK3WKWU6AUDZbSjJi+Ib987PHu+5izZ2/f2y
-        odcfgXA+QkgIhQHOt/Tf4hlw7hy6E1Uj1wBeH9RSGI7jwCM=
-X-Google-Smtp-Source: ABdhPJySQrxGT5J7CLUjI/JmzzbA74ki0jYXo4we1cUnH4IGawnJX4vvjn7i+Y85FkME9yL0YKyey/dqUbAyiMm0AZY=
-X-Received: by 2002:a17:906:9b96:b0:6e8:6e4c:8249 with SMTP id
- dd22-20020a1709069b9600b006e86e4c8249mr9807402ejc.281.1650299670653; Mon, 18
- Apr 2022 09:34:30 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4xwTXGyMiRwQRbK7umG3ZynWZ3Dw576AsZDOR95/gXU=;
+        b=22jtJl+Sqfu4MxnE4vLaSOvOZz8NFfDsW/aO8iyw7feKv1mACN6rsJ+TgNJazw+zWL
+         iCDU5G9e1DP5Q/XWpxtqeW1eLKsfQ/9gP8+BSEYx96u6u6AOsbr7uXILxw4dsj7IPrMb
+         aLdm+PUWzUIXZLZzAj2rFmcyzThb8k2h3MYfVY2iHPC9sZa6uhENYhBYur8CJvtIJHNk
+         uxlSBqK8jd6kfpqcnDbReq12p5u0f0PzJan1osw6ferSrox4ot3vb8eY+3qcCn9aKBkk
+         7T73Oh+il7IxK4QK9c6yMkQpoGEt7k0A0f4k+cemAmj0gqqL4uLOQYq3GQxPeeCKSAq0
+         Sl6Q==
+X-Gm-Message-State: AOAM530TTZ2gM87b/d3QhvVhLoAbv9FqBhTqyLEaDpCuRyhu6dutIAdf
+        skY5982gQZZAncx67L9FkkGwAw==
+X-Google-Smtp-Source: ABdhPJwRJZtekdiefz/R1D51gc7pQIKgOwr5/nKXzzfb1qXbeZEcEiLIiitOAbOMJnmAR2Tk0AGPbQ==
+X-Received: by 2002:a63:d915:0:b0:39d:3f7d:1850 with SMTP id r21-20020a63d915000000b0039d3f7d1850mr10870714pgg.10.1650300315780;
+        Mon, 18 Apr 2022 09:45:15 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6b32:a0a5:ec32:c287])
+        by smtp.gmail.com with UTF8SMTPSA id r33-20020a63fc61000000b003a9f98905e9sm3995484pgk.76.2022.04.18.09.45.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Apr 2022 09:45:15 -0700 (PDT)
+Date:   Mon, 18 Apr 2022 09:45:13 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v8 2/4] arm64: dts: qcom: sc7280: Add nodes for wcd9385
+ and max98360a codec
+Message-ID: <Yl2VmW18QAJl9v+m@google.com>
+References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
+ <1650291252-30398-3-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-References: <20220407154338.4190674-1-p.zabel@pengutronix.de> <20220407154338.4190674-5-p.zabel@pengutronix.de>
-In-Reply-To: <20220407154338.4190674-5-p.zabel@pengutronix.de>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 18 Apr 2022 18:34:19 +0200
-Message-ID: <CAFBinCBiypQYfJ6ZMoNnHXFCviOzpHs4WvCrSfPZAy7Q7GTVHA@mail.gmail.com>
-Subject: Re: [PATCH 05/14] dt-bindings: reset: lantiq,reset: Convert to yaml
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1650291252-30398-3-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 7, 2022 at 5:44 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
->
-> Convert the device tree bindings for the Lantiq XWAY SoC RCU reset
-> controller to YAML schema to allow participating in DT validation.
->
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Mon, Apr 18, 2022 at 07:44:10PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add wcd938x and  max98360a codecs for audio use case on
+> sc7280 based platforms.
+> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+> Add amp_en node for  max98360a codec.
 
-I am not sure who can take this patch (through which tree).
-Maybe Rob can simply take it through his devicetree tree?
+General note: I don't think it's a good practice to add stuff like this to
+multiple boards in a single patch. Why?
 
+First the subject of such a patch tends to be vague ("arm64: dts: qcom:
+sc7280: Add nodes for wcd9385 and max98360a codec"), in this case it gives
+no hint about the boards. If someone was interested in picking changes
+for a given board they can't easily identify from the subject that the
+change is relevant for them.
 
-Best regards,
-Martin
+Changes touching multiple boards are more likely to cause conflicts when
+being picked (or reverted), both upstream and in downstream trees (which
+unfortunately have to exist for product development). Downstream trees
+might only pick changes for the board(s) they target, patches that touch
+mutiple boards often cause conflicts due to context deltas in the
+'irrelevant' boards.
+
+Lastly it's usually easier to get a patch reviewed (in the sense of
+getting a 'Reviewed-by' tag) and landed that does a single thing.
+
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |  6 ++
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  8 +++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 97 ++++++++++++++++++++++++++
+>  3 files changed, 111 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> index 344338a..aa0bf6e2 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> @@ -87,6 +87,12 @@ ap_ts_pen_1v8: &i2c13 {
+>  	pins = "gpio51";
+>  };
+>  
+> +&wcd938x {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&us_euro_hs_sel>;
+> +	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+> +};
+
+Since this is added for the CRD rev3 it probably should also be added to
+sc7280-herobrine-crd.dts
+
+> +
+>  &tlmm {
+>  	tp_int_odl: tp-int-odl {
+>  		pins = "gpio7";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index d58045d..f247403 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -20,6 +20,14 @@
+>  #include "sc7280-chrome-common.dtsi"
+>  
+>  / {
+> +	max98360a: audio-codec-0 {
+> +		compatible = "maxim,max98360a";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&amp_en>;
+> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> +		#sound-dai-cells = <0>;
+> +	};
+> +
+>  	chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 2f863c0..8dad599 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -20,6 +20,42 @@
+>  		serial1 = &uart7;
+>  	};
+>  
+> +	max98360a: audio-codec-0 {
+> +		compatible = "maxim,max98360a";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&amp_en>;
+> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> +		#sound-dai-cells = <0>;
+> +	};
+> +
+> +	wcd938x: audio-codec-1 {
+
+Why 'wcd938x' and not 'wcd9385'?
+
+> +		compatible = "qcom,wcd9385-codec";
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&wcd_reset_n>;
+> +		pinctrl-1 = <&wcd_reset_n_sleep>;
+> +
+> +		reset-gpios = <&tlmm 83 GPIO_ACTIVE_HIGH>;
+> +
+> +		qcom,rx-device = <&wcd_rx>;
+> +		qcom,tx-device = <&wcd_tx>;
+> +
+> +		vdd-rxtx-supply = <&vreg_l18b_1p8>;
+> +		vdd-io-supply = <&vreg_l18b_1p8>;
+> +		vdd-buck-supply = <&vreg_l17b_1p8>;
+> +		vdd-mic-bias-supply = <&vreg_bob>;
+> +
+> +		qcom,micbias1-microvolt = <1800000>;
+> +		qcom,micbias2-microvolt = <1800000>;
+> +		qcom,micbias3-microvolt = <1800000>;
+> +		qcom,micbias4-microvolt = <1800000>;
+> +
+> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000
+> +							  500000 500000 500000>;
+> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> +		#sound-dai-cells = <1>;
+> +	};
+
+Also add this node to sc7280-herobrine-crd.dts?
+
+> +
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  		label = "gpio-keys";
+> @@ -238,6 +274,19 @@
+>  	modem-init;
+>  };
+>  
+> +&lpass_rx_macro {
+> +	status = "okay";
+> +};
+> +
+> +&lpass_tx_macro {
+> +	status = "okay";
+> +};
+> +
+> +&lpass_va_macro {
+> +	status = "okay";
+> +	vdd-micb-supply = <&vreg_bob>;
+> +};
+
+Enable these also in sc7280-herobrine.dtsi if other nodes are added to
+sc7280-herobrine-crd.dts.
+
+> +
+>  &pcie1 {
+>  	status = "okay";
+>  	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+> @@ -298,6 +347,26 @@
+>  	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+>  };
+>  
+> +&swr0 {
+> +	status = "okay";
+
+nit: add an empty line between properties and nodes
+
+> +	wcd_rx: codec@0,4 {
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 4>;
+> +		#sound-dai-cells = <1>;
+> +		qcom,rx-port-mapping = <1 2 3 4 5>;
+> +	};
+> +};
+> +
+> +&swr1 {
+> +	status = "okay";
+
+ditto
+
+> +	wcd_tx: codec@0,3 {
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 3>;
+> +		#sound-dai-cells = <1>;
+> +		qcom,tx-port-mapping = <1 2 3 4>;
+> +	};
+> +};
+
+Also add these to sc7280-herobrine-crd.dts?
+
+> +
+>  &uart5 {
+>  	compatible = "qcom,geni-debug-uart";
+>  	status = "okay";
+> @@ -561,6 +630,12 @@
+>  };
+>  
+>  &tlmm {
+> +	amp_en: amp-en {
+> +		pins = "gpio63";
+> +		bias-pull-down;
+> +		drive-strength = <2>;
+> +	};
+> +
+>  	bt_en: bt-en {
+>  		pins = "gpio85";
+>  		function = "gpio";
+> @@ -643,6 +718,28 @@
+>  		function = "gpio";
+>  		bias-pull-down;
+>  	};
+> +
+> +	us_euro_hs_sel: us-euro-hs-sel {
+> +		pins = "gpio81";
+> +		function = "gpio";
+> +		bias-pull-down;
+> +		drive-strength = <2>;
+> +	};
+> +
+> +	wcd_reset_n: wcd-reset-n {
+> +		pins = "gpio83";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		output-high;
+> +	};
+> +
+> +	wcd_reset_n_sleep: wcd-reset-n-sleep {
+> +		pins = "gpio83";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+
+Also add to sc7280-herobrine-crd.dts if the other nodes are added.
