@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F2E505E45
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 21:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAF41505E5C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 21:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347571AbiDRTRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 15:17:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58856 "EHLO
+        id S1347634AbiDRTXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 15:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238177AbiDRTRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 15:17:13 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1EF932EEB;
-        Mon, 18 Apr 2022 12:14:32 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 21so18568997edv.1;
-        Mon, 18 Apr 2022 12:14:32 -0700 (PDT)
+        with ESMTP id S1347632AbiDRTXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 15:23:01 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A48EF12ABB;
+        Mon, 18 Apr 2022 12:20:19 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id b7so3468303plh.2;
+        Mon, 18 Apr 2022 12:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=8vjH6cZOjMPKmMYM8U9yyT827f2QaB+PvuhuwLr3Xlk=;
-        b=lQut0xtvDeVyqYFPNTUqB22vY5AIURHZF+Fe0MzIHbLB827ZUpJlIGKgfE7xtIjJjx
-         Jgm8uySI+v0v3rL/dRX4/9A8Rv99A53Iey5zDd6KsgRsbKx6P6N9CC+Oaz+rY9zlRjUz
-         e8edov02aG07IciohsEZ3TGk7AmOKKC8ylg2s+iuD8IMccbF0jTZFREN4klRVT6Zgt7W
-         eVWCrafZJEP7Zm64CBJu9mRf++JU3PEbEVJTsZswm+5+ho7oRuqLlFRJhSO+6/n2HdBH
-         iC0cR7ZHrpFqa8qwexHoLPDIG40j6aqXk5sDAOaEMu5i3AeyKnllppZpjOGmuMuKz+0e
-         XZfQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3mQuw30mLCYVflNR7mz5HtSbYatNMKdlsMF3p1A4tQ8=;
+        b=izjCSgU2XxrzRNobeciMugbg0Y7nDuWLfdOm/xNY8Rhq7T1NdAGN5yx833SeGct0B3
+         lGlhvwTPwwSvtigwU4TXbRmFYqrCkXF6DWJSrqR2JWYTi7ruBtOLIU9I3C4XV9hmkWrT
+         5XUmc3ldp2EqIc6XWPW0c5868P7OOGaQz5mQGwastQdvvmaFbltJgI2l1Nk9oAs5KnJm
+         dza44hPQcb1zFsxS9yoooUgwIlHYnOGnRupNdlH8poHRT/Vwk+vynjfg7uZp+h+JHN0O
+         T2GQsCHPUaJthRELGnIswoJfySYUepwL5op5Rs96/X2I2CjWbieeA0FQwQSXiwlCSpoM
+         q4mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=8vjH6cZOjMPKmMYM8U9yyT827f2QaB+PvuhuwLr3Xlk=;
-        b=iQGUBPjzdUqBbKp4cVpthytRMfNhxfrZ6kcUBCCnikPSHnZ+HNgDG5EQbLy/ikFBpk
-         azrToOexID6iIVOcP8DtCXUdOE8qh7phoWJbT4M/2fO3M1ozyAfU93l03ZGGbjirb/G/
-         CvWLt4rd9jCeU5OLz+1ji2cZcpj4mZla/P9xcBHxqChrq6KPMkh984apBORcJy3G4gyn
-         ZulqhIp8wRuoyAz1QjiiAcyR9HXzclznAilPLSDrdgaTkFz0gDSGP4TfzERKNf1TxE7Z
-         Io1Od58Z+nZiu5t9baYZNc7eDCSs2l+TTuOAyQHIjSbrphCNjSRLHNd7+SteJUhitEZd
-         pxMw==
-X-Gm-Message-State: AOAM531RnGeQD+y3NYc5/R6ZRRPIT1s8tDMnQQTZL6XS84q+28a81ZOL
-        JgCzDxxsEug4p4OBJ/kY+yg=
-X-Google-Smtp-Source: ABdhPJwev6wR4b0ex38BXGBB7t3VDqhLP5+ZMFkH/K4ICKFNkbcCGUKBkCym9mkKwf/H1vSzl6s9qA==
-X-Received: by 2002:a05:6402:515b:b0:41d:82c2:2749 with SMTP id n27-20020a056402515b00b0041d82c22749mr13806249edd.38.1650309271494;
-        Mon, 18 Apr 2022 12:14:31 -0700 (PDT)
-Received: from [192.168.11.247] (190-2-132-198.hosted-by-worldstream.net. [190.2.132.198])
-        by smtp.gmail.com with ESMTPSA id mx14-20020a1709065a0e00b006e8bc3ce121sm4841045ejc.6.2022.04.18.12.14.23
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3mQuw30mLCYVflNR7mz5HtSbYatNMKdlsMF3p1A4tQ8=;
+        b=LBHMhh9Hp7BRELxFeEoDNUIUtV/vvMWoBd7Xq97vpp9NlI4YszVS52/ml6uNA/VKLe
+         ZulnG7xK9JoJ7W8X/FYFFO6o7MX/1Wx/boI3Ir0tBMPXA2ClZDV6foHTVxRXkIan8Gm7
+         qKQaWUUEKVHoB4yExEK0oaUtjaADXbXzd8/Zi09D7QKhMK7AH/jD1Xd7IHZIbE4q+BJD
+         gdJ5rEr2aWUo2X8ZqdxPI3x/aa2rMIlc6rMAzue8BTioM50b9GOJvn0eWPJ9UDPd9Sst
+         vQvNIETtnqYg5hFJbYYoiMt5zTeK/w8HCM4fquYTGEeCxhZ8Oms9QnikMJ0E0t7Um2zd
+         KYIw==
+X-Gm-Message-State: AOAM533Y/Zvg7TDxZ5g+4b4i5P9EMZmlwmNYNEzpS1qj2BfzQeBPKA4t
+        mO86bOxujK0fcP2e9FJ9QDQ=
+X-Google-Smtp-Source: ABdhPJxethIiuSI1qCrZQ6TA9ztjetBmGxopKxj472K4YJTzyU/XWwazgVSouKWllNkGtUaXHs/rhw==
+X-Received: by 2002:a17:90b:1bc8:b0:1c7:443:3ffb with SMTP id oa8-20020a17090b1bc800b001c704433ffbmr14506409pjb.84.1650309619074;
+        Mon, 18 Apr 2022 12:20:19 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id bt21-20020a056a00439500b0050a4dfb7c44sm9724180pfb.155.2022.04.18.12.20.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Apr 2022 12:14:31 -0700 (PDT)
-Date:   Mon, 18 Apr 2022 23:12:31 +0400
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH RESEND v2 1/9] dt-bindings: clk: qcom: msm8996-apcc: Add
- CBF
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        Mon, 18 Apr 2022 12:20:18 -0700 (PDT)
+Date:   Tue, 19 Apr 2022 00:50:12 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Rob Herring <robh@kernel.org>
-Message-Id: <VOUJAR.IJKRF5T1P4ZE@gmail.com>
-In-Reply-To: <813f4a3d-255b-0ec1-cc3e-a1280e4d74ae@linaro.org>
-References: <20220416025637.83484-1-y.oudjana@protonmail.com>
-        <20220416025637.83484-2-y.oudjana@protonmail.com>
-        <813f4a3d-255b-0ec1-cc3e-a1280e4d74ae@linaro.org>
-X-Mailer: geary/40.0
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA
+ binding to json format
+Message-ID: <20220418192012.GA6868@9a2d8922b8f1>
+References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+ <20220410175056.79330-7-singh.kuldeep87k@gmail.com>
+ <CAH=2Ntx1D8C6xu+RysO0o5OkG5kPMMJ-Xr+B-udLtizY+4HiaQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAH=2Ntx1D8C6xu+RysO0o5OkG5kPMMJ-Xr+B-udLtizY+4HiaQ@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -87,61 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Apr 18, 2022 at 10:57:55AM +0530, Bhupesh Sharma wrote:
+> Please see <https://lore.kernel.org/lkml/20220211214941.f55q5yksittut3ep@amazon.com/T/#m6700c2695ee78e79060ac338d208ffd08ac39592>,
+> I already have an effort ongoing for converting qcom bam DMA bindings
+> to YAML format.
 
-On Mon, Apr 18 2022 at 18:04:08 +0200, Krzysztof Kozlowski 
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 16/04/2022 04:56, Yassine Oudjana wrote:
->>  Add CBF clock and reg.
->> 
->>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>  Acked-by: Rob Herring <robh@kernel.org>
->>  ---
->>   .../devicetree/bindings/clock/qcom,msm8996-apcc.yaml   | 10 
->> ++++++----
->>   1 file changed, 6 insertions(+), 4 deletions(-)
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml 
->> b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
->>  index a20cb10636dd..325f8aef53b2 100644
->>  --- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
->>  +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
->>  @@ -10,8 +10,8 @@ maintainers:
->>     - Loic Poulain <loic.poulain@linaro.org>
->> 
->>   description: |
->>  -  Qualcomm CPU clock controller for MSM8996 CPUs, clock 0 is for 
->> Power cluster
->>  -  and clock 1 is for Perf cluster.
->>  +  Qualcomm CPU clock controller for MSM8996 CPUs, clock 0 is for 
->> Power cluster,
->>  +  clock 1 is for Perf cluster, and clock 2 is for Coherent bus 
->> fabric (CBF).
->> 
->>   properties:
->>     compatible:
->>  @@ -19,7 +19,9 @@ properties:
->>         - qcom,msm8996-apcc
->> 
->>     reg:
->>  -    maxItems: 1
->>  +    items:
->>  +      - description: Cluster clock registers
->>  +      - description: CBF clock registers
-> 
-> This breaks the ABI (which might be okay or might be not, but was not
-> mentioned in the commit) and breaks existing DTSes. Please fix them
-> before this patch.
+Ohh ok, I wasn't aware you had similar series.
+I just noticed your latest v5 version was rolled out ~5 months back,
+usually this is a very long time considering the duration. Wondering
+reason behind this..
 
-This is only documenting changes made in an earlier patch[1] this
-series depends on, and the DTSes are fixed in another patch[2] that
-is also listed as a dependency in the cover letter (both patches
-aren't applied yet). Shouldn't the ABI changes should be mentioned in
-those patches instead?
+My updated series(v3 version[1]) is kind of complete and mostly reviewed
+by Krzysztof and takes care of armv7/8 based platforms. With no offence,
+I believe we should go with the current one as your series includes
+changes more than BAM and will take long time to merge. Anyway, I'll be
+fine with choice of the maintainers.
 
-[1] 
-https://lore.kernel.org/linux-arm-msm/20210528192541.1120703-1-konrad.dybcio@somainline.org/
-[2] 
-https://lore.kernel.org/linux-arm-msm/20210528192541.1120703-2-konrad.dybcio@somainline.org/
-
-
+Regards
+Kuldeep
+[1] https://lore.kernel.org/linux-devicetree/20220417210436.6203-1-singh.kuldeep87k@gmail.com/T/#m2e1df4a579d0f40e07638e117df342b886289bb0
