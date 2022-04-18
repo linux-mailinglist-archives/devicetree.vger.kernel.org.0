@@ -2,70 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EABF505B19
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BADF505B21
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:33:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239666AbiDRPeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 11:34:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42086 "EHLO
+        id S243846AbiDRPf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 11:35:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242780AbiDRPe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:34:28 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A77143FD87;
-        Mon, 18 Apr 2022 07:49:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650293374; x=1681829374;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=O8jCNttKfcTOfPhW6/iydPjwJI9EDwBsW/ipQu39Hh0=;
-  b=B3Ao3sc6+PxBjMfoK3jUdgpb7fM2h+csTYk87o/RJVwdsKk7xgdCf5cf
-   hGB/eewh7RjIh2MtIihtzkuwcKgUsKSJ9sKfdb0KQhGooTJ7732vkeUoi
-   nURGQFWPguFNJ6shpWU1Xb0G7HacLX3aglOKHQGsQ+D/tJY9mLOEDtrbl
-   vYXfYxGSkKYBT8FQUSzUbMaZAdmJVsRXZQiy/zR5nfm2IfgRCZDyxZrVc
-   IToP47/RfdqEvF5gZrdDbLg9xghCCYSOtRtJW4mnezaBkCgOWSmF0yRhT
-   KxkvdWtf3nvT3ghSp5+M5pXc4LV2U+YkjLpMRvPfn+TpizDthyefWAU6U
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10321"; a="245421912"
-X-IronPort-AV: E=Sophos;i="5.90,270,1643702400"; 
-   d="scan'208";a="245421912"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2022 07:49:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,270,1643702400"; 
-   d="scan'208";a="726666030"
-Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 18 Apr 2022 07:49:31 -0700
-Received: from kbuild by 3abc53900bec with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1ngSh0-0004iB-J8;
-        Mon, 18 Apr 2022 14:49:30 +0000
-Date:   Mon, 18 Apr 2022 22:49:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S1345245AbiDRPfM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:35:12 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB59101E5
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 07:51:25 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id CB04883868;
+        Mon, 18 Apr 2022 16:51:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650293483;
+        bh=G+o0RqVFvwCiOOOZ40z294e9IGfoIibVB7CZ/vAAsnQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HPoD2EZaBNxZhvHpJ//UoI8areAfrHBOHxyoDRP5bwBi87OVoAGz49NoI1DpWH5f4
+         bJuo0w81ZHaJJC7QuPbOHvrSEypKuDkHcZopXxI2p7C2T/L/AyvV5cr/dfVBASJyDe
+         vt5HnfkcdE18Bzy6SQs3dGqHXhl2cqYZS7Yn8WkZH02iDdZYYoISrtLLd3y4LX4lWA
+         9gmnVnp0w8bikvNc76IsCTmgt38MGlDHdZB+IkdSq97SCMz3KtHMpJgwi81N9nmh8U
+         LchuQkLEYvO6eBMU6mig7usFe3HuYClgOM25yi/ofxPEuchoTrRYC4HrMf/PY3HE5c
+         itAFseV8yUQTA==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] drivers: mmc: sdhci_am654: Add the quirk to set
- TESTCD bit
-Message-ID: <202204182202.yPPV6YZI-lkp@intel.com>
-References: <20220418102040.4993-3-a-govindraju@ti.com>
+        Robby Cai <robby.cai@nxp.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Implement simple NXP i.MX8M LDB bridge
+Date:   Mon, 18 Apr 2022 16:51:04 +0200
+Message-Id: <20220418145105.76986-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220418102040.4993-3-a-govindraju@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,106 +60,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aswath,
+The i.MX8MP contains two syscon registers which are responsible
+for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
+which represents this serializer as a bridge.
 
-I love your patch! Perhaps something to improve:
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robby Cai <robby.cai@nxp.com>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: - Consistently use fsl,imx8mp-ldb as compatible
+    - Drop items: from compatible:
+    - Replace minItems with maxItems in clocks:
+    - Drop quotes from clock-names const: ldb
+    - Rename syscon to fsl,syscon
+    - Use generic name of ldb-lvds in example
+---
+ .../bindings/display/bridge/nxp,ldb.yaml      | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master ulf-hansson-mmc-mirror/next v5.18-rc3 next-20220414]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Aswath-Govindraju/MMC-Add-quirk-to-set-the-TESTCD-bit/20220418-182325
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: riscv-randconfig-r016-20220418 (https://download.01.org/0day-ci/archive/20220418/202204182202.yPPV6YZI-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 429cbac0390654f90bba18a41799464adf31a5ec)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/a7d917691f55e240b1ab0abf36b0b39d1194a323
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Aswath-Govindraju/MMC-Add-quirk-to-set-the-TESTCD-bit/20220418-182325
-        git checkout a7d917691f55e240b1ab0abf36b0b39d1194a323
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/mmc/host/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/mmc/host/sdhci_am654.c:9:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/riscv/include/asm/io.h:136:
-   include/asm-generic/io.h:464:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:477:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from drivers/mmc/host/sdhci_am654.c:9:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/riscv/include/asm/io.h:136:
-   include/asm-generic/io.h:490:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from drivers/mmc/host/sdhci_am654.c:9:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/riscv/include/asm/io.h:136:
-   include/asm-generic/io.h:501:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:511:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:521:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:1024:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
-                                                     ~~~~~~~~~~ ^
->> drivers/mmc/host/sdhci_am654.c:375:6: warning: no previous prototype for function 'sdhci_am654_reset' [-Wmissing-prototypes]
-   void sdhci_am654_reset(struct sdhci_host *host, u8 mask)
-        ^
-   drivers/mmc/host/sdhci_am654.c:375:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void sdhci_am654_reset(struct sdhci_host *host, u8 mask)
-   ^
-   static 
-   8 warnings generated.
-
-
-vim +/sdhci_am654_reset +375 drivers/mmc/host/sdhci_am654.c
-
-   374	
- > 375	void sdhci_am654_reset(struct sdhci_host *host, u8 mask)
-   376	{
-   377		u8 ctrl;
-   378		struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-   379		struct sdhci_am654_data *sdhci_am654 = sdhci_pltfm_priv(pltfm_host);
-   380	
-   381		sdhci_reset(host, mask);
-   382	
-   383		if (sdhci_am654->quirks & SDHCI_AM654_QUIRK_FORCE_CDTEST) {
-   384			ctrl = sdhci_readb(host, SDHCI_HOST_CONTROL);
-   385			ctrl |= SDHCI_CTRL_CDTEST_INS | SDHCI_CTRL_CDTEST_EN;
-   386			sdhci_writeb(host, ctrl, SDHCI_HOST_CONTROL);
-   387		}
-   388	}
-   389	
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
+new file mode 100644
+index 0000000000000..f3182566eb316
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/nxp,ldb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX8M DPI to LVDS bridge chip
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++description: |
++  The i.MX8MP contains two syscon registers which are responsible
++  for configuring the on-SoC DPI-to-LVDS serializer. This describes
++  those registers as bridge within the DT.
++
++properties:
++  compatible:
++    const: fsl,imx8mp-ldb
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: ldb
++
++  fsl,syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A phandle to media block controller.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for DPI input.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for LVDS Channel-A output (panel or bridge).
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for LVDS Channel-B output (panel or bridge).
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - clocks
++  - fsl,syscon
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx8mp-clock.h>
++
++    bridge {
++        compatible = "fsl,imx8mp-ldb";
++        clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
++        clock-names = "ldb";
++        fsl,syscon = <&media_blk_ctrl>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++
++                ldb_from_lcdif2: endpoint {
++                    remote-endpoint = <&lcdif2_to_ldb>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++
++                ldb_lvds_ch0: endpoint {
++                    remote-endpoint = <&ldb_to_lvdsx4panel>;
++                };
++            };
++
++            port@2 {
++                reg = <2>;
++
++                ldb_lvds_ch1: endpoint {
++                };
++            };
++        };
++    };
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.1
+
