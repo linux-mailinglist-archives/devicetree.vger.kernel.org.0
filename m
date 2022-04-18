@@ -2,256 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E968505C73
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 18:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64E8E505C7B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 18:33:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346164AbiDRQbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 12:31:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59124 "EHLO
+        id S245004AbiDRQfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 12:35:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346204AbiDRQbW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:31:22 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58E830546
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 09:28:42 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id u18so18034974eda.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 09:28:42 -0700 (PDT)
+        with ESMTP id S234709AbiDRQfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:35:41 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D94DF5F50;
+        Mon, 18 Apr 2022 09:33:01 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id g18so27753272ejc.10;
+        Mon, 18 Apr 2022 09:33:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4yPTlVlLrAtb5ubCvcP4U4+7QXnkxKWR0UVrepyNJpM=;
-        b=QaHk3OpnRI+GMML9KqP/qt5NXCI4C+qJpASzvokxyJkaSQB1Al9OeLTsIejsgFrWgp
-         O1Ye6fS2NfQX8qyIHsGcwty5uChlluEc1OI5+U229C+1ifF3clKgDPQPcP0YW4u1vBpp
-         98Mx1Jq/HE9TRU47fLp+Dz7kbDYFpiLRs9quNdDsGYXhNWCmqjQpToYxdSUKAxcQg9lv
-         kceamZ3h3W/JFjM3cwDX9EG+X6ZIDQqNGMa5HJg5s79PnOIt3sVG4kjF6qxnG7XREPPT
-         0UFFi1aHTgcZ4jOjQgbazElStMOb2tiupGQXWANM3yuhyl2e+zteeidKzFreNozeGbAb
-         Okkw==
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=s6NnvxV5qL9NnGjNNDDtELj+QJhJNh9Ym27WGbOtR8U=;
+        b=Q9WVjDvc4iq5YNDF9pKm+fycSlar1F1EPKpzbiYdwmDBp7qFkzQX/h30+dzyQE5EOf
+         pgtSROIN4Ug90VBYzTA54EhL1lB1pB7rCYiibxhA8HyzmulCH4VSXBk2iomAk3gc5I8B
+         m5tGz2z/wpAnC6GeLN/+EMID9AYgeqggdwXQGByPacTJFDW3KwM0+XW4Z7rgcZaVOK0Z
+         Z7qWXJGDT3ilHpmB02naFOrHtgUMG9A2bKYNc1wu9wca23pUm4naNjCnyOfJCZmDa2F+
+         85aT7HCcQfFr8roAn+B5sRL75fkg5v/cm1TNQAFVaRtaUAFBz8kriOeGuqHq2pSOCY5e
+         FS+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4yPTlVlLrAtb5ubCvcP4U4+7QXnkxKWR0UVrepyNJpM=;
-        b=pr6TuNxM3EdCcdWK8kVfRMIwW2onBN/SQT43BMml4qJAoUcZDVtbPhsB6A3V8HhF12
-         07YodEuLvKkZNVkTBjC1rt6BQdNIqgl1/d/YmgURcQwcR/HLwDHB1DYMrP33Qxeq48xv
-         bJMgcC5lsgMZ4TO339LSwfCs3XK2pl3n4Tx5AdVHMd9RLELo9q3sRDcOeSFoE7UjAqeG
-         yPPGn4unACnilD0V5NyIDAdRWsoV00sBxyzc1Ycq4PhICSx586f843ZVa+ZUdoe2OoLz
-         DcjIvAyG9ELc3juOE9qOUAQWtvqCLFa0G5G6/7d2L7/FImZN6gDmprmNEoTMFg8zWdkC
-         fYFg==
-X-Gm-Message-State: AOAM531MqPfJQrExstx1PUH4R9M9ASRJdw60RL0cIENRpimwt7WnFsWW
-        Q/SXmbi2iqhZGHCI7D5VqJzFfg==
-X-Google-Smtp-Source: ABdhPJzbY/tvva7InOdIOBWrWDxopvksQkCJD5VW1MEQSl2Qv+XCV2wAAU00+IBN4QYrLSm0YG2DQA==
-X-Received: by 2002:a05:6402:51d2:b0:419:7d2e:9d0 with SMTP id r18-20020a05640251d200b004197d2e09d0mr13150983edd.82.1650299321410;
-        Mon, 18 Apr 2022 09:28:41 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fd22-20020a1709072a1600b006ef95031de4sm1859969ejc.77.2022.04.18.09.28.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 09:28:40 -0700 (PDT)
-Message-ID: <714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org>
-Date:   Mon, 18 Apr 2022 18:28:39 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=s6NnvxV5qL9NnGjNNDDtELj+QJhJNh9Ym27WGbOtR8U=;
+        b=0kShC5DbTLO87iuWdUFKA4Oc428PMHaL+AYe3mKcaLMSUbJxaECbIiiqhMpGiCKAZs
+         nmTrLJtUcSeP6XKoim9QhRLA0WwB5UljkLIfCZp+RhUNlkCOaav0SX/wQGh4huC6deM2
+         AFMQNJI3u+hqn8tSmRJa6iPdrfs2av8FNYYJEyyi60ruNS0bwvReMFbGF3MTQ47RY6T3
+         plt8sDkdo4x21THqvWNAt7ygYyWisXWtFnuDxyI73W5cJlW4ObZ08JftYU1sSci7nb9j
+         YRFhRWzkyFL+anYYW86ABS9JV93cPxWeFfLBjr4+a7JYO1a77d4O6A5aruFVFGbRF9eE
+         cMmQ==
+X-Gm-Message-State: AOAM5321wsvMfYXrAjL9cRkQp3h0XQUWPNJeeXopDNiJNgx1G7bJMcIH
+        QC4zQH+JUTOYYzQ7nc2innkcIxusXbJXDyq75po=
+X-Google-Smtp-Source: ABdhPJzb62oRc+jDzjG130f9eLGOoW7V3FDFdb4f5pL/6iy13FqhFLtC3njnctFBpDljJp57BLrHvZPhmKucqvdz1Gs=
+X-Received: by 2002:a17:906:6a15:b0:6e8:aa5a:f386 with SMTP id
+ qw21-20020a1709066a1500b006e8aa5af386mr10374632ejc.649.1650299580303; Mon, 18
+ Apr 2022 09:33:00 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V3 1/3] dt-bindings: clk: sprd: Add bindings for ums512
- clock controller
-Content-Language: en-US
-To:     Cixi Geng <gengcixi@gmail.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
-        baolin.wang7@gmail.com, zhang.lyra@gmail.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220418125630.2342538-1-gengcixi@gmail.com>
- <20220418125630.2342538-2-gengcixi@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220418125630.2342538-2-gengcixi@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220407154338.4190674-1-p.zabel@pengutronix.de>
+In-Reply-To: <20220407154338.4190674-1-p.zabel@pengutronix.de>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 18 Apr 2022 18:32:49 +0200
+Message-ID: <CAFBinCDHjxGKAQqZSaDGOXdMBeS+iut0RuCgkmezL0BJ3x3u1A@mail.gmail.com>
+Subject: Re: [PATCH 01/14] dt-bindings: reset: amlogic,meson-axg-audio-arb:
+ Convert to yaml
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2022 14:56, Cixi Geng wrote:
-> From: Cixi Geng <cixi.geng1@unisoc.com>
-> 
-> Add a new bindings to describe ums512 clock compatible string.
-> 
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> ---
->  .../bindings/clock/sprd,ums512-clk.yaml       | 112 ++++++++++++++++++
->  1 file changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> new file mode 100644
-> index 000000000000..89824d7c6be4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> @@ -0,0 +1,112 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2022 Unisoc Inc.
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: UMS512 Clock Control Unit Device Tree Bindings
-
-Remove "Device Tree Bindings". You could do the same also in the
-subject, because you repeat the prefix ("dt-bindings: clk: sprd: Add
-ums512 clock controller").
-
-> +
-> +maintainers:
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> +
-> +properties:
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  compatible:
-
-Put the compatible first, by convention and makes finding matching
-bindings easier.
-
-> +    oneOf:
-> +      - items:
-> +          - const: sprd,ums512-glbregs
-> +          - const: syscon
-> +          - const: simple-mfd
-
-Why do you need simple-mfd for these? This looks like a regular syscon,
-so usually does not come with children. What is more, why this "usual
-syscon" is a separate clock controller in these bindings?
-
-> +      - items:
-> +          - enum:
-> +              - sprd,ums512-apahb-gate
-> +              - sprd,ums512-ap-clk
-> +              - sprd,ums512-aonapb-clk
-> +              - sprd,ums512-pmu-gate
-> +              - sprd,ums512-g0-pll
-> +              - sprd,ums512-g2-pll
-> +              - sprd,ums512-g3-pll
-> +              - sprd,ums512-gc-pll
-> +              - sprd,ums512-aon-gate
-> +              - sprd,ums512-audcpapb-gate
-> +              - sprd,ums512-audcpahb-gate
-> +              - sprd,ums512-gpu-clk
-> +              - sprd,ums512-mm-clk
-> +              - sprd,ums512-mm-gate-clk
-> +              - sprd,ums512-apapb-gate
-> +
-> +  clocks:
-> +    minItems: 1
-
-maxItems needed
-
-> +    description: |
-> +      The input parent clock(s) phandle for this clock, only list fixed
-> +      clocks which are declared in devicetree.
-
-The description does not make sense. These are bindings for a clock
-controller, but you say here "for this clock", so what does "this" mean
-here?
-
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: ext-26m
-> +      - const: ext-32k
-> +      - const: ext-4m
-> +      - const: rco-100m
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-
-Isn't reg also required? Always? Do you have examples where it is not
-required? How do you configure the clocks without "reg"? I see you
-copied a lot from sprd,sc9863a-clk.yaml but that file does not look correct.
-
-You have nodes with reg but without unit address ("rpll"). These nodes
-are modeled as children but they are not children - it's a workaround
-for exposing syscon, isn't it? The sc9863a looks like broken design, so
-please do not duplicate it here.
-
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      enum:
-> +        - sprd,ums512-ap-clk
-> +        - sprd,ums512-aonapb-clk
-> +        - sprd,ums512-mm-clk
-> +then:
-> +  required:
-> +    - reg
-> +
-> +else:
-> +  description: |
-> +    Other UMS512 clock nodes should be the child of a syscon node in
-> +    which compatible string should be:
-> +            "sprd,ums512-glbregs", "syscon", "simple-mfd"
-> +
-> +    The 'reg' property for the clock node is also required if there is a sub
-> +    range of registers for the clocks.
-> +
-> +additionalProperties: true
-
-false
-
-> +
-> +examples:
-> +  - |
-> +    ap_clk: clock-controller@20200000 {
-> +      compatible = "sprd,ums512-ap-clk";
-> +      reg = <0x20200000 0x1000>;
-> +      clocks = <&ext_26m>;
-> +      clock-names = "ext-26m";
-> +      #clock-cells = <1>;
-> +    };
-> +
-> +  - |
-> +    ap_apb_regs: syscon@71000000 {
-> +      compatible = "sprd,ums512-glbregs", "syscon", "simple-mfd";
-
-So here is the answer why you added MFD, but I still don't get why do
-you need it for one child? It is quite a dance here and in your drivers,
-instead of adding "syscon" to your clock controller.
-
-This also pollutes the actual bindings because you did not add
-properties required for clock controllers, because of describing here
-the syscon part.
-
-> +      reg = <0x71000000 0x3000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      #clock-cells = <1>;
-> +      ranges = <0 0x71000000 0x3000>;
-> +
-> +      apahb_gate: clock-controller@0 {
-> +        compatible = "sprd,ums512-apahb-gate";
-> +        reg = <0x0 0x2000>;
-> +        #clock-cells = <1>;
-> +      };
-> +    };
-> +
-> +...
-
-
-Best regards,
-Krzysztof
+On Thu, Apr 7, 2022 at 5:44 PM Philipp Zabel <p.zabel@pengutronix.de> wrote:
+>
+> Convert the device tree bindings for the Amlogic audio memory arbiter
+> controller to YAML schema to allow participating in DT validation.
+>
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
