@@ -2,69 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A2A506009
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 00:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3492506011
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 01:05:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233977AbiDRXAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 19:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52760 "EHLO
+        id S234245AbiDRXIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 19:08:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233895AbiDRXAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 19:00:31 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7AEF82D1E1
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 15:57:50 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4463F1042;
-        Mon, 18 Apr 2022 15:57:50 -0700 (PDT)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 8E93F3F5A1;
-        Mon, 18 Apr 2022 15:57:49 -0700 (PDT)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     will@kernel.org
-Cc:     mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/4] dt-bindings: perf: arm-cmn: Add CMN-650 and CMN-700
-Date:   Mon, 18 Apr 2022 23:57:38 +0100
-Message-Id: <9b4dc0c82c91adff62b6f92eec5f61fb25b9db87.1650320598.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.35.3.dirty
-In-Reply-To: <cover.1650320598.git.robin.murphy@arm.com>
-References: <cover.1650320598.git.robin.murphy@arm.com>
+        with ESMTP id S231876AbiDRXIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 19:08:19 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464511DA59;
+        Mon, 18 Apr 2022 16:05:39 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id j70so746000pgd.4;
+        Mon, 18 Apr 2022 16:05:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bnXZNKJ0lqG/REF5S1zs8nwjxJedTJNHRhYxnhtELJ0=;
+        b=RvOPM/4dacw0btYIObMPJauAhZWHVxOndKn7yaIaylfyYpRr739cK3q4VSLvxz9ZVl
+         c8bXKxR8WnP28Qs4vj/vx80uyPsWpYeSi3Emnbl2VZzNLTmLKhEP0RCvsVBprEeJCztV
+         ihA9L/eBtJ/AG03h4BZGPY+Vt/TJ8koDoe6V38S4wxUexjLDbMRrXK5xvft6AjiNB/ZF
+         sWK6T5oQoxL3xG1Mh/wWaKFuXaE5sznkRb72612oA7kNNuiVnvUQJOsB2au5m62EBj0N
+         IKPOA6UtYUrPxpczFUDr8oYpRXxjd5aWHSypDY9gPoot9hq8nuSzEV6mwfg2CFew4RT4
+         pnwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bnXZNKJ0lqG/REF5S1zs8nwjxJedTJNHRhYxnhtELJ0=;
+        b=8N/cv5XGpTa/AKWXNuzTUKjc01enW0Vu7tkdDOke32sh69BcA2CipoTb+pB1cVQf+h
+         XY7sUohx1JKlzfai5cfgB+9l3ILAHBzD8GmP42kUuFzHbSyInWn5Pk0l7KQ4bmQfxy2H
+         CvqPYe7GM/ufdLyhkIdhxj31XZXIufZqCJbImV/kem2VEr9GydVMeJDMDLmnnWnDcxqj
+         V16G9YWSO2IdTQs+G/a5oE3UrjyzbWr3zXdvt406vtmx4J9Xtnt9RwOSna8fRhYBiGiS
+         5B/KdbIldsccAFIL4PKIb6q8Wt6kc6enyZ4pOnxext0nKoU/R9vczzmz3G1lRcru0RSW
+         0ddQ==
+X-Gm-Message-State: AOAM531zl8RgdiS0Q9uhUJmZqSoQ5s0zDZa8dvMs7wAdcsYzwGMPBtN/
+        p0F9bZJgzTtEYpLKrywjNIitSK5Unt9RqdoBK68=
+X-Google-Smtp-Source: ABdhPJxPu99TBd/RNqb2gVnSmQXxG8P+pPy4L1EWmA1gW2tHOYNAfNK3m8q8Yl/YSfOx5b1Gemd/arFUiwWhjdkpvtw=
+X-Received: by 2002:a63:7c42:0:b0:39c:c333:b3d4 with SMTP id
+ l2-20020a637c42000000b0039cc333b3d4mr12045371pgn.456.1650323138736; Mon, 18
+ Apr 2022 16:05:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220416062504.19005-1-luizluca@gmail.com> <CACRpkdaZUiYcw2FekoZLvn7LbVUD-_sJkHu-FLcEpJAueVCN9w@mail.gmail.com>
+In-Reply-To: <CACRpkdaZUiYcw2FekoZLvn7LbVUD-_sJkHu-FLcEpJAueVCN9w@mail.gmail.com>
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Mon, 18 Apr 2022 20:05:27 -0300
+Message-ID: <CAJq09z5PoaOUW22k_8Raw07-jyC45ZpgiojgL1WP59oDQC3REQ@mail.gmail.com>
+Subject: Re: [PATCH net 1/2] dt-bindings: net: dsa: realtek: cleanup
+ compatible strings
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If you were to guess from the product names that CMN-650 and CMN-700 are
-the next two evolutionary steps of Arm's enterprise-level interconnect
-following on from CMN-600, you'd be pleasantly correct. Add them to the
-DT binding.
+> On Sat, Apr 16, 2022 at 8:25 AM Luiz Angelo Daros de Luca
+> <luizluca@gmail.com> wrote:
+>
+> > Compatible strings are used to help the driver find the chip ID/version
+> > register for each chip family. After that, the driver can setup the
+> > switch accordingly. Keep only the first supported model for each family
+> > as a compatible string and reference other chip models in the
+> > description.
+> >
+> > CC: devicetree@vger.kernel.org
+> > Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
+> > Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+>
+> OK, I suppose we know that Realtek has always maintained the
+> ID numbers in the hardware? Otherwise we will end up where
+> bindings/arm/primecell.yaml is: hardware ID numbers that were
+> supposed to be updated but weren't, so now both DT and the
+> kernel has to go through all kinds of loops and hoops to make it
+> work by encoding the number that should have been in the
+> hardware is instead in the device tree...
 
-CC: devicetree@vger.kernel.org
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- Documentation/devicetree/bindings/perf/arm,cmn.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Thanks, Linus. The rtl8367c driver seems to depend on information
+retrieved from registers, mainly chip id/ver. If they forget to update
+a chip id/version, it might be the case that it does not really matter
+from the driver's point of view.
+Anyway, if deemed to be necessary, adding a compatible string is much
+easier than removing one after a kernel is released.
 
-diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-index 2d4219ec7eda..2e51072e794a 100644
---- a/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-+++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-@@ -14,6 +14,8 @@ properties:
-   compatible:
-     enum:
-       - arm,cmn-600
-+      - arm,cmn-650
-+      - arm,cmn-700
-       - arm,ci-700
- 
-   reg:
--- 
-2.35.3.dirty
+Regards,
 
+Luiz
