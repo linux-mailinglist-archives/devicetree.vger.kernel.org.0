@@ -2,102 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92AAB504A93
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 03:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1318A504AB0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 03:46:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235631AbiDRBnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Apr 2022 21:43:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52292 "EHLO
+        id S235699AbiDRBsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Apr 2022 21:48:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233405AbiDRBnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 21:43:04 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 971B818354;
-        Sun, 17 Apr 2022 18:40:27 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 23I1QhuP071544;
-        Mon, 18 Apr 2022 09:26:43 +0800 (GMT-8)
-        (envelope-from dylan_hung@aspeedtech.com)
-Received: from DylanHung-PC.aspeed.com (192.168.2.216) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 18 Apr
- 2022 09:38:41 +0800
-From:   Dylan Hung <dylan_hung@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <p.zabel@pengutronix.de>, <devicetree@vger.kernel.org>,
+        with ESMTP id S235698AbiDRBsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 21:48:00 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321A710FC8;
+        Sun, 17 Apr 2022 18:45:21 -0700 (PDT)
+X-UUID: 2f8e0fc2f68c4275b598f47fb438682a-20220418
+X-UUID: 2f8e0fc2f68c4275b598f47fb438682a-20220418
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 189061640; Mon, 18 Apr 2022 09:45:11 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 18 Apr 2022 09:45:10 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 18 Apr
+ 2022 09:45:09 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 18 Apr 2022 09:45:09 +0800
+Message-ID: <fb61128ab1534982ed9f8c8d7a141afad04d8fbb.camel@mediatek.com>
+Subject: Re: [PATCH V3 11/15] cpufreq: mediatek: Link CCI device to CPU
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
+        <hsinyi@google.com>, <khilman@baylibre.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <krzk+dt@kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH net-next RESEND v5 3/3] ARM: dts: aspeed: add reset properties into MDIO nodes
-Date:   Mon, 18 Apr 2022 09:40:59 +0800
-Message-ID: <20220418014059.3054-4-dylan_hung@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220418014059.3054-1-dylan_hung@aspeedtech.com>
-References: <20220418014059.3054-1-dylan_hung@aspeedtech.com>
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 18 Apr 2022 09:45:09 +0800
+In-Reply-To: <9fccbb92-1832-bf5d-7804-80dd481663fc@collabora.com>
+References: <20220415055916.28350-1-rex-bc.chen@mediatek.com>
+         <20220415055916.28350-12-rex-bc.chen@mediatek.com>
+         <9fccbb92-1832-bf5d-7804-80dd481663fc@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.216]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 23I1QhuP071544
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reset control properties into MDIO nodes.  The 4 MDIO controllers in
-AST2600 SOC share one reset control bit SCU50[3].
+On Fri, 2022-04-15 at 14:24 +0200, AngeloGioacchino Del Regno wrote:
+> Il 15/04/22 07:59, Rex-BC Chen ha scritto:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > In some MediaTek SoCs, like MT8183, CPU and CCI share the same
+> > power
+> > supplies. Cpufreq needs to check if CCI devfreq exists and wait
+> > until
+> > CCI devfreq ready before scaling frequency.
+> > 
+> > Before CCI devfreq is ready, we record the voltage when booting to
+> > kernel and use the max(cpu target voltage, booting voltage) to
+> > prevent cpufreq adjust to the lower voltage which will cause the
+> > CCI
+> > crash because of high frequency and low voltage.
+> > 
+> > - Add is_ccifreq_ready() to link CCI device to CPI, and CPU will
+> > start
+> >    DVFS when CCI is ready.
+> > - Add platform data for MT8183.
+> > 
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> 
+> I am enthusiast to see that the solution that I've proposed was
+> welcome!
+> 
+> I only have one nit on this patch, check below:
+> 
 
-Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Hello Angelo,
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index c32e87fad4dc..ab20ea8d829d 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -181,6 +181,7 @@ mdio0: mdio@1e650000 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio1_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio1: mdio@1e650008 {
-@@ -191,6 +192,7 @@ mdio1: mdio@1e650008 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio2_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio2: mdio@1e650010 {
-@@ -201,6 +203,7 @@ mdio2: mdio@1e650010 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio3_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio3: mdio@1e650018 {
-@@ -211,6 +214,7 @@ mdio3: mdio@1e650018 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio4_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mac0: ftgmac@1e660000 {
--- 
-2.25.1
+Thanks for your advice for this modification.
+I also reply to Kevin and describe this solution.
+Let's wait for Kevin's feedback and other suggestion.
+
+> > ---
+> >   drivers/cpufreq/mediatek-cpufreq.c | 80
+> > +++++++++++++++++++++++++++++-
+> >   1 file changed, 79 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index d4c00237e862..dd3f739fede1 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> 
+> ..snip..
+> 
+> > @@ -225,6 +251,14 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >   	vproc = dev_pm_opp_get_voltage(opp);
+> >   	dev_pm_opp_put(opp);
+> >   
+> > +	/*
+> > +	 * If MediaTek cci is supported but is not ready, we will use
+> > the value
+> > +	 * of max(target cpu voltage, booting voltage) to prevent high
+> > freqeuncy
+> > +	 * low voltage crash.
+> > +	 */
+> > +	if (info->soc_data->ccifreq_supported &&
+> > !is_ccifreq_ready(info))
+> > +		vproc = max(vproc, info->vproc_on_boot);
+> > +
+> >   	/*
+> >   	 * If the new voltage or the intermediate voltage is higher
+> > than the
+> >   	 * current voltage, scale up voltage first.
+> 
+> ..snip..
+> 
+> > @@ -423,6 +484,13 @@ static int mtk_cpu_dvfs_info_init(struct
+> > mtk_cpu_dvfs_info *info, int cpu)
+> >   	if (ret)
+> >   		goto out_disable_mux_clock;
+> >   
+> > +	info->vproc_on_boot = regulator_get_voltage(info->proc_reg);
+> 
+> This result is used only if we use ccifreq, so this should be
+> enclosed in an if
+> condition: this will spare us some (yes, small) time on devices that
+> don't use it.
+> 
+> 	if (info->soc_data->ccifreq_supported) {
+> 		info->vproc_on_boot = regulator_get_voltage(info-
+> >proc_reg);
+> 		if (info->vproc_on_boot < 0) {
+> 			dev_err(....
+> 			goto ..
+> 		}
+> 	}
+> 
+> P.S.: While at it, since the maximum width is 100 columns, the
+> dev_err() call fits,
+> so don't break that line!
+> 
+> After the requested change:
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+
+I will add this in next version if there is no any suggestion for this
+patch.
+
+Thanks!
+
+BRs,
+Rex
 
