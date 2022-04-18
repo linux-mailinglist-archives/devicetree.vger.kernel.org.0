@@ -2,55 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CADAD504D52
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 09:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B6F504D69
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 10:01:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232374AbiDRIAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 04:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60022 "EHLO
+        id S236615AbiDRIEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 04:04:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiDRIAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 04:00:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D291903C;
-        Mon, 18 Apr 2022 00:57:27 -0700 (PDT)
+        with ESMTP id S233589AbiDRIEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 04:04:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C93CABCB4;
+        Mon, 18 Apr 2022 01:01:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6142AB80E16;
-        Mon, 18 Apr 2022 07:57:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7003CC385A7;
-        Mon, 18 Apr 2022 07:57:23 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C2CCC61046;
+        Mon, 18 Apr 2022 08:01:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65842C385A1;
+        Mon, 18 Apr 2022 08:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650268645;
-        bh=b7GQE/+OBPXkgoj6+iT3PLf9vEfeClGLdfkCcGiZhFc=;
+        s=k20201202; t=1650268910;
+        bh=IyzSVLfdcBbKl8zIAujJzT6QnmAgtPWoVsrvljUu2cY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OgBrZg2Tj6hOmuGMl0sm2HzDN9mW5SMfRZF6b6u1GLZcxxBRf6eyMv9OuD0RN7IZc
-         W3/RJT5toyhj99acG4+LD5KvcWbfbCksK2SQn0Uyuy2tkifcXey1JE4y9XzWXoRH5C
-         vyNjqiHKHogqsmK03XFlCVDzDEXnrNQPy36M/CptBG5e5Mbd6bqxcJz+4zm82Qif9G
-         LFbT8gz2MFDy08ZlU9yIVO2HVHxj9iPF2ux5+yS5fGtuH3Np7+PAGVfd42OYEXLbZE
-         1lGMZrvLRxK46PdxwP/zRkqHcqo8KWiPl5A83isojzY4JBdZZJ/DdOcsQbo4SkAM4f
-         CCxu2HREkIm1w==
-Date:   Mon, 18 Apr 2022 15:57:18 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
+        b=PZm+zTtL1HVfBKRURRM6yHdFi1tuH9UUEhml7HIpSkb9R5nUFgyJguKcup90Hd0PT
+         W1eC8/f/MeJAe9GqfcjF3dxsknjk3WBNvRKKK1eKEcgKaP5kGndAqT8F8Akw/p8IZG
+         WJbv0CEfFR1J4XAfTVBG7dXd/VBlJFYCZVQF1UNq5REQ0/qUuqSI3CPStThD0DFDE5
+         L4Mvz6Rc6aF7psSNTKEH2+P44bokEOyhEYdJAA3ijU5S+D4XSiNuc1KMRvIWgpjSEH
+         lG+YwSpSDtwJ+ycv0dSYbTTvlLSNaKG6H2572KLnaIyk5FHMzpyuwXFAPcEzcVPc5X
+         AtTfTXU0t9HQA==
+Date:   Mon, 18 Apr 2022 13:31:45 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] imx8mm-venice-gw7902: update pci refclk
-Message-ID: <20220418075718.GB391514@dragon>
-References: <20220405200625.19359-1-tharvey@gateworks.com>
- <20220411013106.GD129381@dragon>
- <CAJ+vNU0VVpDGDXivz=r8C4U8dYjA08SqnzPXwmtOv4ujvc3=Zg@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8350: Add GENI I2C/SPI DMA
+ channels
+Message-ID: <Yl0a6THylbktMnp9@matsya>
+References: <20220412215137.2385831-1-bjorn.andersson@linaro.org>
+ <20220412215137.2385831-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAJ+vNU0VVpDGDXivz=r8C4U8dYjA08SqnzPXwmtOv4ujvc3=Zg@mail.gmail.com>
+In-Reply-To: <20220412215137.2385831-2-bjorn.andersson@linaro.org>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,42 +57,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 11, 2022 at 12:44:23PM -0700, Tim Harvey wrote:
-> On Sun, Apr 10, 2022 at 6:31 PM Shawn Guo <shawnguo@kernel.org> wrote:
-> >
-> > On Tue, Apr 05, 2022 at 01:06:25PM -0700, Tim Harvey wrote:
-> > > Use the correct PCI clock bindings.
-> >
-> > Please improve the commit log to explain why clock "pcie_phy" can be
-> > dropped.
-> >
-> 
-> Shawn,
-> 
-> The original PCIe bindings for this board were wrong - they were from
-> a version of the bindings that was not yet approved (my mistake) and
-> I'm just trying to bring them up to date.
-> 
-> That said, I looked at the latest fsl,imx6q-pcie.yaml dt-bindings [1]
-> and see that there should be a min of 3 clocks called 'pcie',
-> 'pcie_bus', and 'pcie_phy'. However I notice that all of the current
-> imx8mm boards that enable PCI have clock-names of 'pcie', 'pcie_aux',
-> and 'pcie_bus'. It seems like all the imx8mm boards having pcie have
-> clock-names this way:
-> 
-> arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dts
-> 
-> Does the binding need to change or do the clock names need to change
-> in the above?
+On 12-04-22, 14:51, Bjorn Andersson wrote:
+> The GENI I2C and SPI controllers may use the GPI DMA engine, define the
+> rx and tx channels for these controllers to enable this.
 
-If the bindings is approved/correct, device tree should match bindings.
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Shawn
+-- 
+~Vinod
