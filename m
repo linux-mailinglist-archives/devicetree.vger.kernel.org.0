@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 355B550515D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 14:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83F485051ED
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 14:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239131AbiDRMed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 08:34:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
+        id S239527AbiDRMk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 08:40:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239823AbiDRMda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 08:33:30 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18AF51BE97
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 05:26:50 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id t11so26521398eju.13
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 05:26:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=I3d5udvKIjqAWucjjIKmuyn7gYiBA99VwyV2DIv8hOs=;
-        b=O6i40JuKQXOyvwtn8Dy33ZqEQOG5EHZzXGoOpqZzNZ9ieOhuYgUKLhfzpGxvbXiAfC
-         Vwf80nHGzunG0NFoscB2CnQZ0JQu4sPahErZnIz5NgO6On1mSrWR8+eqgUYGkK04Z/cm
-         am6eYB6HIbNfNKmvh6CfzcqdjEqDMZklnqPh2wvAj+hoM7Z/WC2jzgm+/aKNM463g1jw
-         g7uQ/8uHdj6HIoospz4Bv4O6YviYZPMRyTqevmkLEkrfzf/jDuJ6B+t56CgXYgzMzeUH
-         zqzjkk8aXXXyzV9RR8CD0OyiQVQF/FlvxcK4hkfLOu+q4NO8TFovZ3kQgN5AmwmO6rfZ
-         2wEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=I3d5udvKIjqAWucjjIKmuyn7gYiBA99VwyV2DIv8hOs=;
-        b=qCS+ZW0XdMao44moUuLbgv0wcq7E7pmP7CQTQjwhNQeU4hH/JHRxAUB0vo8Iv/7gyV
-         uosfEMoliALCG6Qm+yU7WHagZI5TsqLvDJOsI8Hz8LAEA1j+4+s0IhKzxRJHGF0q3e5A
-         pKd3o3IQ1tFfb7BYLWOEBWMUrYThy0T+gCgsW53HuiAK9gVZLs3Nq+1x4gzAiGUjN8JJ
-         4Tf87J/h2yH1pTdbwcHk4Iji07aea3IMGZnBQeqgj8NM/B3emROs2KyZlM3CVNKsYp60
-         Wg0xHQL9BPMBfTeLGlRqjB6MCNnBdY1y+pt0GXXwmTPoxUzCM7mTqKUuzJPUBa06VtqD
-         iKyQ==
-X-Gm-Message-State: AOAM533hpdZdj9DX1rdLPoTE8HWIZCr1Ahm/pg5HvvsSGxCCzs3b7mj8
-        98VlRr5ZQLDCR6XOYuOBORt4Tg==
-X-Google-Smtp-Source: ABdhPJw1EAebv52D0fGCecrKQNHXpvA1WtVaDZlB3PXnrtrkiLQTkMClotu0rgBrzw31XDzOlJMw2A==
-X-Received: by 2002:a17:906:7a51:b0:6e8:8e6c:f182 with SMTP id i17-20020a1709067a5100b006e88e6cf182mr8740413ejo.506.1650284808614;
-        Mon, 18 Apr 2022 05:26:48 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gj3-20020a170906e10300b006e8ac161bcfsm4539377ejb.203.2022.04.18.05.26.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 05:26:47 -0700 (PDT)
-Message-ID: <a81e72f0-f01f-723e-fb0e-7667b2d3ff3f@linaro.org>
-Date:   Mon, 18 Apr 2022 14:26:46 +0200
+        with ESMTP id S240727AbiDRMjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 08:39:35 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11EA713CED;
+        Mon, 18 Apr 2022 05:30:18 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23ICU9BC077061;
+        Mon, 18 Apr 2022 07:30:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650285009;
+        bh=8G0h/3NF1tmnS3Le0+tUCjebMIA+1hV3rqMDN1tOb1Y=;
+        h=From:To:CC:Subject:Date;
+        b=lONBWY/egKTKEZSS/TN9UyPgIoqlPMAcwRFm0CFuSSUFDmcc4dtf9VzdmtqNKUakF
+         dGN4hXEHnMSCrgvI0gaSBwRQX2S8wf3vERCBfimUsQW2B8QOHHfHtKo09s7gV8y0cy
+         VKmm5jDiZygGfGgJFG7F2ePLbVy0DtkREhltXRH0=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23ICU92C060480
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 18 Apr 2022 07:30:09 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 18
+ Apr 2022 07:30:08 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 18 Apr 2022 07:30:08 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23ICU6pb010907;
+        Mon, 18 Apr 2022 07:30:07 -0500
+From:   Puranjay Mohan <p-mohan@ti.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
+        <p-mohan@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <rogerq@kernel.org>, <grygorii.strashko@ti.com>, <vigneshr@ti.com>,
+        <kishon@ti.com>
+Subject: [PATCH v2 0/6] Introduce PRU platform consumer API
+Date:   Mon, 18 Apr 2022 17:59:58 +0530
+Message-ID: <20220418123004.9332-1-p-mohan@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/3] dt-bindings: SPI: Add bindings for new Ingenic SoCs.
-Content-Language: en-US
-To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>, broonie@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        paul@crapouillou.net, contact@artur-rojek.eu,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, reimu@sudomaker.com
-References: <1650032528-118220-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1650032528-118220-3-git-send-email-zhouyanjie@wanyeetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1650032528-118220-3-git-send-email-zhouyanjie@wanyeetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,15 +65,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/04/2022 16:22, 周琰杰 (Zhou Yanjie) wrote:
-> Add the SPI bindings for the JZ4775 SoC, the X1000 SoC,
-> and the X2000 SoC from Ingenic.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+This is the re-spin of the old patch series[1]. This doesn't have any 
+functional changes, the old series has been rebased on linux-next.
 
+This series depends on another un-merged series in the remoteproc
+tree[2]. This series and the remoteproc series form the PRUSS comsumer
+API which can be used by consumer drivers to utilize the PRUs.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+One example of the consumer driver is the PRU-ICSSG ethernet driver,
+which depends on this series and the remoteproc series[2].
 
+I had earlier sent all the three series, this, remoteproc, and the 
+ethernet driver as RFC to get comments. It can be seen here[3] to
+understand the overall structure.
 
-Best regards,
-Krzysztof
+The Programmable Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS
+or simply PRUSS) on various TI SoCs consists of dual 32-bit RISC cores
+(Programmable Real-Time Units, or PRUs) for program execution.
+
+There are 3 foundation components for TI PRUSS subsystem: the PRUSS platform
+driver, the PRUSS INTC driver and the PRUSS remoteproc driver.
+
+The programmable nature of the PRUs provide flexibility to implement custom
+peripheral interfaces, fast real-time responses, or specialized data handling.
+Example of a PRU consumer drivers will be: 
+  - Software UART over PRUSS
+  - PRU-ICSS Ethernet EMAC
+
+In order to make usage of common PRU resources and allow the consumer drivers to
+configure the PRU hardware for specific usage the PRU API is introduced.
+
+[1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20201211184811.6490-1-grzegorz.jaszczyk@linaro.org/
+[2] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220418104118.12878-1-p-mohan@ti.com/
+[3] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
+
+Thanks,
+Puranjay Mohan
+
+Andrew F. Davis (1):
+  soc: ti: pruss: Add pruss_{request,release}_mem_region() API
+
+Suman Anna (3):
+  soc: ti: pruss: Add pruss_cfg_read()/update() API
+  soc: ti: pruss: Add helper functions to set GPI mode, MII_RT_event and
+    XFR
+  soc: ti: pruss: Add helper function to enable OCP master ports
+
+Tero Kristo (2):
+  soc: ti: pruss: Add pruss_get()/put() API
+  soc: ti: pruss: Add helper functions to get/set PRUSS_CFG_GPMUX
+
+ drivers/soc/ti/pruss.c       | 257 ++++++++++++++++++++++++++++++++++-
+ include/linux/pruss.h        | 221 ++++++++++++++++++++++++++++++
+ include/linux/pruss_driver.h |  72 +++++++---
+ 3 files changed, 526 insertions(+), 24 deletions(-)
+
+-- 
+2.17.1
+
