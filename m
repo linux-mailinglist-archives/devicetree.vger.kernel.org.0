@@ -2,69 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 222F6505EB4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 21:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6917505EB9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 21:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237909AbiDRTvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 15:51:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40508 "EHLO
+        id S1347784AbiDRTvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 15:51:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347775AbiDRTu6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 15:50:58 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4437029CAF
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 12:48:09 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-e604f712ecso1982144fac.9
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 12:48:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=R8MVyQVH63UKDlO5ebK94G5i5p2wDyYsAtV0teKaE/s=;
-        b=ZhCqVdEkoLVNEjcGJlt+Orq1svQI51yFjZ5yzspPDulfEmlo4fFK77Zj/fvsCzAmzt
-         0PiusX7wSluCRHHd/8c0/S5RUDr6NxLnpuvBYmGj1wnGgX4lUKcRNl3DDiy3uQvqz/jj
-         ITwRwDMHccDzMO0LQuZiVYK7ZyYb3YYtHJEXE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=R8MVyQVH63UKDlO5ebK94G5i5p2wDyYsAtV0teKaE/s=;
-        b=mgAkSqg/lUC5X9XQQDJaQN+273ABNLQ0OfFF7cbYa8UnaCXw0+ECbvEX8DEL6C1+Qn
-         7f7pb+ULiJOzZ3cErfI/EkYvJUTd85I++XmHaDGun6b92e+pgtkO/J2ZXwmv+YOZ6p+a
-         Rdh25OBy/VPLw7D9ehp1j+Yh71gM4YCpXQ/LGFCipTtoGIajKSkLnMpg4MmyNXY97YOP
-         VilkQPH6PkuiQrIXRybP5gtN3A0OWCPGKOQutR692EUrHz20LiWjAfKvUg8sd4MBBkut
-         r7R3KjSmgospJbR0vYLgeKqKMK1hKrKlEEnrasdEtQ8IMZcqhb0b8SQ5EmMLHlOasHxj
-         CCtg==
-X-Gm-Message-State: AOAM533mIwq9T9SzRqEeTeLjDHLBQLj2WA3D7m3ZS7KB2um9hQVkiI3R
-        xF1SV4QKkBNuGj8V1T4tbcLbHh2ZT8Z8MiXWcrhLhg==
-X-Google-Smtp-Source: ABdhPJxNTgtzk/Xz7kcv1RUxdYb0jMn0kKe1rbAUme2rCqK9BQTcKgtEnt+Xs0lHTfuvKTMKV0qsQkfn2jAOY12S3mE=
-X-Received: by 2002:a05:6870:3907:b0:e5:a6fd:4047 with SMTP id
- b7-20020a056870390700b000e5a6fd4047mr4779741oap.193.1650311288551; Mon, 18
- Apr 2022 12:48:08 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 18 Apr 2022 12:48:08 -0700
+        with ESMTP id S1347775AbiDRTvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 15:51:20 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2096.outbound.protection.outlook.com [40.107.114.96])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC892980B;
+        Mon, 18 Apr 2022 12:48:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GbHlL3yrdX6NkxsE8ua6R3BTlHC8IZK9Y1S+CFJC19t8ldGXi9udV+DKzsYr8aNwwqvXeT90pE4Lonc+WevWMsHK6GVt4Ux6yaWHhxwPUmiIfxHVFVgtk0UBxBwDISbjrofZlfMZ1NvyPKwd290GQiK+WaqE79J1obE/f+YfIMjEFoz0zNJAsVkbAVOYYle6Mk+1cnKJdPI4lJ3nru2Zu7QCpPJJoVVS+6XOsFJ1neWhmjoyWq7SnYqK47j8Uf3NS+T0c6yxYFR9mp8jzisB+CTTC1jz6wSYubZIr4KfYz08P6EJxiNUYiAsImTqoYFVkWfKZBfME1DuvGCaMXeG3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MPNE1xDljIVmhV7G5mBZ/P8g1j28SUJKW5HN0GSq3GE=;
+ b=kAMw8i2gr3C25d2hZlBOaS0sPdhF/NbG4spSDdRQGnnZ7H4cigYrTXb6ztLOyyOVcFxXy4TEIzb+8k981d6TTUMpWDcB2q7c+rM6D62tsl84JBVMouboPx6peUPhnePzOgfBaofXe+nD5VTs7uvxevcz+zhS6pYbs/OMksFIjnUGw+iNfM1TwbWaa1EC2UNEm0PwlNrk5l4ZuX1vVcH5ZjWxzFm88Svo6sn0D75kvzT1uxA80VrrRDknPrhaLtrHrbFBX79/IZ57EZNwpz8GFJgS/GdXhNMZm1kLOK1s5wNcBWuODrUriQdJ0vLfc6MVWTtWDZ/9GVAwHBjlfRkR5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MPNE1xDljIVmhV7G5mBZ/P8g1j28SUJKW5HN0GSq3GE=;
+ b=nKD8ie/VAFbOWINkyuC6UQbFgzFOzK1JbZp1NyollqOOrp4NY27LXWGpho4qzzxWAbAclW3hMtPC72BUuZ0W/HfdrGRRvWuzi8/K1Xe2jRX88pNldWQndInyhNgq3UIUycU/cMcccsf59UQC9lFC8N+axPiGBR/sHFbm5WwP1FQ=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TY2PR01MB2891.jpnprd01.prod.outlook.com (2603:1096:404:6b::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Mon, 18 Apr
+ 2022 19:48:37 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b129:a6f3:c39e:98db]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b129:a6f3:c39e:98db%4]) with mapi id 15.20.5164.025; Mon, 18 Apr 2022
+ 19:48:37 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
+ DSI TX bindings
+Thread-Topic: [PATCH v2 1/2] dt-bindings: display: bridge: Document RZ/G2L
+ MIPI DSI TX bindings
+Thread-Index: AQHYQnADgNCsAhZFrEWrZICvhJcRYazw3vqAgAVWCYA=
+Date:   Mon, 18 Apr 2022 19:48:37 +0000
+Message-ID: <OS0PR01MB5922CAA263CF754EF06381AE86F39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20220328064931.11612-1-biju.das.jz@bp.renesas.com>
+ <20220328064931.11612-2-biju.das.jz@bp.renesas.com>
+ <YllGFRx3RZjJliTS@pendragon.ideasonboard.com>
+In-Reply-To: <YllGFRx3RZjJliTS@pendragon.ideasonboard.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3a2f7f1e-8272-44ef-c163-08da21746e41
+x-ms-traffictypediagnostic: TY2PR01MB2891:EE_
+x-microsoft-antispam-prvs: <TY2PR01MB289113526C7F49576B4DAA0286F39@TY2PR01MB2891.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aC1jtHH7ozpLD8Vk6d6oxwlJBliLa+7B22cPOX+NjwOuaNXit4MASgB/1P5tlZ2TcQbJsCzONDTLGHxbTG3bpRwaRTNljGb1TceZI7DRWWb49/yQv+gt/bTxwgWjmPE6Ie7NyHBOclk5qnUOENQ5VUvN9t52ATdydlM1a8Dt82DjIWheVRNM8qkjOqyom2P5kOUXzw6cTSAC8nkrKbk66gzeEeLpRZjEKbfBOUPEtV0Gk0N+Cxut93NVq2RRBzpkUreqDLbUunYI3bZfcooRqI5YxpoGtNSiuiT31iHk8xkAh8AOCj/EbE5h2r110IAwf4/4NZtFhYnERGmoEtslQmm075C+xMDCLhKEauzwfxUFCPDaeAZRpSvtsdbA1ILHZRp676sYCzWB9u+tRzlMNoNiHf9dJGtxBNCg6PO0O1WWvfzFheV1lqyGut905aLkU78O7tu5beBCYd+5eenuMZ++CMdylhEQhRJRyk1r/3KrBlnK8L2baBRDqlEGatjbOW+rVIlV+QajhlmzNpaR3pFr3jS3bRxlq+zheQDVM8E6yFo3+q+nR+pao/nARU0cD6U8Kc+8xTx/bp8rOpSSgyY/SFlAcKNsrrkh88HgU9AgkmygBqBIMhBllpqXysdYzBsIcF/0428RvxcVHYrTIvO9t/AG0JAsni6E0aAt0WO5RnkYuZ15/a+B3kuAgPw5UpLnuCI2Uhi2EqNGYoqV+A==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(71200400001)(4326008)(186003)(8936002)(86362001)(55016003)(83380400001)(6506007)(7696005)(9686003)(26005)(508600001)(52536014)(33656002)(122000001)(66476007)(76116006)(66946007)(66556008)(5660300002)(316002)(66446008)(8676002)(64756008)(38070700005)(38100700002)(54906003)(6916009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?cRQYF9WkUJSZtkSkjEz8UKPdnGXskN5lujtvK0B3n5ThNksIfg1XL+SuPWfG?=
+ =?us-ascii?Q?1jPto3rtVdu6KqtDwD67REt0sDrhnO4HnKmH2+A5BH4n/hAu0i/eC6cvPic+?=
+ =?us-ascii?Q?R+qyDjgj4uJXkOsDZMkmoqIZqczWRBUHGQKlyrS3294/fVWuKK6C6dFXZE/K?=
+ =?us-ascii?Q?Z5pCoCM8+dbtA03scMf91F0dTy/2KZ21ujNIYYNOZt9MOMxrowBUkUEapiIu?=
+ =?us-ascii?Q?ofYzNRHV3TpeaB+x2wc/iSRGuO3Bbpg5fKpGDwTYJqLJDITh8b2/jImMnWGm?=
+ =?us-ascii?Q?pThDQEbQjL96qda/2ZWU/XoBSCh7YVamZiUyMHl1fuciVAQB3svCBYFhNsjR?=
+ =?us-ascii?Q?EH+IIhNeUwKMK/aIef4QUXxKt1USe5r/vfB+iDUCbYmo4cFDvCKV2whqWxV0?=
+ =?us-ascii?Q?FI8E/tg/9aO8bGHVAt31IxsPocEVC8w8Fa/GjLkzCEskRaeKOXIMuq5Zrlzu?=
+ =?us-ascii?Q?tRfphyrX1klVWXhY087sSZtJ6pPqVQsVee0JSp6c7FS4ZW79PO8vmynwfCf/?=
+ =?us-ascii?Q?wltkUO8GRL5mLzMlDXh3Ihss0IpZdEv8fhooMKt7aQI5YH3nVjQgzDaP7+60?=
+ =?us-ascii?Q?jI6Oeqdfo/po9Ivt1QfwDv1s1gxbMP6h1p3XocmzfYdfLVl/VDUJkfnKg59/?=
+ =?us-ascii?Q?f7GbxkFMwrCEG+ObHEW2bjgsQOHDkz9Wp2DdQG3PzMT3DcRZMspbfPwA8QmU?=
+ =?us-ascii?Q?sJiiaeTmjKuSiVEYyfNfMQBsO30YX25LxR1YMEfJJ/uCWiAMvN29N3Hayj37?=
+ =?us-ascii?Q?XpLp6+z2z2QM7S9dM3AY+hNmBjSVdovTZcadZhMKcP6Uhkpk/yeRbz+joHzG?=
+ =?us-ascii?Q?Z5Fox/AFsTqDNttxc9pu1jv5QTKHUW16PxwwrZrzQ90OMuiP9I7xfge+xdRQ?=
+ =?us-ascii?Q?8Wd20r1brQZlNKM5O9eoQtRIuV9aElshUdOMn4MlI3BXHdw1mEWKfjRpnanj?=
+ =?us-ascii?Q?jBydo7DbvAICruw0e16UbNikE+oBBNVHpC4uqs/hfodyVrJGgBCfPTm3kSC0?=
+ =?us-ascii?Q?ibS+gtjfmb3oVNRAgf6bCptMnfqSSfmkAZ7vAOc/3cUsMaKswgJvXQNxkqDw?=
+ =?us-ascii?Q?0x+zX0KQ7xCzvTx/gOJ6Ez11vLeNW9fSMyhBZqJJZ07nJotTcyZJF6Tbf/Cp?=
+ =?us-ascii?Q?eDTJypgiMG5xDxDrlgzqh7bnvz8lHJ/GPy0aO6WGLgBeMcUfXx5aPuAbqWAb?=
+ =?us-ascii?Q?LFY3SR2mtZKVYwo9GwA9f+eFduz9dEGYVNNqp13G8jCLWX0diozI+6YuRMtu?=
+ =?us-ascii?Q?7SXysqDU9tWAe/N6mtO19dSLh2j9wpPafXLa274sslOR9APq2qv35r/x3Sne?=
+ =?us-ascii?Q?7WN4PHf58uFi3JmWLH3bColor19gpNdw1AMzRc/U4eo0s1R2ddjPop/5ijy3?=
+ =?us-ascii?Q?42cYmH0F7sAnD3McIF1mgafg+QXGR1hGcKFWykaDu96mniteUWRyQNOQSvt/?=
+ =?us-ascii?Q?rXPQSDJJ0LePjfhVYS1Qnpliw30JwezXM6zZTGSX+LDCY/idzGNfp0icOlnq?=
+ =?us-ascii?Q?z5MMKMFq8dynm3yMaOu9sn14RS0aNce+NE0qtIpHv33ZZ07W9DOFWPoFlzta?=
+ =?us-ascii?Q?mRwssLK9VZVYDgladJkbo/AsvLAQ/wRjoXppllP3Zz92Nnvy6uawPKN9xAV7?=
+ =?us-ascii?Q?/azbT3EZr2OI+1FLqq42FI7VU7mXa//qNYJ7XzdrlvwS4lBWCf/fF0QJcIQj?=
+ =?us-ascii?Q?8fv35AR6k9Z41eFaSVyyp/KIoSmftr0rS8djA4jg/sJGmRpf+JBkSaRLVFXd?=
+ =?us-ascii?Q?gf2ZHQ2tmKc1xi3IPuYDKGF/cJyrwGk=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <d32fc9f8-65cd-a30f-cdf2-f019bbe7cd69@linaro.org>
-References: <20220412220033.1273607-1-swboyd@chromium.org> <20220415005828.1980055-1-swboyd@chromium.org>
- <20220415005828.1980055-3-swboyd@chromium.org> <d32fc9f8-65cd-a30f-cdf2-f019bbe7cd69@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 18 Apr 2022 12:48:08 -0700
-Message-ID: <CAE-0n53yggqX+mNcRQ+_iVHZhZgw-cCBVSC+ka++vwprpKMaGQ@mail.gmail.com>
-Subject: Re: [PATCH 5/2] dt-bindings: interconnect: Remove sc7180/sdx55 ipa compatibles
-To:     Alex Elder <elder@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        Doug Anderson <dianders@chromium.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Mike Tipton <quic_mdtipton@quicinc.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a2f7f1e-8272-44ef-c163-08da21746e41
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2022 19:48:37.5447
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XWFM/Q1QRPs3jLyF2xhZieGlh3z/5WJhbS+YtfOW6CUW7KOxKRTxsIHdFZZEyy4kX1OTUi4wUKz7qZTuN2/NGdTc4etnRsjLcHwJVhVX5fI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB2891
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,56 +131,254 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Alex Elder (2022-04-15 13:15:21)
-> On 4/14/22 7:58 PM, Stephen Boyd wrote:
-> > These interconnects are modeled as clks, not interconnects, therefore
-> > remove the compatibles from the binding as they're unused.
+Hi Laurent,
+
+Thanks for the feedback.
+
+> Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Document RZ/G2L
+> MIPI DSI TX bindings
+>=20
+> Hi Biju,
+>=20
+> Thank you for the patch.
+>=20
+> On Mon, Mar 28, 2022 at 07:49:30AM +0100, Biju Das wrote:
+> > The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's.
+> > It can operate in DSI mode, with up to four data lanes.
 > >
-> > Cc: Alex Elder <elder@linaro.org>
-> > Cc: Taniya Das <quic_tdas@quicinc.com>
-> > Cc: Mike Tipton <quic_mdtipton@quicinc.com>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
->
-> What's the proper thing to do for properties that stop being
-> used?  Do we delete them, like this, or deprecate them somehow?
-> Old DTBs might define the values that are deleted here.
-
-I think we leave them around until the last dts user stops using them.
-
->
-> Shouldn't devicetree@vger.kernel.org
->   be copied on this and
-> the other DTS patches?
-
-Sure. I added it now. Thanks.
-
->
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > > ---
+> > v1->v2:
+> >  * Added full path for dsi-controller.yaml
+> >  * Modeled DSI + D-PHY as single block and updated reg property
+> >  * Fixed typo D_PHY->D-PHY
+> >  * Updated description
+> >  * Added interrupts and interrupt-names and updated the example
+> > RFC->v1:
+> >  * Added a ref to dsi-controller.yaml.
+> > RFC:-
+> >  *
+> > ---
+> >  .../bindings/display/bridge/renesas,dsi.yaml  | 175
+> > ++++++++++++++++++
+> >  1 file changed, 175 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
 > >
-> > I don't know who should apply this. Probably whoever takes the dtsi
-> > patches, Bjorn?, because otherwise dt_bindings_check will fail.
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> > b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> > new file mode 100644
+> > index 000000000000..eebbf617c484
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yam
+> > +++ l
+> > @@ -0,0 +1,175 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
 > >
-> >   Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml | 2 --
-> >   1 file changed, 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> > index 5a911be0c2ea..ab859150c7f7 100644
-> > --- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> > +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> > @@ -31,7 +31,6 @@ properties:
-> >         - qcom,sc7180-config-noc
-> >         - qcom,sc7180-dc-noc
-> >         - qcom,sc7180-gem-noc
-> > -      - qcom,sc7180-ipa-virt
-> >         - qcom,sc7180-mc-virt
-> >         - qcom,sc7180-mmss-noc
-> >         - qcom,sc7180-npu-noc
-> > @@ -68,7 +67,6 @@ properties:
-> >         - qcom,sdm845-mem-noc
-> >         - qcom,sdm845-mmss-noc
-> >         - qcom,sdm845-system-noc
-> > -      - qcom,sdx55-ipa-virt
-> >         - qcom,sdx55-mc-virt
-> >         - qcom,sdx55-mem-noc
-> >         - qcom,sdx55-system-noc
->
+> > +
+> > +title: Renesas RZ/G2L MIPI DSI Encoder
+> > +
+> > +maintainers:
+> > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > +
+> > +description: |
+> > +  This binding describes the MIPI DSI encoder embedded in the Renesas
+> > +  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode,
+> > +with
+> > +  up to four data lanes.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/display/dsi-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - renesas,rzg2l-mipi-dsi # RZ/G2L and RZ/V2L
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Sequence operation channel 0 interrupt
+> > +      - description: Sequence operation channel 1 interrupt
+> > +      - description: Video-Input operation channel 1 interrupt
+> > +      - description: DSI Packet Receive interrupt
+> > +      - description: DSI Fatal Error interrupt
+> > +      - description: DSI D-PHY PPI interrupt
+> > +      - description: Debug interrupt
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: seq0
+> > +      - const: seq1
+> > +      - const: vin1
+> > +      - const: rcv
+> > +      - const: ferr
+> > +      - const: ppi
+> > +      - const: debug
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: DSI D-PHY PLL multiplied clock
+> > +      - description: DSI D-PHY system clock
+> > +      - description: DSI AXI bus clock
+> > +      - description: DSI Register access clock
+> > +      - description: DSI Video clock
+> > +      - description: DSI D-PHY Escape mode Receive clock
+>=20
+> Isn't this the escape mode *transmit* clock ?
+
+Yep, There is a mismatch between clk document and hardware manual.=20
+I have reported this issue to HW team for fixing the clk document.
+
+>=20
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: pllclk
+> > +      - const: sysclk
+> > +      - const: aclk
+> > +      - const: pclk
+> > +      - const: vclk
+> > +      - const: lpclk
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: MIPI_DSI_CMN_RSTB
+> > +      - description: MIPI_DSI_ARESET_N
+> > +      - description: MIPI_DSI_PRESET_N
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: rst
+> > +      - const: arst
+> > +      - const: prst
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Parallel input port
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description: DSI output port
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: /schemas/media/video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              data-lanes:
+> > +                minItems: 1
+> > +                maxItems: 4
+>=20
+> You should specify the acceptable values, especially given that the
+> hardware doesn't seem to support lane reordering.
+
+OK.
+
+>=20
+> > +
+> > +            required:
+> > +              - data-lanes
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - power-domains
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+>=20
+> Could you please swap those two lines to get them sorted alphabetically ?
+
+OK.
+
+Cheers,
+Biju
+
+>=20
+> With these comments addressed,
+>=20
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>=20
+> > +
+> > +    dsi0: dsi@10850000 {
+> > +        compatible =3D "renesas,rzg2l-mipi-dsi";
+> > +        reg =3D <0x10850000 0x20000>;
+> > +        interrupts =3D <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names =3D "seq0", "seq1", "vin1", "rcv",
+> > +                          "ferr", "ppi", "debug";
+> > +        clocks =3D <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
+> > +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
+> > +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
+> > +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
+> > +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
+> > +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
+> > +        clock-names =3D "pllclk", "sysclk", "aclk", "pclk", "vclk",
+> "lpclk";
+> > +        resets =3D <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
+> > +                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
+> > +                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
+> > +        reset-names =3D "rst", "arst", "prst";
+> > +        power-domains =3D <&cpg>;
+> > +
+> > +        ports {
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            port@0 {
+> > +                reg =3D <0>;
+> > +                dsi0_in: endpoint {
+> > +                    remote-endpoint =3D <&du_out_dsi0>;
+> > +                };
+> > +            };
+> > +
+> > +            port@1 {
+> > +                reg =3D <1>;
+> > +                dsi0_out: endpoint {
+> > +                    data-lanes =3D <1 2 3 4>;
+> > +                    remote-endpoint =3D <&adv7535_in>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +...
+>=20
+> --
+> Regards,
+>=20
+> Laurent Pinchart
