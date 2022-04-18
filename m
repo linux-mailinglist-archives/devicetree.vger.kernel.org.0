@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1118505BF0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 489A1505C11
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345594AbiDRPwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 11:52:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34680 "EHLO
+        id S1345904AbiDRP7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 11:59:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345808AbiDRPwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:52:01 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770911D31D
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:31:48 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id d23-20020a17090a115700b001d2bde6c234so172766pje.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:31:48 -0700 (PDT)
+        with ESMTP id S1345929AbiDRP6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:58:54 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CC3410BD
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:52:46 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id v15so17856850edb.12
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:52:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=LtMMRF4JcWs/Onf4a3Y3tlIdji7WoSU9k4+P0Hcpjbc=;
-        b=hE0KBI9KwKkNqK+Xv2o8tsioJRsnAaFJ1eB+X2QNyQ99MfbSVlUxQCxCZEvC+IM/my
-         bYEURWsF0lHBi4/PKzpg/bpURMLdcgDvFus+NSJivkPCdzyMjRUFAmnDpeysop2l0FXl
-         48JcA53FUXsLakhyZWhH2QzWikVPyhBok6KcU=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=abJDI08Lc7Q5g8VlHjGfKe5QhiMExOEQf4wgN2a+RHA=;
+        b=REIPpBv9+zKU2ZT+KemRxGZ9DSPZZbEaRR+gMJenHjpHtT5+sTxrrOrLc76LN2vKgu
+         h4v2XQXSR4rABJpUQ92eNqBwTc18XmobtJwP8fg2j2RQv6CCyOU6lHF2o1RiC0cnARlA
+         2abgMVv0T7NWnjfgppgzO/uKHqBB+n4eUM5NXgY30pYAVVVuw3X2l9Sr9hQvqOXrvpz4
+         6DLbV8F9k7M0UAEtn81wI1XnB88IzEmnJRoohVtSsMT98doO4ErrGJJLkKd7QDyL59LO
+         PZx2MusxeiMNwZtRUOECwVRE8HLrR0mQvwjEMvWfng6eTCpwKLJAjeLhYIRSZ+EyBFrY
+         2IZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=LtMMRF4JcWs/Onf4a3Y3tlIdji7WoSU9k4+P0Hcpjbc=;
-        b=sVLZOcx9kWKADfoNNnBWiyUFbmjOEp1XbzTV/OhKqNWdEL9HVvKFkvAJe2doRGt2Gl
-         sxkiWD59yh/zAsbqYRK4L6jBe5If9GNH+Q6QATn989WrnEnEdByDjj5lZO1z+HzuiGRj
-         EZRw/bO1/32NGl7ZwmrBheLqoxsUeOkHr5V854PcElAjb6uhmmBeKAPkmAOMNFwkRHxr
-         MLLNmP0lQcsAO7woeXxL91Hq78uv/iMMa+lC6iJJ67tLdrORcm0duhozfdGVCHcNqb2d
-         LUlBvkd8tKGH+OTdfGfWl74bG/4An4yyvyoGEiFxoLtFfVE9FYTaUGLfaM7hdf50fMrV
-         Iepg==
-X-Gm-Message-State: AOAM531ZLPxmLm5ACOEeXt9savBjy0jqbzC6ERP3YSFNmq5bOumu5UTV
-        ndiq9emg2NFEwQW45pW+1w82tw==
-X-Google-Smtp-Source: ABdhPJzdL3yAngu9mDayKXsveGQ3aVDfr4Jr1rlnzREStGhXw+y1x2674SLwT528JlAC51feQLysSw==
-X-Received: by 2002:a17:90b:1c86:b0:1bf:2a7e:5c75 with SMTP id oo6-20020a17090b1c8600b001bf2a7e5c75mr13585777pjb.145.1650295907897;
-        Mon, 18 Apr 2022 08:31:47 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:6b32:a0a5:ec32:c287])
-        by smtp.gmail.com with UTF8SMTPSA id z5-20020a056a00240500b004e15d39f15fsm13525530pfh.83.2022.04.18.08.31.46
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=abJDI08Lc7Q5g8VlHjGfKe5QhiMExOEQf4wgN2a+RHA=;
+        b=B7/U7Q/9fs6C854pk0vsgMxJF9CKMe8ZKUOl4D0bg7x/gObfhWcptWGgw8LZvHsL3Q
+         Zcx3E2NzomR+1OQt2cT4P541uC6xsxilupZZU/SnXWLA2vAFc9APDeYfWoGKB9GComp1
+         VVL/+bsMLQNvse80pExZbtOhDkNlQ+O1+wbhfIw1n4PhXw9FGtlvIE0w/nsCZR3rKGEV
+         7HicgHphlAbyGqOZC+zVSFkGnIfogNV/w+pXWmJdK4gslwl+jjVJiJe4AoxooarfLEJu
+         4XuNR4eAIt5y+JFXAuGdubWXxGqSG/dsMiql4rV5fqbPikPyTP9jKObwxki0Ty2efElT
+         6txw==
+X-Gm-Message-State: AOAM532uu64xELYpuiwcDmNVePXRKsB6iXeYJBCNonG1cI4sq7rbmLNn
+        mIH22/aLm3wSfPXX9yaiYokICQ==
+X-Google-Smtp-Source: ABdhPJyfEwWf4+56J/c9AYnYtTrFbjMzR15QZUG+Fx5x4Kt6Dp9Zte46ycbpvWYbYXD+km9cl8+z9A==
+X-Received: by 2002:a05:6402:1e88:b0:423:d43d:8c65 with SMTP id f8-20020a0564021e8800b00423d43d8c65mr10837622edf.226.1650297165161;
+        Mon, 18 Apr 2022 08:52:45 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id t21-20020a170906609500b006e83679d8acsm4700002ejj.185.2022.04.18.08.52.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 08:31:47 -0700 (PDT)
-Date:   Mon, 18 Apr 2022 08:31:44 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: sc7280: Add dt nodes for sound
- card
-Message-ID: <Yl2EYIdMdz7Lnk26@google.com>
-References: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com>
- <1649863277-31615-5-git-send-email-quic_srivasam@quicinc.com>
- <Ylc/aR0hUGa6OKBO@google.com>
- <78b1e04c-e7d0-a81d-799e-5c570c2bf106@quicinc.com>
+        Mon, 18 Apr 2022 08:52:44 -0700 (PDT)
+Message-ID: <38e60bb2-123b-09cf-d6ef-3a07c6984108@linaro.org>
+Date:   Mon, 18 Apr 2022 17:52:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <78b1e04c-e7d0-a81d-799e-5c570c2bf106@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC/RFT 1/6] dt-bindings: phy: rockchip: add pcie3 phy
+Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20220416135458.104048-1-linux@fw-web.de>
+ <20220416135458.104048-2-linux@fw-web.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220416135458.104048-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,128 +89,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 07:39:44PM +0530, Srinivasa Rao Mandadapu wrote:
+On 16/04/2022 15:54, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> On 4/14/2022 2:53 AM, Matthias Kaehlcke wrote:
-> Thanks for your time Matthias!!!
-> > On Wed, Apr 13, 2022 at 08:51:17PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > Add dt nodes for sound card support, which is using WCD938x headset
-> > > playback, capture, I2S speaker playback and DMICs via VA macro.
-> > > 
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sc7280-crd.dts  | 23 ++++++++
-> > >   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 93 ++++++++++++++++++++++++++++++++
-> > >   2 files changed, 116 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> > > index b944366..1e16854 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> > You need to refresh your tree, this file has been renamed to
-> > sc7280-crd-r3.dts. That DT is for the CRD <= 2.x, newer versions
-> > use sc7280-herobrine-crd.dts.
-> Okay. will update accordingly.
-> > 
-> > > @@ -90,6 +90,29 @@ ap_ts_pen_1v8: &i2c13 {
-> > >   	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
-> > >   };
-> > > +&sound {
-> > > +	audio-routing =
-> > > +		"IN1_HPHL", "HPHL_OUT",
-> > > +		"IN2_HPHR", "HPHR_OUT",
-> > > +		"AMIC1", "MIC BIAS1",
-> > > +		"AMIC2", "MIC BIAS2",
-> > > +		"VA DMIC0", "MIC BIAS1",
-> > > +		"VA DMIC1", "MIC BIAS1",
-> > > +		"VA DMIC2", "MIC BIAS3",
-> > > +		"VA DMIC3", "MIC BIAS3",
-> > > +		"TX SWR_ADC0", "ADC1_OUTPUT",
-> > > +		"TX SWR_ADC1", "ADC2_OUTPUT",
-> > > +		"TX SWR_ADC2", "ADC3_OUTPUT",
-> > > +		"TX SWR_DMIC0", "DMIC1_OUTPUT",
-> > > +		"TX SWR_DMIC1", "DMIC2_OUTPUT",
-> > > +		"TX SWR_DMIC2", "DMIC3_OUTPUT",
-> > > +		"TX SWR_DMIC3", "DMIC4_OUTPUT",
-> > > +		"TX SWR_DMIC4", "DMIC5_OUTPUT",
-> > > +		"TX SWR_DMIC5", "DMIC6_OUTPUT",
-> > > +		"TX SWR_DMIC6", "DMIC7_OUTPUT",
-> > > +		"TX SWR_DMIC7", "DMIC8_OUTPUT";
-> > > +};
-> > > +
-> > >   &tlmm {
-> > >   	tp_int_odl: tp-int-odl {
-> > >   		pins = "gpio7";
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > index cf62d06..a7c884a 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > @@ -84,6 +84,99 @@
-> > >   		pinctrl-names = "default";
-> > >   		pinctrl-0 = <&nvme_pwren>;
-> > >   	};
-> > > +
-> > > +	sound: sound {
-> > > +		compatible = "google,sc7280-herobrine";
-> > > +		model = "sc7280-wcd938x-max98360a-1mic";
-> > > +
-> > > +		audio-routing =
-> > > +			"IN1_HPHL", "HPHL_OUT",
-> > > +			"IN2_HPHR", "HPHR_OUT",
-> > > +			"AMIC1", "MIC BIAS1",
-> > > +			"AMIC2", "MIC BIAS2",
-> > > +			"VA DMIC0", "MIC BIAS3",
-> > > +			"VA DMIC1", "MIC BIAS3",
-> > > +			"VA DMIC2", "MIC BIAS1",
-> > > +			"VA DMIC3", "MIC BIAS1",
-> > > +			"TX SWR_ADC0", "ADC1_OUTPUT",
-> > > +			"TX SWR_ADC1", "ADC2_OUTPUT",
-> > > +			"TX SWR_ADC2", "ADC3_OUTPUT",
-> > > +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
-> > > +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
-> > > +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
-> > > +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
-> > > +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
-> > > +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
-> > > +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
-> > > +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
-> > > +
-> > > +		qcom,msm-mbhc-hphl-swh = <1>;
-> > > +		qcom,msm-mbhc-gnd-swh = <1>;
-> > > +
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <0>;
-> > > +		#sound-dai-cells = <0>;
-> > > +
-> > > +		dai-link@1 {
-> > > +			link-name = "MAX98360A";
-> > > +			reg = <MI2S_SECONDARY>;
-> > Dumb question: is this value actually used? A quick glance through
-> > qcom_snd_parse_of() suggests it isn't. And the CPU DAI id is already
-> > specified in the 'sound-dai' property below.
-> > 
-> > In a quick test I replaced the corresponding 'reg' values in
-> > sc7180-trogdor.dtsi with 'random' values and audio playback on
-> > my coachz (sc7180-trogdor-coachz-r3.dts) still works ...
+> Add a new binding file for Rockchip PCIe V3 phy driver.
+
+Thank you for your patch. There is something to discuss/improve.
+
 > 
-> Yes. agree that it's not being used. But i am not sure of general syntax
-> followed.
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  .../bindings/phy/rockchip-pcie3-phy.yaml      | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip-pcie3-phy.yaml
 > 
-> for now  will delete it.
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-pcie3-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip-pcie3-phy.yaml
+> new file mode 100644
+> index 000000000000..58a8ce175f13
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-pcie3-phy.yaml
 
-The binding requires it though. I think the correct thing would be to remove it
-from the binding and from all device trees currently using it. But that might be
-beyond the scope of this series.
+Filename: vendor,hardware
+so for example "rockchip,pcie3-phy" although Rob proposed recently for
+other bindings using compatible as a base:
+https://lore.kernel.org/linux-devicetree/YlhkwvGdcf4ozTzG@robh.at.kernel.org/
 
-Maybe a two step approach would be the best: add 'reg' in this series, get it
-landed and then send another series that changes the binding and deletes all
-'reg' entries (and adjusts the 'address' in the node name).
 
-I don't think the CPU DAI id should be in the node name either. It isn't even
-necessarily a unique identifier if I understand correctly. A SoC could have
-multiple IP blocks with audio buses, each with their own enumeration of DAIs.
-I suggest to just enumerate the nodes (and 'reg' while it's there) linearly
-starting with 0, or maybe even change the node name in the binding (in a
-second step) to dai-link-N.
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/rockchip-pcie3-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip PCIe v3 phy
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3568-pcie3-phy
+> +      - rockchip,rk3588-pcie3-phy
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    contains:
+> +      anyOf:
+> +        - enum: [ refclk_m, refclk_n, pclk ]
+
+The list should be strictly ordered (defined), so:
+  items:
+    - const: ...
+    - const: ...
+    - const: ...
+  minItems: 1
+
+However the question is - why the clocks have different amount? Is it
+per different SoC implementation?
+
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: phy
+> +
+> +  rockchip,phy-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the syscon managing the phy "general register files"
+> +
+> +  rockchip,pipe-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the syscon managing the pipe "general register files"
+> +
+> +  rockchip,pcie30-phymode:
+> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> +    description: |
+> +      use PHY_MODE_PCIE_AGGREGATION if not defined
+
+I don't understand the description. Do you mean here a case when the
+variable is missing?
+
+> +    minimum: 0x0
+> +    maximum: 0x4
+
+Please explain these values. Register values should not be part of
+bindings, but instead some logical behavior of hardware or its logic.
+
+> +
+> +
+
+Just one blank line.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - rockchip,phy-grf
+
+phy-cells as well
+
+> +
+> +additionalProperties: false
+> +
+> +unevaluatedProperties: false
+
+Just one please, additionalProperties.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    pcie30phy: phy@fe8c0000 {
+> +      compatible = "rockchip,rk3568-pcie3-phy";
+> +      reg = <0x0 0xfe8c0000 0x0 0x20000>;
+> +      #phy-cells = <0>;
+> +      clocks = <&pmucru CLK_PCIE30PHY_REF_M>, <&pmucru CLK_PCIE30PHY_REF_N>,
+> +       <&cru PCLK_PCIE30PHY>;
+
+Align the entry with opening '<'. Usually the most readable is one clock
+per line.
+
+> +      clock-names = "refclk_m", "refclk_n", "pclk";
+> +      resets = <&cru SRST_PCIE30PHY>;
+> +      reset-names = "phy";
+> +      rockchip,phy-grf = <&pcie30_phy_grf>;
+> +    };
+
+
+Best regards,
+Krzysztof
