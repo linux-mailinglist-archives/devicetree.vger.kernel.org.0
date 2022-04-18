@@ -2,155 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF958504EF3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 12:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0646504F29
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:01:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237761AbiDRKo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 06:44:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
+        id S237820AbiDRLEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 07:04:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237725AbiDRKoO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 06:44:14 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6532E15FDB;
-        Mon, 18 Apr 2022 03:41:36 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23IAfVdV131013;
-        Mon, 18 Apr 2022 05:41:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650278491;
-        bh=zgzNCrg2jxb2fMhf7Xl7w052aCeYSvcx7BoVAy9SRiQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ykLWveiV+78TsboNldA3tI2cVhRQXjNQwkBbfY/o4NJnuheTRE3d1KNcyThsgI59l
-         /PM9VNRNYEikYpgUyxIu2ZsLHBC/iX+eWIYGiXGcTbjjw4LVS1cjslBnqxzPrmm1GK
-         cV4b4BmYc0IoBiBV8Y7qV6UvtvkZNmub1g67XchU=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23IAfVfQ057749
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 18 Apr 2022 05:41:31 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 18
- Apr 2022 05:41:30 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 18 Apr 2022 05:41:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23IAfTR2027159;
-        Mon, 18 Apr 2022 05:41:30 -0500
-From:   Puranjay Mohan <p-mohan@ti.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
-        <p-mohan@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <rogerq@kernel.org>, <grygorii.strashko@ti.com>, <vigneshr@ti.com>,
-        <kishon@ti.com>
-Subject: [PATCH v3 5/5] remoteproc: pru: Configure firmware based on client setup
-Date:   Mon, 18 Apr 2022 16:11:18 +0530
-Message-ID: <20220418104118.12878-6-p-mohan@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220418104118.12878-1-p-mohan@ti.com>
-References: <20220418104118.12878-1-p-mohan@ti.com>
+        with ESMTP id S237808AbiDRLEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:04:12 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2072.outbound.protection.outlook.com [40.107.220.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4C5BF73;
+        Mon, 18 Apr 2022 04:01:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WUtsW9DM8pMBpX17ZgdgIR+Q7eFk7Bht1+JoOpNDx02HcJkNh4UtlDtTbXBbx/8UkNbXs4BdTrLeRsw28P/ZzMWoOG4Ej2v0p1Q8tK+gM1iH7n+seFA1j323gJt8tc7w6u1IbXd54gkOlkl4Px+HX0I/fcAHkp7tRLZLZw9ElVLBedLRhAtSt/MkUiB4JmJQlJ4uB6y2otLviJrlaEPHncOPEOwLWM4343NACKTKblaZRKrlwBwDMruz37CTplUFOFpfkFagFKkaUzVLTj8rnBib5ngNDVNTrQOnjvTDLnsxh4gGOsfuqupNwVtaIn3qHFExEXwz7cwfh9uta2b/LQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n3vxHy3FQJbT6CXrS/PNAyUXdy5EhYWh8m4CQTPpDj8=;
+ b=e/QlTxD4XJEreUQBR0/mXqlQGpddev3nid8/joZ9OzjhbUtezZHdKc/xTnsorYv/gDZhu/+QwUCJtt8l9rXmM6ooBwd4XtpFXHZtShk/tzqZ4h06pEZBEnXQAQccVVqoX+eo0G5HwbnRYsN4FMnw8SkxbMEHSV2EyGinDbEhREesUeJ7SmK4PSgKcgEVlYBxYyFuPD/xjagDpRdueDmsPVTTi7SfdNLXpyomdeit4PzqPp9Z10uA4DSszhfHjiB1D8tMGmQctR+/YNSDkn317bdNmaUpqNvv1s1xCPUmFmJQbWFzpzZ8zKbtlgc/QkNPHPTAa3Yx29OwGrbsE+qAig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.238) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n3vxHy3FQJbT6CXrS/PNAyUXdy5EhYWh8m4CQTPpDj8=;
+ b=fGRnN9Mxa4Uqrl2mRkDykk4iF7/QZcTK9sJ+PeIFXmZ/B0h80q1JkPipkxYs+8iISotpRAKufK97oUWj1wMTG7uK89ngB+7rwuB8Oh2iOj/3dHDJmE95UyEKqmziVciYIRjNhaoO2Xp0aJQlxc5MGXO1xtCg3SA4XW9sTw2JFACPWUYb9CUv+a+QZ0azEQOhnq+LjC4MJN34GVfG17g9AD5aBc1jrTrztDozm1MyO3psYvkggcf7+pjpLdwTzxnwLBru0Y6ROH4t+5qj5onInSDQhKVsZUPBZIupt3dbl6CX7u/PjU3bHKM3KP36dIzHbjVHUkog9xajU05anYs98Q==
+Received: from BN8PR12CA0003.namprd12.prod.outlook.com (2603:10b6:408:60::16)
+ by DM5PR12MB1931.namprd12.prod.outlook.com (2603:10b6:3:109::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Mon, 18 Apr
+ 2022 11:01:32 +0000
+Received: from BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:60:cafe::48) by BN8PR12CA0003.outlook.office365.com
+ (2603:10b6:408:60::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.18 via Frontend
+ Transport; Mon, 18 Apr 2022 11:01:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.238; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.238) by
+ BN8NAM11FT004.mail.protection.outlook.com (10.13.176.164) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5164.19 via Frontend Transport; Mon, 18 Apr 2022 11:01:32 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ DRHQMAIL105.nvidia.com (10.27.9.14) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.32; Mon, 18 Apr 2022 11:01:31 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 18 Apr 2022 04:01:31 -0700
+Received: from kkartik-desktop.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.986.22 via Frontend
+ Transport; Mon, 18 Apr 2022 04:01:28 -0700
+From:   Kartik <kkartik@nvidia.com>
+To:     <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <jassisinghbrar@gmail.com>,
+        <jonathanh@nvidia.com>, <kkartik@nvidia.com>, <krzk+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <thierry.reding@gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: tegra186-hsp: add type for shared mailboxes
+Date:   Mon, 18 Apr 2022 16:31:12 +0530
+Message-ID: <1650279672-11757-1-git-send-email-kkartik@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <YlgnXKGHqcCgItlb@robh.at.kernel.org>
+References: <YlgnXKGHqcCgItlb@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 510521a6-49d0-40ea-6760-08da212acc2d
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1931:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB19311C9FFD1B7F03F066AA33CDF39@DM5PR12MB1931.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NlbwC2FCb3t63gY1LArqkIaKUKYAQx4IJhQuR1kL8SwrmfAg294BvAp2A7MjX4G7B1arvrhSTiPoGoLhbv7zoDjBgw/hLWPo0D+HvlGCnJBJu6+Uf9pw5TLtHzPc43ktbxoi2F427FaF8DKHFor98i61x0fkE37MfmFvUykB4RzE7UUjDlPUZAdcQlLhTqWnWjk2B0nVkTNz9+gOOoSy/vFLNq3+T7M4/TOIuwNcd4yxGJrZ2RQinJCujW4xTQB3hP8porgiIVrRgnrkLxSyVU6RL3iWgUdILRwh/yFe4jpDd1tWG6Doi8uNyZbza9Mq36ADjVDnxMijKMmK3dzFPyASszohhJhyBw5P8OoHQPMTNqjuUyD8Ne921sJ82oiIV0UYWNQtfWfxH1yE9xrWC3wbB2QO+WcHpM4BkA2yIPwdxkyvAO+Du3z7/FLopLz378+vKuCGvWx7HkhVSHYYsWISShUg6DPItQLyi6BSmmHkHKGCTYW771vVqzvwYdQ+NZavCMwbg+LA5WcLSykw1vz96gT+z5EzyzfuZ3kYOlVvbImnm7mC0T7iegULduPzJQnJJ3bzJUxlwMcmCZYYKM72vPl3bkSeG+PKpTBvx0ElCVBA4og/FFvDVoNL5M0SXInjAWYjHD7uiRd2Ok6sKoeqUEbyvVT+sEuVCtJc6lS11G9AffLdnnxODNKjsr4DP5QscLaEzLAFM2QF7SZvvg==
+X-Forefront-Antispam-Report: CIP:12.22.5.238;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(53546011)(426003)(336012)(186003)(5660300002)(70586007)(508600001)(70206006)(47076005)(36756003)(54906003)(4326008)(15650500001)(8936002)(7696005)(6666004)(6916009)(8676002)(36860700001)(26005)(2906002)(83380400001)(316002)(86362001)(356005)(82310400005)(81166007)(40460700003)(2616005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2022 11:01:32.2498
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 510521a6-49d0-40ea-6760-08da212acc2d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.238];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1931
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tero Kristo <t-kristo@ti.com>
+On 14/04/2022 13:53, Rob Herring wrote:
+>> Tegra234 supports sending/receiving 32-bit and 128-bit data over
+>> a shared mailbox. Based on the data size to be used, clients need
+>> to specify the type of shared mailbox in the device tree.
+>> 
+>> Add a macro for 128-bit shared mailbox. Mailbox clients can use this
+>> macro as a flag in device tree to enable 128-bit data support for a
+>> shared mailbox.
+>> 
+>> Signed-off-by: Kartik <kkartik@nvidia.com>
+>
+>Need a full name here.
 
-Client device node property firmware-name is now used to configure
-firmware for the PRU instances. The default firmware is also
-restored once releasing the PRU resource.
+This is my legal name as per the government ID's.
 
-Co-developed-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
----
- drivers/remoteproc/pru_rproc.c | 35 ++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
-
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index d06b763e995e..2977eb50631b 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -171,6 +171,23 @@ void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
- 	spin_unlock_irqrestore(&pru->rmw_lock, flags);
- }
- 
-+/**
-+ * pru_rproc_set_firmware() - set firmware for a pru core
-+ * @rproc: the rproc instance of the PRU
-+ * @fw_name: the new firmware name, or NULL if default is desired
-+ *
-+ * Return: 0 on success, or errno in error case.
-+ */
-+static int pru_rproc_set_firmware(struct rproc *rproc, const char *fw_name)
-+{
-+	struct pru_rproc *pru = rproc->priv;
-+
-+	if (!fw_name)
-+		fw_name = pru->fw_name;
-+
-+	return rproc_set_firmware(rproc, fw_name);
-+}
-+
- static struct rproc *__pru_rproc_get(struct device_node *np, int index)
- {
- 	struct device_node *rproc_np = NULL;
-@@ -231,6 +248,8 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	struct rproc *rproc;
- 	struct pru_rproc *pru;
- 	struct device *dev;
-+	const char *fw_name;
-+	int ret;
- 
- 	try_module_get(THIS_MODULE);
- 
-@@ -257,7 +276,21 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	if (pru_id)
- 		*pru_id = pru->id;
- 
-+	ret = of_property_read_string_index(np, "firmware-name", index,
-+					    &fw_name);
-+	if (!ret) {
-+		ret = pru_rproc_set_firmware(rproc, fw_name);
-+		if (ret) {
-+			dev_err(dev, "failed to set firmware: %d\n", ret);
-+			goto err;
-+		}
-+	}
-+
- 	return rproc;
-+
-+err:
-+	pru_rproc_put(rproc);
-+	return ERR_PTR(ret);
- }
- EXPORT_SYMBOL_GPL(pru_rproc_get);
- 
-@@ -277,6 +310,8 @@ void pru_rproc_put(struct rproc *rproc)
- 
- 	pru = rproc->priv;
- 
-+	pru_rproc_set_firmware(rproc, NULL);
-+
- 	mutex_lock(&pru->lock);
- 
- 	if (!pru->client_np) {
--- 
-2.17.1
-
+>
+>> ---
+>>  .../devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml | 9 +++++++++
+>>  include/dt-bindings/mailbox/tegra186-hsp.h               | 5 +++++
+>>  2 files changed, 14 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+>> index 9f7a7296b57f..a3e87516d637 100644
+>> --- a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+>> +++ b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+>> @@ -26,6 +26,15 @@ description: |
+>>    second cell is used to identify the mailbox that the client is going
+>>    to use.
+>>  
+>> +  For shared mailboxes, the first cell composed of two fields:
+>> +    - bits 15..8:
+>> +        A bit mask of flags that further specifies the type of shared
+>> +        mailbox to be used (based on the data size). If no flag is
+>> +        specified then, 32-bit shared mailbox is used.
+>> +    - bits 7..0:
+>> +        Defines the type of the mailbox to be used. This field should be
+>> +        TEGRA_HSP_MBOX_TYPE_SM for shared mailboxes.
+>> +
+>>    For doorbells, the second cell specifies the index of the doorbell to
+>>    use.
+>>  
+>> diff --git a/include/dt-bindings/mailbox/tegra186-hsp.h b/include/dt-bindings/mailbox/tegra186-hsp.h
+>> index 3bdec7a84d35..b9ccae2aa9e2 100644
+>> --- a/include/dt-bindings/mailbox/tegra186-hsp.h
+>> +++ b/include/dt-bindings/mailbox/tegra186-hsp.h
+>> @@ -15,6 +15,11 @@
+>>  #define TEGRA_HSP_MBOX_TYPE_SS 0x2
+>>  #define TEGRA_HSP_MBOX_TYPE_AS 0x3
+>>  
+>> +/*
+>> + * These define the types of shared mailbox supported based on data size.
+>> + */
+>> +#define TEGRA_HSP_MBOX_TYPE_SM_128BIT (1 << 8)
+>> +
+>>  /*
+>>   * These defines represent the bit associated with the given master ID in the
+>>   * doorbell registers.
+>> -- 
+>> 2.17.1
+>> 
+>> 
