@@ -2,93 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C75E950602E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 01:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 750BC50604B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 01:36:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234883AbiDRXVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 19:21:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41118 "EHLO
+        id S234905AbiDRXjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 19:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234950AbiDRXVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 19:21:41 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D1724099
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 16:19:01 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id m15-20020a7bca4f000000b0038fdc1394b1so420976wml.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 16:19:01 -0700 (PDT)
+        with ESMTP id S235478AbiDRXjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 19:39:00 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A2C27FF8;
+        Mon, 18 Apr 2022 16:36:19 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-e5e433d66dso4456574fac.5;
+        Mon, 18 Apr 2022 16:36:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=KRwm/xiNkHGRGFBLiiLuaRyJfnzyL5igPiymPbPmu64=;
-        b=K+Gq2CePY9f8fkNPHb2Ti9WdadlVlIs2iCpYi0qN9hKwsQETcZY74AlzvMuS86q6Wt
-         wnjY9zwLb0irhEYhzsREbbhJ0Y4enJg1H9C8swWSDf13GtdRQPGq4jle/5Ntw1PTYT3F
-         rVZoX9MH3Ebv70nP2UfEaSsXCBMVhy7NeuWd/VUOMXwjDpL6eY0sGvVZKIT+bKzft+2s
-         0QYFkhVWk3yRSvEGuhlqUIGxGLXNJ6TIjS/x+EYN+SUAtiRvQLACEQouWWWkVD1HaXwl
-         +8sAFTwDAuqF56pcPLznRhaLUBtabgs372xp7lDS3kmEj6aP81NZrehmMbcxGAb7gzQr
-         WzrA==
+        bh=xiiRzsI3K3MJOoT1BFbBBI2gKgU/fIkJXjdOpkTK3rY=;
+        b=FYpU59LSL4ZaXSLnZ1Gd7jQCWeukDl4ixeXQZzNZf5ZzOfwl2nxmN3wEacS4HhBrf7
+         qpbLuow8crfFle5Dq517LYX2HcYhw8Ep/kl93b1BmdW/vmAPcvYfuT6+L4LrX0gNm43Z
+         nOd9AglT7G+txihqop6EdszMhRPZkDUXLkUGhmE9pGVLHgFLLP+3xjcHrlarxuQKcmnY
+         OB7nz2EDQkSc0aLl80DtjE/Dkm3vR4EMBhqrn+bjIQpn5rb9scDErzTcLPwprtSrQdOd
+         YK69LtQLGAWepPPgzvNKJamF56R1wjlzfAWb+PNIENkCllke5O3eIueXtr3xQAY/cJgh
+         p9Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=KRwm/xiNkHGRGFBLiiLuaRyJfnzyL5igPiymPbPmu64=;
-        b=qdk3UV6NIOCJFIcVL6kDYpZ8P6e2C1TzWWuvrQZCSz9VBUTBgJVUIuUdNQRrXXezYZ
-         BtX1Mek4tSz/W9OszT77vvhL+0xpSWgY2JIP7TRbd3sOoLUfqtva2k6zEW5k76BTqFbh
-         n9geNfqPd1698q9k7BDFXAeYizSDpS4lJ/AFRv8ec4rl1stMB6THr1B3LkZvYb8/opqO
-         EwNYbRS+es8kYhCb7pcHEoyt1lqVv9gbxyQ3Nu/5zklPrKFeAO1LBYWY5b8VcI4iSofJ
-         Pppj9rT6NmIfqv8NEdsWp/0R89CPsoWJAjY2iC8AK5hTPCa2rkID4kbLnvDNVL1sAEQp
-         aZlA==
-X-Gm-Message-State: AOAM530iPZiufcc+uOCtTHOUOL+vSknaiIP+HP7gTk91Kr5rJMcGtH4L
-        RRUL6DxBIZyhTUWvZY3moigY5A==
-X-Google-Smtp-Source: ABdhPJyk+EXbsgz/ETDyCoZ3LRtt4+D2nvsvcj6V8uryx4n8C7G0Q70NMTsjX014iL1wT0GalRdS5g==
-X-Received: by 2002:a7b:ce11:0:b0:38e:c257:4c76 with SMTP id m17-20020a7bce11000000b0038ec2574c76mr13314532wmc.151.1650323939897;
-        Mon, 18 Apr 2022 16:18:59 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05600c441000b0038ebcbadcedsm26105365wmn.2.2022.04.18.16.18.59
+        bh=xiiRzsI3K3MJOoT1BFbBBI2gKgU/fIkJXjdOpkTK3rY=;
+        b=rPLxX3n8yA/pbZ+NPoddZhdah6pXeo3Gpp4mFwPDqf/GEONUgCJLW8D6EbHRd8lmJz
+         N+mAk0wm1b1l3Q65cH9yPCTM1Fl9Rq0ORF0ON63cCFTLk3rcjTVd4dmw9yRC+thk3dmo
+         KtZzSMu44bwjd4fGwxCJiDvsRhRiD7KuTbHVLiWA+CmpAGLg4r/G376b04JK7F6jsHV6
+         D5OF4k4vCWMMtVaHBLJc9h/k0OXUchfEx0EGdsp01HPuCFonEider8R3SfgFGhRneUu/
+         l2JZVUSBlerfZ0OJSiOt2jJaYb88wwzsdR3HZdx+vKygKzyjem3GyvM6CpxbpGK0QD+e
+         8aZA==
+X-Gm-Message-State: AOAM533KQNh5bXvV9LN1zIT+d5Cv+IGccTyOMjzK5zENLXPhFomlsspw
+        E6UioWP/rZZVdUHUaMHUvNj7g3INsZLOyw==
+X-Google-Smtp-Source: ABdhPJwJLOFdCI61l2bkT2pcmVq1eliFK9y7l6GNPggUwYjzNFe39zKPYCylxsgs8ayOE1yD2YlH5Q==
+X-Received: by 2002:a05:6870:b408:b0:dd:ed4f:b1c7 with SMTP id x8-20020a056870b40800b000dded4fb1c7mr5611715oap.41.1650324978163;
+        Mon, 18 Apr 2022 16:36:18 -0700 (PDT)
+Received: from tresc043793.tre-sc.gov.br (187-049-235-234.floripa.net.br. [187.49.235.234])
+        by smtp.gmail.com with ESMTPSA id k14-20020a0568080e8e00b003224d35c729sm3674179oil.3.2022.04.18.16.36.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Apr 2022 16:18:59 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH] dt-bindings: soc: qcom: smd-rpm: Fix missing MSM8936 compatible
-Date:   Tue, 19 Apr 2022 00:18:57 +0100
-Message-Id: <20220418231857.3061053-1-bryan.odonoghue@linaro.org>
+        Mon, 18 Apr 2022 16:36:17 -0700 (PDT)
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
+        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, arinc.unal@arinc9.com,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH net v2 1/2] dt-bindings: net: dsa: realtek: cleanup compatible strings
+Date:   Mon, 18 Apr 2022 20:35:57 -0300
+Message-Id: <20220418233558.13541-1-luizluca@gmail.com>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible msm8936. msm8936 covers both msm8936 and msm8939.
-The relevant driver already has the compat string but, we haven't
-documented it.
+Compatible strings are used to help the driver find the chip ID/version
+register for each chip family. After that, the driver can setup the
+switch accordingly. Keep only the first supported model for each family
+as a compatible string and reference other chip models in the
+description.
 
-Fixes: d6e52482f5ab ("drivers: soc: Add MSM8936 SMD RPM compatible")
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+The removed compatible strings have never been used in a released kernel.
+
+CC: devicetree@vger.kernel.org
+Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
+Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
 ---
- Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/net/dsa/realtek.yaml  | 35 ++++++++-----------
+ 1 file changed, 14 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-index b32457c2fc0b..3361218e278f 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-@@ -34,6 +34,7 @@ properties:
-       - qcom,rpm-ipq6018
-       - qcom,rpm-msm8226
-       - qcom,rpm-msm8916
-+      - qcom,rpm-msm8936
-       - qcom,rpm-msm8953
-       - qcom,rpm-msm8974
-       - qcom,rpm-msm8976
+diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+index 8756060895a8..99ee4b5b9346 100644
+--- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+@@ -27,32 +27,25 @@ description:
+   The realtek-mdio driver is an MDIO driver and it must be inserted inside
+   an MDIO node.
+ 
++  The compatible string is only used to identify which (silicon) family the
++  switch belongs to. Roughly speaking, a family is any set of Realtek switches
++  whose chip identification register(s) have a common location and semantics.
++  The different models in a given family can be automatically disambiguated by
++  parsing the chip identification register(s) according to the given family,
++  avoiding the need for a unique compatible string for each model.
++
+ properties:
+   compatible:
+     enum:
+       - realtek,rtl8365mb
+-      - realtek,rtl8366
+       - realtek,rtl8366rb
+-      - realtek,rtl8366s
+-      - realtek,rtl8367
+-      - realtek,rtl8367b
+-      - realtek,rtl8367rb
+-      - realtek,rtl8367s
+-      - realtek,rtl8368s
+-      - realtek,rtl8369
+-      - realtek,rtl8370
+     description: |
+-      realtek,rtl8365mb: 4+1 ports
+-      realtek,rtl8366: 5+1 ports
+-      realtek,rtl8366rb: 5+1 ports
+-      realtek,rtl8366s: 5+1 ports
+-      realtek,rtl8367:
+-      realtek,rtl8367b:
+-      realtek,rtl8367rb: 5+2 ports
+-      realtek,rtl8367s: 5+2 ports
+-      realtek,rtl8368s: 8 ports
+-      realtek,rtl8369: 8+1 ports
+-      realtek,rtl8370: 8+2 ports
++      realtek,rtl8365mb:
++        Use with models RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB,
++        RTL8364NB, RTL8364NB-VB, RTL8365MB, RTL8366SC, RTL8367RB-VB, RTL8367S,
++        RTL8367SB, RTL8370MB, RTL8310SR
++      realtek,rtl8366rb:
++        Use with models RTL8366RB, RTL8366S
+ 
+   mdc-gpios:
+     description: GPIO line for the MDC clock line.
+@@ -335,7 +328,7 @@ examples:
+             #size-cells = <0>;
+ 
+             switch@29 {
+-                    compatible = "realtek,rtl8367s";
++                    compatible = "realtek,rtl8365mb";
+                     reg = <29>;
+ 
+                     reset-gpios = <&gpio2 20 GPIO_ACTIVE_LOW>;
 -- 
 2.35.1
 
