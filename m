@@ -2,192 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E5B504CA1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 08:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C5EB504CA8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 08:32:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236453AbiDRG3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 02:29:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
+        id S232563AbiDRGe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 02:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230360AbiDRG3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 02:29:45 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1417E1834E;
-        Sun, 17 Apr 2022 23:27:07 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id i20so17473060wrb.13;
-        Sun, 17 Apr 2022 23:27:07 -0700 (PDT)
+        with ESMTP id S229681AbiDRGe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 02:34:27 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C000218E1F
+        for <devicetree@vger.kernel.org>; Sun, 17 Apr 2022 23:31:49 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id t67so24123516ybi.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Apr 2022 23:31:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=s+1LbEHTZ4xb/p3MS2k3Xy2C6GVhDnJWDT9sJsoDOPA=;
-        b=aEtrZrDwD81IkQf7qqZzqWCOqcb7Q211AlcRLiYcoOuDujHbxfhOoluP2i1Kf+XV1e
-         TDqGfFdAYNsm4QK6bkR9NAq5Z07hYM15Fw8wpouvXX8J9wWqrVvRwDEFtC3YBUgaKyff
-         Bp0kzyniNrHLJvQi10iJf2ysjkWRr4lV2tPznLo6k84x+Q/miW+GahtshZtos33LYK3A
-         /nZ8QJjnPfvKhQWUo6Qjct8ZIlWufFokK1nRyFqDR4hD/67/yP3yMCemUt49QlTK8aMr
-         bCp2NlXbve0BRZn9f3tcZUfw9LNIEFsaxTU++OioT1ItfbYHxSU4CFnOERhlOwa+HVws
-         5q8Q==
+        bh=a5//32PVRH4DcQnv6kHRa806XtetNIhG8fCqBfNSSJs=;
+        b=f0BznFeVGD83lSwWWGcinsPJjC7Wzat6bDrnUNkVXT/aJYh2ONJHwOo9cvRTb7aDNl
+         lW1+xBOInbLn/zzi5Ihi5ekWZD9H/QRffjeBMxlBZChb0neixnM/tojfM87/1exPJisy
+         E7AnI5sAvtzoYnDc2pqP5gcqON17hWnMtbckE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=s+1LbEHTZ4xb/p3MS2k3Xy2C6GVhDnJWDT9sJsoDOPA=;
-        b=ksz6akFeedbeQ9a12lqObzOuT19KX95QlSf9HHzHh/UYGl7pk2/cLGihPAx7O18bnX
-         94AirdLHpt0bTeTFNp7lhwuVs2uSwbm6ro3HGttJdOR6mQtkb3CN76FA6K0wOvXkc95w
-         4LodYaXJ4xVzzrzIdE1Xel3dqA79UK2aMrdzP+B1K1GYq84q9Mx3dw7hbOE8RiNpxFBp
-         PEDZ5kmrGddI5gTVkB19Dmm/k78DzqYJNzrCuvyu/vkZHvvYaNGYo1Z+6x944OhE8dDl
-         zfsqLKyHT9WiEfAQ++q48K12PdFDSNI/ufx9Ykthnr50mhSwbPqd1mxDEIxS/bUt/lEf
-         Alyg==
-X-Gm-Message-State: AOAM532xeEwgZKX7eGE9kqDhYbOnLcF6YuI0MB/mHOuaPGEMfuaTuvIs
-        BFc+OI/acHlahv+4peuvJpqwBaBfMPhYEGtNnwU=
-X-Google-Smtp-Source: ABdhPJzW2eAw+FwQCJpaDWa8O+sHyNYdtqXYOVCPpNDBj5c1YcLjVlfa6Qaw/+hh0JEa0XA4a6Yk/a7GrBprm47ed6g=
-X-Received: by 2002:a5d:6e85:0:b0:207:a435:d9a7 with SMTP id
- k5-20020a5d6e85000000b00207a435d9a7mr7165580wrz.217.1650263225527; Sun, 17
- Apr 2022 23:27:05 -0700 (PDT)
+        bh=a5//32PVRH4DcQnv6kHRa806XtetNIhG8fCqBfNSSJs=;
+        b=Q9Y6TXVeI+EoskAUiR5zMbv+8XFOs6N+9gkOiZBqSgEavsHNmhcrB99xYXFr9EIW6E
+         mFCBTU+Bpm3gtEyZ5xmlG/y38XLdobMqM2ottbethhNKZu7OrYqBcuuSjCuU1CWhRpBc
+         QBABsbveJSD3eMy2ovSsM0xP1ERaZ6nwUZXlBnXJqNoylL0o8ic4UsawyeUH99cRC6PD
+         JT6u7qdhJTYzQfdjmVx5KrbIAcDlA0RC57lNWIfwSOPh3uOG1/IVg+7Lx7qGmUgkbX7z
+         v1V3JoPpSnLb+icua0FMkxb51TwLG0UY3JD09J1JvCqToArWXnamzm0EUgB6xc6VMnYS
+         p3uQ==
+X-Gm-Message-State: AOAM533cu9FBYAIzQOVcRXacqveMxYA/+rDTs1wpU8ph1LEpflChb2Ia
+        BYcLdKsU1XKZG57gYsZiXeCNabfKNRUbMdVatTEwQg==
+X-Google-Smtp-Source: ABdhPJwXobB5o6QFfFdjRXteJBihb/U5G3fs0zlNBqiQCrA0zUqMQjYkLesIDylCJpkV8h8NHMX12IpuelBIRiuI/No=
+X-Received: by 2002:a25:dbd3:0:b0:641:56d3:dbe2 with SMTP id
+ g202-20020a25dbd3000000b0064156d3dbe2mr8223010ybf.203.1650263509024; Sun, 17
+ Apr 2022 23:31:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220407082148.571442-1-gengcixi@gmail.com> <20220407082148.571442-2-gengcixi@gmail.com>
- <YlcgtLmXwc2s2+oJ@robh.at.kernel.org>
-In-Reply-To: <YlcgtLmXwc2s2+oJ@robh.at.kernel.org>
-From:   Cixi Geng <gengcixi@gmail.com>
-Date:   Mon, 18 Apr 2022 14:26:29 +0800
-Message-ID: <CAF12kFuY_t4i2SpAaBvTAOagKVJOf3Awuds1O0J7xvKFgSEQQg@mail.gmail.com>
-Subject: Re: [PATCH V3 1/7] dt-bindings:iio:adc: add sprd,ump9620-adc dt-binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        =?UTF-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
-        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220328120956.1848795-1-xji@analogixsemi.com>
+ <20220328120956.1848795-3-xji@analogixsemi.com> <YkswTpDiPYfdIFtE@robh.at.kernel.org>
+ <20220409044740.GA595530@anxtwsw-Precision-3640-Tower> <CAG3jFyt1Srtn2aTFQ6b8Rxc6F_GCzU2mKxiEiWwgskMwHHjj5Q@mail.gmail.com>
+ <20220414022655.GA606685@anxtwsw-Precision-3640-Tower>
+In-Reply-To: <20220414022655.GA606685@anxtwsw-Precision-3640-Tower>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 18 Apr 2022 14:31:38 +0800
+Message-ID: <CAGXv+5EXpfVQCSUwgMP2fGf6ZPzvTuZxYbLB+F=cOKH4op0o3Q@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: drm/bridge: anx7625: Change bus-type to
+ 7 (DPI)
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        dri-devel@lists.freedesktop.org, Jonas Karlman <jonas@kwiboo.se>,
+        David Airlie <airlied@linux.ie>, qwen@analogixsemi.com,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        bliang@analogixsemi.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> =E4=BA=8E2022=E5=B9=B44=E6=9C=8814=E6=97=A5=
-=E5=91=A8=E5=9B=9B 03:12=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Thu, Apr 07, 2022 at 04:21:42PM +0800, Cixi Geng wrote:
-> > From: Cixi Geng <cixi.geng1@unisoc.com>
-> >
-> > sprd,ump9620-adc is one variant of sc27xx series, add ump9620
-> > description and sample in dt-bindings.
-> >
-> > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> > ---
-> >  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 57 +++++++++++++++++--
-> >  1 file changed, 53 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.=
-yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > index caa3ee0b4b8c..0d0f317b75c5 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >        - sprd,sc2723-adc
-> >        - sprd,sc2730-adc
-> >        - sprd,sc2731-adc
-> > +      - sprd,ump9620-adc
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -34,12 +35,39 @@ properties:
-> >      maxItems: 1
-> >
-> >    nvmem-cells:
-> > -    maxItems: 2
-> > +    description: nvmem-cells.
-> >
-> >    nvmem-cell-names:
-> > -    items:
-> > -      - const: big_scale_calib
-> > -      - const: small_scale_calib
-> > +    description: Names for each nvmem-cells specified.
->
-> These descriptions of common properties are redundant. Just use 'true'
-> for the property values.
->
-> > +
-> > +if:
-> > +  not:
-> > +    properties:
-> > +      compatible:
-> > +        contains:
-> > +          enum:
-> > +            - sprd,ump9620-adc
->
-> Use 'const'
+Hi,
 
-Hi Rob Herring=EF=BC=9A
-did you mean I should use "- const: sprd,ump9620-adc"? or change the
-enum to const?
-but the above two modification methods have failed for me to test
-dt-bindings-check.
+On Thu, Apr 14, 2022 at 10:27 AM Xin Ji <xji@analogixsemi.com> wrote:
 >
-> > +then:
-> > +  properties:
-> > +    nvmem-cells:
-> > +      maxItems: 2
-> > +    nvmem-cell-names:
-> > +      items:
-> > +        - const: big_scale_calib
-> > +        - const: small_scale_calib
-> > +
-> > +else:
-> > +  properties:
-> > +    nvmem-cells:
-> > +      maxItems: 6
-> > +    nvmem-cell-names:
-> > +      items:
-> > +        - const: big_scale_calib1
-> > +        - const: big_scale_calib2
-> > +        - const: small_scale_calib1
-> > +        - const: small_scale_calib2
-> > +        - const: vbat_det_cal1
-> > +        - const: vbat_det_cal2
+> On Wed, Apr 13, 2022 at 04:28:51PM +0200, Robert Foss wrote:
+> > On Sat, 9 Apr 2022 at 06:47, Xin Ji <xji@analogixsemi.com> wrote:
+> > >
+> > > On Mon, Apr 04, 2022 at 12:52:14PM -0500, Rob Herring wrote:
+> > > > On Mon, Mar 28, 2022 at 08:09:54PM +0800, Xin Ji wrote:
+> > > > > Change bus-type define for DPI.
+> > > > >
+> > > > > Fixes: a43661e7e819 ("dt-bindings:drm/bridge:anx7625:add vendor d=
+efine")
+> > > > >
+> > > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml  | =
+4 ++--
+> > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ana=
+logix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analo=
+gix,anx7625.yaml
+> > > > > index 0d38d6fe3983..4590186c4a0b 100644
+> > > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,a=
+nx7625.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,a=
+nx7625.yaml
+> > > > > @@ -106,7 +106,7 @@ properties:
+> > > > >                remote-endpoint: true
+> > > > >
+> > > > >                bus-type:
+> > > > > -                enum: [1, 5]
+> > > > > +                enum: [7]
+> > > >
+> > > > Changing is an ABI break, but didn't we revert adding this?
+> > > Hi Rob, sorry, what do you mean about ABI break? Do I need remove thi=
+s
+> > > patch in this serial? Or do I need revert patch
+> > > https://nam10.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fp=
+atchwork.freedesktop.org%2Fpatch%2F462331%2F&amp;data=3D04%7C01%7Cxji%40ana=
+logixsemi.com%7C10f5b0213f434592936008da1d59f566%7Cb099b0b4f26c4cf59a0fd5be=
+9acab205%7C0%7C0%7C637854569490105386%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wL=
+jAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DvK=
+0Vmb9S425kHZc1WurfnNhnoXDMbUGkkdY1PVnfS9g%3D&amp;reserved=3D0, I don't know=
+ how to do
+> > > it.
+> > >
 > >
-> >  required:
-> >    - compatible
-> > @@ -69,4 +97,25 @@ examples:
-> >              nvmem-cell-names =3D "big_scale_calib", "small_scale_calib=
-";
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    pmic {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +        adc@504 {
-> > +            compatible =3D "sprd,ump9620-adc";
-> > +            reg =3D <0x504>;
-> > +            interrupt-parent =3D <&ump9620_pmic>;
-> > +            interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
-> > +            #io-channel-cells =3D <1>;
-> > +            hwlocks =3D <&hwlock 4>;
-> > +            nvmem-cells =3D <&adc_bcal1>, <&adc_bcal2>,
-> > +                          <&adc_scal1>, <&adc_scal2>,
-> > +                          <&vbat_det_cal1>, <&vbat_det_cal2>;
-> > +            nvmem-cell-names =3D "big_scale_calib1", "big_scale_calib2=
-",
-> > +                               "small_scale_calib1", "small_scale_cali=
-b2",
-> > +                               "vbat_det_cal1", "vbat_det_cal2";
-> > +        };
-> > +    };
-> >  ...
-> > --
-> > 2.25.1
+> > I contributed to the confusion about this, let's see if we can clear it=
+ up.
 > >
+> > An issue was found related to which enum values were used to represent
+> > what late in the last release cycle. As a result a revert[1] patch for
+> > everything touching bus-type in anx7625 was merged.
 > >
+> > This patch, does not apply to drm-misc-next due to the revert, and if
+> > Xin Ji rebases his work on the drm-misc-next there should be no
+> > ABI-change as this patch when fixed up will introduce bus-type to the
+> > nax7625 ABI.
+> >
+> > Xin: Does this make sense to you?
+> Hi Robert Foss, yes, my work is based on drm-misc-next, all I can do,
+> just make a fix up patch(this patch) to change the bus-type define.
+
+The revert was applied to the soc tree and merged into Linus's tree
+in v5.17-rc8. It was not present in drm-misc-next until April 5 with
+commit 9cbbd694a58b ("Merge drm/drm-next into drm-misc-next").
+
+So please fetch the latest drm-misc-next, rebase your patches on top, and
+resend.
+
+
+Thanks
+ChenYu
