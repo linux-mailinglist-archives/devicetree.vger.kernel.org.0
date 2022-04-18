@@ -2,220 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05DB8505AD1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C406505B17
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:31:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245023AbiDRPS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 11:18:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56456 "EHLO
+        id S232257AbiDRPec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 11:34:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345860AbiDRPSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:18:04 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70344BF77;
-        Mon, 18 Apr 2022 07:14:49 -0700 (PDT)
+        with ESMTP id S1345349AbiDRPdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:33:47 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 429892ED66
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 07:49:19 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id z5-20020a17090a468500b001d2bc2743c4so728975pjf.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 07:49:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650291312; x=1681827312;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=otoF7a0MudOEuqn20J0NBDBd++F+0YHM0bQzTJ527MY=;
-  b=MetGxw63bN2Ivn7wm45heNFQkXa2aqj9TWjO7kcUGLbqDzdJasUTxol0
-   JvubGUzGIRQQz685lvebXLMPsXVxVtMuMnD1TsebFtUfZTEDkLgeTsrdq
-   HeZjeK0+CcF3iIyRpDqj819yaoYsf/KZFnnkU7v8vXDs8mrZqCShyawcn
-   M=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 18 Apr 2022 07:14:49 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2022 07:14:48 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 18 Apr 2022 07:14:47 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 18 Apr 2022 07:14:43 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v8 4/4] arm64: dts: qcom: sc7280: Add dt nodes for sound card
-Date:   Mon, 18 Apr 2022 19:44:12 +0530
-Message-ID: <1650291252-30398-5-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LcpBBaLp7yKm4ePUGPYn7cfXcgSTcSPuiQUdtonyWvw=;
+        b=EBkHmi4d31qbKwVRASQykxgS+ZPLpHRLQCtY505IyEpcYARyykRr+8YwLkgcesbhUo
+         GhmgOmbxINYKVDz8YN6Xtlw1hgcTioANukL3XMsrZhxLsklMAxmrjWluFpN6znmjkHAZ
+         K2524nXKtVEkMlVcN8597Ux9NSgQHkc4El09A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=LcpBBaLp7yKm4ePUGPYn7cfXcgSTcSPuiQUdtonyWvw=;
+        b=yYyWdPABZuzWo3W6oxyr0IsVJ/y0MPuW6HqgM89m+I3uRiXmEZGr93yUL+CUpo9JsC
+         0zfGh6IoUPYnf7U3EBBeU4zS+Q23zZUM1vmXowfOtm+j2THIBqbTdRDKzGl/g1S6GmwE
+         cuO415yA0T4QGMuCHtCaGY/rjXIeeXRguKFLlKiJB5Xsheg1pzmY0uf7HRWnSv/2RQRK
+         wBtbnEqTYFFVHJQF/v87wgXzd17BdiHKoj/KRa9GYqw+ohoasw0nWFe0/8nY2iO1B5VG
+         FX2/GrtJbAmVeZivZpYFkd/JfYSSSUqsufFzWxieDtfH8sD1HIbgBypF4Gse3v7YgDr+
+         cSFw==
+X-Gm-Message-State: AOAM533brwdRQFXCc1/jZM+JE7T1XSgUPf2aLPqBLi1bpGQIpNR2bjo5
+        YPth1xcPsrcTQcpHkV3acfcQVQ==
+X-Google-Smtp-Source: ABdhPJwogBI5AQX9yHFmWqm+C+1uZD+WyRYxauigff0xcpd3hLwGmIJ+DdkM58lJnWX+vEiWRJioTg==
+X-Received: by 2002:a17:903:2291:b0:158:c298:4f7a with SMTP id b17-20020a170903229100b00158c2984f7amr11184374plh.7.1650293358797;
+        Mon, 18 Apr 2022 07:49:18 -0700 (PDT)
+Received: from localhost.localdomain ([183.83.137.38])
+        by smtp.gmail.com with ESMTPSA id d6-20020a056a00244600b004f701135460sm13508532pfj.146.2022.04.18.07.49.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Apr 2022 07:49:18 -0700 (PDT)
+From:   Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Matteo Lisi <matteo.lisi@engicam.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Subject: [PATCH v2 1/3] dt-bindings: arm: fsl: Add Engicam i.Core MX8M Plus EDIMM2.2 Starter Kit
+Date:   Mon, 18 Apr 2022 20:19:05 +0530
+Message-Id: <20220418144907.327511-1-abbaraju.manojsai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220330191437.614065-2-abbaraju.manojsai@amarulasolutions.com>
+References: <20220330191437.614065-2-abbaraju.manojsai@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt nodes for sound card support, which is using WCD938x headset
-playback, capture, I2S speaker playback and DMICs via VA macro.
+i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus from Engicam.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive Evaluation
+Board from Engicam.
+
+i.Core MX8M Plus needs to mount on top of this Evaluation board for
+creating complete i.Core MX8M Plus EDIMM2.2 Starter Kit.
+
+Add bindings for it.
+
+Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts | 23 ++++++++
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi   | 93 ++++++++++++++++++++++++++++++
- 2 files changed, 116 insertions(+)
+Changes for v2 :
+ -added the device binding of imx8mp as per soc order.
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
-index aa0bf6e2..bf15bbe 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
-@@ -87,6 +87,29 @@ ap_ts_pen_1v8: &i2c13 {
- 	pins = "gpio51";
- };
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index b6cc34115362..3bdc490cfbe2 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -936,6 +936,13 @@ properties:
+           - const: toradex,verdin-imx8mp          # Verdin iMX8M Plus Module
+           - const: fsl,imx8mp
  
-+&sound {
-+	audio-routing =
-+		"IN1_HPHL", "HPHL_OUT",
-+		"IN2_HPHR", "HPHR_OUT",
-+		"AMIC1", "MIC BIAS1",
-+		"AMIC2", "MIC BIAS2",
-+		"VA DMIC0", "MIC BIAS1",
-+		"VA DMIC1", "MIC BIAS1",
-+		"VA DMIC2", "MIC BIAS3",
-+		"VA DMIC3", "MIC BIAS3",
-+		"TX SWR_ADC0", "ADC1_OUTPUT",
-+		"TX SWR_ADC1", "ADC2_OUTPUT",
-+		"TX SWR_ADC2", "ADC3_OUTPUT",
-+		"TX SWR_DMIC0", "DMIC1_OUTPUT",
-+		"TX SWR_DMIC1", "DMIC2_OUTPUT",
-+		"TX SWR_DMIC2", "DMIC3_OUTPUT",
-+		"TX SWR_DMIC3", "DMIC4_OUTPUT",
-+		"TX SWR_DMIC4", "DMIC5_OUTPUT",
-+		"TX SWR_DMIC5", "DMIC6_OUTPUT",
-+		"TX SWR_DMIC6", "DMIC7_OUTPUT",
-+		"TX SWR_DMIC7", "DMIC8_OUTPUT";
-+};
++      - description: Engicam i.Core MX8M Plus SoM based boards
++        items:
++          - enum:
++              - engicam,icore-mx8mp-edimm2.2       # i.MX8MP Engicam i.Core MX8M Plus EDIMM2.2 Starter Kit
++          - const: engicam,icore-mx8mp             # i.MX8MP Engicam i.Core MX8M Plus SoM
++          - const: fsl,imx8mp
 +
- &wcd938x {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&us_euro_hs_sel>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index e880837..640b1338 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -85,6 +85,99 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nvme_pwren>;
- 	};
-+
-+	sound: sound {
-+		compatible = "google,sc7280-herobrine";
-+		model = "sc7280-wcd938x-max98360a-1mic";
-+
-+		audio-routing =
-+			"IN1_HPHL", "HPHL_OUT",
-+			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC1", "MIC BIAS1",
-+			"AMIC2", "MIC BIAS2",
-+			"VA DMIC0", "MIC BIAS3",
-+			"VA DMIC1", "MIC BIAS3",
-+			"VA DMIC2", "MIC BIAS1",
-+			"VA DMIC3", "MIC BIAS1",
-+			"TX SWR_ADC0", "ADC1_OUTPUT",
-+			"TX SWR_ADC1", "ADC2_OUTPUT",
-+			"TX SWR_ADC2", "ADC3_OUTPUT",
-+			"TX SWR_DMIC0", "DMIC1_OUTPUT",
-+			"TX SWR_DMIC1", "DMIC2_OUTPUT",
-+			"TX SWR_DMIC2", "DMIC3_OUTPUT",
-+			"TX SWR_DMIC3", "DMIC4_OUTPUT",
-+			"TX SWR_DMIC4", "DMIC5_OUTPUT",
-+			"TX SWR_DMIC5", "DMIC6_OUTPUT",
-+			"TX SWR_DMIC6", "DMIC7_OUTPUT",
-+			"TX SWR_DMIC7", "DMIC8_OUTPUT";
-+
-+		qcom,msm-mbhc-hphl-swh = <1>;
-+		qcom,msm-mbhc-gnd-swh = <1>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		#sound-dai-cells = <0>;
-+
-+		dai-link@1 {
-+			link-name = "MAX98360A";
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-+			};
-+
-+			codec {
-+				sound-dai = <&max98360a>;
-+			};
-+		};
-+
-+		dai-link@5 {
-+			link-name = "DisplayPort";
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_DP_RX>;
-+			};
-+
-+			codec {
-+				sound-dai = <&mdss_dp>;
-+			};
-+		};
-+
-+		dai-link@6 {
-+			link-name = "WCD9385 Playback";
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_RX0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd938x 0>, <&swr0 0>, <&lpass_rx_macro 0>;
-+			};
-+		};
-+
-+		dai-link@19 {
-+			link-name = "WCD9385 Capture";
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_TX3>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd938x 1>, <&swr1 0>, <&lpass_tx_macro 0>;
-+			};
-+		};
-+
-+		dai-link@25 {
-+			link-name = "DMIC";
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&lpass_va_macro 0>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
+       - description: i.MX8MQ based Boards
+         items:
+           - enum:
 -- 
-2.7.4
+2.25.1
 
