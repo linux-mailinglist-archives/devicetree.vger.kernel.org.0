@@ -2,110 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5350D504B5F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 05:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D18504B68
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 05:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236079AbiDRDmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Apr 2022 23:42:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33038 "EHLO
+        id S234818AbiDRDzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Apr 2022 23:55:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiDRDmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 23:42:52 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B4CAE72;
-        Sun, 17 Apr 2022 20:40:13 -0700 (PDT)
-Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 18 Apr
- 2022 11:40:10 +0800
-Message-ID: <d5a33645-fac1-9c69-afe6-654bfe93ca48@amlogic.com>
-Date:   Mon, 18 Apr 2022 11:40:10 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Content-Language: en-US
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-CC:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
+        with ESMTP id S229449AbiDRDzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 23:55:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 250AE186C2;
+        Sun, 17 Apr 2022 20:52:56 -0700 (PDT)
+X-UUID: e6254cd210fd445cab5263b81add8c69-20220418
+X-UUID: e6254cd210fd445cab5263b81add8c69-20220418
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 336577110; Mon, 18 Apr 2022 11:52:50 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 18 Apr 2022 11:52:48 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 18 Apr 2022 11:52:48 +0800
+Message-ID: <3bc291ef3b087ff1d45aa5a8eaf95b927c803dd6.camel@mediatek.com>
+Subject: Re: [PATCH v19 03/10] soc: mediatek: add mtk-mmsys support for
+ mt8195 vdosys0
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     CK Hu <ck.hu@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
+        "Singo Chang" <singo.chang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20220402074921.13316-1-liang.yang@amlogic.com>
- <20220402074921.13316-2-liang.yang@amlogic.com>
- <20220404103034.48ec16b1@xps13>
- <50105d6b-8ced-1b72-30cb-a709c4a4dd26@amlogic.com>
-In-Reply-To: <50105d6b-8ced-1b72-30cb-a709c4a4dd26@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.28.39.106]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 18 Apr 2022 11:52:48 +0800
+In-Reply-To: <3a905d21-26a7-654f-4ab7-7ad1fa1376c6@collabora.com>
+References: <20220415083911.5186-1-jason-jh.lin@mediatek.com>
+         <20220415083911.5186-4-jason-jh.lin@mediatek.com>
+         <3a905d21-26a7-654f-4ab7-7ad1fa1376c6@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Angelo,
 
-i have some confusion when i prepare the patches. for DT compatibility, 
-it falls back to the old DT when failed to get resource by the new DT, 
-but there is some points:
-a. old DT depends on MMC sub clock driver, but it never be merged, so it 
-can't work.
-b. if it falls back to the old DT, beside the regmap lookup below, it 
-seems that we have to preserve the code of the old clock setting in 
-nfc_clk_init(). do we still need to avoid break DT compatibility?
+Thanks for the reviews.
 
+On Fri, 2022-04-15 at 12:18 +0200, AngeloGioacchino Del Regno wrote:
+> Il 15/04/22 10:39, jason-jh.lin ha scritto:
+> > 1. Add mt8195 mmsys compatible for 2 vdosys.
+> > 2. Add io_start into each driver data of mt8195 vdosys.
+> > 3. Add get match data function to identify mmsys by io_start.
+> > 4. Add mt8195 routing table settings of vdosys0.
+> > 
+> > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> 
+> Unless anyone wants this commit to be split in two, one for the match
+> data
+> and one for the mt8195 addition, it looks almost good to me, apart
+> one small
+> change that has to be done, check below:
+> 
+> 
+> > --- >   drivers/soc/mediatek/mt8195-mmsys.h    | 370
+> > +++++++++++++++++++++++++
+> >   drivers/soc/mediatek/mtk-mmsys.c       | 152 +++++++++-
+> >   drivers/soc/mediatek/mtk-mmsys.h       |   6 +
+> >   include/linux/soc/mediatek/mtk-mmsys.h |  11 +
+> >   4 files changed, 528 insertions(+), 11 deletions(-)
+> >   create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
+> > 
+> 
+> ..snip..
+> 
+> > diff --git a/drivers/soc/mediatek/mtk-mmsys.h
+> > b/drivers/soc/mediatek/mtk-mmsys.h
+> > index 77f37f8c715b..21cf300ba864 100644
+> > --- a/drivers/soc/mediatek/mtk-mmsys.h
+> > +++ b/drivers/soc/mediatek/mtk-mmsys.h
+> > @@ -87,12 +87,18 @@ struct mtk_mmsys_routes {
+> >   };
+> >   
+> >   struct mtk_mmsys_driver_data {
+> > +	const u32 io_start;
+> 
+> I agree with you that this iostart is in 32bits boundaries, and that
+> this will
+> practically never change... and I was in doubt whether this would be
+> acceptable
+> or not, because of saving some memory.
+> 
+> Even though I would really love to have the savings, in order to
+> avoid having any
+> "surprises" in the future (any future breakage for "reasons"), we
+> shall comply
+> with the kernel types, so, this has to be...
+> 
+> 	const resource_size_t io_start;
+> 
+> ...and this is the same for both this file and mtk_drm_drv.h, which
+> you modify in
+> patch 07/10.
+> 
+> After fixing that:
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> 
+> 
+> Cheers,
+> Angelo
+
+OK, I'll fix them in the next version.
 Thanks.
 
-On 2022/4/11 10:40, Liang Yang wrote:
->>>       nfc->dev = dev;
->>> -    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> -    nfc->reg_base = devm_ioremap_resource(dev, res);
->>> +    nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
->>
->> This change seems unrelated.
-> 
-> To be consistent with the following 
-> devm_platform_ioremap_resource_byname(pdev, "emmc"). do you mean that we 
-> don't need it?>
->>>       if (IS_ERR(nfc->reg_base))
->>>           return PTR_ERR(nfc->reg_base);
->>> -    nfc->reg_clk =
->>> -        syscon_regmap_lookup_by_phandle(dev->of_node,
->>> -                        "amlogic,mmc-syscon");
->>> -    if (IS_ERR(nfc->reg_clk)) {
->>> -        dev_err(dev, "Failed to lookup clock base\n");
->>> -        return PTR_ERR(nfc->reg_clk);
->>> -    }
->>> +    nfc->sd_emmc_clock = devm_platform_ioremap_resource_byname(pdev, 
->>> "emmc");
->>> +    if (IS_ERR(nfc->sd_emmc_clock))
->>> +        return PTR_ERR(nfc->sd_emmc_clock);
->>
->> While I agree this is much better than the previous solution, we cannot
->> break DT compatibility, so you need to try getting the emmc clock, but
->> if it fails you should fallback to the regmap lookup.
-> 
-> ok, i will fix it next version. thanks.
-> 
->>
->>>       irq = platform_get_irq(pdev, 0); 
+Regards,
+Jason-JH.Lin
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
+
