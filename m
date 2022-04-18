@@ -2,95 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF3D8504F39
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2145A504F4B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:13:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234267AbiDRLHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 07:07:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36934 "EHLO
+        id S229755AbiDRLPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 07:15:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231895AbiDRLHI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:07:08 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8E41A060
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 04:04:29 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id g18so26194875ejc.10
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 04:04:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6U9l77FD33XoUxlN4C0IowgyHbs01XD4FahB9dQjefs=;
-        b=NShyOkE824I21KiCOZkQ+WGa6uc9uVI/EIRHGtVSTtEjc0Rv4/rW/9Eph3QsS2yRSN
-         IxbMM3DBA9iMNxEDaUylJjN6+4P3nNE0tmA+FvuXSBHa5t3d/Hvi8sHjs2PBd/MYbnTd
-         Pr1TrthcpxsGYqY8BX3M98xN7I+uHaNIe57Ae8zu4dExc9NO+PBqpHdwpkDEGP8+K8kt
-         N22l93EEPm9fcyqflvrUljAhYhf5ZfMNSuSzTyn4q0Y+yegJVAp/YSlqW4U3rtsuj8S5
-         8/bPAhQiAiESSZ5WtyWgJdypgQGaIX0v/crn4eMbu3euqlof+7keGUBAcBq7rftgiPdb
-         6DrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6U9l77FD33XoUxlN4C0IowgyHbs01XD4FahB9dQjefs=;
-        b=W7YZejWSzdZQ16YcAqOPhs8OD7mM7ovCXldWzOanQDVQ+qHQO4I1Ivxum03l0ak6pt
-         GyStFY5oVRBkNePfSYO46h4eyRrJQwmDKozQKuJ294NbJF4Fw5NG+5TmiohQCyMg/0ia
-         LZ7psjYYLhdPwFKELHu7Iil7wJ8rTK11XTGnW3z6U8NmFHI0ilzzbbPzvbaKCHMAQjm5
-         0hJDWs/1t+Qpyxvi3D3xtV0jMnTePJubmPXVk1M8+CtvKMs9BApCzF474FYH/++yemP6
-         qjbtn6POVWmjai7GcqdgRANaPtSkp3R5KS+WNbUo2ieXk8ItLXVt1w0qS3Iw5Nz16les
-         Apfg==
-X-Gm-Message-State: AOAM5336TK1BxrLxqHRkevcpvHC1X2oPwAJlcoQBtt2MYV8TO5hcYOm+
-        FMnaGYXp3ya4kbwsetHT0uooTg==
-X-Google-Smtp-Source: ABdhPJxQp369tmI5wz7ZkbMi5huMsFAnrQPw01ST5ZsVv7AcoYpJMxb6xWt+YNdUPpZpiv/nu9RJMQ==
-X-Received: by 2002:a17:906:1ec3:b0:6cf:d118:59e2 with SMTP id m3-20020a1709061ec300b006cfd11859e2mr8698405ejj.767.1650279868386;
-        Mon, 18 Apr 2022 04:04:28 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ch4-20020a170906c2c400b006efcc061c1fsm293563ejb.178.2022.04.18.04.04.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 04:04:27 -0700 (PDT)
-Message-ID: <ebb51ba4-a199-96ee-6a88-6b917bc9c9d5@linaro.org>
-Date:   Mon, 18 Apr 2022 13:04:26 +0200
+        with ESMTP id S229658AbiDRLPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:15:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499B61A076;
+        Mon, 18 Apr 2022 04:13:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 00669B80E6D;
+        Mon, 18 Apr 2022 11:13:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA83C385A8;
+        Mon, 18 Apr 2022 11:13:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650280391;
+        bh=wwE2D7Hcj5fftw+S9d3Tubx9RVx84/kTA+8TdD2y+QQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BzsRy9QHW20BPD2GJc81aJi3R2/go2onQvbzoPWGcEcF9WaVazkwFFRYfd5dzxgf6
+         JNHDDxdjDMuXxYnJzFPaHVxeRVlySOr7AbZXW0kILvm5zoS2KYnL9s1ZeE+LsZEkqn
+         5eORYfsQ8HXS2m3ZbJFiHN33QyPk42cMQh3ETaJfLUmIgttdE4au83CwoelXTF/LTx
+         DAYMluTVHB6wZ0G6Ac2MF1QmkTQX8TfQEpFVcZIyabO+MjdYaSbnGo4Jl9n+/Od5bb
+         ymTpWooG4/9oFbmzFAzifW5/RS7VbY+EjMN4wfaOipVFtyJDF8KK/3VJVWyotdMAcn
+         dJFuo+3kCkSVw==
+Message-ID: <de9b0114-23b5-04b4-86b3-0d393441a267@kernel.org>
+Date:   Mon, 18 Apr 2022 13:13:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: timer: Update TI timer to yaml
+Subject: Re: [PATCH v3 6/6] dt-bindings: pinctrl: convert ocelot-pinctrl to
+ YAML format
 Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20220414085807.7389-1-tony@atomide.com>
- <20220414085807.7389-2-tony@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220414085807.7389-2-tony@atomide.com>
+To:     Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20220319204628.1759635-1-michael@walle.cc>
+ <20220319204628.1759635-7-michael@walle.cc>
+ <CACRpkdbrw7Hjt9mB9pr_iNsGi71g_d8BGhpT_ih1RVgKJ5U0qQ@mail.gmail.com>
+ <e02e22920ffe23b49237c0c1379e888b@walle.cc>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <e02e22920ffe23b49237c0c1379e888b@walle.cc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-10.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 10:58, Tony Lindgren wrote:
-> Let's update the TI timer binding to use yaml. As this binding is specific
-> to the TI dual-mode timers also known as dm-timers, let's use file name
-> ti,timer-dm.yaml to avoid confusion with other timers.
+On 18/04/2022 10:19, Michael Walle wrote:
+> [resend, use Krysztof's new email address]
 > 
-> We add checks for the deprecated ti,hwmods property as done for other TI
-> device driver bindings earlier.
+> Am 2022-04-18 01:41, schrieb Linus Walleij:
+>> On Sat, Mar 19, 2022 at 9:47 PM Michael Walle <michael@walle.cc> wrote:
+>>
+>>> Convert the ocelot-pinctrl device tree binding to the new YAML format.
+>>>
+>>> Additionally to the original binding documentation, add interrupt
+>>> properties which are optional and already used on several SoCs like
+>>> SparX-5, Luton, Ocelot and LAN966x but were not documented before.
+>>>
+>>> Also, on the sparx5 and the lan966x SoCs there are two items for the
+>>> reg property.
+>>>
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>
+>> So is this single patch something I should apply to the pin control 
+>> tree?
 > 
+> The first five patches will fix the validation errrors once the
+> binding is converted to the YAML format. So, do they need to go
+> through the same tree?
+> 
+> Also as mentioned, there is this pending series [1] which is the
+> reason I've converted the binding to YAML in the first place. So
+> at least the first patch of this series will have to go through
+> the same tree as the YAML conversion patch.
+> 
+> How can we move forward here? Krzysztof, maybe all of the dt
+> bindings patches can go through your tree and I'll reposting
+> the second patch of [1] afterwards?
 
+I think you got all necessary acks for this pinctrl bindings change and
+the dependency ("add reset property"), so both can go via Linus' tree.
+That's preferred.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+DTS patches goes through your SoC maintainer tree.
 
+At least this is the usual scenario, but maybe I missed here something.
 
 Best regards,
 Krzysztof
