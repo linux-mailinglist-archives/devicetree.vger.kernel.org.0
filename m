@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37859505C24
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 554B6505C27
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345886AbiDRQAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 12:00:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54056 "EHLO
+        id S244110AbiDRQAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 12:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244110AbiDRQAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:00:04 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC097DC8
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:57:04 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id u18so17937796eda.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:57:04 -0700 (PDT)
+        with ESMTP id S245065AbiDRQAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:00:38 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1A5CC
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:57:59 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id y10so10185985ejw.8
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:57:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FjnArbiHeKmHxIQGkXFyLcDATsoCoWvdzs6hnVzyW6g=;
-        b=EaxvZM4sPR/maCfoqX/GP+glDd5U/u7Yf8Vqg32ThP1rPQmS6FMeleFG4TqkU2F3p2
-         otvkn17tJ6H7Wtl9xR2NdEGg3yPRgmHAY1jS2PIOMMAucDh8ZDBsyDYSZhJ6t5xHEsNY
-         6B1Asd78N4dE0oC2XPc/PGtGqUjJH/iNDhDZKlfHnduhngAiKEXdvCvNyYXUxhBP/1DF
-         IDxIzLS3vHW1irS5b69DNB/uCQBL1MbGe5l9ke/xKZmcd+Z6xleU5swAtLnNR7y8l3F2
-         IOfJLDRw5GK7rMzdycYDkMwtwun3yhWApXofTrKF9C9rRoN2CjCB40SXRGxOcpcDi54K
-         YRMA==
+        bh=JSWOMZN2s2Uc0MEkuAEzkTwIlDrpbxDUKksft1URO94=;
+        b=YaonER1hHD5j2WB24Y1TDR5agDK/8GipcH6XQtLpJvLQUYyNs/yzLom/3nWNxnUo6q
+         YqoyLmh7HQhRyrMnXAi48T0lw0hyJ92orPa7RZ+4tKjzhdsxzZLw7tbWAUyiNRmIRdCk
+         Kw6xbsaLrC1/cYPgAYj2xML93L6Pgg4nis5VkTFvSbh72lVU9wNKBK1ew1k6WfvBdIm3
+         vzy0138x4ewlUmiH8I+HFmylHN0q/nshWvsx6vVHZ9ahWWj/8jsZ5ye36orkaELgOqDL
+         gAw7BGV6QVkY9ZszGIFam5A1qUQ0fBKv15tMF+8zuIMV1a6DjZcdd8Xl2j78WE+qtpAU
+         BSAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=FjnArbiHeKmHxIQGkXFyLcDATsoCoWvdzs6hnVzyW6g=;
-        b=T1H2Af0OEQIAwm1Y1cG0M0MVuVePTIwCF4XsUHRdWj7uUZ+A1pptahA2mq2gYhcvQ5
-         O0TWjnxhrDPCxMtoP6sIREQ22YG+S/d+l+rW2yLk27DmLIE5gCfPama0cYCrnXkeXI8/
-         m+vt2Cm/aV54K/q1taOJEjaIDSmYRHoOTeW+gRi6pS7paTB3DtbfeSs/iLIgZuQ0EOa8
-         rEYg8ihppNkABglBXw+uqQKwp27kfZzUfz/+xH29UaxVEE5kcJdGHbwP4sQLM9TvmY7O
-         4cmqOUWVKSAM/Q9F+5/LTZHtPo9Pi2ZIKPRe9h7QHzcrrYLQ5Qt37kMpAzvtdmQIV/tK
-         x32Q==
-X-Gm-Message-State: AOAM532ua8deYbPJc0rmq/Qz0kJwgA3+VB4GEZhPiTRu4BmrhInjGqIA
-        KeYhbDIM3XIij+uk6wUa3ur3ww==
-X-Google-Smtp-Source: ABdhPJz5Nk0LJAe1slK1roTE+oxG1zDFX+FnoXU6Ow5CzumX7mijMS7IuiMHrwNK7ouJ9w2wLzkUnA==
-X-Received: by 2002:a05:6402:4253:b0:423:e4e0:fdd8 with SMTP id g19-20020a056402425300b00423e4e0fdd8mr6255768edb.193.1650297423228;
-        Mon, 18 Apr 2022 08:57:03 -0700 (PDT)
+        bh=JSWOMZN2s2Uc0MEkuAEzkTwIlDrpbxDUKksft1URO94=;
+        b=A+oyI9B5qAlDhOiyv92G1jEC7YezZ299UKJ8LdAozdJ8AKH/+edIKfXm0pfyGeLn/k
+         T5ktBm88mFLVlBnkaVOUToBBn4s8GWnYV20d7+r5Ji8no6qRWMHR8xWjqnWpNeRhCya9
+         7IfBZKiYKzg6N8frKwh7CGV+a808h9E7RhBVkjgJ6yeOseNedQofUQ1gTFRwX3NUHzLz
+         gfnXOFgSVus4zFP8gBovxaHZ6qpwsU445xUjcNhpO+EqLCefNlx/gjkxoCHDxwr5iWVY
+         8cdq1Cni4NbKqfHkCGiRBLXdusmSekJrfKI0LajIiUZUYA5/hJwyw/XDJneiaW2EQF9S
+         MNbA==
+X-Gm-Message-State: AOAM532B/R4eMzrLn6yjQVDICN0VQJJWp6MNr4xsQmumraQr5CLyVzOJ
+        K/U6qDAIIdi87ioN1VoEgnJKAg==
+X-Google-Smtp-Source: ABdhPJzbfk8QTJK5jVB6BLByUTxvMVPAib1GsPEBJahAxLMAbDnMR0ih2p6z1HqOoX7v85bcyO5p2Q==
+X-Received: by 2002:a17:907:1b06:b0:6e7:f58a:9b91 with SMTP id mp6-20020a1709071b0600b006e7f58a9b91mr10073346ejc.291.1650297477805;
+        Mon, 18 Apr 2022 08:57:57 -0700 (PDT)
 Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l3-20020aa7cac3000000b00422c961c8c9sm5068097edt.78.2022.04.18.08.57.01
+        by smtp.gmail.com with ESMTPSA id gq5-20020a170906e24500b006e87644f2f7sm4661020ejb.38.2022.04.18.08.57.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 08:57:02 -0700 (PDT)
-Message-ID: <605aa014-19ac-2679-799f-c2410b3fcc3a@linaro.org>
-Date:   Mon, 18 Apr 2022 17:57:01 +0200
+        Mon, 18 Apr 2022 08:57:57 -0700 (PDT)
+Message-ID: <195bc220-05c1-d216-6596-0a54c177c5a6@linaro.org>
+Date:   Mon, 18 Apr 2022 17:57:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [RFC/RFT 3/6] phy: rockchip: Support pcie v3
+Subject: Re: [RFC/RFT 6/6] arm64: dts: rockchip: Add PCIe v3 nodes to
+ BPI-R2-Pro
 Content-Language: en-US
 To:     Frank Wunderlich <linux@fw-web.de>,
         linux-rockchip@lists.infradead.org
@@ -74,14 +75,14 @@ Cc:     Frank Wunderlich <frank-w@public-files.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-pci@vger.kernel.org
 References: <20220416135458.104048-1-linux@fw-web.de>
- <20220416135458.104048-4-linux@fw-web.de>
+ <20220416135458.104048-7-linux@fw-web.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220416135458.104048-4-linux@fw-web.de>
+In-Reply-To: <20220416135458.104048-7-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,27 +91,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 16/04/2022 15:54, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> RK3568 supports PCIe v3 using not Combphy like PCIe v2 on rk3566.
-> It use a dedicated pcie-phy. Add support for this.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> driver was taken from linux 5.10 based on in
-> https://github.com/JeffyCN/mirrors
-> which now has disappeared
-> ---
->  drivers/phy/rockchip/Kconfig                  |   9 +
->  drivers/phy/rockchip/Makefile                 |   1 +
->  .../phy/rockchip/phy-rockchip-snps-pcie3.c    | 278 ++++++++++++++++++
->  include/dt-bindings/phy/phy-snps-pcie3.h      |  21 ++
 
-This goes to separate patch or to the bindings one. File naming is also
-not correct. Who is the vendor here? "rockchip," or "snps,"?
+(...)
 
-The values look specific to this Rockchip implementation, so the file
-should be also mentioned in the bindings (e.g. in property using it).
+> +	pcie30_avdd1v8: pcie30-avdd1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "pcie30_avdd1v8";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	/* pi6c pcie clock generator feeds both ports */
+> +	vcc3v3_pi6c_05: vcc3v3_pi6c_05-regulator {
+
+No underscores in node names. Same in other places.
+
 
 Best regards,
 Krzysztof
