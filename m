@@ -2,106 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3C0C504F80
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24F42504F85
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbiDRLqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 07:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49652 "EHLO
+        id S236927AbiDRLsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 07:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236387AbiDRLqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:46:12 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E697515A0B
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 04:43:32 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id g18so26349145ejc.10
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 04:43:32 -0700 (PDT)
+        with ESMTP id S236879AbiDRLrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:47:52 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF04326ED;
+        Mon, 18 Apr 2022 04:45:13 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id v77so25039995ybi.12;
+        Mon, 18 Apr 2022 04:45:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=K5VFTkItBhPN90YMdU8CWhA6XeIV4gqA7vd7xl6JZvs=;
-        b=IIOonIr6w+EOL7nEdJx1+v5w8AjbfrzABOsF2hgt/cGhEcnJUSN1e7xq2gGEZnJRpW
-         y/sTz/qBzkUN7FijyoN0QMG/NjifiR3aRXMsCgq2HnNun+hqblYT/GfZIyOejR2SySPv
-         0gKrAJsMYx8DvIVpfOi/ljQ8VAer9qZscUS1A002a1k1hMeUbBFWXQZSI2I3yd/AfZSd
-         ncKVOqbDgSrWdtoAw4r1KS32CbIkLYr1iwwYV3EBDdpYsMQHN2ew5iBzf+3c0JiRqLJD
-         ZCuCbLWUKYK+XvP2o7BqGAsngxT56uxWCvuYaj5FdJym5G3yyXNLTTlZVLR4c0YwOAip
-         jo0w==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3QYWuVtVlC10CN/U+uRjoO+2nquc2+/bWq8BF83jGkg=;
+        b=jfQaZilDsjqziuXCg9rlesjzPfFiG3oIMyOIqq5lw8qAztwHtpWY4jtAArkSDne/hj
+         WHMReGX6BfrGLoQnV8WR5NKGH+wYTMucY49FMaoybLsVogUeG5UHNJB90L26is73oQ2a
+         HLEfKNtE1MPtZ0s2VfikMrbz7fcrUP/pZ7JNAwnlEcFoK33Mj/9Y7e/2CjMrd7ZeuZgy
+         pgf6YvEg8sa9VGkmZsUP1Tx72gvCoriVLtdKucG2AtMK1WjpswZgBVERLVq1qETCw6xu
+         aA9NlwqWySqcw07791GL/QEQWtHumXnMAHyu7bIBiQyNxqop33xJp5PvM1nnNFmAy6jK
+         RIzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=K5VFTkItBhPN90YMdU8CWhA6XeIV4gqA7vd7xl6JZvs=;
-        b=zm8pKNppB1WFU2c/0UlQ545A377OUjJav14wfhBjy4vwHd9hcL/YFZW5UJm5yX8xJN
-         nvJYZa58JCHFRZmUIbeEd9G8FHmnYyAqd9xY5xhiINnaJxYzL25MJNTT9WPFtfvb7LGJ
-         udFPadcZNIMqV8ObfF1Op48TkHPRb0EpSfBBc6nHUmvZaJyyJ+AvxUJEwC8ndndm33pU
-         1yEfr1v+D/EAc84RXgxthHTuQfVkDV03nh1Ffv+wt6cv580BFwWEzPkkR0RmC4V3dNJe
-         DD+mNKrQVvgw1F11rZABhuz4Vp3yzbywXTbZcsWM0o/m57xWvUFdR62OqwQponA7eom8
-         txtA==
-X-Gm-Message-State: AOAM530vzAZ7CNbVwnU6BaQTXaKa45kJY80kPmGftUg8DOSZwXMMiJI2
-        cBCCx826GfHqqshJZov6IHxHZQ==
-X-Google-Smtp-Source: ABdhPJxjYZY985v8Pfrex1Cnl+eJoXXj6gpnlZklI4bIIFwGaCNeV6NELuvZ0KWRcpU1IjSmuy37Mg==
-X-Received: by 2002:a17:906:52c7:b0:6ce:a880:50a3 with SMTP id w7-20020a17090652c700b006cea88050a3mr8643692ejn.437.1650282211473;
-        Mon, 18 Apr 2022 04:43:31 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n14-20020a50934e000000b0042053e79386sm6936955eda.91.2022.04.18.04.43.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 04:43:30 -0700 (PDT)
-Message-ID: <1e3ede4e-994b-4d87-b907-ec68661fb958@linaro.org>
-Date:   Mon, 18 Apr 2022 13:43:29 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3QYWuVtVlC10CN/U+uRjoO+2nquc2+/bWq8BF83jGkg=;
+        b=k+KBrApq9ITCj/owHBTmsgdSupHP5JlZRz1A9odfwC/R6o/C/XmZGP1/dITPylZUAA
+         yYbT1hN40IGlJTF6BsKeG00LisnYpz9v5n+YZMHdQvVdnalmp15qV3plKFYERlL2bA13
+         NV1h1kukaOYcaNB0q8ZCzuBmS9OuSbnHHbkZzsz55Ij4lUAcHov50abIVvn0kjP+Me/t
+         mqG8SuV9tHxCCmUTO5JTa8qbIJbgrvzzHjPtIWiGtNMUW8nZ3ZN+E85T1Ai5F+9jnL+s
+         BvcJfHBvBE8x29Q9hZlMGmSV9vdy66M1tKFRbgoR4+YU5QXB/7ZJ+Ttm+AJouBOR+BfV
+         BoYw==
+X-Gm-Message-State: AOAM530IgADmSwhb78/mF2/TkMppWpLt93Sm70BM30i+lUdLw4QvXxKT
+        dJMEbyyR1byZu56yuo5Hhlt1L2PGJR6znwyJbXBHXjL+5pQ=
+X-Google-Smtp-Source: ABdhPJw+jWAcmcfFZ237nXEhtG2xq0d8v20HKmocJKhYOlQFPTgC1WBVREyz/ckqjsxTm4JfzpWxDClmhqtXY0reNTw=
+X-Received: by 2002:a05:6902:1249:b0:644:d8bb:e741 with SMTP id
+ t9-20020a056902124900b00644d8bbe741mr7161250ybu.585.1650282313075; Mon, 18
+ Apr 2022 04:45:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 4/4] dt-bindings: mmc: convert sdhci-dove to JSON schema
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220414230603.567049-1-chris.packham@alliedtelesis.co.nz>
- <20220414230603.567049-5-chris.packham@alliedtelesis.co.nz>
- <YlivMII9rDCcB6lk@lunn.ch>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YlivMII9rDCcB6lk@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220416100502.627289-1-pgwipeout@gmail.com> <20220416100502.627289-4-pgwipeout@gmail.com>
+ <eadc4422-15bb-0b46-8235-db6e160e8d32@collabora.com> <CAMdYzYq=nQhwY_4+Y=PM9do_Dcrg1pD-jeD=q36D48ks=WDVgw@mail.gmail.com>
+ <a8bb3ef6-8f37-709f-adfe-3608e5c1e11f@collabora.com>
+In-Reply-To: <a8bb3ef6-8f37-709f-adfe-3608e5c1e11f@collabora.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Mon, 18 Apr 2022 07:45:02 -0400
+Message-ID: <CAMdYzYrwGyxRnB8YU9vvgqXsKhi9fZ1a7UJhixCbC5mGm9aP8Q@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] arm64: dts: rockchip: add rk3568 pcie2x1 controller
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/04/2022 01:33, Andrew Lunn wrote:
-> Hi Chris
-> 
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
-> 
-> https://elixir.bootlin.com/linux/latest/source/drivers/mmc/host/sdhci-dove.c#L78
-> 
-> https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/dove.dtsi#L344
-> 
-> Dove does actually have a clock. It looks like it is optional in the
-> driver, but the .dtsi file has it. It is not documented in the current
-> .txt file, so i can understand you missing it.
-> 
-> I'm surprised the DT tools didn't complain about an unexpected
-> property.
+On Sun, Apr 17, 2022 at 6:23 PM Dmitry Osipenko
+<dmitry.osipenko@collabora.com> wrote:
+>
+> On 4/16/22 13:17, Peter Geis wrote:
+> > On Sat, Apr 16, 2022 at 6:08 AM Dmitry Osipenko
+> > <dmitry.osipenko@collabora.com> wrote:
+> >>
+> >> Hi Peter,
+> >>
+> >> On 4/16/22 13:05, Peter Geis wrote:
+> >>> +     pcie2x1: pcie@fe260000 {
+> >>> +             compatible = "rockchip,rk3568-pcie";
+> >>> +             #address-cells = <3>;
+> >>> +             #size-cells = <2>;
+> >>> +             bus-range = <0x0 0xf>;
+> >>> +             assigned-clocks = <&cru ACLK_PCIE20_MST>, <&cru ACLK_PCIE20_SLV>,
+> >>> +                      <&cru ACLK_PCIE20_DBI>, <&cru PCLK_PCIE20>,
+> >>> +                      <&cru CLK_PCIE20_AUX_NDFT>;
+> >>
+> >> Why these assigned-clocks are needed? I don't see anything assigned in
+> >> this patchset.
+> >
+> > Ah, those are remnants of early bringup when performance wasn't good
+> > and I was manually setting clock rates.
+>
+> If it's not needed, should it be removed then? Otherwise it looks like
+> something is missing in the DT in regards to the assigned clocks.
 
-They did. :)
-
-It seems binding is a bit out of date, so Chris should extend/update it.
-
-Same comments about maintainer as for patch #3.
-
-Best regards,
-Krzysztof
+Yes, it has been removed from the V7.
+Thanks!
