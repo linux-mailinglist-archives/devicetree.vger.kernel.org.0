@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25FAD505DD0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 20:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 539C5505DDF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 20:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239421AbiDRSFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 14:05:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51898 "EHLO
+        id S1347322AbiDRSMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 14:12:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236081AbiDRSFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 14:05:18 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE7F3527B
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 11:02:38 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id j8-20020a17090a060800b001cd4fb60dccso14742567pjj.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 11:02:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=eg593dgxClf//7PPVqv2pIKMyAscRCrL2z7qozxUKac=;
-        b=CTpAD/MMzI7jhpybytxnZY4ekWnGxVHkxOrnnn/OW28kpud2Zy8hEej7e+egaOTbhr
-         4snRL6190R9sAqG4ms5put2bvw/vK4aF3J/JuWf3HN/48SfWSnBVCCzGV5oTXq7ZFzTZ
-         pbS3yi09TfZvMcLUarrnxNDbWMYA+2iUZwcWE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eg593dgxClf//7PPVqv2pIKMyAscRCrL2z7qozxUKac=;
-        b=rfoAkpnIMJuLbNNjE14H6h5NC25TobWh0LMsL/TiYX02IcadKqnImXqtYHMgi7NEHs
-         a+gn3XDyuXcdcT2q6ptDp1ZH8S1Ai5jX1zo2OaSLtTOJnJ7w0u6JqK31OKtmvS9l4M3G
-         FBZ8c+hHQ5bYkKm0MJaGrAmAdStpkFQDQ/vbckhaX6cVP7TGhdsJb4bj8mAjcKYIosyb
-         zONbQWCDwMexRAYNbfx/IhzXpJaGiKIOHpXk1TEy++/q7KBLzcTwBcxOV1w+IpHwnJEK
-         +/gaLtsfvup3XOF2g3UiPM6JRvygYg4gjkFFQqVbzx0A4LOQ2tNcSQPIWLq/rc+Ypw8a
-         Myig==
-X-Gm-Message-State: AOAM530BN784hJU/DOZmWpdj28csgiMd2sCMjc/AZiCWNPGC5476kI+h
-        TadYZsPbtKv8aJr7Tdrs4m3uCg==
-X-Google-Smtp-Source: ABdhPJxt4UVsz1QDHcMYghK0k7x93W6SA+ManYwfE51sQgtEkuNj9kX2yOc0NVFRY/m6GbkL85bWeg==
-X-Received: by 2002:a17:902:cf0a:b0:156:39c9:4c44 with SMTP id i10-20020a170902cf0a00b0015639c94c44mr12091466plg.124.1650304958488;
-        Mon, 18 Apr 2022 11:02:38 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:6b32:a0a5:ec32:c287])
-        by smtp.gmail.com with UTF8SMTPSA id f10-20020a056a0022ca00b0050a858e8cc3sm3049297pfj.200.2022.04.18.11.02.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 11:02:37 -0700 (PDT)
-Date:   Mon, 18 Apr 2022 11:02:35 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v8 4/4] arm64: dts: qcom: sc7280: Add dt nodes for sound
- card
-Message-ID: <Yl2nuxzH0mcPa94B@google.com>
-References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
- <1650291252-30398-5-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1347318AbiDRSMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 14:12:10 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2935A369FD;
+        Mon, 18 Apr 2022 11:09:31 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 979D11F37C;
+        Mon, 18 Apr 2022 18:09:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1650305369; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=XRWAll3cRM0fEt+86roWxVLbr8d1Y6gI2JaM6RMC2GE=;
+        b=qxInrmW71zuEDnd19WGfw3JLaQLa6toY8MGLNPe3MYEXm3+ndAhf41G6CBGlrsDNjKPPgZ
+        1XRIx9w8CVQijhu/38J0wmeC7X8mCeInvkXKPNJ0gvXgyMjCjfk5yHwG65ercER+/bMYtG
+        hle8FxSZABUToA4lJv4yIX8dO0IiNcA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1650305369;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=XRWAll3cRM0fEt+86roWxVLbr8d1Y6gI2JaM6RMC2GE=;
+        b=bBx1bJ1p3C0O6DDYunQDREpW7ZUeOOjEpNr9GqmgUMWdFuOZpcrp93JYDX/qavD9ZstPtR
+        zvgGkJBDrgV2rYCA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5882C13ACB;
+        Mon, 18 Apr 2022 18:09:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id /+F/FFmpXWLceAAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Mon, 18 Apr 2022 18:09:29 +0000
+Message-ID: <2951f153-609f-ad8a-dc6e-feafb8aabca1@suse.de>
+Date:   Mon, 18 Apr 2022 20:09:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1650291252-30398-5-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] of: Create platform devices for OF framebuffers
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Helge Deller <deller@gmx.de>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Guenter Roeck <linux@roeck-us.net>
+References: <20220413092454.1073-1-tzimmermann@suse.de>
+ <20220413092454.1073-2-tzimmermann@suse.de>
+ <CAL_JsqK4oT47Q=XFTZ0a=g3-DiB1JsW7_j9M1qRzpeahhz0muA@mail.gmail.com>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <CAL_JsqK4oT47Q=XFTZ0a=g3-DiB1JsW7_j9M1qRzpeahhz0muA@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------rprr3qXUNrc3UlEJIlw8bi8k"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,176 +82,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 07:44:12PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add dt nodes for sound card support, which is using WCD938x headset
-> playback, capture, I2S speaker playback and DMICs via VA macro.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts | 23 ++++++++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi   | 93 ++++++++++++++++++++++++++++++
->  2 files changed, 116 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
-> index aa0bf6e2..bf15bbe 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
-> @@ -87,6 +87,29 @@ ap_ts_pen_1v8: &i2c13 {
->  	pins = "gpio51";
->  };
->  
-> +&sound {
-> +	audio-routing =
-> +		"IN1_HPHL", "HPHL_OUT",
-> +		"IN2_HPHR", "HPHR_OUT",
-> +		"AMIC1", "MIC BIAS1",
-> +		"AMIC2", "MIC BIAS2",
-> +		"VA DMIC0", "MIC BIAS1",
-> +		"VA DMIC1", "MIC BIAS1",
-> +		"VA DMIC2", "MIC BIAS3",
-> +		"VA DMIC3", "MIC BIAS3",
-> +		"TX SWR_ADC0", "ADC1_OUTPUT",
-> +		"TX SWR_ADC1", "ADC2_OUTPUT",
-> +		"TX SWR_ADC2", "ADC3_OUTPUT",
-> +		"TX SWR_DMIC0", "DMIC1_OUTPUT",
-> +		"TX SWR_DMIC1", "DMIC2_OUTPUT",
-> +		"TX SWR_DMIC2", "DMIC3_OUTPUT",
-> +		"TX SWR_DMIC3", "DMIC4_OUTPUT",
-> +		"TX SWR_DMIC4", "DMIC5_OUTPUT",
-> +		"TX SWR_DMIC5", "DMIC6_OUTPUT",
-> +		"TX SWR_DMIC6", "DMIC7_OUTPUT",
-> +		"TX SWR_DMIC7", "DMIC8_OUTPUT";
-> +};
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------rprr3qXUNrc3UlEJIlw8bi8k
+Content-Type: multipart/mixed; boundary="------------aZPMTyhvY1SIWpwEhr8aWvvJ";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+ Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Sam Ravnborg <sam@ravnborg.org>, Guenter Roeck <linux@roeck-us.net>
+Message-ID: <2951f153-609f-ad8a-dc6e-feafb8aabca1@suse.de>
+Subject: Re: [PATCH 1/2] of: Create platform devices for OF framebuffers
+References: <20220413092454.1073-1-tzimmermann@suse.de>
+ <20220413092454.1073-2-tzimmermann@suse.de>
+ <CAL_JsqK4oT47Q=XFTZ0a=g3-DiB1JsW7_j9M1qRzpeahhz0muA@mail.gmail.com>
+In-Reply-To: <CAL_JsqK4oT47Q=XFTZ0a=g3-DiB1JsW7_j9M1qRzpeahhz0muA@mail.gmail.com>
 
-Should this also be added to sc7280-herobrine-crd.dts?
+--------------aZPMTyhvY1SIWpwEhr8aWvvJ
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-> +
->  &wcd938x {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&us_euro_hs_sel>;
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index e880837..640b1338 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -85,6 +85,99 @@
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&nvme_pwren>;
->  	};
-> +
-> +	sound: sound {
-> +		compatible = "google,sc7280-herobrine";
-> +		model = "sc7280-wcd938x-max98360a-1mic";
-> +
-> +		audio-routing =
-> +			"IN1_HPHL", "HPHL_OUT",
-> +			"IN2_HPHR", "HPHR_OUT",
-> +			"AMIC1", "MIC BIAS1",
-> +			"AMIC2", "MIC BIAS2",
-> +			"VA DMIC0", "MIC BIAS3",
-> +			"VA DMIC1", "MIC BIAS3",
-> +			"VA DMIC2", "MIC BIAS1",
-> +			"VA DMIC3", "MIC BIAS1",
-> +			"TX SWR_ADC0", "ADC1_OUTPUT",
-> +			"TX SWR_ADC1", "ADC2_OUTPUT",
-> +			"TX SWR_ADC2", "ADC3_OUTPUT",
-> +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
-> +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
-> +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
-> +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
-> +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
-> +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
-> +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
-> +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
-> +
-> +		qcom,msm-mbhc-hphl-swh = <1>;
-> +		qcom,msm-mbhc-gnd-swh = <1>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#sound-dai-cells = <0>;
-> +
-> +		dai-link@1 {
+SGkNCg0KQW0gMTMuMDQuMjIgdW0gMTQ6NTEgc2NocmllYiBSb2IgSGVycmluZzoNCi4uLg0K
+Pj4gKw0KPj4gICAvKioNCj4+ICAgICogb2ZfcGxhdGZvcm1fcG9wdWxhdGUoKSAtIFBvcHVs
+YXRlIHBsYXRmb3JtX2RldmljZXMgZnJvbSBkZXZpY2UgdHJlZSBkYXRhDQo+PiAgICAqIEBy
+b290OiBwYXJlbnQgb2YgdGhlIGZpcnN0IGxldmVsIHRvIHByb2JlIG9yIE5VTEwgZm9yIHRo
+ZSByb290IG9mIHRoZSB0cmVlDQo+PiBAQCAtNTQxLDkgKzU5NSw3IEBAIHN0YXRpYyBpbnQg
+X19pbml0IG9mX3BsYXRmb3JtX2RlZmF1bHRfcG9wdWxhdGVfaW5pdCh2b2lkKQ0KPj4gICAg
+ICAgICAgICAgICAgICBvZl9ub2RlX3B1dChub2RlKTsNCj4+ICAgICAgICAgIH0NCj4+DQo+
+PiAtICAgICAgIG5vZGUgPSBvZl9nZXRfY29tcGF0aWJsZV9jaGlsZChvZl9jaG9zZW4sICJz
+aW1wbGUtZnJhbWVidWZmZXIiKTsNCj4+IC0gICAgICAgb2ZfcGxhdGZvcm1fZGV2aWNlX2Ny
+ZWF0ZShub2RlLCBOVUxMLCBOVUxMKTsNCj4+IC0gICAgICAgb2Zfbm9kZV9wdXQobm9kZSk7
+DQo+PiArICAgICAgIG9mX3BsYXRmb3JtX3BvcHVsYXRlX2ZyYW1lYnVmZmVycygpOw0KPj4N
+Cj4+ICAgICAgICAgIC8qIFBvcHVsYXRlIGV2ZXJ5dGhpbmcgZWxzZS4gKi8NCj4+ICAgICAg
+ICAgIG9mX3BsYXRmb3JtX2RlZmF1bHRfcG9wdWxhdGUoTlVMTCwgTlVMTCwgTlVMTCk7DQo+
+IA0KPiBJJ20gcHJldHR5IHN1cmUgaXQncyBqdXN0IHRoaXMgY2FsbCB0aGF0J3MgdGhlIHBy
+b2JsZW0gZm9yIFBQQyB0aG91Z2gNCj4gbm9uZSBvZiB0aGUgYWJvdmUgZXhpc3RlZCB3aGVu
+IGFkZGluZyB0aGlzIGNhdXNlZCBhIHJlZ3Jlc3Npb24uIENhbiB3ZQ0KPiByZW1vdmUgdGhl
+IGlmZGVmIGFuZCBqdXN0IG1ha2UgdGhpcyBjYWxsIGNvbmRpdGlvbmFsIG9uDQo+ICFJU19F
+TkFCTEVEKENPTkZJR19QUEMpLg0KDQpUaGF0IGRpZG4ndCB3b3JrLiBUaGUgYm9vdCBwcm9j
+ZXNzIHN0b3BzIGF0IHNvbWUgcG9pbnQuIEknbGwgc2VuZCB5b3UgYW4gDQp1cGRhdGVkIHBh
+dGNoIHRoYXQgY292ZXJzIG1vc3Qgb2YgdGhlIGZ1bmN0aW9uIHdpdGggSVNfRU5BQkxFRChD
+T05GSUdfUFBDKQ0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPiANCj4+IEBAIC01
+NTEsNiArNjAzLDIwIEBAIHN0YXRpYyBpbnQgX19pbml0IG9mX3BsYXRmb3JtX2RlZmF1bHRf
+cG9wdWxhdGVfaW5pdCh2b2lkKQ0KPj4gICAgICAgICAgcmV0dXJuIDA7DQo+PiAgIH0NCj4+
+ICAgYXJjaF9pbml0Y2FsbF9zeW5jKG9mX3BsYXRmb3JtX2RlZmF1bHRfcG9wdWxhdGVfaW5p
+dCk7DQo+PiArI2Vsc2UNCj4+ICtzdGF0aWMgaW50IF9faW5pdCBvZl9wbGF0Zm9ybV9kZWZh
+dWx0X3BvcHVsYXRlX2luaXQodm9pZCkNCj4+ICt7DQo+PiArICAgICAgIGRldmljZV9saW5r
+c19zdXBwbGllcl9zeW5jX3N0YXRlX3BhdXNlKCk7DQo+PiArDQo+PiArICAgICAgIGlmICgh
+b2ZfaGF2ZV9wb3B1bGF0ZWRfZHQoKSkNCj4+ICsgICAgICAgICAgICAgICByZXR1cm4gLUVO
+T0RFVjsNCj4+ICsNCj4+ICsgICAgICAgb2ZfcGxhdGZvcm1fcG9wdWxhdGVfZnJhbWVidWZm
+ZXJzKCk7DQo+PiArDQo+PiArICAgICAgIHJldHVybiAwOw0KPj4gK30NCj4+ICthcmNoX2lu
+aXRjYWxsX3N5bmMob2ZfcGxhdGZvcm1fZGVmYXVsdF9wb3B1bGF0ZV9pbml0KTsNCj4+ICsj
+ZW5kaWYNCj4+DQo+PiAgIHN0YXRpYyBpbnQgX19pbml0IG9mX3BsYXRmb3JtX3N5bmNfc3Rh
+dGVfaW5pdCh2b2lkKQ0KPj4gICB7DQo+PiBAQCAtNTU4LDcgKzYyNCw2IEBAIHN0YXRpYyBp
+bnQgX19pbml0IG9mX3BsYXRmb3JtX3N5bmNfc3RhdGVfaW5pdCh2b2lkKQ0KPj4gICAgICAg
+ICAgcmV0dXJuIDA7DQo+PiAgIH0NCj4+ICAgbGF0ZV9pbml0Y2FsbF9zeW5jKG9mX3BsYXRm
+b3JtX3N5bmNfc3RhdGVfaW5pdCk7DQo+PiAtI2VuZGlmDQo+Pg0KPj4gICBpbnQgb2ZfcGxh
+dGZvcm1fZGV2aWNlX2Rlc3Ryb3koc3RydWN0IGRldmljZSAqZGV2LCB2b2lkICpkYXRhKQ0K
+Pj4gICB7DQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZl
+bG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0
+ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJl
+cmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
 
-The '@1' is the address of the lpass CPU DAI, which doesn't seem correct
-here. As I brought up on v7 [1] I think this value isn't even necessarily
-unique, a SoC could have multiple IP blocks with audio buses, each with
-their own DAI address space. The binding (currently) requires an
-'address'/id, rather than using the CPU DAI id I suggest to enumerate the
-links linearly, starting with 0.
+--------------aZPMTyhvY1SIWpwEhr8aWvvJ--
 
-[1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1649863277-31615-5-git-send-email-quic_srivasam@quicinc.com/
+--------------rprr3qXUNrc3UlEJIlw8bi8k
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-> +			link-name = "MAX98360A";
+-----BEGIN PGP SIGNATURE-----
 
-The binding requires a 'reg' property, even though it isn't used (also
-discussed on v7). I think the 'reg' property should be removed from the
-binding and the DTs that use it, but maybe that should be done in a
-separate series. In the meantime the value should match that of the
-node.
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmJdqVgFAwAAAAAACgkQlh/E3EQov+Dp
+ug//X4Lj/BZJaEm3/ZMTdb1bXPcbNtVjKZwAyVzgU8e3kpOF46troFn26QENLQSy48vroGAK/L0K
+nr3K9+rWBdFynDbO4ov7UtvUqFV0WbTGCjyuBSUWwvjonz8ZNmHzPf5J1y1vaC5ufxoZ8eUadCWF
+OncuFDb3oa3JddufnTqmciNGmFukPWJ2AH8xiKW6UAzRsgBklCG0jplzZ8piD0P3hvtAR7Jd3xDL
+uVQKMSRhORuXJwapPuZSS+qq/KL+MNDOTC6R/bojFBKHte1yE/Lwp0yajVStmXCwL+Z3xVOfcv3x
+unlqrUyudM5a83TINLPYCTSxYLjucgHXCOWYyAPrJkiboZssLiA/8F7xw7LhiT+bzv/HgAHwJ6Nx
+3inBCh6dj9quSEzKPIKKbTwyiVT6pKSevSdgKtU0a+z1AVyJuoqevbXjtxb8zc2IhQBqRCB045Pv
+7Cb6miq/NGSGiN83am8+UMqXrCPKBdVah5NL+S5dsqWQ88ZObvS8eRxEkQuo42yM6EejrCkSLxVf
+ZkizQdGw6VrPvUFcig9eMBPOB3Ml9mPUPtqusd9ms6uPDfV3xmjp0kMf60mTgVGzYEMgza1uDK2p
+5RLpSxCk6z0g+hV5auR7p0GxZGnP1D4hwfqEMJGR9c8tV4lGzFLSkH9UgkJOsxvluMFT7NRye8WY
+BfQ=
+=KHBy
+-----END PGP SIGNATURE-----
 
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&max98360a>;
-> +			};
-> +		};
-> +
-> +		dai-link@5 {
-> +			link-name = "DisplayPort";
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu LPASS_DP_RX>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&mdss_dp>;
-> +			};
-> +		};
-> +
-> +		dai-link@6 {
-> +			link-name = "WCD9385 Playback";
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_RX0>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&wcd938x 0>, <&swr0 0>, <&lpass_rx_macro 0>;
-> +			};
-> +		};
-> +
-> +		dai-link@19 {
-> +			link-name = "WCD9385 Capture";
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_TX3>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&wcd938x 1>, <&swr1 0>, <&lpass_tx_macro 0>;
-> +			};
-> +		};
-> +
-> +		dai-link@25 {
-> +			link-name = "DMIC";
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&lpass_va_macro 0>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &apps_rsc {
-> -- 
-> 2.7.4
-> 
+--------------rprr3qXUNrc3UlEJIlw8bi8k--
