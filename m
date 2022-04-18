@@ -2,87 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 554B6505C27
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C4F505C30
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 18:03:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244110AbiDRQAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 12:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33364 "EHLO
+        id S1344445AbiDRQGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 12:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245065AbiDRQAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:00:38 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1A5CC
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:57:59 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id y10so10185985ejw.8
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:57:59 -0700 (PDT)
+        with ESMTP id S240781AbiDRQF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 12:05:59 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E88B1276A
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 09:03:20 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id t12so12682223pll.7
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 09:03:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JSWOMZN2s2Uc0MEkuAEzkTwIlDrpbxDUKksft1URO94=;
-        b=YaonER1hHD5j2WB24Y1TDR5agDK/8GipcH6XQtLpJvLQUYyNs/yzLom/3nWNxnUo6q
-         YqoyLmh7HQhRyrMnXAi48T0lw0hyJ92orPa7RZ+4tKjzhdsxzZLw7tbWAUyiNRmIRdCk
-         Kw6xbsaLrC1/cYPgAYj2xML93L6Pgg4nis5VkTFvSbh72lVU9wNKBK1ew1k6WfvBdIm3
-         vzy0138x4ewlUmiH8I+HFmylHN0q/nshWvsx6vVHZ9ahWWj/8jsZ5ye36orkaELgOqDL
-         gAw7BGV6QVkY9ZszGIFam5A1qUQ0fBKv15tMF+8zuIMV1a6DjZcdd8Xl2j78WE+qtpAU
-         BSAA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TweijuCzv8x4HVI+hbm7Bve8ZQCsolV5RsSU3xzQFgI=;
+        b=SOcYH4m3zA6LHy6uJrNty9qBBBB+PiRPcmjo+na7oS2QUPnVzmdjyxsnwVJd75gFNA
+         vlbvPmaEFQ6aKwQC2oNIOPp6Pi90BaektDQhlubZJAODoA4h0TRlAfgENe7bnNbnfQFZ
+         P2DRvvZCGuTDw6N3QFJpEHGlB0ba8Gt3cpiI8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=JSWOMZN2s2Uc0MEkuAEzkTwIlDrpbxDUKksft1URO94=;
-        b=A+oyI9B5qAlDhOiyv92G1jEC7YezZ299UKJ8LdAozdJ8AKH/+edIKfXm0pfyGeLn/k
-         T5ktBm88mFLVlBnkaVOUToBBn4s8GWnYV20d7+r5Ji8no6qRWMHR8xWjqnWpNeRhCya9
-         7IfBZKiYKzg6N8frKwh7CGV+a808h9E7RhBVkjgJ6yeOseNedQofUQ1gTFRwX3NUHzLz
-         gfnXOFgSVus4zFP8gBovxaHZ6qpwsU445xUjcNhpO+EqLCefNlx/gjkxoCHDxwr5iWVY
-         8cdq1Cni4NbKqfHkCGiRBLXdusmSekJrfKI0LajIiUZUYA5/hJwyw/XDJneiaW2EQF9S
-         MNbA==
-X-Gm-Message-State: AOAM532B/R4eMzrLn6yjQVDICN0VQJJWp6MNr4xsQmumraQr5CLyVzOJ
-        K/U6qDAIIdi87ioN1VoEgnJKAg==
-X-Google-Smtp-Source: ABdhPJzbfk8QTJK5jVB6BLByUTxvMVPAib1GsPEBJahAxLMAbDnMR0ih2p6z1HqOoX7v85bcyO5p2Q==
-X-Received: by 2002:a17:907:1b06:b0:6e7:f58a:9b91 with SMTP id mp6-20020a1709071b0600b006e7f58a9b91mr10073346ejc.291.1650297477805;
-        Mon, 18 Apr 2022 08:57:57 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gq5-20020a170906e24500b006e87644f2f7sm4661020ejb.38.2022.04.18.08.57.56
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TweijuCzv8x4HVI+hbm7Bve8ZQCsolV5RsSU3xzQFgI=;
+        b=LHRN5uZCaTwnFH3Zmca7VMl1AA+i64dFUUU70MZCyJJgJVFEZb99dIrlkEpXXbRnDp
+         DLtYvn+IZKnYB9z91bCezoCEMeL5nmdk/83lnR4+jYSjxgm7I7Hvq88b6w1pjb3Mvqc7
+         0HsIw04CohArjDBjnsAaiWuJP9EnrnBqhuxNPpNHP4fu1QWoGxhWFfvKLueS3mjACAzi
+         SgxR/YxNX2hwPOrqX6/ThEwzUPgLOpj6OUURORZaqM8guanmBYrNW5HZ7uMQH12j7inR
+         frzNvjCf/10yxVE0C1Em7oy25tGBUawboCd54KSmfTWP9A2wa9JFAUiMI2VzmTQD4c2v
+         72tw==
+X-Gm-Message-State: AOAM533t4qmCNVahPbkpqlEGF4wGBamxIm7xMLu9WRfbdZGEPlLee0sl
+        CmfQ3nsHk9jHub7v1ILMpARxUg==
+X-Google-Smtp-Source: ABdhPJwUvSC2RU6pGD6+bp9qphTlXteDNwG3QvNqUYrTHnJx5LLdb3YaztDT0Jes8w2E+AXJjmmPvw==
+X-Received: by 2002:a17:903:2d0:b0:14d:8a8d:cb1 with SMTP id s16-20020a17090302d000b0014d8a8d0cb1mr11245314plk.50.1650297799689;
+        Mon, 18 Apr 2022 09:03:19 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6b32:a0a5:ec32:c287])
+        by smtp.gmail.com with UTF8SMTPSA id t63-20020a625f42000000b0050a7eaff8c9sm3493826pfb.189.2022.04.18.09.03.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 08:57:57 -0700 (PDT)
-Message-ID: <195bc220-05c1-d216-6596-0a54c177c5a6@linaro.org>
-Date:   Mon, 18 Apr 2022 17:57:56 +0200
+        Mon, 18 Apr 2022 09:03:19 -0700 (PDT)
+Date:   Mon, 18 Apr 2022 09:03:17 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v8 1/4] arm64: dts: qcom: sc7280: Add nodes for soundwire
+ and va tx rx digital macro codecs
+Message-ID: <Yl2LxeYmNeLth77M@google.com>
+References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
+ <1650291252-30398-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC/RFT 6/6] arm64: dts: rockchip: Add PCIe v3 nodes to
- BPI-R2-Pro
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20220416135458.104048-1-linux@fw-web.de>
- <20220416135458.104048-7-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220416135458.104048-7-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1650291252-30398-2-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,25 +72,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/04/2022 15:54, Frank Wunderlich wrote:
+On Mon, Apr 18, 2022 at 07:44:09PM +0530, Srinivasa Rao Mandadapu wrote:
+> SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
+> external codecs using soundwire masters. Add these nodes for sc7280 based
+> platforms audio use case.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 
-(...)
-
-> +	pcie30_avdd1v8: pcie30-avdd1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pcie30_avdd1v8";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc3v3_sys>;
-> +	};
-> +
-> +	/* pi6c pcie clock generator feeds both ports */
-> +	vcc3v3_pi6c_05: vcc3v3_pi6c_05-regulator {
-
-No underscores in node names. Same in other places.
-
-
-Best regards,
-Krzysztof
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
