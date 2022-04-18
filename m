@@ -2,49 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DFC8504A52
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 02:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03658504A89
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 03:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234057AbiDRA65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Apr 2022 20:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55340 "EHLO
+        id S235616AbiDRBkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Apr 2022 21:40:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232132AbiDRA65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 20:58:57 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CC9CC643A;
-        Sun, 17 Apr 2022 17:56:19 -0700 (PDT)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 18 Apr 2022 09:56:19 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 436FB2058B50;
-        Mon, 18 Apr 2022 09:56:19 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 18 Apr 2022 09:56:19 +0900
-Received: from [10.212.182.6] (unknown [10.212.182.6])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 50D1DB62B7;
-        Mon, 18 Apr 2022 09:56:18 +0900 (JST)
-Subject: Re: [PATCH v2 2/2] arm64: dts: uniphier: Remove compatible
- "snps,dw-pcie" from pcie node
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <1648617814-9217-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1648617814-9217-3-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <b6bd1a3c-f9a4-7e2f-b8ac-0676b9873e08@socionext.com>
-Date:   Mon, 18 Apr 2022 09:56:18 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S232339AbiDRBka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Apr 2022 21:40:30 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12846B87C;
+        Sun, 17 Apr 2022 18:37:52 -0700 (PDT)
+X-UUID: 1227b60080594bb489291a5e9899a0b5-20220418
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:a9652940-7633-4f59-b913-3764e1a50e25,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.4,REQID:a9652940-7633-4f59-b913-3764e1a50e25,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:faefae9,CLOUDID:430f2eef-06b0-4305-bfbf-554bfc9d151a,C
+        OID:IGNORED,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,File:ni
+        l,QS:0,BEC:nil
+X-UUID: 1227b60080594bb489291a5e9899a0b5-20220418
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 731530093; Mon, 18 Apr 2022 09:37:46 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 18 Apr 2022 09:37:45 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 18 Apr
+ 2022 09:37:45 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 18 Apr 2022 09:37:45 +0800
+Message-ID: <3a1fe42adace3a1355b6a95fbd55abc724c1053d.camel@mediatek.com>
+Subject: Re: [PATCH V3 04/15] cpufreq: mediatek: Record previous target
+ vproc value
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
+        <hsinyi@google.com>, <khilman@baylibre.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "Andrew-sh . Cheng" <andrew-sh.cheng@mediatek.com>
+Date:   Mon, 18 Apr 2022 09:37:45 +0800
+In-Reply-To: <9751622e-f969-c025-2a39-efcc9a612392@collabora.com>
+References: <20220415055916.28350-1-rex-bc.chen@mediatek.com>
+         <20220415055916.28350-5-rex-bc.chen@mediatek.com>
+         <9751622e-f969-c025-2a39-efcc9a612392@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <1648617814-9217-3-git-send-email-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,27 +74,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/03/30 14:23, Kunihiko Hayashi wrote:
-> UniPhier PCIe host controller doesn't use "snps,dw-pcie" compatible, so
-> this is no longer needed. Remove the compatible string from the pcie node
-> to fix the following warning.
+On Fri, 2022-04-15 at 14:24 +0200, AngeloGioacchino Del Regno wrote:
+> Il 15/04/22 07:59, Rex-BC Chen ha scritto:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > We found the buck voltage may not be exactly the same with what we
+> > set
+> > because CPU may share the same buck with other module.
+> > Therefore, we need to record the previous desired value instead of
+> > reading
+> > it from regulators.
+> > 
+> > Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >   drivers/cpufreq/mediatek-cpufreq.c | 17 +++++++++++++----
+> >   1 file changed, 13 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index ff27f77e8ee6..fa8b193bf27b 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> > @@ -40,6 +40,7 @@ struct mtk_cpu_dvfs_info {
+> >   	struct list_head list_head;
+> >   	int intermediate_voltage;
+> >   	bool need_voltage_tracking;
+> > +	int pre_vproc;
+> >   };
+> >   
+> >   static LIST_HEAD(dvfs_info_list);
+> > @@ -191,11 +192,17 @@ static int
+> > mtk_cpufreq_voltage_tracking(struct mtk_cpu_dvfs_info *info,
+> >   
+> >   static int mtk_cpufreq_set_voltage(struct mtk_cpu_dvfs_info
+> > *info, int vproc)
+> >   {
+> > +	int ret;
+> > +
+> >   	if (info->need_voltage_tracking)
+> > -		return mtk_cpufreq_voltage_tracking(info, vproc);
+> > +		ret = mtk_cpufreq_voltage_tracking(info, vproc);
+> >   	else
+> > -		return regulator_set_voltage(info->proc_reg, vproc,
+> > -					     vproc + VOLT_TOL);
+> > +		ret = regulator_set_voltage(info->proc_reg, vproc,
+> > +					    MAX_VOLT_LIMIT);
+> > +	if (!ret)
+> > +		info->pre_vproc = vproc;
+> > +
+> > +	return ret;
+> >   }
+> >   
+> >   static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
+> > @@ -213,7 +220,9 @@ static int mtk_cpufreq_set_target(struct
+> > cpufreq_policy *policy,
+> >   	inter_vproc = info->intermediate_voltage;
+> >   
+> >   	pre_freq_hz = clk_get_rate(cpu_clk);
+> > -	pre_vproc = regulator_get_voltage(info->proc_reg);
+> > +	pre_vproc = info->pre_vproc;
+> > +	if (pre_vproc <= 0)
+> > +		pre_vproc = regulator_get_voltage(info->proc_reg);
 > 
->    uniphier-ld20-akebi96.dtb: pcie@66000000: compatible:
-> ['socionext,uniphier-pcie', 'snps,dw-pcie'] is too long
->        From schema:
-> Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+> I would do it like that, instead:
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi | 2 +-
->   arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+> 	if (unlikely(info->pre_vproc <= 0))
+> 		pre_vproc = regulator_get_voltage(info->proc_reg);
+> 	else
+> 		pre_vproc = info->pre_vproc;
+> 
+> ....as even though it is indeed possible that info->pre_vproc is <=
+> 0, it is
+> very unlikely to happen ;-)
+> This also solves a 'pre_vproc' double assignment issue, by the way.
+> 
+> Cheers,
+> Angelo
+> 
+> 
+> 
 
-This patch 2 is for the devicetree and patch 1 has already been merged,
-so I'll post it as a new patch series along with other devicetree patches.
+Hello Angelo,
 
-Thank you,
+OK, I will add this in next version.
+Thanks for your suggestion.
 
----
-Best Regards
-Kunihiko Hayashi
+BRs,
+Rex
+
