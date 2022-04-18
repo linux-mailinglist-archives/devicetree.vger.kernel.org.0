@@ -2,73 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5C2504F8A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C6B504F8F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 13:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237347AbiDRLt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 07:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51796 "EHLO
+        id S237885AbiDRLux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 07:50:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236226AbiDRLt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:49:26 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A400D16597
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 04:46:47 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id c6so17164707edn.8
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 04:46:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+cw4FNIPaljad3e8DVkQCepUmXxjBo/m/1jzgFfcs8U=;
-        b=EMcu0tCDeljFb7yHhoncmFDGX2SNBoNZN7shP4Vbct870LIS3zdaHeLX47ou4Q+5D9
-         dZYybx1/z7lfr+84/yT46CL0XbfDr0nSxKz6+vCHyIkyZCrn6zfEgtJ+x98m1m8v0PTG
-         2TgpWiJex5byMDJ6mi53I5qkeuPWAQnBT4PxO7Rohb8x3nlcVJL08dz+kXpL++Nl4RBv
-         5fPp0twwX/XxBTU1wbXFwyCQGxfxf6PaqWgB2ChGMpLe2o42PTgXTrqS3Vvcip0zbOXm
-         uGRIKClvBlJGV52N3TULTQfRzrTbSqgGgXPF5rg9GTw1NVnQ8BU2teLRbn2vOPdR6fsQ
-         Z9UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+cw4FNIPaljad3e8DVkQCepUmXxjBo/m/1jzgFfcs8U=;
-        b=4X8XjP78oVOagbcfUOsXvB+X88XsPowUSmwMriNGE0zzs0uVYn4Gx5TPvU19L1+RZi
-         rm+b+K98jlbQbrihRpmOdCVk5GkEBgzmvbBHJ/TkEJOU8p64US0ooco4ZV9WnSEXqIQc
-         bjJpbcu9X41d4xwZVfuKsLoat4sESUxI3t44YWT5iNSFU4zPuSodBVDXh/oK1Bz2Ipdh
-         AAKAa10GL2NXmAKAhAsjQW0SH9pCfNbEnPrE1uBc2nkxU47Bz4P1ZFhY4lCiwGKlJLEM
-         jRm7d8bRffxgeOw3zrHxxc0e3A7bEAoDvsXe/yP0cCrFW8Qo1H8qvxX4ua0F3rDUkUeh
-         JHdA==
-X-Gm-Message-State: AOAM532Af6hibbQlaSaDJI6gjRdu9WqGbD1EWabwwKR+C7ChTP6I+0T1
-        aDqbuwRlYmnWa8p3X7CryB3YSOCvFoNZHw==
-X-Google-Smtp-Source: ABdhPJywPDma12a05kBaxZILSMPLyMoVhakudsXTChLuj+deflBnxYq4hwWmM8t0rSpj543MZo2mCQ==
-X-Received: by 2002:a05:6402:2056:b0:41d:70c3:2904 with SMTP id bc22-20020a056402205600b0041d70c32904mr11725923edb.397.1650282406266;
-        Mon, 18 Apr 2022 04:46:46 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p2-20020a056402154200b0042323822e15sm4345412edx.74.2022.04.18.04.46.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 04:46:45 -0700 (PDT)
-Message-ID: <df46a147-c4c7-c0bc-e195-d47344413b29@linaro.org>
-Date:   Mon, 18 Apr 2022 13:46:44 +0200
+        with ESMTP id S229740AbiDRLuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 07:50:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5309F16597;
+        Mon, 18 Apr 2022 04:48:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E240B60C78;
+        Mon, 18 Apr 2022 11:48:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F15C385A9;
+        Mon, 18 Apr 2022 11:48:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650282493;
+        bh=5O9SWzynufeSwbknVQU7oGW1K9f4nECMGHNkcfEIclo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TyQEvTxowU2Bk8t1VhUHf0MxWjU4JM2jrxsUFR6PdHsIO5t/w2/NJ/ObZL8LYz5Qa
+         qeAcmURYMNePyFLBudvO79cpIqCe5/4Uphp+UYxlhpbwl3cWOAMwybjchplYm3o4HT
+         brBqU6ICCGAtikbz4chU8NrjCQKQuzw7ZblZ4uufw4ZdW7VUtIHpT0Z23gbkk/ebm5
+         stPU78PJ7PHoMQHdb+L7KRMr0CougmH7TFUnmXjX2VDt97almEMTjIDE7sPXdzCxUB
+         oej+o9mIaOcG8LXgvRetKuP6OyXC8RZ744tNJapISYyIPIDmbJwhrc0xpbZ0aw1xpZ
+         OvS+yMX2+kPdQ==
+Date:   Mon, 18 Apr 2022 19:48:06 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>
+Subject: Re: [PATCH v1 00/17] protonic fixes
+Message-ID: <20220418114806.GH391514@dragon>
+References: <20220412074004.2485264-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8195: add UFS HCI node
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220415165939.1861470-1-fparent@baylibre.com>
- <20220415165939.1861470-2-fparent@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220415165939.1861470-2-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220412074004.2485264-1-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,26 +58,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/04/2022 18:59, Fabien Parent wrote:
-> Add the node for the UFS HCI controller for the MediaTek MT8195 SoC.
+On Tue, Apr 12, 2022 at 09:39:47AM +0200, Oleksij Rempel wrote:
+> This patch series provide two main part of changes:
+> - Remove prototype specific deprecated code not used in production.
+> - Unify vicut1 and victgo variants to reduce maintaining overhead.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> David Jander (16):
+>   arm: dts: imx6qdl-vicut1.dtsi: remove TiWi module
+>   arm: dts: imx6qdl-vicut1.dtsi: Put nON_SWITCH in own pinctrl grp
+>   arm: dts: imx6qdl-vicut1.dtsi: Remove PCIe
+>   arm: dts: imx6qdl-vicut1/victgo: Remove UART2
+>   arm: dts: imx6qdl-vicut1.dtsi: Fix LED names
+>   arm: dts: imx6qdl-vicut1.dtsi: Fix debug LED gpio pins
+>   arm: dts: imx6qdl-vicut1.dtsi: Update GPIO line names
+>   arm: dts: imx6qdl-vicut1.dtsi: Remove conflicting pinctrl entry
+>   arm: dts: imx6q-vicut1.dts: remove sata node
+>   arm: dts: imx6dl-victgo.dts: update gpio names
+>   arm: dts: imx6dl-victgo.dts: Factor out common parts to
+>     imx6qdl-victgo.dtsi
+>   arm: dts: imx6qdl-vicut1.dtsi: Move some node out to DTS files
+>   arm: dts: Remove imx6qdl-victgo.dtsi
+>   arm: dts: imx6qdl-vicut1: Factor out common parts of 12inch board
+>     variants
+>   arm: dts: imx6dl-victgo.dts: Remove touchscreen x axis inversion
+>   arm: dts: imx6qdl-vicut1.dtsi: Add missing ISB led node
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index b57e620c2c72..2255e19cc3b2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -619,6 +619,30 @@ mmc2: mmc@11250000 {
->  			status = "disabled";
->  		};
->  
-> +		ufshci: ufshci@11270000 {
+> Oleksij Rempel (1):
+>   arm: dts: imx6qdl-vicut1.dtsi: add thermal zone and attach tmp103 to
+>     it.
 
-Generic node name, so just "ufs".
+s/arm:/ARM: in patch subject.
 
+Shawn
 
-Best regards,
-Krzysztof
+> 
+>  arch/arm/boot/dts/imx6dl-victgo.dts          | 682 +------------------
+>  arch/arm/boot/dts/imx6dl-vicut1.dts          |   1 +
+>  arch/arm/boot/dts/imx6q-vicut1.dts           |   5 +-
+>  arch/arm/boot/dts/imx6qdl-vicut1-12inch.dtsi | 128 ++++
+>  arch/arm/boot/dts/imx6qdl-vicut1.dtsi        | 222 +-----
+>  arch/arm/boot/dts/imx6qp-vicutp.dts          |   1 +
+>  6 files changed, 178 insertions(+), 861 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/imx6qdl-vicut1-12inch.dtsi
+> 
+> -- 
+> 2.30.2
+> 
