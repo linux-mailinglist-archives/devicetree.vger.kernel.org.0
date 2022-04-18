@@ -2,177 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFEE1505BB0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1118505BF0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Apr 2022 17:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345612AbiDRPrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 11:47:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60962 "EHLO
+        id S1345594AbiDRPwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 11:52:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345793AbiDRPqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:46:16 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582C15AA46;
-        Mon, 18 Apr 2022 08:13:51 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id v77so25976550ybi.12;
-        Mon, 18 Apr 2022 08:13:51 -0700 (PDT)
+        with ESMTP id S1345808AbiDRPwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 11:52:01 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770911D31D
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:31:48 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id d23-20020a17090a115700b001d2bde6c234so172766pje.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 08:31:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UD05IbcZ2rf5qvJ6A93X+/jr+vU3bRZx5RLWQDEGt1I=;
-        b=Pjj9yRLO9dfTboleo6SJMPQgWC8TvkyB63hnmKy8gYvh0uGqQdx3aGD6CzWSQXEddN
-         tPuhqFSulSxiwq996BZ9ztVVYJZQWGZ+HG7wT3kxTdHO+KCfMeVWxPnKJRPl67IKCggy
-         sE6Ga1oTaw8UdJAxivjX1oDAcpjDoROMAbn+qVzTmEA2j4UIlSmPLr6p4xOHkapm7MDP
-         mBPYUiDkuyOBPnGQqjpa2Vw5GBl/n2f0L6D3Lvn4vQ4G5acCVRe2KsR0uezYt02+MLyg
-         f4SobePJdgLFuZMdRMTKguUTIxzt9zRSJPNx16UVjLkBzjnmkL5AJ6FUpJ1ZlAbdul8c
-         Lp/Q==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=LtMMRF4JcWs/Onf4a3Y3tlIdji7WoSU9k4+P0Hcpjbc=;
+        b=hE0KBI9KwKkNqK+Xv2o8tsioJRsnAaFJ1eB+X2QNyQ99MfbSVlUxQCxCZEvC+IM/my
+         bYEURWsF0lHBi4/PKzpg/bpURMLdcgDvFus+NSJivkPCdzyMjRUFAmnDpeysop2l0FXl
+         48JcA53FUXsLakhyZWhH2QzWikVPyhBok6KcU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UD05IbcZ2rf5qvJ6A93X+/jr+vU3bRZx5RLWQDEGt1I=;
-        b=RMsOy39LlyAq7MqqEB5tMo/rTFleQyhXuU7cVxTqSbTbwtjkV5DzdXzy2Qi4AsLBGd
-         M7nL9ywIsyP69xUWAL7j29j/XNToJdrXlFpzJxeLGvVVxwWW7JSet/bT5uScEzKIzdd8
-         n0u5Qfff3hN86dbjvWzZdPn2+FJwTE+F+6E7q3wwVFRQTaoIm+LCt4aglCOgJiE/j5uZ
-         feTrJU0N3DD/nHUCrmp3rNmmE80CJnDkitMrh5FGR/xIPsp2RC4Pcw6euJILQTM312bu
-         CMaHWuvW/eAsauAnQmPJk0FCOVVTcvnoMbJ9vxqmsF7P+KnD5FOeMjEtuxjcanBPAmsu
-         yYNA==
-X-Gm-Message-State: AOAM53144zXXusUAUeA6CXEHMPKS+YNf4zxCv8paQ95/eoQ8svwUlQ4F
-        OhotdL89KJU2dvwP/E5pJtChDK1S8umGJsnFeSI=
-X-Google-Smtp-Source: ABdhPJyglgnLuoSw1DyURkg6CGKqtEJL4ymjfUewdv/sJ/JuvH0Bue0GwV9LJ769SlOf0P2VWW9+SDrsMuiERFAhTZI=
-X-Received: by 2002:a25:c54b:0:b0:641:cfe9:27e9 with SMTP id
- v72-20020a25c54b000000b00641cfe927e9mr9915958ybe.228.1650294830426; Mon, 18
- Apr 2022 08:13:50 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=LtMMRF4JcWs/Onf4a3Y3tlIdji7WoSU9k4+P0Hcpjbc=;
+        b=sVLZOcx9kWKADfoNNnBWiyUFbmjOEp1XbzTV/OhKqNWdEL9HVvKFkvAJe2doRGt2Gl
+         sxkiWD59yh/zAsbqYRK4L6jBe5If9GNH+Q6QATn989WrnEnEdByDjj5lZO1z+HzuiGRj
+         EZRw/bO1/32NGl7ZwmrBheLqoxsUeOkHr5V854PcElAjb6uhmmBeKAPkmAOMNFwkRHxr
+         MLLNmP0lQcsAO7woeXxL91Hq78uv/iMMa+lC6iJJ67tLdrORcm0duhozfdGVCHcNqb2d
+         LUlBvkd8tKGH+OTdfGfWl74bG/4An4yyvyoGEiFxoLtFfVE9FYTaUGLfaM7hdf50fMrV
+         Iepg==
+X-Gm-Message-State: AOAM531ZLPxmLm5ACOEeXt9savBjy0jqbzC6ERP3YSFNmq5bOumu5UTV
+        ndiq9emg2NFEwQW45pW+1w82tw==
+X-Google-Smtp-Source: ABdhPJzdL3yAngu9mDayKXsveGQ3aVDfr4Jr1rlnzREStGhXw+y1x2674SLwT528JlAC51feQLysSw==
+X-Received: by 2002:a17:90b:1c86:b0:1bf:2a7e:5c75 with SMTP id oo6-20020a17090b1c8600b001bf2a7e5c75mr13585777pjb.145.1650295907897;
+        Mon, 18 Apr 2022 08:31:47 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6b32:a0a5:ec32:c287])
+        by smtp.gmail.com with UTF8SMTPSA id z5-20020a056a00240500b004e15d39f15fsm13525530pfh.83.2022.04.18.08.31.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Apr 2022 08:31:47 -0700 (PDT)
+Date:   Mon, 18 Apr 2022 08:31:44 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: sc7280: Add dt nodes for sound
+ card
+Message-ID: <Yl2EYIdMdz7Lnk26@google.com>
+References: <1649863277-31615-1-git-send-email-quic_srivasam@quicinc.com>
+ <1649863277-31615-5-git-send-email-quic_srivasam@quicinc.com>
+ <Ylc/aR0hUGa6OKBO@google.com>
+ <78b1e04c-e7d0-a81d-799e-5c570c2bf106@quicinc.com>
 MIME-Version: 1.0
-References: <20220416110507.642398-1-pgwipeout@gmail.com> <20220416110507.642398-3-pgwipeout@gmail.com>
- <308e9c47197d4f7ae5a31cfcb5a10886@kernel.org> <CAMdYzYo+YeAgT92baMOoWpra230wro_WynRcajL-__9RNkeE9Q@mail.gmail.com>
- <87zgkk9gtc.wl-maz@kernel.org> <CAMdYzYo_+7rakc=GCTueEZvH_F4Co6+=eKAUztJaafiDXSKKXQ@mail.gmail.com>
- <87sfqaa7uv.wl-maz@kernel.org>
-In-Reply-To: <87sfqaa7uv.wl-maz@kernel.org>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Mon, 18 Apr 2022 11:13:39 -0400
-Message-ID: <CAMdYzYouLoYX89EWjQTRAjd-1bvJEJtfYQa2KrtFH22Kp-4Efw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/4] PCI: dwc: rockchip: add legacy interrupt support
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <78b1e04c-e7d0-a81d-799e-5c570c2bf106@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 8:34 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Mon, 18 Apr 2022 12:37:00 +0100,
-> Peter Geis <pgwipeout@gmail.com> wrote:
-> >
-> > On Sun, Apr 17, 2022 at 5:53 AM Marc Zyngier <maz@kernel.org> wrote:
-> > >
-> > > On Sat, 16 Apr 2022 14:24:26 +0100,
-> > > Peter Geis <pgwipeout@gmail.com> wrote:
-> > > >
-> > > > Okay, that makes sense. I'm hitting the entire block when it should be
-> > > > the individual IRQ.
-> > > > I also notice some drivers protect this with a spinlock while others
-> > > > do not, how should this be handled?
-> > >
-> > > It obviously depends on how the HW. works. If this is a shared
-> > > register using a RMW sequence, then you need some form of mutual
-> > > exclusion in order to preserve the atomicity of the update.
-> > >
-> > > If the HW supports updating the masks using a set of hot bits (with
-> > > separate clear/set registers), than there is no need for locking.  In
-> > > your case PCIE_CLIENT_INTR_MASK_LEGACY seems to support this odd
-> > > "write-enable" feature which can probably be used to implement a
-> > > lockless access, something like:
-> > >
-> > >         void mask(struct irq_data *d)
-> > >         {
-> > >                 u32 val = BIT(d->hwirq + 16) | BIT(d->hwirq);
-> >
-> > This is what HIWORD_UPDATE_BIT does, it's rather common in Rockchip code.
-> > I believe I can safely drop the spinlock when enabling/disabling
-> > individual interrupts.
->
-> Yes.
->
-> >
-> > >                 writel_relaxed(val, ...);
-> > >         }
-> > >
-> > >         void mask(struct irq_data *d)
-> > >         {
-> > >                 u32 val = BIT(d->hwirq + 16);
-> > >                 writel_relaxed(val, ...);
-> > >         }
-> > >
-> > > Another thing is that it is completely unclear to me what initialises
-> > > these interrupts the first place (INTR_MASK_LEGACY, INTR_EN_LEGACY).
-> > > Are you relying on the firmware to do that for you?
-> >
-> > There is no dedicated mask or enable/disable for the legacy interrupt
-> > line (unless it's undocumented).
->
-> I'm talking about the INTR_MASK_LEGACY and INTR_EN_LEGACY registers,
-> which control the INTx (although the latter seems to default to some
-> reserved values). I don't see where you initialise them to a state
-> where they are enabled and masked, which should be the initial state
-> once this driver has probed. The output interrupt itself is obviously
-> controlled by the GIC driver.
+On Mon, Apr 18, 2022 at 07:39:44PM +0530, Srinivasa Rao Mandadapu wrote:
+> 
+> On 4/14/2022 2:53 AM, Matthias Kaehlcke wrote:
+> Thanks for your time Matthias!!!
+> > On Wed, Apr 13, 2022 at 08:51:17PM +0530, Srinivasa Rao Mandadapu wrote:
+> > > Add dt nodes for sound card support, which is using WCD938x headset
+> > > playback, capture, I2S speaker playback and DMICs via VA macro.
+> > > 
+> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/sc7280-crd.dts  | 23 ++++++++
+> > >   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 93 ++++++++++++++++++++++++++++++++
+> > >   2 files changed, 116 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> > > index b944366..1e16854 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> > You need to refresh your tree, this file has been renamed to
+> > sc7280-crd-r3.dts. That DT is for the CRD <= 2.x, newer versions
+> > use sc7280-herobrine-crd.dts.
+> Okay. will update accordingly.
+> > 
+> > > @@ -90,6 +90,29 @@ ap_ts_pen_1v8: &i2c13 {
+> > >   	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+> > >   };
+> > > +&sound {
+> > > +	audio-routing =
+> > > +		"IN1_HPHL", "HPHL_OUT",
+> > > +		"IN2_HPHR", "HPHR_OUT",
+> > > +		"AMIC1", "MIC BIAS1",
+> > > +		"AMIC2", "MIC BIAS2",
+> > > +		"VA DMIC0", "MIC BIAS1",
+> > > +		"VA DMIC1", "MIC BIAS1",
+> > > +		"VA DMIC2", "MIC BIAS3",
+> > > +		"VA DMIC3", "MIC BIAS3",
+> > > +		"TX SWR_ADC0", "ADC1_OUTPUT",
+> > > +		"TX SWR_ADC1", "ADC2_OUTPUT",
+> > > +		"TX SWR_ADC2", "ADC3_OUTPUT",
+> > > +		"TX SWR_DMIC0", "DMIC1_OUTPUT",
+> > > +		"TX SWR_DMIC1", "DMIC2_OUTPUT",
+> > > +		"TX SWR_DMIC2", "DMIC3_OUTPUT",
+> > > +		"TX SWR_DMIC3", "DMIC4_OUTPUT",
+> > > +		"TX SWR_DMIC4", "DMIC5_OUTPUT",
+> > > +		"TX SWR_DMIC5", "DMIC6_OUTPUT",
+> > > +		"TX SWR_DMIC6", "DMIC7_OUTPUT",
+> > > +		"TX SWR_DMIC7", "DMIC8_OUTPUT";
+> > > +};
+> > > +
+> > >   &tlmm {
+> > >   	tp_int_odl: tp-int-odl {
+> > >   		pins = "gpio7";
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > index cf62d06..a7c884a 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > @@ -84,6 +84,99 @@
+> > >   		pinctrl-names = "default";
+> > >   		pinctrl-0 = <&nvme_pwren>;
+> > >   	};
+> > > +
+> > > +	sound: sound {
+> > > +		compatible = "google,sc7280-herobrine";
+> > > +		model = "sc7280-wcd938x-max98360a-1mic";
+> > > +
+> > > +		audio-routing =
+> > > +			"IN1_HPHL", "HPHL_OUT",
+> > > +			"IN2_HPHR", "HPHR_OUT",
+> > > +			"AMIC1", "MIC BIAS1",
+> > > +			"AMIC2", "MIC BIAS2",
+> > > +			"VA DMIC0", "MIC BIAS3",
+> > > +			"VA DMIC1", "MIC BIAS3",
+> > > +			"VA DMIC2", "MIC BIAS1",
+> > > +			"VA DMIC3", "MIC BIAS1",
+> > > +			"TX SWR_ADC0", "ADC1_OUTPUT",
+> > > +			"TX SWR_ADC1", "ADC2_OUTPUT",
+> > > +			"TX SWR_ADC2", "ADC3_OUTPUT",
+> > > +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
+> > > +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
+> > > +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
+> > > +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
+> > > +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
+> > > +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
+> > > +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
+> > > +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
+> > > +
+> > > +		qcom,msm-mbhc-hphl-swh = <1>;
+> > > +		qcom,msm-mbhc-gnd-swh = <1>;
+> > > +
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <0>;
+> > > +		#sound-dai-cells = <0>;
+> > > +
+> > > +		dai-link@1 {
+> > > +			link-name = "MAX98360A";
+> > > +			reg = <MI2S_SECONDARY>;
+> > Dumb question: is this value actually used? A quick glance through
+> > qcom_snd_parse_of() suggests it isn't. And the CPU DAI id is already
+> > specified in the 'sound-dai' property below.
+> > 
+> > In a quick test I replaced the corresponding 'reg' values in
+> > sc7180-trogdor.dtsi with 'random' values and audio playback on
+> > my coachz (sc7180-trogdor-coachz-r3.dts) still works ...
+> 
+> Yes. agree that it's not being used. But i am not sure of general syntax
+> followed.
+> 
+> for now  will delete it.
 
-PCIE_CLIENT_INTR_MASK_LEGACY is the register I use here to mask/unmask
-the interrupts.
-It defaults to all masked on reset.
-The current rk3568 trm v1.1 does not reference an INTR_EN_LEGACY register.
+The binding requires it though. I think the correct thing would be to remove it
+from the binding and from all device trees currently using it. But that might be
+beyond the scope of this series.
 
->
-> > It appears to be enabled via an "or" function with the emulated interrupts.
-> > As far as I can tell this is common for dw-pcie, looking at the other drivers.
->
-> I think we're talking past each other. I'm solely concerned with the
-> initialisation of the input control registers, for which I see no code
-> in this patch.
+Maybe a two step approach would be the best: add 'reg' in this series, get it
+landed and then send another series that changes the binding and deletes all
+'reg' entries (and adjusts the 'address' in the node name).
 
-Downstream points to the mask/unmask functions for the enable/disable
-functions, which would be superfluous here as mainline defaults to
-that anyways if they are null.
-
-I've double checked and downstream only uses the mask register, enable
-and routing config appears to be left as is from reset.
-I'm rather concerned about the lack of any obvious way to control
-routing, nor an ack mechanism for the irq.
-I see other implementations reference the core registers or vendor
-defined registers for these functions.
-Unfortunately the rk3568 trm does not include the core register
-definitions, and the designware documentation appears to be behind a
-paywall/nda.
-
-I suspect most of the confusion here boils down to a lack of
-documentation, but it's entirely possible I am simply not
-understanding the question.
-I'm already aware of other functions that I need documentation for
-that is currently unavailable.
-
->
->         M.
->
-> --
-> Without deviation from the norm, progress is not possible.
-
-Thank you for your time,
-Peter
+I don't think the CPU DAI id should be in the node name either. It isn't even
+necessarily a unique identifier if I understand correctly. A SoC could have
+multiple IP blocks with audio buses, each with their own enumeration of DAIs.
+I suggest to just enumerate the nodes (and 'reg' while it's there) linearly
+starting with 0, or maybe even change the node name in the binding (in a
+second step) to dai-link-N.
