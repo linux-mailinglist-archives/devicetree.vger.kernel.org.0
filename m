@@ -2,205 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6FD507D0E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 01:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B19507D37
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 01:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242102AbiDSXGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 19:06:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55396 "EHLO
+        id S237652AbiDSXnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 19:43:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234794AbiDSXGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 19:06:54 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E16D427167;
-        Tue, 19 Apr 2022 16:04:09 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 94FFC1FB;
-        Tue, 19 Apr 2022 16:04:09 -0700 (PDT)
-Received: from [10.57.41.251] (unknown [10.57.41.251])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5405C3F5A1;
-        Tue, 19 Apr 2022 16:04:07 -0700 (PDT)
-Message-ID: <586f6f11-fb29-7f76-200a-d73a653f9889@arm.com>
-Date:   Wed, 20 Apr 2022 00:04:01 +0100
+        with ESMTP id S238985AbiDSXna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 19:43:30 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6281FCC8;
+        Tue, 19 Apr 2022 16:40:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1650411646; x=1681947646;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=t4emDxanzGVvr52RH7coPRv08JQEzi0lhFYTHZLgntI=;
+  b=JmTGDHjLNNbzJdhcCL0+R9gua9OvSCGUBWjSOjv0s4lQ7a51HiXTIkTg
+   CClat2FTcOl+5Qt6kthkxG2ZEHriZnubiKM9xi/7DFYtvtc1i27U7r030
+   s6KMGQ/GNII9FueYP7sokvZu/SpqkIYEyvX/D+T7vTURC4PVPOOtxoBhs
+   IB2pBndx1vWfo/2aI0N+ea/ApKCpoPSL1eyW1NDn+3+iEtrtsrllZI6r+
+   mT/koXgsQz+BQueUQCZGShLvUHKQbnYwJM1ZwN/RgKZBBE0TuFgW4D8tL
+   VRQkAW0pkmCcSe53vztdhq6o15X50t44gvJb/fmWcOdl4xnb5QjmiUfdC
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="262755535"
+X-IronPort-AV: E=Sophos;i="5.90,274,1643702400"; 
+   d="scan'208";a="262755535"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2022 16:40:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,274,1643702400"; 
+   d="scan'208";a="647450802"
+Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 19 Apr 2022 16:40:43 -0700
+Received: from kbuild by 3abc53900bec with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1ngxSc-0006Kg-No;
+        Tue, 19 Apr 2022 23:40:42 +0000
+Date:   Wed, 20 Apr 2022 07:40:18 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, jejb@linux.ibm.com,
+        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH v3 4/7] scsi: ufs-renesas: Add support for Renesas R-Car
+ UFS controller
+Message-ID: <202204200731.hTb71eG4-lkp@intel.com>
+References: <20220419120316.209151-5-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
- Electronics TM1628
-Content-Language: en-GB
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
- <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
- <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
- <9e2fc38a-a51e-7635-970c-64948fc6eae4@kernel.org>
- <80937566-6455-b1bf-0a5d-a7b54dd3adc5@gmail.com>
- <5fde764f-4caf-8017-3cbd-3918f3390b6a@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <5fde764f-4caf-8017-3cbd-3918f3390b6a@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-10.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419120316.209151-5-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-30 06:54, Heiner Kallweit wrote:
-> On 23.03.2022 21:33, Heiner Kallweit wrote:
->> On 21.03.2022 09:34, Krzysztof Kozlowski wrote:
->>> On 18/03/2022 21:50, Robin Murphy wrote:
->>>> On 2022-02-25 21:13, Heiner Kallweit wrote:
->>>>> Add a YAML schema binding for TM1628 auxdisplay
->>>>> (7/11-segment LED) controller.
->>>>>
->>>>> This patch is partially based on previous work from
->>>>> Andreas Färber <afaerber@suse.de>.
->>>>>
->>>>> Co-developed-by: Andreas Färber <afaerber@suse.de>
->>>>> Signed-off-by: Andreas Färber <afaerber@suse.de>
->>>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>>>> ---
->>>>> v5:
->>>>> - add vendor prefix to driver-specific properties
->>>>> ---
->>>>>    .../bindings/auxdisplay/titanmec,tm1628.yaml  | 92 +++++++++++++++++++
->>>>>    1 file changed, 92 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->>>>> new file mode 100644
->>>>> index 000000000..2a1ef692c
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->>>>> @@ -0,0 +1,92 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm1628.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Titan Micro Electronics TM1628 LED controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Andreas Färber <afaerber@suse.de>
->>>>> +  - Heiner Kallweit <hkallweit1@gmail.com>
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: titanmec,tm1628
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  titanmec,grid:
->>>>> +    description:
->>>>> +      Mapping of display digit position to grid number.
->>>>> +      This implicitly defines the display size.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>>>> +    minItems: 1
->>>>> +    maxItems: 7
->>>>> +
->>>>> +  titanmec,segment-mapping:
->>>>> +    description:
->>>>> +      Mapping of 7 segment display segments A-G to bit numbers 1-12.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>>>> +    minItems: 7
->>>>> +    maxItems: 7
->>>>> +
->>>>> +  "#address-cells":
->>>>> +    const: 2
->>>>> +
->>>>> +  "#size-cells":
->>>>> +    const: 0
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>
->>>> Would it be fair to say that "spi-lsb-first" and "spi-3wire" are also
->>>> required? The chips aren't configurable so won't exactly be usable any
->>>> other way. Furthermore I believe the transmission format actually works
->>>> out equivalent to SPI mode 3, so should warrant "spi-cpha" and
->>>> "spi-cpol" as well.
->>>>
->>>>> +
->>>>> +patternProperties:
->>>>> +  "^.*@[1-7],([1-9]|1[0-6])$":
->>>>> +    type: object
->>>>> +    $ref: /schemas/leds/common.yaml#
->>>>> +    unevaluatedProperties: false
->>>>> +    description: |
->>>>> +      Properties for a single LED.
->>>>> +
->>>>> +    properties:
->>>>> +      reg:
->>>>> +        description: |
->>>>> +          1-based grid number, followed by 1-based segment bit number.
->>>>> +        maxItems: 1
->>>>> +
->>>>> +    required:
->>>>> +      - reg
->>>>
->>>> I'm concerned that this leaves us no room to support the additional
->>>> keypad functionality in future. Having now double-checked a datasheet,
->>>> the inputs are also a two-dimensional mux (sharing the segment lines),
->>>> so the device effectively has two distinct but numerically-overlapping
->>>> child address spaces - one addressed by (grid,segment) and the other by
->>>> (segment,key).
->>>>
->>>> Rob, Krysztof, any thoughts on the best DT idiom to leave accommodation
->>>> for that? I'm thinking either require an intermediate node to contain
->>>> each notional address space, or perhaps add another leading address cell
->>>> to select between them? I don't believe any of these things have further
->>>> functionality beyond that.
->>>
->>> I think intermediate nodes - leds, keys - are more appropriate, because
->>> it is self-describing. Additional address space number would require
->>> decoding this "0" or "1" into LED/key. For complex devices - like PMICs
->>> with regulators, RTC and clocks - we already have such patterns.
->>>
->> Then it's just the question who can implement such an intermediate node
->> based on what has been done so far.
->>
-> As it is now it seems we end up with empty hands again and have to wait
-> further two years for the next one to make an attempt.
-> That's a pity because for most users the relevant use cases are supported.
+Hi Yoshihiro,
 
-Or, y'know, we could just reach a productive conclusion rather than 
-doom-and-gloom catastrophising. I apologise for not having much time for 
-non-work-related kernel hacking at the moment, but it didn't seem 
-particularly urgent to follow up on this in the middle of a merge window 
-anyway. In the course of helpfully being left to address my own review 
-feedback, I did eventually get round to implementing the intermediate 
-"leds" node[1] last weekend, but having now stumbled across the 
-matrix-keymap helpers and common "linux,keymap" property, I'm personally 
-inclined to think that that's even cleaner than a "keys" node with 
-children that we'd have to write more parsing code for, and thus may 
-well make the whole intermediate node notion moot anyway. If only anyone 
-had pointed it out sooner...
+I love your patch! Perhaps something to improve:
 
-Thanks,
-Robin.
+[auto build test WARNING on geert-renesas-devel/next]
+[also build test WARNING on v5.18-rc3 next-20220419]
+[cannot apply to mkp-scsi/for-next jejb-scsi/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-[1] https://gitlab.arm.com/linux-arm/linux-rm/-/commits/tm1628
+url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/treewide-scsi-ufs-Add-support-for-Renesas-R-Car-UFS-controller/20220419-201020
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220420/202204200731.hTb71eG4-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c1c49a356162b22554088d269f7689bdb044a9f1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/3dca0de1a5ecda3be36402f3261cf286ce9dce64
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yoshihiro-Shimoda/treewide-scsi-ufs-Add-support-for-Renesas-R-Car-UFS-controller/20220419-201020
+        git checkout 3dca0de1a5ecda3be36402f3261cf286ce9dce64
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/scsi/ufs/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/scsi/ufs/ufs-renesas.c:304:15: warning: variable 'val' is uninitialized when used here [-Wuninitialized]
+                            p->index, val);
+                                      ^~~
+   include/linux/printk.h:570:26: note: expanded from macro 'pr_debug'
+           dynamic_pr_debug(fmt, ##__VA_ARGS__)
+                                   ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:163:22: note: expanded from macro 'dynamic_pr_debug'
+                              pr_fmt(fmt), ##__VA_ARGS__)
+                                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:152:56: note: expanded from macro '_dynamic_func_call'
+           __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
+                                                                 ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:134:15: note: expanded from macro '__dynamic_func_call'
+                   func(&id, ##__VA_ARGS__);               \
+                               ^~~~~~~~~~~
+   drivers/scsi/ufs/ufs-renesas.c:285:9: note: initialize the variable 'val' to silence this warning
+           u32 val;
+                  ^
+                   = 0
+   1 warning generated.
+
+
+vim +/val +304 drivers/scsi/ufs/ufs-renesas.c
+
+   279	
+   280	static void ufs_renesas_reg_control(struct ufs_hba *hba,
+   281					    const struct ufs_renesas_init_param *p)
+   282	{
+   283		static u32 save[MAX_INDEX];
+   284		int ret;
+   285		u32 val;
+   286	
+   287		pr_debug("%s: %d %04x %08x, %08x, %d\n", __func__, p->mode, p->reg,
+   288			 p->u.val, p->mask, p->index);
+   289	
+   290		WARN_ON(p->index >= MAX_INDEX);
+   291	
+   292		switch (p->mode) {
+   293		case MODE_RESTORE:
+   294			ufshcd_writel(hba, save[p->index], p->reg);
+   295			break;
+   296		case MODE_SET:
+   297			pr_debug("%s: %d %x %x\n", __func__, p->index, save[p->index],
+   298				 p->u.set);
+   299			save[p->index] |= p->u.set;
+   300			break;
+   301		case MODE_SAVE:
+   302			save[p->index] = ufshcd_readl(hba, p->reg) & p->mask;
+   303			pr_debug("%s: index = %d, val = %08x\n", __func__,
+ > 304				 p->index, val);
+   305			break;
+   306		case MODE_POLL:
+   307			ret = readl_poll_timeout_atomic(hba->mmio_base + p->reg,
+   308							val,
+   309							(val & p->mask) == p->u.expected,
+   310							10, 1000);
+   311			if (ret)
+   312				pr_err("%s: poll failed %d (%08x, %08x, %08x)\n",
+   313				       __func__, ret, val, p->mask, p->u.expected);
+   314			break;
+   315		case MODE_WAIT:
+   316			if (p->u.delay_us > 1000)
+   317				mdelay(p->u.delay_us / 1000);
+   318			else
+   319				udelay(p->u.delay_us);
+   320			break;
+   321		case MODE_WRITE:
+   322			ufshcd_writel(hba, p->u.val, p->reg);
+   323			break;
+   324		default:
+   325			break;
+   326		}
+   327	}
+   328	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
