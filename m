@@ -2,95 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 497AF506BA7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52AC4506BC5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352016AbiDSMF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52346 "EHLO
+        id S1352106AbiDSMKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 08:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351970AbiDSMDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:03:25 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC20D28980
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:59:09 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id b15so20932633edn.4
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6oA1XojTBV3oA9r/HKQ3Tl1fWWX+00CTBT2nxTWPymY=;
-        b=hDR9Sem7MlKGIbYOPdZKzDLQQoA1Ps1MPKQgOl4DfL9ZhR6uk4ow7cmRujEgHca4+z
-         LHrJQUqfAnG+GYinLCxhNo021USDj7Ay+o6y0eMUirw3v0TDkylvC1rrYu3R7sew6U7T
-         VtcSna4j2XI0YFrEtXDsTUt4V2Wk+cKcq0laOt/lrz/5RB+epAI9zeWa+5t83oL5XEdp
-         ejNyYqxtaDaInpvPZUufRCcnRaAx7mYhj2rVmbty5tG9Ez4ZjDArimtgstQTFnThs2PK
-         qkEowriCnuaEJzFjB25g2rYeXlCrryjPVUyCzonmIymb09b/1bJhE5oHJOxkH4jQTQFC
-         09mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6oA1XojTBV3oA9r/HKQ3Tl1fWWX+00CTBT2nxTWPymY=;
-        b=hQycDYAQsTWqIUBFF01xeQ/Sf9jMADSUMg4gsl6hpa42XhB/g4iN/f+YVKMsTe9gAc
-         HNTQfVCrhNl5Qcuz5Slzca8FIRK5ItfEWfuWwB0Zo4QARpFEWP7g78ijBoTbmcYgXDGL
-         0f0M+pzhKNAsTqJuJlTjpFICcXhLC3frWaPyUmr99RXppHzXe62voEWjnLyLlvm2dvJT
-         ijMz0NH0XwX9MHyIpscDRomUOSXVEjz4SF1tAGulJaGscfIlJ0DtcbzJfYOquCL4RYiq
-         aK+bU1NWpwKaGLDRf2BhCP7+jI0xgmXmP9fBuKxmbUB9wAadUvLg1zWwH60+07TAc2A7
-         7w/Q==
-X-Gm-Message-State: AOAM531Apfdq43qe3PsHGmfmYECvJJ2cas9OUg7ADclCPn2V5Ck9eAKj
-        0H88tw7basB9qpnOSx2SJyAKVDqhs6ZmsA==
-X-Google-Smtp-Source: ABdhPJxS7yTBdB7NfvlxHjWxaLfiWZFzcz7EPz+lZ+OBcndTA1+SohbMymqQSLWiLrTaqWI7UtT/Lg==
-X-Received: by 2002:aa7:c489:0:b0:41d:78a0:5b32 with SMTP id m9-20020aa7c489000000b0041d78a05b32mr16985415edq.305.1650369548476;
-        Tue, 19 Apr 2022 04:59:08 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p9-20020a05640243c900b0041facb9ac9esm8111757edc.1.2022.04.19.04.59.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 04:59:07 -0700 (PDT)
-Message-ID: <4f31fc70-c227-f69f-8fbe-6fa8a1113258@linaro.org>
-Date:   Tue, 19 Apr 2022 13:59:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 5/9] dt-bindings: clk: mpfs: add defines for two new
- clocks
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
-        palmer@rivosinc.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        with ESMTP id S1352025AbiDSMIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:08:17 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5191C55B4;
+        Tue, 19 Apr 2022 05:03:55 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,272,1643641200"; 
+   d="scan'208";a="118449892"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 19 Apr 2022 21:03:54 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 304C8427EAC9;
+        Tue, 19 Apr 2022 21:03:54 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
         krzk+dt@kernel.org
-Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220413075835.3354193-1-conor.dooley@microchip.com>
- <20220413075835.3354193-6-conor.dooley@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220413075835.3354193-6-conor.dooley@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v3 0/7] treewide: scsi: ufs: Add support for Renesas R-Car UFS controller
+Date:   Tue, 19 Apr 2022 21:03:09 +0900
+Message-Id: <20220419120316.209151-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/04/2022 09:58, Conor Dooley wrote:
-> The RTC reference and MSSPLL were previously not documented or defined,
-> as they were unused. Add their defines to the PolarFire SoC header.
-> 
-> Fixes: 2145bb687e3f ("dt-bindings: clk: microchip: Add Microchip PolarFire host binding")
-> Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+This patch series adds support Renesas R-Car S4-8 UFS controller.
+This controller has some restrictions so adds some quirks for it.
+Before using this driver, we have to initialize a clock generator
+on the environment board (named "Spider") by using the commands of
+U-Boot like below:
+ => i2c dev 0
+ => i2c mw 0x6c 0x26 0x05
+ => i2c olen 0x6c 2
+ => i2c mw 0x6c 0x26c 0x2e
 
+To use the UFS controller, we need the following patch too:
+https://lore.kernel.org/all/20220411124932.3765571-1-yoshihiro.shimoda.uh@renesas.com/
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes from v2:
+ - Add Reviewed-by in patch [1/7]. (Krzysztof, thanks!)
+ - Use WARN_ON() instead of BUG_ON in patch [4/7].
+https://lore.kernel.org/all/20220414023115.4190736-1-yoshihiro.shimoda.uh@renesas.com/
 
+Changes from v1:
+ - Fix dt-binding doc in patch [1/7].
+ - Add __maybe_unused for compile test on other platforms in patch [4/7].
+ - Fix node names in patch [5/7].
+https://lore.kernel.org/all/20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com/
 
-Best regards,
-Krzysztof
+Yoshihiro Shimoda (7):
+  dt-bindings: ufs: Document Renesas R-Car UFS host controller
+  ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
+  ufs: add UFSHCD_QUIRK_HIBERN_FASTAUTO
+  scsi: ufs-renesas: Add support for Renesas R-Car UFS controller
+  scsi: MAINTAINERS: Add maintainer for Renesas UFS driver
+  arm64: dts: renesas: r8a779f0: Add UFS node
+  arm64: dts: renesas: r8a779f0: spider-cpu: Enable UFS device
+
+ .../devicetree/bindings/ufs/renesas,ufs.yaml  |  61 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/renesas/r8a779f0-spider-cpu.dtsi |   8 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |  19 +
+ drivers/scsi/ufs/Kconfig                      |  12 +
+ drivers/scsi/ufs/Makefile                     |   1 +
+ drivers/scsi/ufs/ufs-renesas.c                | 418 ++++++++++++++++++
+ drivers/scsi/ufs/ufshcd.c                     |  12 +-
+ drivers/scsi/ufs/ufshcd.h                     |  12 +
+ 9 files changed, 547 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
+ create mode 100644 drivers/scsi/ufs/ufs-renesas.c
+
+-- 
+2.25.1
+
