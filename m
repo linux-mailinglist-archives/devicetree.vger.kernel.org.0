@@ -2,71 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2789506D22
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A11B506D39
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:12:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351695AbiDSNLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 09:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38994 "EHLO
+        id S243038AbiDSNNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:13:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242828AbiDSNLN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:11:13 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D140E2C12C;
-        Tue, 19 Apr 2022 06:08:30 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id z2so13628150oic.6;
-        Tue, 19 Apr 2022 06:08:30 -0700 (PDT)
+        with ESMTP id S1352473AbiDSNM5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:12:57 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E66D13CF0
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 06:10:14 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id ks6so32845741ejb.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 06:10:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=6CuIgS1BfUtpTM+Pz1fHGr+8MNQCk51/yx0AK7OcWBc=;
+        b=xsQTOgA49u/fP3Mugg9NyZY3BW9owhYCMISUkWzhH1AkqNDclSJ2uiUjQSmbnVStup
+         08R1SyVoVojZRZCDHQ1QcrowgMyJ93gK1DKXie4yiEomulQHoZHdur0URpNroKFX0ZXg
+         twbnVdM7rSCjDYy1yUEYVzeqYGwGecYx3EtAtaXAmDUGx3dhWPatMDUeKFN4YATsg4XK
+         u3tBvty3pQ4oS/eWISZsrNAhxZ66XfN4tdtHAlGKaKqGZqVfzf1olCVrYXBoy9gSFgot
+         YtvJrqMdKTAuq8lk8okqZGOJ+EOaAyiJWIiiUvcQkZ+rt7Fnq0NhzGX9CRd0wlOuhpfx
+         jMfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kuw11tGbCexpzngTq2n6w2uUJ2OJTLDgpBrRZMyM3vc=;
-        b=WPdfGsBtyz+O+dNCEYCLC11sPSoTlS9iQh4q5F8enKE0by0V524LXJYdoghn2kCa7X
-         ARxg+TB+ussQC0cqFcsIuISeVrruVUCAtapjEX44vyCnESNIAdFhGqn9Rq95oPU5xIPU
-         uGCMf6MzZQJAyHkTf6MoDqO/QP3WSOZOtOGwWgfJrAMwE/KY2MejXWXLKiPiZgFI6eet
-         IZbaG8VvzNhHlvm+T1HnXhM1JFLU7QDt82IIhLB++c5ejVa1M1B0wj1DoTrfnkKwdOt2
-         qGIDUTfWkoEX3963e0TbrC9lakHBliWNzdIeoTSj55M/Sb/afdMR7uLAdqSChXuG5a6w
-         AfCg==
-X-Gm-Message-State: AOAM531Mkt0bBhzGO8j9tY9spuLiXzHyyTB6snVhCGCROhIkwytJdpNI
-        HmIOAo8uQh1IPy4AUiOJIw==
-X-Google-Smtp-Source: ABdhPJzKxCN4i5eFMnIKtOQ8QW2GVwLNNO3fUffnNK/ceEOGTPpqRQ66KT732cWRNDIJThK8kAbbKw==
-X-Received: by 2002:a54:439a:0:b0:2ef:9bf6:e702 with SMTP id u26-20020a54439a000000b002ef9bf6e702mr9631818oiv.105.1650373710086;
-        Tue, 19 Apr 2022 06:08:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 64-20020aca0643000000b002f9b8a6ca98sm5117722oig.4.2022.04.19.06.08.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 06:08:29 -0700 (PDT)
-Received: (nullmailer pid 2258727 invoked by uid 1000);
-        Tue, 19 Apr 2022 13:08:28 -0000
-Date:   Tue, 19 Apr 2022 08:08:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: media: sun6i-a31-csi: Add ISP output
- port
-Message-ID: <Yl60TLYX+Cgkvb00@robh.at.kernel.org>
-References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
- <20220415153708.637804-3-paul.kocialkowski@bootlin.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=6CuIgS1BfUtpTM+Pz1fHGr+8MNQCk51/yx0AK7OcWBc=;
+        b=apLxyAZz+OXmeI/yLm8s4Frfbgu7OY5s687JecWqn/w6lg9lqYaKChMW4HiRKoEWRR
+         EKp69YjvjZUNWqhZzQLtLP8FyP2/PJQDIjVxZ0p/ufGyyU45Fxmkc/jrSqTdGEUVgVBI
+         8b079/1HXlyNyeAwBFHi+ddr5yCwKJ8aGi6yIXnhRwDS/TTpTVd5AdRm/IoUr1v9ngNR
+         UGp68dL32j8BhpBOLZEFBCAoZnEAbAhZXZp9dY+dlf0vyyoG4N0a0VQEx6bW4CeMdeNe
+         jFO+zz73DevZuHNPpl69eQVv15z2HCt83OTjuoWha0OErZnFiOOeMaUEYMA5QXigYpu7
+         K3ng==
+X-Gm-Message-State: AOAM530jH4N90UCMAzxZaSqtVACYnI7V2oEgbeb3wWT7jhVOmcNoLf46
+        OxJSEgzLGjZ8UOdDYdySws/hnw==
+X-Google-Smtp-Source: ABdhPJyvlrN/AdAcX6QIeIHMg6GFnCLyKvjTlPMI3hvoWRbMQn2WS4LiM6SxMAH1J+hjlm5Z5zfQSw==
+X-Received: by 2002:a17:907:7f08:b0:6e8:b005:5f4e with SMTP id qf8-20020a1709077f0800b006e8b0055f4emr13499539ejc.177.1650373812715;
+        Tue, 19 Apr 2022 06:10:12 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id b23-20020a05640202d700b00422da9b980esm6337505edx.22.2022.04.19.06.10.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 06:10:12 -0700 (PDT)
+Message-ID: <8798d7bb-6480-90ef-90fd-d7ff7d7beb2a@linaro.org>
+Date:   Tue, 19 Apr 2022 15:10:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220415153708.637804-3-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] ARM: dts: align SPI NOR node name with dtschema
+Content-Language: en-US
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Cc:     arm@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+References: <20220407143027.294678-1-krzysztof.kozlowski@linaro.org>
+ <d0d9c16f-4668-1263-49fa-e51648c8c098@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d0d9c16f-4668-1263-49fa-e51648c8c098@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,52 +84,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 15, 2022 at 05:37:06PM +0200, Paul Kocialkowski wrote:
-> Some Allwinner devices come with an Image Signal Processor (ISP) that
-> allows processing camera data to produce good-looking images,
-> especially from raw bayer representations.
+On 19/04/2022 15:03, Alexandre TORGUE wrote:
+> Hi Krzysztof
 > 
-> The ISP does not have a dedicated capture path: it is fed directly by
-> one of the CSI controllers, which can be selected at run-time.
+> On 4/7/22 16:30, Krzysztof Kozlowski wrote:
+>> The node names should be generic and SPI NOR dtschema expects "flash".
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   arch/arm/boot/dts/da850-evm.dts                  | 2 +-
+>>   arch/arm/boot/dts/dm8168-evm.dts                 | 2 +-
+>>   arch/arm/boot/dts/spear1310-evb.dts              | 2 +-
+>>   arch/arm/boot/dts/spear1340-evb.dts              | 2 +-
+>>   arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 2 +-
+>>   arch/arm/boot/dts/stm32mp157c-ev1.dts            | 4 ++--
+>>   6 files changed, 7 insertions(+), 7 deletions(-)
 > 
-> Represent this possibility as a graph connection between the CSI
-> controller and the ISP in the device-tree bindings.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../bindings/media/allwinner,sun6i-a31-csi.yaml    | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> index 53aa6dbe8e2c..1b41a6008195 100644
-> --- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> @@ -87,6 +87,20 @@ properties:
->  
->          additionalProperties: false
->  
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> Thanks for your patch. Is it possible to split it per vendor 
+> (TI/STM32/SPEAR) ?
 
-If there are not any custom properties, then use 
-'/schemas/graph.yaml#/properties/port' and drop the 'properties' below.
+This was a part of a bigger set where most of these I split. However
+here split would be more churn for such simple change, so I combined them.
 
-> +        description: ISP output port
-> +
-> +        properties:
-> +          reg:
-> +            const: 2
-> +
-> +          endpoint:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +            unevaluatedProperties: false
-> +
-> +        additionalProperties: false
-> +
->      anyOf:
->        - required:
->            - port@0
-> -- 
-> 2.35.2
-> 
-> 
+This was already picked up by Arnd:
+https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?h=for-next&id=56147a156e7e2f50bef695efe6cc4fe8e91c40dc
+
+
+Best regards,
+Krzysztof
