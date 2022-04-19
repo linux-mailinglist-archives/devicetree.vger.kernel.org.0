@@ -2,74 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D20DF507A25
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 925D9507A39
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343900AbiDSTXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 15:23:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40502 "EHLO
+        id S1345297AbiDSTab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 15:30:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239634AbiDSTXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:23:33 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BF111148;
-        Tue, 19 Apr 2022 12:20:49 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-e5c42b6e31so8618753fac.12;
-        Tue, 19 Apr 2022 12:20:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hbpwhzSTJk/G9AFGud5nKQNNHhLWCRtxFkShRktEDi0=;
-        b=xtubFfgQnKWtTKgtoIo9pgrMMoir3vDL0EtXGgR6RU+lkkq/CxVbXYhXI1vGBv/03J
-         vr74l4HMUbYQNqzF5hNUMrKmw7b+hmai7kHltM6TGTLW6TSR7XO5tjdotlFkr/vmx7h7
-         A0UD8dvydO8Xo3b/6RnRfeOHYUR6r4jmVZp8mRPkLXYyF1MhEV533L0EcujtnMA8tjx8
-         lNLHl4PB7xynsPeMgtbm0YfjEjwpA5JOOI4TffVryjYYphUYgX6wyuS+GdmpM6dJ8VUA
-         b0gc6AAe29nOU4SgeianowEpXShWuh/itmDQLumZZsj4XsvkYtoA1Nys1TViXWHeJ/YI
-         MWZA==
-X-Gm-Message-State: AOAM533qWx7bdV47mDKtLLlNqV7tmJViYn+2Gv0sh/Nz1oN5+5lDRDgr
-        Sq9VQtCxaCbAOLPwN8H4WQ==
-X-Google-Smtp-Source: ABdhPJykLcDZ4QeimuBRrMt9O9Uh+gIYBM38gFE01IbiPLnT0cZoWqtURSt6BzKkkGXxf3AowWaCog==
-X-Received: by 2002:a05:6870:2190:b0:e6:26d2:abe0 with SMTP id l16-20020a056870219000b000e626d2abe0mr59745oae.15.1650396048318;
-        Tue, 19 Apr 2022 12:20:48 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r205-20020acadad6000000b002ef824213c9sm5462273oig.55.2022.04.19.12.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 12:20:47 -0700 (PDT)
-Received: (nullmailer pid 3258007 invoked by uid 1000);
-        Tue, 19 Apr 2022 19:20:47 -0000
-Date:   Tue, 19 Apr 2022 14:20:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] docs: dt: writing-schema: mention yamllint
-Message-ID: <Yl8LjwRsDaSg8tSF@robh.at.kernel.org>
-References: <20220419084942.27409-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1345095AbiDSTaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:30:30 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6D84092C;
+        Tue, 19 Apr 2022 12:27:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1650396463;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=01EJ35R/0l9Atrk/aEq1LlLlljMz21tL7DytWIf/66o=;
+    b=ZQNWFsTY/dTw/MrMOiFeEpjIn+tb4691c4c9ZNx/56GuCYpEfTIMmJyXdpsgazZvic
+    SFyTj0PuzmRoB9PdOWjSBaUfeOL9i+laRzOpVN7fp+YlcBxSOR0y4qzbbFCKKK2FowB+
+    i7NCMq28dgc9kSJQZlciamsOl3Msb2W7sLVKZyWdeRpxv1CYLWj2uFY/t+MwbtpIAass
+    O7c3rUR9hNFFrqfkAZxKvczOXZxjd5z5qHom2yW//ICI+2tL+eoiUVEjf1pTCLufrC9Z
+    b1XSno2k76AwJ5s8n1L1qG9+lO7OHGJdM3g6YGJiqkJ+6WP7Y0sNjRFRMn8/juZVJoHK
+    MW1g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK88/6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.42.2 AUTH)
+    with ESMTPSA id u05e50y3JJRhuVD
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 19 Apr 2022 21:27:43 +0200 (CEST)
+Date:   Tue, 19 Apr 2022 21:27:42 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, shawn.guo@linaro.org,
+        jun.nie@linaro.org, benl@squareup.com, jwillcox@squareup.com,
+        jgates@squareup.com, mchen@squareup.com, zac@squareup.com
+Subject: Re: [PATCH v1 4/4] arm64: dts: Add msm8939 Sony Xperia M4 Aqua
+Message-ID: <Yl8NLldCWaecisH5@gerhold.net>
+References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
+ <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220419084942.27409-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Apr 2022 10:49:42 +0200, Krzysztof Kozlowski wrote:
-> The dtschema uses yamllint, if present, to check the syntax of the
-> files, so document this.
+On Tue, Apr 19, 2022 at 02:09:03AM +0100, Bryan O'Donoghue wrote:
+> Add a basic booting DTS for the Sony Xperia M4 Aqua aka "tulip".
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Tulip is paired with:
+> 
+> - wcn3660
+> - smb1360 battery charger
+> - 720p Truly NT35521 Panel
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  Documentation/devicetree/bindings/writing-schema.rst | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../qcom/msm8939-sony-xperia-kanuti-tulip.dts | 489 ++++++++++++++++++
+>  2 files changed, 490 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
 > 
+> [...]
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> new file mode 100644
+> index 000000000000..336969f16bc9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> @@ -0,0 +1,489 @@
+> [...]
+> +&otg {
+> +	status = "okay";
+> +	usb-role-switch;
+> +
+> +	ulpi {
+> +		usb_hs_phy: phy {
+> +			qcom,enable-vbus-pullup;
 
-Applied, thanks!
+tulip seems to have qcom,usbid-gpio = <&msm_gpio 110 0>; downstream.
+Have you tried setting it up using linux,extcon-usb-gpio?
+See e.g. msm8916-longcheer-l8910, it has a similar setup (it also uses
+smb1360 for charging actually).
+
+The advantage is that you don't need the manual role switching using
+"usb-role-switch", USB OTG adapters should be detected automatically.
+
+Thanks,
+Stephan
