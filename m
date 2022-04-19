@@ -2,70 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D622506149
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 03:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 648EA506172
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 03:07:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244163AbiDSAzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 20:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58374 "EHLO
+        id S238578AbiDSBJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 21:09:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244150AbiDSAzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 20:55:33 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB61275CC;
-        Mon, 18 Apr 2022 17:52:51 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id s16so4560912oie.0;
-        Mon, 18 Apr 2022 17:52:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RoI2//zC2BUmcc6oFJmbJn+mlNdzGAXLvQaeooUlu0I=;
-        b=hZ5uZYRLqBryEdVXdxe32eGRtrmJfgdCe4gijRRXa3RxG2VBAwI0H+pWDtRB050iyO
-         gOlyybQANa+4/8U86Fl94rEhX8nEtdQJRn91kZff2P/gokvcVFlIU80NLecg5ex4q2rs
-         0l5yFtnA3dws2BW+tCSr3qLCrePgSj2IBTvYdncKQYiducYWV3GroVTxfYHQgV8avhKH
-         Iz8UdOA4kAbF3UFISjmi2GWdxJ0qF5hZAx5G1GTa6Fc54dFFqKnUqWNYDj8wkk/TcmTB
-         dQJODt9EeomaRAUm6jEd62bMEF499BZDyPYPveX0tJDcCMMwQC0Dc8+3y3LaBzH1LcoP
-         cimw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RoI2//zC2BUmcc6oFJmbJn+mlNdzGAXLvQaeooUlu0I=;
-        b=xvo6NSGXwANAROu05rEt2hfa+EBtU7Wvcq4WumzcSUikvibKiSroOMqicxjxQzaBT/
-         12/f351A1FiQQmWbQ7/MZA2lSxTQU74zFVJ6nYmdn5b3kyxxraMb3MBIw4Hi01AT3C2T
-         uOR7Nzam+Vn5AXH9Z6lP82s9nnX/aLQTely6Ua/C6MXG1WZk+EjIhFmJRnG2TdOYOTzu
-         Tsf6C6DBsz4me88M4tt6lU8dj0IkGrQA0N4pYrwbY5HvTWoaRkviCChOukRAeBuwvWqz
-         FV0R1XEbJo51l7Z3WnOmgJg0VPlGrxlkqFwEsy07jR61l/hOdoCaNqJgJPk/S6QPz3ZL
-         0rDg==
-X-Gm-Message-State: AOAM531AzsgfTgJNmL44U3ouBMemN0Yzp84Pxoqv98KGMBrMZkJxri5o
-        cASP72qGF5faoub51WIPRTY=
-X-Google-Smtp-Source: ABdhPJyUmwrI+XbxSTnSM+X/8MOWDcBU3hErboEIufN0xgEdfiSNBuO6+KbbNTrBiqWh2Jp1GR0j1A==
-X-Received: by 2002:a05:6808:d50:b0:2fa:5f18:55fb with SMTP id w16-20020a0568080d5000b002fa5f1855fbmr6116645oik.116.1650329570720;
-        Mon, 18 Apr 2022 17:52:50 -0700 (PDT)
-Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:7cac:cda1:c0cf:63b6])
-        by smtp.gmail.com with ESMTPSA id l19-20020a05687040d300b000e2f6d3afd1sm4534403oal.19.2022.04.18.17.52.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Apr 2022 17:52:50 -0700 (PDT)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Slawomir Stepien <sst@poczta.fm>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alan Tull <atull@kernel.org>
-Subject: [PATCH v3 2/2] of: overlay: rework overlay apply and remove kfree()s
-Date:   Mon, 18 Apr 2022 19:52:41 -0500
-Message-Id: <20220419005241.831411-3-frowand.list@gmail.com>
+        with ESMTP id S235301AbiDSBJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 21:09:57 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2081.outbound.protection.outlook.com [40.107.21.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B27D29C81;
+        Mon, 18 Apr 2022 18:07:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bGrF1HSVnGgjwHNUnS1Q1MbSD/irRMF5Qlv0c9xFKpHXVKqAjswV06KgSKZxjrUhbidXxrlwAKVGCj9Jp/tl0p/TFQSeSChbGO3zMVxqfacq/VZDnk1oCZY2MTiQbs04v6rNbr+aXw+tdjwJsq+C9FMeqPiIf9F1j81DjSrEEbwbEdVZ3gz9Hq22iSHr1sOZG3v3ezCectmy3GuyEONwTe4c/Wiqe8J6s3Kqc1tRj/ij+ZMf8EiiBwUvVVScW8Vz68kdQUz/1buCCaIBJ52Fc6SvlgbdWsb8R2lYzrtpOaMgS24v+9tNrx6pNcHfAvyLOGu4mYHy3XQhMwju6Bltbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b+wH+EVeQJsUnn8AdmBh/OojI/62kuhWmmCeeg7yWPc=;
+ b=FmlLN5cA4dC/EJVk5rpvPFb74E9yFU3G/VglwlY+qkvU1N+aQrqTdSssRJfhwN06Eup9bbmqmx6CE+oDhiYar6cj+VQOh9zgzz1oxUdLG6vGmc0QfrBjX1DL9EA4O2OMPQmLLM8dsDxkpgUYuQbhRtH1ZuCAEwsmQ31I4KnnPqqa9sUKsCeudZsoQ6vpQONxmy4AjGT5Z2chnr6Fh+2O+MH7WTqHIO2NNPwhWfO5beJyHpt+afXS/+n1Pn7GvVjG+LTtG45fA9S8cd+SukSgiUodyNz42xCl9qz8gVJh0+ngYqHX3YSNYDJrn5eTSLY/RE3s4WrgtcQOWrk265jNrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b+wH+EVeQJsUnn8AdmBh/OojI/62kuhWmmCeeg7yWPc=;
+ b=SWmuIGCFst5vi1YUwW/T5DU2l/nTx5TEsYUNsYqVqFI2gPzqTyLAyaEdrnr9/hz6UIXAsfc92pOwNxnMRn/TV2Gnmia4QUbSALZOG+Cn8cP0aPgMZfRMCcFninTiUj6iLUPCBv4J+9+MsNarBHQwnhsP+jPgq7bREFZR/wJ8IOE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by HE1PR04MB3291.eurprd04.prod.outlook.com (2603:10a6:7:18::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Tue, 19 Apr
+ 2022 01:07:10 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387%9]) with mapi id 15.20.5164.026; Tue, 19 Apr 2022
+ 01:07:10 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, andrzej.hajda@intel.com,
+        narmstrong@baylibre.com, robert.foss@linaro.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
+        robert.chiras@nxp.com, martin.kepplinger@puri.sm
+Subject: [PATCH resend v8 0/5] phy: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode support
+Date:   Tue, 19 Apr 2022 09:08:47 +0800
+Message-Id: <20220419010852.452169-1-victor.liu@nxp.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220419005241.831411-1-frowand.list@gmail.com>
-References: <20220419005241.831411-1-frowand.list@gmail.com>
-MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2P153CA0023.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::6)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7aa87591-fb85-4813-fe76-08da21a0edf9
+X-MS-TrafficTypeDiagnostic: HE1PR04MB3291:EE_
+X-Microsoft-Antispam-PRVS: <HE1PR04MB32919EF247F0CB3F21765E7498F29@HE1PR04MB3291.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ndH2dJ+Y+JNhJPz+VM/TAQnFaQ0rMuVUW/cD6Dh9LabD9lPryp7OZ5/c2r2TURiHoKVvceuFgFd5my2anXbvfd4nwwrX/vv/rc2P22Rd1u3SJMm4gHtnY+h2kIYzObNyWj6zsbUJB6E5YMQmqCRG2WuK2Ru8v0HvCpeWHG4RooFQBQZ7Q5RLvx110nZHlzWFNU639r0JCPkV6hU8/VU+OwlGU0LMkh0Pjzgfqh6NoSz1qq36WoNmAKttM+cXbL3RujavNhsjfMEP7Js91zSHr9CBrhDZuCwhugxE8uTqMKafHgnrBuzaPklSvuMu8WE90okROu2WxT5wRzfcX5ZVhFL+K9jzsRtL9EOI1kGGS/hTxwo8owyYqmVTxqj1mQ0FXr6KlJP2FUKX1ox5UQzNFFzGdARwhdaxwOelLB35vUVCMK7/nwDgFvrEBUSC8m6kF7T/Nu4+lBo9Z8tPA/oHZLY1O498mweDGgTRVZRg94eouy25E7lT0dNouK5qCXAsYNlcsyKnrfRTjqC1YvRmi5wCj+JYpcmZs/KnKsbioVouNupTqbSjR8wwj0MHPbk4fUcSc4uuYanc8hawOc4/9QUYOgRv5Fnf0xCl9f40EoaRHfR33Q5tTLlIP1yx0cdGMbFTGUcwBdKcbTMmPCP3u5wmbXJ0K2F3lgpoNBvLBb5pkMebE07uaM4/V76+g3pn3sSayt5XFKrNlAp43rxr8A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66946007)(508600001)(8676002)(4326008)(86362001)(6486002)(36756003)(52116002)(6512007)(6506007)(6666004)(316002)(66556008)(66476007)(2906002)(26005)(186003)(83380400001)(2616005)(1076003)(5660300002)(7416002)(8936002)(38100700002)(38350700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2czMUxzeVNZOTAwd3c2Rm4zOWw2elhWUnZpc1pzWSs4VDJXQmFQZDRabVlk?=
+ =?utf-8?B?a0hXeTNlRGNhQ2hJOVNFT2EzbThUL1BFdmxxbUFjeDdOUDUzaVZFcjUvNzJu?=
+ =?utf-8?B?R3l0K3RlYVV3THdjR0czN0JSNG8rMi9hd1JCRWNkY1ovMlVzcXpwenVucEF2?=
+ =?utf-8?B?eXc1aUNSZm9GZU5ZQ21IR0RmRjRKSENsaTloSVpYVDY1dkdQTm1LalhoZVRx?=
+ =?utf-8?B?Ym9ibEk3VUFTOXNoQ2tMQUNBSnV2R0tIbDVFVVdZMHFvTEs4SXNOUkZBNXZx?=
+ =?utf-8?B?Q1J5N0FkM2xsTDY4WlhORFJYa3FXVlpvVy9PSlRUWVdOMnB2Yi9yOHJFTTdI?=
+ =?utf-8?B?dGpNRzRhWjJiNTQzZFE4SDRaZGJ5MHFLTExjaFluSDlGZzFtOThscTg3eXNX?=
+ =?utf-8?B?MG45dHFUUEFmVWxUTk9Xb0U0WVdPL2hPb1djOWtYbzRXNmlhQlBWOU9IZzQw?=
+ =?utf-8?B?Sy9DTUdDMW9kR3I1eksrR2szUFN2cU02R1o2c3kyaDA3c1lmNHFGOFkzbXFl?=
+ =?utf-8?B?WlZtbGk0UitKdXJZb1A3Q1pQMEFlYm5YbjFOd0g1b3dIb3piejQ4SWM5ZlIz?=
+ =?utf-8?B?WDZ6NHY4TXNlOGVtNXptaEcyZnVpdmhKUDFVRmhtQzRmd01Nb2JOTVk2SEd4?=
+ =?utf-8?B?aWRkOXZCTmVTSGxqRlpRTm9aYmhUS01FOTdMUFpFRTBvbUR2ekFQem9reTE3?=
+ =?utf-8?B?WGZPWEpyUzFLNHZ5YnhrS2ZmSXN6Wk9uUDg4eGtjZU1Dc2hTdW45UVplTk1R?=
+ =?utf-8?B?eThOSVVFeFN2TnIydzRvZlVERTVPZkp6SHZWRWJOS3ZNWDVXU05RUzNiVW82?=
+ =?utf-8?B?WndVcGQyWkpHVzk1Z1BsTnh4Y3dIdE1QODVqbTQ2aExMTEtRdUFIZ2ZORlRZ?=
+ =?utf-8?B?UE1SUUo0TEFZekZONk9pQjVLbHFMT2tra2FvNnpGZ0RZUmgwWlFxbUdZMjlJ?=
+ =?utf-8?B?SFBJMXdDZlZ1U081SHFMMXpVV1U2SSt6eU9FY0NSZDJpdkI2clRjRlM0U0pT?=
+ =?utf-8?B?NDJHazU4Zk8zMFQ2aTJ3YUhJWXlnWEpSdzNQL1ZxSFhJUnp3RUNJaGZCaGRT?=
+ =?utf-8?B?bk5aS3k2Sy9NZHl0bGN2UWlXU2RsRHZYSXNGUFNTdUhOcGpISlk0V21XYVgx?=
+ =?utf-8?B?SVdQVm9XaFBKYVlwQ1FRejhHWjZYWkdaa0JkL2JzdUw0UmhRbTBBWVhMMnNE?=
+ =?utf-8?B?dHBzQ0ZXVU9BM0dBWEJVYUlDNnM3R0RMOGFtWmtrOWlNS1FEYzJiUm1tS1dI?=
+ =?utf-8?B?cFRueVdGVHE0UWUvVVRERDFCUUZnc2JRdWx1UUhhS3IxcmlKbFBSenVTZEo3?=
+ =?utf-8?B?L1hLcndKcEFxTFF3Ty9iUUR2RS8vMVlHOC9WTjd4ZlMwRnNITytNY29RbnE3?=
+ =?utf-8?B?Vm5CZjlFTG9xVTFDNVhCYUEyZ3A0TTVCRUp5K3FlbFFWa1hXaVNEQWZITFFp?=
+ =?utf-8?B?T1N6NVhKYWNYWFFXcHpMdDlodElsdTJzOERReDN6VFVmNUhoMU10TjFpWk5x?=
+ =?utf-8?B?YkM1UFU0TXhEd0c5V2t4cXM0OUF5dE81eFpEbnVNc1p0aVpjS0ZEaUxLWFpp?=
+ =?utf-8?B?d0FHSGJTTzRtbjk4ekxaUVJlVFMzb1NhNWcvdmlNdy9XMkJzQjVOdXVuRU5t?=
+ =?utf-8?B?N0NwOW9UL2k4bmdxVFU1UFN0aTFaelh5SThoN01aM0ZmQWs5V2dXSlZ1bTB3?=
+ =?utf-8?B?UXQ2MzNubUFYK0l1NXdaem8rSjFNNFh5eWRQOWlRODU1S0k2b05DS1RIWVRu?=
+ =?utf-8?B?VEJJOXByN0dUSVFVTUx3QzQxRXViOFZQWGwzVlU4eGo1Q21BNVB0Z0hJZWM1?=
+ =?utf-8?B?NUt4UlY3V3Vnd01qai8xZE5VNXZLSU9jUlQ2VWtLeFprdzRGZkR2VlRCcFNZ?=
+ =?utf-8?B?eEpKUDVveGo3VitHQSs0MDRKUFA5YlVXaTdTOXp5RUk3aUdXWVhrMGtwbExQ?=
+ =?utf-8?B?RmN1TkF3bUo2RVVhZDNZTHBrekxTODdycFdvenVuaS9jWDNiektvQXdKd2JF?=
+ =?utf-8?B?ZklXa3c3ZmV1VjdwdkNoa29vN2p0SXhXODN5TUw2VGsxQkhHY0xzZnVTekFY?=
+ =?utf-8?B?bnJkNW1zZmNGcGo2QndMYTBNVXNlODh3cWZpQjBKc1VhQzU5UjNST2JPSldZ?=
+ =?utf-8?B?V3ZJbmUyUEFYd1FGMGtzaWVzWEVjcnl6OC82Y1BDSzlvS2lqNEV2Z2dhUEVE?=
+ =?utf-8?B?VXhQL1A5YzRXUDl2Ui92RGZDMFRaQ1dHNkRtR0ZqL3pwTnI4OVNrdTJ3VDQ0?=
+ =?utf-8?B?THo4b2RzdTdjVTZtdmRVcFFudjVyWUg5cFkzSFA5Y1JTTU91b0J2TXlXVmtp?=
+ =?utf-8?B?SE92eTl6MzM1VENCYVFBOFArVnZ6OTRNSW9nM2ZKZG56M3ZnNFZ3QT09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7aa87591-fb85-4813-fe76-08da21a0edf9
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2022 01:07:10.0226
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zwp6fQl1iV6QsEz7pmNksnaUqxkm6kxJ1PLtkNeYZwm7cwQqMEM412rD9LH+dflFf8CZjcPJeegZHOXjnMOd9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR04MB3291
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,631 +130,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
+Hi,
 
-Fix various kfree() issues related to of_overlay_apply().
-  - Double kfree() of fdt and tree when init_overlay_changeset()
-    returns an error.
-  - free_overlay_changeset() free the root of the unflattened
-    overlay (variable tree) instead of the memory that contains
-    the unflattened overlay.
-  - For the case of a failure during applying an overlay, move kfree()
-    of new_fdt and overlay_mem into free_overlay_changeset(), which
-    is called by the function that allocated them.
-  - For the case of removing an overlay, the kfree() of new_fdt and
-    overlay_mem remains in free_overlay_changeset().
-  - Check return value of of_fdt_unflatten_tree() for error instead
-    of checking the returned value of overlay_root.
-  - When storing pointers to allocated objects in ovcs, do so as
-    near to the allocation as possible instead of in deeply layered
-    function.
+This is the v8 series to add i.MX8qxp LVDS PHY mode support for the Mixel
+PHY in the Freescale i.MX8qxp SoC.
 
-More clearly document policy related to lifetime of pointers into
-overlay memory.
+The Mixel PHY is MIPI DPHY + LVDS PHY combo, which can works in either
+MIPI DPHY mode or LVDS PHY mode.  The PHY mode is controlled by i.MX8qxp
+SCU firmware.  The PHY driver would call a SCU function to configure the
+mode.
 
-Double kfree()
-Reported-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+The PHY driver is already supporting the Mixel MIPI DPHY in i.MX8mq SoC,
+where it appears to be a single MIPI DPHY.
 
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
----
 
-Changes since v2:
-  - A version 2 review comment correctly said "This screams hack".
-    Restructure as listed below in response to the comment.
-  - Quit passing kfree_unsafe in function parameters, move it to
-    be a field of ovcs
-  - Quit passing a bunch of objects as function parameters, which
-    were used only for saving in ovcs
-  - Save pointers to allocated objects as near to the allocation as
-    possible instead of in a different function.
-  - Move object allocation as early in the calling stack (starting
-    at of_overlay_fdt_apply()) and move object freeing more fully
-    into free_overlay_changeset(), which is called in two places:
-    (1) on error path of applying overlay and (2) removal of an
-    overlay by of_overlay_remove().
-  - Additional notes in the overlay documentation regarding pointers
-    into overlay nodes and data.
+Patch 1/5 sets PHY mode in the Northwest Logic MIPI DSI host controller
+bridge driver, since i.MX8qxp SoC embeds this controller IP to support
+MIPI DSI displays together with the Mixel PHY.
 
-Changes since v1:
-  - Move kfree()s from init_overlay_changeset() to of_overlay_fdt_apply()
-  - Better document lifetime of pointers into overlay, both in overlay.c
-    and Documentation/devicetree/overlay-notes.rst
+Patch 2/5 allows LVDS PHYs to be configured through the generic PHY functions
+and through a custom structure added to the generic PHY configuration union.
 
- Documentation/devicetree/overlay-notes.rst |  30 ++-
- drivers/of/overlay.c                       | 258 ++++++++++-----------
- 2 files changed, 149 insertions(+), 139 deletions(-)
+Patch 3/5 converts mixel,mipi-dsi-phy plain text dt binding to json-schema.
 
-diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
-index b2b8db765b8c..e139f22b363e 100644
---- a/Documentation/devicetree/overlay-notes.rst
-+++ b/Documentation/devicetree/overlay-notes.rst
-@@ -119,10 +119,32 @@ Finally, if you need to remove all overlays in one-go, just call
- of_overlay_remove_all() which will remove every single one in the correct
- order.
- 
--In addition, there is the option to register notifiers that get called on
-+There is the option to register notifiers that get called on
- overlay operations. See of_overlay_notifier_register/unregister and
- enum of_overlay_notify_action for details.
- 
--Note that a notifier callback is not supposed to store pointers to a device
--tree node or its content beyond OF_OVERLAY_POST_REMOVE corresponding to the
--respective node it received.
-+A notifier callback for OF_OVERLAY_PRE_APPLY, OF_OVERLAY_POST_APPLY, or
-+OF_OVERLAY_PRE_REMOVE may store pointers to a device tree node in the overlay
-+or its content but these pointers must not persist past the notifier callback
-+for OF_OVERLAY_POST_REMOVE.  The memory containing the overlay will be
-+kfree()ed after OF_OVERLAY_POST_REMOVE notifiers are called.  Note that the
-+memory will be kfree()ed even if the notifier for OF_OVERLAY_POST_REMOVE
-+returns an error.
-+
-+The changeset notifiers in drivers/of/dynamic.c are a second type of notifier
-+that could be triggered by applying or removing an overlay.  These notifiers
-+are not allowed to store pointers to a device tree node in the overlay
-+or its content.  The overlay code does not protect against such pointers
-+remaining active when the memory containing the overlay is freed as a result
-+of removing the overlay.
-+
-+Any other code that retains a pointer to the overlay nodes or data is
-+considered to be a bug because after removing the overlay the pointer
-+will refer to freed memory.
-+
-+Users of overlays must be especially aware of the overall operations that
-+occur on the system to ensure that other kernel code does not retain any
-+pointers to the overlay nodes or data.  Any example of an inadvertent use
-+of such pointers is if a driver or subsystem module is loaded after an
-+overlay has been applied, and the driver or subsystem scans the entire
-+devicetree or a large portion of it, including the overlay nodes.
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index 0a98e3254a1a..3072dfeca8e8 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -58,20 +58,24 @@ struct fragment {
-  * @id:			changeset identifier
-  * @ovcs_list:		list on which we are located
-  * @new_fdt:		Memory allocated to hold unflattened aligned FDT
-+ * @overlay_mem:	the memory chunk that contains @overlay_root
-  * @overlay_root:	expanded device tree that contains the fragment nodes
-  * @count:		count of fragment structures
-  * @fragments:		fragment nodes in the overlay expanded device tree
-  * @symbols_fragment:	last element of @fragments[] is the  __symbols__ node
-+ * @kfree_unsafe:	pointers into the @new_fdt or @overlay_mem may exist
-  * @cset:		changeset to apply fragments to live device tree
-  */
- struct overlay_changeset {
- 	int id;
- 	struct list_head ovcs_list;
- 	const void *new_fdt;
-+	const void *overlay_mem;
- 	struct device_node *overlay_root;
- 	int count;
- 	struct fragment *fragments;
- 	bool symbols_fragment;
-+	bool kfree_unsafe;
- 	struct of_changeset cset;
- };
- 
-@@ -115,7 +119,6 @@ void of_overlay_mutex_unlock(void)
- 	mutex_unlock(&of_overlay_phandle_mutex);
- }
- 
--
- static LIST_HEAD(ovcs_list);
- static DEFINE_IDR(ovcs_idr);
- 
-@@ -719,53 +722,49 @@ static struct device_node *find_target(struct device_node *info_node)
- /**
-  * init_overlay_changeset() - initialize overlay changeset from overlay tree
-  * @ovcs:		Overlay changeset to build
-- * @new_fdt:		Memory allocated to hold unflattened aligned FDT
-- * @overlay_root:	Contains the overlay fragments and overlay fixup nodes
-  *
-  * Initialize @ovcs.  Populate @ovcs->fragments with node information from
-  * the top level of @overlay_root.  The relevant top level nodes are the
-  * fragment nodes and the __symbols__ node.  Any other top level node will
-- * be ignored.
-+ * be ignored.  Populate other @ovcs fields.
-  *
-  * Return: 0 on success, -ENOMEM if memory allocation failure, -EINVAL if error
-- * detected in @overlay_root, or -ENOSPC if idr_alloc() error.
-+ * detected in @overlay_root.  On error return, the caller of
-+ * init_overlay_changeset() must call free_overlay_changeset().
-  */
--static int init_overlay_changeset(struct overlay_changeset *ovcs,
--		const void *new_fdt, struct device_node *overlay_root)
-+static int init_overlay_changeset(struct overlay_changeset *ovcs)
- {
- 	struct device_node *node, *overlay_node;
- 	struct fragment *fragment;
- 	struct fragment *fragments;
--	int cnt, id, ret;
-+	int cnt, ret;
-+
-+	/*
-+	 * None of the resources allocated by this function will be freed in
-+	 * the error paths.  Instead the caller of this function is required
-+	 * to call free_overlay_changeset() (which will free the resources)
-+	 * if error return.
-+	 */
- 
- 	/*
- 	 * Warn for some issues.  Can not return -EINVAL for these until
- 	 * of_unittest_apply_overlay() is fixed to pass these checks.
- 	 */
--	if (!of_node_check_flag(overlay_root, OF_DYNAMIC))
--		pr_debug("%s() overlay_root is not dynamic\n", __func__);
-+	if (!of_node_check_flag(ovcs->overlay_root, OF_DYNAMIC))
-+		pr_debug("%s() ovcs->overlay_root is not dynamic\n", __func__);
- 
--	if (!of_node_check_flag(overlay_root, OF_DETACHED))
--		pr_debug("%s() overlay_root is not detached\n", __func__);
-+	if (!of_node_check_flag(ovcs->overlay_root, OF_DETACHED))
-+		pr_debug("%s() ovcs->overlay_root is not detached\n", __func__);
- 
--	if (!of_node_is_root(overlay_root))
--		pr_debug("%s() overlay_root is not root\n", __func__);
--
--	ovcs->overlay_root = overlay_root;
--	ovcs->new_fdt = new_fdt;
--
--	INIT_LIST_HEAD(&ovcs->ovcs_list);
-+	if (!of_node_is_root(ovcs->overlay_root))
-+		pr_debug("%s() ovcs->overlay_root is not root\n", __func__);
- 
- 	of_changeset_init(&ovcs->cset);
- 
--	id = idr_alloc(&ovcs_idr, ovcs, 1, 0, GFP_KERNEL);
--	if (id <= 0)
--		return id;
--
- 	cnt = 0;
- 
- 	/* fragment nodes */
--	for_each_child_of_node(overlay_root, node) {
-+	for_each_child_of_node(ovcs->overlay_root, node) {
- 		overlay_node = of_get_child_by_name(node, "__overlay__");
- 		if (overlay_node) {
- 			cnt++;
-@@ -773,7 +772,7 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 		}
- 	}
- 
--	node = of_get_child_by_name(overlay_root, "__symbols__");
-+	node = of_get_child_by_name(ovcs->overlay_root, "__symbols__");
- 	if (node) {
- 		cnt++;
- 		of_node_put(node);
-@@ -782,11 +781,12 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 	fragments = kcalloc(cnt, sizeof(*fragments), GFP_KERNEL);
- 	if (!fragments) {
- 		ret = -ENOMEM;
--		goto err_free_idr;
-+		goto err_out;
- 	}
-+	ovcs->fragments = fragments;
- 
- 	cnt = 0;
--	for_each_child_of_node(overlay_root, node) {
-+	for_each_child_of_node(ovcs->overlay_root, node) {
- 		overlay_node = of_get_child_by_name(node, "__overlay__");
- 		if (!overlay_node)
- 			continue;
-@@ -798,7 +798,7 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 			of_node_put(fragment->overlay);
- 			ret = -EINVAL;
- 			of_node_put(node);
--			goto err_free_fragments;
-+			goto err_out;
- 		}
- 
- 		cnt++;
-@@ -808,7 +808,7 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 	 * if there is a symbols fragment in ovcs->fragments[i] it is
- 	 * the final element in the array
- 	 */
--	node = of_get_child_by_name(overlay_root, "__symbols__");
-+	node = of_get_child_by_name(ovcs->overlay_root, "__symbols__");
- 	if (node) {
- 		ovcs->symbols_fragment = 1;
- 		fragment = &fragments[cnt];
-@@ -818,7 +818,7 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 		if (!fragment->target) {
- 			pr_err("symbols in overlay, but not in live tree\n");
- 			ret = -EINVAL;
--			goto err_free_fragments;
-+			goto err_out;
- 		}
- 
- 		cnt++;
-@@ -827,20 +827,14 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 	if (!cnt) {
- 		pr_err("no fragments or symbols in overlay\n");
- 		ret = -EINVAL;
--		goto err_free_fragments;
-+		goto err_out;
- 	}
- 
--	ovcs->id = id;
- 	ovcs->count = cnt;
--	ovcs->fragments = fragments;
- 
- 	return 0;
- 
--err_free_fragments:
--	kfree(fragments);
--err_free_idr:
--	idr_remove(&ovcs_idr, id);
--
-+err_out:
- 	pr_err("%s() failed, ret = %d\n", __func__, ret);
- 
- 	return ret;
-@@ -853,21 +847,34 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
- 	if (ovcs->cset.entries.next)
- 		of_changeset_destroy(&ovcs->cset);
- 
--	if (ovcs->id)
-+	if (ovcs->id) {
- 		idr_remove(&ovcs_idr, ovcs->id);
-+		list_del(&ovcs->ovcs_list);
-+		ovcs->id = 0;
-+	}
-+
- 
- 	for (i = 0; i < ovcs->count; i++) {
- 		of_node_put(ovcs->fragments[i].target);
- 		of_node_put(ovcs->fragments[i].overlay);
- 	}
- 	kfree(ovcs->fragments);
-+
- 	/*
--	 * There should be no live pointers into ovcs->overlay_root and
-+	 * There should be no live pointers into ovcs->overlay_mem and
- 	 * ovcs->new_fdt due to the policy that overlay notifiers are not
--	 * allowed to retain pointers into the overlay devicetree.
-+	 * allowed to retain pointers into the overlay devicetree other
-+	 * than during the window between OF_OVERLAY_PRE_APPLY overlay
-+	 * notifiers and the OF_OVERLAY_POST_REMOVE overlay notifiers.
-+	 * During the window, ovcs->kfree_unsafe will be true.
-+	 *
-+	 * A memory leak will occur here if ovcs->kfree_unsafe is true.
- 	 */
--	kfree(ovcs->overlay_root);
--	kfree(ovcs->new_fdt);
-+
-+	if (!ovcs->kfree_unsafe)
-+		kfree(ovcs->overlay_mem);
-+	if (!ovcs->kfree_unsafe)
-+		kfree(ovcs->new_fdt);
- 	kfree(ovcs);
- }
- 
-@@ -875,27 +882,13 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  * internal documentation
-  *
-  * of_overlay_apply() - Create and apply an overlay changeset
-- * @new_fdt:		Memory allocated to hold the aligned FDT
-- * @overlay_root:	Expanded overlay device tree
-- * @ovcs_id:		Pointer to overlay changeset id
-+ * @ovcs:	overlay changeset
-  *
-  * Creates and applies an overlay changeset.
-  *
-- * If an error occurs in a pre-apply notifier, then no changes are made
-- * to the device tree.
-- *
-- * A non-zero return value will not have created the changeset if error is from:
-- *   - parameter checks
-- *   - building the changeset
-- *   - overlay changeset pre-apply notifier
-- *
-  * If an error is returned by an overlay changeset pre-apply notifier
-  * then no further overlay changeset pre-apply notifier will be called.
-  *
-- * A non-zero return value will have created the changeset if error is from:
-- *   - overlay changeset entry notifier
-- *   - overlay changeset post-apply notifier
-- *
-  * If an error is returned by an overlay changeset post-apply notifier
-  * then no further overlay changeset post-apply notifier will be called.
-  *
-@@ -909,64 +902,45 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  * following attempt to apply or remove an overlay changeset will be
-  * refused.
-  *
-- * Returns 0 on success, or a negative error number.  Overlay changeset
-- * id is returned to *ovcs_id.
-+ * Returns 0 on success, or a negative error number.  When references to
-+ * ovcs->new_fdt and ovcs->overlay_root may exist, ovcs->kfree_unsafe is
-+ * set to true.  On error return, the caller of of_overlay_apply() must
-+ * call free_overlay_changeset().
-  */
- 
--static int of_overlay_apply(const void *new_fdt,
--		struct device_node *overlay_root, int *ovcs_id)
-+static int of_overlay_apply(struct overlay_changeset *ovcs)
- {
--	struct overlay_changeset *ovcs;
- 	int ret = 0, ret_revert, ret_tmp;
- 
--	/*
--	 * As of this point, fdt and tree belong to the overlay changeset.
--	 * overlay changeset code is responsible for freeing them.
--	 */
--
- 	if (devicetree_corrupt()) {
- 		pr_err("devicetree state suspect, refuse to apply overlay\n");
--		kfree(new_fdt);
--		kfree(overlay_root);
- 		ret = -EBUSY;
- 		goto out;
- 	}
- 
--	ovcs = kzalloc(sizeof(*ovcs), GFP_KERNEL);
--	if (!ovcs) {
--		kfree(new_fdt);
--		kfree(overlay_root);
--		ret = -ENOMEM;
--		goto out;
--	}
--
--	of_overlay_mutex_lock();
--	mutex_lock(&of_mutex);
--
--	ret = of_resolve_phandles(overlay_root);
-+	ret = of_resolve_phandles(ovcs->overlay_root);
- 	if (ret)
--		goto err_free_tree;
-+		goto out;
- 
--	ret = init_overlay_changeset(ovcs, new_fdt, overlay_root);
-+	ret = init_overlay_changeset(ovcs);
- 	if (ret)
--		goto err_free_tree;
-+		goto out;
- 
- 	/*
- 	 * After overlay_notify(), ovcs->overlay_root related pointers may have
--	 * leaked to drivers, so can not kfree() tree, aka ovcs->overlay_tree;
--	 * and can not free memory containing aligned fdt.  The aligned fdt
--	 * is contained within the memory at ovcs->new_fdt, possibly at an
--	 * offset from ovcs->new_fdt.
-+	 * leaked to drivers, so can not kfree() ovcs->overlay_mem and
-+	 * ovcs->new_fdt until after OF_OVERLAY_POST_REMOVE notifiers.
- 	 */
-+	ovcs->kfree_unsafe = true;
- 	ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
- 	if (ret) {
- 		pr_err("overlay changeset pre-apply notify error %d\n", ret);
--		goto err_free_overlay_changeset;
-+		goto out;
- 	}
- 
- 	ret = build_changeset(ovcs);
- 	if (ret)
--		goto err_free_overlay_changeset;
-+		goto out;
- 
- 	ret_revert = 0;
- 	ret = __of_changeset_apply_entries(&ovcs->cset, &ret_revert);
-@@ -976,7 +950,7 @@ static int of_overlay_apply(const void *new_fdt,
- 				 ret_revert);
- 			devicetree_state_flags |= DTSF_APPLY_FAIL;
- 		}
--		goto err_free_overlay_changeset;
-+		goto out;
- 	}
- 
- 	ret = __of_changeset_apply_notify(&ovcs->cset);
-@@ -984,9 +958,6 @@ static int of_overlay_apply(const void *new_fdt,
- 		pr_err("overlay apply changeset entry notify error %d\n", ret);
- 	/* notify failure is not fatal, continue */
- 
--	list_add_tail(&ovcs->ovcs_list, &ovcs_list);
--	*ovcs_id = ovcs->id;
--
- 	ret_tmp = overlay_notify(ovcs, OF_OVERLAY_POST_APPLY);
- 	if (ret_tmp) {
- 		pr_err("overlay changeset post-apply notify error %d\n",
-@@ -995,19 +966,6 @@ static int of_overlay_apply(const void *new_fdt,
- 			ret = ret_tmp;
- 	}
- 
--	goto out_unlock;
--
--err_free_tree:
--	kfree(new_fdt);
--	kfree(overlay_root);
--
--err_free_overlay_changeset:
--	free_overlay_changeset(ovcs);
--
--out_unlock:
--	mutex_unlock(&of_mutex);
--	of_overlay_mutex_unlock();
--
- out:
- 	pr_debug("%s() err=%d\n", __func__, ret);
- 
-@@ -1015,15 +973,16 @@ static int of_overlay_apply(const void *new_fdt,
- }
- 
- int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
--			 int *ovcs_id)
-+			 int *ret_ovcs_id)
- {
- 	void *new_fdt;
- 	void *new_fdt_align;
-+	void *overlay_mem;
- 	int ret;
- 	u32 size;
--	struct device_node *overlay_root = NULL;
-+	struct overlay_changeset *ovcs;
- 
--	*ovcs_id = 0;
-+	*ret_ovcs_id = 0;
- 
- 	if (overlay_fdt_size < sizeof(struct fdt_header) ||
- 	    fdt_check_header(overlay_fdt)) {
-@@ -1035,41 +994,62 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- 	if (overlay_fdt_size < size)
- 		return -EINVAL;
- 
-+	ovcs = kzalloc(sizeof(*ovcs), GFP_KERNEL);
-+	if (!ovcs)
-+		return -ENOMEM;
-+
-+	of_overlay_mutex_lock();
-+	mutex_lock(&of_mutex);
-+
-+	ovcs->id = idr_alloc(&ovcs_idr, ovcs, 1, 0, GFP_KERNEL);
-+	if (ovcs->id <= 0) {
-+		ret = ovcs->id;
-+		goto err_free_ovcs;
-+	}
-+
-+	INIT_LIST_HEAD(&ovcs->ovcs_list);
-+	list_add_tail(&ovcs->ovcs_list, &ovcs_list);
-+
- 	/*
- 	 * Must create permanent copy of FDT because of_fdt_unflatten_tree()
- 	 * will create pointers to the passed in FDT in the unflattened tree.
- 	 */
- 	new_fdt = kmalloc(size + FDT_ALIGN_SIZE, GFP_KERNEL);
--	if (!new_fdt)
--		return -ENOMEM;
-+	if (!new_fdt) {
-+		ret = -ENOMEM;
-+		goto err_free_ovcs;
-+	}
-+	ovcs->new_fdt = new_fdt;
- 
- 	new_fdt_align = PTR_ALIGN(new_fdt, FDT_ALIGN_SIZE);
- 	memcpy(new_fdt_align, overlay_fdt, size);
- 
--	of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
--	if (!overlay_root) {
-+	overlay_mem = of_fdt_unflatten_tree(new_fdt_align, NULL,
-+					    &ovcs->overlay_root);
-+	if (!overlay_mem) {
- 		pr_err("unable to unflatten overlay_fdt\n");
- 		ret = -EINVAL;
--		goto out_free_new_fdt;
-+		goto err_free_ovcs;
- 	}
-+	ovcs->overlay_mem = overlay_mem;
- 
--	ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
--	if (ret < 0) {
--		/*
--		 * new_fdt and overlay_root now belong to the overlay
--		 * changeset.
--		 * overlay changeset code is responsible for freeing them.
--		 */
--		goto out;
--	}
-+	ret = of_overlay_apply(ovcs);
-+	if (ret < 0)
-+		goto err_free_ovcs;
-+
-+	mutex_unlock(&of_mutex);
-+	of_overlay_mutex_unlock();
-+
-+	*ret_ovcs_id = ovcs->id;
- 
- 	return 0;
- 
-+err_free_ovcs:
-+	free_overlay_changeset(ovcs);
- 
--out_free_new_fdt:
--	kfree(new_fdt);
-+	mutex_unlock(&of_mutex);
-+	of_overlay_mutex_unlock();
- 
--out:
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(of_overlay_fdt_apply);
-@@ -1206,28 +1186,26 @@ int of_overlay_remove(int *ovcs_id)
- 	if (!ovcs) {
- 		ret = -ENODEV;
- 		pr_err("remove: Could not find overlay #%d\n", *ovcs_id);
--		goto out_unlock;
-+		goto err_unlock;
- 	}
- 
- 	if (!overlay_removal_is_ok(ovcs)) {
- 		ret = -EBUSY;
--		goto out_unlock;
-+		goto err_unlock;
- 	}
- 
- 	ret = overlay_notify(ovcs, OF_OVERLAY_PRE_REMOVE);
- 	if (ret) {
- 		pr_err("overlay changeset pre-remove notify error %d\n", ret);
--		goto out_unlock;
-+		goto err_unlock;
- 	}
- 
--	list_del(&ovcs->ovcs_list);
--
- 	ret_apply = 0;
- 	ret = __of_changeset_revert_entries(&ovcs->cset, &ret_apply);
- 	if (ret) {
- 		if (ret_apply)
- 			devicetree_state_flags |= DTSF_REVERT_FAIL;
--		goto out_unlock;
-+		goto err_unlock;
- 	}
- 
- 	ret = __of_changeset_revert_notify(&ovcs->cset);
-@@ -1237,6 +1215,11 @@ int of_overlay_remove(int *ovcs_id)
- 
- 	*ovcs_id = 0;
- 
-+	/*
-+	 * Note that the overlay memory will be kfree()ed by
-+	 * free_overlay_changeset() even if the notifier for
-+	 * OF_OVERLAY_POST_REMOVE returns an error.
-+	 */
- 	ret_tmp = overlay_notify(ovcs, OF_OVERLAY_POST_REMOVE);
- 	if (ret_tmp) {
- 		pr_err("overlay changeset post-remove notify error %d\n",
-@@ -1247,7 +1230,12 @@ int of_overlay_remove(int *ovcs_id)
- 
- 	free_overlay_changeset(ovcs);
- 
--out_unlock:
-+err_unlock:
-+	/*
-+	 * If jumped over free_overlay_changeset(), then did not kfree()
-+	 * overlay related memory.  This is a memory leak unless a subsequent
-+	 * of_overlay_remove() of this overlay is successful.
-+	 */
- 	mutex_unlock(&of_mutex);
- 
- out:
+Patch 4/5 adds dt binding support for the Mixel combo PHY in i.MX8qxp SoC.
+
+Patch 5/5 adds the i.MX8qxp LVDS PHY mode support in the Mixel PHY driver.
+
+
+Welcome comments, thanks.
+
+v7->v8:
+* Trivial kernel doc style fix for patch 2/5 - add '*'.
+* Resend with reviewer mail addresses updated for patch 1/5.
+
+v6->v7:
+* Update the year of copyright for patch 2/5.
+* Better variable explanation for bits_per_lane_and_dclk_cycle in patch 2/5.
+* Use marco instead of magic number for CCM and CA values for patch 5/5.
+* Suppress 'checkpatch --strict' warnings for patch 5/5.
+
+v5->v6:
+* Rebase the series upon v5.17-rc1.
+* Set PHY mode in ->mode_set() instead of ->pre_enable() in the nwl-dsi
+  bridge driver in patch 1/5 due to the rebase.
+* Drop Guido's R-b tag on patch 1/5 due to the rebase.
+
+v4->v5:
+* Align kernel-doc style of include/linux/phy/phy-lvds.h to
+  include/linux/phy/phy.h for patch 2/5. (Vinod)
+* Trivial tweaks on patch 2/5.
+* Drop Robert's R-b tag on patch 2/5.
+
+v3->v4:
+* Add all R-b tags received from v3 on relevant patches and respin. (Robert)
+
+v2->v3:
+* Improve readability of mixel_dphy_set_mode() in the Mixel PHY driver. (Guido)
+* Improve the 'clock-names' property in the PHY dt binding.
+
+v1->v2:
+* Convert mixel,mipi-dsi-phy plain text dt binding to json-schema. (Guido)
+* Print invalid PHY mode in dmesg from the Mixel PHY driver. (Guido)
+* Add Guido's R-b tag on the patch for the nwl-dsi drm bridge driver.
+
+Liu Ying (5):
+  drm/bridge: nwl-dsi: Set PHY mode in nwl_dsi_mode_set()
+  phy: Add LVDS configuration options
+  dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema
+  dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel combo PHY support for
+    i.MX8qxp
+  phy: freescale: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode
+    support
+
+ .../bindings/phy/mixel,mipi-dsi-phy.txt       |  29 --
+ .../bindings/phy/mixel,mipi-dsi-phy.yaml      | 107 +++++++
+ drivers/gpu/drm/bridge/nwl-dsi.c              |   6 +
+ .../phy/freescale/phy-fsl-imx8-mipi-dphy.c    | 276 +++++++++++++++++-
+ include/linux/phy/phy-lvds.h                  |  32 ++
+ include/linux/phy/phy.h                       |   4 +
+ 6 files changed, 414 insertions(+), 40 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+ create mode 100644 include/linux/phy/phy-lvds.h
+
 -- 
-Frank Rowand <frank.rowand@sony.com>
+2.25.1
 
