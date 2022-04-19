@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A4A5060FA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 02:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A00EA50616A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 03:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238340AbiDSAeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 20:34:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34610 "EHLO
+        id S244129AbiDSAwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 20:52:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237339AbiDSAeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 20:34:18 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8362B252BB;
-        Mon, 18 Apr 2022 17:31:37 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id z2so12129970oic.6;
-        Mon, 18 Apr 2022 17:31:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=l3P9PjhfHuCpvqzF+ZqNPQTIIRdb3ybkqU2a6dT8SNQ=;
-        b=ZKIcCztaaPhkBFN1gl78sGCxj6Mb7Jn84jMDAql+zxv3HIpncAEJ+kuJuk8c3CY9N3
-         ih0Z4aWAbJ2ho10+w5mGoMKUt1un/O1y1rEXtVOzhFBoVPkvDRInrfF7vtnzI7Ym5ukS
-         pOsvYa16wLMpO5AlpNuMAFhsUW8tlQKkadKLlGYBpIJPIhEA9WsuSaTYBW3aSZ1b8vVF
-         48EcyUCQJaeK+xDXOakW86hlUjCGfcUrxAmgxcO7BbSmLGSt8gi/DSM5BRtbC3Llsr+t
-         EQKkd2j2VUZzmrDLiSJ3eCJL43cV/dv1mMvlRSsmIRbGQK9sQMED3kCstBQH6wGnpwts
-         Y2LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :subject:content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=l3P9PjhfHuCpvqzF+ZqNPQTIIRdb3ybkqU2a6dT8SNQ=;
-        b=xG9kbrEWr72mI4njrXnmwVZjrM23et4Z3zqBXA7scLqgSPd6mqxQVPRZHi6R7lqQy8
-         PUfG/e1lG8fK5U0HSd7tZVeNTFiP48WymW16Q8RFHtdXpiVk6jLQ0BvYTPRXzoW6icIX
-         6iEzAjYeXIPh1Pyjq+7Hyo2khJBtHKJ1Noyl8Se/In/6SxrObLBporjbPnsRgWoRIw+6
-         MhP6VHbdgp1cf0sbPs8+tTKeGREwcVve4k+gKu7kKaa2IH31N4ka3uLR1SwLNbCLjE/n
-         JfibPLV0xPdBpiTLljvCvncOgHi80wR8d0zuG8o/2h/l7oFqztfwrMwdriotW/oQbA8z
-         sEHw==
-X-Gm-Message-State: AOAM531xxkjSebvQx8zOncjzivXM8GeMtvjD/fVyVpQlj/U5hrJnII+2
-        GilnXGFlr8m8OGBuCTxRTJg=
-X-Google-Smtp-Source: ABdhPJwduSb9kwZxv56nBz6qFZLyepDIgaQZkBx/777OXZhLguqJzbldn5cCB1iBPakA8XT2OTe7Ow==
-X-Received: by 2002:a05:6808:ec2:b0:2f7:34db:691e with SMTP id q2-20020a0568080ec200b002f734db691emr8284352oiv.252.1650328296848;
-        Mon, 18 Apr 2022 17:31:36 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e22-20020a9d5616000000b005ceb68be2f6sm4827697oti.63.2022.04.18.17.31.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Apr 2022 17:31:36 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <11b9d3a6-74c0-6375-002b-ae5d2b69122d@roeck-us.net>
-Date:   Mon, 18 Apr 2022 17:31:34 -0700
+        with ESMTP id S244828AbiDSAv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 20:51:57 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492982F017;
+        Mon, 18 Apr 2022 17:48:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1650329268; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=QcaCwx2tEtPiNTdnkKN6Dj7Rv8qJ9UHg9CnAWnP6QlW2g6WtsGjLiSEp/2FfU9Q2E2Spn0h7kGD/yVdjhAjSzzxCeW8w5fT9x7Chf1tTEhhQZi1qgwcKgyEvU8y5dhYUFPhdf8rVZTzp79PkAtWFu9JNoDcp+IBHATKVaOYFh18=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1650329268; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=dF0t/rFrfNtgkFwm0QyH3WiEwxfiDRKe8DJYZakIpnE=; 
+        b=Q+FIq0HYvZ/i73eupC0luBDunzKmcYz8VarEMfeEjoBSCsMVur3uL3beaFFFuUU3ZDEML+2mkP8J52yKwEHk3vOk/kRadVeXkBB6+QPVWRaqEVDvqa2OhKddDj//Zjxfykn0Km8sNJzfaXA5lseOnJa/nfqDPaNQV0uaGD1qMQw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1650329268;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=dF0t/rFrfNtgkFwm0QyH3WiEwxfiDRKe8DJYZakIpnE=;
+        b=IsEkdLn+1zj7HvFYKO26G51iZ9eDmRJHWmn8Hdkzwigu9GSEfF5O0rYdL3RCB0RK
+        MgGAa7mott606upMVs2eiCjFu20dra+Q+OEG0xnw8h8ciua/s+CucPqimPU72RfpnCI
+        QeWOsGfEDmyMghWVioS48nXO+QR4tlN036SqqE/U=
+Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1650329265893232.18636976893617; Mon, 18 Apr 2022 17:47:45 -0700 (PDT)
+Message-ID: <41b4c9c7-871a-83c4-5df0-24b85ce0cb24@arinc9.com>
+Date:   Tue, 19 Apr 2022 03:47:40 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 0/4] hwmon: add lan9668 driver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH net v2 1/2] dt-bindings: net: dsa: realtek: cleanup
+ compatible strings
 Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220401214032.3738095-1-michael@walle.cc>
- <95a2e996285649dadba673f2f0614192@walle.cc>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <95a2e996285649dadba673f2f0614192@walle.cc>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        netdev@vger.kernel.org
+Cc:     linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
+        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+References: <20220418233558.13541-1-luizluca@gmail.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20220418233558.13541-1-luizluca@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,60 +64,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/18/22 10:44, Michael Walle wrote:
-> Hi,
+On 19/04/2022 02:35, Luiz Angelo Daros de Luca wrote:
+> Compatible strings are used to help the driver find the chip ID/version
+> register for each chip family. After that, the driver can setup the
+> switch accordingly. Keep only the first supported model for each family
+> as a compatible string and reference other chip models in the
+> description.
 > 
-> Am 2022-04-01 23:40, schrieb Michael Walle:
->> Add a temperature and fan controller driver for the Microchip LAN9668 SoC.
->>
->> The temperature sensor uses a polynomial to calculate the actual
->> temperature. Fortunately, the bt1-pvt already has such a calculation.
->> It seems that the LAN9668 uses the same Analog Bits sensor as the
->> BT1 although with a different characteristic. To be able to reuse the
->> code move it to lib/ as it seems pretty generic to calculate any
->> polynomial using integers only, which might also be used by other parts
->> of the kernel. Another option might be to move the code to hwmon-poly.c,
->> I'm not sure. Thoughts?
->>
->> I also plan on submitting patches to add temperature sensor support for
->> the GPYxxx and LAN8814 PHYs which also use polynomial_calc().
->>
->> The last two patches adds the actual driver and the dt-binding for it.
->>
->> changes since v3:
->>  - validate input frequency in lan966x_hwmon_write_pwm_freq()
->>  - enable sensor before registering hwmon device
->>  - automatically disable sensor when driver is removed
->>  - set the required clock devider in case someone changed the
->>    hardware default before the driver is loaded
->>  - remove extra empty lines
->>
->> changes since v2:
->>  - strip unwanted copy pasta.. oops
->>  - use "select REGMAP" instead of "depends on"
->>
->> changes since v1:
->>  - add doc string to polynomial_calc(), moved the comment
->>    into the function.
->>  - add missing "select POLYNOMIAL" to the bt1_pvt driver
->>    Kconfig symbol
->>  - add hwmon driver documentation
->>  - cache sys_clk rate during probe
->>  - add missing ERR_CAST()
->>  - adapted comment for the PPS->RPM calculation
->>  - add temporary variable in lan966x_hwmon_read_pwm_freq()
->>
->> Michael Walle (4):
->>   lib: add generic polynomial calculation
->>   hwmon: (bt1-pvt) use generic polynomial functions
->>   dt-bindings: hwmon: add Microchip LAN966x bindings
->>   hwmon: add driver for the Microchip LAN966x SoC
+> The removed compatible strings have never been used in a released kernel.
 > 
-> Any news here? Or did I miss anything?
+> CC: devicetree@vger.kernel.org
+> Link: https://lore.kernel.org/netdev/20220414014055.m4wbmr7tdz6hsa3m@bang-olufsen.dk/
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+
+Do we know the chip ID and version of all of the switches this driver 
+_can_ support? So we have all the switches actually supported under a 
+single compatible string.
+
+The chip ID seems to be the same across all the switches under this 
+defacto rtl8367c family.
+
+Alvin, could your contacts at Realtek provide the chip ID and version 
+for the switches we don’t know:
+RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB, RTL8364NB, 
+RTL8364NB-VB, RTL8366SC, RTL8367SB, RTL8370MB, RTL8310SR
+
+The switch chip IP/versions currently defined:
+https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/tree/drivers/net/dsa/realtek/rtl8365mb.c?id=a997157e42e3119b13c644549a3d8381a1d825d6#n104
+
+Other than that:
+
+Acked-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+
+Cheers.
+Arınç
+
+> ---
+>   .../devicetree/bindings/net/dsa/realtek.yaml  | 35 ++++++++-----------
+>   1 file changed, 14 insertions(+), 21 deletions(-)
 > 
-> -michael
-
-
-Just way behind with everything
-
-Guenter
+> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> index 8756060895a8..99ee4b5b9346 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> @@ -27,32 +27,25 @@ description:
+>     The realtek-mdio driver is an MDIO driver and it must be inserted inside
+>     an MDIO node.
+>   
+> +  The compatible string is only used to identify which (silicon) family the
+> +  switch belongs to. Roughly speaking, a family is any set of Realtek switches
+> +  whose chip identification register(s) have a common location and semantics.
+> +  The different models in a given family can be automatically disambiguated by
+> +  parsing the chip identification register(s) according to the given family,
+> +  avoiding the need for a unique compatible string for each model.
+> +
+>   properties:
+>     compatible:
+>       enum:
+>         - realtek,rtl8365mb
+> -      - realtek,rtl8366
+>         - realtek,rtl8366rb
+> -      - realtek,rtl8366s
+> -      - realtek,rtl8367
+> -      - realtek,rtl8367b
+> -      - realtek,rtl8367rb
+> -      - realtek,rtl8367s
+> -      - realtek,rtl8368s
+> -      - realtek,rtl8369
+> -      - realtek,rtl8370
+>       description: |
+> -      realtek,rtl8365mb: 4+1 ports
+> -      realtek,rtl8366: 5+1 ports
+> -      realtek,rtl8366rb: 5+1 ports
+> -      realtek,rtl8366s: 5+1 ports
+> -      realtek,rtl8367:
+> -      realtek,rtl8367b:
+> -      realtek,rtl8367rb: 5+2 ports
+> -      realtek,rtl8367s: 5+2 ports
+> -      realtek,rtl8368s: 8 ports
+> -      realtek,rtl8369: 8+1 ports
+> -      realtek,rtl8370: 8+2 ports
+> +      realtek,rtl8365mb:
+> +        Use with models RTL8363NB, RTL8363NB-VB, RTL8363SC, RTL8363SC-VB,
+> +        RTL8364NB, RTL8364NB-VB, RTL8365MB, RTL8366SC, RTL8367RB-VB, RTL8367S,
+> +        RTL8367SB, RTL8370MB, RTL8310SR
+> +      realtek,rtl8366rb:
+> +        Use with models RTL8366RB, RTL8366S
+>   
+>     mdc-gpios:
+>       description: GPIO line for the MDC clock line.
+> @@ -335,7 +328,7 @@ examples:
+>               #size-cells = <0>;
+>   
+>               switch@29 {
+> -                    compatible = "realtek,rtl8367s";
+> +                    compatible = "realtek,rtl8365mb";
+>                       reg = <29>;
+>   
+>                       reset-gpios = <&gpio2 20 GPIO_ACTIVE_LOW>;
