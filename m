@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A5F506B6F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 13:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4703D506B83
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 13:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351893AbiDSLw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 07:52:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43660 "EHLO
+        id S1349740AbiDSL6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 07:58:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351976AbiDSLwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 07:52:46 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4E6B22B2A
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:50:03 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id t25so20905743edt.9
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:50:03 -0700 (PDT)
+        with ESMTP id S1351972AbiDSL5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 07:57:41 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0C03897
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:54:58 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 21so20973324edv.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:54:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+22hDYu2wEuHGd4AY54ocAOL5u0kABhClqX/TcY/LTY=;
-        b=H3QC9C/R5KWMtDxmmpBzxTkk9M+RZW5ws2177KxkG0PkyXHubfD11/YNIFepjAaqQu
-         9+5v0HiMVHwAEvOPUvTi9UDmYHW3xR73dcLKI5bdDYfJqzl4zX/rW3LjuPOdkv/IjfuW
-         RO8C4nY2FIdSgWflqcH4AHm2ZTd0cC78GfBOPEuRQN6r6yC5UsouIiMGT/rG1KE8HLw0
-         mHRLBtBEK+MC/KnFfs6MmL8kjPtnQxJXkQDeFoEWVzYW8BlzRZJ1NR8dHAaoMki7/Xgg
-         Gng8p+TLfSD6TdDyiXnJu3BCw8+2dclVFf+tTe1WLjrGUfdAcWlBGdgPo4B3/JV26MSK
-         Vnlg==
+        bh=nfsMBJ2xALLgOjM4oOlK5BSYjJIFPGL8NAkh/N0/6yg=;
+        b=ZyjMtC8vDpunrZ/RnPfYn6O9lMWHMhEmyFxdKg41YVJvyDuwtoxrmOfkHUt26wLrf0
+         8Vra8yynqYlFbnTVedtpqXhG3EjBrNLGB0d4IE5S7o6A2XMii46/SNSAWK0yXDPm10up
+         7CSFHusMxjfK2TCkeN6FCjVfhsJgIRRzP6n8gHvMuQZ8OcTpG2OHJft/fq1Cnw0gIVOr
+         OwYI8aF1erqTvLAp3Urtm0zi7uAfXiutEQwIOjVKoyHnALBOzadlbILaB2ILvfYmzI4U
+         M3lD7DO+wmXjYcJC83REAy8fnhkz/1nN5Q5gW8yGlB64nU3tnbXxpG4SUtR3hFvlovKD
+         pfjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+22hDYu2wEuHGd4AY54ocAOL5u0kABhClqX/TcY/LTY=;
-        b=OMPpznbXw8jELtNwn51pUXHn9qP56uX09M4kmT9DP8kP5wwUPZhOHIXe9vTtrOcTE4
-         yyKaAXbWWfCQGiGbeultfRFzsP5Gzf+mrGqxyEMfqkU3jaQ/O2y+uUcyxlOdS0z1OeM7
-         /eKlZI3/CoVyk5CQ4lg1/i2GuOJ1KdvuHqO7hjGO/aw1RN2B5CpTOtioPyThuC/NBcuc
-         TERiaDKq3bXt02pV0tGapXKrEW+D1bxLP6s0Hao67b5o1+GKkeih36/bg8xuu8xIHMJh
-         S0DDA0kpCdy/knDq1PRH4/stJpJd1gpNpsTgd5S1NrW5h/fgqExHPADw1zQCwhPJCTYb
-         iYww==
-X-Gm-Message-State: AOAM531t3SPrUKTjMt5c7lhjCWrnO8AA8eT5LLGE9UxaK6ETANEXhBck
-        71zY0J45kO0trjp2axNgX8NLjg==
-X-Google-Smtp-Source: ABdhPJyAypytXd6YzKO7SLGGgIe0gMwBMbxU3UaUCtlCeDPRJAXYOEuM+LrBoWoWZZbdZia5GX2REQ==
-X-Received: by 2002:a05:6402:430c:b0:419:4660:e261 with SMTP id m12-20020a056402430c00b004194660e261mr16895758edc.324.1650369002202;
-        Tue, 19 Apr 2022 04:50:02 -0700 (PDT)
+        bh=nfsMBJ2xALLgOjM4oOlK5BSYjJIFPGL8NAkh/N0/6yg=;
+        b=f5ehMoH7JGzmtu7B8lSPjOUC4uCOTUEr3jPn7yVJEeJ2MF1d0XrTcvbwRe5Ta6yC+C
+         Hwgyx7D6D4n8DiNTfxzxOdiM9+BexqhXyB+wcVK/FcQ4UhmaGyr6qq5ld6/YjCZugP/w
+         h3sOwTzpWOy2ffdEbfTq7K/bCKhyRwwHHSLQGI2yI6iA49BG8JBISW4AmBJYM2Ha5+Sv
+         Nawsp+zbfFvxBbX7Vi3Vj3JqeVdNf3KD2vnFr9r2RYEn5zr+XQa1TCefYNhogwdjBdLT
+         I6OCZ0JtfmivcHD7RcR4muwup9T5tETf8Is4vGUVpO7XDpr1gLpXT7aGKwgZATcN/6RG
+         cXxg==
+X-Gm-Message-State: AOAM533+j+DRcWrZNdP5dmvTSOdCdImVJbedBjXOWNfKBOFfNSkAzaBf
+        jXKSIhHgvsDnIkwwuncXpbhLcg==
+X-Google-Smtp-Source: ABdhPJwTmG5NGqJbQnGnpk+8S5HiLxzmh4OPgLZyw4Ghg8byqWFSS06JiSgvvJYqgbuxen9bp911BA==
+X-Received: by 2002:a05:6402:3046:b0:420:120e:ef2c with SMTP id bs6-20020a056402304600b00420120eef2cmr17002877edb.160.1650369296744;
+        Tue, 19 Apr 2022 04:54:56 -0700 (PDT)
 Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906310a00b006e834953b55sm5547719ejx.27.2022.04.19.04.50.01
+        by smtp.gmail.com with ESMTPSA id r24-20020aa7c158000000b00423fd948d56sm952196edp.3.2022.04.19.04.54.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 04:50:01 -0700 (PDT)
-Message-ID: <f6ea5c51-97dd-b225-3fb7-fcea5f722c39@linaro.org>
-Date:   Tue, 19 Apr 2022 13:50:01 +0200
+        Tue, 19 Apr 2022 04:54:56 -0700 (PDT)
+Message-ID: <07d7fa69-dd2f-3e10-f959-474814105d3b@linaro.org>
+Date:   Tue, 19 Apr 2022 13:54:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-binding: Add cypress,cy8c95x0 binding
+Subject: Re: [PATCH v5 24/33] dt-bindings: crypto: convert rockchip-crypto to
+ YAML
 Content-Language: en-US
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220419071503.1596423-1-patrick.rudolph@9elements.com>
- <20220419071503.1596423-2-patrick.rudolph@9elements.com>
+References: <20220413190713.1427956-1-clabbe@baylibre.com>
+ <20220413190713.1427956-25-clabbe@baylibre.com>
+ <44efe8b6-1712-5b87-f030-2f1328533ee8@linaro.org> <Yl6YV9nLVI4qYsPP@Red>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220419071503.1596423-2-patrick.rudolph@9elements.com>
+In-Reply-To: <Yl6YV9nLVI4qYsPP@Red>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,120 +79,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 09:15, Patrick Rudolph wrote:
-> Added device tree binding documentation for
-> Cypress CY8C95x0 I2C pin-controller.
+On 19/04/2022 13:09, LABBE Corentin wrote:
+>> This is not needed and dt_bindings_check should complain.
+>>
+>>> +    items:
+>>> +      const: aclk
+>>> +      const: hclk
+>>> +      const: sclk
+>>> +      const: apb_pclk
+>>> +
+>>> +  resets:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-names:
+>>> +    maxItems: 1
+>>
+>> The same.
+>>
 > 
+> I forgot to test the intermediate patch...
+> Before I send a new version, does the final document is okay ?
 
-Thank you for your patch. There is something to discuss/improve.
+Looks ok, if it works. :) I don't remember if dtschema likes the cases:
+clock-names:
+  minItems:3
+  maxItems:4
+if:
+ ...
+clock-names:
+  items:
+    - ...
+     ...
+  maxItems:3
 
-(...)
-
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description:
-> +      The first cell is the pin number and the second cell is used
-> +      to specify optional parameters.
-> +    const: 2
-> +
-> +  gpio-reserved-ranges: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the pin number and flags, as defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-
-Skip description, it's obvious.
-
-> +    const: 2
-> +
-> +  ngpios:
-> +    minimum: 1
-> +    maximum: 60
-> +
-> +  gpio-line-names:
-> +    minItems: 1
-> +    maxItems: 60
-> +
-> +  vdd-supply:
-> +    description:
-> +      Optional power supply.
-> +
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-
-Why do you need oneOf here?
-
-> +            - pattern: "^gp([0-7][0-7])$"
-> +        minItems: 1
-> +        maxItems: 60
-> +
-> +      function:
-> +        enum: [ gpio, pwm ]
-> +
-
-No need for blank line. In other cases you put description before the
-property constraints, so do it consistently here as well.
-
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +
-> +      bias-pull-down: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-disable: true
-> +
-> +      output-high: true
-> +
-> +      output-low: true
-> +
-> +      drive-push-pull: true
-> +
-> +      drive-open-drain: true
-> +
-> +      drive-open-source: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-
-no allOf referencing pinctrl.yaml? Include it unless there is some
-reason not to.
+This should work correctly, but dtschema has checks for unneeded
+min/maxItems so be sure they are not complaining.
 
 Best regards,
 Krzysztof
