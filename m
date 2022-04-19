@@ -2,92 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C28D506D57
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1BCB506D7E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343912AbiDSNWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 09:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48468 "EHLO
+        id S243736AbiDSNdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:33:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238617AbiDSNWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:22:17 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DBA7366A4
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 06:19:34 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id r12-20020a056830418c00b006054e1142acso3458940otu.7
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 06:19:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hYORCeWbeix4J5CxHYndk8/zWspzxFUk4CcUI2nGMhg=;
-        b=J7yTMjrzsKUSrMxxhT9GUwuKcq2VQU+okwpQzt3+Xdg1GK1sz02SNhZgB2Lk+99MqW
-         euiN6LGTbOy166lRIvZrgD1RBIV4ZDUI6SSo2gKSwjr5xcYhbr+oVCYWWlTWiscCOWy5
-         apfvwlhk2WXi2egk5MSegSBLYMvnfoxDtiWJsoFsYXm7CTDN+iTCTNg+Wd8sOjQTqD/O
-         33Al/LV/kE6JAfQMUMOs5WVZFkggkEq6+bq9LWo/FEsIl+cDimAoDHp+63ycPcnsq9o3
-         c8yVTKmsLZiCVmTLGrqHmXyzn4ns5fcalAn+p6gQZcS76mJAUMvytsjv72KhMjwFkN1c
-         M4yA==
-X-Gm-Message-State: AOAM531C0CAjrPgkeoGB53VCWoaldlumMlx4NZsva5orYNojaODGJRze
-        n1OTFNB4+orZuofk9ILMMw==
-X-Google-Smtp-Source: ABdhPJz95PNkSHrePsY47MQUDBbqQF6249VaMMsqV2Yk41XDjy6ZzbVnMxC2DSC071gfjYWvuQ90cA==
-X-Received: by 2002:a9d:12a9:0:b0:603:d1cc:68eb with SMTP id g38-20020a9d12a9000000b00603d1cc68ebmr5741572otg.326.1650374373912;
-        Tue, 19 Apr 2022 06:19:33 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o64-20020acad743000000b002ef3b249b9esm5002838oig.58.2022.04.19.06.19.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 06:19:33 -0700 (PDT)
-Received: (nullmailer pid 2323034 invoked by uid 1000);
-        Tue, 19 Apr 2022 13:19:32 -0000
-Date:   Tue, 19 Apr 2022 08:19:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     devicetree@vger.kernel.org, xen-devel@lists.xenproject.org,
-        Stefano Stabellini <stefano.stabellini@xilinx.com>,
-        robh+dt@kernel.org, julien@xen.org, frowand.list@gmail.com
-Subject: Re: [PATCH v2] of: of_property_read_string return -ENODATA when
- !length
-Message-ID: <Yl625EnFl0/MChux@robh.at.kernel.org>
-References: <20220416003028.1315268-1-sstabellini@kernel.org>
+        with ESMTP id S243962AbiDSNdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:33:10 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462E8E0AC;
+        Tue, 19 Apr 2022 06:30:27 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23JCeESq019632;
+        Tue, 19 Apr 2022 15:30:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=yVMrm4zWjinomEQt6Qi0CU02yE86wEnfHBQgY0IOHqc=;
+ b=nFB0m7eyQ1BHx2n5SeGnAyqflzmTnnBNt+gQV/xjoQu3LfSq5YTU/69SkKOGdx8nIkZw
+ FJDjxEa7c6hypgNU62Y2i5lXOiwstXJFhQXwEzPSGk+oLP1gix327yzSG4PJtArSM9QN
+ da/63nkP+2s0tc5n1zbnPWpeTc4ZTIKeXoaKXtPc9LNEOW4idvqv71gy55RIzWcCZjST
+ x+pKEQUqIEgFmzJD0zSH3xYCj9uZVlJxqWng+8wBja2Fi+3Gpz6+HWBFQ892PJY3DIg/
+ Hr93FGwT6Cd6yJMuyNMRMxcye3UQv/YXpIxBI4+g+F+DuHbMYIkUA+Q6FmTKcuGsvsxl PA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fh09kr17x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 19 Apr 2022 15:30:11 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D1EFB100034;
+        Tue, 19 Apr 2022 15:30:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C7E742128DC;
+        Tue, 19 Apr 2022 15:30:10 +0200 (CEST)
+Received: from [10.48.0.142] (10.75.127.46) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 19 Apr
+ 2022 15:30:09 +0200
+Message-ID: <c40b818d-1036-8068-2ebb-a6f1eab4d738@foss.st.com>
+Date:   Tue, 19 Apr 2022 15:30:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220416003028.1315268-1-sstabellini@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] ARM: dts: align SPI NOR node name with dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        <soc@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+CC:     <arm@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+References: <20220407143027.294678-1-krzysztof.kozlowski@linaro.org>
+ <d0d9c16f-4668-1263-49fa-e51648c8c098@foss.st.com>
+ <8798d7bb-6480-90ef-90fd-d7ff7d7beb2a@linaro.org>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <8798d7bb-6480-90ef-90fd-d7ff7d7beb2a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-19_05,2022-04-15_01,2022-02-23_01
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 17:30:28 -0700, Stefano Stabellini wrote:
-> From: Stefano Stabellini <stefano.stabellini@xilinx.com>
+On 4/19/22 15:10, Krzysztof Kozlowski wrote:
+> On 19/04/2022 15:03, Alexandre TORGUE wrote:
+>> Hi Krzysztof
+>>
+>> On 4/7/22 16:30, Krzysztof Kozlowski wrote:
+>>> The node names should be generic and SPI NOR dtschema expects "flash".
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>>    arch/arm/boot/dts/da850-evm.dts                  | 2 +-
+>>>    arch/arm/boot/dts/dm8168-evm.dts                 | 2 +-
+>>>    arch/arm/boot/dts/spear1310-evb.dts              | 2 +-
+>>>    arch/arm/boot/dts/spear1340-evb.dts              | 2 +-
+>>>    arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 2 +-
+>>>    arch/arm/boot/dts/stm32mp157c-ev1.dts            | 4 ++--
+>>>    6 files changed, 7 insertions(+), 7 deletions(-)
+>>
+>> Thanks for your patch. Is it possible to split it per vendor
+>> (TI/STM32/SPEAR) ?
 > 
-> When the length of the string is zero of_property_read_string should
-> return -ENODATA according to the description of the function.
+> This was a part of a bigger set where most of these I split. However
+> here split would be more churn for such simple change, so I combined them.
 > 
-> However, of_property_read_string doesn't check prop->length. If
-> prop->length is zero, return -ENODATA.
-> 
-> Without this patch the following command in u-boot:
-> 
-> fdt set /chosen/node property-name
-> 
-> results in of_property_read_string returning -EILSEQ when attempting to
-> read property-name. With this patch, it returns -ENODATA as expected.
-> 
-> Signed-off-by: Stefano Stabellini <stefano.stabellini@xilinx.com>
-> ---
-> Changes in v2:
-> - use prop instead pp
-> - drop value check
-> - update function header documentation
-> ---
->  drivers/of/property.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
+> This was already picked up by Arnd:
+> https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?h=for-next&id=56147a156e7e2f50bef695efe6cc4fe8e91c40dc
 
-Applied, thanks!
+Ah Ok, I missed that Arnd took them, sorry.
+
+Regards
+Alex
+
+> 
+> 
+> Best regards,
+> Krzysztof
+
