@@ -2,57 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4F18506C0D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F7E8506C14
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:14:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237603AbiDSMQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:16:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34178 "EHLO
+        id S1344350AbiDSMQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 08:16:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352059AbiDSMP4 (ORCPT
+        with ESMTP id S1352057AbiDSMP4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:15:56 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6595B1C138;
-        Tue, 19 Apr 2022 05:12:49 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id r14-20020a9d750e000000b00605446d683eso5544460otk.10;
-        Tue, 19 Apr 2022 05:12:49 -0700 (PDT)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59E920BEE;
+        Tue, 19 Apr 2022 05:12:51 -0700 (PDT)
+Received: by mail-oo1-f49.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so2998572ooj.2;
+        Tue, 19 Apr 2022 05:12:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=YeAeQ+jnrOWAEKYx6yVLIhj6nj1MTrMjb3kCp0yvejM=;
-        b=5BnJudefPH60ydU7i0kARXfEtiaio/bBDebFBW0CYjPigyL3KuTpEBI518hO0iMJDm
-         R7BG+XQeC5s++0/297h5+JkRuZJMozZw1vCCjrE4/zOMipsRMLyAy52BEXmJCIJdUO7Z
-         klYcb+fE5E6gUyhI2DTE8XJ87vYQSQXJNRn9B+0MwCecmMxLZiLQG0Xw2BnmccFcvk55
-         yEbYhEPpvXGm7kH6iwcEvWX9QX9yGsoVYVbbMTLxWnpWIOEofkVyb5uKBagiMIXEdaF5
-         id9S7aePnug6bI5HY7QDo8RlekMOzltOoVFG+UBeJQpOck/3AYv7DPfjigz98D+W+ENI
-         XRKQ==
-X-Gm-Message-State: AOAM531alC6T1bpQfCsXl73F9nuurAYgPpDW1qEkBMakCd5towmzAVi4
-        h0T4RbO5vBY1wx+NbxhKBA==
-X-Google-Smtp-Source: ABdhPJwg4yHDT6X1rpfqMAom9LqkVyPVB09XL0HDMP6yioLKul+fCnEZLuA8Ej0AcX2iP5IaEGiPdQ==
-X-Received: by 2002:a9d:1928:0:b0:604:13d5:b114 with SMTP id j40-20020a9d1928000000b0060413d5b114mr5557181ota.6.1650370368668;
-        Tue, 19 Apr 2022 05:12:48 -0700 (PDT)
+        bh=Oi2UyeV7FTiASy8kn59y+2VbputKPdQLR2c1Xa4PCvM=;
+        b=qE5pdal0NSwnzu+Eg9PTWPSmXX43O1jT27Lr5UNLyNLR+o4UWJhqQSu5NNoZOkOb0b
+         /A9SpouUuw2bvH0r2RYYIhpxXdAAqY4KL22kEzKwX0J5Bm+6TYW/ZYJjDD2gFcRIF4+n
+         nZpPRhKLSmlvvYVgVTVcfOR44zknIjVaQBgwrMrZeKUuoTl5TPgQisihFXvLJbkY62VF
+         5u3o3ZBBIywsA8ADzM+Yqgd+ZMWLHk7BPyE4Mq6xCwjSBfTL8DfRReu18XWLvVjIllq6
+         QF9rLomewLxeOuI77iKEu7EvKsQqsSFnCY7aTj0p/KPAqAe1MvyGSYzfJ8fMm/HdqqBk
+         9FyQ==
+X-Gm-Message-State: AOAM531qgiKKzM4goCSivMIKPiC6oJSBrYRuX7j257bqBC+oEphOxHGA
+        rkCQ/nm6V1hQVtsbMuo9jQ==
+X-Google-Smtp-Source: ABdhPJz03tF+Z0gbQlUo469ixMVFxZOJrb9wmBz9B2zJ2fy8b50/S3xhK9Nm11m18gcVWFfnChv6Jw==
+X-Received: by 2002:a05:6820:555:b0:324:b7c5:d7b2 with SMTP id n21-20020a056820055500b00324b7c5d7b2mr5230585ooj.1.1650370371052;
+        Tue, 19 Apr 2022 05:12:51 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x2-20020a4a2a42000000b0033a3c4392c3sm2302555oox.26.2022.04.19.05.12.47
+        by smtp.gmail.com with ESMTPSA id o133-20020acaf08b000000b002ef7562e07csm5027600oih.41.2022.04.19.05.12.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 05:12:48 -0700 (PDT)
-Received: (nullmailer pid 1977870 invoked by uid 1000);
+        Tue, 19 Apr 2022 05:12:50 -0700 (PDT)
+Received: (nullmailer pid 1977872 invoked by uid 1000);
         Tue, 19 Apr 2022 12:12:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Tomi Valkeinen <tomba@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Devicetree <devicetree@vger.kernel.org>
-In-Reply-To: <20220419070302.16502-2-a-bhatia1@ti.com>
-References: <20220419070302.16502-1-a-bhatia1@ti.com> <20220419070302.16502-2-a-bhatia1@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add missing register & interrupt
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20220419093506.135553-2-cosmin.tanislav@analog.com>
+References: <20220419093506.135553-1-cosmin.tanislav@analog.com> <20220419093506.135553-2-cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add AD4130
 Date:   Tue, 19 Apr 2022 07:12:43 -0500
-Message-Id: <1650370363.583109.1977869.nullmailer@robh.at.kernel.org>
+Message-Id: <1650370363.604220.1977871.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -64,17 +62,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Apr 2022 12:33:01 +0530, Aradhya Bhatia wrote:
-> The DSS IP on the ti-am65x soc supports an additional register space,
-> named "common1". Further. the IP services a maximum number of 2
-> interrupts.
+On Tue, 19 Apr 2022 12:35:05 +0300, Cosmin Tanislav wrote:
+> AD4130-8 is an ultra-low power, high precision, measurement solution for
+> low bandwidth battery operated applications.
 > 
-> Add the missing register space "common1" and the additional interrupt.
+> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+> selectable filter options, smart sequencer, sensor biasing and excitation
+> options, diagnostics, and a FIFO buffer.
 > 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 > ---
->  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
+>  .../bindings/iio/adc/adi,ad4130.yaml          | 263 ++++++++++++++++++
+>  1 file changed, 263 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -83,9 +85,9 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/display/ti/ti,am65x-dss.example.dts:30.17-18 syntax error
+Error: Documentation/devicetree/bindings/iio/adc/adi,ad4130.example.dts:35.30-31 syntax error
 FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/ti/ti,am65x-dss.example.dtb] Error 1
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/iio/adc/adi,ad4130.example.dtb] Error 1
 make[1]: *** Waiting for unfinished jobs....
 make: *** [Makefile:1401: dt_binding_check] Error 2
 
