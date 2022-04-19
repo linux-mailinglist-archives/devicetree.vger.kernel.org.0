@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69E22506494
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 08:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AA035064A8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 08:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348889AbiDSGht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 02:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48658 "EHLO
+        id S1348933AbiDSGlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 02:41:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348890AbiDSGhi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 02:37:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23661115A;
-        Mon, 18 Apr 2022 23:34:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AC73D60B76;
-        Tue, 19 Apr 2022 06:34:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D3CC385A5;
-        Tue, 19 Apr 2022 06:34:49 +0000 (UTC)
-Message-ID: <dda2de21-4d36-beb7-531c-9f5ea1534227@xs4all.nl>
-Date:   Tue, 19 Apr 2022 08:34:47 +0200
+        with ESMTP id S1347668AbiDSGlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 02:41:18 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D119D2F3BB
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 23:38:35 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id r13so30848648ejd.5
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 23:38:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wwWxCtbSCeUQRJk9COftuaJ7ScbeBZhdO6eWFwSTjHA=;
+        b=KEdFvQx8qTBO1XSAD8KaA2BVQLibgDkOq0nlbqSwYGaPP8qvuQZutcjJ4SAYW61cfD
+         gvQe1ZXTh8iodDlXd9mVzWiSNur530PQD/+R7noKjegpikYHShuY8bEioVrWh9aZj4Cw
+         Trm7ac6UwYkGMw5mNOgpeCImpM/Gq3SC+kyh6m1Daa7ZuftOstyDCr4jFbGl855GJThH
+         VxcJ8zc85A0r2jjj8wACXwtIXtDPuHbZbIyVNy4WsUGGcj6jmm5EqQzA0u/ngVV0fHlv
+         nAEZxBx3BhtjLCexp3hrPZiQOvPb3mNXasSb/h6XVzx6oD0ELrlYHiO/V4rudUD+4n0A
+         mveQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wwWxCtbSCeUQRJk9COftuaJ7ScbeBZhdO6eWFwSTjHA=;
+        b=IxD1co7mXHvgXrO1uC1mDfJJBuQAEBu9e/OMPUKT+yrimDR2sfNnnqli26R4/HHsks
+         y157G+LcEn7CpayoKBTSL6G8LjndzpSDYYgWHr269clB2r9CdzzpTnWGLdwJslJ87af0
+         TvIKKVXrIaqkzAZ05gBPGIezYcFbEdVHkTH4aJp0ojQlHNDxRFpxvC4TO5a5FQ+hwBSo
+         4PyMdJEvM/aeOey8eZfppEQKzXndZ18Rix3AHWZ6D4IKB76h9onhT1vOUkF7a/hEQl3X
+         ESLey0QIxkPl0R8h/CrcGTBVqAHEF0e5BoBBmxQWe3k2ZJnboRrZkbuqgVlQXgwVkR+J
+         eiuQ==
+X-Gm-Message-State: AOAM532RyRD/Nknmjf5yoYQbEik6VX3eLoxFaxCPOLoGgdTQEXHMWJKf
+        Ngib2RHPjpSIA9UaOJyT4BJvcA==
+X-Google-Smtp-Source: ABdhPJwrGev1kPZ0BZBFXz88umiWjHpPsXqJlQOwM3LXtRLXA35QMvp+9MdmKCpnToDC38nRk3brHg==
+X-Received: by 2002:a17:907:3e11:b0:6e8:cccd:de80 with SMTP id hp17-20020a1709073e1100b006e8cccdde80mr10281291ejc.162.1650350314339;
+        Mon, 18 Apr 2022 23:38:34 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id w2-20020a056402070200b004240494e20dsm84351edx.54.2022.04.18.23.38.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Apr 2022 23:38:33 -0700 (PDT)
+Message-ID: <a5a59f3c-00a3-afc5-24aa-1ae3de2600ec@linaro.org>
+Date:   Tue, 19 Apr 2022 08:38:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v13 3/3] media: platform: mtk-mdp3: add Mediatek MDP3
- driver
+Subject: Re: [PATCH V3 1/3] dt-bindings: clk: sprd: Add bindings for ums512
+ clock controller
 Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
-        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
-        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
-        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220418022213.23826-1-moudy.ho@mediatek.com>
- <20220418022213.23826-4-moudy.ho@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20220418022213.23826-4-moudy.ho@mediatek.com>
+        krzysztof.kozlowski+dt@linaro.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220418125630.2342538-1-gengcixi@gmail.com>
+ <20220418125630.2342538-2-gengcixi@gmail.com>
+ <714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org>
+ <CAF12kFv6uioc7ATtXLpGTTDBFT1wYWZUBoyjQqP1bSUnut0pKA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAF12kFv6uioc7ATtXLpGTTDBFT1wYWZUBoyjQqP1bSUnut0pKA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.9 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,36 +84,225 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Moudy Ho,
+On 19/04/2022 03:53, Cixi Geng wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年4月19日周二 00:28写道：
+>>
+>> On 18/04/2022 14:56, Cixi Geng wrote:
+>>> From: Cixi Geng <cixi.geng1@unisoc.com>
+>>>
+>>> Add a new bindings to describe ums512 clock compatible string.
+>>>
+>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+>>> ---
+>>>  .../bindings/clock/sprd,ums512-clk.yaml       | 112 ++++++++++++++++++
+>>>  1 file changed, 112 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+>>> new file mode 100644
+>>> index 000000000000..89824d7c6be4
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+>>> @@ -0,0 +1,112 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright 2022 Unisoc Inc.
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
+>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>> +
+>>> +title: UMS512 Clock Control Unit Device Tree Bindings
+>>
+>> Remove "Device Tree Bindings". You could do the same also in the
+>> subject, because you repeat the prefix ("dt-bindings: clk: sprd: Add
+>> ums512 clock controller").
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Orson Zhai <orsonzhai@gmail.com>
+>>> +  - Baolin Wang <baolin.wang7@gmail.com>
+>>> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+>>> +
+>>> +properties:
+>>> +  "#clock-cells":
+>>> +    const: 1
+>>> +
+>>> +  compatible:
+>>
+>> Put the compatible first, by convention and makes finding matching
+>> bindings easier.
+>>
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: sprd,ums512-glbregs
+>>> +          - const: syscon
+>>> +          - const: simple-mfd
+>>
+>> Why do you need simple-mfd for these? This looks like a regular syscon,
+>> so usually does not come with children. What is more, why this "usual
+>> syscon" is a separate clock controller in these bindings?
+> there is a warning log before add these const.  and the reason we need
+> the simply-mfd
+> is some clock is a child of syscon node,which should set these compatible.
+> failed to match any schema with compatible: ['sprd,ums512-glbregs',
+> 'syscon', 'simple-mfd']
 
-On 18/04/2022 04:22, Moudy Ho wrote:
-> This patch adds driver for Mediatek's Media Data Path ver.3 (MDP3).
-> It provides the following functions:
->   color transform, format conversion, resize, crop, rotate, flip
->   and additional image quality enhancement.
+Neither here nor later you did not answer the question - why do you need
+such complex construction, instead of adding syscon to the clock controller?
+
+Let me paste again my concerns:
+
+  You have nodes with reg but without unit address ("rpll"). These nodes
+  are modeled as children but they are not children - it's a workaround
+  for exposing syscon, isn't it? The sc9863a looks like broken design,
+  so please do not duplicate it here.
+
+IOW, sc9863a uses similar pattern as here and the DTS is made wrong.
+Because of this you need to create complex ways to get the regmap for
+the clock controller... Why not making it simple? Clock controller with
+syscon?
+
+>>
+>>> +      - items:
+>>> +          - enum:
+>>> +              - sprd,ums512-apahb-gate
+>>> +              - sprd,ums512-ap-clk
+>>> +              - sprd,ums512-aonapb-clk
+>>> +              - sprd,ums512-pmu-gate
+>>> +              - sprd,ums512-g0-pll
+>>> +              - sprd,ums512-g2-pll
+>>> +              - sprd,ums512-g3-pll
+>>> +              - sprd,ums512-gc-pll
+>>> +              - sprd,ums512-aon-gate
+>>> +              - sprd,ums512-audcpapb-gate
+>>> +              - sprd,ums512-audcpahb-gate
+>>> +              - sprd,ums512-gpu-clk
+>>> +              - sprd,ums512-mm-clk
+>>> +              - sprd,ums512-mm-gate-clk
+>>> +              - sprd,ums512-apapb-gate
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>>
+>> maxItems needed
+> the previous version did has the maxitems, but makes error when run
+> 'make DT_CHECKER_FLAGS=-m dt_binding_check O=./dt-out  \
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml'
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> /path-to-linux/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml:
+> properties:clock-names: {'minItems': 1, 'maxItems': 4, 'items':
+> [{'const': 'ext-26m'}, {'const': 'ext-32k'}, {'const': 'ext-4m'},
+> {'const': 'rco-100m'}]} should not be valid under {'required':
+> ['maxItems']}
+> hint: "maxItems" is not needed with an "items" list
+
+Warning is about clock-names, not about clocks. Fix the bindings.
+
 > 
-> The MDP3 driver is mainly used for Google Chromebook products to
-> import the new architecture to set the HW settings as shown below:
->   User -> V4L2 framework
->     -> MDP3 driver -> SCP (setting calculations)
->       -> MDP3 driver -> CMDQ (GCE driver) -> HW
+>>
+>>> +    description: |
+>>> +      The input parent clock(s) phandle for this clock, only list fixed
+>>> +      clocks which are declared in devicetree.
+>>
+>> The description does not make sense. These are bindings for a clock
+>> controller, but you say here "for this clock", so what does "this" mean
+>> here?
+>>
+>>> +
+>>> +  clock-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: ext-26m
+>>> +      - const: ext-32k
+>>> +      - const: ext-4m
+>>> +      - const: rco-100m
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - '#clock-cells'
+>>
+>> Isn't reg also required? Always? Do you have examples where it is not
+>> required? How do you configure the clocks without "reg"? I see you
+>> copied a lot from sprd,sc9863a-clk.yaml but that file does not look correct.
+>>
+>> You have nodes with reg but without unit address ("rpll"). These nodes
+>> are modeled as children but they are not children - it's a workaround
+>> for exposing syscon, isn't it? The sc9863a looks like broken design, so
+>> please do not duplicate it here.
+>>
+>>> +
+>>> +if:
+>>> +  properties:
+>>> +    compatible:
+>>> +      enum:
+>>> +        - sprd,ums512-ap-clk
+>>> +        - sprd,ums512-aonapb-clk
+>>> +        - sprd,ums512-mm-clk
+>>> +then:
+>>> +  required:
+>>> +    - reg
+>>> +
+>>> +else:
+>>> +  description: |
+>>> +    Other UMS512 clock nodes should be the child of a syscon node in
+>>> +    which compatible string should be:
+>>> +            "sprd,ums512-glbregs", "syscon", "simple-mfd"
+>>> +
+>>> +    The 'reg' property for the clock node is also required if there is a sub
+>>> +    range of registers for the clocks.
+>>> +
+>>> +additionalProperties: true
+>>
+>> false
+> the "false" makes error log:
+> /path-to-linux/Documentation/devicetree/bindings/clock/sprd,ums512-clk.example.dtb:
+> syscon@71000000: '#address-cells', '#size-cells',
+> 'clock-controller@0', 'ranges' do not match any of the regexes:
+> 'pinctrl-[0-9]+'
+> and I reference the patch
+> [https://www.spinics.net/lists/linux-leds/msg17032.html]
+
+Which needs fixing. The "false" is a strict requirement for such end
+(non-extendable) bindings.
+
 > 
-> Each modules' related operation control is sited in mtk-mdp3-comp.c
-> Each modules' register table is defined in file with "mdp_reg_" prefix
-> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
-> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
-> Probe, power, suspend/resume, system level functions are defined in
-> mtk-mdp3-core.c
+>>
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    ap_clk: clock-controller@20200000 {
+>>> +      compatible = "sprd,ums512-ap-clk";
+>>> +      reg = <0x20200000 0x1000>;
+>>> +      clocks = <&ext_26m>;
+>>> +      clock-names = "ext-26m";
+>>> +      #clock-cells = <1>;
+>>> +    };
+>>> +
+>>> +  - |
+>>> +    ap_apb_regs: syscon@71000000 {
+>>> +      compatible = "sprd,ums512-glbregs", "syscon", "simple-mfd";
+>>
+>> So here is the answer why you added MFD, but I still don't get why do
+>> you need it for one child? It is quite a dance here and in your drivers,
+>> instead of adding "syscon" to your clock controller.
 > 
-> v4l2-compliance SHA: not available
-> , 32 bits, 32-bit time_t
+> [1]in the if/else describtion,  th other UMS512 clock nodes should be
+> the child of a syscon node in
+> which compatible string should be:   "sprd,ums512-glbregs", "syscon",
+> "simple-mfd"
 
-This is an old v4l2-compliance (at least almost 2 years old based on this text).
+No, it should not. Fix the drivers, fix the DTS and the bindings. Then
+the "should" disappears.
+> 
+>>
+>> This also pollutes the actual bindings because you did not add
+>> properties required for clock controllers, because of describing here
+>> the syscon part.
 
-Please compile v4l2-compliance from the v4l-utils git repo and make sure you
-see a proper SHA value here. I don't accept v4l2-compliance results without a
-valid SHA, since without that I can't tell which version you are testing with.
 
-Regards,
 
-	Hans
+Best regards,
+Krzysztof
