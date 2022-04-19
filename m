@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E3E506F2C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD23506F80
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352834AbiDSNr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 09:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
+        id S1352885AbiDSNvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:51:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352861AbiDSNpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:45:24 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8757E39160;
-        Tue, 19 Apr 2022 06:41:40 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 007BD2112B;
-        Tue, 19 Apr 2022 13:41:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1650375699; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=OU924VncPndQwLZyBXE5JWyC1rgAj1xobyIWoZiX7+w=;
-        b=fgboA1x+o5bDijssIofMI7BJHQYsy4PSPUIdBRcrfcLF0FI6qBXbLuvHF64hI2w+E4iSKu
-        dmMFNuwRfGrAEomEMe8gf7xYuU5rI/AgyjbDlD8LJcyLDtkvcmTtzW0S/+AO5P4tT32Cz1
-        Lg4o12K1srfbbY2Yy3wTPeaY9UsW4Uc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1650375699;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=OU924VncPndQwLZyBXE5JWyC1rgAj1xobyIWoZiX7+w=;
-        b=NbxbkNkBAUZOMG/8GB1TtbxlLg5awOQvOTbJZbeCA2bQfiu3Bm5wgJ/CdBGoUZm/L7sFbk
-        pdti2XXM+wk7uHBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id BB239139BE;
-        Tue, 19 Apr 2022 13:41:38 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id jLLLLBK8XmIiDgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Tue, 19 Apr 2022 13:41:38 +0000
-Message-ID: <5f7d1b9e-4c92-13b1-8556-ab67f17846cc@suse.de>
-Date:   Tue, 19 Apr 2022 15:41:38 +0200
+        with ESMTP id S1352935AbiDSNvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:51:03 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2C23C700;
+        Tue, 19 Apr 2022 06:43:50 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id t15so10476402oie.1;
+        Tue, 19 Apr 2022 06:43:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=XqDuHpmLDFntsP2jEBxil35GSt8HrLq9Yvn71vpOLkE=;
+        b=ZF0gdgoTKdteJguyQzcrkOi0Hz2vLOhn2Iu6vWJ3mkVIxmkFqyDPb/Zl9MjjOahQv2
+         D3ri5kn6HpVVISgepWLTr4pUbKJw//gKFNTAfCiPQAwSekRptDgbq9MoTehJrFiyqH7G
+         pnHHe51ObdRLSOLQAwV91k1KCH7/VOhm36QdDJaP/KcYOhzoL6Skc2wyPqBXlhnHkxq2
+         3uC+Mr+SOupG+5Hn8un8yqj2xN+AGugVOoVtMuk/AUwysKN78dS5kf9GXQxi10f8JLEJ
+         KquIbVUdgagSXpKE4QEd735GTaudIrJNzOrVs0N389JIb6paf0WJhIbAMMe3EavkOQC6
+         jEqg==
+X-Gm-Message-State: AOAM533gEzLp5p+JVrzyhQBabhpg5dN11WFfZM97JP5DoRSGn872wBrB
+        kYx34ZdIm3IPbc3x7+MffbDK3nr9gw==
+X-Google-Smtp-Source: ABdhPJwPfM5JI/GH9JHg/IyrnQypQWW+jegdpZSSR4xN+LpwoqACSVtKbya0y5LQJGFb821UIOU0wQ==
+X-Received: by 2002:a05:6808:1402:b0:2da:b72:74f2 with SMTP id w2-20020a056808140200b002da0b7274f2mr9184543oiv.113.1650375829070;
+        Tue, 19 Apr 2022 06:43:49 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j9-20020a056808056900b0032252797ea4sm4159323oig.6.2022.04.19.06.43.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 06:43:48 -0700 (PDT)
+Received: (nullmailer pid 2431059 invoked by uid 1000);
+        Tue, 19 Apr 2022 13:43:47 -0000
+Date:   Tue, 19 Apr 2022 08:43:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 03/12] dt-bindings: net: pcs: add bindings for
+ Renesas RZ/N1 MII converter
+Message-ID: <Yl68k22fUw7uBgV9@robh.at.kernel.org>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+ <20220414122250.158113-4-clement.leger@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] of: Create platform devices for OF framebuffers
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        frowand.list@gmail.com, deller@gmx.de,
-        linuxppc-dev@lists.ozlabs.org, javierm@redhat.com,
-        dri-devel@lists.freedesktop.org, paulus@samba.org,
-        mpe@ellerman.id.au, sam@ravnborg.org, linux@roeck-us.net
-References: <20220419100405.12600-1-tzimmermann@suse.de>
- <20220419100405.12600-2-tzimmermann@suse.de>
- <Yl65by+ZjQdK8nIv@robh.at.kernel.org>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <Yl65by+ZjQdK8nIv@robh.at.kernel.org>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------H2Ei4jFDsCdAEGbJSqAuxH3d"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220414122250.158113-4-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,138 +82,170 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------H2Ei4jFDsCdAEGbJSqAuxH3d
-Content-Type: multipart/mixed; boundary="------------V6Ezpezy3p0yw0t0S0BNfgzr";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
- frowand.list@gmail.com, deller@gmx.de, linuxppc-dev@lists.ozlabs.org,
- javierm@redhat.com, dri-devel@lists.freedesktop.org, paulus@samba.org,
- mpe@ellerman.id.au, sam@ravnborg.org, linux@roeck-us.net
-Message-ID: <5f7d1b9e-4c92-13b1-8556-ab67f17846cc@suse.de>
-Subject: Re: [PATCH v2 1/2] of: Create platform devices for OF framebuffers
-References: <20220419100405.12600-1-tzimmermann@suse.de>
- <20220419100405.12600-2-tzimmermann@suse.de>
- <Yl65by+ZjQdK8nIv@robh.at.kernel.org>
-In-Reply-To: <Yl65by+ZjQdK8nIv@robh.at.kernel.org>
+On Thu, Apr 14, 2022 at 02:22:41PM +0200, Clément Léger wrote:
+> This MII converter can be found on the RZ/N1 processor family. The MII
+> converter ports are declared as subnodes which are then referenced by
+> users of the PCS driver such as the switch.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  .../bindings/net/pcs/renesas,rzn1-miic.yaml   | 95 +++++++++++++++++++
+>  include/dt-bindings/net/pcs-rzn1-miic.h       | 19 ++++
+>  2 files changed, 114 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+>  create mode 100644 include/dt-bindings/net/pcs-rzn1-miic.h
+> 
+> diff --git a/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml b/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+> new file mode 100644
+> index 000000000000..ccb25ce6cbde
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/pcs/renesas,rzn1-miic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/N1 MII converter
+> +
+> +maintainers:
+> +  - Clément Léger <clement.leger@bootlin.com>
+> +
+> +description: |
+> +  This MII converter is present on the Renesas RZ/N1 SoC family. It is
+> +  responsible to do MII passthrough or convert it to RMII/RGMII.
+> +
+> +properties:
+> +  compatible:
+> +      const: renesas,rzn1-miic
 
---------------V6Ezpezy3p0yw0t0S0BNfgzr
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Need SoC specific compatibles.
 
-SGkNCg0KQW0gMTkuMDQuMjIgdW0gMTU6MzAgc2NocmllYiBSb2IgSGVycmluZzoNCi4uLg0K
-Pj4gLSNpZm5kZWYgQ09ORklHX1BQQw0KPj4gICBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2Rl
-dmljZV9pZCByZXNlcnZlZF9tZW1fbWF0Y2hlc1tdID0gew0KPj4gICAJeyAuY29tcGF0aWJs
-ZSA9ICJxY29tLHJtdGZzLW1lbSIgfSwNCj4+ICAgCXsgLmNvbXBhdGlibGUgPSAicWNvbSxj
-bWQtZGIiIH0sDQo+PiBAQCAtNTIwLDMzICs1MTksODEgQEAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBvZl9kZXZpY2VfaWQgcmVzZXJ2ZWRfbWVtX21hdGNoZXNbXSA9IHsNCj4+ICAgDQo+PiAg
-IHN0YXRpYyBpbnQgX19pbml0IG9mX3BsYXRmb3JtX2RlZmF1bHRfcG9wdWxhdGVfaW5pdCh2
-b2lkKQ0KPj4gICB7DQo+PiAtCXN0cnVjdCBkZXZpY2Vfbm9kZSAqbm9kZTsNCj4+IC0NCj4g
-DQo+IEFzIGJvdGggaWYvZWxzZSBjbGF1c2VzIG5lZWQgJ25vZGUnLCBJJ2Qga2VlcCB0aGlz
-IGRlY2xhcmVkIGhlcmUuDQoNCk9rLg0KDQo+IA0KPj4gICAJZGV2aWNlX2xpbmtzX3N1cHBs
-aWVyX3N5bmNfc3RhdGVfcGF1c2UoKTsNCj4+ICAgDQo+PiAgIAlpZiAoIW9mX2hhdmVfcG9w
-dWxhdGVkX2R0KCkpDQo+PiAgIAkJcmV0dXJuIC1FTk9ERVY7DQo+PiAgIA0KPj4gLQkvKg0K
-Pj4gLQkgKiBIYW5kbGUgY2VydGFpbiBjb21wYXRpYmxlcyBleHBsaWNpdGx5LCBzaW5jZSB3
-ZSBkb24ndCB3YW50IHRvIGNyZWF0ZQ0KPj4gLQkgKiBwbGF0Zm9ybV9kZXZpY2VzIGZvciBl
-dmVyeSBub2RlIGluIC9yZXNlcnZlZC1tZW1vcnkgd2l0aCBhDQo+PiAtCSAqICJjb21wYXRp
-YmxlIiwNCj4+IC0JICovDQo+PiAtCWZvcl9lYWNoX21hdGNoaW5nX25vZGUobm9kZSwgcmVz
-ZXJ2ZWRfbWVtX21hdGNoZXMpDQo+PiAtCQlvZl9wbGF0Zm9ybV9kZXZpY2VfY3JlYXRlKG5v
-ZGUsIE5VTEwsIE5VTEwpOw0KPj4gKwlpZiAoSVNfRU5BQkxFRChDT05GSUdfUFBDKSkgew0K
-Pj4gKwkJc3RydWN0IGRldmljZV9ub2RlICpib290X2Rpc3BsYXkgPSBOVUxMOw0KPj4gKwkJ
-c3RydWN0IGRldmljZV9ub2RlICpub2RlOw0KPj4gKwkJc3RydWN0IHBsYXRmb3JtX2Rldmlj
-ZSAqZGV2Ow0KPj4gKwkJaW50IHJldDsNCj4+ICsNCj4+ICsJCS8qIENoZWNrIGlmIHdlIGhh
-dmUgYSBNYWNPUyBkaXNwbGF5IHdpdGhvdXQgYSBub2RlIHNwZWMgKi8NCj4+ICsJCWlmIChv
-Zl9nZXRfcHJvcGVydHkob2ZfY2hvc2VuLCAibGludXgsYm9vdHgtbm9zY3JlZW4iLCBOVUxM
-KSkgew0KPj4gKwkJCS8qDQo+PiArCQkJICogVGhlIG9sZCBjb2RlIHRyaWVkIHRvIHdvcmsg
-b3V0IHdoaWNoIG5vZGUgd2FzIHRoZSBNYWNPUw0KPj4gKwkJCSAqIGRpc3BsYXkgYmFzZWQg
-b24gdGhlIGFkZHJlc3MuIEknbSBkcm9wcGluZyB0aGF0IHNpbmNlIHRoZQ0KPj4gKwkJCSAq
-IGxhY2sgb2YgYSBub2RlIHNwZWMgb25seSBoYXBwZW5zIHdpdGggb2xkIEJvb3RYIHZlcnNp
-b25zDQo+PiArCQkJICogKHVzZXJzIGNhbiB1cGRhdGUpIGFuZCB3aXRoIHRoaXMgY29kZSwg
-dGhleSdsbCBzdGlsbCBnZXQNCj4+ICsJCQkgKiBhIGRpc3BsYXkgKGp1c3Qgbm90IHRoZSBw
-YWxldHRlIGhhY2tzKS4NCj4+ICsJCQkgKi8NCj4+ICsJCQlkZXYgPSBwbGF0Zm9ybV9kZXZp
-Y2VfYWxsb2MoImJvb3R4LW5vc2NyZWVuIiwgMCk7DQo+PiArCQkJaWYgKFdBUk5fT04oIWRl
-dikpDQo+PiArCQkJCXJldHVybiAtRU5PTUVNOw0KPj4gKwkJCXJldCA9IHBsYXRmb3JtX2Rl
-dmljZV9hZGQoZGV2KTsNCj4+ICsJCQlpZiAoV0FSTl9PTihyZXQpKSB7DQo+PiArCQkJCXBs
-YXRmb3JtX2RldmljZV9wdXQoZGV2KTsNCj4+ICsJCQkJcmV0dXJuIHJldDsNCj4+ICsJCQl9
-DQo+PiArCQl9DQo+PiAgIA0KPj4gLQlub2RlID0gb2ZfZmluZF9ub2RlX2J5X3BhdGgoIi9m
-aXJtd2FyZSIpOw0KPj4gLQlpZiAobm9kZSkgew0KPj4gLQkJb2ZfcGxhdGZvcm1fcG9wdWxh
-dGUobm9kZSwgTlVMTCwgTlVMTCwgTlVMTCk7DQo+PiAtCQlvZl9ub2RlX3B1dChub2RlKTsN
-Cj4+IC0JfQ0KPj4gKwkJLyoNCj4+ICsJCSAqIEZvciBPRiBmcmFtZWJ1ZmZlcnMsIGZpcnN0
-IGNyZWF0ZSB0aGUgZGV2aWNlIGZvciB0aGUgYm9vdCBkaXNwbGF5LA0KPj4gKwkJICogdGhl
-biBmb3IgdGhlIG90aGVyIGZyYW1lYnVmZmVycy4gT25seSBmYWlsIGZvciB0aGUgYm9vdCBk
-aXNwbGF5Ow0KPj4gKwkJICogaWdub3JlIGVycm9ycyBmb3IgdGhlIHJlc3QuDQo+PiArCQkg
-Ki8NCj4+ICsJCWZvcl9lYWNoX25vZGVfYnlfdHlwZShub2RlLCAiZGlzcGxheSIpIHsNCj4+
-ICsJCQlpZiAoIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgsb3BlbmVkIiwgTlVMTCkg
-fHwNCj4+ICsJCQkgICAgIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgsYm9vdC1kaXNw
-bGF5IiwgTlVMTCkpDQo+PiArCQkJCWNvbnRpbnVlOw0KPj4gKwkJCWRldiA9IG9mX3BsYXRm
-b3JtX2RldmljZV9jcmVhdGUobm9kZSwgIm9mLWRpc3BsYXkiLCBOVUxMKTsNCj4+ICsJCQlp
-ZiAoV0FSTl9PTighZGV2KSkNCj4+ICsJCQkJcmV0dXJuIC1FTk9NRU07DQo+PiArCQkJYm9v
-dF9kaXNwbGF5ID0gbm9kZTsNCj4+ICsJCQlicmVhazsNCj4+ICsJCX0NCj4+ICsJCWZvcl9l
-YWNoX25vZGVfYnlfdHlwZShub2RlLCAiZGlzcGxheSIpIHsNCj4+ICsJCQlpZiAoIW9mX2dl
-dF9wcm9wZXJ0eShub2RlLCAibGludXgsb3BlbmVkIiwgTlVMTCkgfHwgbm9kZSA9PSBib290
-X2Rpc3BsYXkpDQo+PiArCQkJCWNvbnRpbnVlOw0KPj4gKwkJCW9mX3BsYXRmb3JtX2Rldmlj
-ZV9jcmVhdGUobm9kZSwgIm9mLWRpc3BsYXkiLCBOVUxMKTsNCj4+ICsJCX0NCj4+ICAgDQo+
-PiAtCW5vZGUgPSBvZl9nZXRfY29tcGF0aWJsZV9jaGlsZChvZl9jaG9zZW4sICJzaW1wbGUt
-ZnJhbWVidWZmZXIiKTsNCj4+IC0Jb2ZfcGxhdGZvcm1fZGV2aWNlX2NyZWF0ZShub2RlLCBO
-VUxMLCBOVUxMKTsNCj4+IC0Jb2Zfbm9kZV9wdXQobm9kZSk7DQo+PiArCX0gZWxzZSB7DQo+
-PiArCQlzdHJ1Y3QgZGV2aWNlX25vZGUgKm5vZGU7DQo+PiArDQo+PiArCQkvKg0KPj4gKwkJ
-ICogSGFuZGxlIGNlcnRhaW4gY29tcGF0aWJsZXMgZXhwbGljaXRseSwgc2luY2Ugd2UgZG9u
-J3Qgd2FudCB0byBjcmVhdGUNCj4+ICsJCSAqIHBsYXRmb3JtX2RldmljZXMgZm9yIGV2ZXJ5
-IG5vZGUgaW4gL3Jlc2VydmVkLW1lbW9yeSB3aXRoIGENCj4+ICsJCSAqICJjb21wYXRpYmxl
-IiwNCj4+ICsJCSAqLw0KPj4gKwkJZm9yX2VhY2hfbWF0Y2hpbmdfbm9kZShub2RlLCByZXNl
-cnZlZF9tZW1fbWF0Y2hlcykNCj4+ICsJCQlvZl9wbGF0Zm9ybV9kZXZpY2VfY3JlYXRlKG5v
-ZGUsIE5VTEwsIE5VTEwpOw0KPj4gICANCj4+IC0JLyogUG9wdWxhdGUgZXZlcnl0aGluZyBl
-bHNlLiAqLw0KPj4gLQlvZl9wbGF0Zm9ybV9kZWZhdWx0X3BvcHVsYXRlKE5VTEwsIE5VTEws
-IE5VTEwpOw0KPj4gKwkJbm9kZSA9IG9mX2ZpbmRfbm9kZV9ieV9wYXRoKCIvZmlybXdhcmUi
-KTsNCj4+ICsJCWlmIChub2RlKSB7DQo+PiArCQkJb2ZfcGxhdGZvcm1fcG9wdWxhdGUobm9k
-ZSwgTlVMTCwgTlVMTCwgTlVMTCk7DQo+PiArCQkJb2Zfbm9kZV9wdXQobm9kZSk7DQo+PiAr
-CQl9DQo+PiArDQo+PiArCQlub2RlID0gb2ZfZ2V0X2NvbXBhdGlibGVfY2hpbGQob2ZfY2hv
-c2VuLCAic2ltcGxlLWZyYW1lYnVmZmVyIik7DQo+PiArCQlvZl9wbGF0Zm9ybV9kZXZpY2Vf
-Y3JlYXRlKG5vZGUsIE5VTEwsIE5VTEwpOw0KPj4gKwkJb2Zfbm9kZV9wdXQobm9kZSk7DQo+
-IA0KPiBJbiB2MSwgeW91IHN1cHBvcnRlZCAic2ltcGxlLWZyYW1lYnVmZmVyIiBvbiBQUEMu
-IERvbid0IHdlIHdhbnQgdG8gYWxsb3cNCj4gdGhhdD8gTWF5YmUgbm8gb25lIGNhcmVzIEFU
-TSwgYnV0IHRoYXQgY291bGQgY2hhbmdlLiBFaXRoZXIgd2F5Og0KDQpTdXBwb3J0IGZvciB0
-aGVzZSBmcmFtZWJ1ZmZlcnMgaGFzIGFsd2F5cyBiZWVuIG11dHVhbGx5IGV4Y2x1c2l2ZS4g
-VGhlIA0Kb2ZmYiBkcml2ZXIsIHdoaWNoIG9yaWdpbmFsbHkgY29udGFpbmVkIHRoZSBjb2Rl
-LCBkZXBlbmRzIG9uIENPTkZJR19QUEMuIA0KQW5kIFBQQyBuZXZlciBzdXBwb3J0ZWQgc2lt
-cGxlLWZyYW1lYnVmZmVyIGFueXdoZXJlLg0KDQo+IA0KPiBSZXZpZXdlZC1ieTogUm9iIEhl
-cnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCg0KVGhhbmsgeW91Lg0KDQpCZXN0IHJlZ2FyZHMN
-ClRob21hcw0KDQo+IA0KPiANCj4+ICsNCj4+ICsJCS8qIFBvcHVsYXRlIGV2ZXJ5dGhpbmcg
-ZWxzZS4gKi8NCj4+ICsJCW9mX3BsYXRmb3JtX2RlZmF1bHRfcG9wdWxhdGUoTlVMTCwgTlVM
-TCwgTlVMTCk7DQo+PiArCX0NCj4+ICAgDQo+PiAgIAlyZXR1cm4gMDsNCj4+ICAgfQ0KPj4g
-QEAgLTU1OCw3ICs2MDUsNiBAQCBzdGF0aWMgaW50IF9faW5pdCBvZl9wbGF0Zm9ybV9zeW5j
-X3N0YXRlX2luaXQodm9pZCkNCj4+ICAgCXJldHVybiAwOw0KPj4gICB9DQo+PiAgIGxhdGVf
-aW5pdGNhbGxfc3luYyhvZl9wbGF0Zm9ybV9zeW5jX3N0YXRlX2luaXQpOw0KPj4gLSNlbmRp
-Zg0KPj4gICANCj4+ICAgaW50IG9mX3BsYXRmb3JtX2RldmljZV9kZXN0cm95KHN0cnVjdCBk
-ZXZpY2UgKmRldiwgdm9pZCAqZGF0YSkNCj4+ICAgew0KDQotLSANClRob21hcyBaaW1tZXJt
-YW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9u
-cyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFu
-eQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBU
-b3Rldg0K
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    items:
+> +      - description: MII reference clock
+> +      - description: RGMII reference clock
+> +      - description: RMII reference clock
+> +      - description: AHB clock used for the MII converter register interface
+> +
+> +  renesas,miic-cfg-mode:
+> +    description: MII mux configuration mode. This value should use one of the
+> +                 value defined in dt-bindings/net/pcs-rzn1-miic.h.
 
---------------V6Ezpezy3p0yw0t0S0BNfgzr--
+Describe possible values here as constraints. At present, I don't see 
+the point of this property if there is only 1 possible value and it is 
+required.
 
---------------H2Ei4jFDsCdAEGbJSqAuxH3d
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  
+> +patternProperties:
+> +  "^mii-conv@[0-4]$":
+> +    type: object
 
------BEGIN PGP SIGNATURE-----
+       additionalProperties: false
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmJevBIFAwAAAAAACgkQlh/E3EQov+Cs
-nQ/+PjxVvHS4ZjtQ7GRnq5WdGi01qeBkHRyzBvlJv/+sAV8+440CNa5FhBIs6xnr4qXnnZn/U8Y5
-esGtU6VEVhKPsN9WRrwnpmzxJRHFnkg68Uxk9BRVJfnCkj4ajHlQeCJPvB8ibTeiY/E+b5bkQ098
-6DKFHE0Aypr3Drw7c633xlCJnjQ738I7xfcAvyI3DSjWdBC9ikZOU3Qx5p6gHoV/YW1fXmvmvZvf
-oGm+9fi2xfeu1k/K4NW52HqqPu8zjXQy8p0NGhq9aR7ayfQLYLijLMgaLOYRorKWX+F4gPfO1y4X
-AADeO++G5KyyNPNpA0N74GsaFVQ+R2N4a/xOHlBahj8HJSDrjfUOHH30P0rKfcZmi2iZ851nzRzn
-E7ZPN+BODCwHx2Y42Jl30dvNINNRDd9CeGCtNNeiBQ6jZqQt98MAPEmhvQ4d1rBOphIRYtm3QaY3
-LOz8BBWcekdEBQ+GoxiQYXV/XreJY/6VGQctesiwnwJfuWzvMzdr+s2mI3xX+jWWA+HIeZCgabk9
-zb5KMz2HbfhnIcg8Wl/mpCvkjH7MjMJNaMG/xu3LelH9iA5whwzClevDStMJ7au7ZY1Jqz03bB8T
-76vjPG/YP5tmvdSnUbErFsoYzfG25b2biIgRY4vm0g4RLCfejdMxi5CLmfw6gzAeC5v4zoHZiEsd
-on4=
-=16Z/
------END PGP SIGNATURE-----
+> +    description: MII converter port
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
 
---------------H2Ei4jFDsCdAEGbJSqAuxH3d--
+Why do you need sub-nodes? They don't have any properties. A simple mask 
+property could tell you which ports are present/active/enabled if that's 
+what you are tracking. Or the SoC specific compatibles you need to add 
+can imply the ports if they are SoC specific.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - renesas,miic-cfg-mode
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/net/pcs-rzn1-miic.h>
+> +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+> +
+> +    eth-miic@44030000 {
+> +      compatible = "renesas,rzn1-miic";
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      reg = <0x44030000 0x10000>;
+> +      clocks = <&sysctrl R9A06G032_CLK_MII_REF>,
+> +              <&sysctrl R9A06G032_CLK_RGMII_REF>,
+> +              <&sysctrl R9A06G032_CLK_RMII_REF>,
+> +              <&sysctrl R9A06G032_HCLK_SWITCH_RG>;
+> +      renesas,miic-cfg-mode = <MIIC_MUX_MAC2_MAC1_SWD_SWC_SWB_SWA>;
+> +
+> +      mii_conv0: mii-conv@0 {
+> +        reg = <0>;
+> +      };
+> +
+> +      mii_conv1: mii-conv@1 {
+> +        reg = <1>;
+> +      };
+> +
+> +      mii_conv2: mii-conv@2 {
+> +        reg = <2>;
+> +      };
+> +
+> +      mii_conv3: mii-conv@3 {
+> +        reg = <3>;
+> +      };
+> +
+> +      mii_conv4: mii-conv@4 {
+> +        reg = <4>;
+> +      };
+> +    };
+> \ No newline at end of file
+
+Fix this.
+
+> diff --git a/include/dt-bindings/net/pcs-rzn1-miic.h b/include/dt-bindings/net/pcs-rzn1-miic.h
+> new file mode 100644
+> index 000000000000..c5a0f382967b
+> --- /dev/null
+> +++ b/include/dt-bindings/net/pcs-rzn1-miic.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+
+Dual license please.
+
+> +/*
+> + * Copyright (C) 2022 Schneider-Electric
+> + *
+> + * Clément Léger <clement.leger@bootlin.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_PCS_RZN1_MIIC
+> +#define _DT_BINDINGS_PCS_RZN1_MIIC
+> +
+> +/*
+> + * Reefer to the datasheet [1] section 8.2.1, Internal Connection of Ethernet
+> + * Ports to check the meaning of these values.
+> + *
+> + * [1] REN_r01uh0750ej0140-rzn1-introduction_MAT_20210228.pdf
+> + */
+> +#define MIIC_MUX_MAC2_MAC1_SWD_SWC_SWB_SWA	0x13
+> +
+> +#endif
+> -- 
+> 2.34.1
+> 
+> 
