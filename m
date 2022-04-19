@@ -2,153 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23E73506CB5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE184506CD5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352395AbiDSMs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40320 "EHLO
+        id S242223AbiDSM46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 08:56:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350314AbiDSMsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:48:55 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AC736328;
-        Tue, 19 Apr 2022 05:46:11 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (85-76-11-253-nat.elisa-mobile.fi [85.76.11.253])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0EC4A25B;
-        Tue, 19 Apr 2022 14:46:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1650372369;
-        bh=O+gH+rTCR/vvHYsgAZ5AlKxyNWOnO0lDWJVxpTLeLQ0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OBZ77c4rUjk70vfBC5jVk7sWJnpcXHOBzlSOp07F+yaM9+gKNo4PI/TNnGOAPXRO9
-         6KY/E2ufhUe6u+rSOAkGAEboHosSqwECgNS1pUwyZ7JUjRk63L7KiRv1nWSPoQwLGC
-         yqLwdgRv3/kLkb65l5+2lrEE+Dn1WF/bZM+U0mA0=
-Date:   Tue, 19 Apr 2022 15:46:07 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [v8 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Message-ID: <Yl6vD1tu1U24AuFB@pendragon.ideasonboard.com>
-References: <20220419124025.1733230-1-patrick.rudolph@9elements.com>
- <20220419124025.1733230-2-patrick.rudolph@9elements.com>
+        with ESMTP id S235438AbiDSM46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:56:58 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AEDE37037;
+        Tue, 19 Apr 2022 05:54:14 -0700 (PDT)
+X-UUID: 47195bd9807c48b6acb41f1243ee5b80-20220419
+X-UUID: 47195bd9807c48b6acb41f1243ee5b80-20220419
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 523601457; Tue, 19 Apr 2022 20:54:07 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 19 Apr 2022 20:54:06 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 19 Apr 2022 20:54:06 +0800
+Message-ID: <d79bc438016fd794e6f73dd2a27007edaff3b758.camel@mediatek.com>
+Subject: Re: [PATCH 3/5] dt-bindings: mediatek: add vdosys1 RDMA definition
+ for mt8195
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
+        <Nancy.Lin@mediatek.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
+        <Jason-JH.Lin@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Date:   Tue, 19 Apr 2022 20:54:06 +0800
+In-Reply-To: <1650370363.539386.1977865.nullmailer@robh.at.kernel.org>
+References: <20220419033237.23405-1-rex-bc.chen@mediatek.com>
+         <20220419033237.23405-4-rex-bc.chen@mediatek.com>
+         <1650370363.539386.1977865.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220419124025.1733230-2-patrick.rudolph@9elements.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick,
-
-Thank you for the patch.
-
-On Tue, Apr 19, 2022 at 02:40:22PM +0200, Patrick Rudolph wrote:
-> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> chips. The functionality will be provided by the exisintg pca954x driver.
+On Tue, 2022-04-19 at 20:12 +0800, Rob Herring wrote:
+> On Tue, 19 Apr 2022 11:32:35 +0800, Rex-BC Chen wrote:
+> > From: "Nancy.Lin" <nancy.lin@mediatek.com>
+> > 
+> > Add vdosys1 RDMA definition.
+> > 
+> > Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  .../display/mediatek/mediatek,mdp-rdma.yaml   | 86
+> > +++++++++++++++++++
+> >  1 file changed, 86 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
+> > rdma.yaml
+> > 
 > 
-> While on it make the interrupts support conditionally as not all of the
-> existing chips have interrupts.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m
+> dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> For chips that are powered off by default add an optional regulator
-> called vdd-supply.
+> yamllint warnings/errors:
 > 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 39 ++++++++++++++++---
->  1 file changed, 34 insertions(+), 5 deletions(-)
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
+> rdma.yaml: $id: relative path/filename doesn't match actual path or
+> filename
+> 	expected: 
+> https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,mdp-rdma.yaml*__;Iw!!CTRNKA9wMg0ARbw!3ZfBylOH4GptgXoItZHgYYVPitXIJ1TDhU0oAfMro55Y0xklQB9xVRfnEFl-a1OhDJck$
+>  
+> Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
+> rdma.example.dts:27:18: fatal error: dt-bindings/memory/mt8195-
+> memory-port.h: No such file or directory
+>    27 |         #include <dt-bindings/memory/mt8195-memory-port.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:364:
+> Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
+> rdma.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1401: dt_binding_check] Error 2
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> index 9f1726d0356b..21ab286c74f2 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> @@ -4,21 +4,25 @@
->  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> doc reference errors (make refcheckdocs):
+> 
+> See 
+> https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/__;!!CTRNKA9wMg0ARbw!3ZfBylOH4GptgXoItZHgYYVPitXIJ1TDhU0oAfMro55Y0xklQB9xVRfnEFl-a3heEKEl$
 >  
-> -title: NXP PCA954x I2C bus switch
-> +title: NXP PCA954x I2C and compatible bus switches
->  
->  maintainers:
->    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->  
->  description:
-> -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> -
-> -allOf:
-> -  - $ref: /schemas/i2c/i2c-mux.yaml#
-> +  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-> +  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
->  
->  properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - maxim,max7356
-> +          - maxim,max7357
-> +          - maxim,max7358
-> +          - maxim,max7367
-> +          - maxim,max7368
-> +          - maxim,max7369
->            - nxp,pca9540
->            - nxp,pca9542
->            - nxp,pca9543
-> @@ -59,10 +63,33 @@ properties:
->      description: if present, overrides i2c-mux-idle-disconnect
->      $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
->  
-> +  vdd-supply:
-> +    description: A voltage regulator supplying power to the chip.
-> +
->  required:
->    - compatible
->    - reg
->  
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-mux.yaml#
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - maxim,max7367
-> +                - maxim,max7369
-> +                - nxp,pca9542
-> +                - nxp,pca9543
-> +                - nxp,pca9544
-> +                - nxp,pca9545
-> +      then:
-> +        properties:
-> +          interrupts: false
-> +          "#interrupt-cells": false
-> +          interrupt-controller: false
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> @@ -79,6 +106,8 @@ examples:
->              #size-cells = <0>;
->              reg = <0x74>;
->  
-> +            vdd-supply = <&p3v3>;
-> +
->              interrupt-parent = <&ipic>;
->              interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
->              interrupt-controller;
+> 
+> This check can fail if there are any dependencies. The base for a
+> patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up
+> to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
+Hello Rob,
 
--- 
-Regards,
+As mentioned in cover letter, this patch is basd on Yong's patch:
+message id: 20220407075726.17771-2-yong.wu@mediatek.com
+Without this patch, some patches of this series will build failed.
 
-Laurent Pinchart
+For Yong's series, I think it's just waiting for accepted by
+maintainers.
+Moreover, we really need your suggestion and even approvement for these
+display binding patches.
+
+Thanks for your big support!
+
+BRs,
+Rex
+
+
+
