@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E16A507950
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79AA950790E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234867AbiDSSiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 14:38:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38908 "EHLO
+        id S243764AbiDSSiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 14:38:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357488AbiDSShf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:37:35 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506824E388
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:29:09 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id s137so24906412pgs.5
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:29:09 -0700 (PDT)
+        with ESMTP id S1357599AbiDSSho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:37:44 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE702B27F;
+        Tue, 19 Apr 2022 11:30:10 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id a15so1503875pfv.11;
+        Tue, 19 Apr 2022 11:30:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=V3T8OEv3+9UCPUAV4HePdqnlpBuz6HHAUg/FVfP4RJM=;
-        b=V0rNvk/wnWYdllmSVPZdalU2z7Dssxp3E5BnURyBoQze+63YTqt5DS0A+CQbEhxHa1
-         o6PqtnMSRQussIFWpRo17I1P0hyiVbIesrE/f6oyzt3KXtaRxj9BuGe2xX/cyb/2rIDt
-         rO0NOXVdu/pyntrEI9fIf5aXdO6iGxpd21WrDijaD7eREAZZXMXEZRkiw3OTCxQjV+x8
-         0JzZDgy7PuWmyJpe/jzBPkX09X4vCja7okh9Z112hiEWhECmQoUL/E+DxZh8TpKwSBJD
-         PSSK/17wDxdbmfN1rBXszV7yBgDTOS+7/BDiiU+KupGDu9JIgFvlpL6XdB4ArsASUd8e
-         DPPw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=eKFioxOzghl9O19J5OuKB0d7mfsjViJLel8CE15qcbU=;
+        b=pWkWXgBERKLNVtKHTDizwMCKyCLWw8LwbLgtgU7ZGopBv/QOh8u+OJgNm0sOIGoB+E
+         lUqv8wbV5D05b1Tm51VCSB9bQg+tbnVQv+q5LUr8mSLFogleiK/OpPFp7HZTzgHw5FGZ
+         0OB1HKaRKQSyCYmPi/71w51LTS0YEq478+io2fw4aiYVWdSWXnZox31ivr/GgQcljp9m
+         2yvdjcWPlidRu+w+8njyrIymc5xJfxnT7LceAE9iSqcaOnloSNnDFj9u676N9JikMXgd
+         pIaB/YxG3CZBhgeDQed1G5yXnoQyzQ2j8sWKNY67o+WHdo6V6rSMHlcaakywgZGu/5xI
+         j4AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=V3T8OEv3+9UCPUAV4HePdqnlpBuz6HHAUg/FVfP4RJM=;
-        b=f4KVe3ffYkfnf3R18e9ZNywD0dtnXumsa5XsmOWB5wHcFz/GN3AF3foxgfgal8e5w5
-         LGoSUW6oyWDA028zodgX1RRrbzXQcM/zMMV8ERbXR559SwmQHwDcBCRzhAa2lKiV/X0Y
-         KSyqlnD0BjVcSBVOzvzu0geb83PB8yP44EBApZOGMSR8ae9YvGWrVkzFMJ91Z43ODTou
-         SxVF6ANWtPoiIrRhgWQLIDy4gIuWBtk4u246/DNKDbqi5rXxQRVsNOweDZYRsmnD4qq7
-         gs/7IbVncW9j79idenuhYwlBUu1p68uYQsO75jTpCqOibOdKY0RUL8D64TpFyeCilrgR
-         Msqw==
-X-Gm-Message-State: AOAM530qemU8W9HDxwBN6o8qk1psg+KT2bC3ewOLDaXntnXNCqEQRR9f
-        TV6StT11zIQbL1Y6obfRv5U=
-X-Google-Smtp-Source: ABdhPJzkL9v4zXLFNKhTwl4lydobOIwqTOu4f2WLo69SDlVtoCDUM7T7ffn3F7OH6wsvnfe1Uf9RuA==
-X-Received: by 2002:a05:6a00:234f:b0:4fa:f52b:46a1 with SMTP id j15-20020a056a00234f00b004faf52b46a1mr19288846pfj.32.1650392948822;
-        Tue, 19 Apr 2022 11:29:08 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id c17-20020a056a00249100b00508389d6a7csm17562188pfv.39.2022.04.19.11.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 11:29:08 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>
-Subject: Re: [PATCH 6/6] ARM: dts: bcm283x: Align ETH_CLK GPIO line name
-Date:   Tue, 19 Apr 2022 11:29:06 -0700
-Message-Id: <20220419182906.176640-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220411200143.4876-7-stefan.wahren@i2se.com>
-References: <20220411200143.4876-1-stefan.wahren@i2se.com> <20220411200143.4876-7-stefan.wahren@i2se.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=eKFioxOzghl9O19J5OuKB0d7mfsjViJLel8CE15qcbU=;
+        b=Nofc5y2V+CK5Eug3hDG428jxxZsAJAulO437VzFcmq8arxcvLWAKvurzsMVQZxA1Vv
+         DAQfbsFcTX2Z6GmYgqb/FfsxEuwOUBoIrVXXk8u8tc5zt+mzMk9RoeUP0FL4JZNfbRIy
+         7sO/J88jo837vVwdkHjXpJ9WJIC+ddtWqxPwHAMXeopcYVKSfwyArzbc/1VicS29RXLw
+         XFoFwThU1SDIZskRxRW5yEhXr1YAHgy0QV8TmYEDWXetuQ0FoYw8vC8g1ZXoAU6AJULW
+         8DfGJHwrPdA+ltIC6c/3FJbs4Fwf0hi5PYf9WRxI2ehro41WhK9iKZDwxVir/0BFB6aI
+         ECZg==
+X-Gm-Message-State: AOAM532+zCFAeFYLnE2d80IAnuqr8y5noVU/tUndll+s4o44jgi/qiDf
+        0NTsNXtvW57XAUDDTyUpfUk=
+X-Google-Smtp-Source: ABdhPJz7xRlqXEq+ldjZc5d9qGFyh22DlAaxSqMBK08X0bj/eXOK/7CFd+JUx3ana49zba0WkF/vXg==
+X-Received: by 2002:a05:6a00:2408:b0:4f7:a8cb:9b63 with SMTP id z8-20020a056a00240800b004f7a8cb9b63mr19312824pfh.33.1650393009772;
+        Tue, 19 Apr 2022 11:30:09 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id d8-20020a056a00198800b004fab740dbe6sm18351117pfl.15.2022.04.19.11.30.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 11:30:09 -0700 (PDT)
+Message-ID: <9b68b674-b167-89c4-6b77-c3b50b3312dd@gmail.com>
+Date:   Tue, 19 Apr 2022 11:30:07 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Disable gmac0 and enable port@8 on
+ Asus RT-AC88U
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+References: <20220410094454.2788-1-arinc.unal@arinc9.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220410094454.2788-1-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,17 +78,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Apr 2022 22:01:43 +0200, Stefan Wahren <stefan.wahren@i2se.com> wrote:
-> From: Phil Elwell <phil@raspberrypi.com>
-> 
-> The GPIO line name ETHCLK is not aligned with the other signals like
-> WIFI_CLK. Recently this has been fixed in the vendor tree, so upstream
-> this change.
-> 
-> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
+
+On 4/10/2022 2:44 AM, Arınç ÜNAL wrote:
+> Disable gmac0 which is not connected to any switch MAC. Enable port@8 of
+> the Broadcom switch which is connected to gmac2.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, 
+thanks!
+-- 
 Florian
