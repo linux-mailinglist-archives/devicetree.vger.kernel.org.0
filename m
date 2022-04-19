@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBCA5071E8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A9E85071F5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353861AbiDSPi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 11:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41814 "EHLO
+        id S239268AbiDSPkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 11:40:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349594AbiDSPi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:38:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E7312A95
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 08:35:45 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ngpt7-0003su-Fg; Tue, 19 Apr 2022 17:35:33 +0200
-Received: from pengutronix.de (2a03-f580-87bc-d400-53ed-3d96-8b26-5d5d.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:53ed:3d96:8b26:5d5d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 9BC3166BF1;
-        Tue, 19 Apr 2022 15:35:30 +0000 (UTC)
-Date:   Tue, 19 Apr 2022 17:35:30 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>,
-        Mataj Vasilevski <vasilmat@fel.cvut.cz>
-Subject: Re: [PATCH v8 0/7] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-Message-ID: <20220419153530.w2iovki72udt4o6q@pengutronix.de>
-References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz>
- <202203220918.33033.pisa@cmp.felk.cvut.cz>
- <20220322092212.f5eaxm5k45j5khra@pengutronix.de>
- <202204061020.42943.pisa@cmp.felk.cvut.cz>
+        with ESMTP id S1352379AbiDSPkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:40:18 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649AD17040;
+        Tue, 19 Apr 2022 08:37:35 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23JCbNEh019703;
+        Tue, 19 Apr 2022 17:37:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=MMWQcd7ztdfHPvacGaXnDXQQDw/8sntKbHOtFacicws=;
+ b=vVylh44DlkT3N6R9KUMdq7dAwFTjIftmkMCO3nv8tE917dkccLDGEn+FJRfq1pTuyP6C
+ sB5kHZizIKqQBVAhejDTBU4fi+kKWqCBCJUHluKcK/Lfg/zn8zmb5xLnG80+mT15DB8F
+ W+91vUWuhH0IM81x7FYGaKB12D/cEc2388zX4emxy5txFOkG/Zr8pvesIOdKEQnufyI+
+ 06MkLL/gLpbBmZw7qQAZ3BJoKmcF1eQQe+7nFOqsfzcEUv0IArkGugWHzie8/87r3IMS
+ NIKXavRJlQpm/YBEOVU62N3yNCIzDTA7GXxZjADaB/qpllYUSs6eIBC4x7Rnft94gGaO 2A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fh09krnem-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 19 Apr 2022 17:37:24 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D92B410002A;
+        Tue, 19 Apr 2022 17:37:23 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D2A48216EFC;
+        Tue, 19 Apr 2022 17:37:23 +0200 (CEST)
+Received: from [10.48.0.142] (10.75.127.47) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 19 Apr
+ 2022 17:37:23 +0200
+Message-ID: <b7b07e11-6078-ca32-7d3d-188542f28f9d@foss.st.com>
+Date:   Tue, 19 Apr 2022 17:37:22 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="han226cj42x6fohc"
-Content-Disposition: inline
-In-Reply-To: <202204061020.42943.pisa@cmp.felk.cvut.cz>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 0/2] ARM: dts: stm32: add RTC support on stm32mp13 boards
+Content-Language: en-US
+To:     Valentin Caron <valentin.caron@foss.st.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220407162042.361956-1-valentin.caron@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220407162042.361956-1-valentin.caron@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-19_05,2022-04-15_01,2022-02-23_01
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Valentin
 
---han226cj42x6fohc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 4/7/22 18:20, Valentin Caron wrote:
+> Add RTC node on stm32mp13 soc.
+> Enable RTC on stm32mp135f-dk board.
+> 
+> Valentin Caron (2):
+>    ARM: dts: stm32: add RTC node on stm32mp131
+>    ARM: dts: stm32: enable RTC support on stm32mp135f-dk
+> 
+>   arch/arm/boot/dts/stm32mp131.dtsi    | 15 +++++++++++++++
+>   arch/arm/boot/dts/stm32mp135f-dk.dts |  4 ++++
+>   2 files changed, 19 insertions(+)
+> 
 
-On 06.04.2022 10:20:42, Pavel Pisa wrote:
-> Hello Marc and others,
->=20
-> On Tuesday 22 of March 2022 10:22:12 Marc Kleine-Budde wrote:
-> > On 22.03.2022 09:18:32, Pavel Pisa wrote:
-> > > > The driver looks much better now. Good work. Please have a look at =
-the
-> > > > TX path of the mcp251xfd driver, especially the tx_stop_queue and
-> > > > tx_wake_queue in mcp251xfd_start_xmit() and mcp251xfd_handle_tefif(=
-). A
-> > > > lockless implementation should work in your hardware, too.
-> > >
-> > > Is this blocker for now? I would like to start with years tested base.
-> >
-> > Makes sense.
->=20
-> I have missed timing for 5.18 but v5.18-rc1 is out so I would be
-> happy if we do not miss 5.19 merge window at least with minimal version.
+Series applied on stm32-next.
 
-I've taken the patch (almost) as is, I marked both can_bittiming_const
-static, as sparse complained about that and I changed the order of two
-variable declarations to look nicer :)
-
-Looking forward for more patches!
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---han226cj42x6fohc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmJe1r8ACgkQrX5LkNig
-012gmQf/cwPZqvtOnsCpr8islfiXx2a2TAZ8CfYj/LmEqyHKv9BOzaEdM6mRQfKO
-e6PZz8SEJsQOfD+p5/a701EoqSGRVv/tzUyN49hsYT8aCHYzwMylpDZr6+t1Fafv
-9RID31WTw8Lt4MsQlpnLgDEoLc7BdcRZZdFfIUcXbAdDKIcivk9n+6Y08Mwh8ORA
-wpE1xQ3lyFYPTASD1hfELoJnGFyY6zMfZ6f1Ahjz+T6Am7SQOKrNVk8lfSFKgvuj
-u5XS8l+eW3QKI0RFIGzLv9AMHswDDsSHy83lu2xpNt6mbudToZAxOA+RmH3cNyOl
-+nk/MhI6ljXPoL3gLsZGWvQTsyWxBQ==
-=HGSt
------END PGP SIGNATURE-----
-
---han226cj42x6fohc--
+Thanks
+Alex
