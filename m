@@ -2,63 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC8B506476
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 08:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC72D50647D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 08:31:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237314AbiDSGcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 02:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43676 "EHLO
+        id S236895AbiDSGdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 02:33:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232518AbiDSGcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 02:32:17 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C02824595;
-        Mon, 18 Apr 2022 23:29:35 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23J6TNl9113316;
-        Tue, 19 Apr 2022 01:29:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650349763;
-        bh=HzppkN7J13v++U+2V8ppDtlcFEoREbbLAFk/k+lsDF0=;
-        h=From:To:CC:Subject:Date;
-        b=XAHCX79G7wwBXcsZetogYqwKISwtxcv7JDRPpkA/7GPuW2Df04RS8i3oHSI/rDlMA
-         2Gs2YSipyXsSmwXAA1IGXSb2BF8PHih2RD36ysbtJD6XTNVej7lLonb7Sef8IMTV1t
-         o/pP9CGe5ppCDqbCnYjcclaMCfoCpNM607OvirUI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23J6TNQn089631
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 19 Apr 2022 01:29:23 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
- Apr 2022 01:29:23 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 19 Apr 2022 01:29:23 -0500
-Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23J6TIAC058735;
-        Tue, 19 Apr 2022 01:29:19 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am625-sk: Add ECAP APWM nodes
-Date:   Tue, 19 Apr 2022 11:59:02 +0530
-Message-ID: <20220419062902.196526-1-vigneshr@ti.com>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S237849AbiDSGds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 02:33:48 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F72724972
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 23:31:05 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id r13so30819198ejd.5
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 23:31:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/rrLKvmQMfKWM71Vt4ACdmZv7rtrzaFdefyFe3yrPL0=;
+        b=TxQpED75D37zNwWP0eZ4Dppk/q0LBcVqFM6ORmD7xS3vp6VttRdoUTzqm+XP5vOFB0
+         Ctlm47B6Emw1ElvrpbN9QjQq7etONKq0Fbe+h2PELH5bpevYVaHc0zL4bcpO5Qu1e8ng
+         VBoBvyM85yJHIOcjSeDLAlGnhqt81eY9ktqQssIFMEbOujGk25Tjs0P1764K49T1dInS
+         gq25ZkM3ab/TjSjwESqF2E+Q65bRBe48H/wOBG8hMorzLyEUchddko3rhab4wIHEZ4u2
+         Ed518cl9OebJFYVdZjYw+ib48Z0+1HgqZLZwbpyFngfqIxORmv7aMQjvtzynGBzn8m9q
+         UGQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/rrLKvmQMfKWM71Vt4ACdmZv7rtrzaFdefyFe3yrPL0=;
+        b=2Dn1rHVm3iZVz3QnL2uOKo3oyWkZHpYcQPV2UTZAW3t/0+iwgTH0m8hwPprS/2O63F
+         ZDw2pm9Oh7ahM051UdgzfH8QT8Ru22SNWWete8DLE3K91KeN18JXOuTr/8PtBNRdjW+o
+         cX6D25/EWa5YMQWiBglKb6E+AHBZp5mSKb5WkjfRrNoo6VuylZ+UrNWa7UHsZLNBaY41
+         8WYwzRkb7T5uf7MgX224/9/WsWGsGEbk2min6qesJ25zV7U8SogdLqCkC52v5xaZbTrV
+         e2fe203CHzATmNQPcHF6lgTmX0/2HiUznUImtgDiBmQx8aD2Xn4EzAPQFwG95FvtpBDH
+         QYUQ==
+X-Gm-Message-State: AOAM5323rf7hTJeoieZUawDdHfa9cpb5CaaPpRPuC0p7tDIXrvk0ggaH
+        0+oJ3KCZLLnc1OiGhuViYaZ/kg==
+X-Google-Smtp-Source: ABdhPJzYgvXLYpatm5Bb1YZMvzLwkeUp5lptQM5SS++47h8EOa4UubW5sk4ag3uCpQcwEUHKYqtY7A==
+X-Received: by 2002:a17:907:1c9b:b0:6ef:5e62:fd62 with SMTP id nb27-20020a1709071c9b00b006ef5e62fd62mr10556403ejc.686.1650349863942;
+        Mon, 18 Apr 2022 23:31:03 -0700 (PDT)
+Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id j2-20020a056402238200b0041f351a8b83sm7940834eda.43.2022.04.18.23.31.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Apr 2022 23:31:03 -0700 (PDT)
+Message-ID: <aa54cc23-e479-688c-6a3c-b9c73babd9b4@linaro.org>
+Date:   Tue, 19 Apr 2022 08:31:02 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH RESEND v2 1/9] dt-bindings: clk: qcom: msm8996-apcc: Add
+ CBF
+Content-Language: en-US
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Rob Herring <robh@kernel.org>
+References: <20220416025637.83484-1-y.oudjana@protonmail.com>
+ <20220416025637.83484-2-y.oudjana@protonmail.com>
+ <813f4a3d-255b-0ec1-cc3e-a1280e4d74ae@linaro.org>
+ <VOUJAR.IJKRF5T1P4ZE@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <VOUJAR.IJKRF5T1P4ZE@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,72 +92,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM62 has 3 ECAP instances with 1 APWM each. Add DT nodes for the same.
-Keep them disabled in am625-sk dts as these pins can be repurposed in
-user exp connector.
+On 18/04/2022 21:12, Yassine Oudjana wrote:
+> 
+> On Mon, Apr 18 2022 at 18:04:08 +0200, Krzysztof Kozlowski 
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 16/04/2022 04:56, Yassine Oudjana wrote:
+>>>  Add CBF clock and reg.
+>>>
+>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>  Acked-by: Rob Herring <robh@kernel.org>
+>>>  ---
+>>>   .../devicetree/bindings/clock/qcom,msm8996-apcc.yaml   | 10 
+>>> ++++++----
+>>>   1 file changed, 6 insertions(+), 4 deletions(-)
+>>>
+>>>  diff --git 
+>>> a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml 
+>>> b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+>>>  index a20cb10636dd..325f8aef53b2 100644
+>>>  --- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+>>>  +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+>>>  @@ -10,8 +10,8 @@ maintainers:
+>>>     - Loic Poulain <loic.poulain@linaro.org>
+>>>
+>>>   description: |
+>>>  -  Qualcomm CPU clock controller for MSM8996 CPUs, clock 0 is for 
+>>> Power cluster
+>>>  -  and clock 1 is for Perf cluster.
+>>>  +  Qualcomm CPU clock controller for MSM8996 CPUs, clock 0 is for 
+>>> Power cluster,
+>>>  +  clock 1 is for Perf cluster, and clock 2 is for Coherent bus 
+>>> fabric (CBF).
+>>>
+>>>   properties:
+>>>     compatible:
+>>>  @@ -19,7 +19,9 @@ properties:
+>>>         - qcom,msm8996-apcc
+>>>
+>>>     reg:
+>>>  -    maxItems: 1
+>>>  +    items:
+>>>  +      - description: Cluster clock registers
+>>>  +      - description: CBF clock registers
+>>
+>> This breaks the ABI (which might be okay or might be not, but was not
+>> mentioned in the commit) and breaks existing DTSes. Please fix them
+>> before this patch.
+> 
+> This is only documenting changes made in an earlier patch[1] this
+> series depends on,
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 27 ++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am625-sk.dts   | 12 +++++++++++
- 2 files changed, 39 insertions(+)
+So this other patch breaks the ABI. Was it accepted? The patch you wrote
+here should go together with the clock change.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 4b6ba98dd0a2..dd972fcdaedb 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -530,4 +530,31 @@ mailbox0_cluster0: mailbox@29000000 {
- 		ti,mbox-num-users = <4>;
- 		ti,mbox-num-fifos = <16>;
- 	};
-+
-+	ecap0: pwm@23100000 {
-+		compatible = "ti,am3352-ecap";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x23100000 0x00 0x100>;
-+		power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 51 0>;
-+		clock-names = "fck";
-+	};
-+
-+	ecap1: pwm@23110000 {
-+		compatible = "ti,am3352-ecap";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x23110000 0x00 0x100>;
-+		power-domains = <&k3_pds 52 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 52 0>;
-+		clock-names = "fck";
-+	};
-+
-+	ecap2: pwm@23120000 {
-+		compatible = "ti,am3352-ecap";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x23120000 0x00 0x100>;
-+		power-domains = <&k3_pds 53 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 53 0>;
-+		clock-names = "fck";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index 5fc35898a1e2..2c5e0e5b826b 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -477,3 +477,15 @@ partition@3fc0000 {
- 		};
- 	};
- };
-+
-+&ecap0 {
-+	status = "disabled";
-+};
-+
-+&ecap1 {
-+	status = "disabled";
-+};
-+
-+&ecap2 {
-+	status = "disabled";
-+};
--- 
-2.35.3
+>  and the DTSes are fixed in another patch[2] that
+> is also listed as a dependency in the cover letter (both patches
+> aren't applied yet). Shouldn't the ABI changes should be mentioned in
+> those patches instead?
 
+They should be mentioned in the clock driver or here, because usually
+they come together. :)
+
+Best regards,
+Krzysztof
