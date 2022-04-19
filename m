@@ -2,152 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF76A507C8E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 00:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 732D8507C97
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 00:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240241AbiDSWep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 18:34:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59804 "EHLO
+        id S1358211AbiDSWgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 18:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239995AbiDSWen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 18:34:43 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 15D4228986;
-        Tue, 19 Apr 2022 15:31:59 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B68D21477;
-        Tue, 19 Apr 2022 15:31:58 -0700 (PDT)
-Received: from [10.57.41.251] (unknown [10.57.41.251])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3DAB03F5A1;
-        Tue, 19 Apr 2022 15:31:56 -0700 (PDT)
-Message-ID: <543820f8-5e93-eedb-e409-0cb13d092f07@arm.com>
-Date:   Tue, 19 Apr 2022 23:31:49 +0100
+        with ESMTP id S1358213AbiDSWgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 18:36:06 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B6E2AE1D
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 15:33:22 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2ec04a2ebadso188142167b3.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 15:33:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dPwL7aoaZ2Tj5IbNCnFua5KEAaAGPpZL6+FzfhVJ9DU=;
+        b=cppk+mUylJYCtCcjAdZD6my1QeB78RbGeqdSursZUtBQwAgnkzDQSyNxHh9jUrfO1/
+         VcGN3c6MOgC0vv8hXaLxWUtzzLnU5txIxFDqJx0Az/dSn2JE+mF+8BWUn6Dm6NRcmGye
+         uH9sM6+tReaXvghSDyxsnzzDW2JBNBjI130ZfjLy+Sq63vdWjZBf8U7lYXLu5ul38FRZ
+         lnhqmAONa0USuN0S8HcQoJ4uy71e64Gp8pka1ow38wc/uon7Cy1o2bsDiK+56FiVhU2H
+         guvG0T3lpuOqjHOOgfEUaAtnGTkrP9QRxQv58sqgQ3ikJD3W7TSs/0pyGLVsA5PMN273
+         hhRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dPwL7aoaZ2Tj5IbNCnFua5KEAaAGPpZL6+FzfhVJ9DU=;
+        b=oBP1H25b/jDdjj0aUCIvdpQo2LNubRxSQehGPvFhDAjmFhxPGiVzoljH97tsTOu36T
+         /rO8DGlw98PmJSuMcPWgNZzFdV3BQ6ng2wLKzFAB5OrGKkmA4wkmP6+stHZv0gTGg5QP
+         2FBYgjc/aF/hvLrfhbo+FTCI/bJEgAZFM6TWJLExyC2FKUqb8H2rF2kqqTXEd+xuSAym
+         co6JKIX+TVs/dykmj+EFrWld0ZHEPVcNwsbYyf3VVro58dCCDZO8YQX4PxGbHvSJmS79
+         R+ulcy8DCj0wAjpidsvsRLetV+Zt1TjFzRvYCC3siaQa92JmbkZpDhXU0XL+7+0GAFyD
+         nmIQ==
+X-Gm-Message-State: AOAM5322Yc0v8Q0SKiJg71icEeDLQZocnZSPSAhNpxKpksOnADdcnEyu
+        gh6l0zGfF2hBE0z+Z0nbfZ9NJiJsv0i6Gv1JaK37ib3vmkPBwA==
+X-Google-Smtp-Source: ABdhPJz+yFRgMHBw2zE3OHuucGEP8amS/hvIwE6uRi+tci2ORv8kQIih2dHhwvp5wJLJbquzoJV0llSzHo0T9RhKEsk=
+X-Received: by 2002:a81:b50d:0:b0:2e5:b653:7e97 with SMTP id
+ t13-20020a81b50d000000b002e5b6537e97mr19457673ywh.140.1650407602056; Tue, 19
+ Apr 2022 15:33:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
- Electronics TM1628
-Content-Language: en-GB
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+References: <20220319204628.1759635-1-michael@walle.cc> <20220319204628.1759635-7-michael@walle.cc>
+ <CACRpkdbrw7Hjt9mB9pr_iNsGi71g_d8BGhpT_ih1RVgKJ5U0qQ@mail.gmail.com>
+ <e02e22920ffe23b49237c0c1379e888b@walle.cc> <de9b0114-23b5-04b4-86b3-0d393441a267@kernel.org>
+ <735863d6476605e4ff72032d8971ac0d@walle.cc>
+In-Reply-To: <735863d6476605e4ff72032d8971ac0d@walle.cc>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 20 Apr 2022 00:33:10 +0200
+Message-ID: <CACRpkdbxmN+SWt95aGHjA2ZGnN61aWaA7c5S4PaG+WePAj=htg@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] dt-bindings: pinctrl: convert ocelot-pinctrl to
+ YAML format
+To:     Michael Walle <michael@walle.cc>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
- <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
- <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
- <CAMuHMdV8iy4vMASuUgeQmjHdAMNzvCikwheyQO1-AQH0yYk0RQ@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAMuHMdV8iy4vMASuUgeQmjHdAMNzvCikwheyQO1-AQH0yYk0RQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-10.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-21 08:12, Geert Uytterhoeven wrote:
-> Hi Robin,
-> 
-> On Fri, Mar 18, 2022 at 9:50 PM Robin Murphy <robin.murphy@arm.com> wrote:
->> On 2022-02-25 21:13, Heiner Kallweit wrote:
->>> Add a YAML schema binding for TM1628 auxdisplay
->>> (7/11-segment LED) controller.
->>>
->>> This patch is partially based on previous work from
->>> Andreas Färber <afaerber@suse.de>.
->>>
->>> Co-developed-by: Andreas Färber <afaerber@suse.de>
->>> Signed-off-by: Andreas Färber <afaerber@suse.de>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> 
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
-> 
->>> +
->>> +patternProperties:
->>> +  "^.*@[1-7],([1-9]|1[0-6])$":
->>> +    type: object
->>> +    $ref: /schemas/leds/common.yaml#
->>> +    unevaluatedProperties: false
->>> +    description: |
->>> +      Properties for a single LED.
->>> +
->>> +    properties:
->>> +      reg:
->>> +        description: |
->>> +          1-based grid number, followed by 1-based segment bit number.
->>> +        maxItems: 1
->>> +
->>> +    required:
->>> +      - reg
->>
->> I'm concerned that this leaves us no room to support the additional
->> keypad functionality in future. Having now double-checked a datasheet,
->> the inputs are also a two-dimensional mux (sharing the segment lines),
->> so the device effectively has two distinct but numerically-overlapping
->> child address spaces - one addressed by (grid,segment) and the other by
->> (segment,key).
-> 
-> Sounds similar to HT16K33?
+On Mon, Apr 18, 2022 at 2:04 PM Michael Walle <michael@walle.cc> wrote:
+> Am 2022-04-18 13:13, schrieb Krzysztof Kozlowski:
 
-/me searches up a datasheet...
+> > I think you got all necessary acks for this pinctrl bindings change and
+> > the dependency ("add reset property"), so both can go via Linus' tree.
+> > That's preferred.
+> >
+> > DTS patches goes through your SoC maintainer tree.
+>
+> Ah, ok, I wasn't aware of that. Then yes, please go ahead and
+> pick this and the first patch of [1] up, Linus.
 
-Keypad-wise, it appears so, however the display side of this 
-1618/1628/1638 family is very much tuned for 7-segment displays rather 
-than arbitrary dot-matrix ones.
+I picked up this patch but:
 
-I do recall when I was digging a few years ago, turning up an old Holtek 
-VFD driver which looked suspiciously like it might be the origin of the 
-particular 3-wire protocol and command set (including weird non-linear 
-brightness scale) which all these LED driver clones seem to borrow from, 
-but I can't now remember the part number :(
+> [1]
+> https://lore.kernel.org/linux-gpio/20220313154640.63813-1-michael@walle.cc/
 
->> Rob, Krysztof, any thoughts on the best DT idiom to leave accommodation
->> for that? I'm thinking either require an intermediate node to contain
->> each notional address space, or perhaps add another leading address cell
->> to select between them? I don't believe any of these things have further
->> functionality beyond that.
-> 
-> The problem with these devices is that there are thousands of different
-> ways to wire them, and coming up with a generic wiring description in
-> DT and writing code to handle that can be very hard.
-> 
-> For HT16K33 non-dot-matrix wirings, I just added extra compatible
-> values matching the wiring of a few known devices[1].  That way the
-> driver can handle them efficiently.
-> It does have the disadvantage that adding support for new devices
-> means introducing more compatible values, and adding more code.
-> 
-> Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+These patches don't apply to my tree. Please rebase on
+the pinctrl "devel" branch and resend!
+https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
 
-I think the display side of Heiner's binding is fine for what these 
-chips can do - I've finally had a bit more time to play with this 
-series, and (with minor driver hacks) it works just fine to describe my 
-TM1638 breakout board with an 8-digit display, where segments 8 and 9 of 
-each grid are respectively a decimal point and a discrete indicator LED, 
-managed as separate LED nodes.
-
-However, I think you've indirectly addressed my outstanding concern 
-there - I wasn't aware of the "linux,keymap" property, but since that 
-brings its own implicit (row,column) addresses distinct from the DT 
-address space, it looks like that might be sufficient as a neat standard 
-way to extend this binding in future *without* any other changes.
-
-Thanks,
-Robin.
+Yours,
+Linus Walleij
