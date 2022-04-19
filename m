@@ -2,209 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 006BA5070CB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:40:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C4275070D0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351453AbiDSOnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58388 "EHLO
+        id S236287AbiDSOn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:43:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241817AbiDSOnD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:43:03 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4947A205E8
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:40:20 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D242F83CF3;
-        Tue, 19 Apr 2022 16:40:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1650379218;
-        bh=hDwfhY/HpPxbc/begCdgWtM53seWsGCI4w+qpBFpdVk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Uj9qcmf/ELviyuYREIY0CFcTCn77IAd/IPOIkP20AFmpGLbjB855SViux029w0csd
-         7mbjpSbRCdeNHb2j2DQ/rFkEXArXrPACgrt9bzeE3ROINlE1nowUBagKGzsrel2Jgm
-         e3eJCpZ2gqC7ka+qyWwp3Hh7UBesrjKs9G/Dd5O76J+0dk7jWscRuf+l9F8qHr5Lpe
-         hXz/pS2FcSSXwWmcz9gS5N6bYFk8/E+L+09BNtwg94P3qtbPYU3cBb9UijWd/9CCbd
-         GslUvl+EGr+rBI/8747KnedN5F9P7zR7O+AMvGibJc96zfgJLPCjCSj2aQqqRkJGu1
-         De/oC6l0eSP2g==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maxime Ripard <maxime@cerno.tech>,
+        with ESMTP id S233365AbiDSOnz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:43:55 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE6721828;
+        Tue, 19 Apr 2022 07:41:10 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 8137D24000E;
+        Tue, 19 Apr 2022 14:41:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650379268;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9u41AmvPYzaP5UxEoTmolh4l0tPcqavKOqVOLJJD3S4=;
+        b=ifnn0HaliB65Zi+kAJRPXi5a+jTdBu3WK28oWc6C177sY+9wmTGu2+9paSFyuEFrjwqb2I
+        EWmhc7RgywHsmIZBb9pI0Ued52Cd7GVuNZsmVt63Tc26FASbndA/TAKJYDc96j5pQyNOdu
+        fcYp1bnmDUwby5nsy3gnxN8NLoUnopiyswW2W7ktfnfeSQIXr4ulP7eyL+VtjVqYUL8PMj
+        f7zQx6OMXad5pt3DJZpF8QdOa5WCux7Pu4/l4/lIq2tIi3X+a0BoN0+vRum89II7OH1qCS
+        nbZrSCLzmE1NsrQeo7w8Btcm2ARDea8dHqdlyVBFfqroKGJjfWQumv3Lab1qbQ==
+Date:   Tue, 19 Apr 2022 16:41:05 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: display: bridge: lt9211: Add Lontium LT9211 bridge driver
-Date:   Tue, 19 Apr 2022 16:39:57 +0200
-Message-Id: <20220419143958.94873-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: PCI: renesas-pci-usb: Convert
+ bindings to json-schema
+Message-ID: <20220419164105.14bf82cf@bootlin.com>
+In-Reply-To: <CAMuHMdUhr7emtsxoxGP5EH2EzNK=PM_7+-32cesecjQjoW1ryQ@mail.gmail.com>
+References: <20220414074011.500533-1-herve.codina@bootlin.com>
+ <20220414074011.500533-3-herve.codina@bootlin.com>
+ <CAMuHMdUhr7emtsxoxGP5EH2EzNK=PM_7+-32cesecjQjoW1ryQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Lontium LT9211 Single/Dual-Link DSI/LVDS or Single DPI to
-Single-link/Dual-Link DSI/LVDS or Single DPI bridge. This chip is highly
-capable at converting formats, but sadly it is also highly undocumented.
+Hi Geert,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Maxime Ripard <maxime@cerno.tech>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Robert Foss <robert.foss@linaro.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: - Fix up s@i2c10@i2c@ in binding example
-    - Add RB from Rob
----
- .../display/bridge/lontium,lt9211.yaml        | 117 ++++++++++++++++++
- 1 file changed, 117 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+On Thu, 14 Apr 2022 10:28:47 +0200
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
-new file mode 100644
-index 0000000000000..9a6e9b25d14a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
-@@ -0,0 +1,117 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/lontium,lt9211.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lontium LT9211 DSI/LVDS/DPI to DSI/LVDS/DPI bridge.
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+description: |
-+  The LT9211 are bridge devices which convert Single/Dual-Link DSI/LVDS
-+  or Single DPI to Single/Dual-Link DSI/LVDS or Single DPI.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lontium,lt9211
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO connected to active high RESET pin.
-+
-+  vccio-supply:
-+    description: Regulator for 1.8V IO power.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Primary MIPI DSI port-1 for MIPI input or
-+          LVDS port-1 for LVDS input or DPI input.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Additional MIPI port-2 for MIPI input or LVDS port-2
-+          for LVDS input. Used in combination with primary
-+          port-1 to drive higher resolution displays
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Primary MIPI DSI port-1 for MIPI output or
-+          LVDS port-1 for LVDS output or DPI output.
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Additional MIPI port-2 for MIPI output or LVDS port-2
-+          for LVDS output. Used in combination with primary
-+          port-1 to drive higher resolution displays.
-+
-+    required:
-+      - port@0
-+      - port@2
-+
-+required:
-+  - compatible
-+  - reg
-+  - vccio-supply
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      hdmi-bridge@3b {
-+        compatible = "lontium,lt9211";
-+        reg = <0x3b>;
-+
-+        reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
-+        interrupts-extended = <&tlmm 84 IRQ_TYPE_EDGE_FALLING>;
-+
-+        vccio-supply = <&lt9211_1v8>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+
-+            endpoint {
-+              remote-endpoint = <&dsi0_out>;
-+            };
-+          };
-+
-+          port@2 {
-+            reg = <2>;
-+
-+            endpoint {
-+              remote-endpoint = <&panel_in_lvds>;
-+            };
-+          };
-+        };
-+      };
-+    };
-+
-+...
--- 
-2.35.1
+> Hi Herv=C3=A9,
+>=20
+> On Thu, Apr 14, 2022 at 9:40 AM Herve Codina <herve.codina@bootlin.com> w=
+rote:
+> > Convert Renesas PCI bridge bindings documentation to json-schema.
+> > Also name it 'renesas,pci-usb' as it is specifically used to
+> > connect the PCI USB controllers to AHB bus.
+> >
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
+>=20
+> Thanks a lot for tackling this DT binding file!
+>=20
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml
+> > @@ -0,0 +1,134 @@
+> > +# SPDX-License-Identifier: GPL-2.0 =20
+>=20
+> scripts/checkpatch.pl says:
+> WARNING: DT binding documents should be licensed (GPL-2.0-only OR BSD-2-C=
+lause)
 
+Right, changed to "GPL-2.0-only OR BSD-2-Clause"
+
+>=20
+> > +  reg:
+> > +    description: |
+> > +      A list of physical regions to access the device. The first is
+> > +      the operational registers for the OHCI/EHCI controllers and the
+> > +      second is for the bridge configuration and control registers.
+> > +    minItems: 2
+> > +    maxItems: 2 =20
+>=20
+> reg:
+>   items:
+>     - description: Operational registers for the OHCI/EHCI controllers.
+>     - description: Bridge configuration and control registers.
+
+Ok, changed.
+
+>=20
+> > +
+> > +  interrupts:
+> > +    description: Interrupt for the device. =20
+>=20
+> maxItems: 1
+>=20
+> The description is not needed.
+
+Ok, changed.
+
+>=20
+> > +
+> > +  interrupt-map:
+> > +    description: |
+> > +      Standard property used to define the mapping of the PCI interrup=
+ts
+> > +      to the GIC interrupts.
+> > +
+> > +  interrupt-map-mask:
+> > +    description:
+> > +      Standard property that helps to define the interrupt mapping.
+> > +
+> > +  clocks:
+> > +    description: The reference to the device clock. =20
+>=20
+> maxItems: 1
+>=20
+> The description is not needed.
+
+Ok, changed
+
+>=20
+> Missing "resets" and "power-domains" properties.
+>=20
+> Missing description of the child nodes.
+
+"resets", "power-domains" dans child nodes added
+
+>=20
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-map
+> > +  - interrupt-map-mask
+> > +  - clocks =20
+>=20
+> Missing "resets" and "power-domains".
+
+Added
+
+>=20
+> > +  - bus-range
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - "#interrupt-cells"
+> > +
+> > +unevaluatedProperties: false =20
+>=20
+> Why doesn't "make dtbs_check" complain about the presence of
+> e.g. "resets" in the actual DTS files?
+>=20
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
+> > +
+> > +    bus {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>; =20
+>=20
+> I think you should drop this (and the corresponding high addresses
+> below).
+>=20
+
+Ok
+
+> > +
+> > +        pci0: pci@ee090000  {
+> > +            compatible =3D "renesas,pci-r8a7790", "renesas,pci-rcar-ge=
+n2";
+> > +            device_type =3D "pci";
+> > +            clocks =3D <&cpg CPG_MOD 703>;
+> > +            reg =3D <0 0xee090000 0 0xc00>,
+> > +                  <0 0xee080000 0 0x1100>;
+> > +            interrupts =3D <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; =20
+>=20
+>                         power-domains =3D <&sysc R8A7790_PD_ALWAYS_ON>;
+>                         resets =3D <&cpg 703>;
+
+Ok
+
+>=20
+> > +            status =3D "disabled";
+> > +
+> > +            bus-range =3D <0 0>;
+> > +            #address-cells =3D <3>;
+> > +            #size-cells =3D <2>;
+> > +            #interrupt-cells =3D <1>;
+> > +            ranges =3D <0x02000000 0 0xee080000 0 0xee080000 0 0x00010=
+000>;
+> > +            dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 0 0x4=
+0000000>;
+> > +            interrupt-map-mask =3D <0xf800 0 0 0x7>;
+> > +            interrupt-map =3D <0x0000 0 0 1 &gic GIC_SPI 108 IRQ_TYPE_=
+LEVEL_HIGH>,
+> > +                            <0x0800 0 0 1 &gic GIC_SPI 108 IRQ_TYPE_LE=
+VEL_HIGH>,
+> > +                            <0x1000 0 0 2 &gic GIC_SPI 108 IRQ_TYPE_LE=
+VEL_HIGH>;
+> > +
+> > +            usb@1,0 {
+> > +                reg =3D <0x800 0 0 0 0>;
+> > +                phys =3D <&usb0 0>;
+> > +                phy-names =3D "usb";
+> > +            };
+> > + =20
+>=20
+> ERROR: trailing whitespace
+> #249: FILE: Documentation/devicetree/bindings/pci/renesas,pci-usb.yaml:12=
+7:
+> +            $
+
+Ok
+
+>=20
+> > +            usb@2,0 {
+> > +                reg =3D <0x1000 0 0 0 0>;
+> > +                phys =3D <&usb0 0>;
+> > +                phy-names =3D "usb";
+> > +            };
+> > +        };
+> > +    }; =20
+>=20
+> Gr{oetje,eeting}s,
+>=20
+>                         Geert
+>=20
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>=20
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
+
+Thanks for the review,
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
