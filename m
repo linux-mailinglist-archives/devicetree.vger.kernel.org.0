@@ -2,102 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCF2A50668D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 10:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B14E50667D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 10:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244255AbiDSINB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 04:13:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35304 "EHLO
+        id S238639AbiDSIIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 04:08:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243633AbiDSIM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 04:12:58 -0400
-X-Greylist: delayed 1696 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 19 Apr 2022 01:10:16 PDT
-Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9270DDF82;
-        Tue, 19 Apr 2022 01:10:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=9qfOo1FOODXMcgRdw2ZARNk7YVVQEHz8SOv8rQTaLoA=; b=X2GPqOmJxqY6DAgWW5I24FKKxA
-        9FS+xd33q5yCd1Go2L75/ZTQ1sPucX9A2LApeUCxsCsV3pQ0SM+g2nhKjek2kmwrAZbZvYBitGEW8
-        RXfHkKyxVE4ZWlzyW6QZjhQpRjqqRnkr+3pfx68JtHm/goTEpIPsPvsHJxoS6osuKxqG6OKVBRxmn
-        hizF/+03PXnEmqVk4EoFerdxuBzswE7m9vKf/Xrkkcv7EakYMKlxuVyIAm1nlUj5GZh+4QVUleCMO
-        x0jdzJBHWen2/i4qEVq6ScpZVeI/K4nBiGEG5Cye7rZAWgvLDCGEkqDvFtV5SAHM5SjAcd16I3W4f
-        c9W8DYYg==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1ngiUl-000EbL-BN; Tue, 19 Apr 2022 09:41:55 +0200
-Received: from [2001:a61:2a5d:d701:9e5c:8eff:fe01:8578]
-        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1ngiUk-000KyO-Us; Tue, 19 Apr 2022 09:41:54 +0200
-Message-ID: <4a940702-8a34-c163-2e5a-8dfd835e56d0@metafoo.de>
-Date:   Tue, 19 Apr 2022 09:41:54 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [v4 10/14] iio: document "serial_number" sysfs attribute
-Content-Language: en-US
-To:     Andrea Merello <andrea.merello@gmail.com>, jic23@kernel.org,
-        mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, andy.shevchenko@gmail.com,
-        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
-        jacopo@jmondi.org, Andrea Merello <andrea.merello@iit.it>
-References: <20220415130005.85879-1-andrea.merello@gmail.com>
- <20220415130005.85879-11-andrea.merello@gmail.com>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-In-Reply-To: <20220415130005.85879-11-andrea.merello@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.5/26516/Mon Apr 18 10:21:52 2022)
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S236973AbiDSIIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 04:08:37 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544921CB05;
+        Tue, 19 Apr 2022 01:05:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0DDA6B810FD;
+        Tue, 19 Apr 2022 08:05:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9292C385A7;
+        Tue, 19 Apr 2022 08:05:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650355552;
+        bh=uy5PsnK0LjX3h5KU565Xiqn4RBI19MrcfxohTC+2imw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=JExSwVWVtC4u5B6tkqsibiY9RDlqofZAjhrIPunP/eWBnWS3b8Q/jaPiYM3g4hJfr
+         1jnIu19DwciEUjfLJp/Q1QinwHCmU4zca8916I1MHH7eErP2VjBy661vUksnvb47fg
+         xEzDXauhRLXeDcb35Apt7Kpldr39XqlXsj7LFo3qA10Ud+AbdamomNDW1PO8Hioh0D
+         vmL/VF1xTo9V9+AiOO+y9pkKIa4wolGhIgEDG99TkPTA3ZuEYyyzYie4MmcOkxxlwb
+         9uepJ9omG+5rG8cotmcu2FJGwqYLVpRKzk719U3lUuULflMw0OolN01CmwAHyKeC6U
+         PYjv9L0XopJQA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1ngiru-005GGn-B0; Tue, 19 Apr 2022 09:05:50 +0100
+Date:   Tue, 19 Apr 2022 09:05:50 +0100
+Message-ID: <87r15ta469.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 2/4] PCI: dwc: rockchip: add legacy interrupt support
+In-Reply-To: <CAMdYzYqfitnPYSUEeeUB=x9=L9xzAu6o0SBmEdF8WKeb-+b6uQ@mail.gmail.com>
+References: <20220416110507.642398-1-pgwipeout@gmail.com>
+        <20220416110507.642398-3-pgwipeout@gmail.com>
+        <308e9c47197d4f7ae5a31cfcb5a10886@kernel.org>
+        <CAMdYzYo+YeAgT92baMOoWpra230wro_WynRcajL-__9RNkeE9Q@mail.gmail.com>
+        <87zgkk9gtc.wl-maz@kernel.org>
+        <CAMdYzYo_+7rakc=GCTueEZvH_F4Co6+=eKAUztJaafiDXSKKXQ@mail.gmail.com>
+        <87sfqaa7uv.wl-maz@kernel.org>
+        <CAMdYzYouLoYX89EWjQTRAjd-1bvJEJtfYQa2KrtFH22Kp-4Efw@mail.gmail.com>
+        <878rs2c8ay.wl-maz@kernel.org>
+        <CAMdYzYqfitnPYSUEeeUB=x9=L9xzAu6o0SBmEdF8WKeb-+b6uQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: pgwipeout@gmail.com, lorenzo.pieralisi@arm.com, robh@kernel.org, kw@linux.com, bhelgaas@google.com, heiko@sntech.de, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/15/22 15:00, Andrea Merello wrote:
-> From: Andrea Merello <andrea.merello@iit.it>
->
-> This patch adds ABI documentation for the new "serial_number" sysfs
-> attribute. The first user is the bno055 IIO driver.
->
-> Signed-off-by: Andrea Merello <andrea.merello@iit.it>
-> ---
->   Documentation/ABI/testing/sysfs-bus-iio | 7 +++++++
->   1 file changed, 7 insertions(+)
->
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> index 2a6954ea1c71..3be613f64843 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> @@ -2048,3 +2048,10 @@ Contact:	linux-iio@vger.kernel.org
->   Description:
->   		Raw (unscaled) euler angles readings. Units after
->   		application of scale are deg.
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/serial_number
+On Tue, 19 Apr 2022 01:23:23 +0100,
+Peter Geis <pgwipeout@gmail.com> wrote:
+> 
+> > My only ask is that you properly initialise the HW. This will save
+> > countless amount of head-scratching once you have a decent firmware or
+> > kexec.
+> 
+> The only way to ensure that in a sane way is to trigger the resets at
+> driver probe.
 
-Can we make this `serialnumber`? IIO uses underscores to separate 
-different parts of the name and to a machine (e.g. libiio) serial_number 
-looks like a channel called serial with an attribute called number.
+If that can be done, that'd be great.
 
+> Can that be safely done without causing other issues with an already
+> configured card or should I power cycle it as well?
 
-> +KernelVersion:	5.19
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		An example format is 16-bytes, 2-digits-per-byte, HEX-string
-> +		representing the sensor unique ID number.
+Well, you are already renegotiating the link anyway, so that's a very
+moot point.
 
+> This is starting to feature creep from the original intention of this
+> series, since a pre-configured controller would affect more than just
+> interrupts.
 
+Configuring the HW is not exactly a feature creep. If your intention
+is to keep everything as it was left, then you don't have much of a
+driver, but instead a time bomb. And we can do without another one in
+the tree.
+
+> If you wish, as a compromise I can ensure all INTx interrupts are
+> masked at probe (which would hilariously be the opposite of
+> downstream).
+
+As far as I'm concerned, downstream doesn't exist. If someone wants
+the downstream code, they can use it directly and we don't need to
+merge this code.
+
+If, on the other hand, you want this driver to be useful and to be
+maintained upstream, initialising the interrupt mask is the absolute
+bare minimum.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
