@@ -2,120 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2211B5077CA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B321350786A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356866AbiDSSWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 14:22:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38770 "EHLO
+        id S1357118AbiDSSZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 14:25:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356889AbiDSSVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:21:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F3040E70;
-        Tue, 19 Apr 2022 11:14:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C009B60A75;
-        Tue, 19 Apr 2022 18:14:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0234DC385A5;
-        Tue, 19 Apr 2022 18:14:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650392049;
-        bh=wpC6UqRnKxV//FhoQ/Rg1fnAdop8hYek9oBjdN28NH0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DAYXQ3I7G0jR9VmOrBbLqIVOGs7Fpw1+/mzVGL/84uOdzVTZWLaLmvI4LNelj7m1+
-         RQ+8bXPjD0iZwv7K71HAALIsY7CfnPjQJP1MndE9riL+IErwZHUWldxcqSubiRBHrh
-         1ePwiVh0CREFe/2tvThGDgqQkxwRulnXy7kI08wKjojnFkPtXxpHwDyM75tHdWQoBb
-         ZsYdcFH/Flxl1ShIh64+wI4xI5WcXVqD7CnrKfdIE6yn5rue0lFmJtShV3kgr07Qal
-         sOdPEQJwUzLZbRmIdqdLX5KH3VUzHVH+sLIjfLr+jdI3nUTK3SYW2VngtpXJoYg7TN
-         xMGieQykvbCug==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 05/18] arm64: dts: imx: Fix imx8*-var-som touchscreen property sizes
-Date:   Tue, 19 Apr 2022 14:13:39 -0400
-Message-Id: <20220419181353.485719-5-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220419181353.485719-1-sashal@kernel.org>
-References: <20220419181353.485719-1-sashal@kernel.org>
+        with ESMTP id S1357037AbiDSSWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:22:38 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDE11F630
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:15:07 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-e5e8523fcbso6844038fac.10
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:15:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0f5ESvk5no91Evc+VlvCmzhRMl9OaSk9/2vAcz9fKzU=;
+        b=0g3HGwTxi+KjxPkQ4Na97P54CU9U+y0xPV5bpViKcGGUJl5vaO6v4sEHI27SG3LDGa
+         nI7PGxX8ikoyIQDA1O6sdTqyRLKN6MZKUrmd3IbkLN1Rs+OsMJkwow7hEcUMwcw6DpuG
+         w3TeZuvDQmnc4MmJ0K3JR8oY/uM5Gr9cJz9cQquVuiKr4sn+jcK/J3omkcNe/cQWNU/i
+         3BER0ekfCU4jSFkQDOqFIhWpTQ5fFTrsyBABT+JpcDSslem2uvF7MM8gDEAHybLYGbcC
+         edAJsMjCatEtZ3ETnUHEu5uxtqfBSiRuCNRiXg3ePFm1vcHTcIah+p0F1avWtHK7Hq3J
+         kJMg==
+X-Gm-Message-State: AOAM533gsRbb+F/4y2ndOeorx0YouXcgWg/8swlXnQZCMNzzeFlbgA3c
+        +oUKOzPteBiZ8ai18PZOmA==
+X-Google-Smtp-Source: ABdhPJx2f2P2BP0Gu7JNPZo5Y3Y1oiwvqFlWJ5xIXkYbqjgRJvbsWsN4AozuJdoJQCM/Km1ZXLDIXw==
+X-Received: by 2002:a05:6870:51c9:b0:da:b3f:2b75 with SMTP id b9-20020a05687051c900b000da0b3f2b75mr9133260oaj.276.1650392106357;
+        Tue, 19 Apr 2022 11:15:06 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j5-20020a4a9445000000b00329dab1a07fsm5694911ooi.17.2022.04.19.11.15.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 11:15:05 -0700 (PDT)
+Received: (nullmailer pid 3086196 invoked by uid 1000);
+        Tue, 19 Apr 2022 18:15:05 -0000
+Date:   Tue, 19 Apr 2022 13:15:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Niklas Cassel <niklas.cassel@wdc.com>
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        devicetree@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] dt-bindings: riscv: Add mmu-type riscv,sv57
+Message-ID: <Yl78KUfJcu40U5Fj@robh.at.kernel.org>
+References: <20220414151639.1359969-1-niklas.cassel@wdc.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220414151639.1359969-1-niklas.cassel@wdc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+On Thu, 14 Apr 2022 17:16:38 +0200, Niklas Cassel wrote:
+> sv57 is defined in the RISC-V Privileged Specification document.
+> 
+> Additionally, commit 011f09d12052 ("riscv: mm: Set sv57 on defaultly")
+> changed the default MMU mode to sv57, if supported by current hardware.
+> 
+> Add riscv,sv57 to the list of valid mmu-type values.
+> 
+> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-[ Upstream commit 1bc12d301594eafde0a8529d28d459af81053b3a ]
-
-The common touchscreen properties are all 32-bit, not 16-bit. These
-properties must not be too important as they are all ignored in case of an
-error reading them.
-
-Signed-off-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/Yk3moe6Hz8ELM0iS@robh.at.kernel.org'
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi | 8 ++++----
- arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 8 ++++----
- 2 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-index 49082529764f..0fac1f3f7f47 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-@@ -89,12 +89,12 @@ touchscreen@0 {
- 		pendown-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
- 
- 		ti,x-min = /bits/ 16 <125>;
--		touchscreen-size-x = /bits/ 16 <4008>;
-+		touchscreen-size-x = <4008>;
- 		ti,y-min = /bits/ 16 <282>;
--		touchscreen-size-y = /bits/ 16 <3864>;
-+		touchscreen-size-y = <3864>;
- 		ti,x-plate-ohms = /bits/ 16 <180>;
--		touchscreen-max-pressure = /bits/ 16 <255>;
--		touchscreen-average-samples = /bits/ 16 <10>;
-+		touchscreen-max-pressure = <255>;
-+		touchscreen-average-samples = <10>;
- 		ti,debounce-tol = /bits/ 16 <3>;
- 		ti,debounce-rep = /bits/ 16 <1>;
- 		ti,settle-delay-usec = /bits/ 16 <150>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-index 7f356edf9f91..f6287f174355 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-@@ -70,12 +70,12 @@ touchscreen@0 {
- 		pendown-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
- 
- 		ti,x-min = /bits/ 16 <125>;
--		touchscreen-size-x = /bits/ 16 <4008>;
-+		touchscreen-size-x = <4008>;
- 		ti,y-min = /bits/ 16 <282>;
--		touchscreen-size-y = /bits/ 16 <3864>;
-+		touchscreen-size-y = <3864>;
- 		ti,x-plate-ohms = /bits/ 16 <180>;
--		touchscreen-max-pressure = /bits/ 16 <255>;
--		touchscreen-average-samples = /bits/ 16 <10>;
-+		touchscreen-max-pressure = <255>;
-+		touchscreen-average-samples = <10>;
- 		ti,debounce-tol = /bits/ 16 <3>;
- 		ti,debounce-rep = /bits/ 16 <1>;
- 		ti,settle-delay-usec = /bits/ 16 <150>;
--- 
-2.35.1
-
+Acked-by: Rob Herring <robh@kernel.org>
