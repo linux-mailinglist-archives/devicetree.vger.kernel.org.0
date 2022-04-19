@@ -2,194 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 901F050797E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22ECD507989
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbiDSS7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 14:59:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45020 "EHLO
+        id S1348325AbiDSTC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 15:02:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231173AbiDSS7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:59:44 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242E2633B;
-        Tue, 19 Apr 2022 11:56:59 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id r85so13938906oie.7;
-        Tue, 19 Apr 2022 11:56:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yQtGKgzPRTycXEWITpVvJvOYs166VoDlVcAFAi1dcgQ=;
-        b=n5UdN9nx9FMhCFN4lrh0QUQL7EIinZjd6Ym0sNnGEduLD2P+gM/5ZR2fEBwHAqltBd
-         z2Hp2edkn/MHMd9tsxPGD28Akp30stWyrXGyCr42hOb0AIBMJBD3O+Vvq63cs8Bx16vu
-         CdrOFm2Ko166QRq28+NdzOk4RcUDGLgFERnkTA9Kq3TiypgNo0WOGFXnga7DUUpGAUoQ
-         Rf85RA7ux9wUwv6Hxa3kLfH5uki3Y8f1G+l/R14BN0JhYXXCircmeMnkJEp8RLwYWMr+
-         k/FIR7MtajWUpL0De7sKhySmsEzry6/9gDm65yATJ+xEH3YcFNF1mv+jl+A6B7Sx0TeI
-         /USQ==
-X-Gm-Message-State: AOAM533p31kTs0CHFXl7jvt04LBpjiRWQqrJt7PvuTRAxzsNGKUNhFll
-        xpvX9WlS0TysdLFaPMqS7w==
-X-Google-Smtp-Source: ABdhPJyr3p9PP742UwuTVdfZCAuXoG6/PVVZjmKFhDBb7QXGt6uyIgDlEgZEwKPM+7YR5FFoYm1ZHw==
-X-Received: by 2002:a05:6808:1490:b0:2f9:d1fb:273b with SMTP id e16-20020a056808149000b002f9d1fb273bmr29597oiw.20.1650394618395;
-        Tue, 19 Apr 2022 11:56:58 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bp21-20020a056820199500b003298e6877c7sm5576841oob.29.2022.04.19.11.56.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 11:56:57 -0700 (PDT)
-Received: (nullmailer pid 3152167 invoked by uid 1000);
-        Tue, 19 Apr 2022 18:56:57 -0000
-Date:   Tue, 19 Apr 2022 13:56:57 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     frowand.list@gmail.com
-Cc:     pantelis.antoniou@konsulko.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Slawomir Stepien <sst@poczta.fm>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alan Tull <atull@kernel.org>
-Subject: Re: [PATCH v3 2/2] of: overlay: rework overlay apply and remove
- kfree()s
-Message-ID: <Yl8F+cthdYbDBdWX@robh.at.kernel.org>
-References: <20220419005241.831411-1-frowand.list@gmail.com>
- <20220419005241.831411-3-frowand.list@gmail.com>
+        with ESMTP id S1357545AbiDSTCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:02:38 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B56B1C6;
+        Tue, 19 Apr 2022 11:59:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1650394759; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=gyMpKPwcZ56A0saJrbnZ2SGeHNdFwrYWpbLGx4k4y84R17oVRQmnonieJVIHPZpah0c+9Qe9fe5lGD40v6XI/ZyJiowh3uclK+QF2JHzb8FtQ2SIvVRXNWyvWTcErBlJ03VmPx4ziJEoK7gzu+IjbFe4u1VfLzgjX01c3cgeuWA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1650394759; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=9VjwSH0I9W/DB4x/BmRW3flCPs5gbLidfDoHgiRZ19E=; 
+        b=f6z9mss4D2oQa/Pxv8nau+aVX/wXNvFKkZ2pb3n/X1hdAY2DE7hM3rmJOcKopNrqwAVAduWPu3k85etTGQn7W5AScEzGa17M2Y9wZxB9QcJQoPBpd8pWxPMi+BS7rcxMtAsK/OXKYPPBmr3U3lQewiXFzGa2yij/uUOk5HLNcjg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1650394759;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=9VjwSH0I9W/DB4x/BmRW3flCPs5gbLidfDoHgiRZ19E=;
+        b=NV9Zgjw9a55SlOkSW+AhfsTH1oRAcNtDgGFThRtVAYI3uMCpWbSZWXl7XYg+dh8B
+        00+vebYCpTFhaEq2CGoN+vuXKoUTSHODXOcHOQYZMD6Y2ooUO2JscEFDilh5jsQgICZ
+        /LeNWbe4Cn6ZCfpYIslKePnYJm/XkB/Z2ChOEkxo=
+Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 165039475819462.97284354678186; Tue, 19 Apr 2022 11:59:18 -0700 (PDT)
+Message-ID: <4c84c9ce-be19-ee34-d9d0-e69495722b01@arinc9.com>
+Date:   Tue, 19 Apr 2022 21:59:12 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220419005241.831411-3-frowand.list@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 13/14] dt-bindings: pinctrl: add binding for Ralink
+ RT305X pinctrl
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joe Perches <joe@perches.com>, erkin.bozoglu@xeront.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20220414173916.5552-1-arinc.unal@arinc9.com>
+ <20220414173916.5552-14-arinc.unal@arinc9.com>
+ <Yl758u9iIMnhYPz2@robh.at.kernel.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <Yl758u9iIMnhYPz2@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 07:52:41PM -0500, frowand.list@gmail.com wrote:
-> From: Frank Rowand <frank.rowand@sony.com>
+On 19/04/2022 21:05, Rob Herring wrote:
+> On Thu, Apr 14, 2022 at 08:39:15PM +0300, Arınç ÜNAL wrote:
+>> Add binding for the Ralink RT305X pin controller for RT3050, RT3052,
+>> RT3350, RT3352 and RT5350 SoCs.
+>>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> ---
+>>   .../pinctrl/ralink,rt305x-pinctrl.yaml        | 92 +++++++++++++++++++
+>>   1 file changed, 92 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml
+>> new file mode 100644
+>> index 000000000000..425401c54269
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml
+>> @@ -0,0 +1,92 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/ralink,rt305x-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Ralink RT305X Pin Controller
+>> +
+>> +maintainers:
+>> +  - Arınç ÜNAL <arinc.unal@arinc9.com>
+>> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>> +
+>> +description:
+>> +  Ralink RT305X pin controller for RT3050, RT3052, RT3350, RT3352 and RT5350
+>> +  SoCs.
+>> +  The pin controller can only set the muxing of pin groups. Muxing individual
+>> +  pins is not supported. There is no pinconf support.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ralink,rt305x-pinctrl
 > 
-> Fix various kfree() issues related to of_overlay_apply().
->   - Double kfree() of fdt and tree when init_overlay_changeset()
->     returns an error.
->   - free_overlay_changeset() free the root of the unflattened
->     overlay (variable tree) instead of the memory that contains
->     the unflattened overlay.
->   - For the case of a failure during applying an overlay, move kfree()
->     of new_fdt and overlay_mem into free_overlay_changeset(), which
->     is called by the function that allocated them.
->   - For the case of removing an overlay, the kfree() of new_fdt and
->     overlay_mem remains in free_overlay_changeset().
+> You should have a compatible for each SoC unless these are all just
+> fused or package varients of the same chip.
 
-You never set kfree_unsafe back to false anywhere, so after removing you 
-still leak memory.
+The rt305x pin controller calls code from 
+arch/mips/include/asm/mach-ralink/rt305x.h to determine the SoC and uses 
+different pinmux data by the result of the determination.
 
->   - Check return value of of_fdt_unflatten_tree() for error instead
->     of checking the returned value of overlay_root.
->   - When storing pointers to allocated objects in ovcs, do so as
->     near to the allocation as possible instead of in deeply layered
->     function.
-> 
-> More clearly document policy related to lifetime of pointers into
-> overlay memory.
-> 
-> Double kfree()
-> Reported-by: Slawomir Stepien <slawomir.stepien@nokia.com>
-> 
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> ---
-> 
-> Changes since v2:
->   - A version 2 review comment correctly said "This screams hack".
->     Restructure as listed below in response to the comment.
->   - Quit passing kfree_unsafe in function parameters, move it to
->     be a field of ovcs
+I guess we can call this fused.
 
-What I meant was store the notifier state and from that imply when kfree 
-is unsafe. Something like this patch on top of yours (untested and still 
-some kfree_unsafe comments need to be updated):
-
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index 3072dfeca8e8..53c616f576d2 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -63,7 +63,7 @@ struct fragment {
-  * @count:		count of fragment structures
-  * @fragments:		fragment nodes in the overlay expanded device tree
-  * @symbols_fragment:	last element of @fragments[] is the  __symbols__ node
-- * @kfree_unsafe:	pointers into the @new_fdt or @overlay_mem may exist
-+ * @notify_state:	the last successful notifier called
-  * @cset:		changeset to apply fragments to live device tree
-  */
- struct overlay_changeset {
-@@ -75,7 +75,7 @@ struct overlay_changeset {
- 	int count;
- 	struct fragment *fragments;
- 	bool symbols_fragment;
--	bool kfree_unsafe;
-+	enum of_overlay_notify_action notify_state;
- 	struct of_changeset cset;
- };
- 
-@@ -183,6 +183,8 @@ static int overlay_notify(struct overlay_changeset *ovcs,
- 		}
- 	}
- 
-+	ovcs->notify_state = action;
-+
- 	return 0;
- }
- 
-@@ -831,6 +833,7 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs)
- 	}
- 
- 	ovcs->count = cnt;
-+	ovcs->notify_state = OF_OVERLAY_INIT;
- 
- 	return 0;
- 
-@@ -866,15 +869,14 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
- 	 * allowed to retain pointers into the overlay devicetree other
- 	 * than during the window between OF_OVERLAY_PRE_APPLY overlay
- 	 * notifiers and the OF_OVERLAY_POST_REMOVE overlay notifiers.
--	 * During the window, ovcs->kfree_unsafe will be true.
- 	 *
- 	 * A memory leak will occur here if ovcs->kfree_unsafe is true.
- 	 */
- 
--	if (!ovcs->kfree_unsafe)
-+	if (ovcs->notify_state == OF_OVERLAY_INIT || ovcs->notify_state == OF_OVERLAY_POST_REMOVE) {
- 		kfree(ovcs->overlay_mem);
--	if (!ovcs->kfree_unsafe)
- 		kfree(ovcs->new_fdt);
-+	}
- 	kfree(ovcs);
- }
- 
-@@ -926,12 +928,6 @@ static int of_overlay_apply(struct overlay_changeset *ovcs)
- 	if (ret)
- 		goto out;
- 
--	/*
--	 * After overlay_notify(), ovcs->overlay_root related pointers may have
--	 * leaked to drivers, so can not kfree() ovcs->overlay_mem and
--	 * ovcs->new_fdt until after OF_OVERLAY_POST_REMOVE notifiers.
--	 */
--	ovcs->kfree_unsafe = true;
- 	ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
- 	if (ret) {
- 		pr_err("overlay changeset pre-apply notify error %d\n", ret);
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 04971e85fbc9..b7b095593eec 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1543,6 +1543,7 @@ static inline bool of_device_is_system_power_controller(const struct device_node
-  */
- 
- enum of_overlay_notify_action {
-+	OF_OVERLAY_INIT = -1,
- 	OF_OVERLAY_PRE_APPLY = 0,
- 	OF_OVERLAY_POST_APPLY,
- 	OF_OVERLAY_PRE_REMOVE,
+Arınç
