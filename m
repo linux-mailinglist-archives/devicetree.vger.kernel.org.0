@@ -2,81 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B321350786A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0435150784D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357118AbiDSSZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 14:25:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
+        id S1349650AbiDSSZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 14:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357037AbiDSSWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:22:38 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDE11F630
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:15:07 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-e5e8523fcbso6844038fac.10
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:15:07 -0700 (PDT)
+        with ESMTP id S1357586AbiDSSXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:23:32 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 681AA4477A
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:16:37 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id i24-20020a17090adc1800b001cd5529465aso2665260pjv.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:16:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=AjgDpPskVV4R4Ry4hrbWpc/9hMmAwQ0eTwMouf2MnOU=;
+        b=bMihXYjxDYd70FBAdkcUWSX+XlWzIAfBgJnYw0igXRFV+04YT4oMj+OjOTM2ojX4W9
+         GYMwFCZU1Xdt5BZHTbv+NmWWboVjFsrVaTtRXcXquMXtE2er7IqkVjMBBOBs6ZFROx1K
+         cN5J3DB05qfDIzqnwP5O1+1DPUaGJQV6AyBLoyiOLvRbNcSQS3QiiYDnqLdgWGiDUCUS
+         W5r14jEvv37KT53Roabxlk4ixJo7v1FMya2s0VY9D1HEtwlz3DsNCHsPx7u9jekYBzVs
+         hZwkblG+Dl9GnFGir7Sr1y2O6tI5+nKUgBTdUrkm20VgY0lwgfwLyq59kXH5GSoVK05+
+         ItnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0f5ESvk5no91Evc+VlvCmzhRMl9OaSk9/2vAcz9fKzU=;
-        b=0g3HGwTxi+KjxPkQ4Na97P54CU9U+y0xPV5bpViKcGGUJl5vaO6v4sEHI27SG3LDGa
-         nI7PGxX8ikoyIQDA1O6sdTqyRLKN6MZKUrmd3IbkLN1Rs+OsMJkwow7hEcUMwcw6DpuG
-         w3TeZuvDQmnc4MmJ0K3JR8oY/uM5Gr9cJz9cQquVuiKr4sn+jcK/J3omkcNe/cQWNU/i
-         3BER0ekfCU4jSFkQDOqFIhWpTQ5fFTrsyBABT+JpcDSslem2uvF7MM8gDEAHybLYGbcC
-         edAJsMjCatEtZ3ETnUHEu5uxtqfBSiRuCNRiXg3ePFm1vcHTcIah+p0F1avWtHK7Hq3J
-         kJMg==
-X-Gm-Message-State: AOAM533gsRbb+F/4y2ndOeorx0YouXcgWg/8swlXnQZCMNzzeFlbgA3c
-        +oUKOzPteBiZ8ai18PZOmA==
-X-Google-Smtp-Source: ABdhPJx2f2P2BP0Gu7JNPZo5Y3Y1oiwvqFlWJ5xIXkYbqjgRJvbsWsN4AozuJdoJQCM/Km1ZXLDIXw==
-X-Received: by 2002:a05:6870:51c9:b0:da:b3f:2b75 with SMTP id b9-20020a05687051c900b000da0b3f2b75mr9133260oaj.276.1650392106357;
-        Tue, 19 Apr 2022 11:15:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j5-20020a4a9445000000b00329dab1a07fsm5694911ooi.17.2022.04.19.11.15.05
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=AjgDpPskVV4R4Ry4hrbWpc/9hMmAwQ0eTwMouf2MnOU=;
+        b=qT9VhQjrOUbXmr7b4nyXvwfwYIimdzKvl/XMnubAEtwqjGA37NSnUCH8vHv+idWSQV
+         sLOrb2IdJJFjvPPsxATOznhGSNTkANpJnoqBCXVe7fp2i64wAQ2LCtZd/QCNvW7mBj7N
+         cCpkvzbbDXlAxMLZ8RWQav7G7FBsX3HTGPTuxtJeK6pdEfKltFRsMgbP8ssz5I73+Uaq
+         uUG+knSMl1sLPjnM/zeENLVZpNLnxlSS0XRf/amZslwNFAnrFF7h3wbFSsgWf8WrdUEk
+         iGkLbr5K69hjth+ZQwpJbpV+0btK/icAt1fWyNoHLUCIDqd5sT9opFnFxMFAGPedgu3G
+         rycg==
+X-Gm-Message-State: AOAM530Q1YTcSkLBtHuOZuPgood6oll878eyNexXbWXs/5lJnEUK46qB
+        aqz2L3lFsy2ntZ7n3tcLj5ke0w==
+X-Google-Smtp-Source: ABdhPJzob3GzCfSoCXKRmPqceM7UO6pOMBdQF/W+KIIoJ8hpD8bUMg3PD/l5kz2paua0Q592Ix7PwA==
+X-Received: by 2002:a17:902:bb94:b0:157:2ce:fac1 with SMTP id m20-20020a170902bb9400b0015702cefac1mr16955546pls.25.1650392196359;
+        Tue, 19 Apr 2022 11:16:36 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id g12-20020a056a001a0c00b004e1307b249csm18036219pfv.69.2022.04.19.11.16.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 11:15:05 -0700 (PDT)
-Received: (nullmailer pid 3086196 invoked by uid 1000);
-        Tue, 19 Apr 2022 18:15:05 -0000
-Date:   Tue, 19 Apr 2022 13:15:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Niklas Cassel <niklas.cassel@wdc.com>
-Cc:     Albert Ou <aou@eecs.berkeley.edu>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        devicetree@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: riscv: Add mmu-type riscv,sv57
-Message-ID: <Yl78KUfJcu40U5Fj@robh.at.kernel.org>
-References: <20220414151639.1359969-1-niklas.cassel@wdc.com>
+        Tue, 19 Apr 2022 11:16:35 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
+In-Reply-To: <3fc36d6b803ff3e1bef601839aaca3f4f03e62ad.camel@mediatek.com>
+References: <7hbkx3fiac.fsf@baylibre.com>
+ <3fc36d6b803ff3e1bef601839aaca3f4f03e62ad.camel@mediatek.com>
+Date:   Tue, 19 Apr 2022 11:16:35 -0700
+Message-ID: <7hwnfldjlo.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220414151639.1359969-1-niklas.cassel@wdc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Apr 2022 17:16:38 +0200, Niklas Cassel wrote:
-> sv57 is defined in the RISC-V Privileged Specification document.
-> 
-> Additionally, commit 011f09d12052 ("riscv: mm: Set sv57 on defaultly")
-> changed the default MMU mode to sv57, if supported by current hardware.
-> 
-> Add riscv,sv57 to the list of valid mmu-type values.
-> 
-> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> On Thu, 2022-04-14 at 14:48 -0700, Kevin Hilman wrote:
+
+[...]
+
+>> 
+>> You explained this well, but it's still not an appropriate solution
+>> IMO,
+>> because you're still not setting the target that is requested by the
+>> CPUfreq core.
+>> 
+>> The job of ->set_target() is to set the frequency *requested by
+>> CPUfreq
+>> core*.  If you cannot do that, you should return failure.  What you
+>> posted
+>> in the original patch and what you're proposing here is to ignore the
+>> frequency passed to ->set_target() and do something else.  In the
+>> orignal patch, you propose do to nothing.  Now, you're ignoring the 
+>> target passed in and setting something else.  In both cases, the
+>> CPUfreq
+>> core things you have successfuly set the frequency requested, but you
+>> have not.  This means there's a mismatch between what the CPUfreq
+>> core &
+>> governer things the frequency is and what is actually set.  *This* is
+>> the part that I think is wrong.
+>> 
+>> Instead, the proper way of restricting available frequencies is to
+>> use
+>> governors or policies.  This ensures that the core & governors are
+>> aligned with what the platform driver actually does.
+>> 
+>> As I proposed earlier, I think a clean solution to this problem is to
+>> create a temporary policy at probe time that restricts the available
+>> OPPs based on what the current CCI freq/voltage are.  Once CCI driver
+>> is
+>> loaded and working, this policy can be removed.
+>> 
+>> Kevin
+>> 
+>> 
+>
+> Hello Kevin,
+>
+> In new proposal, we DO set the cpufreq passed by cpufreq core.
+> We just not set the corresponding voltage of target frequency which
+> is lookedup from opp table.
+
+OK, this makes more sense.  I thought you were ignoring frequency change
+also.
+
+[...]
+
+> In summary, we think it's a proper solution to cover the situation
+> when cci is not probed.
+
+Yes, this is OK with me.
+
+> I think there is something to improve:
+> We can choose to lookup cci opp table using cci freq to determine
+> the voltage instead of voltage_on_boot.
+> But IMO, it's not neccessary to register cci opp table inside cpufreq
+> driver just for the short period.
+
+I agree.
+
+> Because I finish to prepare other patches and I think we also can
+> take a look at other patches which are including some cleanup, I will
+> send next version today.
+> If there is any concern and question, we can discuss in next version.
+
+OK, I'll have a closer look at the new version.
+
+Kevin
+
