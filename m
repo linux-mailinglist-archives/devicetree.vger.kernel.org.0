@@ -2,99 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3330507308
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5E250730E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:36:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbiDSQh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 12:37:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49392 "EHLO
+        id S1354668AbiDSQik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 12:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354668AbiDSQhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:37:53 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA1964DB
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 09:35:10 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e2fa360f6dso18095790fac.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 09:35:10 -0700 (PDT)
+        with ESMTP id S1345034AbiDSQih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:38:37 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E785E13DED;
+        Tue, 19 Apr 2022 09:35:54 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id s16so6708526oie.0;
+        Tue, 19 Apr 2022 09:35:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XNfkRWBV8WszhVFYtMRjdEG5n7LtAJ40uPMEBMo7C28=;
-        b=viexHJ7zdpUbU0AjUIbgQety/mAhjVAyp+Xs0k86H+oMCtqagVk+rWF1yfmuBIWSKb
-         rekM6Y3V1+VjsWdt3JRUXszcMOzksoj3N8wHSSFA5rCSNPjt+9zo8iZSenmtewzHUI17
-         hmbMvk2g5cPDZurkGT6xzjOcfE6jJGZzdh1GSKMTnU5M4kOVb7D7TnM9l/1hL8Ib/QHF
-         9x+tpFXFoH2nnAQgdtJqneAw4pI1UsqSH/NzE2uYXIG3Eio1GEZcl5BMbfsQhBMuXrCE
-         LrjhvQ6RXbyxjNpJ8L4qn6LuIYJtiz2MBHAL/yQJegLheVlyU6GiXLtvEl9w1ozZrpi8
-         2Faw==
-X-Gm-Message-State: AOAM530jZeub0JrVYCHqkRel/zfoGn0Ys3K4Gqg+xF1NOsDsjL5xVTt6
-        6mu6QIfz48Ont5Sjg3/q0IUVp60Mrg==
-X-Google-Smtp-Source: ABdhPJwaBT3RDj3fcld5zJ0gTPnn/0BKOHxIX5QzeE1YgYzPAknoO483YytUktxhDpys+EshFRvQPA==
-X-Received: by 2002:a05:6870:d210:b0:e2:c10b:a7b with SMTP id g16-20020a056870d21000b000e2c10b0a7bmr6906261oac.181.1650386109753;
-        Tue, 19 Apr 2022 09:35:09 -0700 (PDT)
+        bh=bx1ulSC01YemGk9c9Yc6xd4QH5nY3xNI+NoHQ3XOQDo=;
+        b=k2SFyvpc26cVoYu2zlY6sYy2NjMECZSENBZsF/pStlybYzVsF0kbzX1BnStNLdYrdg
+         VNW+cb+SM3xUTspz5QXZvDXrrCfLY0ppxyKblG25kIZpYBKGbwIWe5Ki1TBIQIxNFF4L
+         a5sWZN591ggPm+T1BUjKNMcNOn/gRSW5iPXHYPqj+JirR751o4dJ/cpTxW+PSWQUzrsz
+         GutmOo4UjFyTzzN1RA3//aY7l8xW8r2QCVgyNxaPk7buGFm/rG2vLwuBj01AziUUdwAh
+         auyHFsYEupMfJVt6rdZzerV8uJ2fjPPRyIrDscK2JohudisTpMMH+7rNkQu2TK4HYm5z
+         DVJQ==
+X-Gm-Message-State: AOAM530GUft+eTbd83mDaMcKTcr+WgNasCvX9t9smnwIOf0yfDrGXNQZ
+        GsL0+WI0vbiD8OpgKVAtuw==
+X-Google-Smtp-Source: ABdhPJwQdh1hh7JOKO7KmqcuZGROx++PGmjp51LbjNQBETXKkVYndi+PqMxf9cWoVYHtEITyqY6sfw==
+X-Received: by 2002:a05:6808:2223:b0:2d9:ca75:8ee8 with SMTP id bd35-20020a056808222300b002d9ca758ee8mr8252625oib.110.1650386154230;
+        Tue, 19 Apr 2022 09:35:54 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q7-20020a9d6307000000b005ea12d6454bsm5468650otk.38.2022.04.19.09.35.08
+        by smtp.gmail.com with ESMTPSA id ay5-20020a056820150500b00320f8a179d0sm5784194oob.30.2022.04.19.09.35.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 09:35:09 -0700 (PDT)
-Received: (nullmailer pid 2917388 invoked by uid 1000);
-        Tue, 19 Apr 2022 16:35:08 -0000
-Date:   Tue, 19 Apr 2022 11:35:08 -0500
+        Tue, 19 Apr 2022 09:35:53 -0700 (PDT)
+Received: (nullmailer pid 2918588 invoked by uid 1000);
+        Tue, 19 Apr 2022 16:35:52 -0000
+Date:   Tue, 19 Apr 2022 11:35:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, dri-devel@lists.freedesktop.org,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Stefan Agner <stefan@agner.ch>, Robby Cai <robby.cai@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
-Message-ID: <Yl7kvNOUWbsgc+Hg@robh.at.kernel.org>
-References: <20220417014550.293773-1-marex@denx.de>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        linux-pci@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: PCI: uniphier-ep: Clean up reg,
+ clocks, resets, and their names using compatible string
+Message-ID: <Yl7k6Jb/q2wuJw0Y@robh.at.kernel.org>
+References: <1650241100-3606-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1650241100-3606-3-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220417014550.293773-1-marex@denx.de>
+In-Reply-To: <1650241100-3606-3-git-send-email-hayashi.kunihiko@socionext.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 17 Apr 2022 03:45:49 +0200, Marek Vasut wrote:
-> Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
-> and is completely different from the LCDIFv3 found in i.MX23 in that it
-> has a completely scrambled register layout compared to all previous LCDIF
-> variants. The new LCDIFv3 also supports 36bit address space. However,
-> except for the complete bit reshuffling, this is still LCDIF and it still
-> works like one.
+On Mon, 18 Apr 2022 09:18:20 +0900, Kunihiko Hayashi wrote:
+> Instead of "oneOf:" choices, use "allOf:" and "if:" to define reg, clocks,
+> resets, and their names that can be taken by the compatible string.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robby Cai <robby.cai@nxp.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Stefan Agner <stefan@agner.ch>
-> Cc: devicetree@vger.kernel.org
+> The order of their names doesn't change here.
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
-> V2: No change
-> ---
->  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../pci/socionext,uniphier-pcie-ep.yaml       | 76 ++++++++++++-------
+>  1 file changed, 49 insertions(+), 27 deletions(-)
 > 
 
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
