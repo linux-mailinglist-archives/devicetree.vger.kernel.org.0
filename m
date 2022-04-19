@@ -2,161 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E9F506767
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 11:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDF13506778
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 11:10:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350277AbiDSJHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 05:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34182 "EHLO
+        id S232130AbiDSJNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 05:13:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350295AbiDSJHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 05:07:36 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD332BD7;
-        Tue, 19 Apr 2022 02:04:52 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E1D9E240004;
-        Tue, 19 Apr 2022 09:04:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650359091;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=P15AbQJC6wP8LbZh3j3wNlnBCOzTtvLQULPM3JHRUlI=;
-        b=LH9njdcpi5vlimjDAwr6c6Kf0oFhSQihIOw9dBXIKcXl8rlF4XhOX3GfCzxbNZ8zLUwnvH
-        ujfEcWUQNGf3f3kh3znt+WSRQJq7zkD3uw9BeGowlEenheqqtpW8oU9DslBl5n74Vjz/pH
-        y4bmqxkpsVJbPlSkPJLwJ+fVoD7EdL/D5biHn7XDDA7RdU4G02Gh7X4cBj/2SjMDkyg5rp
-        a8yF33774x7EUcUQy6f10onHXTEKtLR1n9WCgSmPiodRQyl6gm7lwVxUAHEMIwFswJeqCZ
-        qxHqKHa+1Hc0xx8jR8vxa3jeIG5yjtXq6LUS/msP7tuq/+KWPug8gNI3cq6z7w==
-Date:   Tue, 19 Apr 2022 11:03:28 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
- converter
-Message-ID: <20220419110328.0241fb1f@fixe.home>
-In-Reply-To: <YlrJQ47tkmQdhtMu@lunn.ch>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
-        <20220414122250.158113-10-clement.leger@bootlin.com>
-        <YlismVi8y3Vf6PZ0@lunn.ch>
-        <20220415102453.1b5b3f77@fixe.home>
-        <Yll+Tpnwo5410B9H@lunn.ch>
-        <20220415163853.683c0b6d@fixe.home>
-        <YlmLWv4Hsm2uk8pa@lunn.ch>
-        <20220415172954.64e53086@fixe.home>
-        <YlmbIjoIZ8Xb4Kh/@lunn.ch>
-        <20220415184541.0a6928f5@fixe.home>
-        <YlrJQ47tkmQdhtMu@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S241458AbiDSJNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 05:13:15 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2684120F6F
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 02:10:32 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id u3so21540915wrg.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 02:10:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zF4V/xMqxOt1lzS1W7B1kHA2IPJXPFkf0vVAZ2mtUOI=;
+        b=eWXVtgZA+DXI5LtnTRmFH591Bjcrb5vrHiVbW8HPi94dgBRFXPKjOSV9gyPgKRqm52
+         rrVlipat7vdond408O5t4VhcN2nPQhhFcZXe2dUFhuvyC5SIV5ByxCO9LoHvOuc/A5QC
+         +erFGfnay8ZaZz/QQj4Pqlm5/e0rq543/oAXGambL7Hlvh5Fj4wrl+aQ4+2kuGQhgoYE
+         5KGLQALi31ZSh52U7i+orSq01/ZI18TYcR/0o5/Cd65WwNrYPzv74DG/pu07G8hi08/T
+         JEu/B/VUKo8ltzPt02H7zx5SBBU7cViBqkWRJuQQrbiu6P9x3aYqHc+OwlgSjKYXvyUT
+         axEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zF4V/xMqxOt1lzS1W7B1kHA2IPJXPFkf0vVAZ2mtUOI=;
+        b=nH3zug5sQqvEduhkmk0QlDE6FpmiY76xzs4uVA9p4t+4aU/Aov1WI93wFRH7nRNg3j
+         g1LTxK9/oZ/6C679lV7Vk69p6gV/KDLnW7iCsOXLRLGiwo8dZBu5/yze0D8IbY04gHeL
+         NqKa7jJ+iyIvgF31p4OlJiHd9ioitofbF/rDEE2ffUUdk7a0ie9riVORa1WKrEpRl5Hn
+         xW94GBS4q+/4Tmj2lMd7XWB9ZBuJ+mZcOZmHfBSB+vclR9c5GcMvqbs76r6rUwOHf9Uo
+         la+3uIS12eDZLiXb2qnSmGTUQDoI6CPoA+ipmt06iJ3GJ+rxBqo2wU104IwFFACCkHCX
+         AXww==
+X-Gm-Message-State: AOAM533jMKlrmPrrJjpU8uOrXhmNZbq8pxnJW5Y0P4c/mSS/XAolLTY7
+        vvqaDRlaN6LAxl6v7fPolqiyiw==
+X-Google-Smtp-Source: ABdhPJz2TaXo5HkQRvMqgFpi/YCNwh6ssF0uj1RZEHz7LmaUi64xmuEniT+fhOrhuJs7L2SHUMCbgA==
+X-Received: by 2002:a05:6000:15cd:b0:20a:aaf7:33e4 with SMTP id y13-20020a05600015cd00b0020aaaf733e4mr45876wry.406.1650359430725;
+        Tue, 19 Apr 2022 02:10:30 -0700 (PDT)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id j18-20020a05600c1c1200b0039297ba9a6dsm4659679wms.26.2022.04.19.02.10.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 02:10:29 -0700 (PDT)
+Message-ID: <72ca1cd4-da90-9e4c-b326-46eef2e1cb58@linaro.org>
+Date:   Tue, 19 Apr 2022 10:10:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] ASoC: qcom: lpass: Fix apq8016 compat string to match
+ yaml
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220418230956.3059563-1-bryan.odonoghue@linaro.org>
+ <20220418230956.3059563-2-bryan.odonoghue@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220418230956.3059563-2-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Sat, 16 Apr 2022 15:48:51 +0200,
-Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
 
-> On Fri, Apr 15, 2022 at 06:45:41PM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
-> > Le Fri, 15 Apr 2022 18:19:46 +0200,
-> > Andrew Lunn <andrew@lunn.ch> a =C3=A9crit :
-> >  =20
-> > > > I think it would be good to modify it like this:
-> > > >=20
-> > > > eth-miic@44030000 {
-> > > >     ...
-> > > >   converters {
-> > > >     mii_conv0: mii-conv@0 {
-> > > >       // Even if useless, maybe keeping it for the sake of coherency
-> > > >       renesas,miic-input =3D <MIIC_GMAC1>;
-> > > >       reg =3D <0>;
-> > > >     };   =20
-> > >=20
-> > > This is not a 'bus', so using reg, and @0, etc is i think wrong.  You
-> > > just have a collection of properties. =20
-> >=20
-> > Agreed, but this is the same thing that is done for DSA ports (at least
-> > I think). It uses reg which describe the port number, this is not a
-> > real bus per se, it only refer to port indices. =20
->=20
-> True. That is an old binding, before a lot of good practices were
-> enforced. I'm not sure it would be accepted today.
->=20
-> I suggest you make a proposal and see what the DT Maintainers say.
 
-Acked.
+On 19/04/2022 00:09, Bryan O'Donoghue wrote:
+> The documented yaml compat string for the apq8016 is
+> "qcom,apq8016-lpass-cpu" not "qcom,lpass-cpu-apq8016". Looking at the other
+> lpass compat strings the general form is "qcom,socnum-lpass-cpu".
+> 
+> We need to fix both the driver and dts to match.
 
->=20
-> > But if you think this should not be done like this, what do you
-> > propose then ? These nodes are also reference from "pcs-handle"
-> > properties in switch to retrieve the PCS. =20
->=20
-> This i was not thinking about. Make this clear in the binding
-> documentation for what you propose.
->=20
-> Humm, this last point just gave me an idea. How are you representing
-> the PCS in DT? Are they memory mapped? So you have a nodes something
-> like:
->=20
-> eth-pcs-conv1@44040100 {
-> 	compatible =3D "acm-inc,pcs"
-> }
->=20
-> eth-pcs-conv2@44040200 {
-> 	compatible =3D "acm-inc,pcs"
-> }
+Fixes tag is missing.
 
-That is a good idea since the converter are indeed (partly) memory
-mapped, but the hardware guys decided that it was a good idea to share
-some registers. Amongst shared registers, we have the reset for each
-converter and the muxing control which as stated before is contained in
-a single register.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
->=20
-> The MAC node than has a pcs-handle pointing to one of these nodes?
->=20
-> You implicitly have the information you need to configure the MII
-> muxes here. The information is a lot more distributed, but it is
-> there. As each MAC probes, it can ask the MII MUX driver to connect
-> its MAC to the converter pointed to by its pcs-handle.
 
-Hum, that could be done but since only some values/combinations are
-allowed, it would potentially require to validate the setting at each
-request, leading to potential non working devices due to invalid MUX
-configuration required. I think the fact that we could have everything
-in one single node allows to validate it at probe time.
+other than that it LGTM.
 
-Anyway, I'll make a proposal an we'll see ! Thanks again for your
-feedback.
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+--srini
+
+> ---
+>   sound/soc/qcom/lpass-apq8016.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/sound/soc/qcom/lpass-apq8016.c b/sound/soc/qcom/lpass-apq8016.c
+> index 3efa133d1c64..10edc5e9c8ef 100644
+> --- a/sound/soc/qcom/lpass-apq8016.c
+> +++ b/sound/soc/qcom/lpass-apq8016.c
+> @@ -292,7 +292,7 @@ static struct lpass_variant apq8016_data = {
+>   };
+>   
+>   static const struct of_device_id apq8016_lpass_cpu_device_id[] __maybe_unused = {
+> -	{ .compatible = "qcom,lpass-cpu-apq8016", .data = &apq8016_data },
+> +	{ .compatible = "qcom,apq8016-lpass-cpu", .data = &apq8016_data },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, apq8016_lpass_cpu_device_id);
