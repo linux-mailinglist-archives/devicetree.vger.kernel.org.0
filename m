@@ -2,142 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E6B507A5C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:37:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D4C507A68
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355816AbiDSTiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 15:38:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54432 "EHLO
+        id S1345657AbiDSTnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 15:43:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355423AbiDSTiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:38:52 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D5641333;
-        Tue, 19 Apr 2022 12:35:38 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7D8B0C0003;
-        Tue, 19 Apr 2022 19:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650396937;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=NjVLNhCR4Pir1ny3Pd2NCoy9GPJ41cfM4aaT+ckLEEM=;
-        b=WmUJdcNl52VVlvUpV8NVEAtr+PdL0pMSHN1QYoAf3T52RHemqet43OLCrmbAaAaeWwRoKl
-        /FnURKNMomdhx6mbf9O4Ua4UJ1BwAErqYFeZvOf1CcsAsSe3O69wYMt4OgGLv13bVFgMDK
-        6RArYxInIs/b6+CjN9yi6B7TyUsFRG7DgzjABO0soPOvYmlQwH/GWc8vRO79vU4oUe+R4U
-        ntqXlNBS9y9HcRyi7KGOP4jA+kKxo7dmGZYoZ3RE2KSaLVjMOnmadNtfm3wRdDXPj5B2Fn
-        3SKI6osT/stQLrNtQjqmHZX8dUyJXolJiJgX4vAnaeFCDGUowSW/4ih1d1E8Ow==
-Date:   Tue, 19 Apr 2022 21:35:35 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>, list@opendingux.net,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH 3/5] rtc: jz4740: Reset scratchpad register on power loss
-Message-ID: <Yl8PBx5qyvMrwrV/@mail.local>
-References: <20220418184933.13172-1-paul@crapouillou.net>
- <20220418184933.13172-4-paul@crapouillou.net>
+        with ESMTP id S233847AbiDSTnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:43:11 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B761F40A3A
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 12:40:27 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id l7so35068128ejn.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 12:40:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QPOqgsEid6Wqxx1M40rGK1q2D5Xysrda2vwxz+DKUPc=;
+        b=Ov/14cWHpDKy5PQzUQZKB6HCjf/IXjwsbqJGUZ5ZgQSB0Nvi5HVGxGRPW0J73z29L7
+         cQAMtVhwFPyV4fsWvz9sin/nxOJ5nX76c3cwKLa7RU/Af+R+NwozF+GGqqmzhV/z7r+z
+         B6/hzWzcQzCs+P6k40mSURlW7eG0E9z/ZXS/qG2MiiseRag8zVEOM3tRGquuk+C7BC6T
+         SfQLe+ElfqVxf04HDySjhuEZdLIaexqei9P73XfigZ3VCeWoEJHdCl6rz0RNdxv/j9fR
+         JA1Log/TBQ8umsABpgUIR5JFXjU9Jmt98jqQmeZgCSnZDELufrTubTIFo1U7gBgDcoF0
+         LzoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QPOqgsEid6Wqxx1M40rGK1q2D5Xysrda2vwxz+DKUPc=;
+        b=KVpUtPMCyG3zFDVogMEXGvENaUIzDXT8mp6YeKaN6xCt+SkCVqR3I9fpDaVcMn+OXP
+         kGnhkQyz9ywrJ14bqZgstKytA0Dk/32XIHC78ao1hez2NChsdlayfl3Nl197hmtdW91G
+         +fn5/5bNOFxrIiGguAW5u4Rs5cxqd6HCc0ZubIxw62mSrqOzZsoMTIkxLec9S2kO3j3S
+         FrxmfC/jEMiV8IvCakGnnC9ePC3aZg8uQDpSJNIz+ytYKikjdKhgFuRH+o/mkr+ktxBW
+         NncJusdyDzr3QMqThqj275J6tbgXCuyLuslOqMd+Tm9fR2sDLU1FCyCxR574xoCl6QgP
+         0+1Q==
+X-Gm-Message-State: AOAM530kSCvnCpBgzNwLUrC7KnYnH2g9eHgE54JaGInO5n88GeEpz4V/
+        Hvi5KFiuCHWVDxsiWxHDsQfKzw==
+X-Google-Smtp-Source: ABdhPJx6DouuY7dAxuX1ycupL8N+u0hCgEeKCHYUoIMUdZg7qUxXIXsBqnuYBYopZ2gDNL26oum7Kg==
+X-Received: by 2002:a17:907:6e92:b0:6e4:de0d:464 with SMTP id sh18-20020a1709076e9200b006e4de0d0464mr14986441ejc.348.1650397226276;
+        Tue, 19 Apr 2022 12:40:26 -0700 (PDT)
+Received: from [192.168.0.221] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u6-20020a17090626c600b006e74ef7f092sm6012164ejc.176.2022.04.19.12.40.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 12:40:25 -0700 (PDT)
+Message-ID: <8b9ad0a6-acc0-aad9-c49d-e4a4b38374bb@linaro.org>
+Date:   Tue, 19 Apr 2022 21:40:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220418184933.13172-4-paul@crapouillou.net>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: Aw: Re: [RFC/RFT 2/6] dt-bindings: soc: grf: add
+ pcie30-{phy,pipe}-grf
+Content-Language: en-US
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20220416135458.104048-1-linux@fw-web.de>
+ <20220416135458.104048-3-linux@fw-web.de>
+ <02b3fe1c-12f9-8f96-a9b5-df44ca001825@linaro.org>
+ <trinity-c60358c4-ebd1-47bf-91e0-9ae0beefd39f-1650389348418@3c-app-gmx-bap70>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <trinity-c60358c4-ebd1-47bf-91e0-9ae0beefd39f-1650389348418@3c-app-gmx-bap70>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/04/2022 19:49:31+0100, Paul Cercueil wrote:
-> On power loss, reading the RTC value would fail as the scratchpad lost
-> its magic value, until the hardware clock was set once again.
+On 19/04/2022 19:29, Frank Wunderlich wrote:
+>> Gesendet: Montag, 18. April 2022 um 17:54 Uhr
+>> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
 > 
-> To avoid that, reset the RTC value to Epoch in the probe if we detect
-> that the scratchpad lost its magic value.
+>>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>> @@ -14,6 +14,8 @@ properties:
+>>>      oneOf:
+>>>        - items:
+>>>            - enum:
+>>> +              - rockchip,pcie30-phy-grf
+>>> +              - rockchip,pcie30-pipe-grf
+>>
+>> These are without SoC parts. Are these PCIe v3 General Register Files
+>> part of some PCIe spec?
 > 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  drivers/rtc/rtc-jz4740.c | 24 +++++++++++++++++++++---
->  1 file changed, 21 insertions(+), 3 deletions(-)
+> imho they are shared across SoCs rk3568 and rk3588, but have only seen rk3568 implementation yet.
+> PCIe driver currently supports these 2 Soc (different offsets in the Phy-GRF), but can only test rk3568.
 > 
-> diff --git a/drivers/rtc/rtc-jz4740.c b/drivers/rtc/rtc-jz4740.c
-> index 119baf168b32..aac5f68bf626 100644
-> --- a/drivers/rtc/rtc-jz4740.c
-> +++ b/drivers/rtc/rtc-jz4740.c
-> @@ -42,6 +42,9 @@
->  /* Magic value to enable writes on jz4780 */
->  #define JZ_RTC_WENR_MAGIC	0xA55A
->  
-> +/* Value written to the scratchpad to detect power losses */
-> +#define JZ_RTC_SCRATCHPAD_MAGIC	0x12345678
-> +
->  #define JZ_RTC_WAKEUP_FILTER_MASK	0x0000FFE0
->  #define JZ_RTC_RESET_COUNTER_MASK	0x00000FE0
->  
-> @@ -134,10 +137,11 @@ static int jz4740_rtc_ctrl_set_bits(struct jz4740_rtc *rtc, uint32_t mask,
->  static int jz4740_rtc_read_time(struct device *dev, struct rtc_time *time)
->  {
->  	struct jz4740_rtc *rtc = dev_get_drvdata(dev);
-> -	uint32_t secs, secs2;
-> +	uint32_t secs, secs2, magic;
->  	int timeout = 5;
->  
-> -	if (jz4740_rtc_reg_read(rtc, JZ_REG_RTC_SCRATCHPAD) != 0x12345678)
-> +	magic = jz4740_rtc_reg_read(rtc, JZ_REG_RTC_SCRATCHPAD);
-> +	if (magic != JZ_RTC_SCRATCHPAD_MAGIC)
->  		return -EINVAL;
->  
->  	/* If the seconds register is read while it is updated, it can contain a
-> @@ -169,7 +173,8 @@ static int jz4740_rtc_set_time(struct device *dev, struct rtc_time *time)
->  	if (ret)
->  		return ret;
->  
-> -	return jz4740_rtc_reg_write(rtc, JZ_REG_RTC_SCRATCHPAD, 0x12345678);
-> +	return jz4740_rtc_reg_write(rtc, JZ_REG_RTC_SCRATCHPAD,
-> +				    JZ_RTC_SCRATCHPAD_MAGIC);
->  }
->  
->  static int jz4740_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> @@ -307,6 +312,7 @@ static int jz4740_rtc_probe(struct platform_device *pdev)
->  	struct jz4740_rtc *rtc;
->  	unsigned long rate;
->  	struct clk *clk;
-> +	uint32_t magic;
->  	int ret, irq;
->  
->  	rtc = devm_kzalloc(dev, sizeof(*rtc), GFP_KERNEL);
-> @@ -369,6 +375,18 @@ static int jz4740_rtc_probe(struct platform_device *pdev)
->  	/* Each 1 Hz pulse should happen after (rate) ticks */
->  	jz4740_rtc_reg_write(rtc, JZ_REG_RTC_REGULATOR, rate - 1);
->  
-> +	magic = jz4740_rtc_reg_read(rtc, JZ_REG_RTC_SCRATCHPAD);
-> +	if (magic != JZ_RTC_SCRATCHPAD_MAGIC) {
-> +		/*
-> +		 * If the scratchpad doesn't hold our magic value, then a
-> +		 * power loss occurred. Reset to Epoch.
-> +		 */
-> +		struct rtc_time time;
-> +
-> +		rtc_time64_to_tm(0, &time);
-> +		jz4740_rtc_set_time(dev, &time);
+> pipe-grf seems only be used for rk35688 (offset used in probe is defined for this SoC), which i cannot test.
+> 
+> so i have left them SoC independed.
 
-Don't do that, this defeats the purpose of detecting when the power is
-lost. Returning a known bogus time is the worst thing you can do here.
+Compatibles should be SoC dependent, with some exceptions. Lack of
+documentation or lack of possibility of testing is actually argument
+against any exception, so they should be SoC specific/dependent.
 
-> +	}
-> +
->  	ret = devm_rtc_register_device(rtc->rtc);
->  	if (ret)
->  		return ret;
-> -- 
-> 2.35.1
-> 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+Krzysztof
