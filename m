@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49D4C507A68
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820DA507A6F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 21:43:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345657AbiDSTnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 15:43:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58384 "EHLO
+        id S1347343AbiDSTqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 15:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233847AbiDSTnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:43:11 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B761F40A3A
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 12:40:27 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id l7so35068128ejn.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 12:40:27 -0700 (PDT)
+        with ESMTP id S1346541AbiDSTqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 15:46:01 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA1F41600
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 12:43:16 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id lc2so34982949ejb.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 12:43:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QPOqgsEid6Wqxx1M40rGK1q2D5Xysrda2vwxz+DKUPc=;
-        b=Ov/14cWHpDKy5PQzUQZKB6HCjf/IXjwsbqJGUZ5ZgQSB0Nvi5HVGxGRPW0J73z29L7
-         cQAMtVhwFPyV4fsWvz9sin/nxOJ5nX76c3cwKLa7RU/Af+R+NwozF+GGqqmzhV/z7r+z
-         B6/hzWzcQzCs+P6k40mSURlW7eG0E9z/ZXS/qG2MiiseRag8zVEOM3tRGquuk+C7BC6T
-         SfQLe+ElfqVxf04HDySjhuEZdLIaexqei9P73XfigZ3VCeWoEJHdCl6rz0RNdxv/j9fR
-         JA1Log/TBQ8umsABpgUIR5JFXjU9Jmt98jqQmeZgCSnZDELufrTubTIFo1U7gBgDcoF0
-         LzoQ==
+        bh=go6T1fc0TY6wvIhs3nqLqYh80BHNHvnkKYmeIA/Ug5g=;
+        b=FnR/UqpbQcZweANaWULrc5vOPvEyZDiktgqeeWVBZHnhccMdR712M18FDpAcMnkzc9
+         jlIzR3B1e/LNOoK5HMJlQlmrOl3Z/jkhxV/vDRG77/gB3QgeFkd64O2w8FuOg6c11TNG
+         pW2tLHdyOLcF6AJxmmnySnf0KTu8HES9wkSp1p6MFrgy4ap4GlnqcvMDc9ejHtObHWQG
+         NH3Uut2wV5oTdC3mkmcQUxSW/XATXf1hONToXNyoaZQeLbX7b6UTQZqbUttPvFrD2+bC
+         6smkt4/zN1pAbos6YHgDf2ICLsvX2KEwNSZFcaodRGabXBG7f889U53Xu3G6OcHux3I+
+         cVTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QPOqgsEid6Wqxx1M40rGK1q2D5Xysrda2vwxz+DKUPc=;
-        b=KVpUtPMCyG3zFDVogMEXGvENaUIzDXT8mp6YeKaN6xCt+SkCVqR3I9fpDaVcMn+OXP
-         kGnhkQyz9ywrJ14bqZgstKytA0Dk/32XIHC78ao1hez2NChsdlayfl3Nl197hmtdW91G
-         +fn5/5bNOFxrIiGguAW5u4Rs5cxqd6HCc0ZubIxw62mSrqOzZsoMTIkxLec9S2kO3j3S
-         FrxmfC/jEMiV8IvCakGnnC9ePC3aZg8uQDpSJNIz+ytYKikjdKhgFuRH+o/mkr+ktxBW
-         NncJusdyDzr3QMqThqj275J6tbgXCuyLuslOqMd+Tm9fR2sDLU1FCyCxR574xoCl6QgP
-         0+1Q==
-X-Gm-Message-State: AOAM530kSCvnCpBgzNwLUrC7KnYnH2g9eHgE54JaGInO5n88GeEpz4V/
-        Hvi5KFiuCHWVDxsiWxHDsQfKzw==
-X-Google-Smtp-Source: ABdhPJx6DouuY7dAxuX1ycupL8N+u0hCgEeKCHYUoIMUdZg7qUxXIXsBqnuYBYopZ2gDNL26oum7Kg==
-X-Received: by 2002:a17:907:6e92:b0:6e4:de0d:464 with SMTP id sh18-20020a1709076e9200b006e4de0d0464mr14986441ejc.348.1650397226276;
-        Tue, 19 Apr 2022 12:40:26 -0700 (PDT)
+        bh=go6T1fc0TY6wvIhs3nqLqYh80BHNHvnkKYmeIA/Ug5g=;
+        b=MNYk+10P04GkPpBjsPpBwsiTK7kVJpuwIor7Fy1ryspJrFN8YQyR5KMSOVdfgDyhUR
+         yjdsgRvDlkQCAgMebmHqrv4cxgG50lOyqb+oKAIkcnq5VssXjPXSIUMYiofPokM8jCo+
+         6otv72OOoenvAimmsa9AcWVZBYjHGlMoN8LsCacu9FHkNrhJ03PDTib1MfiCGfwqAdjr
+         Kq1yGi0PEecBImxK67ju2Xtm/xCOyiinMYvXsZNVuRDySEQ3LFgoSf+fDeKXGfVAXmfW
+         pYjC3lE8WkEFlIOpe3OCMK2F72nrzCcomnVfyT/lHiq1Kh5AqpHwp0X2i9r0D7eBaamc
+         NNHg==
+X-Gm-Message-State: AOAM533iL3UxGkc4bB8eudAklyj1CHnxRFV0/HQ/pBNGSXRIhJ1Bu6sy
+        /h6GiH3QIWAEeChlHN61ZoSAhQ==
+X-Google-Smtp-Source: ABdhPJxN+zqmAT7T1BJC0xIRHgTKTkUJwlFx08wQXWb7+EHLMa/kEqxDmWxHQi8JY5CwtSTfjM3hCg==
+X-Received: by 2002:a17:906:fa8f:b0:6e4:de0d:45f with SMTP id lt15-20020a170906fa8f00b006e4de0d045fmr14839252ejb.235.1650397395281;
+        Tue, 19 Apr 2022 12:43:15 -0700 (PDT)
 Received: from [192.168.0.221] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u6-20020a17090626c600b006e74ef7f092sm6012164ejc.176.2022.04.19.12.40.25
+        by smtp.gmail.com with ESMTPSA id f5-20020a1709067f8500b006da68bfdfc7sm5999584ejr.12.2022.04.19.12.43.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 12:40:25 -0700 (PDT)
-Message-ID: <8b9ad0a6-acc0-aad9-c49d-e4a4b38374bb@linaro.org>
-Date:   Tue, 19 Apr 2022 21:40:24 +0200
+        Tue, 19 Apr 2022 12:43:14 -0700 (PDT)
+Message-ID: <fce0337a-0c71-a040-0a01-f20b55eb568b@linaro.org>
+Date:   Tue, 19 Apr 2022 21:43:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: Aw: Re: [RFC/RFT 2/6] dt-bindings: soc: grf: add
- pcie30-{phy,pipe}-grf
+Subject: Re: Aw: Re: [RFC/RFT 1/6] dt-bindings: phy: rockchip: add pcie3 phy
 Content-Language: en-US
 To:     Frank Wunderlich <frank-w@public-files.de>
 Cc:     Frank Wunderlich <linux@fw-web.de>,
@@ -75,16 +74,16 @@ Cc:     Frank Wunderlich <linux@fw-web.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-pci@vger.kernel.org
 References: <20220416135458.104048-1-linux@fw-web.de>
- <20220416135458.104048-3-linux@fw-web.de>
- <02b3fe1c-12f9-8f96-a9b5-df44ca001825@linaro.org>
- <trinity-c60358c4-ebd1-47bf-91e0-9ae0beefd39f-1650389348418@3c-app-gmx-bap70>
+ <20220416135458.104048-2-linux@fw-web.de>
+ <38e60bb2-123b-09cf-d6ef-3a07c6984108@linaro.org>
+ <trinity-597cf8a3-2ad4-41e6-b3c9-b949f8610533-1650390552136@3c-app-gmx-bap70>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <trinity-c60358c4-ebd1-47bf-91e0-9ae0beefd39f-1650389348418@3c-app-gmx-bap70>
+In-Reply-To: <trinity-597cf8a3-2ad4-41e6-b3c9-b949f8610533-1650390552136@3c-app-gmx-bap70>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,33 +91,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 19:29, Frank Wunderlich wrote:
->> Gesendet: Montag, 18. April 2022 um 17:54 Uhr
->> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> 
->>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->>> @@ -14,6 +14,8 @@ properties:
->>>      oneOf:
->>>        - items:
->>>            - enum:
->>> +              - rockchip,pcie30-phy-grf
->>> +              - rockchip,pcie30-pipe-grf
+On 19/04/2022 19:49, Frank Wunderlich wrote:
+>> The list should be strictly ordered (defined), so:
+>>   items:
+>>     - const: ...
+>>     - const: ...
+>>     - const: ...
+>>   minItems: 1
 >>
->> These are without SoC parts. Are these PCIe v3 General Register Files
->> part of some PCIe spec?
+>> However the question is - why the clocks have different amount? Is it
+>> per different SoC implementation?
 > 
-> imho they are shared across SoCs rk3568 and rk3588, but have only seen rk3568 implementation yet.
-> PCIe driver currently supports these 2 Soc (different offsets in the Phy-GRF), but can only test rk3568.
+> i only know the rk3568, which needs the clocks defined here, don't know about rk3588 yet.
+> in rk3568 TPM i have the pcie-part seems missing (at least the specific register definition), so i had used the driver as i got it from the downstream kernel.
 > 
-> pipe-grf seems only be used for rk35688 (offset used in probe is defined for this SoC), which i cannot test.
-> 
-> so i have left them SoC independed.
+> not yet looked if i find a rk3588 TPM and if this part is there as i cannot test it (one of the reasons this is a rfc/rft).
 
-Compatibles should be SoC dependent, with some exceptions. Lack of
-documentation or lack of possibility of testing is actually argument
-against any exception, so they should be SoC specific/dependent.
+You can skip RK3588 compatible or define it this strictly also for that
+chip.
 
+> 
+>>> +
+>>> +  "#phy-cells":
+>>> +    const: 0
+>>> +
+>>> +  resets:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-names:
+>>> +    const: phy
+>>> +
+>>> +  rockchip,phy-grf:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: phandle to the syscon managing the phy "general register files"
+>>> +
+>>> +  rockchip,pipe-grf:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: phandle to the syscon managing the pipe "general register files"
+>>> +
+>>> +  rockchip,pcie30-phymode:
+>>> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+>>> +    description: |
+>>> +      use PHY_MODE_PCIE_AGGREGATION if not defined
+>>
+>> I don't understand the description. Do you mean here a case when the
+>> variable is missing?
+> 
+> yes, if the property is not set, then value is PHY_MODE_PCIE_AGGREGATION = 4
+
+Then just use "default: 4"
+
+> 
+>>> +    minimum: 0x0
+>>> +    maximum: 0x4
+>>
+>> Please explain these values. Register values should not be part of
+>> bindings, but instead some logical behavior of hardware or its logic.
+> 
+> it's a bitmask, so maybe
+> 
+>     description: |
+>       bit0: bifurcation for port 0
+>       bit1: bifurcation for port 1
+>       bit2: aggregation
+
+That's good. I got impression you have a header with these values. If
+yes - mention it here.
+
+>       use PHY_MODE_PCIE_AGGREGATION (4) as default
+
+Just use default as I wrote above.
 
 Best regards,
 Krzysztof
