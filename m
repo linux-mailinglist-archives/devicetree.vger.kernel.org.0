@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF94507305
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3330507308
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:35:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238226AbiDSQhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 12:37:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47916 "EHLO
+        id S230428AbiDSQh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 12:37:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230428AbiDSQhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:37:15 -0400
+        with ESMTP id S1354668AbiDSQhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:37:53 -0400
 Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7DA29C9B;
-        Tue, 19 Apr 2022 09:34:32 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-de3eda6b5dso18122501fac.0;
-        Tue, 19 Apr 2022 09:34:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA1964DB
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 09:35:10 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e2fa360f6dso18095790fac.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 09:35:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=M9eDzAyk4sGVv8K5LskKnAnIYX6zDJ5kUNQhT7FAjz0=;
-        b=BuRkvSvI8I2ODbbx30ZgqM1sUhpZEG0YSEbGoA9d+Mo352ydVvSH1SQGbZBy7DfEc8
-         W/qzo/aI8j8t3C6kSniJVoN9ni3e0SDbIhWE430XWRqXNlEOl1lnM2RGASArNCJp3hWR
-         jP9wq+lL5ngO/V224+gxjN3nmOR+ryukRSNPT32DKSkq4cA+X+StV3xzFMjVY4cflW14
-         9E0RZhJR/7F8UCwrYyDX8Z+AB5Jv7wF0P46c/VkdHlrYO3J9n45l8kOoz/AVftZRUkw7
-         ctQNxzxcOZqBfZmyYcDJehtVgugU5KqqRbBdBrC6j1rjH51hQMeQUDkpEfCRulhVu+OR
-         o7CQ==
-X-Gm-Message-State: AOAM533bHIFMeasbKlQaLWa//shDXwpLcgg8kMi4kPJb55GmeF1z6Itz
-        mGgsjlktQ31zxC2bahLR/g==
-X-Google-Smtp-Source: ABdhPJxNq0Y98ca5iv9R82zAY8/p7woHmaFMtJBI59fHLXUFRFR45IJO9m0vWUl0Ukh8l8LKLUFIeQ==
-X-Received: by 2002:a05:6870:17a4:b0:e5:8eee:1607 with SMTP id r36-20020a05687017a400b000e58eee1607mr7272179oae.12.1650386071551;
-        Tue, 19 Apr 2022 09:34:31 -0700 (PDT)
+        bh=XNfkRWBV8WszhVFYtMRjdEG5n7LtAJ40uPMEBMo7C28=;
+        b=viexHJ7zdpUbU0AjUIbgQety/mAhjVAyp+Xs0k86H+oMCtqagVk+rWF1yfmuBIWSKb
+         rekM6Y3V1+VjsWdt3JRUXszcMOzksoj3N8wHSSFA5rCSNPjt+9zo8iZSenmtewzHUI17
+         hmbMvk2g5cPDZurkGT6xzjOcfE6jJGZzdh1GSKMTnU5M4kOVb7D7TnM9l/1hL8Ib/QHF
+         9x+tpFXFoH2nnAQgdtJqneAw4pI1UsqSH/NzE2uYXIG3Eio1GEZcl5BMbfsQhBMuXrCE
+         LrjhvQ6RXbyxjNpJ8L4qn6LuIYJtiz2MBHAL/yQJegLheVlyU6GiXLtvEl9w1ozZrpi8
+         2Faw==
+X-Gm-Message-State: AOAM530jZeub0JrVYCHqkRel/zfoGn0Ys3K4Gqg+xF1NOsDsjL5xVTt6
+        6mu6QIfz48Ont5Sjg3/q0IUVp60Mrg==
+X-Google-Smtp-Source: ABdhPJwaBT3RDj3fcld5zJ0gTPnn/0BKOHxIX5QzeE1YgYzPAknoO483YytUktxhDpys+EshFRvQPA==
+X-Received: by 2002:a05:6870:d210:b0:e2:c10b:a7b with SMTP id g16-20020a056870d21000b000e2c10b0a7bmr6906261oac.181.1650386109753;
+        Tue, 19 Apr 2022 09:35:09 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b16-20020a056870471000b000e5caa2b264sm2750013oaq.20.2022.04.19.09.34.30
+        by smtp.gmail.com with ESMTPSA id q7-20020a9d6307000000b005ea12d6454bsm5468650otk.38.2022.04.19.09.35.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 09:34:31 -0700 (PDT)
-Received: (nullmailer pid 2915852 invoked by uid 1000);
-        Tue, 19 Apr 2022 16:34:30 -0000
-Date:   Tue, 19 Apr 2022 11:34:30 -0500
+        Tue, 19 Apr 2022 09:35:09 -0700 (PDT)
+Received: (nullmailer pid 2917388 invoked by uid 1000);
+        Tue, 19 Apr 2022 16:35:08 -0000
+Date:   Tue, 19 Apr 2022 11:35:08 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH 1/5 v3] dt-bindings: clock: u8500: Add clkout clock
- bindings
-Message-ID: <Yl7klt2S5Jo+PZHN@robh.at.kernel.org>
-References: <20220414221751.323525-1-linus.walleij@linaro.org>
- <20220414221751.323525-2-linus.walleij@linaro.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>, dri-devel@lists.freedesktop.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Stefan Agner <stefan@agner.ch>, Robby Cai <robby.cai@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
+Message-ID: <Yl7kvNOUWbsgc+Hg@robh.at.kernel.org>
+References: <20220417014550.293773-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220414221751.323525-2-linus.walleij@linaro.org>
+In-Reply-To: <20220417014550.293773-1-marex@denx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -65,25 +66,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 00:17:47 +0200, Linus Walleij wrote:
-> This adds device tree bindings for the externally routed clocks
-> CLKOUT1 and CLKOUT2 clocks found in the DB8500.
+On Sun, 17 Apr 2022 03:45:49 +0200, Marek Vasut wrote:
+> Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
+> and is completely different from the LCDIFv3 found in i.MX23 in that it
+> has a completely scrambled register layout compared to all previous LCDIF
+> variants. The new LCDIFv3 also supports 36bit address space. However,
+> except for the complete bit reshuffling, this is still LCDIF and it still
+> works like one.
 > 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robby Cai <robby.cai@nxp.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Stefan Agner <stefan@agner.ch>
 > Cc: devicetree@vger.kernel.org
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> ChangeLog v2->v3:
-> - Pick up Ulf's ACK.
-> ChangeLog v1->v2:
-> - Push the description of the clock-cells down under the clock-cells
->   subnode.
-> - Add an example, as this was missing and requested.
+> V2: No change
 > ---
->  .../bindings/clock/stericsson,u8500-clks.yaml | 57 +++++++++++++++++++
->  include/dt-bindings/clock/ste-db8500-clkout.h | 17 ++++++
->  2 files changed, 74 insertions(+)
->  create mode 100644 include/dt-bindings/clock/ste-db8500-clkout.h
+>  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
