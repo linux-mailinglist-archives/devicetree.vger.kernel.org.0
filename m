@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C5050709A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233EB5070A2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236542AbiDSOes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50716 "EHLO
+        id S231671AbiDSOf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:35:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232971AbiDSOeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:34:46 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5F211140;
-        Tue, 19 Apr 2022 07:32:03 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id o127so12490565iof.12;
-        Tue, 19 Apr 2022 07:32:03 -0700 (PDT)
+        with ESMTP id S1353470AbiDSOfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:35:25 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE771E3CA
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:32:37 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id d198so10405692qkc.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:32:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=iPD1iR5qd5xmFxqoNP+9ShsEquOYqKS33gFTSRsPZro=;
-        b=Z7LxYAUbZnVFiFy71HCGAnsd0qRNreWPi93Lf3JHld6XjimOV92Fr8+6ProAPK2UtX
-         NEWGht0ORsquv+fNRKONaJYbpqKKBW8d22vmuMjdiSZxC0gM7rvMBeaGzboazwzAxXGA
-         mDvxXALWBzew3j1hguficgc8qmUB/vYIsCquZFmJFBFN92Q41mrqxax8L4Q7VHS9BI3v
-         sxaERl9GP3TP7D696rUbdqBfFfB3KegF1lkwklp6Wj4tWxdqH1r3RNRx+ipoHoEDpmde
-         O+AMs+j7ocD2qKdCVl024eKgvYt8P1F6AGr7MqzcUZmG1JiwUJxfmbZqC/T+KKrBmD8O
-         HYmA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=36yPd8hRpBAtwmc9BbcuXuK1dDwsE+5q9Lw2l5HaECk=;
+        b=lJw2pvlf5aQG7lTxb1WHpUHmXI7wu12++VUnDtF7iQTo0YP6PZZAqKfan/wzxLJBPa
+         ubZO1RNlY8QOiVU5ezQoVTJbW8GDo+Od40jOQ9Xh9qnkR1QbJnB7eaippGJQ0nhBbX8E
+         JFABajXyG3bIJnBtw2wwPC39ZreM22V4EZJNPh90RzwfaeaY6GoQDLGeRAcUO758rXpv
+         pPeygw9qyKEs7OP5oYCWeoZBlFy2wgTmRl/5tdbhi/Gybi3EqwptkbPzddC0mmtvIC3k
+         ZcCgamkt0fJ4VFcjQxwOvZVgMIgvLVCzUcvyVjUOjsWDzAIExOduu+tcq7YDW4j0iDuX
+         l37w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:references:from:subject:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=iPD1iR5qd5xmFxqoNP+9ShsEquOYqKS33gFTSRsPZro=;
-        b=X4Nqdyl34VdhfjjwpW9g50DRf5dszr+229W54JW0vVOOsrE9hIEsKgG3D0RY6rmTRZ
-         hluRRH/V56TAac+tyeYxSD4MpHrWciDNBSOI3A8ftJH60AYzYSckJoR5kYpuL93nHA8V
-         iz2o7sf8Pnji01kB2HFf98dpmCT+DNxglgnbFE4Lc91YpslLh2OX+f+NCs8JHhb8dSBr
-         5QD6NJa2snBWwiXl5699RmJWbChxecmujXz82QT7MnUEW/L37j5WDddnm85cU963/Dc0
-         XLt0Li7bCudwp+Z8v/fio8La8HmdCbaEDPJjIkrIl+f1P9lNvsuEfoVJpJ+i7/sqSxC3
-         4Zkg==
-X-Gm-Message-State: AOAM532NLobyzk2VtEoJflxZ5T9kb52A5qWINMfFMMy5EELM8UyOHpiC
-        jg8qM7TE8BGM6nSwrzdDsYw=
-X-Google-Smtp-Source: ABdhPJzL2cpCI4DDYEF14wIz+iVDK+70GBOSOBRKi+gYopggEMfFhTfSw6J23ZbocFRaz59bj9/WaQ==
-X-Received: by 2002:a6b:ce01:0:b0:64c:ad0b:9a65 with SMTP id p1-20020a6bce01000000b0064cad0b9a65mr6527353iob.147.1650378722931;
-        Tue, 19 Apr 2022 07:32:02 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id r14-20020a92ac0e000000b002ca8eb05174sm8934717ilh.57.2022.04.19.07.32.00
+        bh=36yPd8hRpBAtwmc9BbcuXuK1dDwsE+5q9Lw2l5HaECk=;
+        b=nmYNdnLua8uhZUMVmvHL1RfI32C8ztKFs8DGEs4UzifX/dE8JtRqSg9V6lp5ZmnV99
+         2bKtVeXfyC7gYT67laK+FIJJHhfredjCwJkqhQq+pPZlPXmhEoOUy40ndUyCXTt+p/BB
+         xA4pb22bNV7y8Eur4yaQ7qcucGb56WcplRqZAcbldtMhv4wffOP7HfSalf/zGk4/K2Kj
+         WkVi61XNGDA+VNbclibEiIJvhR3knvW09h8mRwM7QVuCUPmhKT+tZmJ1oCBcUIBM8DRM
+         Jx9L4xagGKbHQ5tw1WGes0dkIPnrb1kbNxmufaRKE3kmzBrgZnNU1P58B0ekObOnpAYL
+         nJuA==
+X-Gm-Message-State: AOAM532WFd+0XsJ0vhF+CcFlK+U90PY0PpZpNEDD8tbYtXSPLahk9m+v
+        DFrpFBcOemEl2su6opwQIfE=
+X-Google-Smtp-Source: ABdhPJxklBlhUP98RmmfoZay7wo7kZBet7NflSGuzdroUiMAkEzE8+0o7c+2Trg6Mf1/zJK/j7bafQ==
+X-Received: by 2002:a05:620a:147c:b0:69e:6f6b:872b with SMTP id j28-20020a05620a147c00b0069e6f6b872bmr9465644qkl.675.1650378756523;
+        Tue, 19 Apr 2022 07:32:36 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:98ed:ab24:32f:21f2? ([2600:1700:2442:6db0:98ed:ab24:32f:21f2])
+        by smtp.gmail.com with ESMTPSA id b2-20020ac87fc2000000b002f11f6dd5cdsm106551qtk.23.2022.04.19.07.32.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 07:32:02 -0700 (PDT)
-Message-ID: <448093df-288f-3c49-270e-5d830a986b27@gmail.com>
-Date:   Tue, 19 Apr 2022 16:31:59 +0200
+        Tue, 19 Apr 2022 07:32:36 -0700 (PDT)
+Message-ID: <654db7b8-1254-88e9-f668-b1b14abc3e3e@gmail.com>
+Date:   Tue, 19 Apr 2022 09:32:35 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
+Subject: Re: [PATCH] of: overlay: do not break notify on NOTIFY_OK
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org
-References: <20210820081616.83674-1-krzysztof.kozlowski@canonical.com>
- <165036314214.180327.9860190048104061653.b4-ty@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: align operating-points table
- name with dtschema
-In-Reply-To: <165036314214.180327.9860190048104061653.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?Q?Nuno_S=c3=a1?= <noname.nuno@gmail.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Alan Tull <atull@kernel.org>,
+        Alan Tull <atull@opensource.altera.com>
+References: <20220404074055.95618-1-nuno.sa@analog.com>
+ <01e77fbd-5c26-6b15-be1f-f962aa4190c6@gmail.com>
+ <9bde64d0c05a37e72fabbeb39d8d2fe099526917.camel@gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <9bde64d0c05a37e72fabbeb39d8d2fe099526917.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -78,29 +79,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob, Nuno,
+
+(adding cc: Alan)
+
+You just applied the patch at the root of this email thread.
+
+Please either revert it and accept the alternate that Nuno
+suggests below, or if you do not want to follow that path,
+then Nuno please add a follow on patch that does what you suggest
+below.
+
+-Frank
 
 
-On 19/04/2022 12:12, Krzysztof Kozlowski wrote:
-> On Fri, 20 Aug 2021 10:16:15 +0200, Krzysztof Kozlowski wrote:
->> Align the name of operating-points node to dtschema to fix warnings like:
+On 4/5/22 02:19, Nuno Sá wrote:
+> On Mon, 2022-04-04 at 13:10 -0500, Frank Rowand wrote:
+>> On 4/4/22 02:40, Nuno Sá wrote:
+>>> We should not break overlay notifications on NOTIFY_OK otherwise we
+>>> might
+>>> break on the first fragment. As NOTIFY_OK is not zero, we need to
+>>> account for that when looking for errors.
 >>
->>    arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml:
->>      opp_table0: $nodename:0: 'opp_table0' does not match '^opp-table(-[a-z0-9]+)?$'
+>> It's been a long time since I've looked at notifiers, it will take me
+>> some time to
+>> review this.
+>>
+>> -Frank
+>>
+>>>
+> 
+> Yeah, it was also my first time looking at of dynamic code. But it just
+> didn't felt right to stop fragmment notifications if someone returns
+> NOTIFY_OK. In fact, I'm starting to think that even if someone wants to
+> NOTIFY_STOP on the current fragment, that should not mean we should not
+> send notifications for the remaining ones. So, maybe the right patch is
+> actually something like:
+> 
+> ret = blocking_notifier_call_chain()
+> if (notifier_to_errno(ret))
+>     return notifier_to_errno(ret);
+> 
+> This would also be more in line (not totally identical) with
+> '__of_changeset_revert_notify()'.
+> 
+> - Nuno Sá
+> 
 >>
 >>
 > 
-> Applied, thanks!
 
-Could you please provide a stable branch for this patches? So that I can pull 
-that into my branch. This will help to reduce merge conflicts later on.
-
-Thanks,
-Matthias
-
-> 
-> [1/2] arm64: dts: mediatek: align operating-points table name with dtschema
->        commit: c743bb394d35b782ae9d9ab815d6053500914533
-> [2/2] arm64: dts: mediatek: align thermal zone node names with dtschema
->        commit: 54ff423f837db59db0626a00d091e45dcc46787e
-> 
-> Best regards,
