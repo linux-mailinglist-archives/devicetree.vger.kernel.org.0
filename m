@@ -2,156 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90470506CD7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12C0F506CE3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:58:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235438AbiDSM6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:58:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53208 "EHLO
+        id S243467AbiDSNAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:00:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiDSM6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:58:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA362B180;
-        Tue, 19 Apr 2022 05:55:23 -0700 (PDT)
-X-UUID: af1877add5b14b25831dd53443f79ab6-20220419
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:159939a9-28dc-47ce-a547-4fa6e99c11a2,OB:0,LO
-        B:10,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:53
-X-CID-INFO: VERSION:1.1.4,REQID:159939a9-28dc-47ce-a547-4fa6e99c11a2,OB:0,LOB:
-        10,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:53
-X-CID-META: VersionHash:faefae9,CLOUDID:15c838f0-da02-41b4-b6df-58f4ccd36682,C
-        OID:e35b78a6d1fe,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
-        le:nil,QS:0,BEC:nil
-X-UUID: af1877add5b14b25831dd53443f79ab6-20220419
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1003386585; Tue, 19 Apr 2022 20:55:17 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 19 Apr 2022 20:55:16 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 19 Apr
- 2022 20:55:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 19 Apr 2022 20:55:16 +0800
-Message-ID: <fe9f427ec28414b545ccdb2009ae16ad735628be.camel@mediatek.com>
-Subject: Re: [PATCH 5/5] dt-bindings: mediatek: add ethdr definition for
- mt8195
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
-        <Nancy.Lin@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
-        <Jason-JH.Lin@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Date:   Tue, 19 Apr 2022 20:55:15 +0800
-In-Reply-To: <1650370363.563060.1977867.nullmailer@robh.at.kernel.org>
-References: <20220419033237.23405-1-rex-bc.chen@mediatek.com>
-         <20220419033237.23405-6-rex-bc.chen@mediatek.com>
-         <1650370363.563060.1977867.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S240912AbiDSNAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:00:31 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BE43388C;
+        Tue, 19 Apr 2022 05:57:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=8WBVcaV6iEXDOrTecuRrSTx95lLOpawtAYD16O9vexE=; b=VjL15INsCpOnI7UDTwDOjC1Ccr
+        Oz6NOqDOqp5VE8iQDKxVC9SNLs8DLGNJGXxHDAo4hYqT9q9MaPgReKl0744ilAFiowXf00llHmDL8
+        MY4a/6OUgQM7+RywlBbMU7wLSOJFOZ7ZpFjAa8y3DHNUIHM0OoWOa/a2spK3G5TkyxXY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ngnQI-00GV3L-45; Tue, 19 Apr 2022 14:57:38 +0200
+Date:   Tue, 19 Apr 2022 14:57:38 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 09/12] ARM: dts: r9a06g032: describe MII
+ converter
+Message-ID: <Yl6xwmbsTLWMaXAv@lunn.ch>
+References: <YlismVi8y3Vf6PZ0@lunn.ch>
+ <20220415102453.1b5b3f77@fixe.home>
+ <Yll+Tpnwo5410B9H@lunn.ch>
+ <20220415163853.683c0b6d@fixe.home>
+ <YlmLWv4Hsm2uk8pa@lunn.ch>
+ <20220415172954.64e53086@fixe.home>
+ <YlmbIjoIZ8Xb4Kh/@lunn.ch>
+ <20220415184541.0a6928f5@fixe.home>
+ <YlrJQ47tkmQdhtMu@lunn.ch>
+ <20220419110328.0241fb1f@fixe.home>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419110328.0241fb1f@fixe.home>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-04-19 at 20:12 +0800, Rob Herring wrote:
-> On Tue, 19 Apr 2022 11:32:37 +0800, Rex-BC Chen wrote:
-> > From: "Nancy.Lin" <nancy.lin@mediatek.com>
-> > 
-> > Add vdosys1 ETHDR definition.
-> > 
-> > Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> > Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> > Reviewed-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > ---
-> >  .../display/mediatek/mediatek,ethdr.yaml      | 158
-> > ++++++++++++++++++
-> >  1 file changed, 158 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.y
-> > aml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.exa
-> mple.dts:26:18: fatal error: dt-bindings/memory/mt8195-memory-port.h: 
-> No such file or directory
->    26 |         #include <dt-bindings/memory/mt8195-memory-port.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:364:
-> Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.exa
-> mple.dtb] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1401: dt_binding_check] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See 
-> https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/__;!!CTRNKA9wMg0ARbw!0_37wgtYvnR9SOpuvHJTNoD49ZH-H-8wVYtuCNFWbusuETEVY3vuSBeQz424H8e4_VNF3DOx4RmpXtN3gVegfPw1Hw$
->  
-> 
-> This check can fail if there are any dependencies. The base for a
-> patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up
-> to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+> Hum, that could be done but since only some values/combinations are
+> allowed, it would potentially require to validate the setting at each
+> request, leading to potential non working devices due to invalid MUX
+> configuration required.
 
-Hello Rob,
+Yes, validation is messy, you have to incrementally validate as each
+device probes and requests its PCS. I would not only return -EINVAL,
+but also dump the current partial configuration to the kernel log. I
+guess the implementation would have a big table as shown in the
+datasheet. You walk the table trying to find a match for those
+settings you have so far, and wildcard those you don't know yet. Fun
+little coding problem.
 
-As mentioned in [3/5], this patch is also basd on Yong's patch:
-message id: 20220407075726.17771-2-yong.wu@mediatek.com
-Without this patch, some patches of this series will build failed.
-
-Thanks!
-
-BRs,
-Rex
-
+	 Andrew
