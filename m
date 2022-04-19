@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDF13506778
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 11:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C16F50678A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 11:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232130AbiDSJNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 05:13:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40188 "EHLO
+        id S1346805AbiDSJUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 05:20:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241458AbiDSJNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 05:13:15 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2684120F6F
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 02:10:32 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id u3so21540915wrg.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 02:10:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zF4V/xMqxOt1lzS1W7B1kHA2IPJXPFkf0vVAZ2mtUOI=;
-        b=eWXVtgZA+DXI5LtnTRmFH591Bjcrb5vrHiVbW8HPi94dgBRFXPKjOSV9gyPgKRqm52
-         rrVlipat7vdond408O5t4VhcN2nPQhhFcZXe2dUFhuvyC5SIV5ByxCO9LoHvOuc/A5QC
-         +erFGfnay8ZaZz/QQj4Pqlm5/e0rq543/oAXGambL7Hlvh5Fj4wrl+aQ4+2kuGQhgoYE
-         5KGLQALi31ZSh52U7i+orSq01/ZI18TYcR/0o5/Cd65WwNrYPzv74DG/pu07G8hi08/T
-         JEu/B/VUKo8ltzPt02H7zx5SBBU7cViBqkWRJuQQrbiu6P9x3aYqHc+OwlgSjKYXvyUT
-         axEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zF4V/xMqxOt1lzS1W7B1kHA2IPJXPFkf0vVAZ2mtUOI=;
-        b=nH3zug5sQqvEduhkmk0QlDE6FpmiY76xzs4uVA9p4t+4aU/Aov1WI93wFRH7nRNg3j
-         g1LTxK9/oZ/6C679lV7Vk69p6gV/KDLnW7iCsOXLRLGiwo8dZBu5/yze0D8IbY04gHeL
-         NqKa7jJ+iyIvgF31p4OlJiHd9ioitofbF/rDEE2ffUUdk7a0ie9riVORa1WKrEpRl5Hn
-         xW94GBS4q+/4Tmj2lMd7XWB9ZBuJ+mZcOZmHfBSB+vclR9c5GcMvqbs76r6rUwOHf9Uo
-         la+3uIS12eDZLiXb2qnSmGTUQDoI6CPoA+ipmt06iJ3GJ+rxBqo2wU104IwFFACCkHCX
-         AXww==
-X-Gm-Message-State: AOAM533jMKlrmPrrJjpU8uOrXhmNZbq8pxnJW5Y0P4c/mSS/XAolLTY7
-        vvqaDRlaN6LAxl6v7fPolqiyiw==
-X-Google-Smtp-Source: ABdhPJz2TaXo5HkQRvMqgFpi/YCNwh6ssF0uj1RZEHz7LmaUi64xmuEniT+fhOrhuJs7L2SHUMCbgA==
-X-Received: by 2002:a05:6000:15cd:b0:20a:aaf7:33e4 with SMTP id y13-20020a05600015cd00b0020aaaf733e4mr45876wry.406.1650359430725;
-        Tue, 19 Apr 2022 02:10:30 -0700 (PDT)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id j18-20020a05600c1c1200b0039297ba9a6dsm4659679wms.26.2022.04.19.02.10.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 02:10:29 -0700 (PDT)
-Message-ID: <72ca1cd4-da90-9e4c-b326-46eef2e1cb58@linaro.org>
-Date:   Tue, 19 Apr 2022 10:10:28 +0100
+        with ESMTP id S231799AbiDSJUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 05:20:32 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96CDC26AC9;
+        Tue, 19 Apr 2022 02:17:50 -0700 (PDT)
+Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 19 Apr
+ 2022 17:17:48 +0800
+Message-ID: <2e382e3e-c231-c9e4-73a1-0637288fcd4f@amlogic.com>
+Date:   Tue, 19 Apr 2022 17:17:48 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] ASoC: qcom: lpass: Fix apq8016 compat string to match
- yaml
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220418230956.3059563-1-bryan.odonoghue@linaro.org>
- <20220418230956.3059563-2-bryan.odonoghue@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220418230956.3059563-2-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20220402074921.13316-1-liang.yang@amlogic.com>
+ <20220402074921.13316-2-liang.yang@amlogic.com>
+ <20220404103034.48ec16b1@xps13>
+ <50105d6b-8ced-1b72-30cb-a709c4a4dd26@amlogic.com>
+ <d5a33645-fac1-9c69-afe6-654bfe93ca48@amlogic.com>
+ <20220419102629.1c77aa2a@xps13>
+From:   Liang Yang <liang.yang@amlogic.com>
+In-Reply-To: <20220419102629.1c77aa2a@xps13>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.28.39.106]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,41 +65,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Miquel,
 
-
-On 19/04/2022 00:09, Bryan O'Donoghue wrote:
-> The documented yaml compat string for the apq8016 is
-> "qcom,apq8016-lpass-cpu" not "qcom,lpass-cpu-apq8016". Looking at the other
-> lpass compat strings the general form is "qcom,socnum-lpass-cpu".
+On 2022/4/19 16:26, Miquel Raynal wrote:
+> [ EXTERNAL EMAIL ]
 > 
-> We need to fix both the driver and dts to match.
-
-Fixes tag is missing.
-
+> Hello,
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
-
-other than that it LGTM.
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
---srini
-
-> ---
->   sound/soc/qcom/lpass-apq8016.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> liang.yang@amlogic.com wrote on Mon, 18 Apr 2022 11:40:10 +0800:
 > 
-> diff --git a/sound/soc/qcom/lpass-apq8016.c b/sound/soc/qcom/lpass-apq8016.c
-> index 3efa133d1c64..10edc5e9c8ef 100644
-> --- a/sound/soc/qcom/lpass-apq8016.c
-> +++ b/sound/soc/qcom/lpass-apq8016.c
-> @@ -292,7 +292,7 @@ static struct lpass_variant apq8016_data = {
->   };
->   
->   static const struct of_device_id apq8016_lpass_cpu_device_id[] __maybe_unused = {
-> -	{ .compatible = "qcom,lpass-cpu-apq8016", .data = &apq8016_data },
-> +	{ .compatible = "qcom,apq8016-lpass-cpu", .data = &apq8016_data },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, apq8016_lpass_cpu_device_id);
+>> Hi Miquel,
+>>
+>> i have some confusion when i prepare the patches. for DT compatibility, it falls back to the old DT when failed to get resource by the new DT, but there is some points:
+>> a. old DT depends on MMC sub clock driver, but it never be merged, so it can't work.
+> 
+> I don't get what you mean here, sorry. I believe there is a new way to
+> describe this clock but grabbing the one from the MMC still works, does
+> not it?
+> 
+
+No, it doesn't. after the NFC driver using the MMC sub clock framework 
+was merged into the mainline of kernel, we didn't continue to submit the 
+series of patches about MMC sub clock after v9. when i found that, we 
+made a discussion to decide whether to recover the series of patches 
+about MMC sub clock framework, finally, see the description from cover 
+letter, we plan to abandon it and adopt the new clock scheme in this 
+series of patches.
+
+Thanks.
+
+>> b. if it falls back to the old DT, beside the regmap lookup below, it seems that we have to preserve the code of the old clock setting in nfc_clk_init().
+> 
+> Yes, probably.
+> 
+>> do we still need to avoid break DT compatibility?
+> 
+> We should try our best to avoid breaking the DT, yes.
+> 
+>>
+>> Thanks.
+>>
+>> On 2022/4/11 10:40, Liang Yang wrote:
+>>>>>        nfc->dev = dev;
+>>>>> -    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>>>> -    nfc->reg_base = devm_ioremap_resource(dev, res);
+>>>>> +    nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
+>>>>
+>>>> This change seems unrelated.
+>>>
+>>> To be consistent with the following > devm_platform_ioremap_resource_byname(pdev, "emmc"). do you mean that we > don't need it?>
+>>>>>        if (IS_ERR(nfc->reg_base))
+>>>>>            return PTR_ERR(nfc->reg_base);
+>>>>> -    nfc->reg_clk =
+>>>>> -        syscon_regmap_lookup_by_phandle(dev->of_node,
+>>>>> -                        "amlogic,mmc-syscon");
+>>>>> -    if (IS_ERR(nfc->reg_clk)) {
+>>>>> -        dev_err(dev, "Failed to lookup clock base\n");
+>>>>> -        return PTR_ERR(nfc->reg_clk);
+>>>>> -    }
+>>>>> +    nfc->sd_emmc_clock = devm_platform_ioremap_resource_byname(pdev, >>> "emmc");
+>>>>> +    if (IS_ERR(nfc->sd_emmc_clock))
+>>>>> +        return PTR_ERR(nfc->sd_emmc_clock);
+>>>>
+>>>> While I agree this is much better than the previous solution, we cannot
+>>>> break DT compatibility, so you need to try getting the emmc clock, but
+>>>> if it fails you should fallback to the regmap lookup.
+>>>
+>>> ok, i will fix it next version. thanks.
+>>>    
+>>>>   
+>>>>>        irq = platform_get_irq(pdev, 0);
+> 
+> 
+> Thanks,
+> Miquèl
+> 
+> .
