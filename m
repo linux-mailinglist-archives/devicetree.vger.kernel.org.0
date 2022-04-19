@@ -2,237 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 974625066EA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 10:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FFE5066F2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 10:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245735AbiDSIcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 04:32:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60412 "EHLO
+        id S1350016AbiDSIdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 04:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245659AbiDSIc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 04:32:29 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36D52DA8D;
-        Tue, 19 Apr 2022 01:29:45 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (85-76-101-166-nat.elisa-mobile.fi [85.76.101.166])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A16E6305;
-        Tue, 19 Apr 2022 10:29:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1650356982;
-        bh=grUzb/1hkBTCZySunV8a8ldWofTVRuYtPbiP44C1hd4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bICzM93xYnNCNI+NfCiMB24AO4ET892MH4EmPpDQg9mRo5lXGHCISUNrZDNPfMdqP
-         YP8Rq2Td/2fvcxU/rYab80t4BtGNN36XWsnzH9kBjZhDUhdpXi0O6uX3T3ydmkmIBy
-         oaoO7ez+klfVjmtUw7GmuiT61tbVfDVOGVEs0SEw=
-Date:   Tue, 19 Apr 2022 11:29:39 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v7 1/3] media: dt-bindings: media: renesas,vsp1: Document
- RZ/{G2L,V2L} VSPD bindings To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Message-ID: <Yl5y80gOfKW33gNn@pendragon.ideasonboard.com>
-References: <20220414142605.26235-1-biju.das.jz@bp.renesas.com>
- <20220414142605.26235-2-biju.das.jz@bp.renesas.com>
- <Ylk6dp6TiuwbJqkn@pendragon.ideasonboard.com>
- <OS0PR01MB5922A9C796546784737639B386F39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        with ESMTP id S1343528AbiDSIdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 04:33:18 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C043611C19;
+        Tue, 19 Apr 2022 01:30:36 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id u15so31300570ejf.11;
+        Tue, 19 Apr 2022 01:30:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4OiFs7ulzkmKAramSw5U/UagtmvyMZLn6GtNwoWbozk=;
+        b=QthceWOYPQDs1AOg0WckUxHDyE14D6jg6NVqJeea2fBLKkqyrVqIKoYdtOKtjDyjtp
+         lLTTsYiQgFJpnVVjtsj+rjKiEXZ296YfiEGnqNC31aKreLmnHNOcOHAbwiZXmCJu+lri
+         Y6U2ZOB48vPGFFhbjSOtOMJjuX1A5qHTCWxc8irzIRCzvlWHKAa3Yym3f5IxMesK1vSl
+         J8Cek9lXtPzhmCV8SjODmgVwPYvSphXMUCfIXBibnzgo4jP6QIJhcPAlJv5KulLU+wVj
+         6hzpRMGeBqKgat8hF5YkEKo0MiXwBucxR8wDXWRGiEZADmknKRicABFkfcEwyrdssL9y
+         9IMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4OiFs7ulzkmKAramSw5U/UagtmvyMZLn6GtNwoWbozk=;
+        b=VJYKokzEmQM2PY4GgLNF3hlIDGoB5OZEk19RS8rrjpHy3LAdVRgErT2JG1Rum/0kZj
+         EWX2W4OhOWkxy+10DK4VS0SAD3Gpkt8jMco73mMfhYdIX+A4OYKKcs5jGJwp/q/kurVX
+         U7+YpnK7MgBQpQXyIiHLh6UG2iabRCayGPtr/iVmOQ6QZ3KU8AGmriGIQvHW3gCxG8mr
+         AeaQFJtcB80yiZy2/uZh+day35NmjK3iDWDm7qWX/6j82rfM2NpF3/8zr78DbmSl31dM
+         Un0lBhmcBnP+gGf2wde/kWHwfKWBfPkxHlSZEVXQOXuVgzU0rGMc0NiOr5AaMTk05VXB
+         WVCA==
+X-Gm-Message-State: AOAM530zxnE0uzkircGW5drcCc2bVQhjc375o2ss2XLqjWi4h2U8b7/b
+        WNXpZYXDYv7Lwuvv2EQ4iBE8V5qAxXyDEM36rzM=
+X-Google-Smtp-Source: ABdhPJwuFgKeG5m9W8LUoWssPxFYUalbeGcev7sYoZsXiC2tgMwSWkKX6pCKIsldjIeRBrc2nK/Hpu2DY7UfXHOvZq4=
+X-Received: by 2002:a17:906:1cd1:b0:6ec:c59:6a1d with SMTP id
+ i17-20020a1709061cd100b006ec0c596a1dmr11671524ejh.77.1650357035349; Tue, 19
+ Apr 2022 01:30:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB5922A9C796546784737639B386F39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20220415130005.85879-1-andrea.merello@gmail.com>
+ <20220415130005.85879-13-andrea.merello@gmail.com> <20220415174808.3b81baa4@jic23-huawei>
+ <CAHp75Ve_f2txO8izFzjFUCRiP6SkT2wVHshy5EtU8LGtjzDAkA@mail.gmail.com> <CAN8YU5PeDd8BQYHQVAzfkni_v55UjaJsRJ4ATs0FAVFt1KKX=g@mail.gmail.com>
+In-Reply-To: <CAN8YU5PeDd8BQYHQVAzfkni_v55UjaJsRJ4ATs0FAVFt1KKX=g@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 19 Apr 2022 11:29:59 +0300
+Message-ID: <CAHp75VfENRuhUEp2Pj09qv6u-4Ze=GLwzCiSS+s2sTgt-aNE_g@mail.gmail.com>
+Subject: Re: [v4 12/14] iio: imu: add BNO055 serdev driver
+To:     Andrea Merello <andrea.merello@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Tue, Apr 19, 2022 at 10:48 AM Andrea Merello
+<andrea.merello@gmail.com> wrote:
+> Il giorno sab 16 apr 2022 alle ore 10:45 Andy Shevchenko
+> <andy.shevchenko@gmail.com> ha scritto:
+> > On Fri, Apr 15, 2022 at 7:40 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> > > On Fri, 15 Apr 2022 15:00:03 +0200
+> > > Andrea Merello <andrea.merello@gmail.com> wrote:
 
-On Mon, Apr 18, 2022 at 07:34:19PM +0000, Biju Das wrote:
-> > Subject: Re: [PATCH v7 1/3] media: dt-bindings: media: renesas,vsp1:
-> > Document RZ/{G2L,V2L} VSPD bindings 
-> > 
-> > Hi Biju,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Thu, Apr 14, 2022 at 03:26:03PM +0100, Biju Das wrote:
-> > > Document VSPD found in RZ/G2L and RZ/V2L family SoC's. VSPD block is
-> > > similar to VSP2-D found on R-Car SoC's, but it does not have a version
-> > > register and it has 3 clocks compared to 1 clock on vsp1 and vsp2.
-> > >
-> > > This patch introduces a new compatible 'renesas,rzg2l-vsp2' to handle
-> > > these differences.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > > ---
-> > > v6->v7:
-> > >  * No change
-> > > v5->v6:
-> > >  * Removed LCDC reference clock description
-> > >  * Changed the clock name from du.0->aclk
-> > > v4->v5:
-> > >  * No change
-> > > v3->v4:
-> > >  * No change
-> > > v2->v3:
-> > >  * Added Rb tag from Krzysztof.
-> > > v1->v2:
-> > >  * Changed compatible from vsp2-rzg2l->rzg2l-vsp2
-> > > RFC->v1:
-> > >  * Updated commit description
-> > >  * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
-> > >  * Defined the clocks
-> > >  * Clock max Items is based on SoC Compatible string
-> > > RFC:
-> > >  *
-> > 
-> > > ---
-> > >  .../bindings/media/renesas,vsp1.yaml          | 52 ++++++++++++++-----
-> > >  1 file changed, 39 insertions(+), 13 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > index 990e9c1dbc43..a236b266fa4b 100644
-> > > --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > @@ -19,6 +19,7 @@ properties:
-> > >      enum:
-> > >        - renesas,vsp1 # R-Car Gen2 and RZ/G1
-> > >        - renesas,vsp2 # R-Car Gen3 and RZ/G2
-> > > +      - renesas,rzg2l-vsp2 # RZ/G2L and RZ/V2L
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -26,8 +27,8 @@ properties:
-> > >    interrupts:
-> > >      maxItems: 1
-> > >
-> > > -  clocks:
-> > > -    maxItems: 1
-> > > +  clocks: true
-> > > +  clock-names: true
-> > 
-> > clock-names shouldn't be true here, as it should only be set on rzg2l-vsp2.
-> > I think you can actually drop both clocks and clock-names here.
-> 
-> If I drop clocks, then I get below dt_binding_check error
-> 
-> biju@biju-VirtualBox:~/rzg2l-linux$ make ARCH=arm64 DT_CHECKER_FLAGS=-m DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/renesas,vsp1.yaml CROSS_COMPILE=~/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu- dt_binding_check -j8
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/media/renesas,vsp1.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC     Documentation/devicetree/bindings/media/renesas,vsp1.example.dtb
->   CHECK   Documentation/devicetree/bindings/media/renesas,vsp1.example.dtb
-> /home/biju/rzg2l-linux/Documentation/devicetree/bindings/media/renesas,vsp1.example.dtb: vsp@fe928000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /home/biju/rzg2l-linux/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> /home/biju/rzg2l-linux/Documentation/devicetree/bindings/media/renesas,vsp1.example.dtb: vsp@fe920000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /home/biju/rzg2l-linux/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> 
-> If I drop clock-names, I get dtbs-check error for RZ/G2{L,LC},
-> 
-> make ARCH=arm64 DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/renesas,vsp1.yaml CROSS_COMPILE=~/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu- dtbs_check -j8
-> 
-> /home/biju/rzg2l-linux/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dtb: vsp@10870000: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /home/biju/rzg2l-linux/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> /home/biju/rzg2l-linux/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dtb: vsp@10870000: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /home/biju/rzg2l-linux/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> 
-> So looks like both are required.
+...
 
-Indeed, we would need to switch from additionalProperties to
-unevaluatedProperties then, and that's not allowed for schemas without a
-$ref.
-
-> Please correct me, If I am missing anything here.
-
-Let's keep both properties here, but then ... (see below)
-
-> > With this addressed,
-> > 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > 
+> > > > +CFLAGS_bno055_ser.o := -I$(src)
 > > >
-> > >    power-domains:
-> > >      maxItems: 1
-> > > @@ -50,17 +51,42 @@ required:
-> > >
-> > >  additionalProperties: false
-> > >
-> > > -if:
-> > > -  properties:
-> > > -    compatible:
-> > > -      items:
-> > > -        - const: renesas,vsp1
-> > > -then:
-> > > -  properties:
-> > > -    renesas,fcp: false
-> > > -else:
-> > > -  required:
-> > > -    - renesas,fcp
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: renesas,vsp1
-> > > +    then:
-> > > +      properties:
-> > > +        renesas,fcp: false
-> > > +    else:
-> > > +      required:
-> > > +        - renesas,fcp
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: renesas,rzg2l-vsp2
-> > > +    then:
-> > > +      properties:
-> > > +        clocks:
-> > > +          items:
-> > > +            - description: Main clock
-> > > +            - description: Register access clock
-> > > +            - description: Video clock
-> > > +        clock-names:
-> > > +          items:
-> > > +            - const: aclk
-> > > +            - const: pclk
-> > > +            - const: vclk
-> > > +      required:
-> > > +        - clock-names
-> > > +    else:
-> > > +      properties:
-> > > +        clocks:
-> > > +          maxItems: 1
+> > > Via a bit of grepping I can see other instances of this pattern which point out
+> > > that it's to do with allowing the tracing framework to see trace.h.
+> > > Perhaps a similar comment here would be good (if nothing else I doubt I'll
+> > > remember why this magic is here in a few years time!)
+> >
+> > Can be done better way, see dwc3 or drivers/base/ trace point implementations.
+>
+> May you elaborate, please? It appears that both dwc3 and driver/base
+> use this same trick of tweaking the CFLAGS in the Makefile in order to
+> fix the header file thing. What I see is different is that they both
+> use an (almost empty) trace.c file. Is this what you are suggesting?
 
-... you will need
+There are two differences in your code:
+1) no separate c module, which...
+2) is built depending on CONFIG_TRACE.
 
-        clock-names: false
-
-here.
-
-> > >
-> > >  examples:
-> > >    # R8A7790 (R-Car H2) VSP1-S
+Hence, no need to have a separate ugly config option.
 
 -- 
-Regards,
-
-Laurent Pinchart
+With Best Regards,
+Andy Shevchenko
