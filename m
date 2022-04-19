@@ -2,120 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1BCB506D7E
+	by mail.lfdr.de (Postfix) with ESMTP id 119E9506D7C
 	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243736AbiDSNdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 09:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56554 "EHLO
+        id S243954AbiDSNdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243962AbiDSNdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:33:10 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462E8E0AC;
-        Tue, 19 Apr 2022 06:30:27 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23JCeESq019632;
-        Tue, 19 Apr 2022 15:30:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=yVMrm4zWjinomEQt6Qi0CU02yE86wEnfHBQgY0IOHqc=;
- b=nFB0m7eyQ1BHx2n5SeGnAyqflzmTnnBNt+gQV/xjoQu3LfSq5YTU/69SkKOGdx8nIkZw
- FJDjxEa7c6hypgNU62Y2i5lXOiwstXJFhQXwEzPSGk+oLP1gix327yzSG4PJtArSM9QN
- da/63nkP+2s0tc5n1zbnPWpeTc4ZTIKeXoaKXtPc9LNEOW4idvqv71gy55RIzWcCZjST
- x+pKEQUqIEgFmzJD0zSH3xYCj9uZVlJxqWng+8wBja2Fi+3Gpz6+HWBFQ892PJY3DIg/
- Hr93FGwT6Cd6yJMuyNMRMxcye3UQv/YXpIxBI4+g+F+DuHbMYIkUA+Q6FmTKcuGsvsxl PA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fh09kr17x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 19 Apr 2022 15:30:11 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D1EFB100034;
-        Tue, 19 Apr 2022 15:30:10 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C7E742128DC;
-        Tue, 19 Apr 2022 15:30:10 +0200 (CEST)
-Received: from [10.48.0.142] (10.75.127.46) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 19 Apr
- 2022 15:30:09 +0200
-Message-ID: <c40b818d-1036-8068-2ebb-a6f1eab4d738@foss.st.com>
-Date:   Tue, 19 Apr 2022 15:30:08 +0200
+        with ESMTP id S243950AbiDSNdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:33:08 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA1B644D;
+        Tue, 19 Apr 2022 06:30:26 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id q129so18094920oif.4;
+        Tue, 19 Apr 2022 06:30:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dC+9aknP1RLhEpg+1+Hw55vZvp/iuvE//q1Eib/rSk8=;
+        b=vmVG8Cqxn4GufyT0NtNX/I9k44Vh1qMOeeg+6wHWDktZbKWan97MwiPo/4wV6IeR2C
+         DdTL2FpuuNYhDOpG8n+FNvAygolMSln9GwFjq8c45reVt8k7gbvzX8CG+1RfyNSvnhP+
+         4j/zm/xM5dGdQOSA/0V66ODBYHNcLhFdIRJ1onXaEuCDhP3cFKN9wEnkezjvUg1V/83F
+         UV355ngXHAQXg7KzSWSEar77gEcrQ3J6Iqz4y2glL6OMx4dSk6tXlOfz1Xz6fq7kRU/4
+         N6O82g/VC1+NjVChKxwLiCCImXhIa5VfonHBAshEk+3qQINb+EPdhMBQUk1jAmQdqNFr
+         LYUA==
+X-Gm-Message-State: AOAM532SnLFsi+Gc8+S1PpI19vnj4D8qV288bRfK5mBDQ3NncSpNaTL3
+        jz87DjqXDk/Zt1UGycSkpg==
+X-Google-Smtp-Source: ABdhPJz3NesdMOUrwAzr/eSC8Mx3RfAIAeIJyoJkAIHJpN1mFId4zSJtG69YtVQ1IuW9xS8FsHja1w==
+X-Received: by 2002:aca:1903:0:b0:322:68f1:79ca with SMTP id l3-20020aca1903000000b0032268f179camr6634474oii.189.1650375025388;
+        Tue, 19 Apr 2022 06:30:25 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k8-20020a544688000000b002f90678740esm5102226oic.37.2022.04.19.06.30.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 06:30:24 -0700 (PDT)
+Received: (nullmailer pid 2377875 invoked by uid 1000);
+        Tue, 19 Apr 2022 13:30:23 -0000
+Date:   Tue, 19 Apr 2022 08:30:23 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     frowand.list@gmail.com, daniel@ffwll.ch, deller@gmx.de,
+        sam@ravnborg.org, linux@roeck-us.net, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org, javierm@redhat.com,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v2 1/2] of: Create platform devices for OF framebuffers
+Message-ID: <Yl65by+ZjQdK8nIv@robh.at.kernel.org>
+References: <20220419100405.12600-1-tzimmermann@suse.de>
+ <20220419100405.12600-2-tzimmermann@suse.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] ARM: dts: align SPI NOR node name with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        <soc@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-CC:     <arm@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>
-References: <20220407143027.294678-1-krzysztof.kozlowski@linaro.org>
- <d0d9c16f-4668-1263-49fa-e51648c8c098@foss.st.com>
- <8798d7bb-6480-90ef-90fd-d7ff7d7beb2a@linaro.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <8798d7bb-6480-90ef-90fd-d7ff7d7beb2a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-19_05,2022-04-15_01,2022-02-23_01
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419100405.12600-2-tzimmermann@suse.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/19/22 15:10, Krzysztof Kozlowski wrote:
-> On 19/04/2022 15:03, Alexandre TORGUE wrote:
->> Hi Krzysztof
->>
->> On 4/7/22 16:30, Krzysztof Kozlowski wrote:
->>> The node names should be generic and SPI NOR dtschema expects "flash".
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>    arch/arm/boot/dts/da850-evm.dts                  | 2 +-
->>>    arch/arm/boot/dts/dm8168-evm.dts                 | 2 +-
->>>    arch/arm/boot/dts/spear1310-evb.dts              | 2 +-
->>>    arch/arm/boot/dts/spear1340-evb.dts              | 2 +-
->>>    arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 2 +-
->>>    arch/arm/boot/dts/stm32mp157c-ev1.dts            | 4 ++--
->>>    6 files changed, 7 insertions(+), 7 deletions(-)
->>
->> Thanks for your patch. Is it possible to split it per vendor
->> (TI/STM32/SPEAR) ?
+On Tue, Apr 19, 2022 at 12:04:04PM +0200, Thomas Zimmermann wrote:
+> Create a platform device for each OF-declared framebuffer and have
+> offb bind to these devices. Allows for real hot-unplugging and other
+> drivers besides offb.
 > 
-> This was a part of a bigger set where most of these I split. However
-> here split would be more churn for such simple change, so I combined them.
+> Originally, offb created framebuffer devices while initializing its
+> module by parsing the OF device tree. No actual Linux device was set
+> up. This tied OF framebuffers to offb and makes writing other drivers
+> for the OF framebuffers complicated. The absence of a Linux device
+> further prevented real hot-unplugging. Adding a distinct platform
+> device for each OF framebuffer solves both problems. Specifically, a
+> DRM driver can now provide graphics output for modern userspace.
 > 
-> This was already picked up by Arnd:
-> https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?h=for-next&id=56147a156e7e2f50bef695efe6cc4fe8e91c40dc
-
-Ah Ok, I missed that Arnd took them, sorry.
-
-Regards
-Alex
-
+> Some of the offb init code is now located in the OF initialization.
+> There's now also an implementation of of_platform_default_populate_init(),
+> which was missing before. The OF side creates different devices for
+> either OF display nodes or BootX displays as they require different
+> handling by the driver. The offb drivers picks up each type of device
+> and runs the appropriate fbdev initialization.
 > 
+> Tested with OF display nodes on qemu's ppc64le target.
 > 
-> Best regards,
-> Krzysztof
+> v2:
+> 	* run PPC code as part of existing initialization (Rob)
+> 	* add a few more error warnings (Javier)
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> ---
+>  drivers/of/platform.c      | 88 ++++++++++++++++++++++++++--------
+>  drivers/video/fbdev/offb.c | 98 +++++++++++++++++++++++++-------------
+>  2 files changed, 132 insertions(+), 54 deletions(-)
+> 
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index a16b74f32aa9..738ba2e2838c 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -507,7 +507,6 @@ int of_platform_default_populate(struct device_node *root,
+>  }
+>  EXPORT_SYMBOL_GPL(of_platform_default_populate);
+>  
+> -#ifndef CONFIG_PPC
+>  static const struct of_device_id reserved_mem_matches[] = {
+>  	{ .compatible = "qcom,rmtfs-mem" },
+>  	{ .compatible = "qcom,cmd-db" },
+> @@ -520,33 +519,81 @@ static const struct of_device_id reserved_mem_matches[] = {
+>  
+>  static int __init of_platform_default_populate_init(void)
+>  {
+> -	struct device_node *node;
+> -
 
+As both if/else clauses need 'node', I'd keep this declared here.
+
+>  	device_links_supplier_sync_state_pause();
+>  
+>  	if (!of_have_populated_dt())
+>  		return -ENODEV;
+>  
+> -	/*
+> -	 * Handle certain compatibles explicitly, since we don't want to create
+> -	 * platform_devices for every node in /reserved-memory with a
+> -	 * "compatible",
+> -	 */
+> -	for_each_matching_node(node, reserved_mem_matches)
+> -		of_platform_device_create(node, NULL, NULL);
+> +	if (IS_ENABLED(CONFIG_PPC)) {
+> +		struct device_node *boot_display = NULL;
+> +		struct device_node *node;
+> +		struct platform_device *dev;
+> +		int ret;
+> +
+> +		/* Check if we have a MacOS display without a node spec */
+> +		if (of_get_property(of_chosen, "linux,bootx-noscreen", NULL)) {
+> +			/*
+> +			 * The old code tried to work out which node was the MacOS
+> +			 * display based on the address. I'm dropping that since the
+> +			 * lack of a node spec only happens with old BootX versions
+> +			 * (users can update) and with this code, they'll still get
+> +			 * a display (just not the palette hacks).
+> +			 */
+> +			dev = platform_device_alloc("bootx-noscreen", 0);
+> +			if (WARN_ON(!dev))
+> +				return -ENOMEM;
+> +			ret = platform_device_add(dev);
+> +			if (WARN_ON(ret)) {
+> +				platform_device_put(dev);
+> +				return ret;
+> +			}
+> +		}
+>  
+> -	node = of_find_node_by_path("/firmware");
+> -	if (node) {
+> -		of_platform_populate(node, NULL, NULL, NULL);
+> -		of_node_put(node);
+> -	}
+> +		/*
+> +		 * For OF framebuffers, first create the device for the boot display,
+> +		 * then for the other framebuffers. Only fail for the boot display;
+> +		 * ignore errors for the rest.
+> +		 */
+> +		for_each_node_by_type(node, "display") {
+> +			if (!of_get_property(node, "linux,opened", NULL) ||
+> +			    !of_get_property(node, "linux,boot-display", NULL))
+> +				continue;
+> +			dev = of_platform_device_create(node, "of-display", NULL);
+> +			if (WARN_ON(!dev))
+> +				return -ENOMEM;
+> +			boot_display = node;
+> +			break;
+> +		}
+> +		for_each_node_by_type(node, "display") {
+> +			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+> +				continue;
+> +			of_platform_device_create(node, "of-display", NULL);
+> +		}
+>  
+> -	node = of_get_compatible_child(of_chosen, "simple-framebuffer");
+> -	of_platform_device_create(node, NULL, NULL);
+> -	of_node_put(node);
+> +	} else {
+> +		struct device_node *node;
+> +
+> +		/*
+> +		 * Handle certain compatibles explicitly, since we don't want to create
+> +		 * platform_devices for every node in /reserved-memory with a
+> +		 * "compatible",
+> +		 */
+> +		for_each_matching_node(node, reserved_mem_matches)
+> +			of_platform_device_create(node, NULL, NULL);
+>  
+> -	/* Populate everything else. */
+> -	of_platform_default_populate(NULL, NULL, NULL);
+> +		node = of_find_node_by_path("/firmware");
+> +		if (node) {
+> +			of_platform_populate(node, NULL, NULL, NULL);
+> +			of_node_put(node);
+> +		}
+> +
+> +		node = of_get_compatible_child(of_chosen, "simple-framebuffer");
+> +		of_platform_device_create(node, NULL, NULL);
+> +		of_node_put(node);
+
+In v1, you supported "simple-framebuffer" on PPC. Don't we want to allow 
+that? Maybe no one cares ATM, but that could change. Either way:
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+
+> +
+> +		/* Populate everything else. */
+> +		of_platform_default_populate(NULL, NULL, NULL);
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -558,7 +605,6 @@ static int __init of_platform_sync_state_init(void)
+>  	return 0;
+>  }
+>  late_initcall_sync(of_platform_sync_state_init);
+> -#endif
+>  
+>  int of_platform_device_destroy(struct device *dev, void *data)
+>  {
