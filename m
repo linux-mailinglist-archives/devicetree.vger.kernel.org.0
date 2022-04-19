@@ -2,104 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5150350693B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 12:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 981A2506972
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 13:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348997AbiDSLB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 07:01:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60994 "EHLO
+        id S1350900AbiDSLMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 07:12:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242541AbiDSLB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 07:01:56 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B681BEBC
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 03:59:13 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id v15so20692439edb.12
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 03:59:13 -0700 (PDT)
+        with ESMTP id S1350901AbiDSLL7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 07:11:59 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049E42B1B2
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:09:16 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id r19so4515602wmq.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 04:09:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=O5CBBgo2XmuqRHrX5N+WoSNjs6N4HhMETq+ywg7Z0Yg=;
-        b=GwQsMWFyaKqitOw2K4ERs71CebQ9j1lhJey/Ao6nQts3Wc6SMEgn4CdC0WON4y0Vrm
-         i0yLF+4KbXWY7wiXOwo5nwO1XBJHRDKbNCdT9k2sQw7zbLTdP5rHacXzTeEcXBmkkh7g
-         LxOftPR7vhQqeOA/C/0Mxj9IrFGcP7MUx298tHlp5QiSf2M8rCwHc+TVL1A2oqF2aQrZ
-         b4pPubgl+bMvC1s/E4Y9g03d3nwBBmm/KSCdcNoQCO2cP43OFyK1UUKzvc/meCcBFg+i
-         2/fTeTRXNzm4KPH9ZUAt7CG4JI+lDp4IAjPYS8jJJWr+28pRQWHEdHfPu/R3RxtLoFZQ
-         XQhw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=k9SQS6DEx7PcK3aZSt7NFnPshwNlUhuY2vj8QCcgdU8=;
+        b=f8jTBzdCgR6gZoEBSlPxq90yrNFz+cJET9rvKb4SBbgJ3hbal36VvgdomSIglGgnO2
+         3m52LyW2/NdxIy6Gtfurhq600ou6nWq7Vo8VlhKKUxdcfpzNbNSLAAfHScLAiqIPJnli
+         D04SCxBNOYYZDuahNhtsJDUlWB5unMRdTrn/kJnFc31Ui5htITjZeD61zi+pb1l97IW/
+         9L2Qo1bthVeE7l1MPTQDaeETEDSUvtMflBQ2dm1j4rDzIRWNfzKlW/Uw0sUAHMuob9pS
+         l8EMODJrZvsH0VNyDN0nBwcr4Kae1lvAroCpPCxGh5764YFDnTKwa7A2Abu/qUz8uQLW
+         /tNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=O5CBBgo2XmuqRHrX5N+WoSNjs6N4HhMETq+ywg7Z0Yg=;
-        b=45/WbqtD28JA/FYyC5+HvymZVg1XFEEfwyss5O2HMNaWyyj8dLW1Mhsn3JeG53d2mC
-         V10B6jy1qPI/ZlXp+xR/FGGBp0JLrT8/43b8QjGfBoi4hkxXUFQYKIef2b2z5o9lk1u4
-         ImdG0IGRFY/Q0wnA5D4ZJfKZQd43C4XWU3k1Os0v9U3Ytw2C+DZGsgDoZFz6tbRPi9Lo
-         pRXv5QKEbIJiNxYnS7p6NnQtMrr/jzCuJPGwrcPSueFE6WacRPJzVk44ctF3M8Q5nBKy
-         P5+rm/NHBhf0D0GY8N+77SXJzD+A9JCLVf6jmtFpiYrxC3L5LjtiBiOx/kt7NwSTWzXZ
-         OaMg==
-X-Gm-Message-State: AOAM530CDe4lhLSb9Ze/NcbtJsP2A/Als4gEiT/ny72g8z/4Gq6xOa2t
-        1A/iR6+JyqDJmYOfkg3ay3GttQ==
-X-Google-Smtp-Source: ABdhPJwtQ1BLQn620Xz+U8W+fow3tkpwQwbmB9aa9f+Wmx3sMsqJkjgv/5hgcw5cHgx5EnIoTMeDAw==
-X-Received: by 2002:a05:6402:1e8c:b0:424:1d6:1b71 with SMTP id f12-20020a0564021e8c00b0042401d61b71mr2007309edf.211.1650365951850;
-        Tue, 19 Apr 2022 03:59:11 -0700 (PDT)
-Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k15-20020aa7c04f000000b004229daeaf37sm6311685edo.40.2022.04.19.03.59.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 03:59:11 -0700 (PDT)
-Message-ID: <20b63bd8-b527-43e0-884d-bf9fe3cacb19@linaro.org>
-Date:   Tue, 19 Apr 2022 12:59:10 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=k9SQS6DEx7PcK3aZSt7NFnPshwNlUhuY2vj8QCcgdU8=;
+        b=o389KvONgK4zZQfYs7lOp80GFqtTJLA+k5iBAzwBpuS1JQllfcmo/lo4ksZvNxUOWr
+         9SAtTzY3H25h7/Tinh/mhHpzQdXjdLnIERxggrVB/Z8nSc+CiMhxNeVhGRM8G0TP6HhW
+         8NDEzvhrCHd5jFloaQF039A2p61FoWk1l7mplJ1OzScayqos7QfZD/y0V04ntoVzF81i
+         jmmf5rgXq3qiQfxq4QiexcBCNNI6xz79Nb6IS8uUWwvBnXpuSTYno+asNm9uZElVe2jg
+         nieE6tD8LpJ4B/B6UGWxqSL2HSe/6RlZTbGP4nf5gwZDD/yq9JhiMPoyZEMb5pnSk7sF
+         Eu/A==
+X-Gm-Message-State: AOAM532C5z0QznWrXQPDgJyH50fFdzHnYh3PXGEeE1waa4a2iHlINpNT
+        JpQCsBirRpb2MR2mMLACoR3Bmg==
+X-Google-Smtp-Source: ABdhPJyom0pejQx9+muBJ4LXKjDgivoBsIZxgzm1mENjReqSKOE98rUgPTpWVyVn3NH52/xaRjs95g==
+X-Received: by 2002:a05:600c:4f87:b0:392:9236:3c73 with SMTP id n7-20020a05600c4f8700b0039292363c73mr11110988wmq.158.1650366554533;
+        Tue, 19 Apr 2022 04:09:14 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id 7-20020a05600c024700b0038ec0c4a2e7sm18549936wmj.11.2022.04.19.04.09.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 04:09:14 -0700 (PDT)
+Date:   Tue, 19 Apr 2022 13:09:11 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 24/33] dt-bindings: crypto: convert rockchip-crypto to
+ YAML
+Message-ID: <Yl6YV9nLVI4qYsPP@Red>
+References: <20220413190713.1427956-1-clabbe@baylibre.com>
+ <20220413190713.1427956-25-clabbe@baylibre.com>
+ <44efe8b6-1712-5b87-f030-2f1328533ee8@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/2] riscv: dts: sifive: fu540-c000: align dma node name
- with dtschema
-Content-Language: en-US
-To:     Conor.Dooley@microchip.com, green.wan@sifive.com, vkoul@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        alexandre.ghiti@canonical.com, palmer@sifive.com,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220318162044.169350-1-krzysztof.kozlowski@canonical.com>
- <20220318162044.169350-2-krzysztof.kozlowski@canonical.com>
- <a8c5d574-c050-bbc3-efa6-9b45f5f27524@linaro.org>
- <03e28a55-d3bd-f3e1-f418-557306d65505@microchip.com>
- <61923e45-6594-6dfc-5e2f-e808af99e7c1@linaro.org>
- <9f8faffa-0b0e-2fba-7f2c-56c82ec7936f@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9f8faffa-0b0e-2fba-7f2c-56c82ec7936f@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <44efe8b6-1712-5b87-f030-2f1328533ee8@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 12:57, Conor.Dooley@microchip.com wrote:
->>> Not sure that this one is actually needed Krzysztof, Zong Li has a fix
->>> for this in his series of fixes for the sifive pdma:
->>> https://lore.kernel.org/linux-riscv/edd72c0cca1ebceddc032ff6ec2284e3f48c5ad3.1648461096.git.zong.li@sifive.com/
->>>
->>> Maybe you could add your review to his version?
->>
->> Zong's Li patch was sent 10 days after my patch... [1] Why riscv DTS
->> patches take so much time to pick up?
->>
+Le Wed, Apr 13, 2022 at 09:31:13PM +0200, Krzysztof Kozlowski a écrit :
+> On 13/04/2022 21:07, Corentin Labbe wrote:
+> > Convert rockchip-crypto to YAML.
 > 
-> Oh, my bad. I incorrectly assumed that that patch was present before v8,
-> I should've checked further back - sorry!
+> Thank you for your patch. There is something to discuss/improve.
+> 
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - rockchip,rk3288-crypto
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 4
+> > +
+> > +  clock-names:
+> > +    maxItems: 4
+> 
+> This is not needed and dt_bindings_check should complain.
+> 
+> > +    items:
+> > +      const: aclk
+> > +      const: hclk
+> > +      const: sclk
+> > +      const: apb_pclk
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    maxItems: 1
+> 
+> The same.
+> 
 
-No problem :)
-
-I don't mind Zong's patch to be taken although in general I believe more
-in FIFO (or FIF Served) style.
-
-Best regards,
-Krzysztof
+I forgot to test the intermediate patch...
+Before I send a new version, does the final document is okay ?
