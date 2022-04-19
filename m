@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9A7506C9D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:41:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED308506CA2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:41:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232267AbiDSMns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32854 "EHLO
+        id S237187AbiDSMni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 08:43:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243468AbiDSMnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:43:46 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4249936145
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 05:41:00 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id v15so21033190edb.12
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 05:41:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dFjjMvsqq7b2yA8bGP5tTnOGcb+Gng0k+gEX/WjWfCQ=;
-        b=WeyHKNjyfPNi01d1dQprscoxppa9eOZMVUal5I84WVPQGqyjugb3G2lj1+jV5RXat5
-         MXPERM7P+t6DRDWjcvHBtYJiCPajQDqbMjG7xfWn1F3YXkaaUfa6lw/TM2h/E40bSwtD
-         q2YQE5czRNJKCUly2nFV+5VBqPbMKWc7/V+TzzAzjlsGHo1RPXXPnb0XBOgmmYwJ0eEI
-         NyU4MCkagHJTltvjRenUgU4o0rE+46fisEXAOLF8qaprOESeUdHg5yMioplBgRW5bTba
-         IVLdsK45NYUEz6U+DNYByeq74Jedcal3GCc2KdFzvdI2kr2AdVtzgAbOap8ixt/DQSd9
-         5SLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dFjjMvsqq7b2yA8bGP5tTnOGcb+Gng0k+gEX/WjWfCQ=;
-        b=d26vTAEGpJPNkFy8bOpVzsnY+RFEvPXCiGkHn4TXQ1Coe1nVsfeK5Y1j+LGpAd4iln
-         QD6HwZ29j8Llt8oSDt4/KyOQZBvhxLHmKm1oBgeJSVgx9SLr3fVuOyewaiLRFO6DGGzu
-         tdPauUFqQRo8wIJnDCauwMXLRJZlD81WGYhjFCRqaiDPwtfhQDb+h7NqfWjgmwy94Hyx
-         mKjrDiJv5gj6KIg/iFRAd4ilaX0XftcxQ+k14MQTaIQp3unHD7q+zQRojuHucjjE2KH8
-         rGk1rnDOHb+6I8Ng2A2nKvlcSXrUeQBZWix5i318ArUphYg6+OfoNBGMdQs9JmNd5PW3
-         3lkQ==
-X-Gm-Message-State: AOAM532RIBjSXjzSGdWvHKgLrNsINN8hg9tUCqlULFAKlQ9TYJ6mhRrN
-        cvV50MIy478PlsZ/gG2+CrNXvw==
-X-Google-Smtp-Source: ABdhPJx659JfC09WdVbA8JxLM2QNhguItcwDj4boycocwoWIY1ZBbpSoij6kP6Oug7yLrDdbPjGVhw==
-X-Received: by 2002:a05:6402:d0e:b0:413:3d99:f2d6 with SMTP id eb14-20020a0564020d0e00b004133d99f2d6mr17442373edb.189.1650372058590;
-        Tue, 19 Apr 2022 05:40:58 -0700 (PDT)
-Received: from fedora.lab.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id n27-20020a1709062bdb00b006da975173bfsm5709274ejg.170.2022.04.19.05.40.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 05:40:57 -0700 (PDT)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [v8 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Tue, 19 Apr 2022 14:40:22 +0200
-Message-Id: <20220419124025.1733230-2-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220419124025.1733230-1-patrick.rudolph@9elements.com>
-References: <20220419124025.1733230-1-patrick.rudolph@9elements.com>
+        with ESMTP id S232267AbiDSMni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:43:38 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6352E9C8;
+        Tue, 19 Apr 2022 05:40:52 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23JCeWUV017359;
+        Tue, 19 Apr 2022 07:40:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650372032;
+        bh=SAynF30FSQ6K9ukzyMaqpx99lcJVTiwSIIzH8EHuwe4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=uvQAkjBBE3/CiJqPsVLJgPqNUoeOumc+7aH/vpWPI1UDaTbd/8lJ1tKeKOWf5ixyY
+         BO7sonjVuQPlrfxB4iLw/PVCy5KlbYeR6s+bpQu2Q0zFXj8Duocpr+5Mm8xfvOi5h/
+         GHIohB1kJamvtzo6ahWQsjw6VP2Qi2EoYa5c5VVM=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23JCeWTq007823
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Apr 2022 07:40:32 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
+ Apr 2022 07:40:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 19 Apr 2022 07:40:31 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23JCeVSN083693;
+        Tue, 19 Apr 2022 07:40:31 -0500
+Date:   Tue, 19 Apr 2022 07:40:31 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+CC:     Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomba@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Devicetree <devicetree@vger.kernel.org>,
+        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add missing
+ register & interrupt
+Message-ID: <20220419124031.5b6bn3yoqzlgjgcw@coleslaw>
+References: <20220419070302.16502-1-a-bhatia1@ti.com>
+ <20220419070302.16502-2-a-bhatia1@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220419070302.16502-2-a-bhatia1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,98 +70,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the exisintg pca954x driver.
+On 12:33-20220419, Aradhya Bhatia wrote:
+> The DSS IP on the ti-am65x soc supports an additional register space,
+> named "common1". Further. the IP services a maximum number of 2
+> interrupts.
+> 
+> Add the missing register space "common1" and the additional interrupt.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 5c7d2cbc4aac..102059e9e0d5 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        Addresses to each DSS memory region described in the SoC's TRM.
+>      items:
+>        - description: common DSS register area
+> +      - description: common1 DSS register area
+>        - description: VIDL1 light video plane
+>        - description: VID video plane
+>        - description: OVR1 overlay manager for vp1
+> @@ -36,6 +37,7 @@ properties:
+>    reg-names:
+>      items:
+>        - const: common
+> +      - const: common1
+>        - const: vidl1
+>        - const: vid
+>        - const: ovr1
+> @@ -64,7 +66,7 @@ properties:
+>      maxItems: 3
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    maxItems: 2
 
-While on it make the interrupts support conditionally as not all of the
-existing chips have interrupts.
+What are the interrupts supposed to be?
 
-For chips that are powered off by default add an optional regulator
-called vdd-supply.
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -122,13 +124,14 @@ examples:
+>      dss: dss@4a00000 {
+>              compatible = "ti,am65x-dss";
+>              reg =   <0x04a00000 0x1000>, /* common */
+> +            reg =   <0x04a01000 0x1000>, /* common1 */
+>                      <0x04a02000 0x1000>, /* vidl1 */
+>                      <0x04a06000 0x1000>, /* vid */
+>                      <0x04a07000 0x1000>, /* ovr1 */
+>                      <0x04a08000 0x1000>, /* ovr2 */
+>                      <0x04a0a000 0x1000>, /* vp1 */
+>                      <0x04a0b000 0x1000>; /* vp2 */
+> -            reg-names = "common", "vidl1", "vid",
+> +            reg-names = "common", "common1". "vidl1", "vid",
+>                      "ovr1", "ovr2", "vp1", "vp2";
+>              ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>              power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+> @@ -136,7 +139,8 @@ examples:
+>                              <&k3_clks 216 1>,
+>                              <&k3_clks 67 2>;
+>              clock-names = "fck", "vp1", "vp2";
+> -            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
+> +            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
+>              ports {
+>                      #address-cells = <1>;
+>                      #size-cells = <0>;
+> -- 
+> 2.35.3
+> 
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 39 ++++++++++++++++---
- 1 file changed, 34 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 9f1726d0356b..21ab286c74f2 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,21 +4,25 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
--
--allOf:
--  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-+  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -59,10 +63,33 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip.
-+
- required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - maxim,max7367
-+                - maxim,max7369
-+                - nxp,pca9542
-+                - nxp,pca9543
-+                - nxp,pca9544
-+                - nxp,pca9545
-+      then:
-+        properties:
-+          interrupts: false
-+          "#interrupt-cells": false
-+          interrupt-controller: false
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -79,6 +106,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
 -- 
-2.35.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
