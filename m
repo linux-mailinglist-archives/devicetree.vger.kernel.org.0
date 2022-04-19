@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC02506615
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9749B50663B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240545AbiDSHmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 03:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33300 "EHLO
+        id S1349568AbiDSHub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 03:50:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244454AbiDSHl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:41:56 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528C523171
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:39:14 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id l7so31139796ejn.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:39:14 -0700 (PDT)
+        with ESMTP id S1349563AbiDSHua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:50:30 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619902E69F
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:47:48 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id g20so20144585edw.6
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:47:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VLisSl5U+vKxlHEi2jsM/uSr3AGr/yP0sJybyysl56g=;
-        b=yhRa2r+h7pBhcGnBWVIHpJG0E/SOWXoqFnTw3vVkDbqAu2k06J9tva1bu9Gzy8svwt
-         RDDOtKw6Ax76s6d+eUgDVvNOJts+MrTULL2DFF1sVFbCO14c9JuYFZlE+tQ6OaWWj4rJ
-         MDh/hhm3ARFz9nSIV+ApMaBnQGHNzRCs8RpWSwS5opbK18cvqlOusgki1VmUAbAAGtP/
-         uNywTFQym1ZSuYElrz3xe9L+S11YOIR08iBK8Ys7gyMCv9pTP3l0RVEEOaRzP1nyDusP
-         TYNKOb5jFi2s31EkaE4C2CywX/eqzb/G0IkYH5t+A7zydquSQYhsnbvwVyPWT3JvBkE3
-         fi6A==
+        bh=C0PGH+OMpKE6L74TE6jhieB2Brn97/rzhTTKeA9q/uU=;
+        b=pJGFE1TLlYKUSZZ8nx1OFLi/GSXW17TSV2iiypDaXosKmnlXPFEgQD4TDcGTWrcIWZ
+         KAzUpClu2+SNU4v/Gzk2wBA0MQTXrZtepF+IornOijYRy/BPfEsKAOKJBjlNTzwTyal4
+         OYga3cY3CArO8RopZLRsLAFtDwJaIHSKjMBbQ/hfxbu5nSf23FpHcRa81SzNchyaTuJS
+         G9KbjlopXIZJ+wOpJy+eB5nb6HAlD6kaYwZlc/IhgWKxDDpEffOKzq0YsZj2Ffm1kQlU
+         Qyf5zUdMnoks3bgaCj3PwRTBrJPajws+OK80WEW6lxTOZo7miEwNG5OPUgC/5MwEqTCD
+         lJdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VLisSl5U+vKxlHEi2jsM/uSr3AGr/yP0sJybyysl56g=;
-        b=C0dwj3M//m2HCcShvCyhCHUq/PhlouAIjXHzBjTGousQO/RfLwEUFzEM/VDwiZ9TnK
-         yZX7YOwYRUjkME6+U4lXTiqidxmxq3hjymEuVqT0mSn2I6vNioEdIfbADm6emsgOe/dy
-         m4Vkg1lFGSDKxaH33Mj54QMoEQy51ta1R5SP4E2uLKealWZ1vMJ2IQRfQJbHjPLD82wB
-         emz3hs27rEkhk0XfXc8d0nQtLdANBV7/oF0gYBb5JivhMLrGKSahcUJ7nd2SbxdY42FV
-         NFWKdjyXNfUrRI5YFGaymlNrHMlIQhaN7tARZLECR52i8ieQtQxI6B1ue/LEhtETEbK7
-         lvNw==
-X-Gm-Message-State: AOAM530+ocdK5N2JI21ERzv5mbqeBWaWMye1gYe9wFsXI6AqsB4Smk07
-        6ZIIcu9g/Z0aFMt2bxrox3VdOlELFG32cg==
-X-Google-Smtp-Source: ABdhPJxYJtMgm7zv2VVxzftlKaF5M9cx1/oldQIn65xu7uNBz/9QCwQqmCMMn0/X58ekbNYbUVX2rg==
-X-Received: by 2002:a17:906:5d11:b0:6ef:7bdf:e976 with SMTP id g17-20020a1709065d1100b006ef7bdfe976mr10374713ejt.743.1650353952960;
-        Tue, 19 Apr 2022 00:39:12 -0700 (PDT)
+        bh=C0PGH+OMpKE6L74TE6jhieB2Brn97/rzhTTKeA9q/uU=;
+        b=cIkwekx5zPXzgQPJJkzVtLR7SjSuZc1zfJYiXPoqK61yfHPwWzmMa1Vu+H6xSO1k32
+         g2rIt8l6u8HYhvgt1nmnBTWPPNTIGwOj0dsrn/9GLHUXg3uZWjTkkPxuL/KOWkkKMOK2
+         N18pKvQ6RdzOZkbHdf3iRJ8kdoSRec6idTW9TZ38q+nuG4tvJezVCZoyKXG41hlsSjW3
+         vGiau92x+cvQjtvVNdAW2Eq6DKxlNXnxQbJka/bz450pSfYpTSQTBu+6hfRg28Tx2/a+
+         CB+b4PW8C0n48ONQIxEZe+ebRiZpeQG9Tt7BZwqFB3iPZXKELPTwlP7TIkr9StYAcIvG
+         Ob0w==
+X-Gm-Message-State: AOAM5300R2a0O/93N3eLmBClM3Aj+tOrFk3s2vYjWpqrxhtYUVzJXsnJ
+        edIgUNTdMZCIu96utjIj0N/ONA==
+X-Google-Smtp-Source: ABdhPJztlccA1gfyQHHXSuSecllY6AcbHNzImIi5kfGI/UhPAB1xEEPE1IIUbnLO+ypjox1WyCKDNQ==
+X-Received: by 2002:a50:fb03:0:b0:41d:8d3f:9427 with SMTP id d3-20020a50fb03000000b0041d8d3f9427mr16055306edq.263.1650354466943;
+        Tue, 19 Apr 2022 00:47:46 -0700 (PDT)
 Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q14-20020a17090622ce00b006e898c912e5sm5352866eja.217.2022.04.19.00.39.11
+        by smtp.gmail.com with ESMTPSA id y23-20020a170906071700b006e8a19cefa6sm5335821ejb.106.2022.04.19.00.47.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 00:39:12 -0700 (PDT)
-Message-ID: <59cda570-2a78-0d7f-091e-02e837fe9ec5@linaro.org>
-Date:   Tue, 19 Apr 2022 09:39:11 +0200
+        Tue, 19 Apr 2022 00:47:46 -0700 (PDT)
+Message-ID: <1965ed9f-0258-cd28-f1c3-ef87272f6c03@linaro.org>
+Date:   Tue, 19 Apr 2022 09:47:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 4/4] dt-bindings: mmc: convert sdhci-dove to JSON
- schema
+Subject: Re: [PATCH v2 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA binding
+ to json format
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, adrian.hunter@intel.com,
-        nico@fluxnic.net
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220419024611.1327525-1-chris.packham@alliedtelesis.co.nz>
- <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org
+References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+ <20220410175056.79330-7-singh.kuldeep87k@gmail.com>
+ <CAH=2Ntx1D8C6xu+RysO0o5OkG5kPMMJ-Xr+B-udLtizY+4HiaQ@mail.gmail.com>
+ <20220418192012.GA6868@9a2d8922b8f1>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20220418192012.GA6868@9a2d8922b8f1>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,17 +83,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 04:46, Chris Packham wrote:
-> Convert the sdhci-dove binding to JSON schema. The optional clocks
-> property was not in the original binding document but has been in the
-> dove.dtsi since commit 5b03df9ace68 ("ARM: dove: switch to DT clock
-> providers").
+On 18/04/2022 21:20, Kuldeep Singh wrote:
+> On Mon, Apr 18, 2022 at 10:57:55AM +0530, Bhupesh Sharma wrote:
+>> Please see <https://lore.kernel.org/lkml/20220211214941.f55q5yksittut3ep@amazon.com/T/#m6700c2695ee78e79060ac338d208ffd08ac39592>,
+>> I already have an effort ongoing for converting qcom bam DMA bindings
+>> to YAML format.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Ohh ok, I wasn't aware you had similar series.
+> I just noticed your latest v5 version was rolled out ~5 months back,
+> usually this is a very long time considering the duration. Wondering
+> reason behind this..
+> 
+> My updated series(v3 version[1]) is kind of complete and mostly reviewed
+> by Krzysztof and takes care of armv7/8 based platforms. 
 
+My review was only about patch correctness, not overall patch preference.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> With no offence,
+> I believe we should go with the current one as your series includes
+> changes more than BAM and will take long time to merge. Anyway, I'll be
+> fine with choice of the maintainers.
 
+I appreciate your work Kuldeep, it is important and valuable
+contribution. It is sad to see duplicated effort, I don't like it for my
+own patches either. In general, I believe the FIFO approach should be
+applied, so in this case Bhupesh patches.
+
+Before starting the conversion the best is to look for prior work on lore:
+https://lore.kernel.org/lkml/?q=dfn%3Aqcom_bam_dma.txt
+This way you could easily avoid doing the same.
+
+Bhupesh,
+Please check what was stopping your work, you might need to rebase it
+and resend it.
 
 Best regards,
 Krzysztof
