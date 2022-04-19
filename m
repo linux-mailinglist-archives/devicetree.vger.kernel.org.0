@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8BBF506FE7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A8F507023
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244943AbiDSOPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:15:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59078 "EHLO
+        id S1353076AbiDSOXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:23:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244658AbiDSOPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:15:50 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79EF13969C;
-        Tue, 19 Apr 2022 07:13:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 381B5B819C9;
-        Tue, 19 Apr 2022 14:13:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC990C385AC;
-        Tue, 19 Apr 2022 14:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650377584;
-        bh=yDWQVAT2dNyumJPz6fdK9EKnm8gIEm5qzxaXnkCoDbk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BUBx5TonBG0bQ43yXOEavy812RWmAJJvRuFPL9Y/Nn4rTnL3jXcUH178WQfbhmrMu
-         PLrX6yZhrGfFoFmPt6+ZEZpAD7lIb40mz5YQ8FfeNkYohpX7k91eGGJUaAGymZOuOC
-         ehfDTAcuHAZWwaimkoikPbdAa9A5hULDjRIIYN8Ya1TVFKIIRqi42/rQLYvvvaZ0kO
-         WMGvh8WATLJ5Ri7KnGhhlkMjMYBvGXk9UcGZj489Y0RGJeVH2XhG+zguGoUvyuMxBR
-         HVZk6AHZf/iMjS8P3lmwodSU4lkj7nvYKA6gTtDcGDOP38WkldW/csbxuZEUySDiAZ
-         v70317ry0/5AA==
-Received: by mail-pj1-f41.google.com with SMTP id n33-20020a17090a5aa400b001d28f5ee3f9so1987676pji.4;
-        Tue, 19 Apr 2022 07:13:04 -0700 (PDT)
-X-Gm-Message-State: AOAM531XkEacW4OV7BX9ibszP56Frg0p04QRGk5/ASbWngx+MY1hf8kg
-        PDb45km5HR5n+76Wr6lKSRE3cQW4V7oYvtuF4g==
-X-Google-Smtp-Source: ABdhPJxpXMT3twN8wyuejEm0cAlv+Z/bvyWYx918m06lH56Hz4v9qLR91rKga42zYt2zKC0BUgqh/dx5Lsqo4CdAZWs=
-X-Received: by 2002:a17:90a:db16:b0:1cb:9ba8:5707 with SMTP id
- g22-20020a17090adb1600b001cb9ba85707mr24787066pjv.32.1650377584301; Tue, 19
- Apr 2022 07:13:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <91ef84f9-4cac-c0aa-c717-7f1b3bc566fb@xilinx.com>
- <20220414164508.GA753109@bhelgaas> <CH2PR02MB6952D1D0E6FA89ED25110AFFA5F29@CH2PR02MB6952.namprd02.prod.outlook.com>
-In-Reply-To: <CH2PR02MB6952D1D0E6FA89ED25110AFFA5F29@CH2PR02MB6952.namprd02.prod.outlook.com>
+        with ESMTP id S1353333AbiDSOWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:22:47 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9409063B6;
+        Tue, 19 Apr 2022 07:20:04 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id w194so153439oiw.11;
+        Tue, 19 Apr 2022 07:20:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VgdRnd9bpdceRif0299S3ykKHSVMUwPtZgbwTlR6fjI=;
+        b=FNnPwmgsPJkl2z17etPuuuhUE5Cxj52WD+uhuBoFGqXuaOOoEfZpETYb1HHueuBBOE
+         /Kl7vh51nvn3Uef0AfUqnOcRprdy6ZrbotKUk4uhAVPfNW6TLRM+77ksXGB7eXOOgeCI
+         sy92tRhoYTl7Vl7DWOYgQEROiJYc13jC/7bSUa4Ddr4nefIPH3cRAEBmOvbLZZoT5dnJ
+         MW/aUK50EmNYcs8gKJ2WoAq9ZmsPkfkGMs+myyjj40kA5coVybwb/1sReIh6LQM7nrl4
+         TpH0rez9r3ORvcfd5c4RlZjPnsHM1KnT3JExUSrsqd5m0QVqjT8yl3KYZwcnjZm6o3mb
+         r51g==
+X-Gm-Message-State: AOAM533B7OqF/a6eZF5O28HYCz917lF+FnDNKV6J7eFXfSKG80nB2Cpe
+        xhkBhEmiTegX9/96TWnN+g==
+X-Google-Smtp-Source: ABdhPJz/8eHniA/MbQVrURiit4Y5m329UMTk5wqUlgVlgHQSwRcyGZcRmbiP8oSqsceOmAnEhLvLow==
+X-Received: by 2002:aca:c056:0:b0:322:4f77:517e with SMTP id q83-20020acac056000000b003224f77517emr8250843oif.18.1650378003722;
+        Tue, 19 Apr 2022 07:20:03 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q6-20020a056870028600b000d9be0ee766sm5076841oaf.57.2022.04.19.07.20.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 07:20:03 -0700 (PDT)
+Received: (nullmailer pid 2490554 invoked by uid 1000);
+        Tue, 19 Apr 2022 14:20:02 -0000
+Date:   Tue, 19 Apr 2022 09:20:02 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 19 Apr 2022 09:12:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJynvpmdF2cBFDQ3og4zgrx9UFtj4NkGUV20f61yc+YtA@mail.gmail.com>
-Message-ID: <CAL_JsqJynvpmdF2cBFDQ3og4zgrx9UFtj4NkGUV20f61yc+YtA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: PCI: xilinx-cpm: Remove version
- number in compatible string
-To:     Bharat Kumar Gogada <bharatku@xilinx.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+Cc:     Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomba@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Devicetree <devicetree@vger.kernel.org>,
+        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add missing
+ register & interrupt
+Message-ID: <Yl7FEuHEy66KUc5F@robh.at.kernel.org>
+References: <20220419070302.16502-1-a-bhatia1@ti.com>
+ <20220419070302.16502-2-a-bhatia1@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419070302.16502-2-a-bhatia1@ti.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,23 +69,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 19, 2022 at 7:22 AM Bharat Kumar Gogada <bharatku@xilinx.com> wrote:
->
-> > On Thu, Apr 14, 2022 at 02:46:25PM +0200, Michal Simek wrote:
-> > > On 4/14/22 11:22, Bharat Kumar Gogada wrote:
-> > > > Removing unnecessary version number in compatible string.
-> > >
-> > > I am missing reason for this in commit message.
-> >
-> > Agreed.  The commit log for the pcie-xilinx-cpm.c change also needs to
-> > explain why removing the version is useful and safe.
->
-> HI Bjorn, Michal,
->
-> The CPM block is hard block, Rob pointed out that versioning has no value here.
-> Will resend patch with this detail.
+On Tue, Apr 19, 2022 at 12:33:01PM +0530, Aradhya Bhatia wrote:
+> The DSS IP on the ti-am65x soc supports an additional register space,
+> named "common1". Further. the IP services a maximum number of 2
+> interrupts.
+> 
+> Add the missing register space "common1" and the additional interrupt.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 5c7d2cbc4aac..102059e9e0d5 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        Addresses to each DSS memory region described in the SoC's TRM.
+>      items:
+>        - description: common DSS register area
+> +      - description: common1 DSS register area
 
-I did not say to remove the existing version breaking compatibility.
-Just don't continue to add new version numbers.
+You've just broken the ABI.
 
-Rob
+New entries have to go on the end.
+
+>        - description: VIDL1 light video plane
+>        - description: VID video plane
+>        - description: OVR1 overlay manager for vp1
+> @@ -36,6 +37,7 @@ properties:
+>    reg-names:
+>      items:
+>        - const: common
+> +      - const: common1
+>        - const: vidl1
+>        - const: vid
+>        - const: ovr1
+> @@ -64,7 +66,7 @@ properties:
+>      maxItems: 3
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    maxItems: 2
+
+Once there is more than 1, we need to know what each entry is and the 
+order.
+
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -122,13 +124,14 @@ examples:
+>      dss: dss@4a00000 {
+>              compatible = "ti,am65x-dss";
+>              reg =   <0x04a00000 0x1000>, /* common */
+> +            reg =   <0x04a01000 0x1000>, /* common1 */
+>                      <0x04a02000 0x1000>, /* vidl1 */
+>                      <0x04a06000 0x1000>, /* vid */
+>                      <0x04a07000 0x1000>, /* ovr1 */
+>                      <0x04a08000 0x1000>, /* ovr2 */
+>                      <0x04a0a000 0x1000>, /* vp1 */
+>                      <0x04a0b000 0x1000>; /* vp2 */
+> -            reg-names = "common", "vidl1", "vid",
+> +            reg-names = "common", "common1". "vidl1", "vid",
+>                      "ovr1", "ovr2", "vp1", "vp2";
+>              ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+>              power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+> @@ -136,7 +139,8 @@ examples:
+>                              <&k3_clks 216 1>,
+>                              <&k3_clks 67 2>;
+>              clock-names = "fck", "vp1", "vp2";
+> -            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
+> +            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
+>              ports {
+>                      #address-cells = <1>;
+>                      #size-cells = <0>;
+> -- 
+> 2.35.3
+> 
+> 
