@@ -2,114 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC3A350654B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58ACA506561
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240042AbiDSHGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 03:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54782 "EHLO
+        id S229941AbiDSHNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 03:13:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239397AbiDSHGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:06:46 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E582AE00;
-        Tue, 19 Apr 2022 00:04:04 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23J73ich090970;
-        Tue, 19 Apr 2022 02:03:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650351824;
-        bh=rQb5x+seCA/gRyaHh8ycHp7w1ZagLiW2Ocbe4cn0WE8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=FNu3cIpmQP2T3j6CKBtdoi23GtPDA+QFvlWI5fDl7zWaCEITM4XZG4r/kERHKh21h
-         aEB3jwf9YRd5GVnGck4eOgO8sNYk/IVp/Lasx3m+dk5iDOq2ZvstCciXTs+Wo0nfqa
-         8Ja3MWfPnb5xEejkmUJqcZ8OfNDhg4wLBUJsTWgs=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23J73iUC031438
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 19 Apr 2022 02:03:44 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
- Apr 2022 02:03:43 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 19 Apr 2022 02:03:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23J73hAJ105340;
-        Tue, 19 Apr 2022 02:03:43 -0500
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-To:     Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomba@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>
-CC:     DRI Development <dri-devel@lists.freedesktop.org>,
-        Devicetree <devicetree@vger.kernel.org>,
-        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am65: Add missing register & interrupt in DSS node
-Date:   Tue, 19 Apr 2022 12:33:02 +0530
-Message-ID: <20220419070302.16502-3-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20220419070302.16502-1-a-bhatia1@ti.com>
-References: <20220419070302.16502-1-a-bhatia1@ti.com>
+        with ESMTP id S237402AbiDSHNs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:13:48 -0400
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1283056F;
+        Tue, 19 Apr 2022 00:11:07 -0700 (PDT)
+Received: by mail-vs1-xe36.google.com with SMTP id z139so9287803vsz.0;
+        Tue, 19 Apr 2022 00:11:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=fJRznz45+6b8f9tgPBJNZwr3gSIqLHvLJH94gCmXiWs=;
+        b=Hru924K0BBg56zYFePikkE2q8hrW26jqhVb5NGTx4S5VXYH+9FR37XeQTl7w8hka/I
+         NqwpWRJ54uoxIjTo2HOQt2Ys2oaqvcpgb0dbQVXkRBZ+GiQuWVV3ZTjUWc5d1oqJnYn7
+         /6KOI7Q/i6FR3G0zGkvQHKdUkvVU3Wg+1ZeskVutSF+Ea5d9O3RCFUCcH2Kc4tFgIuA8
+         ClF64wcN07XSD8NemlElU6P4Bx3MNZPh+qjy+O5jPv4CfFZjJVUULkbEhC1bj1sCPvB6
+         i9Vx8KSR5HTfGcZUkTa+AtvAQgTPG++P5xWs/KQ/VcKk2sN/7Dn9L3konkxTuTyjQud3
+         m8fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=fJRznz45+6b8f9tgPBJNZwr3gSIqLHvLJH94gCmXiWs=;
+        b=kLKilO/qTpIz1q/wUtrsbeoGxZJB+SJrXlM1s76QCzNgvIMucPT6bS3ZVQWR8Z9dP2
+         TFUyWHJg9yyyF6b/awM0+dGZDdLKxgw22TZ/YpeVq5pAI2BYlUpGEPoaCYLHCY/2Vltm
+         sNWD/c+xTyUnvzdg8B9/uCblQFMQuf/ynSwM/oVaOifhfeicqyDFBb7zH1gjYGLJKSr0
+         74cnzGtZsw31UZzdMwLDzA9XelpvBBhmwIa3aHymOG3x+AOo4V0/5mhS+bLPorjOfeu0
+         /iebRFIiJs9RhlXtMK4aCkNa6FzC25v08D2kKL/zsXgiPr8+AAiBBh2AI1EGaXhZ4oQw
+         fx8w==
+X-Gm-Message-State: AOAM530UW2aFHnvAHLGMY7DG79p0Ta9UyIZ/Dkc+xcxnApglYiddQEij
+        swYtdNUhhmM9eIY1WbV5fGhAfDTIItqWH/l5LSw=
+X-Google-Smtp-Source: ABdhPJxwItw29QxufrFTI6tPUY/l1+fgfbzWDqzwcGFMB2auBxs9/K/icUT5zkTEnFEQPzZ5icyN4geQyINLrfYbwhk=
+X-Received: by 2002:a05:6102:199:b0:32a:5d51:1770 with SMTP id
+ r25-20020a056102019900b0032a5d511770mr1913464vsq.27.1650352266169; Tue, 19
+ Apr 2022 00:11:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220415130005.85879-1-andrea.merello@gmail.com>
+ <20220415130005.85879-9-andrea.merello@gmail.com> <20220415184305.03805452@jic23-huawei>
+In-Reply-To: <20220415184305.03805452@jic23-huawei>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Tue, 19 Apr 2022 09:10:54 +0200
+Message-ID: <CAN8YU5Mz--8R2oE=bgok_JdM6NNW8m2h5_V8LZSocFnaa-PADA@mail.gmail.com>
+Subject: Re: [v4 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DSS IP on the ti-am65x soc supports an additional register space
-named "common1". Further, it services a maximum of 2 interrupts.
+Il giorno ven 15 apr 2022 alle ore 19:35 Jonathan Cameron
+<jic23@kernel.org> ha scritto:
+>
+> On Fri, 15 Apr 2022 14:59:59 +0200
+> Andrea Merello <andrea.merello@gmail.com> wrote:
+>
+> > From: Andrea Merello <andrea.merello@iit.it>
+> >
+> > This patch adds a core driver for the BNO055 IMU from Bosch. This IMU
+> > can be connected via both serial and I2C busses; separate patches will
+> > add support for them.
+> >
+> > The driver supports "AMG" (Accelerometer, Magnetometer, Gyroscope) mode,
+> > that provides raw data from the said internal sensors, and a couple of
+> > "fusion" modes (i.e. the IMU also do calculations in order to provide
+> > euler angles, quaternions, linear acceleration and gravity measurements).
+> >
+> > In fusion modes the AMG data is still available (with some calibration
+> > refinements done by the IMU), but certain settings such as low pass
+> > filters cut-off frequency and sensors ranges are fixed, while in AMG mode
+> > they can be customized; this is why AMG mode can still be interesting.
+> >
+> > Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+> Hi Andrea,
+>
+> A few trivial things from me on this read through.
+>
+> I haven't commented on a lot of the patches because I was happy with them.
+>
+> Other than the small changes requested from me, we mostly need to get
+> device tree review of the binding and allow time for others to take
+> another look.
+>
+> Thanks,
+>
+> Jonathan
 
-Add the missing register space "common1" and the additional interrupt in
-the dss DT node .
+Ok, good! As usual, just a few inline comments, ok for the rest.
 
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+> > +int bno055_probe(struct device *dev, struct regmap *regmap,
+> > +              int xfer_burst_break_thr, bool sw_reset)
+> > +{
+> > +     const struct firmware *caldata;
+> See comment below. I think you need to set this to NULL here
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index e749343acced..1bafa3a98e71 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -830,13 +830,14 @@ csi2_0: port@0 {
- 	dss: dss@4a00000 {
- 		compatible = "ti,am65x-dss";
- 		reg =	<0x0 0x04a00000 0x0 0x1000>, /* common */
-+			<0x0 0x04a01000 0x0 0x1000>, /* common1 */
- 			<0x0 0x04a02000 0x0 0x1000>, /* vidl1 */
- 			<0x0 0x04a06000 0x0 0x1000>, /* vid */
- 			<0x0 0x04a07000 0x0 0x1000>, /* ovr1 */
- 			<0x0 0x04a08000 0x0 0x1000>, /* ovr2 */
- 			<0x0 0x04a0a000 0x0 0x1000>, /* vp1 */
- 			<0x0 0x04a0b000 0x0 0x1000>; /* vp2 */
--		reg-names = "common", "vidl1", "vid",
-+		reg-names = "common", "common1", "vidl1", "vid",
- 			"ovr1", "ovr2", "vp1", "vp2";
- 
- 		ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-@@ -856,7 +857,8 @@ dss: dss@4a00000 {
- 		assigned-clocks = <&k3_clks 67 2>;
- 		assigned-clock-parents = <&k3_clks 67 5>;
- 
--		interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
-+		interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>,
-+			     <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
- 
- 		dma-coherent;
- 
--- 
-2.35.3
+Hum. I'm confused here: I think I did set it to NULL (is some later
+LOC) in V2, but you argued against it, because hopefully
+request_firmware() does it by itself.
+https://www.spinics.net/lists/linux-iio/msg64896.html
 
+What has changed or what I've missed? Was your original point just to
+move the NULL assignment back at declaration time?
+
+>
+> > +
+> > +     ret = regmap_read(priv->regmap, BNO055_CHIP_ID_REG, &val);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     if (val != BNO055_CHIP_ID_MAGIC) {
+>
+> We've run into this a few times recently.  Traditionally IIO has been very
+> restrictive on allowing drivers to probe if the Who Am I type values
+> don't match.  That causes problems for backwards compatibility in
+> device tree - e.g. (with made up compatible part number 055b :)
+> compatible = "bosch,bno055b", "bosch,bno055"
+>
+> The viewpoint of the dt maintainers is that we should assume the
+> dt is correct and at most warn about missmatched IDs before trying
+> to carry on.  So to avoid hitting that again please relax this to a
+> warning and cross your fingers after this point if it doesn't match.
+> I'm fine on the firmware question because we know we are dealing
+> with buggy firmware.  Ideally we'll get some working firmware
+> additions at somepoint then we can just label the bad firmwares
+> and assume one less bug in the ones that don't match :)
+
+To be honest my point wasn't about the correctness of the DT at all..
+
+I've hit this several times when I was switching my test board from
+serial to i2c and vice-versa, because I made wrong connections or I
+forgot to switch FPGA image (which contains the serial IP here). I got
+my test script failing because the IIO device didn't pop up at all,
+which is better than getting e.g. random data. In the real world
+people may have less chance to have to worry about this, but they may
+when e.g. they have an RPi and a hand-wired IMU.
+
+.. IOW I'm seeing this as a hardware self-test rather than a SW
+check.. But if the DT thing makes this a no-go, then I can live with
+the warning, and e.g. by making my script to check the kernel log..
