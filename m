@@ -2,120 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA5250711E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD0B5507148
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344052AbiDSPAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 11:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51520 "EHLO
+        id S1347499AbiDSPE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 11:04:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244673AbiDSPAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:00:38 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 224343B026;
-        Tue, 19 Apr 2022 07:57:54 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so1675626wmn.1;
-        Tue, 19 Apr 2022 07:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VSfNNxCMPbot3TUeMFQDYDmYhnDExeycdgTmMkPBSiw=;
-        b=K89+PXfaCFu09OY7bsgh+7qQX9SHhTwwKvG8GnMvsy4nm507xqyK3sHZ67MuOBouWK
-         4rkUK91/51WwE/E/BbtbqNlYpk2W+/m+3Chgf1DgQ/4ZxSP0s1wqpSXNl7+UdgoWj+Xs
-         DJy4bCzYn6/vlOL+ZNY9yNQOs/kv50OdjLzRncPuI5wSrw+ftTvwxvHd1FHSO3Lksu+l
-         gBhsZjxwGFJya6sN2Lt1XOMX7olBrNleXGG5RLgiKeUMjp6130k6KNYzjV95UMRI84s7
-         H+NLnzuto2Whpp86h7jTvQ96wMZQqVnrQDa2fWzSRA2L9LVCV6/K5Tlwf7tuM/Cl+x+g
-         jazw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VSfNNxCMPbot3TUeMFQDYDmYhnDExeycdgTmMkPBSiw=;
-        b=PYHIOx0iUuZUYCAZGjcjEN1S97gv7502HEsoozFCy41M+raaeUg1aMFGV5UXUW58WJ
-         TsmiBIHM2hSODmaUSt7quLt+qQZ/7mcxp9SDvX0vUbz+IMS/kckEO4HUJEathddwEBK+
-         ZNNkNORH4N9E1GCmHKwsbMDLbZgAF7Mkdy1cSBpqom/I2lXkiar3CwVdfUbaTa16XdRX
-         3JccoShIuUt+PgblZyleWaTgvWhp+2MZ3sQOUv1cPyC+U5X2mNgvhlEj8xGIcyDuRnGN
-         7qxpwEDwykf+tT15GOyU+HNi2D4r3LpY5pyTrWYWyfOKeFlHRSryB4SCcd56eaTxP11O
-         /t8A==
-X-Gm-Message-State: AOAM530LYwcQ6FHPFJz9V3gzT1QkKt44YJ88OqoB72iiW5exWO1ql0Uo
-        emedofRjXZzqm86VWTu4KlsKaYg6gDo=
-X-Google-Smtp-Source: ABdhPJwGtnkzLvabPxjsO/IdFw1I83x6czWqIQw5VNsuYzxUmENRbL2f1OWVQ5C8fTTybXwA29UdQg==
-X-Received: by 2002:a05:600c:2197:b0:38e:b80c:526a with SMTP id e23-20020a05600c219700b0038eb80c526amr19889290wme.76.1650380272642;
-        Tue, 19 Apr 2022 07:57:52 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id o10-20020a5d47ca000000b0020a992ce36esm4933973wrc.1.2022.04.19.07.57.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 07:57:51 -0700 (PDT)
-Message-ID: <db521557-09ea-2c34-24e5-3bf71961b4fe@gmail.com>
-Date:   Tue, 19 Apr 2022 16:57:50 +0200
+        with ESMTP id S1347789AbiDSPE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:04:57 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9399B2D1DB;
+        Tue, 19 Apr 2022 08:02:13 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id CF4D7240012;
+        Tue, 19 Apr 2022 15:02:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650380530;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=GsDF21Scwpzk12ag+GO/8lcdNxhDhaAggJYyHxq2BDk=;
+        b=gKhcg6VhM7omoOFct2rFBg35LWARoAzxbEfp5VezTqIKwH69hQPhqjnfXMIKwFLcP2wxGs
+        XG3HTl8ibshJEny/FEYMVglygvSnDOSyam9n5HSPH9oU875QUZvmTuGFPCtSrNrniTezCj
+        Ety2BHZhaOT+jX0kSfyJavQ34UXRQlYjH7aaStaWbbzS3SnXkaveh+shKiVuSmwatAkNL1
+        ceDJFSuH7sLCEW2+iBuykcrqyf9mjpp8jUHEKcQX5KHc+uNmj+nleg0bcxa81kI/76GEuK
+        aSq+B/Qm9l8RwlbjMV/jMOFiL9iY5yysb4YkHMksQ4KgZ35tiF/PQ8zgu6tEAw==
+Date:   Tue, 19 Apr 2022 17:00:44 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 03/12] dt-bindings: net: pcs: add bindings for
+ Renesas RZ/N1 MII converter
+Message-ID: <20220419170044.450050ca@fixe.home>
+In-Reply-To: <Yl68k22fUw7uBgV9@robh.at.kernel.org>
+References: <20220414122250.158113-1-clement.leger@bootlin.com>
+        <20220414122250.158113-4-clement.leger@bootlin.com>
+        <Yl68k22fUw7uBgV9@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/5] dt-bindings: arm: mediatek: mmsys: add mt8195 SoC
- binding
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220419033237.23405-1-rex-bc.chen@mediatek.com>
- <20220419033237.23405-3-rex-bc.chen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220419033237.23405-3-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le Tue, 19 Apr 2022 08:43:47 -0500,
+Rob Herring <robh@kernel.org> a =C3=A9crit :
 
+> > +  clocks:
+> > +    items:
+> > +      - description: MII reference clock
+> > +      - description: RGMII reference clock
+> > +      - description: RMII reference clock
+> > +      - description: AHB clock used for the MII converter register int=
+erface
+> > +
+> > +  renesas,miic-cfg-mode:
+> > +    description: MII mux configuration mode. This value should use one=
+ of the
+> > +                 value defined in dt-bindings/net/pcs-rzn1-miic.h. =20
+>=20
+> Describe possible values here as constraints. At present, I don't see=20
+> the point of this property if there is only 1 possible value and it is=20
+> required.
 
-On 19/04/2022 05:32, Rex-BC Chen wrote:
-> From: "jason-jh.lin" <jason-jh.lin@mediatek.com>
-> 
-> In the SoC before, such as mt8173, it has 2 pipelines binding to one
-> mmsys with the same clock driver and the same power domain.
-> 
-> In mt8195, there are 4 pipelines binding to 4 different mmsys, such as
-> vdosys0, vdosys1, vppsys0 and vppsys1.
-> Each mmsys uses different clock drivers and different power domain.
-> 
-> Since each mmsys has its own mmio base address, they could be identified
-> by their different address during probe time.
-> 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The ethernet subsystem contains a number of internal muxes that allows
+to configure ethernet routing. This configuration option allows to set
+the register that configure these muxes.
 
-Applied, thanks
+After talking with Andrew, I considered moving to something like this:
 
-> ---
->   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml         | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index 6c2c3edcd443..6ad023eec193 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -31,6 +31,7 @@ properties:
->                 - mediatek,mt8183-mmsys
->                 - mediatek,mt8186-mmsys
->                 - mediatek,mt8192-mmsys
-> +              - mediatek,mt8195-mmsys
->                 - mediatek,mt8365-mmsys
->             - const: syscon
->         - items:
+eth-miic@44030000 {
+  compatible =3D "renesas,rzn1-miic";
+
+  mii_conv1: mii-conv-1 {
+    renesas,miic-input =3D <MIIC_GMAC1_PORT>;
+    port =3D <1>;
+  };
+  mii_conv2: mii-conv-2 {
+    renesas,miic-input =3D <MIIC_SWITCHD_PORT>;
+    port =3D <2>;
+  };
+   ...
+};
+
+Which would allow embedding the configuration inside the port
+sub-nodes. Moreover, it allows a better validation of the values using
+the schema validation directly since only a limited number of values
+are allowed for each port.
+
+>=20
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > + =20
+> > +patternProperties:
+> > +  "^mii-conv@[0-4]$":
+> > +    type: object =20
+>=20
+>        additionalProperties: false
+>=20
+> > +    description: MII converter port
+> > +
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1 =20
+>=20
+> Why do you need sub-nodes? They don't have any properties. A simple mask=
+=20
+> property could tell you which ports are present/active/enabled if that's=
+=20
+> what you are tracking. Or the SoC specific compatibles you need to add=20
+> can imply the ports if they are SoC specific.
+
+The MACs are using phandles to these sub-nodes to query a specific MII
+converter port PCS:
+
+switch@44050000 {
+    compatible =3D "renesas,rzn1-a5psw";
+
+    ports {
+        port@0 {
+            reg =3D <0>;
+            label =3D "lan0";
+            phy-handle =3D <&switch0phy3>;
+            pcs-handle =3D <&mii_conv4>;
+        };
+    };
+};
+
+According to Andrew, this is not a good idea to represent the PCS as a
+bus since it is indeed not a bus. I could also switch to something like
+pcs-handle =3D <&eth_mii 4> but i'm not sure what you'd prefer. We could
+also remove this from the device-tree and consider each driver to
+request the MII ouput to be configured using something like this for
+instance:
+
+ miic_request_pcs(pcs_np, miic_port_nr, MIIC_SWITCHD_PORT);
+
+But I'm not really fan of this because it requires the drivers to
+assume some specificities of the MII converter (port number are not in
+the same order of the switch for instance) and thus I would prefer this
+to be in the device-tree.
+
+Let me know if you can think of something that would suit you
+better but  keep in mind that I need to correctly match a switch/MAC
+port with a PCS port and that I also need to configure MII internal
+muxes.=20
+
+For more information, you can look at section 8 of the manual at [1].
+
+Thanks,
+
+[1]
+https://www.renesas.com/us/en/document/mah/rzn1d-group-rzn1s-group-rzn1l-gr=
+oup-users-manual-system-introduction-multiplexing-electrical-and
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
