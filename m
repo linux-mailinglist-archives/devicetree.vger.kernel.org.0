@@ -2,80 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8810E507137
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6498507121
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:58:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244719AbiDSPBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 11:01:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52422 "EHLO
+        id S233236AbiDSO7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:59:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347431AbiDSPBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:01:20 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6C53B291;
-        Tue, 19 Apr 2022 07:58:36 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id m15-20020a7bca4f000000b0038fdc1394b1so1756755wml.2;
-        Tue, 19 Apr 2022 07:58:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7ghNXW0NodixkgL8T98CLlpDZH/0jSgrfBNvM5ej23s=;
-        b=hlZSGMyqcDPTQx6RmtGj1koskcBFnvovRkA/NkQQc1kdKfUCK/xvxNwK2/QMga//vt
-         gvgPCxHQlSAHj+yHIujC+BRmhj1gLP7ekLjV7ZD7NrecJ3BdrZHOw6YBvn/B6cItuKKf
-         MdBYEq0rFmbIYogIZIjdsOO2THvp40Dfj3qsPVPkMBNI2i35smPdCI7UEoXt/JwhcW9Q
-         gx7Jeu3EnBQWxS746ict9bmJuk74OzwMEBkyzbwQJSY3huu8lXCtxwI5vk9YhVDeGMl8
-         YXCw7i4742XSHTgAlzm+90dybKw5PvgRAAqbic2G3krhErrfckVz+/ESYOyynHb2tL31
-         7WQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7ghNXW0NodixkgL8T98CLlpDZH/0jSgrfBNvM5ej23s=;
-        b=VMjp19DdLLqWSND5jusfj1xKB28lSmOkBMtoOHWHMAjhX+T7wtHDvR5GQCpl47E4P9
-         jgpctFIcg/aKH1Jq0U9LbyPgrtUqcAi4hJOKggFmYBMFAQv51zrCWrcYqTjN6ymxIp7g
-         kuFjMyZaL8nhYtcpf6ZZuAX3/LMxOCNXAOpiyHSK20/60jO0FNL96r4TRqoIXtUyKImT
-         EHaK1n2jARLpUqdnc3+Ebrh7Sq422xngOuf0GQk+AWlugZMSQLhQfjMmtqj/kBk/tJIv
-         EogauValPMCPmopqdcSPDj2WndmPgrwdRpZQbS7LoACeIpIapLnhTBDeZwnzsfVH2Bws
-         xA4g==
-X-Gm-Message-State: AOAM532ezfeRFVbqrmPjnOvcjJ4tKXGRJl7MVQCRw71WXWJ3ZTjZ1dNu
-        lOUQZReqIk1iRYxRAWFXKIg=
-X-Google-Smtp-Source: ABdhPJybiVLTSTP7L0aETG6uMJhUECVA5p62Vy3/QCjle5pk3JlVskw99zgtPeLU158U++lWgJMu7w==
-X-Received: by 2002:a05:600c:3785:b0:38e:bca8:f0c1 with SMTP id o5-20020a05600c378500b0038ebca8f0c1mr19958744wmr.56.1650380314825;
-        Tue, 19 Apr 2022 07:58:34 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id p3-20020a5d59a3000000b0020a9132d1fbsm6605119wrr.37.2022.04.19.07.58.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 07:58:34 -0700 (PDT)
-Message-ID: <83a7f222-f62c-fa47-9370-f9b709c3110e@gmail.com>
-Date:   Tue, 19 Apr 2022 16:54:30 +0200
+        with ESMTP id S1353722AbiDSO6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:58:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D438C3525C;
+        Tue, 19 Apr 2022 07:55:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6FBF461584;
+        Tue, 19 Apr 2022 14:55:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40B45C385A7;
+        Tue, 19 Apr 2022 14:55:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650380149;
+        bh=AqW7BlXqIXXJk7SV1e1EapO0IjeR/BAOYBLYxGwHlUg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=swGQhkQ0wN/dmJsNY1g4Jf3PZEV8p5G2bWNyWXp6aQE9XQBqNU8uJJJ4cm4ZiZ2uE
+         +iesXBhteb1hOx5+BXb+rpFJAPPVgMzPkx+3Nb4MajajaAZ4Sh24k44vPd2+GBbEIX
+         P6Yeuegm0teTGSsfOBGzAtAZei/QA6dMA5NATeezm6e33TsHoOy/R8OWc3wst0G+sr
+         MAfdofSzdHSfmmN5kyVx5gHSqXsFsjjLMAIxP5PGc/j5ws6nBRTFj54YyLkLXUw9O2
+         N/60E42patg34BmLvC66PB1zBWM5H3vMHy9/Ubb2OEP+rGK3YshXsWXEDyJ9yvk/aT
+         c6rynYHqwRD1Q==
+Date:   Tue, 19 Apr 2022 15:55:43 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V10 7/9] regulator: Add a regulator driver for the PM8008
+ PMIC
+Message-ID: <Yl7Nb0mNjt7kV3uV@sirena.org.uk>
+References: <1649939418-19861-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1649939418-19861-8-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n533obTi995x_rJG_ihUUquF3MQLJt6VMf7=oxyzMUL5DQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/5] dt-bindings: arm: mediatek: mmsys: add power and gce
- properties
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220419033237.23405-1-rex-bc.chen@mediatek.com>
- <20220419033237.23405-2-rex-bc.chen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220419033237.23405-2-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xgIXoV2XBfJmzGtV"
+Content-Disposition: inline
+In-Reply-To: <CAE-0n533obTi995x_rJG_ihUUquF3MQLJt6VMf7=oxyzMUL5DQ@mail.gmail.com>
+X-Cookie: That's what she said.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,78 +65,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--xgIXoV2XBfJmzGtV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 19/04/2022 05:32, Rex-BC Chen wrote:
-> From: "jason-jh.lin" <jason-jh.lin@mediatek.com>
-> 
-> Power:
-> 1. Add description for power-domains property.
-> 
-> GCE:
-> 1. Add description for mboxes property.
-> 2. Add description for mediatek,gce-client-reg property.
-> 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+On Thu, Apr 14, 2022 at 05:25:49PM -0700, Stephen Boyd wrote:
+> Quoting Satya Priya (2022-04-14 05:30:16)
 
-Applied, thanks.
+> > +static struct platform_driver pm8008_regulator_driver = {
+> > +       .driver = {
+> > +               .name           = "qcom-pm8008-regulator",
 
-Matthias
+> I'd prefer to use an of_device_id table here. That would let us populate
+> a "qcom,pm8008-regulators" node that had the ldo nodes as children and
+> avoid mfd cells.
 
-> ---
->   .../bindings/arm/mediatek/mediatek,mmsys.yaml | 31 +++++++++++++++++++
->   1 file changed, 31 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index b31d90dc9eb4..6c2c3edcd443 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -41,6 +41,30 @@ properties:
->     reg:
->       maxItems: 1
->   
-> +  power-domains:
-> +    description:
-> +      A phandle and PM domain specifier as defined by bindings
-> +      of the power controller specified by phandle. See
-> +      Documentation/devicetree/bindings/power/power-domain.yaml for details.
-> +
-> +  mboxes:
-> +    description:
-> +      Using mailbox to communicate with GCE, it should have this
-> +      property and list of phandle, mailbox specifiers. See
-> +      Documentation/devicetree/bindings/mailbox/mtk-gce.txt for details.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
-> +  mediatek,gce-client-reg:
-> +    description:
-> +      The register of client driver can be configured by gce with 4 arguments
-> +      defined in this property, such as phandle of gce, subsys id,
-> +      register offset and size.
-> +      Each subsys id is mapping to a base address of display function blocks
-> +      register which is defined in the gce header
-> +      include/dt-bindings/gce/<chip>-gce.h.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    maxItems: 1
-> +
->     "#clock-cells":
->       const: 1
->   
-> @@ -56,9 +80,16 @@ additionalProperties: false
->   
->   examples:
->     - |
-> +    #include <dt-bindings/power/mt8173-power.h>
-> +    #include <dt-bindings/gce/mt8173-gce.h>
-> +
->       mmsys: syscon@14000000 {
->           compatible = "mediatek,mt8173-mmsys", "syscon";
->           reg = <0x14000000 0x1000>;
-> +        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
->           #clock-cells = <1>;
->           #reset-cells = <1>;
-> +        mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-> +                 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-> +        mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->       };
+That's encoding the current Linux way of splitting up drivers into the
+DT rather than describing the hardware.
+
+--xgIXoV2XBfJmzGtV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJezW8ACgkQJNaLcl1U
+h9CHlQf/SfDYm+bgiFNO/+eLj38zgXokwbbiT9deWgN2aYkZy60/A2Ps2Noi2dtT
+bZ7untJiUelfBeNawv1WOu1iI1Gr4eRYBMK1r3stWu6gwLlQZKrou5B6Qfi7hEcI
+/4P5co/b0g6XbKUYGfcTwmMDiCzcycwwmhK9CFL7wOuHaPseV9Zqy+AhzZL/A85W
+TRqLznvoEfS3IMFxP0lnsEZkCpzKcOC8UK0qkFdUI7uPtRA73dEbQU8R5k8BAgXt
+kvjcDWbUkVWNwr/tswF2oehY+OKlSTMlx2rlVJB/FCQpm/XvfCE1gHH/0nwa6qqb
+OT/OxrogzuEuEtz7rmkyhzCF5lNIFw==
+=lzLV
+-----END PGP SIGNATURE-----
+
+--xgIXoV2XBfJmzGtV--
