@@ -2,245 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6D850704D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC656507072
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349445AbiDSO2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:28:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44132 "EHLO
+        id S239201AbiDSOar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349223AbiDSO2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:28:24 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A015F5C;
-        Tue, 19 Apr 2022 07:25:42 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id q3so15933395plg.3;
-        Tue, 19 Apr 2022 07:25:42 -0700 (PDT)
+        with ESMTP id S232482AbiDSOar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:30:47 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E3021E39
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:28:01 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id u15so33265703ejf.11
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:28:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TFMLwEUVVk76Mzd5qrOtxHvqSQjnERCVtVM5fsPy+p4=;
-        b=JlgE6g45z/I2s26ZdFaOdcufmpElVRjbI1XBl8TsGNzGVjXxTdIvRyJp/MwWl5RKfo
-         acO95fBYs9uCa0jPcweVZ1PSQq8ZPPzM0sorAOg0/D8k6kc5CayqX0oaUyiUCv1f6jIE
-         /38GJIq9B1SvIE/aPwFkMakK6UDCjk/P4xNdT+elCgv/7huZKFnn79+9ArmDbj16pbpJ
-         ILLP2MZ7+GHnFPvR4GtzXKl91wjEiD3R4/RI9Z5wo9yMMv0kW+En0w3hAhMszat2cHEV
-         iT/jdsBVxiUJMUoMumojgIENgm50qlPaPYgIuLMzE4RcnAJg4k5ri7NgolgH3znCru4C
-         j81Q==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Nj2bwCdNC7HwvELjhLY4xYS1yLs5HxcxFqDH74I+UnY=;
+        b=B3SiqcstytlQ82E04Waa6/M3nW29rmiBNUkLFmC9WM7jnffgpNy6IjRFV0crd0hF7R
+         kcF8m9ktNN+w8ii5kTtxi7D8LCi3jl+5QjVAHw3yc5CQBdM3VTFLDGas2ytvluL/OURr
+         GHEZ7O/R/ENukYVhf76eBTjEKHNirDS9hihnk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TFMLwEUVVk76Mzd5qrOtxHvqSQjnERCVtVM5fsPy+p4=;
-        b=E8NTTxrIMBkpIrqpb6yl7RS8WgX/6SfVzRi1bJ0f39OIpmktCYhlbMOIo0Y9igtAZ0
-         J8bHGbMry3+B/UQxD5RzP4ozej9Pz9iUpz4qpMrxV1UsOOTd5Oj74DIvsnpzOPu+iGyQ
-         zDadGOW7NIWv6KdmwcRZJMu9+SKXjBIRnW86ISoZV8F4BS0tSp4sgDa6MLUEw8tMf4K+
-         eXYI7ReXbHdeauH43hUZdcjrpZysp8vTKh0LLxHENGqqJqm3yvRihppt41kz0JTEceG3
-         gPlhlvGg+Sw5CfhVLuzLX5dsHZ4VdoWVMwtI1RqoX/XHCkWTcOw8/uqwe6Dc6EVx+yX0
-         paCA==
-X-Gm-Message-State: AOAM5333WZ0M5MTyd+7BnoUHJ9ZVLUxbF5EjRzKq4KLQc815Ptg41l6S
-        ZchbuHAeaPw/1O/IpAHVyDc=
-X-Google-Smtp-Source: ABdhPJyGTM2xEWviNdpGZmaW+tlLjnlRjuwrual7KPpWRORmwNu0u4c1bnPQfu50aNQaO7VUKJNmYQ==
-X-Received: by 2002:a17:90b:38c4:b0:1d2:66cf:568f with SMTP id nn4-20020a17090b38c400b001d266cf568fmr16852165pjb.18.1650378341893;
-        Tue, 19 Apr 2022 07:25:41 -0700 (PDT)
-Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id e15-20020a63ae4f000000b003995a4ce0aasm16681939pgp.22.2022.04.19.07.25.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 07:25:41 -0700 (PDT)
-From:   Cixi Geng <gengcixi@gmail.com>
-To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
-        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
-        yuming.zhu1@unisoc.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V4 7/7] iio: adc: sc27xx: add support for PMIC sc2730
-Date:   Tue, 19 Apr 2022 22:24:58 +0800
-Message-Id: <20220419142458.884933-8-gengcixi@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220419142458.884933-1-gengcixi@gmail.com>
-References: <20220419142458.884933-1-gengcixi@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Nj2bwCdNC7HwvELjhLY4xYS1yLs5HxcxFqDH74I+UnY=;
+        b=pBSvRXeLPip7dt1qBaO8tE4edbyS6lZUwejldrtrNpIfxRlDz/oc9zaBQBX/Md0gLJ
+         eFAVeFRKqlfSaMuVw/UV7xlNzXmP7d1y3mIblI2AvZZgkdNsxiw7ITVplel1X3IzsNmy
+         XKRTIepO8jTGumsrgiRi0RaKoPP/HiCvz/YEO/4JtRA1M+yKNkBz6fcHM6rjbHFut5PU
+         nyrXC6nY2KuBAVOQfSQ3ilZoRmyP1AgHbpFMS8ghBwSc80nmjRIUc6kRZYTGwHI/JL1i
+         qe0JbAChv5GQ2V4HiXjCU4w9DzDrnWgur+aTQ0ODaILhhy3EWnTM6nyK+GqXWBzQeINS
+         SaPg==
+X-Gm-Message-State: AOAM533o2cpEd6Eawymo2u0mNK0WXZYMLnGs77KzBFc/m57mzbpYB6H4
+        lMPBtFUb9DNG0+Cq8UY9hHvYo4SEiZXcEU51
+X-Google-Smtp-Source: ABdhPJxVrmdV6eFyGB5ePCeSZAGonyJcsRg5iyAQ6mkTkPfvepbMm7Gb0LzLbN2Zd6nbLVFFFK4MBg==
+X-Received: by 2002:a17:907:2cc4:b0:6df:a036:a025 with SMTP id hg4-20020a1709072cc400b006dfa036a025mr14626376ejc.554.1650378479715;
+        Tue, 19 Apr 2022 07:27:59 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
+        by smtp.gmail.com with ESMTPSA id v20-20020a056402349400b00419651e513asm8632985edc.45.2022.04.19.07.27.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 07:27:59 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id g18so22648910wrb.10
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:27:58 -0700 (PDT)
+X-Received: by 2002:a05:6000:1105:b0:20a:80b4:bcaf with SMTP id
+ z5-20020a056000110500b0020a80b4bcafmr11868665wrw.679.1650378478239; Tue, 19
+ Apr 2022 07:27:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <1650349697-13540-1-git-send-email-quic_vnivarth@quicinc.com> <1650349697-13540-3-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <1650349697-13540-3-git-send-email-quic_vnivarth@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 19 Apr 2022 07:27:46 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W6R9iPt1aCDpq4BRBfZ+KFUsOAUKCOhY2KQo_GpMhoiQ@mail.gmail.com>
+Message-ID: <CAD=FV=W6R9iPt1aCDpq4BRBfZ+KFUsOAUKCOhY2KQo_GpMhoiQ@mail.gmail.com>
+Subject: Re: [V4 2/2] arch: arm64: dts: qcom: sc7280-qcard: Configure cts
+ pinctrl to bias-bus-hold
+To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        quic_msavaliy@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Cixi Geng <cixi.geng1@unisoc.com>
+Hi,
 
-sc2730 is the product of sc27xx series.
+On Mon, Apr 18, 2022 at 11:28 PM Vijaya Krishna Nivarthi
+<quic_vnivarth@quicinc.com> wrote:
+>
+> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
+> Change sleep pinctrl configuration to handle same.
+>
+> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+> ---
+> v4: modify subject of patch to indicate file it is applying to
+> v3: apply same change to active state and other sc7280*.dts* as well
+> v2: used bias-bus-hold as per review comments
+> v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
 
-Co-developed-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
----
- drivers/iio/adc/sc27xx_adc.c | 116 +++++++++++++++++++++++++++++++++++
- 1 file changed, 116 insertions(+)
+You should have carried my tag forward. In any case:
 
-diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
-index 40686ee60c01..a12f7090311d 100644
---- a/drivers/iio/adc/sc27xx_adc.c
-+++ b/drivers/iio/adc/sc27xx_adc.c
-@@ -13,9 +13,11 @@
- #include <linux/slab.h>
- 
- /* PMIC global registers definition */
-+#define SC2730_MODULE_EN		0x1808
- #define SC2731_MODULE_EN		0xc08
- #define SC27XX_MODULE_ADC_EN		BIT(5)
- #define SC2721_ARM_CLK_EN		0xc0c
-+#define SC2730_ARM_CLK_EN		0x180c
- #define SC2731_ARM_CLK_EN		0xc10
- #define SC27XX_CLK_ADC_EN		BIT(5)
- #define SC27XX_CLK_ADC_CLK_EN		BIT(6)
-@@ -304,6 +306,80 @@ static int sc2721_adc_get_ratio(int channel, int scale)
- 	return SC27XX_VOLT_RATIO(1, 1);
- }
- 
-+static int sc2730_adc_get_ratio(int channel, int scale)
-+{
-+	switch (channel) {
-+	case 14:
-+		switch (scale) {
-+		case 0:
-+			return SC27XX_VOLT_RATIO(68, 900);
-+		case 1:
-+			return SC27XX_VOLT_RATIO(68, 1760);
-+		case 2:
-+			return SC27XX_VOLT_RATIO(68, 2327);
-+		case 3:
-+			return SC27XX_VOLT_RATIO(68, 3654);
-+		default:
-+			return SC27XX_VOLT_RATIO(1, 1);
-+		}
-+	case 15:
-+		switch (scale) {
-+		case 0:
-+			return SC27XX_VOLT_RATIO(1, 3);
-+		case 1:
-+			return SC27XX_VOLT_RATIO(1000, 5865);
-+		case 2:
-+			return SC27XX_VOLT_RATIO(500, 3879);
-+		case 3:
-+			return SC27XX_VOLT_RATIO(500, 6090);
-+		default:
-+			return SC27XX_VOLT_RATIO(1, 1);
-+		}
-+	case 16:
-+		switch (scale) {
-+		case 0:
-+			return SC27XX_VOLT_RATIO(48, 100);
-+		case 1:
-+			return SC27XX_VOLT_RATIO(480, 1955);
-+		case 2:
-+			return SC27XX_VOLT_RATIO(480, 2586);
-+		case 3:
-+			return SC27XX_VOLT_RATIO(48, 406);
-+		default:
-+			return SC27XX_VOLT_RATIO(1, 1);
-+		}
-+	case 21:
-+	case 22:
-+	case 23:
-+		switch (scale) {
-+		case 0:
-+			return SC27XX_VOLT_RATIO(3, 8);
-+		case 1:
-+			return SC27XX_VOLT_RATIO(375, 1955);
-+		case 2:
-+			return SC27XX_VOLT_RATIO(375, 2586);
-+		case 3:
-+			return SC27XX_VOLT_RATIO(300, 3248);
-+		default:
-+			return SC27XX_VOLT_RATIO(1, 1);
-+		}
-+	default:
-+		switch (scale) {
-+		case 0:
-+			return SC27XX_VOLT_RATIO(1, 1);
-+		case 1:
-+			return SC27XX_VOLT_RATIO(1000, 1955);
-+		case 2:
-+			return SC27XX_VOLT_RATIO(1000, 2586);
-+		case 3:
-+			return SC27XX_VOLT_RATIO(1000, 4060);
-+		default:
-+			return SC27XX_VOLT_RATIO(1, 1);
-+		}
-+	}
-+	return SC27XX_VOLT_RATIO(1, 1);
-+}
-+
- static int sc2731_adc_get_ratio(int channel, int scale)
- {
- 	switch (channel) {
-@@ -360,6 +436,33 @@ static void sc2720_adc_scale_init(struct sc27xx_adc_data *data)
- 	}
- }
- 
-+static void sc2730_adc_scale_init(struct sc27xx_adc_data *data)
-+{
-+	int i;
-+
-+	for (i = 0; i < SC27XX_ADC_CHANNEL_MAX; i++) {
-+		switch (i) {
-+		case 5:
-+		case 10:
-+		case 19:
-+		case 30:
-+		case 31:
-+			data->channel_scale[i] = 3;
-+			break;
-+		case 7:
-+		case 9:
-+			data->channel_scale[i] = 2;
-+			break;
-+		case 13:
-+			data->channel_scale[i] = 1;
-+			break;
-+		default:
-+			data->channel_scale[i] = 0;
-+			break;
-+		}
-+	}
-+}
-+
- static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
- {
- 	int i;
-@@ -721,6 +824,18 @@ static const struct sc27xx_adc_variant_data sc2731_data = {
- 	.set_volref = false,
- };
- 
-+static const struct sc27xx_adc_variant_data sc2730_data = {
-+	.module_en = SC2730_MODULE_EN,
-+	.clk_en = SC2730_ARM_CLK_EN,
-+	.scale_shift = SC27XX_ADC_SCALE_SHIFT,
-+	.scale_mask = SC27XX_ADC_SCALE_MASK,
-+	.bscale_cal = &big_scale_graph_calib,
-+	.sscale_cal = &small_scale_graph_calib,
-+	.init_scale = sc2730_adc_scale_init,
-+	.get_ratio = sc2730_adc_get_ratio,
-+	.set_volref = false,
-+};
-+
- static const struct sc27xx_adc_variant_data sc2721_data = {
- 	.module_en = SC2731_MODULE_EN,
- 	.clk_en = SC2721_ARM_CLK_EN,
-@@ -832,6 +947,7 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
- 
- static const struct of_device_id sc27xx_adc_of_match[] = {
- 	{ .compatible = "sprd,sc2731-adc", .data = &sc2731_data},
-+	{ .compatible = "sprd,sc2730-adc", .data = &sc2730_data},
- 	{ .compatible = "sprd,sc2721-adc", .data = &sc2721_data},
- 	{ .compatible = "sprd,sc2720-adc", .data = &sc2720_data},
- 	{ }
--- 
-2.25.1
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
