@@ -2,118 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D2850767D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0546E507687
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354732AbiDSRc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 13:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33496 "EHLO
+        id S245103AbiDSRda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 13:33:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354598AbiDSRc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 13:32:28 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B10EC56;
-        Tue, 19 Apr 2022 10:29:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1650389348;
-        bh=KwXzkV0B3f5e2tIrsLC+AOdAfv7m88ysNXObwXd6YFU=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=C3r0DjATYEqweUN70N+KSWm8s2Civ07dEeM21QTrj5r1m5ZISvnKT7EL2fK8jKQcG
-         YCjlBNclMYyRmEK6ZfE9at59azUaeOCjiGBJ+iM3/boiWJlrweKhokDKsRGFHpVm44
-         syEqyK5OLmSSqMe8pekmtoe+yOUERDkEvLQKcVvs=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.157.75] ([217.61.157.75]) by web-mail.gmx.net
- (3c-app-gmx-bap70.server.lan [172.19.172.170]) (via HTTP); Tue, 19 Apr 2022
- 19:29:08 +0200
+        with ESMTP id S1344945AbiDSRdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 13:33:20 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69AE30F59;
+        Tue, 19 Apr 2022 10:30:37 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23JHUHRe124234;
+        Tue, 19 Apr 2022 12:30:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650389417;
+        bh=tblmGe+8o+9ZJunF2//txAuP0QRnXYIGKc6iN9ViM60=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=x5Inx2bap9zeuEoC0XLd9dRiKWS+N1VbDsz8luum8ppgGOWnYcv5KbsJ5n1yljiI1
+         Kq0akeXJt8ncDnXS1xR+cuM0dEhDWKRvd9xIpFXHO+CH+Ge0hWCEJhhuOx94uBrFZ/
+         5Ij9umpWFKke2Zw7tFkd2B2ia07HOnKGapZClKrY=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23JHUHM9019741
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Apr 2022 12:30:17 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
+ Apr 2022 12:30:03 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 19 Apr 2022 12:30:03 -0500
+Received: from [10.0.3.15] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23JHTtBT041076;
+        Tue, 19 Apr 2022 12:29:57 -0500
+Message-ID: <b4712133-1694-4f3a-a790-263118717715@ti.com>
+Date:   Tue, 19 Apr 2022 22:59:54 +0530
 MIME-Version: 1.0
-Message-ID: <trinity-c60358c4-ebd1-47bf-91e0-9ae0beefd39f-1650389348418@3c-app-gmx-bap70>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Aw: Re: [RFC/RFT 2/6] dt-bindings: soc: grf: add
- pcie30-{phy,pipe}-grf
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 19 Apr 2022 19:29:08 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <02b3fe1c-12f9-8f96-a9b5-df44ca001825@linaro.org>
-References: <20220416135458.104048-1-linux@fw-web.de>
- <20220416135458.104048-3-linux@fw-web.de>
- <02b3fe1c-12f9-8f96-a9b5-df44ca001825@linaro.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:GSNIHIUWA/GRgjok62B+UG3JpReIUrnZJW4cJo6k+0piMPNyKFMYLVAFWEh1wrHmC12r3
- jNiJtMLDXSgz8acJ/aJzo+jHp/laJRu0OT7D+X3jpnmIx10ZRP1JqBS5CgsRVh/9IdoFFvDn3g/d
- rj15Lid9nt0dWx9ntE2Vb5tFhLn/8safPKxQPqCoi0HjiXWlBT+34uxmGYQ7RC1juT0PrxVRNTqc
- +QTAlJ8jBUmU1xE8ALgCLTfOHz6M+dTJ9/YjpIsyksZMR+MkqhSHhbwhX6bzXV0vtETyR9yddXOr
- u4=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:5J5RBFRzPTA=:MMjlPLuedJCMlAG5z+h8Bd
- CK5NFPEE5BVigaDy2laiQ3hRh0HImsKvp9cX2T3LIVYqMkqSsdHqKNBebEb9780iJzIt8QM/K
- y9CLpFPNgTk0uM/rfb3lgNeOPYy+VVHhEX/pWsHHxtLSpMVOZ9kppKDncbHeK2pBCqzqbBABV
- 4Hq6qMPtbDPsmgM9C+lq8lfBsoCDZpGQltXuR+4tcZ0Da3h6jUHz2/UBW1FT1KHOA+laYVvMk
- Riyj53Nwe+OUPmsJs7mnYI2iLWL6L/tUaf5WEUva+1mUYPHoJRbRcCeHcRQJDSOCmqBrYAbYF
- +3s76mG4HUhtZ+cBaMiYRj3eeg8vHx0s6BybOeU3XzkVVYavGi/jCADVnpZYoCtxL4B66wO58
- gjuekbExgepHeqNRmYJS+H+5VFOiH3YJLw4pwg/Q9OAiLjfe7XWTtdNO4nAN8eI9Ed0RIRNkp
- gHPIBavKmNjNsvReK1OGzG2oGnejY7gC5GuhCvFYoAbLXF1/sndvItKF7jMz1MBMPBq8XWDD7
- 1cQLVwUR/fFS0cW9+ozbdCHKY3I/95TDHgeGdXd93tAoRhBryWoYjZkSr8yFglnePJThlEqwR
- 0pq235DHr7bdkoQieORurzxhhH4+Drw7BaTzq40uEnMMZMcPBhf26ZU45rosLjOpGUyJEJJM3
- YTRUlTdc5HFiT33FAqSB83j9MTWyHTmUZJVzHrHq6mSdnFZOm7XeSsY6ZzxfPpgLX1VvmxbNe
- 2z7dslB3GZNBFZ3wpYcTO44+RvZB9DlwXuzmx2QQVHRT5fbtdA1uaNeTflN5aK5nvUU03Wpe+
- L6o34tm
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 0/2] Update register & interrupt info in am65x DSS
+Content-Language: en-US
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     Jyri Sarha <jyri.sarha@iki.fi>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Devicetree <devicetree@vger.kernel.org>,
+        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>
+References: <20220419070302.16502-1-a-bhatia1@ti.com>
+ <9e848e84-a31f-98ec-ed6b-c1dce022723b@ideasonboard.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <9e848e84-a31f-98ec-ed6b-c1dce022723b@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Montag, 18. April 2022 um 17:54 Uhr
-> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
 
-> > --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> > @@ -14,6 +14,8 @@ properties:
-> >      oneOf:
-> >        - items:
-> >            - enum:
-> > +              - rockchip,pcie30-phy-grf
-> > +              - rockchip,pcie30-pipe-grf
->
-> These are without SoC parts. Are these PCIe v3 General Register Files
-> part of some PCIe spec?
 
-imho they are shared across SoCs rk3568 and rk3588, but have only seen rk3=
-568 implementation yet.
-PCIe driver currently supports these 2 Soc (different offsets in the Phy-G=
-RF), but can only test rk3568.
+On 19/04/22 17:36, Tomi Valkeinen wrote:
+> On 19/04/2022 10:03, Aradhya Bhatia wrote:
+>> The Display SubSystem IP on the ti's am65x soc has an additional
+>> register space "common1" and services a maximum of 2 interrupts.
+>>
+>> The first patch in the series adds the required updates to the yaml
+>> file. The second patch then reflects the yaml updates in the DSS DT
+>> node of am65x soc.
+>>
+>> Aradhya Bhatia (2):
+>>    dt-bindings: display: ti,am65x-dss: Add missing register & interrupt
+>>    arm64: dts: ti: k3-am65: Add missing register & interrupt in DSS node
+>>
+>>   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
+>>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi               |  6 ++++--
+>>   2 files changed, 11 insertions(+), 5 deletions(-)
+>>
+> 
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> 
+> How are you planning to use the common1 area?
+Tomi, Nishanth,
+Thank you for taking out time to review this.
 
-pipe-grf seems only be used for rk35688 (offset used in probe is defined f=
-or this SoC), which i cannot test.
+The DSS IP is such that it services 2 interrupts in case people want to
+use DSS from 2 SW entities (2nd VM or 2nd core). The regions "common" &
+"common1" cater registers for managing these 2 interrupts.
+Historically, on linux, only 1 interrupt and hence only the "common"
+region has been used. Therefore, the "common1" region is not actually
+required.
 
-so i have left them SoC independed.
+The patches, thus, can be ignored.
 
-> >                - rockchip,rk3288-sgrf
-> >                - rockchip,rk3566-pipe-grf
-> >                - rockchip,rk3568-usb2phy-grf
 
-regards Frank
+Rob,
+Thank you for pointing out the mistakes I have made. I will be more
+careful about them going further.
+
+> 
+>  Tomi
+
+Regards
+Aradhya Bhatia
