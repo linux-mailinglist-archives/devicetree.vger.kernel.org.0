@@ -2,96 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF86B506C0A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85839506C12
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239740AbiDSMQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:16:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35598 "EHLO
+        id S234397AbiDSMQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 08:16:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352113AbiDSMP4 (ORCPT
+        with ESMTP id S1352067AbiDSMP4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:15:56 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE077205DC;
-        Tue, 19 Apr 2022 05:12:46 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e5c42b6e31so7259998fac.12;
-        Tue, 19 Apr 2022 05:12:46 -0700 (PDT)
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C16205C6;
+        Tue, 19 Apr 2022 05:12:45 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-e2442907a1so17204642fac.8;
+        Tue, 19 Apr 2022 05:12:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=0569YfmtjdqJ+2hyukw09AFuvfwmKEbwEGbKGweOpvI=;
-        b=mU+GuPAI/15nGvzXSSBRrx85MX8MX49a39LXE31Muk7yi89zlEy5E+vnEf+eR+vczy
-         dVNbtM07pnfWYH8mbwRLA/+WO0ntPLUrN10Syu9ZDnzrR1rCYbzV7DeQL5bfsasvfqZS
-         5K3n1K1k1+WiPzgwgwRnl9m+ttCY9xux+i2y1edgV5lR9CsOdmlItRLxY+tDopdjVjAy
-         mYeQx/GKNRbY3e3Cal2b4HN4pUSkSzBpXEcN6pot87bajBzCBxHw1ja6Yg2bHZJf1ZZ5
-         SUApIaowHrfVkYj1ZU1vRLh5Rb+91+hu14sR5u+FgWNGQzP0/gYmrxR7Y4h2Tq9/Migr
-         9Hqg==
-X-Gm-Message-State: AOAM533QpWOLA4hfKhers+70PevwGGXqMgAJv1qFFM2q9BSdAEbphf9D
-        Xh756HpbjK0MlT6/2LuWAQ==
-X-Google-Smtp-Source: ABdhPJx8LiBK0K4XkLwgCXtqriBYjWmQ7YGCbPJHV61zXAKBySQssJNDd/Khvosb+uQCNv6rnPT75g==
-X-Received: by 2002:a05:6870:9611:b0:df:200f:a6dd with SMTP id d17-20020a056870961100b000df200fa6ddmr6047417oaq.299.1650370366071;
-        Tue, 19 Apr 2022 05:12:46 -0700 (PDT)
+        bh=VXmHngvtUNu5eflY1U61e24oRozhrPUFJTNzovpIsX8=;
+        b=rdpYrGIYX5AIUDhj7rGkE/uwyqBxnP1Qu9xqXUB1q48/7LkZ1aIxg0rlp5ZmgZewqL
+         xO+uB+sUMps5sl79qVIzdDdY0XxaikHmcm35wTfGYVJiKSu4ucNpQGbKaHm+PPywk15I
+         usdwCY4cvGqDil3pZHQ6cq9amsbbouWq38qte39ek3E67XPONl4Q9aKvCsxqffCEa7Ue
+         KTpSy24xuBC1VFIGu2CjySK064mVHx/5s9vY0I22t+3++QpuZ2BO9fJmhWSj3DDQyNjr
+         /cqD3XyeBcVEt210hcq6xi9IP3clGkdlp0AY8KXTHtkhi+gQD3NZ0JeK626uj/6uJqYT
+         9z4g==
+X-Gm-Message-State: AOAM533B9dROGFbOBjhca54eFU2Ujybzu1jTMfoTaLGDRfCjNzvSzO/G
+        zh5lv03daZ00kVkFW/IPTg==
+X-Google-Smtp-Source: ABdhPJzZAxioIvN5lx5R0aO1Ov01x4UQccfPiROqrHGPhS5fTnwkpumUl7WXGGMmhzbzqmSL9jr9PQ==
+X-Received: by 2002:a05:6870:d683:b0:de:eaa2:3550 with SMTP id z3-20020a056870d68300b000deeaa23550mr6390390oap.253.1650370364721;
+        Tue, 19 Apr 2022 05:12:44 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g25-20020a544f99000000b002da70c710b8sm5082428oiy.54.2022.04.19.05.12.45
+        by smtp.gmail.com with ESMTPSA id e22-20020a056870239600b000e2f0c69849sm5000358oap.11.2022.04.19.05.12.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 05:12:45 -0700 (PDT)
-Received: (nullmailer pid 1977866 invoked by uid 1000);
+        Tue, 19 Apr 2022 05:12:44 -0700 (PDT)
+Received: (nullmailer pid 1977862 invoked by uid 1000);
         Tue, 19 Apr 2022 12:12:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        nancy.lin@mediatek.com, angelogioacchino.delregno@collabora.com,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        airlied@linux.ie, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, jason-jh.lin@mediatek.com,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org
-In-Reply-To: <20220419033237.23405-4-rex-bc.chen@mediatek.com>
-References: <20220419033237.23405-1-rex-bc.chen@mediatek.com> <20220419033237.23405-4-rex-bc.chen@mediatek.com>
-Subject: Re: [PATCH 3/5] dt-bindings: mediatek: add vdosys1 RDMA definition for mt8195
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     devicetree@vger.kernel.org, zac@squareup.com, krzk+dt@kernel.org,
+        jun.nie@linaro.org, linux-arm-msm@vger.kernel.org,
+        benl@squareup.com, robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        shawn.guo@linaro.org, jgates@squareup.com, mchen@squareup.com,
+        jwillcox@squareup.com, agross@kernel.org
+In-Reply-To: <20220419010903.3109514-2-bryan.odonoghue@linaro.org>
+References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org> <20220419010903.3109514-2-bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v1 1/4] dt-bindings: arm: qcom: Document MSM8939 SoC binding
 Date:   Tue, 19 Apr 2022 07:12:43 -0500
-Message-Id: <1650370363.539386.1977865.nullmailer@robh.at.kernel.org>
+Message-Id: <1650370363.502202.1977861.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Apr 2022 11:32:35 +0800, Rex-BC Chen wrote:
-> From: "Nancy.Lin" <nancy.lin@mediatek.com>
+On Tue, 19 Apr 2022 02:09:00 +0100, Bryan O'Donoghue wrote:
+> Document the MSM8939 and supported boards in upstream Sony "Tulip" M4 Aqua
+> and Square APQ8039 T2.
 > 
-> Add vdosys1 RDMA definition.
-> 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  .../display/mediatek/mediatek,mdp-rdma.yaml   | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/qcom.yaml:37:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/display/mediatek/mediatek,mdp-rdma.yaml#
-Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.example.dts:27:18: fatal error: dt-bindings/memory/mt8195-memory-port.h: No such file or directory
-   27 |         #include <dt-bindings/memory/mt8195-memory-port.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.example.dtb] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/qcom.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 52, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 731, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a block scalar
+  in "<unicode string>", line 12, column 14
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 37, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/arm/qcom.example.dts] Error 1
 make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/arm/qcom.yaml:  while scanning a block scalar
+  in "<unicode string>", line 12, column 14
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 37, column 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom.yaml: ignoring, error parsing file
 make: *** [Makefile:1401: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
