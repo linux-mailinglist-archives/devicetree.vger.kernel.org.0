@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8E9507057
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C5050709A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353283AbiDSObI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46244 "EHLO
+        id S236542AbiDSOes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351014AbiDSObI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:31:08 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50A931342
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:28:25 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id k23so33309996ejd.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:28:25 -0700 (PDT)
+        with ESMTP id S232971AbiDSOeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:34:46 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5F211140;
+        Tue, 19 Apr 2022 07:32:03 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id o127so12490565iof.12;
+        Tue, 19 Apr 2022 07:32:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5snmPtDHGIGoFLwIYFGnYkPTgTDRFy3yrXSk8RuXhBw=;
-        b=RyaK5z0senBGYKHrGTylo+K2ugRhGTPqMnF4qLnrgyVkDI+tdjmEz5eOzR0Y1AW6QU
-         y1zPZmrNqRLvm0vTSqh+xmmubISocvwjC4qL1JKLlSIvglE/JhI/7doQ6ENEmXj3Clrj
-         zYxT/lkQ+Dzv5Oo+hLcoDdnTp0p5Kfr/Kplng=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=iPD1iR5qd5xmFxqoNP+9ShsEquOYqKS33gFTSRsPZro=;
+        b=Z7LxYAUbZnVFiFy71HCGAnsd0qRNreWPi93Lf3JHld6XjimOV92Fr8+6ProAPK2UtX
+         NEWGht0ORsquv+fNRKONaJYbpqKKBW8d22vmuMjdiSZxC0gM7rvMBeaGzboazwzAxXGA
+         mDvxXALWBzew3j1hguficgc8qmUB/vYIsCquZFmJFBFN92Q41mrqxax8L4Q7VHS9BI3v
+         sxaERl9GP3TP7D696rUbdqBfFfB3KegF1lkwklp6Wj4tWxdqH1r3RNRx+ipoHoEDpmde
+         O+AMs+j7ocD2qKdCVl024eKgvYt8P1F6AGr7MqzcUZmG1JiwUJxfmbZqC/T+KKrBmD8O
+         HYmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5snmPtDHGIGoFLwIYFGnYkPTgTDRFy3yrXSk8RuXhBw=;
-        b=T4unC9A/tGkZukYsoc3o3hpJ0O6Y0jdUetY6IVi83fpxw+WXwQybP1UZfkaoghpsqt
-         P6LyTF+2EUBMqw9GPsLNQnIOr2+3tzTF4+sznecq3Pw0tGZ/mRprEvSJKd5WGgBknDXg
-         49mDQw0HMR0P9YxlTYHyRODd4gtmuNuKewy8wnp4/r8ixCL0ZciFpH4HbNvOLkyY5f16
-         +2xxhlW38nWFBfRprBbmWdeBl6hz8vlmqFsNhSBYyX0gjQj2rUwT9qc+JRUIogxhGMED
-         HyWmL0i5HmOBSsGhqZKNsm8LzX4IL6Ilv59lvQ5bgySqDkK2ugBei44iQWtVmeLOGj7J
-         O45Q==
-X-Gm-Message-State: AOAM533/0/fhNKVjWWJtVTNqMglLu9qG4WiYAqaYjQT6dUDbg+v8ZFcO
-        w8fO8w49SZirB3bD/krXyyqO5KaGf+symcvB
-X-Google-Smtp-Source: ABdhPJyl8Cq5bfNT8TjVMJPrXK5ZGdmkskkmpeJkkHMxnedVTqlS8EgPXGay4jPEa/4QPZYbqv3J2Q==
-X-Received: by 2002:a17:907:33cc:b0:6e8:81ca:f9e8 with SMTP id zk12-20020a17090733cc00b006e881caf9e8mr14008119ejb.51.1650378504000;
-        Tue, 19 Apr 2022 07:28:24 -0700 (PDT)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com. [209.85.128.41])
-        by smtp.gmail.com with ESMTPSA id q7-20020aa7cc07000000b00423ded189aesm3807136edt.13.2022.04.19.07.28.22
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=iPD1iR5qd5xmFxqoNP+9ShsEquOYqKS33gFTSRsPZro=;
+        b=X4Nqdyl34VdhfjjwpW9g50DRf5dszr+229W54JW0vVOOsrE9hIEsKgG3D0RY6rmTRZ
+         hluRRH/V56TAac+tyeYxSD4MpHrWciDNBSOI3A8ftJH60AYzYSckJoR5kYpuL93nHA8V
+         iz2o7sf8Pnji01kB2HFf98dpmCT+DNxglgnbFE4Lc91YpslLh2OX+f+NCs8JHhb8dSBr
+         5QD6NJa2snBWwiXl5699RmJWbChxecmujXz82QT7MnUEW/L37j5WDddnm85cU963/Dc0
+         XLt0Li7bCudwp+Z8v/fio8La8HmdCbaEDPJjIkrIl+f1P9lNvsuEfoVJpJ+i7/sqSxC3
+         4Zkg==
+X-Gm-Message-State: AOAM532NLobyzk2VtEoJflxZ5T9kb52A5qWINMfFMMy5EELM8UyOHpiC
+        jg8qM7TE8BGM6nSwrzdDsYw=
+X-Google-Smtp-Source: ABdhPJzL2cpCI4DDYEF14wIz+iVDK+70GBOSOBRKi+gYopggEMfFhTfSw6J23ZbocFRaz59bj9/WaQ==
+X-Received: by 2002:a6b:ce01:0:b0:64c:ad0b:9a65 with SMTP id p1-20020a6bce01000000b0064cad0b9a65mr6527353iob.147.1650378722931;
+        Tue, 19 Apr 2022 07:32:02 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id r14-20020a92ac0e000000b002ca8eb05174sm8934717ilh.57.2022.04.19.07.32.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 07:28:22 -0700 (PDT)
-Received: by mail-wm1-f41.google.com with SMTP id m15-20020a7bca4f000000b0038fdc1394b1so1694938wml.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:28:22 -0700 (PDT)
-X-Received: by 2002:a05:600c:210b:b0:38e:c62a:398b with SMTP id
- u11-20020a05600c210b00b0038ec62a398bmr20157535wml.118.1650378502020; Tue, 19
- Apr 2022 07:28:22 -0700 (PDT)
+        Tue, 19 Apr 2022 07:32:02 -0700 (PDT)
+Message-ID: <448093df-288f-3c49-270e-5d830a986b27@gmail.com>
+Date:   Tue, 19 Apr 2022 16:31:59 +0200
 MIME-Version: 1.0
-References: <1650349697-13540-1-git-send-email-quic_vnivarth@quicinc.com> <1650349697-13540-2-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1650349697-13540-2-git-send-email-quic_vnivarth@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 19 Apr 2022 07:28:09 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XYduCsrzKYRUR18y+OfJCrjdbDErSPEtz0bYF_VXbMPA@mail.gmail.com>
-Message-ID: <CAD=FV=XYduCsrzKYRUR18y+OfJCrjdbDErSPEtz0bYF_VXbMPA@mail.gmail.com>
-Subject: Re: [V4 1/2] arch: arm64: dts: qcom: sc7280-idp: Configure cts
- pinctrl to bias-bus-hold
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        quic_msavaliy@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <20210820081616.83674-1-krzysztof.kozlowski@canonical.com>
+ <165036314214.180327.9860190048104061653.b4-ty@linaro.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: mediatek: align operating-points table
+ name with dtschema
+In-Reply-To: <165036314214.180327.9860190048104061653.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Mon, Apr 18, 2022 at 11:28 PM Vijaya Krishna Nivarthi
-<quic_vnivarth@quicinc.com> wrote:
->
-> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-> Change sleep pinctrl configuration to handle same.
->
-> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-> ---
-> v4: modify subject of patch to indicate file it is applying to
-> v3: apply same change to active state and other sc7280*.dts* as well
-> v2: used bias-bus-hold as per review comments
-> v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
 
-You should have carried my tag forward. In any case:
+On 19/04/2022 12:12, Krzysztof Kozlowski wrote:
+> On Fri, 20 Aug 2021 10:16:15 +0200, Krzysztof Kozlowski wrote:
+>> Align the name of operating-points node to dtschema to fix warnings like:
+>>
+>>    arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml:
+>>      opp_table0: $nodename:0: 'opp_table0' does not match '^opp-table(-[a-z0-9]+)?$'
+>>
+>>
+> 
+> Applied, thanks!
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Could you please provide a stable branch for this patches? So that I can pull 
+that into my branch. This will help to reduce merge conflicts later on.
+
+Thanks,
+Matthias
+
+> 
+> [1/2] arm64: dts: mediatek: align operating-points table name with dtschema
+>        commit: c743bb394d35b782ae9d9ab815d6053500914533
+> [2/2] arm64: dts: mediatek: align thermal zone node names with dtschema
+>        commit: 54ff423f837db59db0626a00d091e45dcc46787e
+> 
+> Best regards,
