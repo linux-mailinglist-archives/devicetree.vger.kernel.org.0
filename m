@@ -2,112 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD13B507153
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6B950715C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353573AbiDSPIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 11:08:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35366 "EHLO
+        id S1353588AbiDSPJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 11:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236347AbiDSPIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:08:50 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12B839BBA;
-        Tue, 19 Apr 2022 08:06:04 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id hf18so11901146qtb.0;
-        Tue, 19 Apr 2022 08:06:04 -0700 (PDT)
+        with ESMTP id S1343927AbiDSPJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:09:36 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E270B3A5FE;
+        Tue, 19 Apr 2022 08:06:52 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id t25so21668345edt.9;
+        Tue, 19 Apr 2022 08:06:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=yICZo35JVSCay/S/x1TB8kX9507M+hco0NaA8O/7pCU=;
+        b=dqhBAOnaEOaiRPgnwFlRiMHN3lB5cjbPy5HM5ysMYjsbjEcCoKfr7kln27sTR9pRgV
+         gE5PzIU0MJamXr0s+yAUwpgHUDOCYAE5LWPiTTJqtWn4BulTN10rSw9f/JjshFGaTM1L
+         YUTdDpHPJ02DV3sOMYKKCj86Y0cspr8Ys8jwmp9x38xRSrRXkgqDG0EGAjaRdSUDuZH/
+         DLzHUrk0uJg7sOLFCc8na9Jplo0SYN3U9ynpRRJfaU2I9hNcr01RuWySYDl0NbjwNHYi
+         kELwR6JUC8qvRI1xwp2ur+FRci7aVgOBkEsRITJyLUOcbjQQkHmWPBdNgjdFsoLWcndc
+         k7dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m3kmij7iNaQJU5WT/jMrZ8Zz5Ucc96C4QBrTjjRrlJY=;
-        b=2+3MdOwLthbCEIJucCNKeQij4bGeUwleMmz/nqilSEIPRFBCH502FQY7XAmduzJIt1
-         5emqlMqRh/+pMnxvgvlgEhRPsFpifpKBxDi2DeHdoyS5cf02Q5Y6FDgHmr+vv+AQpOoC
-         vtAsfGs8xSoWtbtcZuLLzJN65OH5mAYtzpDsjl+xMPy8lESeaCGNn88abORyngpiJk7B
-         KAmF0TXrFvJ53mtk4yV+2/sPrx7ujj+5beq4tmWudh9/4qhBw8CqcUJv5N/L7ManbEsK
-         n4GkdvnmDkw75+gv9fkt4TYmSeCSHVXyqJT01BMXOeMZLz72Pz761F+oBnqwiyrVbkYm
-         F/pA==
-X-Gm-Message-State: AOAM532LaqewC+ot9xJPmHy3AQHd4DFzWjZWvtC5uXFo47KLgFsKMY8V
-        51P7dA2xh6NxcofccF8xlwWA3SU8xtLsFg==
-X-Google-Smtp-Source: ABdhPJxEO4ixZkX/Sjb4EF4ijhHSWbyhAFtIgJPaWYS3/a9UKgbZK53tIh9OcnUwLvyuoD5b+DLAKA==
-X-Received: by 2002:a05:622a:9:b0:2f1:e9d7:d734 with SMTP id x9-20020a05622a000900b002f1e9d7d734mr10771744qtw.476.1650380763651;
-        Tue, 19 Apr 2022 08:06:03 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id a63-20020ae9e842000000b0069e6722632bsm136973qkg.39.2022.04.19.08.06.03
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yICZo35JVSCay/S/x1TB8kX9507M+hco0NaA8O/7pCU=;
+        b=CjFt3RuyUlQtj0ApaNJl+rs+r60vQblj6A0C6IKUtqi8XLA8MsPgZu/lKL0Q5ctDFf
+         3djTVSXv55GRtbSUVuiCrMhNKunWNrP19TqJ5Zg9CAPz3OSVnnwLY3eRZWEr3nAi2fzX
+         QYZn5wCFISUNbxRoodp3ob7Ly4fq/SrpsdJuxFR/72eQSQX5VqIzQfjlmh8p7Kiz5Jc2
+         KltNisGLif6+62iKKrY4dUJ7PoSLGR6iJO60Uo455TYxxk9K8Be5tD0LMgp4fHFzXzvc
+         i++QynjcYngKX7PswPn4s1nn2pqf7Vde1Th23qqbbkmGlbipwNXDn1jcPitFzRPCkaHa
+         BoXg==
+X-Gm-Message-State: AOAM533Qu48lnM9BzWjFg27YeFEj5AmU21yU5Bv8d6lsUVWbGT54LPTv
+        GOTH6DlTneoTjw/qSfRkP4w=
+X-Google-Smtp-Source: ABdhPJyydUHtFp3YDsnBHqpecx1FOJ26DObQViOuhiNGCtKScNX7BimnMLHUfAZfVE1+x3dHcfClpQ==
+X-Received: by 2002:aa7:c948:0:b0:413:2bed:e82e with SMTP id h8-20020aa7c948000000b004132bede82emr17908502edt.394.1650380811313;
+        Tue, 19 Apr 2022 08:06:51 -0700 (PDT)
+Received: from [192.168.0.182] ([188.24.22.234])
+        by smtp.gmail.com with ESMTPSA id kb9-20020a1709070f8900b006e889aad94esm5772063ejc.128.2022.04.19.08.06.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 08:06:03 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id s33so4137886ybi.12;
-        Tue, 19 Apr 2022 08:06:03 -0700 (PDT)
-X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
- c4-20020a5b0984000000b0063f8c38676cmr15696350ybq.393.1650380762989; Tue, 19
- Apr 2022 08:06:02 -0700 (PDT)
+        Tue, 19 Apr 2022 08:06:50 -0700 (PDT)
+Message-ID: <417c3fdb-a264-250b-7385-d5f9acf166d1@gmail.com>
+Date:   Tue, 19 Apr 2022 18:06:48 +0300
 MIME-Version: 1.0
-References: <20220414142605.26235-1-biju.das.jz@bp.renesas.com> <20220414142605.26235-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220414142605.26235-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 19 Apr 2022 17:05:51 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVR4ONpLwPc59erG1adGQAn0iU4y_vH+4nYob-712pneQ@mail.gmail.com>
-Message-ID: <CAMuHMdVR4ONpLwPc59erG1adGQAn0iU4y_vH+4nYob-712pneQ@mail.gmail.com>
-Subject: Re: [PATCH v7 1/3] media: dt-bindings: media: renesas,vsp1: Document
- RZ/{G2L,V2L} VSPD bindings To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add AD4130
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20220419093506.135553-1-cosmin.tanislav@analog.com>
+ <20220419093506.135553-2-cosmin.tanislav@analog.com>
+ <1650370363.604220.1977871.nullmailer@robh.at.kernel.org>
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <1650370363.604220.1977871.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Thu, Apr 14, 2022 at 4:26 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document VSPD found in RZ/G2L and RZ/V2L family SoC's. VSPD block is
-> similar to VSP2-D found on R-Car SoC's, but it does not have a version
-> register and it has 3 clocks compared to 1 clock on vsp1 and vsp2.
->
-> This patch introduces a new compatible 'renesas,rzg2l-vsp2' to handle
-> these differences.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Thanks for your patch!
+On 4/19/22 15:12, Rob Herring wrote:
+> On Tue, 19 Apr 2022 12:35:05 +0300, Cosmin Tanislav wrote:
+>> AD4130-8 is an ultra-low power, high precision, measurement solution for
+>> low bandwidth battery operated applications.
+>>
+>> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+>> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+>> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+>> selectable filter options, smart sequencer, sensor biasing and excitation
+>> options, diagnostics, and a FIFO buffer.
+>>
+>> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+>> ---
+>>   .../bindings/iio/adc/adi,ad4130.yaml          | 263 ++++++++++++++++++
+>>   1 file changed, 263 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/iio/adc/adi,ad4130.example.dts:35.30-31 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/iio/adc/adi,ad4130.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1401: dt_binding_check] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
 
-> --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> @@ -19,6 +19,7 @@ properties:
->      enum:
->        - renesas,vsp1 # R-Car Gen2 and RZ/G1
->        - renesas,vsp2 # R-Car Gen3 and RZ/G2
-> +      - renesas,rzg2l-vsp2 # RZ/G2L and RZ/V2L
+Sending V3 to fix this. Please disregard.
 
-Given there is no version register, probably you want to define
-SoC-specific compatible values.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
