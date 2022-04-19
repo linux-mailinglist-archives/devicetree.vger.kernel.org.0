@@ -2,164 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B0A506244
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 04:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47B2D506259
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 04:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345198AbiDSCtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 22:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50752 "EHLO
+        id S1345509AbiDSC6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 22:58:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345203AbiDSCtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 22:49:02 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205D6222A3
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 19:46:19 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5D0F02C086E;
-        Tue, 19 Apr 2022 02:46:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1650336377;
-        bh=04tBdQ/JpQKgjiXKo+M/e+/FSrNGvX8TgHtHdWAYVY8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ejp2pLLf+9Ka1x+GYVoFnx08/xLZNiZVGkmnUO8BQ+lRB7r/1I9rc7+Jauir6VjId
-         G8g/QLRDSlV7g/cqkPWOrM30Gw9YznPrc/pIei5fuXaQdG+Y0IIQRNjFH/tI0YfCA8
-         5qyERD4jjZxt2pmPXuLttyfMCuW/SfOxuccUzNkyAwBiDcztwBpay6MkqVMUKjjUHY
-         euSPCR9SRoEfSbPhYV9KUa+w1BADRMV/c+RLNA+7qNuAsGj4A+VMOLCn4S98TJ49tQ
-         ynKrcFOYBMo70UjAeHctZWxd+SMOTlore2a4IcOetSBwbWclt4Zl8j0oV6VINEj4s1
-         8zebVYiCXUfDQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B625e22780002>; Tue, 19 Apr 2022 14:46:16 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 6929713EE37;
-        Tue, 19 Apr 2022 14:46:16 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id C26492A2679; Tue, 19 Apr 2022 14:46:14 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, adrian.hunter@intel.com,
-        nico@fluxnic.net
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 4/4] dt-bindings: mmc: convert sdhci-dove to JSON schema
-Date:   Tue, 19 Apr 2022 14:46:11 +1200
-Message-Id: <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220419024611.1327525-1-chris.packham@alliedtelesis.co.nz>
-References: <20220419024611.1327525-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S1345476AbiDSC6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 22:58:53 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EEB2654A;
+        Mon, 18 Apr 2022 19:56:08 -0700 (PDT)
+X-UUID: 8298b30e12724c6dbbf7ce98d7cdb398-20220419
+X-UUID: 8298b30e12724c6dbbf7ce98d7cdb398-20220419
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 713376658; Tue, 19 Apr 2022 10:56:01 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 19 Apr 2022 10:55:59 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 19 Apr
+ 2022 10:55:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 19 Apr 2022 10:55:59 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 0/2] arm64: dts: mt8192: Add audio-related nodes
+Date:   Tue, 19 Apr 2022 10:55:55 +0800
+Message-ID: <20220419025557.22262-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=RL7N4Lq+ c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=z0gMJWrwH1QA:10 a=gEfo2CItAAAA:8 a=QyXUC8HyAAAA:8 a=KKAkSRfTAAAA:8 a=HCZY7b2unBJ0_1QZS9cA:9 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        RDNS_NONE,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the sdhci-dove binding to JSON schema. The optional clocks
-property was not in the original binding document but has been in the
-dove.dtsi since commit 5b03df9ace68 ("ARM: dove: switch to DT clock
-providers").
+Take audio-related nodes patch from series 20220330133816.30806-1-allen-kh.cheng@mediatek.com/
+This patch is based on matthias.bgg/linux.git, v5.18-next/dts64
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+We add another PATCH for updating clocks and clock-names in the bindings.
 
-Notes:
-    Changes in v2:
-    - Add clocks property
-    - interrupts.maxItems =3D 2
-    - Update maintainers based on ./scripts/get_maintainer.pl -f drivers/=
-mmc/host/sdhci-dove.c
+Allen-KH Cheng (1):
+  arm64: dts: mt8192: Add audio-related nodes
 
- .../bindings/mmc/marvell,dove-sdhci.yaml      | 44 +++++++++++++++++++
- .../devicetree/bindings/mmc/sdhci-dove.txt    | 14 ------
- 2 files changed, 44 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mmc/marvell,dove-sd=
-hci.yaml
- delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-dove.txt
+Jiaxin Yu (1):
+  ASoC: dt-bindings: mediatek: mt8192: complete clocks and clock-names
 
-diff --git a/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yam=
-l b/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
-new file mode 100644
-index 000000000000..7c9c652ad59c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/marvell,dove-sdhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell sdhci-dove controller
-+
-+maintainers:
-+  - Adrian Hunter <adrian.hunter@intel.com>
-+  - Ulf Hansson <ulf.hansson@linaro.org>
-+
-+allOf:
-+  - $ref: mmc-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: marvell,dove-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    sdio0: mmc@92000 {
-+      compatible =3D "marvell,dove-sdhci";
-+      reg =3D <0x92000 0x100>;
-+      interrupts =3D <35>;
-+      clocks =3D <&gate_clk 9>;
-+    };
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-dove.txt b/Docum=
-entation/devicetree/bindings/mmc/sdhci-dove.txt
-deleted file mode 100644
-index ae9aab9abcd7..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-dove.txt
-+++ /dev/null
-@@ -1,14 +0,0 @@
--* Marvell sdhci-dove controller
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the sdhci-pxav2 and sdhci-pxav3 drivers.
--
--- compatible: Should be "marvell,dove-sdhci".
--
--Example:
--
--sdio0: sdio@92000 {
--	compatible =3D "marvell,dove-sdhci";
--	reg =3D <0x92000 0x100>;
--	interrupts =3D <35>;
--};
---=20
-2.35.1
+ .../bindings/sound/mt8192-afe-pcm.yaml        | 165 +++++++++++++++++-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 135 +++++++++++++-
+ 2 files changed, 286 insertions(+), 14 deletions(-)
+
+-- 
+2.18.0
 
