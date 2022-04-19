@@ -2,50 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80AAA50635A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 06:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A74B1506365
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 06:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348317AbiDSEgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 00:36:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54058 "EHLO
+        id S1347783AbiDSEv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 00:51:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348380AbiDSEgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 00:36:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825402FE75;
-        Mon, 18 Apr 2022 21:33:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B75C2611F9;
-        Tue, 19 Apr 2022 04:33:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E68C385AA;
-        Tue, 19 Apr 2022 04:33:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650342838;
-        bh=fkvuDq2Bso3cdL/9iihXfEdOfFkWrTLOzW5BCQj/Fsw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Ivh84uhNobyb19JWAX2/jbMJRX/q9gqR0mpBib34AL7bnh/QsjuZ8ACJ9/Np5vV8E
-         pDhDib39epcc6ucLADSnV+iYe5shsC1HkykIiB7gYojF9CBKA7yUz1EiEZiPCLsn7E
-         ajxgoNnuK5q0TS+0fVYfKcMIN94b1Yb4/PtoEaKXhse/4JjY8F0jlTtWNCNTmNC4ty
-         Xa2TyvJuHS0LRI/eRf25NaPglaCiBzEpE+MOwz0VNJKtg+0BZHlsKQ6Lga0aam1TeP
-         P+IHFi/poof5le/0woigrPTXmyZZQpGyBk71PRL9BdHkeRZioF+lRJZmGO1fBpithV
-         SosNn650OjOQA==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: [PATCH v2] arm64: dts: qcom: db845c: Add support for MCP2517FD
-Date:   Tue, 19 Apr 2022 10:03:48 +0530
-Message-Id: <20220419043348.1483625-1-vkoul@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S238488AbiDSEv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 00:51:26 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235442F009
+        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 21:48:44 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ngfmt-0002uP-FJ; Tue, 19 Apr 2022 06:48:27 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ngfmr-0047Pn-Da; Tue, 19 Apr 2022 06:48:25 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>
+Subject: [PATCH v2 00/17] protonic fixes 
+Date:   Tue, 19 Apr 2022 06:48:07 +0200
+Message-Id: <20220419044824.981747-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -54,73 +50,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for onboard MCP2517FD SPI CAN transceiver attached to
-SPI0 of RB3.
+changes v2:
+- spell fixes
+- rename arm -> ARM
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
-Changes in v2:
- - add cs and pinctrl config
- - remove misleading comment
+This patch series provide two main part of changes:
+- Remove prototype specific deprecated code not used in production.
+- Unify vicut1 and victgo variants to reduce maintaining overhead.
 
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+David Jander (16):
+  ARM: dts: imx6qdl-vicut1.dtsi: remove TiWi module
+  ARM: dts: imx6qdl-vicut1.dtsi: Put nON_SWITCH in own pinctrl grp
+  ARM: dts: imx6qdl-vicut1.dtsi: Remove PCIe
+  ARM: dts: imx6qdl-vicut1/victgo: Remove UART2
+  ARM: dts: imx6qdl-vicut1.dtsi: Fix LED names
+  ARM: dts: imx6qdl-vicut1.dtsi: Fix debug LED gpio pins
+  ARM: dts: imx6qdl-vicut1.dtsi: Update GPIO line names
+  ARM: dts: imx6qdl-vicut1.dtsi: Remove conflicting pinctrl entry
+  ARM: dts: imx6q-vicut1.dts: remove sata node
+  ARM: dts: imx6dl-victgo.dts: update gpio names
+  ARM: dts: imx6dl-victgo.dts: Factor out common parts to
+    imx6qdl-victgo.dtsi
+  ARM: dts: imx6qdl-vicut1.dtsi: Move some node out to DTS files
+  ARM: dts: Remove imx6qdl-victgo.dtsi
+  ARM: dts: imx6qdl-vicut1: Factor out common parts of 12inch board
+    variants
+  ARM: dts: imx6dl-victgo.dts: Remove touchscreen x axis inversion
+  ARM: dts: imx6qdl-vicut1.dtsi: Add missing ISB led node
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 28fe45c5d516..4f4d45be93e3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -28,6 +28,13 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	/* Fixed crystal oscillator dedicated to MCP2517FD */
-+	clk40M: can_clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <40000000>;
-+	};
-+
- 	dc12v: dc12v-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "DC12V";
-@@ -746,6 +753,24 @@ codec {
- 	};
- };
- 
-+&spi0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&qup_spi0_default>;
-+	cs-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
-+
-+	can@0 {
-+		compatible = "microchip,mcp2517fd";
-+		reg = <0>;
-+		clocks = <&clk40M>;
-+		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
-+		spi-max-frequency = <10000000>;
-+		vdd-supply = <&vdc_5v>;
-+		xceiver-supply = <&vdc_5v>;
-+		status = "okay";
-+	};
-+};
-+
- &spi2 {
- 	/* On Low speed expansion */
- 	label = "LS-SPI0";
-@@ -1219,3 +1244,11 @@ ov7251_ep: endpoint {
- 		};
- 	};
- };
-+
-+/* PINCTRL - additions to nodes defined in sdm845.dtsi */
-+&qup_spi0_default {
-+	config {
-+		drive-strength = <6>;
-+		bias-disable;
-+	};
-+};
+Oleksij Rempel (1):
+  ARM: dts: imx6qdl-vicut1.dtsi: add thermal zone and attach tmp103 to
+    it.
+
+ arch/arm/boot/dts/imx6dl-victgo.dts          | 682 +------------------
+ arch/arm/boot/dts/imx6dl-vicut1.dts          |   1 +
+ arch/arm/boot/dts/imx6q-vicut1.dts           |   5 +-
+ arch/arm/boot/dts/imx6qdl-vicut1-12inch.dtsi | 128 ++++
+ arch/arm/boot/dts/imx6qdl-vicut1.dtsi        | 222 +-----
+ arch/arm/boot/dts/imx6qp-vicutp.dts          |   1 +
+ 6 files changed, 178 insertions(+), 861 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6qdl-vicut1-12inch.dtsi
+
 -- 
-2.34.1
+2.30.2
 
