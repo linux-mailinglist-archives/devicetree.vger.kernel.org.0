@@ -2,72 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E18AF50759B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4DAE5075D4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:01:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346800AbiDSQvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 12:51:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
+        id S238363AbiDSRDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 13:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347137AbiDSQur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:50:47 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF6F62E9CE;
-        Tue, 19 Apr 2022 09:48:04 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-e5e433d66dso6780058fac.5;
-        Tue, 19 Apr 2022 09:48:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=X+AXNMLWD2gr4sUawt8zM45zbI7Ji8fHi+fcM1ppF9I=;
-        b=z2MPOkgQHCWqtQzrp32OVqVwA0hVbXVQ6TWfP5uv5gPCpc+lYDpjLRAHlClFxDDFvi
-         EpFayrzAI5w7TSxOymWvjLWgx6vMzJO2BinCN4QdFojjRRTCLRj7GmT2wbhuc3gf2jsp
-         OdspoCd9bVFwGDzWXtRkry6lBBfba8e9+Qg4d7zzDg2fVmGRgc9SfhEB7n7mwFpeU/yf
-         c75BeOnQxqQcPYKZPasQNvqDnPePdG4wwu1StU8gAxSwxrH5kZjeKPMKsZPcdWnr1rdz
-         mte/Xd4+ufdgeshL1BujSIaKvQkbbLGdscinvgUfZbXH3ff0aUbbxo+t2dndtvNMZnd4
-         Aa7Q==
-X-Gm-Message-State: AOAM532/M9IxqkKyN9DKGFGwVs1aaezLcInJmtxUUIkc9baWuuuLWBuE
-        lrcuoiy6PoiJCtRNE3QePRkNIXLv6Q==
-X-Google-Smtp-Source: ABdhPJz+3g6+lO0qye+IXcUEdQNPhIlO6UqTYDf3G8PQ0F8bwlBj/dLVjj64lf/Bz8frYomFDttRkA==
-X-Received: by 2002:a05:6871:b27:b0:e5:ee1a:2188 with SMTP id fq39-20020a0568710b2700b000e5ee1a2188mr4841471oab.109.1650386883998;
-        Tue, 19 Apr 2022 09:48:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x24-20020a056870a79800b000e2e53716fbsm5534368oao.31.2022.04.19.09.48.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 09:48:03 -0700 (PDT)
-Received: (nullmailer pid 2939567 invoked by uid 1000);
-        Tue, 19 Apr 2022 16:48:02 -0000
-Date:   Tue, 19 Apr 2022 11:48:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Taniya Das <tdas@codeaurora.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Avri Altman <avri.altman@wdc.com>,
-        Andy Gross <agross@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        devicetree@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [RFC PATCH v2 2/6] dt-bindings: opp: accept array of frequencies
-Message-ID: <Yl7nwvTN2JyinAyd@robh.at.kernel.org>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-3-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1356407AbiDSRDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 13:03:37 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BDD642A23;
+        Tue, 19 Apr 2022 09:53:56 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23JGreZd096708;
+        Tue, 19 Apr 2022 11:53:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650387220;
+        bh=QSI3PLwKbEJCUrBle6uYB9wA895+tkkVHQLd1uDimr4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XKbTfnycxjrM94oI0i7Yw3+2rydSUPYJcuFc0b5VRT134vSy85B5+ALiYT+YpSSS1
+         DPCgIYSWsZwyBtY3mJRQke2DW8TrAeP2fb1LITPw5VPUl8kwJjQw67vGSx8Y+uAhHx
+         K/3nN3ALDzBPhu5vdhlc7MpaiZEzk1OXDBHa7zQ8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23JGreFl010855
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Apr 2022 11:53:40 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
+ Apr 2022 11:53:40 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 19 Apr 2022 11:53:40 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23JGreYF007427;
+        Tue, 19 Apr 2022 11:53:40 -0500
+Date:   Tue, 19 Apr 2022 11:53:40 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Aparna M <a-m1@ti.com>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <praneeth@ti.com>, <nikhil.nd@ti.com>
+Subject: Re: [RESEND PATCH v3] arm64: dts: ti: k3-am642-sk: Enable WLAN
+ connected to SDHCI0
+Message-ID: <20220419165340.7ijajo4pekaqi6yh@bryanbrattlof.com>
+References: <20220414133612.13365-1-a-m1@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20220411154347.491396-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220414133612.13365-1-a-m1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,15 +67,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Apr 2022 17:43:43 +0200, Krzysztof Kozlowski wrote:
-> Devices might need to control several clocks when scaling the frequency
-> and voltage.  Allow passing array of clock frequencies, similarly to the
-> voltages.
+On April 14, 2022 thus sayeth Aparna M:
+> From: Kishon Vijay Abraham I <kishon@ti.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> WL1837 module is connected to SDHCI0 in AM642 SK. Enable it here.
+> This will enable the WiFi functionaliy on the board.
 > 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> Signed-off-by: Aparna M <a-m1@ti.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Looks good to me!
+
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+~Bryan
