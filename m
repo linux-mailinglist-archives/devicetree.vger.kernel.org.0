@@ -2,227 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B01B507218
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB3D2507222
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237210AbiDSPul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 11:50:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
+        id S231295AbiDSPx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 11:53:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354016AbiDSPuj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:50:39 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3341DA53
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 08:47:55 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id g13so6079374ejb.4
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 08:47:55 -0700 (PDT)
+        with ESMTP id S235771AbiDSPx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:53:26 -0400
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E5B1DA6D
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 08:50:43 -0700 (PDT)
+Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23JFlrvB003676;
+        Tue, 19 Apr 2022 11:50:39 -0400
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2172.outbound.protection.outlook.com [104.47.57.172])
+        by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3ffqj90xwr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 19 Apr 2022 11:50:39 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FL2Fdlip6xkEfilrGThcOtHHqM0kUGHOWg9C86Q4heqZRLp8/oaqdY4vAiieGbBJuMi7O4Xij8/rappizC99ZAkBgS3W11GcIp5jAv3UtYFq2jqJf4p4uTdTOl0BgruCNQb58jQ8hRjD2cceiirOO5uApYaqjYeksxluHiQf5Oxk+JDJeeZCJ0HwVWhO8o0TAivwXa3Cdz9Gb1gAbo46nLRHRMspKIZV5NfwAuNYJyAYORWq3j9wl0s/wRqzbxKWzGrneTgIXVROyZyO3PxRGYBtlaUEV1xFjJVVx8c/KDhNHdIDp5JC+BH3yFIVCkR3JAMQbNXB2DttEnBK5v8JlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i8iG8MJr04hkyURhPTg0kMp4jDpcVlkpwY8g78eMGpg=;
+ b=cyMFfNZJCFe7qyhnL2sCuWW4humVhpsYXwwj0xKQ8bswmlE9Ise0IDMsTGE4cyT0fp4ioWDWxK44tIksLe4igUcRoUjdkaDl1iZc2/gnxMqPLXIXXhsiOsLF3xtGcZLUmNQs2FJPdjToPqPpz+WxR/fueOvwOX4Z6ujgV4Eo4KzlTTrmBkiPrGtjxzDf3nozQH5DOHwifxVVR/cR+0r/Hn7o/Df4GeAiHnNDMb7YIYhO3oGqO9dbVq8IOQmDRJFFR2JTNSyWp2NtWe3hPxdjh1nvNfesXiZP3ddhM9TUbsqkJVEI1uYLb2f9BTkIlQBY2QoVplVDhV7w/bJRkwy/3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rywWV/1Z8bflEpBPWvvVmEX4jfvsS4lw1rTLuCBMv+U=;
-        b=yyJYA18i5CR/Ldqx3sEAPjqEpMWAZMqJGwjEfDFdUb2wHw8b7W4PewFQaVqH8r7d8M
-         4VzCbyroFDLt1Vak20r4wAvKZrNDkCQYcDu3xco9cX1mm2Xt0jGQAUwt4iX0HlegBuLv
-         g4qTkbb/1VPsEPsv1tVwZUPQkgP5WL00o5PdE7Cz6x2c5JWkM0JaLOSnS0RxkO1D/cn7
-         XYIiJ4HXZpoLTS1mMxeqzCrCu99gXdKS2lL5f6necH1DD80uSL29exI1RcWUOi3irQXW
-         iGARYJE2vZWyV2u1GHkxupev7hA143MgpumBM/KR62nt5Qg9mgD3gGhtGkZULAXNFkrr
-         eVRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rywWV/1Z8bflEpBPWvvVmEX4jfvsS4lw1rTLuCBMv+U=;
-        b=ROQuz3Ig5NXs0gQrJILvd/wHg29sM6bfaUWp/yGtOCMqYCKlxhrSOQ5F0onP1L/TjI
-         GpljdYee8LNrpQZSVV587wEjnuq0qEA+vVntuYrlqfK5sheulpXSWd/xIIcZ60aMTEyB
-         tSeu9yt0RIPYWWCcsyAvlluI2e/ia5OhpKYGXHatpoGkqcSjB6rHHVgdBAVRVol7BRYw
-         adf5V5wP0l3jKdilubksjFS9ycY357JJjAZVE0DOAnvrzwJwbndvnmCH7IPcDIkWag1P
-         My+Dyz8uBzQ8KQKTOckOWO/VEpNBkC1Erhpf19drbYZCfctDl9TgP+ydtA7O1w2OhXm0
-         2fCg==
-X-Gm-Message-State: AOAM5337iY8gzalYV6qjlV6mVHIoN6uBo0RrPDHQBMi1hgQbjTAf76fV
-        Bz/h2V1bKCzHNLStFHYkv2zYIA==
-X-Google-Smtp-Source: ABdhPJy87hiOiQgRoK0mL7fyRVNX2TPUGk8hoRdfc8hv4EulKC4CHVhnwEIzEbGto5FL+m/hWyHJAQ==
-X-Received: by 2002:a17:907:9868:b0:6e8:7ae3:7f42 with SMTP id ko8-20020a170907986800b006e87ae37f42mr14321317ejc.224.1650383273992;
-        Tue, 19 Apr 2022 08:47:53 -0700 (PDT)
-Received: from [192.168.0.220] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id kk23-20020a170907767700b006e8a6e53a7bsm5779313ejc.139.2022.04.19.08.47.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 08:47:53 -0700 (PDT)
-Message-ID: <606cc762-a0c2-49a4-3e5d-d2dbd4595bc7@linaro.org>
-Date:   Tue, 19 Apr 2022 17:47:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i8iG8MJr04hkyURhPTg0kMp4jDpcVlkpwY8g78eMGpg=;
+ b=9ioXUI+fA0tIpc+lBHdnCQnVo4Y+ndMGEt9gYKPKQ5cU8o2aTqmCoP1EypZsNqtJKtmanN7BdRpfFW6MkhlKXXjayJTHOdpcxJEXaq5kG320KNEvEbgT5NMYNX5lKtBTAN8eV+47j0ZlYLmtY+ru+RKywxcVl2CRDF204XnNW5M=
+Received: from PH0PR03MB6786.namprd03.prod.outlook.com (2603:10b6:510:122::7)
+ by MWHPR03MB2832.namprd03.prod.outlook.com (2603:10b6:300:125::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.18; Tue, 19 Apr
+ 2022 15:50:37 +0000
+Received: from PH0PR03MB6786.namprd03.prod.outlook.com
+ ([fe80::a97e:a520:c3a6:d2ae]) by PH0PR03MB6786.namprd03.prod.outlook.com
+ ([fe80::a97e:a520:c3a6:d2ae%9]) with mapi id 15.20.5186.013; Tue, 19 Apr 2022
+ 15:50:37 +0000
+From:   "Sa, Nuno" <Nuno.Sa@analog.com>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     =?utf-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Alan Tull <atull@kernel.org>
+Subject: RE: [PATCH] of: overlay: do not break notify on NOTIFY_OK
+Thread-Topic: [PATCH] of: overlay: do not break notify on NOTIFY_OK
+Thread-Index: AQHYSE9MEr+Wu1Tj6k6GDju80HPvFazg6lAAgBZ5sICAAARhgIAACR6AgAAIMNA=
+Date:   Tue, 19 Apr 2022 15:50:37 +0000
+Message-ID: <PH0PR03MB6786E0D39BEE3463B3F3141599F29@PH0PR03MB6786.namprd03.prod.outlook.com>
+References: <20220404074055.95618-1-nuno.sa@analog.com>
+ <01e77fbd-5c26-6b15-be1f-f962aa4190c6@gmail.com>
+ <9bde64d0c05a37e72fabbeb39d8d2fe099526917.camel@gmail.com>
+ <654db7b8-1254-88e9-f668-b1b14abc3e3e@gmail.com>
+ <CAL_JsqKjuOEdzB4SH6MB0bH58D5ys3RLhi=T8DhWQRuwMhbJOA@mail.gmail.com>
+ <c3e31c55-01c2-5784-1e97-5af083c1a0c1@gmail.com>
+In-Reply-To: <c3e31c55-01c2-5784-1e97-5af083c1a0c1@gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
- <a0eb6bf9-256a-29b1-2211-496df710f531@linaro.org>
- <CAD=FV=UjyLofXZqnj=bL89fza5JS6O5Np9W-A4V4WK+na0hdrw@mail.gmail.com>
- <b7ff08b8-60fb-7629-9399-3d5cca46ab9e@linaro.org>
- <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=Vx5g_xTRZGc9wW=ZLnfsOcubTYFcnYQRC5jLm+n3en0w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: =?utf-8?B?UEcxbGRHRStQR0YwSUc1dFBTSmliMlI1TG5SNGRDSWdjRDBpWXpwY2RYTmxj?=
+ =?utf-8?B?bk5jYm5OaFhHRndjR1JoZEdGY2NtOWhiV2x1WjF3d09XUTRORGxpTmkwek1t?=
+ =?utf-8?B?UXpMVFJoTkRBdE9EVmxaUzAyWWpnMFltRXlPV1V6TldKY2JYTm5jMXh0YzJj?=
+ =?utf-8?B?dE56STJPVFkwWmpFdFltWm1PQzB4TVdWakxUaGlaR1l0Wm1NM056YzBNakZt?=
+ =?utf-8?B?WTJGbFhHRnRaUzEwWlhOMFhEY3lOamsyTkdZekxXSm1aamd0TVRGbFl5MDRZ?=
+ =?utf-8?B?bVJtTFdaak56YzNOREl4Wm1OaFpXSnZaSGt1ZEhoMElpQnplajBpTVRVMU15?=
+ =?utf-8?B?SWdkRDBpTVRNeU9UUTROVGN3TXpRME1EVXdNalV4SWlCb1BTSlNhR053UkhN?=
+ =?utf-8?B?MFNtNXJibUY1T1ZkWk5ERnBhM2xvVFhvelpGVTlJaUJwWkQwaUlpQmliRDBp?=
+ =?utf-8?B?TUNJZ1ltODlJakVpSUdOcFBTSmpRVUZCUVVWU1NGVXhVbE5TVlVaT1EyZFZR?=
+ =?utf-8?B?VUZGYjBOQlFVSk1lbk5CTUVKV1ZGbEJVMmxTYW5CTEswdEpVSHBMU2tkUGEz?=
+ =?utf-8?B?STBiMmN2VFVSQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCU0VG?=
+ =?utf-8?B?QlFVRkVZVUZSUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJSVUZC?=
+ =?utf-8?B?VVVGQ1FVRkJRVlpKUlhadlVVRkJRVUZCUVVGQlFVRkJRVUZCUVVvMFFVRkJR?=
+ =?utf-8?B?bWhCUjFGQllWRkNaa0ZJVFVGYVVVSnFRVWhWUVdOblFteEJSamhCWTBGQ2VV?=
+ =?utf-8?B?RkhPRUZoWjBKc1FVZE5RV1JCUW5wQlJqaEJXbWRDYUVGSGQwRmpkMEpzUVVZ?=
+ =?utf-8?B?NFFWcG5RblpCU0UxQllWRkNNRUZIYTBGa1owSnNRVUZCUVVGQlFVRkJRVUZC?=
+ =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
+ =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
+ =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkZRVUZCUVVGQlFVRkJRV2RCUVVG?=
+ =?utf-8?B?QlFVRnVaMEZCUVVkRlFWcEJRbkJCUmpoQlkzZENiRUZIVFVGa1VVSjVRVWRW?=
+ =?utf-8?B?UVZoM1FuZEJTRWxCWW5kQ2NVRkhWVUZaZDBJd1FVaE5RVmgzUWpCQlIydEJX?=
+ =?utf-8?B?bEZDZVVGRVJVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
+ =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
+ =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
+ =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCVVVGQlFVRkJR?=
+ =?utf-8?B?VUZCUVVOQlFVRkJRVUZEWlVGQlFVRlpVVUpyUVVkclFWaDNRbnBCUjFWQldY?=
+ =?utf-8?B?ZENNVUZJU1VGYVVVSm1RVWhCUVdOblFuWkJSMjlCV2xGQ2FrRklVVUZqZDBK?=
+ =?utf-8?B?bVFVaFJRV0ZSUW14QlNFbEJUV2RCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
+ =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
+ =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
+ =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
+ =?utf-8?B?QlFrRkJRVUZCUVVGQlFVRkpRVUZCUVVGQlFUMDlJaTgrUEM5dFpYUmhQZz09?=
+x-dg-rorf: true
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fce61a4a-6bef-40be-4bd7-08da221c5913
+x-ms-traffictypediagnostic: MWHPR03MB2832:EE_
+x-microsoft-antispam-prvs: <MWHPR03MB2832EF147FD603D3F31A096199F29@MWHPR03MB2832.namprd03.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +GZlICNRyW/GGDk5f5m18+H9bw+T4VCG8XuYYbjSE7QTfFFJiwxF+oKeLbDfgygwmddq4J0lE1oAM3JtK6Ksy0OysVhmMV8pgMFC65ajoxzb6idIk7kGPjp6PLPTimcqLbIxffEdPKL5ynDebV3gEL7vsFB2F+BI85LbtvVvwP2Q7bIz1XsKF300PnULHVHMJoqtNV7Ec+5afrMCh2tSlcK/bfdct8/O03J8OHFIQVX9F/a6zf0gLl3PpSeI4bUJ8mHWSzZUFurciuI+J9FHleM8YLR0NtDNs3IRMvAHxySUk2kRPb0VSM1yS0sVQJQWF58OBg1hhhp0NNTMatDcbtX8FZcJXCeQ6DwsjBY59T0ZcSC4Sy4ObcXvw7pFWlVsqWV16Tqh4QdN1AuqY4t4TE5pvCa29hGsQmmgeF1BdAauy4pXHKSveJGgnXZhvZ3pmFJywoiG+cDGybnBO/lugnevl5KtHmVGaMehKNdw55HIThlJhZQp6NLPzoO0w3hvAWBNvBGwIYEKzCgK5EGg81arNx/hiiG5aFb70mYv3CStjxkylnmS4wb+nViL+RDOFaKkfDsUq46jQ2OIgfxf+JW6QbZRT4oIwzyISdOP1dtR66mAYF8QuI/N6FjRCbq8Sf6Ogc5vO+qw7ZpSreopa1lP1WLEzpXlbje8Mu45l0d5y2Vn9xym0JeAKmLA7tY05rIZPU7daCcCC7KUNkVWUQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR03MB6786.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4326008)(66946007)(76116006)(66556008)(55016003)(186003)(66476007)(66446008)(64756008)(54906003)(110136005)(83380400001)(9686003)(8676002)(71200400001)(53546011)(6506007)(2906002)(316002)(33656002)(86362001)(7696005)(508600001)(5660300002)(8936002)(38070700005)(38100700002)(122000001)(52536014);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ajBsMDh4bE5JaUhKdWxkRDlsSXI2d0thRW1rSWlHUzFYbzdDNE11QmZCVUNN?=
+ =?utf-8?B?VGhNZktxeUt6eFBDUklXMzkxZVQ0ZG9RVDdxOEJIekUvOXl6L0dWUHgvTGoy?=
+ =?utf-8?B?SGxEU2IyM3BFRDhIY0VQbGkrV1Y0a3ZOU1ZaUk0rYUp1WGVla2FuRGMwc2Nw?=
+ =?utf-8?B?MG1vbGpxQTNLUEpDK3pkOERxNU10d1UyVWMzSWM0NGhybzEzK2lBR2VicVQr?=
+ =?utf-8?B?Mmp6d2pabDhNeURLTmdWbG1KNlQrNllkVVdIQ0VLaHNZWWFDWGk2THplV0xq?=
+ =?utf-8?B?TGhObkVxa3Z0L0J0Mk1zRU9UbWVmc01LdjhycHBDYWFPQzhZSlVZaGVxTSt4?=
+ =?utf-8?B?Y2dMQlNReXNkVDdYU2xWakdwWVB5M3VxZGRKUlZ6QzNtdlhEUjUrei9OanI3?=
+ =?utf-8?B?eUtuMk9PRWkzZlFHYVMva1F2ZDJ6RHJHeDdxNFlZNWhNM3ZoRkJlL3kyd0pL?=
+ =?utf-8?B?SUtwTlArQnViczJ4MDBhWWdaYmRpQk1zWnNySlM0RGtpbnUxUWE5SWpuMzJH?=
+ =?utf-8?B?ZUZqYWxLOThWaFcvdFU2RFcwSUtpVXRUQW9GNEdKQlhDcnlwd2lLMWlya3E1?=
+ =?utf-8?B?ZU5rb3p4TGZLZmZMRk1qeG05aDJnVHhMK0FiL1BVU1gxa3crb1M2aVIvMlNi?=
+ =?utf-8?B?Ky9ocWV4Mkp4V2o1anJGM1h1cVpuRnpTQ0MxbmxKalNIQ3lTOUtRVlVpNlBo?=
+ =?utf-8?B?anBjSVZhekxPcjJkWDV6YzUrWnI0Mzg4VUN2YjB4ZmJrY3RvYzR1RVR5Y25O?=
+ =?utf-8?B?UFFkSXFTNTBvWGEvTFh5V09UaGRhRWtQZlM4elNaSDRyekxaalEyNlB5bFd2?=
+ =?utf-8?B?dGRIOXR0bU13NHRXWTRBQ0t2TWhzUVVjOGxTT2xXZEhRRkNIRWg5bFN3SWh0?=
+ =?utf-8?B?dVZqRkVWT3F2OG1OOHIzUGxXL09udVoxR2xpZ0xRUTFSZ1JMbDdqbE1VMjlV?=
+ =?utf-8?B?V0w1ZGEvRVJtaE5vVWVmOVIvcGNzYVRMRWdzRzNsZ1o5QlJ2ek1haGlJbllY?=
+ =?utf-8?B?YUlMa2QzWXU1WE11ZWlPeFhJVkJuanJicmxKMjBKZkhxNUYrT1o4ZUp5azFD?=
+ =?utf-8?B?Y3JjOXd0bmc4MHJJRFpqOEJPRWlBUlR6Y0lJWERZZHRQQWZqRlRmbE1NWHM5?=
+ =?utf-8?B?aEtaMXdBdHB3ZmllU0JLWlJJdFpZZzZnbWdFT2g5OU55VE9rTHdtYm9lTGtQ?=
+ =?utf-8?B?ZWlUbmZBdWIzcDVlNTJybGlLTUh6RTNjL3lPWUkxaThLa0ZSL3dta3RrcnRo?=
+ =?utf-8?B?cHJXUXJRaFYzRTVPaXBhWGdDbStaZWNvWDVaRFllZUZPTXBpMmlWUUdmQkVS?=
+ =?utf-8?B?UGlXSlB1VnFjOHZxcWdDTkpOUEJvVExwcjBIMzAvZTJCcy8vaWlGWW01eHYx?=
+ =?utf-8?B?VmN0cTEzMXNKT05kc2xEUTlCR2k3Um84Vm9KZmJuQlJFei9BYjFBanRtZlVG?=
+ =?utf-8?B?TitEV3RmQytVRVZtNEtxTlltTUJUMG9Na254VVhFSFNUTmwyaGFqbjlIWkR5?=
+ =?utf-8?B?TVQ1VTRIa1JRMko0VHhkZ0lQSWtuVGp1M2pBdDYvSmNGQ3VINEd1aENPSkE5?=
+ =?utf-8?B?Ukp2N2M2d05VaGJGZVlNNUg0MGVPeHgvajczRkcxN0gzZnBGK0xGTENqckhi?=
+ =?utf-8?B?V3VxNklTL2hlRFdhMGtNSHA0LythdGZSZkxEeG4xa2FlU2NEYUpVUzcrZnJa?=
+ =?utf-8?B?dy9TSHJnNmw5WU5ZRDhwRm9iQzFPdi92OC8zSUFLQ3U3a2JVVzl6WDFPMzdi?=
+ =?utf-8?B?STk1SERSSDVabFhiZW8zTUx4eHVoTmtPK2JDUENKOURqaHhTV1FhTXZ4UlRP?=
+ =?utf-8?B?eEFlR25jRXlHc1QwV21CSFhIVGE0ZGR4dTFBOXNFRGpYNWlnWXVOK3NidG9k?=
+ =?utf-8?B?WWpGNExLazlRK2RZMDFUVFk0T2JQdGxWczFsQ1NjQUUrenE1dzVCNDMxYUFO?=
+ =?utf-8?B?QTVVeW10eFlnQXhEY0tvUE1JbkgreUlBQ1hESFg0R3BYR1d4Mno5OVdxaXY0?=
+ =?utf-8?B?M3FKZ0I1NTZRcFlYcVF1MFU4M3AxM3RNcUptamxvQlk5SG5SOG1GaDgxWTdx?=
+ =?utf-8?B?VDE0WXdJTnc4dkJvNGk1N1g1T3lZT0RzYmEwU1FBYUhsRlN5OVJFR2ZLSmhZ?=
+ =?utf-8?B?aHNzQjMrSWFUUW8za0JJVXhaWU5mSEhVSXY2NTRXTkNOczdyRlYyVVNZWGQ2?=
+ =?utf-8?B?azk5dFZyTlhoQS9HeGRtRHpqNWtSK2FrOUxUK08xYUpQWXQyVUJXUmYwRExu?=
+ =?utf-8?B?dGUyRHFVZDlrTEZxelRiNCs4Q3FLc1o3UGtiTkdCVDIzeDhWc2JJSUlybUVM?=
+ =?utf-8?B?MTh5OEIzQkpZRkE1c1VkRGMxODBNSy9iZHhUYUFvYVlRSmx4NnFlWk5WZC9T?=
+ =?utf-8?Q?yEDxIBRFe2Tmk4uJ4dQRUJPT17y2+5qRvK9G+BHEYQo4a?=
+x-ms-exchange-antispam-messagedata-1: Fd/T2HZDz7JMDA==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR03MB6786.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fce61a4a-6bef-40be-4bd7-08da221c5913
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Apr 2022 15:50:37.5055
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YxCsql00q7BnWsdkjmecj+/+flKWeBrNsscxZwpflpb4j9cRtfhLmGEygQiK0WMJeRg+KpfAi/XqqzSKXS6iqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR03MB2832
+X-Proofpoint-ORIG-GUID: N3MmqQV7JgRetamuCkh2RXAZ1Rmp6Z0D
+X-Proofpoint-GUID: N3MmqQV7JgRetamuCkh2RXAZ1Rmp6Z0D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-19_05,2022-04-15_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 bulkscore=0 clxscore=1011 impostorscore=0 priorityscore=1501
+ mlxscore=0 spamscore=0 mlxlogscore=721 suspectscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2204190090
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 19:36, Doug Anderson wrote:
-> Hi,
-> 
-> On Thu, Apr 14, 2022 at 12:10 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 13/04/2022 23:48, Doug Anderson wrote:
->>> I'm actually kinda curious: is there really a good reason for this? I
->>> know I haven't been adding things to
->>> `Documentation/devicetree/bindings/arm/qcom.yaml` for Qualcomm
->>> Chromebooks.  Ironically, it turns out that the script I typically use
->>> to invoke checkpatch happens to have "--no-tree" as an argument and
->>> that seems to disable this check. Doh!
->>>
->>> That being said, though, I do wonder a little bit about the value of
->>> enumerating the top-level compatible like this in a yaml file.
->>> Certainly the yaml schema validation in general can be quite useful,
->>> but this top-level listing seems pure overhead. I guess it makes some
->>> tools happy, but other than that it seems to provide very little
->>> value...
->>
->> If compatible is not part of ABI, it is allowed to change in whatever
->> shape one wishes. In such case, how can anyone (e.g. user-space)
->> identify the board? Model name? Also not part of ABI (not documented)...
-> 
-> Hmm, it is a good question. I guess one issue is that the way
-> Chromebooks interact with the bootloader it's not trivially easy to
-> enumerate what exactly the compatible will be in this hardcoded list.
-> It all has to do with the whole "revision" and "sku" scheme the
-> bootloader on ARM Chromebooks uses. For example, on one Chromebook I
-> have the bootloader prints out:
-> 
-> Compat preference: google,lazor-rev5-sku6 google,lazor-rev5
-> google,lazor-sku6 google,lazor
-> 
-> What that means is that:
-> 
-> 1. The bootloader will first look for 'google,lazor-rev5-sku6'. If it
-> finds a dts with that compatible it will pick it.
-> 
-> 2. The bootloader will then look for 'google,lazor-rev5'. If it finds
-> a dts with that compatible it will pick it.
-> 
-> 3. The bootloader will then look for 'google,lazor-sku6'. If it finds
-> a dts with that compatible it will pick it.
-> 
-> 4. Finally, the bootloader will look for 'google,lazor'.
-> 
-> There's a method to the madness. Among other things, this allows
-> revving the board revision for a change to the board even if it
-> _should_ be invisible to software. The rule is always that the
-> "newest" device tree that's in Linux is always listed _without_ a
-> board revision number. An example might help.
-> 
-> a) Assume '-rev5' is the newest revision available. In Linux this
-> would be the only dts that advertises "google,lazor" (with no -rev).
-> Previous dts file would advertise "-rev3" or "-rev4" or whatever.
-> 
-> b) We need to spin the board for something that should be invisible to
-> software. Just in case, HW guys change the board strappings to -rev6.
-> This works _seamlessly_ because the newest dts file always advertises
-> just "google,lazor"
-> 
-> c) We spin the board for something that's _not_ invisible. It will be
-> "-rev7". Now, we go back and add "-rev5" and "-rev6" to the old board
-> dts file and remove the advertisement for "google,lazor". We create a
-> new dts file for -rev7 that advertises "google,lazor".
-
-Except shuffling the compatibles in bindings, you are changing the
-meaning of final "google,lazor" compatible. The bootloader works as
-expected - from most specific (rev5-sku6) to most generic compatible
-(google,lazor) but why do you need to advertise the latest rev as
-"google,lazor"? Why the bootloader on latest rev (e.g. rev7) cannot bind
-to rev7 compatible?
-
-> Now we can certainly argue back and forth above the above scheme and
-> how it's terrible and/or great, but it definitely works pretty well
-> and it's what we've been doing for a while now. Before that we used to
-> proactively add a whole bunch of "future" revisions "just in case".
-> That was definitely worse and had the same problem that we'd have to
-> shuffle compatibles. See, for instance `rk3288-veyron-jerry.dts`.
-> 
-> One thing we _definitely_ don't want to do is to give HW _any_
-> incentive to make board spins _without_ changing the revision. HW
-> sometimes makes spins without first involving software and if it
-> doesn't boot because they updated the board ID then someone in China
-> will just put the old ID in and ship it off. That's bad.
-> 
-> --
-> 
-> But I guess this doesn't answer your question: how can userspace
-> identify what board this is running? I don't have an answer to that,
-> but I guess I'd say that the top-level "compatible" isn't really it.
-
-It can, the same as bootloader, by looking at the most specific
-compatible (rev7).
-
-> If nothing else, I think just from the definition it's not guaranteed
-> to be right, is it? From the spec: "Specifies a list of platform
-> architectures with which this platform is compatible." The key thing
-> is "a list". If this can be a list of things then how can you use it
-> to uniquely identify what one board you're on? 
-
-The most specific compatible identifies or, like recently Rob confirmed
-in case of Renesas, the list of compatibles:
-https://lore.kernel.org/linux-devicetree/Yk2%2F0Jf151gLuCGz@robh.at.kernel.org/
-
-> If all of the things
-> that are different between two boards are things that are probable
-> (eDP panels, USB devices, PCIe devices) then two very different boards
-> could have the exact same device tree, right? ...and you could have
-> one device tree that lists the compatible of both boards?
-
-What is the question here?
-
-> 
-> That all being said, I think that on Chrome OS the userspace tools
-> _do_ some amount of parsing of the compatible strings here. For
-> Chromebooks they leverage the fact that they understand the above
-> scheme and thus can figure things out. I think they also use things
-> like `/proc/device-tree/firmware/coreboot/board-id` and
-> `/proc/device-tree/firmware/coreboot/sku-id`. That doesn't seem to be
-> documented, though. :(
-> 
-> I guess the question is, though, why do you need to know what board you're on?
-
-You might have (and I had in some previous job) single user-space
-application working on different HW and responding slightly differently,
-depending on the hardware it runs. Exactly the same as kernel behaves
-differently, depending on DTB. The differences for example might be in
-GPIOs or some other interfaces managed via user-space drivers, not in
-presence of devices. Another example are system tests behaving
-differently depending on the DUT, where again you run the tests in a
-generic way so the DUT is autodetected based on board.
-
-Of course you could say: different hardware, has different DTB, so
-user-space should check entire tree, to figure out how to operate that
-hardware. Yeah, that's one way, very complex and actually duplicating
-kernel's work. Embedded apps are specialized, so it is much easier for
-them to check board compatible and make assumptions on that.
-
-Best regards,
-Krzysztof
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRnJhbmsgUm93YW5kIDxm
+cm93YW5kLmxpc3RAZ21haWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBBcHJpbCAxOSwgMjAyMiA1
+OjIxIFBNDQo+IFRvOiBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPg0KPiBDYzogTnVu
+byBTw6EgPG5vbmFtZS5udW5vQGdtYWlsLmNvbT47IFNhLCBOdW5vDQo+IDxOdW5vLlNhQGFuYWxv
+Zy5jb20+OyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgUGFudGVsaXMNCj4gQW50b25pb3Ug
+PHBhbnRlbGlzLmFudG9uaW91QGtvbnN1bGtvLmNvbT47IEFsYW4gVHVsbA0KPiA8YXR1bGxAa2Vy
+bmVsLm9yZz47IEZyYW5rIFJvd2FuZCA8ZnJvd2FuZC5saXN0QGdtYWlsLmNvbT4NCj4gU3ViamVj
+dDogUmU6IFtQQVRDSF0gb2Y6IG92ZXJsYXk6IGRvIG5vdCBicmVhayBub3RpZnkgb24gTk9USUZZ
+X09LDQo+IA0KPiBbRXh0ZXJuYWxdDQo+IA0KPiBIaSBSb2IsIE51bm8sDQo+IA0KPiBPbiA0LzE5
+LzIyIDA5OjQ4LCBSb2IgSGVycmluZyB3cm90ZToNCj4gPiBPbiBUdWUsIEFwciAxOSwgMjAyMiBh
+dCA5OjMyIEFNIEZyYW5rIFJvd2FuZA0KPiA8ZnJvd2FuZC5saXN0QGdtYWlsLmNvbT4gd3JvdGU6
+DQo+ID4+DQo+ID4+IEhpIFJvYiwgTnVubywNCj4gPj4NCj4gPj4gKGFkZGluZyBjYzogQWxhbikN
+Cj4gPg0KPiA+IEFsYW4gaXMgbm90IGFjdGl2ZSBhbmQgQWx0ZXJhIGRvZXNuJ3QgZXhpc3QuDQo+
+ID4NCj4gPj4gWW91IGp1c3QgYXBwbGllZCB0aGUgcGF0Y2ggYXQgdGhlIHJvb3Qgb2YgdGhpcyBl
+bWFpbCB0aHJlYWQuDQo+ID4NCj4gPiBXZWxsLCBubyBvbmUgaGFkIGNvbW1lbnRlZCBmdXJ0aGVy
+IGFmdGVyIDIgd2Vla3MgYW5kIHRoZSBwYXRjaA0KPiBsb29rZWQNCj4gPiBsaWtlIGEgbW92ZSBp
+biB0aGUgcmlnaHQgZGlyZWN0aW9uIGFzLWlzLg0KPiANCj4gQWdyZWVkLg0KPiANCj4gPg0KPiA+
+PiBQbGVhc2UgZWl0aGVyIHJldmVydCBpdCBhbmQgYWNjZXB0IHRoZSBhbHRlcm5hdGUgdGhhdCBO
+dW5vDQo+ID4+IHN1Z2dlc3RzIGJlbG93LCBvciBpZiB5b3UgZG8gbm90IHdhbnQgdG8gZm9sbG93
+IHRoYXQgcGF0aCwNCj4gPj4gdGhlbiBOdW5vIHBsZWFzZSBhZGQgYSBmb2xsb3cgb24gcGF0Y2gg
+dGhhdCBkb2VzIHdoYXQgeW91IHN1Z2dlc3QNCj4gPj4gYmVsb3cuDQo+ID4NCj4gPiBPa2F5LCBE
+cm9wcGVkIGFzIGl0J3Mgbm90IHB1c2hlZCBvdXQuDQo+IA0KPiBUaGFua3MuICBJIHRob3VnaHQg
+dGhhdCBtaWdodCBiZSBwb3NzaWJsZS4uLg0KPiANCj4gTnVubywgY2FuIHlvdSBwbGVhc2UgY3Jl
+YXRlIHRoZSBhbHRlcm5hdGUgcGF0Y2ggeW91IHN1Z2dlc3RlZD8gIEl0DQo+IGFsc28gZml4ZXMg
+dGhlIGFkZGl0aW9uYWwgcHJvYmxlbSB0aGF0IHlvdSBub3RlZC4NCj4gDQo+DQoNClN1cmUsIEkg
+d2lsbCBzZW5kIGEgdjIgdG9tb3Jyb3cuLi4NCiANCi0gTnVubyBTw6ENCg==
