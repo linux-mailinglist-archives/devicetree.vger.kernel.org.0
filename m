@@ -2,65 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9773A506357
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 06:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AAA50635A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 06:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348280AbiDSEgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 00:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
+        id S1348317AbiDSEgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 00:36:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348274AbiDSEgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 00:36:11 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC95122BE5;
-        Mon, 18 Apr 2022 21:33:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650342809; x=1681878809;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OPOfSS2uDyN/dVKScHcoTabGQVho8Vlfn+KbkTmz7eY=;
-  b=gtKb7TAXgqcVKeRTPBw369lk82iKf9bfi91hsmfEiLiScnllyBsTnYXC
-   F80/McEcaQ8QQx8Gq6Lzt2AoQdvln9vdnVMkx03Bxqet4WaoOlnFX9Sla
-   92E607CuEBMrd1/t2IUGNG5wvUH5+jS8HJTwQdTlpQAoiTHSVs1M5SiuK
-   yGbXe3VCnqO1FTkGoLuyP4xbGCmco1WNRx+s/07QjNeEknWhe2Am3Dz0f
-   o3WdlncHINpl9GhGktOIWLNlqudaZVJ+jY5M5OcGFkoOCNWV/JPtcs3/Q
-   qjmIn23mfBpx3gYbhQBgkS3rigdK0WfhGDV5Urp3Wo+qwpHYCxV9tjmC8
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10321"; a="244256897"
-X-IronPort-AV: E=Sophos;i="5.90,271,1643702400"; 
-   d="scan'208";a="244256897"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Apr 2022 21:33:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,271,1643702400"; 
-   d="scan'208";a="665771758"
-Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 18 Apr 2022 21:33:24 -0700
-Received: from kbuild by 3abc53900bec with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1ngfYJ-0005Lb-UD;
-        Tue, 19 Apr 2022 04:33:23 +0000
-Date:   Tue, 19 Apr 2022 12:32:37 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     kbuild-all@lists.01.org, list@opendingux.net,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 5/5] rtc: jz4740: Support for fine-tuning the RTC clock
-Message-ID: <202204191251.t9r8gFyI-lkp@intel.com>
-References: <20220418184933.13172-6-paul@crapouillou.net>
+        with ESMTP id S1348380AbiDSEgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 00:36:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825402FE75;
+        Mon, 18 Apr 2022 21:33:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B75C2611F9;
+        Tue, 19 Apr 2022 04:33:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E68C385AA;
+        Tue, 19 Apr 2022 04:33:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650342838;
+        bh=fkvuDq2Bso3cdL/9iihXfEdOfFkWrTLOzW5BCQj/Fsw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ivh84uhNobyb19JWAX2/jbMJRX/q9gqR0mpBib34AL7bnh/QsjuZ8ACJ9/Np5vV8E
+         pDhDib39epcc6ucLADSnV+iYe5shsC1HkykIiB7gYojF9CBKA7yUz1EiEZiPCLsn7E
+         ajxgoNnuK5q0TS+0fVYfKcMIN94b1Yb4/PtoEaKXhse/4JjY8F0jlTtWNCNTmNC4ty
+         Xa2TyvJuHS0LRI/eRf25NaPglaCiBzEpE+MOwz0VNJKtg+0BZHlsKQ6Lga0aam1TeP
+         P+IHFi/poof5le/0woigrPTXmyZZQpGyBk71PRL9BdHkeRZioF+lRJZmGO1fBpithV
+         SosNn650OjOQA==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: [PATCH v2] arm64: dts: qcom: db845c: Add support for MCP2517FD
+Date:   Tue, 19 Apr 2022 10:03:48 +0530
+Message-Id: <20220419043348.1483625-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220418184933.13172-6-paul@crapouillou.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,80 +54,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Add support for onboard MCP2517FD SPI CAN transceiver attached to
+SPI0 of RB3.
 
-I love your patch! Yet something to improve:
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+Changes in v2:
+ - add cs and pinctrl config
+ - remove misleading comment
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on v5.18-rc3 next-20220414]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 33 ++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Paul-Cercueil/rtc-ingenic-various-updates/20220419-025341
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-config: sparc64-randconfig-r024-20220418 (https://download.01.org/0day-ci/archive/20220419/202204191251.t9r8gFyI-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/ba459adc8c83dbdc469d0c6b5d57fd95d834513a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Paul-Cercueil/rtc-ingenic-various-updates/20220419-025341
-        git checkout ba459adc8c83dbdc469d0c6b5d57fd95d834513a
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=sparc64 SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from <command-line>:
-   drivers/rtc/rtc-jz4740.c: In function 'jz4740_rtc_set_offset':
->> include/linux/compiler_types.h:346:45: error: call to '__compiletime_assert_229' declared with attribute error: FIELD_PREP: value too large for the field
-     346 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                                             ^
-   include/linux/compiler_types.h:327:25: note: in definition of macro '__compiletime_assert'
-     327 |                         prefix ## suffix();                             \
-         |                         ^~~~~~
-   include/linux/compiler_types.h:346:9: note: in expansion of macro '_compiletime_assert'
-     346 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
-      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-         |                                     ^~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:65:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
-      65 |                 BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:111:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     111 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
-         |                 ^~~~~~~~~~~~~~~~
-   drivers/rtc/rtc-jz4740.c:261:17: note: in expansion of macro 'FIELD_PREP'
-     261 |         nc1hz = FIELD_PREP(JZ_RTC_REGULATOR_NC1HZ_MASK, nc1hz);
-         |                 ^~~~~~~~~~
-
-
-vim +/__compiletime_assert_229 +346 include/linux/compiler_types.h
-
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  332  
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  333  #define _compiletime_assert(condition, msg, prefix, suffix) \
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  334  	__compiletime_assert(condition, msg, prefix, suffix)
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  335  
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  336  /**
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  337   * compiletime_assert - break build and emit msg if condition is false
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  338   * @condition: a compile-time constant condition to check
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  339   * @msg:       a message to emit if condition is false
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  340   *
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  341   * In tradition of POSIX assert, this macro will break the build if the
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  342   * supplied condition is *false*, emitting the supplied error message if the
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  343   * compiler has support to do so.
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  344   */
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  345  #define compiletime_assert(condition, msg) \
-eb5c2d4b45e3d2 Will Deacon 2020-07-21 @346  	_compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  347  
-
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 28fe45c5d516..4f4d45be93e3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -28,6 +28,13 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	/* Fixed crystal oscillator dedicated to MCP2517FD */
++	clk40M: can_clock {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <40000000>;
++	};
++
+ 	dc12v: dc12v-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "DC12V";
+@@ -746,6 +753,24 @@ codec {
+ 	};
+ };
+ 
++&spi0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&qup_spi0_default>;
++	cs-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
++
++	can@0 {
++		compatible = "microchip,mcp2517fd";
++		reg = <0>;
++		clocks = <&clk40M>;
++		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
++		spi-max-frequency = <10000000>;
++		vdd-supply = <&vdc_5v>;
++		xceiver-supply = <&vdc_5v>;
++		status = "okay";
++	};
++};
++
+ &spi2 {
+ 	/* On Low speed expansion */
+ 	label = "LS-SPI0";
+@@ -1219,3 +1244,11 @@ ov7251_ep: endpoint {
+ 		};
+ 	};
+ };
++
++/* PINCTRL - additions to nodes defined in sdm845.dtsi */
++&qup_spi0_default {
++	config {
++		drive-strength = <6>;
++		bias-disable;
++	};
++};
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.34.1
+
