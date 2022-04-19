@@ -2,119 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47BFF507649
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 900E750765B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:16:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241440AbiDSRQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 13:16:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39476 "EHLO
+        id S244974AbiDSRT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 13:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231878AbiDSRQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 13:16:25 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984A53B288;
-        Tue, 19 Apr 2022 10:13:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1650388420; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WEJ8CbC2loA9ib/adb/YR/+FsHaHYuHOlpUIXJDsAB4=;
-        b=BPT9gpfk8DmvqHBzhkVeHRjp10LlkU4LBYTMm1RctRHktZXxyIpGHoKdvck0XQP/3G3WAf
-        Kn+r7I5cXOiyllYH+RjCK8sNzE9j1VA6N70W6diDAvvqU4eN+FMc+l2zT9oJ/WyaP6+/wN
-        h8ev+MYmhZwaQCTCux3aSN/2d2pBlBc=
-Date:   Tue, 19 Apr 2022 18:13:30 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 1/3] SPI: Ingenic: Add support for use GPIO as chip select
- line.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        contact@artur-rojek.eu, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, reimu@sudomaker.com
-Message-Id: <IUJLAR.XMD0PY9XJ5X41@crapouillou.net>
-In-Reply-To: <1650032528-118220-2-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1650032528-118220-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1650032528-118220-2-git-send-email-zhouyanjie@wanyeetech.com>
+        with ESMTP id S244331AbiDSRTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 13:19:25 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E08137031
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 10:16:42 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-e5c42b6e31so8248459fac.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 10:16:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Hh2D5T9O1nXJSpyowbHfBZ/qDBEIO6Yb28qotohzW6M=;
+        b=PF5p5rMhgy6pOrHUjITOkzIIX/nu4CrsUEAI+OBpKM/fAcN184LtuvQhGc7XWvwWFE
+         QDev0y1bfAYpdtra2JSbiWBHdcQ1/jItqtGzgN38KQ1T+WkpasC22m3z/6Dvs4eVnwot
+         dxdm7PwEXo96wJMV2xgHNXY/xiYgN78E8Ks1BJ8l6AN5KHRlVxY/dNgK5LLtZqqEobg3
+         tD422XHJlvCy9K5VxFCKDdjs29GEwsnG/pqC73i/Ph5gebgUYf59ePs1UPWF6bj8LNjH
+         uBkNJCZJrNuQNYRBK98Y5sVJj+nKUFOsE6CX6BocknUrg9+PozAJ37nuZXJLWu2Kretm
+         +M/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Hh2D5T9O1nXJSpyowbHfBZ/qDBEIO6Yb28qotohzW6M=;
+        b=AvX8txmVJFX/IGls0fjctmEbePRW2l1IwWz/1PZcq9whN1XWbIZ4jxtaPkGUfWYIu3
+         7y9cSi+vA5mMsdBibA5YV8rd9EnYkxEPdnd7xO57D28Eucv6qfgDLjbHpwkVqzrDQ6px
+         648yY19xoZ0Vjbbchc2UdL8UD00GBbGHpTcYU6jszXF1tgDklp93rrE1r5kl4ieLwbhp
+         FzJ+zDoKVxvG7ZLuupAF4lHtD4CiXciIBSUt7twI1jlyWduT8fXn6KeclE8OrZfooE5w
+         b8Th0apCXIDhdggp3IBaXwA2l3QKWRD6fhEPB+mvbvg/36Gh1FCtJkfRBq/38MKhpG16
+         tfuw==
+X-Gm-Message-State: AOAM532y15rPjEAiyJStP2mE90Ezo7wwo9HiDTS+V+rY8Li0gA7HEIKV
+        2UIsV/75wEY4ierL/C906aKtVA==
+X-Google-Smtp-Source: ABdhPJwIEiPzWUmSnN/IgWCCz0AcpbNlwnqSyMLhTp4TCVTK0JlV1SdRxsJYUGOJKt5i6RKDh4hTxw==
+X-Received: by 2002:a05:6870:d68e:b0:e2:861:8b15 with SMTP id z14-20020a056870d68e00b000e208618b15mr8941436oap.156.1650388601641;
+        Tue, 19 Apr 2022 10:16:41 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id j72-20020a9d17ce000000b005e6b89f9f54sm5589996otj.32.2022.04.19.10.16.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 10:16:40 -0700 (PDT)
+Date:   Tue, 19 Apr 2022 12:16:39 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8450: add cooling-maps to CPU
+ trip points
+Message-ID: <Yl7udxBtyL0OeJUu@builder.lan>
+References: <20220410234458.1739279-1-dmitry.baryshkov@linaro.org>
+ <20220410234458.1739279-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220410234458.1739279-4-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+On Sun 10 Apr 18:44 CDT 2022, Dmitry Baryshkov wrote:
 
-Le ven., avril 15 2022 at 22:22:06 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou=
- Yanjie)=20
-<zhouyanjie@wanyeetech.com> a =C3=A9crit :
-> Add support for using GPIOs as chip select lines on Ingenic SoCs.
->=20
-> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
-eetech.com>
+> Follow the lead of other Qualcomm platforms and add cooling maps for CPU
+> trip points. Handle three clusters separately, cooling cores 0-3 for
+> cpu0-3 trip points, cores 4-6 for cpu4-6 trip points and only cpu7 for
+> cpu7 trip points.
+> 
+
+In line with 52e3b2ca6f9d ("arm64: dts: qcom: sdm845: Remove cpufreq
+cooling devices for CPU thermal zones") I don't think we should have
+cooling-maps for platforms where LMh is already thermal throttling the
+CPU clusters.
+
+Picking the other two patches.
+
+Regards,
+Bjorn
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  drivers/spi/spi-ingenic.c | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/spi/spi-ingenic.c b/drivers/spi/spi-ingenic.c
-> index 03077a7..672e4ed 100644
-> --- a/drivers/spi/spi-ingenic.c
-> +++ b/drivers/spi/spi-ingenic.c
-> @@ -380,7 +380,7 @@ static int spi_ingenic_probe(struct=20
-> platform_device *pdev)
->  	struct spi_controller *ctlr;
->  	struct ingenic_spi *priv;
->  	void __iomem *base;
-> -	int ret;
-> +	int num_cs, ret;
->=20
->  	pdata =3D of_device_get_match_data(dev);
->  	if (!pdata) {
-> @@ -416,6 +416,11 @@ static int spi_ingenic_probe(struct=20
-> platform_device *pdev)
->  	if (IS_ERR(priv->flen_field))
->  		return PTR_ERR(priv->flen_field);
->=20
-> +	if (of_property_read_u32(dev->of_node, "num-cs", &num_cs)) {
-
-One small comment here - I think it would be better to use=20
-device_property_read_u32().
-
-The driver should also use device_get_match_data() instead of=20
-of_device_get_match_data(), but that's a cleanup that can be done later.
-
-Cheers,
--Paul
-
-> +		dev_warn(dev, "Number of chip select lines not specified.\n");
-> +		num_cs =3D 2;
-> +	}
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 191 +++++++++++++++++++++++++++
+>  1 file changed, 191 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 4f3c7e7d2855..dd8ef4438fd0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1651,6 +1651,21 @@ cpu4_top_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
 > +
->  	platform_set_drvdata(pdev, ctlr);
->=20
->  	ctlr->prepare_transfer_hardware =3D spi_ingenic_prepare_hardware;
-> @@ -429,7 +434,9 @@ static int spi_ingenic_probe(struct=20
-> platform_device *pdev)
->  	ctlr->bits_per_word_mask =3D pdata->bits_per_word_mask;
->  	ctlr->min_speed_hz =3D 7200;
->  	ctlr->max_speed_hz =3D 54000000;
-> -	ctlr->num_chipselect =3D 2;
-> +	ctlr->use_gpio_descriptors =3D true;
-> +	ctlr->max_native_cs =3D 2;
-> +	ctlr->num_chipselect =3D num_cs;
->  	ctlr->dev.of_node =3D pdev->dev.of_node;
->=20
->  	if (spi_ingenic_request_dma(ctlr, dev))
-> --
-> 2.7.4
->=20
-
-
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu4_top_alert0>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu4_top_alert1>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu4-bottom-thermal {
+> @@ -1677,6 +1692,21 @@ cpu4_bottom_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu4_bottom_alert0>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu4_bottom_alert1>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu5-top-thermal {
+> @@ -1703,6 +1733,21 @@ cpu5_top_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu5_top_alert0>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu5_top_alert1>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu5-bottom-thermal {
+> @@ -1729,6 +1774,21 @@ cpu5_bottom_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu5_bottom_alert0>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu5_bottom_alert1>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu6-top-thermal {
+> @@ -1755,6 +1815,21 @@ cpu6_top_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu6_top_alert0>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu6_top_alert1>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu6-bottom-thermal {
+> @@ -1781,6 +1856,21 @@ cpu6_bottom_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu6_bottom_alert0>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu6_bottom_alert1>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu7-top-thermal {
+> @@ -1807,6 +1897,17 @@ cpu7_top_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu7_top_alert0>;
+> +					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu7_top_alert1>;
+> +					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu7-middle-thermal {
+> @@ -1833,6 +1934,17 @@ cpu7_middle_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu7_middle_alert0>;
+> +					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu7_middle_alert1>;
+> +					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu7-bottom-thermal {
+> @@ -1859,6 +1971,17 @@ cpu7_bottom_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu7_bottom_alert0>;
+> +					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu7_bottom_alert1>;
+> +					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		gpu-top-thermal {
+> @@ -1969,6 +2092,23 @@ cpu0_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu0_alert0>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu0_alert1>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu1-thermal {
+> @@ -1995,6 +2135,23 @@ cpu1_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu1_alert0>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu1_alert1>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu2-thermal {
+> @@ -2021,6 +2178,23 @@ cpu2_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu2_alert0>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu2_alert1>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cpu3-thermal {
+> @@ -2047,6 +2221,23 @@ cpu3_crit: cpu_crit {
+>  					type = "critical";
+>  				};
+>  			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu3_alert0>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +				map1 {
+> +					trip = <&cpu3_alert1>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  
+>  		cdsp0-thermal {
+> -- 
+> 2.35.1
+> 
