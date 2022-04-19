@@ -2,76 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 816D45072F7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF94507305
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 18:34:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243161AbiDSQeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 12:34:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46918 "EHLO
+        id S238226AbiDSQhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 12:37:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbiDSQeW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:34:22 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D422026104;
-        Tue, 19 Apr 2022 09:31:39 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id 12so18666374oix.12;
-        Tue, 19 Apr 2022 09:31:39 -0700 (PDT)
+        with ESMTP id S230428AbiDSQhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 12:37:15 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7DA29C9B;
+        Tue, 19 Apr 2022 09:34:32 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-de3eda6b5dso18122501fac.0;
+        Tue, 19 Apr 2022 09:34:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MCwo7DGqBQCKp4JI4emM4uu1enKdCNTOXjY11292Ytw=;
-        b=rDbEJ4QDgQwLzNmImCj0VnbThnldS0Hrv1I57wmSJizUzF0K/q3/K0fRm8D14/O1aH
-         bAJAYUTccijty70mZthrBjybw/xo3cSXSYNNWUgWPi3tItzusfl6p5JrqWnLpHuH23xG
-         d0BPcdaxuoO+fUK10IdeMo6n9hW/47E4nPhlZVGja88KRnzyZd8yMxSTKzXuEhN3aHFU
-         xbrnms9l/BZzdlrnkZl163N6S67mBhOv4xC69OuGf8l1T884d4m+psw/oxr2jdNi9YD+
-         e4nank/KoRYUzjr+bovvJQRJJy1S8my9XhT4ID/a+TOndochCQS2jcWMfiakGfH5Vxyo
-         t2PA==
-X-Gm-Message-State: AOAM533oaVH8Scl/LgFXbdWPWPCJAUSFKGX705qo0kFzy3JkbeZJAfy+
-        FbvkYxuRx94IgyWPq1uDjUth0fQZoA==
-X-Google-Smtp-Source: ABdhPJysuK3Y5yzRvHHcTEYlSN35k2U0+yXUEb4ZKSgONUNKu8LtTfgN7S4IK19flO2JIEe6ew/iFw==
-X-Received: by 2002:a05:6808:347:b0:322:6053:ba4d with SMTP id j7-20020a056808034700b003226053ba4dmr7140692oie.295.1650385899190;
-        Tue, 19 Apr 2022 09:31:39 -0700 (PDT)
+        bh=M9eDzAyk4sGVv8K5LskKnAnIYX6zDJ5kUNQhT7FAjz0=;
+        b=BuRkvSvI8I2ODbbx30ZgqM1sUhpZEG0YSEbGoA9d+Mo352ydVvSH1SQGbZBy7DfEc8
+         W/qzo/aI8j8t3C6kSniJVoN9ni3e0SDbIhWE430XWRqXNlEOl1lnM2RGASArNCJp3hWR
+         jP9wq+lL5ngO/V224+gxjN3nmOR+ryukRSNPT32DKSkq4cA+X+StV3xzFMjVY4cflW14
+         9E0RZhJR/7F8UCwrYyDX8Z+AB5Jv7wF0P46c/VkdHlrYO3J9n45l8kOoz/AVftZRUkw7
+         ctQNxzxcOZqBfZmyYcDJehtVgugU5KqqRbBdBrC6j1rjH51hQMeQUDkpEfCRulhVu+OR
+         o7CQ==
+X-Gm-Message-State: AOAM533bHIFMeasbKlQaLWa//shDXwpLcgg8kMi4kPJb55GmeF1z6Itz
+        mGgsjlktQ31zxC2bahLR/g==
+X-Google-Smtp-Source: ABdhPJxNq0Y98ca5iv9R82zAY8/p7woHmaFMtJBI59fHLXUFRFR45IJO9m0vWUl0Ukh8l8LKLUFIeQ==
+X-Received: by 2002:a05:6870:17a4:b0:e5:8eee:1607 with SMTP id r36-20020a05687017a400b000e58eee1607mr7272179oae.12.1650386071551;
+        Tue, 19 Apr 2022 09:34:31 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k14-20020a0568080e8e00b003224d35c729sm4425462oil.3.2022.04.19.09.31.38
+        by smtp.gmail.com with ESMTPSA id b16-20020a056870471000b000e5caa2b264sm2750013oaq.20.2022.04.19.09.34.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 09:31:38 -0700 (PDT)
-Received: (nullmailer pid 2899056 invoked by uid 1000);
-        Tue, 19 Apr 2022 16:31:38 -0000
-Date:   Tue, 19 Apr 2022 11:31:38 -0500
+        Tue, 19 Apr 2022 09:34:31 -0700 (PDT)
+Received: (nullmailer pid 2915852 invoked by uid 1000);
+        Tue, 19 Apr 2022 16:34:30 -0000
+Date:   Tue, 19 Apr 2022 11:34:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: qcom: smd-rpm: Fix missing MSM8936
- compatible
-Message-ID: <Yl7j6n0hvN9ND2F6@robh.at.kernel.org>
-References: <20220418231857.3061053-1-bryan.odonoghue@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH 1/5 v3] dt-bindings: clock: u8500: Add clkout clock
+ bindings
+Message-ID: <Yl7klt2S5Jo+PZHN@robh.at.kernel.org>
+References: <20220414221751.323525-1-linus.walleij@linaro.org>
+ <20220414221751.323525-2-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220418231857.3061053-1-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220414221751.323525-2-linus.walleij@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Apr 2022 00:18:57 +0100, Bryan O'Donoghue wrote:
-> Add compatible msm8936. msm8936 covers both msm8936 and msm8939.
-> The relevant driver already has the compat string but, we haven't
-> documented it.
+On Fri, 15 Apr 2022 00:17:47 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the externally routed clocks
+> CLKOUT1 and CLKOUT2 clocks found in the DB8500.
 > 
-> Fixes: d6e52482f5ab ("drivers: soc: Add MSM8936 SMD RPM compatible")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> ChangeLog v2->v3:
+> - Pick up Ulf's ACK.
+> ChangeLog v1->v2:
+> - Push the description of the clock-cells down under the clock-cells
+>   subnode.
+> - Add an example, as this was missing and requested.
+> ---
+>  .../bindings/clock/stericsson,u8500-clks.yaml | 57 +++++++++++++++++++
+>  include/dt-bindings/clock/ste-db8500-clkout.h | 17 ++++++
+>  2 files changed, 74 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/ste-db8500-clkout.h
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
