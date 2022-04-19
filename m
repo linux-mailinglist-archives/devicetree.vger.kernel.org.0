@@ -2,109 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3CEF506D0B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D5DC506D2B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239262AbiDSNFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 09:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
+        id S1351395AbiDSNG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:06:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238368AbiDSNFx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:05:53 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A510377D1;
-        Tue, 19 Apr 2022 06:03:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=PkViwl74IgQv6A5OVVFYe3s2y/HJKzzwnj5gCY5pUYc=; b=UT
-        gbmQeBCCK5DZlOV9yoMn0ByV71MqjkQKVGVsR7xZCji5q5lbfCUb36SOoaglC59zk7g0LmXpDuSv1
-        TStoBcBa9ijlPFpr+AZ5NPU+O/N5zThYQbkjigFtQDUGrFp2jOBOW93CRnXiFgJo7QzbIdLb4Z26I
-        Wt4qAB05Qh8Z4Tc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ngnVX-00GV78-Oi; Tue, 19 Apr 2022 15:03:03 +0200
-Date:   Tue, 19 Apr 2022 15:03:03 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>, Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "roopa@nvidia.com" <roopa@nvidia.com>,
-        "edumazet@google.com" <edumazet@google.com>
-Subject: Re: [PATCH net-next v8 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Message-ID: <Yl6zBwiJ2O1ALnjs@lunn.ch>
-References: <1649817118-14667-1-git-send-email-wellslutw@gmail.com>
- <1649817118-14667-3-git-send-email-wellslutw@gmail.com>
- <20220414141825.50eb8b6a@kernel.org>
- <Ylgjab6qLsrzKZKc@lunn.ch>
- <e784ab5356aa4b6e93765b54bdefea0a@sphcmbx02.sunplus.com.tw>
+        with ESMTP id S1351393AbiDSNGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:06:54 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177C3377D1;
+        Tue, 19 Apr 2022 06:04:11 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23J9NQDU015687;
+        Tue, 19 Apr 2022 15:03:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=NgPcRaYcvXPNkANqF3dRBBWX+Q6eKswfsITricOij1Q=;
+ b=8U9WERhD2Y+eA5c0qWpk1ByAAKR1yOMD9TXK0xbfz0J0CcWXxyLAjZT6WDYXwrbc3niP
+ OVSKHEcowed9p7kTD0x+fru0ZDuhjM2SOYFHaeUXauxPawIhPs1kVaNLFR/TKSiLIWOo
+ 7fS65M+51bnNCToNlzzmFuBUrXM6/g6exhSBGu8/zhXSjoRCvz/7l7cD/q62fNAHL0Fu
+ voiMCqlwcnaj8Td6sAefv99Y0H19Km2BzK7HA5EAFfi6H9bvJD3inZrHYw6uCN+jd7+t
+ TSv8DUiZv7sCLeYSWYIwP+hgrRMYisIkJj0zcZTIt/NTF93+364LBGpQJ7S7TZdvid4G Ew== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ffpqdpagd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 19 Apr 2022 15:03:56 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 87D7A10002A;
+        Tue, 19 Apr 2022 15:03:55 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 692972122EA;
+        Tue, 19 Apr 2022 15:03:55 +0200 (CEST)
+Received: from [10.48.0.142] (10.75.127.46) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 19 Apr
+ 2022 15:03:54 +0200
+Message-ID: <d0d9c16f-4668-1263-49fa-e51648c8c098@foss.st.com>
+Date:   Tue, 19 Apr 2022 15:03:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e784ab5356aa4b6e93765b54bdefea0a@sphcmbx02.sunplus.com.tw>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] ARM: dts: align SPI NOR node name with dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        <soc@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+CC:     <arm@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+References: <20220407143027.294678-1-krzysztof.kozlowski@linaro.org>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220407143027.294678-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-19_05,2022-04-15_01,2022-02-23_01
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 19, 2022 at 10:07:55AM +0000, Wells Lu 呂芳騰 wrote:
-> > > > +		/* Get mac-address from nvmem. */
-> > > > +		ret = spl2sw_nvmem_get_mac_address(&pdev->dev, port_np, mac_addr);
-> > > > +		if (ret) {
-> > > > +			dev_info(&pdev->dev, "Generate a random mac address!\n");
-> > > > +
-> > > > +			/* Generate a mac address using OUI of Sunplus Technology
-> > > > +			 * and random controller number.
-> > > > +			 */
-> > > > +			mac_addr[0] = 0xfc; /* OUI of Sunplus: fc:4b:bc */
-> > > > +			mac_addr[1] = 0x4b;
-> > > > +			mac_addr[2] = 0xbc;
-> > > > +			mac_addr[3] = get_random_int() % 256;
-> > > > +			mac_addr[4] = get_random_int() % 256;
-> > > > +			mac_addr[5] = get_random_int() % 256;
-> > >
-> > > I don't think you can do that. Either you use your OUI and assign the
-> > > address at manufacture or you must use a locally administered address.
-> > > And if locally administered address is used it better be completely
-> > > random to lower the probability of collision to absolute minimum.
-> > 
-> > I commented about that in an earlier version of these patches. We probably need a quote
-> > from the 802.1 or 802.3 which says this is O.K.
-> > 
-> > 	 Andrew
+Hi Krzysztof
+
+On 4/7/22 16:30, Krzysztof Kozlowski wrote:
+> The node names should be generic and SPI NOR dtschema expects "flash".
 > 
-> Hi Andrew,
-> 
-> I plan to replace above statements with:
-> 
-> 	eth_random_addr(mac_addr);
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm/boot/dts/da850-evm.dts                  | 2 +-
+>   arch/arm/boot/dts/dm8168-evm.dts                 | 2 +-
+>   arch/arm/boot/dts/spear1310-evb.dts              | 2 +-
+>   arch/arm/boot/dts/spear1340-evb.dts              | 2 +-
+>   arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 2 +-
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts            | 4 ++--
+>   6 files changed, 7 insertions(+), 7 deletions(-)
 
-O.K, that is good.
+Thanks for your patch. Is it possible to split it per vendor 
+(TI/STM32/SPEAR) ?
 
-> Do you mean I can keep use the mac address: "OUI + random number"?
+Thanks
+Alex
 
-If you can show us text in an IEEE 802.1, IEEE 802.3, or some other
-IEEE document which says this is allowed.
 
-> Only need to add comment for it.
+> diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
+> index 87c517d65f62..e9aecac4f5b5 100644
+> --- a/arch/arm/boot/dts/da850-evm.dts
+> +++ b/arch/arm/boot/dts/da850-evm.dts
+> @@ -278,7 +278,7 @@ &spi1 {
+>   	status = "okay";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&spi1_pins &spi1_cs0_pin>;
+> -	flash: m25p80@0 {
+> +	flash: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		compatible = "jedec,spi-nor";
+> diff --git a/arch/arm/boot/dts/dm8168-evm.dts b/arch/arm/boot/dts/dm8168-evm.dts
+> index 5126e2d72ed7..778796c10af8 100644
+> --- a/arch/arm/boot/dts/dm8168-evm.dts
+> +++ b/arch/arm/boot/dts/dm8168-evm.dts
+> @@ -177,7 +177,7 @@ &mcspi1 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcspi1_pins>;
+>   
+> -	m25p80@0 {
+> +	flash@0 {
+>   		compatible = "w25x32";
+>   		spi-max-frequency = <48000000>;
+>   		reg = <0>;
+> diff --git a/arch/arm/boot/dts/spear1310-evb.dts b/arch/arm/boot/dts/spear1310-evb.dts
+> index 4cbadcb41084..ddd1cf4d0554 100644
+> --- a/arch/arm/boot/dts/spear1310-evb.dts
+> +++ b/arch/arm/boot/dts/spear1310-evb.dts
+> @@ -379,7 +379,7 @@ stmpe_touchscreen {
+>   					};
+>   				};
+>   
+> -				m25p80@1 {
+> +				flash@1 {
+>   					compatible = "st,m25p80";
+>   					reg = <1>;
+>   					spi-max-frequency = <12000000>;
+> diff --git a/arch/arm/boot/dts/spear1340-evb.dts b/arch/arm/boot/dts/spear1340-evb.dts
+> index fd194ebeedc9..3a51a41eb5e4 100644
+> --- a/arch/arm/boot/dts/spear1340-evb.dts
+> +++ b/arch/arm/boot/dts/spear1340-evb.dts
+> @@ -439,7 +439,7 @@ spi0: spi@e0100000 {
+>   				cs-gpios = <&gpiopinctrl 80 0>, <&gpiopinctrl 24 0>,
+>   					   <&gpiopinctrl 85 0>;
+>   
+> -				m25p80@0 {
+> +				flash@0 {
+>   					compatible = "m25p80";
+>   					reg = <0>;
+>   					spi-max-frequency = <12000000>;
+> diff --git a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> index 33ae5e0590df..ac53ee3c496b 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> @@ -398,7 +398,7 @@ &qspi {
+>   	#size-cells = <0>;
+>   	status = "okay";
+>   
+> -	flash0: is25lp016d@0 {
+> +	flash0: flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0>;
+>   		spi-max-frequency = <133000000>;
+> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> index e222d2d2cb44..d142dd30e16b 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> @@ -262,7 +262,7 @@ &qspi {
+>   	#size-cells = <0>;
+>   	status = "okay";
+>   
+> -	flash0: mx66l51235l@0 {
+> +	flash0: flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0>;
+>   		spi-rx-bus-width = <4>;
+> @@ -271,7 +271,7 @@ flash0: mx66l51235l@0 {
+>   		#size-cells = <1>;
+>   	};
+>   
+> -	flash1: mx66l51235l@1 {
+> +	flash1: flash@1 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <1>;
+>   		spi-rx-bus-width = <4>;
 
-Add a comment which points to a document which says you are allowed to
-do this. This is very unusual, so questions will be asked, and if you
-point people at the answer it will help.
-
-      Andrew
