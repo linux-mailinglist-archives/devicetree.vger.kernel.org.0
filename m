@@ -2,165 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C9D5065B3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6990F5065D9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241961AbiDSHZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 03:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46646 "EHLO
+        id S1349369AbiDSHaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 03:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349296AbiDSHZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:25:33 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 012B7326C4
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:22:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1650352970;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XE7bs+vMucrnxP7rX6KAEFBKjoWlCkL1ofuWPanz4ws=;
-        b=ZfXzyeAnvfwwyYkLvMrJ7JOD9GjAkgaOVXpRax5WRS9j/d1Ew3KvwFzf3GGj2HC+SC9Eu1
-        6iuItCPQQT1mAN3Ww7iKXleobudxe6Nj7n8GRVquy0ACBInhFEinfCMhJhh/ny2HhPTIrm
-        ISJwveWc6vKhAl0j0Y5AyACjp0X+R3o=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-567-EtT7qaa5OauYTgh55rP0VQ-1; Tue, 19 Apr 2022 03:22:27 -0400
-X-MC-Unique: EtT7qaa5OauYTgh55rP0VQ-1
-Received: by mail-wm1-f71.google.com with SMTP id y11-20020a7bc18b000000b0038eac019fc0so796009wmi.9
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:22:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=XE7bs+vMucrnxP7rX6KAEFBKjoWlCkL1ofuWPanz4ws=;
-        b=oO5EDPYITPUa6u3iJelSUrsIdPO5FUoPx7lIUwbFiqQD288Rig/mEbUn+M5FpyxJ+P
-         6dOqLlmMjW6QB/jZ+99jHxA7LGDLi3hzHd3N0bFjRURVSgivRyImzAws1fNGE1WhHcTz
-         +3H0Xqt/2d0i1mTlq3gY9Bj4rNbWfZhvJ3DaqSY5ejkKux4F1+2elPH2b/6spuCWnHrW
-         zsZcypUQfZCFM3u1daJr0xXoIWPwLleAufRJdfkwmsM4e385QqSs1YZKeFSKYJdeciEL
-         os2sRdbU/fkQCDW2xnbR5p5Br1Bps+tvOezzXozZl/mWRS52Q98i5/ngvXGsb7CBxK3U
-         ujAA==
-X-Gm-Message-State: AOAM533w54vzhZU0neq4Rwoshw7FybO58sHfGOPqSp/rGMBsGBXZsHjG
-        6x7u06BuAqzoBIlPCFUf/Df5+N1bBzK58qTFdXFBPFCAuSSLftm+KifIkfWQ/YAX6+5P/aYBtss
-        zyQFsF//8jebu9xFtL6bMAw==
-X-Received: by 2002:a05:6000:1b08:b0:207:ad5b:83a0 with SMTP id f8-20020a0560001b0800b00207ad5b83a0mr10619558wrz.564.1650352946331;
-        Tue, 19 Apr 2022 00:22:26 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxPE0Lfb8036FFd0ol7Vvhr6xWQ3rGpwS+oyiFhkfgu+5MXMGjFNhcWkb9aY1gomEOacxFDLg==
-X-Received: by 2002:a05:6000:1b08:b0:207:ad5b:83a0 with SMTP id f8-20020a0560001b0800b00207ad5b83a0mr10619538wrz.564.1650352946065;
-        Tue, 19 Apr 2022 00:22:26 -0700 (PDT)
-Received: from [192.168.1.129] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05600c378600b0038eca3cdbb3sm15128816wmr.13.2022.04.19.00.22.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 00:22:25 -0700 (PDT)
-Message-ID: <fb7b8ca6-a252-c021-fe74-4e7ffbb3eb7e@redhat.com>
-Date:   Tue, 19 Apr 2022 09:22:24 +0200
+        with ESMTP id S241940AbiDSHav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:30:51 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34BC31DCE
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:28:09 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1ngiHQ-0004up-7K
+        for devicetree@vger.kernel.org; Tue, 19 Apr 2022 09:28:08 +0200
+Received: from dspam.blackshift.org (localhost [127.0.0.1])
+        by bjornoya.blackshift.org (Postfix) with SMTP id 00CAB65BB0
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:28:07 +0000 (UTC)
+Received: from hardanger.blackshift.org (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by bjornoya.blackshift.org (Postfix) with ESMTPS id CD8AA65BA6;
+        Tue, 19 Apr 2022 07:28:06 +0000 (UTC)
+Received: from blackshift.org (localhost [::1])
+        by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 975cceb9;
+        Tue, 19 Apr 2022 07:28:06 +0000 (UTC)
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     linux-can@vger.kernel.org
+Cc:     Manivannan Sadhasivam <mani@kernel.org>, kernel@pengutronix.de,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        devicetree@vger.kernel.org, Thomas Kopp <thomas.kopp@microchip.com>
+Subject: [PATCH 1/2] dt-binding: can: mcp251xfd: add binding information for mcp251863
+Date:   Tue, 19 Apr 2022 09:28:04 +0200
+Message-Id: <20220419072805.2840340-2-mkl@pengutronix.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220419072805.2840340-1-mkl@pengutronix.de>
+References: <20220419072805.2840340-1-mkl@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 2/2] fbdev: Remove hot-unplug workaround for framebuffers
- without device
-Content-Language: en-US
-To:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        frowand.list@gmail.com, deller@gmx.de,
-        linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, paulus@samba.org, mpe@ellerman.id.au,
-        sam@ravnborg.org, linux@roeck-us.net
-References: <20220413092454.1073-1-tzimmermann@suse.de>
- <20220413092454.1073-3-tzimmermann@suse.de>
- <2e183cc9-603d-f038-54aa-5601f11b0484@redhat.com>
- <Ylb0316ABOhOe1Rb@phenom.ffwll.local>
- <9d4599d9-e094-e7dd-5b91-282c2679aae4@suse.de>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <9d4599d9-e094-e7dd-5b91-282c2679aae4@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Thomas,
+The MCP251863 device is a CAN-FD controller (MCP2518FD) with an
+integrated Transceiver (ATA6563). Add the microchip,mcp251863 as a new
+compatible to the binding.
 
-On 4/13/22 20:09, Thomas Zimmermann wrote:
+Cc: devicetree@vger.kernel.org
+Cc: Thomas Kopp <thomas.kopp@microchip.com>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+---
+ .../bindings/net/can/microchip,mcp251xfd.yaml | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-[snip]
-
->>>> index bc6ed750e915..bdd00d381bbc 100644
->>>> --- a/drivers/video/fbdev/core/fbmem.c
->>>> +++ b/drivers/video/fbdev/core/fbmem.c
->>>> @@ -1579,14 +1579,7 @@ static void do_remove_conflicting_framebuffers(struct apertures_struct *a,
->>>>   			 * If it's not a platform device, at least print a warning. A
->>>>   			 * fix would add code to remove the device from the system.
->>>>   			 */
->>>> -			if (!device) {
->>>> -				/* TODO: Represent each OF framebuffer as its own
->>>> -				 * device in the device hierarchy. For now, offb
->>>> -				 * doesn't have such a device, so unregister the
->>>> -				 * framebuffer as before without warning.
->>>> -				 */
->>>> -				do_unregister_framebuffer(registered_fb[i]);
->>>
->>> Maybe we could still keep this for a couple of releases but with a big
->>> warning that's not supported in case there are out-of-tree drivers out
->>> there that still do this ?
->>>
->>> Or at least a warning if the do_unregister_framebuffer() call is removed.
->>
->> Yeah dying while holding console_lock isn't fun, and not having a WARN_ON
->> + bail-out code pretty much forces bug reporters to do a bisect here to
->> give us something more than "machine dies at boot with no messages".
->>
->> I'd just outright keep the WARN_ON here for 1-2 years even to really make
->> sure we got all the bug reports, since often these older machines only
->> update onto LTS releases.
-> 
-> If that's what the consent is, I'll go with it.
-> 
-> I'm just not sure if we talk about the same problem. offb didn't have a 
-> platform device, so we recently added this workaround with 'if 
-> (!device)'.  All the other fbdev drivers have a platform device; and 
-> anything else that could fail is out-of-tree. We don't really care about 
-> those AFAIK.
->
-
-Yes, agreed on the offb change but I'm not really sure if we don't care
-about out-of-tree modules. I mean, you are right in theory but I still
-feel that we are changing a core behavior without giving people time to
-sort out if needed.
-
-Since before commit 27599aacbaef ("fbdev: Hot-unplug firmware fb devices
-on forced removal") registered FBs didn't need to have a device, but now
-that will lead to a NULL pointer dereference in dev_is_platform(device).
-
-And that change only landed in v5.18-rc1, so it is fairly recent.
-
-I know that we follow https://www.kernel.org/doc/Documentation/process/stable-api-nonsense.rst
-but still my opinion is that having a warning for a couple of releases
-if registered_fb[i]->device is NULL, instead of just crashing would be
-a better way to handle this.
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+index b3826af6bd6e..7a73057707b4 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+@@ -5,8 +5,8 @@ $id: http://devicetree.org/schemas/net/can/microchip,mcp251xfd.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-> With offb converted, we could practically remove all of the checks here 
-> and call platform_device_unregister() unconditionally.
->
-
-Yes for mainline, but as mentioned I thought mostly about out-of-tree. If
-folks agree that we shouldn't care about these, I'm Ok with that as well.
-
+ title:
+-  Microchip MCP2517FD and MCP2518FD stand-alone CAN controller device tree
+-  bindings
++  Microchip MCP2517FD, MCP2518FD and MCP251863 stand-alone CAN
++  controller device tree bindings
+ 
+ maintainers:
+   - Marc Kleine-Budde <mkl@pengutronix.de>
+@@ -17,13 +17,14 @@ allOf:
+ properties:
+   compatible:
+     oneOf:
+-      - const: microchip,mcp2517fd
+-        description: for MCP2517FD
+-      - const: microchip,mcp2518fd
+-        description: for MCP2518FD
+-      - const: microchip,mcp251xfd
+-        description: to autodetect chip variant
+-
++      - enum:
++          - microchip,mcp2517fd
++          - microchip,mcp2518fd
++          - microchip,mcp251xfd
++      - items:
++          - enum:
++              - microchip,mcp251863
++          - const: microchip,mcp2518fd
+   reg:
+     maxItems: 1
+ 
 -- 
-Best regards,
+2.35.1
 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
 
