@@ -2,598 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 182EF50618D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 03:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A1635061CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 03:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237506AbiDSBL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Apr 2022 21:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S1343901AbiDSBrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Apr 2022 21:47:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244874AbiDSBLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 21:11:55 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 463B62F02D
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 18:09:13 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id bv16so3261123wrb.9
-        for <devicetree@vger.kernel.org>; Mon, 18 Apr 2022 18:09:13 -0700 (PDT)
+        with ESMTP id S1343920AbiDSBrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Apr 2022 21:47:45 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B269C25EBF;
+        Mon, 18 Apr 2022 18:45:04 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id bj24so11197859oib.11;
+        Mon, 18 Apr 2022 18:45:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=J1jcuIFIquxguncYu1oFjWv0OUSgyCxbKj51MA1MzeA=;
-        b=rwK27+qb1Wbyg/BD0T6Vx0YeQiQ8I0eALkqRJeFPX5aEfIb3qHuNA+08lYMOok2K+R
-         kt2KTph5xCEq7nFKm7+wpXa2YS6Y35wZSYP2C9AkTcuda9xZ1MhaPmqA/zbGF6eITPHe
-         NUzZILPSWUyWiFpFxPdv9eL8Ac9orUzeR6hvh5qXPPaluv20tXDBZmpKYZnzSe9uKl0l
-         t7YDln/m6ZN4v/48/hv3iuX4DuBLJws2dEO4NA/d/4wZPDex3cKOt/9rllNOlbFPwwjF
-         JPQ8LQ6foGR3tQdEPdQ+7YlIe4WZpxWVAm0pmHiuGGMLRC8GtDc4l/LePMkS6yvo7tlr
-         IWjQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aVfbsDHne7UFw/nRsbDYc8gWIryl7Fw3CuyGuISh8ks=;
+        b=Hr6lKTxgM9pLnZ/7lKyu0p68nuSxZfZ6F2a+s/BQqIlwvcdw/wfJzEFhg53c9zkWOW
+         wz4ns6YUPMW4e1cRO0rslzDemoO/+sBiA+CHRsb5jK+Q4l+Eg6e/4dUMd5A7MnnzWolg
+         B5XfBF0RiIiS5vytihpS9t9ED/1fYrwyC9ieQsGY7VLPbjxmyh2WOEy7ZfJG4hHwwGij
+         qDSja60eyZ1SbRv3H6isSva6YyFdygryvCJAaEgUPPl7BALFX8BTU9MgUm736rH/369o
+         D0aGA6WoAOtAlTVl6NN/0G0mGRWL38Z8rloo1rPo1cO8eRMkQu7RD3kwt5CA4Uth2acB
+         nl0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=J1jcuIFIquxguncYu1oFjWv0OUSgyCxbKj51MA1MzeA=;
-        b=AOQj8LNzfdUbw6AzK+Jx3oEkeYlEpHkbIcA9+vYo4zAJ9ZeUniwzqNQ39m62qm7yRR
-         kagxPy/3wpwFfuaQ1bp2y7VjGgzb6TPFcDWUbJSb3cQ1f9d9dZjjGmFw6tkk92gXkz4S
-         B/0+NuNt8GefSECAuMGEm++aVdLrz6zsJGI+/X+CKjah9wE0aD8iRi6yfYkO6Ps70PQZ
-         ZNC0uM6RXQdtzM+oXzZTsBDOaCnEPgN4PnkgoxHfd7D57WGas/O7LN+neb9cbu9T6n6b
-         FZNLRpypR32cWB7rcLz1Z2rqm2fXzLp+wKaY6KqaRxW3g2RHb/DnB6L8vONyIiaE4WnF
-         9mTA==
-X-Gm-Message-State: AOAM531UpbMFODABCt/qpMqAB3jDQUiCT4tmK7hQEIg5+AshpYiJuLPW
-        87kVEuOqsSC8YyRfg5yTH2vB2w==
-X-Google-Smtp-Source: ABdhPJyH1UcnnIkTcJB8csVFv8SOY6Z78ItpBvt+W8Ff2TZFZ9gDX7ZMa6sXO5t09DwFN/hQDFOZSg==
-X-Received: by 2002:a5d:4563:0:b0:207:bc6f:e345 with SMTP id a3-20020a5d4563000000b00207bc6fe345mr9829758wrc.372.1650330551585;
-        Mon, 18 Apr 2022 18:09:11 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id m6-20020a05600c4f4600b003918d69b334sm12030732wmq.42.2022.04.18.18.09.10
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aVfbsDHne7UFw/nRsbDYc8gWIryl7Fw3CuyGuISh8ks=;
+        b=AOR/z+nsj9yPwjI9vCvCzdJ+yTOf5f18404lalxs8UfWUvrZ/zFBqOBWgwKMekToX8
+         PjQ8Jifk/hz4QMydKLLfs5DCGjLkYVqcDdZL3myM6FQxm36eDN+oRftcxDAvxk+huyzo
+         M2XYgoZz6alzSStUNm33mcrmA37GM6ph2dx62oQkD+QyIERnsNvim9MZELcjy5gYavKw
+         6vJ7RIHlgP6MRDUUOoLJ6MWT+rk6oYW26yvzY4Ah7JsNxQmbKwePFEgL7qpHRjg1CKPg
+         uVYaR8AHZ4U40KcgFK3D++K7eEphe2K+4dDdy7JRtqHbMM3bp6h74wyngaf5gz2SSGHw
+         ZQcw==
+X-Gm-Message-State: AOAM533ULSz6iUiEmeuCXxTQ6+1miG6SfnTfgcp2fO3I3nin9ZqK09IQ
+        r16wbYBNZyPvoPOfqlztV7g+UjeBoeE=
+X-Google-Smtp-Source: ABdhPJyZ7KGrJMe/f3XsRio+1629DoZb5G/xYMr+KmYIkEPpB4RoRbIWdrfbgdRoxSsZ22wkP9ov3A==
+X-Received: by 2002:a05:6808:16a9:b0:2f7:1eae:a75f with SMTP id bb41-20020a05680816a900b002f71eaea75fmr6288305oib.181.1650332703954;
+        Mon, 18 Apr 2022 18:45:03 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:485:4b69:5307:398a:5694:27c])
+        by smtp.gmail.com with ESMTPSA id os2-20020a0568707d0200b000e42ef7cff2sm4556083oab.43.2022.04.18.18.45.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Apr 2022 18:09:11 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     shawn.guo@linaro.org, jun.nie@linaro.org, benl@squareup.com,
-        jwillcox@squareup.com, jgates@squareup.com, mchen@squareup.com,
-        zac@squareup.com, bryan.odonoghue@linaro.org
-Subject: [PATCH v1 4/4] arm64: dts: Add msm8939 Sony Xperia M4 Aqua
-Date:   Tue, 19 Apr 2022 02:09:03 +0100
-Message-Id: <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
-References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
+        Mon, 18 Apr 2022 18:45:03 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     alexandre.belloni@bootlin.com
+Cc:     robh+dt@kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] dt-binding: pcf85063: Add an entry for pca85073a
+Date:   Mon, 18 Apr 2022 22:44:44 -0300
+Message-Id: <20220419014445.341444-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic booting DTS for the Sony Xperia M4 Aqua aka "tulip".
+From: Fabio Estevam <festevam@denx.de>
 
-Tulip is paired with:
+The PCA85073A RTC has the same programming model as the PCF85063A.
 
-- wcn3660
-- smb1360 battery charger
-- 720p Truly NT35521 Panel
+Add a compatible entry for it.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../qcom/msm8939-sony-xperia-kanuti-tulip.dts | 489 ++++++++++++++++++
- 2 files changed, 490 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+ Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 5b8a0eb34733..3ac7f6876c09 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-10.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-octagon-talkman.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-new file mode 100644
-index 000000000000..336969f16bc9
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-@@ -0,0 +1,489 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2015, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Bryan O'Donoghue.
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 and
-+ * only version 2 as published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8939.dtsi"
-+#include "pm8916.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+/ {
-+	model = "Sony Xperia M4 Aqua";
-+	compatible = "sony,kanuti-tulip", "qcom,msm8939";
-+	qcom,board-id = <8 0>;
-+
-+	aliases {
-+		serial0 = &blsp1_uart2;
-+		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
-+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	positive5_vreg: positive5_vreg {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&msmgpio_positive5_vreg>;
-+		regulator-name = "positive5_vreg";
-+		gpios = <&msmgpio 114 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <0>;
-+		enable-active-low;
-+	};
-+
-+	negative5_vreg: negative5_vreg {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&msmgpio_negative5_vreg>;
-+		regulator-name = "negative5_vreg";
-+		gpios = <&msmgpio 17 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <0>;
-+		enable-active-low;
-+	};
-+};
-+
-+&dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	vdda-supply = <&pm8916_l2>;
-+	vddio-supply = <&pm8916_l16>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&panel_in>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
-+
-+	panel@0 {
-+		compatible = "sony,tulip-truly-nt35521";
-+		reg = <0>;
-+		positive5-supply = <&positive5_vreg>;
-+		negative5-supply = <&negative5_vreg>;
-+		reset-gpios = <&msmgpio 25 GPIO_ACTIVE_LOW>;
-+		enable-gpios = <&msmgpio 10 GPIO_ACTIVE_LOW>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				panel_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+		};
-+
-+	};
-+};
-+
-+&dsi0_phy {
-+	vddio-supply = <&pm8916_l16>;
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8916_l8>;
-+	vqmmc-supply = <&pm8916_l5>;
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
-+	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&pm8916_l11>;
-+	vqmmc-supply = <&pm8916_l12>;
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-+	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-+	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&blsp_dma {
-+	status = "okay";
-+};
-+
-+&otg {
-+	status = "okay";
-+	usb-role-switch;
-+
-+	ulpi {
-+		usb_hs_phy: phy {
-+			qcom,enable-vbus-pullup;
-+			v1p8-supply = <&pm8916_l7>;
-+			v3p3-supply = <&pm8916_l13>;
-+		};
-+	};
-+};
-+
-+&pronto {
-+	status = "okay";
-+	smd-edge {
-+		wcnss {
-+			bt {
-+				local-bd-address = [ 55 44 33 22 11 00 ];
-+			};
-+		};
-+	};
-+};
-+
-+&msmgpio {
-+
-+	cdc_ext_spk_pa_active: cdc_ext_spk_pa_on {
-+		pins = "gpio0";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		output-low;
-+		bias-pull-none;
-+	};
-+
-+	cdc_ext_spk_pa_sus: cdc_ext_spk_pa_off {
-+		pins = "gpio0";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	nfc_int_active: nfc_int_active {
-+		pins = "gpio21";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_int_suspend: nfc_int_suspend {
-+		pins = "gpio21";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_disable_active: nfc_disable_active {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_disable_suspend: nfc_disable_suspend {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-disable;
-+	};
-+
-+	smb_int: smb_int {
-+		pins = "gpio62";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	usbid: usbid {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	gpio_key_suspend: gpio_key_suspend {
-+		pins = "gpio107", "gpio108", "gpio109";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	/* add pingrp for touchscreen */
-+	ts_int_active: ts_int_active {
-+		pins = "gpio13";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+	};
-+
-+	ts_int_suspend: ts_int_suspend {
-+		pins = "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_reset_active: ts_reset_active {
-+		pins = "gpio12";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+	};
-+
-+	ts_reset_suspend: ts_reset_suspend {
-+		pins = "gpio12";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_release: ts_release {
-+		pins = "gpio13", "gpio12";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ext_buck_vsel: vsel0 {
-+		pins = "gpio111";
-+		function = "gpio";
-+		drive-strength = <2>;
-+	};
-+
-+	ext_cdc_tlmm_lines_act: tlmm_lines_on {
-+		pins = "gpio116", "gpio112", "gpio117", "gpio118", "gpio119";
-+		function = "gpio";
-+		drive-strength = <8>;
-+	};
-+
-+	ext_cdc_tlmm_lines_sus: tlmm_lines_off {
-+		pins = "gpio116", "gpio112", "gpio117", "gpio118", "gpio119";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	cdc_slim_lines_act: lines_on {
-+		pins = "gpio63";
-+		function = "cdc_pdm0";
-+		drive-strength = <8>;
-+		output-high;
-+		bias-pull-none;
-+	};
-+
-+	cdc_slim_lines_sus: lines_off {
-+		pins = "gpio63";
-+		function = "cdc_pdm0";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	cross_conn_det_act: lines_on {
-+		pins = "gpio120";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		output-low;
-+		bias-pull-down;
-+	};
-+
-+	cross_conn_det_sus: lines_off {
-+		pins = "gpio120";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	cci1_default: cci1-default {
-+		pins = "gpio31", "gpio32";
-+		function = "cci_i2c";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	cam_sensor_flash_default: default {
-+		pins = "gpio98", "gpio97";
-+		function = "gpio";
-+		bias-disable;
-+		drive-strength = <2>;
-+	};
-+
-+	/* Gyroscope and accelerometer sensor combo */
-+	mpu6050_default: mpu6050_default {
-+		pins = "gpio115";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	mpu6050_sleep: mpu6050_sleep {
-+		pins = "gpio115";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	/* Ambient light and proximity sensor apds9930 and apds9900 */
-+	apds99xx_default: apds99xx_default {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	apds99xx_sleep: apds99xx_sleep {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ak8963_default: ak8963_default {
-+		pins = "gpio69";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	ak8963_sleep: ak8963_sleep {
-+		pins = "gpio69";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	nt35521_te_default: nt35521_te_default {
-+		pins = "gpio24";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-down;
-+	};
-+
-+	nt35521_backlight: nt35521_backlight {
-+		pins = "gpio10";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-down;
-+	};
-+
-+	msmgpio_positive5_vreg: msmgpio_positive5_vreg {
-+		pins = "gpio114";
-+		function = "gpio";
-+		output-low;
-+		bias-pull-none;
-+	};
-+
-+	msmgpio_negative5_vreg: msmgpio_negative5_vreg {
-+		pins = "gpio17";
-+		function = "gpio";
-+		output-low;
-+		bias-pull-none;
-+	};
-+};
-+
-+&rpm_requests {
-+	smd_rpm_regulators: pm8916-regulators {
-+		compatible = "qcom,rpm-pm8916-regulators";
-+		vdd_l1_l2_l3-supply = <&pm8916_s3>;
-+		vdd_l4_l5_l6-supply = <&pm8916_s4>;
-+		vdd_l7-supply = <&pm8916_s4>;
-+
-+		pm8916_s3: s3 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1300000>;
-+		};
-+
-+		pm8916_s4: s4 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2100000>;
-+		};
-+
-+		/* l1 is fixed to 1225000, but not connected in schematic */
-+		pm8916_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8916_l4: l4 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8916_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8916_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on; /* copy from v3.10 */
-+		};
-+
-+		pm8916_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8916_l8: l8 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8916_l9: l9 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8916_l10: l10 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8916_l11: l11 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8916_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8916_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		pm8916_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8916_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8916_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8916_l17: l17 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8916_l18: l18 {
-+			regulator-min-microvolt = <2700000>;
-+			regulator-max-microvolt = <2700000>;
-+		};
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+index 6439682c9319..217b7cd06c11 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+@@ -2,6 +2,7 @@
+ 
+ Required properties:
+ - compatible: Should one of contain:
++	"nxp,pca85073a",
+ 	"nxp,pcf85063",
+ 	"nxp,pcf85063a",
+ 	"nxp,pcf85063tp",
 -- 
-2.35.1
+2.25.1
 
