@@ -2,91 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3912E507CD2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 00:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E62A0507D06
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 01:03:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239291AbiDSWv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 18:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45500 "EHLO
+        id S1358370AbiDSXGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 19:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231893AbiDSWvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 18:51:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408632F3AB;
-        Tue, 19 Apr 2022 15:49:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231473AbiDSXGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 19:06:15 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2204C24F38;
+        Tue, 19 Apr 2022 16:03:32 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EEFF8B81CAD;
-        Tue, 19 Apr 2022 22:49:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC806C385A5;
-        Tue, 19 Apr 2022 22:49:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650408549;
-        bh=ov3PvKKki13/1eLwKdiLOM8jKV1zr/37HvkGq3CI5lc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jB7NESt8bRIOjqQiiyPv3VQ3QgrjLwswpciitEyrfWoW76xgkQuXDab5icLPt65nT
-         6K4B20FDkS+JcmiuD5uwLjez6OPBgutP7OMWqpPtLvdEPCeWuOQn/o8P0WR0IxvYyS
-         g3XQDyUNjHTn0wulppFb1hUS1i19ZfAHLmQ7l8G5l0eu6dn4Gue6tPUfEikgeQuYeb
-         QP7C9/dM/46rNMSBWy82BJIFXkoK3egu0/QU6jbr1QtVIUUOVz+FKaOXGHCXJKY315
-         +xz/YiB5X3z2ZcH+RI+me9KAPkV7t9kjJmJH2P3l6J8BiSrxoNorb5qOyLM6jNpHWz
-         i3jYmWJlr/Dtw==
-Date:   Tue, 19 Apr 2022 23:49:04 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        by ssl.serverraum.org (Postfix) with ESMTPSA id D10752223A;
+        Wed, 20 Apr 2022 01:03:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650409410;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=kQ7hnJaJfKvnMgrnfler+apWCnJJMlM5yxAVFM7iqEg=;
+        b=k2kNybmfivvQcZ0q52dAMH5r58qdKjly7kUJjWUSo1aYLyam/xi+o+POemwx8uONIR8nB7
+        235ucs7IjjrVQgrBqVLZwzkiPLbuV78zNQp0Qg1qT9Dk2ZQve/psECVGnNrgdE2Rln8vas
+        0hfQvHoAK6oC9yHDx3hy5n8YyBAWAh4=
+From:   Michael Walle <michael@walle.cc>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] regulator: dt-bindings: qcom,rpmh: update maintainers
-Message-ID: <Yl88YM+a2atNcbPH@sirena.org.uk>
-References: <20220411110253.231745-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 0/2] pinctrl: ocelot: add shared reset
+Date:   Wed, 20 Apr 2022 01:03:22 +0200
+Message-Id: <20220419230324.3221779-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="TUNYajfTzsbIEEGv"
-Content-Disposition: inline
-In-Reply-To: <20220411110253.231745-1-krzysztof.kozlowski@linaro.org>
-X-Cookie: That's what she said.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On LAN966x SoCs, there is an internal reset which is used to reset the
+switch core. But this will also reset the GPIO and the SGPIO. Thus add
+support for this shared reset line.
 
---TUNYajfTzsbIEEGv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+changes since v1:
+ - rebased onto linus' devel tree, former patch was still based on
+   v1 of the YAML conversion patch
 
-On Mon, Apr 11, 2022 at 01:02:53PM +0200, Krzysztof Kozlowski wrote:
+Michael Walle (2):
+  dt-bindings: pinctrl: ocelot: add reset property
+  pinctrl: ocelot: add optional shared reset
 
->  maintainers:
-> -  - David Collins <collinsd@codeaurora.org>
-> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ .../devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 8 ++++++++
+ drivers/pinctrl/pinctrl-ocelot.c                         | 9 +++++++++
+ 2 files changed, 17 insertions(+)
 
-Bjorn, is this OK for you?
+-- 
+2.30.2
 
---TUNYajfTzsbIEEGv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJfPF8ACgkQJNaLcl1U
-h9CTSAf/W7DFE1FxCRuSyZJvjTGWX07rpEcY35GPS9uQdbl64+xHBiCYGDVUhpY5
-CGey2Uh443T2YIOpjJbspIIoidcO7xj7SiHmuYu8u+eEqg4cvWALCNuJQ+QVNBrm
-yLGrp211kbnlce2rfQEqym8+LdmiftyBZVT6j9Qs6rIuRhG40FcgTecs9wDk2d35
-3G6Wg3rfK4fhoxXGY7hwTMGsz1AZlgnKbmFNuHHhZT72ASgNOv31t+m7R5fnakCA
-I6HwtQFJW3QWDIdytpTdSPuHBlbQzDyLwqAy6YBl00P/7HL5iWWZ3E145i2ktt4P
-/AAWJuFTjcB8qduil3b/oq8ASnv41w==
-=Mjhi
------END PGP SIGNATURE-----
-
---TUNYajfTzsbIEEGv--
