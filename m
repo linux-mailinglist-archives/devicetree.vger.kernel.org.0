@@ -2,78 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A76C75076E0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD695076E5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 19:59:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244058AbiDSR7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 13:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37264 "EHLO
+        id S1351015AbiDSSAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 14:00:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238280AbiDSR7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 13:59:02 -0400
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AF9BF55;
-        Tue, 19 Apr 2022 10:56:19 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-e5ca5c580fso8006055fac.3;
-        Tue, 19 Apr 2022 10:56:19 -0700 (PDT)
+        with ESMTP id S1356107AbiDSSAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:00:12 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AADFA12AAE;
+        Tue, 19 Apr 2022 10:57:25 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id t6-20020a056830224600b00605491a5cd7so5215492otd.13;
+        Tue, 19 Apr 2022 10:57:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=UTQU/4ZS7iunfcTFw90SndC6lGxGaDR1zY8YP8er/Ns=;
-        b=gf0qKRD15bZlxX/GlYEV6s/uxqK0tptyvuaBR1XsYxX+7xNBeoaTjJE9C9Y/+QEY4u
-         qV5Hb8KmPtqnnzIR/z1mTsA4hPByp21gLD7l2WXH7sYf5YdoRL7iuNHQZFrbpGKzhOQg
-         zjsDk32ghSJ1amFc3JnBFxV2uZ1ch8q0+Qf7PD1Hy89MEqa/SfalsVqMi2uF7DHTSZjK
-         c5/BBzwbbfjWQG5B0BnTRL2w231I/UiclgS59JtLOcW7DEtzf2+X4OuishBzAqNoIF4N
-         LtPgCnyJ5DS71yUuCUs5I/y+pcy9T4PIUJqGBjOx64dITDb++XlfE82eV7ViamvaGQzk
-         ml2A==
-X-Gm-Message-State: AOAM532/92ofiBI3wfxDfqIsU3bl0mzrvf3SortW9giADfI7cBq5gtoF
-        ps2o1Bd/DJwzF6K0CqSVdA==
-X-Google-Smtp-Source: ABdhPJyy+fAMCc5zeulhydURCk1KC3Y9jD3mJV2iGlVkFXt4BU5pTOhUpjDNton94OJPJLMPCFyGtA==
-X-Received: by 2002:a05:6870:2190:b0:e6:26d2:abe0 with SMTP id l16-20020a056870219000b000e626d2abe0mr1113589oae.15.1650390979219;
-        Tue, 19 Apr 2022 10:56:19 -0700 (PDT)
+        bh=GPaAOiRU2sZJkdz+TPQsTeJ4PT3ekwE1x4w/NUDI8Fs=;
+        b=WB3HX+mvX9gV51fe6zVfBTtdGUq0eJZehZCYEvf044A2ZFZsrM4amBw3k0wQ7D3sJc
+         WxVHbIoEsIN0e1gmcfud2G3Du2mP43QpJp77BzWl3ZoM9SjZPgkNSEpAXf7VXKnRQnRZ
+         /91Vcb9TQa2CW12maaTZP4zAJRlxzPBu9pefuscW8+EwblYaomf+Qlmb4sHZnoRcgXSP
+         QXyIcr73JrYJUZ32xRH/zmUGm13FD4cmFdjefhVywhPXLQ3tQmnfT8eWrld6UzuAU24s
+         +pOjEy0++dz7r3twVLk7rEfdc1XE1CzwlHtY0k/lKQEg5MWoGMdCaAYUo1IFSWBEe5+a
+         EKwA==
+X-Gm-Message-State: AOAM532ftVcdiIxcQVtDfZnbLrKXH8vcOyqjQj4UEuUiXgCejD2mMCTg
+        5WPjE7VAeXE4PN5kaYIKeA==
+X-Google-Smtp-Source: ABdhPJxEWVC3kzkDRMXbExF1R9up59MpJ/NNaXh5s23dZOks4H/YEE144xrpxhxJ39CUfiie5FzjIA==
+X-Received: by 2002:a9d:7e87:0:b0:605:559a:9cdd with SMTP id m7-20020a9d7e87000000b00605559a9cddmr1432908otp.61.1650391044965;
+        Tue, 19 Apr 2022 10:57:24 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o13-20020a4ae58d000000b00324dfcc5bcfsm5741589oov.12.2022.04.19.10.56.18
+        by smtp.gmail.com with ESMTPSA id ay5-20020a056820150500b00320f8a179d0sm5875192oob.30.2022.04.19.10.57.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 10:56:18 -0700 (PDT)
-Received: (nullmailer pid 3053283 invoked by uid 1000);
-        Tue, 19 Apr 2022 17:56:18 -0000
-Date:   Tue, 19 Apr 2022 12:56:18 -0500
+        Tue, 19 Apr 2022 10:57:24 -0700 (PDT)
+Received: (nullmailer pid 3055313 invoked by uid 1000);
+        Tue, 19 Apr 2022 17:57:23 -0000
+Date:   Tue, 19 Apr 2022 12:57:23 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Cc:     devicetree@vger.kernel.org, krzk+dt@kernel.org,
-        dmaengine@vger.kernel.org, michal.simek@xilinx.com,
-        vkoul@kernel.org, robh+dt@kernel.org, git@xilinx.com,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dmaengine: xilinx_dma: Add MCMDA channel ID
- index description
-Message-ID: <Yl73wg/N0f2xGvLY@robh.at.kernel.org>
-References: <1649939061-6675-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        swboyd@chromium.org, quic_subbaram@quicinc.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        quic_collinsd@quicinc.com, Lee Jones <lee.jones@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V10 2/9] dt-bindings: regulator: pm8008: Add pm8008
+ regulator bindings
+Message-ID: <Yl74A1cljv86CqaX@robh.at.kernel.org>
+References: <1649939418-19861-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1649939418-19861-3-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1649939061-6675-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+In-Reply-To: <1649939418-19861-3-git-send-email-quic_c_skakit@quicinc.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Apr 2022 17:54:21 +0530, Radhey Shyam Pandey wrote:
-> MCDMA IP provides up to 16 multiple channels of data movement each on
-> MM2S and S2MM paths. Inline with implementation, in the binding add
-> description for the channel ID start index and mention that it's fixed
-> irrespective of the MCDMA IP configuration(number of read/write channels).
+On Thu, 14 Apr 2022 18:00:11 +0530, Satya Priya wrote:
+> Add bindings for pm8008 regulators.
 > 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+> Changes in V8:
+>  - This is split from pm8008.yaml binding.
+> 
+> Changes in V9:
+>   - Remove description for reg and drop unused phandle from example.
+> 
+> Changes in V10:
+>  - Regulators are added as a part of pm8008@8 device. Change bindings doc
+>    accordingly.
+> 
+>  .../bindings/regulator/qcom,pm8008-regulators.yaml | 40 ++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/qcom,pm8008-regulators.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
