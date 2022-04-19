@@ -2,150 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90A8F507023
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB978507059
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353076AbiDSOXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
+        id S242939AbiDSO2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:28:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353333AbiDSOWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:22:47 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9409063B6;
-        Tue, 19 Apr 2022 07:20:04 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id w194so153439oiw.11;
-        Tue, 19 Apr 2022 07:20:04 -0700 (PDT)
+        with ESMTP id S1353446AbiDSO2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:28:01 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA374615B;
+        Tue, 19 Apr 2022 07:25:16 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id s17so5073913plg.9;
+        Tue, 19 Apr 2022 07:25:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5wz0mPibPZZTEoFjOQeeIvFKSEaATByfDSSqqkPSZc=;
+        b=qZ89eNbxg2HFY5/pSU8PkiJ47WYAC6qi0bgAeU3XRv/XtpPO4QiZiH2skn00r3zjDE
+         yg9HcAv5ME7n3G9EtBv7ovw8QPlaDvURhcY9OSf/z0R2WAGmmrFM5Pd+dC49gKQ3uqFA
+         L1vbfBnwG6bBo+uh9g9McooycDTMUkmrr4jCzm6+WxUt1cvM5K00eeBezeK462uxJExU
+         lhnDR2d583ujVey/+axSJ1fCyQ0qq3rJ/GWRdCx7Ebp7+oAab5j8DkR0pzBmATJ7kuEo
+         kkaTkLAI0fp5xA0pX4OWk5wFOnrIPh8GbwowTT1Xig1fHIOR5JyMvSptk8Vn28CA1XGn
+         xqxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VgdRnd9bpdceRif0299S3ykKHSVMUwPtZgbwTlR6fjI=;
-        b=FNnPwmgsPJkl2z17etPuuuhUE5Cxj52WD+uhuBoFGqXuaOOoEfZpETYb1HHueuBBOE
-         /Kl7vh51nvn3Uef0AfUqnOcRprdy6ZrbotKUk4uhAVPfNW6TLRM+77ksXGB7eXOOgeCI
-         sy92tRhoYTl7Vl7DWOYgQEROiJYc13jC/7bSUa4Ddr4nefIPH3cRAEBmOvbLZZoT5dnJ
-         MW/aUK50EmNYcs8gKJ2WoAq9ZmsPkfkGMs+myyjj40kA5coVybwb/1sReIh6LQM7nrl4
-         TpH0rez9r3ORvcfd5c4RlZjPnsHM1KnT3JExUSrsqd5m0QVqjT8yl3KYZwcnjZm6o3mb
-         r51g==
-X-Gm-Message-State: AOAM533B7OqF/a6eZF5O28HYCz917lF+FnDNKV6J7eFXfSKG80nB2Cpe
-        xhkBhEmiTegX9/96TWnN+g==
-X-Google-Smtp-Source: ABdhPJz/8eHniA/MbQVrURiit4Y5m329UMTk5wqUlgVlgHQSwRcyGZcRmbiP8oSqsceOmAnEhLvLow==
-X-Received: by 2002:aca:c056:0:b0:322:4f77:517e with SMTP id q83-20020acac056000000b003224f77517emr8250843oif.18.1650378003722;
-        Tue, 19 Apr 2022 07:20:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020a056870028600b000d9be0ee766sm5076841oaf.57.2022.04.19.07.20.02
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5wz0mPibPZZTEoFjOQeeIvFKSEaATByfDSSqqkPSZc=;
+        b=3zbD+gpJpoAs4ts5LyBjdPDDX7GlQ/w/Us12VzixPDgjrNMH2HEspv8bILrW8KeaG2
+         gKjvYKoc9ysSqRrBbGyTNR9wA+uqVmdnA225BxzM1QCI7GJ2ymDI14t9J6EANSPy8PNt
+         nw+nQgBkEYRwvqGRKWWJcvW/8sEcgb657UjyTwR29cNcf+0WlaX5vQQf3IINdKsBYYeT
+         Of7ChBKevP2i4LJv6vo8ZVRu+UBQsTP0C4CW3eXQWcV++dH4khTRcqGZupI1xh186jgu
+         x3/1NPDQXuYhbq9Sf27Yc5V5F6PqRGaQAfpeLtHspvbet4VYg8UwATVUaA+zBNK8i4d2
+         pKNg==
+X-Gm-Message-State: AOAM531AOi7ld18lvrFMXiVW7TvJ7OP1Ow91u8KFr7gJrfZQzS3WGhGf
+        2ETu1cxOAMgW5tt2bLDHBnh3oNgqfpQ=
+X-Google-Smtp-Source: ABdhPJyhuD7hHHUs7YtB/6bFzuIb7pegX+hR+fLQm6tWhmjLrhKAn7yUCjkk/pl2ZzmcO8pkk4HdAg==
+X-Received: by 2002:a17:903:2441:b0:159:208:755c with SMTP id l1-20020a170903244100b001590208755cmr9439064pls.160.1650378315569;
+        Tue, 19 Apr 2022 07:25:15 -0700 (PDT)
+Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id e15-20020a63ae4f000000b003995a4ce0aasm16681939pgp.22.2022.04.19.07.25.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 07:20:03 -0700 (PDT)
-Received: (nullmailer pid 2490554 invoked by uid 1000);
-        Tue, 19 Apr 2022 14:20:02 -0000
-Date:   Tue, 19 Apr 2022 09:20:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomba@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Devicetree <devicetree@vger.kernel.org>,
-        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add missing
- register & interrupt
-Message-ID: <Yl7FEuHEy66KUc5F@robh.at.kernel.org>
-References: <20220419070302.16502-1-a-bhatia1@ti.com>
- <20220419070302.16502-2-a-bhatia1@ti.com>
+        Tue, 19 Apr 2022 07:25:15 -0700 (PDT)
+From:   Cixi Geng <gengcixi@gmail.com>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
+        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
+        yuming.zhu1@unisoc.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V4 0/7] iio: adc: sc27xx: adjust structure and add PMIC's support
+Date:   Tue, 19 Apr 2022 22:24:51 +0800
+Message-Id: <20220419142458.884933-1-gengcixi@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220419070302.16502-2-a-bhatia1@ti.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 19, 2022 at 12:33:01PM +0530, Aradhya Bhatia wrote:
-> The DSS IP on the ti-am65x soc supports an additional register space,
-> named "common1". Further. the IP services a maximum number of 2
-> interrupts.
-> 
-> Add the missing register space "common1" and the additional interrupt.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index 5c7d2cbc4aac..102059e9e0d5 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -26,6 +26,7 @@ properties:
->        Addresses to each DSS memory region described in the SoC's TRM.
->      items:
->        - description: common DSS register area
-> +      - description: common1 DSS register area
+From: Cixi Geng <cixi.geng1@unisoc.com>
 
-You've just broken the ABI.
+this patchset add a sc27xx_adc_variant_data structure
+and add sc272*,sc273* and ump9620 PMIC support.
 
-New entries have to go on the end.
+v2 changes:
+  fix dt_binding_check error
+  adjust some code-style issue
+  optimize the copy-paste functions
+  the smatch warnings found by lkp
+  and  ohter comments by v1 patches.
 
->        - description: VIDL1 light video plane
->        - description: VID video plane
->        - description: OVR1 overlay manager for vp1
-> @@ -36,6 +37,7 @@ properties:
->    reg-names:
->      items:
->        - const: common
-> +      - const: common1
->        - const: vidl1
->        - const: vid
->        - const: ovr1
-> @@ -64,7 +66,7 @@ properties:
->      maxItems: 3
->  
->    interrupts:
-> -    maxItems: 1
-> +    maxItems: 2
+v3 changes:
+  fix nvmem-cells Items value and add ump9620 dt sample
+  add the correct signature for each patch
+  fix the unused warning in 3/7, add explain for set the scales
+  remove duplicate code,add goto label in sc27xx_adc_read
+  pull out the refactor code into a single patch
+  delete the suspend and resume pm for ump9620
 
-Once there is more than 1, we need to know what each entry is and the 
-order.
+v4 changes:
+  Add fix tag in the 2/7 patch.
+  Separate modification and refactoring 3/7(v3) to 2 pathes.
+  remove the pmic_type struct instead of a boot set_volref
+  to define the specific feathure.
+  use switch statement in all scale_init functions.
+  remove ump9620 pmic support in this patchset, submit separately
+  in the next patches.
 
->  
->    power-domains:
->      maxItems: 1
-> @@ -122,13 +124,14 @@ examples:
->      dss: dss@4a00000 {
->              compatible = "ti,am65x-dss";
->              reg =   <0x04a00000 0x1000>, /* common */
-> +            reg =   <0x04a01000 0x1000>, /* common1 */
->                      <0x04a02000 0x1000>, /* vidl1 */
->                      <0x04a06000 0x1000>, /* vid */
->                      <0x04a07000 0x1000>, /* ovr1 */
->                      <0x04a08000 0x1000>, /* ovr2 */
->                      <0x04a0a000 0x1000>, /* vp1 */
->                      <0x04a0b000 0x1000>; /* vp2 */
-> -            reg-names = "common", "vidl1", "vid",
-> +            reg-names = "common", "common1". "vidl1", "vid",
->                      "ovr1", "ovr2", "vp1", "vp2";
->              ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
->              power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
-> @@ -136,7 +139,8 @@ examples:
->                              <&k3_clks 216 1>,
->                              <&k3_clks 67 2>;
->              clock-names = "fck", "vp1", "vp2";
-> -            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
-> +            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>,
-> +                         <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
->              ports {
->                      #address-cells = <1>;
->                      #size-cells = <0>;
-> -- 
-> 2.35.3
-> 
-> 
+Cixi Geng (7):
+  dt-bindings:iio:adc: add sprd,ump9620-adc dt-binding
+  iio: adc: sc27xx: fix read big scale voltage not right
+  iio: adc: Fine tune the scale calibration values
+  iio: adc: sc27xx: structure adjustment and optimization
+  iio: adc: refactor some functions for support more PMiCs
+  iio: adc: sc27xx: add support for PMIC sc2720 and sc2721
+  iio: adc: sc27xx: add support for PMIC sc2730
+
+ .../bindings/iio/adc/sprd,sc2720-adc.yaml     |  59 ++-
+ drivers/iio/adc/sc27xx_adc.c                  | 473 ++++++++++++++++--
+ 2 files changed, 491 insertions(+), 41 deletions(-)
+
+-- 
+2.25.1
+
