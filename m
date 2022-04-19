@@ -2,149 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9369506A3A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 13:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2EFB506A55
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 13:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351300AbiDSLZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 07:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56000 "EHLO
+        id S1349414AbiDSL2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 07:28:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351217AbiDSLZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 07:25:06 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60060.outbound.protection.outlook.com [40.107.6.60])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A273C2ED4E;
-        Tue, 19 Apr 2022 04:21:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X+lJ3tRQCCMP95BGoXnefC8s0kqf/PPGxFg7XW1oaOjQ/ufpRu52QN+vhvMzLEEd/PT2V3v4ewLGY3taUEa3tSSm5xVbAq2xfH8L30xiQwlViem8/U4sdbvJPGmz/as/0hX2C9aE43Vam5poQfDUCini3L9/xG5CgvrAldlsLsmPfA/lR5VEMojFncsKndXc7JQItfQnX7yA6vbr9TJDbm/S/7IF8DNYhOPMQ2HH4jZ2k5bHnfz7aMUHciJyimMWZMkpw3RS7HRNAQkyENlAOoMJreWmM4sd9Z0kW9x9fkzxEM1at6rCgbpBzc80qGJb5ZJdkj6E1Xciyr11h4ai2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wFGtMjRUQBtzpYd3zm5u5zd1w5ZSXyOMsXkAbLpFGyg=;
- b=FZJL+K1qg07GYQiwb8qS+zyiofUdatRack8BQdgrwHbnQTNpUoAn9ta/w9qBQdRXfIiMvkG2A5z9lSmtTahro55ywFBNK6Mpz8jUF8viSEtvwWNcALVjDAz56Yt8hS9EKcWJ/amUzvF6/pUNoQLXOxxhWw823NfO7At3hCDMWfsKBFJu3VOSZBbEo56fL4Dz7aGcBwIkBGFRgmPk+KEiNwLUXPX7Fc71pAtGOeLjK9Q52oAa50JEgKKz3ppLzgHVVNDm6MQq39SY1xY3YXBIv/C8sypv3LBfU8dCYakozWL7Kgd8S+EIDSTH2R9klGKip3+ddM1pYmYq+pVxosOVKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wFGtMjRUQBtzpYd3zm5u5zd1w5ZSXyOMsXkAbLpFGyg=;
- b=BN8wcksiFtIgqqUgYGxjKQPOLBY7GrviHFHYLIFxB4aLPO231LUzOfJTZyeO7Al5XEIy9vr+KfvokSIyoBvrfQLlvzEz5tUSflue+IryZ3CS/5HFmyRHoC/SxPJsz0dEABXRDS2eTAzRAkW+z3vEcjSMcLxiv/taj0itYUslafU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
- by AM9PR04MB7538.eurprd04.prod.outlook.com (2603:10a6:20b:2d8::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Tue, 19 Apr
- 2022 11:21:29 +0000
-Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
- ([fe80::a9d1:199:574b:502f]) by VI1PR04MB4688.eurprd04.prod.outlook.com
- ([fe80::a9d1:199:574b:502f%6]) with mapi id 15.20.5164.025; Tue, 19 Apr 2022
- 11:21:29 +0000
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc@vger.kernel.org, <netdev@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v7 13/13] dt-bindings: usb: usbmisc-imx: Add i.MX8DXL compatible string
-Date:   Tue, 19 Apr 2022 14:20:56 +0300
-Message-Id: <20220419112056.1808009-14-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220419112056.1808009-1-abel.vesa@nxp.com>
-References: <20220419112056.1808009-1-abel.vesa@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR0102CA0008.eurprd01.prod.exchangelabs.com
- (2603:10a6:802::21) To VI1PR04MB4688.eurprd04.prod.outlook.com
- (2603:10a6:803:6a::30)
+        with ESMTP id S1351340AbiDSL1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 07:27:40 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB6AA18B;
+        Tue, 19 Apr 2022 04:24:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650367498; x=1681903498;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=w7LPbHdBtF19813RNb9Io8T1jfXZuxIKBngxZzsH7HM=;
+  b=oMdfT8LBfhedBB5MDjUlX8CG7g9qRfMGIPsniRj3k+8kjdVhTAb5uRlB
+   vwBwGNpcxvTYbwxTietHuLeyECrV9ilizuQE7wGbLBUt+BL2fm9IQ7mMs
+   ssCQaOytoN0dbf6/SbYFLOwagNozBETsquUzMIKDle5I8gDuSVuM1Qn7B
+   E=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 19 Apr 2022 04:24:57 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2022 04:24:57 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 19 Apr 2022 04:24:57 -0700
+Received: from [10.216.20.240] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 19 Apr
+ 2022 04:24:52 -0700
+Message-ID: <5ac149ac-4862-e8c9-185c-524c4b111961@quicinc.com>
+Date:   Tue, 19 Apr 2022 16:54:49 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 882a7335-9825-4060-efbb-08da21f6bf9c
-X-MS-TrafficTypeDiagnostic: AM9PR04MB7538:EE_
-X-Microsoft-Antispam-PRVS: <AM9PR04MB7538DBF8815CD44469F42C5FF6F29@AM9PR04MB7538.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u8MMXrPBecG+IpLFjb4wA6qL3x+5HyoF4+SXdBbvL2Qz4GDWYtbWtQGwhdruGT1gDtL0jpjejMqNdhySnJujoatVG1FmRy85TcaLuRx+tfJM6H6SMEvwbdmU1xC0o2lOa4E2RcBdne4eyiXGj2t2NgnjUyNGmyz3/iakSAAXLCbBg0Q5ZDlDR8sg9pSY7QQLh+5eputDMAQ5ifH2Aq0n4ZW1t4CzZUVbyogtaHd7k7i6PerE0wBE5LwKBVFzDJeJzV4kOihe3/AWC/rIx7toOGCb0v9WYLVtm8NZlc2xI52PeMhccwhOvjlooyuMosQGYSrYL7suxw/2FVwz7YDkOx3yZfF78ge5J9IBvSnXMXk0fCPGa8SoaheKqAWTsfWArWlIHM9nyXeFO1Hh5IRpXeT+Ok6Jo3MPqc1Cf2KY5mWgvYl/rFsSzFOAOgxyFaz0PcASl8uokkGHOGqvmIV/BLytI3cyDuaDVOPZjRWFuNOONfW3t5RU1a7BJrOJANZDEPvR6lnmWpmN32UCsEy/J2l6yfqYLgOsYtjWvsmkAG1qjAb3/d+e4mkoDrbBBEWXxO9W3g2LW9utWi6NCQ0pgV/ELWP3dB0JeOKvSH7MvT3kHXGgyt1fcwYoJyoLVLDpF01JwPOKPdSQBuEOjAWDSyorw20NZ1Sax3EI6A17egO71CibduKOF51wGZD1hi/AiLwyOFh4JzFrZ8dPiGiV2Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(316002)(36756003)(66556008)(4326008)(8676002)(66476007)(66946007)(6486002)(1076003)(186003)(110136005)(4744005)(8936002)(7416002)(86362001)(38100700002)(54906003)(5660300002)(44832011)(38350700002)(2616005)(26005)(6506007)(6666004)(52116002)(6512007)(2906002)(508600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GbKK93PVipfkPxQKrE7xGDqWyWYAu4XzWQNtYEULRor9cJFHh2QQOXk2I0oV?=
- =?us-ascii?Q?FQJyMppgHDP5a9hKk3+UAsJ5e2pYynwNjuCkEshjbjoo081u2bwe2gyNFSYt?=
- =?us-ascii?Q?coIzpzbGQB1G5y8+0w0prth8vni5M5kSRdpQnzqZMvNzmKXO6ehibd4Fystx?=
- =?us-ascii?Q?wRSojO7Ia0eaGN/4DhtAvfJQxyTEoEZWz2ub3VtIvZNP9mMy28VmiIYclIeN?=
- =?us-ascii?Q?gSdHf5xZnESWyOpFhnAW9jO2lig2ce0cFXSddLV2hKwDeefs1E/TXqT7EhAu?=
- =?us-ascii?Q?HZvVHQKFKRezbAVr7eCwWTRzaffbSUnpCGefFikFybMfuPM6KBQFbARlLM9a?=
- =?us-ascii?Q?NAstDDOwH0BOR7Ajoco7hD5yOY/jLIWaw+eOsthbZgR+zKUEe4QO/Te+0Rbj?=
- =?us-ascii?Q?WuDdgHQ6qZKkwLqZ+W+5kTw5Y2CsMRrfyHEwUXgwksGynwMYWgXifXUXKSdc?=
- =?us-ascii?Q?YuGPX7xfg+5pwc07PTLyQepWOnSJBGiEgJSiOfgYZKt1fOziJf5x6ufqeXCI?=
- =?us-ascii?Q?3u+IrPkCpK4jlPOlmfdymTaDFrwHLXFB9AiOMylaxlaJNMRBLSrvoOpt5AXi?=
- =?us-ascii?Q?xKRDhP7gkerSdqRZWSlt3dfdK2GV06eM5C5nRuRLBB7eC/fZ0pxH+6LYntWU?=
- =?us-ascii?Q?cG53hUcl7wEMSR5EFHbfxDE6eykr2bOu6ssjPeeJ/KSo+K0IbPb4NANXhSvf?=
- =?us-ascii?Q?XsCClajje6IFb1X7yjTLIqOwRff9aeLy9DTJAKotQGYzg10xKLQmGSncix/l?=
- =?us-ascii?Q?PCdXaMDr1ZWR+q0BIR1zYH8OVMovlBcUvh9Fd/qE59U194s8eL3nqxG5bWHK?=
- =?us-ascii?Q?b/IEuzawhGuACXl4Deqsi+bF43RwfsMWR7XJviMLOyNZBLPsPP/E2srL/6Rq?=
- =?us-ascii?Q?TunsYFqmOWZsyiVDnZ53mQ+ElAJqfbyPs15oLz9OkJEVFDaCLbDXmZWy3EcO?=
- =?us-ascii?Q?3ap9FjdUDUcYaxgPzKaInKHK0G6VClraqNvKRt6pkLot4eIO0G9/bkfKc3l5?=
- =?us-ascii?Q?2Tsm8nxqyS6vRX3wYJ5Y82rXq8UE1mIzs8Ou0yBHYijJIyF2W1KkvZoWLCNa?=
- =?us-ascii?Q?vcbvdKodsk2UfVoPnuBW8hxaHLxVEy/aU0WdDFvmIGuZ0TjGxCt6JSGVxr5K?=
- =?us-ascii?Q?Lqx10mWWFMX0KmpH5FhK2zNlBaoD1vZ7dE6lx5Za/KPFYZlkBEuudR+aZw71?=
- =?us-ascii?Q?vAtVL8wAg4zoYonGwfTndBTxKbMtTO2X0+Sc9tsIoVOh8y3itzkj65zqON/y?=
- =?us-ascii?Q?HdvCS+urSLy3aS5QiXEpCxoatoSfLC5zINE2D7HX//2h9754qTO7/ud94pwE?=
- =?us-ascii?Q?8CoSly0PaR8rbRGgrkie6HaC5RjArPCdhDH3Y6GoU1Ywgv64D6ZwY4X6BYww?=
- =?us-ascii?Q?JYv2VwrkspmE4Dahc6TmI671ZDqbLhS2Nc2Bm5L8tmesJZrgX3R9q1VIBtYX?=
- =?us-ascii?Q?gBaKa6VpVvUVgd1JXY6XbsY1yZhqGPGOw1JF6B9vZvAeTgAyj/OfGP4R/gZ6?=
- =?us-ascii?Q?Y+JbLGSrA8XG7FIhmayKKmALDZUScMb9bUGBm36B1CofCMRF5IjXW+FjctMZ?=
- =?us-ascii?Q?mSRHWS5+I9Ray2EH65AihxNMQ59syydC/IwzbVxIKm/bDabuhimMv9/FRuVR?=
- =?us-ascii?Q?PkeTpmt4ZHlM3B/E7L4ovt5SXPpYyNSyoiir3Xa2ktbnKlE8uw8PJ79t7vyY?=
- =?us-ascii?Q?2H/ZfwCGMvJohvp/qlRG5Ylrg/Co95Ns6x/E/hekKOnpNODXT6HYJ/xN4BTV?=
- =?us-ascii?Q?WNswwfyd5Q=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 882a7335-9825-4060-efbb-08da21f6bf9c
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2022 11:21:28.8469
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jyDC4zmbaZGbA+0AT8XVjrsLVU9CgIWySvjao/cakpqZ2ZjUh1JfYBFOv4cwn7H3Tmbfqe+Wmnc8yRnmlU1t9g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7538
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v8 2/4] arm64: dts: qcom: sc7280: Add nodes for wcd9385
+ and max98360a codec
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
+ <1650291252-30398-3-git-send-email-quic_srivasam@quicinc.com>
+ <Yl2VmW18QAJl9v+m@google.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <Yl2VmW18QAJl9v+m@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8DXL compatible string to the usbmisc-imx bindings.
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/usb/usbmisc-imx.txt | 1 +
- 1 file changed, 1 insertion(+)
+On 4/18/2022 10:15 PM, Matthias Kaehlcke wrote:
+Thanks for your time and valuable inputs Matthias!!!
+> On Mon, Apr 18, 2022 at 07:44:10PM +0530, Srinivasa Rao Mandadapu wrote:
+>> Add wcd938x and  max98360a codecs for audio use case on
+>> sc7280 based platforms.
+>> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+>> Add amp_en node for  max98360a codec.
+> General note: I don't think it's a good practice to add stuff like this to
+> multiple boards in a single patch. Why?
+>
+> First the subject of such a patch tends to be vague ("arm64: dts: qcom:
+> sc7280: Add nodes for wcd9385 and max98360a codec"), in this case it gives
+> no hint about the boards. If someone was interested in picking changes
+> for a given board they can't easily identify from the subject that the
+> change is relevant for them.
+>
+> Changes touching multiple boards are more likely to cause conflicts when
+> being picked (or reverted), both upstream and in downstream trees (which
+> unfortunately have to exist for product development). Downstream trees
+> might only pick changes for the board(s) they target, patches that touch
+> mutiple boards often cause conflicts due to context deltas in the
+> 'irrelevant' boards.
+>
+> Lastly it's usually easier to get a patch reviewed (in the sense of
+> getting a 'Reviewed-by' tag) and landed that does a single thing.
 
-diff --git a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt b/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
-index b796836d2ce7..6bebb7071c4f 100644
---- a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
-+++ b/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
-@@ -8,6 +8,7 @@ Required properties:
- 	"fsl,imx6sx-usbmisc" for imx6sx
- 	"fsl,imx7d-usbmisc" for imx7d
- 	"fsl,imx7ulp-usbmisc" for imx7ulp
-+	"fsl,imx8dxl-usbmisc" for imx8dxl
- - reg: Should contain registers location and length
- 
- Examples:
--- 
-2.34.1
+Yes, agree to your opinion. In a nutshell, we will include board 
+name(ex: herobrine)
 
+in commit message and split the patches per external codec.
+
+Actually, in Initial herobrine boards, EVT and IDP, has both maxim 
+speaker and WCD codec,
+
+hence we included in same patch.
+
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |  6 ++
+>>   arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  8 +++
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 97 ++++++++++++++++++++++++++
+>>   3 files changed, 111 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>> index 344338a..aa0bf6e2 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>> @@ -87,6 +87,12 @@ ap_ts_pen_1v8: &i2c13 {
+>>   	pins = "gpio51";
+>>   };
+>>   
+>> +&wcd938x {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&us_euro_hs_sel>;
+>> +	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+>> +};
+> Since this is added for the CRD rev3 it probably should also be added to
+> sc7280-herobrine-crd.dts
+Okay. Will add in corresponding latest herobrine CRD dts file also.
+>
+>> +
+>>   &tlmm {
+>>   	tp_int_odl: tp-int-odl {
+>>   		pins = "gpio7";
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>> index d58045d..f247403 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>> @@ -20,6 +20,14 @@
+>>   #include "sc7280-chrome-common.dtsi"
+>>   
+>>   / {
+>> +	max98360a: audio-codec-0 {
+>> +		compatible = "maxim,max98360a";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&amp_en>;
+>> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+>> +		#sound-dai-cells = <0>;
+>> +	};
+>> +
+>>   	chosen {
+>>   		stdout-path = "serial0:115200n8";
+>>   	};
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> index 2f863c0..8dad599 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> @@ -20,6 +20,42 @@
+>>   		serial1 = &uart7;
+>>   	};
+>>   
+>> +	max98360a: audio-codec-0 {
+>> +		compatible = "maxim,max98360a";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&amp_en>;
+>> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+>> +		#sound-dai-cells = <0>;
+>> +	};
+>> +
+>> +	wcd938x: audio-codec-1 {
+> Why 'wcd938x' and not 'wcd9385'?
+
+Actually same driver is used for both wcd9380 and wcd9385. Here we can 
+use specific name as per board.
+
+Will change accordingly.
+
+>
+>> +		compatible = "qcom,wcd9385-codec";
+>> +		pinctrl-names = "default", "sleep";
+>> +		pinctrl-0 = <&wcd_reset_n>;
+>> +		pinctrl-1 = <&wcd_reset_n_sleep>;
+>> +
+>> +		reset-gpios = <&tlmm 83 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		qcom,rx-device = <&wcd_rx>;
+>> +		qcom,tx-device = <&wcd_tx>;
+>> +
+>> +		vdd-rxtx-supply = <&vreg_l18b_1p8>;
+>> +		vdd-io-supply = <&vreg_l18b_1p8>;
+>> +		vdd-buck-supply = <&vreg_l17b_1p8>;
+>> +		vdd-mic-bias-supply = <&vreg_bob>;
+>> +
+>> +		qcom,micbias1-microvolt = <1800000>;
+>> +		qcom,micbias2-microvolt = <1800000>;
+>> +		qcom,micbias3-microvolt = <1800000>;
+>> +		qcom,micbias4-microvolt = <1800000>;
+>> +
+>> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000
+>> +							  500000 500000 500000>;
+>> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+>> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+>> +		#sound-dai-cells = <1>;
+>> +	};
+> Also add this node to sc7280-herobrine-crd.dts?
+Okay. will do accordingly.
+>
+>> +
+>>   	gpio-keys {
+>>   		compatible = "gpio-keys";
+>>   		label = "gpio-keys";
+>> @@ -238,6 +274,19 @@
+>>   	modem-init;
+>>   };
+>>   
+>> +&lpass_rx_macro {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&lpass_tx_macro {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&lpass_va_macro {
+>> +	status = "okay";
+>> +	vdd-micb-supply = <&vreg_bob>;
+>> +};
+> Enable these also in sc7280-herobrine.dtsi if other nodes are added to
+> sc7280-herobrine-crd.dts.
+Okay.
+>
+>> +
+>>   &pcie1 {
+>>   	status = "okay";
+>>   	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> @@ -298,6 +347,26 @@
+>>   	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+>>   };
+>>   
+>> +&swr0 {
+>> +	status = "okay";
+> nit: add an empty line between properties and nodes
+Okay.
+>
+>> +	wcd_rx: codec@0,4 {
+>> +		compatible = "sdw20217010d00";
+>> +		reg = <0 4>;
+>> +		#sound-dai-cells = <1>;
+>> +		qcom,rx-port-mapping = <1 2 3 4 5>;
+>> +	};
+>> +};
+>> +
+>> +&swr1 {
+>> +	status = "okay";
+> ditto
+Okay.
+>
+>> +	wcd_tx: codec@0,3 {
+>> +		compatible = "sdw20217010d00";
+>> +		reg = <0 3>;
+>> +		#sound-dai-cells = <1>;
+>> +		qcom,tx-port-mapping = <1 2 3 4>;
+>> +	};
+>> +};
+> Also add these to sc7280-herobrine-crd.dts?
+Okay.
+>
+>> +
+>>   &uart5 {
+>>   	compatible = "qcom,geni-debug-uart";
+>>   	status = "okay";
+>> @@ -561,6 +630,12 @@
+>>   };
+>>   
+>>   &tlmm {
+>> +	amp_en: amp-en {
+>> +		pins = "gpio63";
+>> +		bias-pull-down;
+>> +		drive-strength = <2>;
+>> +	};
+>> +
+>>   	bt_en: bt-en {
+>>   		pins = "gpio85";
+>>   		function = "gpio";
+>> @@ -643,6 +718,28 @@
+>>   		function = "gpio";
+>>   		bias-pull-down;
+>>   	};
+>> +
+>> +	us_euro_hs_sel: us-euro-hs-sel {
+>> +		pins = "gpio81";
+>> +		function = "gpio";
+>> +		bias-pull-down;
+>> +		drive-strength = <2>;
+>> +	};
+>> +
+>> +	wcd_reset_n: wcd-reset-n {
+>> +		pins = "gpio83";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		output-high;
+>> +	};
+>> +
+>> +	wcd_reset_n_sleep: wcd-reset-n-sleep {
+>> +		pins = "gpio83";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +		output-low;
+>> +	};
+> Also add to sc7280-herobrine-crd.dts if the other nodes are added.
+Okay.
