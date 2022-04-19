@@ -2,149 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0435150784D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD261507879
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 20:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349650AbiDSSZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 14:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36686 "EHLO
+        id S1353179AbiDSSZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 14:25:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357586AbiDSSXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:23:32 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 681AA4477A
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:16:37 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id i24-20020a17090adc1800b001cd5529465aso2665260pjv.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 11:16:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=AjgDpPskVV4R4Ry4hrbWpc/9hMmAwQ0eTwMouf2MnOU=;
-        b=bMihXYjxDYd70FBAdkcUWSX+XlWzIAfBgJnYw0igXRFV+04YT4oMj+OjOTM2ojX4W9
-         GYMwFCZU1Xdt5BZHTbv+NmWWboVjFsrVaTtRXcXquMXtE2er7IqkVjMBBOBs6ZFROx1K
-         cN5J3DB05qfDIzqnwP5O1+1DPUaGJQV6AyBLoyiOLvRbNcSQS3QiiYDnqLdgWGiDUCUS
-         W5r14jEvv37KT53Roabxlk4ixJo7v1FMya2s0VY9D1HEtwlz3DsNCHsPx7u9jekYBzVs
-         hZwkblG+Dl9GnFGir7Sr1y2O6tI5+nKUgBTdUrkm20VgY0lwgfwLyq59kXH5GSoVK05+
-         ItnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=AjgDpPskVV4R4Ry4hrbWpc/9hMmAwQ0eTwMouf2MnOU=;
-        b=qT9VhQjrOUbXmr7b4nyXvwfwYIimdzKvl/XMnubAEtwqjGA37NSnUCH8vHv+idWSQV
-         sLOrb2IdJJFjvPPsxATOznhGSNTkANpJnoqBCXVe7fp2i64wAQ2LCtZd/QCNvW7mBj7N
-         cCpkvzbbDXlAxMLZ8RWQav7G7FBsX3HTGPTuxtJeK6pdEfKltFRsMgbP8ssz5I73+Uaq
-         uUG+knSMl1sLPjnM/zeENLVZpNLnxlSS0XRf/amZslwNFAnrFF7h3wbFSsgWf8WrdUEk
-         iGkLbr5K69hjth+ZQwpJbpV+0btK/icAt1fWyNoHLUCIDqd5sT9opFnFxMFAGPedgu3G
-         rycg==
-X-Gm-Message-State: AOAM530Q1YTcSkLBtHuOZuPgood6oll878eyNexXbWXs/5lJnEUK46qB
-        aqz2L3lFsy2ntZ7n3tcLj5ke0w==
-X-Google-Smtp-Source: ABdhPJzob3GzCfSoCXKRmPqceM7UO6pOMBdQF/W+KIIoJ8hpD8bUMg3PD/l5kz2paua0Q592Ix7PwA==
-X-Received: by 2002:a17:902:bb94:b0:157:2ce:fac1 with SMTP id m20-20020a170902bb9400b0015702cefac1mr16955546pls.25.1650392196359;
-        Tue, 19 Apr 2022 11:16:36 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id g12-20020a056a001a0c00b004e1307b249csm18036219pfv.69.2022.04.19.11.16.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 11:16:35 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
-        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
-In-Reply-To: <3fc36d6b803ff3e1bef601839aaca3f4f03e62ad.camel@mediatek.com>
-References: <7hbkx3fiac.fsf@baylibre.com>
- <3fc36d6b803ff3e1bef601839aaca3f4f03e62ad.camel@mediatek.com>
-Date:   Tue, 19 Apr 2022 11:16:35 -0700
-Message-ID: <7hwnfldjlo.fsf@baylibre.com>
+        with ESMTP id S1358241AbiDSSYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 14:24:22 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0D77E47395;
+        Tue, 19 Apr 2022 11:18:08 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,273,1643641200"; 
+   d="scan'208";a="118471400"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 20 Apr 2022 03:18:08 +0900
+Received: from localhost.localdomain (unknown [10.226.92.15])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 663C6400F2CC;
+        Wed, 20 Apr 2022 03:18:04 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v8 1/5] media: dt-bindings: media: renesas,vsp1: Document RZ/G2L VSPD bindings
+Date:   Tue, 19 Apr 2022 19:17:53 +0100
+Message-Id: <20220419181757.63346-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220419181757.63346-1-biju.das.jz@bp.renesas.com>
+References: <20220419181757.63346-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
+Document VSPD found in RZ/G2L SoC. VSPD block is similar to VSP2-D
+found on R-Car SoC's, but it does not have a version register and
+it has 3 clocks compared to 1 clock on vsp1 and vsp2.
 
-> On Thu, 2022-04-14 at 14:48 -0700, Kevin Hilman wrote:
+This patch introduces a new compatible 'renesas,r9a07g044-vsp2' to
+handle these differences.
 
-[...]
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+v7->v8:
+ * Added Clock-names to false for Non RZ/G2L SoC's
+ * Replaced compatble 'renesas,rzg2l-vsp2'->'renesas,r9a07g044-vsp2'
+ * Removed RZ/V2L SoC, will be added later after testing it.
+ * Added Rb tag from Laurent.
+v6->v7:
+ * No change
+v5->v6:
+ * Removed LCDC reference clock description
+ * Changed the clock name from du.0->aclk
+v4->v5:
+ * No change
+v3->v4:
+ * No change
+v2->v3:
+ * Added Rb tag from Krzysztof.
+v1->v2:
+ * Changed compatible from vsp2-rzg2l->rzg2l-vsp2
+RFC->v1:
+ * Updated commit description
+ * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
+ * Defined the clocks
+ * Clock max Items is based on SoC Compatible string
+RFC:
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-20-biju.das.jz@bp.renesas.com/
+---
+ .../bindings/media/renesas,vsp1.yaml          | 53 ++++++++++++++-----
+ 1 file changed, 40 insertions(+), 13 deletions(-)
 
->> 
->> You explained this well, but it's still not an appropriate solution
->> IMO,
->> because you're still not setting the target that is requested by the
->> CPUfreq core.
->> 
->> The job of ->set_target() is to set the frequency *requested by
->> CPUfreq
->> core*.  If you cannot do that, you should return failure.  What you
->> posted
->> in the original patch and what you're proposing here is to ignore the
->> frequency passed to ->set_target() and do something else.  In the
->> orignal patch, you propose do to nothing.  Now, you're ignoring the 
->> target passed in and setting something else.  In both cases, the
->> CPUfreq
->> core things you have successfuly set the frequency requested, but you
->> have not.  This means there's a mismatch between what the CPUfreq
->> core &
->> governer things the frequency is and what is actually set.  *This* is
->> the part that I think is wrong.
->> 
->> Instead, the proper way of restricting available frequencies is to
->> use
->> governors or policies.  This ensures that the core & governors are
->> aligned with what the platform driver actually does.
->> 
->> As I proposed earlier, I think a clean solution to this problem is to
->> create a temporary policy at probe time that restricts the available
->> OPPs based on what the current CCI freq/voltage are.  Once CCI driver
->> is
->> loaded and working, this policy can be removed.
->> 
->> Kevin
->> 
->> 
->
-> Hello Kevin,
->
-> In new proposal, we DO set the cpufreq passed by cpufreq core.
-> We just not set the corresponding voltage of target frequency which
-> is lookedup from opp table.
-
-OK, this makes more sense.  I thought you were ignoring frequency change
-also.
-
-[...]
-
-> In summary, we think it's a proper solution to cover the situation
-> when cci is not probed.
-
-Yes, this is OK with me.
-
-> I think there is something to improve:
-> We can choose to lookup cci opp table using cci freq to determine
-> the voltage instead of voltage_on_boot.
-> But IMO, it's not neccessary to register cci opp table inside cpufreq
-> driver just for the short period.
-
-I agree.
-
-> Because I finish to prepare other patches and I think we also can
-> take a look at other patches which are including some cleanup, I will
-> send next version today.
-> If there is any concern and question, we can discuss in next version.
-
-OK, I'll have a closer look at the new version.
-
-Kevin
+diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+index 990e9c1dbc43..7a8f32473852 100644
+--- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+@@ -17,6 +17,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - renesas,r9a07g044-vsp2 # RZ/G2L
+       - renesas,vsp1 # R-Car Gen2 and RZ/G1
+       - renesas,vsp2 # R-Car Gen3 and RZ/G2
+ 
+@@ -26,8 +27,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  clocks:
+-    maxItems: 1
++  clocks: true
++  clock-names: true
+ 
+   power-domains:
+     maxItems: 1
+@@ -50,17 +51,43 @@ required:
+ 
+ additionalProperties: false
+ 
+-if:
+-  properties:
+-    compatible:
+-      items:
+-        - const: renesas,vsp1
+-then:
+-  properties:
+-    renesas,fcp: false
+-else:
+-  required:
+-    - renesas,fcp
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,vsp1
++    then:
++      properties:
++        renesas,fcp: false
++    else:
++      required:
++        - renesas,fcp
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,r9a07g044-vsp2
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Main clock
++            - description: Register access clock
++            - description: Video clock
++        clock-names:
++          items:
++            - const: aclk
++            - const: pclk
++            - const: vclk
++      required:
++        - clock-names
++    else:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names: false
+ 
+ examples:
+   # R8A7790 (R-Car H2) VSP1-S
+-- 
+2.25.1
 
