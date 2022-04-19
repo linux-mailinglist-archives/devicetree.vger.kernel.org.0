@@ -2,203 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91C18507127
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8810E507137
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353525AbiDSO4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47142 "EHLO
+        id S244719AbiDSPBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 11:01:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353565AbiDSO4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:56:43 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2121.outbound.protection.outlook.com [40.107.114.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6F53AA62;
-        Tue, 19 Apr 2022 07:53:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bLk4g1ZBsPf2lgnRZsPcpXOlbsfTa7x3kNt/d6Akrivu0TMJFdB/JQnyIEErhEGjF8+B/jsodyzWUv67X+pTChYQzNXBlSLyxt/L4YowRWIXCJuT2O/RfoQgWtrlRy2dB4Eb0H94iuPLuUc0h8KOyYpmLI3T+gMNbRl6s6xya2ZrWlzlpg1wmcvV7v/4HRvjf6knapjRpFEP2QSphR5vKYf3mCR2fOrg4bV0Y7aKmu7XlWFtFbReWeBwjwftqe0tdeHLebuBZMPJl378aZ+XyL0er6JFkVBX4ncNNJ4AVBY0iHhZZPOOuICNbsZhX0CUfEIeorVHm+DA/6asKeidJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XfBnPwEUV7TzIK5o338ku4i9W+Fo4KHPx9KQR0RFAIs=;
- b=NAR6GWPb+a0KhS02dBAKwr50VioKrTCBvTbQvxoZoZBn5ezptwqcABAmGwq+SGfnBTN++PqnPHqQCCkiEtw+9BPV0uWM9eaejlRN26hgXmh35vMIh7YsykY9DLJxm46mAN+hWJyh0lNOA4v7oX9afwqH0MaKNLOdorKYoXytCGi1iBXQdmFSuJIjfTQ82wjIBv01Pc0/7V5UlxWS6gCMZtoR82tFFNJkxqC90aFV3WQF3vYMFtulBrn2NO230v2X17LSxHAKwPxXbLb2sHHuN0gtzah65mNkcn1thtXaBzj3yu0YJcGvzWAGv5zvLW/Vslnb3I9mPRNuP6AewR1S2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XfBnPwEUV7TzIK5o338ku4i9W+Fo4KHPx9KQR0RFAIs=;
- b=o4g6FK/bPFMvNLI0f3ltPP3CVNpsaBl9s6ZdRdbMAyn4blJr/bGIde0fqV4zplmBtPy0oZ1gHrrLBab8xfLzbyYlCOEl4TvYr4ZbNDQO+ygIZazo4VWNlqbulJYlg70E6JjzimLHm9aFCE0u3M/S98eGNcvLXVZ2u2knvQMzouI=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSBPR01MB3256.jpnprd01.prod.outlook.com (2603:1096:604:16::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Tue, 19 Apr
- 2022 14:53:49 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b129:a6f3:c39e:98db]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b129:a6f3:c39e:98db%4]) with mapi id 15.20.5164.025; Tue, 19 Apr 2022
- 14:53:49 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
- DSI TX bindings
-Thread-Topic: [PATCH v2 1/2] dt-bindings: display: bridge: Document RZ/G2L
- MIPI DSI TX bindings
-Thread-Index: AQHYQnADgNCsAhZFrEWrZICvhJcRYaz3EcoAgABhqWA=
-Date:   Tue, 19 Apr 2022 14:53:48 +0000
-Message-ID: <OS0PR01MB5922605DD52515A67780AF4E86F29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220328064931.11612-1-biju.das.jz@bp.renesas.com>
- <20220328064931.11612-2-biju.das.jz@bp.renesas.com>
- <CAMuHMdWcsJDbbVrh9Uoe7Fv4o55_T=yNKh_ZGxzRgLzwURmYrQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWcsJDbbVrh9Uoe7Fv4o55_T=yNKh_ZGxzRgLzwURmYrQ@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7cf44514-0203-4e9c-86fc-08da2214697c
-x-ms-traffictypediagnostic: OSBPR01MB3256:EE_
-x-microsoft-antispam-prvs: <OSBPR01MB325685176A60A6047C256E3286F29@OSBPR01MB3256.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LaWpjw8jbourtxVdDtrr9B36LR5xynx1Vb+rCuVSkoMR1FSg3V6FMKyNxd07h0gYPCTpOtq1oUZF0Yht3y4apEkqihpctkO0D96s5J0leo4bUhW4zo/ibYlWQTSEZOeCQvGh3K6w37GiIEX6LP14RiJKqIxLU5uZNFT+Mwh8VOVS5Blc+7vNZsViFl9y60Ggb1iloamd7K3AbFwge3yDMgP9qXem61G4WknG1FwDqyPOK2vOqu5AYCNOyTAqluvhwJoLiBdhhED2KJBhQkQdDdt/oBLTvV+HaXjKoZWDtI1TFopyPDvpPfYg4hDpPSmg+4SVLKbE0QcbnxYPmDjQJw3nJnHGJXZRQoCmJCFUAhuUvv1avp5sLDVJPKt8n561dD/rr24PEdPK0V+HmOk29uRspjtocwXsjY+mJvUMbAvchuXAKcR09o/GPm3jUzLtqShH05Ibcgs2xNbO5COIIuuNhf+Pf7TlgO/H3cu/jq3xc9UAnmSUfBnCZni/CsaQLNTH0vKz4rjBtWzlGfe9HoM4mbutrFCxahT6rrgWShjp/2MUhTfINk1mLb8ge3WNcg5v2uYu5hvwMDYvngxRp6Hj1mi4Si7t1SV+Hnm4/9HuFyKJtcJRSr3mgG4QP8i3PbGdzfGnrDgip1OfqdQiTJ2nJB6v+XWfj+pQocOaS8eM/U2dYah0qPiL4854c238EZB4a3arMAVDb9BeXsb7Tw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38100700002)(53546011)(122000001)(6506007)(186003)(26005)(33656002)(54906003)(6916009)(9686003)(2906002)(316002)(508600001)(7696005)(86362001)(55016003)(8936002)(8676002)(76116006)(71200400001)(66476007)(66556008)(66946007)(66446008)(52536014)(64756008)(4326008)(5660300002)(38070700005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+NlyFCSET1RGyUjcgNEtnXF9FuONhmQZpQ0NY1dAUDEliCFWqQi3Be0Q4osh?=
- =?us-ascii?Q?rpRw5tyaGhlLZSlHtHa6IdCEr+h/hTonky6VQfckoCMnh+fcasNbI2plUKjR?=
- =?us-ascii?Q?R0jiTk0LKlyUNAYoAkp8lkC3LMjLaYUMgf5ur/9dIuI2I3UGf95hJ6XW/pqr?=
- =?us-ascii?Q?9tjxCdEvthojtnb0eYjk6jia2SLyS88MisLiUNtBrnIHvS9+c1AXLgJ4dAXl?=
- =?us-ascii?Q?p3SQENkCiRaNK2mx73kHVnnUGhxr+2S8F+9SxM64scrnPZI1fz7r8Vo29tNs?=
- =?us-ascii?Q?PWayNJyMvu5Bi/vPJyon5DnwXj7oBoHJPT2AiyPiWDXw4BHfTwcktf0jYZvS?=
- =?us-ascii?Q?nD2me+ckT20Q9Pz+03qecJ5HvHdVWye4+DFCflW1atsl4ECgOKA50WcJgZU2?=
- =?us-ascii?Q?U5BV3B7ATqpREmM7+FF2rg+7u5ABL6SAMFUmcdJGIn0Aalt70jHbLhbOSlqi?=
- =?us-ascii?Q?uC0Ignl8GSAIEX08tB/RElyNqXL0fs4AK28DOZWFeFPvvxr61Gw53xO5TkZD?=
- =?us-ascii?Q?e3s2KLKnPvqAtaUOcQvV3eNu6eGCBs+bMDo407ao/0Q3ra6I5QEsfbxUV6ru?=
- =?us-ascii?Q?7SiO89bYPEuc0A5XLWH0QWBNwHMgndnB0GNdLFy5jzgal7VoMzVm68C9iHhq?=
- =?us-ascii?Q?LLOl5NF43a9shEQyVNO6bgfiQq9GtgM+VGaeLm4r5/46txI0NMavKvma6IUm?=
- =?us-ascii?Q?RYmNfr5Nrf0oC5BmQUZugAG5Y5JBB+0aOM2AtSzfkn5AdsVg+ksEgg6KfZGS?=
- =?us-ascii?Q?bU2OESxBKpGQMf0pfYVChKDnmmWdKNmry2aFc6C7qlX7ktYb7897D5CEW0tc?=
- =?us-ascii?Q?Zq7UPUngNKXP6G33c1pbSo01pA6JoPZ+5p4NIWnf+CEgscYBhZ4d8hiN6Ub+?=
- =?us-ascii?Q?fQRXz8cmJkmtPvL2ASqHdsNotgpfq765D4wW+rt4O1kcxLm7tPZwUlxh1nt0?=
- =?us-ascii?Q?qqRzkhZL4ElBaAPr94AaJ5l/NSRSLAHxo4g1uyk3v5Q1L21uBww1zFQT5Pwg?=
- =?us-ascii?Q?Dv1XAyj4asll++QYm8sIqcbpXYUmhTWc/dRAGpcf1w/7k7AM7m+7OxOOdGQK?=
- =?us-ascii?Q?gvieYXMcQat1xDm7ssy6FiQHJCiJHFIeCmXmi2p6cwnJ1XN0QaLKRlCGBBk8?=
- =?us-ascii?Q?DrCHfZu1ZD0hXsFE2eiAyv73Ma6Z8MUZ7bE7YnghC9m0C8KhmnrO7+y+CB6q?=
- =?us-ascii?Q?xdBzR07Ik62c/eq6s1xNiJpRM/Qx6Cs0BetDZxPCjgjanTcXvgMCz1PaROyn?=
- =?us-ascii?Q?DAbXJmB15RX6npXshpsL7NDJ5El4r9lfwuxONATKwwU02XK+6pNpwLAf747P?=
- =?us-ascii?Q?+Rgr4hDUEbN2kwsDzaxu+4IzOiPdYC7xBhk4ioJB/lfZpdWD0QSXn4wbT5Yc?=
- =?us-ascii?Q?sqbROx1Vn0KdUorqMKTIfWeTznFJyCEbh/cs4Xx3o6/2XRosfr8PO62ozJ9l?=
- =?us-ascii?Q?3L1/ariD0mxDG3b88Lw2ib+gcjnk4S9LVX+6WvD3vtsAJtb9zQM9yGhPPvNX?=
- =?us-ascii?Q?ntDRez3tTAH5fN/QrDgU9xBxOSyPwcUsWOuZU9ONLiYP3Xh5A5dzhYRn9Axa?=
- =?us-ascii?Q?NlH5cvRx1EWYAedzIppnuo34NFtvLh7qsVuILF1qxbyWBX8AIfvhBZn6ZsIV?=
- =?us-ascii?Q?yGOa6SZWqZRgYOVLasfGE86pPtlJIU6hsc0XFcPZaNsKJr+RrrtYHRARoZI4?=
- =?us-ascii?Q?k+9Egs9/xJy67CcGdCpueVJxCbOlZIODYhUddMRPeEAyqLjC1Mqx/NyX4d9q?=
- =?us-ascii?Q?n1aWW2kZIDYizZgwXI8XwH8bDHpw1Dg=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1347431AbiDSPBU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:01:20 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6C53B291;
+        Tue, 19 Apr 2022 07:58:36 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id m15-20020a7bca4f000000b0038fdc1394b1so1756755wml.2;
+        Tue, 19 Apr 2022 07:58:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7ghNXW0NodixkgL8T98CLlpDZH/0jSgrfBNvM5ej23s=;
+        b=hlZSGMyqcDPTQx6RmtGj1koskcBFnvovRkA/NkQQc1kdKfUCK/xvxNwK2/QMga//vt
+         gvgPCxHQlSAHj+yHIujC+BRmhj1gLP7ekLjV7ZD7NrecJ3BdrZHOw6YBvn/B6cItuKKf
+         MdBYEq0rFmbIYogIZIjdsOO2THvp40Dfj3qsPVPkMBNI2i35smPdCI7UEoXt/JwhcW9Q
+         gx7Jeu3EnBQWxS746ict9bmJuk74OzwMEBkyzbwQJSY3huu8lXCtxwI5vk9YhVDeGMl8
+         YXCw7i4742XSHTgAlzm+90dybKw5PvgRAAqbic2G3krhErrfckVz+/ESYOyynHb2tL31
+         7WQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7ghNXW0NodixkgL8T98CLlpDZH/0jSgrfBNvM5ej23s=;
+        b=VMjp19DdLLqWSND5jusfj1xKB28lSmOkBMtoOHWHMAjhX+T7wtHDvR5GQCpl47E4P9
+         jgpctFIcg/aKH1Jq0U9LbyPgrtUqcAi4hJOKggFmYBMFAQv51zrCWrcYqTjN6ymxIp7g
+         kuFjMyZaL8nhYtcpf6ZZuAX3/LMxOCNXAOpiyHSK20/60jO0FNL96r4TRqoIXtUyKImT
+         EHaK1n2jARLpUqdnc3+Ebrh7Sq422xngOuf0GQk+AWlugZMSQLhQfjMmtqj/kBk/tJIv
+         EogauValPMCPmopqdcSPDj2WndmPgrwdRpZQbS7LoACeIpIapLnhTBDeZwnzsfVH2Bws
+         xA4g==
+X-Gm-Message-State: AOAM532ezfeRFVbqrmPjnOvcjJ4tKXGRJl7MVQCRw71WXWJ3ZTjZ1dNu
+        lOUQZReqIk1iRYxRAWFXKIg=
+X-Google-Smtp-Source: ABdhPJybiVLTSTP7L0aETG6uMJhUECVA5p62Vy3/QCjle5pk3JlVskw99zgtPeLU158U++lWgJMu7w==
+X-Received: by 2002:a05:600c:3785:b0:38e:bca8:f0c1 with SMTP id o5-20020a05600c378500b0038ebca8f0c1mr19958744wmr.56.1650380314825;
+        Tue, 19 Apr 2022 07:58:34 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id p3-20020a5d59a3000000b0020a9132d1fbsm6605119wrr.37.2022.04.19.07.58.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 07:58:34 -0700 (PDT)
+Message-ID: <83a7f222-f62c-fa47-9370-f9b709c3110e@gmail.com>
+Date:   Tue, 19 Apr 2022 16:54:30 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7cf44514-0203-4e9c-86fc-08da2214697c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Apr 2022 14:53:49.0180
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Zd5dmG/RpxxmgGqOOq2ZSFvLDniRd3CKtdzKhkVv78Fz1Rub9WnP0RkzehAbekWnJKsnhqwUrfC7UCxFpdfFrg3XpSgdAJmnrKzjI4w5zt0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3256
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/5] dt-bindings: arm: mediatek: mmsys: add power and gce
+ properties
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
+        jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220419033237.23405-1-rex-bc.chen@mediatek.com>
+ <20220419033237.23405-2-rex-bc.chen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220419033237.23405-2-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-Thanks for the feedback.
 
-> Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Document RZ/G2L
-> MIPI DSI TX bindings
->=20
-> Hi Biju,
->=20
-> On Mon, Mar 28, 2022 at 8:49 AM Biju Das <biju.das.jz@bp.renesas.com>
-> wrote:
-> > The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's.
-> > It can operate in DSI mode, with up to four data lanes.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->=20
-> Thanks for your patch!
->=20
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yam
-> > +++ l
-> > @@ -0,0 +1,175 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +
-> > +title: Renesas RZ/G2L MIPI DSI Encoder
-> > +
-> > +maintainers:
-> > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > +
-> > +description: |
-> > +  This binding describes the MIPI DSI encoder embedded in the Renesas
-> > +  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode,
-> > +with
-> > +  up to four data lanes.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/display/dsi-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - renesas,rzg2l-mipi-dsi # RZ/G2L and RZ/V2L
->=20
-> Do you want to define SoC-specific compatible values, or can the IP
-> revision be read from the hardware?
+On 19/04/2022 05:32, Rex-BC Chen wrote:
+> From: "jason-jh.lin" <jason-jh.lin@mediatek.com>
+> 
+> Power:
+> 1. Add description for power-domains property.
+> 
+> GCE:
+> 1. Add description for mboxes property.
+> 2. Add description for mediatek,gce-client-reg property.
+> 
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
 
-There is no IP revision register for DSI. "rzg2l-mipi-dsi" is generic
-Compatible for both RZ/G2L and RZ/V2L.
+Applied, thanks.
 
-So I can add SoC compatible for both these SoC's along with generic one.
+Matthias
 
-Regards,
-Biju
-
->=20
-> The rest LGTM (I'm no MIPI-DSI expert), so
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->=20
-> Gr{oetje,eeting}s,
->=20
->                         Geert
->=20
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-
-> m68k.org
->=20
-> In personal conversations with technical people, I call myself a hacker.
-> But when I'm talking to journalists I just say "programmer" or something
-> like that.
->                                 -- Linus Torvalds
+> ---
+>   .../bindings/arm/mediatek/mediatek,mmsys.yaml | 31 +++++++++++++++++++
+>   1 file changed, 31 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index b31d90dc9eb4..6c2c3edcd443 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -41,6 +41,30 @@ properties:
+>     reg:
+>       maxItems: 1
+>   
+> +  power-domains:
+> +    description:
+> +      A phandle and PM domain specifier as defined by bindings
+> +      of the power controller specified by phandle. See
+> +      Documentation/devicetree/bindings/power/power-domain.yaml for details.
+> +
+> +  mboxes:
+> +    description:
+> +      Using mailbox to communicate with GCE, it should have this
+> +      property and list of phandle, mailbox specifiers. See
+> +      Documentation/devicetree/bindings/mailbox/mtk-gce.txt for details.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +
+> +  mediatek,gce-client-reg:
+> +    description:
+> +      The register of client driver can be configured by gce with 4 arguments
+> +      defined in this property, such as phandle of gce, subsys id,
+> +      register offset and size.
+> +      Each subsys id is mapping to a base address of display function blocks
+> +      register which is defined in the gce header
+> +      include/dt-bindings/gce/<chip>-gce.h.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    maxItems: 1
+> +
+>     "#clock-cells":
+>       const: 1
+>   
+> @@ -56,9 +80,16 @@ additionalProperties: false
+>   
+>   examples:
+>     - |
+> +    #include <dt-bindings/power/mt8173-power.h>
+> +    #include <dt-bindings/gce/mt8173-gce.h>
+> +
+>       mmsys: syscon@14000000 {
+>           compatible = "mediatek,mt8173-mmsys", "syscon";
+>           reg = <0x14000000 0x1000>;
+> +        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
+>           #clock-cells = <1>;
+>           #reset-cells = <1>;
+> +        mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
+> +                 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
+> +        mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
+>       };
