@@ -2,70 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE968506D99
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1076506F54
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 15:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345945AbiDSNit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 09:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33392 "EHLO
+        id S244742AbiDSNss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 09:48:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244976AbiDSNis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:38:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4017C377C4;
-        Tue, 19 Apr 2022 06:36:06 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 497021F4196E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1650375365;
-        bh=l0PW7e+6W+aaMzk2U8nvs+mNTAlvq/0lMKfGCn5v1qo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lN4vsatvsaxNRST52TP7FxX+njdf8wsKm1XU7qdEqyhqhvJKCdPhSqsDATugOCz3Z
-         iQO4acUTT/i1lcBQx1+3gkwnBStD3gP1xRfD4/VfjWjiZqYVMcamKk9/BDuQ2W8WqA
-         eiAmym8AGy1rffeU01ZOZcpcMzZv8AMLm1TnBPDSo6kH5Qn1rh8pC6gROrlx7ksm4E
-         vNbVWqC6064eoSOGweSFBsmP+9x3p7r3U73Jvl0fni4GWGe2kpGy2/PAAP/mPJZ4mh
-         NZBq74/gHzc6evdgfQXDfFT09qnfTta7Qq/6km31D3Qof7JjQomWe0aFLPjg1VnFqi
-         OFW1tr+6lp4wQ==
-Message-ID: <3448a113-3ea3-08bb-950a-16c2ac6eec75@collabora.com>
-Date:   Tue, 19 Apr 2022 15:36:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v16 1/6] soc: mediatek: mutex: add common interface for
- modules setting
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S1353139AbiDSNsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 09:48:01 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CB43A5C9;
+        Tue, 19 Apr 2022 06:42:20 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23JDgAsL007652;
+        Tue, 19 Apr 2022 08:42:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650375730;
+        bh=6u5OzHm650uRgkq7Q7+1hxGe8Px5M4Ftl9cgXSFADM0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=y3MnyMXjskSOvQkSEQfpGxuFNd6nOT9Z4jnt3vlzOP5O98Udj4Xu4KTJJpzz/r1T0
+         1DzO5BIHWu8JBB9GWJVnu10OzXAyXn1CCFHkq6SfB0/fNopTBab3xS/PrY31jVT5N7
+         AFd8+pLQ6o64KVA3/tXBO6EirdlzbeyIhqoQpO4Q=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23JDgAD7071254
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Apr 2022 08:42:10 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
+ Apr 2022 08:41:05 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 19 Apr 2022 08:41:05 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23JDf5uU094587;
+        Tue, 19 Apr 2022 08:41:05 -0500
+Date:   Tue, 19 Apr 2022 08:41:05 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
-        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
-        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
-        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220418083018.1907-1-moudy.ho@mediatek.com>
- <20220418083018.1907-2-moudy.ho@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220418083018.1907-2-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH 0/2] arm64: ti: k3-am62: Introduce DT nodes for basic
+ peripherals
+Message-ID: <20220419134105.6fi7byk6plckfx3f@bryanbrattlof.com>
+References: <20220415131917.431137-1-vigneshr@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20220415131917.431137-1-vigneshr@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,18 +69,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/04/22 10:30, Moudy Ho ha scritto:
-> In order to allow multiple modules to operate MUTEX hardware through
-> a common interfrace, a flexible index "mtk_mutex_table_index" needs to
-> be added to replace original component ID so that like DDP and MDP
-> can add their own MUTEX table settings independently.
+On April 15, 2022 thus sayeth Vignesh Raghavendra:
+> Add nodes for McSPI, OSPI, MMC, DMA and CPSW eth switch
 > 
-> In addition, 4 generic interface "mtk_mutex_set_mod", "mtk_mutex_set_sof",
-> "mtk_mutex_clear_mod" and "mtk_mutex_clear_sof" have been added, which is
-> expected to replace the "mtk_mutex_add_comp" and "mtk_mutex_remove_comp"
-> pair originally dedicated to DDP in the future.
+> Bootlog:https://gist.github.com/r-vignesh/b2fb23da7c589394f56ce08fd00a155b
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Vignesh Raghavendra (2):
+>   arm64: dts: ti: k3-am62: Add more peripheral nodes
+>   arm64: dts: ti: k3-am625-sk: Enable on board peripherals
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Looks great to me!
 
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+
+~Bryan
