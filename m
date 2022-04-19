@@ -2,186 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31692507C19
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 23:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 890CE507C29
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 23:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352562AbiDSVvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 17:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42552 "EHLO
+        id S1354580AbiDSVyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 17:54:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346095AbiDSVvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 17:51:19 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 11FE93FDA1
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:48:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1650404915;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tOWD5uHxwjIw4P4KTgLk1c7Fc4yJRbBCDK06WY08/Ts=;
-        b=FAUmgzu72tSxk3WOPP53YnRGSBhp3YB2uXd78pWoudAkj6JxtnmzIcFuGqgL2ZPJxA/PyI
-        v68HYma6Gzd4tJwwmNr5/GmvXUCtRowBpSn4Co5+OZBM0c9txuhsnpmddQ/nTXfwbNKoOv
-        k7lbDxg4HGupQTiVS3iukX377Q9v49s=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-562-6tVvrNdzNYCxi9zsgbJFDw-1; Tue, 19 Apr 2022 17:48:34 -0400
-X-MC-Unique: 6tVvrNdzNYCxi9zsgbJFDw-1
-Received: by mail-wm1-f70.google.com with SMTP id k66-20020a1ca145000000b003928959f8efso1220113wme.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:48:33 -0700 (PDT)
+        with ESMTP id S1350809AbiDSVyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 17:54:33 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E323B01B
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:51:49 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id z8so66334oix.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:51:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=W+ceGgRR9zvwWmU1mtTfUVYRnyt1qpRV5SmsSw2sDBA=;
+        b=Q+af+xzsDFwSor0xAYNzh9AJT88R/P1yQNazf6uwd1Rtl+HJJbQeOLC9jGFQrPCJZG
+         n5U1DYLFx8ndTzauAH4LmADNrnE2/Az3wycBp1mpPLXjijpLDwy5yUtp9Mz+iQZ95NIN
+         P12R8uSbkkL2T7C+Gy0IkdwPksu/cRceKU+ir0fez65bOBXqJN9EfTqgYzAOu/ePwxjP
+         hzK+m4GDtnODkU9N2Kc3aWq6jUtSyYPMIMgTdcNmvea36uJz8ibcYbJpaszRuaaSgcrf
+         07JJP4ibUqoCdFleXmJIKt45auXCzpXv9yfx3GThrhPH5MlWhU3pv4ZRIRWFxT9F6v1K
+         hbDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tOWD5uHxwjIw4P4KTgLk1c7Fc4yJRbBCDK06WY08/Ts=;
-        b=vtz/4I4y1xmZswfYG1WoJMEuwSODxKuwlkK7ktInYQxfOmrTL/Sx/6NVPK6L+1TzJK
-         voTUu7bWpZyZCsvatYqkmwsXN5PZ1BFQnwdMacco9TvFboJAVsgNUDmaWEcvQZZzksJn
-         lYZvTuhOd6s5aRetxIo7vClP3ZAeV5M0O7zNtUE41bNXYN+BHaNFMy10+brNP2euDEAt
-         4Q0xQk8vxZnWVZbiGPtQISz5qxYR6LtlzNnH77VxrOTeainXIT8ZAOoKQamvAORjKby4
-         dlZUHGiM7AX80PDDxapWElcu3kkwvySdZ6BO1OfQu7FkjznSKr+9aglyW1YmtvXCC3Sx
-         u/KA==
-X-Gm-Message-State: AOAM530CNJmhLuZU48N0Kek6Z7qF/13av5/bzxaNL7yh1tbNuOo4RCXa
-        joCAzb01hNwqmTH0Hk8bve9gmBAM7nBb6EsauQDwIU3yeyPQiEv9gdhq2DAQ1lr4yrGPozFdhd2
-        7UAo6y1KulKE1Wz+DTTUAHQ==
-X-Received: by 2002:a5d:4e4c:0:b0:207:a883:cf3a with SMTP id r12-20020a5d4e4c000000b00207a883cf3amr13440366wrt.534.1650404912800;
-        Tue, 19 Apr 2022 14:48:32 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxtK/nKbkXvYZOyVAfoxwqPAU4d5VNvQn2+OPjUudoKqzOB3izC+Q3htlXoreIBc6gm8H2luw==
-X-Received: by 2002:a5d:4e4c:0:b0:207:a883:cf3a with SMTP id r12-20020a5d4e4c000000b00207a883cf3amr13440351wrt.534.1650404912596;
-        Tue, 19 Apr 2022 14:48:32 -0700 (PDT)
-Received: from minerva.home ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id i7-20020a5d5587000000b00207a8cde900sm13333699wrv.19.2022.04.19.14.48.31
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W+ceGgRR9zvwWmU1mtTfUVYRnyt1qpRV5SmsSw2sDBA=;
+        b=KdVh+d+fEfNu5/8djBcTnMVtl3NHymTbUxzJaXp9/ly2Ecedlof+jrxUoQkNdeiOHb
+         LYoBFAfnBn4DpQL0zrA17Mrs7HJDUimx1/ZhDUFtZ2+Xww4m2hbxd+l8oDvoHIgjq9xg
+         2mSOST8ogPUZijp2SMFX4w1HStoB3DHTrJznseWOk43uZRaiafYqDz6TUTPZhFbMTHJq
+         Zv7HE3BngrudVP1vh4WeunXdmVdLiN3DYr3zsQL1NFsMrPrnNDULGxUNW4t5e6EOE1eE
+         q2ur+HPPvgoLu0H2IMlrdJE5j4d38gACZcM43iE7NLmaetEzWUyrFNB4zb+cTdbxGU/x
+         6gtg==
+X-Gm-Message-State: AOAM5322MS2t9ZfGxFPVNE320xDNhn7r831R2oqmK0q/K4LDdgYzFL1R
+        48FSMkxkZdUd+YPhdJ8pDCQV9g==
+X-Google-Smtp-Source: ABdhPJzvvmK1GDuA2/E6+cgyylCSq27IUoOJiC38CXVKFktMRKfPV/+nEQLAFY6j7CSQISgw0z5esA==
+X-Received: by 2002:a05:6808:13d2:b0:322:73bd:400e with SMTP id d18-20020a05680813d200b0032273bd400emr291467oiw.97.1650405108711;
+        Tue, 19 Apr 2022 14:51:48 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id pi9-20020a0568704c8900b000e58cd8146csm4929408oab.34.2022.04.19.14.51.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 14:48:32 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     dri-devel@lists.freedesktop.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 2/5] dt-bindings: display: ssd1307fb: Extend schema for SPI controllers
-Date:   Tue, 19 Apr 2022 23:48:20 +0200
-Message-Id: <20220419214824.335075-3-javierm@redhat.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220419214824.335075-1-javierm@redhat.com>
-References: <20220419214824.335075-1-javierm@redhat.com>
+        Tue, 19 Apr 2022 14:51:48 -0700 (PDT)
+Date:   Tue, 19 Apr 2022 16:51:46 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        shawn.guo@linaro.org, jun.nie@linaro.org, benl@squareup.com,
+        jwillcox@squareup.com, jgates@squareup.com, mchen@squareup.com,
+        zac@squareup.com
+Subject: Re: [PATCH v1 4/4] arm64: dts: Add msm8939 Sony Xperia M4 Aqua
+Message-ID: <Yl8u8v0QOk2rfNwE@builder.lan>
+References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
+ <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Solomon SSD130x OLED displays can either have an I2C or SPI interface,
-add to the schema the properties and examples for OLED devices under SPI.
+On Mon 18 Apr 20:09 CDT 2022, Bryan O'Donoghue wrote:
 
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-Acked-by: Mark Brown <broonie@kernel.org>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
+> Add a basic booting DTS for the Sony Xperia M4 Aqua aka "tulip".
+> 
+> Tulip is paired with:
+> 
+> - wcn3660
+> - smb1360 battery charger
+> - 720p Truly NT35521 Panel
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../qcom/msm8939-sony-xperia-kanuti-tulip.dts | 489 ++++++++++++++++++
+>  2 files changed, 490 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 5b8a0eb34733..3ac7f6876c09 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-10.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-101.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-octagon-talkman.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> new file mode 100644
+> index 000000000000..336969f16bc9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> @@ -0,0 +1,489 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2015, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Bryan O'Donoghue.
+> + *
 
-(no changes since v4)
+Same comments as the other baord dts; please drop the GPL license text
+here, don't use underscore in node names and please sort the labels
+alphabetically.
 
-Changes in v4:
-- Add a description for the dc-gpios property for SPI (Geert Uytterhoeven)
-
-Changes in v3:
-- Add a comment to the properties required for SPI (Geert Uytterhoeven)
-
-Changes in v2:
-- Don't add compatible strings with an "-spi" suffix (Geert Uytterhoeven)
-
- .../bindings/display/solomon,ssd1307fb.yaml   | 42 ++++++++++++++++++-
- 1 file changed, 40 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-index 7653b6c3fcb6..3fbd87c2c120 100644
---- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -38,9 +38,20 @@ properties:
-   reset-gpios:
-     maxItems: 1
- 
-+  # Only required for SPI
-+  dc-gpios:
-+    description:
-+      GPIO connected to the controller's D/C# (Data/Command) pin,
-+      that is needed for 4-wire SPI to tell the controller if the
-+      data sent is for a command register or the display data RAM
-+    maxItems: 1
-+
-   vbat-supply:
-     description: The supply for VBAT
- 
-+  # Only required for SPI
-+  spi-max-frequency: true
-+
-   solomon,height:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     default: 16
-@@ -220,14 +231,14 @@ examples:
-             #address-cells = <1>;
-             #size-cells = <0>;
- 
--            ssd1307: oled@3c {
-+            ssd1307_i2c: oled@3c {
-                     compatible = "solomon,ssd1307";
-                     reg = <0x3c>;
-                     pwms = <&pwm 4 3000>;
-                     reset-gpios = <&gpio2 7>;
-             };
- 
--            ssd1306: oled@3d {
-+            ssd1306_i2c: oled@3d {
-                     compatible = "solomon,ssd1306";
-                     reg = <0x3c>;
-                     pwms = <&pwm 4 3000>;
-@@ -238,3 +249,30 @@ examples:
-                     solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
-             };
-     };
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ssd1307_spi: oled@0 {
-+                    compatible = "solomon,ssd1307";
-+                    reg = <0x0>;
-+                    pwms = <&pwm 4 3000>;
-+                    reset-gpios = <&gpio2 7>;
-+                    dc-gpios = <&gpio2 8>;
-+                    spi-max-frequency = <10000000>;
-+            };
-+
-+            ssd1306_spi: oled@1 {
-+                    compatible = "solomon,ssd1306";
-+                    reg = <0x1>;
-+                    pwms = <&pwm 4 3000>;
-+                    reset-gpios = <&gpio2 7>;
-+                    dc-gpios = <&gpio2 8>;
-+                    spi-max-frequency = <10000000>;
-+                    solomon,com-lrremap;
-+                    solomon,com-invdir;
-+                    solomon,com-offset = <32>;
-+                    solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
-+            };
-+    };
--- 
-2.35.1
-
+Thanks,
+Bjorn
