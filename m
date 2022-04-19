@@ -2,92 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ADF95070C9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 006BA5070CB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 16:40:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348320AbiDSOmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 10:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
+        id S1351453AbiDSOnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 10:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241817AbiDSOmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:42:19 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC8592182F;
-        Tue, 19 Apr 2022 07:39:36 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id ks6so33423529ejb.1;
-        Tue, 19 Apr 2022 07:39:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id;
-        bh=Vm7RTk/Mv1vHHQ4KaJPZgmLpXMl/IX6zUC3ItkEAIYE=;
-        b=MlC8KGaSvLxyV+q+Ss4n6GqSwnHi+ZX2ahDuiSAthbR1WqYa3ys7fYouLQRM3y4TVi
-         2GKLHLxemn8ibWX+JZKzQ/q1fRfUG0/liDasv7DEaLRZryRCGWKPJ/r60U/KPrKwYkbV
-         Rs7WGLuHo3SSmE8sDQ8GY47g8fmBqAXfjtX3NZSGvmtn3jUZfjghVRQ/MpQQxsOxSJ/7
-         YOIrVwDmlEN85G4cxjAqrNWXAAib2QaIfNFG0LB8DLKNEP5QOrxHmeNAR5cj5bCBoVPV
-         GGcw75B1f+Ni09wfpL1w8Yb+axPgsdsmkiT5Ik4Qwi2XBKjHNkOZe8FAxDjfR5WbsX4d
-         +lKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=Vm7RTk/Mv1vHHQ4KaJPZgmLpXMl/IX6zUC3ItkEAIYE=;
-        b=TfZYPYkafVN8h8CGyrnZOvGDoSlf4ExyV1L4YGdbtff8J9y9mTDkXKxj3RHYRBHO95
-         0TZLmMBviFguYGTyO0sVf/3PX4OtXRh31XKE7TpQHN1HQwF4Q9g1kz2brAfINiqOPiQr
-         FI3kqjJdNy6xJa70X+DbGl0iWyhjvn+CVfW35GUopkj+/JpHGG8ObmGvdXbyeg3CUB38
-         Yd7GE+KJ92BDKC2OTssNCTQTZgL3SnvlMU8Paj//PWFfs88DRmCfcc/irGOKP1qOQtwG
-         LN9W/jVMW8Q+z+h5HZzRHUr9MrDlfai7hvoKuuV7mfxR1yEZNkUC4ebodIOOI67xsUTP
-         5EQA==
-X-Gm-Message-State: AOAM532PMR/EP9i1tTg7NNE0I4c8KNiJPxEG/3qOKdfeAwfwvq3tQmgE
-        wZcIiHH+WNL9w+XgZgIBtlwgiqwHBgI=
-X-Google-Smtp-Source: ABdhPJzCovK5Rvj39SqwGyrYzyY44VafeZnfHJA/W9CIZYHNC8H5KwFR5M2xP3zllZLGCvUOw2k0eg==
-X-Received: by 2002:a17:907:9482:b0:6da:a24e:e767 with SMTP id dm2-20020a170907948200b006daa24ee767mr13967628ejc.479.1650379174943;
-        Tue, 19 Apr 2022 07:39:34 -0700 (PDT)
-Received: from development1.visionsystems.de (mail.visionsystems.de. [213.209.99.202])
-        by smtp.gmail.com with ESMTPSA id kw5-20020a170907770500b006db075e5358sm5775043ejc.66.2022.04.19.07.39.34
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 19 Apr 2022 07:39:34 -0700 (PDT)
-From:   yegorslists@googlemail.com
-To:     linux-omap@vger.kernel.org
-Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org,
-        Yegor Yefremov <yegorslists@googlemail.com>
-Subject: [PATCH] ARM: dts: am335x-baltos: update MPU regulator range
-Date:   Tue, 19 Apr 2022 16:39:23 +0200
-Message-Id: <20220419143923.25196-1-yegorslists@googlemail.com>
-X-Mailer: git-send-email 2.17.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S241817AbiDSOnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 10:43:03 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4947A205E8
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 07:40:20 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D242F83CF3;
+        Tue, 19 Apr 2022 16:40:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650379218;
+        bh=hDwfhY/HpPxbc/begCdgWtM53seWsGCI4w+qpBFpdVk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Uj9qcmf/ELviyuYREIY0CFcTCn77IAd/IPOIkP20AFmpGLbjB855SViux029w0csd
+         7mbjpSbRCdeNHb2j2DQ/rFkEXArXrPACgrt9bzeE3ROINlE1nowUBagKGzsrel2Jgm
+         e3eJCpZ2gqC7ka+qyWwp3Hh7UBesrjKs9G/Dd5O76J+0dk7jWscRuf+l9F8qHr5Lpe
+         hXz/pS2FcSSXwWmcz9gS5N6bYFk8/E+L+09BNtwg94P3qtbPYU3cBb9UijWd/9CCbd
+         GslUvl+EGr+rBI/8747KnedN5F9P7zR7O+AMvGibJc96zfgJLPCjCSj2aQqqRkJGu1
+         De/oC6l0eSP2g==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
+        Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: display: bridge: lt9211: Add Lontium LT9211 bridge driver
+Date:   Tue, 19 Apr 2022 16:39:57 +0200
+Message-Id: <20220419143958.94873-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yegor Yefremov <yegorslists@googlemail.com>
+Add bindings for Lontium LT9211 Single/Dual-Link DSI/LVDS or Single DPI to
+Single-link/Dual-Link DSI/LVDS or Single DPI bridge. This chip is highly
+capable at converting formats, but sadly it is also highly undocumented.
 
-Update the max MPU voltage range to align with the maximum
-possible value allowed in the operating-points table, which is max
-target voltage of 132500 uV + 2%.
-
-Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
 ---
- arch/arm/boot/dts/am335x-baltos.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+V2: - Fix up s@i2c10@i2c@ in binding example
+    - Add RB from Rob
+---
+ .../display/bridge/lontium,lt9211.yaml        | 117 ++++++++++++++++++
+ 1 file changed, 117 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
 
-diff --git a/arch/arm/boot/dts/am335x-baltos.dtsi b/arch/arm/boot/dts/am335x-baltos.dtsi
-index 366702630290..d3eafee79a23 100644
---- a/arch/arm/boot/dts/am335x-baltos.dtsi
-+++ b/arch/arm/boot/dts/am335x-baltos.dtsi
-@@ -285,7 +285,7 @@
- 			/* VDD_MPU voltage limits 0.95V - 1.26V with +/-4% tolerance */
- 			regulator-name = "vdd_mpu";
- 			regulator-min-microvolt = <912500>;
--			regulator-max-microvolt = <1312500>;
-+			regulator-max-microvolt = <1351500>;
- 			regulator-boot-on;
- 			regulator-always-on;
- 		};
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+new file mode 100644
+index 0000000000000..9a6e9b25d14a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/lontium,lt9211.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lontium LT9211 DSI/LVDS/DPI to DSI/LVDS/DPI bridge.
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++description: |
++  The LT9211 are bridge devices which convert Single/Dual-Link DSI/LVDS
++  or Single DPI to Single/Dual-Link DSI/LVDS or Single DPI.
++
++properties:
++  compatible:
++    enum:
++      - lontium,lt9211
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to active high RESET pin.
++
++  vccio-supply:
++    description: Regulator for 1.8V IO power.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Primary MIPI DSI port-1 for MIPI input or
++          LVDS port-1 for LVDS input or DPI input.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Additional MIPI port-2 for MIPI input or LVDS port-2
++          for LVDS input. Used in combination with primary
++          port-1 to drive higher resolution displays
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Primary MIPI DSI port-1 for MIPI output or
++          LVDS port-1 for LVDS output or DPI output.
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Additional MIPI port-2 for MIPI output or LVDS port-2
++          for LVDS output. Used in combination with primary
++          port-1 to drive higher resolution displays.
++
++    required:
++      - port@0
++      - port@2
++
++required:
++  - compatible
++  - reg
++  - vccio-supply
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      hdmi-bridge@3b {
++        compatible = "lontium,lt9211";
++        reg = <0x3b>;
++
++        reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
++        interrupts-extended = <&tlmm 84 IRQ_TYPE_EDGE_FALLING>;
++
++        vccio-supply = <&lt9211_1v8>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++
++            endpoint {
++              remote-endpoint = <&dsi0_out>;
++            };
++          };
++
++          port@2 {
++            reg = <2>;
++
++            endpoint {
++              remote-endpoint = <&panel_in_lvds>;
++            };
++          };
++        };
++      };
++    };
++
++...
 -- 
-2.17.0
+2.35.1
 
