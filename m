@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 881EF50660C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC02506615
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 09:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349456AbiDSHka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 03:40:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60476 "EHLO
+        id S240545AbiDSHmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 03:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349451AbiDSHka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:40:30 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1694223155
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:37:48 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id v4so20115065edl.7
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:37:48 -0700 (PDT)
+        with ESMTP id S244454AbiDSHl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 03:41:56 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528C523171
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:39:14 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id l7so31139796ejn.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 00:39:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yT6EUKmSqiEGrbP4N0bYTSlk6uDr2husvMlBwTarc14=;
-        b=oESzlwMe4qJx6PkKZ8Nr+xaGNaoz0I1C/zQz/+xq821OHmUr0SaaZZYBTTyunOkwTf
-         FMD1/pwAG6bCuMJat+zkSPg5n5OVeYft77CqsYYaohcX4wuxJaFls8bP6DOskSBd/fQA
-         EVeIcNRNYTjgYkbcLFygXB8RQaBvBgwrqEm2VDyt59c78dNJsF2O9qpzJdvFSrfnMZ6L
-         QTEnnrlXdHHRQW33Aw0QOVdi8vy6btUL6pRtpxAWDQ6dGddxMT9zlCez7AzH3s0ikbcu
-         ssN3mZzkc4+KQcfF+W6IcUKdJZJxr0CI799y4L382EUwf50g+eoVnxNoxI/PiCKyJhOk
-         hb8w==
+        bh=VLisSl5U+vKxlHEi2jsM/uSr3AGr/yP0sJybyysl56g=;
+        b=yhRa2r+h7pBhcGnBWVIHpJG0E/SOWXoqFnTw3vVkDbqAu2k06J9tva1bu9Gzy8svwt
+         RDDOtKw6Ax76s6d+eUgDVvNOJts+MrTULL2DFF1sVFbCO14c9JuYFZlE+tQ6OaWWj4rJ
+         MDh/hhm3ARFz9nSIV+ApMaBnQGHNzRCs8RpWSwS5opbK18cvqlOusgki1VmUAbAAGtP/
+         uNywTFQym1ZSuYElrz3xe9L+S11YOIR08iBK8Ys7gyMCv9pTP3l0RVEEOaRzP1nyDusP
+         TYNKOb5jFi2s31EkaE4C2CywX/eqzb/G0IkYH5t+A7zydquSQYhsnbvwVyPWT3JvBkE3
+         fi6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yT6EUKmSqiEGrbP4N0bYTSlk6uDr2husvMlBwTarc14=;
-        b=XwjCWvA0JWusdW70HYVd/bBOI+TJlNqDKqxljId/PAUq4wNAexCCReW4nHO9TSS3sP
-         /L0WWnGoZYT0y0K2bMAKptMc5bLysZxy86IxYLh9+YGJ3XzJwBcOmJPso6bGErDyB5p7
-         KfcnEKoXM/HzmCz9lTe0tom0SeIxlZ/2SJggAzY4jg1odeQkDtF3BZAhbOxSyKY7Qrms
-         WXVhvrRyQG6yQ9itYQ1vV7GQkGLoZ7PFbpgSI4nV6u8qCJlG0GLv+hue5UyGktvcdd1V
-         Vy5BoS1sREc0zLxvPVnjzed/Bah/fqFFEPhmElB0wuPK9Ji77dMezOthje27S1xHlfLa
-         lTeQ==
-X-Gm-Message-State: AOAM530p9oipe0XGnZegCUs7a87dFXfkkwdPiYHH3sJIgHOpXh+Jzs6f
-        2sKqwb0m6mcPpsOtj1JisdDVBw==
-X-Google-Smtp-Source: ABdhPJy0UNi3XUJDgMW4NFNxXJ9DvThqGjEAKp4ZhYCkikzz8jJsqBSmHmpWm6hNq/7FqpUSfkaD1g==
-X-Received: by 2002:a05:6402:1cc1:b0:413:2cfb:b6ca with SMTP id ds1-20020a0564021cc100b004132cfbb6camr15695999edb.265.1650353866638;
-        Tue, 19 Apr 2022 00:37:46 -0700 (PDT)
+        bh=VLisSl5U+vKxlHEi2jsM/uSr3AGr/yP0sJybyysl56g=;
+        b=C0dwj3M//m2HCcShvCyhCHUq/PhlouAIjXHzBjTGousQO/RfLwEUFzEM/VDwiZ9TnK
+         yZX7YOwYRUjkME6+U4lXTiqidxmxq3hjymEuVqT0mSn2I6vNioEdIfbADm6emsgOe/dy
+         m4Vkg1lFGSDKxaH33Mj54QMoEQy51ta1R5SP4E2uLKealWZ1vMJ2IQRfQJbHjPLD82wB
+         emz3hs27rEkhk0XfXc8d0nQtLdANBV7/oF0gYBb5JivhMLrGKSahcUJ7nd2SbxdY42FV
+         NFWKdjyXNfUrRI5YFGaymlNrHMlIQhaN7tARZLECR52i8ieQtQxI6B1ue/LEhtETEbK7
+         lvNw==
+X-Gm-Message-State: AOAM530+ocdK5N2JI21ERzv5mbqeBWaWMye1gYe9wFsXI6AqsB4Smk07
+        6ZIIcu9g/Z0aFMt2bxrox3VdOlELFG32cg==
+X-Google-Smtp-Source: ABdhPJxYJtMgm7zv2VVxzftlKaF5M9cx1/oldQIn65xu7uNBz/9QCwQqmCMMn0/X58ekbNYbUVX2rg==
+X-Received: by 2002:a17:906:5d11:b0:6ef:7bdf:e976 with SMTP id g17-20020a1709065d1100b006ef7bdfe976mr10374713ejt.743.1650353952960;
+        Tue, 19 Apr 2022 00:39:12 -0700 (PDT)
 Received: from [192.168.0.217] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id el14-20020a056402360e00b0042121aee887sm7423177edb.77.2022.04.19.00.37.45
+        by smtp.gmail.com with ESMTPSA id q14-20020a17090622ce00b006e898c912e5sm5352866eja.217.2022.04.19.00.39.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 00:37:46 -0700 (PDT)
-Message-ID: <f3a159b5-ebca-ce00-88dc-ddde353c9031@linaro.org>
-Date:   Tue, 19 Apr 2022 09:37:45 +0200
+        Tue, 19 Apr 2022 00:39:12 -0700 (PDT)
+Message-ID: <59cda570-2a78-0d7f-091e-02e837fe9ec5@linaro.org>
+Date:   Tue, 19 Apr 2022 09:39:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: db845c: Add support for MCP2517FD
+Subject: Re: [PATCH v2 4/4] dt-bindings: mmc: convert sdhci-dove to JSON
+ schema
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-References: <20220419043348.1483625-1-vkoul@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, adrian.hunter@intel.com,
+        nico@fluxnic.net
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220419024611.1327525-1-chris.packham@alliedtelesis.co.nz>
+ <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220419043348.1483625-1-vkoul@kernel.org>
+In-Reply-To: <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,62 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 06:33, Vinod Koul wrote:
-> Add support for onboard MCP2517FD SPI CAN transceiver attached to
-> SPI0 of RB3.
+On 19/04/2022 04:46, Chris Packham wrote:
+> Convert the sdhci-dove binding to JSON schema. The optional clocks
+> property was not in the original binding document but has been in the
+> dove.dtsi since commit 5b03df9ace68 ("ARM: dove: switch to DT clock
+> providers").
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
-> Changes in v2:
->  - add cs and pinctrl config
->  - remove misleading comment
-> 
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 28fe45c5d516..4f4d45be93e3 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -28,6 +28,13 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	/* Fixed crystal oscillator dedicated to MCP2517FD */
-> +	clk40M: can_clock {
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-No underscores in node names.
 
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <40000000>;
-> +	};
-> +
->  	dc12v: dc12v-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "DC12V";
-> @@ -746,6 +753,24 @@ codec {
->  	};
->  };
->  
-> +&spi0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&qup_spi0_default>;
-> +	cs-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
-> +
-> +	can@0 {
-> +		compatible = "microchip,mcp2517fd";
-> +		reg = <0>;
-> +		clocks = <&clk40M>;
-> +		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
-> +		spi-max-frequency = <10000000>;
-> +		vdd-supply = <&vdc_5v>;
-> +		xceiver-supply = <&vdc_5v>;
-> +		status = "okay";
-
-No need for status for new nodes (unless it is an extension of existing
-node?), it is okay by default.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
