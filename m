@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EEB3506C89
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B658D506C9E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 14:41:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231693AbiDSMg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 08:36:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
+        id S1352284AbiDSMnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 08:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243225AbiDSMg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:36:26 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F47123BC3;
-        Tue, 19 Apr 2022 05:33:43 -0700 (PDT)
-X-UUID: db70e4c95aa3463cab90f155dbb97527-20220419
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:78242f48-6795-4f14-9220-01230492c558,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:-20
-X-CID-META: VersionHash:faefae9,CLOUDID:a42162ef-06b0-4305-bfbf-554bfc9d151a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: db70e4c95aa3463cab90f155dbb97527-20220419
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1451498009; Tue, 19 Apr 2022 20:33:36 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 19 Apr 2022 20:33:35 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 19 Apr
- 2022 20:33:34 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 19 Apr 2022 20:33:34 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v3 2/2] remoteproc: mediatek: allow reading firmware-name from DT
-Date:   Tue, 19 Apr 2022 20:33:31 +0800
-Message-ID: <20220419123331.14377-3-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220419123331.14377-1-allen-kh.cheng@mediatek.com>
-References: <20220419123331.14377-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S232267AbiDSMnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 08:43:41 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C779A2E6BA
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 05:40:58 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 21so21132467edv.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 05:40:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zbofyV1fic7pP6HMfJQj3Ab0tUOTAaFhAUHLIghCboE=;
+        b=cTVu7zsjpB+V8mcf4t7tPhQAGJA3R/7k2i9zy3/hbrMcuLvoqNvc4K3C2iIDPoYfIn
+         hx59pyXAFfjZ0MSTmaPYpESS8rBWCBSFkZgc7TMuJL4GxXc+IT9Ll/8OoOqYj+3Mg/4d
+         oLMhN5N0nSXheknxTYxPxn7865ghUQ1g//S75ODRFFGF52Sug7Zw4KzDBAOmSAJ1fT+W
+         t00H/i7xTSXocaEJFqY4rd7qb1Ijhw+Pv5VJyYDO4/sOxWsQvEY05IcczTlqrPvOlvYZ
+         cYiSeUKUlSzVTqlaSIRbVn3zzuH8e19vs5pPKReLMo6QUV5j/ppVl4VKZUdGDM36agT9
+         IyXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zbofyV1fic7pP6HMfJQj3Ab0tUOTAaFhAUHLIghCboE=;
+        b=e2HOYITFKF7LAszC01z2mWn9ZPZoAORcg62M7bZTIZ7AUyiN49YcOaGL86tWt86nyG
+         03b2r7M+1NUJ+R2eWN9Wq3CwFmwq8xYB6F3JzddBaAKcJ9DmieksWD+mSFK3UcgQFhPS
+         90iexrKgya5xGeJZ3yyJ5nE17xztNoriEegN0pTu4LeVX5+UFhPZYelLHiBUjT1E5nrp
+         FK4oGaO5d/9SnUB3PySHlhqPGNhh4ppue0/Rxh5dpCzjS6c0l0HpMwFpKYpBlU3E1PAp
+         axIvueI0Rlk2UPrRMKYtuJSZhv/Vigjl2Y7qqcwr7GGcR+ubXRBEt+foEhSNW509/SDy
+         0Svg==
+X-Gm-Message-State: AOAM533Qe58cpOMA/bzOyLcnBuDuf124fxpJ/za/8NK0PIBdQfUCZRjb
+        wyWtWC+t+/C2l6eb6TwT22s6yw==
+X-Google-Smtp-Source: ABdhPJzW/SxmIzdPcj9hcji9IFgOetJZ1gdKF6CvMPrHf78Yj1B/Nf0TFxaXcKe8SGylB1AI0IQplA==
+X-Received: by 2002:a05:6402:42cb:b0:421:c735:1fd3 with SMTP id i11-20020a05640242cb00b00421c7351fd3mr17298386edc.341.1650372056866;
+        Tue, 19 Apr 2022 05:40:56 -0700 (PDT)
+Received: from fedora.lab.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id n27-20020a1709062bdb00b006da975173bfsm5709274ejg.170.2022.04.19.05.40.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 05:40:56 -0700 (PDT)
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-i2c@vger.kernel.org
+Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [v8 0/3] Add support for Maxim MAX735x/MAX736x variants
+Date:   Tue, 19 Apr 2022 14:40:21 +0200
+Message-Id: <20220419124025.1733230-1-patrick.rudolph@9elements.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,38 +68,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SCP firmware blob differs between platforms and SoCs. We add
-support in the SCP driver for reading the path of firmware file from
-DT in order to allow these files to live in a generic file system
-(or linux-firmware).
+v8:
+- Move allOf in dt-binding and use double negation
 
-The firmware-name property is optional and the code falls back to the
-old filename if the property isn't present.
+v7:
+- Reworked the commit message, comments and renamed a struct
+  field. No functional change.
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
- drivers/remoteproc/mtk_scp.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+v6:
+- Fix typo in dt-bindings
 
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index 621174ea7fd6..47b2a40e1b4a 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -809,9 +809,13 @@ static int scp_probe(struct platform_device *pdev)
- 	struct mtk_scp *scp;
- 	struct rproc *rproc;
- 	struct resource *res;
--	char *fw_name = "scp.img";
-+	const char *fw_name = "scp.img";
- 	int ret, i;
- 
-+	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
-+	if (ret < 0 && ret != -EINVAL)
-+		return ret;
-+
- 	rproc = devm_rproc_alloc(dev, np->name, &scp_ops, fw_name, sizeof(*scp));
- 	if (!rproc)
- 		return dev_err_probe(dev, -ENOMEM, "unable to allocate remoteproc\n");
+v5:
+- Remove optional and make vdd-supply mandatory
+
+v4:
+- Add missing maxitems dt-bindings property
+
+v3:
+- Merge dt-bindings into i2c-mux-pca954x.yaml
+
+v2:
+- Move dt-bindings to separate file
+- Added support for MAX736x as they are very similar
+- Fixed an issue found by kernel test robot
+- Dropped max735x property and custom IRQ check
+- Added MAX7357 config register defines instead of magic values
+- Renamed vcc-supply to vdd-supply
+
+Patrick Rudolph (3):
+  dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+  i2c: muxes: pca954x: Add MAX735x/MAX736x support
+  i2c: muxes: pca954x: Add regulator support
+
+ .../bindings/i2c/i2c-mux-pca954x.yaml         |  39 +++++-
+ drivers/i2c/muxes/Kconfig                     |   4 +-
+ drivers/i2c/muxes/i2c-mux-pca954x.c           | 126 ++++++++++++++++--
+ 3 files changed, 153 insertions(+), 16 deletions(-)
+
 -- 
-2.18.0
+2.35.1
 
