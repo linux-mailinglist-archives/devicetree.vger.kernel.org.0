@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8E6B507BC3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 23:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 238D5507BC6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 23:14:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357926AbiDSVRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 17:17:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43170 "EHLO
+        id S1357905AbiDSVRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 17:17:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357927AbiDSVRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 17:17:07 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F75C424B8
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:13:46 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-2ec42eae76bso186625447b3.10
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:13:46 -0700 (PDT)
+        with ESMTP id S1355611AbiDSVRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 17:17:23 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B553A73B
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:14:39 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id f17so33335123ybj.10
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 14:14:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=9ca63RDZP2/Fhfduz6S7nMbWQq2gHUTg7QQlbnT0kCs=;
-        b=KauUyG3BMITTVwlUM0DdJiCAHqmwzHq8NOc3VoUwvavZzikh9PsyOG0ombzvtAmEBt
-         RuRiPkPVmUGPu34MXTDAECFDJQ9K2FCq/8lPnIlfKgkNVn+0VHebX92OZ9bVnNCbVcXV
-         LU0snQSURVFYH4FzoYga4oVdza1mWDsel3HUVwBXDJDeyLDljFxGcQ/W6mSdg+UJK9GV
-         dclnu2838nfpFl9tUQsV24o8rzqSCK+NijneKWFd7AH+l+7YV0ksJPUiNVECWVPDpm8h
-         8RytxIx0awNYwFikfXS/0tllZLVgJEfXxR8V+ocUfntmQcop4zVefLaOEsCSKUTfsUvA
-         Druw==
+        bh=B5FkgS7CpCMD1fBHRk4Pg2TvAwwG8HWvfvSYT8z+CM0=;
+        b=cWM1mQNRxVVmkRqvpJoS6HQ7n4uVQ8ZXRkav1OIuUXOelKwkJGOE/I5lh4mFQSdjQs
+         9CywP7VVEHQcY0IMFPwuidd5CTnqBt53/BReu3XS6fO1tL8Dsd4kjIXv5l2hgfHpAE9w
+         dOkGgbjywxdy2/bwAxkLlXpuAqoL1N7Aa3o/nhBed31tzQe5TG07pQxl08GFRBMAAiKS
+         LiN/5rbJScXQbBkUNQKS3Ol0BSMkpZC23iHgRos10Z1Pp4sQq9svt/A0KUukNX9Bmx5Z
+         9cE7gtXwERipmqD/bCVXKTx0bYgY2z55WTHhHsBZVY5j07YliDRhWaHLeDn0v+nhYZGW
+         NRlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9ca63RDZP2/Fhfduz6S7nMbWQq2gHUTg7QQlbnT0kCs=;
-        b=m9eqnniK19leOHxVLBLQJji4Rpvg/4fjURm5IaPsPGC16UbcrxvTBt2TwOUGO5fK/k
-         8W11vI4bIwFB4ov6mF1OPjGvEkNAVdmEz5Voddj2GpjfCiQBo2EacEk/BP5UPk0iPkPp
-         xsEK186yvGXczg8p+tnZ1knVGNquBdXv7e8ZIHD+zyb7uJZqZjv4RbE+snL4O22KORgi
-         +EyQvzk7gOa2oB4tw4n5Rj5S2W6SiN5kCg2ByNJ09v5ZNurDjK3+JmeGtLu8X/NC1Raq
-         IFzaTG2SoUODCNorLk9Y3kaMV7EoWCkZcyy0shmwiYvup+GBduwMYBITI+Xt/uFcfig8
-         /32g==
-X-Gm-Message-State: AOAM531e/c8QhGAT+0ciz/FZr7gu9oQUY1XJ8yWiUn5gdUT/hBOwxhI0
-        s4ItROa82IPnMHaT3Efh9+YcJFGqbu3pYSNq68prmQ==
-X-Google-Smtp-Source: ABdhPJyt0MqLnf+DatszokGGQDXTSIysqg2Jql7hWnFyrC9meOK1weMLsDJUvUiJx71pdYgXI9ufHDksHv7z6RPmiYk=
-X-Received: by 2002:a81:6d14:0:b0:2eb:fbdf:639 with SMTP id
- i20-20020a816d14000000b002ebfbdf0639mr17895570ywc.126.1650402824448; Tue, 19
- Apr 2022 14:13:44 -0700 (PDT)
+        bh=B5FkgS7CpCMD1fBHRk4Pg2TvAwwG8HWvfvSYT8z+CM0=;
+        b=2pAsd4dfl4IUW0hSiGfSOy8qY2va4MedyFoKmKWkB4DeX+ZUDHFkPL6fnIiO8ros8S
+         OK/YG419wZL6zsSU3KrL11bZqjDv+k5CW9b+XUvh84lpE07lCObvQpOo2rdTCxqDGubn
+         a98l39+sQEsgixaOToC+zJWnpy7/682gQaV/JGPoqG7CQmbD6V9Dlo3lDhqdwKpPDFva
+         NLTgVyxXTnUadE8J2z5LiytIglv3IOnN07tfngVeuGYBBmDJ7K0ZYMVvBIeGLoZi3n3E
+         mi9dwryQNwXL26TuAciSje/BSx5Sf+fmed+5oEi77JQAhRCfPQeHH62/mMZcvo0BTOQc
+         DdbA==
+X-Gm-Message-State: AOAM531+vmdpmehauJCn1Ze1/iSZiM6ZoinbK+LqozoxyKazRZSHLqMH
+        T/kuAmFeyNMKojZvldXFdg8KF6Z4KYA9Ubj/hXuZ/g==
+X-Google-Smtp-Source: ABdhPJyUm04KA3osPPotEEqNmtRkf6e+697t9fH2aHJ9OuoYnB5ZhpMPCHKyoLBadeQJAgM1x+lwH2LZA0t7o/A48cA=
+X-Received: by 2002:a25:a12a:0:b0:644:e94e:5844 with SMTP id
+ z39-20020a25a12a000000b00644e94e5844mr12357883ybh.492.1650402878390; Tue, 19
+ Apr 2022 14:14:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220315211936.442708-1-nfraprado@collabora.com> <20220315211936.442708-3-nfraprado@collabora.com>
-In-Reply-To: <20220315211936.442708-3-nfraprado@collabora.com>
+References: <20220315211936.442708-1-nfraprado@collabora.com> <20220315211936.442708-4-nfraprado@collabora.com>
+In-Reply-To: <20220315211936.442708-4-nfraprado@collabora.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 19 Apr 2022 23:13:33 +0200
-Message-ID: <CACRpkdZErg0v5_CcfUMsVaF+Df-cEGZa-+N+kW5bfCfHD+3gQw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: pinctrl: mt8192: Add
- mediatek,drive-strength-adv property
+Date:   Tue, 19 Apr 2022 23:14:27 +0200
+Message-ID: <CACRpkdYbRXrqNwo-h2jn91xU20pQ-aiNxeJHxyK2uMgbKm7OsA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/4] dt-bindings: pinctrl: mt8192: Add
+ mediatek,pull-up-adv property
 To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
         <nfraprado@collabora.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, kernel@collabora.com,
@@ -65,7 +65,7 @@ Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,9 +76,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Mar 15, 2022 at 10:20 PM N=C3=ADcolas F. R. A. Prado
 <nfraprado@collabora.com> wrote:
 
-> Add the mediatek,drive-strength-adv property to the pinctrl-mt8192
-> dt-binding to allow further drive current adjustments for I2C nodes on
-> MT8192. It is the same as in mt8183-pinctrl.
+> Add the mediatek,pull-up-adv property to the pinctrl-mt8192 dt-binding
+> to allow configuring pull-up resistors on the pins of MT8192. It is the
+> same as in mt8183-pinctrl.
 >
 > Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 
