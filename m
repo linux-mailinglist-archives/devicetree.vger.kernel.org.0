@@ -2,93 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF2F506483
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 08:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E22506494
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 08:35:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348840AbiDSGfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 02:35:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46132 "EHLO
+        id S1348889AbiDSGht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 02:37:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237280AbiDSGfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 02:35:22 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714E72497A;
-        Mon, 18 Apr 2022 23:32:36 -0700 (PDT)
-X-UUID: 1ebfb4ea0d7b40a1bdf67e7536abc453-20220419
-X-UUID: 1ebfb4ea0d7b40a1bdf67e7536abc453-20220419
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1886472289; Tue, 19 Apr 2022 14:32:30 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 19 Apr 2022 14:32:29 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 19 Apr 2022 14:32:29 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH 1/1] arm64: dts: mt8192: Add spmi node
-Date:   Tue, 19 Apr 2022 14:32:26 +0800
-Message-ID: <20220419063226.15958-2-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220419063226.15958-1-allen-kh.cheng@mediatek.com>
-References: <20220419063226.15958-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S1348890AbiDSGhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 02:37:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23661115A;
+        Mon, 18 Apr 2022 23:34:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC73D60B76;
+        Tue, 19 Apr 2022 06:34:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D3CC385A5;
+        Tue, 19 Apr 2022 06:34:49 +0000 (UTC)
+Message-ID: <dda2de21-4d36-beb7-531c-9f5ea1534227@xs4all.nl>
+Date:   Tue, 19 Apr 2022 08:34:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        RDNS_NONE,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v13 3/3] media: platform: mtk-mdp3: add Mediatek MDP3
+ driver
+Content-Language: en-US
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
+        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
+        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220418022213.23826-1-moudy.ho@mediatek.com>
+ <20220418022213.23826-4-moudy.ho@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220418022213.23826-4-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.9 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add spmi node for mt8192 SoC.
+Hi Moudy Ho,
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On 18/04/2022 04:22, Moudy Ho wrote:
+> This patch adds driver for Mediatek's Media Data Path ver.3 (MDP3).
+> It provides the following functions:
+>   color transform, format conversion, resize, crop, rotate, flip
+>   and additional image quality enhancement.
+> 
+> The MDP3 driver is mainly used for Google Chromebook products to
+> import the new architecture to set the HW settings as shown below:
+>   User -> V4L2 framework
+>     -> MDP3 driver -> SCP (setting calculations)
+>       -> MDP3 driver -> CMDQ (GCE driver) -> HW
+> 
+> Each modules' related operation control is sited in mtk-mdp3-comp.c
+> Each modules' register table is defined in file with "mdp_reg_" prefix
+> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
+> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
+> Probe, power, suspend/resume, system level functions are defined in
+> mtk-mdp3-core.c
+> 
+> v4l2-compliance SHA: not available
+> , 32 bits, 32-bit time_t
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index a6da7b04b9d4..164fae36a3d8 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -537,6 +537,21 @@
- 			assigned-clock-parents = <&topckgen CLK_TOP_OSC_D10>;
- 		};
- 
-+		spmi: spmi@10027000 {
-+			compatible = "mediatek,mt6873-spmi";
-+			reg = <0 0x10027000 0 0x000e00>,
-+			      <0 0x10029000 0 0x000100>;
-+			reg-names = "pmif", "spmimst";
-+			clocks = <&infracfg CLK_INFRA_PMIC_AP>,
-+				 <&infracfg CLK_INFRA_PMIC_TMR>,
-+				 <&topckgen CLK_TOP_SPMI_MST_SEL>;
-+			clock-names = "pmif_sys_ck",
-+				      "pmif_tmr_ck",
-+				      "spmimst_clk_mux";
-+			assigned-clocks = <&topckgen CLK_TOP_PWRAP_ULPOSC_SEL>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_OSC_D10>;
-+		};
-+
- 		scp_adsp: clock-controller@10720000 {
- 			compatible = "mediatek,mt8192-scp_adsp";
- 			reg = <0 0x10720000 0 0x1000>;
--- 
-2.18.0
+This is an old v4l2-compliance (at least almost 2 years old based on this text).
 
+Please compile v4l2-compliance from the v4l-utils git repo and make sure you
+see a proper SHA value here. I don't accept v4l2-compliance results without a
+valid SHA, since without that I can't tell which version you are testing with.
+
+Regards,
+
+	Hans
