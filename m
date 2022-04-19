@@ -2,132 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B97F7507188
-	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F1AD507194
+	for <lists+devicetree@lfdr.de>; Tue, 19 Apr 2022 17:21:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353747AbiDSPV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 11:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
+        id S1353767AbiDSPXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 11:23:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353745AbiDSPV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:21:27 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF2E29C86;
-        Tue, 19 Apr 2022 08:18:44 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23JCbNCP019703;
-        Tue, 19 Apr 2022 17:18:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=yAsK35hKpZsxQi8hVd1WB4CpUJ+QZaAaP8nGYR49dZ4=;
- b=4vYyGIIlSLZJrr+7dBs/6YyZ581gIwCfncaUdTgRc7/4HKbVgolXC+YFKlQHWGIeF22P
- /TOfveMa8b+iDR9PyFMHyY17e+e8ffM2qN4xRBPzhcbiVq/ZvSUgEdosf6RS/L1M17y2
- CXA4oT2cw/BHZH8szbBLh3h3LgdTAX5S8I6KiUEbofJLUM07m7DLnX5s3SMaMte3LL5d
- 5Rbh4D3nf+4R9Sizxes6FVpH0hz8Pk63vLl1ZdaqCGL/dTK4otcGtpeO4/nRcgp0LWle
- VKcam6VmcXqmZpEGixvkgofxEPhl3A8/mkoYTVyVRPL8j3SGBxfboXA7XpGE/pemknWO bg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fh09krjwc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 19 Apr 2022 17:18:33 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 27C0D10002A;
-        Tue, 19 Apr 2022 17:18:32 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 20D69216853;
-        Tue, 19 Apr 2022 17:18:32 +0200 (CEST)
-Received: from [10.48.0.142] (10.75.127.45) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 19 Apr
- 2022 17:18:31 +0200
-Message-ID: <fba3ee98-78cf-2c38-3744-86771adb3623@foss.st.com>
-Date:   Tue, 19 Apr 2022 17:18:31 +0200
+        with ESMTP id S1349921AbiDSPXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 11:23:37 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134B122B2A
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 08:20:55 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id d198so10565374qkc.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 08:20:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=vkYrrmqPcGmgSkkkQEksrt68tTlBgE3AudQ0SAaErG0=;
+        b=ZNvF8FXU6m+z11Sjgrwqys9u038NIP3gNgbpU1lRBvUcYm5EoTZthq/agsavfzXXfa
+         uNdLsThxdoSNs/0zYBigyw+1NnXcJCI+HLcCK6nt1jjkO1iauq/FhB/bInFhAgRRsHpd
+         e8oCH6z0dXgZuWVu56tn/W4suEkQDA24X7RBVmhGJPJS5I9NRRKYyQ6A02LPasFJOrRy
+         iG47ym3g1Kix0kA+0/wzhORZzBHhME4vTfFyo6EVdF5F7aXhE9OpO2brMJ1KjJDUU9p2
+         cpbFHjwVmcB3cituaVdeTE8xQA+jrxe/5RxAoaoSCTuUA+UosRjv7ybitsEPf/A1pG0Y
+         m15A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=vkYrrmqPcGmgSkkkQEksrt68tTlBgE3AudQ0SAaErG0=;
+        b=ZMk8brfJ108O1890PHsxWFGEdDfENm+IseHNHkOtQoksl0yhCMWpIH0XwctPXuv53z
+         x/UC5bJlxw72P6+N2IIf9/p79BG6jLTBY3Quqma4vvUkfRRVxG/4liXwDtc5gKrT+kkD
+         CffRL87UUVt2HXpbrgIkIAffWQxJfhjQ1tQgPzXj/bHicMKv09mlG2PHLlz1FzUuSoyV
+         QxH6akxZ/yn8luZgyPHKb0JFE2AueAQnMefX50sEFi3+nNAq7BS8aLEzVVPPsd/7ntVn
+         F/+y6iwFM+5zRbOgB/LAZJUec5AtB9X/bkKblQA8ExJ8avAcuJHF+4AlU8qPY4KaLsk3
+         soRg==
+X-Gm-Message-State: AOAM530Sd/ohNqeCecbih5OqQ4XcYgW0BICH29RP39zyYNHxlNSWHF/m
+        nJiPpln5KE/eaPj7+rRsnjQ=
+X-Google-Smtp-Source: ABdhPJwhA0KyWmTUFXUfn8c8ZebpFY2Uk3fDo4IOHyxGShY3Retk4XzGf+8fseiVR67DpoHfAOJx3A==
+X-Received: by 2002:a05:620a:4154:b0:69c:6976:1ee4 with SMTP id k20-20020a05620a415400b0069c69761ee4mr9942754qko.463.1650381654240;
+        Tue, 19 Apr 2022 08:20:54 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:98ed:ab24:32f:21f2? ([2600:1700:2442:6db0:98ed:ab24:32f:21f2])
+        by smtp.gmail.com with ESMTPSA id k9-20020a05620a0b8900b0069c24c8d329sm134937qkh.87.2022.04.19.08.20.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Apr 2022 08:20:53 -0700 (PDT)
+Message-ID: <c3e31c55-01c2-5784-1e97-5af083c1a0c1@gmail.com>
+Date:   Tue, 19 Apr 2022 10:20:53 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] ARM: dts: stm32: fix pinctrl node name warnings (MCU soc)
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] of: overlay: do not break notify on NOTIFY_OK
 Content-Language: en-US
-To:     Fabien Dessenne <fabien.dessenne@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220311121448.18221-1-fabien.dessenne@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220311121448.18221-1-fabien.dessenne@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     =?UTF-8?Q?Nuno_S=c3=a1?= <noname.nuno@gmail.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        devicetree@vger.kernel.org,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Alan Tull <atull@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20220404074055.95618-1-nuno.sa@analog.com>
+ <01e77fbd-5c26-6b15-be1f-f962aa4190c6@gmail.com>
+ <9bde64d0c05a37e72fabbeb39d8d2fe099526917.camel@gmail.com>
+ <654db7b8-1254-88e9-f668-b1b14abc3e3e@gmail.com>
+ <CAL_JsqKjuOEdzB4SH6MB0bH58D5ys3RLhi=T8DhWQRuwMhbJOA@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <CAL_JsqKjuOEdzB4SH6MB0bH58D5ys3RLhi=T8DhWQRuwMhbJOA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-19_05,2022-04-15_01,2022-02-23_01
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/11/22 13:14, Fabien Dessenne wrote:
-> The recent addition pinctrl.yaml in commit c09acbc499e8 ("dt-bindings:
-> pinctrl: use pinctrl.yaml") resulted in some node name warnings.
-> Fix the node names to the preferred 'pinctrl'.
-> 
-> Signed-off-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
-> ---
->   arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 2 +-
->   arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 2 +-
->   arch/arm/boot/dts/stm32h743.dtsi       | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-> index 155d9ffacc83..500bcc302d42 100644
-> --- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-> @@ -45,7 +45,7 @@
->   
->   / {
->   	soc {
-> -		pinctrl: pin-controller@40020000 {
-> +		pinctrl: pinctrl@40020000 {
->   			#address-cells = <1>;
->   			#size-cells = <1>;
->   			ranges = <0 0x40020000 0x3000>;
-> diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
-> index 1cf8a23c2644..8f37aefa7315 100644
-> --- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
-> @@ -9,7 +9,7 @@
->   
->   / {
->   	soc {
-> -		pinctrl: pin-controller@40020000 {
-> +		pinctrl: pinctrl@40020000 {
->   			#address-cells = <1>;
->   			#size-cells = <1>;
->   			ranges = <0 0x40020000 0x3000>;
-> diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
-> index 6e42ca2dada2..91dde07a38ba 100644
-> --- a/arch/arm/boot/dts/stm32h743.dtsi
-> +++ b/arch/arm/boot/dts/stm32h743.dtsi
-> @@ -583,7 +583,7 @@ mac: ethernet@40028000 {
->   			status = "disabled";
->   		};
->   
-> -		pinctrl: pin-controller@58020000 {
-> +		pinctrl: pinctrl@58020000 {
->   			#address-cells = <1>;
->   			#size-cells = <1>;
->   			compatible = "st,stm32h743-pinctrl";
+Hi Rob, Nuno,
 
-Applied on stm32-next.
+On 4/19/22 09:48, Rob Herring wrote:
+> On Tue, Apr 19, 2022 at 9:32 AM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> Hi Rob, Nuno,
+>>
+>> (adding cc: Alan)
+> 
+> Alan is not active and Altera doesn't exist.
+> 
+>> You just applied the patch at the root of this email thread.
+> 
+> Well, no one had commented further after 2 weeks and the patch looked
+> like a move in the right direction as-is.
 
-Thanks.
-Alex
+Agreed.
+
+> 
+>> Please either revert it and accept the alternate that Nuno
+>> suggests below, or if you do not want to follow that path,
+>> then Nuno please add a follow on patch that does what you suggest
+>> below.
+> 
+> Okay, Dropped as it's not pushed out.
+
+Thanks.  I thought that might be possible...
+
+Nuno, can you please create the alternate patch you suggested?  It
+also fixes the additional problem that you noted.
+
+-Frank
+
+> 
+> Rob
+
