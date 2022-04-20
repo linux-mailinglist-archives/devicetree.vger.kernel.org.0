@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC6D508CA9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 17:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 553BE508CCB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 18:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355319AbiDTQCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 12:02:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39438 "EHLO
+        id S1380158AbiDTQKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 12:10:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355281AbiDTQCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 12:02:23 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0670244773
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 08:59:37 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id v4so2883416edl.7
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 08:59:36 -0700 (PDT)
+        with ESMTP id S1352680AbiDTQKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 12:10:40 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE0931234
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 09:07:52 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id f17so2932612edt.4
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 09:07:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=YGFlvUF+6fFWy1fX1MYp4Kv8VavogLHQZ1swJRkagR4=;
-        b=VrGhL5UriOqITgYWid/yHAnlnzX/ygVds9FFW9oUPAy99QMw4Z8dDJZytWmZzwf2Ww
-         OWB7+EYY6KulPcWe7U5xX0b47etDOjTYHT+jG9wyOAQF4hXjDukNLZuNdYLbadf7D6Oy
-         sYrAmLi0Lwj4VofOM8/nN78y8+yJ2Hf5WPYJI=
+        bh=jEywSrKCCYf3AdiMmwszKP9OJnHu5SnOk6eOCBxwoFs=;
+        b=W3J7SQB58aXRT9h7c+Rr6FjXrUo62P5icwoM+xL/qJB1dGQFIpNefHaU1Z+LBOUvpc
+         c7ule+8L7O7mai2QWpeLXGPwJo+UOOBOCNg6dAGHMtGbL8u5hSP5+XSdrV25uZ/wkbsg
+         I6fL98Km9v14i/wniOcwb1LGyEGr1lr0NKY2w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=YGFlvUF+6fFWy1fX1MYp4Kv8VavogLHQZ1swJRkagR4=;
-        b=XytGPsXc2rZzQlSZWfF4/xqq1gz+QswxFSWwuzYRjOiMkCqtPVpCWIYiIkA0dGnSAX
-         uogWBGfkGQNB7u0kuEkqH+4oN+kL8CvUjWI9EdTLuN+kH/gY5k5jqCjhiWGPov1SumDc
-         +zgwLl98h3yd6QCZ8kPTbwgL98zwM9vjr2VMFFH6QznVCFBCmyNq6SMHx76BiBbP0QJH
-         74NHfcG7Xymv828MP4m72HPYYYmIjiTTQ7oB6/rLG4Ex5z8xBF5qmjKtph8kXpyj+DBv
-         C9nC6t/lPg1uaRaqpAvrzrQ4OlCCxOCHwzO22LW+BRvJPIhJx8sX5E5ei//3JKqj2Yki
-         B9Nw==
-X-Gm-Message-State: AOAM531MjgRzSzlXg/iUL2h66IbjxsnvfrIjamtPf9S/OzsVXOlzO6nG
-        WZbTlxhmbL3CPESvouT+Ww+ZDBNUKeCTR1/u
-X-Google-Smtp-Source: ABdhPJy+BSldDiM9vdif/BTpsRkBPxLg43r1pAZtafbHvzhJRHQvW9RSfHPvAE4eCWtVCEKzTO09wg==
-X-Received: by 2002:a05:6402:d5:b0:41d:6518:86e4 with SMTP id i21-20020a05640200d500b0041d651886e4mr24305874edu.322.1650470375366;
-        Wed, 20 Apr 2022 08:59:35 -0700 (PDT)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05640204d000b0042062f9f0e1sm10165588edw.15.2022.04.20.08.59.33
+        bh=jEywSrKCCYf3AdiMmwszKP9OJnHu5SnOk6eOCBxwoFs=;
+        b=WXrUQak1nuQ9Q10mBaiIEvZkHNjO3OfLgg4P4Tr0yftAIIcYDZQOqpCG2Z/Sms5sLK
+         Izk9oA+ykMMBocHZB9K26Uxj4ANlSw193lC3SgWbVkLR8c2Zlcvhwxwvc6oY/SkWBFij
+         8Hr5Ep71q72AL/2YfAbEYosIveWI8mvWci+C/GmdSaCyymwqKpc6M7kiY0hvHUbF/jAo
+         CGfroPiNxGU/6+ropk/BK4l6lXqptHD0Y45Owm6V7b/fbNUCd4nzu0kztlNescu4BxkD
+         quSt5VA8h99dXhAMYNu4Lqf9zJHvtZnt1OJ32icGk2JwUbt3IeYlGs+ookY6lGymOLiI
+         jZxg==
+X-Gm-Message-State: AOAM531SGUn+36RuH+cUCWyh2h6xZ3HGMw7XXSi8WReMeGdHcNitaqlL
+        1mzvHV7ORjHFsdLl3sl9ZD1Nn+b036o9bwu2
+X-Google-Smtp-Source: ABdhPJyahehO7uicWL9UJHox6YHMRHftZV+0F7Ug7hQnqoLJkGiWWNLWMOMXs2p+6Wwm37C6qnn4Eg==
+X-Received: by 2002:a05:6402:1541:b0:41c:bfb9:d56b with SMTP id p1-20020a056402154100b0041cbfb9d56bmr23900070edx.344.1650470870643;
+        Wed, 20 Apr 2022 09:07:50 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id r3-20020aa7cb83000000b0041b573e2654sm10056659edt.94.2022.04.20.09.07.48
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Apr 2022 08:59:33 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id u3so2903375wrg.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 08:59:33 -0700 (PDT)
-X-Received: by 2002:a05:6000:1acb:b0:20a:a4b0:dbc8 with SMTP id
- i11-20020a0560001acb00b0020aa4b0dbc8mr7616987wry.513.1650470372923; Wed, 20
- Apr 2022 08:59:32 -0700 (PDT)
+        Wed, 20 Apr 2022 09:07:49 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id n40-20020a05600c3ba800b0038ff1939b16so1557747wms.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 09:07:48 -0700 (PDT)
+X-Received: by 2002:a05:600c:3d0e:b0:38f:f83b:e7dc with SMTP id
+ bh14-20020a05600c3d0e00b0038ff83be7dcmr4373011wmb.29.1650470867671; Wed, 20
+ Apr 2022 09:07:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <1650439639-28428-1-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1650439639-28428-1-git-send-email-quic_vnivarth@quicinc.com>
+References: <1650439639-28428-1-git-send-email-quic_vnivarth@quicinc.com> <1650439639-28428-2-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <1650439639-28428-2-git-send-email-quic_vnivarth@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 20 Apr 2022 08:59:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XZjstRUd7tP=2ZhFMFDYtsKkzY3D5-L=UU2wD5KHXGmQ@mail.gmail.com>
-Message-ID: <CAD=FV=XZjstRUd7tP=2ZhFMFDYtsKkzY3D5-L=UU2wD5KHXGmQ@mail.gmail.com>
-Subject: Re: [V5 0/2] arm64: dts: qcom: Configure CTS pin to bias-bus-hold for bluetooth
+Date:   Wed, 20 Apr 2022 09:07:34 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XBNizxCh7Jr11fmbBpthwPRj8MWj2VQqOWt94RrcGWxQ@mail.gmail.com>
+Message-ID: <CAD=FV=XBNizxCh7Jr11fmbBpthwPRj8MWj2VQqOWt94RrcGWxQ@mail.gmail.com>
+Subject: Re: [V5 1/2] arm64: dts: qcom: sc7280-idp: Configure CTS pin to
+ bias-bus-hold for bluetooth
 To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -84,12 +85,58 @@ On Wed, Apr 20, 2022 at 12:27 AM Vijaya Krishna Nivarthi
 <quic_vnivarth@quicinc.com> wrote:
 >
 > WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-> Change pinctrl configuration to handle same.
+> Change active and sleep pinctrl configurations to handle same.
 >
 > Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
 > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> v5: modify subject to include bluetooth
+> v4: modify subject of patch to indicate file it is applying to
+> v3: apply same change to active state and other sc7280*.dts* as well
+> v2: used bias-bus-hold as per review comments
+> v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 015a347..85e7467 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -400,10 +400,10 @@
+>
+>  &qup_uart7_cts {
+>         /*
+> -        * Configure a pull-down on CTS to match the pull of
+> -        * the Bluetooth module.
+> +        * Configure a bias-bus-hold on CTS to lower power usage
+> +        * when BT is turned off.
 
-Just as a note for future patches, you don't need tags on the cover
-letter. If I respond to the cover letter and add tags it means that
-they should be added to all the patches in the series but you don't
-need to carry them forward on the cover letter itself.
+So you skipped half of Bjorn's feedback here. He said:
+
+--
+
+This comment would just leave a future reader with the question about
+_why_ does this lower the power usage...
+
+This problem you're seeing is likely to come back in the next platform
+and your successor (or even yourself) will have no use of this comment
+to figure out what bias to configure on these pins.
+
+--
+
+I personally am not convinced the comment is super valuable now that
+we're using bias-bus-hold. The reason we want bias-bus-hold is
+basically the exact reason that bias-bus-hold exists in the first
+place and I personally wouldn't expect a big comment every place we
+use bias-bus-hold. That being said, Bjorn is the maintainer and not
+me, so he's the one you need to make happy.
+
+What about:
+
+Configure a bias-bus-hold on CTS to lower power usage when BT is
+turned off. Bus hold will maintain a low power state regardless of
+whether the Bluetooth module drives the pin in either direction or
+leaves the pin fully unpowered.
+
+-Doug
