@@ -2,148 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BDF7508D0C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 18:18:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38746508D16
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 18:20:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349414AbiDTQUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 12:20:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56418 "EHLO
+        id S1380488AbiDTQWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 12:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380460AbiDTQUp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 12:20:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B33C31DC4;
-        Wed, 20 Apr 2022 09:17:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B26A619C4;
-        Wed, 20 Apr 2022 16:17:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA40C385A1;
-        Wed, 20 Apr 2022 16:17:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650471478;
-        bh=EhDbwrptE+6g/UNMyxZeY6Wpjo5hANx3givZ6qDu5eU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BjuwlbUya/ODyQ+lJKPf48cAPLfu1TguU7l3LDcpoOZRrnDe0LBLc5NFEOhG3X6Gx
-         2JmIjdUp8RecbbS1p7MaTTvG9vWmTMuUT02waChGYWVbgRHveDCZPc0nTvdMqIV8qw
-         LOVRmJWoiKJ629an68VeBXQe02lYhXh9DcgZgKpbBLl+SAISA9QGmTuVkCKZ59vMrY
-         UrSS82gbB4IFUm/7hVrgB9O2W50hSb+UNQ5UhOLIE3CE5nCDXEGNAqtY+sATJZINqp
-         5Dv3+O3JQFnwr2qYE6vAzMGpbphWAPeUNi6s8FRwb8BK5rLRzCbViL48xbmaQVakPU
-         D+hwhq9Qa8TEQ==
-Date:   Wed, 20 Apr 2022 17:17:50 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ryan Lee <ryan.lee.analog@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        ckeepax@opensource.cirrus.com, tanureal@opensource.cirrus.com,
-        cy_huang@richtek.com, pierre-louis.bossart@linux.intel.com,
-        drhodes@opensource.cirrus.com, pbrobinson@gmail.com,
-        hdegoede@redhat.com, lukas.bulwahn@gmail.com, stephan@gerhold.net,
-        arnd@arndb.de, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ryans.lee@analog.com
-Subject: Re: [PATCH 2/2] ASoC: max98396: add amplifier driver
-Message-ID: <YmAyLuZIT1zYfNeA@sirena.org.uk>
-References: <20220416004024.210418-1-ryan.lee.analog@gmail.com>
- <20220416004024.210418-2-ryan.lee.analog@gmail.com>
+        with ESMTP id S1380415AbiDTQWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 12:22:48 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C05765E;
+        Wed, 20 Apr 2022 09:20:02 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-e656032735so1195490fac.0;
+        Wed, 20 Apr 2022 09:20:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4wNQpDsXtJxhnvH20Z3+ZVt5KBTN3mlzQxKe6VzUSMU=;
+        b=q77xSGskodpzGj67UPGNa0gzYTewSJY2cXCoJQRuk1AoWDaLF35FCJf2htQcv6h2KL
+         g//dPsYgOtOFwo9InLLNpSQhjpLWrfhkYeB9Iv52yGk8OK92FeqYUmmdffZzOx83w+nT
+         /loq9OfDwqmbGexqd362J3I7lnYNSLOtQvl5xhk4CirSYDEZCNm7ERmaxurKdATYdjgF
+         /ypTw3uuYij36DcO0zbQtB8qhAcc2XWsMjDnAj9McETA+fh8iwH6p7I9VP2IJ2GaNjTl
+         6nYcOb6J/M3JF/aBUaS2NFtYNailq+gGFFOnuqfW2MrIevv8CThXv2kucilKCr4sUuxB
+         ReIA==
+X-Gm-Message-State: AOAM530a3yKcHHawGk9zhB3Ui4rff+3ynk/9nOT1Zaf8mswmozuNfekI
+        qMfF9m9XcfHhkmVqrZ2M2w==
+X-Google-Smtp-Source: ABdhPJyFDGzvkuLBDNOHCYtbkcqXp8jhoHSTHMVganFNXtZpFpev677iq4zGD+x/GQzQQd8c69FZDA==
+X-Received: by 2002:a05:6870:b4a7:b0:e5:bff5:b537 with SMTP id y39-20020a056870b4a700b000e5bff5b537mr2080931oap.64.1650471601284;
+        Wed, 20 Apr 2022 09:20:01 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f21-20020a056830205500b005cdb59d5d34sm6592605otp.81.2022.04.20.09.19.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Apr 2022 09:20:00 -0700 (PDT)
+Received: (nullmailer pid 1416786 invoked by uid 1000);
+        Wed, 20 Apr 2022 16:19:59 -0000
+Date:   Wed, 20 Apr 2022 11:19:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
+        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
+        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v13 1/3] dt-binding: mt8183: add Mediatek MDP3 dt-bindings
+Message-ID: <YmAyrzjtWGrk5pNn@robh.at.kernel.org>
+References: <20220418022213.23826-1-moudy.ho@mediatek.com>
+ <20220418022213.23826-2-moudy.ho@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XSbHXvA7G1nFF4+/"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220416004024.210418-2-ryan.lee.analog@gmail.com>
-X-Cookie: Will it improve my CASH FLOW?
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220418022213.23826-2-moudy.ho@mediatek.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---XSbHXvA7G1nFF4+/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Apr 15, 2022 at 05:40:24PM -0700, Ryan Lee wrote:
-
-This looks mostly good - some issues below but nothing structural.
-
-> +	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-> +	case SND_SOC_DAIFMT_NB_NF:
-> +	case SND_SOC_DAIFMT_NB_IF:
-> +		break;
-
-One of these must be wrong - the device needs to know if it's handling a
-normal or inverted frame clock, otherwise the audio will be corrupted. =20
-
-> +static int max98396_mux_put(struct snd_kcontrol *kcontrol,
-> +			    struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *component =3D
-> +		snd_soc_dapm_kcontrol_component(kcontrol);
-> +	struct snd_soc_dapm_context *dapm =3D snd_soc_dapm_kcontrol_dapm(kcontr=
-ol);
-> +	struct max98396_priv *max98396 =3D snd_soc_component_get_drvdata(compon=
-ent);
-> +	struct soc_enum *e =3D (struct soc_enum *)kcontrol->private_value;
-> +	unsigned int *item =3D ucontrol->value.enumerated.item;
-> +	int reg, val;
+On Mon, Apr 18, 2022 at 10:22:11AM +0800, Moudy Ho wrote:
+> This patch adds DT binding documents for Media Data Path 3 (MDP3)
+> a unit in multimedia system combined with several components and
+> used for scaling and color format convert.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,mdp3-rdma.yaml    | 166 ++++++++++++++++++
+>  .../bindings/media/mediatek,mdp3-rsz.yaml     |  54 ++++++
+>  .../bindings/media/mediatek,mdp3-wrot.yaml    |  57 ++++++
+>  .../bindings/soc/mediatek/mediatek,ccorr.yaml |  47 +++++
+>  .../bindings/soc/mediatek/mediatek,wdma.yaml  |  58 ++++++
+>  5 files changed, 382 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> new file mode 100644
+> index 000000000000..45b7c075ebf5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> @@ -0,0 +1,166 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-rdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (item[0] >=3D e->items)
-> +		return -EINVAL;
+> +title: Mediatek Read Direct Memory Access
 > +
-> +	val =3D snd_soc_enum_item_to_val(e, item[0]) << e->shift_l;
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
 > +
-> +	if (max98396->device_id =3D=3D CODEC_TYPE_MAX98396)
-> +		reg =3D MAX98396_R2055_PCM_RX_SRC1;
-> +	else
-> +		reg =3D MAX98397_R2056_PCM_RX_SRC1;
+> +description: |
+> +  Mediatek Read Direct Memory Access(RDMA) component used to do read DMA.
+> +  It contains one line buffer to store the sufficient pixel data, and
+> +  must be siblings to the central MMSYS_CONFIG node.
+> +  For a description of the MMSYS_CONFIG binding, see
+> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +  for details.
+> +  The 1st RDMA is also used to be a controller node in Media Data Path 3(MDP3)
+> +  that containing MMSYS, MUTEX, GCE and SCP settings.
 > +
-> +	regmap_update_bits(max98396->regmap, reg,
-> +			   MAX98396_PCM_RX_MASK, val);
-> +
-> +	snd_soc_dapm_mux_update_power(dapm, kcontrol, item[0], e, NULL);
-> +
-> +	return 0;
-> +}
+> +properties:
+> +  compatible:
+> +    items:
+> +      # MDP3 controller node
+> +      - const: mediatek,mt8183-mdp3
+> +      - const: mediatek,mt8183-mdp3-rdma
 
-This should return 1 if the value changed - you should get an error
-reported by mixer-test from selftests if you run them on a sound card
-with the driver.
+This *still* makes no sense. I'm not looking at this further.
 
-> +	/* L/R mix configuration */
-> +	if (max98396->device_id =3D=3D CODEC_TYPE_MAX98396) {
-> +		regmap_write(max98396->regmap,
-> +			     MAX98396_R2055_PCM_RX_SRC1, 0x02);
-> +		regmap_write(max98396->regmap,
-> +			     MAX98396_R2056_PCM_RX_SRC2, 0x10);
-> +	} else {
-> +		regmap_write(max98396->regmap,
-> +			     MAX98397_R2056_PCM_RX_SRC1, 0x02);
-> +		regmap_write(max98396->regmap,
-> +			     MAX98397_R2057_PCM_RX_SRC2, 0x10);
-> +	}
-
-Shouldn't these be user controllable?  Most of the setup being done here
-looks system specific, especially the routing stuff.
-
---XSbHXvA7G1nFF4+/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJgMi4ACgkQJNaLcl1U
-h9DICQf/bKSmtrhcu8wSY0tnSjL1Lf/Ayrnni4M6IW2WY3KTpURARCts6AIN1ScG
-tt/uv2U+YP2eoQuGJY+Ou4qgMe7IHLOfV8Ymg5MMJLPrbpgEuzDVoMQj6ZwjoKDz
-iw6Ig0TfsjJ/3OLbHbKe4Oz7qWaGZzZXWWGQeQflYc7enuSO6cyUG/Wd19Gl3476
-/DZ4m/IR944lGU0nHrmX17Bdo1sT/8Psfe1ZLJG7VC6Pp73OhQRWG66yNICgx+VE
-iqlVHjti/NNMRRdCjWtbSRwTL8bMzjavUSti96yWhEpsSEuZpOH9w09D3PIRf7N1
-VNSreXJzFQH7U60iPsQjKtdqvNRBOQ==
-=reW6
------END PGP SIGNATURE-----
-
---XSbHXvA7G1nFF4+/--
+Rob
