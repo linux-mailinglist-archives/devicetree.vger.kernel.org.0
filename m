@@ -2,82 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F6F950849A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 11:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B940B5084AE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 11:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377071AbiDTJOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 05:14:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43400 "EHLO
+        id S1377118AbiDTJSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 05:18:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377089AbiDTJNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 05:13:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37A3E3E0F9;
-        Wed, 20 Apr 2022 02:10:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 906BE615D4;
-        Wed, 20 Apr 2022 09:10:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C3DAC385A8;
-        Wed, 20 Apr 2022 09:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650445856;
-        bh=vNmwPpTDyLDXQ55olkDm+ZCj59k9TpDmHMa62vxoowk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZHfJeU0n79x4oll/Q7f/9VpvYChLshtc9wn0U28VqBpa0tptSYx2N38tNDICIL5Dt
-         sERo+URpYLsAqjLCb6rr1IpkfrQb5psB1yGo9kpyfhujS4HQQxdLYiILC2wBiEqCxL
-         oYD+u5E65uNpwqXsx4a60SXlTR/+Wkq09zVNTwRMp9yA6jhnzYYXwlZSjdHKtdJ6xe
-         UoRmO9i9Dx4L9VoBJpz/UIp2VeitcqzZgalYNJmvU9zdmXw5mEzMqtbMCPv3tj3dAi
-         x45ovcVr8JnNsawhraeGrm90N7PhmmFlDzcC8LQR+EDoWA1HaHssu5g2uyF8pNroQW
-         DWyU44VRN/4MQ==
-Date:   Wed, 20 Apr 2022 14:40:52 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 2/8] phy: allwinner: phy-sun6i-mipi-dphy: Support
- D-PHY Rx mode for MIPI CSI-2
-Message-ID: <Yl/OHEKqLR0gwHzW@matsya>
-References: <20220415152138.635525-1-paul.kocialkowski@bootlin.com>
- <20220415152138.635525-3-paul.kocialkowski@bootlin.com>
+        with ESMTP id S232939AbiDTJSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 05:18:43 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017B13BFA3
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:15:58 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nh6RF-00051t-Nb; Wed, 20 Apr 2022 11:15:53 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nh6RF-0006Q5-0o; Wed, 20 Apr 2022 11:15:53 +0200
+Date:   Wed, 20 Apr 2022 11:15:52 +0200
+To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lars@metafoo.de, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, robh+dt@kernel.org, nicolas.ferre@microchip.com
+Subject: Re: [PATCH v3 1/6] ASoC: dmaengine: do not use a NULL
+ prepare_slave_config() callback
+Message-ID: <20220420091552.GD2387@pengutronix.de>
+References: <20220307122202.2251639-1-codrin.ciubotariu@microchip.com>
+ <20220307122202.2251639-2-codrin.ciubotariu@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220415152138.635525-3-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220307122202.2251639-2-codrin.ciubotariu@microchip.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 11:00:02 up 20 days, 21:29, 67 users,  load average: 0.11, 0.08,
+ 0.08
+User-Agent: Mutt/1.10.1 (2018-07-13)
+From:   Sascha Hauer <sha@pengutronix.de>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-04-22, 17:21, Paul Kocialkowski wrote:
-> The Allwinner A31 D-PHY supports both Rx and Tx modes. While the latter
-> is already supported and used for MIPI DSI this adds support for the
-> former, to be used with MIPI CSI-2.
-> 
-> This implementation is inspired by Allwinner's V3s Linux SDK
-> implementation, which was used as a documentation base.
-> 
-> It uses the direction dt property to distinguish between tx and rx
-> directions.
+Hi,
 
-Applied to phy-next, thanks
+On Mon, Mar 07, 2022 at 02:21:57PM +0200, Codrin Ciubotariu wrote:
+> Even if struct snd_dmaengine_pcm_config is used, prepare_slave_config()
+> callback might not be set. Check if this callback is set before using it.
+> 
+> Fixes: fa654e085300 ("ASoC: dmaengine-pcm: Provide default config")
+> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+> ---
+> 
+> Changes in v2,v3:
+>  - none
+> 
+>  sound/soc/soc-generic-dmaengine-pcm.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/sound/soc/soc-generic-dmaengine-pcm.c b/sound/soc/soc-generic-dmaengine-pcm.c
+> index 285441d6aeed..2ab2ddc1294d 100644
+> --- a/sound/soc/soc-generic-dmaengine-pcm.c
+> +++ b/sound/soc/soc-generic-dmaengine-pcm.c
+> @@ -86,10 +86,10 @@ static int dmaengine_pcm_hw_params(struct snd_soc_component *component,
+>  
+>  	memset(&slave_config, 0, sizeof(slave_config));
+>  
+> -	if (!pcm->config)
+> -		prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config;
+> -	else
+> +	if (pcm->config && pcm->config->prepare_slave_config)
+>  		prepare_slave_config = pcm->config->prepare_slave_config;
+> +	else
+> +		prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config;
+>  
+>  	if (prepare_slave_config) {
+>  		int ret = prepare_slave_config(substream, params, &slave_config);
+
+I wonder if this patch is correct. There are drivers like
+sound/soc/mxs/mxs-pcm.c which call snd_dmaengine_pcm_register() with a
+config which has the prepare_slave_config callback unset. For these
+drivers dmaengine_pcm_hw_params() previously was a no-op. Now with this
+patch snd_dmaengine_pcm_prepare_slave_config() and
+dmaengine_slave_config() are called. At least for the mxs-pcm driver
+calling dmaengine_slave_config() will return -ENOSYS.
+
+At least the "Check if this callback is set before using it" part is
+wrong, the callback is checked before using it with
+
+	if (prepare_slave_config) {
+		...
+	}
+
+I don't have any mxs hardware at hand to test this. I just stumbled upon
+the change of behaviour when rebasing
+https://patchwork.kernel.org/project/alsa-devel/patch/20220301122111.1073174-1-s.hauer@pengutronix.de/
+on current master.
+
+Sascha
 
 -- 
-~Vinod
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
