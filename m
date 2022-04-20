@@ -2,138 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38746508D16
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 18:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C54A508D2E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 18:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380488AbiDTQWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 12:22:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
+        id S1380531AbiDTQ0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 12:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380415AbiDTQWs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 12:22:48 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C05765E;
-        Wed, 20 Apr 2022 09:20:02 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-e656032735so1195490fac.0;
-        Wed, 20 Apr 2022 09:20:01 -0700 (PDT)
+        with ESMTP id S1376497AbiDTQ0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 12:26:51 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DE6D3DDFB;
+        Wed, 20 Apr 2022 09:24:04 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id w194so2580727oiw.11;
+        Wed, 20 Apr 2022 09:24:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4wNQpDsXtJxhnvH20Z3+ZVt5KBTN3mlzQxKe6VzUSMU=;
-        b=q77xSGskodpzGj67UPGNa0gzYTewSJY2cXCoJQRuk1AoWDaLF35FCJf2htQcv6h2KL
-         g//dPsYgOtOFwo9InLLNpSQhjpLWrfhkYeB9Iv52yGk8OK92FeqYUmmdffZzOx83w+nT
-         /loq9OfDwqmbGexqd362J3I7lnYNSLOtQvl5xhk4CirSYDEZCNm7ERmaxurKdATYdjgF
-         /ypTw3uuYij36DcO0zbQtB8qhAcc2XWsMjDnAj9McETA+fh8iwH6p7I9VP2IJ2GaNjTl
-         6nYcOb6J/M3JF/aBUaS2NFtYNailq+gGFFOnuqfW2MrIevv8CThXv2kucilKCr4sUuxB
-         ReIA==
-X-Gm-Message-State: AOAM530a3yKcHHawGk9zhB3Ui4rff+3ynk/9nOT1Zaf8mswmozuNfekI
-        qMfF9m9XcfHhkmVqrZ2M2w==
-X-Google-Smtp-Source: ABdhPJyFDGzvkuLBDNOHCYtbkcqXp8jhoHSTHMVganFNXtZpFpev677iq4zGD+x/GQzQQd8c69FZDA==
-X-Received: by 2002:a05:6870:b4a7:b0:e5:bff5:b537 with SMTP id y39-20020a056870b4a700b000e5bff5b537mr2080931oap.64.1650471601284;
-        Wed, 20 Apr 2022 09:20:01 -0700 (PDT)
+        bh=eqRuR80cwcGhb1bZpUFPS9H8sCLdtwMaN4leB1jQaUo=;
+        b=ugxoj5NFkVAZbXODfuSHPRZ91dkseGSrlIiD/x81FDFlvXBFgVNwBOK26go969rzj2
+         JJmlvGvuHjPuq9g6M/PAXrycI2O65BAQ+Kccx+HAZGczUfh/mKtwiJe1zoM00guVhqUM
+         mL6uriX3/bIXyxsr5XQXrmBiu4v7BbiV0/Q47gjBAwsC9TCrcqcDd47JpL5VN1nvgabO
+         OiBUBNeL4JvippwoidxPMnUS9XL8kzjTflp1vhHJYRezouYZNPdskilidoxMCLNzxezo
+         qiFODhVQ3XoPx26FU2Cbkrg6rZ2her7MdfvIkyk0wkNHduAwly+pd/rKnKuz9zHFvNsN
+         IRhw==
+X-Gm-Message-State: AOAM530ulcNGFsw7Ls/zmLPU0KEa6LnvxEvYvIdxXSIoPeWWfAhTqS13
+        a4NU4B09L8c3uvTbVuWf6w==
+X-Google-Smtp-Source: ABdhPJy5sRyqbV6H1nky7jUgsc4SvVnBgGMkW66trSKOz92/NZSbbjjYt53XFfCWY+uBTYHwI2PVeQ==
+X-Received: by 2002:a05:6808:e8c:b0:322:4b82:d33d with SMTP id k12-20020a0568080e8c00b003224b82d33dmr2128366oil.21.1650471843684;
+        Wed, 20 Apr 2022 09:24:03 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f21-20020a056830205500b005cdb59d5d34sm6592605otp.81.2022.04.20.09.19.59
+        by smtp.gmail.com with ESMTPSA id j9-20020a056808056900b0032252797ea4sm5551746oig.6.2022.04.20.09.24.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Apr 2022 09:20:00 -0700 (PDT)
-Received: (nullmailer pid 1416786 invoked by uid 1000);
-        Wed, 20 Apr 2022 16:19:59 -0000
-Date:   Wed, 20 Apr 2022 11:19:59 -0500
+        Wed, 20 Apr 2022 09:24:03 -0700 (PDT)
+Received: (nullmailer pid 1423242 invoked by uid 1000);
+        Wed, 20 Apr 2022 16:24:02 -0000
+Date:   Wed, 20 Apr 2022 11:24:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Moudy Ho <moudy.ho@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, netdev@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
-        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
-        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
-        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v13 1/3] dt-binding: mt8183: add Mediatek MDP3 dt-bindings
-Message-ID: <YmAyrzjtWGrk5pNn@robh.at.kernel.org>
-References: <20220418022213.23826-1-moudy.ho@mediatek.com>
- <20220418022213.23826-2-moudy.ho@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v8 08/13] dt-bindings: arm: Document i.MX8DXL EVK board
+ binding
+Message-ID: <YmAzos7VBz2vgJd6@robh.at.kernel.org>
+References: <20220419113516.1827863-1-abel.vesa@nxp.com>
+ <20220419113516.1827863-9-abel.vesa@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220418022213.23826-2-moudy.ho@mediatek.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220419113516.1827863-9-abel.vesa@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 10:22:11AM +0800, Moudy Ho wrote:
-> This patch adds DT binding documents for Media Data Path 3 (MDP3)
-> a unit in multimedia system combined with several components and
-> used for scaling and color format convert.
+On Tue, 19 Apr 2022 14:35:11 +0300, Abel Vesa wrote:
+> Document devicetree binding of i.XM8DXL EVK board.
+
+i.XM?
+
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 > ---
->  .../bindings/media/mediatek,mdp3-rdma.yaml    | 166 ++++++++++++++++++
->  .../bindings/media/mediatek,mdp3-rsz.yaml     |  54 ++++++
->  .../bindings/media/mediatek,mdp3-wrot.yaml    |  57 ++++++
->  .../bindings/soc/mediatek/mediatek,ccorr.yaml |  47 +++++
->  .../bindings/soc/mediatek/mediatek,wdma.yaml  |  58 ++++++
->  5 files changed, 382 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> new file mode 100644
-> index 000000000000..45b7c075ebf5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -0,0 +1,166 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-rdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek Read Direct Memory Access
-> +
-> +maintainers:
-> +  - Matthias Brugger <matthias.bgg@gmail.com>
-> +
-> +description: |
-> +  Mediatek Read Direct Memory Access(RDMA) component used to do read DMA.
-> +  It contains one line buffer to store the sufficient pixel data, and
-> +  must be siblings to the central MMSYS_CONFIG node.
-> +  For a description of the MMSYS_CONFIG binding, see
-> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +  for details.
-> +  The 1st RDMA is also used to be a controller node in Media Data Path 3(MDP3)
-> +  that containing MMSYS, MUTEX, GCE and SCP settings.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      # MDP3 controller node
-> +      - const: mediatek,mt8183-mdp3
-> +      - const: mediatek,mt8183-mdp3-rdma
 
-This *still* makes no sense. I'm not looking at this further.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
