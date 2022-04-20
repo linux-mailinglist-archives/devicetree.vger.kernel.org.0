@@ -2,102 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90976508842
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C81950884C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378607AbiDTMik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 08:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51722 "EHLO
+        id S1354791AbiDTMnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 08:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232153AbiDTMij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:38:39 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3F313F50;
-        Wed, 20 Apr 2022 05:35:53 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id y11so873908ilp.4;
-        Wed, 20 Apr 2022 05:35:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=BiLwiwddtSMnlQ0M8iHv3+ugnw2GAfojyhyoRie29Vk=;
-        b=e0EtYUunQZ84wIdzf8zq9LY2W4oa9WeNkY3QlCIPHvOdI9e1Fvvx6d4qj9MXxi4wjR
-         krYzb67qgZBV7++16zQnXvLEKOTtCAxEaaDfFh1G/FyibNSfky00SQK6ugA08KTlQ1Sl
-         B+C3D3cXbP16iHNDNCzhcWgCICEZvPPZurQMgF0k5YTxbGxj72Y7B2SWf1XEWwFHb/v2
-         bvo5RW+3cZx3JTX4KSV+ibiWiNFVA06CD0Lmh3b5kFyrJXz85udbpJ35zjdxwSspcSeB
-         rf5Dm6bYxTrk1b/Yvv32dRRxvB/O2nAzZdADDbSVrRJ1RpIKNBQtkrJdh/PIaQ5wxf4I
-         RDlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BiLwiwddtSMnlQ0M8iHv3+ugnw2GAfojyhyoRie29Vk=;
-        b=6uc1Lhb1xawrVihdvcCvJGnkeZa+hqEx0vUBJtsCJ8mGm/RLob23j31HJNBh9oTcTr
-         9pLR3CAA9Fz4WI0k5HZSPgTJ703uZYaYMxygffre7pjceyHksiEmlrp3S1X+6rvyJu8k
-         HWn6KFnQ801eWdxFqijgbWcbMjOuFegVMRzL205SdQui+SAQNkVnpXNu/Uz8o+JfbFLV
-         C5Tfxc3MvkYUjNa4qLNpldHqW7kTP7KKntytnq91CgaoMsIkwTMGWFB1+pnKLZ5FlNAK
-         qePewokZMG9wgNChzxLrxBJ7QumruxPW80irb9NQpywqbk328QEhJuWgqn1uc1E/ZQc4
-         wuJQ==
-X-Gm-Message-State: AOAM531fnJuMW3K/cUDPEacLQ6ZL/LsTuV+yZAYAIqTePAyl+DPDus8j
-        03XzhOJ1GiatGV5UvQxxsQ8=
-X-Google-Smtp-Source: ABdhPJzKIwd8l2yZZ031MUP9S0Jjf7C8b5CPjV3TsOHP+MKPFXEdaMvbfQGutKPOvnvuukrfm4Meeg==
-X-Received: by 2002:a92:c26e:0:b0:2c9:e7f7:5eb0 with SMTP id h14-20020a92c26e000000b002c9e7f75eb0mr8926130ild.143.1650458153081;
-        Wed, 20 Apr 2022 05:35:53 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id b19-20020a5d8553000000b00649f02b1b0csm11330099ios.39.2022.04.20.05.35.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Apr 2022 05:35:52 -0700 (PDT)
-Message-ID: <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
-Date:   Wed, 20 Apr 2022 14:35:48 +0200
+        with ESMTP id S1378728AbiDTMnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:43:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF6D14013;
+        Wed, 20 Apr 2022 05:40:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BD9EE6197E;
+        Wed, 20 Apr 2022 12:40:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F5F1C385A0;
+        Wed, 20 Apr 2022 12:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650458421;
+        bh=XbbsN13otZbTzcITveCVrOxBJa3FapvrEzy91rjQNTQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EH2GkKifMitUEqaiV1rvoHFuHtGkCZB1bDG2etxeVBDc0lEDQlxRynu9lkkNCbUPM
+         cGou1blo8GSRWOrp4yOcvrLZ4iPO8rXGMx+81QKhkQlB+6iVDil0YxM8IyCsda3J8L
+         uTN7Byobs+HOcQSJIkQbkbnpRj6MAk8U8le+DNPnXqh6XtAR8o/kSqOUyPEHIKvTK3
+         sBKsgTL+Ytk5Eow0mfN8xJ7l6UhdGDgcllDwCOYbmLX4IiYVWr0PQ3EHmOmoahLfxv
+         2bYrHEwTbSPYwLDea3IRSKcwEbD4r/PRPY7tW2wrOt02jZBeKBfBBmq2zJG/DJDsMr
+         v3XbkcUJsxzMQ==
+Date:   Wed, 20 Apr 2022 18:10:16 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>
+Subject: Re: [PATCH v2 2/2] dmaengine: apple-admac: Add Apple ADMAC driver
+Message-ID: <Yl//MF1MeUFE6N4y@matsya>
+References: <20220411222204.96860-1-povik+lin@cutebit.org>
+ <20220411222204.96860-3-povik+lin@cutebit.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] arm64: dts: mt8183-kukui: align SPI NOR node name with
- dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220407142143.293740-1-krzysztof.kozlowski@linaro.org>
- <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220411222204.96860-3-povik+lin@cutebit.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12-04-22, 00:22, Martin Povišer wrote:
 
+> +struct admac_chan {
+> +	int no;
 
-On 20/04/2022 11:10, Krzysztof Kozlowski wrote:
-> On Thu, 7 Apr 2022 16:21:43 +0200, Krzysztof Kozlowski wrote:
->> The node names should be generic and SPI NOR dtschema expects "flash".
->>
->>
-> 
-> Looks like no one wants to take this, so let me take care of it.
-> 
+Unsigned int perhaps?
 
-First thing would have been a ping on the patch, don't you think? Anyway as I 
-said the last time, if you take DTS patches for mediatek, I'd need a stable 
-branch I can merge so that we don't have any merge conflicts in the end.
+> +static int admac_desc_free(struct dma_async_tx_descriptor *tx)
+> +{
+> +	struct admac_tx *adtx = to_admac_tx(tx);
+> +
+> +	devm_kfree(to_admac_chan(tx->chan)->host->dev, adtx);
 
-Regards,
-Matthias
+Why use devm for descriptor memory?
 
-> Applied, thanks!
-> 
-> [1/1] arm64: dts: mt8183-kukui: align SPI NOR node name with dtschema
->        commit: 4e3ffebd69e0aada1ce6bf4bf832e14a3c4f50db
-> 
-> Best regards,
+> +static int admac_device_config(struct dma_chan *chan,
+> +			       struct dma_slave_config *config)
+> +{
+> +	struct admac_chan *adchan = to_admac_chan(chan);
+> +	struct admac_data *ad = adchan->host;
+> +	bool is_tx = admac_chan_direction(adchan->no) == DMA_MEM_TO_DEV;
+
+so are the channel directions hard wired in hardware?
+
+-- 
+~Vinod
