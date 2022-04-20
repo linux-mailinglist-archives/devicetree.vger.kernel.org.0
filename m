@@ -2,93 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D585081AE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 09:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1305508204
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 09:24:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350861AbiDTHI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 03:08:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55234 "EHLO
+        id S1359781AbiDTH0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 03:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231806AbiDTHIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 03:08:25 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9F22559B;
-        Wed, 20 Apr 2022 00:05:40 -0700 (PDT)
-Received: from [192.168.1.111] (91-156-85-209.elisa-laajakaista.fi [91.156.85.209])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECC0625B;
-        Wed, 20 Apr 2022 09:05:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1650438338;
-        bh=XI60ceOSPiOukm0RgGIMWmc07mkMjnkrZjqcQsrwgeI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VP5344N7sW30pjejQzEYeRU72UYfQq6pmhRTDBQhDQceHec72h4/ndutm5YbALjJh
-         zHK/HVvwAhsTafWTtjvE3rYp5aHDvRw1yOcZaW6Hwo2Nc6UtiMflPFdD+1SmJ9h1su
-         no87Z1//a8Iy1x4F1TdwnhnIgetHUrBDTjOrpvt0=
-Message-ID: <f5eb63b1-8381-99c8-55fa-cc9287103aa8@ideasonboard.com>
-Date:   Wed, 20 Apr 2022 10:05:34 +0300
+        with ESMTP id S241305AbiDTH0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 03:26:30 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5533B544;
+        Wed, 20 Apr 2022 00:22:20 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id b128so731863vsc.13;
+        Wed, 20 Apr 2022 00:22:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=an8Y6T4fVZE54BITp3FmoMlxViK/7pDo+RKZKhqsE+Y=;
+        b=OkCMl/iijHw/NECX67njrTVj1iP1oKTqTBm7dAdANNVJjHD1uj6kF9+Oifdxx8raTI
+         22oj0Oxz/qdELe5FwfUF8qrTTwtrE2CI0sEbIhz66sjvNtuYnAp/FTbsgaEvpF2tGh34
+         7m90kgS3wPIHaLicCi79lVCmC7r0jDXpF/UgGoWTchTro+GcXeW31pjtvA0Btcw7whIZ
+         GD8Vp4inyFdmwjZk3Yth16sj34vD+Mv8PovgyxcERHE3GZHAqsy2mUojz9kxy6cBtYXB
+         QNEyh6KupbOi3wTf6A8mf3WeLXo4Q1q1Up5MT26hQoVc1L2nhsd2j9DCsfgYB+YVXKYY
+         Up4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=an8Y6T4fVZE54BITp3FmoMlxViK/7pDo+RKZKhqsE+Y=;
+        b=aAlZztRlXuSGr/T6ZBMyU+k2sOhENSg0I3GCNLBrQbCMWL15ABVI8fwgnxSO6oT531
+         GorX6afi+LDp5FcQ64H4dtt7G5iACnK4bHMsfRH9njAHR0k/x9D2nnSNOwN6zu82WjUF
+         9mCB8lRlNT3K/5oKSOVCdjGzuudQUxh93M8QcXRMdQ0E52/gJQuES/w1JMrSvpeLO5C0
+         6Qou3aQW5/vCN06db/b20kBuQOw4VqD1r+HrB/PRxtsl4p1dVaOeFbEIPCD/yC6jeypc
+         LicEtYI55RDpVEYpuIekWHmJK1vYpQ4IY04pb3xUDaOsVMhz05JrvEXp48MZohiKCFhV
+         8c1w==
+X-Gm-Message-State: AOAM531ljLxXjbT3nSfyVIet5jOU/a2NqonQrZB/S1o+Ty9YEj8gxHdl
+        S6LUmrme5D+Nnb4tcZdYxWDY24cVYNzTSleYyXA=
+X-Google-Smtp-Source: ABdhPJxdyv8gWP16mCgcl0q+o4/I/z8NVR+Nl82FcpaIpoaMjrk3l90ZPZrN5oo4rLffj8g/nQZhHacUxjBg71rI3k4=
+X-Received: by 2002:a67:fd65:0:b0:32a:27e9:7c09 with SMTP id
+ h5-20020a67fd65000000b0032a27e97c09mr5760412vsa.55.1650439338801; Wed, 20 Apr
+ 2022 00:22:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add missing
- register & interrupt
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jyri Sarha <jyri.sarha@iki.fi>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Devicetree <devicetree@vger.kernel.org>,
-        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>
-References: <20220419070302.16502-1-a-bhatia1@ti.com>
- <20220419070302.16502-2-a-bhatia1@ti.com>
- <Yl7FEuHEy66KUc5F@robh.at.kernel.org>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Yl7FEuHEy66KUc5F@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220415130005.85879-1-andrea.merello@gmail.com>
+ <20220415130005.85879-13-andrea.merello@gmail.com> <20220415174808.3b81baa4@jic23-huawei>
+In-Reply-To: <20220415174808.3b81baa4@jic23-huawei>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Wed, 20 Apr 2022 09:22:07 +0200
+Message-ID: <CAN8YU5Pfc6t=3_Yj7v5PF36Ut=1_Vr86Li60z=+SENKRyn+iTw@mail.gmail.com>
+Subject: Re: [v4 12/14] iio: imu: add BNO055 serdev driver
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Il giorno ven 15 apr 2022 alle ore 18:40 Jonathan Cameron
+<jic23@kernel.org> ha scritto:
+>
+> On Fri, 15 Apr 2022 15:00:03 +0200
+> Andrea Merello <andrea.merello@gmail.com> wrote:
+>
+> > From: Andrea Merello <andrea.merello@iit.it>
+> >
+> > This path adds a serdev driver for communicating to a BNO055 IMU via
+> > serial bus, and it enables the BNO055 core driver to work in this
+> > scenario.
+> >
+> > Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+> Hi Andrea
+>
+> A few really trivial things in here from me.
 
-On 19/04/2022 17:20, Rob Herring wrote:
-> On Tue, Apr 19, 2022 at 12:33:01PM +0530, Aradhya Bhatia wrote:
->> The DSS IP on the ti-am65x soc supports an additional register space,
->> named "common1". Further. the IP services a maximum number of 2
->> interrupts.
->>
->> Add the missing register space "common1" and the additional interrupt.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
->>   1 file changed, 7 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> index 5c7d2cbc4aac..102059e9e0d5 100644
->> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> @@ -26,6 +26,7 @@ properties:
->>         Addresses to each DSS memory region described in the SoC's TRM.
->>       items:
->>         - description: common DSS register area
->> +      - description: common1 DSS register area
-> 
-> You've just broken the ABI.
-> 
-> New entries have to go on the end.
+Few inline comments below; OK for all indeed.
 
-I'm curious, if the 'reg-names' is a required property, as it is here, 
-does this still break the ABI?
+> > +struct bno055_ser_priv {
+> > +     struct serdev_device *serdev;
+> > +     struct completion cmd_complete;
+> > +     enum {
+> > +             CMD_NONE,
+> > +             CMD_READ,
+> > +             CMD_WRITE,
+> > +     } expect_response;
+> > +     int expected_data_len;
+> > +     u8 *response_buf;
+> > +
+> > +     /**
+> > +      * enum cmd_status - represent the status of a command sent to the HW.
+> > +      * @STATUS_CRIT: The command failed: the serial communication failed.
+> > +      * @STATUS_OK:   The command executed successfully.
+> > +      * @STATUS_FAIL: The command failed: HW responded with an error.
+> > +      */
+> > +     enum {
+> > +             STATUS_CRIT = -1,
+> > +             STATUS_OK = 0,
+> > +             STATUS_FAIL = 1,
+> > +     } cmd_status;
+>
+> Locks need documentation to say what scope they cover. In this case
+> I think it is most but not quite all of this structure.
 
-  Tomi
+I admit my comments here are awkward: I've put a couple of comment
+that indicate what doesn't need the lock.. I'll change to do the
+reverse (comment on what need the lock)
+
+> See comment on completion below.
+>
+> > +     struct mutex lock;
+> > +
+> > +     /* Only accessed in RX callback context. No lock needed. */
+> > +     struct {
+> > +             enum {
+> > +                     RX_IDLE,
+> > +                     RX_START,
+> > +                     RX_DATA,
+> > +             } state;
+> > +             int databuf_count;
+> > +             int expected_len;
+> > +             int type;
+> > +     } rx;
+> > +
+> > +     /* Never accessed in behalf of RX callback context. No lock needed */
+> > +     bool cmd_stale;
+> > +};
+>
+[...]
+
+> > +             }
+> > +             break;
+> > +
+> > +     case CMD_WRITE:
+> > +             priv->cmd_status = status;
+> > +             break;
+> > +     }
+> > +
+> > +     priv->expect_response = CMD_NONE;
+> > +     complete(&priv->cmd_complete);
+>
+> I argued with myself a bit on whether the complete() should be inside the lock
+> or not - but then concluded it doesn't really matter and moving it out is
+> probably premature optimisation... Maybe it's worth moving it out simply
+> so that it's clear the lock isn't needed to protect it, or am I missing something?
+
+It should make no real difference to move the complete() out of the lock.
+
+I think I put it inside the lock because of the (paranoid, and
+hopefully not really required - would mean we have been too strict
+with completion timeout) reinit_completion(). On serdev rx handler
+side (i.e. bno055_ser_handle_rx()) we clear expect_response and
+complete(), on the other side (bno055_ser_send_cmd()) we set
+expect_response and clear spurious completed state, before issuing the
+command and waiting for outcome. This looks symmetric, but those two
+shouldn't really race in practice.
+
+
+> > +     mutex_unlock(&priv->lock);
+> > +}
+> > +
+> > +/*
