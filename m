@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A734A508813
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12482508825
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:30:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353203AbiDTM2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 08:28:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40548 "EHLO
+        id S1353216AbiDTMdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 08:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353130AbiDTM2T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:28:19 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642D61C91D;
-        Wed, 20 Apr 2022 05:25:33 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id h4so853249ilq.8;
-        Wed, 20 Apr 2022 05:25:33 -0700 (PDT)
+        with ESMTP id S1353229AbiDTMdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:33:08 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 308EF3EAB0;
+        Wed, 20 Apr 2022 05:30:22 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id p62so1677834iod.0;
+        Wed, 20 Apr 2022 05:30:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hRURk4DN2eZqCTEqfyXp6e+58OlcNywvCaEhVw8AW1k=;
-        b=NhfhqCCs3Hf2EcKb/RtIq/hjv48Ps2GXEYJ25dNCUTbtl1svXYZdaLXsrgj7QWWPdM
-         3oPVrUA81IyvWsn6DwAwMq/wFx4wtiCNIZ4QMETSQs8O1/Ye+puhovoY8VYUq1iH/jXX
-         XrqVbKAbZpXr39qKer3R/EqS37otJinwycoykfbrxTXYCCQpBa/ljq9oFdjT6hziWSS7
-         9D1VG3znG9Hyl+SjpRiJLYwyJ/6/CFz0ltHThGbWLEEy6Bpf4OHCM43Hf1lncvlyeP2v
-         t9bW6z6eQS1zHeK4eOBVQWQoY/2TdPvuLDlrwSEql08qeayxkYpHay7K4KcQoTyPt6vf
-         HlZA==
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=Xz4W3uwgD5u7Fu/Wu+J5mZSSF4lKujDTVil1iZmmtI0=;
+        b=jiXOEm7c4DvyxPMX+4yqBD7wGBJv9Ewoltv+il6LimSG4Haj/7tvVkrCwGc0xwaQa1
+         oVlmphccbWXZ9mBwyGpMSdlL7ql3ipHHx9eYVwwhwLIn9yHgLAsZ5KG0EjfRuGHvbURT
+         Jk2mJEb+gX3gKQZYDqkNxs/+rZnPzNakkUPj6FUqEONVZddB+UcrDKWJw5Vg2Da9ETCR
+         ZjsYChmV5TOc8tq8kQaM4Ml/P9HDzchKNz5jnt0jvg/zClSDiNIv7yiqmKckuIkyZvUF
+         +EMDhCjJkH3vcPHhSZE09CwWyQHr7JWxEdzzJt8aSVmoCuwZHNJFFnmCVh4tF8gxbDr8
+         depg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hRURk4DN2eZqCTEqfyXp6e+58OlcNywvCaEhVw8AW1k=;
-        b=fifMWz89yuIEqxuYDnpGPu4HwuFKgu3v7UnJ+ANgAwCEsrUUd0d922k/2/YYQfpFwU
-         P48RZYdYZKbhQh7F5YgvQq7NSC8n1uqQh8WXXpnD/unK3s7RZ2dStE0EmpvuH6BvFCsX
-         8hz6xLmb5BjbWnvJcRZkbWwuvNFPhFIFovvpdOSGZYVehaWZ2MYkb/1/P7rzUqEmfzPX
-         KZepdddMAA0A79aOi1AiFDjd+LZurzDzkLKmiesIJSHTQVV6FytknjehsxcaENiwz9VA
-         VpAygZbCqeP48f6Nv46jMQs44wlYI/u0GkbCNcnVUe/ISs9el81aXqNu9f6xqPzyvvP9
-         P+5A==
-X-Gm-Message-State: AOAM533H9j9G9utLPNz7zLKtA3dxhHq/3q0DR+5ruvmuBwYKH7YXaR2A
-        ZKgG2vFCPZw8YGdMQs80L7A59xLPdHwTYzg3INQ=
-X-Google-Smtp-Source: ABdhPJxR05XY11iOWutfHq8oz3L83XIEM/5S8NVV9L7I7mrKegnWO3BlDIq1sHEfoLPpDNiMs/wLF6X1KXkixVdCtjk=
-X-Received: by 2002:a92:6012:0:b0:2bd:fb5f:d627 with SMTP id
- u18-20020a926012000000b002bdfb5fd627mr8766792ilb.86.1650457532838; Wed, 20
- Apr 2022 05:25:32 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=Xz4W3uwgD5u7Fu/Wu+J5mZSSF4lKujDTVil1iZmmtI0=;
+        b=TwxJkGck1HIs/nX7GXEpRPt0jKSmU3IgtiWg3eOs45HaH6PFiaau8++ClujICyXKTg
+         JF0G+NJ0D+Qas+ta8w17Q2mCE9ukM2wih8ePhBEsMCK2ek1eebIlv/D9nTKclkxQfwL0
+         z03hbVAGxm38whxXJgZsTqN7O3eEtdc/IfiGg0jhBdKp6/KU8ATbNYs4KIO5At8Eoz5d
+         ziUcMziKEh6GA2BjgJvG6UMX1BoeD8WP2MdjYygjo4gXBsEYRXkwqMLiGiBuAOLu2MN8
+         CZfG5PyE2KHoCQ3ygAv1zhjY1H0eJ29vXyxOSxjaMKwbmVS2MqdpGKg6lKFXgX9K/5Wq
+         bilQ==
+X-Gm-Message-State: AOAM5317sKR7KJ6p7Z5O8oIdvUjd4Ene6ruV5A9bourzWOa52EtfZ4OZ
+        n8lqrrj0dY3M5W9hhUaG92Y=
+X-Google-Smtp-Source: ABdhPJwGRhXFbeJvDhxNl4PQvkHxnDazuTIyslmonAXkW1GqI/MI4eYUOWbmDbDUpAOx49PP1iJ9aA==
+X-Received: by 2002:a02:9a07:0:b0:31a:2642:9e1d with SMTP id b7-20020a029a07000000b0031a26429e1dmr9739495jal.159.1650457821518;
+        Wed, 20 Apr 2022 05:30:21 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id e203-20020a6bb5d4000000b0064dafa0416fsm11356904iof.2.2022.04.20.05.30.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Apr 2022 05:30:20 -0700 (PDT)
+Message-ID: <3c24dbdb-7677-bba6-685a-43293a01e777@gmail.com>
+Date:   Wed, 20 Apr 2022 14:30:17 +0200
 MIME-Version: 1.0
-References: <20220323120021.361137-1-alistair@alistair23.me>
-In-Reply-To: <20220323120021.361137-1-alistair@alistair23.me>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Wed, 20 Apr 2022 22:25:06 +1000
-Message-ID: <CAKmqyKP5CRDx4acc6yg9SwADaGTNqKmDUrBs2ODXR30OZuunoA@mail.gmail.com>
-Subject: Re: [PATCH v7 0/4] Add support for the Cypress cyttsp5
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Sam Shih <sam.shih@mediatek.com>, Stephen Boyd <sboyd@kernel.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220419180938.19397-1-y.oudjana@protonmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings: arm: mediatek: Convert some docs to DT
+ schema
+In-Reply-To: <20220419180938.19397-1-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,60 +79,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 10:00 PM Alistair Francis
-<alistair@alistair23.me> wrote:
->
-> This patch series builds on top of [1] and adds support for the cyttsp5
-> touchscreen controller for the reMarkable 2.
->
-> I first tried to add an I2C HID device. Although the cyttsp5 has some HID
-> looking aspects it is not HID compatible. Just in trying to probe the device
-> I found:
->  - The HID descriptor has extra padding
->  - The HID descriptor sets the high bytes of the descriptor length
->  - The HID descriptor has extra unrecognised tags
->  - The HID reset command doesn't appear to work
->
-> I don't think there is a way to use the I2C HID framework with the cyttsp5.
-> For anyone interested you can see the work here [2]. In that branch though I
-> can only obtain a HID descriptor, nothing else works without more core
-> changes.
->
-> So instead I rebased the series from [1]. Converted to the new yaml DTS
-> documentation, added regulator support and fixed a x/y miscalculation bug.
 
-The DT bindings have been reviewed, any comments on the driver
-implementation? It has been tested on a few different devices
 
-Alistair
+On 19/04/2022 20:09, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
+> 
+> This series includes DT schema conversions for topckgen, apmixedsys
+> and infracfg bindings.
+> 
 
->
-> 1: https://lwn.net/ml/linux-kernel/20180703094309.18514-1-mylene.josserand@bootlin.com/
-> 2: https://github.com/alistair23/linux/commits/rM2-mainline-cyttsp5-hid
->
-> v7:
->  - Fix device tree warnings
-> v6:
->  - Use reg for the button properties
-> v5:
->  - Address review comments from v4
->
-> Alistair Francis (4):
->   Input: Add driver for Cypress Generation 5 touchscreen
->   dt-bindings: input: Add Cypress TT2100 touchscreen controller
->   ARM: imx_v6_v7_defconfig: Enable the cyttsp5 touchscreen
->   ARM: dts: imx7d-remarkable2: Enable the cyttsp5
->
->  .../input/touchscreen/cypress,tt21000.yaml    | 101 ++
->  arch/arm/boot/dts/imx7d-remarkable2.dts       | 100 ++
->  arch/arm/configs/imx_v6_v7_defconfig          |   1 +
->  drivers/input/touchscreen/Kconfig             |  16 +
->  drivers/input/touchscreen/Makefile            |   1 +
->  drivers/input/touchscreen/cyttsp5.c           | 902 ++++++++++++++++++
->  6 files changed, 1121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
->  create mode 100644 drivers/input/touchscreen/cyttsp5.c
->
-> --
-> 2.35.1
->
+Thanks for the effort. Regarding the bindings Krzysztof mentioned should go into 
+bindings/clock/ directory: please add the clock maintainers as maintainers of 
+the bindings.
+
+Thanks!
+Matthias
+
+> Yassine Oudjana (3):
+>    dt-bindings: arm: mediatek: topckgen: Convert to DT schema
+>    dt-bindings: arm: mediatek: apmixedsys: Convert to DT schema
+>    dt-bindings: arm: mediatek: infracfg: Convert to DT schema
+> 
+>   .../arm/mediatek/mediatek,apmixedsys.txt      | 35 --------
+>   .../arm/mediatek/mediatek,apmixedsys.yaml     | 60 ++++++++++++++
+>   .../arm/mediatek/mediatek,infracfg.txt        | 42 ----------
+>   .../arm/mediatek/mediatek,infracfg.yaml       | 79 +++++++++++++++++++
+>   .../arm/mediatek/mediatek,topckgen.txt        | 35 --------
+>   .../arm/mediatek/mediatek,topckgen.yaml       | 60 ++++++++++++++
+>   6 files changed, 199 insertions(+), 112 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
+>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
+>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.yaml
+> 
