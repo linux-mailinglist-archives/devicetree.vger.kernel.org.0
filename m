@@ -2,144 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A6A507EEF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 04:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7109C507F26
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 04:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358983AbiDTCjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 22:39:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34336 "EHLO
+        id S243798AbiDTC5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 22:57:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358976AbiDTCjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 22:39:08 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FFA37AA9
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 19:36:20 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-de3eda6b5dso647219fac.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 19:36:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=uPpeQw/Svxec6EB5vDEdkM6+QwQAh4U7mOcWgKqa4Vo=;
-        b=zLR210LIyC5pG3HErtCaJG3Swm3AE6TefCzVOjS9CFMDRXbeJiI1F3wBEMUNfzTJW5
-         UIFvh4TubzbwaoBeJqLobgpOtWdaXkxQ00XPyq93bjlc6bNBF7tRmSpbGJhn0/iqNBkU
-         AARav9d7tGA5hGF7FTfhGHS5ZND3IZsLa0cxtwnuaGv5HzVm51wXonnlZ7rIvpkcWCF2
-         BdXj6l9SLH4+isw/LqD6YvlOWOmFqxL63EG26MdrvgEp2Hnbjc8toReO/+ZAL0pyqPat
-         gOKWn8ABpZAbUzk8jrWL8ZmGYoqSqg0qVu9rvwGZrZxwTk4yX/YZIpO4tOkRrGu3BKus
-         /crQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uPpeQw/Svxec6EB5vDEdkM6+QwQAh4U7mOcWgKqa4Vo=;
-        b=qz6AutY/LGJzZQDJ0u682KKQrJR6LGN9kIPP+05BbV/kalCC3/m9VOMW0ZDElJZ8aq
-         IZBS5xl1XzlJRCeQtG67i5SKPSUTEt9Qz0s8E6nYGslKQnEfsQyLs9GM4mgdZU9D45So
-         pUa1/mmCHGMy6Cv77aof1r4uW6qlPlC63T7R+/w6R6GD8d0DTqygQugWlmybfT9gqJzV
-         8zVLYjFNoEcAeucTel27HWiiTHqfK6B2rq+PX8wTVXjmjior4k+/ZWDlEA6NBOJnZDRu
-         ppnCKZztufrmADAOmyB3Sg/dr6lZbJSXE4i+qVhsk/NtloAPlpBMjAb9d5i5sPS+kO/O
-         DoUQ==
-X-Gm-Message-State: AOAM533x8vNGMXnEPyv3bxRVlKin/pa9X2nU2UZfz/TMGrcpzyE/oKiG
-        SLCuPhN7HyT3fS/cKhNuA74Exg==
-X-Google-Smtp-Source: ABdhPJyKHPVDEDnzZkxF9L9vrMd3VNFmgySs4pbsIaO2GrjCdMyTc6jlRLdrA0XgQHO0pa/l8eLpvg==
-X-Received: by 2002:a05:6870:632a:b0:e5:a05d:3c29 with SMTP id s42-20020a056870632a00b000e5a05d3c29mr653638oao.293.1650422179516;
-        Tue, 19 Apr 2022 19:36:19 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id y22-20020a4aea36000000b0033914f661a2sm5077728ood.33.2022.04.19.19.36.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 19:36:18 -0700 (PDT)
-Date:   Tue, 19 Apr 2022 21:36:17 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_msavaliy@quicinc.com, dianders@chromium.org
-Subject: Re: [V4 1/2] arch: arm64: dts: qcom: sc7280-idp: Configure cts
- pinctrl to bias-bus-hold
-Message-ID: <Yl9xoYo8z7z4gSTT@builder.lan>
-References: <1650349697-13540-1-git-send-email-quic_vnivarth@quicinc.com>
- <1650349697-13540-2-git-send-email-quic_vnivarth@quicinc.com>
+        with ESMTP id S1348751AbiDTC5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 22:57:45 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AFB102DC0;
+        Tue, 19 Apr 2022 19:55:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,274,1643641200"; 
+   d="scan'208";a="117395944"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 20 Apr 2022 11:54:59 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 67C5A4150737;
+        Wed, 20 Apr 2022 11:54:59 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v4 0/7] treewide: scsi: ufs: Add support for Renesas R-Car UFS controller
+Date:   Wed, 20 Apr 2022 11:54:43 +0900
+Message-Id: <20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1650349697-13540-2-git-send-email-quic_vnivarth@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 19 Apr 01:28 CDT 2022, Vijaya Krishna Nivarthi wrote:
+This patch series adds support Renesas R-Car S4-8 UFS controller.
+This controller has some restrictions so adds some quirks for it.
+Before using this driver, we have to initialize a clock generator
+on the environment board (named "Spider") by using the commands of
+U-Boot like below:
+ => i2c dev 0
+ => i2c mw 0x6c 0x26 0x05
+ => i2c olen 0x6c 2
+ => i2c mw 0x6c 0x26c 0x2e
 
-> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-> Change sleep pinctrl configuration to handle same.
-> 
+To use the UFS controller, we need the following patch too:
+https://lore.kernel.org/all/20220411124932.3765571-1-yoshihiro.shimoda.uh@renesas.com/
 
-As I said before, I would like the subject to contain the word
-"bluetooth" (or possibly BT if bluetooth doesn't fit).
+Changes from v3:
+ - Fix build warning by clang in patch [4/7].
+https://lore.kernel.org/all/20220419120316.209151-1-yoshihiro.shimoda.uh@renesas.com/
 
-And drop "arch: " from the subject prefix. If you're uncertain what to
-put there, run below command and follow what everyone else does:
+Changes from v2:
+ - Add Reviewed-by in patch [1/7]. (Krzysztof, thanks!)
+ - Use WARN_ON() instead of BUG_ON in patch [4/7].
+https://lore.kernel.org/all/20220414023115.4190736-1-yoshihiro.shimoda.uh@renesas.com/
 
-  git log --oneline -- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+Changes from v1:
+ - Fix dt-binding doc in patch [1/7].
+ - Add __maybe_unused for compile test on other platforms in patch [4/7].
+ - Fix node names in patch [5/7].
+https://lore.kernel.org/all/20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com/
 
-> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-> ---
-> v4: modify subject of patch to indicate file it is applying to
-> v3: apply same change to active state and other sc7280*.dts* as well
-> v2: used bias-bus-hold as per review comments
-> v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 015a347..85e7467 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -400,10 +400,10 @@
->  
->  &qup_uart7_cts {
->  	/*
-> -	 * Configure a pull-down on CTS to match the pull of
-> -	 * the Bluetooth module.
-> +	 * Configure a bias-bus-hold on CTS to lower power usage
-> +	 * when BT is turned off.
+Yoshihiro Shimoda (7):
+  dt-bindings: ufs: Document Renesas R-Car UFS host controller
+  ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
+  ufs: add UFSHCD_QUIRK_HIBERN_FASTAUTO
+  scsi: ufs-renesas: Add support for Renesas R-Car UFS controller
+  scsi: MAINTAINERS: Add maintainer for Renesas UFS driver
+  arm64: dts: renesas: r8a779f0: Add UFS node
+  arm64: dts: renesas: r8a779f0: spider-cpu: Enable UFS device
 
-This comment would just leave a future reader with the question about
-_why_ does this lower the power usage...
+ .../devicetree/bindings/ufs/renesas,ufs.yaml  |  61 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/renesas/r8a779f0-spider-cpu.dtsi |   8 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |  19 +
+ drivers/scsi/ufs/Kconfig                      |  12 +
+ drivers/scsi/ufs/Makefile                     |   1 +
+ drivers/scsi/ufs/ufs-renesas.c                | 418 ++++++++++++++++++
+ drivers/scsi/ufs/ufshcd.c                     |  12 +-
+ drivers/scsi/ufs/ufshcd.h                     |  12 +
+ 9 files changed, 547 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
+ create mode 100644 drivers/scsi/ufs/ufs-renesas.c
 
-This problem you're seeing is likely to come back in the next platform
-and your successor (or even yourself) will have no use of this comment
-to figure out what bias to configure on these pins.
+-- 
+2.25.1
 
-Thanks,
-Bjorn
-
->  	 */
-> -	bias-pull-down;
-> +	bias-bus-hold;
->  };
->  
->  &qup_uart7_rts {
-> @@ -495,10 +495,10 @@
->  		pins = "gpio28";
->  		function = "gpio";
->  		/*
-> -		 * Configure a pull-down on CTS to match the pull of
-> -		 * the Bluetooth module.
-> +		 * Configure a bias-bus-hold on CTS to lower power usage
-> +		 * when BT is turned off.
->  		 */
-> -		bias-pull-down;
-> +		bias-bus-hold;
->  	};
->  
->  	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
-> -- 
-> Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
-> 
