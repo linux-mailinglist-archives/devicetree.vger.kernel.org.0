@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B9D9508468
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 11:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 220EA508464
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 11:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351237AbiDTJFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234186AbiDTJFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 20 Apr 2022 05:05:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34826 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350929AbiDTJFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 05:05:38 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFCB11C36
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:02:52 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id r13so2137028ejd.5
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:02:52 -0700 (PDT)
+        with ESMTP id S1351228AbiDTJFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 05:05:39 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8113E1F638
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:02:53 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id y10so2111389ejw.8
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:02:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=foQFpGHqqj8Zbkae3n6kdc3vhIY9cGB7YcoNoAYo2bQ=;
-        b=BznkQZIXKRiH3LhEji4u7i1sQ9dIsbmqhWL9AkpgxUonKJ0EVT0hk1g/dM3RXlCMRU
-         VOT5tVcXYzxqx5b/1LwQtmTqArjKdlo81S/EXHwVKtA89JWj3FzAL9d+qZqd3af6BUyt
-         Y+QwPO++GiUaAcws9hbzkYBk41svA1ntnM3WDjNacGwIwaV91zd1F5IdOIW9Q5mdHLhI
-         C/G6dDdZUghuQtAUeNj5HLO6KBCM6CCaFHIn8Y2Bp39V1Yli87EJgFQ2G+45R+kprZRp
-         9kWYR4C5t+Rm3LoVxI2oqNMex0BUlCaMfHeC1eM7Dbr3f2j+ouZg2xvKeq7W4Ducm5I9
-         tXtQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5WxltkBNqRgSg5ye1K7x2uJPIQgi4UQShbR0vdy+3Z0=;
+        b=Jxt7haB5BZYbyKrTM9PzjIFPnnfD1o3+JrF/Z9+WXc4I0E7mXPkkxn97/nHTHVhj85
+         RCE43dGGQ9rKtFktXOzEjLcOKsxcKBf4nvLL3U44F7MljUQrZsDlESY8Kb8qEuDK6Mnt
+         SXOgeWhwyOv1x+Bykp7vDC8yXxCWh4Q1Nbbwu0RZb/2a38C3lxeO69G9Xuy2KSz84OCb
+         wNL33DliWhUBgP7NwqCOVDU4hFJ3WfGwOKOaGS+cKYAy6WGlls7KkOxJ0W/dQizaq12v
+         ls/QYtt52nEZQ0iJRMqkAu/3rZx6W/jqpaplYmj+ZKycf5fFqdwg6/hyuwW4UaTZMveH
+         yV2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=foQFpGHqqj8Zbkae3n6kdc3vhIY9cGB7YcoNoAYo2bQ=;
-        b=70UjBrFMGlCOcKeQXSHGdQ+H2Z2APzSzzSFi8VT0VbKDC8Y8j4pOj/wvjEkHjlztzM
-         tch2GlJL8SPHobaMj3/oUDjoAbGyTpJU5TaVJwd8Gk+eXcU6ZHJ2HLv2ekrbxNfcoZ/y
-         bI8XDfrz9+E6LP4reTveiAGwiSijBUN2SeHOEy0rScgTXSoOM1HjPZ7KUbn0sr/V7Wn/
-         jYe41WC0YGI6byNOMS6BqNVw/e4sWhjfi1Ijym//k4yezaamSl1uyp/Ggl8Ri4nO/VWU
-         uGU2Uue0VPFs++DnZjDAW38IVYmefJeD7b8BtyN969fLY+ci3o8jEDRHXXiwpuY1ugQH
-         LFCw==
-X-Gm-Message-State: AOAM532gsxRriI3djFpnDKb+f/baOmBH7KkQOzMl5zQgt76b0FfVT+Qy
-        IjpYSI9xuf0rxqtGMUgT8QCRXuP76wwEXw==
-X-Google-Smtp-Source: ABdhPJxPjsH/Qp/3jOahLAHoz7GD8bhLGyxSIXXmsy1RSgKswdJzQ8Onw1hStBX30+djcIxOy+mFMQ==
-X-Received: by 2002:a17:906:fd48:b0:6e8:366b:156b with SMTP id wi8-20020a170906fd4800b006e8366b156bmr16715706ejb.317.1650445371144;
-        Wed, 20 Apr 2022 02:02:51 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5WxltkBNqRgSg5ye1K7x2uJPIQgi4UQShbR0vdy+3Z0=;
+        b=Q5y8icmiG3XF4IdDpsGu5Qx9BJqmMSXk5cekibHtLuigLe3GdVUVUprCnmBzXCeaRn
+         MmYTS5YONF8tenbfNRQtxRXx3p8VwqtuvHPlq277oQZes2lKwpkAKHvpgz8uAd8+ualX
+         lj/Iy1UiBhyFY4uA0qILgqKQYF4l2LCf6hZ2t6+8nF0UPFrnczywgyOteamSWOL2XezF
+         RpRFRWhVLqhbdtJmJm9Pd8jEa/RG7YN23EST/jU8CyI1bssVBFwZj0i+eBCChDUd/vYW
+         8F+B4okbzX+N/x57bIMaM75MvG9NBz8ZFhorJI8HHTBS3doK3XYi8FduCay4m4lI/O6K
+         pMaQ==
+X-Gm-Message-State: AOAM532O9/YakCtmfzAA8/hdTjp5L0S8MZPqg5AWwRBo0td9SY9ZOH8A
+        HaeJBQ5AWLHW0Gcu7rCrRfW9dQ==
+X-Google-Smtp-Source: ABdhPJyPL0ilSgEuVbbu2a2nh9esM0At2WOAJrRLg+mCjLpw/AbP/TtwkPiaHRJ23Sd9a35P9tYZlg==
+X-Received: by 2002:a17:906:66c8:b0:6e8:8b06:1b32 with SMTP id k8-20020a17090666c800b006e88b061b32mr17230306ejp.236.1650445372114;
+        Wed, 20 Apr 2022 02:02:52 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k23-20020a1709062a5700b006ccd8fdc300sm6413477eje.180.2022.04.20.02.02.50
+        by smtp.gmail.com with ESMTPSA id k23-20020a1709062a5700b006ccd8fdc300sm6413477eje.180.2022.04.20.02.02.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Apr 2022 02:02:50 -0700 (PDT)
+        Wed, 20 Apr 2022 02:02:51 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Nishanth Menon <nm@ti.com>,
         Santosh Shilimkar <ssantosh@kernel.org>,
@@ -54,105 +54,80 @@ To:     Nishanth Menon <nm@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH v2 1/2] ARM: dts: keystone: align SPI NOR node name with dtschema
-Date:   Wed, 20 Apr 2022 11:02:46 +0200
-Message-Id: <20220420090247.73410-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 2/2] ARM: dts: keystone: fix missing fallback and case in SPI NOR node compatible
+Date:   Wed, 20 Apr 2022 11:02:47 +0200
+Message-Id: <20220420090247.73410-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220420090247.73410-1-krzysztof.kozlowski@linaro.org>
+References: <20220420090247.73410-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and SPI NOR dtschema expects "flash".
+Vendor prefix in compatible should be lower-case and the jedec,spi-nor
+should be used as fallback, according to the bindings.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
 ---
 
 Changes since v1:
-1. Add review tag.
+1. Add fallback (Nishanth).
+2. Got review from Grygorii but due to changes not including it here.
 ---
  arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
- arch/arm/boot/dts/keystone-k2g-evm.dts  | 2 +-
- arch/arm/boot/dts/keystone-k2g-ice.dts  | 2 +-
  arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
  arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm/boot/dts/keystone-k2e-evm.dts b/arch/arm/boot/dts/keystone-k2e-evm.dts
-index 66fec5f5d081..8f49883a675e 100644
+index 8f49883a675e..5d6d074011df 100644
 --- a/arch/arm/boot/dts/keystone-k2e-evm.dts
 +++ b/arch/arm/boot/dts/keystone-k2e-evm.dts
-@@ -137,7 +137,7 @@ partition@180000 {
- };
- 
- &spi0 {
--	nor_flash: n25q128a11@0 {
-+	nor_flash: flash@0 {
+@@ -140,7 +140,7 @@ &spi0 {
+ 	nor_flash: flash@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "Micron,n25q128a11";
-diff --git a/arch/arm/boot/dts/keystone-k2g-evm.dts b/arch/arm/boot/dts/keystone-k2g-evm.dts
-index d800f26b6275..88be868cf71e 100644
---- a/arch/arm/boot/dts/keystone-k2g-evm.dts
-+++ b/arch/arm/boot/dts/keystone-k2g-evm.dts
-@@ -392,7 +392,7 @@ &qspi {
- 	pinctrl-0 = <&qspi_pins>;
- 	cdns,rclk-en;
- 
--	flash0: m25p80@0 {
-+	flash0: flash@0 {
- 		compatible = "s25fl512s", "jedec,spi-nor";
+-		compatible = "Micron,n25q128a11";
++		compatible = "micron,n25q128a11", "jedec,spi-nor";
+ 		spi-max-frequency = <54000000>;
+ 		m25p,fast-read;
  		reg = <0>;
- 		spi-tx-bus-width = <1>;
-diff --git a/arch/arm/boot/dts/keystone-k2g-ice.dts b/arch/arm/boot/dts/keystone-k2g-ice.dts
-index 2a2d38cf0fff..bd84d7f0f2fe 100644
---- a/arch/arm/boot/dts/keystone-k2g-ice.dts
-+++ b/arch/arm/boot/dts/keystone-k2g-ice.dts
-@@ -325,7 +325,7 @@ &qspi {
- 	cdns,rclk-en;
- 	status = "okay";
- 
--	flash0: m25p80@0 {
-+	flash0: flash@0 {
- 		compatible = "s25fl256s1", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-tx-bus-width = <1>;
 diff --git a/arch/arm/boot/dts/keystone-k2hk-evm.dts b/arch/arm/boot/dts/keystone-k2hk-evm.dts
-index ad4e22afe133..f968af0bfad3 100644
+index f968af0bfad3..4a91f5ded402 100644
 --- a/arch/arm/boot/dts/keystone-k2hk-evm.dts
 +++ b/arch/arm/boot/dts/keystone-k2hk-evm.dts
-@@ -161,7 +161,7 @@ dtt@50 {
- };
- 
- &spi0 {
--	nor_flash: n25q128a11@0 {
-+	nor_flash: flash@0 {
+@@ -164,7 +164,7 @@ &spi0 {
+ 	nor_flash: flash@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "Micron,n25q128a11";
+-		compatible = "Micron,n25q128a11";
++		compatible = "micron,n25q128a11", "jedec,spi-nor";
+ 		spi-max-frequency = <54000000>;
+ 		m25p,fast-read;
+ 		reg = <0>;
 diff --git a/arch/arm/boot/dts/keystone-k2l-evm.dts b/arch/arm/boot/dts/keystone-k2l-evm.dts
-index e200533d26a4..32619b3c5804 100644
+index 32619b3c5804..1c880cf8fa91 100644
 --- a/arch/arm/boot/dts/keystone-k2l-evm.dts
 +++ b/arch/arm/boot/dts/keystone-k2l-evm.dts
-@@ -110,7 +110,7 @@ partition@180000 {
- };
- 
- &spi0 {
--	nor_flash: n25q128a11@0 {
-+	nor_flash: flash@0 {
+@@ -113,7 +113,7 @@ &spi0 {
+ 	nor_flash: flash@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "Micron,n25q128a11";
+-		compatible = "Micron,n25q128a11";
++		compatible = "micron,n25q128a11", "jedec,spi-nor";
+ 		spi-max-frequency = <54000000>;
+ 		m25p,fast-read;
+ 		reg = <0>;
 -- 
 2.32.0
 
