@@ -2,142 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E09845086F8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 13:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2154A508712
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 13:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378090AbiDTL37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 07:29:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36548 "EHLO
+        id S1378149AbiDTLfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 07:35:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378093AbiDTL35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 07:29:57 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53C241608;
-        Wed, 20 Apr 2022 04:27:08 -0700 (PDT)
-Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S230117AbiDTLfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 07:35:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193234199E;
+        Wed, 20 Apr 2022 04:32:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 6516D22249;
-        Wed, 20 Apr 2022 13:27:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1650454027;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ik2ns8BjGvma+kcnUHSgUe92puZeAqjO0QIBOmC2o1I=;
-        b=JCjHUsJYvhVJULzvaBiJZJyXoGDj6pmDMhaITAgSaK7cz6YysOANvIYZClBHrvhRV0MO+x
-        n9hCW0twa3x8Jj/T5aNyNYx1l/x/mvl6iApipodidO54WnaCmC/b841gYnVIbSVPh++7W/
-        cJ17fjRnzA1ZlH+sBp44gkIPPP4wav8=
-From:   Michael Walle <michael@walle.cc>
-To:     jerry.huang@nxp.com
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, leoyang.li@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH 1/2 v3] dt-bindings: dspi: added for semtech sx1301
-Date:   Wed, 20 Apr 2022 13:26:57 +0200
-Message-Id: <20220420112657.270293-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220420035045.33940-1-jerry.huang@nxp.com>
-References: <20220420035045.33940-1-jerry.huang@nxp.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id B6DD8B81EAC;
+        Wed, 20 Apr 2022 11:32:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ACB0C385A1;
+        Wed, 20 Apr 2022 11:32:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650454351;
+        bh=ebFJKJg13z90XuDCP50Bg9XslvGPTWVfiEJ3o0iVhZ4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iwY5GF3aL2QHqUnOr+CAhkh0EfUhYtfglg9goQAcGlsfMqTfB9kLun4SN1f+sznUc
+         WQ7EZqYXJGJ3sZyspxgeHwbWdjDlsaEyAuCHVvvHwxlkC0hRAhsTSBFvXg8Zh5tUpI
+         RSFpylwjg/X2y8txPj0EyJ1RT3yGk46cU1MUlfZM0Vl6uUblRfwHTmRvbzYtgjebjI
+         kTmmA0u3QvErnJvIF6kBuL7c8n78Hm+vwSps+3nuH6H5tfxMuRIufPn5mJM756q97L
+         uISzojOvIHt3tiae8CjQMPR2V2DkQSV5KcI5NgGyqXK0upEYCUIo7QtdV5JVjzK41w
+         AxZBlUR95hfXA==
+Date:   Wed, 20 Apr 2022 17:02:26 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dmaengine: qcom: gpi: Add minItems for
+ interrupts
+Message-ID: <Yl/vSjdRe99if4Rd@matsya>
+References: <20220414064235.1182195-1-vkoul@kernel.org>
+ <0598d1bb-cd7c-1414-910c-ae6bedc8295d@linaro.org>
+ <Ylf2gsJ+Ks0wz6i3@matsya>
+ <9d35e76e-5d98-b2d8-a22c-293adcbaadf0@linaro.org>
+ <Yl/iElIfHhmoOYOU@matsya>
+ <e08a8f96-54a7-60be-0bd4-7a74fdcd627e@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e08a8f96-54a7-60be-0bd4-7a74fdcd627e@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Add DT Binding doc for semtech sx1301
-
-Please be a bit more elaborate. The sx1301 seems to be an
-SPI device, some kind of WAN device.
-
+On 20-04-22, 13:11, Krzysztof Kozlowski wrote:
+> On 20/04/2022 12:36, Vinod Koul wrote:
+> >> If the choice is per SoC-controller, then the best would be to limit in
+> >> allOf:if:then. However maybe the number of channels depends also on
+> >> other factor (e.g. secure world configuration)?
+> > 
+> > That is quite right. So we wont know how many channels are made
+> > available..
+> > 
+> > So is min 1 acceptable or do you have an alternate ?
 > 
-> Signed-off-by: Changming Huang <jerry.huang@nxp.com>
-> ---
-> changes in v3:
->   - add the dt-bindings
-> 
->  .../bindings/spi/semtech,sx1301.yaml          | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml b/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
-> new file mode 100644
-> index 000000000000..f65fb5809218
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/semtech,sx1301.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Semtech sx1301 devicetree bindings
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml"
+> minItems:1 is ok.
 
-.. then why does it inherit the spi controllers properties?
+Thanks, can I get an ack?
 
-Also *some* kind of information what the sx1301 is would be nice.
-
-Anyway, I was about to comment on your patch 2. But maybe I'll
-just leave it here. On the RDB there is a mikrobus connector, with
-this, you are going to say "hey there is always a sx1301" module
-there. What happens if it not there? What if you put another module
-in that socket?
-
-Maybe Krzystof knows better. But it really looks like you want to
-have device tree overlays here instead of hardcoding exactly one
-use case.
-
--michael
-
-> +
-> +maintainers:
-> +  - Changming Huang <jerry.huang@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: semtech,sx1301
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +  fsl,spi-cs-sck-delay: true
-> +
-> +  fsl,spi-sck-cs-delay: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-max-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mikrobus@0 {
-> +      compatible = "semtech,sx1301";
-> +      reg = <0>;
-> +      spi-max-frequency = <2000000>;
-> +      fsl,spi-cs-sck-delay = <1000000>;
-> +      fsl,spi-sck-cs-delay = <50>;
-> +    };
-> +
-> +...
-> -- 
-> 2.25.1
-> 
-> 
+-- 
+~Vinod
