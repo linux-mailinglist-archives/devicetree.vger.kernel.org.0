@@ -2,58 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2154A508712
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 13:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0043C5087AC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378149AbiDTLfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 07:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43552 "EHLO
+        id S237099AbiDTMJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 08:09:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbiDTLfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 07:35:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193234199E;
-        Wed, 20 Apr 2022 04:32:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B6DD8B81EAC;
-        Wed, 20 Apr 2022 11:32:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ACB0C385A1;
-        Wed, 20 Apr 2022 11:32:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650454351;
-        bh=ebFJKJg13z90XuDCP50Bg9XslvGPTWVfiEJ3o0iVhZ4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iwY5GF3aL2QHqUnOr+CAhkh0EfUhYtfglg9goQAcGlsfMqTfB9kLun4SN1f+sznUc
-         WQ7EZqYXJGJ3sZyspxgeHwbWdjDlsaEyAuCHVvvHwxlkC0hRAhsTSBFvXg8Zh5tUpI
-         RSFpylwjg/X2y8txPj0EyJ1RT3yGk46cU1MUlfZM0Vl6uUblRfwHTmRvbzYtgjebjI
-         kTmmA0u3QvErnJvIF6kBuL7c8n78Hm+vwSps+3nuH6H5tfxMuRIufPn5mJM756q97L
-         uISzojOvIHt3tiae8CjQMPR2V2DkQSV5KcI5NgGyqXK0upEYCUIo7QtdV5JVjzK41w
-         AxZBlUR95hfXA==
-Date:   Wed, 20 Apr 2022 17:02:26 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dmaengine: qcom: gpi: Add minItems for
- interrupts
-Message-ID: <Yl/vSjdRe99if4Rd@matsya>
-References: <20220414064235.1182195-1-vkoul@kernel.org>
- <0598d1bb-cd7c-1414-910c-ae6bedc8295d@linaro.org>
- <Ylf2gsJ+Ks0wz6i3@matsya>
- <9d35e76e-5d98-b2d8-a22c-293adcbaadf0@linaro.org>
- <Yl/iElIfHhmoOYOU@matsya>
- <e08a8f96-54a7-60be-0bd4-7a74fdcd627e@linaro.org>
+        with ESMTP id S1378383AbiDTMJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:09:00 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38771377DA
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 05:06:13 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id u18so1998957eda.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 05:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=UlAja3YPVFSaCcjRJzEPZI+7Ai3V2k+mQnAfV+fzWps=;
+        b=QSywyv596dXT8X/29BiGuSl4JY9hscZylHITHlYHy6CCE9hWlNmZw73t+jbz33HpHh
+         8mVDucM15hiz0lfxr7SdFoUF315ped2/T1bMg3X5YCoNi8FZdtHj50dlDpaXhGDKAndj
+         UkbdP1+Pv9YnYKALr48m32NTXWYqMpT/WTzghaxEwbR/OZrcQ9J/kvwDL9xuZs8QwUta
+         pBAAcWi0VhP58Ol2iL/pIHCe9vQyEsQ/+wLpTFfffKEexRqeSiSZ2577ltVHnnLbxUh5
+         loeCMuybCRKGN2HGqtdh3nC4prfEWbSWFbERVTF+2hKpuw9k48L36UljxXj14zsmfp5z
+         lEkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UlAja3YPVFSaCcjRJzEPZI+7Ai3V2k+mQnAfV+fzWps=;
+        b=L9xTaUD86BYGubnasK2o0AsFTCFAZ6tDEpm/B3KSL3ywLyW3xZYqQ42g3iYssRdQsF
+         57DYQN14O0QUX3E2u2FxtY/qOYekdSZNyTSiDq0QLpM4mPOm8beM0A5TAmJblGrDAM5y
+         P+AP5F0rZ2pjc0kCjLwzZ7YkIvbHcMQ08mnCzlclXXwKby4GvPmZrQXo9mvbHeAa4eLG
+         ce994bcy+Mg1nrLfS0BeeGVI2HHLbz7kPnsp28pDx7gqNT3ZLOiEtUiV/brdswMGvF0d
+         pwowhoFiMrbkFUQiaIHs2H3iXGhq9AWhxKzCPbkM5fYliJIRVJpLwfbXZlK3/RwPETNw
+         f/wA==
+X-Gm-Message-State: AOAM530q0Xe/ghX2ggEG80bgVQ/7LKnL3cdPLJZN9bODKD83mesEYn6J
+        lGdOtRRoS3DTyF0BI+PuTgOnRg==
+X-Google-Smtp-Source: ABdhPJzJlKoCJPioJ/m0NnVQMdZ6j2pDYJ7mzkCaxZoPVg5LHSGsEo73lBQ7kzJo1XeAYP0Uv/JK+Q==
+X-Received: by 2002:a05:6402:2694:b0:423:fd1f:30c2 with SMTP id w20-20020a056402269400b00423fd1f30c2mr9265290edd.343.1650456371790;
+        Wed, 20 Apr 2022 05:06:11 -0700 (PDT)
+Received: from [192.168.0.225] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id vr7-20020a170906bfe700b006e8325fe130sm6570787ejb.31.2022.04.20.05.06.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Apr 2022 05:06:11 -0700 (PDT)
+Message-ID: <d74f62d7-7aea-b31f-1c2f-540c54df289c@linaro.org>
+Date:   Wed, 20 Apr 2022 14:06:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e08a8f96-54a7-60be-0bd4-7a74fdcd627e@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2 v4] dt-bindings: dspi: added for semtech sx1301
+Content-Language: en-US
+To:     Changming Huang <jerry.huang@nxp.com>, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org
+References: <20220420073146.38086-1-jerry.huang@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220420073146.38086-1-jerry.huang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,20 +74,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-04-22, 13:11, Krzysztof Kozlowski wrote:
-> On 20/04/2022 12:36, Vinod Koul wrote:
-> >> If the choice is per SoC-controller, then the best would be to limit in
-> >> allOf:if:then. However maybe the number of channels depends also on
-> >> other factor (e.g. secure world configuration)?
-> > 
-> > That is quite right. So we wont know how many channels are made
-> > available..
-> > 
-> > So is min 1 acceptable or do you have an alternate ?
+On 20/04/2022 09:31, Changming Huang wrote:
+> Add DT Binding doc for semtech sx1301
 > 
-> minItems:1 is ok.
+> Signed-off-by: Changming Huang <jerry.huang@nxp.com>
+> ---
+> changes in v4:
+>   - rename example node, adjust description
+> changes in v3:
+>   - add the dt-bindings
+> 
+>  .../bindings/spi/semtech,sx1301.yaml          | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml b/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
+> new file mode 100644
+> index 000000000000..420fe8d23a1e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/semtech,sx1301.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Semtech sx1301 SPI controller bindings
 
-Thanks, can I get an ack?
+This is still wrong.
 
--- 
-~Vinod
+Please also answer Michael's comments.
+
+Best regards,
+Krzysztof
