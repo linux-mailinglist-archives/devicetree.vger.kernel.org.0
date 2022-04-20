@@ -2,104 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDBE4509043
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 21:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014F2509093
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 21:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381707AbiDTTWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 15:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41564 "EHLO
+        id S1381783AbiDTTnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 15:43:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381696AbiDTTWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 15:22:25 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F52BF4A;
-        Wed, 20 Apr 2022 12:19:38 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 78B8622255;
-        Wed, 20 Apr 2022 21:19:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1650482376;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hjU3itzIvEGXkt6RShfQqX8saZi833+CMTU68RceKbQ=;
-        b=F9rSym0G72plU7oK+A56qOR5TtXmlsY7KjmAhZmdks/dpMAheGWfs/qkrqPUcD/lgPTvF9
-        37z4Bzu6qawEri58sMuCtpgq2Ge311h9JunC3sU8mYumU3hjJO2zz/p0SBqMAvxK189KHl
-        Fh3ohRyVZhT8xFuFWjXGRd8RqgJ+qQQ=
-From:   Michael Walle <michael@walle.cc>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v3 2/2] pinctrl: ocelot: add optional shared reset
-Date:   Wed, 20 Apr 2022 21:19:26 +0200
-Message-Id: <20220420191926.3411830-3-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220420191926.3411830-1-michael@walle.cc>
-References: <20220420191926.3411830-1-michael@walle.cc>
+        with ESMTP id S1351468AbiDTTnb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 15:43:31 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D784317056;
+        Wed, 20 Apr 2022 12:40:42 -0700 (PDT)
+Received: by mail-oi1-f178.google.com with SMTP id r85so3238373oie.7;
+        Wed, 20 Apr 2022 12:40:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=DLOa39jXULqAZgfEl4odR8fyhEkBZ7TBR6PbRHeUf2U=;
+        b=KzRYtDkJazpGg2Gbc4F+uZ8VEYmGYE+fNNcPfBdBBallO2P5au2C6mhv/JOZ1Ct0VR
+         TXVRVNlidDWjlSY8SnPSMZa0WUURp4BVDl7gTVu4b9JvTMAgKD8KQqOB2GffON3c5Qk5
+         LyAe6PpzEj41iLC83bZFckUQ9QypKyvbOf41klCHwGQxXtJS4utD0LzyL6nV98u4jOQu
+         lPUoJsjenRU36SsNEy1MWCoSZPPOfC1J58fBKWbVQogHSeXNonZN7eOC23WyFrcMEh28
+         GaTZIk+vS6AFJKz/4AklSPBytfFobgdyIrgg4/wholgksnz8uZkf4P/g6PXkvD2/HWm2
+         DMAQ==
+X-Gm-Message-State: AOAM532Q6XAS6sJ3tbBnoL5rxceR0JF3FG4SA8GoHxCg1ywKpzYJGhdz
+        gKpm7AXsweMR5kJktcgIjg==
+X-Google-Smtp-Source: ABdhPJwdZReZs8Am9T7uB1bFgpS7/ooMCWbtjFRyeH2kYtJrcfABlnbjYom31O4tUWRByWMAwSTFEw==
+X-Received: by 2002:a05:6808:1394:b0:2ec:ddb3:c82b with SMTP id c20-20020a056808139400b002ecddb3c82bmr2563771oiw.274.1650483642151;
+        Wed, 20 Apr 2022 12:40:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 123-20020a4a0181000000b00324a1217e96sm6997914oor.35.2022.04.20.12.40.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Apr 2022 12:40:41 -0700 (PDT)
+Received: (nullmailer pid 1715358 invoked by uid 1000);
+        Wed, 20 Apr 2022 19:40:40 -0000
+Date:   Wed, 20 Apr 2022 14:40:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        =?utf-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
+        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V3 1/7] dt-bindings:iio:adc: add sprd,ump9620-adc
+ dt-binding
+Message-ID: <YmBhuOMqqCNJnFGP@robh.at.kernel.org>
+References: <20220407082148.571442-1-gengcixi@gmail.com>
+ <20220407082148.571442-2-gengcixi@gmail.com>
+ <YlcgtLmXwc2s2+oJ@robh.at.kernel.org>
+ <CAF12kFuY_t4i2SpAaBvTAOagKVJOf3Awuds1O0J7xvKFgSEQQg@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAF12kFuY_t4i2SpAaBvTAOagKVJOf3Awuds1O0J7xvKFgSEQQg@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the LAN9668 there is a shared reset line which affects GPIO, SGPIO
-and the switch core. Add support for this shared reset line.
+On Mon, Apr 18, 2022 at 02:26:29PM +0800, Cixi Geng wrote:
+> Rob Herring <robh@kernel.org> 于2022年4月14日周四 03:12写道：
+> >
+> > On Thu, Apr 07, 2022 at 04:21:42PM +0800, Cixi Geng wrote:
+> > > From: Cixi Geng <cixi.geng1@unisoc.com>
+> > >
+> > > sprd,ump9620-adc is one variant of sc27xx series, add ump9620
+> > > description and sample in dt-bindings.
+> > >
+> > > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> > > ---
+> > >  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 57 +++++++++++++++++--
+> > >  1 file changed, 53 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> > > index caa3ee0b4b8c..0d0f317b75c5 100644
+> > > --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> > > @@ -20,6 +20,7 @@ properties:
+> > >        - sprd,sc2723-adc
+> > >        - sprd,sc2730-adc
+> > >        - sprd,sc2731-adc
+> > > +      - sprd,ump9620-adc
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -34,12 +35,39 @@ properties:
+> > >      maxItems: 1
+> > >
+> > >    nvmem-cells:
+> > > -    maxItems: 2
+> > > +    description: nvmem-cells.
+> > >
+> > >    nvmem-cell-names:
+> > > -    items:
+> > > -      - const: big_scale_calib
+> > > -      - const: small_scale_calib
+> > > +    description: Names for each nvmem-cells specified.
+> >
+> > These descriptions of common properties are redundant. Just use 'true'
+> > for the property values.
+> >
+> > > +
+> > > +if:
+> > > +  not:
+> > > +    properties:
+> > > +      compatible:
+> > > +        contains:
+> > > +          enum:
+> > > +            - sprd,ump9620-adc
+> >
+> > Use 'const'
+> 
+> Hi Rob Herring：
+> did you mean I should use "- const: sprd,ump9620-adc"? or change the
+> enum to const?
+> but the above two modification methods have failed for me to test
+> dt-bindings-check.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
-Tested-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/pinctrl/pinctrl-ocelot.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/pinctrl/pinctrl-ocelot.c b/drivers/pinctrl/pinctrl-ocelot.c
-index 1bdced67464b..843704fa8625 100644
---- a/drivers/pinctrl/pinctrl-ocelot.c
-+++ b/drivers/pinctrl/pinctrl-ocelot.c
-@@ -19,6 +19,7 @@
- #include <linux/pinctrl/pinconf-generic.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- 
- #include "core.h"
-@@ -1912,6 +1913,7 @@ static int ocelot_pinctrl_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct ocelot_pinctrl *info;
-+	struct reset_control *reset;
- 	struct regmap *pincfg;
- 	void __iomem *base;
- 	int ret;
-@@ -1927,6 +1929,12 @@ static int ocelot_pinctrl_probe(struct platform_device *pdev)
- 
- 	info->desc = (struct pinctrl_desc *)device_get_match_data(dev);
- 
-+	reset = devm_reset_control_get_optional_shared(dev, "switch");
-+	if (IS_ERR(reset))
-+		return dev_err_probe(dev, PTR_ERR(reset),
-+				     "Failed to get reset\n");
-+	reset_control_reset(reset);
-+
- 	base = devm_ioremap_resource(dev,
- 			platform_get_resource(pdev, IORESOURCE_MEM, 0));
- 	if (IS_ERR(base))
--- 
-2.30.2
-
+contains:
+  const: sprd,ump9620-adc
