@@ -2,158 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A9A5083FC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 10:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E31250840E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 10:51:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376913AbiDTIuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 04:50:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46196 "EHLO
+        id S1376924AbiDTIyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 04:54:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376905AbiDTIuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 04:50:11 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3605186FA
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:47:24 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id q22so1088037ljh.10
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:47:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tAe7ocOZ0bBrreHF0RxD9R0oEMScj7O80nn6Z0+6mKk=;
-        b=l7aPeWemyn/R90hcDdIeAm1ynIy9VHgrdD+aB5XMWSttSYjB3m3nf82oOQL5BO70pf
-         yKt3cTG/Y5uxBT8/EdawX4RKgVRideaRv/5Y7f97MbkHjGBbHi0TTrcVApE+ETXXOupq
-         dx7KHF8KZaGgXBfzM/A9wSl1a3draGgOOuk7qRps+NYoWW+Mr801M1qRdrSpZXYnojrq
-         l+bZqHL70oDSYG7GZTP9rmWgoRJZLsZtCTHdM9k57/gikiSWCDq85aPUMQdI7hCkl3mi
-         0k26ZysqwMsgqb8+2Xw+u3S7eUxUwzzJO5pz7PPrlzgKaqvBLXtAs0iQpZ+ktMuhrq00
-         cczQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tAe7ocOZ0bBrreHF0RxD9R0oEMScj7O80nn6Z0+6mKk=;
-        b=PF9d9j1e8i0L1D7kWU9XaI6XmZ1Qnxfd0wfcwZCOxPNQ5RH4hY74ugDQDkWoejJoYI
-         A4FZSx9G56G7/gnpU4wWV1qKFlGRHJHlvOUoN/jfXI/TuMxtEFkLg5uRQC/PZoHK0l/o
-         SrRd9bZ/QVjKsr6ObEYl2FMHofUJk+6DGJ53jNMdmzThi1hXIV1HlcKkh13luFJ2Zx7h
-         PUpKngfckZFN04MOAzKtVqcR7phNCOdNVKcea1VQFY3qM2OBNkC55QDziKyroKCrCMOF
-         DttocQzfZwVbVqPpbn/UhvwmUN+Mhz96K0+5Zva5YdgShhiazEmjBtVquVBD9brZpmBB
-         xjUQ==
-X-Gm-Message-State: AOAM5312hnYdNfkySUC+YFBJ8RkGZQSII/jR0EXmyX73sdqWnTEzbEAh
-        GiXEmBBdmEK4GXEHfYTdTB4KStz9sT8fpVY++1nQGg==
-X-Google-Smtp-Source: ABdhPJzPP6FZmr+6nZr+hzEU+yTnYEzGCQtdmZue5NJ/rrH+3+6fdShgY4mEO9KwAJzNgJeNkdQEkxHQJNmJ6W9b15c=
-X-Received: by 2002:a2e:6a08:0:b0:24d:14af:4be4 with SMTP id
- f8-20020a2e6a08000000b0024d14af4be4mr12846312ljc.24.1650444442933; Wed, 20
- Apr 2022 01:47:22 -0700 (PDT)
+        with ESMTP id S1376828AbiDTIyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 04:54:18 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B52231CFD5;
+        Wed, 20 Apr 2022 01:51:32 -0700 (PDT)
+Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KjvVC3YPyz688Ky;
+        Wed, 20 Apr 2022 16:49:07 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Wed, 20 Apr 2022 10:51:29 +0200
+Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 20 Apr
+ 2022 09:51:28 +0100
+Date:   Wed, 20 Apr 2022 09:51:27 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Rokosov Dmitry Dmitrievich <DDRokosov@sberdevices.ru>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 3/3] dt-bindings: iio: accel: add dt-binding schema
+ for msa311 accel driver
+Message-ID: <20220420095127.000059d4@Huawei.com>
+In-Reply-To: <20220419154555.24191-4-ddrokosov@sberdevices.ru>
+References: <20220419154555.24191-1-ddrokosov@sberdevices.ru>
+        <20220419154555.24191-4-ddrokosov@sberdevices.ru>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <20220420013258.3639264-1-atishp@rivosinc.com> <20220420013258.3639264-3-atishp@rivosinc.com>
- <CAOnJCU+EPHxD7MqbswKMy=gZhmyyXMiezqaw1+D1h+O+pbYR2w@mail.gmail.com>
-In-Reply-To: <CAOnJCU+EPHxD7MqbswKMy=gZhmyyXMiezqaw1+D1h+O+pbYR2w@mail.gmail.com>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Wed, 20 Apr 2022 14:17:10 +0530
-Message-ID: <CAK9=C2U4s5hC9G0w8ELmZn=YgCJ2hTAU-EfGZsSh=HZy4gQaiw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] RISC-V: KVM: Restrict the extensions that can be disabled
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        KVM General <kvm@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.41]
+X-ClientProxiedBy: lhreml717-chm.china.huawei.com (10.201.108.68) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 20, 2022 at 1:13 PM Atish Patra <atishp@atishpatra.org> wrote:
->
-> On Tue, Apr 19, 2022 at 6:33 PM Atish Patra <atishp@rivosinc.com> wrote:
-> >
-> > Currently, the config reg register allows to disable all allowed
-> > single letter ISA extensions. It shouldn't be the case as vmm
-> > shouldn't be able disable base extensions (imac).
->
-> /s/able/able to/
->
-> > These extensions should always be enabled as long as they are enabled
-> > in the host ISA.
-> >
-> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> > ---
-> >  arch/riscv/kvm/vcpu.c | 21 +++++++++++++--------
-> >  1 file changed, 13 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-> > index 2e25a7b83a1b..14dd801651e5 100644
-> > --- a/arch/riscv/kvm/vcpu.c
-> > +++ b/arch/riscv/kvm/vcpu.c
-> > @@ -38,12 +38,16 @@ const struct kvm_stats_header kvm_vcpu_stats_header = {
-> >                        sizeof(kvm_vcpu_stats_desc),
-> >  };
-> >
-> > -#define KVM_RISCV_ISA_ALLOWED  (riscv_isa_extension_mask(a) | \
-> > -                                riscv_isa_extension_mask(c) | \
-> > -                                riscv_isa_extension_mask(d) | \
-> > -                                riscv_isa_extension_mask(f) | \
-> > -                                riscv_isa_extension_mask(i) | \
-> > -                                riscv_isa_extension_mask(m))
-> > +#define KVM_RISCV_ISA_DISABLE_ALLOWED  (riscv_isa_extension_mask(d) | \
-> > +                                       riscv_isa_extension_mask(f))
-> > +
-> > +#define KVM_RISCV_ISA_DISABLE_NOT_ALLOWED      (riscv_isa_extension_mask(a) | \
-> > +                                               riscv_isa_extension_mask(c) | \
-> > +                                               riscv_isa_extension_mask(i) | \
-> > +                                               riscv_isa_extension_mask(m))
-> > +
-> > +#define KVM_RISCV_ISA_ALLOWED (KVM_RISCV_ISA_DISABLE_ALLOWED | \
-> > +                              KVM_RISCV_ISA_DISABLE_NOT_ALLOWED)
-> >
-> >  static void kvm_riscv_reset_vcpu(struct kvm_vcpu *vcpu)
-> >  {
-> > @@ -217,9 +221,10 @@ static int kvm_riscv_vcpu_set_reg_config(struct kvm_vcpu *vcpu,
-> >         switch (reg_num) {
-> >         case KVM_REG_RISCV_CONFIG_REG(isa):
-> >                 if (!vcpu->arch.ran_atleast_once) {
-> > -                       vcpu->arch.isa = reg_val;
-> > +                       /* Ignore the disable request for these extensions */
-> > +                       vcpu->arch.isa = reg_val | KVM_RISCV_ISA_DISABLE_NOT_ALLOWED;
-> >                         vcpu->arch.isa &= riscv_isa_extension_base(NULL);
-> > -                       vcpu->arch.isa &= KVM_RISCV_ISA_ALLOWED;
-> > +                       vcpu->arch.isa &= KVM_RISCV_ISA_DISABLE_ALLOWED;
-> >                         kvm_riscv_vcpu_fp_reset(vcpu);
-> >                 } else {
-> >                         return -EOPNOTSUPP;
-> > --
-> > 2.25.1
-> >
->
-> Sorry. I forgot to add the fixes tag.
->
-> Fixes: 92ad82002c39 (RISC-V: KVM: Implement
-> KVM_GET_ONE_REG/KVM_SET_ONE_REG ioctls)
+On Tue, 19 Apr 2022 15:45:58 +0000
+Rokosov Dmitry Dmitrievich <DDRokosov@sberdevices.ru> wrote:
 
-I have queued this for fixes.
+> Introduce devicetree binding json-schema for MSA311 tri-axial,
+> low-g accelerometer driver.
+> 
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Hi Dmitry and welcome to IIO.
+
+Sign off generally matches the From: of the email.
+Makes it easier for scripts to check than having different name forms.
+
+> ---
+>  .../bindings/iio/accel/memsensing,msa311.yaml      | 64 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+> new file mode 100644
+> index 00000000..3e4660f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/iio/accel/memsensing,msa311.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: MEMSensing digital 3-Axis accelerometer
+> +
+> +maintainers:
+> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> +
+> +description: |
+> +  MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
+> +  sensitivity consumer applications. It has dynamical user selectable full
+> +  scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measurements
+> +  with output data rates from 1Hz to 1000Hz.
+> +  Datasheet can be found at following URL
+> +  https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: memsensing,msa311
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: I2C registers address
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: optional I2C int pin can be freely mapped to specific func
+> +
+> +  interrupt-names:
+> +    const: irq
+
+For a single IRQ giving it a name isn't that useful so I would drop this.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+
+Why have this?
+
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        msa311: msa311@62 {
+Generic naming required.
+           accelerometer@62 {
+
+> +            compatible = "memsensing,msa311";
+> +            reg = <0x62>;
+> +            interrupt-parent = <&gpio_intc>;
+> +            interrupts = <29 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "irq";
+> +            status = "okay";
+
+We don't often have status in the examples. 
+
+
+Otherwise looks good to me.
 
 Thanks,
-Anup
 
->
-> --
-> Regards,
-> Atish
->
-> --
-> kvm-riscv mailing list
-> kvm-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/kvm-riscv
+Jonathan
+
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c75be17..4227914 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12482,6 +12482,7 @@ MEMSENSING MICROSYSTEMS MSA311 ACCELEROMETER DRIVER
+>  M:	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>  L:	linux-iio@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+>  F:	drivers/iio/accel/msa311.c
+>  
+>  MEN A21 WATCHDOG DRIVER
+
