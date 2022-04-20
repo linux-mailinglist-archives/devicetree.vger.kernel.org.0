@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12482508825
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:30:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90976508842
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353216AbiDTMdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 08:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46050 "EHLO
+        id S1378607AbiDTMik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 08:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353229AbiDTMdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:33:08 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 308EF3EAB0;
-        Wed, 20 Apr 2022 05:30:22 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id p62so1677834iod.0;
-        Wed, 20 Apr 2022 05:30:22 -0700 (PDT)
+        with ESMTP id S232153AbiDTMij (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:38:39 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3F313F50;
+        Wed, 20 Apr 2022 05:35:53 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id y11so873908ilp.4;
+        Wed, 20 Apr 2022 05:35:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=Xz4W3uwgD5u7Fu/Wu+J5mZSSF4lKujDTVil1iZmmtI0=;
-        b=jiXOEm7c4DvyxPMX+4yqBD7wGBJv9Ewoltv+il6LimSG4Haj/7tvVkrCwGc0xwaQa1
-         oVlmphccbWXZ9mBwyGpMSdlL7ql3ipHHx9eYVwwhwLIn9yHgLAsZ5KG0EjfRuGHvbURT
-         Jk2mJEb+gX3gKQZYDqkNxs/+rZnPzNakkUPj6FUqEONVZddB+UcrDKWJw5Vg2Da9ETCR
-         ZjsYChmV5TOc8tq8kQaM4Ml/P9HDzchKNz5jnt0jvg/zClSDiNIv7yiqmKckuIkyZvUF
-         +EMDhCjJkH3vcPHhSZE09CwWyQHr7JWxEdzzJt8aSVmoCuwZHNJFFnmCVh4tF8gxbDr8
-         depg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=BiLwiwddtSMnlQ0M8iHv3+ugnw2GAfojyhyoRie29Vk=;
+        b=e0EtYUunQZ84wIdzf8zq9LY2W4oa9WeNkY3QlCIPHvOdI9e1Fvvx6d4qj9MXxi4wjR
+         krYzb67qgZBV7++16zQnXvLEKOTtCAxEaaDfFh1G/FyibNSfky00SQK6ugA08KTlQ1Sl
+         B+C3D3cXbP16iHNDNCzhcWgCICEZvPPZurQMgF0k5YTxbGxj72Y7B2SWf1XEWwFHb/v2
+         bvo5RW+3cZx3JTX4KSV+ibiWiNFVA06CD0Lmh3b5kFyrJXz85udbpJ35zjdxwSspcSeB
+         rf5Dm6bYxTrk1b/Yvv32dRRxvB/O2nAzZdADDbSVrRJ1RpIKNBQtkrJdh/PIaQ5wxf4I
+         RDlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Xz4W3uwgD5u7Fu/Wu+J5mZSSF4lKujDTVil1iZmmtI0=;
-        b=TwxJkGck1HIs/nX7GXEpRPt0jKSmU3IgtiWg3eOs45HaH6PFiaau8++ClujICyXKTg
-         JF0G+NJ0D+Qas+ta8w17Q2mCE9ukM2wih8ePhBEsMCK2ek1eebIlv/D9nTKclkxQfwL0
-         z03hbVAGxm38whxXJgZsTqN7O3eEtdc/IfiGg0jhBdKp6/KU8ATbNYs4KIO5At8Eoz5d
-         ziUcMziKEh6GA2BjgJvG6UMX1BoeD8WP2MdjYygjo4gXBsEYRXkwqMLiGiBuAOLu2MN8
-         CZfG5PyE2KHoCQ3ygAv1zhjY1H0eJ29vXyxOSxjaMKwbmVS2MqdpGKg6lKFXgX9K/5Wq
-         bilQ==
-X-Gm-Message-State: AOAM5317sKR7KJ6p7Z5O8oIdvUjd4Ene6ruV5A9bourzWOa52EtfZ4OZ
-        n8lqrrj0dY3M5W9hhUaG92Y=
-X-Google-Smtp-Source: ABdhPJwGRhXFbeJvDhxNl4PQvkHxnDazuTIyslmonAXkW1GqI/MI4eYUOWbmDbDUpAOx49PP1iJ9aA==
-X-Received: by 2002:a02:9a07:0:b0:31a:2642:9e1d with SMTP id b7-20020a029a07000000b0031a26429e1dmr9739495jal.159.1650457821518;
-        Wed, 20 Apr 2022 05:30:21 -0700 (PDT)
+        bh=BiLwiwddtSMnlQ0M8iHv3+ugnw2GAfojyhyoRie29Vk=;
+        b=6uc1Lhb1xawrVihdvcCvJGnkeZa+hqEx0vUBJtsCJ8mGm/RLob23j31HJNBh9oTcTr
+         9pLR3CAA9Fz4WI0k5HZSPgTJ703uZYaYMxygffre7pjceyHksiEmlrp3S1X+6rvyJu8k
+         HWn6KFnQ801eWdxFqijgbWcbMjOuFegVMRzL205SdQui+SAQNkVnpXNu/Uz8o+JfbFLV
+         C5Tfxc3MvkYUjNa4qLNpldHqW7kTP7KKntytnq91CgaoMsIkwTMGWFB1+pnKLZ5FlNAK
+         qePewokZMG9wgNChzxLrxBJ7QumruxPW80irb9NQpywqbk328QEhJuWgqn1uc1E/ZQc4
+         wuJQ==
+X-Gm-Message-State: AOAM531fnJuMW3K/cUDPEacLQ6ZL/LsTuV+yZAYAIqTePAyl+DPDus8j
+        03XzhOJ1GiatGV5UvQxxsQ8=
+X-Google-Smtp-Source: ABdhPJzKIwd8l2yZZ031MUP9S0Jjf7C8b5CPjV3TsOHP+MKPFXEdaMvbfQGutKPOvnvuukrfm4Meeg==
+X-Received: by 2002:a92:c26e:0:b0:2c9:e7f7:5eb0 with SMTP id h14-20020a92c26e000000b002c9e7f75eb0mr8926130ild.143.1650458153081;
+        Wed, 20 Apr 2022 05:35:53 -0700 (PDT)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id e203-20020a6bb5d4000000b0064dafa0416fsm11356904iof.2.2022.04.20.05.30.18
+        by smtp.gmail.com with ESMTPSA id b19-20020a5d8553000000b00649f02b1b0csm11330099ios.39.2022.04.20.05.35.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Apr 2022 05:30:20 -0700 (PDT)
-Message-ID: <3c24dbdb-7677-bba6-685a-43293a01e777@gmail.com>
-Date:   Wed, 20 Apr 2022 14:30:17 +0200
+        Wed, 20 Apr 2022 05:35:52 -0700 (PDT)
+Message-ID: <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
+Date:   Wed, 20 Apr 2022 14:35:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: mt8183-kukui: align SPI NOR node name with
+ dtschema
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Sam Shih <sam.shih@mediatek.com>, Stephen Boyd <sboyd@kernel.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220419180938.19397-1-y.oudjana@protonmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220407142143.293740-1-krzysztof.kozlowski@linaro.org>
+ <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 0/3] dt-bindings: arm: mediatek: Convert some docs to DT
- schema
-In-Reply-To: <20220419180938.19397-1-y.oudjana@protonmail.com>
+In-Reply-To: <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,36 +79,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 19/04/2022 20:09, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 20/04/2022 11:10, Krzysztof Kozlowski wrote:
+> On Thu, 7 Apr 2022 16:21:43 +0200, Krzysztof Kozlowski wrote:
+>> The node names should be generic and SPI NOR dtschema expects "flash".
+>>
+>>
 > 
-> This series includes DT schema conversions for topckgen, apmixedsys
-> and infracfg bindings.
+> Looks like no one wants to take this, so let me take care of it.
 > 
 
-Thanks for the effort. Regarding the bindings Krzysztof mentioned should go into 
-bindings/clock/ directory: please add the clock maintainers as maintainers of 
-the bindings.
+First thing would have been a ping on the patch, don't you think? Anyway as I 
+said the last time, if you take DTS patches for mediatek, I'd need a stable 
+branch I can merge so that we don't have any merge conflicts in the end.
 
-Thanks!
+Regards,
 Matthias
 
-> Yassine Oudjana (3):
->    dt-bindings: arm: mediatek: topckgen: Convert to DT schema
->    dt-bindings: arm: mediatek: apmixedsys: Convert to DT schema
->    dt-bindings: arm: mediatek: infracfg: Convert to DT schema
+> Applied, thanks!
 > 
->   .../arm/mediatek/mediatek,apmixedsys.txt      | 35 --------
->   .../arm/mediatek/mediatek,apmixedsys.yaml     | 60 ++++++++++++++
->   .../arm/mediatek/mediatek,infracfg.txt        | 42 ----------
->   .../arm/mediatek/mediatek,infracfg.yaml       | 79 +++++++++++++++++++
->   .../arm/mediatek/mediatek,topckgen.txt        | 35 --------
->   .../arm/mediatek/mediatek,topckgen.yaml       | 60 ++++++++++++++
->   6 files changed, 199 insertions(+), 112 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.txt
->   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apmixedsys.yaml
->   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
->   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
->   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.txt
->   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,topckgen.yaml
+> [1/1] arm64: dts: mt8183-kukui: align SPI NOR node name with dtschema
+>        commit: 4e3ffebd69e0aada1ce6bf4bf832e14a3c4f50db
 > 
+> Best regards,
