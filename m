@@ -2,109 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48CA4508540
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 11:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE206508549
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 11:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377348AbiDTJ43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 05:56:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
+        id S1377373AbiDTKAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 06:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233795AbiDTJ42 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 05:56:28 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C8D396B3;
-        Wed, 20 Apr 2022 02:53:42 -0700 (PDT)
-Received: from mail-wr1-f53.google.com ([209.85.221.53]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1N0WsG-1nszeC33K8-00wUNe; Wed, 20 Apr 2022 11:53:40 +0200
-Received: by mail-wr1-f53.google.com with SMTP id q3so1481796wrj.7;
-        Wed, 20 Apr 2022 02:53:40 -0700 (PDT)
-X-Gm-Message-State: AOAM530a/T3lSNfIKRsxeiVCK8oaNYEpwuvSxl+frYqz8Je0+Zyf9IOR
-        S5oFJlWXV8Z5ubJe15Gi0/zvaOoVwsJT3Kmb7PA=
-X-Google-Smtp-Source: ABdhPJwJPuI7Y1qtWlrDJp9C+nSYUzTzOJUfqs4AGk8MfQmW4nHphkYeGXo9SzAnynjyQA61TRt2Y+NXKTusJSUq7H8=
-X-Received: by 2002:a5d:6983:0:b0:207:a226:df4b with SMTP id
- g3-20020a5d6983000000b00207a226df4bmr14835629wru.192.1650448420348; Wed, 20
- Apr 2022 02:53:40 -0700 (PDT)
+        with ESMTP id S1377402AbiDTKAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 06:00:21 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B05F3ED20
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:57:36 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id e4so1465227oif.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 02:57:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xtLUEzPeV0tow6IIeX5RE4U5Io5bh+mYl/Jcol0SuNQ=;
+        b=kk88lTGpFTLg11Qn22PMTPob9b4OwfpBr+jg8m5Q2R4H7KYnUxQ+tXqvp2J8KkeCBK
+         Uj+tOovnRJhF3i6nSH7KhH9Y7nD+XcDmgKm3QMgdZXoLU3mclrZNRfpEiG/PZSoFUPuh
+         DQUeHblz4zVmRokFue5TW9XhrbLJEnKY/AkEONTeQ2xoeQhGXVoqYWMUGQwb9ihUueyU
+         E2TcFek5XeVm7wmEguS3Q6u4ZhpgpSn5VilAQZe3T5KqvPHwM927kzBC42+1qEXdE9PT
+         WQcOR7ESdjoJQ360wnJNt/C72kMEeUxH73aocEvXrWCxwX531mtSBaATFjIsgpdKAOF9
+         ug+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xtLUEzPeV0tow6IIeX5RE4U5Io5bh+mYl/Jcol0SuNQ=;
+        b=13mgv0Dku9wXSWWe1XQQ2M2w6lhc+U2agLj7qkUWlBhWqnh3h9sezDc/hNp9K7tzvB
+         8lnRgUBWZeCCD5Ap6L3YQCdXP/GqU1QlM9Tz+kf2xJV2TEfMQ/5Z8E8Tn5vZjcriYfSf
+         VeUyVa1Bx/An+isVAreAZaVSuxq9SnHAiV35ZHYKtjW3c5gWyNXXAVbVu9GAJYw1uq8F
+         erXtWtatr8Yg/0QBas2v6k0X+JnGMK73FwCPIMPuWGNfUljgdWKyeXb3pRs9qYOVFUYh
+         YKERfR+/fg2Ial92ApZkUGRn3/1by6Q0OhgaaShnvP1YcDZfz8woLPi6AH0KhtKrM+yx
+         tDgw==
+X-Gm-Message-State: AOAM531LRMrlsTF1G/rJXSVCXtlARI729BLZ4C71bFjnr2SZJCVTCbNB
+        Oe6nSZGysmu9K5Q+3nbRz0UrV0RTgQcjmL5y7SZjXw==
+X-Google-Smtp-Source: ABdhPJxaDD5GwbBlHvwLykrnSnFpNHAykS4Zg8AMoRLLwxTrDX7Z7InuNESKj5Ki0F14ogoWudSXsIUQHg/WXzVQYD8=
+X-Received: by 2002:a05:6808:e8c:b0:322:4b82:d33d with SMTP id
+ k12-20020a0568080e8c00b003224b82d33dmr1250229oil.21.1650448655554; Wed, 20
+ Apr 2022 02:57:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220415142055.30873-1-sven@svenpeter.dev> <20220415142055.30873-7-sven@svenpeter.dev>
- <20220419053157.GA31530@lst.de> <866f79b1-6c02-4248-ac98-594829fed204@www.fastmail.com>
- <CAK8P3a2CWZb3vdHQvseJZQwPbUFDRo5Z9aGb7iVgodT1YeB5Yw@mail.gmail.com> <20220420043437.GA1123@lst.de>
-In-Reply-To: <20220420043437.GA1123@lst.de>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 20 Apr 2022 11:53:24 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2-p=eW8jA=HVztFTq7mUMidRKcyFC_7RB5_8O2NmBxpg@mail.gmail.com>
-Message-ID: <CAK8P3a2-p=eW8jA=HVztFTq7mUMidRKcyFC_7RB5_8O2NmBxpg@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] nvme-apple: Add initial Apple SoC NVMe driver
-To:     "hch@lst.de" <hch@lst.de>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Sven Peter <sven@svenpeter.dev>,
-        Keith Busch <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
-        "sagi@grimberg.me" <sagi@grimberg.me>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-nvme@lists.infradead.org, linux-spdx@vger.kernel.org
+References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
+ <20220419010903.3109514-3-bryan.odonoghue@linaro.org> <737d44a9-56ba-846e-24ad-36b2da52d2d7@linaro.org>
+ <CABymUCOAKvZXZKYtvunjn=K9mpZmAd4x3WTXH571k5BsBH6CEA@mail.gmail.com> <0cb490f4-3df8-7fc8-277f-070e0133f5db@linaro.org>
+In-Reply-To: <0cb490f4-3df8-7fc8-277f-070e0133f5db@linaro.org>
+From:   Jun Nie <jun.nie@linaro.org>
+Date:   Wed, 20 Apr 2022 17:57:23 +0800
+Message-ID: <CABymUCN_N_yKuuF0zdwZ_jfd-UsfSt-HY5O4PjZ_sNmYGQ2UJw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] arm64: dts: Add msm8939 SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        shawn.guo@linaro.org, benl@squareup.com, jwillcox@squareup.com,
+        jgates@squareup.com, mchen@squareup.com, zac@squareup.com,
+        Leo Yan <leo.yan@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:816o8NH4smk9xfdzu6kCPxedQC6MYvOmwcVAbVdzj7to6Gi8MuY
- 34AqD823jo4l1xY51ow8pjqGOnCwHLvpklvzdpYPLCXoBg7ImPJAJNLZXNA3iv3RfcA9TTM
- DX76xM413HBnSJuLLsaW4Sz3jLxc2Vgzj9s+AH3/bj9OT+T9ziVBT1HWVh1VycKMJjp70Ov
- TLYt594k4CUi49bZMjjeA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:W8kT3m4c+HM=:CHhKPCMv2U7cyBdKsKGrqP
- 5Sy/wV6mPVX9VZFjjTK0EzSgRdLu+bLxI3eYcruHby/Gu2nGd6TlcCQuZjLlPtxbOq7sv5mgr
- 7jxZRH491TmFjWlFoSEq3kDK+n0ns4xc5P4+MtkAEnSfqP1prAgxNeVne/Uj/Wdbs2mETjRli
- aPdWi0rHeAbSM57p0dRUwcyNyuoeuvjR/BbHSgw4DxbJrlEv9csg/zP5Jv+rdBAf/SM8Cqw/p
- ecb6WQ47H01kXTzrHjahn1gzuHwRFv/WuIMVdmOk9bTPNnukG7IXAo9ZLPfJX6XmgyMzxsFls
- qNxSFpv792vX9E6mDWspfP86KkHlS72dzHDMOfBcp3b6K+y8772Y4tCN2GQo4m7auHYcYXhli
- 4uTdpoS1rk0b8+Tp3vkxmlpGG9o35caZ9oN1mM5MSHk/oC7vImasBu1Dp0XyEfChOOYGujh4p
- O5qsRyc3WbRf1drhXg+7v/VP1MaxMAG0XvNiHZvDkmX7Xsomnf9qDOpDBuVbeXZk0gcNMsUSm
- +KUpPI8CtytDxlhKnSTHEnSFN84DAg/KvQDGqz10jfS0R9xF5KB9HoZW+kaMyrHkWwacjqRfF
- JEMy6i7kYPihT+AXAeXcVWdWjxXjj+/hkWQ8xvkvqbcPFQXzWo1exEyVTsfkIdCESwcqKz67z
- vUrAdisAKWotAKrV112mOQ/JFN+pw56I2NcXdJoYUbVVgTWTjl+fTngdLlJSRflZcxY3fbceR
- df9s3PwhfEXL9hiF0DR4VkWsD0jmxrq2jGBcDnrZ6dP/HAeerJqmpV5TD8S/yHAQs50WLdHT+
- vd0dxq9U1/TNknkeFKYSvVqVrPlYrR2TRXzT219vC0hIFA8O/Y=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 20, 2022 at 6:34 AM hch@lst.de <hch@lst.de> wrote:
-> On Tue, Apr 19, 2022 at 11:52:15AM +0200, Arnd Bergmann wrote:
-> > > I just checked again and 64-bit accesses seem to work fine.
-> > > I'll remove the lo_hi_* calls and this include.
+> >>
+> >> Generic node names, no underscores in node names. This applies everywhere.
+> >>
+> >>> +                     compatible = "qcom,qfprom";
+> >>> +                     reg = <0x00058000 0x1000>;
+> >>> +                     #address-cells = <1>;
+> >>> +                     #size-cells = <1>;
+> >>> +                     cpr_efuse_init_voltage1: ivoltage1@dc {
+> >>
+> >> s/ivoltageX/voltage/
 > >
-> > If you remove the #include, it is no longer possible to compile-test
-> > this on all 32-bit architectures, though that is probably fine as long
-> > as the Kconfig file has the right dependencies, like
-> >
-> >       depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
-> >
-> > I'd prefer to keep the #include here, but I don't mind the dependency
-> > if Christoph prefers it that way.
+> > How about cpr_efuse_init_voltage_dc? There are 3
+> > cpr_efuse_init_voltage* node here.
 >
-> So thre's really two steps here:
->
->  1) stop uing lo_hi_readq diretly which forces 32-bit access even on
->     64-bit platforms
->  2) stop using the io-64-nonatomic headers entirely
->
-> I definitively want 1) done if the hardware does not require it.
+> The node names should be generic, so this should be maybe even just
+> "efuse"? Feel free to add some prefix to it, so "init-voltage-efuse",
+> but no underscores and no suffixes in such case (but "init-voltage2-efuse").
 
-Yes, of cours.e
+The nodes are referenced by other node, such as below case. So I have
+to name them,
+underscore is the best separator. While I have 3 init_voltage related
+nodes to name.
+What's the name you suggest for them?
 
-> Trying to cater to 32-bit build tests on hardware that has no chance of
-> ever being used there by including the header seems a bit silly, but if
-> it makes folks happy I can live with it.
+arch/arm/boot/dts/qcom-apq8084.dtsi: nvmem-cells = <&tsens_calib>,
+<&tsens_backup>;
 
-As I said, I don't have a strong opinion either, it's either a trivial change
-in Kconfig or a trivial header inclusion and I'd pick the header one because
-it's more obvious what this is for without adding a comment.
-
-      Arnd
+Regards,
+Jun
