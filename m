@@ -2,66 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE42A507F41
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 04:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D66D4507F5D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 05:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234258AbiDTC7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 22:59:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58346 "EHLO
+        id S1359185AbiDTDIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 23:08:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237403AbiDTC7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 22:59:34 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FFB38BD4
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 19:56:49 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-d39f741ba0so599441fac.13
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 19:56:49 -0700 (PDT)
+        with ESMTP id S1359186AbiDTDHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 23:07:55 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D4B3CA76
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 20:04:24 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id w23-20020a056830111700b00603c6d1ce73so267470otq.9
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 20:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=Bpdl3onC2L+yuDtcrh15IbOpDqZIMLfc1uBqp1f+cK8=;
-        b=gr9rbqbPFrPKF6qrn9PR00iutEKQ4qGhvKekLBdKxT+fCdsoHCkixQhZar2+85UiBC
-         6nbTGsbcQIjw7NNhbr36TGDAVwu1F0FlgNdextRhKwZhHYWEoXdedE0Kto+iGP41JbyB
-         LxH01oDyC7N4sFgkl+0+eest9ZdFTUCYsRAwat8qu8yM/3BjOXYmHsFMgnH0kY4w/uOe
-         FTgQrz4nrB1CWbLxzNDyuQCfaG9cWo83OWTuaSnROQGrzAGsy/SSXOfMhjtbQAg73daa
-         3ADzEiMsTRcl18Fk1anuBjcVaKn7BqjhsoXS3hVgy+pxmBCCXv2cC9pAjN9/ulIt5h59
-         I8cQ==
+        bh=bOmRDQWsh4LJc0ss61NPg8qXWsb+khLjGhqRuXFnjwU=;
+        b=bAEDSRKGCAmjsYmi9/pGay3D0pg8XPKtai9P6r0xgeBxSvo/ORnSkYRuFaosMAmpIm
+         nX0hcjiP+JLYhFwZV9lLNoDJJLxWmpnJ1bwoIl/X+JqOwSWxtgxYbmbtrjnbhCWawuiI
+         CDW+0mkGLvbIgFonVOAi23HNXaoruJtORwESlKapCUBFiCpNMjC4melyj20KJERAOozu
+         /hfgJ+4d6KBH8nfbeUEEq0OHBbGj9MAxmzSgmCV95g7a9tRJBI72nUSCX+pvbplvu7jo
+         uNJL1NrL0/ianvgdM2Pr3oVaoWnw/ozCqhzjYGz5QT6L6WZPBtJm+N75mg0Ui4cEX9/a
+         d03w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Bpdl3onC2L+yuDtcrh15IbOpDqZIMLfc1uBqp1f+cK8=;
-        b=yUn+wflfn13z+mRMQdhQYMzZewyCkHvwsfK1z9w16I0uJiRnDtnjN8G/HkYy4J5hBf
-         b4QgUvAQrvQmU5k5FhkXv+cNRy7lqUhxM4YmZP327JSZbEGIs6Ln7njjFaeU+Yd15RC/
-         PVU7+wON/8PPD1MsxYYTwXndl5oRw3XMj7FDWUEsFY8fF241V8lSK0J7d8trb1e1rBpf
-         i9RCrNEQaVovs+IXGyCCabLsXJ52B5anDmeHw/7xVzqPPkzaFQs5YTpYgotxfMOmb8s4
-         /I1+vx+CD4O/bO8KCzM5Z+QvpSjOX5EFzjUVDnlNckyrYeoFY6awzDl8JW+lz2jDw79e
-         M68g==
-X-Gm-Message-State: AOAM532J8z0e7iJyqF1CC+cmPF9p3cLQI/0NGk9COyAOJJ6Y3uVwCazO
-        XctW6QhIVA+Zn/fiKoFyOORglg==
-X-Google-Smtp-Source: ABdhPJz1r1HbhjstrYl2H7CsBk3Ua1ucqJR7Lb2QJhnvesT98prMjuWrzu/us0Ykm/iAhf04AjAsSQ==
-X-Received: by 2002:a05:6870:f697:b0:d7:5679:8fc8 with SMTP id el23-20020a056870f69700b000d756798fc8mr721436oab.172.1650423408693;
-        Tue, 19 Apr 2022 19:56:48 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id c14-20020a4ad20e000000b0033a371fa815sm3549603oos.37.2022.04.19.19.56.47
+        bh=bOmRDQWsh4LJc0ss61NPg8qXWsb+khLjGhqRuXFnjwU=;
+        b=xG5IZSFGD3JkST8jaWJrcVu/cTDxEjfakszHiK/OhyJKO30347cqybvj8eigtbhVZA
+         GWo9nA+L7YP3Sa8p7izdMNn4U5cRw6WBnGmhT7XNWPw9anTOoXUwj2fu+M6ESA/gMjh5
+         mueIT/FHsTF/mvnn0a5uJpeCamSRRLqWHkoFLoxAMbBKUE7qPy1KWPjuzuTGucAPMwpc
+         AKyq4kWOZFFEguBeFmG0DcYrBNZDnJoc9QIkwEPlCSAkFJonnpJAs1STL3NuIt5s8Z+D
+         2gn/2Cm13Rd2o3RXpLMnllJZyFRx0PtebiQlY4rsJhuLSlsg5w+Nl5NtjT4bTQ60MshE
+         rInw==
+X-Gm-Message-State: AOAM532k20+1wQRYFc4fLg0vxvvGg8/BqW+otAlYNv7pTJTbY2hXJNup
+        TOV2lcxdm6YJbIbdkopNs4t9Sw==
+X-Google-Smtp-Source: ABdhPJz78HNHOCUdlI0fxzBVktGevGVhmjxibFmoHtIZNr8U2JMJL+kspGLrc1H8lG7ze5d0XHe6Gg==
+X-Received: by 2002:a9d:7685:0:b0:5e6:b452:4e9 with SMTP id j5-20020a9d7685000000b005e6b45204e9mr7073498otl.254.1650423864144;
+        Tue, 19 Apr 2022 20:04:24 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id x24-20020a056870a79800b000e2e53716fbsm6121695oao.31.2022.04.19.20.04.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Apr 2022 19:56:48 -0700 (PDT)
-Date:   Tue, 19 Apr 2022 21:56:46 -0500
+        Tue, 19 Apr 2022 20:04:23 -0700 (PDT)
+Date:   Tue, 19 Apr 2022 20:06:28 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sm8150: Add support for SDC2
-Message-ID: <Yl92blX6FaCMU48p@builder.lan>
-References: <20220414213139.476240-1-bhupesh.sharma@linaro.org>
- <20220414213139.476240-2-bhupesh.sharma@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
+Message-ID: <Yl94tB+FrZu/am0/@ripper>
+References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
+ <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
+ <YlWztZknl4OBmekp@ripper>
+ <02fc797a-190f-3558-5ee1-c9c3320f3d57@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220414213139.476240-2-bhupesh.sharma@linaro.org>
+In-Reply-To: <02fc797a-190f-3558-5ee1-c9c3320f3d57@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -72,80 +85,175 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 14 Apr 16:31 CDT 2022, Bhupesh Sharma wrote:
+On Wed 13 Apr 02:07 PDT 2022, Krzysztof Kozlowski wrote:
 
-> Add support for SDC2 which can be used to interface uSD card.
+> On 12/04/2022 19:15, Bjorn Andersson wrote:
+> >>  
+> >> +	opp_table->clks = kmalloc_array(1, sizeof(*opp_table->clks),
+> >> +					GFP_KERNEL);
+> > 
+> > This seems to be 81 chars long, perhaps worth not line breaking?
 > 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> I doubt that it will increase the readability:
+> 
+> 	opp_table->clks = kmalloc_array(1,
+> 					sizeof(*opp_table->clks),
+> 					GFP_KERNEL);
+> 
+> 80-character is not anymore that strict hard limit and in such case
+> using 1-2 characters longer improves the code.
+> 
 
-Thanks for the patch Bhupesh. I have already applied v1 though. Can you
-please double check linux-next to confirm that things are in order?
+I was suggesting that you remove the line break
 
-Thanks,
+	opp_table->clks = kmalloc_array(1, sizeof(*opp_table->clks), GFP_KERNEL);
+
+Seems to be 81 chars long, which is fine in my book with or without the
+80-char guideline.
+
+> > 
+> >> +	if (!opp_table->clks)
+> >> +		return ERR_PTR(-ENOMEM);
+> >> +
+> >>  	/* Find clk for the device */
+> >> -	opp_table->clk = clk_get(dev, NULL);
+> >> +	opp_table->clks[0] = clk_get(dev, NULL);
+> >>  
+> >> -	ret = PTR_ERR_OR_ZERO(opp_table->clk);
+> >> -	if (!ret)
+> >> +	ret = PTR_ERR_OR_ZERO(opp_table->clks[0]);
+> >> +	if (!ret) {
+> >> +		opp_table->clk_count = 1;
+> >>  		return opp_table;
+> >> +	}
+> > [..]
+> >> +struct opp_table *dev_pm_opp_set_clknames(struct device *dev,
+> >> +					  const char * const names[],
+> >> +					  unsigned int count)
+> >>  {
+> >>  	struct opp_table *opp_table;
+> >> -	int ret;
+> >> +	struct clk *clk;
+> >> +	int ret, i;
+> >>  
+> >>  	opp_table = _add_opp_table(dev, false);
+> >>  	if (IS_ERR(opp_table))
+> >> @@ -2159,70 +2259,92 @@ struct opp_table *dev_pm_opp_set_clkname(struct device *dev, const char *name)
+> >>  	}
+> >>  
+> >>  	/* clk shouldn't be initialized at this point */
+> >> -	if (WARN_ON(opp_table->clk)) {
+> >> +	if (WARN_ON(opp_table->clks)) {
+> >>  		ret = -EBUSY;
+> >>  		goto err;
+> >>  	}
+> >>  
+> >> -	/* Find clk for the device */
+> >> -	opp_table->clk = clk_get(dev, name);
+> >> -	if (IS_ERR(opp_table->clk)) {
+> >> -		ret = dev_err_probe(dev, PTR_ERR(opp_table->clk),
+> >> -				    "%s: Couldn't find clock\n", __func__);
+> >> +	opp_table->clks = kmalloc_array(count, sizeof(*opp_table->clks),
+> >> +					GFP_KERNEL);
+> >> +	if (!opp_table->clks) {
+> >> +		ret = -ENOMEM;
+> >>  		goto err;
+> >>  	}
+> >>  
+> >> +	for (i = 0; i < count; i++) {
+> >> +		clk = clk_get(dev, names[i]);
+> >> +		if (IS_ERR(clk)) {
+> >> +			ret =  dev_err_probe(dev, PTR_ERR(clk),
+> >> +					     "%s: Couldn't find clock %s\n",
+> >> +					     __func__, names[i]);
+> >> +			goto free_clks;
+> >> +		}
+> >> +
+> >> +		opp_table->clks[i] = clk;
+> >> +	}
+> > 
+> > Wouldn't it be convenient to make clks a struct clk_bulk_data array
+> > and use clk_bulk_get()/clk_bulk_put() instead?
+> 
+> I was thinking about this but clk_bulk_get() requires struct
+> clk_bulk_data, so the code in "get" is not actually smaller if function
+> receives array of clock names.
+> 
+> OTOH, usage of clk_bulk_get() would reduce code in: _put_clocks(). Rest
+> of the code would be more-or-less the same, including all corner cases
+> when clocks are missing.
+> 
+
+Fair enough, I think you're right that it's not going to be much
+difference.
+
+Regards,
 Bjorn
 
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 45 ++++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
+
+> > 
+> >> +
+> >> +	opp_table->clk_count = count;
+> >> +
+> >>  	return opp_table;
+> >>  
+> >> +free_clks:
+> >> +	while (i != 0)
+> >> +		clk_put(opp_table->clks[--i]);
+> >> +
+> >> +	kfree(opp_table->clks);
+> >> +	opp_table->clks = NULL;
+> >> +	opp_table->clk_count = -1;
+> >>  err:
+> >>  	dev_pm_opp_put_opp_table(opp_table);
+> >>  
+> >>  	return ERR_PTR(ret);
+> >>  }
+> >> -EXPORT_SYMBOL_GPL(dev_pm_opp_set_clkname);
+> >> +EXPORT_SYMBOL_GPL(dev_pm_opp_set_clknames);
+> > [..]
+> >> +static int _read_clocks(struct dev_pm_opp *opp, struct opp_table *opp_table,
+> >> +			struct device_node *np)
+> >> +{
+> >> +	int count, ret;
+> >> +	u64 *freq;
+> >> +
+> >> +	count = of_property_count_u64_elems(np, "opp-hz");
+> >> +	if (count < 0) {
+> >> +		pr_err("%s: Invalid %s property (%d)\n",
+> >> +			__func__, of_node_full_name(np), count);
+> > 
+> > Wouldn't %pOF be convenient to use here, seems like it becomes short
+> > enough that you don't have to wrap this line then.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 15f3bf2e7ea0..0fecebf0a473 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -3270,6 +3270,51 @@ usb_2_ssphy: phy@88eb200 {
->  			};
->  		};
->  
-> +		sdhc_2: sdhci@8804000 {
-> +			compatible = "qcom,sm8150-sdhci", "qcom,sdhci-msm-v5";
-> +			reg = <0 0x08804000 0 0x1000>;
-> +
-> +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "iface", "core", "xo";
-> +			iommus = <&apps_smmu 0x6a0 0x0>;
-> +			qcom,dll-config = <0x0007642c>;
-> +			qcom,ddr-config = <0x80040868>;
-> +			power-domains = <&rpmhpd 0>;
-> +			operating-points-v2 = <&sdhc2_opp_table>;
-> +
-> +			status = "disabled";
-> +
-> +			sdhc2_opp_table: sdhc2-opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-19200000 {
-> +					opp-hz = /bits/ 64 <19200000>;
-> +					required-opps = <&rpmhpd_opp_min_svs>;
-> +				};
-> +
-> +				opp-50000000 {
-> +					opp-hz = /bits/ 64 <50000000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-100000000 {
-> +					opp-hz = /bits/ 64 <100000000>;
-> +					required-opps = <&rpmhpd_opp_svs>;
-> +				};
-> +
-> +				opp-202000000 {
-> +					opp-hz = /bits/ 64 <202000000>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>;
-> +				};
-> +			};
-> +		};
-> +
->  		dc_noc: interconnect@9160000 {
->  			compatible = "qcom,sm8150-dc-noc";
->  			reg = <0 0x09160000 0 0x3200>;
-> -- 
-> 2.35.1
+> Yes, I forgot about %pOF.
 > 
+> > 
+> >> +		return count;
+> >> +	}
+> >> +
+> >> +	if (count != opp_table->clk_count) {
+> >> +		pr_err("%s: number of rates %d does not match number of clocks %d in %s\n",
+> >> +		       __func__, count, opp_table->clk_count,
+> >> +		       of_node_full_name(np));
+> >> +		return -EINVAL;
+> >> +	}
+> >> +
+> >> +	freq = kmalloc_array(count, sizeof(*freq), GFP_KERNEL);
+> >> +	if (!freq)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	ret = of_property_read_u64_array(np, "opp-hz", freq, count);
+> >> +	if (ret) {
+> >> +		pr_err("%s: error parsing %s: %d\n", __func__,
+> >> +		       of_node_full_name(np), ret);
+> >> +		ret = -EINVAL;
+> >> +		goto free_freq;
+> >> +	}
+> > 
+> > Regards,
+> > Bjorn
+> 
+> 
+> Best regards,
+> Krzysztof
