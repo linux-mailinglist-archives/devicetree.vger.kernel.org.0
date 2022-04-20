@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF4F5083F6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 10:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A9A5083FC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 10:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344527AbiDTItx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 04:49:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46038 "EHLO
+        id S1376913AbiDTIuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 04:50:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235189AbiDTItp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 04:49:45 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A326E186FA
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:46:59 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id q14so1081036ljc.12
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:46:59 -0700 (PDT)
+        with ESMTP id S1376905AbiDTIuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 04:50:11 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3605186FA
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:47:24 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id q22so1088037ljh.10
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:47:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=JjwgVR25fOpo94MrJPZVArRITLkolD2RuuKCBdYhNzY=;
-        b=RZ+ikrgo+BjsNGw26e+go2LbMbf96IPh2LW4clRqX8E2MnxFpzoFF8JiPsOQv5xAy7
-         NZwc3XyJEvUe8gJ/3QsBAwWl/Di4ditGXZ6zJTARZOj8GMVpycdsO8rAu0uK4/a+DbgB
-         Pbc20OzJRVV3LjHumKVHbdWO1V6a0/Bfa1EtfsUob3C/viSfnSxaxBCKnNmLEbR23NfM
-         9NSe+IOUfKbNfsd/vL5KRU9w6TSEzm+Z4oxXnCjyldFCHQ4HcQgS30evggmpLC9WprTh
-         /4X0G38pPFj0fV0e8yHy1xg8HJds0Rk4riqcssz5CwJD7TmiQb4l3dUJO6ZpSlCyvgVw
-         O7tQ==
+        bh=tAe7ocOZ0bBrreHF0RxD9R0oEMScj7O80nn6Z0+6mKk=;
+        b=l7aPeWemyn/R90hcDdIeAm1ynIy9VHgrdD+aB5XMWSttSYjB3m3nf82oOQL5BO70pf
+         yKt3cTG/Y5uxBT8/EdawX4RKgVRideaRv/5Y7f97MbkHjGBbHi0TTrcVApE+ETXXOupq
+         dx7KHF8KZaGgXBfzM/A9wSl1a3draGgOOuk7qRps+NYoWW+Mr801M1qRdrSpZXYnojrq
+         l+bZqHL70oDSYG7GZTP9rmWgoRJZLsZtCTHdM9k57/gikiSWCDq85aPUMQdI7hCkl3mi
+         0k26ZysqwMsgqb8+2Xw+u3S7eUxUwzzJO5pz7PPrlzgKaqvBLXtAs0iQpZ+ktMuhrq00
+         cczQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=JjwgVR25fOpo94MrJPZVArRITLkolD2RuuKCBdYhNzY=;
-        b=vSaWUCl9xbvYXb1u4uBcKGrbvp5LI09bIbdInOgUp+LWXQbf4sJjCl62aEVEQfXZoK
-         0at99NOO+YsRM9z1PCQLDrya4uuaRGkBhesH2uY91KH869J8F+anrVpMf+os/tlb4Sw7
-         y/PqqJG1E5JJPV9NUt4GQRxYDsWH1KAWedTakOibkCjjeVXTuu28HcuAzpYZ3PsnI9f5
-         Pyy2EnY6VfCQtNCzP8IPuBmwjpekM9PizxhHQmFk+2zcc5+bDuRx6QmDkYPFE/KfVyjX
-         MSS9qvsUcjKkC+2hlQ+8wBhx+udDOcbMjWxigZ8qAHR6pxukt097+hyVtbd7wFMx/9he
-         pkSw==
-X-Gm-Message-State: AOAM531yCRKO94qteis7SAUX4+0mKOP0tkHiwVqXtNrJXhkkUk0aTe0F
-        Ui1Xy5pgxnB/B5nc5FS5WQRpGy9fAw2pSF72nxBXBA==
-X-Google-Smtp-Source: ABdhPJz+h1GX4XLudNgrwSIEdojpi93OmucwSzatZwTI4giwColnNsRBurf+uc0IKVn49/2aHe9h3XLzaMebnRm9LS4=
-X-Received: by 2002:a05:651c:1784:b0:24b:ce8:528a with SMTP id
- bn4-20020a05651c178400b0024b0ce8528amr12675701ljb.364.1650444417868; Wed, 20
- Apr 2022 01:46:57 -0700 (PDT)
+        bh=tAe7ocOZ0bBrreHF0RxD9R0oEMScj7O80nn6Z0+6mKk=;
+        b=PF9d9j1e8i0L1D7kWU9XaI6XmZ1Qnxfd0wfcwZCOxPNQ5RH4hY74ugDQDkWoejJoYI
+         A4FZSx9G56G7/gnpU4wWV1qKFlGRHJHlvOUoN/jfXI/TuMxtEFkLg5uRQC/PZoHK0l/o
+         SrRd9bZ/QVjKsr6ObEYl2FMHofUJk+6DGJ53jNMdmzThi1hXIV1HlcKkh13luFJ2Zx7h
+         PUpKngfckZFN04MOAzKtVqcR7phNCOdNVKcea1VQFY3qM2OBNkC55QDziKyroKCrCMOF
+         DttocQzfZwVbVqPpbn/UhvwmUN+Mhz96K0+5Zva5YdgShhiazEmjBtVquVBD9brZpmBB
+         xjUQ==
+X-Gm-Message-State: AOAM5312hnYdNfkySUC+YFBJ8RkGZQSII/jR0EXmyX73sdqWnTEzbEAh
+        GiXEmBBdmEK4GXEHfYTdTB4KStz9sT8fpVY++1nQGg==
+X-Google-Smtp-Source: ABdhPJzPP6FZmr+6nZr+hzEU+yTnYEzGCQtdmZue5NJ/rrH+3+6fdShgY4mEO9KwAJzNgJeNkdQEkxHQJNmJ6W9b15c=
+X-Received: by 2002:a2e:6a08:0:b0:24d:14af:4be4 with SMTP id
+ f8-20020a2e6a08000000b0024d14af4be4mr12846312ljc.24.1650444442933; Wed, 20
+ Apr 2022 01:47:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220420013258.3639264-1-atishp@rivosinc.com> <20220420013258.3639264-2-atishp@rivosinc.com>
- <CAOnJCU+r8KhhQP-LZN+oGGCDkdQt9ZbF+LCTtZWY8r=qwmSOng@mail.gmail.com>
-In-Reply-To: <CAOnJCU+r8KhhQP-LZN+oGGCDkdQt9ZbF+LCTtZWY8r=qwmSOng@mail.gmail.com>
+References: <20220420013258.3639264-1-atishp@rivosinc.com> <20220420013258.3639264-3-atishp@rivosinc.com>
+ <CAOnJCU+EPHxD7MqbswKMy=gZhmyyXMiezqaw1+D1h+O+pbYR2w@mail.gmail.com>
+In-Reply-To: <CAOnJCU+EPHxD7MqbswKMy=gZhmyyXMiezqaw1+D1h+O+pbYR2w@mail.gmail.com>
 From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Wed, 20 Apr 2022 14:16:45 +0530
-Message-ID: <CAK9=C2WHwRLyRHw4AVFpZcYJsDdGwaza_cpQsaMz-4qVamc+VQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] RISC-V: KVM: Remove 's' & 'u' as valid ISA extension
+Date:   Wed, 20 Apr 2022 14:17:10 +0530
+Message-ID: <CAK9=C2U4s5hC9G0w8ELmZn=YgCJ2hTAU-EfGZsSh=HZy4gQaiw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] RISC-V: KVM: Restrict the extensions that can be disabled
 To:     Atish Patra <atishp@atishpatra.org>
 Cc:     Atish Patra <atishp@rivosinc.com>,
         KVM General <kvm@vger.kernel.org>,
@@ -76,44 +76,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 20, 2022 at 1:14 PM Atish Patra <atishp@atishpatra.org> wrote:
+On Wed, Apr 20, 2022 at 1:13 PM Atish Patra <atishp@atishpatra.org> wrote:
 >
 > On Tue, Apr 19, 2022 at 6:33 PM Atish Patra <atishp@rivosinc.com> wrote:
 > >
-> > There are no ISA extension defined as 's' & 'u' in RISC-V specifications.
-> > The misa register defines 's' & 'u' bit as Supervisor/User privilege mode
-> > enabled. But it should not appear in the ISA extension in the device tree.
-> >
-> > Remove those from the allowed ISA extension for kvm.
+> > Currently, the config reg register allows to disable all allowed
+> > single letter ISA extensions. It shouldn't be the case as vmm
+> > shouldn't be able disable base extensions (imac).
+>
+> /s/able/able to/
+>
+> > These extensions should always be enabled as long as they are enabled
+> > in the host ISA.
 > >
 > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
 > > ---
-> >  arch/riscv/kvm/vcpu.c | 4 +---
-> >  1 file changed, 1 insertion(+), 3 deletions(-)
+> >  arch/riscv/kvm/vcpu.c | 21 +++++++++++++--------
+> >  1 file changed, 13 insertions(+), 8 deletions(-)
 > >
 > > diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-> > index 6785aef4cbd4..2e25a7b83a1b 100644
+> > index 2e25a7b83a1b..14dd801651e5 100644
 > > --- a/arch/riscv/kvm/vcpu.c
 > > +++ b/arch/riscv/kvm/vcpu.c
-> > @@ -43,9 +43,7 @@ const struct kvm_stats_header kvm_vcpu_stats_header = {
-> >                                  riscv_isa_extension_mask(d) | \
-> >                                  riscv_isa_extension_mask(f) | \
-> >                                  riscv_isa_extension_mask(i) | \
-> > -                                riscv_isa_extension_mask(m) | \
-> > -                                riscv_isa_extension_mask(s) | \
-> > -                                riscv_isa_extension_mask(u))
-> > +                                riscv_isa_extension_mask(m))
+> > @@ -38,12 +38,16 @@ const struct kvm_stats_header kvm_vcpu_stats_header = {
+> >                        sizeof(kvm_vcpu_stats_desc),
+> >  };
+> >
+> > -#define KVM_RISCV_ISA_ALLOWED  (riscv_isa_extension_mask(a) | \
+> > -                                riscv_isa_extension_mask(c) | \
+> > -                                riscv_isa_extension_mask(d) | \
+> > -                                riscv_isa_extension_mask(f) | \
+> > -                                riscv_isa_extension_mask(i) | \
+> > -                                riscv_isa_extension_mask(m))
+> > +#define KVM_RISCV_ISA_DISABLE_ALLOWED  (riscv_isa_extension_mask(d) | \
+> > +                                       riscv_isa_extension_mask(f))
+> > +
+> > +#define KVM_RISCV_ISA_DISABLE_NOT_ALLOWED      (riscv_isa_extension_mask(a) | \
+> > +                                               riscv_isa_extension_mask(c) | \
+> > +                                               riscv_isa_extension_mask(i) | \
+> > +                                               riscv_isa_extension_mask(m))
+> > +
+> > +#define KVM_RISCV_ISA_ALLOWED (KVM_RISCV_ISA_DISABLE_ALLOWED | \
+> > +                              KVM_RISCV_ISA_DISABLE_NOT_ALLOWED)
 > >
 > >  static void kvm_riscv_reset_vcpu(struct kvm_vcpu *vcpu)
 > >  {
+> > @@ -217,9 +221,10 @@ static int kvm_riscv_vcpu_set_reg_config(struct kvm_vcpu *vcpu,
+> >         switch (reg_num) {
+> >         case KVM_REG_RISCV_CONFIG_REG(isa):
+> >                 if (!vcpu->arch.ran_atleast_once) {
+> > -                       vcpu->arch.isa = reg_val;
+> > +                       /* Ignore the disable request for these extensions */
+> > +                       vcpu->arch.isa = reg_val | KVM_RISCV_ISA_DISABLE_NOT_ALLOWED;
+> >                         vcpu->arch.isa &= riscv_isa_extension_base(NULL);
+> > -                       vcpu->arch.isa &= KVM_RISCV_ISA_ALLOWED;
+> > +                       vcpu->arch.isa &= KVM_RISCV_ISA_DISABLE_ALLOWED;
+> >                         kvm_riscv_vcpu_fp_reset(vcpu);
+> >                 } else {
+> >                         return -EOPNOTSUPP;
 > > --
 > > 2.25.1
 > >
 >
-> Sorry. Forgot to add the fixes tag.
+> Sorry. I forgot to add the fixes tag.
 >
-> Fixes: a33c72faf2d7 (RISC-V: KVM: Implement VCPU create, init and
-> destroy functions)
+> Fixes: 92ad82002c39 (RISC-V: KVM: Implement
+> KVM_GET_ONE_REG/KVM_SET_ONE_REG ioctls)
 
 I have queued this for fixes.
 
