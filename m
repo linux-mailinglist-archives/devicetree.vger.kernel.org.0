@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81BC45090A9
+	by mail.lfdr.de (Postfix) with ESMTP id 75B2D5090A8
 	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 21:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381745AbiDTTuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 15:50:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35006 "EHLO
+        id S244305AbiDTTui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 15:50:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244305AbiDTTug (ORCPT
+        with ESMTP id S1381712AbiDTTug (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 15:50:36 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79AC31CB2F
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 12:47:49 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id f5so1672607ilj.13
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 12:47:49 -0700 (PDT)
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BEE1CFCE
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 12:47:50 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id o5so1679036ils.11
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 12:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=p5AjxI0G1gBGMYopoaiK/5dXT49fJw45rF40i5u4bhg=;
-        b=p/2M81gmVmpvDYAtzwatNur49/NieFajzFYaaeTfzb+9UHgFjjVcazFa5g3ORcw+gw
-         K1sH2ROALzlWMzxL2HWYlj1S4KsDn3ue4TDOt2OzCw1nIJ5oag7U8KvzzPwSzAAIDn62
-         J0woW4+gfMjkhtMGFFC9OLWEdF4DDlcUiTCwZnrmX6xZoTYMAZ4tIBeu+b16PyxfrhEd
-         qh9dCWBVxSUTnVz57EJXup6KxPM6+dZSbwBAd18mFY0YyKAuCuMfX8cvMiUZ96vZTJZ5
-         vfV8YZGNh5q622Hgxl3Iw73HOah9OEGBoQ+MoFYHOcJIh8YrQSPGm4S4CXxEEVETAXpc
-         wcLA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=1p1O4XA0YTs/pERSSWY2OpdFQqDv87mRBIy7EhYGPYA=;
+        b=eyyb9MlML7cIBV0IgT5gbiL1y42f1VSb4mQvFiWaJ2aUoZ7zOSbPvKDVDRsP3cVmHL
+         KqwYxg5rxj5wE0S5DRbYzGUfhIQF4cZNMjh/KkPl0+aooZNXaISwRf2c1Qv+d1eFl/wr
+         kfIzA5ZaIqD4FKOZu4k++SJpseC37e9bzdEBuuEXpW3o4GNGGhnbkkIK0CfotDWZoZvl
+         os233gF59h3dL8KA8FLpJWC9cc4Mu18IfyBc5e08LZKAEPbduK1jFUn1X5N1O3Rz+KTX
+         Gn7I8BAF5i/jKtdaQDei1mkDV37Xg7sVBqhXjTVk22BlSOUlOUQ63Kvv3rTrje3toyZ/
+         C5ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=p5AjxI0G1gBGMYopoaiK/5dXT49fJw45rF40i5u4bhg=;
-        b=lp0l77QCyEuGtn7TUCDWaVZppwDXL7TZib+TjV78E2GadNX5duHUGy/pqTIRCEm1fF
-         wIdh9YPraltu+Bak65v3zkgn6wZVTK1OIcKR8QLr9PkjeQ3VJeToqa0Goe7L8CCSEMRH
-         1Krf5MCan1acuf0UpRDCpb0dnymlbtubNIDLKJfaU2hYUVI8+8FeVnOeAiM0L1m47fSY
-         NxPF4untNV7dJd9XFZIc592hgpzFbckHFBxL2onm9LELph7dumSaPN4P8L8eNCKXtR4z
-         QglonzcL1RgeHhc/uB1ugJ3cG6A9iyfj4DTovxZHAixizW+yzVzd9Ar01XZF4D0D0OzJ
-         TJ0w==
-X-Gm-Message-State: AOAM531PTG7VXj1OeflhvjoD5WzFOxBpt5e3UlF6NJOypSsVgjGL1oRT
-        YMIrcjQE5r6DXGHkP4uEBPfrQRnmc3avAuuf
-X-Google-Smtp-Source: ABdhPJxbq1hSXk7/0hqoHGrYkVe5aPqV/ueWxsculml7LwUebiebpAoYfgb3Zv2D4dTDln4ZxAk2MA==
-X-Received: by 2002:a05:6e02:1566:b0:2cc:e08c:f347 with SMTP id k6-20020a056e02156600b002cce08cf347mr1799715ilu.47.1650484068881;
-        Wed, 20 Apr 2022 12:47:48 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=1p1O4XA0YTs/pERSSWY2OpdFQqDv87mRBIy7EhYGPYA=;
+        b=wHfrnVWM0uT4GkH7nF2fvHCWgeJ9s70QCh9acZABTyCtCWh9UVS2eupVtgrJD5Fgx5
+         sPywjdsrhkznG60iUq3mWukELv7iOUXQZ4Bes1kdTyCqkHkgaWjIkJs+FKulzMvK93n1
+         ltfwTQLFgYdNGH52ZsPVHYQQpjnT56CuMxxRUuuOSBPhKPQ3OP0f3uxO9s3ytR8iaBHp
+         GS2tZbyH937ri3G3jxfNW9oB6qN7HK1XRVhgpZ9qhDMugTK2i2RgvBs1sGinJKQCmf3K
+         SUnULctum4QLGIk9HBHDYC4ZaIsgANlAzzO/ZgG1vat2HON2iwMrbCssSXRo6c+yPsKy
+         KqZQ==
+X-Gm-Message-State: AOAM533G0hS+m69Eu4tbaIxVmAsKrbhXQv2onXopW+i9887Hw5c5Vpcp
+        BPSm+ozv3ExrNIk39+mO4kxXqHE8SVNJ7f4z
+X-Google-Smtp-Source: ABdhPJzR32OtX/2D92iQzvs1rNdKUjMl6ZtnoGCfMT6B7JiQVlPr0J+HeSaj09EY+foo/mjkhQX01A==
+X-Received: by 2002:a05:6e02:1745:b0:2cc:5854:744b with SMTP id y5-20020a056e02174500b002cc5854744bmr2634037ill.237.1650484069422;
+        Wed, 20 Apr 2022 12:47:49 -0700 (PDT)
 Received: from fedora.. (cpe-65-29-252-111.wi.res.rr.com. [65.29.252.111])
         by smtp.gmail.com with ESMTPSA id t18-20020a056e02011200b002cbe6ce18e5sm10680977ilm.40.2022.04.20.12.47.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Apr 2022 12:47:48 -0700 (PDT)
+        Wed, 20 Apr 2022 12:47:49 -0700 (PDT)
 From:   Daniel Kaehn <kaehndan@gmail.com>
 To:     tiwai@suse.com
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: [PATCH 0/2] Add generic serial MIDI driver using serial bus API
-Date:   Wed, 20 Apr 2022 14:47:45 -0500
-Message-Id: <20220420194747.490542-1-kaehndan@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: sound: Add generic serial MIDI device
+Date:   Wed, 20 Apr 2022 14:47:46 -0500
+Message-Id: <20220420194747.490542-2-kaehndan@gmail.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220420194747.490542-1-kaehndan@gmail.com>
+References: <20220420194747.490542-1-kaehndan@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -66,42 +68,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Adds dt-binding for snd-serial-generic serial MIDI driver
 
-Generic serial MIDI driver adding support for using serial devices
-compatible with the serial bus as raw MIDI devices, allowing using
-additional serial devices not compatible with the existing
-serial-u16550 driver. Supports only setting standard serial baudrates on
-the underlying serial device; however, the underlying serial device can
-be configured so that a requested 38.4 kBaud is actually the standard MIDI
-3.125 kBaud. Supports DeviceTree configuration.
-
-The need for this driver arose from a project using a Raspberry Pi4 which
-needed to receive and send raw MIDI with low latency. The pl011 UART
-used is not compatible with the existing serial MIDI driver made for
-u16550-style devices. Using a userspace program such as ttymidi to feed
-input from the TTY device to a virtual ALSA MIDI device was functional,
-but not ideal.
-
-I am not sure if a MIDI driver needing the mentioned 'hack' to clock
-38.4 kBaud down to the standard MIDI baud is permissible in the mainline
-kernel, but am submitting nevertheless in case it is useful. To my knowledge,
-it doesn't seem that there would be any way for this driver to manually
-configure a serial port to 3.125 kBaud using the serial bus API (please 
-correct me f I'm wrong). In my use case, I am actually configuring one port
-to run at 115.2 kBaud for faster communication with a custom onboard MIDI controller.
-
-Daniel Kaehn (2):
-  dt-bindings: sound: Add generic serial MIDI device
-  Add generic serial MIDI driver using serial bus API
-
- .../devicetree/bindings/sound/serialmidi.yaml |  41 +++
- sound/drivers/Kconfig                         |  17 +
- sound/drivers/Makefile                        |   2 +
- sound/drivers/serial-generic.c                | 344 ++++++++++++++++++
- 4 files changed, 404 insertions(+)
+Signed-off-by: Daniel Kaehn <kaehndan@gmail.com>
+---
+ .../devicetree/bindings/sound/serialmidi.yaml | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/serialmidi.yaml
- create mode 100644 sound/drivers/serial-generic.c
 
+diff --git a/Documentation/devicetree/bindings/sound/serialmidi.yaml b/Documentation/devicetree/bindings/sound/serialmidi.yaml
+new file mode 100644
+index 000000000000..900c57c1cfca
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/serialmidi.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/serialmidi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic Serial MIDI Device
++
++maintainers:
++  - Daniel Kaehn <kaehndan@gmail.com>
++
++description: |
++  Generic MIDI interface using a serial device. Can only be set to use standard speeds
++  corresponding to supported baud rates of the underlying serial device. If standard MIDI
++  speed of 3.125 kBaud is needed, configure the clocks of the underlying serial device
++  so that a requested speed of 3.840 kBaud resuts in the standard MIDI baud rate.
++
++properties:
++  compatible:
++    const: serialmidi
++
++  speed:
++    maxItems: 1
++    description: |
++      Speed to set the serial port to when the MIDI device is opened.
++      If not specified, the underlying serial device is allowed to use its configured default speed.
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    serial {
++        midi {
++            compatible = "serialmidi";
++            speed = <38400>;
++        };
++    };
 -- 
 2.32.0
 
