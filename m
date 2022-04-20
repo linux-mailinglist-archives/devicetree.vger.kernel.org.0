@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB2BE508179
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 08:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9072F50817E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 08:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244213AbiDTGww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 02:52:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43864 "EHLO
+        id S1359158AbiDTG5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 02:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238473AbiDTGwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 02:52:51 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C9914026
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 23:50:06 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id y20so1473729eju.7
-        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 23:50:06 -0700 (PDT)
+        with ESMTP id S230365AbiDTG5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 02:57:04 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A742231DCD
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 23:54:18 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id u15so1463938ejf.11
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 23:54:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+tvOwcHK/pMvEVLplx6yrJ6qPflwR4OLhSkd6EKCLRI=;
-        b=ABab4LEiP42hY9yp+atAuEZipBVfsAjqtuxekTR3fyYxLj2YI8sVmtq72lPxbrYdFh
-         qYZRhzptItVJ5QRJjLXt8AP+2Af94KpGv6oWML5uxYh3VcPzvduL9jlmM7bIK9kijXKK
-         qBG85CFH7lrPzFZ9DSXZUQ2PlOrn0TObElxD/kLZv7u/iv965hXXC81CmDTmWtVaj40q
-         Un2PbZS1alXWSTITFNdAMrWzLECVm8PcPuus8FAdtnS8mlRN6yvvZKiUX3uTvR/rg5aq
-         +wlWIwdNivWJg1mBg8G7OeIc3+T81h5UOwYAy1J2A14LtouiZ1AI2szTphNG2tPFDVjk
-         M6yA==
+        bh=0thAvQfL4y/ANwlWwuJlsB55+79afScMHrrhUTn5STY=;
+        b=ZpJo+ji05C0QUslEtIPpytAUeOvFreIXawkB2VQn1SAEQRLgSN3GOebOP4TsjpeQTW
+         M+LDQzcFDCoyAR3R3UR4O/p8ndnPtpWVP+19TMOTUqB5CAa7q6J+7xjwBM0KgvdBmmBH
+         STNa3IYlrdBdys0w7cE80PHZNlQe7yrO43PKdO2x1E/AI3EOa5sBx3Pn40alRV/MaUTl
+         HrR0CM2cEAqWMO4lCH2n/rbA4+YRJbbUeA0h/vXkCFwoCfh5ECO180N+UkqIAgDvsZcw
+         oY841/L9Ge9KCb8u5xMeVa7KCvFZoltjePMGLjAx1imogc896+G2qDJ63aWOoTrvqz9x
+         Mtnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+tvOwcHK/pMvEVLplx6yrJ6qPflwR4OLhSkd6EKCLRI=;
-        b=ZyGo+iyapIPcbiU7kwLR1KoIR64oh7pR2BA3HxGUTTJRXtt87GLqk+gjHtWia7C4IT
-         i0Y5IkiElcc6e8NT+O0de1OZstoVHyNxiPfcVAdmpIhTRj+kxNjbk8mF9nVcDrq3bXjF
-         eLGFS/6Kosh/rTtTGOfZDoCTm9594HCGVrkV7ZVlZPc1hW5QBb8qQ6ecsDzgEDhTlu5e
-         hR5ttmUHyOo1DZPNd8msqnK+X6JkiA5PhvWGdznJb8w1xrVRmR6oK1XWGpInkrGe5Lfq
-         BUmdM+6DAc9R4TvzB1fLsvL65NawLQiOy4yUAW+O/Ya+x3UdNL6hdUkc4aV/R9tPTi5I
-         hoyw==
-X-Gm-Message-State: AOAM531jS2mFhWMEIiGn8HW95Y34uYWEhMeAK2worpgFeGJj5J+vkhBZ
-        8xrBuaTxoaLEdlJNyciRPgkc6g==
-X-Google-Smtp-Source: ABdhPJyyliRjehv6sbtfEh1xJToY/HkD/2LEVWUqQLsW+zcHi7QShLPq/HedquMqPHFjG/+my/ZNhg==
-X-Received: by 2002:a17:906:4c93:b0:6f0:2de:f42d with SMTP id q19-20020a1709064c9300b006f002def42dmr1296745eju.648.1650437404769;
-        Tue, 19 Apr 2022 23:50:04 -0700 (PDT)
+        bh=0thAvQfL4y/ANwlWwuJlsB55+79afScMHrrhUTn5STY=;
+        b=ozQeWqe2zmB3AHRV2efESFLF6hzg9uCLMMFm0Ka5ygO8T7iFxoGdSDBjwe45Y7LkHC
+         kkmCW898o+QS6vU5A9xr3068RHkTs5kZ8pIGoshzX7NWLlJzH9T7spJd5r3bA+3Km58I
+         3OFlvKqQYQRJvZsFFLVnx9wigMN2tkyndSH/1wsR22SB4VJV5QBhFJ99eWg8b1j0QBGz
+         Z/h6lacqUyjRIZ668WK7sPkcjKSkYSQvSDHxm9yDucZWllf9Yw3zBWRCSIA3y05Tz2xu
+         gd7fLieo6Mcejzre4p3PDto0kI9VgtytwYjTk03PMXHJV/YvbicwqkxzmbhzQ+XEqJ6S
+         ANMw==
+X-Gm-Message-State: AOAM531JLeRmcfAL0dDyxWN32R1OREeLMlfFkzsRCBbsUGFeI9YuE3id
+        CH/ZPsZ9gbf8PZEua5PurH+c7Q==
+X-Google-Smtp-Source: ABdhPJyNAr3uY+e3ZdObdNbNNmPe1GJjQk0U89gMG9EQC9bKLlaLalCYhEXbk2BoYfE9K7czBt8ecA==
+X-Received: by 2002:a17:907:1c0e:b0:6ef:f4b9:9a2c with SMTP id nc14-20020a1709071c0e00b006eff4b99a2cmr2925156ejc.309.1650437657219;
+        Tue, 19 Apr 2022 23:54:17 -0700 (PDT)
 Received: from [192.168.0.222] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id mp8-20020a1709071b0800b006efc915e1ccsm2144513ejc.118.2022.04.19.23.50.02
+        by smtp.gmail.com with ESMTPSA id q2-20020a056402032200b00423d4516387sm6040085edw.75.2022.04.19.23.54.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 23:50:04 -0700 (PDT)
-Message-ID: <958e076f-4567-3941-69cb-69d819de2470@linaro.org>
-Date:   Wed, 20 Apr 2022 08:50:02 +0200
+        Tue, 19 Apr 2022 23:54:16 -0700 (PDT)
+Message-ID: <bac59bb7-b214-1edb-e6b9-7885c8a99c3a@linaro.org>
+Date:   Wed, 20 Apr 2022 08:54:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 2/3] dt-bindings: arm: mediatek: apmixedsys: Convert to DT
+Subject: Re: [PATCH 3/3] dt-bindings: arm: mediatek: infracfg: Convert to DT
  schema
 Content-Language: en-US
 To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
@@ -66,9 +66,9 @@ Cc:     Sam Shih <sam.shih@mediatek.com>, Stephen Boyd <sboyd@kernel.org>,
         devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220419180938.19397-1-y.oudjana@protonmail.com>
- <20220419180938.19397-3-y.oudjana@protonmail.com>
+ <20220419180938.19397-4-y.oudjana@protonmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220419180938.19397-3-y.oudjana@protonmail.com>
+In-Reply-To: <20220419180938.19397-4-y.oudjana@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,26 +82,158 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/04/2022 20:09, Yassine Oudjana wrote:
-
-Thank you for your patch. There is something to discuss/improve.
-
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
+> 
+> Convert infracfg bindings to DT schema format. Not all drivers
+> currently implement resets, so #reset-cells is made a required
+> property only for those that do. Using power-controller in the
+> example node name makes #power-domain-cells required causing
+> a dt_binding_check error. To solve this, the node is renamed to
+> syscon@10001000.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  .../arm/mediatek/mediatek,infracfg.txt        | 42 ----------
+>  .../arm/mediatek/mediatek,infracfg.yaml       | 79 +++++++++++++++++++
+>  2 files changed, 79 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+> deleted file mode 100644
+> index f66bd720571d..000000000000
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Mediatek infracfg controller
+> -============================
+> -
+> -The Mediatek infracfg controller provides various clocks and reset
+> -outputs to the system.
+> -
+> -Required Properties:
+> -
+> -- compatible: Should be one of:
+> -	- "mediatek,mt2701-infracfg", "syscon"
+> -	- "mediatek,mt2712-infracfg", "syscon"
+> -	- "mediatek,mt6765-infracfg", "syscon"
+> -	- "mediatek,mt6779-infracfg_ao", "syscon"
+> -	- "mediatek,mt6797-infracfg", "syscon"
+> -	- "mediatek,mt7622-infracfg", "syscon"
+> -	- "mediatek,mt7623-infracfg", "mediatek,mt2701-infracfg", "syscon"
+> -	- "mediatek,mt7629-infracfg", "syscon"
+> -	- "mediatek,mt7986-infracfg", "syscon"
+> -	- "mediatek,mt8135-infracfg", "syscon"
+> -	- "mediatek,mt8167-infracfg", "syscon"
+> -	- "mediatek,mt8173-infracfg", "syscon"
+> -	- "mediatek,mt8183-infracfg", "syscon"
+> -	- "mediatek,mt8516-infracfg", "syscon"
+> -- #clock-cells: Must be 1
+> -- #reset-cells: Must be 1
+> -
+> -The infracfg controller uses the common clk binding from
+> -Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -The available clocks are defined in dt-bindings/clock/mt*-clk.h.
+> -Also it uses the common reset controller binding from
+> -Documentation/devicetree/bindings/reset/reset.txt.
+> -The available reset outputs are defined in
+> -dt-bindings/reset/mt*-resets.h
+> -
+> -Example:
+> -
+> -infracfg: power-controller@10001000 {
+> -	compatible = "mediatek,mt8173-infracfg", "syscon";
+> -	reg = <0 0x10001000 0 0x1000>;
+> -	#clock-cells = <1>;
+> -	#reset-cells = <1>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> new file mode 100644
+> index 000000000000..4f43fe9f103e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,infracfg.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +title: MediaTek AP Mixedsys Controller
+> +title: MediaTek Infrastructure System Configuration Controller
 > +
 > +maintainers:
 > +  - Matthias Brugger <matthias.bgg@gmail.com>
 > +
 > +description:
-> +  The Mediatek apmixedsys controller provides PLLs to the system.
+> +  The Mediatek infracfg controller provides various clocks and reset outputs
+> +  to the system.
+
+Mention here the headers with clock and reset constants. The same for
+patches 1 and 2.
+
 > +
 > +properties:
 > +  compatible:
 > +    oneOf:
 > +      - items:
 > +          - enum:
+> +              - mediatek,mt2701-infracfg
+> +              - mediatek,mt2712-infracfg
+> +              - mediatek,mt6765-infracfg
+> +              - mediatek,mt6779-infracfg_ao
+> +              - mediatek,mt6797-infracfg
+> +              - mediatek,mt7622-infracfg
+> +              - mediatek,mt7629-infracfg
+> +              - mediatek,mt7986-infracfg
+> +              - mediatek,mt8135-infracfg
+> +              - mediatek,mt8167-infracfg
+> +              - mediatek,mt8173-infracfg
+> +              - mediatek,mt8183-infracfg
+> +              - mediatek,mt8516-infracfg
+> +          - const: syscon
+> +      - items:
+> +          - const: mediatek,mt7623-infracfg
+> +          - const: mediatek,mt2701-infracfg
+> +          - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - mediatek,mt2701-infracfg
+> +          - mediatek,mt2712-infracfg
+> +          - mediatek,mt7622-infracfg
+> +          - mediatek,mt7986-infracfg
+> +          - mediatek,mt8135-infracfg
+> +          - mediatek,mt8173-infracfg
+> +          - mediatek,mt8183-infracfg
+> +then:
+> +  required:
+> +    - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    infracfg: syscon@10001000 {
 
-Same comments as patch 1 - no need for items here, just enum. Please
-also put the new binding in clock subsystem.
+reset-controller or clock-controller instead, because syscon is for
+blocks having only the syscon function.
 
 Best regards,
 Krzysztof
