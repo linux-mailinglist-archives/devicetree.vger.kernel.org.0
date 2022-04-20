@@ -2,72 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CAF1507F36
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 04:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE42A507F41
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 04:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359070AbiDTC54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 22:57:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55084 "EHLO
+        id S234258AbiDTC7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 22:59:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244331AbiDTC5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 22:57:50 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 75025262B;
-        Tue, 19 Apr 2022 19:55:05 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,274,1643641200"; 
-   d="scan'208";a="117395954"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Apr 2022 11:55:00 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 460BB4179B67;
-        Wed, 20 Apr 2022 11:55:00 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v4 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable UFS device
-Date:   Wed, 20 Apr 2022 11:54:50 +0900
-Message-Id: <20220420025450.289578-8-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S237403AbiDTC7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 22:59:34 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FFB38BD4
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 19:56:49 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-d39f741ba0so599441fac.13
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 19:56:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Bpdl3onC2L+yuDtcrh15IbOpDqZIMLfc1uBqp1f+cK8=;
+        b=gr9rbqbPFrPKF6qrn9PR00iutEKQ4qGhvKekLBdKxT+fCdsoHCkixQhZar2+85UiBC
+         6nbTGsbcQIjw7NNhbr36TGDAVwu1F0FlgNdextRhKwZhHYWEoXdedE0Kto+iGP41JbyB
+         LxH01oDyC7N4sFgkl+0+eest9ZdFTUCYsRAwat8qu8yM/3BjOXYmHsFMgnH0kY4w/uOe
+         FTgQrz4nrB1CWbLxzNDyuQCfaG9cWo83OWTuaSnROQGrzAGsy/SSXOfMhjtbQAg73daa
+         3ADzEiMsTRcl18Fk1anuBjcVaKn7BqjhsoXS3hVgy+pxmBCCXv2cC9pAjN9/ulIt5h59
+         I8cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Bpdl3onC2L+yuDtcrh15IbOpDqZIMLfc1uBqp1f+cK8=;
+        b=yUn+wflfn13z+mRMQdhQYMzZewyCkHvwsfK1z9w16I0uJiRnDtnjN8G/HkYy4J5hBf
+         b4QgUvAQrvQmU5k5FhkXv+cNRy7lqUhxM4YmZP327JSZbEGIs6Ln7njjFaeU+Yd15RC/
+         PVU7+wON/8PPD1MsxYYTwXndl5oRw3XMj7FDWUEsFY8fF241V8lSK0J7d8trb1e1rBpf
+         i9RCrNEQaVovs+IXGyCCabLsXJ52B5anDmeHw/7xVzqPPkzaFQs5YTpYgotxfMOmb8s4
+         /I1+vx+CD4O/bO8KCzM5Z+QvpSjOX5EFzjUVDnlNckyrYeoFY6awzDl8JW+lz2jDw79e
+         M68g==
+X-Gm-Message-State: AOAM532J8z0e7iJyqF1CC+cmPF9p3cLQI/0NGk9COyAOJJ6Y3uVwCazO
+        XctW6QhIVA+Zn/fiKoFyOORglg==
+X-Google-Smtp-Source: ABdhPJz1r1HbhjstrYl2H7CsBk3Ua1ucqJR7Lb2QJhnvesT98prMjuWrzu/us0Ykm/iAhf04AjAsSQ==
+X-Received: by 2002:a05:6870:f697:b0:d7:5679:8fc8 with SMTP id el23-20020a056870f69700b000d756798fc8mr721436oab.172.1650423408693;
+        Tue, 19 Apr 2022 19:56:48 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id c14-20020a4ad20e000000b0033a371fa815sm3549603oos.37.2022.04.19.19.56.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Apr 2022 19:56:48 -0700 (PDT)
+Date:   Tue, 19 Apr 2022 21:56:46 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sm8150: Add support for SDC2
+Message-ID: <Yl92blX6FaCMU48p@builder.lan>
+References: <20220414213139.476240-1-bhupesh.sharma@linaro.org>
+ <20220414213139.476240-2-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220414213139.476240-2-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable UFS device for R-Car S4-8 Spider CPU board.
+On Thu 14 Apr 16:31 CDT 2022, Bhupesh Sharma wrote:
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Add support for SDC2 which can be used to interface uSD card.
+> 
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-index 41aa8591b3b1..999c823719bc 100644
---- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-@@ -82,3 +82,11 @@ &scif3 {
- &scif_clk {
- 	clock-frequency = <24000000>;
- };
-+
-+&ufs {
-+	status = "okay";
-+};
-+
-+&ufs30_clk {
-+	clock-frequency = <38400000>;
-+};
--- 
-2.25.1
+Thanks for the patch Bhupesh. I have already applied v1 though. Can you
+please double check linux-next to confirm that things are in order?
 
+Thanks,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 45 ++++++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index 15f3bf2e7ea0..0fecebf0a473 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -3270,6 +3270,51 @@ usb_2_ssphy: phy@88eb200 {
+>  			};
+>  		};
+>  
+> +		sdhc_2: sdhci@8804000 {
+> +			compatible = "qcom,sm8150-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0 0x08804000 0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "iface", "core", "xo";
+> +			iommus = <&apps_smmu 0x6a0 0x0>;
+> +			qcom,dll-config = <0x0007642c>;
+> +			qcom,ddr-config = <0x80040868>;
+> +			power-domains = <&rpmhpd 0>;
+> +			operating-points-v2 = <&sdhc2_opp_table>;
+> +
+> +			status = "disabled";
+> +
+> +			sdhc2_opp_table: sdhc2-opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-19200000 {
+> +					opp-hz = /bits/ 64 <19200000>;
+> +					required-opps = <&rpmhpd_opp_min_svs>;
+> +				};
+> +
+> +				opp-50000000 {
+> +					opp-hz = /bits/ 64 <50000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +				};
+> +
+> +				opp-202000000 {
+> +					opp-hz = /bits/ 64 <202000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>;
+> +				};
+> +			};
+> +		};
+> +
+>  		dc_noc: interconnect@9160000 {
+>  			compatible = "qcom,sm8150-dc-noc";
+>  			reg = <0 0x09160000 0 0x3200>;
+> -- 
+> 2.35.1
+> 
