@@ -2,180 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D250F5083D2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 10:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 383FA5083B3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 10:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376845AbiDTIqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 04:46:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40904 "EHLO
+        id S1376846AbiDTIpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 04:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376858AbiDTIpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 04:45:53 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1849A3B2B2;
-        Wed, 20 Apr 2022 01:43:01 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,275,1643641200"; 
-   d="scan'208";a="118557999"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 20 Apr 2022 17:42:58 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D3938401073A;
-        Wed, 20 Apr 2022 17:42:58 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH 09/15] soc: renesas: r8a779g0-sysc: Add r8a779g0 support
-Date:   Wed, 20 Apr 2022 17:42:49 +0900
-Message-Id: <20220420084255.375700-10-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S1376816AbiDTIpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 04:45:38 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45F63B2AF
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:42:52 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id z99so1339392ede.5
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 01:42:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=a0iMNTEwMUTyoU7qHOTCB94CJKN7vHy3TmetHRHL5ng=;
+        b=StdJRvjuM6AflS16vjrcj5/EC/1KJhQtwNpSp/MuPm4qP37p8vvEkWy5q95gG0j6TI
+         wsdoRQTNYTNRurlY7iySdgYzdOVW8czJ8BJZAZwVnAwSV5OI97D1PqXAZxR3zGVbUyPP
+         IwKUHP8tWtmX8ti/PxneQe/5QCn52zfVovUphd+ULtRo+pDcinmJ4L73Px5R1URV65UK
+         nid2JfQoJUkE2fUQJ3FpLBlO8wbOHXnNan70pW+JVn3mcx/lL3Gz4r/ELkQuA+1rhuNK
+         UA4F3AQjcIVC3pwz6VOa3e0q8PPqbnYJ2e0mhx8zS5rcIxDNuXQH0Yr/KmXLfoJ/r5LS
+         VIxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=a0iMNTEwMUTyoU7qHOTCB94CJKN7vHy3TmetHRHL5ng=;
+        b=hPVYNCFaeAQnB06hZ1iQRsM/X0IqsGrL9teI/SXA6xKblcXz+XfY/w62OTE6wBScb0
+         0FWM5I57qCItmjB9v+ms6WDkSMqijEddBOltKvQF3aQ+GBq/7vQZoJVZKR1AdDT9t+vv
+         B7tLprROmNM1O3DsqL3zTA2Nuu/CDXZUWkw6G8d2dDIE06kN4Q1DsCc7sllkJdKOvRLJ
+         vslY9qax/p0/AlbmMIOmnwTgdtJ8rZcXmccGuASIpP675UzoiSjRFzg02NoksKgoL0IW
+         bfv3xkU5OUa7VPRq2K0P3UAzzipcAUPMySC4cKCt1bx4WvnVPj87331jK4fY8WNy/+5H
+         lqlg==
+X-Gm-Message-State: AOAM5310UxKVFf5mjCJLLLRyiHK4811SALt7Ce7at7ijJwL0bfqUqocA
+        ZtYjM0MaiGhE8HvWK3ZMRJCzrw==
+X-Google-Smtp-Source: ABdhPJzHS7GNTqk2YusE9WZsjDe4804XYd4DEyi3+GRrX9yuUe3nI6KauVtP8hgH0pZZ+KXP7CODSw==
+X-Received: by 2002:a05:6402:1cc1:b0:413:2b12:fc49 with SMTP id ds1-20020a0564021cc100b004132b12fc49mr21810423edb.118.1650444171397;
+        Wed, 20 Apr 2022 01:42:51 -0700 (PDT)
+Received: from [192.168.0.223] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id mv12-20020a170907838c00b006e87c0247f4sm6427819ejc.186.2022.04.20.01.42.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Apr 2022 01:42:50 -0700 (PDT)
+Message-ID: <a3edf0e1-644a-38b2-b23d-30cc01005786@linaro.org>
+Date:   Wed, 20 Apr 2022 10:42:49 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: qcom-ipcc: simplify the example
+Content-Language: en-US
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, netdev@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, Alex Elder <elder@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20220402155551.16509-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220402155551.16509-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for R-Car V4H (R8A779G0) SoC power areas and register
-access.
+On 02/04/2022 17:55, Krzysztof Kozlowski wrote:
+> Consumer examples in the bindings of resource providers are trivial,
+> useless and duplicating code.  Additionally the incomplete qcom,smp2p
+> example triggers DT schema warnings.
+> 
+> Cleanup the example by removing the consumer part and fixing the
+> indentation to DT schema convention.
+> 
+> Reported-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- drivers/soc/renesas/Kconfig          |  4 ++
- drivers/soc/renesas/Makefile         |  1 +
- drivers/soc/renesas/r8a779g0-sysc.c  | 62 ++++++++++++++++++++++++++++
- drivers/soc/renesas/rcar-gen4-sysc.c |  3 ++
- drivers/soc/renesas/rcar-gen4-sysc.h |  1 +
- 5 files changed, 71 insertions(+)
- create mode 100644 drivers/soc/renesas/r8a779g0-sysc.c
+Jassi,
+Do you plan to pick this mailbox patch?
 
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index 63477f05fbaf..422c8da82fad 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -369,6 +369,10 @@ config SYSC_R8A779F0
- 	bool "System Controller support for R-Car S4-8" if COMPILE_TEST
- 	select SYSC_RCAR_GEN4
- 
-+config SYSC_R8A779G0
-+	bool "System Controller support for R-Car V4H" if COMPILE_TEST
-+	select SYSC_RCAR_GEN4
-+
- config SYSC_R8A7792
- 	bool "System Controller support for R-Car V2H" if COMPILE_TEST
- 	select SYSC_RCAR
-diff --git a/drivers/soc/renesas/Makefile b/drivers/soc/renesas/Makefile
-index deeb41f84f01..535868c9c7e4 100644
---- a/drivers/soc/renesas/Makefile
-+++ b/drivers/soc/renesas/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_SYSC_R8A77990)	+= r8a77990-sysc.o
- obj-$(CONFIG_SYSC_R8A77995)	+= r8a77995-sysc.o
- obj-$(CONFIG_SYSC_R8A779A0)	+= r8a779a0-sysc.o
- obj-$(CONFIG_SYSC_R8A779F0)	+= r8a779f0-sysc.o
-+obj-$(CONFIG_SYSC_R8A779G0)	+= r8a779g0-sysc.o
- ifdef CONFIG_SMP
- obj-$(CONFIG_ARCH_R9A06G032)	+= r9a06g032-smp.o
- endif
-diff --git a/drivers/soc/renesas/r8a779g0-sysc.c b/drivers/soc/renesas/r8a779g0-sysc.c
-new file mode 100644
-index 000000000000..a452709f066d
---- /dev/null
-+++ b/drivers/soc/renesas/r8a779g0-sysc.c
-@@ -0,0 +1,62 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Renesas R-Car V4H System Controller
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk/renesas.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/kernel.h>
-+#include <linux/mm.h>
-+#include <linux/of_address.h>
-+#include <linux/pm_domain.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+#include <linux/types.h>
-+
-+#include <dt-bindings/power/r8a779g0-sysc.h>
-+
-+#include "rcar-gen4-sysc.h"
-+
-+static struct rcar_gen4_sysc_area r8a779g0_areas[] __initdata = {
-+	{ "always-on",	R8A779G0_PD_ALWAYS_ON, -1, PD_ALWAYS_ON },
-+	{ "a3e0",	R8A779G0_PD_A3E0, R8A779G0_PD_ALWAYS_ON, PD_SCU },
-+	{ "a2e0d0",	R8A779G0_PD_A2E0D0, R8A779G0_PD_A3E0, PD_SCU },
-+	{ "a2e0d1",	R8A779G0_PD_A2E0D1, R8A779G0_PD_A3E0, PD_SCU },
-+	{ "a1e0d0c0",	R8A779G0_PD_A1E0D0C0, R8A779G0_PD_A2E0D0, PD_CPU_NOCR },
-+	{ "a1e0d0c1",	R8A779G0_PD_A1E0D0C1, R8A779G0_PD_A2E0D0, PD_CPU_NOCR },
-+	{ "a1e0d1c0",	R8A779G0_PD_A1E0D1C0, R8A779G0_PD_A2E0D1, PD_CPU_NOCR },
-+	{ "a1e0d1c1",	R8A779G0_PD_A1E0D1C1, R8A779G0_PD_A2E0D1, PD_CPU_NOCR },
-+	{ "a33dga",	R8A779G0_PD_A33DGA, R8A779G0_PD_ALWAYS_ON },
-+	{ "a23dgb",	R8A779G0_PD_A23DGB, R8A779G0_PD_A33DGA },
-+	{ "a3vip0",	R8A779G0_PD_A3VIP0, R8A779G0_PD_ALWAYS_ON },
-+	{ "a3vip1",	R8A779G0_PD_A3VIP1, R8A779G0_PD_ALWAYS_ON },
-+	{ "a3vip2",	R8A779G0_PD_A3VIP2, R8A779G0_PD_ALWAYS_ON },
-+	{ "a3isp0",	R8A779G0_PD_A3ISP0, R8A779G0_PD_ALWAYS_ON },
-+	{ "a3isp1",	R8A779G0_PD_A3ISP1, R8A779G0_PD_ALWAYS_ON },
-+	{ "a3ir",	R8A779G0_PD_A3IR, R8A779G0_PD_ALWAYS_ON },
-+	{ "a2cn0",	R8A779G0_PD_A2CN0, R8A779G0_PD_A3IR },
-+	{ "a1cnn0",	R8A779G0_PD_A1CNN0, R8A779G0_PD_A2CN0 },
-+	{ "a1dsp0",	R8A779G0_PD_A1DSP0, R8A779G0_PD_A2CN0 },
-+	{ "a1dsp1",	R8A779G0_PD_A1DSP1, R8A779G0_PD_A2CN0 },
-+	{ "a1dsp2",	R8A779G0_PD_A1DSP2, R8A779G0_PD_A2CN0 },
-+	{ "a1dsp3",	R8A779G0_PD_A1DSP3, R8A779G0_PD_A2CN0 },
-+	{ "a2imp01",	R8A779G0_PD_A2IMP01, R8A779G0_PD_A3IR },
-+	{ "a2imp23",	R8A779G0_PD_A2IMP23, R8A779G0_PD_A3IR },
-+	{ "a2psc",	R8A779G0_PD_A2PSC, R8A779G0_PD_A3IR },
-+	{ "a2dma",	R8A779G0_PD_A2DMA, R8A779G0_PD_A3IR },
-+	{ "a2cv0",	R8A779G0_PD_A2CV0, R8A779G0_PD_A3IR },
-+	{ "a2cv1",	R8A779G0_PD_A2CV1, R8A779G0_PD_A3IR },
-+	{ "a2cv2",	R8A779G0_PD_A2CV2, R8A779G0_PD_A3IR },
-+	{ "a2cv3",	R8A779G0_PD_A2CV3, R8A779G0_PD_A3IR },
-+};
-+
-+const struct rcar_gen4_sysc_info r8a779g0_sysc_info __initconst = {
-+	.areas = r8a779g0_areas,
-+	.num_areas = ARRAY_SIZE(r8a779g0_areas),
-+};
-diff --git a/drivers/soc/renesas/rcar-gen4-sysc.c b/drivers/soc/renesas/rcar-gen4-sysc.c
-index 831162a57f9a..9e5e6e077abc 100644
---- a/drivers/soc/renesas/rcar-gen4-sysc.c
-+++ b/drivers/soc/renesas/rcar-gen4-sysc.c
-@@ -281,6 +281,9 @@ static const struct of_device_id rcar_gen4_sysc_matches[] __initconst = {
- #endif
- #ifdef CONFIG_SYSC_R8A779F0
- 	{ .compatible = "renesas,r8a779f0-sysc", .data = &r8a779f0_sysc_info },
-+#endif
-+#ifdef CONFIG_SYSC_R8A779G0
-+	{ .compatible = "renesas,r8a779g0-sysc", .data = &r8a779g0_sysc_info },
- #endif
- 	{ /* sentinel */ }
- };
-diff --git a/drivers/soc/renesas/rcar-gen4-sysc.h b/drivers/soc/renesas/rcar-gen4-sysc.h
-index 0e0bd102b1f9..fe2d98254754 100644
---- a/drivers/soc/renesas/rcar-gen4-sysc.h
-+++ b/drivers/soc/renesas/rcar-gen4-sysc.h
-@@ -39,5 +39,6 @@ struct rcar_gen4_sysc_info {
- 
- extern const struct rcar_gen4_sysc_info r8a779a0_sysc_info;
- extern const struct rcar_gen4_sysc_info r8a779f0_sysc_info;
-+extern const struct rcar_gen4_sysc_info r8a779g0_sysc_info;
- 
- #endif /* __SOC_RENESAS_RCAR_GEN4_SYSC_H__ */
--- 
-2.25.1
-
+Best regards,
+Krzysztof
