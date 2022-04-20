@@ -2,78 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D62509375
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 01:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0A2B50938F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 01:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383134AbiDTXT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 19:19:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
+        id S1383185AbiDTXZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 19:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346387AbiDTXT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 19:19:28 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D174F186EF
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 16:16:40 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-2ebf4b91212so34761557b3.8
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 16:16:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aFmFBsA1cs9S4lVVk9cY/Uysi3KqCoTo4QcygHCYv10=;
-        b=CRk2JX7k4QtKNh5gdBexj/P58gfFbGrMpwUxFQEsg9r9e0s1mtcwdfXNg2FNMwa30q
-         g8xeeZHEIWLzTMPh9xUXsWteUHiYaB1mr3jVsDBrwH2IOARUENMfleGPNj07OesxqbHa
-         joQT/914UvMql0s5B63DBiJXhjznt23YxxTexEKWsfLF83s51FuxOlH5tcT0Z8J92AIp
-         gWogEtssZlOQ4GsXC4ULYEe+Tona7hf0TBBx1xjnFX96yK+cere1oMC8pu1+SBlVMmV3
-         3Y7yTBK6p+D/xkffWG+gXsK0PlLEureJvr4SBJxLl48PZfH1vVL7FAqsuuGD6tMHm3vi
-         PRVg==
+        with ESMTP id S1383169AbiDTXZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 19:25:22 -0400
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 913961D0D7
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 16:22:34 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id c12so3186860plr.6
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 16:22:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aFmFBsA1cs9S4lVVk9cY/Uysi3KqCoTo4QcygHCYv10=;
-        b=vB7+/VnV7a7wjeNcZUtAkSRfccJQPv2+HACWA6QPjI1kksDYKIVdGLMn0C7hCwtFVr
-         0bgmAS3GzwDU7NqWJtwWNMXzbtd0gikiRwaUjHDBa+QO6S9hOnatHnVtpYzHDZky77op
-         9WOWgwDTjT5tmgIf1XsctCnVj/Tc6b5wPiEXYHdyHQjBDwyQwVNm1mrcLLmcG+hyFkXL
-         GHUxZ8PjTAQ7PE9JJagXDV6k98TOEj19BmdyTfxhYnSo/Tv5SO4/MnNUDsxZVrGa44Z1
-         oYgWOWv7JL/MY8dK4zudrZI76L0g38BjYfB9J9G2O5ILQyMZHR4XnVlpA0lXqGw4RQWS
-         0/qA==
-X-Gm-Message-State: AOAM530LkxhOWBCkWTQ0RWEgKAHbrdzCGiwMvZL8eUnkNDu27mZI9Bm4
-        MFAx/CHlO/oFUE+HDIYyY/x6/OKHu8bmTCm1vJloOg==
-X-Google-Smtp-Source: ABdhPJxJ7PaIeQo2UGPmAGzPpwrGzL9jce3UtLGr7yVoRBoeZcosvs9fVW74JLGfXPCXLZGMYCE3Xx0xdNmymoUc3+w=
-X-Received: by 2002:a0d:e813:0:b0:2ec:1e83:e5f0 with SMTP id
- r19-20020a0de813000000b002ec1e83e5f0mr24272748ywe.151.1650496600144; Wed, 20
- Apr 2022 16:16:40 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=fV4JkmrG7edeYR97GeotnP7wPuRJ0USB98sxOGhu5Ko=;
+        b=2QbEzQBZoXJ5xRNIiyZbID4WdZYaARZeIF5EGqW1WEiK/ZiP6EO7YmQlHzNuZZm7vy
+         +10trNFZWe1bKcnmY8SnaFylQf/0DAq/NUkberBF5NCnjP61oZQmDR66f4vhGPZrbjnP
+         vJXzkKDE54nuoOMtbkMezE3lIXL0ozNDJ70O9Qc6N51MFlgmoTvTsYF7pLFeLMNuH8Za
+         jyQprSHDCzbf/InsUTTKP/MZdwtRzy9KQtLAa2oBzRhSWupKYg6NIaWe5kyEaSHgW6b0
+         L/Nvoq+WoMdfwKUbHr0v30vlY6LLgOm7zTj4cwIO/MW1hdZ1OqPx7Hpm0jsdUCLJs5Rn
+         i1jQ==
+X-Gm-Message-State: AOAM532Mocjh4K/5RrYcQTXwcg4eYRl4iDeChqWzCb52fM+BrNBT5ElF
+        FbxRzJpuULNRMREXGW09zEJ3gw==
+X-Google-Smtp-Source: ABdhPJw1U+sE5q5vVGNJMiWtWbA91DsbiUZKDbDGss51Ta+5DIVK209skvrhfVxxVAgBCnpsiz/S9Q==
+X-Received: by 2002:a17:90a:b014:b0:1cb:ba36:8fe1 with SMTP id x20-20020a17090ab01400b001cbba368fe1mr7229694pjq.67.1650496954035;
+        Wed, 20 Apr 2022 16:22:34 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id l13-20020a056a00140d00b004e13da93eaasm21870519pfu.62.2022.04.20.16.22.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Apr 2022 16:22:33 -0700 (PDT)
+From:   Kevin Hilman <khilman@kernel.org>
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>
+Subject: Re: [PATCH v24 0/7] soc: mediatek: SVS: introduce MTK SVS
+In-Reply-To: <20220420102044.10832-1-roger.lu@mediatek.com>
+References: <20220420102044.10832-1-roger.lu@mediatek.com>
+Date:   Wed, 20 Apr 2022 16:22:32 -0700
+Message-ID: <7hczhbe3wn.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20220330133952.1949-1-jbx6244@gmail.com>
-In-Reply-To: <20220330133952.1949-1-jbx6244@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 21 Apr 2022 01:16:29 +0200
-Message-ID: <CACRpkdY73vWUTVjQ2T7qgaHkaj36pLTAyk_KWBzB31EUSvBTyQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: pinctrl: add rockchip,rk3036-pinctrl
- compatible string
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 3:39 PM Johan Jonker <jbx6244@gmail.com> wrote:
+Hi Roger,
 
-> Add the compatible string "rockchip,rk3036-pinctrl" in already
-> in use in rk3036.dtsi to rockchip,pinctrl.yaml.
+
+Roger Lu <roger.lu@mediatek.com> writes:
+
+> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+> which calculates suitable SVS bank voltages to OPP voltage table.
+> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+> when receiving OPP_EVENT_ADJUST_VOLTAGE.
 >
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
+>
+> Change since v23:
+> - Change wording from "Mediatek" to "MediaTek" (uppercase T) in mtk-svs.yaml.
+> - Use cpuidle_pause_and_lock() to prevent system from entering cpuidle instead of applying pm_qos APIs.
+> - Add kfree() at the end of svs_probe() when encountering probe fail.
+> - Change MODULE_LICENSE from "GPL v2" to "GPL".
+> - Add nvmem_cell_put() in error handling when nvmem_cell_read() encounters fail.
 
-Patch applied!
-Yours,
-Linus Walleij
+I also gave you a reviewed-by on v23, but here it is again:
+
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+
+That being said, it would be really nice to see an integration tree
+where this was all tested on mainline (e.g. v5.17, or v5.18-rc)
+
+For example, I can apply this to v5.18-rc2 and boot on my mt8183-pumpkin
+board, it fails to probe[1] because there is no CCI node in the upstream
+mt8183.dtsi.
+
+I'm assuming this series is also not very useful without the CPUfreq
+series from Rex, so being able to test this, CCI and CPUfreq together on
+MT8183 on a mainline kernel would be very helpful.
+
+Kevin
+
+[1]
+[    0.573332] mtk-svs 1100b000.svs: cannot find cci node
+[    0.574061] mtk-svs 1100b000.svs: error -ENODEV: svs platform probe fail
