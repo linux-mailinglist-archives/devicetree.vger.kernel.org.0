@@ -2,89 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3C4508587
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 12:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E35150858D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 12:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377543AbiDTKM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 06:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45700 "EHLO
+        id S1377484AbiDTKNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 06:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377502AbiDTKM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 06:12:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0DE3EBB6;
-        Wed, 20 Apr 2022 03:10:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 82D5361756;
-        Wed, 20 Apr 2022 10:10:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9EB0CC385AA;
-        Wed, 20 Apr 2022 10:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650449412;
-        bh=33v1fCpKlgfxNoAa7aF/5COUc2afD4f94mYYvEpenVo=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=KJ5mifsnYE3kYckjbWvGHqiK0tmqIvdyCvgQTXPh8D1hxchyLzQfz1+b4Pd64LzfF
-         RaZ3Tp0DwuqFHOsJKOEilCCdlg4OpPewk4nAPSCxWktxbJnZIo8D8+QFm2p1qGx1V8
-         bAuNe8bTDgDSB/Vy0O7sP1hI7iHLfOP2vg8Q+FFhNEJsoHU2wy+E0eT6/3VnmxIMXW
-         BkiuXoHB4GIsrn6HuqZK5vEq3/K3MMcwXPNkC226i1ABTKzqfqsit0ELJsMgPrcmbT
-         KwylljOjJ9ZjxLR3weuLgPoNtwVeVs4pCwsjCBzZF1Rv0mXPj7OyrAl1mESdRGlyub
-         KpFzEM8G1URtw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 7C3AEF0383D;
-        Wed, 20 Apr 2022 10:10:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1377556AbiDTKNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 06:13:36 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C3283EF20
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 03:10:49 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id g18so2440603ejc.10
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 03:10:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NVECxtwyr+h1MCzkZhNc0V0Cz9+ZhnaasNyst9C8ZrY=;
+        b=MN2gzMGJbfIWL3HcVvyf8OL0YZ1ZE0IOGBYdKnWdIEXiuo3QEkxE0lvd8Bn97fWQ1K
+         Hp0FFp95hB9zfGKutSKYr72FwofXYFa3RLYI06AgF7va5TnDFkA1Wbp0/SjHZMGlKyC8
+         9MfxaNunD6yWIIB2KecSmJRCBvoDOR7aKSQVeULVCmTeHtNztDK4YZ4f9U6uteSVs8Ir
+         6HQR9MKcmIH3fcRBWiC6X2V+6xSg6yBF8Fgmy6ICi+keJQnRUU8V09BKH7+XDMVVVVEH
+         pG0RNIc++eHvl1H4f9VCsNTTmhfEcfc9yEVd8g2od0tW5NVAtOq+OYvjoFptFgS9cR1T
+         HC9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NVECxtwyr+h1MCzkZhNc0V0Cz9+ZhnaasNyst9C8ZrY=;
+        b=ew0SJSFif2QNv2SZiLuvUCW8/OBz8h2Mn+jcT2dyxsPe0dUse07+0Uc2EwF45YPAIQ
+         mhtlDnMXt53Xv0sN3OYHVZAq3sbxvCSSkCt2PlM6cXJCHUwmYO4bI1USnnfjQ14waJ4b
+         6Y2gWGJeNjDic3C606KTs4ZV+foVMFgKB8UmKpgdHialR+x9p9Gms296BoZa5hcUcZ+T
+         gks9l9pYft31x/9qPPMjKKh6Nt16ZIZgIF/CIOUhi1GAwJLHs/rnlvBBsVW9rStwdJ1E
+         51WOBDzrTGdR6yCjBrfJ2pR9nKBqmkLWRRMITjNr3KCRqJ00S2MSA3xjtGAxkv/BzFCc
+         CyIg==
+X-Gm-Message-State: AOAM533/DY/27lhbwib8E0Z/li23X6mO7qIhPHw9oayz4LGHm8iH9lEY
+        boT8hgNf2nt5K5G1AK93tiG97okFlAiG7Q==
+X-Google-Smtp-Source: ABdhPJxUTEttfbKbq5it5c3tqzbrnVjgzvgC20SsQW9PegqGDazwYB1SE9hr9psS+ynCoMCC6RU6cA==
+X-Received: by 2002:a17:907:6d23:b0:6d9:ac9d:222 with SMTP id sa35-20020a1709076d2300b006d9ac9d0222mr17809454ejc.595.1650449448186;
+        Wed, 20 Apr 2022 03:10:48 -0700 (PDT)
+Received: from [192.168.0.224] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id da11-20020a056402176b00b00422f5d9762fsm7259384edb.67.2022.04.20.03.10.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Apr 2022 03:10:47 -0700 (PDT)
+Message-ID: <3e854b22-cd52-1ff5-78f5-c2b89093dff9@linaro.org>
+Date:   Wed, 20 Apr 2022 12:10:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net v2 1/2] dt-bindings: net: dsa: realtek: cleanup compatible
- strings
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165044941250.8751.17513068846690831070.git-patchwork-notify@kernel.org>
-Date:   Wed, 20 Apr 2022 10:10:12 +0000
-References: <20220418233558.13541-1-luizluca@gmail.com>
-In-Reply-To: <20220418233558.13541-1-luizluca@gmail.com>
-To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org,
-        alsi@bang-olufsen.dk, andrew@lunn.ch, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, arinc.unal@arinc9.com,
-        devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v1 2/4] arm64: dts: Add msm8939 SoC
+Content-Language: en-US
+To:     Jun Nie <jun.nie@linaro.org>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        shawn.guo@linaro.org, benl@squareup.com, jwillcox@squareup.com,
+        jgates@squareup.com, mchen@squareup.com, zac@squareup.com,
+        Leo Yan <leo.yan@linaro.org>
+References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
+ <20220419010903.3109514-3-bryan.odonoghue@linaro.org>
+ <737d44a9-56ba-846e-24ad-36b2da52d2d7@linaro.org>
+ <CABymUCOAKvZXZKYtvunjn=K9mpZmAd4x3WTXH571k5BsBH6CEA@mail.gmail.com>
+ <0cb490f4-3df8-7fc8-277f-070e0133f5db@linaro.org>
+ <CABymUCN_N_yKuuF0zdwZ_jfd-UsfSt-HY5O4PjZ_sNmYGQ2UJw@mail.gmail.com>
+ <CABymUCMxOTxmKP07A4HMz4iMyJHhwsh5PE9hskazGck_eRFt9A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CABymUCMxOTxmKP07A4HMz4iMyJHhwsh5PE9hskazGck_eRFt9A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Mon, 18 Apr 2022 20:35:57 -0300 you wrote:
-> Compatible strings are used to help the driver find the chip ID/version
-> register for each chip family. After that, the driver can setup the
-> switch accordingly. Keep only the first supported model for each family
-> as a compatible string and reference other chip models in the
-> description.
+On 20/04/2022 12:00, Jun Nie wrote:
+> Maybe it should like this?
 > 
-> The removed compatible strings have never been used in a released kernel.
-> 
-> [...]
+> cpr_efuse_init_voltage1: efuse {
 
-Here is the summary with links:
-  - [net,v2,1/2] dt-bindings: net: dsa: realtek: cleanup compatible strings
-    https://git.kernel.org/netdev/net-next/c/6f2d04ccae9b
-  - [net,v2,2/2] net: dsa: realtek: remove realtek,rtl8367s string
-    https://git.kernel.org/netdev/net-next/c/fcd30c96af95
+"efuse" is good. To make it clear - we talk here only about node names.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Best regards,
+Krzysztof
