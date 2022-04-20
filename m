@@ -2,114 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24197508B4E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 16:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6C6508B66
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 17:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379842AbiDTO73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 10:59:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56660 "EHLO
+        id S1379921AbiDTPDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 11:03:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236824AbiDTO72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 10:59:28 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC723BFA4;
-        Wed, 20 Apr 2022 07:56:40 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 696F940003;
-        Wed, 20 Apr 2022 14:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650466599;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=2t76+K9/ufuuUqXnbJnz0ta26ZIOGtfR+N8Pj3Hoeqw=;
-        b=E2gnkhahRyJW3qrFkTmcybpsRxoiG1YSyg+T6tCRXOshC8me6CX1EG9Hric3dInxtpVJQ9
-        GBhRPYEl731GNFiN/tJvvBUQBn7kQ7kFjPqkT3aA87mNK16MuCwp51A+RIwC37j/ifuCG/
-        yU3Fu33ln/dbixooeK7JdSaxkAxRdkWTyvJcqFv1N//d1yWqopb8HFIYwd1097T3uivvT3
-        up2ZjgGrIChICjjsZmSJfvh3WBX7a5jVXNTWTse/HvdrqucPdQt60UfPoUbmSLRRTI4H9C
-        vJuXFN5luZdSR36zXJCqlH49wvigIxYlTgNRcWpHqRCvcAm0924lij7xAPyvYg==
-Date:   Wed, 20 Apr 2022 16:56:35 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 3/8] dt-bindings: PCI: renesas-pci-usb: Allow
- multiple clocks
-Message-ID: <20220420165635.0d221ee6@bootlin.com>
-In-Reply-To: <CAMuHMdWqVDwdyNuB3tBrWNGt7tuNOXQwqB_Un9sZYCS-6P99bA@mail.gmail.com>
-References: <20220414074011.500533-1-herve.codina@bootlin.com>
-        <20220414074011.500533-4-herve.codina@bootlin.com>
-        <CAMuHMdWZyuNQJhxkhzs5H8+8DFGDS95nvptrO-s9RC4QL5kibA@mail.gmail.com>
-        <20220420150759.713fcd02@bootlin.com>
-        <CAMuHMdWqVDwdyNuB3tBrWNGt7tuNOXQwqB_Un9sZYCS-6P99bA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1379881AbiDTPC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 11:02:56 -0400
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9877E11A20;
+        Wed, 20 Apr 2022 08:00:09 -0700 (PDT)
+Received: from pps.filterd (m0134424.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 23KETO8K024773;
+        Wed, 20 Apr 2022 14:59:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=SrJ1s9ybwVbdOOH7gaX0781T69f23uJScMgAQXx2D9s=;
+ b=mVF4jgUb+ooe5pMgvTeUB8D2IRz/uWHiglputfztkKAkwk6gsaEwG7oS6upmuSAJYrZC
+ mRfEWStqBrfn7UfCC1Hkk4ZwoJjL/NddIwX58nxUWasnE4DzlZFoKqqN7KtY7SFn6i7O
+ ZyyU49dZzCjy7/k13YU7u0/BiUb4cPgkjl2iHV+hr2+cz6yC4u8akKmVK2UnKZUn/yo7
+ XPQjmMzexasVeotZmsUxRgRaToSjYjK1zG8W+qodNuWZ+cYXHDMw1Gj5rTt4sehGTcct
+ 0UnZinGKVaYO6VVwAKA3PLjMwP60njxIfyEIE4otZ2EVXQ/2SBaooxc/hVVaU3P07gjR 2Q== 
+Received: from g9t5009.houston.hpe.com (g9t5009.houston.hpe.com [15.241.48.73])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3fjkypr8t3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Apr 2022 14:59:15 +0000
+Received: from g9t2301.houston.hpecorp.net (g9t2301.houston.hpecorp.net [16.220.97.129])
+        by g9t5009.houston.hpe.com (Postfix) with ESMTP id F03E255;
+        Wed, 20 Apr 2022 14:59:13 +0000 (UTC)
+Received: from hpe.com (cigateway-dev.us.rdlabs.hpecorp.net [10.14.73.30])
+        by g9t2301.houston.hpecorp.net (Postfix) with ESMTP id 711514A;
+        Wed, 20 Apr 2022 14:59:12 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        gregkh@linuxfoundation.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, linux@armlinux.org.uk, arnd@arndb.de,
+        olof@lixom.net, joel@jms.id.au, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 00/11] ARM: Introduce HPE GXP Architecture
+Date:   Wed, 20 Apr 2022 10:01:14 -0500
+Message-Id: <20220420150114.47356-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: HaEgkcqBFgiSzCPe6r6przRCKLH88dHH
+X-Proofpoint-GUID: HaEgkcqBFgiSzCPe6r6przRCKLH88dHH
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-20_04,2022-04-20_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1011 adultscore=0
+ impostorscore=0 mlxlogscore=851 lowpriorityscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2204200089
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-On Wed, 20 Apr 2022 15:32:27 +0200
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+Changes since v3:
+ *Completely redid the dtsi file to represent architecture
+ *Reduced device tree size
+ *Rewrote the timer driver to start the watchdog driver due
+ to similar register region
+ *Made adjustments to timer
+ *Made adjustments to watchdog
+ *Changed gxp.yaml to hpe,gxp.yaml with changes
+ *Updated Maintainers to represent new file names
+ *Added hpe bindings to generic-ehci and generic-ohci
+ *Fixed clock architecture to be accurate
 
-> Hi Herv=C3=A9,
->=20
-> On Wed, Apr 20, 2022 at 3:08 PM Herve Codina <herve.codina@bootlin.com> w=
-rote:
-> > Is there a way to have the clocks description depending on the compatib=
-le value. =20
->=20
-> Rob already replied.
-> For an example, check out the various bindings for RZ/G2L devices,
-> e.g. Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+Changes since v2:
+ *Reduced size of changes, put them into patchset format
 
-Yes, thanks.
+Changes since v1:
+ *Fixed compiler warnings
 
->=20
-> > I mean something like:
-> > --- 8< ---
-> > properties:
-> >   clocks:
-> >     maxItems: 1
-> >
-> > if:
-> >   properties:
-> >     compatible:
-> >       contains:
-> >         enum:
-> >           - renesas,pci-r9a06g032
-> >           - renesas,pci-rzn1 =20
->=20
-> Checking only for the second compatible value should be sufficient.
+The GXP is the HPE BMC SoC that is used in the majority
+of HPE Generation 10 servers. Traditionally the asic will
+last multiple generations of server before being replaced.
 
-Ok, changed.
+Info about SoC:
 
-Regards,
-Herv=C3=A9
+ HPE GXP is the name of the HPE Soc. This SoC is used to implement
+ many BMC features at HPE. It supports ARMv7 architecture based on
+ the Cortex A9 core. It is capable of using an AXI bus to which
+ a memory controller is attached. It has multiple SPI interfaces
+ to connect boot flash and BIOS flash. It uses a 10/100/1000 MAC
+ for network connectivity. It has multiple i2c engines to drive
+ connectivity with a host infrastructure. The initial patches
+ enable the watchdog and timer enabling the host to be able to
+ boot. Based on feedback from the device tree gxp-timer now
+ creates a gxp-wdt child because of similar register region.
+
+Nick Hawkins (11):
+  arch: arm: mach-hpe: Introduce the HPE GXP architecture
+  arch: arm: configs: multi_v7_defconfig
+  drivers: wdt: Introduce HPE GXP SoC Watchdog
+  clocksource/drivers: Add HPE GXP timer
+  dt-bindings: timer: Add HPE GXP Timer Binding
+  dt-bindings: watchdog: Add HPE GXP Watchdog timer binding
+  dt-bindings: arm: Add HPE GXP Binding
+  dt-bindings: usb: generic-echi:  Add HPE GXP echi binding
+  dt-bindings: usb: generic-ochi:  Add HPE GXP ochi binding
+  arch: arm: boot: dts: Introduce HPE GXP Device tree
+  maintainers: Introduce HPE GXP Architecture
+
+ .../devicetree/bindings/arm/hpe,gxp.yaml      |  22 +++
+ .../bindings/timer/hpe,gxp-timer.yaml         |  49 +++++
+ .../devicetree/bindings/usb/generic-ehci.yaml |   1 +
+ .../devicetree/bindings/usb/generic-ohci.yaml |   1 +
+ .../bindings/watchdog/hpe,gxp-wdt.yaml        |  30 +++
+ MAINTAINERS                                   |  13 ++
+ arch/arm/Kconfig                              |   2 +
+ arch/arm/Makefile                             |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  13 ++
+ arch/arm/boot/dts/hpe-gxp.dtsi                | 128 ++++++++++++
+ arch/arm/configs/multi_v7_defconfig           |   3 +
+ arch/arm/mach-hpe/Kconfig                     |  17 ++
+ arch/arm/mach-hpe/Makefile                    |   1 +
+ arch/arm/mach-hpe/gxp.c                       |  16 ++
+ drivers/clocksource/Kconfig                   |   8 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-gxp.c               | 183 ++++++++++++++++++
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/gxp-wdt.c                    | 166 ++++++++++++++++
+ 21 files changed, 666 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+ create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+ create mode 100644 Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+ create mode 100644 arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+ create mode 100644 arch/arm/boot/dts/hpe-gxp.dtsi
+ create mode 100644 arch/arm/mach-hpe/Kconfig
+ create mode 100644 arch/arm/mach-hpe/Makefile
+ create mode 100644 arch/arm/mach-hpe/gxp.c
+ create mode 100644 drivers/clocksource/timer-gxp.c
+ create mode 100644 drivers/watchdog/gxp-wdt.c
+
+-- 
+2.17.1
+
