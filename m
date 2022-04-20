@@ -2,153 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E78507E7A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 03:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F197507E7D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 03:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348404AbiDTB7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 21:59:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34472 "EHLO
+        id S1346604AbiDTCA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 22:00:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346534AbiDTB7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 21:59:34 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2119.outbound.protection.outlook.com [40.107.113.119])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9FD0FD07;
-        Tue, 19 Apr 2022 18:56:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AN5LfoiZVd0dh/orApJDv+kE5HKv9zoqLJ5MXeTm4MoeEhWgf58XIR+5wof3jhPi9Fd56lHyslfcuJxf0JMNV9HaewVLtY+GHwYHA5DPMmjj0tGpcUXxcBx4zCOev+LkONv079duo215WBwjFJHfwTe2vk3vz/6Z3vtjqAn3dDzb4C6lwxUHlbaLqJJ97TE8QviJXDI+Bw3qKwOdx1FJCO+5I2PccN8rhscCkh/vBKrqYEEFlN5r2mdK5lOJcNY8ZopS+yIUtKjffGau4Iwbv3PbK5jfR5zzMx1vpz/X7X2PYgMcaF4XhAoESZljFTzilY13whAtMQivcWfgnsTvIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xPdWZDt/KwC41eeLqQfd/hWQ780+6T0Z0AkGFDsFeMo=;
- b=cxo+U5x7Cy064MDxXXzRVNQHX6dYWZp6b46MfbJAMifGWdmbOIesZMs5ueeX7zBYEaqQ0hsDYknVkRDH1z2WlSkcGNj2lrCiwoReHEo1aYA4LARdQCnLskR4b3aUYaV2A/YjFGnoZ7ATySF1lfEfL7YX2adVSdE3L5khu4kZKlAJV8/uqmO2p0mc4vRwybD/7s60ry6Pr54j/2MjoHM3keCE0lBrd4MTlx34V1Hq2iK1MPtH+BDxcN4M0HjhSOozv8s5wXtZMGcQuXbytkt6UnQF7SMlntXNK5gBgdfOQi6lwhrxN/Oq4zoK6hWqmiREAZvg1ckiNWmw8YXf5DdRbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xPdWZDt/KwC41eeLqQfd/hWQ780+6T0Z0AkGFDsFeMo=;
- b=MP2NugLBgUYIRbdhnO+soz9acXeNMLFPdXxhvyhShIkPtxk+1hbSEbA+Tq0uN9Ig6SFXcFZBIsm4wfyAwkYG0EJ9rE1zeDxN0vB49itrrzYMHxIxDGAFEWKW8U0hUUUct5jRUbshvzkVUN9UBfUqijAqhy8ieQ156eWq4A5KMpI=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OSBPR01MB2023.jpnprd01.prod.outlook.com
- (2603:1096:603:26::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20; Wed, 20 Apr
- 2022 01:56:46 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf%8]) with mapi id 15.20.5164.025; Wed, 20 Apr 2022
- 01:56:46 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     kernel test robot <lkp@intel.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-CC:     "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 4/7] scsi: ufs-renesas: Add support for Renesas R-Car
- UFS controller
-Thread-Topic: [PATCH v3 4/7] scsi: ufs-renesas: Add support for Renesas R-Car
- UFS controller
-Thread-Index: AQHYU+WLERQam22oD0abU6QtyL7fR6z35dsAgAAlG7A=
-Date:   Wed, 20 Apr 2022 01:56:45 +0000
-Message-ID: <TYBPR01MB534124C367748AEBF9D6E4FBD8F59@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220419120316.209151-5-yoshihiro.shimoda.uh@renesas.com>
- <202204200731.hTb71eG4-lkp@intel.com>
-In-Reply-To: <202204200731.hTb71eG4-lkp@intel.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bf0f0488-d21c-4876-5683-08da2271067e
-x-ms-traffictypediagnostic: OSBPR01MB2023:EE_
-x-microsoft-antispam-prvs: <OSBPR01MB2023D553916A1F977CB47759D8F59@OSBPR01MB2023.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VB7obnuhkbOijtSSkHq6gk+zOoFNlC6jMXUlvwhNb+zVestz2S0CC3xDI4WWx1pHSnygEUDBriLaHz55psELS2NLt5AHzZFieNnN/hSbfPXI+OKz/N1kYyeVpNuY64WkeB/bKYZ4lJM9qkf3V6UpWZXHakRvkA8qgnoL6EkKvPZMXkRwdWSIAJ57EjVuwD5zCB0AC9k3fUtg2P3ZC1qPH2sSwN1n6FbC/0a6AaKlNRS07IKz66vWeDYt2LWDKiXcusWtbUx4SFbbZWE41Pm3F/lfBt63QH6d9Roqj04rJoIqz0J5p2kXSfiSif/t/oR/qx0qVFKMxDOZuZxrAVdAYol0NXrqiWg9aSdXvofymkLevronAZM5I/nwgNa+WiDO0tT3MB7V42Zh3R2nqWxZo9O1maE6xXKr81Se9xLddo54vjoFD6YiIV51G1groe7n/FyNjY3u0CISggW1uOrZN1nV1SD50klDK2p0ECpaElAfaLnkvw/PpK7+zTsvEGWKH0xn2RbQmis4Ga+L7K3quiLfz7Yxc2iQxjzb7ankiAoojlyv4kQhj+AiMG/xKPl+XArgKsP4vOczu3nFM1vZRqIVKep0DhnDiAjt00vldVDN2Yz7tekGXQvcBrbGNwCHU4UT037a37r+NXq7Zo4asSjqBcS4GHfSfuzQgZwyaCXpcU5Hf4835KsRVUa/4/GpeBlQmOmtg6QqBBNct9hmkg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(64756008)(66476007)(66446008)(76116006)(66946007)(4326008)(110136005)(122000001)(38100700002)(186003)(8676002)(66556008)(71200400001)(54906003)(4744005)(38070700005)(83380400001)(7696005)(33656002)(52536014)(6506007)(8936002)(55016003)(86362001)(316002)(5660300002)(7416002)(2906002)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tG42wN6qkZdEidzmnA2P1gLYTool+oohMKi0J5QN14c9ZYg9eBMteE90JDjg?=
- =?us-ascii?Q?GT4UhDPK0hzHdxiVrJOqfHuN7d6lU/WuShCMhnke0g+dCcinpNj+U+GlyWYT?=
- =?us-ascii?Q?KnBvdjaoOnwDh3aiZwXRLfMoCiFEnrmHUzMdMIkpr7Ux36JfLHW9dJLLAxXY?=
- =?us-ascii?Q?dTZ2YC+G9lPmPZyOcy6otSCpdrwozUHI6pJurTkAp/xDI8OBWx9KpNmOBv5I?=
- =?us-ascii?Q?67k5/0YvhGspONKS/30EZwYm1aNuAANhqAlHbVaCaU4K2STnY4HCh+aE+gDb?=
- =?us-ascii?Q?hMpN45LvU5omcQraKjwNp4F6WkuecTXrdoGMoAygiZcVQHDuPI1cSteDCTr1?=
- =?us-ascii?Q?8TJm1+NmQvlfYyrHn+x3TdkrZXA5OwqMVNOO8j3ia5MCnsyUSuBmxxALJzf4?=
- =?us-ascii?Q?HPc0Z3x8Dp68hUacb6tevmZy5JuP1dhISuOmu+peseQ1FHZO6QWRjOHvQ33e?=
- =?us-ascii?Q?epNBvYku/s6D1uPMhKkmh9TL/1gSH8wgAiS/y8CwNmdYcS1t3vU63KgtULRI?=
- =?us-ascii?Q?11gGmhaUt4uKSm+7QyC9lWoW8e17NmT+7oTMg7oSi7302/6Ooc1CLfby+yDG?=
- =?us-ascii?Q?/vKmSWKqhajwnt5QVpzdQ/XGDPcDDokDyytNsFOOR3W2jNY5/zh2tHlIEDBJ?=
- =?us-ascii?Q?iDLxw+bhyjlkEo1SiZvFN1iuXrAVNhsVSr0B5JKzdITHLNokuND8fY/IyYPo?=
- =?us-ascii?Q?71I8EQ+NIk615j/R151QbRu7n6dyFberQl9IEXrx2weieD+vb2y40/KvpPTi?=
- =?us-ascii?Q?PHDikIAtrlc0ksnlcD3hIhDCg29wu8RRhUgHIso2gba8FKWvTaBXdLdaOT+F?=
- =?us-ascii?Q?h9QjHaFnT0Wdzu917RxWOs/mCUFYyd7d5l6cE/2lsTJfRDTk5mDhulLd0d7w?=
- =?us-ascii?Q?yV48NXpyUL0anh5CYOx9R/278bcvr/3hoHIXM0brOjVgwyJhZWxUjuZWCtaK?=
- =?us-ascii?Q?bccORTst+qtfVQHBoJhlweEY0In6uaXzeQ4V39D71tSfVk3VoAPyg/ZUk70f?=
- =?us-ascii?Q?+rp2JluLQ4gucnVTDgUgcyk/IBMFTkdGv+5w1i6dxKgfWB5TPb97QWx4jzwa?=
- =?us-ascii?Q?QyQ4F6nweJ3E86KkaGqDgnUwu0gRRcHhiQjJ9GmyDz80NwC54T+zXlQM6p6v?=
- =?us-ascii?Q?MAVQydCBBCFQUQvKiIVB+ITOxBygu7qoEGkgrpQ6ac0gWpHsd7AuEPMruc0E?=
- =?us-ascii?Q?MddbEvvxaJEELU42ODk9fOnmWiZ/h7orshpF8TwCp23ELdkETzMB1TFrg+TH?=
- =?us-ascii?Q?RHhQ3NwuKhhYwr8vKpQCAPFS2+rTk31Neyl6Ux1G/ZFjzzqaXgX7JY2MEPMT?=
- =?us-ascii?Q?VaCZyO+HTAavqYWxgJ+9/bf/6MLX0fjSOuLKNYtHaNyMMbjddfnhqfmli1WE?=
- =?us-ascii?Q?CFAzxNBYpO9xSUW6eAGPCvhYWkBaFTOYHvfz/XjlqJskkyOfUZBXgQnI5uec?=
- =?us-ascii?Q?mC2EThauKytuoUg4WiNiIkBmAxFP7OTkiOFdb13JihdS/1kLxgsUlAYT0CZG?=
- =?us-ascii?Q?LuZi6iDi6OiLi8qbzc05SuOvCfnzSP2pI7Ov62f8IyK8+Fdm6allADw5ZJWh?=
- =?us-ascii?Q?WZzwImUVTA+2AuU1VAq0kerjzgLMowiamMNtwBbOqweSPu++cnJilSejRbcd?=
- =?us-ascii?Q?njsCvNQaqiCAT3hyZ1nd58dxTgFKltc52zKZKXxYMeldOEivMButNfPnpWdm?=
- =?us-ascii?Q?+FR9JSV/QrK4nIL4iiVehl3ySUsNW1kgaoxkxgxmQZw2N36E2jbiR6YUu6WS?=
- =?us-ascii?Q?w4BlKisg2wIV97KpEHzTDE34A36p+rnUJGgRXLmzoUbhX4UdN4sMs1AA72E1?=
-x-ms-exchange-antispam-messagedata-1: orgL3O4Gd2Yeo33ZFw5jG28NJmuWg5h5yYc=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1346534AbiDTCA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 22:00:57 -0400
+Received: from mail-yw1-x1141.google.com (mail-yw1-x1141.google.com [IPv6:2607:f8b0:4864:20::1141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C1EFD2F
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 18:58:13 -0700 (PDT)
+Received: by mail-yw1-x1141.google.com with SMTP id 00721157ae682-2eba37104a2so3960267b3.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Apr 2022 18:58:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=j0a7VGXOy66Btv3mb2iswxK1Sq2Hb309OWBby+32bsM=;
+        b=QR4WJTDEmde8d40OJ2/C5dOEkVOFqzYtKDNsCp9+4+hWKegusdK+ExJ2dQBVhOtEc9
+         U3yk+Zr2/7JxGxdT/BooW5b5CAfmLe9mRmqBvj1BJEEr/5R/u2MsNSU+Jb3k5/K22kjR
+         N5XCHXBHsvCIoKZrID9pIu0IDztzjwOAh1GV9fIgdFIWDINVrnPpOcQRFFDd+/sVcsnI
+         MOV+0HAbuOlIr5QpFHIbfdUHPf6Rnv8OV0xoa/O6tN5iMu9fZH1NK+5yt4riOgH2+T8Y
+         iG59pEp2+o3j2cjgXM6aefv+XylO2hM/aa7HOjgbiMUJTOHJqFZvq1WW4/FvL8bmPPn8
+         mr5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=j0a7VGXOy66Btv3mb2iswxK1Sq2Hb309OWBby+32bsM=;
+        b=oGoCwz9ZvQnnqW0hcJS2zGR7XrwlEz1YSJDq8P7i2hedNpvjYs80rKR2TmPmpOt8PR
+         6MamNZM+beQ90lQcd9cXrZGL1S/xhK4rAUtVlPMwAAlkXtsHwV7t9XBKsoObSjGYktt7
+         7ULhiv6iIehCAE0zKDuuygTgno2kMYmiQOWO6aYPzrl1qPFPaM7cMWwErFKe47PycQwg
+         6FnvUicuL3glhblviDfb+8fV3I64Jy/9Ju5DWrGZUTRE72kXv7jNwb0+E7KWOxxscFCL
+         7JUDlwduEgs3PqK9NeIhKBYSthN9nY225N4t02nvNOTRCWl5CTRwGtebKK/ZJ2W+uOAP
+         76lg==
+X-Gm-Message-State: AOAM533hAPGyogkrWCmt5+624X6PV1bI6OP9EY7nAKCuhPhW8t7M5Ehu
+        DnusElpzQbf3ytGYmDlHndMGowWfQ0w/BPUNDh3BUfn2N2p2SPzy
+X-Google-Smtp-Source: ABdhPJzm3wb5RuQtx8UB8NyTj5HmQKZczZpH+EOkbGLJaCy4hpsdrEd+FTQJeXdiwdewZ9k222cm6n5q402j+URoBRM=
+X-Received: by 2002:a81:48d0:0:b0:2ec:55f:16b9 with SMTP id
+ v199-20020a8148d0000000b002ec055f16b9mr18124054ywa.174.1650419892739; Tue, 19
+ Apr 2022 18:58:12 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf0f0488-d21c-4876-5683-08da2271067e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2022 01:56:46.1313
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: trD9r83HJypPn3wT2q1eoVKZT/zSiUaNQeeeUMUBKH9ncuLydROrPW9edGtTj+YSEDFwEEQQCGVi2kONnmX2tUACooEEv4Btpifk/Vwq1GCwdbXaBIJesj8qLtpOKgAK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2023
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:7000:a507:0:0:0:0 with HTTP; Tue, 19 Apr 2022 18:58:12
+ -0700 (PDT)
+Reply-To: illuminatiworld152@gmail.com
+From:   illuminati <abdulrahmanmangal37@gmail.com>
+Date:   Wed, 20 Apr 2022 02:58:12 +0100
+Message-ID: <CAL+SJK+YRyi38CnZywQhOq6y6Sjs8M9cpzpHXhgeRYKqsytHUw@mail.gmail.com>
+Subject: RE
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:1141 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [illuminatiworld152[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [abdulrahmanmangal37[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [abdulrahmanmangal37[at]gmail.com]
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.6 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-> From: kernel test robot, Sent: Wednesday, April 20, 2022 8:40 AM
->=20
-> Hi Yoshihiro,
->=20
-<snip>
-> All warnings (new ones prefixed by >>):
->=20
-> >> drivers/scsi/ufs/ufs-renesas.c:304:15: warning: variable 'val' is unin=
-itialized when used here [-Wuninitialized]
->                             p->index, val);
->                                       ^~~
-
-I'll fix this. Printing "save[p->index]" is helpful here instead of "val".
-
-Best regards,
-Yoshihiro Shimoda
-
+--=20
+Hallo, ich bin Friedrich Justus aus D=C3=A4nemark, gl=C3=BCcklich verheirat=
+et,
+ich bin Mitglied dieser gro=C3=9Fen Illuminati-Bruderschaft. Es wurde unter
+den Prinzipien der Liebe, Gerechtigkeit, Einheit, des Friedens und der
+Erleichterung gegr=C3=BCndet und lassen Sie sich nicht von Ihrer Einladung
+verwirren, denn Sie wurden ausgew=C3=A4hlt, weil die Illuminati einen sehr
+reichen Mann in Ihnen sehen, Sie werden derjenige sein, der den
+Menschen helfen wird brauchen  . die Obdachlosen werden sich an Ihnen
+erfreuen, Sie werden die Armen mit Hilfe der Illuminaten ern=C3=A4hren, wir
+k=C3=B6nnen Ihr Gesch=C3=A4ft verlagern und wir k=C3=B6nnen Ihnen jede gew=
+=C3=BCnschte
+Position an Ihrem Arbeitsplatz geben oder kreativ sein und der
+Eigent=C3=BCmer des Gesch=C3=A4fts in allem, was Sie tun, Sie und Die Illum=
+inati
+bringen Menschen guten Willens zusammen, unabh=C3=A4ngig von ihren
+Unterschieden und Hintergr=C3=BCnden, und machen diese guten M=C3=A4nner /
+Frauen in der Gesellschaft besser. M=C3=B6chten Sie ein Mitglied der
+Illuminaten sein und reich, ber=C3=BChmt, m=C3=A4chtig und herausragend im =
+Leben
+werden? Bitte antworten Sie auf diese E-Mail:
+illuminatiworld152@gmail.com oder WhatsApp der Gro=C3=9Fmeister mit
++13159682193
