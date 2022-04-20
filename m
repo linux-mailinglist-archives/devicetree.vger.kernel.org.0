@@ -2,82 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70AE5080AB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 07:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779B65080B2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 07:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343976AbiDTFjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 01:39:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40586 "EHLO
+        id S231758AbiDTFrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 01:47:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244915AbiDTFjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 01:39:12 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762686560;
-        Tue, 19 Apr 2022 22:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1650432983;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=JLun0YrEgADl0EiMrgJKZfIPYsBXKlKt85NSwxmMW2o=;
-    b=hHjIdCpF/CVuyZoPsrZw4AgoX/7oihpN76GzP2L8EZTMk97XiKg7erAxYs9WJUmfPk
-    vsGTskJr5jm8D0aF4mpktMDehU/SyGYLjQpLT6yNlltA257Jgf1pSZYtBDkzGmdhc6ES
-    yjVNL6BFPgr02OIqik425WWJOzpI9M11MfBvnqvxYQ4Z0wbvGZNVxrNUeUWpPWU16qyO
-    uGuNLvX+xFEERMbzhOm1MJOwNrkPGQdnms0t+gE69pBWxr3xCt81HfVL1NWx1PVSM8eE
-    DYIYXS6o8YkdCMNLQkqtBVM4RrbE8exNdGON1mZIkDPpZOm/u8QYtz/hK9rs+jb3BQLF
-    nJtQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK88/6Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.42.2 AUTH)
-    with ESMTPSA id u05e50y3K5aMver
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 20 Apr 2022 07:36:22 +0200 (CEST)
-Date:   Wed, 20 Apr 2022 07:36:21 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, shawn.guo@linaro.org,
-        jun.nie@linaro.org, benl@squareup.com, jwillcox@squareup.com,
-        jgates@squareup.com, mchen@squareup.com, zac@squareup.com
-Subject: Re: [PATCH v1 4/4] arm64: dts: Add msm8939 Sony Xperia M4 Aqua
-Message-ID: <Yl+b1bYpT19TgRDS@gerhold.net>
-References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
- <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
- <Yl8NLldCWaecisH5@gerhold.net>
- <552547c1-36c3-8d7e-0fd5-1b22fd184b4b@linaro.org>
+        with ESMTP id S1344785AbiDTFrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 01:47:20 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 451AF369E9;
+        Tue, 19 Apr 2022 22:44:35 -0700 (PDT)
+Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 20 Apr
+ 2022 13:44:33 +0800
+Message-ID: <126691f4-bc6b-10cd-ee2c-ff4006bc6518@amlogic.com>
+Date:   Wed, 20 Apr 2022 13:44:32 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <552547c1-36c3-8d7e-0fd5-1b22fd184b4b@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20220402074921.13316-1-liang.yang@amlogic.com>
+ <20220402074921.13316-2-liang.yang@amlogic.com>
+ <20220404103034.48ec16b1@xps13>
+ <50105d6b-8ced-1b72-30cb-a709c4a4dd26@amlogic.com>
+ <d5a33645-fac1-9c69-afe6-654bfe93ca48@amlogic.com>
+ <20220419102629.1c77aa2a@xps13>
+ <2e382e3e-c231-c9e4-73a1-0637288fcd4f@amlogic.com>
+ <20220419172528.2dd75e7b@xps13>
+From:   Liang Yang <liang.yang@amlogic.com>
+In-Reply-To: <20220419172528.2dd75e7b@xps13>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.28.39.106]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 19, 2022 at 11:03:30PM +0100, Bryan O'Donoghue wrote:
-> On 19/04/2022 20:27, Stephan Gerhold wrote:
-> > tulip seems to have qcom,usbid-gpio = <&msm_gpio 110 0>; downstream.
-> > Have you tried setting it up using linux,extcon-usb-gpio?
-> > See e.g. msm8916-longcheer-l8910, it has a similar setup (it also uses
-> > smb1360 for charging actually).
-> > 
-> > The advantage is that you don't need the manual role switching using
-> > "usb-role-switch", USB OTG adapters should be detected automatically.
-> 
-> My understanding is "no new extcon" - certainly as driver implementations I
-> assume that also extends to dts..
-> 
+Hi Miquel,
 
-It's probably tricky to combine the USB-C stuff with extcon since that
-needs driver changes. But for good old micro USB stuff extcon is
-(perhaps sadly) the standard and it's exactly what the USB and USB PHY
-driver expects. So in my opinion you might as well make use of it. :)
+On 2022/4/19 23:25, Miquel Raynal wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> Hello,
+> 
+> liang.yang@amlogic.com wrote on Tue, 19 Apr 2022 17:17:48 +0800:
+> 
+>> Hello Miquel,
+>>
+>> On 2022/4/19 16:26, Miquel Raynal wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> Hello,
+>>>
+>>> liang.yang@amlogic.com wrote on Mon, 18 Apr 2022 11:40:10 +0800:
+>>>    
+>>>> Hi Miquel,
+>>>>
+>>>> i have some confusion when i prepare the patches. for DT compatibility, it falls back to the old DT when failed to get resource by the new DT, but there is some points:
+>>>> a. old DT depends on MMC sub clock driver, but it never be merged, so it can't work.
+>>>
+>>> I don't get what you mean here, sorry. I believe there is a new way to
+>>> describe this clock but grabbing the one from the MMC still works, does
+>>> not it?
+>>>    
+>>
+>> No, it doesn't. after the NFC driver using the MMC sub clock framework was merged into the mainline of kernel, we didn't continue to submit the series of patches about MMC sub clock after v9. when i found that, we made a discussion to decide whether to recover the series of patches about MMC sub clock framework, finally, see the description from cover letter, we plan to abandon it and adopt the new clock scheme in this series of patches.
+> 
+> I am not sure to follow. Is the current code completely broken? I
+> believe it is not, so I don't understand your issue.
+
+i think only the code about the clock is completely broken.
+
+> 
+> Can you please summarize the situation?
+
+Yes. the current NFC clock implementation depends on the following 
+series of patches 
+[https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com], 
+which we call "Meson MMC Sub Clock Controller Driver".
+when i was preparing the NFC patchset at that time, we discussed how the 
+clock should be implemented base on the special clock framework for NFC 
+and EMMC port. then we decided to implement a driver "Meson MMC Sub 
+Clock Controller Driver". so another people begin to prepare "Meson MMC 
+Sub Clock Controller Driver", but submitted it by different patchset.
+finally, now the meson NFC patchset is accepted and merged, but "Meson 
+MMC Sub Clock Controller Driver" patchset is not. also we decide to 
+abandon the patset "Meson MMC Sub Clock Controller Driver" and implement 
+the new clock design in this series.
+
+> 
+>>
+>> Thanks.
+>>
+>>>> b. if it falls back to the old DT, beside the regmap lookup below, it seems that we have to preserve the code of the old clock setting in nfc_clk_init().
+>>>
+>>> Yes, probably.
+>>>    
+>>>> do we still need to avoid break DT compatibility?
+>>>
+>>> We should try our best to avoid breaking the DT, yes.
+>>>    
+>>>>
+>>>> Thanks.
+>>>>
+>>>> On 2022/4/11 10:40, Liang Yang wrote:
+>>>>>>>         nfc->dev = dev;
+>>>>>>> -    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>>>>>> -    nfc->reg_base = devm_ioremap_resource(dev, res);
+>>>>>>> +    nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
+>>>>>>
+>>>>>> This change seems unrelated.
+>>>>>
+>>>>> To be consistent with the following > devm_platform_ioremap_resource_byname(pdev, "emmc"). do you mean that we > don't need it?>
+>>>>>>>         if (IS_ERR(nfc->reg_base))
+>>>>>>>             return PTR_ERR(nfc->reg_base);
+>>>>>>> -    nfc->reg_clk =
+>>>>>>> -        syscon_regmap_lookup_by_phandle(dev->of_node,
+>>>>>>> -                        "amlogic,mmc-syscon");
+>>>>>>> -    if (IS_ERR(nfc->reg_clk)) {
+>>>>>>> -        dev_err(dev, "Failed to lookup clock base\n");
+>>>>>>> -        return PTR_ERR(nfc->reg_clk);
+>>>>>>> -    }
+>>>>>>> +    nfc->sd_emmc_clock = devm_platform_ioremap_resource_byname(pdev, >>> "emmc");
+>>>>>>> +    if (IS_ERR(nfc->sd_emmc_clock))
+>>>>>>> +        return PTR_ERR(nfc->sd_emmc_clock);
+>>>>>>
+>>>>>> While I agree this is much better than the previous solution, we cannot
+>>>>>> break DT compatibility, so you need to try getting the emmc clock, but
+>>>>>> if it fails you should fallback to the regmap lookup.
+>>>>>
+>>>>> ok, i will fix it next version. thanks.
+>>>>>     >>>>   >>>>>        irq = platform_get_irq(pdev, 0);
+>>>
+>>>
+>>> Thanks,
+>>> Miquèl
+>>>
+>>> .
+> 
+> 
+> Thanks,
+> Miquèl
+> 
+> .
