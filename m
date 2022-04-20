@@ -2,86 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A28150932B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 00:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A78150934C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 01:01:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382964AbiDTWut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 18:50:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36890 "EHLO
+        id S1383041AbiDTXEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 19:04:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356377AbiDTWus (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 18:50:48 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6301927FC2
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 15:48:01 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id j2so5608096ybu.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 15:48:01 -0700 (PDT)
+        with ESMTP id S1346527AbiDTXEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 19:04:37 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 983DB1E3DB
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 16:01:49 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id i20so5591177ybj.7
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 16:01:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=WG7/qwwohcpveFC4b8orrcY2Egx4HkLeIUdFzvNQsBw=;
-        b=TBNK+8sCpnwUhRpU31FcSoXPxZaCvT3r7rHCZv1MtLFkhH/cz58NjZghZivpj8BKOC
-         GDtAHelUiRXjcjNX+ao22qTfzgkNYsSH+WlbbqYgbvmd1ul7JUKuO8HzieDZ61jZ/+za
-         TlnW9tNUwBCx/e4zgUk6Lm2yGpGB65Dm9wc53WkHtxCxylce8/wlYXHBxeplfzlO7DSu
-         o/nRH3PXAJsRMsNgbtBJ8i66CsSAuVCWy/id+8Z0SgMZlrH9d4mOb6DajMAaUGt2ebSn
-         LfWNpQCGE2gSf7aBT0Q5+YgVnCY9VHlRBHzTX8/kdaBiPRhcLuMMqypcvzt1vqjvjd42
-         yRDA==
+        bh=O338brRj+O5YsxQJ5fqE/nOTBxiBpev6iMtGc2zgLXA=;
+        b=fU10Esjv9giD6Y9O34jUzKITzmT2TLIcx8CkFHESF0gqbPMOLMPEpq2vOSe59FKB2L
+         bQ3YD/kmsFzh31gm+znNCnRTF6ViRhAcfedw1z7URsFLtqotRUxr/FD7ZXEIPkRO5isI
+         dzgDWigHbRuTL/qN280W3zKWBhp5y689K7cs8v78DSDl/CBtfkvh+ZPuSbX9VeJTIF8z
+         fDty7T89ojJRvRTJKy3CHG18O0UWdt56AvWJ6DlWtrzlUE9i+iut8gVJ4cgC79IMSMxs
+         I072kvXjPYqY/iHusW0fpkJOuReDVwAGUKlu43jcAYRB1uRmccUBTtxOETtGGOcd1Efx
+         Kbkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=WG7/qwwohcpveFC4b8orrcY2Egx4HkLeIUdFzvNQsBw=;
-        b=OCdx2LQxf0FFARKV14d0Eae7DvnsTv4aXERqM9Bl/CwW+ROLNfEyD3Tu0z56DFvJBP
-         IMDpn+vETxn4LlgGeM9sbd9rJuqGw+7rTBo2TNV/IjJbOo9N++3FfCMOyrmdVqH7hwpI
-         f3UFp6K6p17vK9ayBq0jDiId45/fWJ/9q7N11wSPl8+zY4syHnS70KD51VIABMHCnkHS
-         nn1RWoPsJrCZBfD1UcfMkLkQNbpOER1Xm3k0bsk09Tfms/Y/Urq+CBsQG9to6NTv4vpo
-         gno0dGcHMf3h2Ho2OCp+rmspMR07tIEDn1o5GVWxVr1fAhvjS1v9QfH2DEEOMQdkUG9v
-         ZdmA==
-X-Gm-Message-State: AOAM53108ffZ15nqEHWs/VVs3mVA0i7LApE7nHUoqz8imxf5Px7sRju2
-        CnnIyyk96nA6pPtkckZf3tDpOOtnBkdVUpD+olLzmA==
-X-Google-Smtp-Source: ABdhPJw5zggL2YRAEeNvlNutCZhqAv9nIbUO/Rc3jMBFnVNBGK+G5g8V9dSnMAfMY6cTp8WCuRyHlfSAlFWYsm94R60=
-X-Received: by 2002:a25:4e82:0:b0:633:68d7:b864 with SMTP id
- c124-20020a254e82000000b0063368d7b864mr23178848ybb.514.1650494880700; Wed, 20
- Apr 2022 15:48:00 -0700 (PDT)
+        bh=O338brRj+O5YsxQJ5fqE/nOTBxiBpev6iMtGc2zgLXA=;
+        b=C/v8YCPFrZIfM+Our78P+9gqnio97cejyRYosRdWzYt56B2NDERuNwBTaQnW+vc0Eq
+         0tngNFu4BhYQK7TFaemsVFc/Jr4YbU9lH+Hm3PhsRoFWr7zcFcEPBD5XbCnTv6AnRClF
+         91NPfiFKCEbpaBBsdRIyJqBZGe8n1q84+gNsCt+dTs9MvbgyuKMOnGsDwU9Ur8SVdkZu
+         5jHHmd+cJT+k9b5LB0sK6gYh/LDJ4Po8N8Er9nmT1NYGefDhQ5m1Hg6PrOJfsun+lI3W
+         Vd8UoHzbqaI/ID55uWDClFbRd1pR2zF3Pz+38jVzlm8WFoE9/gOQ68x/lzJMedxB+a+l
+         3iKg==
+X-Gm-Message-State: AOAM530jBzFXMVh+sjHEk2vXCJ663p/b4va4kneofnMK+t0uQB8nsuXR
+        dYu9Q/1tNg0TZf9ROTwJUFX/0OZDmu9JB/dDfDkijw==
+X-Google-Smtp-Source: ABdhPJzJypBygVuBPKpk9rDFlfYc4pVEaO7EgPX1tP/mN/h81CQRJKfPSH+/7/RK9G5XmPdwn2++jqJiBGKtNm0EBzU=
+X-Received: by 2002:a25:73cc:0:b0:644:f4a3:6f4f with SMTP id
+ o195-20020a2573cc000000b00644f4a36f4fmr18031370ybc.369.1650495708846; Wed, 20
+ Apr 2022 16:01:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220303150653.1903910-1-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20220303150653.1903910-1-alexander.stein@ew.tq-group.com>
+References: <cover.1649533972.git.sander@svanheule.net> <7105ae382d7b328102f66b39ffd7c94998e85265.1649533972.git.sander@svanheule.net>
+In-Reply-To: <7105ae382d7b328102f66b39ffd7c94998e85265.1649533972.git.sander@svanheule.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 21 Apr 2022 00:47:49 +0200
-Message-ID: <CACRpkda-Y8cbRkPcuBr0gRy0NDXkvJ0tE+i4uw3ic-mTDLv-Gg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Convert i.MX7D to json-schema
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
+Date:   Thu, 21 Apr 2022 01:01:37 +0200
+Message-ID: <CACRpkdYmKbHOZChSHjB-ykQCyCziwYTO_+Ai2vheo0y-vD_akA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/6] gpio: realtek-otto: Support reversed port layouts
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bert Vermeulen <bert@biot.com>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 3, 2022 at 4:07 PM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
+On Sat, Apr 9, 2022 at 9:56 PM Sander Vanheule <sander@svanheule.net> wrote:
 
-> Convert the i.MX7D pinctrl binding to DT schema format using json-schema
->
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> +       if (dev_flags & GPIO_PORTS_REVERSED) {
+> +               bgpio_flags = 0;
+> +               ctrl->port_offset_u8 = realtek_gpio_port_offset_u8_rev;
+> +               ctrl->port_offset_u16 = realtek_gpio_port_offset_u16_rev;
+> +       } else {
+> +               bgpio_flags = BGPIOF_BIG_ENDIAN_BYTE_ORDER;
+> +               ctrl->port_offset_u8 = realtek_gpio_port_offset_u8;
+> +               ctrl->port_offset_u16 = realtek_gpio_port_offset_u16;
+> +       }
 
-Patch applied!
+Just checking: is this really a different silicon block, or is this
+GPIO_PORTS_REVERSED flag passed around just a way of saying:
+
+if (!IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) ...?
 
 Yours,
 Linus Walleij
