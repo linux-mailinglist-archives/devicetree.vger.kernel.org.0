@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A893508279
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 09:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81529508284
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 09:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376329AbiDTHq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 03:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42672 "EHLO
+        id S1376344AbiDTHrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 03:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376339AbiDTHqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 03:46:43 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAB623BBDC
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 00:43:54 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-2edbd522c21so8873897b3.13
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 00:43:54 -0700 (PDT)
+        with ESMTP id S1376358AbiDTHrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 03:47:21 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258A03BBE9
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 00:44:33 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-e2442907a1so1131796fac.8
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 00:44:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=4rECfG0J0jcZuxwrgwhg30CvDbd+wKJQrKHF5lEEWz8=;
-        b=JJ84zEuWmJdIZ7TstEV8XP6tov0sYCEo450P8hEILZNpuvqlc8LvmWDw8vMK9BIzyx
-         p80wG38wyBCDllGZ8kRIEVtDhjYvl5nJhws3qJnrkrbECz8bby3fQzPYKA5RPVLCLzfJ
-         eni5YMWY7Iu1XUrIumWZfAM5TinCUnaEoTBPI=
+        bh=WwYw/7+o6YUXusBvVdcg713W697lIpIcWLImq9IQZLc=;
+        b=u5OH/XQou5ikOvTKcspY/ijZaVXhW6U5psQ/O9mEKbptbh4j66ixnNtqXdwStg8beJ
+         X45gflZSx1QfLlQPoyoHoKFb/0MLikPjKRrsoVBpHsFEBj+Gkt6/htirUu+0KqnGd2Cc
+         aHazL9Hk+Cvhc+LwgYtYQtczBybQVPOHC7k2o6WYR9g2fzXfObo8aG4kvn58oFupo+z/
+         XNWw1Pq/aIK2AY09pJV0mLtjPa/fpqo4UwSroZgI8kAL0TYrSDeGBO3BEz8ON1Xu74G8
+         JdltELfQgLwLwaOJQ70CpVrL4PvQzNmMBiN/rQpAulP1uZVOSzND7ME4GjFnXkiDapEr
+         ZpdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=4rECfG0J0jcZuxwrgwhg30CvDbd+wKJQrKHF5lEEWz8=;
-        b=6b660JgsCyM2YiAC2RMhWcGC16nzWAYWPl2RpW2e9yNI1Wydjonyl4ePpEnO31YpvG
-         GP1Sdtwuko0DIo04ZTl5DO4CaDOF5O2PBZ065tvoN3DySHKs6uxorB/WnEOjEFEPzMsz
-         0qSGL1mln+OXqK+G1sobqVuOzMCB3siO75YjViWUDUKDb47/kYiDK1KVbXOQyWJuOYJ8
-         Nm67xDIhpaGo4GORphtP7YPw1ubyzweEH9cM1P7O6jhev3CRSJOcjvb6ytD6LqiFPJDF
-         gk1oq2NGttZDkfDz+N2qtASd3FRiLQH154RUl1kY5iH4p6L54188j/5JqykGv4Mo0RsE
-         DPcg==
-X-Gm-Message-State: AOAM5327W5vK4scwssWmcXFpIbqW7UmhBjBioS1r8QYU98ph27wlkldZ
-        iquc0Vvug0oZo1ssLCb+qIUbreIb7c4tn/xLGzkB
-X-Google-Smtp-Source: ABdhPJwC6ND2mFoDrO8/LZH+VaOdsYNDA7F6jKsenEvyVuoe+DYFot+AtDlzxrI+mCwBEaCI0C4EwGHyNVH1lr+kPjQ=
-X-Received: by 2002:a81:5285:0:b0:2ec:471:e745 with SMTP id
- g127-20020a815285000000b002ec0471e745mr19863668ywb.443.1650440633909; Wed, 20
- Apr 2022 00:43:53 -0700 (PDT)
+        bh=WwYw/7+o6YUXusBvVdcg713W697lIpIcWLImq9IQZLc=;
+        b=fKIAAvTzEz+MHvii05sSJ/R79VFPf81LQs7M1BOqzmHNP72fqS0dbFUoW3KKKiam6A
+         AdLHD1gZpGTlpzTwFn/c7eUqc9Pr4LFxVAdpAIWG9E+ee2GgC2mP0SQUzEOUOT0n6E/e
+         YlmSnBVReMLtPG4jTaojErEsf2ppnZ5+x9a5zBCZlxOJ250fdtxXbqsDR56gC3L2bGLE
+         Sf0/OMEGhwdkQLNvjDFz5QQr9VjAx9148MPXVkeif4ComkeZXNs1riXCt01mP0kbqpxM
+         Gx8e7ajvOuCuMC9wThrq9DHgU/0cgH0CmOaSe534II7tS8fY3g2FRc4JyELDPAFl5Uth
+         vyGw==
+X-Gm-Message-State: AOAM530W0gHeoPOfQgv2XffRhYBtAjJ9DxVhU9VaPrMiPR+niDu6gB9M
+        e01gpKl4uapqy49wRziP7TaxIEoopc2njsK6dJHOAA==
+X-Google-Smtp-Source: ABdhPJz3HSKgFwTK7WGltRhpVJk5iwIQWxVia6R3e4KCXShKV9t/bmdxczAI1bTaTvoNtpu2MKMcFZ1ufXtoA6K68a4=
+X-Received: by 2002:a05:6870:2156:b0:e5:bb8d:f6e3 with SMTP id
+ g22-20020a056870215600b000e5bb8df6e3mr1021563oae.48.1650440672449; Wed, 20
+ Apr 2022 00:44:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220420013258.3639264-1-atishp@rivosinc.com> <20220420013258.3639264-2-atishp@rivosinc.com>
-In-Reply-To: <20220420013258.3639264-2-atishp@rivosinc.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Wed, 20 Apr 2022 00:43:43 -0700
-Message-ID: <CAOnJCU+r8KhhQP-LZN+oGGCDkdQt9ZbF+LCTtZWY8r=qwmSOng@mail.gmail.com>
-Subject: Re: [PATCH 1/2] RISC-V: KVM: Remove 's' & 'u' as valid ISA extension
-To:     Atish Patra <atishp@rivosinc.com>
-Cc:     KVM General <kvm@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, kvm-riscv@lists.infradead.org
+References: <20220414213139.476240-1-bhupesh.sharma@linaro.org>
+ <20220414213139.476240-2-bhupesh.sharma@linaro.org> <Yl92blX6FaCMU48p@builder.lan>
+In-Reply-To: <Yl92blX6FaCMU48p@builder.lan>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Wed, 20 Apr 2022 13:14:21 +0530
+Message-ID: <CAH=2NtweJYnbtNwt93u+5VfWnLD7AfBob-LmBrE+g_U68qtfbw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sm8150: Add support for SDC2
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,43 +68,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 19, 2022 at 6:33 PM Atish Patra <atishp@rivosinc.com> wrote:
->
-> There are no ISA extension defined as 's' & 'u' in RISC-V specifications.
-> The misa register defines 's' & 'u' bit as Supervisor/User privilege mode
-> enabled. But it should not appear in the ISA extension in the device tree.
->
-> Remove those from the allowed ISA extension for kvm.
->
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
->  arch/riscv/kvm/vcpu.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-> index 6785aef4cbd4..2e25a7b83a1b 100644
-> --- a/arch/riscv/kvm/vcpu.c
-> +++ b/arch/riscv/kvm/vcpu.c
-> @@ -43,9 +43,7 @@ const struct kvm_stats_header kvm_vcpu_stats_header = {
->                                  riscv_isa_extension_mask(d) | \
->                                  riscv_isa_extension_mask(f) | \
->                                  riscv_isa_extension_mask(i) | \
-> -                                riscv_isa_extension_mask(m) | \
-> -                                riscv_isa_extension_mask(s) | \
-> -                                riscv_isa_extension_mask(u))
-> +                                riscv_isa_extension_mask(m))
->
->  static void kvm_riscv_reset_vcpu(struct kvm_vcpu *vcpu)
->  {
-> --
-> 2.25.1
->
+Hi Bjorn,
 
-Sorry. Forgot to add the fixes tag.
+On Wed, 20 Apr 2022 at 08:26, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Thu 14 Apr 16:31 CDT 2022, Bhupesh Sharma wrote:
+>
+> > Add support for SDC2 which can be used to interface uSD card.
+> >
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>
+> Thanks for the patch Bhupesh. I have already applied v1 though. Can you
+> please double check linux-next to confirm that things are in order?
 
-Fixes: a33c72faf2d7 (RISC-V: KVM: Implement VCPU create, init and
-destroy functions)
+Sure, I will send a minor iommu sid related fix shortly as a separate
+patch, which
+is required to fix a ADMA error while using the microSD card on the ADP board
+(after rebasing it to linux-next/master tip).
 
--- 
 Regards,
-Atish
+Bhupesh
+
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 45 ++++++++++++++++++++++++++++
+> >  1 file changed, 45 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > index 15f3bf2e7ea0..0fecebf0a473 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > @@ -3270,6 +3270,51 @@ usb_2_ssphy: phy@88eb200 {
+> >                       };
+> >               };
+> >
+> > +             sdhc_2: sdhci@8804000 {
+> > +                     compatible = "qcom,sm8150-sdhci", "qcom,sdhci-msm-v5";
+> > +                     reg = <0 0x08804000 0 0x1000>;
+> > +
+> > +                     interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     interrupt-names = "hc_irq", "pwr_irq";
+> > +
+> > +                     clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> > +                              <&gcc GCC_SDCC2_APPS_CLK>,
+> > +                              <&rpmhcc RPMH_CXO_CLK>;
+> > +                     clock-names = "iface", "core", "xo";
+> > +                     iommus = <&apps_smmu 0x6a0 0x0>;
+> > +                     qcom,dll-config = <0x0007642c>;
+> > +                     qcom,ddr-config = <0x80040868>;
+> > +                     power-domains = <&rpmhpd 0>;
+> > +                     operating-points-v2 = <&sdhc2_opp_table>;
+> > +
+> > +                     status = "disabled";
+> > +
+> > +                     sdhc2_opp_table: sdhc2-opp-table {
+> > +                             compatible = "operating-points-v2";
+> > +
+> > +                             opp-19200000 {
+> > +                                     opp-hz = /bits/ 64 <19200000>;
+> > +                                     required-opps = <&rpmhpd_opp_min_svs>;
+> > +                             };
+> > +
+> > +                             opp-50000000 {
+> > +                                     opp-hz = /bits/ 64 <50000000>;
+> > +                                     required-opps = <&rpmhpd_opp_low_svs>;
+> > +                             };
+> > +
+> > +                             opp-100000000 {
+> > +                                     opp-hz = /bits/ 64 <100000000>;
+> > +                                     required-opps = <&rpmhpd_opp_svs>;
+> > +                             };
+> > +
+> > +                             opp-202000000 {
+> > +                                     opp-hz = /bits/ 64 <202000000>;
+> > +                                     required-opps = <&rpmhpd_opp_svs_l1>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +
+> >               dc_noc: interconnect@9160000 {
+> >                       compatible = "qcom,sm8150-dc-noc";
+> >                       reg = <0 0x09160000 0 0x3200>;
+> > --
+> > 2.35.1
+> >
