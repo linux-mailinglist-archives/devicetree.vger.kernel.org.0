@@ -2,141 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C0E508948
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 15:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B61508957
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 15:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355021AbiDTN2n convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 20 Apr 2022 09:28:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46310 "EHLO
+        id S1379086AbiDTNcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 09:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379036AbiDTN2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 09:28:41 -0400
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D322C42A0C;
-        Wed, 20 Apr 2022 06:25:54 -0700 (PDT)
-Received: by mail-qt1-f170.google.com with SMTP id fu34so913641qtb.8;
-        Wed, 20 Apr 2022 06:25:54 -0700 (PDT)
+        with ESMTP id S1379096AbiDTNco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 09:32:44 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90C110FFC;
+        Wed, 20 Apr 2022 06:29:57 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-e604f712ecso1910306fac.9;
+        Wed, 20 Apr 2022 06:29:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rFIpc07kdcdErSG52Vnbbh7AXlY7+Cv1PmRK4le+8hE=;
-        b=qg+WFdkx4IbdGAhs6Qg8ioPAL7HPsKaHU9gHRJX4SoGOKv3t0XJrr6VSrjoyezTaLX
-         cEAfNbtVAWjOkGXTB0BGTDKdf6ph1+vJtTQSqVqwpi+tfGtAv/CHct/aaAeVDgNCdj5L
-         zGwf0cIgTKADFvc0LSXaAQvaT7ZrzGOZNmIgOFEvjxaO7cqN17QfpHkrGB+KAg0eBXve
-         9MHe6YV611CU5lYPvMpp1tBHwojtqR7Vje6CDdNoL7WaKZV1x3Tns3kgzfRijuvtoX1g
-         UejEVI9pGaRGJ1Hl/k6HPPMRjRJbQbZFa8oYuwqe7gDWcMPJXoz/EJWerv9ExzwWAoZM
-         azLA==
-X-Gm-Message-State: AOAM531cEGJVvRDu8jIqDbAABj+O2E6mBlsKPTLQqsx7QJSu0QoIt8Fm
-        wWvfgoF+KurBQNisLxOJ4/31c3mQ2+EUBg==
-X-Google-Smtp-Source: ABdhPJy1h9FAARtdksCNxxWNLmD6QSb2LbPLHU2aqWwqhgHDmK+7y/M0BDYaDsymgIgngtXhwDIaKg==
-X-Received: by 2002:ac8:5f07:0:b0:2e1:d695:d857 with SMTP id x7-20020ac85f07000000b002e1d695d857mr13815421qta.40.1650461153730;
-        Wed, 20 Apr 2022 06:25:53 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id n11-20020a05622a11cb00b002f344f11849sm293030qtk.71.2022.04.20.06.25.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Apr 2022 06:25:52 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id f38so2841486ybi.3;
-        Wed, 20 Apr 2022 06:25:52 -0700 (PDT)
-X-Received: by 2002:a05:6902:724:b0:644:c37b:4e21 with SMTP id
- l4-20020a056902072400b00644c37b4e21mr19809816ybt.6.1650461152378; Wed, 20 Apr
- 2022 06:25:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220414122250.158113-1-clement.leger@bootlin.com> <20220414122250.158113-5-clement.leger@bootlin.com>
-In-Reply-To: <20220414122250.158113-5-clement.leger@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 20 Apr 2022 15:25:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXcnZ64q+VAMW9f4PNTXR4o+zW9s7EHZQWWh++x94Pz7g@mail.gmail.com>
-Message-ID: <CAMuHMdXcnZ64q+VAMW9f4PNTXR4o+zW9s7EHZQWWh++x94Pz7g@mail.gmail.com>
-Subject: Re: [PATCH net-next 04/12] net: pcs: add Renesas MII converter driver
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sTuVq0s9OtPDutsc1Wu98n4D94RYOqx86fIxGxCByOw=;
+        b=brNeDICG7Q79eG+S+OnLRVtZafoehPuLkbGFf/MFusbHC6evcvtg/9YPbMvGNH6MOd
+         /kESfMiXPdt7koP3N+B7/dDPZyN4qja1v5xl7iEM4yaB6gdEPyEP+rYNpoxidxs0WMp5
+         /DOxAhJ5g7VdsVQloOEg9ySgqoUYL7IagrL+RjRN51wo/XvmpElEVWIVcG4teeeCcfcs
+         dI3za+o0A61L/Iq/oK2euKGkLoHaEcAwnBt47hXT63B2UznSRQU4nAoapmu9MlHchpgz
+         PXfRxeBtjPSkxvpCcyKUuabeFLHxQXn/uwtxxLqnDLW70hibPxnzkZ/A0d2TuCliN/cW
+         ZdMw==
+X-Gm-Message-State: AOAM530uJbliHqW0jArigk0B76vFjHEiVE+lxqiUDJvGyCatpPuPXd+7
+        Zov0QQRuVqnk6k6BndbQXG1gjS42HQ==
+X-Google-Smtp-Source: ABdhPJypu6fAb/Ix1HcbjShAF/0D/wrocyPLP/X4IvjoEm4gGT2fBwDtznF7vSwT1Q3Y0gSuwcgGDA==
+X-Received: by 2002:a05:6870:b68e:b0:e5:c836:882b with SMTP id cy14-20020a056870b68e00b000e5c836882bmr1541641oab.177.1650461397291;
+        Wed, 20 Apr 2022 06:29:57 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m65-20020acabc44000000b002ed13d0fe6fsm6197382oif.23.2022.04.20.06.29.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Apr 2022 06:29:56 -0700 (PDT)
+Received: (nullmailer pid 1168371 invoked by uid 1000);
+        Wed, 20 Apr 2022 13:29:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        allen-kh.cheng@mediatek.com, linux-media@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        srv_heupstream@mediatek.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220420073440.31649-1-irui.wang@mediatek.com>
+References: <20220420073440.31649-1-irui.wang@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: media: mtk-vcodec: Adds encoder power domain property
+Date:   Wed, 20 Apr 2022 08:29:53 -0500
+Message-Id: <1650461393.995094.1168370.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+On Wed, 20 Apr 2022 15:34:39 +0800, Irui Wang wrote:
+> Adds encoder power domain property
+> 
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> ---
+>  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Thanks for your patch!
-Only cosmetic comments from me, as I'm not too familiar with MII.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-On Thu, Apr 14, 2022 at 2:24 PM Clément Léger <clement.leger@bootlin.com> wrote:
-> Add PCS driver for the MII converter that is present on Renesas RZ/N1
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Add a ... on the ...
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-> SoC. This MII converter is reponsible of converting MII to RMII/RGMII
 
-responsible for
+vcodec@18002000: 'mediatek,larb' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-evb.dtb
 
-> or act as a MII passtrough. Exposing it as a PCS allows to reuse it
+vcodec@18002000: 'power-domains' is a required property
+	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-evb.dtb
 
-pass-through
+vcodec@19002000: 'mediatek,larb' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-evb.dtb
 
-> in both the switch driver and the stmmac driver. Currently, this driver
-> only allows the PCS to be used by the dual Cortex-A7 subsystem since
-> the register locking system is not used.
->
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+vcodec@19002000: 'power-domains' is a required property
+	arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dtb
+	arch/arm64/boot/dts/mediatek/mt8173-evb.dtb
 
-> --- a/drivers/net/pcs/Kconfig
-> +++ b/drivers/net/pcs/Kconfig
-> @@ -18,4 +18,11 @@ config PCS_LYNX
->           This module provides helpers to phylink for managing the Lynx PCS
->           which is part of the Layerscape and QorIQ Ethernet SERDES.
->
-> +config PCS_RZN1_MIIC
-> +       tristate "Renesas RZN1 MII converter"
-
-RZ/N1
-
-> +       help
-> +         This module provides a driver for the MII converter that is available
-> +         on RZN1 SoC. This PCS convert MII to RMII/RGMII or can be in
-
-RZ/N1
-
-> +         passthrough mode for MII.
-> +
->  endmenu
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
