@@ -2,100 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF80B508199
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 09:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6D585081AE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 09:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359564AbiDTHEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 03:04:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
+        id S1350861AbiDTHI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 03:08:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359559AbiDTHEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 03:04:41 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E93039160
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 00:01:54 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id f17so1049607edt.4
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 00:01:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=vInl9004STM9Qc4GuUVzX4qiXWW3h7h2HnUzvjdfxGo=;
-        b=Cx7H0w1rHIVWWV87FpjZIBC7zWWFfWL5ayzosxmUORzUYEsKs2HyjLZpAwHpxXbPVt
-         1k+ezKRF8LMhPErYYct0eS5Q+lMTpuh+ij/Ph8NwMjWn0nDiM1HNJC2d6H7bo8g3EtoH
-         0pqD/f34MRM/KXK26IAkFnK5gnd9Uev2jqqYZDUD7c/N4m5r39n9HFZDbzEGOTedYaGO
-         7tmXw4IZSjv61qEG2uZRtCVOKkRBxT77sJnAdezFe4+x/fXqec2PZPcQneW5yh65POQF
-         JogLaLCddcs9QWeOwzu/FOaTms3Y2PnFw3AhVE/pMlRlOHkkcyq1Q6PWfAs8iSUpf+8H
-         tBDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=vInl9004STM9Qc4GuUVzX4qiXWW3h7h2HnUzvjdfxGo=;
-        b=kox8yG/TT3tiM8VcjNvlL2xjGtOhbL9YbJR9+RvFfX3KUBlShb5sZjR2424fAA13qM
-         gT1gCAhbPHp6zi0g9S5nVRdfSFZm5A7MemOO4Cykp8ptOu4NdQspFy3PUOeJwD+KUt1d
-         GPnoQgWwXOB0J0kWa8StSsKssjA7hPB/nc3g7+ggHKDdiCXRYTDXd6wK17UAiJRtMJ/M
-         onxqE7Gt5S/zlgvXEK4OqsKQIzsEAXinErtpwvsQP25k/YJiTkDbt/34AuYd+AOPva3g
-         teTgRZVNKhrVUDLQlpXOUeKMszNImKspqXB3uuq6Lb4YcWKeY5G3eFOsxZLTUmlpGB9u
-         R/Cg==
-X-Gm-Message-State: AOAM531mM9rgSZG/SrYa7JD0Ar/FDxlc1+cbbzWXWkZlXPh8YmMkfS4w
-        LTZL9Y8pH9Z5xLukDdNcGU2Jyg==
-X-Google-Smtp-Source: ABdhPJwSR/mPuUew41KvfvuBvQbHplgf8CToiutxAC1Tj31EbhLeKK9y5rGPRgxlD9EMLyMQRpIVTg==
-X-Received: by 2002:a50:d78e:0:b0:416:2cd7:7ac5 with SMTP id w14-20020a50d78e000000b004162cd77ac5mr21424773edi.320.1650438113049;
-        Wed, 20 Apr 2022 00:01:53 -0700 (PDT)
-Received: from [192.168.0.222] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i41-20020a0564020f2900b004204c9911a6sm9495302eda.10.2022.04.20.00.01.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Apr 2022 00:01:52 -0700 (PDT)
-Message-ID: <2bcf42e0-c58e-99f7-b667-8c212022ff19@linaro.org>
-Date:   Wed, 20 Apr 2022 09:01:51 +0200
+        with ESMTP id S231806AbiDTHIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 03:08:25 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9F22559B;
+        Wed, 20 Apr 2022 00:05:40 -0700 (PDT)
+Received: from [192.168.1.111] (91-156-85-209.elisa-laajakaista.fi [91.156.85.209])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECC0625B;
+        Wed, 20 Apr 2022 09:05:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1650438338;
+        bh=XI60ceOSPiOukm0RgGIMWmc07mkMjnkrZjqcQsrwgeI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=VP5344N7sW30pjejQzEYeRU72UYfQq6pmhRTDBQhDQceHec72h4/ndutm5YbALjJh
+         zHK/HVvwAhsTafWTtjvE3rYp5aHDvRw1yOcZaW6Hwo2Nc6UtiMflPFdD+1SmJ9h1su
+         no87Z1//a8Iy1x4F1TdwnhnIgetHUrBDTjOrpvt0=
+Message-ID: <f5eb63b1-8381-99c8-55fa-cc9287103aa8@ideasonboard.com>
+Date:   Wed, 20 Apr 2022 10:05:34 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH V4 1/7] dt-bindings:iio:adc: add sprd,ump9620-adc
- dt-binding
+Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add missing
+ register & interrupt
 Content-Language: en-US
-To:     Cixi Geng <gengcixi@gmail.com>, jic23@kernel.org, lars@metafoo.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        orsonzhai@gmail.com, baolin.wang7@gmail.com, zhang.lyra@gmail.com,
-        yuming.zhu1@unisoc.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220419142458.884933-1-gengcixi@gmail.com>
- <20220419142458.884933-2-gengcixi@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220419142458.884933-2-gengcixi@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jyri Sarha <jyri.sarha@iki.fi>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Devicetree <devicetree@vger.kernel.org>,
+        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+References: <20220419070302.16502-1-a-bhatia1@ti.com>
+ <20220419070302.16502-2-a-bhatia1@ti.com>
+ <Yl7FEuHEy66KUc5F@robh.at.kernel.org>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <Yl7FEuHEy66KUc5F@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 16:24, Cixi Geng wrote:
-> -  nvmem-cell-names:
-> -    items:
-> -      - const: big_scale_calib
-> -      - const: small_scale_calib
-> +  nvmem-cell-names: true
-> +> +if:
+Hi,
 
-Better to include it under "allOf:" so next time you need more of such
-if-then, you do not need to change indentation. But anyway looks good:
+On 19/04/2022 17:20, Rob Herring wrote:
+> On Tue, Apr 19, 2022 at 12:33:01PM +0530, Aradhya Bhatia wrote:
+>> The DSS IP on the ti-am65x soc supports an additional register space,
+>> named "common1". Further. the IP services a maximum number of 2
+>> interrupts.
+>>
+>> Add the missing register space "common1" and the additional interrupt.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml   | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> index 5c7d2cbc4aac..102059e9e0d5 100644
+>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> @@ -26,6 +26,7 @@ properties:
+>>         Addresses to each DSS memory region described in the SoC's TRM.
+>>       items:
+>>         - description: common DSS register area
+>> +      - description: common1 DSS register area
+> 
+> You've just broken the ABI.
+> 
+> New entries have to go on the end.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I'm curious, if the 'reg-names' is a required property, as it is here, 
+does this still break the ABI?
 
-> +  not:
-> +    properties:
-> +      compatible:
-
-
-
-Best regards,
-Krzysztof
+  Tomi
