@@ -2,74 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C68FF508800
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A734A508813
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 14:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378475AbiDTMYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 08:24:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
+        id S1353203AbiDTM2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 08:28:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353046AbiDTMYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:24:52 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE2B931DC4;
-        Wed, 20 Apr 2022 05:22:06 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id i196so1624489ioa.1;
-        Wed, 20 Apr 2022 05:22:06 -0700 (PDT)
+        with ESMTP id S1353130AbiDTM2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 08:28:19 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642D61C91D;
+        Wed, 20 Apr 2022 05:25:33 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id h4so853249ilq.8;
+        Wed, 20 Apr 2022 05:25:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=zIMuGelOwwNQPwE8FTN91rI+ZWWawKZ6vr/oEWb7r+g=;
-        b=L9rw5Zhh1ttkACZ/UGkE41DhurYpDRfwGSN0hXY3lcyM86w4izh9lfYEKMQA2eqfl5
-         2YnZx5keDv1+QJa5V6FjhombQD+A7uRVFdVH5in7N87ElIKD774KuDHwcEVQ3FHUwvY7
-         F1ugXlCzETRdv2V/dHui53j2ZCkbyjbv6M7XT8C859yRfW3GY8ptWYCq7Acj+NHGGDZe
-         Z8TQqJepf7XKTF9shFLSwBQ2fld+kNvCVXZyjXI2PPp2ApIYjJ6CMOsB9ayJfhKXn1E1
-         uKXVJdXz85Rmi4YVg9eRM8nW2tzIdU//ZPnPbffGTfGWcAF4XZqxMBjPaB/4YCto+tdP
-         yBSg==
+        bh=hRURk4DN2eZqCTEqfyXp6e+58OlcNywvCaEhVw8AW1k=;
+        b=NhfhqCCs3Hf2EcKb/RtIq/hjv48Ps2GXEYJ25dNCUTbtl1svXYZdaLXsrgj7QWWPdM
+         3oPVrUA81IyvWsn6DwAwMq/wFx4wtiCNIZ4QMETSQs8O1/Ye+puhovoY8VYUq1iH/jXX
+         XrqVbKAbZpXr39qKer3R/EqS37otJinwycoykfbrxTXYCCQpBa/ljq9oFdjT6hziWSS7
+         9D1VG3znG9Hyl+SjpRiJLYwyJ/6/CFz0ltHThGbWLEEy6Bpf4OHCM43Hf1lncvlyeP2v
+         t9bW6z6eQS1zHeK4eOBVQWQoY/2TdPvuLDlrwSEql08qeayxkYpHay7K4KcQoTyPt6vf
+         HlZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=zIMuGelOwwNQPwE8FTN91rI+ZWWawKZ6vr/oEWb7r+g=;
-        b=XWQyAnVUXLbpkmcTd0dIvmj+mFKHD1zwGsqSzja4Iob2ZeQ4RSKySwFoC2XkdsXnsW
-         kpvmKbao+WAPLHjXmfzm/GcSNFGC89YJG+9w/gl3y73Qn3aAkIvJxxAdVQWlN+EXHDCj
-         pebegsUmdE+B5iQK/pf//1K0+d1tI94hx37Xhp3gIhWn8dBt7xZC4EQbAKLvZTXL6IAG
-         oX27Q9750NTchMxmsfR15NDuelwk5IVrskdWHHJWsyqz8gL9VWg77ME/pHs9lXb39RdQ
-         lkINPxFP+qhXHn5INHZpJNLWO2CTeOKOMlNd15se0EmWhiMVJRyHvXPJlxHNU2byLT1W
-         61uA==
-X-Gm-Message-State: AOAM533rAPMYT6vKLS7ojvgTNu51ke74Pd+a2frqmj9HuMAlgXtDwxrm
-        Q74o9KD9qSKpw8epNfMKiMREN6SHWfCkYCWz+30=
-X-Google-Smtp-Source: ABdhPJzTPl3fpisqquEunK202EZu+8nIk8CqPrym6nw4Ij8xrv+W8LHM0AuAQ5fzaPtaanpkSEYPKBd97UXjkMJwTQo=
-X-Received: by 2002:a05:6602:1c6:b0:657:2c41:7d0 with SMTP id
- w6-20020a05660201c600b006572c4107d0mr94775iot.31.1650457326295; Wed, 20 Apr
- 2022 05:22:06 -0700 (PDT)
+        bh=hRURk4DN2eZqCTEqfyXp6e+58OlcNywvCaEhVw8AW1k=;
+        b=fifMWz89yuIEqxuYDnpGPu4HwuFKgu3v7UnJ+ANgAwCEsrUUd0d922k/2/YYQfpFwU
+         P48RZYdYZKbhQh7F5YgvQq7NSC8n1uqQh8WXXpnD/unK3s7RZ2dStE0EmpvuH6BvFCsX
+         8hz6xLmb5BjbWnvJcRZkbWwuvNFPhFIFovvpdOSGZYVehaWZ2MYkb/1/P7rzUqEmfzPX
+         KZepdddMAA0A79aOi1AiFDjd+LZurzDzkLKmiesIJSHTQVV6FytknjehsxcaENiwz9VA
+         VpAygZbCqeP48f6Nv46jMQs44wlYI/u0GkbCNcnVUe/ISs9el81aXqNu9f6xqPzyvvP9
+         P+5A==
+X-Gm-Message-State: AOAM533H9j9G9utLPNz7zLKtA3dxhHq/3q0DR+5ruvmuBwYKH7YXaR2A
+        ZKgG2vFCPZw8YGdMQs80L7A59xLPdHwTYzg3INQ=
+X-Google-Smtp-Source: ABdhPJxR05XY11iOWutfHq8oz3L83XIEM/5S8NVV9L7I7mrKegnWO3BlDIq1sHEfoLPpDNiMs/wLF6X1KXkixVdCtjk=
+X-Received: by 2002:a92:6012:0:b0:2bd:fb5f:d627 with SMTP id
+ u18-20020a926012000000b002bdfb5fd627mr8766792ilb.86.1650457532838; Wed, 20
+ Apr 2022 05:25:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220330094126.30252-1-alistair@alistair23.me>
- <20220330094126.30252-2-alistair@alistair23.me> <45acc349-8fea-f755-065c-c561949c45af@roeck-us.net>
-In-Reply-To: <45acc349-8fea-f755-065c-c561949c45af@roeck-us.net>
+References: <20220323120021.361137-1-alistair@alistair23.me>
+In-Reply-To: <20220323120021.361137-1-alistair@alistair23.me>
 From:   Alistair Francis <alistair23@gmail.com>
-Date:   Wed, 20 Apr 2022 22:21:40 +1000
-Message-ID: <CAKmqyKOqjperoku_uOy4sCa6LmCUtfB7SCvhLEKxLtcwDkzRyA@mail.gmail.com>
-Subject: Re: [PATCH v20 1/4] mfd: silergy,sy7636a: Add config option
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Zhang Rui <rui.zhang@intel.com>,
+Date:   Wed, 20 Apr 2022 22:25:06 +1000
+Message-ID: <CAKmqyKP5CRDx4acc6yg9SwADaGTNqKmDUrBs2ODXR30OZuunoA@mail.gmail.com>
+Subject: Re: [PATCH v7 0/4] Add support for the Cypress cyttsp5
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-input <linux-input@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Amit Kucheria <amitk@kernel.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
@@ -81,83 +72,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 6:02 AM Guenter Roeck <linux@roeck-us.net> wrote:
+On Wed, Mar 23, 2022 at 10:00 PM Alistair Francis
+<alistair@alistair23.me> wrote:
 >
-> On 3/30/22 02:41, Alistair Francis wrote:
-> > Add a specific MFD_SY7636A config option.
-> >
-> > As part of this change we can use MFD_SY7636A as a dependency for all
-> > SY7636a components and also remove the name from MFD_SIMPLE_MFD_I2C as
-> > it no longer needs to be selectable.
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> This patch series builds on top of [1] and adds support for the cyttsp5
+> touchscreen controller for the reMarkable 2.
 >
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> I first tried to add an I2C HID device. Although the cyttsp5 has some HID
+> looking aspects it is not HID compatible. Just in trying to probe the device
+> I found:
+>  - The HID descriptor has extra padding
+>  - The HID descriptor sets the high bytes of the descriptor length
+>  - The HID descriptor has extra unrecognised tags
+>  - The HID reset command doesn't appear to work
+>
+> I don't think there is a way to use the I2C HID framework with the cyttsp5.
+> For anyone interested you can see the work here [2]. In that branch though I
+> can only obtain a HID descriptor, nothing else works without more core
+> changes.
+>
+> So instead I rebased the series from [1]. Converted to the new yaml DTS
+> documentation, added regulator support and fixed a x/y miscalculation bug.
 
-Any chance of getting this in for 5.18? It would be nice to have the
-configs all sorted before the release
+The DT bindings have been reviewed, any comments on the driver
+implementation? It has been tested on a few different devices
 
 Alistair
 
 >
-> > ---
-> >   drivers/hwmon/Kconfig     |  1 +
-> >   drivers/mfd/Kconfig       | 12 +++++++++++-
-> >   drivers/regulator/Kconfig |  1 +
-> >   3 files changed, 13 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> > index 68a8a27ab3b7..74b60d24e740 100644
-> > --- a/drivers/hwmon/Kconfig
-> > +++ b/drivers/hwmon/Kconfig
-> > @@ -1693,6 +1693,7 @@ config SENSORS_SIS5595
-> >
-> >   config SENSORS_SY7636A
-> >       tristate "Silergy SY7636A"
-> > +     depends on MFD_SY7636A
-> >       help
-> >         If you say yes here you get support for the thermistor readout of
-> >         the Silergy SY7636A PMIC.
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 3b59456f5545..c47cb755757b 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1095,6 +1095,16 @@ config MFD_SPMI_PMIC
-> >         Say M here if you want to include support for the SPMI PMIC
-> >         series as a module.  The module will be called "qcom-spmi-pmic".
-> >
-> > +config MFD_SY7636A
-> > +     tristate "Silergy SY7636A voltage regulator"
-> > +     depends on I2C
-> > +     select MFD_SIMPLE_MFD_I2C
-> > +     help
-> > +       Enable support for Silergy SY7636A voltage regulator.
-> > +
-> > +       To enable support for building sub-devices as modules,
-> > +       choose M here.
-> > +
-> >   config MFD_RDC321X
-> >       tristate "RDC R-321x southbridge"
-> >       select MFD_CORE
-> > @@ -1202,7 +1212,7 @@ config MFD_SI476X_CORE
-> >         module will be called si476x-core.
-> >
-> >   config MFD_SIMPLE_MFD_I2C
-> > -     tristate "Simple Multi-Functional Device support (I2C)"
-> > +     tristate
-> >       depends on I2C
-> >       select MFD_CORE
-> >       select REGMAP_I2C
-> > diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-> > index 5ef2306fce04..c8ce6e5eea24 100644
-> > --- a/drivers/regulator/Kconfig
-> > +++ b/drivers/regulator/Kconfig
-> > @@ -1219,6 +1219,7 @@ config REGULATOR_STW481X_VMMC
-> >
-> >   config REGULATOR_SY7636A
-> >       tristate "Silergy SY7636A voltage regulator"
-> > +     depends on MFD_SY7636A
-> >       help
-> >         This driver supports Silergy SY3686A voltage regulator.
-> >
+> 1: https://lwn.net/ml/linux-kernel/20180703094309.18514-1-mylene.josserand@bootlin.com/
+> 2: https://github.com/alistair23/linux/commits/rM2-mainline-cyttsp5-hid
+>
+> v7:
+>  - Fix device tree warnings
+> v6:
+>  - Use reg for the button properties
+> v5:
+>  - Address review comments from v4
+>
+> Alistair Francis (4):
+>   Input: Add driver for Cypress Generation 5 touchscreen
+>   dt-bindings: input: Add Cypress TT2100 touchscreen controller
+>   ARM: imx_v6_v7_defconfig: Enable the cyttsp5 touchscreen
+>   ARM: dts: imx7d-remarkable2: Enable the cyttsp5
+>
+>  .../input/touchscreen/cypress,tt21000.yaml    | 101 ++
+>  arch/arm/boot/dts/imx7d-remarkable2.dts       | 100 ++
+>  arch/arm/configs/imx_v6_v7_defconfig          |   1 +
+>  drivers/input/touchscreen/Kconfig             |  16 +
+>  drivers/input/touchscreen/Makefile            |   1 +
+>  drivers/input/touchscreen/cyttsp5.c           | 902 ++++++++++++++++++
+>  6 files changed, 1121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+>  create mode 100644 drivers/input/touchscreen/cyttsp5.c
+>
+> --
+> 2.35.1
 >
