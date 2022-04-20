@@ -2,85 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 443F350856F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 12:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F5450857A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 12:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377475AbiDTKHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 06:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
+        id S1377499AbiDTKJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 06:09:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377432AbiDTKHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 06:07:09 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5813ED1B
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 03:04:23 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 21so1617542edv.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 03:04:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=O/+Bq4GD0i1aeDJZB6KF270FrYsDWC9ZLK3WKl7pvtw=;
-        b=iQg0xYNVkHIZo0BFivFUh7zcofwerY9qIBuS1eg1pq1Wa+PK0moNksnXr2ibxPi8Nt
-         U4lJJn9AKf4k/TObba/Cc6oO4TsZpgIvDsGSOI4d+MrBlA6kaCK7lviv+aa2F++37KgR
-         N/r+QzoV+OnRGchrRwCncCZWkuUNshBr9/El/cp2eZVL39X0sLxwhSLBbrR2SosL706Q
-         QGwTbqgSZE0x2tcPBwFlyXbQQGpGtE5ZbEhr9iglUhXQg2XhGbPhvxh1iQ7sSxD8Ekyp
-         pSwmybpiz//I9XHylVbYKw8D03YZv3IELSfETGs8FfNIZ0DB7WpSpuQJKb7nPEVuVJ9w
-         vvUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=O/+Bq4GD0i1aeDJZB6KF270FrYsDWC9ZLK3WKl7pvtw=;
-        b=GtKNv3q9VTHsGRrTmdjbqFQxmMUeNW2amQp9MtaxzdalUPgUC10yxKUte/XZHvJkVr
-         7sKLkdxuuAthONzafOSf0Ks+d/cU65pqtwQCT6iOA7/PqUvqUCxCjKDdSKj9KUXxxrYh
-         63hLX0lKyGrWs2F3igZSc5BNzva9NqoVI48LG1FirhtvX1U2Y0HyAzZFXJAup2FLqPqW
-         dsXKaLed5SbFKXyDX82zB19a+JZVzlcVfyoMoZcVuRK7d4Hp2zsSottmRiDf3XOhOQwO
-         aOrAMJf0Np9Gvm0g6Fd3edTdZPX0oZUTnKVHeZN8BE7sJ0NF2VEYs9hxEqPeXnxEmASg
-         cYZA==
-X-Gm-Message-State: AOAM531YN//SPLVaJnXpGP53ER2b82bJat3VeKaDfVYTLwXSbX2FpiKi
-        wTHDCIa+I9FljhJA7hdCGaKTTw==
-X-Google-Smtp-Source: ABdhPJzL1lJX7sEUE2x5amjeU9v9hVjpMQnJ3qC7rbHT6pjZahpCdoZq2EmtCY7VhfWQbkBr/EYySQ==
-X-Received: by 2002:a05:6402:31ee:b0:41d:7038:c04a with SMTP id dy14-20020a05640231ee00b0041d7038c04amr22411161edb.142.1650449061949;
-        Wed, 20 Apr 2022 03:04:21 -0700 (PDT)
-Received: from [192.168.0.224] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id kw5-20020a170907770500b006db075e5358sm6599740ejc.66.2022.04.20.03.04.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Apr 2022 03:04:21 -0700 (PDT)
-Message-ID: <6dc5e28b-e84d-95c3-3967-476b2126314e@linaro.org>
-Date:   Wed, 20 Apr 2022 12:04:20 +0200
+        with ESMTP id S1377502AbiDTKJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 06:09:49 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800CE3EAA2
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 03:07:04 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nh7Eh-0003GG-RX; Wed, 20 Apr 2022 12:06:59 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nh7Eh-0000fi-0s; Wed, 20 Apr 2022 12:06:59 +0200
+Date:   Wed, 20 Apr 2022 12:06:59 +0200
+From:   Sascha Hauer <sha@pengutronix.de>
+To:     Codrin.Ciubotariu@microchip.com
+Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lars@metafoo.de, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, robh+dt@kernel.org, Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH v3 1/6] ASoC: dmaengine: do not use a NULL
+ prepare_slave_config() callback
+Message-ID: <20220420100658.GU4012@pengutronix.de>
+References: <20220307122202.2251639-1-codrin.ciubotariu@microchip.com>
+ <20220307122202.2251639-2-codrin.ciubotariu@microchip.com>
+ <20220420091552.GD2387@pengutronix.de>
+ <968f9bfb-bddf-a8f0-6d8f-18b92d865aa2@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC PATCH v2 5/6] ufs: use PM OPP when scaling gears
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-6-krzysztof.kozlowski@linaro.org>
- <20220419170149.GB8699@thinkpad>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220419170149.GB8699@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <968f9bfb-bddf-a8f0-6d8f-18b92d865aa2@microchip.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:03:21 up 20 days, 22:33, 67 users,  load average: 0.55, 0.31,
+ 0.16
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,111 +61,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2022 19:01, Manivannan Sadhasivam wrote:
-> On Mon, Apr 11, 2022 at 05:43:46PM +0200, Krzysztof Kozlowski wrote:
->> Scaling gears requires not only scaling clocks, but also voltage levels,
->> e.g. via performance states.
->>
->> Use the provided OPP table, to set proper OPP frequency which through
->> required-opps will trigger performance state change.  This deprecates
->> the old freq-table-hz Devicetree property and old clock scaling method
->> in favor of PM core code.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  drivers/scsi/ufs/ufshcd-pltfrm.c |  69 +++++++++++++++++++
->>  drivers/scsi/ufs/ufshcd.c        | 115 +++++++++++++++++++++++--------
->>  drivers/scsi/ufs/ufshcd.h        |   4 ++
->>  3 files changed, 158 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/scsi/ufs/ufshcd-pltfrm.c b/drivers/scsi/ufs/ufshcd-pltfrm.c
->> index c1d8b6f46868..edba585db0c1 100644
->> --- a/drivers/scsi/ufs/ufshcd-pltfrm.c
->> +++ b/drivers/scsi/ufs/ufshcd-pltfrm.c
->> @@ -107,6 +107,69 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->>  	return ret;
->>  }
->>  
->> +static int ufshcd_parse_operating_points(struct ufs_hba *hba)
->> +{
->> +	struct device *dev = hba->dev;
->> +	struct device_node *np = dev->of_node;
->> +	struct ufs_clk_info *clki;
->> +	const char *names[16];
->> +	bool clocks_done;
+On Wed, Apr 20, 2022 at 09:58:06AM +0000, Codrin.Ciubotariu@microchip.com wrote:
+> On 20.04.2022 12:15, Sascha Hauer wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > Hi,
 > 
-> Maybe freq_table?
-
-ok
-
+> Hi Sascha,
 > 
->> +	int cnt, i, ret;
->> +
->> +	if (!of_find_property(dev->of_node, "operating-points-v2", NULL))
->> +		return 0;
->> +
->> +	cnt = of_property_count_strings(np, "clock-names");
->> +	if (cnt <= 0) {
->> +		dev_warn(dev, "%s: Missing clock-names\n",
->> +			 __func__);
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (cnt > ARRAY_SIZE(names)) {
->> +		dev_info(dev, "%s: Too many clock-names\n",  __func__);
->> +		return -EINVAL;
->> +	}
+> > 
+> > On Mon, Mar 07, 2022 at 02:21:57PM +0200, Codrin Ciubotariu wrote:
+> >> Even if struct snd_dmaengine_pcm_config is used, prepare_slave_config()
+> >> callback might not be set. Check if this callback is set before using it.
+> >>
+> >> Fixes: fa654e085300 ("ASoC: dmaengine-pcm: Provide default config")
+> >> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+> >> ---
+> >>
+> >> Changes in v2,v3:
+> >>   - none
+> >>
+> >>   sound/soc/soc-generic-dmaengine-pcm.c | 6 +++---
+> >>   1 file changed, 3 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/sound/soc/soc-generic-dmaengine-pcm.c b/sound/soc/soc-generic-dmaengine-pcm.c
+> >> index 285441d6aeed..2ab2ddc1294d 100644
+> >> --- a/sound/soc/soc-generic-dmaengine-pcm.c
+> >> +++ b/sound/soc/soc-generic-dmaengine-pcm.c
+> >> @@ -86,10 +86,10 @@ static int dmaengine_pcm_hw_params(struct snd_soc_component *component,
+> >>
+> >>        memset(&slave_config, 0, sizeof(slave_config));
+> >>
+> >> -     if (!pcm->config)
+> >> -             prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config;
+> >> -     else
+> >> +     if (pcm->config && pcm->config->prepare_slave_config)
+> >>                prepare_slave_config = pcm->config->prepare_slave_config;
+> >> +     else
+> >> +             prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config;
+> >>
+> >>        if (prepare_slave_config) {
+> >>                int ret = prepare_slave_config(substream, params, &slave_config);
+> > 
+> > I wonder if this patch is correct. There are drivers like
+> > sound/soc/mxs/mxs-pcm.c which call snd_dmaengine_pcm_register() with a
+> > config which has the prepare_slave_config callback unset. For these
+> > drivers dmaengine_pcm_hw_params() previously was a no-op. Now with this
+> > patch snd_dmaengine_pcm_prepare_slave_config() and
+> > dmaengine_slave_config() are called. At least for the mxs-pcm driver
+> > calling dmaengine_slave_config() will return -ENOSYS.
+> > 
+> > At least the "Check if this callback is set before using it" part is
+> > wrong, the callback is checked before using it with
+> > 
+> >          if (prepare_slave_config) {
+> >                  ...
+> >          }
+> > 
+> > I don't have any mxs hardware at hand to test this. I just stumbled upon
+> > the change of behaviour when rebasing
+> > https://patchwork.kernel.org/project/alsa-devel/patch/20220301122111.1073174-1-s.hauer@pengutronix.de/
+> > on current master.
 > 
-> How did you come up with 16 as the max clock count? Is this check necessary?
-
-16 was an arbitrary choice, also mentioned in the bindings:
-https://lore.kernel.org/all/20220411154347.491396-3-krzysztof.kozlowski@linaro.org/
-
-The check is necessary from current code point of view - array is
-locally allocated with fixed size. Since bindings do not allow more than
-16, I am not sure if there is a point to make the code flexible now...
-but if this is something you wish, I can change.
-
+> You are right. I changed the behavior from:
+> if (pmc->config && !pcm->config->prepare_slave_config)
+> 	<do nothing>
+> to:
+> if (pmc->config && !pcm->config->prepare_slave_config)
+> 	snd_dmaengine_pcm_prepare_slave_config()
 > 
->> +
->> +	/* clocks parsed by ufshcd_parse_clock_info() */
->> +	clocks_done = !!of_find_property(np, "freq-table-hz", NULL);
-> 
-> freq-table-hz and opp-table are mutually exclusive, isn't it?
+> It was not intended and I agree that the commit message is not accurate. 
+> I guess some drivers might not need dmaengine_slave_config()...
+> However, in my case, for the mchp-pdmc driver, I do have pcm->config 
+> with pcm->config->prepare_slave_config NULL, but I still need 
+> snd_dmaengine_pcm_prepare_slave_config() to be called. Should we add a 
+> separate flag to call snd_dmaengine_pcm_prepare_slave_config() if 
+> pcm->config->prepare_slave_config is NULL?
 
-You're right, this should be an exit.
+Other drivers set pcm->config->prepare_slave_config to
+snd_dmaengine_pcm_prepare_slave_config() explicitly:
 
-(...)
+sound/soc/fsl/imx-pcm-dma.c:33: .prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config,
 
->>  	ufshcd_init_lanes_per_dir(hba);
->>  
->>  	err = ufshcd_init(hba, mmio_base, irq);
->> diff --git a/drivers/scsi/ufs/ufshcd.c b/drivers/scsi/ufs/ufshcd.c
->> index 5bfa62fa288a..aec7da18a550 100644
->> --- a/drivers/scsi/ufs/ufshcd.c
->> +++ b/drivers/scsi/ufs/ufshcd.c
->> @@ -1022,6 +1022,9 @@ static int ufshcd_scale_clks(struct ufs_hba *hba, bool scale_up)
->>  	int ret = 0;
->>  	ktime_t start = ktime_get();
->>  
->> +	if (hba->use_pm_opp)
->> +		return 0;
->> +
-> 
-> So you don't need pre and post clock changes below?
+I think that's the way to go.
 
-That's tricky. The UFS HCD core does not need it, but of course the
-question is about the drivers actually using ufshcd_vops_clk_scale_notify().
-
-Only QCOM UFS driver implements it and actually we might need it. Qcom
-driver changes DME_VS_CORE_CLK_CTRL, so maybe this should be done here
-as well. I don't know yet how to incorporate it into PM-opp framework,
-because now changing frequencies and voltage is atomic from the UFS
-driver perspective. Before it was not - for example first clock (with
-these pre/post changes) and then voltage.
-
-I will need to solve it somehow...
+Regards,
+Sascha
 
 
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
