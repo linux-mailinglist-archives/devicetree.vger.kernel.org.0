@@ -2,247 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5E9507F82
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 05:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A6B9507FAD
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 05:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358002AbiDTDSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Apr 2022 23:18:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48066 "EHLO
+        id S239025AbiDTDxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Apr 2022 23:53:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349010AbiDTDSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 23:18:22 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95E46304;
-        Tue, 19 Apr 2022 20:15:37 -0700 (PDT)
-X-UUID: 1fb72d17eccb4215ad8f9712affdea33-20220420
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:af9358d1-00b9-4c26-8d5a-21d9f751190f,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:53
-X-CID-INFO: VERSION:1.1.4,REQID:af9358d1-00b9-4c26-8d5a-21d9f751190f,OB:0,LOB:
-        0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:53
-X-CID-META: VersionHash:faefae9,CLOUDID:274074ef-06b0-4305-bfbf-554bfc9d151a,C
-        OID:b1f79c9c742c,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
-        le:nil,QS:0,BEC:nil
-X-UUID: 1fb72d17eccb4215ad8f9712affdea33-20220420
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1562580671; Wed, 20 Apr 2022 11:15:31 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 20 Apr 2022 11:15:31 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 20 Apr
- 2022 11:15:30 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 20 Apr 2022 11:15:30 +0800
-Message-ID: <0b85798f63deb0c943ed1803aaa06cde6437e7bd.camel@mediatek.com>
-Subject: Re: [PATCH 3/5] dt-bindings: mediatek: add vdosys1 RDMA definition
- for mt8195
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
-        <Jason-JH.Lin@mediatek.com>,
-        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
-        <Nancy.Lin@mediatek.com>, DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 20 Apr 2022 11:15:30 +0800
-In-Reply-To: <CAAOTY__u3q1YcNwGpyEUpRbThsg6U1-gYtaqtGgy2J4jMwSOUg@mail.gmail.com>
-References: <20220419033237.23405-1-rex-bc.chen@mediatek.com>
-         <20220419033237.23405-4-rex-bc.chen@mediatek.com>
-         <74b3f0e3-1d9f-de9e-ccf0-1f2174ba7c25@gmail.com>
-         <CAAOTY__u3q1YcNwGpyEUpRbThsg6U1-gYtaqtGgy2J4jMwSOUg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
+        with ESMTP id S234405AbiDTDxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Apr 2022 23:53:36 -0400
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30041.outbound.protection.outlook.com [40.107.3.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ED22612E;
+        Tue, 19 Apr 2022 20:50:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DhNfNPsJQzQs1W3qBSeybiKm9188IR3tBe7Z5r9FzQpajACTCbawOryxOS6DXX2Qf8pC0I5ZZsXJ7Sgatyv2FG2H7/T60mIlmyhmxvMstw2+SaDQMAZTbig8aQWpRjASN5NXeiTtBxVApKhqQK4WjUjk/APgOGySg2cM/zN0rvS1LSJVbI1l+e4DpemQMdBZLFJ1OPwAfIYo/BLdC3+3duHmVliQ0a48DQaxCV1EuTFXENSjlYYCmlahJuaJlyhMXsIAy+BES0yEdxt5LMkxqaLm4MgwLsFFoM5d0tjGVhUeapySVYBSS4AG10V0UkbJ0nfXeolWVED44fH0aArYFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xxlqP6OHIOCvlxRARt3ReLaM7NcJsSeYdUyyxvgI24Q=;
+ b=m++l/VYtLNC5O+sZERStqA2EtV3K16Dkv3bPPxtYUPBjVfbR6oOLq7WPyMRcD0hiXFg9fl3x8sle9BdYFKvyt1/oQuJK4jNKeu0n0A58JQoljoPN+X2Guw8X6SBlhd+iCX+MC7LfA4asBKGuUgF4g9IKqmk++mmoX7cigfIefA1Fk0859LiE9GjKdDrlBZxFqh0hQZc8a6QPyEYp867RKxvF1hz/dPcoO8YrLLim90V804KsV2l7AZlsJkuhcmikxZSqKC6SIbO+iv9Y1wVvubi+rmU1Pr8wQO2+mOtIOpw13OOqMc/kXDwyOUULMVNytZDuCDdD9KUCCkbUbMKRxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xxlqP6OHIOCvlxRARt3ReLaM7NcJsSeYdUyyxvgI24Q=;
+ b=N/iADxSuh7HgTuscAhCb8YvkeBaSZ6NZ9xFw700sF2Kck+Gvz/RKGYyLNpGVoYKxSJwnYRRGZCUVhvQa/zsEtak4BaqQeiIc3xfgGdanlWAuBPglU+RmLz8j7uDC8NDAJqEyGF6zMnCKgloM1is3jCuXJTyGatTHuPWbBg45Pw4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB6477.eurprd04.prod.outlook.com (2603:10a6:803:11e::14)
+ by AM0PR04MB5025.eurprd04.prod.outlook.com (2603:10a6:208:cd::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.13; Wed, 20 Apr
+ 2022 03:50:49 +0000
+Received: from VE1PR04MB6477.eurprd04.prod.outlook.com
+ ([fe80::60ad:e5ec:cdfd:1b01]) by VE1PR04MB6477.eurprd04.prod.outlook.com
+ ([fe80::60ad:e5ec:cdfd:1b01%3]) with mapi id 15.20.5186.014; Wed, 20 Apr 2022
+ 03:50:48 +0000
+From:   Changming Huang <jerry.huang@nxp.com>
+To:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        shawnguo@kernel.org, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Changming Huang <jerry.huang@nxp.com>
+Subject: [PATCH 1/2 v3] dt-bindings: dspi: added for semtech sx1301
+Date:   Wed, 20 Apr 2022 11:50:44 +0800
+Message-Id: <20220420035045.33940-1-jerry.huang@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0023.apcprd02.prod.outlook.com
+ (2603:1096:4:195::11) To VE1PR04MB6477.eurprd04.prod.outlook.com
+ (2603:10a6:803:11e::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 045cf1be-b069-4303-cf7a-08da2280f4aa
+X-MS-TrafficTypeDiagnostic: AM0PR04MB5025:EE_
+X-Microsoft-Antispam-PRVS: <AM0PR04MB50256B2AB5A1AF50085259F3FEF59@AM0PR04MB5025.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KtW56lDBxxHmw/wznA4Yuk6xmzXH/fgkxwT4d9PPIsJJzasUFNZgTHK7Ga9sISDAQ5gQ1z0PoVRnXZLoEySKOhRdrqqT65ISKRQZ0wLQ01uPlUdIbxtSbN+jUR+zfxuDPxYtaS85UScdGtsGxuRf/0UVWkpnzmqQ+GHxmGVK6zqG0xIfBCMx+I2MTj4n3uOydCP8GbPwOjN63Z2jF1HYEp+TuottmSp9MxKNvBHU9VCyLkP/b6D7irPpOIPYUGvILHyHnTO/jMNCIP6mWW2wLk8lNvyy15rrLfkXsLYr8MSnGes5Wuznp4bt0P88C6oCZe4LDuLKJUAlK7HeekXfGmIjivXncqXWn1T2UPykGXLGPJcV9GvSj7PydbjF8T4LepmBUPTMg3DW9cUOuVMr2URwL4GIVeARrAGNdPgsgXv8F+CJ4ITQUMr7YV1uu/I/cQtwsxk/SwZPGQO0YfgVG+vxRhg1sBTTjyg7bP1yTked4Joc6k2wLhR9uaz4qdVLWrKbd2ZZuWXSi77yUHeA5iyKESlE8jzYexqbmGzsCjTQyWhYU4DLEymypjnh2CYxZ6YkA6rxw4nrGKozE9+yU4rn0Mq6WDnjYHiRdXUDbtVnoZhIK5DDZ6/1PQHwVbnpBTPw0ynSx0f3f69fSclTOuC3AsufbAdJqu3sugdRf5Ab/BIE39nx5epyaFI4fdsOKYeYITaiy1osWGgC9vGtUvJuBjuj0EDoFfn2+b4f3h5iKhsTUnJLpxoNvO6TPTDUA7reSmhbKOVIhZ7NIxp2p7Iu72pflhabwdqHvPloj6LWeWkTrbz+pSQ4P4hmPGrQsqVqxFfYfNGo8eW5OJWI5Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2616005)(186003)(1076003)(66556008)(66476007)(4326008)(8676002)(316002)(38350700002)(38100700002)(36756003)(66946007)(5660300002)(52116002)(26005)(6486002)(6506007)(6512007)(6666004)(86362001)(508600001)(8936002)(966005)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ED/fCgtHVqYjYQeZYg2ayg6JG7I6RDG/W+k14t+JPWJUXgL3KSfizo3TL5Ys?=
+ =?us-ascii?Q?P77drbbYQOkM4siggSLW1JSMbqW5rJjCKd5qwglNEDgqvYGnMyDtEBhNqCtd?=
+ =?us-ascii?Q?ci8cHKVzC1guwYo/dVlM/7lrDtow4MRwhwNKqsU94Q203S8JHC2px5qXiqk4?=
+ =?us-ascii?Q?IeqpVrkv8C3JKYJVUKn2w4Rz8keodwVTCn4eibAD2io52e9+n7nKPvkkuj6z?=
+ =?us-ascii?Q?4MdK32BcTNih0FzpUiz3xyQjzQVF5pmolbm/BkIZ7jRTZsyxfQK8G3xcHTCN?=
+ =?us-ascii?Q?1IIKXZ+wpbKl+bUTNAgL7ozgn9idjIv/4SOGo9L+AK6TwqEM/XPyb7Je+FTt?=
+ =?us-ascii?Q?eFwsaGLEdGt+1y0pJa8EY9tTVMzeTyq7fPVRQjSBVAzRZbuGul/p3CZ5XuHU?=
+ =?us-ascii?Q?Vs5rWYLgcLjnhT7BUY6ENCDjOJv6LM1d8u6d7AtaLP13lQCmN8o6qH8cyO5M?=
+ =?us-ascii?Q?VKGqeiAYTYk/+3qUe7gdTJvdclITMwzAZ2ej95G3FwR0uXWbvHPdcZy+eD6D?=
+ =?us-ascii?Q?N7ttGmiFlbJC2TPknCcTeycMSefGZXlsr8aW/8obtf/0ayWWJE4cRaf3A5sp?=
+ =?us-ascii?Q?swCwS+DQnV9IHzs/6WoPSoDsZ6BzGBCQUBVcqgHDCd0GgQpIChr8/oLvrlzN?=
+ =?us-ascii?Q?BflcKgOW3aARj01Zc58BMJt8IfGz4mmp+agwuaQo8UwPmfxIdS6xTXcdj6Az?=
+ =?us-ascii?Q?8ey1yHNq4CsJH8f362+Z2eVbB/vIxVC0x53Ex6lGxAm7jzZBXuFe187+ufA9?=
+ =?us-ascii?Q?7VRs55jAYlOxdCW33eZn69TZ8o+woBVZ6A3WFZgFt72EHi+UJ720sBdHLSdc?=
+ =?us-ascii?Q?lpT/P5Cy46uk9zqCUSg0KKjj0gzH8skWKOkBDRElDtd+hl/iBrasEOpn74CX?=
+ =?us-ascii?Q?ENoh/uedED6cQZxqLZbzIOZKp/wUm+fZzYUTpMyqk/HjvVD+l8b4C7TSOcvo?=
+ =?us-ascii?Q?ojTzJubjlNCJPemYnKDk+ejAsuMIwW+n+FUmioQMHysBERMKcDPNPbpW0XVY?=
+ =?us-ascii?Q?UTWZElNkX0hCBYo+OrfYxFhJnQH2fBKqgZLGcQkJIbTz1qXghWWuXZTKQB2Q?=
+ =?us-ascii?Q?icOpH65n5LiTbx+1+uMSS4IWKqBDlXg5TXkCeyqnF9oPCEro4xQbPBLWeqac?=
+ =?us-ascii?Q?AKWAxkZ9JrS3DhEp1+L4m9rtDZJMqEw7TwhADwxYvCAZbKz8TUm6lTb1HfEl?=
+ =?us-ascii?Q?2uMxHdOACfXNjmv7V45ZuYu4+IX5Ug+FpTDp+Is7eg3SKaOPKjmfF4Q2cthC?=
+ =?us-ascii?Q?/wYNpujlbzCuVHhu+jeaa7sKJA8G4d8MAFwxwLOA2YPEDW0oZIDMjLasAefc?=
+ =?us-ascii?Q?T3iqE5yN+zhbBTHBsRPuTqdorG3BqbJA1xnTcp0pTJEKndRBUP+260t6IV25?=
+ =?us-ascii?Q?rO6Oig7bXKssTMABsJXXpw2IKJ/mdSpohmsokhbT9X8GNO9BH9lx/7QpWJgs?=
+ =?us-ascii?Q?1sAsyOhKQqEXeiW4AVC+rvlH4fmtnyumR41U603iPwFeMOu+ZS7Qv+jBkfJ/?=
+ =?us-ascii?Q?CHCN94DDzJF1FFJKD1Ih/n1TUHLH+7JulMJHdfUVflQ+cE48zlTYwZUDEZWU?=
+ =?us-ascii?Q?m4W5ASFVeEH/mM0S61/JuocPTmtB38bSycR9DuC71JhdACnFr11p7Y49lIy1?=
+ =?us-ascii?Q?7zB878mr5t7QHGE0zufGrjcJHdD9fYSCQgQHCBdrdCQSaKf/KHo+dgchUsLH?=
+ =?us-ascii?Q?ICnmmFjSXe1aR5rEX8lk/mjme6BsKrKttRu9armv8cG9mWX1LRtnneTy+jTt?=
+ =?us-ascii?Q?TFALY92cISbya3j7RZ4XXrwB48W1KnE=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 045cf1be-b069-4303-cf7a-08da2280f4aa
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6477.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2022 03:50:48.4683
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k2VFpB11RkDzI7tGK/0CEMC9AlgDsuBb0IwbXeW+M2kHTVYe+xkv+mWOpDYuZY8fxE7bfrVL5iKbtfu1rnD5kw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5025
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-04-19 at 23:51 +0800, Chun-Kuang Hu wrote:
-> Matthias Brugger <matthias.bgg@gmail.com> 於 2022年4月19日 週二 下午10:57寫道：
-> > 
-> > 
-> > 
-> > On 19/04/2022 05:32, Rex-BC Chen wrote:
-> > > From: "Nancy.Lin" <nancy.lin@mediatek.com>
-> > > 
-> > > Add vdosys1 RDMA definition.
-> > > 
-> > > Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >   .../display/mediatek/mediatek,mdp-rdma.yaml   | 86
-> > > +++++++++++++++++++
-> > >   1 file changed, 86 insertions(+)
-> > >   create mode 100644
-> > > Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
-> > > rdma.yaml
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp
-> > > -rdma.yaml
-> > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp
-> > > -rdma.yaml
-> > > new file mode 100644
-> > > index 000000000000..6ab773569462
-> > > --- /dev/null
-> > > +++
-> > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp
-> > > -rdma.yaml
-> > > @@ -0,0 +1,86 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: 
-> > > https://urldefense.com/v3/__http://devicetree.org/schemas/arm/mediatek/mediatek,mdp-rdma.yaml*__;Iw!!CTRNKA9wMg0ARbw!2Ig4llRcam253qgvT99ty3TWC4Yo6D6Dy1DgFiNuA_fMhtu1lJHERS1f4pzOBELsqIl__FAiHl5bJCAJqNc7FAWGTw$
-> > >  
-> > > +$schema: 
-> > > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!2Ig4llRcam253qgvT99ty3TWC4Yo6D6Dy1DgFiNuA_fMhtu1lJHERS1f4pzOBELsqIl__FAiHl5bJCAJqNdU9sgsvg$
-> > >  
-> > > +
-> > > +title: MediaTek MDP RDMA
-> > > +
-> > > +maintainers:
-> > > +  - Matthias Brugger <matthias.bgg@gmail.com>
-> > 
-> > I don't think I would be the correct person to maintain this. This
-> > should be the
-> > person that is maintaining the driver.
-> 
-> Agree. This should be
-> 
-> Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Philipp Zabel <p.zabel@pengutronix.de>
-> 
-> Regards,
-> Chun-Kuang.
-> 
-> > 
-> > Regards,
-> > Matthias
-> > 
+Add DT Binding doc for semtech sx1301
 
-Hello Chun-Kuang and Matthias,
+Signed-off-by: Changming Huang <jerry.huang@nxp.com>
+---
+changes in v3:
+  - add the dt-bindings
 
-OK, I will update the list in next version.
+ .../bindings/spi/semtech,sx1301.yaml          | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
 
-BRs,
-Rex
-
-> > > +
-> > > +description: |
-> > > +  The mediatek MDP RDMA stands for Read Direct Memory Access.
-> > > +  It provides real time data to the back-end panel driver, such
-> > > as DSI,
-> > > +  DPI and DP_INTF.
-> > > +  It contains one line buffer to store the sufficient pixel
-> > > data.
-> > > +  RDMA device node must be siblings to the central MMSYS_CONFIG
-> > > node.
-> > > +  For a description of the MMSYS_CONFIG binding, see
-> > > +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.
-> > > yaml for details.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: mediatek,mt8195-vdo1-rdma
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  power-domains:
-> > > +    description: A phandle and PM domain specifier as defined by
-> > > bindings of
-> > > +      the power controller specified by phandle. See
-> > > +      Documentation/devicetree/bindings/power/power-domain.yaml
-> > > for details.
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: RDMA Clock
-> > > +
-> > > +  iommus:
-> > > +    description:
-> > > +      This property should point to the respective IOMMU block
-> > > with master port as argument,
-> > > +      see
-> > > Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for
-> > > details.
-> > > +
-> > > +  mediatek,gce-client-reg:
-> > > +    description:
-> > > +      The register of display function block to be set by gce.
-> > > There are 4 arguments,
-> > > +      such as gce node, subsys id, offset and register size. The
-> > > subsys id that is
-> > > +      mapping to the register of display function blocks is
-> > > defined in the gce header
-> > > +      include/include/dt-bindings/gce/<chip>-gce.h of each
-> > > chips.
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - power-domains
-> > > +  - clocks
-> > > +  - iommus
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/clock/mt8195-clk.h>
-> > > +    #include <dt-bindings/power/mt8195-power.h>
-> > > +    #include <dt-bindings/gce/mt8195-gce.h>
-> > > +    #include <dt-bindings/memory/mt8195-memory-port.h>
-> > > +
-> > > +    soc {
-> > > +        #address-cells = <2>;
-> > > +        #size-cells = <2>;
-> > > +
-> > > +        vdo1_rdma0: mdp-rdma@1c104000 {
-> > > +            compatible = "mediatek,mt8195-vdo1-rdma";
-> > > +            reg = <0 0x1c104000 0 0x1000>;
-> > > +            interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
-> > > +            clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
-> > > +            power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> > > +            iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
-> > > +            mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX
-> > > 0x4000 0x1000>;
-> > > +        };
-> > > +    };
+diff --git a/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml b/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
+new file mode 100644
+index 000000000000..f65fb5809218
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/semtech,sx1301.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/semtech,sx1301.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Semtech sx1301 devicetree bindings
++
++allOf:
++  - $ref: "spi-controller.yaml"
++
++maintainers:
++  - Changming Huang <jerry.huang@nxp.com>
++
++properties:
++  compatible:
++    const: semtech,sx1301
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency: true
++
++  fsl,spi-cs-sck-delay: true
++
++  fsl,spi-sck-cs-delay: true
++
++required:
++  - compatible
++  - reg
++  - spi-max-frequency
++
++additionalProperties: false
++
++examples:
++  - |
++    mikrobus@0 {
++      compatible = "semtech,sx1301";
++      reg = <0>;
++      spi-max-frequency = <2000000>;
++      fsl,spi-cs-sck-delay = <1000000>;
++      fsl,spi-sck-cs-delay = <50>;
++    };
++
++...
+-- 
+2.25.1
 
