@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F9F550919F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 22:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3701C5091C0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Apr 2022 23:09:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382229AbiDTUvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 16:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34282 "EHLO
+        id S1382328AbiDTVMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 17:12:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232385AbiDTUvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 16:51:51 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89BE8109E
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 13:49:04 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id b95so5108342ybi.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 13:49:04 -0700 (PDT)
+        with ESMTP id S1379079AbiDTVMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 17:12:23 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2564E47AE6
+        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 14:09:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LpRJb08UNsAeD/BGStPXY1JWld5Gs95lH64pYZ6orgE=;
-        b=PeI41Cw+3CrJgCF7NF0DdwSj7RBlF44kughU3RlOvBrzMjU1Uq/7E9/Bf42CLQ2U5z
-         1IwvhHEmCScfEAq2kRy+7SWZchlZzvzzXl5PGAcCLORbwijG3U+0/KriZKxPMSruHm8P
-         gCfU5qVgw+XaLOjTys/QlVH/L5dA9uNQzp5PaH6zE8Ek42JWEBnXxI5vfqAdvcX60A1R
-         QVFWD2qMdauzF+7hbiNQkVzclCfx5V3IxK6OqDJr7RNGDZEf5dE8lMM/oj/RQ4ihC8xX
-         4aVRxdLbPv0Lu6dzR5il3WJawpwXOXm7eFcoMOiRfTUZyYbhfPjAEhREIwGa3G3FU93O
-         tdBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LpRJb08UNsAeD/BGStPXY1JWld5Gs95lH64pYZ6orgE=;
-        b=OyzgSnTWDQCprKdGJ7G3OJhT6GQ9XaBvEGp7XjHipcp6jUkb/pmGeYj4e+idLIQWFw
-         /aKTrahJryArg9E8wvs7xX70cvCEhaoDP1wnlpNQ3ySsIimrP7quAlMCesFv6x143wuA
-         nyK4xZDxjx4kk9BI3GHvqpzrT6HE4iNf4EQf/JQ1TIuS1Ves8omNPu4aox/kJ9veeE/u
-         qmMcV3N5X4oFKKOi0+ylQjTiZCnciFc9/AcJlwTrKoMKnShuxxLMh/YPgrXbiziQU1r+
-         RrYxksSzi7s9LBfDiLdU2hIrlIciAQ1/cMlIgQqcFhyPKs6+HvKdh+2KkfdOOOn/mI4p
-         w2Zw==
-X-Gm-Message-State: AOAM530eAJREzj0wFXUZsf9eMrhdlpBofsO+ZNWB/zYbirYfo5R/B5ko
-        Has6NsspqySCXyCl7curJaJlRvGy3DMsQ+l5H/DQkA==
-X-Google-Smtp-Source: ABdhPJzkRs3dHVJIbaNrCahjZbRnpps/qnUhYxpcB/UsWZPjZ6hfdX7hgHxrmzA5Dt6HYz1lYiN1b76YPMPL00KHXuk=
-X-Received: by 2002:a25:73cc:0:b0:644:f4a3:6f4f with SMTP id
- o195-20020a2573cc000000b00644f4a36f4fmr17566471ybc.369.1650487743526; Wed, 20
- Apr 2022 13:49:03 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650488976; x=1682024976;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=CVpGC15qTB4Dx3RmzQhS+gi/i1dRRHj+8ZZU5naui3I=;
+  b=C4lk6QTtuGPe/LlxT1yyGqv4RgbH7rpdXVTIW95jmWAUym31Sr4EkxAO
+   zWsXxHy5nXbc4UQ4p+6gnzwzPfnE5eSpusnwAo4crt4CRzecX1hsBTGSF
+   qHtsjbrIdaPaVCmOLEXXwWRHmVgthH2VESaiLNwiMw0ZptZ0ZcfebXVht
+   8=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 Apr 2022 14:09:35 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2022 14:09:35 -0700
+Received: from nalasex01b.na.qualcomm.com (10.47.209.197) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 20 Apr 2022 14:09:35 -0700
+Received: from hu-pdaly-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 20 Apr 2022 14:09:34 -0700
+From:   Patrick Daly <quic_pdaly@quicinc.com>
+To:     <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <surenb@google.com>
+CC:     Patrick Daly <quic_pdaly@quicinc.com>
+Subject: [PATCH] of: of_reserved_mem: Increase limit for reserved_mem regions
+Date:   Wed, 20 Apr 2022 14:09:14 -0700
+Message-ID: <1650488954-26662-1-git-send-email-quic_pdaly@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20220414081916.11766-1-xiazhengqiao@huaqin.corp-partner.google.com>
- <20220414081916.11766-2-xiazhengqiao@huaqin.corp-partner.google.com>
-In-Reply-To: <20220414081916.11766-2-xiazhengqiao@huaqin.corp-partner.google.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 20 Apr 2022 22:48:52 +0200
-Message-ID: <CACRpkdZ--RCgM65nnEd=ebFQpQAPqZDvrBotynYTf+sdisAbsQ@mail.gmail.com>
-Subject: Re: [RESEND v2 2/2] dt-bindings: display: Add STARRY 2081101QFH032011-53G
-To:     xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 10:19 AM xiazhengqiao
-<xiazhengqiao@huaqin.corp-partner.google.com> wrote:
+The reserved_mem array must be statically allocated because it is used
+prior to memblock being aware of all "no-map" or otherwise reserved
+regions which have fixed physical addresses. Due to this limitation,
+if one architecture/board has a large number of reserved_mem regions,
+this limit must be raised for all.
 
-> Add dt-bindings for 10.1" TFT LCD module called STARRY 2081101
-> QFH032011-53G.
->
-> Signed-off-by: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+In particular, certain new qcom boards currently have 63 reserved memory
+regions, which when new features are added, pushes them over the existing
+limit of 64.
 
-(...)
+A generalized breakdown by region type:
+13 for linux-loaded device firmware
+9 for guest-vms or inter-vm communication
+15 cma heaps/dma-buf heaps
+24 for bootloaders/hypervisor/secure-world devices or software
+2 misc
 
-> +  enable-gpios:
-> +    description: a GPIO spec for the enable pin
+Although this number could be reduced by a minor amount by combining
+physically adjacent regions, this comes at the cost of losing
+documention on what/who the regions are used by. In addition, combining
+adjacent regions is not possible if there are phandles in devicetree
+referring to the regions in question, such as "memory-region".
 
-The way this is used in the code makes me suspect this should
-be named reset-gpios. What is the name of the pin on the
-panel?
+Vmlinux before:
+text      data      bss     dec       hex      filename
+31030829  15807732  588524  47427085  2d3ae0d  dist/vmlinux
 
-It also appears you should tag this as active low so in that case
-write that in the description "always tag with GPIO_ACTIVE_LOW"
-(and alter the code in the driver to match the inversion)
+Vmlinux after:
+text      data      bss     dec       hex      filename
+31030877  15807668  592108  47430653  2d3bbfd  dist/vmlinux
 
-> +  pp1800-supply:
-> +    description: core voltage supply
+Signed-off-by: Patrick Daly <quic_pdaly@quicinc.com>
+---
+ drivers/of/of_reserved_mem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hm the name of this supply makes me think the display controller is
-actually named pp1800. Is this correct?
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 75caa6f..de0cdda 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -26,7 +26,7 @@
+ 
+ #include "of_private.h"
+ 
+-#define MAX_RESERVED_REGIONS	64
++#define MAX_RESERVED_REGIONS	128
+ static struct reserved_mem reserved_mem[MAX_RESERVED_REGIONS];
+ static int reserved_mem_count;
+ 
+-- 
+2.7.4
 
-> +            enable-gpios = <&pio 45 0>;
-
-Don't use ordinal flags in examples.
-
-examples:
-  - |
-    #include <dt-bindings/gpio/gpio.h>
-(...)
-    reset-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
-
-Yours,
-Linus Walleij
