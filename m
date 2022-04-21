@@ -2,162 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BDC7509A20
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6F71509A7A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386419AbiDUIIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 04:08:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57714 "EHLO
+        id S1386433AbiDUIK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 04:10:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386416AbiDUIIU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:08:20 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC96B1B7A0
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:05:30 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id p18so283289edr.7
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:05:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=q1EKn9j2FtU/5NboQOODHWM3vZN+UjF82zhvbN8nb9k=;
-        b=R6lSh2UFKaO74B3eWJIkVab0BloB6Dhobt1+TrxUz2TUSrZ8aLO3F9hQefyTcjUhlj
-         ckDeFsOklqGcLhkR5sJV0kAOmgoFfG4Q72gGWMd4urFPFKIrCAJC8eLau/K/eQAAcSmS
-         6oXfMhrc5olw+9+HHUb5K2w/rnaARWeTFxrayIQEveEUS2DabrRADVxOqSyNIg7eM5Ic
-         pwiUj3v9IX6l0E1uZRpCiXteqYpyHecVk4hm7LsyDu3Q4TJhlcroPTbwc1677itjAM+M
-         0T5ALxDxQI7gHkcyAnA/I02rW7hxNMkKH3FINIMp3XdYedIh/zquiuSySa4B00pJaJJl
-         cNIw==
+        with ESMTP id S1386425AbiDUIKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:10:24 -0400
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF91C1E3C1;
+        Thu, 21 Apr 2022 01:07:35 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id b17so3147571qvp.6;
+        Thu, 21 Apr 2022 01:07:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=q1EKn9j2FtU/5NboQOODHWM3vZN+UjF82zhvbN8nb9k=;
-        b=PILGlj7McwAtHGNRyuYK7Qcoz0xhr7MNV9yrkihgBSssiB6mbqoL2AI9Ce8e2Iiazx
-         OCuXYKYk3R+E1d4MMal3m0XEoWCv2T+QYfMdQ1XdlHbkWFkzKQ2rZixITON56vph3Xmu
-         CuWOzLDzyRHF5pRqkPbLwUHF0AaR9apgFxwwMfpum7k0tKqZIZvqW9esdf/qZm38gE+o
-         meHJ0Fz7Wjivh9YAQTt/DKLuwzO5wD2+FKVDuoi+/jrKbtyUUOtjV3SeHh64rjCQl+UV
-         aiuqqDdOHH1YlKYfE0kDHBXWEM9w7aeY4N9rtxttuy6eP6kbcC/BpXTt8/266vUcGt1c
-         YFEA==
-X-Gm-Message-State: AOAM531g8eYz87nx3MInColgkR47D1RluxQBSNSGCvBeVuH3On2uzWFB
-        OuD8wl7YukdyljKzVLSrpADATDqLvs3SsQ==
-X-Google-Smtp-Source: ABdhPJwPUX9PvxFwTkKf4Gh25rl6Mr51/zal0qNIX0et9fv15KBh9Cdf3j3ybGhi4AATK6awdkZjYg==
-X-Received: by 2002:a05:6402:2813:b0:424:1882:d064 with SMTP id h19-20020a056402281300b004241882d064mr9783221ede.357.1650528329430;
-        Thu, 21 Apr 2022 01:05:29 -0700 (PDT)
-Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i20-20020aa7c714000000b0041fbd14c34bsm11207571edq.4.2022.04.21.01.05.28
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rIqPtJKYadrD/68SmjJjKl1KCebz61C6iCdUvTui6M8=;
+        b=LSq9uEsIA/ZAti0vRveXooMN/ryZfW1qyxHg6NVFcFMM6CyCEMeo8SS01yjTbNOHRc
+         QnzsrAItQY61iBKcmAE4EcB8nJfQqSbnDr6nU2RYwyyuHDG6pq5GTQAqKHuOGaS+MRWQ
+         wZsfX8J0Da3Ish9Tbze8JVtYVSH3AwHLqk580FyL+abvrxyPF3xUj0pSHHwDPHcd1pmi
+         evmnw5dS/mhX170TuAk9wQsovx1Aw540Y8Rj/v5GxFf2NQxuUK3w1qbD4q8bIX6hncfl
+         ZCViY3hvF2R0Dpiv18SJJzlg9Oh94JG0ga07uMOHbbpGIRQF09LWngL+8hXJ4Ago+CB4
+         66xg==
+X-Gm-Message-State: AOAM533ROCCJdJ+dzPc1A4ixs9pvNaoKpCYXtPEcGGMezIdxN4PYleeB
+        3rN2LHGsZk3iouWiawu6oHwAneaLRhCRTHEU
+X-Google-Smtp-Source: ABdhPJwVcP41T8K9jfHGG5dDIIpiY75bphiYvqIfAYucnGwUVEOBNwogfgibenMmVJ3AtKhtJyZvLA==
+X-Received: by 2002:a05:6214:c64:b0:449:7011:569d with SMTP id t4-20020a0562140c6400b004497011569dmr6832606qvj.90.1650528454553;
+        Thu, 21 Apr 2022 01:07:34 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id v7-20020a379307000000b0069c0a2afc55sm2659387qkd.123.2022.04.21.01.07.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 01:05:29 -0700 (PDT)
-Message-ID: <43cb61ac-461f-e6ff-b495-44f8befde79f@linaro.org>
-Date:   Thu, 21 Apr 2022 10:05:28 +0200
+        Thu, 21 Apr 2022 01:07:34 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2f19fdba41fso43757517b3.3;
+        Thu, 21 Apr 2022 01:07:33 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr24653797ywb.132.1650528453348; Thu, 21
+ Apr 2022 01:07:33 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 5/5] dt-bindings: arm: Add initial bindings for Nuvoton
- Platform
-Content-Language: en-US
-To:     Jacky Huang <ychuang3@nuvoton.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, ychuang570808@gmail.com
-Cc:     robh+dt@kernel.org, sboyd@kernel.org, krzk+dt@kernel.org,
-        arnd@arndb.de, olof@lixom.net, will@kernel.org, soc@kernel.org,
-        cfli0@nuvoton.com
-References: <20220418082738.11301-1-ychuang3@nuvoton.com>
- <20220418082738.11301-6-ychuang3@nuvoton.com>
- <fd9316a6-7df6-e1fa-50dc-ff50934afb5c@linaro.org>
- <caf4867f-7f71-9262-f190-463325eb13ab@nuvoton.com>
- <4e9eaede-2208-bd73-35ae-89e128562653@linaro.org>
- <80994f4b-136f-7669-4674-0c9826e88248@nuvoton.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <80994f4b-136f-7669-4674-0c9826e88248@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-6-yoshihiro.shimoda.uh@renesas.com> <ff0711f5-0e41-9aae-0b2f-381f272481bb@linaro.org>
+In-Reply-To: <ff0711f5-0e41-9aae-0b2f-381f272481bb@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 21 Apr 2022 10:07:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVKpVqxZkisyPU4G6w3pBD_4tEJk3zf3axvfTpvZOjnwA@mail.gmail.com>
+Message-ID: <CAMuHMdVKpVqxZkisyPU4G6w3pBD_4tEJk3zf3axvfTpvZOjnwA@mail.gmail.com>
+Subject: Re: [PATCH 05/15] dt-bindings: power: Add r8a779g0 SYSC power domain definitions
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2022 10:04, Jacky Huang wrote:
-> 
-> 
-> On 2022/4/21 下午 02:56, Krzysztof Kozlowski wrote:
->> On 21/04/2022 08:39, Jacky Huang wrote:
->>>
->>> On 2022/4/18 下午 08:11, Krzysztof Kozlowski wrote:
->>>> On 18/04/2022 10:27, Jacky Huang wrote:
->>>>> +properties:
->>>>> +  $nodename:
->>>>> +    const: '/'
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +          - nuvoton,ma35d1
->>>>> +          - nuvoton,ma35d1-evb
->>>>> +          - nuvoton,ma35d1-iot
->>>>> +          - nuvoton,ma35d1-som512
->>>>> +          - nuvoton,ma35d1-som1g
->>>> This does not match your DTS and does not look reasonable (SoC
->>>> compatible should not be part of this enum). Check some other board
->>>> bindings for examples.
->>>>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> I would like to modify it as follows:
->>>
->>> description: |
->>>     Boards with an ARMv8 based Nuvoton SoC shall have the following
->>>     properties.
->>>
->>> properties:
->>>     $nodename:
->>>       const: '/'
->>>     compatible:
->>>       oneOf:
->>>
->>>         - description: MA35D1 evaluation board
->>>           items:
->>>             - const: nuvoton,ma35d1-evb
->>>             - const: nuvoton,ma35d1
->>>
->>>         - description: MA35D1 IoT board
->>>           items:
->>>             - const: nuvoton,ma35d1-iot
->> Instead just enum with all board compatibles.
-> 
-> How about to modify it as the follows:
-> 
->    compatible:
->      oneOf:
-> 
->        - description: MA35D1 evaluation board
->          items:
->            - enum:
->                - nuvoton,ma35d1-evb
->            - const: nuvoton,ma35d1
-> 
->        - description: MA35D1 IoT board
->          items:
->            - enum:
->                - nuvoton,ma35d1-iot
->            - const: nuvoton,ma35d1
-> 
->        - description: MA35D1 SOM board
->          items:
->            - enum:
->                - nuvoton,ma35d1-som512
->                - nuvoton,ma35d1-som1g
->            - const: nuvoton,ma35d1
-> 
+Hi Krzysztof,
 
-It's still almost the same. All boards together. You can add a comment
-next to the compatible if you want some user-friendly name.
+On Thu, Apr 21, 2022 at 9:44 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
+> > Add power domain indices for R-Car V4H (r8a779g0).
+>
+> Are these values used by renesas,rcar-sysc (r8a779g0) - patch 4? If yes,
+> maybe just squash it?
 
+They are used by driver and DT sources, so we typically keep this as
+a separate patch, to be queued on a branch shared by driver and DT.
 
-Best regards,
-Krzysztof
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
