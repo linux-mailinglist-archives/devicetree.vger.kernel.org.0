@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABB2E50A155
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9970650A158
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388444AbiDUN6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 09:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34796 "EHLO
+        id S1388555AbiDUN6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 09:58:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388467AbiDUN6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:58:21 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22E5E30F43
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:30 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id h11so5874106ljb.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:30 -0700 (PDT)
+        with ESMTP id S1388472AbiDUN6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:58:24 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9572E094
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:33 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id r18so5901753ljp.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=z3q2L8qOa7E4CbmnWZ1IRjjqAGmAdBrIckl8Mvt7mq0=;
-        b=rxKikIg5b+QBYUKVXiXKKsSGckta0fLxfg6TPyjZEiT0Iq5Ve/htbWEo19FXKNcm4C
-         MhHtqhGwOD+1MEpZMHXIhqdoZmgDXqyabtxruNOt1fxUBxCK9Gwi/Q9b+LnPaoAfh1hA
-         h/Z6gE1V1j8uHFsMOqXupSYGU7znTsr+rm+93Sel0G+80yNI0OIW5rL6wd/6j7U7kyd2
-         mnvHui2nq5vUdIfG+lM4f0Cm68sl2FT7+v4JlLgTgw7BHsggqH16svZsvsgf8fZkECMD
-         EnIkuQPtlv/Lvs9oHgEWuCOd9ZlnqLCgekx0cfaLlL6GQXdwbl5OpblI6eFrFFnC72y0
-         UcKg==
+        bh=ZtiiuhQ+uf1bOxSrFQ/mtG2iFVrqXzgGb1Bz4ZKL3lc=;
+        b=mguUkcGeDwc2lpf0CnS2qEDAkdNXH0GfqqwxotWWnAiiPRenfCokppkdIq847GGDj+
+         V7/AIF2bzXyp7M37/nr7ruAruDvCrQx1DNZ/20nn57hMXvzyNEVPpwjbfiO5IJyOcC/F
+         prRS94MMKCXnDtHwQZZq1g34JjUSq9tB7jAFAlO108GoNmJ4usawRQMbfrBAU3m0Uf3u
+         +5Jzss2axj6u4zOZSfEBaN6N84xDmHMJvSa3TVIUb+4nxJNjohMuxfu8WAyqKR0vqMZj
+         kXi1dQo/9YbVfco4LPMAoFhgU513EM1o3eLJuSFV5X8ml5aklznY/fQaxI4CixL7CY6O
+         1CnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=z3q2L8qOa7E4CbmnWZ1IRjjqAGmAdBrIckl8Mvt7mq0=;
-        b=Ykh0r/kHkXC7Cp3JSTaA2zj+zTw3w2AsI/aziboQr8rKPgfv2HI8VvjNyqGg4B72P8
-         QRb2WznSv7UBSD9EHA+m5+qlCK/UEjx7I8JTHjVQe2exhegjnlT2DFsyY0svNxQ8ZR4c
-         WFs/g2f3njRevfFdh4JWcdFJKeeOEVS4YBjsCYx871Kse7onQfuS+NXGeMoCuvge547z
-         1TOSB/IIvZ5wK+5rcazv6JXdj2Snvp+0f3kRieYP8LBo8zf7wOy4CNIW7qhcne1Nez3v
-         zRIofaOcFi1fojYRpb9h2iDq6AXSeD3wKt35gmhwh9rZeW/eqFx+F+BADnGU/8c+E2Fn
-         iioQ==
-X-Gm-Message-State: AOAM530SAlMEsDPF2A5w31ErRfRucBeeOWNydkg0H8qJ6FgLlGjslT0O
-        LwHdhe8U0+f8iLXUG3ZnpSCLaDph5qAqQb76ksYO9Q==
-X-Google-Smtp-Source: ABdhPJwXl5xankIhHSa/qr30MA+Ny7MT0iK7ss+aISZd89rCgZFc2m3LHuGi5tJdDrRbU1eKh9W0FfdEo24NQP8u980=
-X-Received: by 2002:a05:651c:988:b0:24a:c21f:7057 with SMTP id
- b8-20020a05651c098800b0024ac21f7057mr16896861ljq.16.1650549328412; Thu, 21
- Apr 2022 06:55:28 -0700 (PDT)
+        bh=ZtiiuhQ+uf1bOxSrFQ/mtG2iFVrqXzgGb1Bz4ZKL3lc=;
+        b=vap11f3vBD/cDbDUoMtTdKu6+/smFjdRsOTViaxaQpMQhRdRPitbjcZ01jVwyb1kwc
+         Nz+jS+ZvvDOJii2WkyvBnYNt0zr9ixuOb9u0Abm7KfBjpD/O+7aiNBiTlw0v3TAe/FOv
+         F5/gKksrq0XaTxEP6Wg2GWSucnUY3gY5Khta2wWvZDyDeBPqt7/WMh6+mzlTERxnsWk+
+         bj1QzoLVGo0tr+etDphdhxnGcT2v15nLXCCBDjaZS3GJ21leCXMfXn1Ogf6f2StitVUh
+         FVPw0I4PxO6YWJ1PhW2zgkzOdidNQ/jdzRK8b0ne/hZfy0N0phwGul7C0l6g1RMSUh13
+         Uezg==
+X-Gm-Message-State: AOAM530sTeVxqF2ZVg/af0ks22qMD+ohOew+D5LkJ+ikDXj/egrFUf54
+        z+IrPErk5zeE7aDSEqfqiX/xz2r0sXBDdj077onhuA==
+X-Google-Smtp-Source: ABdhPJwE9acGnZeEaiwn2RQsXbh1pRjWU4fFb6jByKk1paGqTryrF9P0MXVVYFO4M40JGujrjUHhZHu80AcKpfsXL2M=
+X-Received: by 2002:a05:651c:2114:b0:24d:bde3:297 with SMTP id
+ a20-20020a05651c211400b0024dbde30297mr11074613ljq.367.1650549331811; Thu, 21
+ Apr 2022 06:55:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220419024611.1327525-1-chris.packham@alliedtelesis.co.nz> <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20220419024611.1327525-5-chris.packham@alliedtelesis.co.nz>
+References: <20220419113516.1827863-1-abel.vesa@nxp.com> <20220419113516.1827863-10-abel.vesa@nxp.com>
+In-Reply-To: <20220419113516.1827863-10-abel.vesa@nxp.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 21 Apr 2022 15:54:52 +0200
-Message-ID: <CAPDyKFq0HzTAMs6TGyisUs4Yv5mtCAvpv_B8y_FzhbF-ctn7-w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] dt-bindings: mmc: convert sdhci-dove to JSON schema
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        adrian.hunter@intel.com, nico@fluxnic.net,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Thu, 21 Apr 2022 15:54:55 +0200
+Message-ID: <CAPDyKFqmUQrL98m_r2uUEjOgWGGBK79eEJaaVV8dCPZhCXJgSw@mail.gmail.com>
+Subject: Re: [PATCH v8 09/13] dt-bindings: mmc: imx-esdhc: Add i.MX8DXL
+ compatible string
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -68,15 +75,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Apr 2022 at 04:46, Chris Packham
-<chris.packham@alliedtelesis.co.nz> wrote:
+On Tue, 19 Apr 2022 at 13:35, Abel Vesa <abel.vesa@nxp.com> wrote:
 >
-> Convert the sdhci-dove binding to JSON schema. The optional clocks
-> property was not in the original binding document but has been in the
-> dove.dtsi since commit 5b03df9ace68 ("ARM: dove: switch to DT clock
-> providers").
+> Add i.MX8DXL compatible string. It also needs "fsl,imx8qm-fec" compatible.
 >
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
 Applied for next, thanks!
 
@@ -85,89 +89,21 @@ Uffe
 
 
 > ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> Notes:
->     Changes in v2:
->     - Add clocks property
->     - interrupts.maxItems = 2
->     - Update maintainers based on ./scripts/get_maintainer.pl -f drivers/mmc/host/sdhci-dove.c
->
->  .../bindings/mmc/marvell,dove-sdhci.yaml      | 44 +++++++++++++++++++
->  .../devicetree/bindings/mmc/sdhci-dove.txt    | 14 ------
->  2 files changed, 44 insertions(+), 14 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-dove.txt
->
-> diff --git a/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
-> new file mode 100644
-> index 000000000000..7c9c652ad59c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/marvell,dove-sdhci.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/marvell,dove-sdhci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell sdhci-dove controller
-> +
-> +maintainers:
-> +  - Adrian Hunter <adrian.hunter@intel.com>
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: marvell,dove-sdhci
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sdio0: mmc@92000 {
-> +      compatible = "marvell,dove-sdhci";
-> +      reg = <0x92000 0x100>;
-> +      interrupts = <35>;
-> +      clocks = <&gate_clk 9>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-dove.txt b/Documentation/devicetree/bindings/mmc/sdhci-dove.txt
-> deleted file mode 100644
-> index ae9aab9abcd7..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-dove.txt
-> +++ /dev/null
-> @@ -1,14 +0,0 @@
-> -* Marvell sdhci-dove controller
-> -
-> -This file documents differences between the core properties in mmc.txt
-> -and the properties used by the sdhci-pxav2 and sdhci-pxav3 drivers.
-> -
-> -- compatible: Should be "marvell,dove-sdhci".
-> -
-> -Example:
-> -
-> -sdio0: sdio@92000 {
-> -       compatible = "marvell,dove-sdhci";
-> -       reg = <0x92000 0x100>;
-> -       interrupts = <35>;
-> -};
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 58447095f000..29339d0196ec 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -54,6 +54,7 @@ properties:
+>            - const: fsl,imx8qxp-usdhc
+>        - items:
+>            - enum:
+> +              - fsl,imx8dxl-usdhc
+>                - fsl,imx8mm-usdhc
+>                - fsl,imx8mn-usdhc
+>                - fsl,imx8mp-usdhc
 > --
-> 2.35.1
+> 2.34.1
 >
