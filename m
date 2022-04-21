@@ -2,82 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4FE509C1C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDCDD509C52
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387553AbiDUJVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 05:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59494 "EHLO
+        id S1387644AbiDUJbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 05:31:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387527AbiDUJVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:21:00 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9FAD2657F
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 02:18:03 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 21so5715954edv.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 02:18:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=kmhiaQxqxxrEcAZhh+yNwzq2hOuXQMjlbA6lx4ca8i0=;
-        b=IcQKPWd4riTif+Hkl53cvMC/y3Es1tpcy0ux7OPeHVIBPrPeMPSbTGLaXNP2+0wWlN
-         h+UqaAyiEKobQ0zCFAf1CQhYLZ878c4adHG5sLZQjJ3d8a/zNuAsS9NXFhmSiaD+BIXF
-         QHGT2yhopG4WFnAA5YXTEkSJKhUZwUiUzWST/PHAXDNsjLa7DIm5ZrXL9QUWwtZhsUum
-         XwR6ctDB654XYDDM7GiX5Rg7NFHm0vEMR5HRWbsUjOQswodk+nQytrZn3Jg6aXDXVkox
-         MynQ9Cq2NBddnOMXJTtfOwuN4JZUfIatPFJHA067Z0zcNvzsnN7yOb1lmzAHo2T/9ERd
-         gAeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kmhiaQxqxxrEcAZhh+yNwzq2hOuXQMjlbA6lx4ca8i0=;
-        b=AD4OgPBI1YYzoZt4KNqXJjjjrNc5eqtQpQhP43p9JTM8NFxPXVkgTMFsuZqQYODR4o
-         RuOVdcz1ku6LmbnNAmyWzFxPpttKRCCVvGgBsZ9jLOvCGMUvJEtJ6zKiFHg+B2N1LcCL
-         a6tvnuugpYM7izlvw1WvXgqlMJ+2UyqAZMX+8JY7F1urtwuAOCtOkT9niiSn5DaL5zwc
-         M3znsO/kAnA5TMQfNImlezQNxkcXqvsj8COmT2VlGBGfE/q1ZyigZcmGw6WIXw4LghIw
-         uRoQ6+8thuE/UOWc+KsKtYj+Kn0h8It8JQcWvgYU4zhd06J3iK84oKlIMut2tJsUGm/r
-         kE9Q==
-X-Gm-Message-State: AOAM532wyZgFIRCX8MFBiwYviq5oBogQRWWzLjlRnaYemPvkkcNpmN5N
-        stR9eSinnMc+V4oFciHirI5Ldw==
-X-Google-Smtp-Source: ABdhPJw2V1NhrUtFTzpR84KL+ElSdaPSU1YX7RYN6P9D3rfgMA87iITUYQqOqv2WSfaGGeIpItks3Q==
-X-Received: by 2002:a05:6402:4414:b0:408:4dc0:3ee9 with SMTP id y20-20020a056402441400b004084dc03ee9mr28169156eda.203.1650532682167;
-        Thu, 21 Apr 2022 02:18:02 -0700 (PDT)
-Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e22-20020a170906505600b006da7d71f25csm7612093ejk.41.2022.04.21.02.18.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 02:18:01 -0700 (PDT)
-Message-ID: <f6086989-a4c1-4223-fad0-79bd5719432e@linaro.org>
-Date:   Thu, 21 Apr 2022 11:18:00 +0200
+        with ESMTP id S1387641AbiDUJbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:31:03 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B09D27FEB;
+        Thu, 21 Apr 2022 02:28:11 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 66BAD1F452EB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1650533289;
+        bh=ptoZj0zFpkieEBVYbfFm80mk/GACzh8P4FCP7u5kt4I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fa955ng5ILBujIu9QV+HvXfpVRPDu1cS/wFEB1NxzivoDE4BnbdHuV7SkHwQDJ1Uu
+         a7IgttMNFlHVWXZ4qKCPNi2ux5Ib0L71DkrkBZvV2I4hQXc/NofCZjGP8UNkW9Alpa
+         d2G11zp5LiU5Gb8S5k6MqUDGqQTVeN/q+3ijkbHnSKyTEdvp6T2dM790UIRIBT5X5i
+         OcsYbvK4EAAgEOli0MGB2Td9o/R0gCMt+WbutSscykrcjSbcdemQKMqvI0Qev765rq
+         TrBrqcL9Zw61lH6ybvft+/VBQTuxqPANg76Qyb7u/wmZHHpvNj5KowdDCPp1KrkMLr
+         rtKWppH6lf42Q==
+Message-ID: <e7ce1509-4680-6f3a-8e60-76b361e0ed33@collabora.com>
+Date:   Thu, 21 Apr 2022 11:28:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [EXT] Re: [PATCH 1/2 v4] dt-bindings: dspi: added for semtech
- sx1301
+Subject: Re: [PATCH v13 1/3] dt-binding: mt8183: add Mediatek MDP3 dt-bindings
 Content-Language: en-US
-To:     Jerry Huang <jerry.huang@nxp.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220420073146.38086-1-jerry.huang@nxp.com>
- <d74f62d7-7aea-b31f-1c2f-540c54df289c@linaro.org>
- <VE1PR04MB6477553510B6EB35D7C22C13FEF49@VE1PR04MB6477.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <VE1PR04MB6477553510B6EB35D7C22C13FEF49@VE1PR04MB6477.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "moudy.ho" <moudy.ho@mediatek.com>, Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        allen-kh.cheng@mediatek.com, xiandong.wang@mediatek.com,
+        randy.wu@mediatek.com, jason-jh.lin@mediatek.com,
+        roy-cw.yeh@mediatek.com, river.cheng@mediatek.com,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220418022213.23826-1-moudy.ho@mediatek.com>
+ <20220418022213.23826-2-moudy.ho@mediatek.com>
+ <YmAyrzjtWGrk5pNn@robh.at.kernel.org>
+ <b78fd7595fe66e774e3a707884ed9828964cbde8.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <b78fd7595fe66e774e3a707884ed9828964cbde8.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,24 +73,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2022 11:11, Jerry Huang wrote:
-> Please also answer Michael's comments.
+Il 21/04/22 04:46, moudy.ho ha scritto:
+> On Wed, 2022-04-20 at 11:19 -0500, Rob Herring wrote:
+>> On Mon, Apr 18, 2022 at 10:22:11AM +0800, Moudy Ho wrote:
+>>> This patch adds DT binding documents for Media Data Path 3 (MDP3)
+>>> a unit in multimedia system combined with several components and
+>>> used for scaling and color format convert.
+>>>
+>>> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+>>> ---
+>>>   .../bindings/media/mediatek,mdp3-rdma.yaml    | 166
+>>> ++++++++++++++++++
+>>>   .../bindings/media/mediatek,mdp3-rsz.yaml     |  54 ++++++
+>>>   .../bindings/media/mediatek,mdp3-wrot.yaml    |  57 ++++++
+>>>   .../bindings/soc/mediatek/mediatek,ccorr.yaml |  47 +++++
+>>>   .../bindings/soc/mediatek/mediatek,wdma.yaml  |  58 ++++++
+>>>   5 files changed, 382 insertions(+)
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
+>>> rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
+>>> rdma.yaml
+>>> new file mode 100644
+>>> index 000000000000..45b7c075ebf5
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-
+>>> rdma.yaml
+>>> @@ -0,0 +1,166 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id:
+>>> https://urldefense.com/v3/__http://devicetree.org/schemas/media/mediatek,mdp3-rdma.yaml*__;Iw!!CTRNKA9wMg0ARbw!3LSlozK4Ddsy4vjMI70PtpvvS39MTVvDGVME_eBDGj7hhW-DSZsoGdwR90ItVI6F$
+>>>   
+>>> +$schema:
+>>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!3LSlozK4Ddsy4vjMI70PtpvvS39MTVvDGVME_eBDGj7hhW-DSZsoGdwR96lcJIFE$
+>>>   
+>>> +
+>>> +title: Mediatek Read Direct Memory Access
+>>> +
+>>> +maintainers:
+>>> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>>> +
+>>> +description: |
+>>> +  Mediatek Read Direct Memory Access(RDMA) component used to do
+>>> read DMA.
+>>> +  It contains one line buffer to store the sufficient pixel data,
+>>> and
+>>> +  must be siblings to the central MMSYS_CONFIG node.
+>>> +  For a description of the MMSYS_CONFIG binding, see
+>>> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.ya
+>>> ml
+>>> +  for details.
+>>> +  The 1st RDMA is also used to be a controller node in Media Data
+>>> Path 3(MDP3)
+>>> +  that containing MMSYS, MUTEX, GCE and SCP settings.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      # MDP3 controller node
+>>> +      - const: mediatek,mt8183-mdp3
+>>> +      - const: mediatek,mt8183-mdp3-rdma
+>>
+>> This *still* makes no sense. I'm not looking at this further.
+>>
+>> Rob
 > 
-> [Jerry Huang] I double checked the MikroBus devices, we used two MikcroBus devices:
-> BLE P click: https://www.mikroe.com/ble-p-click
-> BEE click: https://www.mikroe.com/bee-click 
-> Both of them are SPI interface connect to ls1028ardb through MiKcroBus interface.
-> So the name "semtech sx1301" is not correct for this node.
+> Hi Rob,
+> 
+> Apologize for the misunderstanding with your comments in version 12, I
+> will recheck and delete the SW related information.
+> 
+> Thanks,
+> Moudy
+> 
 
-I asked to remove the words "Devicetree bindings" and this was not finished.
+Hello Moudy,
+As an afterthought, I think that a commit title like
 
-Now you mention that entire name of device is wrong... It's confusing. I
-don't know what device you are describing here. I expect you know. :)
+dt-bindings: mediatek: Add bindings for MediaTek MDP3 components
 
-What is this binding about exactly?
+would be explaining what you're doing in a more concise manner.
 
-> How about "mikroe, spi-dev" or any suggestion about it?
-
-
-Best regards,
-Krzysztof
+Regards,
+Angelo
