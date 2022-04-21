@@ -2,144 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13429509C40
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D968D509C45
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350141AbiDUJbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 05:31:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
+        id S1387664AbiDUJeE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 21 Apr 2022 05:34:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236204AbiDUJbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:31:32 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20EC27FED;
-        Thu, 21 Apr 2022 02:28:42 -0700 (PDT)
-X-UUID: cf98e13ca3e946fe8a34fd1b5d5f830e-20220421
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:fc5ddcd6-c240-4824-9a46-f3a202e054c3,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:8
-X-CID-META: VersionHash:faefae9,CLOUDID:188379f0-da02-41b4-b6df-58f4ccd36682,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: cf98e13ca3e946fe8a34fd1b5d5f830e-20220421
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1368554041; Thu, 21 Apr 2022 17:28:37 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 21 Apr 2022 17:28:35 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 21 Apr 2022 17:28:35 +0800
-Message-ID: <3d463c8b099fdb1c9a0df9e615a8ca1d8a034120.camel@mediatek.com>
-Subject: Re: [PATCH v24 0/7] soc: mediatek: SVS: introduce MTK SVS
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Kevin Hilman <khilman@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>
-Date:   Thu, 21 Apr 2022 17:28:35 +0800
-In-Reply-To: <7hczhbe3wn.fsf@baylibre.com>
-References: <20220420102044.10832-1-roger.lu@mediatek.com>
-         <7hczhbe3wn.fsf@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1387075AbiDUJeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:34:04 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A909C1572E;
+        Thu, 21 Apr 2022 02:31:14 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id x12so2813230qtp.9;
+        Thu, 21 Apr 2022 02:31:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JwCuSdNSLXEV9phfYC6AwyspdGojdlT32rEj1GMZCB4=;
+        b=YFwkbZrAj+VdGfiCseZczgL+5tRMwhOWuYpxrEfcWnPfNzZSOK4CFtUeCOne21Noeu
+         Ev16ZgyFQcxhkyfVv96hDpdq7e3F3tSyMC36OFOU4NPsF6WwYNsq79hU/AngQx1HoEMX
+         1qgVecZoMWf6klmZHeGp7nHSBxwV0LyVV2t4nCTVgdJVXvItvN1Mb0bANapMHcg69jbP
+         swyl5UwsZZJUa3XuFozLxyk1owtelbPqqPx6mjwDLTGcPQzNT/CyCnYAdMI8doHoixuw
+         VZYob2Brmi0PYt0HcXOq165RFLDoR5EdpakcrD7won1nHwHhxR4DD5hX1s1gb/8T1syV
+         cCzA==
+X-Gm-Message-State: AOAM531sO/dF4sJ+C6kPAiJyHGD0/jChUwq+jhV8wg9Glscn8XuWqs14
+        b+3f6s2EM79ztaaegma80XjtkOmb42sDXwJ/
+X-Google-Smtp-Source: ABdhPJwWjPp6Owo2+4AsGu0yJlnOuXSdk8KjJ4zCKIQ22oGCbx7S7168jTqnFEZtfEgSpi6oJv9cjQ==
+X-Received: by 2002:ac8:7fd4:0:b0:2f3:4323:7f91 with SMTP id b20-20020ac87fd4000000b002f343237f91mr3990120qtk.354.1650533473485;
+        Thu, 21 Apr 2022 02:31:13 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id n3-20020a05620a152300b0069ec409e679sm2651317qkk.48.2022.04.21.02.31.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 02:31:12 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-2eafabbc80aso45557967b3.11;
+        Thu, 21 Apr 2022 02:31:12 -0700 (PDT)
+X-Received: by 2002:a81:c703:0:b0:2d0:cc6b:3092 with SMTP id
+ m3-20020a81c703000000b002d0cc6b3092mr24791356ywi.449.1650533472388; Thu, 21
+ Apr 2022 02:31:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220414122250.158113-1-clement.leger@bootlin.com> <20220414122250.158113-11-clement.leger@bootlin.com>
+In-Reply-To: <20220414122250.158113-11-clement.leger@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 21 Apr 2022 11:31:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU6TQbXusC7R1UmJ0TBkRCG3W54JgduLpDzUrNUzC0eWA@mail.gmail.com>
+Message-ID: <CAMuHMdU6TQbXusC7R1UmJ0TBkRCG3W54JgduLpDzUrNUzC0eWA@mail.gmail.com>
+Subject: Re: [PATCH net-next 10/12] ARM: dts: r9a06g032: describe GMAC2
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
+Hi Clément,
 
-On Wed, 2022-04-20 at 16:22 -0700, Kevin Hilman wrote:
-> Hi Roger,
-> 
-> 
-> Roger Lu <roger.lu@mediatek.com> writes:
-> 
-> > The Smart Voltage Scaling(SVS) engine is a piece of hardware
-> > which calculates suitable SVS bank voltages to OPP voltage table.
-> > Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
-> > when receiving OPP_EVENT_ADJUST_VOLTAGE.
-> > 
-> > 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
-> > 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by
-> > get_cpu_device().
-> > After retrieving subsys device, SVS driver calls device_link_add() to make
-> > sure probe/suspend callback priority.
-> > 
-> > [1] 
-> > https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp*linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5__;Lw!!CTRNKA9wMg0ARbw!3gWsdVuiyF0iafrmVINP9FVz7fjGB1UqTPLfMNWEhsl96RDPB-Se6Q-g3F8daK-u$
-> >  
-> > [2] 
-> > https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp*linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87__;Lw!!CTRNKA9wMg0ARbw!3gWsdVuiyF0iafrmVINP9FVz7fjGB1UqTPLfMNWEhsl96RDPB-Se6Q-g3Lel3h4j$
-> >  
-> > [3] 
-> > https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next*dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2__;Lw!!CTRNKA9wMg0ARbw!3gWsdVuiyF0iafrmVINP9FVz7fjGB1UqTPLfMNWEhsl96RDPB-Se6Q-g3KhMdm00$
-> >  
-> > 
-> > Change since v23:
-> > - Change wording from "Mediatek" to "MediaTek" (uppercase T) in mtk-
-> > svs.yaml.
-> > - Use cpuidle_pause_and_lock() to prevent system from entering cpuidle
-> > instead of applying pm_qos APIs.
-> > - Add kfree() at the end of svs_probe() when encountering probe fail.
-> > - Change MODULE_LICENSE from "GPL v2" to "GPL".
-> > - Add nvmem_cell_put() in error handling when nvmem_cell_read() encounters
-> > fail.
-> 
-> I also gave you a reviewed-by on v23, but here it is again:
-> 
-> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-> 
-> 
-> That being said, it would be really nice to see an integration tree
-> where this was all tested on mainline (e.g. v5.17, or v5.18-rc)
-> 
-> For example, I can apply this to v5.18-rc2 and boot on my mt8183-pumpkin
-> board, it fails to probe[1] because there is no CCI node in the upstream
-> mt8183.dtsi.
-> 
-> I'm assuming this series is also not very useful without the CPUfreq
-> series from Rex, so being able to test this, CCI and CPUfreq together on
-> MT8183 on a mainline kernel would be very helpful.
-> 
-> Kevin
-> 
-> [1]
-> [    0.573332] mtk-svs 1100b000.svs: cannot find cci node
-> [    0.574061] mtk-svs 1100b000.svs: error -ENODEV: svs platform probe fail
+On Thu, Apr 14, 2022 at 2:24 PM Clément Léger <clement.leger@bootlin.com> wrote:
+> RZ/N1 SoC includes two MAC named GMACx that are compatible with the
+> "snps,dwmac" driver. GMAC1 is connected directly to the MII converter
+> port 1. GMAC2 however can be used as the MAC for the switch CPU
+> management port or can be muxed to be connected directly to the MII
+> converter port 2. This commit add description for the GMAC2 which will
+> be used by the switch description.
+>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 
-Just share. I've tested this series on below two platforms and it works as
-expected.
-- mt8183-Krane (kernel-v5.10)
-- mt8192-Hayato (kernel-v5.4)
+Thanks for your patch!
 
-Sincerely,
-Roger Lu.
+> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> @@ -200,6 +200,23 @@ nand_controller: nand-controller@40102000 {
+>                         status = "disabled";
+>                 };
+>
+> +               gmac2: ethernet@44002000 {
+> +                       compatible = "snps,dwmac-3.72a", "snps,dwmac";
 
+"make dtbs_check":
+arch/arm/boot/dts/r9a06g032-rzn1d400-db.dtb:0:0:
+/soc/ethernet@44002000: failed to match any schema with compatible:
+['snps,dwmac-3.72a', 'snps,dwmac']
+
+> +                       reg = <0x44002000 0x2000>;
+> +                       interrupt-parent = <&gic>;
+> +                       interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "macirq", "eth_lpi", "eth_wake_irq";
+
+arch/arm/boot/dts/r9a06g032-rzn1d400-db.dtb: ethernet@44002000:
+interrupt-names:1: 'eth_wake_irq' was expected
+arch/arm/boot/dts/r9a06g032-rzn1d400-db.dtb: ethernet@44002000:
+interrupt-names:2: 'eth_lpi' was expected
+        From schema: Documentation/devicetree/bindings/net/snps,dwmac.yaml
+
+> +                       clock-names = "stmmaceth";
+> +                       clocks = <&sysctrl R9A06G032_HCLK_GMAC1>;
+> +                       snps,multicast-filter-bins = <256>;
+> +                       snps,perfect-filter-entries = <128>;
+> +                       tx-fifo-depth = <2048>;
+> +                       rx-fifo-depth = <4096>;
+> +                       status = "disabled";
+> +               };
+> +
+>                 eth_miic: eth-miic@44030000 {
+>                         compatible = "renesas,rzn1-miic";
+>                         #address-cells = <1>;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
