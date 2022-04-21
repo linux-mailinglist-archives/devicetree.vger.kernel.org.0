@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3C9B50A123
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 214CB50A127
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387381AbiDUNum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 09:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59738 "EHLO
+        id S1387446AbiDUNvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 09:51:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387375AbiDUNul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:50:41 -0400
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 340E937ABA;
-        Thu, 21 Apr 2022 06:47:51 -0700 (PDT)
-Received: by mail-qv1-f45.google.com with SMTP id i14so3658639qvk.13;
-        Thu, 21 Apr 2022 06:47:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uNX2H4vVMesbWb6WdnhP5kqTGvyi12cdMiTUkT65UuM=;
-        b=TupRcL0jeX/oqtU98K+J2ueHAsHHkBsJXrjaj1v8Sf7TNNK9DAKuEm5BLmU9XUxcv3
-         RlWssGM5ugQSXr54MuOxv63aSc3RQa+llvaq1sXlWR4UCdbaExtY4BpIUImnH5kdYdrU
-         GCQ2TFaR4q+gdvlLLP3ujtf08R5hn/J616ZAQ58+swJD9+W3f8ojI+xMexaSU/L/kqmR
-         dds5zN+/lG2WTEs1xTG5J2YiI71aRehEH9m1TLV1u3jrxm5Z1klfshfR1FxVich707v4
-         30vYL2GvW0nuBTpqvp7H3tsJCkwKR3/lNPb7AdOUjEu7Jj5jwxEgkLJHGVqudpDio883
-         suYg==
-X-Gm-Message-State: AOAM533Gwma++6rNz4MopQ05FQ4U2RmrS4zcyvJObXCwDyAOo1rLUYGz
-        N6Rmdcy16KCALufVAQR6PC0ZEQWojdOYf6f3
-X-Google-Smtp-Source: ABdhPJy+k5aEtoN9Et21KJsrUEI9q6HZIqk8Uhubt9viUQgzZrXgUCDXMAe/bmO+wOf/+eNFEl83Iw==
-X-Received: by 2002:a0c:fa43:0:b0:444:5137:44b0 with SMTP id k3-20020a0cfa43000000b00444513744b0mr19174862qvo.29.1650548870057;
-        Thu, 21 Apr 2022 06:47:50 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id u13-20020a05622a010d00b002f34d93cc5esm833915qtw.0.2022.04.21.06.47.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 06:47:49 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id x9so1728141ybe.11;
-        Thu, 21 Apr 2022 06:47:49 -0700 (PDT)
-X-Received: by 2002:a25:8087:0:b0:641:dd06:577d with SMTP id
- n7-20020a258087000000b00641dd06577dmr24517952ybk.207.1650548869002; Thu, 21
- Apr 2022 06:47:49 -0700 (PDT)
+        with ESMTP id S1387431AbiDUNvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:51:18 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC48381BC
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:48:28 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nhXAT-0005v7-9y; Thu, 21 Apr 2022 15:48:21 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nhXAS-004N86-2u; Thu, 21 Apr 2022 15:48:18 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nhXAP-004hN3-N3; Thu, 21 Apr 2022 15:48:17 +0200
+Date:   Thu, 21 Apr 2022 15:48:08 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
+        lee.jones@linaro.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, rex-bc.chen@mediatek.com,
+        jitao.shi@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v6, 5/5] dt-bindings: pwm: Add interrupts property for
+ MediaTek MT8192
+Message-ID: <20220421134808.sqnecvysuzlgdsz5@pengutronix.de>
+References: <1650284456-16407-1-git-send-email-xinlei.lee@mediatek.com>
+ <1650284456-16407-6-git-send-email-xinlei.lee@mediatek.com>
+ <a92d3b46-ace4-2d19-fef9-c59cd1a596ce@collabora.com>
 MIME-Version: 1.0
-References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com> <20220420084255.375700-13-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220420084255.375700-13-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 21 Apr 2022 15:47:37 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXdgvcf0w06GaaSZSqdEwytKi+tNXpsUb29vXmKrB=gYA@mail.gmail.com>
-Message-ID: <CAMuHMdXdgvcf0w06GaaSZSqdEwytKi+tNXpsUb29vXmKrB=gYA@mail.gmail.com>
-Subject: Re: [PATCH 12/15] clk: renesas: rcar-gen4: Add CLK_TYPE_GEN4_PLL4
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="g74nijuruvmiaccu"
+Content-Disposition: inline
+In-Reply-To: <a92d3b46-ace4-2d19-fef9-c59cd1a596ce@collabora.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
 
-On Wed, Apr 20, 2022 at 10:43 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> R-Car V4H (r8a779g0) has PLL4 so that add CLK_TYPE_GEN4_PLL4.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+--g74nijuruvmiaccu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for your patch!
+Hello,
 
-> ---
->  drivers/clk/renesas/r8a779f0-cpg-mssr.c | 18 +++++++++---------
->  drivers/clk/renesas/rcar-gen4-cpg.c     |  5 +++++
->  drivers/clk/renesas/rcar-gen4-cpg.h     |  3 +++
->  3 files changed, 17 insertions(+), 9 deletions(-)
+On Thu, Apr 21, 2022 at 12:17:00PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 18/04/22 14:20, xinlei.lee@mediatek.com ha scritto:
+> > From: Xinlei Lee <xinlei.lee@mediatek.com>
+> >=20
+> > Add interrupts property of pwm for MediaTek MT8192 SoC.
+> >=20
+> > Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+>=20
+> Hello Xinlei,
+> the pwm-mtk-disp.c driver does not support interrupts.
+>=20
+> Please add interrupts support to the driver first, and only then
+> add that in the dt-bindings.
 
-You forgot to update drivers/clk/renesas/r8a779a0-cpg-mssr.c.
-Hence all clocks derived from PLL5 have a zero rate, causing the
-SDHI driver to enter an infinite loop in renesas_sdhi_set_clock()
-(clock = 0):
+in my understanding the linux driver state and the binding documentation
+are somewhat independent. Here I'd say adding the irq information to dt
+without the driver supporting it is fine.
 
-        for (clk = 0x80000080; new_clock >= (clock << 1); clk >>= 1)
-                clock <<= 1;
+Best regards
+Uwe
 
-Adding the missing PLL4 mul/div columns fixes that.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-The rest LGTM.
+--g74nijuruvmiaccu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmJhYJUACgkQwfwUeK3K
+7AmXqgf+MrAe0PFC2xF5YzOIK5R/MGmmmV3pJNlax2M2UkDsWxeavnkcBOQcilzv
+ln6uRHHRETr5tUiBEZBTPVgX8/suEhfhw+/EPtUSH/LUK9cMEAxsSjZItwZCjzUi
++4SKV+24sivp5jfmsbyrZCKsGDNjDynXf3DBVcJbB4MLWl42NDVTIqqxA0hQe7Of
+pfwrYWjTX0MM3ZHBN3vA7reDg/d+qvoDwxn6dHT0oRvXmhyH7xhQ5N2KxkhGPBpP
+MJv4P3O37I6QygsplJHpJaoDv7zAYSJXx4wk9w1vp9vj3fZxVB9TsP9m9ILZx30U
+9PmDnaULNIt8tZukhdV4M8VDymcQJA==
+=vy1d
+-----END PGP SIGNATURE-----
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--g74nijuruvmiaccu--
