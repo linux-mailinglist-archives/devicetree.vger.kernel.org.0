@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74E905099AF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500D95099B5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386190AbiDUHvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46542 "EHLO
+        id S1386202AbiDUHwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386182AbiDUHva (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:51:30 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62F7AE55
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:48:40 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id r13so8279526ejd.5
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:48:40 -0700 (PDT)
+        with ESMTP id S1386194AbiDUHwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:52:02 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F481AF2F
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:49:13 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id p18so231842edr.7
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:49:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=GPBUa5swIw6CZcs+Ui9I4QOAfuB4n7UzPWV5GhZeFFk=;
-        b=QnWxD0bY+y/mjv2MJWP2qs3pRdSZw8gK822S+RKNlvhiMzxbliBzoGxjncMgiQt47Z
-         oKSba9ZFFGHGJffpJSGCb27vkWX0c2U+KLVd+FWE5SosMF/MY+cGajpIe42CsFZUThvz
-         3RYRagCAYWGfF9jq7ceP9tSLTput9EFXv2AEXbs9bSnmuymDr8iIhq8+crcbqsviXaZB
-         1zxV9yWSMiuB4axPI6C4ZPCFuy2Wloyt/NauCRfUXLowyRMNTRXk5/ES+Jy5K5Co1nd8
-         +BTGjqBXPn8WB9FRt9LU6U5lZrlQBV+QKeEu5UZAsMIS3jdO3hLoOkTB3xUVC8Q6G7Oc
-         jdFA==
+        bh=fZwf/2yPqjhAHVbwyiZ/I88oG/G8efeSV4EYSI+qW5M=;
+        b=b4Rw8dqvX/DZNJZY/lCo5bYJ4t6peoNV3JUFCnCRVtTw/XN/fG0bJJtx9CsSw4InsR
+         +WZtkhMxz3qqRxKZbu8mNRMCGnbw5Y853EDE8sz0ui4BvBsVLAU+Z0wCPhDsXf0CR+UF
+         wFgxMHty77dY0ryQiQeLbU9mM72qx/vjY7FcAPIwVT1E2Pk2GBW5fxgFlF1/OpBdBSiA
+         KM4SqwoaxyLRzVKmnykl8f9D05eWR+v+EwHcyzl9/DxsY+GLF529fVpgOdq90mfcjDz3
+         n+TeuHPpBSEvvBBN/ke7dpG2UsRlI/tT2+xtkEEcqIzsSahz/qptaN23ywlBDt9kFL25
+         vQPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=GPBUa5swIw6CZcs+Ui9I4QOAfuB4n7UzPWV5GhZeFFk=;
-        b=m5FewfF+aJiLMGayPPxw3ZvkfPF0vTBxOpu+YJMDmjSXs5RgFPQ9YwukfAmg7aU2Bt
-         TIH7BCZ0UnpJMUG/JWjhYhO9VYaIgeQnJk+bNiRci8lzhojy+4Vq5CXim6X4L8v7uX41
-         /JIcTvcnJMXiwayBD+KdVfg7+heNdbbKQmS8lderefKXX0H+GirpQOJ0HkrIoiSsqoa+
-         /kbgOSPSKdNV03GilVfL46DAam+udS3+POkKhrxH+6/8eVNytJxbzsfwJLmmQyLqX6Vj
-         R5dh1e1wi08eWiDLD2xKDqIcIwntSu7ma4D3j28Q5kYIDxnHTc7JEl+41keygkJgsUnk
-         XwSQ==
-X-Gm-Message-State: AOAM532gKdQJL272eLAyaZTbU9Oa+2L+0ewpqNbz7Q0M73dcoDRU0UBr
-        9WL8KtLTAsjpXeCaXKIjC4jD4g==
-X-Google-Smtp-Source: ABdhPJxxTIo0EJoqdQpU8qs9oxCB3A4HgYEhrYg2UFz+M03ekQxi8wWpCgLWaZnq0SwOPDBm8wdDNw==
-X-Received: by 2002:a17:906:2c42:b0:6e8:7b4b:3abb with SMTP id f2-20020a1709062c4200b006e87b4b3abbmr21979503ejh.565.1650527319278;
-        Thu, 21 Apr 2022 00:48:39 -0700 (PDT)
+        bh=fZwf/2yPqjhAHVbwyiZ/I88oG/G8efeSV4EYSI+qW5M=;
+        b=zH4rjQ5MulxS7w3oQwHdJKMkHqBty7BK2Gnq75mEyhZqCzU039dsQ6LWSUP/TM66N/
+         I5cMaBzm3TiTqi102TNiOEGxod9wWWo+MoP7765DiKqZ3g0ZaqHLS9JfH1Y5Kty9HSir
+         4kGylLMGriPAosStF8BiBkQfzJ368FTrfEijDXWkjgrFZtRFsotEL+QF/7gSXqI8NtjG
+         Y+MpsDLtYHWSwftxR4sw50kuFb9bspQ0Qk/S23r9kH3RXikr0DtH9r0abMGr3L3U/olL
+         CPLRTLItwRYU66NamIUh5M6ZZhh/FkqPUyHLdvQJqE4lntRt7WHQpEkWNJDzZL+nVDMt
+         9LIg==
+X-Gm-Message-State: AOAM531iUi9wfwW8BNFdejM5G7EO9SelNucp9F6Rz+ODqFNsGyFG3AYr
+        +MDLucdVk/2HAFCke0j4NCV2QA==
+X-Google-Smtp-Source: ABdhPJx1JM9ca7dB2/T+1RieGRvO3xd5RjmUIW3NlFHeQdujxrRZiybGVZ8OrW1dWBAqr1q1ZcS8lg==
+X-Received: by 2002:aa7:c895:0:b0:424:882:579b with SMTP id p21-20020aa7c895000000b004240882579bmr11031374eds.266.1650527351658;
+        Thu, 21 Apr 2022 00:49:11 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i22-20020a1709063c5600b006e8a8a48baesm7622125ejg.99.2022.04.21.00.48.38
+        by smtp.gmail.com with ESMTPSA id hr35-20020a1709073fa300b006e8b9907b38sm7707349ejc.177.2022.04.21.00.49.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 00:48:38 -0700 (PDT)
-Message-ID: <c86f78ac-ccf5-30ad-5de4-33211ca8b351@linaro.org>
-Date:   Thu, 21 Apr 2022 09:48:37 +0200
+        Thu, 21 Apr 2022 00:49:11 -0700 (PDT)
+Message-ID: <3ca55257-a884-59f8-f61f-1311f4a745d0@linaro.org>
+Date:   Thu, 21 Apr 2022 09:49:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 07/15] dt-bindings: clock: Add r8a779g0 CPG Core Clock
- Definitions
+Subject: Re: [PATCH 08/15] dt-bindings: serial: renesas,hscif: Document
+ r8a779g0 bindings
 Content-Language: en-US
 To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
         geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
@@ -62,15 +62,14 @@ To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
 Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-serial@vger.kernel.org
 References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
- <20220420084255.375700-8-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-9-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220420084255.375700-8-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420084255.375700-9-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,28 +77,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
-> Add all Clock Pulse Generator Core Clock Outputs for the Renesas
-> R-Car V4H (R8A779G0) SoC.
+> R-Car V4H (R8A779G0) SoC has the R-Car Gen4 compatible HSCIF ports,
+> so document the SoC specific bindings.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  include/dt-bindings/clock/r8a779g0-cpg-mssr.h | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 include/dt-bindings/clock/r8a779g0-cpg-mssr.h
-> 
-> diff --git a/include/dt-bindings/clock/r8a779g0-cpg-mssr.h b/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
-> new file mode 100644
-> index 000000000000..07a94cf45581
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
-> @@ -0,0 +1,87 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
 
-Any reason why not licensing it the same as bindings document
-(GPL-2.0-only OR BSD-2-Clause)? The same applies to patch 5.
-
-MIT and BSD-2-clause are almost the same, AFAIR, so let's stick to one
-(BSD-2-clause) for consistency?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
