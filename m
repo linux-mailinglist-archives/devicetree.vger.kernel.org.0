@@ -2,66 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C4250A25E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5086650A247
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389298AbiDUOam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:30:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35456 "EHLO
+        id S1389277AbiDUOaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:30:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389251AbiDUOaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:10 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6A33EBB5
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:20 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id q129so5788440oif.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:20 -0700 (PDT)
+        with ESMTP id S1389274AbiDUOaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:13 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6823E0F4
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:21 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id s21-20020a0568301e1500b006054da8e72dso3399495otr.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=Ax4avlN0oglfzD6swQB5upAnrR9vbmcO4lly1CB9MS0=;
-        b=WsC04F1RsX1JNzcannfCWEjoteFcPfSy9HqfKLlLLTSxKaAMW7vo8kPvQ7SvxIA6Az
-         9YtRXmHBaxvC9+gXLPvne/Qy+0JtquZhXTKVBz5Ea99QSDnatgl1Ir0cnm+nIHD8GLYl
-         G9lIfXbTKgztzzhNMoNW7xaq4yvZ2xzkfXXfKBRurKTXLxBCIbdsin7VitVBvUFo7fD2
-         BMLl1XY+ISNNf9Yd9ZL7WADg+zhKDnfBQ8F4wLelxoXPNzDcLlTSR0JigF5DZteMcXTd
-         9ooTO4DRB31uXzPaPfZVuBZtmL63ckMptbfxHy1rT689f4dbtNMflQ+kL9z72FB9g2rk
-         mOZA==
+        bh=d/DLwGt6g6LrA0OHbPvm58vxFZL50BLk3B4shoDtY9c=;
+        b=osOmofyuKQZ46d+fLlYivycgY9Nc72NJLcwdWrh4mOAVthqD/1y3vDuhPXbLCNfQQC
+         xk/XP57YC4R3Ta91qxUQXmf2uRtyBPPypeCSXeqT7HNXsTEOleeBzSf9zr4dzz6dIb9+
+         kvhnFNvmGXe/tpFqrWTf3lLZHTYGtzDYdLdeRYA5uKtSuHqflsPAgBCr7ohFLwsQ4cEh
+         w2qyW5+1vppMXYg2ilb1iEURDZFTgwIM/fcPTeNd/d/QnzCTfb/MAzb1zoBYc+z5VmpP
+         /5CoNRhqwjvtlMWFnymOArBLLfxn7aY5uNqRHod1BNFwUO/hfR/8bHOXJGszpYpbB22j
+         iKng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Ax4avlN0oglfzD6swQB5upAnrR9vbmcO4lly1CB9MS0=;
-        b=y9JWnngno+opFaonB1a2GCFKtKjAjTNTP0GZFIeHmlhClZ/Caq0R8ywqAipe9+7MSj
-         QjsEvu/titbQghkgAYTx1EgdLy3BxJB/lkk+KDQTY6Zau3YAwk48LWiezzGWkgM5RFWx
-         eBJU2vEaAPtmGckvP55PsCGEhqQrxeURWpd5MZGaJKaMX7Zm4gbEDlipe6IOX8RKeJ0B
-         mlJCLtmfTWMk5L9Yl/cVPDz80uhYCqUH0MztCAF4bAhb5ORBEDkxAko7PqKMfWj/VALA
-         o6KVLYPSg1nhR3kQXfwsr5HKXhfOl8jttJUBeLVjR0ZFI9iUZ6pChGFN0evOnGhojg/A
-         S2WQ==
-X-Gm-Message-State: AOAM533wMpqvldboW1iiJFNfElpTytnZUW/WzwnnkSbBbxEmeFGZnwEF
-        zET/PRGD0A3l/nykyBWAyNN/EA==
-X-Google-Smtp-Source: ABdhPJwaFVAfSTDez3Zu80iJyqsv3GD/rPUN1R5xCe3IUJJdfZQU4qTP1ofMsk33NJeB4R6esgp1sQ==
-X-Received: by 2002:a05:6808:180c:b0:322:3d43:c38b with SMTP id bh12-20020a056808180c00b003223d43c38bmr4162516oib.8.1650551239426;
-        Thu, 21 Apr 2022 07:27:19 -0700 (PDT)
+        bh=d/DLwGt6g6LrA0OHbPvm58vxFZL50BLk3B4shoDtY9c=;
+        b=FtvcrxvuctH49h+EKdduCxMwPXEJsFZ0W9rqwcjh3yKkpgbc84i89ifdY7RKk/fWqV
+         Tx2MeoXENjsfAUhWjJ+Nj1dejXLtvOTw3MvvWMJwOcgBGK0BXOtIaCqhkUS3fMVJ4ivf
+         jOyJ9XYE8JgAw6YonJvjlpwgb9rc3fivmD3VABqnFkTEMngvDM6tKE2XAqu2549uZSe7
+         5S8XuUq6LOwEk2v47vhj5M4lLsfqvaBjU7pUEAnjQ1Omefw5ZKknYLR2lfm8i0L+jxpm
+         eDr0+j2FlNba+3xICf7RXnvAGiAMxLRx6166GdBGBiA02v4+qDu+6OPFdVyO7z0VS5GC
+         +pOg==
+X-Gm-Message-State: AOAM5314shHlbDEqmWib4ke4nXGV7LVs/uMJsOMCps4l0wao+cOaBy0f
+        QyWF58Wo5QX92HOjiHAQyhse0g==
+X-Google-Smtp-Source: ABdhPJwKFEb03yhkH/1MJXX5iENJsqdGZMmW0TrjcECYUo0FaYBxzKhhf8oazSc3ypKEYQ8kfPc4ww==
+X-Received: by 2002:a9d:6488:0:b0:603:4051:da06 with SMTP id g8-20020a9d6488000000b006034051da06mr4084otl.298.1650551241296;
+        Thu, 21 Apr 2022 07:27:21 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.18
+        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 07:27:18 -0700 (PDT)
+        Thu, 21 Apr 2022 07:27:19 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     linux-pm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+To:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vamsi krishna Lanka <quic_vamslank@quicinc.com>
-Subject: Re: (subset) [PATCH 1/4] ARM: dts: qcom: sdx55: do not use underscore in BCM node name
-Date:   Thu, 21 Apr 2022 09:26:56 -0500
-Message-Id: <165055095989.2574292.3311309854371304681.b4-ty@linaro.org>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: (subset) [PATCH 2/2] arm64: dts: qcom: msm8996: override nodes by label
+Date:   Thu, 21 Apr 2022 09:26:57 -0500
+Message-Id: <165055095990.2574292.3733186072777559695.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220411085935.130072-1-krzysztof.kozlowski@linaro.org>
-References: <20220411085935.130072-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220402192859.154977-2-krzysztof.kozlowski@linaro.org>
+References: <20220402192859.154977-1-krzysztof.kozlowski@linaro.org> <20220402192859.154977-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -75,16 +72,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Apr 2022 10:59:32 +0200, Krzysztof Kozlowski wrote:
-> Align BCM voter node with DT schema by using hyphen instead of
-> underscore.
+On Sat, 2 Apr 2022 21:28:59 +0200, Krzysztof Kozlowski wrote:
+> Using node paths to extend or override a device tree node is error
+> prone.  If there was a typo error, a new node will be created instead of
+> extending the existing node.  This will lead to run-time errors that
+> could be hard to detect.
 > 
+> A mistyped label on the other hand, will cause a dtc compile error
+> (during build time).  This also reduces the indentation making the code
+> easier to read.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/4] ARM: dts: qcom: sdx55: do not use underscore in BCM node name
-      commit: 568cd3243331b6bf0702665f7bd90baa93e2b3ac
+[2/2] arm64: dts: qcom: msm8996: override nodes by label
+      commit: 2a80a66f68e37ce19dee7fdb3d3e946859712b53
 
 Best regards,
 -- 
