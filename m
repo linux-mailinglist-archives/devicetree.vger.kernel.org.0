@@ -2,116 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C6E850A193
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F51250A20C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380001AbiDUOKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:10:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46294 "EHLO
+        id S1389127AbiDUOXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:23:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1387503AbiDUOKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:10:32 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BD6D46;
-        Thu, 21 Apr 2022 07:07:41 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id 40C4D5FD06;
-        Thu, 21 Apr 2022 17:07:39 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1650550059;
-        bh=UW8njT/+eAAp0sqLL0d7+8NXB7FUyb5NlKr0b71Bps4=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=NN9p/nyyjo8j0Z2AwA1v2VXhTKkQw8NJ1PtMaib41PB1yPCJvhB5kFJS6TuWUdVXR
-         PdDPqRPykJhxGsajzOaoP6VTuq4H7M5T6n2HeRwjETjZFJrYVe+BI/rFNqUi/4USgf
-         YcotEt7RUMK5LghRkQgYyObCI+NCYJ3LZaNQGYAgYm+T1HpaLtPTKFtpACzj2PeDWT
-         rWjnTIxUgxCsEGrYLL5MPPN9TSkkm7KJp4NcLooYs49YEuxJJBINmOurmp4xr9iyEf
-         t+rqnVWNJ8Bs60qYv3CqHlUaOcDM1a9Rh3bzlwqaoSA7i9xu0NrsImvykw9fEyAyi7
-         4ocRgLIF+nR7A==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Thu, 21 Apr 2022 17:07:36 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Topic: [PATCH v1 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Index: AQHYVASOybrxT0DjfUWoYWuGUlWOX6z4b44AgAHIYAA=
-Date:   Thu, 21 Apr 2022 14:07:29 +0000
-Message-ID: <20220421140726.lavjqighkbnxawsd@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220419154555.24191-1-ddrokosov@sberdevices.ru>
- <20220419154555.24191-3-ddrokosov@sberdevices.ru>
- <20220420115400.00005c48@Huawei.com>
-In-Reply-To: <20220420115400.00005c48@Huawei.com>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <E6CC07717222CA41BF369D53716C09DA@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1389176AbiDUOWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:22:49 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D7E5B1EF;
+        Thu, 21 Apr 2022 07:19:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650550799; x=1682086799;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=TwcUHqQHYfAAOW5huQGXmfw4fzGa1qXTNH6RBZWbtYo=;
+  b=lNJj5Us8M979t8Q2f7VYLToqgwObaY7RCmUa/OAVNCvGZJaFnIx65No3
+   nzKOO6mtsOO6DGXKq8hLrOa+Z/loMCANJP7ieSbQhoKYNWjnlrrjocfS3
+   ZI9DPIRZnpwxcp2R7co79nrRpvAPSSijH7y60HvYKTAQX2FG8W5viOSrJ
+   c=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Apr 2022 07:19:59 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 07:19:58 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 21 Apr 2022 07:19:57 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 21 Apr 2022 07:19:53 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <quic_rjendra@quicinc.com>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sc7280: Add ldo_l17b regulator node
+Date:   Thu, 21 Apr 2022 19:49:39 +0530
+Message-ID: <1650550779-8133-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/04/21 06:36:00 #19322218
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jonathan,
+Add ldo_l17b in pm7325 regulator, which is required for
+wcd codec vdd buck supply.
 
-On Wed, Apr 20, 2022 at 11:54:00AM +0100, Jonathan Cameron wrote:
-> On Tue, 19 Apr 2022 15:45:55 +0000
-> Rokosov Dmitry Dmitrievich <DDRokosov@sberdevices.ru> wrote:
->=20
-> > MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
-> > sensitivity consumer applications. It has dynamical user selectable ful=
-l
-> > scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measuremen=
-ts
-> > with output data rates from 1Hz to 1000Hz.
-> >=20
-> > This driver supports following MSA311 features:
-> >     - IIO interface
-> >     - Different power modes: NORMAL, SUSPEND and LOW (using pm_runtime)
-> >     - ODR (Output Data Rate) selection
-> >     - Scale and samp_freq selection
-> >     - IIO triggered buffer, IIO reg access
-> >     - NEW_DATA interrupt + trigger
-> >=20
-> > Below features to be done:
-> >     - Motion Events: ACTIVE, TAP, ORIENT, FREEFALL
-> >=20
->=20
-> Forgot to mention. Please add a Datasheet: tag to this patch as it's
-> the one introducing the actual driver.
->=20
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Sure, I'll make this change for the v2 then.
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+index b833ba1..17d0c05 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+@@ -113,6 +113,11 @@
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
++		vreg_l17b_1p8: ldo17 {
++			regulator-min-microvolt = <1700000>;
++			regulator-max-microvolt = <1900000>;
++		};
++
+ 		vdd_px_wcd9385:
+ 		vdd_txrx:
+ 		vddpx_0:
+-- 
+2.7.4
 
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-
---=20
-Thank you,
-Dmitry=
