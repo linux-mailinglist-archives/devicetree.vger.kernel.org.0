@@ -2,95 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 631BE5099A0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF185099D0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386224AbiDUHyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49418 "EHLO
+        id S1386281AbiDUH6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:58:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386215AbiDUHyi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:54:38 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71940E023
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:51:49 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g20so5415340edw.6
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:51:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SWnz07/ydUSDSFIRmRvvVdm20TH0m+rczRpHxI08538=;
-        b=EwmR9yCZo4NDwqX1l0iMzrveU/Y7tFFwuzOLGL9RkQEcE/JqAECh2XqEp+X6xDFHOM
-         J93ZttPP4flslham+xT8xhDfXTRpBs4Ge6Z/+z2Eato/JTYarti7C18gbvR2LmPJkzFU
-         Njsif7tDcPHSlzj45tlm6+WJVL/vJ7PLjSJyVBv9OQv+vJj+L2FGmVXa6jtYrwpVZLql
-         LLdPsV6ew7J0SFu4Rufwt5c2xgM9OtfPZVPA510Db1HsKbCweuageDeNttTrm408QwjK
-         SZw6Ob5MeReu3WT9tlX6s95I6HyIrUtml6ww/ImB+A+RCEEdBSfGx9+t5pUGwhAoBl6D
-         2YCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SWnz07/ydUSDSFIRmRvvVdm20TH0m+rczRpHxI08538=;
-        b=d/r6i3s3JqxQglWn1kURiE6jI4F775C8clx7Ab0IJC3NEq+IGE3/y0qrkYcaYv60Yl
-         mP1S+xNGdcFhSMSJ6ls/MCJ06Pq+gJ2KBLVyLuyQYaSVCZ0EVk0MB5eo+SF54Fs5APak
-         WuKhfq+W3VftT3CapTdbfwkbPweZZpU4nCazvNg/4t239EO0Yy0zBfv7RJCIYlLKB22D
-         dRGp/pSGFZ3uQyO0NbCVv/6Ei+C9Dq7VuVeTzDTJ/gqWCPg4a03rFGouRzf+dntIJXbn
-         a6rvmnhMznBrC9jMDgigDjHmWyki+IPRcJVj5TEYUM96IpzkHp7Ufefe5YgJvIO3YbjJ
-         gV8Q==
-X-Gm-Message-State: AOAM5334mIrVu1XTRxFaVBK2O+QhZkC2Bo3gtjaL7xH6/ZCHgb0sRdri
-        p6LULxPtqgebrWiUkZ3QGw5xuw==
-X-Google-Smtp-Source: ABdhPJwsgt7zi76Zv2CQz+yv0v/+CbVB1kMAgrzEXSk+VepEHFrCcVidOiNP5TKdoT+PQBEhuT3oBQ==
-X-Received: by 2002:aa7:cac8:0:b0:410:cc6c:6512 with SMTP id l8-20020aa7cac8000000b00410cc6c6512mr27561204edt.408.1650527508001;
-        Thu, 21 Apr 2022 00:51:48 -0700 (PDT)
-Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p22-20020aa7c4d6000000b004209e0deb3esm11099378edr.30.2022.04.21.00.51.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 00:51:47 -0700 (PDT)
-Message-ID: <efd15268-d851-c9fc-fe07-0ff40c851746@linaro.org>
-Date:   Thu, 21 Apr 2022 09:51:46 +0200
+        with ESMTP id S1386270AbiDUH6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:58:22 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C616D14006
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:55:33 -0700 (PDT)
+Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 607DF2CA971;
+        Thu, 21 Apr 2022 09:55:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1650527731;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZpQe7I0qfISQzBp6OdH99ET7LGqCNHIm5wpnvInHgbY=;
+        b=17qULL0woLTgnaBxbCZJHpWHqL14Qg9TSsdXpEA9RTPIZUGVKHVrUChvS5inYxEzc5YcZ+
+        1yvOa5rcaSWTzZZkOcqGQykfsBd4KXkd7FrQQbYE0HlRsk8yLKPlhwIP3vNtKxEWc0QMFH
+        uexAXeHswH9HEWqMwtncc3T9WPwSuh6A6kjSBNcohchvqX995AGweWDIudKMzQBMENoZLp
+        NigA+F1D33HF/+MWouFDwiIJMWl7KyDNjOp311hganFzXSIRO5pqqOL7uk4QEceomDkqrm
+        XXtVOD0ow5eshtuESZgmdaffIl9S679BU21EhKw/Ms6dpb0ERvGwhyWWbjx1vg==
+Message-ID: <0a48cd99805736d6a01573effa28f771fdbe9485.camel@svanheule.net>
+Subject: Re: [PATCH v1 2/6] gpio: realtek-otto: Support reversed port layouts
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bert Vermeulen <bert@biot.com>, linux-kernel@vger.kernel.org,
+        andy.shevchenko@gmail.com
+Date:   Thu, 21 Apr 2022 09:55:30 +0200
+In-Reply-To: <CACRpkdYmKbHOZChSHjB-ykQCyCziwYTO_+Ai2vheo0y-vD_akA@mail.gmail.com>
+References: <cover.1649533972.git.sander@svanheule.net>
+         <7105ae382d7b328102f66b39ffd7c94998e85265.1649533972.git.sander@svanheule.net>
+         <CACRpkdYmKbHOZChSHjB-ykQCyCziwYTO_+Ai2vheo0y-vD_akA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 15/15] arm64: dts: renesas: Add Renesas White Hawk boards
- support
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
- <20220420084255.375700-16-yoshihiro.shimoda.uh@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220420084255.375700-16-yoshihiro.shimoda.uh@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
-> Initial support for the Renesas White Hawk CPU and BreakOut boards.
+Hi Linus,
+
+On Thu, 2022-04-21 at 01:01 +0200, Linus Walleij wrote:
+> On Sat, Apr 9, 2022 at 9:56 PM Sander Vanheule <sander@svanheule.net> wrote:
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  arch/arm64/boot/dts/renesas/Makefile          |  2 +
->  .../dts/renesas/r8a779g0-white-hawk-cpu.dtsi  | 45 +++++++++++++++++++
->  .../boot/dts/renesas/r8a779g0-white-hawk.dts  | 22 +++++++++
->  3 files changed, 69 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dts
+> > +       if (dev_flags & GPIO_PORTS_REVERSED) {
+> > +               bgpio_flags = 0;
+> > +               ctrl->port_offset_u8 = realtek_gpio_port_offset_u8_rev;
+> > +               ctrl->port_offset_u16 = realtek_gpio_port_offset_u16_rev;
+> > +       } else {
+> > +               bgpio_flags = BGPIOF_BIG_ENDIAN_BYTE_ORDER;
+> > +               ctrl->port_offset_u8 = realtek_gpio_port_offset_u8;
+> > +               ctrl->port_offset_u16 = realtek_gpio_port_offset_u16;
+> > +       }
 > 
+> Just checking: is this really a different silicon block, or is this
+> GPIO_PORTS_REVERSED flag passed around just a way of saying:
+> 
+> if (!IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) ...?
+
+The kernel for RTL930x SoC is built with CONFIG_CPU_BIG_ENDIAN=y, just like the
+older SoCs that were previously supported. The SoC's IRQ controller is also the
+same across RTL930x/RTL839x/RTL838x, even though 32-bit registers are used
+there.
+
+On RTL838x/RTL839x the GPIO IRQ control registers have byte layout:
+	[H1] [L1] [H2] [L2]
+	[H3] [L3] [H4] [L4]
+
+On RTL930x, the GPIO IRQ control registers are:
+	[H2] [L2] [H1] [L1]
+	[H4] [L4] [H3] [L3]
+which is the reverse of:
+	[L1] [H1] [L2] [H2]
+	[L3] [H3] [L4] [H4]
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Same for the GPIO registers:
+	On RTL83xx: [P1] [P2] [P3] [P4] (four 8b ports)
+	On RTL930x: [P4] [P3] [P2] [P1] (one BE32 port)
 
-Best regards,
-Krzysztof
+It looks like the RTL930x could use a little-endian interpretation of the 32b
+registers, followed by a little-endian interpretation of the contained port
+values. That would mean two reorderings for every 16b read or write operation,
+and manual manipulation of the register values. Although I have to say that the
+current offset calculation is not too pretty either.
+
+We also discussed this with Andy with the original submission of the driver:
+https://lore.kernel.org/linux-gpio/CAHp75VdrqE0kBwzK9Jk7pZGjyfFnhatfa8UY0z-3T1w1PrbAbw@mail.gmail.com/
+
+Best,
+Sander
