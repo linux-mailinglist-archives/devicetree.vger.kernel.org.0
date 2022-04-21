@@ -2,86 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5C9509FBE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 14:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F12E50A010
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 14:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382570AbiDUMh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 08:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42332 "EHLO
+        id S1386180AbiDUM4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 08:56:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385124AbiDUMhm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 08:37:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B4112F01F;
-        Thu, 21 Apr 2022 05:34:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D907E61C17;
-        Thu, 21 Apr 2022 12:34:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38513C385AA;
-        Thu, 21 Apr 2022 12:34:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650544490;
-        bh=nwEgRIc2DkjEOq+aHIKgb93W0tmpmkVrijOMlhjM+2c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kOcXb1lv/nzkVVo5+e+G7lB6G9q+Ds4gTUHOEz/mS+NRZiCo1cPMizp43AaZ/OJaf
-         6bmQrVibO21ey4Rx+3aEG5jTUMUgNRhavYc6YIjXtYurJmbNXP6AAxXXueZZ5bZo6g
-         YN51K3lqzjbNVUP77kKjHrm45TDIpc/pizXBKccj68lwtS+ILgIZlPPNIgVfnTijI4
-         lo2l2c/irPGCVcZunI5bIGJ5vcxNkLmCynsRilQHm5gWsdXXYLxbmRRwaCu8Rz3eJU
-         gFM7eA0lk4aAJfUnTT75o+Ov/kyZRhu9s38xzj1RLBmgymFhv/kiXB4b32Bk8R6o/s
-         2bitBY6TL3egA==
-Received: by mail-pl1-f175.google.com with SMTP id b7so4728503plh.2;
-        Thu, 21 Apr 2022 05:34:50 -0700 (PDT)
-X-Gm-Message-State: AOAM533iAcoXVp51eYWM+bDyRQRlWHbYRZIpCPfm/PpnAggQEAycB3qo
-        z1mhy1XXSdHUtBLBYHVzV4AtMbw+0+6ExoeJkQ==
-X-Google-Smtp-Source: ABdhPJwLEPk9OLMoJ9JMm2KtY59U1i0zQMGi1rF12qY8DyKg5Gv81xjxidpwgTMkqj9+231fmtFHFdon2zwGKBXhxtM=
-X-Received: by 2002:a17:902:eb8c:b0:158:4cc9:6998 with SMTP id
- q12-20020a170902eb8c00b001584cc96998mr25730080plg.35.1650544489734; Thu, 21
- Apr 2022 05:34:49 -0700 (PDT)
+        with ESMTP id S1386066AbiDUM4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 08:56:43 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA4932ED2;
+        Thu, 21 Apr 2022 05:53:54 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id fu34so3126140qtb.8;
+        Thu, 21 Apr 2022 05:53:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i+yvTJ4csWlC/K3VvJbfynfftzlHBRUT5FFzoCH9vrA=;
+        b=cZJzBnWGnQbZ9W/EVFkjnrF0Pxm3FVeeGxV6tkySoPIZmDAJiCm4PFnIMKODcKd1Bt
+         80OFvm6AN/kNBg0F0zr2moW3IhWs/2ewAUkRwtLtaLoArv7th/08CKd+uY5izMi7Vcpz
+         aSpAYjMLHuEhqqTdejVFLcU7cmnGVARgJ1FQC0dTaaGvysGacIdEAZ6wJ5o9Zv4VxvxZ
+         Pgz8x4JpujT9ODDq88SvZBODuvqM3e8T/T+SsBHJjxdeWdXEXM6gANzcwiuc6kaZy+uL
+         ZrZyUN+nrnTAHG0IOkCQJ2LH9sfOewrdHiiOuKAaRGsnb2Rj5nDnRhOkOwEi4hwFvo2s
+         nLeQ==
+X-Gm-Message-State: AOAM5331jzXghLmFIjsVMtUEucYu59AcfJiqZgAiYdHaWUf/owG+zFOC
+        FHqYuoPeKvE5/sMS66ZNRHB0PNCY7YGIURcW
+X-Google-Smtp-Source: ABdhPJwU9l6HWy1Cx+Kg1K9P8OWvrBQpu2CabNurh3cWKaWbCS22BeWsb21WPBAtDiFQQvIOUnAEQg==
+X-Received: by 2002:ac8:7f07:0:b0:2f1:f0e0:27b with SMTP id f7-20020ac87f07000000b002f1f0e0027bmr17380992qtk.464.1650545633113;
+        Thu, 21 Apr 2022 05:53:53 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id f19-20020a05620a409300b00680c933fb1csm3362458qko.20.2022.04.21.05.53.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 05:53:52 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-2ec42eae76bso50814547b3.10;
+        Thu, 21 Apr 2022 05:53:52 -0700 (PDT)
+X-Received: by 2002:a81:5210:0:b0:2ef:21e3:54dd with SMTP id
+ g16-20020a815210000000b002ef21e354ddmr26035446ywb.438.1650545632216; Thu, 21
+ Apr 2022 05:53:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220421122303.111766-1-wanjiabing@vivo.com>
-In-Reply-To: <20220421122303.111766-1-wanjiabing@vivo.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 21 Apr 2022 07:34:37 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Ess2=+r+=+QdqkF3pQw9CS=3so86FCM8Mn_XaKBTgLA@mail.gmail.com>
-Message-ID: <CAL_Jsq+Ess2=+r+=+QdqkF3pQw9CS=3so86FCM8Mn_XaKBTgLA@mail.gmail.com>
-Subject: Re: [PATCH] of: Add missing of_node_put() before return
-To:     Wan Jiabing <wanjiabing@vivo.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kael_w@yeah.net
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com> <20220420084255.375700-10-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420084255.375700-10-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 21 Apr 2022 14:53:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWRs6LSYo2Yh1ZfkkicYic8TUmXVN5eeL0chBn18qqvdA@mail.gmail.com>
+Message-ID: <CAMuHMdWRs6LSYo2Yh1ZfkkicYic8TUmXVN5eeL0chBn18qqvdA@mail.gmail.com>
+Subject: Re: [PATCH 09/15] soc: renesas: r8a779g0-sysc: Add r8a779g0 support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Thomas
+Hi Shimoda-san,
 
-On Thu, Apr 21, 2022 at 7:23 AM Wan Jiabing <wanjiabing@vivo.com> wrote:
+On Wed, Apr 20, 2022 at 10:43 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add support for R-Car V4H (R8A779G0) SoC power areas and register
+> access.
 >
-> Fix the following coccicheck error:
-> drivers/of/platform.c:554:2-23: WARNING: Function "for_each_node_by_type"
-> should have of_node_put() before return around line 560.
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Especially since the code this fixes just landed, you should Cc the
-author and reference the commit.
+Thanks for your patch!
 
-> Early exits from for_each_node_by_type() should decrement the node
-> reference counter.
+> --- a/drivers/soc/renesas/Kconfig
+> +++ b/drivers/soc/renesas/Kconfig
+> @@ -369,6 +369,10 @@ config SYSC_R8A779F0
+>         bool "System Controller support for R-Car S4-8" if COMPILE_TEST
+>         select SYSC_RCAR_GEN4
 >
-> Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
-> ---
->  drivers/of/platform.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> +config SYSC_R8A779G0
+> +       bool "System Controller support for R-Car V4H" if COMPILE_TEST
+> +       select SYSC_RCAR_GEN4
 
-This has to go via the DRM tree.
+Please insert below SYSC_R8A779A0, to preserve alphabetical
+order (by description).
 
-Fixes: 52b1b46c39ae ("of: Create platform devices for OF framebuffers")
-Acked-by: Rob Herring <robh@kernel.org>
+> +
+>  config SYSC_R8A7792
+>         bool "System Controller support for R-Car V2H" if COMPILE_TEST
+>         select SYSC_RCAR
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
