@@ -2,284 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC28950A906
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 21:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A6750A947
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 21:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390172AbiDUTWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 15:22:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58604 "EHLO
+        id S1392054AbiDUTho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 15:37:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389410AbiDUTWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 15:22:43 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1B8F2E5;
-        Thu, 21 Apr 2022 12:19:51 -0700 (PDT)
-Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 23LEv0Ko007017;
-        Thu, 21 Apr 2022 19:19:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references; s=pps0720;
- bh=kUzIlJ5qad8YpCJQCWHt6PCb8d/QHqmZG5rNDhyUL9M=;
- b=ET0NwvTFchYLtaj+IVhaVbtx4XDCIU4Vr6xZ4oTSYJGxfg7UcKc9r8/qI/v4XbzDEXtn
- t4iEhF0OXSRHrRw3ZG3L6btkh71D9FghpxK/8GMM71dmvhMoUx2omCepSOhbJT5fSLVh
- Ie0HUmTkUs8Ae6LT5ZA3nz7PrVfyKQ62ZlkO34tLWtZ/zcShdVzGnVLQrwQkJVp/Lrs4
- E4oCpf5lx9tt/O13iWKjMi1OfKKfnu00hrHxPk1YdV7pk8Mlx8YI+moGnfQ8lMsN1XMd
- XBs/P0Us4C1b3dnrE+QsK1YTwEPsviXyI1d9IXXbogrhB4B+httRUFQBZGlCfKVuwdUI DQ== 
-Received: from g4t3426.houston.hpe.com (g4t3426.houston.hpe.com [15.241.140.75])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3fk9fkt6bd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 21 Apr 2022 19:19:42 +0000
-Received: from g9t2301.houston.hpecorp.net (g9t2301.houston.hpecorp.net [16.220.97.129])
-        by g4t3426.houston.hpe.com (Postfix) with ESMTP id B04B562;
-        Thu, 21 Apr 2022 19:19:41 +0000 (UTC)
-Received: from hpe.com (cigateway-dev.us.rdlabs.hpecorp.net [10.14.73.30])
-        by g9t2301.houston.hpecorp.net (Postfix) with ESMTP id 60F1848;
-        Thu, 21 Apr 2022 19:19:41 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     verdun@hpe.com, nick.hawkins@hpe.com, joel@jms.id.au,
-        arnd@arndb.de, openbmc@lists.ozlabs.org
-Cc:     Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        with ESMTP id S1377598AbiDUThb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 15:37:31 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B63F4D9D5;
+        Thu, 21 Apr 2022 12:34:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1650569679; x=1682105679;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=V2XhEu/xK4MjbS65hi/Q6lIMusoHCPvjG1fI1HXbNTE=;
+  b=nJ7Rb/eWohIPpKgDA/zWA4EuU2Zo9AqJsDK6orWfoYbd6EANon8hL88I
+   q48VEJ1SJhFsdzU3pImmQfqDOV6GNn5xukGk5QJ5m52mKtJjDVmTMlv4P
+   4DNHcT0LP4r1mjok/hpVB8fxTEXObfuP/8WSfBAXj/0fROwWCfRwOm+Ml
+   XK/J4DkNc4k1vsVmZlvNFbaFJvbDIzDh3SsGFHCs27V4lAhiFqhnivkC7
+   ND3y7im4sWd/osBEq/17XYwZLIQlH5SIRDkQdbGqzsDfC/NmJP20gIzA0
+   dcvYWcwDNx/lNxlESw0ZQv85UQwT4b9E1rlVR8lPk6Ucti4B4HqAuAyZA
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="263928170"
+X-IronPort-AV: E=Sophos;i="5.90,279,1643702400"; 
+   d="scan'208";a="263928170"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 12:34:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,279,1643702400"; 
+   d="scan'208";a="866667170"
+Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2022 12:34:36 -0700
+Received: from kbuild by 3abc53900bec with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nhcZX-0008if-Fv;
+        Thu, 21 Apr 2022 19:34:35 +0000
+Date:   Fri, 22 Apr 2022 03:34:24 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Wan Jiabing <wanjiabing@vivo.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 10/11] arch: arm: boot: dts: Introduce HPE GXP Device tree
-Date:   Thu, 21 Apr 2022 14:21:31 -0500
-Message-Id: <20220421192132.109954-11-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220421192132.109954-1-nick.hawkins@hpe.com>
-References: <20220421192132.109954-1-nick.hawkins@hpe.com>
-X-Proofpoint-GUID: CTkM_sirV8zjtSvWPSbTNYOI5yK9wa3L
-X-Proofpoint-ORIG-GUID: CTkM_sirV8zjtSvWPSbTNYOI5yK9wa3L
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-21_04,2022-04-21_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 mlxscore=0 spamscore=0 lowpriorityscore=0
- malwarescore=0 bulkscore=0 mlxlogscore=999 impostorscore=0 phishscore=0
- suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2202240000 definitions=main-2204210102
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, kael_w@yeah.net,
+        Wan Jiabing <wanjiabing@vivo.com>
+Subject: Re: [PATCH] of: Add missing of_node_put() before return
+Message-ID: <202204220349.GgbfoMrp-lkp@intel.com>
+References: <20220421122303.111766-1-wanjiabing@vivo.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220421122303.111766-1-wanjiabing@vivo.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+Hi Wan,
 
-The HPE SoC is new to linux. This patch
-creates the basic device tree layout with minimum required
-for linux to boot. This includes timer and watchdog
-support.
+Thank you for the patch! Yet something to improve:
 
-The dts file is empty at this point but will be
-updated in subsequent updates as board specific features
-are enabled.
+[auto build test ERROR on next-20220421]
+[cannot apply to robh/for-next v5.18-rc3 v5.18-rc2 v5.18-rc1 v5.18-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Wan-Jiabing/of-Add-missing-of_node_put-before-return/20220421-202418
+base:    65eb92e4c9f0a962656f131521f4fbc0d24c9d4c
+config: i386-randconfig-a005 (https://download.01.org/0day-ci/archive/20220422/202204220349.GgbfoMrp-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.2.0-20) 11.2.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/e54621b530fe295566dfa8bc3d3481e624c3ee01
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Wan-Jiabing/of-Add-missing-of_node_put-before-return/20220421-202418
+        git checkout e54621b530fe295566dfa8bc3d3481e624c3ee01
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/
 
----
-v5:
-* Fixed commit message to show previous changes
-* Fixed typo ehci -> echi
-v4:
-* Removed hpe,gxp-cpu-init as it was no longer necessary
-* Removed bootargs as requested
-* Removed empty ahb node
-* Moved reg after compatible, everywhere
-* Removed osc and memclk
-* Removed syscon@c00000f8 as it was not necessary for boot
-* Fixed Alphabetical issue in dts/Makefile
-* Added specific board binding for dl360gen10
-* Removed empty node
-* Added Accurate Clock Architecture
-* Fixed generic-echi and generic-ochi issues
-* Removed i2cg
-v3:
-* Fixed issues with warnings
-* Used proper patchset format
-v2:
-* Reduced size of dtsi to essential components
-* Followed the proper format for having a dtsi and
-  dts
----
- arch/arm/boot/dts/Makefile               |   2 +
- arch/arm/boot/dts/hpe-bmc-dl360gen10.dts |  13 +++
- arch/arm/boot/dts/hpe-gxp.dtsi           | 128 +++++++++++++++++++++++
- 3 files changed, 143 insertions(+)
- create mode 100644 arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
- create mode 100644 arch/arm/boot/dts/hpe-gxp.dtsi
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b738..293717719c70 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -255,6 +255,8 @@ dtb-$(CONFIG_ARCH_HISI) += \
- 	hi3519-demb.dtb
- dtb-$(CONFIG_ARCH_HIX5HD2) += \
- 	hisi-x5hd2-dkb.dtb
-+dtb-$(CONFIG_ARCH_HPE_GXP) += \
-+	hpe-bmc-dl360gen10.dtb
- dtb-$(CONFIG_ARCH_INTEGRATOR) += \
- 	integratorap.dtb \
- 	integratorap-im-pd1.dtb \
-diff --git a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-new file mode 100644
-index 000000000000..69e9c6672ea8
---- /dev/null
-+++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for HPE DL360Gen10
-+ */
-+
-+/include/ "hpe-gxp.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "hpe,gxp-dl360gen10","hpe,gxp";
-+	model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
-+};
-diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe-gxp.dtsi
-new file mode 100644
-index 000000000000..a3a082d21101
---- /dev/null
-+++ b/arch/arm/boot/dts/hpe-gxp.dtsi
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for HPE GXP
-+ */
-+
-+/dts-v1/;
-+/ {
-+	model = "Hewlett Packard Enterprise GXP BMC";
-+	compatible = "hpe,gxp","hpe,gxp-dl360gen10";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			compatible = "arm,cortex-a9";
-+			reg = <0>;
-+			device_type = "cpu";
-+		};
-+	};
-+
-+	clocks {
-+
-+		pll: pll {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <1600000000>;
-+		};
-+
-+		iopclk: iopclk {
-+			compatible = "fixed-factor-clock";
-+			#clock-cells = <0>;
-+			clock-div = <4>;
-+			clock-mult = <1>;
-+			clocks = <&pll>;
-+		};
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x40000000 0x20000000>;
-+	};
-+
-+	axi {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+		dma-ranges;
-+
-+		ahb@c0000000 {
-+			compatible = "simple-bus";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xc0000000 0x30000000>;
-+
-+			vic0: interrupt-controller@eff0000 {
-+				compatible = "arm,pl192-vic";
-+				reg = <0xeff0000 0x1000>;
-+				interrupt-controller;
-+				#interrupt-cells = <1>;
-+			};
-+
-+			vic1: interrupt-controller@80f00000 {
-+				compatible = "arm,pl192-vic";
-+				reg = <0x80f00000 0x1000>;
-+				interrupt-controller;
-+				#interrupt-cells = <1>;
-+			};
-+
-+			uarta: serial@e0 {
-+				compatible = "ns16550a";
-+				reg = <0xe0 0x8>;
-+				interrupts = <17>;
-+				interrupt-parent = <&vic0>;
-+				clock-frequency = <1846153>;
-+				reg-shift = <0>;
-+			};
-+
-+			uartb: serial@e8 {
-+				compatible = "ns16550a";
-+				reg = <0xe8 0x8>;
-+				interrupts = <18>;
-+				interrupt-parent = <&vic0>;
-+				clock-frequency = <1846153>;
-+				reg-shift = <0>;
-+			};
-+
-+			uartc: serial@f0 {
-+				compatible = "ns16550a";
-+				reg = <0xf0 0x8>;
-+				interrupts = <19>;
-+				interrupt-parent = <&vic0>;
-+				clock-frequency = <1846153>;
-+				reg-shift = <0>;
-+			};
-+
-+			usb0: usb@efe0000 {
-+				compatible = "hpe,gxp-ehci","generic-ehci";
-+				reg = <0xefe0000 0x100>;
-+				interrupts = <7>;
-+				interrupt-parent = <&vic0>;
-+			};
-+
-+			st: timer@80 {
-+				compatible = "hpe,gxp-timer","simple-mfd";
-+				reg = <0x80 0x16>;
-+				interrupts = <0>;
-+				interrupt-parent = <&vic0>;
-+				clocks = <&iopclk>;
-+				clock-names = "iopclk";
-+				watchdog {
-+					compatible = "hpe,gxp-wdt";
-+				};
-+			};
-+
-+			usb1: usb@efe0100 {
-+				compatible = "hpe,gxp-ohci","generic-ohci";
-+				reg = <0xefe0100 0x110>;
-+				interrupts = <6>;
-+				interrupt-parent = <&vic0>;
-+			};
-+		};
-+	};
-+
-+};
+All errors (new ones prefixed by >>):
+
+   drivers/of/platform.c: In function 'of_platform_default_populate_init':
+>> drivers/of/platform.c:560:50: error: expected ';' before 'return'
+     560 |                                 of_node_put(node)
+         |                                                  ^
+         |                                                  ;
+     561 |                                 return -ENOMEM;
+         |                                 ~~~~~~            
+
+
+vim +560 drivers/of/platform.c
+
+   515	
+   516	static int __init of_platform_default_populate_init(void)
+   517	{
+   518		struct device_node *node;
+   519	
+   520		device_links_supplier_sync_state_pause();
+   521	
+   522		if (!of_have_populated_dt())
+   523			return -ENODEV;
+   524	
+   525		if (IS_ENABLED(CONFIG_PPC)) {
+   526			struct device_node *boot_display = NULL;
+   527			struct platform_device *dev;
+   528			int ret;
+   529	
+   530			/* Check if we have a MacOS display without a node spec */
+   531			if (of_get_property(of_chosen, "linux,bootx-noscreen", NULL)) {
+   532				/*
+   533				 * The old code tried to work out which node was the MacOS
+   534				 * display based on the address. I'm dropping that since the
+   535				 * lack of a node spec only happens with old BootX versions
+   536				 * (users can update) and with this code, they'll still get
+   537				 * a display (just not the palette hacks).
+   538				 */
+   539				dev = platform_device_alloc("bootx-noscreen", 0);
+   540				if (WARN_ON(!dev))
+   541					return -ENOMEM;
+   542				ret = platform_device_add(dev);
+   543				if (WARN_ON(ret)) {
+   544					platform_device_put(dev);
+   545					return ret;
+   546				}
+   547			}
+   548	
+   549			/*
+   550			 * For OF framebuffers, first create the device for the boot display,
+   551			 * then for the other framebuffers. Only fail for the boot display;
+   552			 * ignore errors for the rest.
+   553			 */
+   554			for_each_node_by_type(node, "display") {
+   555				if (!of_get_property(node, "linux,opened", NULL) ||
+   556				    !of_get_property(node, "linux,boot-display", NULL))
+   557					continue;
+   558				dev = of_platform_device_create(node, "of-display", NULL);
+   559				if (WARN_ON(!dev)) {
+ > 560					of_node_put(node)
+   561					return -ENOMEM;
+   562				}
+   563				boot_display = node;
+   564				break;
+   565			}
+   566			for_each_node_by_type(node, "display") {
+   567				if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+   568					continue;
+   569				of_platform_device_create(node, "of-display", NULL);
+   570			}
+   571	
+   572		} else {
+   573			/*
+   574			 * Handle certain compatibles explicitly, since we don't want to create
+   575			 * platform_devices for every node in /reserved-memory with a
+   576			 * "compatible",
+   577			 */
+   578			for_each_matching_node(node, reserved_mem_matches)
+   579				of_platform_device_create(node, NULL, NULL);
+   580	
+   581			node = of_find_node_by_path("/firmware");
+   582			if (node) {
+   583				of_platform_populate(node, NULL, NULL, NULL);
+   584				of_node_put(node);
+   585			}
+   586	
+   587			node = of_get_compatible_child(of_chosen, "simple-framebuffer");
+   588			of_platform_device_create(node, NULL, NULL);
+   589			of_node_put(node);
+   590	
+   591			/* Populate everything else. */
+   592			of_platform_default_populate(NULL, NULL, NULL);
+   593		}
+   594	
+   595		return 0;
+   596	}
+   597	arch_initcall_sync(of_platform_default_populate_init);
+   598	
+
 -- 
-2.17.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
