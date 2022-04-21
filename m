@@ -2,86 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31AF550AB12
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 23:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1831350AB19
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 00:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346896AbiDUWC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 18:02:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47838 "EHLO
+        id S1442284AbiDUWCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 18:02:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442261AbiDUWC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 18:02:26 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D994ECE2;
-        Thu, 21 Apr 2022 14:59:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=c0TEmygZCtd+n0FX1o8Qr5nSlGas+Hdc6UmjMRNu/Gc=; b=5DNfXsm5ExHsM60ji21p30uJuI
-        fvi96AqvXveUD5bsgMTDTU5YJ5eSTcbyXUtHXrZ33qmOUATizHZWghIjfI8uoNzn3a3Jc8RPcl7Ou
-        iijYrRvqqt4f3vMipgJkc7Dzm5OCpdAU1amAxsrPdQSNORdN9vP/xYKWQ9Qy5rVfJLIc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nhepk-00Grma-Oc; Thu, 21 Apr 2022 23:59:28 +0200
-Date:   Thu, 21 Apr 2022 23:59:28 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH 3/8] dt-bindings: nvmem: sfp: Add TA_PROG_SFP supply
-Message-ID: <YmHTwPsZ2QNoFmAF@lunn.ch>
-References: <20220421175657.1259024-1-sean.anderson@seco.com>
- <20220421175657.1259024-4-sean.anderson@seco.com>
+        with ESMTP id S1442277AbiDUWCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 18:02:48 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C151022
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 14:59:57 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id y11so3930490ilp.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 14:59:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e/i7C88k688+MpmDweUYU8miJaLmYfGKcYBjcJu+CDo=;
+        b=ULUOAKD5l9KGzgpIQGscugkj8DfAkAk5L3CYAzM3EUPB1DeRg5l0kv6OLuaYKAUVqP
+         fR42DOqJxwEXyDrysQjkBAv8vVNSLggl2PNVczfw65ERZjheqaWK85S7agGbICEEwBZt
+         1E2Jwe5Z8nN8CjNnio/hQ1FbQtJ7X3CV0C2XVtJvbnZbKNnj932aCVeG57lSigsPteAR
+         4VrtO/9f9kJYCNntoWIDXTIczPRJxGUKD/pkOrsaGU1b0h8xt8OxgWJvu1duVhyvxdJb
+         pEZf+T5tHa7AslVcsstpmpJXvyXrKIjsjm3TRf1Qm2VC94jllATwHetjqXtYHdylCs3m
+         emaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e/i7C88k688+MpmDweUYU8miJaLmYfGKcYBjcJu+CDo=;
+        b=h2fSI0oHm5s1ldAs2bRCAPGY0EIkctSn9cMwpjwSyjYy3DvgJgdHPZh/BeK6cphnn5
+         lwVh7XX1pG03UdO5HD7wTwFVrCX9ERbh0WZMmUmofwAEhh3OadEyyIwPddCqOl/ZN+gf
+         fIcssQH/AHKPNEvq+OQvq56kzNKNDjpjBsRGaNaD747y/eZT3mS4VEbwlr5SatECE7T9
+         KVn6FRqbhvBpg8TlCTadvrZbpU1hD0PZ2/jxu/zU3d3Vy7gLz7nAC+l6e8QZLfoIr6xx
+         KZHwhxkwHednnltFQQm6U60rafTSKI/QuZnW5ixHRTKkMBpDrfr6TTH8Ab2oN0q5Q8ve
+         dHrg==
+X-Gm-Message-State: AOAM533fxZ/p79pauaESqP2qvE6FbeFHUewv0zlT3c/l9rf+BAoS6kOf
+        A9WQSPX+rtenlyfzIwymC7tqvw==
+X-Google-Smtp-Source: ABdhPJwfkz2B9faaKd/IufhZz4WfvvGClgR/udStomS5H0LnkfxfEjjlnjeYZgcpR2CzaGFarHpMQQ==
+X-Received: by 2002:a92:1303:0:b0:2c5:f030:3074 with SMTP id 3-20020a921303000000b002c5f0303074mr774453ilt.134.1650578396474;
+        Thu, 21 Apr 2022 14:59:56 -0700 (PDT)
+Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.gmail.com with ESMTPSA id o19-20020a056e0214d300b002cbec3af6casm143004ilk.30.2022.04.21.14.59.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Apr 2022 14:59:55 -0700 (PDT)
+From:   Alex Elder <elder@linaro.org>
+To:     stable@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        davem@davemloft.net, elder@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: add IPA qcom,qmp property
+Date:   Thu, 21 Apr 2022 16:59:53 -0500
+Message-Id: <20220421215953.1750848-1-elder@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220421175657.1259024-4-sean.anderson@seco.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 01:56:52PM -0400, Sean Anderson wrote:
-> The TA_PROG_SFP supply must be enabled to program the fuses, and
-> disabled to read the fuses (such as at power-on-reset). On many boards,
-> this supply is controlled by a jumper. The user must manually insert or
-> remove it at the appropriate time in the programming process. However,
-> on other boards this supply is controlled by and FPGA or a GPIO. In
-> these cases, the driver can automatically enabled and disable it as
-> necessary.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
->  .../devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml        | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> index 54086f50157d..e7d1232fcd41 100644
-> --- a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> @@ -32,6 +32,11 @@ properties:
->    clock-names:
->      const: sfp
->  
-> +  ta-prog-sfp-supply:
-> +    description:
-> +      The TA_PROG_SFP supply. It will be enabled for programming and disabled
-> +      for reading.
-> +
+commit 73419e4d2fd1b838fcb1df6a978d67b3ae1c5c01 upstream.
 
-Doesn't there need to be some indication what this is? Is it a GPIO,
-or maybe a regulator?
+At least three platforms require the "qcom,qmp" property to be
+specified, so the IPA driver can request register retention across
+power collapse.  Update DTS files accordingly.
 
-   Andrew
+Cc: <stable@vger.kernel.org>	# 5.17.x
+Fixes: 1aac309d3207 ("net: ipa: use autosuspend")
+Signed-off-by: Alex Elder <elder@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/20220201140723.467431-1-elder@linaro.org
+---
+The code for this feature was included in the v5.17 cycle, but the
+DTS file updates were not accepted until v5.18-rc1.
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 ++
+ 3 files changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 2151cd8c8c7ab..e1c46b80f14a0 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -1459,6 +1459,8 @@ ipa: ipa@1e40000 {
+ 					     "imem",
+ 					     "config";
+ 
++			qcom,qmp = <&aoss_qmp>;
++
+ 			qcom,smem-states = <&ipa_smp2p_out 0>,
+ 					   <&ipa_smp2p_out 1>;
+ 			qcom,smem-state-names = "ipa-clock-enabled-valid",
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index eab7a85050531..d66865131ef90 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -1714,6 +1714,8 @@ ipa: ipa@1e40000 {
+ 			interconnect-names = "memory",
+ 					     "config";
+ 
++			qcom,qmp = <&aoss_qmp>;
++
+ 			qcom,smem-states = <&ipa_smp2p_out 0>,
+ 					   <&ipa_smp2p_out 1>;
+ 			qcom,smem-state-names = "ipa-clock-enabled-valid",
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 765d018e6306c..0bde6bbb3bc74 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1443,6 +1443,8 @@ ipa: ipa@1e40000 {
+ 			interconnect-names = "memory",
+ 					     "config";
+ 
++			qcom,qmp = <&aoss_qmp>;
++
+ 			qcom,smem-states = <&ipa_smp2p_out 0>,
+ 					   <&ipa_smp2p_out 1>;
+ 			qcom,smem-state-names = "ipa-clock-enabled-valid",
+-- 
+2.32.0
+
