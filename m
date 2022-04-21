@@ -2,140 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C66CA50A03E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CDEB50A090
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbiDUND7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 09:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55314 "EHLO
+        id S231431AbiDUNTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 09:19:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbiDUND6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:03:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF3A32994;
-        Thu, 21 Apr 2022 06:01:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D9FC1B82432;
-        Thu, 21 Apr 2022 13:01:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 869EFC385AB;
-        Thu, 21 Apr 2022 13:01:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650546066;
-        bh=26fiXcvDemM6BJ7uZ1NVAx0sy6/ya5jdkv/ODhIVIJM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QzXJaaWURzsxlRelTQ1EYdAlpTjHmbufxUxEVBW/phmgqw3wF4Mv6nyK0VdBdYv2O
-         XxwnR6Qubn80jnGhFQ++iMw9V3wKMIaZeUwNi765ODsUFuMz/NXDde8+sE+MsH9XT3
-         4EvH20663mGCDBT06jpb5TPaKl+IN6K+vMWk4x9AZ1Kns3BMq+8G5rl3O6uDBayHgX
-         vLvco/PPlVguW/VXsLgvXMeulXm5oNpIlDJZr1RGUeTVc46MBM5sL3mYIvFv75Euql
-         uUR+YTgLliR2gXApnYL5muRWwW3yCGB1Kk7UMAxPLGV63gEpijnH15uZR7K8Z+t9zT
-         ogfspf4u1cAfQ==
-Date:   Thu, 21 Apr 2022 18:30:57 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: qcom: db845c: Add support for MCP2517FD
-Message-ID: <20220421130057.GB262430@thinkpad>
-References: <20220421073438.1824061-1-vkoul@kernel.org>
+        with ESMTP id S231420AbiDUNTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:19:49 -0400
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BD3AE68;
+        Thu, 21 Apr 2022 06:16:59 -0700 (PDT)
+Received: by mail-qv1-f54.google.com with SMTP id x20so3615342qvl.10;
+        Thu, 21 Apr 2022 06:16:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LdrpbIr4ixaOqxSs9jtnnn2sf4I8o4aZzI3XC684CAw=;
+        b=COlR8byjH39Q5LSt6OMrvwPtq5olSRAXChEHh6kb+ItFjKi9QDHbnveKxu+aIZvhcM
+         0kA/3wcrK3gd0z45G7lseCR/borcduys0bYiar7jXTkVhWFYsqir2xQdSGJ7/S2hy1/P
+         WfbCDBgpkpin6Piirrh92aMrOtdWxAKEyfiZiZw8RlwBp4b0HjC3BoHSFf5rIWQNUlC+
+         tr9Yvj763eGSPqQpyQAzyQqqfYmIQ+veOi4zoh24DZt360F8bdpGgOJaKlndgZi7dZ6o
+         5eMA3mvSyZwscJFXRX+n+4TBKK0cqUDsCtMouc8XdNbJgEh3XoRXp9u05B//nYmK+LGg
+         EDhQ==
+X-Gm-Message-State: AOAM532H00MnW8c++N4JOBbmMnh23rJWFeZQK/h8UNHPKx6xzJpgP0+b
+        BzaTfTTGKOgdfKuCpC7rgTYwx/ibd6Tk2KAI
+X-Google-Smtp-Source: ABdhPJySxaTlVvMAOi0y5iiVOGnOfFkrGAKbIE1V8EpPDSyW9joZkmn7viRyTlY9G1UIc1hkFUYkUA==
+X-Received: by 2002:ad4:5aa2:0:b0:446:4a8a:3fd9 with SMTP id u2-20020ad45aa2000000b004464a8a3fd9mr17903895qvg.97.1650547018479;
+        Thu, 21 Apr 2022 06:16:58 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 9-20020a370909000000b0069ea2d5bfc2sm2834774qkj.134.2022.04.21.06.16.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 06:16:58 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-2f18982c255so51754617b3.1;
+        Thu, 21 Apr 2022 06:16:58 -0700 (PDT)
+X-Received: by 2002:a81:5210:0:b0:2ef:21e3:54dd with SMTP id
+ g16-20020a815210000000b002ef21e354ddmr26153395ywb.438.1650547017921; Thu, 21
+ Apr 2022 06:16:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220421073438.1824061-1-vkoul@kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com> <20220420084255.375700-11-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420084255.375700-11-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 21 Apr 2022 15:16:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUsO_UPPBumad2-=F7fdPSfCFirE8nNePfXahYAHL83rg@mail.gmail.com>
+Message-ID: <CAMuHMdUsO_UPPBumad2-=F7fdPSfCFirE8nNePfXahYAHL83rg@mail.gmail.com>
+Subject: Re: [PATCH 10/15] soc: renesas: Identify R-Car V4H
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 01:04:38PM +0530, Vinod Koul wrote:
-> Add support for onboard MCP2517FD SPI CAN transceiver attached to
-> SPI0 of RB3.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Hi Shimoda-san,
 
-One comment below but irrespective of that,
+On Wed, Apr 20, 2022 at 10:43 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add support for identifying the R-Car V4H (R8A779G0) SoC.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+Thanks for your patch!
 
-Thanks,
-Mani
-
-> ---
-> Change in v3:
->  - change underscore(_) to dash (-) in can-clock node name
->  - remove superfluous status = okay in can node
-> 
-> Changes in v2:
->  - add cs and pinctrl config
->  - remove misleading comment
-> 
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 32 ++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 28fe45c5d516..d2ade684703d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -28,6 +28,13 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	/* Fixed crystal oscillator dedicated to MCP2517FD */
-> +	clk40M: can-clock {
-
-clock@?
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <40000000>;
-> +	};
+> --- a/drivers/soc/renesas/Kconfig
+> +++ b/drivers/soc/renesas/Kconfig
+> @@ -247,6 +247,13 @@ config ARCH_R8A779F0
+>         help
+>           This enables support for the Renesas R-Car S4-8 SoC.
+>
+> +config ARCH_R8A779G0
+> +       bool "ARM64 Platform support for R-Car V4H"
+> +       select ARCH_RCAR_GEN3
+> +       select SYSC_R8A779G0
+> +       help
+> +         This enables support for the Renesas R-Car V4H SoC.
 > +
->  	dc12v: dc12v-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "DC12V";
-> @@ -746,6 +753,23 @@ codec {
->  	};
->  };
->  
-> +&spi0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&qup_spi0_default>;
-> +	cs-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
-> +
-> +	can@0 {
-> +		compatible = "microchip,mcp2517fd";
-> +		reg = <0>;
-> +		clocks = <&clk40M>;
-> +		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
-> +		spi-max-frequency = <10000000>;
-> +		vdd-supply = <&vdc_5v>;
-> +		xceiver-supply = <&vdc_5v>;
-> +	};
-> +};
-> +
->  &spi2 {
->  	/* On Low speed expansion */
->  	label = "LS-SPI0";
-> @@ -1219,3 +1243,11 @@ ov7251_ep: endpoint {
->  		};
->  	};
->  };
-> +
-> +/* PINCTRL - additions to nodes defined in sdm845.dtsi */
-> +&qup_spi0_default {
-> +	config {
-> +		drive-strength = <6>;
-> +		bias-disable;
-> +	};
-> +};
-> -- 
-> 2.34.1
-> 
+
+Please insert below ARCH_R8A779A0, to preserve alphabetical
+order (by description).
+
+>  config ARCH_R8A77980
+>         bool "ARM64 Platform support for R-Car V3H"
+>         select ARCH_RCAR_GEN3
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.19, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
