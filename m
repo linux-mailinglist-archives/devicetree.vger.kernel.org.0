@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 754DE509991
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1590B50999F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347545AbiDUHsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42200 "EHLO
+        id S1379372AbiDUHsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386436AbiDUHsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:48:15 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F4120F70
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:44:07 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id y10so8219423ejw.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:44:07 -0700 (PDT)
+        with ESMTP id S1386488AbiDUHsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:48:18 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7AD21E0D
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:44:33 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id i27so8220079ejd.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:44:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wFOM3aTz+LbKb8gZOMS549nd6n0GmljjOzNeZ6+Ou1w=;
-        b=ynkd2EDJs/zVMNdxjBj8nHfyCctK+pnpZavAb7r/eORAjJ3gr1daobIoECVEI/nv9Y
-         tW5rBB5vk6+trcfRUGAbuavqwTiN2s5omn+NsVRJyYcxKLNzhKe5Hw0ZfhGcagQcNH3k
-         nuiagjIChOJEkJq4SdpMw8VRKvPcOmxW+UZ6LjtXmT/CyuvHN5xqM3zXXqVkMVouxzKE
-         TRJelcv5j9l5skWNXJhgE7bYectcTt1odNP7SoLe5abu3haL6s836memBK07VFTvqCFt
-         v9p6yyoAGVNynA9l+aMTTDJWbPnVB5iKVvxAlVR0X+gHFut8dGdVUWzprUMg5AviU2sx
-         cOgQ==
+        bh=DXn4MsPaRhw2bwzR73NrZYRMxPElN5HIYbZglUtYs6E=;
+        b=Bm+1tMebLuBzhWJmnuFMtsOqqACQymVPUM5Rbm2UHxna6DRZUg0PhqLAopoWI909QF
+         XX23z4lrVGNm8L5wITOPAP5ORyi2p7oGKDrzgX/G+QVc2+R+ZeicvuwqKGd1tzqwB/kB
+         LoLpZcxqdn1HC1vGI0CJNb3Z2oU63bziT2cZipxI4LePMHunzpFWz6RS4rFcO8WE+x6O
+         YBrweXOQo0CMtIaaXkB2Y3YCQ2CDXrvWhBwyQzrh+ucDB8iOwPCkWFzCHkGybeNL7YVX
+         YjotBoi0DONBYhlmMYskF70XfNwkIyVmm7klu0a8GZxnj5T8rsRenSw5eB/3auTlNEj/
+         kG7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=wFOM3aTz+LbKb8gZOMS549nd6n0GmljjOzNeZ6+Ou1w=;
-        b=jyrtu6GKSex/XlsR3bkrzuuOJ7PfdmY+8w5U68qtAMyWxS5t2uvjJ0xOGMJrxqkWLj
-         wU2RfVTfMGLDBHEiUMKynq/JXHNV90Is9eE14pS3gh6hZXtqRFN88hSu2qrjM4s0qUAR
-         IeKjb5qsbZJqtC3GYaWIf1073yOdGlZl/sqs4PTJAzPLkYLmm7tpd2WhOWV6MC6LDRJk
-         DsbkrghusxnXFFEDcObApdRjWB+DtghB9dg2qpw9/dkFh24TIEOx+jTWKZiaVW1E6EeN
-         dfsVVetBvI2gTbyxeWU6nlipe60uyJjiaMymbWxeA8Pbj/AOWEWRNBRIRmnCSfn/zyBX
-         xfHw==
-X-Gm-Message-State: AOAM532NDPvQvOTY0WVS3tEY2XvaJD8geaNGrfWVDQq0J0NPklWBfZlB
-        OEyzO+0x6AwfW8AvBMkeHeSfeQ==
-X-Google-Smtp-Source: ABdhPJzWkBkZe1WhiJd8P+EOyRLym8rU+7Ih/yKEoUvviZF+KrrG6fVJu09hs2cLspSwCIw389MaHw==
-X-Received: by 2002:a17:906:3104:b0:6ce:6b85:ecc9 with SMTP id 4-20020a170906310400b006ce6b85ecc9mr21560466ejx.339.1650527046224;
-        Thu, 21 Apr 2022 00:44:06 -0700 (PDT)
+        bh=DXn4MsPaRhw2bwzR73NrZYRMxPElN5HIYbZglUtYs6E=;
+        b=rScNX09h1x7AQAegeKoR5JqD/d9WFhIP2uZHdCPUnUM6RRo8RKqDehRCdr40JtSfJ+
+         eY5WEdsVDKT4SXiSLRdtdhKBFUOlYChFCERpBhPW74adU/0jc7i22jiHagaQVFrHLNaL
+         LveGMWlEgg0gAMf053vKT0kuS9TUo3I0wgi4+5Quh1haW6yJvFqz025/sbTxfl9b6frh
+         JDRAtm4FGgowyddElDmX+sscGNBLwRioD+M9ylO62tBYxVD9N96bq+UY+KRBar0pmgJg
+         2GpQX3HnNFCXl27ys4NV0o+7fpqXh1ypmlYLqLchsxzCKcDafygOjKd7LqbWiOuRBMnN
+         LwpQ==
+X-Gm-Message-State: AOAM530YCmACBTmQMjIk62M1XdyII9IMQwovpEOJpO69U0fy7uKcz4HL
+        K5JkQPaHUqqcdjwoDwyFbc2sBQ==
+X-Google-Smtp-Source: ABdhPJycy+YO7LL72xZ8sGXH60Hp2+EIKmnOv1ExhmBdR9IonI/sRM7EOAy9M0kR4VOW5VvmjvFTzw==
+X-Received: by 2002:a17:907:7810:b0:6e7:ef73:8326 with SMTP id la16-20020a170907781000b006e7ef738326mr21458246ejc.429.1650527071759;
+        Thu, 21 Apr 2022 00:44:31 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ce21-20020a170906b25500b006e89869cbf9sm7538142ejb.105.2022.04.21.00.44.05
+        by smtp.gmail.com with ESMTPSA id t4-20020a1709067c0400b006ef810aab6fsm5393279ejo.213.2022.04.21.00.44.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 00:44:05 -0700 (PDT)
-Message-ID: <ff0711f5-0e41-9aae-0b2f-381f272481bb@linaro.org>
-Date:   Thu, 21 Apr 2022 09:44:04 +0200
+        Thu, 21 Apr 2022 00:44:31 -0700 (PDT)
+Message-ID: <6b6f6369-5f43-4956-8c70-7074829b6d35@linaro.org>
+Date:   Thu, 21 Apr 2022 09:44:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 05/15] dt-bindings: power: Add r8a779g0 SYSC power domain
- definitions
+Subject: Re: [PATCH 06/15] dt-bindings: clock: renesas,cpg-mssr: Document
+ r8a779g0
 Content-Language: en-US
 To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
         geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
@@ -62,15 +62,14 @@ To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
 Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-serial@vger.kernel.org
 References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
- <20220420084255.375700-6-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-7-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220420084255.375700-6-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420084255.375700-7-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,12 +77,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
-> Add power domain indices for R-Car V4H (r8a779g0).
-
-Are these values used by renesas,rcar-sysc (r8a779g0) - patch 4? If yes,
-maybe just squash it?
-
-In any case:
+> Add binding documentation for the R-Car V4H (R8A779G0) Clock Pulse
+> Generator.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
