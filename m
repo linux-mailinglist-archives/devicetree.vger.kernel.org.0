@@ -2,236 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34D2150A7E2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 20:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D7950A7F4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 20:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390984AbiDUSQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 14:16:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41214 "EHLO
+        id S1391194AbiDUSV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 14:21:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388386AbiDUSQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 14:16:02 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0314AE3E
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 11:13:11 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id d23-20020a17090a115700b001d2bde6c234so5925517pje.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 11:13:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=lJhN1mtetWtoQcGidNztP52TwkjHuAbhYwhXQGMD9XQ=;
-        b=aFZ1JRqXlPDvW0SAlxaHHiQdk3oRabw71YHdDlJhFsrxiGA6U4Mw9RdMR6DAXWcLVf
-         +ObfpbrbDez3ZtNYKvQ5ud1sH7rr10JnejK0wu5p0gCb7tTOZskJOtJZDL4c5fySz5KH
-         HH+L+vtSiEDgBfrNwftw2LTpbQ/rRwBdOsQcw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=lJhN1mtetWtoQcGidNztP52TwkjHuAbhYwhXQGMD9XQ=;
-        b=jIEx6xUWx+opEE1BRcGxqYSPWg/hHAak89ESRC/DjTv03KXM0sBDquHyZtomB5HC5V
-         1OvYg9BFrz2K0ewgO6+ZtmT0iXQR71aUQs5x2gclNikPXqAbWR3maT3Zk3SKsvqwI784
-         S4830bW5fUStdC4iIQtiszcZvgr/yn5gpWc/imCULEfJBcC4VFi46TH01eCGzAk2NKVJ
-         Aw6/N1RPCnDXgZtaYJGP47ZzJSzvUGR0CVoFlyG7C67Cexm3e9dKikdu/EM0ejua98wv
-         A7K+7G8PRBzC8MPEyU5HpST7LGdAjP1+KKwxr+u5+BL2BFG14FnGoQgzjh5LFvfgRS3w
-         /nAg==
-X-Gm-Message-State: AOAM532RM0I8j7mFGgX22SG2O3M68UmIkH4b9BJt1ShQh5Xi9LggHoh5
-        2g3DaIOwUHBM1u6h4mPci3vXHA==
-X-Google-Smtp-Source: ABdhPJx4vtQYv7ivk8pmhwD7P8ioY0zapzr/HTW7kdNOUbKpPJYVldebkDVUrO5e2cpLBCiMsmB2Fw==
-X-Received: by 2002:a17:90a:8a04:b0:1d5:d64f:a1e5 with SMTP id w4-20020a17090a8a0400b001d5d64fa1e5mr5396855pjn.109.1650564790608;
-        Thu, 21 Apr 2022 11:13:10 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d426:5807:a72:7b27])
-        by smtp.gmail.com with UTF8SMTPSA id d206-20020a621dd7000000b0050acf2c1303sm5839273pfd.107.2022.04.21.11.13.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 11:13:10 -0700 (PDT)
-Date:   Thu, 21 Apr 2022 11:13:08 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Guo Zhengkui <guozhengkui@vivo.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Li Jun <jun.li@nxp.com>, Peter Chen <peter.chen@nxp.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Subject: Re: [PATCH v21 0/3] usb: misc: Add onboard_usb_hub driver
-Message-ID: <YmGetA6Huz4Sj/RL@google.com>
-References: <20220217184254.4141705-1-mka@chromium.org>
- <CAD=FV=XswQj+L6rRuWH-PdoGp9vVsWKTwz1bFM_fagy55tKqEg@mail.gmail.com>
+        with ESMTP id S1377142AbiDUSVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 14:21:23 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B04613EAA9;
+        Thu, 21 Apr 2022 11:18:32 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 04C0A221D4;
+        Thu, 21 Apr 2022 20:18:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650565111;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8F6CN53BzDZd0GMZX26lmOXkDER5jODrK2Ga60c0CVk=;
+        b=haspqQR+8nkQNrGwTx3EQqnDmd+2SRdz5JmOPZnrMg9CndqZ59zzbpPiNTZL6wjwAPniyT
+        e1SvFJtellWwqCE4XhM2lYr9s4VvZeZpHqDyGIrU2VyDO80VX/rhp3qIJJL6GCCOzBCNHl
+        fKTZk5iIPsrEIIWXD1+BjQAdNISJoro=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=XswQj+L6rRuWH-PdoGp9vVsWKTwz1bFM_fagy55tKqEg@mail.gmail.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 21 Apr 2022 20:18:30 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 4/8] dt-bindings: nvmem: sfp: Add compatible binding for
+ TA 2.1 SFPs
+In-Reply-To: <20220421175657.1259024-5-sean.anderson@seco.com>
+References: <20220421175657.1259024-1-sean.anderson@seco.com>
+ <20220421175657.1259024-5-sean.anderson@seco.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <816dad4a1fd6869d89fc143030dd4ff9@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Apr 07, 2022 at 12:41:22PM -0700, Doug Anderson wrote:
-> Hi,
+Am 2022-04-21 19:56, schrieb Sean Anderson:
+> Trust Architecture (TA) 2.1 devices include the LS1012A, LS1021A,
+> LS1043A, and LS1046A. The SFP device on TA 2.1 devices is very similar
+> to the SFP on TA 3.0 devices. The primary difference is a few fields in
+> the control register. Add a compatible string.
 > 
-> On Thu, Feb 17, 2022 at 10:43 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > This series adds:
-> > - the onboard_usb_hub_driver
-> > - glue in the generic HCD code to create and destroy the
-> >   onboard_usb_hub platform devices if needed
-> > - device tree changes that add RTS5411 entries for the QCA SC7180
-> >   based boards trogdor and lazor
-> > - a couple of stubs for platform device functions to avoid
-> >   unresolved symbols with certain kernel configs
-> >
-> > The main issue the driver addresses is that a USB hub needs to be
-> > powered before it can be discovered. For discrete onboard hubs (an
-> > example for such a hub is the Realtek RTS5411) this is often solved
-> > by supplying the hub with an 'always-on' regulator, which is kind
-> > of a hack. Some onboard hubs may require further initialization
-> > steps, like changing the state of a GPIO or enabling a clock, which
-> > requires even more hacks. This driver creates a platform device
-> > representing the hub which performs the necessary initialization.
-> > Currently it only supports switching on a single regulator, support
-> > for multiple regulators or other actions can be added as needed.
-> > Different initialization sequences can be supported based on the
-> > compatible string.
-> >
-> > Besides performing the initialization the driver can be configured
-> > to power the hub off during system suspend. This can help to extend
-> > battery life on battery powered devices which have no requirements
-> > to keep the hub powered during suspend. The driver can also be
-> > configured to leave the hub powered when a wakeup capable USB device
-> > is connected when suspending, and power it off otherwise.
-> >
-> > Changes in v21:
-> > - dropped patch 'driver core: Export device_is_bound()'
-> > - refactored _find_onboard_hub()
-> > - removed 'onboard_hub_dev' symlinks from USB devices
-> > - dropped patch 'arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub'
-> >   (will be sent separately)
-> > - rebased series on v5.17-rc4
-> >
-> > Changes in v20:
-> > - addressed review comments from Stephen
-> > - changed DT node names for hubs
-> >
-> > Changes in v19:
-> > - added VID:PID pairs and compatible strings for RTS5414 hub
-> > - updated comments with RTS5411 USB versions to reflect those
-> >   reported/supported by the hub
-> > - rebased series on v5.16
-> >
-> > Changes in v18:
-> > - introduced hidden Kconfig option to align module vs. builtin
-> >   choice with CONFIG_USB (thanks Doug!)
-> > - added patch 'driver core: Export device_is_bound()'
-> > - also adjust device tree of pompom rev1
-> > - dropped the following patches, which aren't needed anymore by this
-> >   series (though they might still be useful on their own):
-> >   - usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
-> >   - arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
-> >   - ARM: configs: Explicitly enable USB_XHCI_PLATFORM where needed
-> >
-> > Changes in v17:
-> > - rebased on top of v5.16-rc1
-> > - moved creation of onboard_hub platform devices from xhci_platform
-> >   to the generic HCD code
-> > - addressed review comments for the onboard_hub driver
-> > - moved Kconfig/defconfig changes to the end of the series. The
-> >   onboard_hub driver doesn't depend on XHCI_PLATFORM anymore,
-> >   hence these changes aren't really required for the driver, but
-> >   they still seem to be a worthwhile improvement
-> >
-> > Changes in v16:
-> > - added patch 'ARM: configs: Explicitly enable USB_XHCI_PLATFORM
-> >   where needed' to keep arm32 defconfigs effectively unchanged
-> >
-> > Changes in v15:
-> > - adjusted dependencies of USB_DWC3_CORE to make sure it can only
-> >   be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
-> >   or USB_DWC3_DUAL_ROLE is selectable
-> >
-> > Changes in v14:
-> > - rebased on top of v5.14-rc1
-> > - dropped DT binding patch which landed in v5.13
-> >
-> > Changes in v13:
-> > - added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
-> >   'depends on'" to the series to avoid Kconfig conflicts
-> > - added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
-> >   to the series to keep effective defconfig unchanged
-> >
-> > Changes in v12:
-> > - onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
-> >   in onboard_hub.h to also check for the driver built as module
-> > - onboard_hub_driver: include onboard_hub.h again to make sure there
-> >   are prototype declarations for the public functions
-> >
-> > Changes in v11:
-> > - support multiple onboard hubs connected to the same parent
-> > - don't include ‘onboard_hub.h’ from the onboard hub driver
-> >
-> > Changes in v10:
-> > - always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
-> > - keep 'regulator-boot-on' property for pp3300_hub
-> >
-> > Changes in v9:
-> > - added dependency on ONBOARD_USB_HUB (or !ONBOARD_USB_HUB) to
-> >   USB_PLATFORM_XHCI
-> >
-> > Changes in v7:
-> > - updated DT binding
-> > - series rebased on qcom/arm64-for-5.13
-> >
-> > Changes in v6:
-> > - updated summary
-> >
-> > Changes in v5:
-> > - cover letter added
-> >
-> > Matthias Kaehlcke (3):
-> >   of/platform: Add stubs for of_platform_device_create/destroy()
-> >   usb: misc: Add onboard_usb_hub driver
-> >   usb: core: hcd: Create platform devices for onboard hubs in probe()
-> >
-> >  .../sysfs-bus-platform-onboard-usb-hub        |   8 +
-> >  MAINTAINERS                                   |   7 +
-> >  drivers/usb/core/hcd.c                        |   6 +
-> >  drivers/usb/misc/Kconfig                      |  23 +
-> >  drivers/usb/misc/Makefile                     |   1 +
-> >  drivers/usb/misc/onboard_usb_hub.c            | 510 ++++++++++++++++++
-> >  include/linux/of_platform.h                   |  22 +-
-> >  include/linux/usb/hcd.h                       |   1 +
-> >  include/linux/usb/onboard_hub.h               |  18 +
-> >  9 files changed, 592 insertions(+), 4 deletions(-)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
-> >  create mode 100644 drivers/usb/misc/onboard_usb_hub.c
-> >  create mode 100644 include/linux/usb/onboard_hub.h
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
 > 
-> With v5.18-rc1 out the door, I wonder if it's a good time to look at
-> this series again. Are there any hidden blockers that it's waiting
-> for?
+>  .../devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml    | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> index e7d1232fcd41..aa277f1eee7e 100644
+> --- a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> @@ -18,8 +18,13 @@ allOf:
+> 
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,ls1028a-sfp
+> +    oneOf:
+> +      - description: Trust architecture 2.1 SFP
+> +        items:
+> +          - const: fsl,ls1021a-sfp
+> +      - description: Trust architecture 3.0 SFP
+> +        items:
+> +          - const: fsl,ls1028a-sfp
 
-Greg, please let me know if any further changes are needed or if this
-series can be landed.
+I'm unsure about this one. Esp. if you reuse the fsl,ls1028a-sfp
+compatible on other SoCs, there were some endianess issues with
+other IP blocks on the ls1028a. So it might be that on the LS1028A
+the IP has to accessed in little endian order and for other devices
+in big endian. I think we should add one compatible per SoC unless
+we know better.
+
+-michael
