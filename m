@@ -2,148 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8529550A48D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 17:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5A350A488
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 17:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390268AbiDUPp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 11:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42928 "EHLO
+        id S231181AbiDUPpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 11:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390317AbiDUPpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 11:45:42 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484794927A;
-        Thu, 21 Apr 2022 08:42:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1650555699;
-        bh=qO7WWncsu8pqavraYehTZbqYkoK5x7r8ZxY5T97XoXw=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=b+ULn39b+bj0QXQCBw1ebteDuTea9undETS0F3wjN4eLKsi4JB2YQXogVfc83LBez
-         yKNmLOcb21RK7yGdjB5m6CjS2/vj+M6UcAbEkV7RpYjgtYRIZWuVVONj+tsRzKG1F3
-         prFeyU+w5t492/e8TZXuRN8Tb0BY4Vy5259dV3Uc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.79.123] ([80.245.79.123]) by web-mail.gmx.net
- (3c-app-gmx-bap38.server.lan [172.19.172.108]) (via HTTP); Thu, 21 Apr 2022
- 17:41:39 +0200
+        with ESMTP id S1390280AbiDUPpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 11:45:32 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C269F48334
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 08:42:08 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id m14-20020a17090a34ce00b001d5fe250e23so2211785pjf.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 08:42:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=L2BkpTCz5akLsohhEIIUYuv1LmfI2RQS6LEGsp/sj6w=;
+        b=m1gyy5dvpwSTVTH1w7nGbqrC6fljhM2QZ8C6huIyhVBYkcXMS4azkaDXSl+hJRAhxK
+         pmC6BhzshY1KUxMRPHX0/UlFJsqlZkAYRZqPEKDKaoTuxlmkGikKXmRKlYugk0gFMnZh
+         +zqsTkAumqipfpplHayGys82rP5jCL6o9cWOg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=L2BkpTCz5akLsohhEIIUYuv1LmfI2RQS6LEGsp/sj6w=;
+        b=ZoM6iLdqbVGW0TAF9EZ5Jht4cTWVQg8bZNcx13OWMIC5S93As+JUk7cFlSXJVWPhP2
+         twcJd4DbBBo0l/V77qsSbAyFUDuN+EtCiHhQvAzTrfm1SDJfk4VOH7khPAoMPqDt4S+y
+         3R7g3LildLs1aPNow60iDyXRGfqMVDHgMeVD1UWiw4pR69PyrVnTEyXvWkU+YufyWuYZ
+         GVuUwWCdY9MZ0VGCYZ9v5nCQ6m8U3V0kBcL8otxG2QpfdnCAqSAqxJzq4rVVWgC2ab31
+         4qotSuR8Dlv1E2tDmh5WHG1wavxNQHlkOTkmzT0FC+ZetbKF5qMVNkJlJhrnadYYkGrL
+         Ye7g==
+X-Gm-Message-State: AOAM531IHVK5ZeOEcN9IA8eSIAwuKP9UrzFPyDLm1RafdLJ4C0N7bGJS
+        fga5UdfmMprOqxIeCJVy4dt4NQ==
+X-Google-Smtp-Source: ABdhPJwYo4k73WHrantPhUBUqbwFNdVAqpeNInsw9CuK++22pbLVzGNiv9Mxabafa/NNcHZgLnRoIQ==
+X-Received: by 2002:a17:90a:c781:b0:1d0:c23e:5842 with SMTP id gn1-20020a17090ac78100b001d0c23e5842mr11130978pjb.182.1650555727697;
+        Thu, 21 Apr 2022 08:42:07 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d426:5807:a72:7b27])
+        by smtp.gmail.com with UTF8SMTPSA id t66-20020a628145000000b0050ca37e60eesm1153066pfd.57.2022.04.21.08.42.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 08:42:07 -0700 (PDT)
+Date:   Thu, 21 Apr 2022 08:42:05 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v8 2/4] arm64: dts: qcom: sc7280: Add nodes for wcd9385
+ and max98360a codec
+Message-ID: <YmF7TRlxUWWQ394e@google.com>
+References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
+ <1650291252-30398-3-git-send-email-quic_srivasam@quicinc.com>
+ <Yl2VmW18QAJl9v+m@google.com>
+ <5ac149ac-4862-e8c9-185c-524c4b111961@quicinc.com>
+ <5d4b7c44-62e1-aaa6-3116-f58e1a1b437b@quicinc.com>
 MIME-Version: 1.0
-Message-ID: <trinity-1c858470-8354-4ecd-ace7-a6e437cb5923-1650555699148@3c-app-gmx-bap38>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Wunderlich <linux@fw-web.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Aw: Re: Re: [RFC/RFT 4/6] PCI: rockchip-dwc: add pcie bifurcation
-Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 21 Apr 2022 17:41:39 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAMdYzYpydGyQZT2n9Tf+ccQMLHzfhOgoyamMgspQDcjzm3Umdg@mail.gmail.com>
-References: <trinity-a220fd81-2ee9-474d-bd65-505b9ed904b2-1650186482865@3c-app-gmx-bs58>
- <20220418155313.GA1101563@bhelgaas>
- <CAMdYzYpydGyQZT2n9Tf+ccQMLHzfhOgoyamMgspQDcjzm3Umdg@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:fMhCkXFkWk6jz1YC+ACHfChGGaYlwtUgwWcAnA0jyPbYw+1++3n2PWOoruUedVEe3O/nQ
- hDXeXjlmBChv+exHvKh31aXoT2WMSGUsSsGWqskuolAgm32mb16s6bTyLBSYtyP5Sg25cf0JPmXJ
- 1pePEo7O+SI/2Uh8PWKiMger7oxtNy0YJJqYI+mBRs1lneD0he6ep57APIq3Euail8eSb3oQ1N1t
- QJ0n5Muonbp6RS4DYQMXP774RwDlOzQRQsjzLD/mjxpPK7b1IV/OtbmUTj8gaCQgDDN5tUv+dMym
- H4=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:2nkMVzuz8fg=:WjCZA2rE/qwwh+MU3sEN/r
- je5+6b+/RRLEZWWlafKstjYHv9f42eqbK6znP181CwuscNFSZjPl+ZR0HKMM7EydWaRcZe/ll
- BCl+krEEXdZUBXvWxN7pl11y0YtJRF/i6dPA75W2WcZOp3+4A65+kN9+ny41jIuUEDMs74lhH
- mlr1cKsf35glpeo45jO6pK6jJcuXVlctuuf0NAvA2rMuAzjHtYFAbYULFQ4NMMKgwDzge1yo8
- j4Lyb7g1uK+V0PwRFsRsWTFrrgK7r3KeHAoy0yjxVTw10wa9hQaRqyS6AYEBnA9MKhCECi6BF
- IooRgAAog8qUceYmla24ULXMV52boFDwi50i7zQFDUn2JUCVw2wJIli0TtSDY76YvVfG16Rqe
- kRZ7vXEtrSLD0eBvjy9o1qoZ+XuRbzMvLC2uxvGwG4uKTT6R1jd59YbrosallEcZqsmO5+Kr5
- xi3NoAXZsdYMYVWQoOFYguVwJlJ05EaBIgoUYtmUx1SDO4JLZhypXT2uoKccQlEIwOS4KlvZO
- 9HfdqR+WKJAllWAbVUtSrhGjQ+yaNXPWNmSv8K+1dqKdbXF65ccZxnET97oWwubt3p67rR0jQ
- affk8sssrapLyMlQ6zJ5CA2iC7h6xRXYxkwV0nYiaobtjCYLLwMOSvupflLa4xyk9lrgEXZt4
- aHim3uq8km4fyBx7FG4mygswCimCKLaiNJWINxGFUzliPO1i23YRcWaZKKUA7LGnEBdO0lazI
- V+/cc0pXMdiZYEG0k/hxV4sGCzUUphJ4RWxS+GvuKGrOQCGk+otFOoyS2Ncv4BdrqvmOOdXuh
- ALV1zmu
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5d4b7c44-62e1-aaa6-3116-f58e1a1b437b@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Montag, 18. April 2022 um 18:17 Uhr
-> Von: "Peter Geis" <pgwipeout@gmail.com>
-> > On Sun, Apr 17, 2022 at 11:08:02AM +0200, Frank Wunderlich wrote:
-> > > > On Sat, Apr 16, 2022 at 03:54:56PM +0200, Frank Wunderlich wrote:
-> > > > > From: Frank Wunderlich <frank-w@public-files.de>
-> > > > >
-> > > > > PCIe Lanes can be split to 2 slots with bifurcation.
-> > > > > Add support for this in existing pcie driver.
-> >
-> > > > Is the "rockchip,bifurcation" DT property something that should be
-> > > > generalized so it's not rockchip-specific?  Other controllers are
-> > > > likely to support similar functionality.
-> > >
-> > > I do not know if other controllers support similar functionality,
-> > > but i ack a property without vendor prefix is better. Should i use
-> > > "bifurcation" as name or do you think about a different name which
-> > > is more generic?
-> >
-> > Really a question for Rob about what name would be good and where it
-> > should go.
->
-> It might be good to define this as a lane map.
-> In the Rockchip implementation it's only 2+0 or 1+1, but that isn't
-> guaranteed if this is made into a standard definition.
-> So perhaps:
-> pcie-bifurcation-map =3D <0>, <1>;
-> pcie-bifurcation-map =3D <1>;
-> pcie-bifurcation-map =3D <4>, <5>, <6>, <7>;
+On Thu, Apr 21, 2022 at 12:31:52PM +0530, Srinivasa Rao Mandadapu wrote:
+> 
+> On 4/19/2022 4:54 PM, Srinivasa Rao Mandadapu wrote:
+> > 
+> > On 4/18/2022 10:15 PM, Matthias Kaehlcke wrote:
+> > Thanks for your time and valuable inputs Matthias!!!
+> > > On Mon, Apr 18, 2022 at 07:44:10PM +0530, Srinivasa Rao Mandadapu wrote:
+> > > > Add wcd938x and  max98360a codecs for audio use case on
+> > > > sc7280 based platforms.
+> > > > Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+> > > > Add amp_en node for  max98360a codec.
+> > > General note: I don't think it's a good practice to add stuff like
+> > > this to
+> > > multiple boards in a single patch. Why?
+> > > 
+> > > First the subject of such a patch tends to be vague ("arm64: dts: qcom:
+> > > sc7280: Add nodes for wcd9385 and max98360a codec"), in this case it
+> > > gives
+> > > no hint about the boards. If someone was interested in picking changes
+> > > for a given board they can't easily identify from the subject that the
+> > > change is relevant for them.
+> > > 
+> > > Changes touching multiple boards are more likely to cause conflicts when
+> > > being picked (or reverted), both upstream and in downstream trees (which
+> > > unfortunately have to exist for product development). Downstream trees
+> > > might only pick changes for the board(s) they target, patches that touch
+> > > mutiple boards often cause conflicts due to context deltas in the
+> > > 'irrelevant' boards.
+> > > 
+> > > Lastly it's usually easier to get a patch reviewed (in the sense of
+> > > getting a 'Reviewed-by' tag) and landed that does a single thing.
+> > 
+> > Yes, agree to your opinion. In a nutshell, we will include board
+> > name(ex: herobrine)
+> > 
+> > in commit message and split the patches per external codec.
+> > 
+> > Actually, in Initial herobrine boards, EVT and IDP, has both maxim
+> > speaker and WCD codec,
+> > 
+> > hence we included in same patch.
+> > 
+> > > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> > > > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |  6 ++
+> > > >   arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  8 +++
+> > > >   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 97
+> > > > ++++++++++++++++++++++++++
+> > > >   3 files changed, 111 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> > > > b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> > > > index 344338a..aa0bf6e2 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> > > > @@ -87,6 +87,12 @@ ap_ts_pen_1v8: &i2c13 {
+> > > >       pins = "gpio51";
+> > > >   };
+> > > >   +&wcd938x {
+> > > > +    pinctrl-names = "default";
+> > > > +    pinctrl-0 = <&us_euro_hs_sel>;
+> > > > +    us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+> > > > +};
+> > > Since this is added for the CRD rev3 it probably should also be added to
+> > > sc7280-herobrine-crd.dts
+> > Okay. Will add in corresponding latest herobrine CRD dts file also.
+> > > 
+> > > > +
+> > > >   &tlmm {
+> > > >       tp_int_odl: tp-int-odl {
+> > > >           pins = "gpio7";
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > > b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > > index d58045d..f247403 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> > > > @@ -20,6 +20,14 @@
+> > > >   #include "sc7280-chrome-common.dtsi"
+> > > >     / {
+> > > > +    max98360a: audio-codec-0 {
+> > > > +        compatible = "maxim,max98360a";
+> > > > +        pinctrl-names = "default";
+> > > > +        pinctrl-0 = <&amp_en>;
+> > > > +        sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> > > > +        #sound-dai-cells = <0>;
+> > > > +    };
+> > > > +
+> > > >       chosen {
+> > > >           stdout-path = "serial0:115200n8";
+> > > >       };
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > > b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > > index 2f863c0..8dad599 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> > > > @@ -20,6 +20,42 @@
+> > > >           serial1 = &uart7;
+> > > >       };
+> > > >   +    max98360a: audio-codec-0 {
+> > > > +        compatible = "maxim,max98360a";
+> > > > +        pinctrl-names = "default";
+> > > > +        pinctrl-0 = <&amp_en>;
+> > > > +        sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+> > > > +        #sound-dai-cells = <0>;
+> > > > +    };
+> > > > +
+> > > > +    wcd938x: audio-codec-1 {
+> > > Why 'wcd938x' and not 'wcd9385'?
+> > 
+> > Actually same driver is used for both wcd9380 and wcd9385. Here we can
+> > use specific name as per board.
+> > 
+> > Will change accordingly.
+> 
+> At present, dt-bindgs also has wcd938x. So will update the name in bindings
+> and here post this series.
+> 
+> is it okay?
 
-how about a lane-map like this (from controllers point of view):
-
-rockchip with only 2 lanes (like rk3568):
-
-controller 1:
-lane-map =3D <1 0>;
-
-controller 2:
-lane-map =3D <0 1>;
-
-here bifurcation is set if a controller does not aquire all lanes.Afaik rk=
-3568 cannot select specific lanes so i end up with bifurcation =3D true/fa=
-lse (an aggregation-mode on phy) again. but it makes dts-property more usa=
-ble for other devices/SoC.
-
-this contains the maximum of lanes and as mask the lanes to take by the cu=
-rrent controller. It is scalable to support more pcie-lanes (x2 x4 x8)
-
-example for 2 controllers with PCIe x4 (with 8 lanes available):
-
-lane-map=3D<0 0 0 0 1 1 1 1>;
-lane-map=3D<1 1 1 1 0 0 0 0>;
-
-of course they can be mixed, if driver supports this.
-
-lane-map=3D<0 1 0 1 0 1 0 1>;
-lane-map=3D<1 0 1 0 1 0 1 0>;
-
-such lane-map is more flexible
-
-regards Frank
+I don't think it's strictly necessary to update the binding, as
+'wcd938x' is only used in the example, and also it's not really
+wrong. Then again, if the example in the binding uses a
+specific wcd version it might make it less likely that the
+wildcard name is used in future board DTs. Up to you :)
