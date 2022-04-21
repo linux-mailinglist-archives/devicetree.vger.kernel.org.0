@@ -2,292 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3693D509E72
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 13:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 181ED509EA2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 13:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388787AbiDULYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 07:24:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56434 "EHLO
+        id S1388819AbiDULjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 07:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388780AbiDULYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 07:24:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCDA2BB35;
-        Thu, 21 Apr 2022 04:21:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A5A27B82431;
-        Thu, 21 Apr 2022 11:21:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68112C385A7;
-        Thu, 21 Apr 2022 11:21:47 +0000 (UTC)
-Message-ID: <733c4775-777d-b0cd-83b6-934fecb1475e@xs4all.nl>
-Date:   Thu, 21 Apr 2022 13:21:46 +0200
+        with ESMTP id S1353152AbiDULjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 07:39:00 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFA920F67
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 04:36:10 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id d6so8152839lfv.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 04:36:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=nhxnVej2CIUMLhdNzrsZoPwHkHCS1xzrTTmqvH/njl8=;
+        b=JlgcvbzqGUzAWxfa2H0VDGBAue1ylSoHDEeaowQLuS7QB3U10bKI92k3Pnhi1se7Ud
+         wpwpruPBzEMnxiE7eHnnKLc66ErVKGoZvKUyfHQ2vPJhU1DGoELOMXZmjnpVGu6K6jkr
+         eQvTqyvE30q2iQHVz9GJyPhs2GKEs38GL4BSLyh8P1Pl+q+2RW3pOHYHHh1Ll4mPBsMD
+         aBq8q69v28bV2iMJXb3jOCDDkM6LwDUWlwjZ8a7i0MJHAgnsylmaKSI4jTWoq7NPFlb+
+         XNHQvFIl7FDBe/E6Z+H7VyGrw9afFBEfOGHZTU/IqrWwNR3zv0NhSPTjHMe1czKyWxds
+         Jynw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nhxnVej2CIUMLhdNzrsZoPwHkHCS1xzrTTmqvH/njl8=;
+        b=3S35Gj+GqFg1IyGISdE/19U+18gHHDgL/TLoS0MDxRkKSU3ieSZCqc1KVanYJnebUb
+         kBbVlxxRFfHMPPsHiGF9MpW7HzeZRVX2v2Gi++7DMqPQJ4OAY2SeeiHtTiqti4y0g0CY
+         p/vW7UuduHrkzWXds4He89v6yicJGRM8F97Kh6LIV/u+UM5kIXOiosg2LYnWetnnBymg
+         4OlhnxlANLmBXSd4djLed3MbxSA+DCzzoa36XC5ucIF0q0CTZGlaimfjdaMuzVfxZ2fr
+         c+9/m5TdfudHhs0r4a4gkd0upt/u15OZi15wbMdpVHFPxotyQ5U8I0nh4QCO33+nlZyF
+         bPmw==
+X-Gm-Message-State: AOAM530VDjXODsM3aRfIx5HgaH+1J4xxMYHsYfG+DUtKCcK4F2wYUpoR
+        Qw7QE9o2AucJmirOTutgQELnJw==
+X-Google-Smtp-Source: ABdhPJzUhkWLfAN2qyBuzif4rSkuHafqFixxn6fwtjaFjUpPSgYzT8HvoUwrlPrV9m9YTT0Id8YCBA==
+X-Received: by 2002:ac2:5339:0:b0:46b:c20a:b5f9 with SMTP id f25-20020ac25339000000b0046bc20ab5f9mr17943098lfh.105.1650540968641;
+        Thu, 21 Apr 2022 04:36:08 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id h6-20020a2e5306000000b00247e893075asm2007916ljb.37.2022.04.21.04.36.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 04:36:08 -0700 (PDT)
+Message-ID: <f4cfc1b3-2a85-f948-ff2c-27588cbe2210@linaro.org>
+Date:   Thu, 21 Apr 2022 14:36:05 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] media: imx-jpeg: Encoder support to set jpeg quality
-Content-Language: en-US
-To:     Ming Qian <ming.qian@nxp.com>,
-        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220406094623.7887-1-ming.qian@nxp.com>
- <80bcabe7-5761-7244-c6ea-1b5893395170@oss.nxp.com>
- <AM6PR04MB63412692BEAA7D9A81071368E7EF9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <AM6PR04MB63412692BEAA7D9A81071368E7EF9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/91.8.0
+Subject: Re: [PATCH RFC 1/5] phy: qcom-qmp: add support for pipe clock muxing
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Prasad Malisetty <quic_pmaliset@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20220421102041.17345-1-johan+linaro@kernel.org>
+ <20220421102041.17345-2-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220421102041.17345-2-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/04/2022 12:04, Ming Qian wrote:
->> From: Mirela Rabulea (OSS)
->> Sent: Thursday, April 14, 2022 5:42 PM
->> To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
->> shawnguo@kernel.org; s.hauer@pengutronix.de
->> Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
->> dl-linux-imx <linux-imx@nxp.com>; linux-media@vger.kernel.org;
->> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org
->> Subject: Re: [PATCH] media: imx-jpeg: Encoder support to set jpeg quality
->>
->> Hi Ming,
->>
->> On 06.04.2022 12:46, Ming Qian wrote:
->>> Implement V4L2_CID_JPEG_COMPRESSION_QUALITY to set jpeg quality
->>>
->>> Signed-off-by: Ming Qian <ming.qian@nxp.com>
->>> ---
->>>   .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c | 11 ++--
->>>   .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h |  1 +
->>>   .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 50
->> +++++++++++++++++++
->>>   .../media/platform/nxp/imx-jpeg/mxc-jpeg.h    |  2 +
->>>   4 files changed, 61 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
->>> b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
->>> index 29c604b1b179..c482228262a3 100644
->>> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
->>> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
->>> @@ -100,9 +100,6 @@ void mxc_jpeg_enc_mode_conf(struct device *dev,
->>> void __iomem *reg)
->>>
->>>   	/* all markers and segments */
->>>   	writel(0x3ff, reg + CAST_CFG_MODE);
->>> -
->>> -	/* quality factor */
->>> -	writel(0x4b, reg + CAST_QUALITY);
->>>   }
->>>
->>>   void mxc_jpeg_enc_mode_go(struct device *dev, void __iomem *reg) @@
->>> -114,6 +111,14 @@ void mxc_jpeg_enc_mode_go(struct device *dev, void
->> __iomem *reg)
->>>   	writel(0x140, reg + CAST_MODE);
->>>   }
->>>
->>> +void mxc_jpeg_enc_set_quality(struct device *dev, void __iomem *reg,
->>> +u8 quality) {
->>> +	dev_dbg(dev, "CAST Encoder Quality %d...\n", quality);
->>> +
->>> +	/* quality factor */
->>> +	writel(quality, reg + CAST_QUALITY); }
->>> +
->>>   void mxc_jpeg_dec_mode_go(struct device *dev, void __iomem *reg)
->>>   {
->>>   	dev_dbg(dev, "CAST Decoder GO...\n"); diff --git
->>> a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
->>> b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
->>> index ae70d3a0dc24..356e40140987 100644
->>> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
->>> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
->>> @@ -119,6 +119,7 @@ int mxc_jpeg_enable(void __iomem *reg);
->>>   void wait_frmdone(struct device *dev, void __iomem *reg);
->>>   void mxc_jpeg_enc_mode_conf(struct device *dev, void __iomem *reg);
->>>   void mxc_jpeg_enc_mode_go(struct device *dev, void __iomem *reg);
->>> +void mxc_jpeg_enc_set_quality(struct device *dev, void __iomem *reg,
->>> +u8 quality);
->>>   void mxc_jpeg_dec_mode_go(struct device *dev, void __iomem *reg);
->>>   int mxc_jpeg_get_slot(void __iomem *reg);
->>>   u32 mxc_jpeg_get_offset(void __iomem *reg, int slot); diff --git
->>> a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> index 0c3a1efbeae7..ccc26372e178 100644
->>> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
->>> @@ -624,6 +624,7 @@ static irqreturn_t mxc_jpeg_dec_irq(int irq, void
->> *priv)
->>>   	    ctx->enc_state == MXC_JPEG_ENC_CONF) {
->>>   		ctx->enc_state = MXC_JPEG_ENCODING;
->>>   		dev_dbg(dev, "Encoder config finished. Start encoding...\n");
->>> +		mxc_jpeg_enc_set_quality(dev, reg, ctx->jpeg_quality);
->>
->> I think the setting of the quality should be moved in device_run, to keep the
->> interrupt handler lean, I checked it works fine after:
->> dev_dbg(dev, "Encoder config finished. Start encoding...\n");
->>
+On 21/04/2022 13:20, Johan Hovold wrote:
+> Some QMP PHYs need to remux to their pipe clock input to the pipe clock
+> output generated by the PHY before powering on the PHY and restore the
+> default source during power down.
 > 
-> Considering the multi-slot situation, the quality register is a global register for all slots.
-> So to avoid access it in the same time by different slots. It's safe to set after configure done but before encode.
-> And we only support yet, but I think we will support multi slots after we fix some issues.
+> Add support for an optional pipe clock mux which will be reparented to
+> the generated pipe clock before powering on the PHY and restored to the
+> default reference source on power off.
 > 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp.c | 71 ++++++++++++++++++++++++++---
+>   1 file changed, 65 insertions(+), 6 deletions(-)
 > 
->>>   		mxc_jpeg_enc_mode_go(dev, reg);
->>>   		goto job_unlock;
->>>   	}
->>> @@ -1563,6 +1564,44 @@ static void mxc_jpeg_set_default_params(struct
->> mxc_jpeg_ctx *ctx)
->>>   	}
->>>   }
->>>
->>> +static int mxc_jpeg_s_ctrl(struct v4l2_ctrl *ctrl) {
->>> +	struct mxc_jpeg_ctx *ctx =
->>> +		container_of(ctrl->handler, struct mxc_jpeg_ctx, ctrl_handler);
->>> +
->>> +	switch (ctrl->id) {
->>> +	case V4L2_CID_JPEG_COMPRESSION_QUALITY:
->>
->> Looks like this is allowed for decoder, which is not ok, maybe return -EINVAL
->> for decoder.
->>
-> 
-> This control is created for encoder only, so decoder has no chance to execute here
-> 
->>> +		ctx->jpeg_quality = ctrl->val;
->>> +		break;
->>> +	default:
->>> +		dev_err(ctx->mxc_jpeg->dev, "Invalid control, id = %d, val = %d\n",
->>> +			ctrl->id, ctrl->val);
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static const struct v4l2_ctrl_ops mxc_jpeg_ctrl_ops = {
->>> +	.s_ctrl = mxc_jpeg_s_ctrl,
->>> +};
->>> +
->>> +static void mxc_jpeg_encode_ctrls(struct mxc_jpeg_ctx *ctx) {
->>> +	v4l2_ctrl_new_std(&ctx->ctrl_handler, &mxc_jpeg_ctrl_ops,
->>> +			  V4L2_CID_JPEG_COMPRESSION_QUALITY, 1, 100, 1, 75);
->>
->> The v4l2_ctrl_new_std may return an error, which is not checked here (NULL is
->> returned and @hdl->error is set...), please fix.
->>
-> 
-> Almost no driver check the return value of v4l2_ctrl_new_std. except some driver want to change some property of the created ctrl.
-> And if it return NULL, it won't bring some serious problems, just not support this control
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> index 7d2d1ab061f7..bc6db9670291 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> @@ -3292,6 +3292,8 @@ struct qmp_phy_combo_cfg {
+>    * @rx2: iomapped memory space for second lane's rx (in dual lane PHYs)
+>    * @pcs_misc: iomapped memory space for lane's pcs_misc
+>    * @pipe_clk: pipe clock
+> + * @pipemux_clk: pipe clock source mux
+> + * @piperef_clk: pipe clock default reference source
+>    * @index: lane index
+>    * @qmp: QMP phy to which this lane belongs
+>    * @lane_rst: lane's reset controller
+> @@ -3311,6 +3313,8 @@ struct qmp_phy {
+>   	void __iomem *rx2;
+>   	void __iomem *pcs_misc;
+>   	struct clk *pipe_clk;
+> +	struct clk *pipemux_clk;
+> +	struct clk *piperef_clk;
+>   	unsigned int index;
+>   	struct qcom_qmp *qmp;
+>   	struct reset_control *lane_rst;
+> @@ -3346,6 +3350,7 @@ struct qcom_qmp {
+>   	void __iomem *dp_com;
+>   
+>   	struct clk_bulk_data *clks;
+> +	struct clk *pipe_clksrc;
+>   	struct reset_control **resets;
+>   	struct regulator_bulk_data *vregs;
+>   
+> @@ -5355,6 +5360,42 @@ static int qcom_qmp_phy_init(struct phy *phy)
+>   	return 0;
+>   }
+>   
+> +static int qcom_qmp_phy_pipe_clk_enable(struct qmp_phy *qphy)
+> +{
+> +	struct qcom_qmp *qmp = qphy->qmp;
+> +	int ret;
+> +
+> +	ret = clk_set_parent(qphy->pipemux_clk, qmp->pipe_clksrc);
+> +	if (ret)
+> +		dev_err(qmp->dev, "failed to reparent pipe clock: %d\n", ret);
+> +
+> +
+> +	ret = clk_prepare_enable(qphy->pipe_clk);
+> +	if (ret) {
+> +		dev_err(qmp->dev, "failed to enable pipe clock: %d\n", ret);
+> +		goto err_restore_parent;
+> +	}
 
-The typical behavior is to add all controls, then at the end check if
-hdl->error was set, and if so, v4l2_ctrl_handler_free is called and
-the error is returned.
+So, what you do here is you manually set the parent of 
+GCC_PCIE_1_PIPE_CLK_SRC to PHY pipe clock right before enabling 
+GCC_PCIE_1_PIPE_CLK and set it back to XO after disabling 
+GCC_PCIE_1_PIPE_CLK.
 
-> 
->>> +}
->>> +
->>> +static int mxc_jpeg_ctrls_setup(struct mxc_jpeg_ctx *ctx) {
->>> +	v4l2_ctrl_handler_init(&ctx->ctrl_handler, 2);
->>
->> ctrl_handler has a lock member, which could be setup here.
->>
-> 
-> The lock will be set in v4l2_ctrl_handler_init:
-> mutex_init(&hdl->_lock);
-> hdl->lock = &hdl->_lock;
-> 
->>> +
->>> +	if (ctx->mxc_jpeg->mode == MXC_JPEG_ENCODE)
->>> +		mxc_jpeg_encode_ctrls(ctx);
+My proposal is doing exactly the same, but doing that automatically 
+through the clock infrastructure. After removing pipe_clock handling 
+from pcie driver itself, we can be sure that nobody is playing dirty 
+tricks around the pipe_clock.
 
-So:
+> +
+> +	return 0;
+> +
+> +err_restore_parent:
+> +	clk_set_parent(qphy->pipemux_clk, qphy->piperef_clk);
+> +
+> +	return ret;
+> +}
+> +
+> +static void qcom_qmp_phy_pipe_clk_disable(struct qmp_phy *qphy)
+> +{
+> +	struct qcom_qmp *qmp = qphy->qmp;
+> +	int ret;
+> +
+> +	clk_disable_unprepare(qphy->pipe_clk);
+> +
+> +	ret = clk_set_parent(qphy->pipemux_clk, qphy->piperef_clk);
+> +	if (ret)
+> +		dev_err(qmp->dev, "failed to reparent pipe clock: %d\n", ret);
+> +}
+> +
+>   static int qcom_qmp_phy_power_on(struct phy *phy)
+>   {
+>   	struct qmp_phy *qphy = phy_get_drvdata(phy);
+> @@ -5379,11 +5420,9 @@ static int qcom_qmp_phy_power_on(struct phy *phy)
+>   		}
+>   	}
+>   
+> -	ret = clk_prepare_enable(qphy->pipe_clk);
+> -	if (ret) {
+> -		dev_err(qmp->dev, "pipe_clk enable failed err=%d\n", ret);
+> +	ret = qcom_qmp_phy_pipe_clk_enable(qphy);
+> +	if (ret)
+>   		goto err_reset_lane;
+> -	}
+>   
+>   	/* Tx, Rx, and PCS configurations */
+>   	qcom_qmp_phy_configure_lane(tx, cfg->regs,
+> @@ -5478,7 +5517,7 @@ static int qcom_qmp_phy_power_on(struct phy *phy)
+>   	return 0;
+>   
+>   err_disable_pipe_clk:
+> -	clk_disable_unprepare(qphy->pipe_clk);
+> +	qcom_qmp_phy_pipe_clk_disable(qphy);
+>   err_reset_lane:
+>   	if (cfg->has_lane_rst)
+>   		reset_control_assert(qphy->lane_rst);
+> @@ -5491,7 +5530,7 @@ static int qcom_qmp_phy_power_off(struct phy *phy)
+>   	struct qmp_phy *qphy = phy_get_drvdata(phy);
+>   	const struct qmp_phy_cfg *cfg = qphy->cfg;
+>   
+> -	clk_disable_unprepare(qphy->pipe_clk);
+> +	qcom_qmp_phy_pipe_clk_disable(qphy);
+>   
+>   	if (cfg->type == PHY_TYPE_DP) {
+>   		/* Assert DP PHY power down */
+> @@ -5777,6 +5816,8 @@ static int phy_pipe_clk_register(struct qcom_qmp *qmp, struct device_node *np)
+>   	if (ret)
+>   		return ret;
+>   
+> +	qmp->pipe_clksrc = fixed->hw.clk;
+> +
+>   	ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, &fixed->hw);
+>   	if (ret)
+>   		return ret;
+> @@ -6091,6 +6132,24 @@ int qcom_qmp_phy_create(struct device *dev, struct device_node *np, int id,
+>   		qphy->pipe_clk = NULL;
+>   	}
+>   
+> +	/* Get optional pipe clock mux and default reference source clock. */
+> +	qphy->pipemux_clk = of_clk_get_by_name(np, "mux");
+> +	if (IS_ERR(qphy->pipemux_clk)) {
+> +		ret = PTR_ERR(qphy->pipemux_clk);
+> +		if (ret == -EPROBE_DEFER)
+> +			return ret;
+> +
+> +		qphy->pipemux_clk = NULL;
+> +	} else {
+> +		qphy->piperef_clk = of_clk_get_by_name(np, "ref");
+> +		if (IS_ERR(qphy->piperef_clk)) {
+> +			ret = PTR_ERR(qphy->piperef_clk);
+> +			return dev_err_probe(dev, ret,
+> +					     "failed to get lane%d piperef_clk\n",
+> +					     id);
+> +		}
+> +	}
+> +
+>   	/* Get lane reset, if any */
+>   	if (cfg->has_lane_rst) {
+>   		snprintf(prop_name, sizeof(prop_name), "lane%d", id);
 
-	if (&ctx->ctrl_handler.error) {
-		int err = ctx->ctrl_handler.error;
-		v4l2_ctrl_handler_free(&ctx->ctrl_handler);
-		return err;
-	}
 
-Regards,
-
-	Hans
-
->>> +
->>> +	return v4l2_ctrl_handler_setup(&ctx->ctrl_handler);
->>> +}
->>> +
->>>   static int mxc_jpeg_open(struct file *file)
->>>   {
->>>   	struct mxc_jpeg_dev *mxc_jpeg = video_drvdata(file); @@ -1594,6
->>> +1633,12 @@ static int mxc_jpeg_open(struct file *file)
->>>   		goto error;
->>>   	}
->>>
->>> +	ret = mxc_jpeg_ctrls_setup(ctx);
->>> +	if (ret) {
->>> +		dev_err(ctx->mxc_jpeg->dev, "failed to setup mxc jpeg controls\n");
->>> +		goto err_ctrls_setup;
->>> +	}
->>> +	ctx->fh.ctrl_handler = &ctx->ctrl_handler;
->>>   	mxc_jpeg_set_default_params(ctx);
->>>   	ctx->slot = MXC_MAX_SLOTS; /* slot not allocated yet */
->>>
->>> @@ -1605,6 +1650,8 @@ static int mxc_jpeg_open(struct file *file)
->>>
->>>   	return 0;
->>>
->>> +err_ctrls_setup:
->>> +	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
->>>   error:
->>>   	v4l2_fh_del(&ctx->fh);
->>>   	v4l2_fh_exit(&ctx->fh);
->>> @@ -1962,6 +2009,8 @@ static int mxc_jpeg_subscribe_event(struct
->> v4l2_fh *fh,
->>>   		return v4l2_event_subscribe(fh, sub, 0, NULL);
->>>   	case V4L2_EVENT_SOURCE_CHANGE:
->>>   		return v4l2_src_change_event_subscribe(fh, sub);
->>> +	case V4L2_EVENT_CTRL:
->>> +		return v4l2_ctrl_subscribe_event(fh, sub);
->>>   	default:
->>>   		return -EINVAL;
->>>   	}
->>> @@ -2035,6 +2084,7 @@ static int mxc_jpeg_release(struct file *file)
->>>   	else
->>>   		dev_dbg(dev, "Release JPEG encoder instance on slot %d.",
->>>   			ctx->slot);
->>> +	v4l2_ctrl_handler_free(&ctx->ctrl_handler);
->>>   	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
->>>   	v4l2_fh_del(&ctx->fh);
->>>   	v4l2_fh_exit(&ctx->fh);
->>> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
->>> b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
->>> index 9ae56e6e0fbe..9c9da32b2125 100644
->>> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
->>> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
->>> @@ -96,6 +96,8 @@ struct mxc_jpeg_ctx {
->>>   	unsigned int			slot;
->>>   	unsigned int			source_change;
->>>   	bool				header_parsed;
->>> +	struct v4l2_ctrl_handler	ctrl_handler;
->>> +	u8				jpeg_quality;
->>>   };
->>>
->>>   struct mxc_jpeg_slot_data {
-
+-- 
+With best wishes
+Dmitry
