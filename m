@@ -2,49 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C0F50A703
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 19:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BBBD50A750
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 19:41:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390577AbiDUR1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 13:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57248 "EHLO
+        id S1348873AbiDURoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 13:44:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390580AbiDUR1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 13:27:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F10A48885;
-        Thu, 21 Apr 2022 10:24:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 440E1B82874;
-        Thu, 21 Apr 2022 17:24:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82287C385A5;
-        Thu, 21 Apr 2022 17:24:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650561888;
-        bh=5INB3gN/SAkPNZQ5UM6mylptmqZsyfxjKbIbVC01LrI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=WPluND3RRWmNFYki8i0haBuoDbhRSwkLhpi0SBbKFVTEbEGu8TDF5smKJ1O+R3De1
-         kbA3y25fHEhnDkgjIfmIq5FqmQI8M8qf4eHLS6dxI7uVkPMvd5PPoIKRpBUKKJTKLb
-         1G/a+rgqbrfME/0gluBI6SOMgxacAEBmM2F8WuotRi+ZsK5q2QI3QM38dpXMEMlAdv
-         /6KAe2IVvjW4LOCgsZR2AV9bAPJCJLLOA7e+VWYxhAv3I3W3h1H5M6O0D3kFsFAnad
-         vgnm/zHnj2GnDwMASKt1ShZn77gqEHH6yx7YU820rRUuOWm8/iSl3BSILjUMy8AJNa
-         1Pb4mYK/78eJg==
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, steve.lee.analog@gmail.com, lgirdwood@gmail.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        ryans.lee@maximintegrated.com, linux-kernel@vger.kernel.org
-In-Reply-To: <20220311132906.32292-1-steve.lee.analog@gmail.com>
-References: <20220311132906.32292-1-steve.lee.analog@gmail.com>
-Subject: Re: [V2 1/2] ASoC: max98390: Add reset gpio control
-Message-Id: <165056188725.376935.1518021217219450490.b4-ty@kernel.org>
-Date:   Thu, 21 Apr 2022 18:24:47 +0100
+        with ESMTP id S1390876AbiDURoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 13:44:38 -0400
+X-Greylist: delayed 135 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 21 Apr 2022 10:41:48 PDT
+Received: from p3plsmtpa07-10.prod.phx3.secureserver.net (p3plsmtpa07-10.prod.phx3.secureserver.net [173.201.192.239])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CE14A3E6
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 10:41:48 -0700 (PDT)
+Received: from localhost.localdomain ([209.234.248.132])
+        by :SMTPAUTH: with ESMTPSA
+        id ham9nkETPic8fhamAnljNp; Thu, 21 Apr 2022 10:39:32 -0700
+X-CMAE-Analysis: v=2.4 cv=Q+QXX66a c=1 sm=1 tr=0 ts=626196d4
+ a=QYjdx1n8fnJJ/8JFsBbjTg==:117 a=QYjdx1n8fnJJ/8JFsBbjTg==:17 a=NEAV23lmAAAA:8
+ a=_twTT5zqAAAA:8 a=6R0Kyn_f9nWU-igJ6UUA:9 a=ILoXdGDbYT3DTB7Z0gVI:22
+X-SECURESERVER-ACCT: dhu@hodcarrier.org
+From:   Du Huanpeng <dhu@hodcarrier.org>
+To:     linux-mips@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Du Huanpeng <dhu@hodcarrier.org>
+Subject: [PATCH] mips: dts: ralink: mt7620a: rename nodes to generic names
+Date:   Fri, 22 Apr 2022 01:39:28 +0800
+Message-Id: <20220421173928.61467-1-dhu@hodcarrier.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-CMAE-Envelope: MS4xfNdzv5jfK0g153WJIHj7b/tW+my450a5GCAClM5BMyMirAAl9evuviFEomChLrbZ9pQ2US6SzFvOAdYtcZgEoKG46y8McajnjV6wPAA6XLFGkdD1YL6+
+ MnEhfsrJyuHnw4AEl83jDHTL2vCcpQmgMj41NsKQjMm7vZ2cP0w6DupGwbbmIdXizbdz2U9hjswjU/ABszjKrf6CXsyMTORkQeSroVu3Q8CWNYj6n0ZlLea/
+ qDsTHyoon65jUfuAH4Gxke073BgwMGgYjaz5PIdIXjpH50LjRFDlFsCBuyL3aSzELsTrrBt7nz4/OQjLaxeawvb4H8BS9mWg125lO2ecwMz7IKXWEMRaQ/hV
+ vlonII2bpS70THRM3Hw7Mty4YUaEdrwSEkovpe59KIMvKsaO0ktVPhjWkeVOGLFqgE1KHRpLQByWCTUYie2JXDo6Cffm4g==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,37 +46,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Mar 2022 22:29:05 +0900, Steve Lee wrote:
->  Add reset gpio control to support RESET PIN connected to gpio.
-> 
-> 
+The name of a node should be somewhat generic, reflecting the function
+of the device and not its precise programming model.
 
-Applied to
+- interrupt-controller
+- syscon
+- memory-controller
+- serial
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+devicetree-specification-v0.3.pdf
+link: https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
 
-Thanks!
+Signed-off-by: Du Huanpeng <dhu@hodcarrier.org>
+---
+ arch/mips/boot/dts/ralink/mt7620a.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-[1/2] ASoC: max98390: Add reset gpio control
-      commit: 397ff024960634962af93e9e2775fc0e4fe7de92
-[2/2] ASoC: dt-bindings: max98390: add reset gpio bindings
-      commit: 68514c9f6aa676f98328844336fc4400244a8479
+diff --git a/arch/mips/boot/dts/ralink/mt7620a.dtsi b/arch/mips/boot/dts/ralink/mt7620a.dtsi
+index 1f6e5320f486..b9cbde603778 100644
+--- a/arch/mips/boot/dts/ralink/mt7620a.dtsi
++++ b/arch/mips/boot/dts/ralink/mt7620a.dtsi
+@@ -10,7 +10,7 @@ cpu@0 {
+ 		};
+ 	};
+ 
+-	cpuintc: cpuintc {
++	cpuintc: interrupt-controller {
+ 		#address-cells = <0>;
+ 		#interrupt-cells = <1>;
+ 		interrupt-controller;
+@@ -25,12 +25,12 @@ palmbus@10000000 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 
+-		sysc@0 {
++		syscon@0 {
+ 			compatible = "ralink,mt7620a-sysc";
+ 			reg = <0x0 0x100>;
+ 		};
+ 
+-		intc: intc@200 {
++		intc: interrupt-controller@200 {
+ 			compatible = "ralink,mt7620a-intc", "ralink,rt2880-intc";
+ 			reg = <0x200 0x100>;
+ 
+@@ -41,12 +41,12 @@ intc: intc@200 {
+ 			interrupts = <2>;
+ 		};
+ 
+-		memc@300 {
++		memory-controller@300 {
+ 			compatible = "ralink,mt7620a-memc", "ralink,rt3050-memc";
+ 			reg = <0x300 0x100>;
+ 		};
+ 
+-		uartlite@c00 {
++		uartlite: serial@c00 {
+ 			compatible = "ralink,mt7620a-uart", "ralink,rt2880-uart", "ns16550a";
+ 			reg = <0xc00 0x100>;
+ 
+-- 
+2.25.1
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
