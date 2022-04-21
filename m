@@ -2,321 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E493509C85
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56765509C92
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387759AbiDUJo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 05:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48622 "EHLO
+        id S1387396AbiDUJrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 05:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237320AbiDUJo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:44:57 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 186D01DA67
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 02:42:08 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id c190-20020a1c35c7000000b0038e37907b5bso5496472wma.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 02:42:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0yXHl14GebthFX/4q8vFlgAn+eeNsYrrbHgBxCI2AJc=;
-        b=PCuH7UlDQOyj48i14Z266yG+aLau1hwaMh7lH6YHwPlc17CnCdJWTBSd1+emL5takK
-         dzgULroFgBiAI4BM4V0OqtiAPI2YYNHMp0PXfsyYiGpjqMqL0sAgKpQdtSF3nt05c4/5
-         1ucMZ+M4WcDPEnRDqHW0xX3yzQ1yz7H75we34=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0yXHl14GebthFX/4q8vFlgAn+eeNsYrrbHgBxCI2AJc=;
-        b=4QFpgksW8B7YnJ0xd8LF8Oi4nCwdp8xribRDzkcSNIVctI+Jl/IsF04xHgDGLRNjwP
-         wGE9Gsmv1unR/l/70z4aBUuLNJupzCwTtFM42ssUwQFBhw/Rc2v6fiaUTGI2IKTTTP9A
-         edyNaqvrWfQcMv7hkiZIAm+u431PRS8q25PzIgDVRNkzygSS87upS4Ldc0P85+H9vyMH
-         9Y0bvHLWKk4eb/53HMGhXF4JeW03KTT/eOPOYJn4f0BapGf+tYzGAREMFrQzGuogiQ0J
-         Z5MZ1KXmKAB9FwEBcD/4Pd0i1YcZYKWswUukkrF66lhyVyOAa90u91Mnc5VaAlczHvM6
-         9TAw==
-X-Gm-Message-State: AOAM532ym+tMG5S8mgcqHWJP5Y/oL+CEXZ3RI2vuoOEMIq/QrQ8p/ys1
-        BDBtv7szo0ZClQ/WnahRcpJOXw==
-X-Google-Smtp-Source: ABdhPJyqb2oKcJsapd9rS/jO2PdOz193HZ8hY3oYOAqaRaGui3U+l6BiwXgjSBkeSK+NVj/HgwdVJQ==
-X-Received: by 2002:a05:600c:a03:b0:38c:f953:ae13 with SMTP id z3-20020a05600c0a0300b0038cf953ae13mr7689258wmp.99.1650534126589;
-        Thu, 21 Apr 2022 02:42:06 -0700 (PDT)
-Received: from google.com ([37.228.205.1])
-        by smtp.gmail.com with ESMTPSA id y6-20020a05600015c600b0020a8f950471sm2300348wry.115.2022.04.21.02.42.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 02:42:05 -0700 (PDT)
-Date:   Thu, 21 Apr 2022 09:42:03 +0000
-From:   Fabio Baltieri <fabiobaltieri@chromium.org>
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: Re: [PATCH v5 2/4] pwm: pwm-cros-ec: add channel type support
-Message-ID: <YmEm63zrdQ3q/ooW@google.com>
-References: <20220420141556.681212-1-fabiobaltieri@chromium.org>
- <20220420141556.681212-3-fabiobaltieri@chromium.org>
- <YmBJF2//wGjKA7I9@chromium.org>
- <YmEXKMYMGstCGBZv@google.com>
- <CACeCKacnUm3MfOsP96H+AxoSkdkxS4ixb9sMNmyc9GaLgw+t8Q@mail.gmail.com>
+        with ESMTP id S1380705AbiDUJrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:47:20 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E2F25593;
+        Thu, 21 Apr 2022 02:44:30 -0700 (PDT)
+Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 5588F2222E;
+        Thu, 21 Apr 2022 11:44:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650534268;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=K01P/G+CWauK4toU/LzXTmQWdHHNJGWFolPPvXFB4f8=;
+        b=YJYZ8QLxWmTaBccIVDc7P7vwdCKrddAJuGkjwLtP8zppuvfIzApujj8b9VklHCIz31mP/C
+        uy2D00edLX1hDmIAs6v2xHCTb0E5LGq9xcrbhX3Y5MY+mHCQq9mSrv2zv0xQm9Txxos+3o
+        Ys3W1c38UAzP9S+ryQ1usgPt8IsBWPs=
+From:   Michael Walle <michael@walle.cc>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        jerry.huang@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [EXT] Re: [PATCH 1/2 v4] dt-bindings: dspi: added for semtech sx1301
+Date:   Thu, 21 Apr 2022 11:44:21 +0200
+Message-Id: <20220421094421.288672-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <f6086989-a4c1-4223-fad0-79bd5719432e@linaro.org>
+References: <f6086989-a4c1-4223-fad0-79bd5719432e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACeCKacnUm3MfOsP96H+AxoSkdkxS4ixb9sMNmyc9GaLgw+t8Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 01:52:02AM -0700, Prashant Malani wrote:
-> On Thu, Apr 21, 2022 at 1:34 AM Fabio Baltieri
-> <fabiobaltieri@chromium.org> wrote:
-> >
-> > On Wed, Apr 20, 2022 at 05:55:35PM +0000, Prashant Malani wrote:
-> > > On Apr 20 14:15, Fabio Baltieri wrote:
-> > > > Add support for EC_PWM_TYPE_DISPLAY_LIGHT and EC_PWM_TYPE_KB_LIGHT pwm
-> > > > types to the PWM cros_ec_pwm driver. This allows specifying one of these
-> > > > PWM channel by functionality, and let the EC firmware pick the correct
-> > > > channel, thus abstracting the hardware implementation from the kernel
-> > > > driver.
-> > > >
-> > > > To use it, define the node with the "google,cros-ec-pwm-type"
-> > > > compatible.
-> > > >
-> > > > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
-> > > > Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
-> > > > ---
-> > > >  drivers/pwm/pwm-cros-ec.c | 82 ++++++++++++++++++++++++++++++++-------
-> > > >  1 file changed, 67 insertions(+), 15 deletions(-)
-> > > >
-> > > > diff --git a/drivers/pwm/pwm-cros-ec.c b/drivers/pwm/pwm-cros-ec.c
-> > > > index 5e29d9c682c3..7f10f56c3eb6 100644
-> > > > --- a/drivers/pwm/pwm-cros-ec.c
-> > > > +++ b/drivers/pwm/pwm-cros-ec.c
-> > > > @@ -12,17 +12,21 @@
-> > > >  #include <linux/pwm.h>
-> > > >  #include <linux/slab.h>
-> > > >
-> > > > +#include <dt-bindings/mfd/cros_ec.h>
-> > > > +
-> > > >  /**
-> > > >   * struct cros_ec_pwm_device - Driver data for EC PWM
-> > > >   *
-> > > >   * @dev: Device node
-> > > >   * @ec: Pointer to EC device
-> > > >   * @chip: PWM controller chip
-> > > > + * @use_pwm_type: Use PWM types instead of generic channels
-> > > >   */
-> > > >  struct cros_ec_pwm_device {
-> > > >     struct device *dev;
-> > > >     struct cros_ec_device *ec;
-> > > >     struct pwm_chip chip;
-> > > > +   bool use_pwm_type;
-> > > >  };
-> > > >
-> > > >  /**
-> > > > @@ -58,14 +62,31 @@ static void cros_ec_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
-> > > >     kfree(channel);
-> > > >  }
-> > > >
-> > > > -static int cros_ec_pwm_set_duty(struct cros_ec_device *ec, u8 index, u16 duty)
-> > > > +static int cros_ec_dt_type_to_pwm_type(u8 dt_index, u8 *pwm_type)
-> > > >  {
-> > > > +   switch (dt_index) {
-> > > > +   case CROS_EC_PWM_DT_KB_LIGHT:
-> > > > +           *pwm_type = EC_PWM_TYPE_KB_LIGHT;
-> > > > +           return 0;
-> > > > +   case CROS_EC_PWM_DT_DISPLAY_LIGHT:
-> > > > +           *pwm_type = EC_PWM_TYPE_DISPLAY_LIGHT;
-> > > > +           return 0;
-> > > > +   default:
-> > > > +           return -EINVAL;
-> > > > +   }
-> > > > +}
-> > > > +
-> > > > +static int cros_ec_pwm_set_duty(struct cros_ec_pwm_device *ec_pwm, u8 index,
-> > > > +                           u16 duty)
-> > > > +{
-> > > > +   struct cros_ec_device *ec = ec_pwm->ec;
-> > > >     struct {
-> > > >             struct cros_ec_command msg;
-> > > >             struct ec_params_pwm_set_duty params;
-> > > >     } __packed buf;
-> > > >     struct ec_params_pwm_set_duty *params = &buf.params;
-> > > >     struct cros_ec_command *msg = &buf.msg;
-> > > > +   int ret;
-> > > >
-> > > >     memset(&buf, 0, sizeof(buf));
-> > > >
-> > > > @@ -75,14 +96,25 @@ static int cros_ec_pwm_set_duty(struct cros_ec_device *ec, u8 index, u16 duty)
-> > > >     msg->outsize = sizeof(*params);
-> > > >
-> > > >     params->duty = duty;
-> > > > -   params->pwm_type = EC_PWM_TYPE_GENERIC;
-> > > > -   params->index = index;
-> > > > +
-> > > > +   if (ec_pwm->use_pwm_type) {
-> > > > +           ret = cros_ec_dt_type_to_pwm_type(index, &params->pwm_type);
-> > > > +           if (ret) {
-> > > > +                   dev_err(ec->dev, "Invalid PWM type index: %d\n", index);
-> > > > +                   return ret;
-> > > > +           }
-> > > > +           params->index = 0;
-> > > > +   } else {
-> > > > +           params->pwm_type = EC_PWM_TYPE_GENERIC;
-> > > > +           params->index = index;
-> > > > +   }
-> > > >
-> > > >     return cros_ec_cmd_xfer_status(ec, msg);
-> > > >  }
-> > > >
-> > > > -static int cros_ec_pwm_get_duty(struct cros_ec_device *ec, u8 index)
-> > > > +static int cros_ec_pwm_get_duty(struct cros_ec_pwm_device *ec_pwm, u8 index)
-> > > >  {
-> > > > +   struct cros_ec_device *ec = ec_pwm->ec;
-> > > >     struct {
-> > > >             struct cros_ec_command msg;
-> > > >             union {
-> > > > @@ -102,8 +134,17 @@ static int cros_ec_pwm_get_duty(struct cros_ec_device *ec, u8 index)
-> > > >     msg->insize = sizeof(*resp);
-> > > >     msg->outsize = sizeof(*params);
-> > > >
-> > > > -   params->pwm_type = EC_PWM_TYPE_GENERIC;
-> > > > -   params->index = index;
-> > > > +   if (ec_pwm->use_pwm_type) {
-> > > > +           ret = cros_ec_dt_type_to_pwm_type(index, &params->pwm_type);
-> > > > +           if (ret) {
-> > > > +                   dev_err(ec->dev, "Invalid PWM type index: %d\n", index);
-> > > > +                   return ret;
-> > > > +           }
-> > > > +           params->index = 0;
-> > > > +   } else {
-> > > > +           params->pwm_type = EC_PWM_TYPE_GENERIC;
-> > > > +           params->index = index;
-> > > > +   }
-> > > >
-> > > >     ret = cros_ec_cmd_xfer_status(ec, msg);
-> > > >     if (ret < 0)
-> > > > @@ -133,7 +174,7 @@ static int cros_ec_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > > >      */
-> > > >     duty_cycle = state->enabled ? state->duty_cycle : 0;
-> > > >
-> > > > -   ret = cros_ec_pwm_set_duty(ec_pwm->ec, pwm->hwpwm, duty_cycle);
-> > > > +   ret = cros_ec_pwm_set_duty(ec_pwm, pwm->hwpwm, duty_cycle);
-> > > >     if (ret < 0)
-> > > >             return ret;
-> > > >
-> > > > @@ -149,7 +190,7 @@ static void cros_ec_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> > > >     struct cros_ec_pwm *channel = pwm_get_chip_data(pwm);
-> > > >     int ret;
-> > > >
-> > > > -   ret = cros_ec_pwm_get_duty(ec_pwm->ec, pwm->hwpwm);
-> > > > +   ret = cros_ec_pwm_get_duty(ec_pwm, pwm->hwpwm);
-> > > >     if (ret < 0) {
-> > > >             dev_err(chip->dev, "error getting initial duty: %d\n", ret);
-> > > >             return;
-> > > > @@ -204,13 +245,13 @@ static const struct pwm_ops cros_ec_pwm_ops = {
-> > > >   * of PWMs it supports directly, so we have to read the pwm duty cycle for
-> > > >   * subsequent channels until we get an error.
-> > > >   */
-> > > > -static int cros_ec_num_pwms(struct cros_ec_device *ec)
-> > > > +static int cros_ec_num_pwms(struct cros_ec_pwm_device *ec_pwm)
-> > > >  {
-> > > >     int i, ret;
-> > > >
-> > > >     /* The index field is only 8 bits */
-> > > >     for (i = 0; i <= U8_MAX; i++) {
-> > > > -           ret = cros_ec_pwm_get_duty(ec, i);
-> > > > +           ret = cros_ec_pwm_get_duty(ec_pwm, i);
-> > > >             /*
-> > > >              * We look for SUCCESS, INVALID_COMMAND, or INVALID_PARAM
-> > > >              * responses; everything else is treated as an error.
-> > > > @@ -236,6 +277,7 @@ static int cros_ec_pwm_probe(struct platform_device *pdev)
-> > > >  {
-> > > >     struct cros_ec_device *ec = dev_get_drvdata(pdev->dev.parent);
-> > > >     struct device *dev = &pdev->dev;
-> > > > +   struct device_node *np = pdev->dev.of_node;
-> > > >     struct cros_ec_pwm_device *ec_pwm;
-> > > >     struct pwm_chip *chip;
-> > > >     int ret;
-> > > > @@ -251,17 +293,26 @@ static int cros_ec_pwm_probe(struct platform_device *pdev)
-> > > >     chip = &ec_pwm->chip;
-> > > >     ec_pwm->ec = ec;
-> > > >
-> > > > +   if (of_device_is_compatible(np, "google,cros-ec-pwm-type"))
-> > > > +           ec_pwm->use_pwm_type = true;
-> > >
-> > > Isn't it possible to just use an optional boolean property
-> > > (for example: "use-pwm-type") instead of defining a new compatible
-> > > string?
-> >
-> > Yeah that's what I did originally but Rob suggested to use a new
-> > compatible instead:
-> >
-> > https://lore.kernel.org/chrome-platform/Yk20uTE%2FVdm2c6jI@robh.at.kernel.org/
+On 21/04/2022 11:11, Jerry Huang wrote:
+>> Please also answer Michael's comments.
+>> 
+>> [Jerry Huang] I double checked the MikroBus devices, we used two MikcroBus devices:
+>> BLE P click: https://www.mikroe.com/ble-p-click
+>> BEE click: https://www.mikroe.com/bee-click 
+>> Both of them are SPI interface connect to ls1028ardb through MiKcroBus interface.
+>> So the name "semtech sx1301" is not correct for this node.
+>
+> I asked to remove the words "Devicetree bindings" and this was not finished.
 > 
-> Thanks for the context. I suppose one could use the "split number
-> space" suggestion mentioned there,
-> and still be able to supply the right arguments for
-> pwm_request_from_chip() (since we're the ones
-> supplying the argument via of_xlate). But, if the DT maintainer is
-> alright with a new compatible, then
-> of course you should go with whatever works for you.
+> Now you mention that entire name of device is wrong... It's confusing. I
+> don't know what device you are describing here. I expect you know. :)
+> 
+> What is this binding about exactly?
 
-Right, that would work for masking out the number space, but then you'd
-end up with an incoherent chips->npwm which is used all over the core
-pwm code (including the debugfs stuff), so to be coherent there I think
-we have to have something at probe time and can't mix it up.
+I *think* it's just exposing the mikrobus connector as an spidev device.
+There was a former attempt by Vladimir here [1]. Now as it the nature
+of such a connector that you can connect a myriad of devices there, it
+doesn't really make sense to have a just particular one described. What
+happens if that one will switch from spidev to a real driver in the
+kernel? So using "spidev" for the compatible would be the first reflex.
+But as described in the spidev driver this is plain wrong (and also causes
+a warning/info message it) because it should describe the actual hardware.
 
-> > > > +
-> > > >     /* PWM chip */
-> > > >     chip->dev = dev;
-> > > >     chip->ops = &cros_ec_pwm_ops;
-> > > >     chip->of_xlate = cros_ec_pwm_xlate;
-> > > >     chip->of_pwm_n_cells = 1;
-> > > > -   ret = cros_ec_num_pwms(ec);
-> > > > -   if (ret < 0) {
-> > > > -           dev_err(dev, "Couldn't find PWMs: %d\n", ret);
-> > > > -           return ret;
-> > > > +
-> > > > +   if (ec_pwm->use_pwm_type) {
-> > > > +           chip->npwm = CROS_EC_PWM_DT_COUNT;
-> > > > +   } else {
-> > > > +           ret = cros_ec_num_pwms(ec_pwm);
-> > > > +           if (ret < 0) {
-> > > > +                   dev_err(dev, "Couldn't find PWMs: %d\n", ret);
-> > > > +                   return ret;
-> > > > +           }
-> > > > +           chip->npwm = ret;
-> > > >     }
-> > > > -   chip->npwm = ret;
-> > > > +
-> > > >     dev_dbg(dev, "Probed %u PWMs\n", chip->npwm);
-> > > >
-> > > >     ret = pwmchip_add(chip);
-> > > > @@ -288,6 +339,7 @@ static int cros_ec_pwm_remove(struct platform_device *dev)
-> > > >  #ifdef CONFIG_OF
-> > > >  static const struct of_device_id cros_ec_pwm_of_match[] = {
-> > > >     { .compatible = "google,cros-ec-pwm" },
-> > > > +   { .compatible = "google,cros-ec-pwm-type" },
-> > > >     {},
-> > > >  };
-> > > >  MODULE_DEVICE_TABLE(of, cros_ec_pwm_of_match);
-> > > > --
-> > > > 2.36.0.rc0.470.gd361397f0d-goog
-> > > >
-> > > >
-> >
-> > --
-> > Fabio Baltieri
+Thus I proposed to use DT overlays which are loaded according to what
+is actually attached to the header, so a real driver could be loaded.
 
--- 
-Fabio Baltieri
+But there *could* be a sane default which then could be replaced in
+an DT overlay. Like "mirkobus-socket" or similar, which might expose
+spidev. Actually it is more than just SPI, there is GPIO and resets and
+I2C. Maybe it should be an MFD? I don't know. But that is something for
+the DT maintainers to decide if they'll allow such "generic" devices.
+
+-michael
+
+[1] https://lore.kernel.org/linux-devicetree/20200318001603.9650-13-olteanv@gmail.com/
