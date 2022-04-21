@@ -2,193 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B040450A993
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 21:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A51CD50AA28
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 22:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392119AbiDUT6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 15:58:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57572 "EHLO
+        id S1347666AbiDUUky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 16:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392109AbiDUT6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 15:58:30 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C6D6143;
-        Thu, 21 Apr 2022 12:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650570939; x=1682106939;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cnJZCsVUi8Rp+mUnuF+WqB6Ni24m9cLQqyEcgYpOAHQ=;
-  b=iRxe5bZ2LEaOz67GXkYnVVlOx/lbvKWKBhjr7ON760mLxzVb0KCVh0CO
-   8bYjBz3oet8/+//f8ntAC/Xmnr0lWPUvxnHzx6KF3X1rDcnUP1k35sk97
-   /LOF3kitzzYPrB8Hs6+1oFfEtVgd4c0mj6ebboD9+mo4lS8bU21sT8XIy
-   XavTOpMJMiIcOSHwnHhJE15jk/xLq++kOL2uwYrv4+v1+VUwIlzH4TKdn
-   iDp21y4++TnrHAntZ2znSk73IxB1aOOdFGnxOYck3c+q/bZ/FIDtTJMuJ
-   VvYqCOHbLWZePirePFXi+RgIhJVVqNUQq1pXqHUJFrzKGDk/0U9uEw4Ij
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="246364927"
-X-IronPort-AV: E=Sophos;i="5.90,279,1643702400"; 
-   d="scan'208";a="246364927"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 12:55:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,279,1643702400"; 
-   d="scan'208";a="593816272"
-Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 21 Apr 2022 12:55:36 -0700
-Received: from kbuild by 3abc53900bec with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nhcts-0008jb-5H;
-        Thu, 21 Apr 2022 19:55:36 +0000
-Date:   Fri, 22 Apr 2022 03:54:55 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Wan Jiabing <wanjiabing@vivo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, kael_w@yeah.net,
-        Wan Jiabing <wanjiabing@vivo.com>
-Subject: Re: [PATCH] of: Add missing of_node_put() before return
-Message-ID: <202204220341.c0TfAOVa-lkp@intel.com>
-References: <20220421122303.111766-1-wanjiabing@vivo.com>
+        with ESMTP id S1392464AbiDUUkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 16:40:51 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A076F4DF7B;
+        Thu, 21 Apr 2022 13:37:58 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23LKbl9D086295;
+        Thu, 21 Apr 2022 15:37:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650573467;
+        bh=fiIGiZ2hCyION5BKmzCgCDBVNqXIdGRylYKYLQZ5tjg=;
+        h=From:To:CC:Subject:Date;
+        b=tdQQwhBMXubbrpNpRi5aup6zXYw77wXf43qAwE1c62V00dPpRsZoww+ETAF8FRRXZ
+         c0z5iNuW9a1W3molTOqcKvFn/h4F3w8O8+rOdNuIFa1iSqmoc57zctuXDGPZv0IMqO
+         tR2PeBYSfDtYkGZdX0n2a9zRaxiEc5UtqC2gisU8=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23LKblZC003126
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Apr 2022 15:37:47 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 21
+ Apr 2022 15:37:46 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 21 Apr 2022 15:37:46 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23LKbka2012875;
+        Thu, 21 Apr 2022 15:37:46 -0500
+From:   Dave Gerlach <d-gerlach@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Dave Gerlach <d-gerlach@ti.com>
+Subject: [PATCH 0/6] firmware: ti_sci: Introduce system suspend support
+Date:   Thu, 21 Apr 2022 15:36:53 -0500
+Message-ID: <20220421203659.27853-1-d-gerlach@ti.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220421122303.111766-1-wanjiabing@vivo.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wan,
+Hi,
 
-Thank you for the patch! Yet something to improve:
+This series introduces necessary ti_sci driver functionality in
+preparation of supporting DeepSleep mode for suspend to mem on TI K3
+AM62 [1]. This series applies on top of [2], which is also required for
+proper system suspend operation.
 
-[auto build test ERROR on next-20220421]
-[cannot apply to robh/for-next v5.18-rc3 v5.18-rc2 v5.18-rc1 v5.18-rc3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Deep Sleep mode is described in section "5.2.4.4 DeepSleep" of the AM62
+Technical Reference Manual: https://www.ti.com/lit/pdf/spruiv7
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Wan-Jiabing/of-Add-missing-of_node_put-before-return/20220421-202418
-base:    65eb92e4c9f0a962656f131521f4fbc0d24c9d4c
-config: hexagon-randconfig-r045-20220421 (https://download.01.org/0day-ci/archive/20220422/202204220341.c0TfAOVa-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project bac6cd5bf85669e3376610cfc4c4f9ca015e7b9b)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/e54621b530fe295566dfa8bc3d3481e624c3ee01
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Wan-Jiabing/of-Add-missing-of_node_put-before-return/20220421-202418
-        git checkout e54621b530fe295566dfa8bc3d3481e624c3ee01
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/
+The kernel triggers entry to Deep Sleep mode through the mem suspend
+transition with the following:
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+* Use a TF-A binary that supports PSCI_SYSTEM_SUSPEND call, which is
+  enabled by the pending patches here [3]. This causes system to use
+  PSCI system suspend as last step of mem sleep.
 
-All errors (new ones prefixed by >>):
+* The firmware requires that the OS sends a TISCI_MSG_PREPARE_SLEEP
+  message in order to provide details about suspend, so we must add the
+  ability to send this message. (Patch 3)
 
->> drivers/of/platform.c:560:22: error: expected ';' after expression
-                                   of_node_put(node)
-                                                    ^
-                                                    ;
-   1 error generated.
+* A memory carveout address must be provided to the firmware using
+  the above message, which is passed through device tree to the
+  driver. (Patches 1 and 4)
 
+* System must load firmware to a specific location before Deep Sleep is
+  entered, and this is accomplished using an lpm memory region in device
+  tree to indicate where this firmware should be loaded, and also a
+  "ti,lpm-firmware-name" property to indicate the name of the firmware
+  to load. The ti_sci driver checks in its suspend handler to see if
+  the firmware has been loaded and if not, loads it. (Patches 2 and 5)
 
-vim +560 drivers/of/platform.c
+* Finally, the ti_sci driver must actually send TISCI_MSG_PREPARE_SLEEP
+  message to firmware with the above information included, which it
+  does during the driver suspend handler when PM_MEM_SUSPEND is the
+  determined state being entered. (Patch 6)
 
-   515	
-   516	static int __init of_platform_default_populate_init(void)
-   517	{
-   518		struct device_node *node;
-   519	
-   520		device_links_supplier_sync_state_pause();
-   521	
-   522		if (!of_have_populated_dt())
-   523			return -ENODEV;
-   524	
-   525		if (IS_ENABLED(CONFIG_PPC)) {
-   526			struct device_node *boot_display = NULL;
-   527			struct platform_device *dev;
-   528			int ret;
-   529	
-   530			/* Check if we have a MacOS display without a node spec */
-   531			if (of_get_property(of_chosen, "linux,bootx-noscreen", NULL)) {
-   532				/*
-   533				 * The old code tried to work out which node was the MacOS
-   534				 * display based on the address. I'm dropping that since the
-   535				 * lack of a node spec only happens with old BootX versions
-   536				 * (users can update) and with this code, they'll still get
-   537				 * a display (just not the palette hacks).
-   538				 */
-   539				dev = platform_device_alloc("bootx-noscreen", 0);
-   540				if (WARN_ON(!dev))
-   541					return -ENOMEM;
-   542				ret = platform_device_add(dev);
-   543				if (WARN_ON(ret)) {
-   544					platform_device_put(dev);
-   545					return ret;
-   546				}
-   547			}
-   548	
-   549			/*
-   550			 * For OF framebuffers, first create the device for the boot display,
-   551			 * then for the other framebuffers. Only fail for the boot display;
-   552			 * ignore errors for the rest.
-   553			 */
-   554			for_each_node_by_type(node, "display") {
-   555				if (!of_get_property(node, "linux,opened", NULL) ||
-   556				    !of_get_property(node, "linux,boot-display", NULL))
-   557					continue;
-   558				dev = of_platform_device_create(node, "of-display", NULL);
-   559				if (WARN_ON(!dev)) {
- > 560					of_node_put(node)
-   561					return -ENOMEM;
-   562				}
-   563				boot_display = node;
-   564				break;
-   565			}
-   566			for_each_node_by_type(node, "display") {
-   567				if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
-   568					continue;
-   569				of_platform_device_create(node, "of-display", NULL);
-   570			}
-   571	
-   572		} else {
-   573			/*
-   574			 * Handle certain compatibles explicitly, since we don't want to create
-   575			 * platform_devices for every node in /reserved-memory with a
-   576			 * "compatible",
-   577			 */
-   578			for_each_matching_node(node, reserved_mem_matches)
-   579				of_platform_device_create(node, NULL, NULL);
-   580	
-   581			node = of_find_node_by_path("/firmware");
-   582			if (node) {
-   583				of_platform_populate(node, NULL, NULL, NULL);
-   584				of_node_put(node);
-   585			}
-   586	
-   587			node = of_get_compatible_child(of_chosen, "simple-framebuffer");
-   588			of_platform_device_create(node, NULL, NULL);
-   589			of_node_put(node);
-   590	
-   591			/* Populate everything else. */
-   592			of_platform_default_populate(NULL, NULL, NULL);
-   593		}
-   594	
-   595		return 0;
-   596	}
-   597	arch_initcall_sync(of_platform_default_populate_init);
-   598	
+This is tested on am625-sk using a ramdisk with all devices disabled
+apart from cpu0, main_uart0, dmsc, and secure_proxy_main.
+
+Regards,
+Dave
+
+[1] https://lore.kernel.org/lkml/20220225120239.1303821-1-vigneshr@ti.com/
+[2] https://lore.kernel.org/lkml/20220412192138.31189-1-d-gerlach@ti.com/
+[3] https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/14714/3
+
+Dave Gerlach (6):
+  dt-bindings: ti,sci: Add ti,ctx-memory-region property
+  dt-bindings: ti,sci: Add lpm region and ti,lpm-firmware-name
+  firmware: ti_sci: Introduce Power Management Ops
+  firmware: ti_sci: Introduce ti,ctx-memory-region for reserved LPM
+    memory
+  firmware: ti_sci: Use dt provided fw name and address to load at
+    suspend time
+  firmware: ti_sci: Introduce prepare system suspend call
+
+ .../bindings/arm/keystone/ti,sci.yaml         |  30 ++-
+ drivers/firmware/ti_sci.c                     | 207 +++++++++++++++++-
+ drivers/firmware/ti_sci.h                     |  32 ++-
+ include/linux/soc/ti/ti_sci_protocol.h        |   6 +
+ 4 files changed, 269 insertions(+), 6 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.0
+
