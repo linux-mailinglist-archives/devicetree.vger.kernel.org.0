@@ -2,112 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD95F5099C2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 188775099D9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385926AbiDUHm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:42:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33470 "EHLO
+        id S1385896AbiDUHmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:42:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386067AbiDUHmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:42:21 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 183DD1B78B;
-        Thu, 21 Apr 2022 00:39:28 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8C43DC0006;
-        Thu, 21 Apr 2022 07:39:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650526767;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=qYEuMKcRPLE7kv8cT5u0HPUdYyTsqKBj+98EErK/TJ0=;
-        b=cB4C5DPCEOYqaVr9TDlENrzgBO5YhoarBWOEZgIWnUCbvvjTlFrP03L1s5ToSBdMOUPO8m
-        dnq1jUaH8UIPO3XlNQhX1uCuKQI6QAill+P6dq5dTL5b5u9DFOOUg0b6ju7dUtPNY5+kLy
-        ohRTLazqOvlRjrQCy0V/ZTsCl2HZcvcbwFlDCui7i9IegCqRbHDt87bmhylkc7MVKEBn4w
-        UL80gxiE8d2mxED8UxMeuQtrpINohimKy2k5T5ddfmU2AgUkgcpEL66Kydzt28aowuN7ay
-        RabEWJWw9osi10CVeYQD+jyv4aYzANUS8n0jOOw2PCuNxCqLj9c7VHTQXyFIHg==
-Date:   Thu, 21 Apr 2022 09:38:03 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 08/12] net: dsa: rzn1-a5psw: add FDB support
-Message-ID: <20220421093803.64ad7cc8@fixe.home>
-In-Reply-To: <20220420195214.dnekbfhha53trbke@skbuf>
-References: <20220414122250.158113-1-clement.leger@bootlin.com>
-        <20220414122250.158113-9-clement.leger@bootlin.com>
-        <20220414175140.p2vyy7f7yk6vlomi@skbuf>
-        <20220420101648.7aa973b2@fixe.home>
-        <20220420195214.dnekbfhha53trbke@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S1386032AbiDUHlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:41:42 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665DD1BEAC
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:38:32 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id ks6so8276113ejb.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+JREelw6laYvmBddqI3EC14b1vQSIevLCDNJfmzFR2g=;
+        b=WDBW92vG0q4gsIhJeK1naDiFI4MbinA4vSOTB7TPvvbig288kf3Cu23BuaAGhT2gQE
+         yoMVoFBH+t7BkGd3eiBC1sbcYROV1DjbPgpG2jCMCfvUhN6AfJlTP5Wedu5RfwMgoINq
+         PpJ5iECwAN0DVjlD0jep13MWadZKuy5go9Aky6/VYdkDl3vGfNMML084FJP/X1F/rYUE
+         sfAEzYxqr+rI7eqafyMgHQkqAtYNJrh6HzkXAVQ2EI3MtxRUQChYMLuj3KqNqq0DGGf7
+         CovTosZ11cMllpGetNvTUF72tbFwCyZf3PATPU9G+fv07HnL73xDNFgpx81TqdbB6lM4
+         wNMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+JREelw6laYvmBddqI3EC14b1vQSIevLCDNJfmzFR2g=;
+        b=14JKC/LKbDNUvroJV3HZiwOocjgmhOvjg+b3xLFBiu+0SLMHV9yqJwu/z0yAec6dw4
+         qNW+0DJS8rW7DDHMnZlRkz6eHeQS3hC3GzExThEnwtTa4NoUqeyD9DUZtvTcEforMCZh
+         Ic5GT7VwZY5bq0PjN9sb2bP4/a87MHNwxhfDSpTrX5r/OVbHRBbfZTiVDF9bOvdYvnbw
+         10sXpfiIq6Vx9zcfzEUlzFJBh8kDEYuupeoS54r2oYNABg/JJ0iVnYrs1Nurqkugjpwv
+         5GYzUt5j4/R9tbm+iiVsCrX4VN0ORG2yWDlggU2wDKKqfhH2vTleBVC2FI9DH54X/UaP
+         NAJA==
+X-Gm-Message-State: AOAM532L11obD4MnZdNIhc96QbeduFWwKEnRmt+E2L7Izi5Id2zddCdY
+        UNBs+k9bHk57m9ri1BO2D3C4fQ==
+X-Google-Smtp-Source: ABdhPJwEX9Azhs73zsMaeaPiRIxEJNmtzI+MiCPqqVr+i68qFBVnLhjq+9N3+ut1oLawkJuUCRzkDQ==
+X-Received: by 2002:a17:906:4789:b0:6e8:7ab7:e843 with SMTP id cw9-20020a170906478900b006e87ab7e843mr21389705ejc.374.1650526710879;
+        Thu, 21 Apr 2022 00:38:30 -0700 (PDT)
+Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id v20-20020a056402349400b00425a5ea1bb7sm276423edc.57.2022.04.21.00.38.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 00:38:30 -0700 (PDT)
+Message-ID: <0dc122bc-c2de-8d3b-8d94-55586df35fc1@linaro.org>
+Date:   Thu, 21 Apr 2022 09:38:29 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3] arm64: dts: qcom: db845c: Add support for MCP2517FD
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+References: <20220421073438.1824061-1-vkoul@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220421073438.1824061-1-vkoul@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, 20 Apr 2022 22:52:14 +0300,
-Vladimir Oltean <olteanv@gmail.com> a =C3=A9crit :
+On 21/04/2022 09:34, Vinod Koul wrote:
+> Add support for onboard MCP2517FD SPI CAN transceiver attached to
+> SPI0 of RB3.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+> Change in v3:
+>  - change underscore(_) to dash (-) in can-clock node name
+>  - remove superfluous status = okay in can node
 
-> > >=20
-> > > Shouldn't this contain something along the lines of a VID, FID, somet=
-hing? =20
-> >=20
-> > This is extracted directly from the datasheet [1]. The switch FDB table
-> > does not seems to store the VID with the entries (See page 300).
-> >=20
-> > [1]
-> > https://www.renesas.com/us/en/document/mah/rzn1d-group-rzn1s-group-rzn1=
-l-group-users-manual-r-engine-and-ethernet-peripherals =20
->=20
-> Thanks for the link. I see that the switch has a non-partitionable
-> lookup table, not even by VLAN. A shame.
->=20
-> This is also in contrast with the software bridge driver, where FDB and
-> MDB entries can have independent destinations per VID.
->=20
-> So there's nothing you can do beyond limiting to a single offloaded
-> bridge and hoping for the best w.r.t. per-VLAN forwarding destinations.
->=20
-> Note that if you limit to a single bridge does not mean that you can
-> declare ds->fdb_isolation =3D true. Declaring that would opt you into
-> unicast and multicast filtering towards the CPU, i.o.w. a method for
-> software to only receive the addresses it has expressed an interest in,
-> rather than all packets received on standalone ports. The way that is
-> implemented in DSA is by adding FDB and MDB entries on the management
-> port, and it would break a lot of things without a partitioning scheme
-> for the lookup table.
+FWIW:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks Vladimir, it confirms what I thought.
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+Best regards,
+Krzysztof
