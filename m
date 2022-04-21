@@ -2,91 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C51250A23E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F4050A233
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:27:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389267AbiDUOaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35436 "EHLO
+        id S1389229AbiDUOaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:30:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389228AbiDUOaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:04 -0400
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8108D3DDC8
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:14 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id x22-20020a4aca96000000b00338fbaf797bso875203ooq.10
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:14 -0700 (PDT)
+        with ESMTP id S1389233AbiDUOaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:10 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF093E0FA
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:15 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-e68392d626so464236fac.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=6G3ijLKNyDDc/mZRGh4zwowxuAWJ+vKWOmhVh+DZA0E=;
-        b=D92rmDJD0KLi8PP+nbRA/K0XqEuEn80VTNWbBt81Rfg5O5a1ewQidFesTzWNmqzT9Z
-         GhxK6A/X/WXVtv6MROm+8YKVhOP2b/PsOVtx89NHcKRmyjjUwTWGUG6DEbRl6y5Qld5g
-         zOnig7RNa1yVFFTndCAbRte8U6Tr6sPR6ByB4s159P1dvSAIittr5+RKh1pF0ztAClij
-         WUh8Y2dKwEdguHR16gsYecj0084H23CkgUOSQv4VY15jKOYtEH/miiqmjB3UzZXRUa44
-         YI/w3j9HS+jtfDj8F8q+WtjJtkJkxvShXvqJbyvlbOOJRXJbmV3xbyRupYC6fmYRpgia
-         B90w==
+        bh=9VwmgAIE3C/SlM3FCg1mKc45JuOL6JcnrTvihhf7z+8=;
+        b=gT3MpU79adYbNmR619A7KZwgwzy1/l+VS3jcW/0aVqreIbPUeSR1kvM5Jb7X6iaMLF
+         hepxgbkIFjyA0lyb2iKgUwyiDlRYoiWHEJrXRCvMKilJQPOGCZjQO93YBqW9A8zXqKz2
+         ddqB/FLDaRO3w5C3ai/PqyTaro2lIa3UlF+YO6ipQG6wrUV3SRwNIdPY/NgMEWEeCdhF
+         etGVz6KBFTfhWl223r61PYEJfc/dgFRYslxc5evi9EDmvyjx4McoH3H/DoV2DdHOhc1y
+         3DeCaQkI0oWrYrwImQwK9jmEitPo6bYdMWDwKG2j1xWSDt4LcvUEZHNLYBOskJSW66kT
+         PB5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=6G3ijLKNyDDc/mZRGh4zwowxuAWJ+vKWOmhVh+DZA0E=;
-        b=QxfTxna/bjHWFh6hSeUZNkW7oM1cekYgstlQyRQUlMuJiVmWPioDJzdR5fA0jeLtGS
-         DkCBuikeo94w2fm4l3CWIUVwPt6AgLy8PRav027BelBS/dHZ0Bcbivjsh04AB0NkE42L
-         pk/gRnJsSm5skBkU1SDvZoKE2pM0zq8mO+avooEEIrPKR1upn8Y4/bQLDF0xLxHuY1Z6
-         6WAdgLxl/taifplNX/Vmb6oOhXh4zeazVEOAtWQr4dNucPNQuBcSgICONi3VIdNkV/ih
-         mhiEQGoHnrNPTxt0GMldLLoeQE3HHzRO5h7et6ka9t9n2KIMGK3wur+p1/0qO8nau/wx
-         pZZA==
-X-Gm-Message-State: AOAM530X8NwvjGKyeUNU1zhnmXKW6LZsoN5e3u76nprjHGIXXX+MOdtS
-        z1hXZvTjMpLVOUtx+dqRuPrRIA==
-X-Google-Smtp-Source: ABdhPJwAndPn8oSz9YYQvVD+Cc3kcZRaN5Ta1i60rh7Uirxz3/EHFXiDCm3DxqOWSKiaZ+Jzw/Up4g==
-X-Received: by 2002:a05:6820:1690:b0:329:a21f:388f with SMTP id bc16-20020a056820169000b00329a21f388fmr8886075oob.69.1650551233798;
-        Thu, 21 Apr 2022 07:27:13 -0700 (PDT)
+        bh=9VwmgAIE3C/SlM3FCg1mKc45JuOL6JcnrTvihhf7z+8=;
+        b=i/bJjaaAWQHZ9Y5UqfnWgHB7lHRVe4e0vF3g5+LC+T4dUd6YIMAojO42evWEqW9Uba
+         bjpZsnIlY9+4GbwgcqiMHh33cX5COh3ICthIvbLyQM+cHrpJ+9wM/kLRUwxFsJKoCmFH
+         bzUTLxX9dxrLBo+bS80wITAkEZ9t16BfjA8F7UyDc6YCr6CBOx0NI0KvtWKqtp42JIsk
+         i9IFlpxv9ZjAlHSyf4kYa4fwCPtzPuW49pcOE6Xp/deG3eBZvv3/8QPY/nbWXdObbPHe
+         uI0Lw/7i2tuN35VintbXyVKBnH7KLBNFxP12aLKXdlnQQS/iRqM/R+yzBwNcklQSp0Nt
+         4SEw==
+X-Gm-Message-State: AOAM5334R9zK5FR+sKYMeBfij6AWAfILqCJo0/Nzf5WPQ1KI0rWIFNa9
+        7dNg6Kd7cVwrnRkgxwXpl9ZdKg==
+X-Google-Smtp-Source: ABdhPJzWNi+qzNkI0Z6gcAFg1/3ClDqHJiyimleT4ouAEJm0pBZSjF3lzP64rQX+WtyZnNbDDrP/xw==
+X-Received: by 2002:a05:6870:538c:b0:da:f5e5:5b56 with SMTP id h12-20020a056870538c00b000daf5e55b56mr3993013oan.241.1650551235008;
+        Thu, 21 Apr 2022 07:27:15 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.12
+        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 07:27:13 -0700 (PDT)
+        Thu, 21 Apr 2022 07:27:14 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH 2/3] arm64: dts: qcom: sm8450: Add thermal zones
-Date:   Thu, 21 Apr 2022 09:26:51 -0500
-Message-Id: <165055095989.2574292.12906303083204903322.b4-ty@linaro.org>
+To:     Andy Gross <agross@kernel.org>, Joel Selvaraj <jo@jsfamily.in>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org, Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: change firmware path and use mbn format
+Date:   Thu, 21 Apr 2022 09:26:52 -0500
+Message-Id: <165055095990.2574292.4581684573517329144.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220410234458.1739279-3-dmitry.baryshkov@linaro.org>
-References: <20220410234458.1739279-1-dmitry.baryshkov@linaro.org> <20220410234458.1739279-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <BY5PR02MB700966DEE6F6044EBEB5B892D91F9@BY5PR02MB7009.namprd02.prod.outlook.com>
+References: <20220330064505.243799-1-jo@jsfamily.in> <BY5PR02MB700966DEE6F6044EBEB5B892D91F9@BY5PR02MB7009.namprd02.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Apr 2022 02:44:57 +0300, Dmitry Baryshkov wrote:
-> From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+On Wed, 30 Mar 2022 12:15:02 +0530, Joel Selvaraj wrote:
+> The "qcom/sdm845/" path conflicts with db845c's firmware that are
+> present in the linux-firmware package. Xiaomi uses their own signed
+> firmware for Poco F1 and can't use the db845c's firmware. So let's
+> use "qcom/sdm845/beryllium/" to distinguish Poco F1's firmware files.
 > 
-> Add thermal zones handled by tsens sensors. The definitions and the trip
-> points were taken from the downstream dts. For the CPU core thermal
-> sensors, the trip points were changed to follow the example of other
-> Qualcomm platforms.
+> For easier handling and packaging, the mdt+bXX files are squashed
+> using Bjorn Andersson's pil-squasher tool from this link:
+> https://github.com/andersson/pil-squasher
 > 
 > [...]
 
 Applied, thanks!
 
-[2/3] arm64: dts: qcom: sm8450: Add thermal zones
-      commit: fccf8e31ac3d7c3f874ae5d78de495edaf1ead58
+[1/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: change firmware path and use mbn format
+      commit: efbd3599154cb3d947564a9dce419a6754d233ef
+[2/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable qcom ipa driver
+      commit: 84b6c2420415767079baa24ffd70d048cd35bdd8
+[3/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: fix typo in panel's vddio-supply property
+      commit: 1f1c494082a1f10d03ce4ee1485ee96d212e22ff
+[4/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable second wifi channel
+      commit: 3213b3741a147db59ed6f1ebc5f569854725b91f
 
 Best regards,
 -- 
