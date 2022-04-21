@@ -2,132 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B1050A309
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9344A50A326
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389595AbiDUOsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:48:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54314 "EHLO
+        id S1389639AbiDUOvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356573AbiDUOsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:48:37 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E98CE0C5;
-        Thu, 21 Apr 2022 07:45:47 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id q1so3907327plx.13;
-        Thu, 21 Apr 2022 07:45:47 -0700 (PDT)
+        with ESMTP id S1389670AbiDUOuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:50:52 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C496543392;
+        Thu, 21 Apr 2022 07:47:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=in+b1t9I/AYFyIFkIgqViKXfibDH0DzRL81hOpx46Hg=;
-        b=aKNDJIvDaQEaNjOttYctXSuU+OojPCpvcEPTlJzo3aBjl3TR/ZL3n++yus4u1X2nPc
-         nfLNLM8K35XhHj5tawqk7Nbb9RMOZ8/pJbz10pXSjx/SUyw1jQQ0CVmaHKBp3Ts23FpR
-         8OqfLngAUPW4itxqQL+jeMtaFBausBaheUKifREXWJoYZSrmtbKYZ2L1yKAistQNarqv
-         g4Ahzgcaa5kh9eVw+pE/qDiBXsl8iJpkrLETVf3PD0gUjd9xGdfMUg2E4m5errtRg/jd
-         +Q8govggq8FGcUrRqX4Mc5ERdDqIbS0/ww94X8aZBRIpNKHHbCThtEu85l+H/ndt9H5m
-         eUpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=in+b1t9I/AYFyIFkIgqViKXfibDH0DzRL81hOpx46Hg=;
-        b=SRynx9EUme+VQd+a4j4IpcIWtw1c2zpYZlPXD5LlagI4VnzYaMyK6dloIq01E9gi01
-         4O/qvSnLTTWTHhKvUWYO1kL7pYV5lhhCV9rg4z/PaBYYr523yYuVpek3kxLdugsQ/w8y
-         s57ovlOFxnaowgL/7pwygkcsRGNcunJGLH55YhYpjzDQY6Z7+mtqkCvcWuATVtR0CDKp
-         UXTyUAekhrxBNORn25c7OsYgMPHkGALYdEYLGn+f1k7oRDspkhjWjSroyAxTJvkgtFgc
-         SEntL2e5aP3Svnqv+uAGiC11KCsylfJwqczVoqBGPuohkXPVg9ppcR7Apl9RtWlYBuWG
-         rTFg==
-X-Gm-Message-State: AOAM533dvhYEI8BHVyI9jIkwhQSsmgBkUMRPHUyW/bae1BOkYuvo84UF
-        0RjfW0iJdDITytO+xL2psGA=
-X-Google-Smtp-Source: ABdhPJz4pO+ROCT3iAGkudRxxwypK297Bt7LuQdQt7oIFrXxI/o+XMM8+GSll+FYjqSQdjMK/i2jiA==
-X-Received: by 2002:a17:90a:178e:b0:1d2:e998:85e1 with SMTP id q14-20020a17090a178e00b001d2e99885e1mr10790308pja.234.1650552346989;
-        Thu, 21 Apr 2022 07:45:46 -0700 (PDT)
-Received: from ?IPV6:240b:11:ea00:8f10:a9e9:6bed:bfb0:9151? ([240b:11:ea00:8f10:a9e9:6bed:bfb0:9151])
-        by smtp.gmail.com with ESMTPSA id t19-20020a17090aae1300b001d2b4d3e900sm3004360pjq.41.2022.04.21.07.45.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 07:45:46 -0700 (PDT)
-Message-ID: <09bebb90-7792-a728-6bc5-775b1c482d3d@gmail.com>
-Date:   Thu, 21 Apr 2022 23:45:39 +0900
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650552478; x=1682088478;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=jdLbh9Bv+MJD1MlZVeRD4tPqBfZObL+Ofc8cPc83C7Y=;
+  b=ysbeKAKOQ725JlB/zs73A2GD7Ch/X7KanbaCLQM+pCL6H6MoBWCXWwAT
+   piqaLirsoyLCn7r+sP0rWuzjTw61SPsz3RT8kCdOJJ4GC74wNd049okIj
+   EtfMGu7a7xlAPhDs0xCcPPDHT56m5DOXPaWixTbevg95Xc8CHN89gB6Ki
+   4=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 21 Apr 2022 07:47:57 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 07:47:57 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 21 Apr 2022 07:47:57 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 21 Apr 2022 07:47:53 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v9 00/12] Add soundcard support for sc7280 based platforms.
+Date:   Thu, 21 Apr 2022 20:17:27 +0530
+Message-ID: <1650552459-21077-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Buffalo WZR-1166DHP2
-Content-Language: en-US
-From:   SHIMAMOTO Takayoshi <takayoshi.shimamoto.360@gmail.com>
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, takayoshi.shimamoto.360@gmail.com
-References: <20220412154432.12124-1-takayoshi.shimamoto.360@gmail.com>
- <ab529968-7dc5-f4c9-5ce4-5dc95b64838f@gmail.com>
- <52225285-3b64-f709-81ff-0c26a9b13c02@gmail.com>
-In-Reply-To: <52225285-3b64-f709-81ff-0c26a9b13c02@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+This patch set is to add bolero digital macros, WCD and maxim codecs nodes
+for audio on sc7280 based platforms.
 
-I got a collaborator and decided to make a DT about the previous model 
-WZR-1166DHP2, the WZR-1166DHP.
-These two models differ only in memory capacity.
+This patch set depends on:
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=631506
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=601249
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=634203
+    -- Clock reset control patches
 
-I will rework some of them into a common patch as dtsi and post it.
+Changes Since V8:
+    -- Split patches as per sc7280 CRD revision 3, 4 and 5 boards.
+    -- Add corresponding dt nodes for herobrine crd boards.
+    -- Update dai-link node names as per dt-bindings in sound node.
+    -- Add reg property in sound node as per dt-bindings which was removed in previous series.
+    -- Fix typo errors.
+    -- Update wcd codec pin control properties in board specific files.
+Changes Since V7:
+    -- Remove redundant interrupt names in soundwire node.
+    -- Fix typo errors.
+    -- Remove redundant reg property in sound node.
+    -- Rebased on top of latest kernel tip.
+Changes Since V6:
+    -- Modify link-names and audio routing in a sound node.
+    -- Move amp_en pin control node to appropriate consumer patch.
+    -- Split patches as per digital macro codecs and board specific codecs and sort it.
+    -- Modify label and node names to lpass specific.
+Changes Since V5:
+    -- Move soc specific bolero digital codec nodes to soc specific file.
+    -- Bring wcd938x codec reset pin control and US/EURO HS selection nodes from other series.
+    -- Change node name and remove redundant status property in sound node.
+Changes Since V4:
+    -- Update nodes in sorting order.
+    -- Update DTS node names as per dt-bindings.
+    -- Update Node properties in proper order.
+    -- Update missing pinctrl properties like US/EURO HS selection, wcd reset control.
+    -- Remove redundant labels.
+    -- Remove unused size cells and address cells in tx macro node.
+    -- Keep all same nodes at one place, which are defined in same file.
+    -- Add max98360a codec node to herobrine board specific targets.
+Changes Since V3:
+    -- Move digital codec macro nodes to board specific dtsi file.
+    -- Update pin controls in lpass cpu node.
+    -- Update dependency patch list.
+    -- Create patches on latest kernel.
+Changes Since V2:
+    -- Add power domains to digital codec macro nodes.
+    -- Change clock node usage in lpass cpu node.
+    -- Add codec mem clock to lpass cpu node.
+    -- Modify the node names to be generic.
+    -- Move sound and codec nodes to root node.
+    -- sort dai links as per reg.
+    -- Fix typo errors.
+Changes Since V1:
+    -- Update the commit message of cpu node patch.
+    -- Add gpio control property to support Euro headset in wcd938x node.
+    -- Fix clock properties in lpass cpu and digital codec macro node.
 
-Therefore, please discard this patch.
+Srinivasa Rao Mandadapu (12):
+  arm64: dts: qcom: sc7280: Add nodes for soundwire and va tx rx digital
+    macro codecs
+  arm64: dts: qcom: sc7280: Enable digital codecs and soundwire for CRD
+    1.0 and CRD 2.0
+  arm64: dts: qcom: sc7280: Enable digital codecs and soundwire for CRD
+    3.0/3.1
+  arm64: dts: qcom: sc7280: Add wcd9385 codec node for CRD 1.0 and CRD
+    2.0
+  arm64: dts: qcom: sc7280: Add wcd9385 codec node for CRD 3.0/3.1
+  arm64: dts: qcom: sc7280: Add max98360a codec for CRD 1.0 and 2.0
+  arm64: dts: qcom: sc7280: Add max98360a codec node for CRD 3.0/3.1
+  arm64: dts: qcom: sc7280: Add lpass cpu node
+  arm64: dts: qcom: sc7280: Enable lpass cpu node for CRD 1.0 and CRD
+    2.0
+  arm64: dts: qcom: sc7280: Enable lpass cpu node for CRD 3.0/3.1
+  arm64: dts: qcom: sc7280: Add sound node for CRD 1.0 and CRD 2.0
+  arm64: dts: qcom: sc7280: Add sound node for CRD 3.0/3.1
 
-Best regards.
+ arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts        |  31 +++
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 213 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi    |   8 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi          | 225 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi              | 190 ++++++++++++++++++
+ 5 files changed, 667 insertions(+)
 
-On 2022/04/13 22:09, SHIMAMOTO Takayoshi wrote:
-> 
-> Thank you for the replies.
-> 
-> On 2022/04/13 2:49, Rafał Miłecki wrote:
->>>   - 4x 10/100M ethernet switch
->>
->> Isn't that 10/100/1000?
-> 
-> You are right.
-> It supports 10/100/1000Mbps.
-> 
->>> +    model = "Buffalo WZR-1166DHP2 (BCM4708)";
->>
->> We stopped adding SoC name to the "model" value, please drop it.
-> 
-> Understood.
-> 
-> I will fix it as follows
-> model = "Buffalo WZR-1166DHP2";
-> 
->>> +
->>> +        wireless1 {
->>> +            label = "bcm53xx:amber:wireless";
->>> +            gpios = <&hc595 7 GPIO_ACTIVE_HIGH>;
->>> +        };
->>> +    };
->>
->> I'm wondering if all new DTS files should use "function" and "color"
->> instead of "label". That's preferred solution and I guess it's good idea
->> to use it for new code.
-> 
-> Understood.
-> 
-> I will rewrite it with "function" and "color."
-> 
-> I will post the patch again after testing.
-> 
-> Best regards
+-- 
+2.7.4
+
