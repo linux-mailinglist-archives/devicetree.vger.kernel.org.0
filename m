@@ -2,97 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 882BF50A277
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A384250A25F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389395AbiDUOae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36306 "EHLO
+        id S244205AbiDUOag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:30:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389333AbiDUOaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:23 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EC83FBD2
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:30 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id v65so1065013oig.10
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:30 -0700 (PDT)
+        with ESMTP id S1389339AbiDUOaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:24 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B92293FD9A
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:31 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id q129so5789113oif.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=iy+XsehI6myAL6KVn5dImXgKFPVtiwpahoxHlaa6W+8=;
-        b=YL/XFCuKPTSpDT9LQ0u2gSLWguoJmeREzY3fUT2kajNVSBHiMcBeQIYPBsWAVI53Tw
-         O2gEBPqLa5XtoDiwwKnD/glOhKSSFNst4A3YoEgwlA36QaQdk1VKRi3i12bQ5AYuavem
-         miBA0FuUIFzrNd84QYVxH3kGm8AOwbOIV4GEsroyQY9MrEO3emTL5f8+oy2ROcEim8ux
-         EfpeOHh0MYnvkUVNM+ZmCi305wClm7GKFI7EvpByocn+6R/J+qU53MYUPqonG/ztF9AF
-         lKfRTEb8E2HLRd5qv+VhNku51bcI9pXl8Ya+vEJMctnqP9hV/0q0BNSQgACKxF/77MqN
-         gSoA==
+        bh=d2ljouS/NpyCeddFpyIfjibsWr5AFiZwDxJgcpp7ScU=;
+        b=BbpDQvemCdZVqmb7nHXXs3coqPhdk0qtRa4x7/1gBOhP9l4iw9jADHsviJQ7FGmMFh
+         lwVjRS9Pt49yI/lahyfPIFslnEHOe5xLFZ7CDJy7VUlmORpJNaIoliyk9zV2+GoYo3f5
+         Oj4mRNsDtf0RSyGCTCMWM9ciA1j48YwniEb63nXu9aaYdEEURpQefnAQfONr/L1wSQ5k
+         N64GREE5ONZs5NDPX6KI+7EInR87qWSYNzh9iOoHdBpPXCuSWxwB7L8rvMwONVTo1w7G
+         Gu53muN8Wb02OHUF9cLwwyiM3rCj0lCyqG0/2wlpSwXV/R5iFljrYdVovGWXZRWM1ymL
+         5Elw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=iy+XsehI6myAL6KVn5dImXgKFPVtiwpahoxHlaa6W+8=;
-        b=BUHWBPpfgy6p3g4mvnHlrxFxufGfjoW4ZAXHNNctOmFNbUgQ4LlX09WyVikIYGelei
-         4sxpEaafaqdDZvXwYmnkoPn8R9nzDuUY4wwv4V39w2Ga9iYNXVT76FvIuPpHUbD300ko
-         U1Bh7DZ8GiBpe3Ycp2RHSN6lqSdBvqj6tQfWZAyoDP7YSbiKKkg4TikJ71K54UWMT08z
-         f4aC+OXOwidCXYnvLxIHH80fYc0/xO7MLCzOA+nHJ2qL6F1ONmWQfxB8IFcxk8jktO1J
-         Vf7zT4sSZr56y0Hsq/FOVyh2STEHymP1xUupJwxfu5vudNMLikfi5pfK5zDoTw79WlMT
-         YfLg==
-X-Gm-Message-State: AOAM531J/z8AZdUS+RCOpBodYyND4JfHvpnT5PmCRh0iC44og/ttOSNq
-        /2v5YiFV5WslJeAwesXOpYULQw==
-X-Google-Smtp-Source: ABdhPJwDJSTzhIjX39Fq4tMduvuKO7oY4rI+JlI6xy2v8gHC0G9bwShy/fxLVML9LC1jPY0qkdgzJQ==
-X-Received: by 2002:aca:ef0a:0:b0:323:24d2:1ccd with SMTP id n10-20020acaef0a000000b0032324d21ccdmr348679oih.261.1650551249529;
-        Thu, 21 Apr 2022 07:27:29 -0700 (PDT)
+        bh=d2ljouS/NpyCeddFpyIfjibsWr5AFiZwDxJgcpp7ScU=;
+        b=CTucni0aX8Wz3EZ749+MOqpYAv1Q03GqYMXg+8+y9UtJc7c0w1MWxtvD4aApXsCej9
+         v8WRDHfWiCL5qVR5BMbEzhrzRHP1a1OUYActodQwNYmqZyyKO3DZoqhl1ce0lQL/3S8O
+         krBI/8kXCG1iPqqaEoUIrqob750Y2wdg9Xba6poAyteyRP+sYypCc2VtZBlNxQYKjly7
+         JN63axr4hXMz9OhNHERgc3qBJ8QXyx3mWSbn2oFlohdwGO/ev62PNUEN8VyMG7zO2gqQ
+         qvoWkdB53d1LsZAEcvC3rUf68XqzungR5GVzEU2OGkk3RoCzXyUalRig08rn5nLWploW
+         Tcqw==
+X-Gm-Message-State: AOAM533ubDrrX5Wc7Wt/OFHuYHEiJehRFZU8prOLbvcC5r11+uxDvx3q
+        slJlE8V8Fzcyk5t66vqQSOA3Jg==
+X-Google-Smtp-Source: ABdhPJx88FVVrMymF5gKvcCBYCUtPX/ISFPeHlaE7O//hDUPNqrMeGTrMmybmJEhcEkrBXUAUv+EXA==
+X-Received: by 2002:a05:6808:23d1:b0:322:97f8:69d7 with SMTP id bq17-20020a05680823d100b0032297f869d7mr4348215oib.241.1650551250958;
+        Thu, 21 Apr 2022 07:27:30 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.28
+        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 07:27:28 -0700 (PDT)
+        Thu, 21 Apr 2022 07:27:30 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Mukesh Savaliya <msavaliy@codeaurora.org>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
         Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Cc:     quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        devicetree@vger.kernel.org, quic_kriskura@quicinc.com,
-        quic_vpulyala@quicinc.com, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: (subset) [PATCH v13 6/6] arm64: dts: qcom: sc7280: Add wakeup-source property for USB node
-Date:   Thu, 21 Apr 2022 09:27:05 -0500
-Message-Id: <165055095990.2574292.11484347980865320517.b4-ty@linaro.org>
+        Akash Asthana <akashast@codeaurora.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 2/4] dt-bindings: qcom: geni-se: Update I2C schema reference
+Date:   Thu, 21 Apr 2022 09:27:06 -0500
+Message-Id: <165055095990.2574292.2416504278084349472.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1649704614-31518-7-git-send-email-quic_c_sanm@quicinc.com>
-References: <1649704614-31518-1-git-send-email-quic_c_sanm@quicinc.com> <1649704614-31518-7-git-send-email-quic_c_sanm@quicinc.com>
+In-Reply-To: <20220404182938.29492-3-singh.kuldeep87k@gmail.com>
+References: <20220404182938.29492-1-singh.kuldeep87k@gmail.com> <20220404182938.29492-3-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Apr 2022 00:46:54 +0530, Sandeep Maheswaram wrote:
-> Adding wakeup-source property for USB controller in SC7280.
-> This property is added to inform that the USB controller is
-> wake up capable and to conditionally power down the phy during
-> system suspend.
+On Mon, 4 Apr 2022 23:59:35 +0530, Kuldeep Singh wrote:
+> We now have geni based QUP I2C controller binding in place as
+> dt-bindigs/i2c/qcom,i2c-geni-qcom.yaml similar to other controllers,
+> update reference in parent schema and while at it, also remove
+> properties defined for the controller from common wrapper.
 > 
 > 
 
 Applied, thanks!
 
-[6/6] arm64: dts: qcom: sc7280: Add wakeup-source property for USB node
-      commit: 97276cbfb4fbe33c3ab8b5f5277a73c0b5f3732b
+[2/4] dt-bindings: qcom: geni-se: Update I2C schema reference
+      commit: fcf2c0f7cbcad29f1decb88567e54c2451b60ba5
 
 Best regards,
 -- 
