@@ -2,83 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D9E50AAEB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 23:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2910550AB05
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 23:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442192AbiDUVqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 17:46:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
+        id S1347220AbiDUV6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 17:58:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442183AbiDUVqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 17:46:39 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF3284EA17;
-        Thu, 21 Apr 2022 14:43:39 -0700 (PDT)
-Received: from g550jk.arnhem.chello.nl (a246182.upc-a.chello.nl [62.163.246.182])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 8A60BCEA6C;
-        Thu, 21 Apr 2022 21:43:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1650577388; bh=6w4PjTbvMri6YwaZlRpH1JvWgO5hcx7ol4Tgm/AT9/k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=b7GcoQrUF7xhbrV45zD7UUuYkQ0bajE5HXmkgLjrTdwWcQ7xV11Vrj27GHickDNVA
-         Os+MidcW3bibyiHpeRSUUTfLu+1fcxAcRoLS1ppbWqg5ygJ6GoQ115Vu/41yI8hmQA
-         DCIAlMd/sUbB/0rw48zdB6KHfUMJw1hQYoBEpodE=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S229637AbiDUV6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 17:58:22 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC1F4D277;
+        Thu, 21 Apr 2022 14:55:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=zK5ZeZOO7+IQaCapcuwGkDzT+F6YVOTdathD7VaTSUc=; b=4kbM3DL/+3r4bAWHH9tKdgMDvT
+        kj0UYhK8OOOoGWh2oKgQvi2AbIF/McoXTVhFmptMhVrtS/866D/EsUjdhkHsr9SFk/pi2eeF80huA
+        hGgdXVHROKZSpCL8tiwia8djthaV67v18cdW58BeN3UXi930wkY/6pmJhjg/zoqofm1g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nhelj-00Grjt-Nm; Thu, 21 Apr 2022 23:55:19 +0200
+Date:   Thu, 21 Apr 2022 23:55:19 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: msm8974-FP2: Add supplies for remoteprocs
-Date:   Thu, 21 Apr 2022 23:42:43 +0200
-Message-Id: <20220421214243.352469-3-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220421214243.352469-1-luca@z3ntu.xyz>
-References: <20220421214243.352469-1-luca@z3ntu.xyz>
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 1/8] dt-bindings: nvmem: sfp: Fix typo
+Message-ID: <YmHSx2E0DIYnO+pJ@lunn.ch>
+References: <20220421175657.1259024-1-sean.anderson@seco.com>
+ <20220421175657.1259024-2-sean.anderson@seco.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220421175657.1259024-2-sean.anderson@seco.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Those were removed from msm8974.dtsi as part of a recent cleanup commit,
-so add them back for FP2.
+On Thu, Apr 21, 2022 at 01:56:50PM -0400, Sean Anderson wrote:
+> There is a small gramattical error in the description. Fix it.
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+s/gramattical/grammatical :-)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-index 34266126d5a2..0700a0008caa 100644
---- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-@@ -189,6 +189,17 @@ wcnss {
- 	};
- };
- 
-+&remoteproc_adsp {
-+	cx-supply = <&pm8841_s2>;
-+};
-+
-+&remoteproc_mss {
-+	cx-supply = <&pm8841_s2>;
-+	mss-supply = <&pm8841_s3>;
-+	mx-supply = <&pm8841_s1>;
-+	pll-supply = <&pm8941_l12>;
-+};
-+
- &rpm_requests {
- 	pm8841-regulators {
- 		compatible = "qcom,rpm-pm8841-regulators";
--- 
-2.36.0
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
+    Andrew
