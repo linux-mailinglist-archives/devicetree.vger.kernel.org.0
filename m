@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E64050A268
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADF2450A25A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389346AbiDUObF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36190 "EHLO
+        id S1389310AbiDUObE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:31:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389351AbiDUOaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:24 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50963DDC8
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:32 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id a10so5769088oif.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:32 -0700 (PDT)
+        with ESMTP id S1389358AbiDUOaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:25 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8773E0D5
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:33 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id v65so1065245oig.10
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Y+YeVpF+XXNXv6igumvGpGrAaQhmDe2XduTo8xGKCNM=;
-        b=Xi2WxW6CvV2f6mBJr9C2k7VR0F64eAH9Ts8vrRc0czw4dlLBaNEPvimjsGsQvuivb/
-         v1bs5ZqhhY1vPHHBS3XieOmtvYrhNaDep9OFdHgfOeiK6eQdOc2dBbPHcEFV4K0UmjCW
-         sVHpy12E8ZT8+CjjRNdOz/3jvo00AASP3Qa5SJ0FNCnvSoZWFx+P8wBfWMegahrerfii
-         fm1z6tO1eNA2VhlUQmPYgesQQsNicvjjTgx3Jr0QYEbCMkuBOTGYsV9+qxkaPelI8Ktv
-         IsVqZMlNB+JgTB0ZbfwB1foUk5xtCaebqgk7egEY0x4hiK/ENSfjUp9lKIXDkiTgJuIf
-         tkFg==
+        bh=m7Omfp8qxTFOxdaAFMRCs/6HBwzH1tM1JfZpT1G5B5o=;
+        b=tfwlqNeY90oUcSGRlCxZtVWtY2iPjpnZ9BVMUrxZcNrPJA7Om9qhN8B0avJXZ2RBZO
+         YI7THbzi5gOGv8BX9Ymee8UevMg05FSwSjy/IDBUK4DZ1f7iYIXs5zr8If5zNePd5aHn
+         WjXy5gU2+mBcTzugz0WM1Zfw58HSbX4RZao1oBYsdyOLD8tOgcukXvts0c4WcQ2yR/1h
+         oXGclqeGAI65bVf+jSXqFoQHP/7aFqZJlErGhVWOBPGjMbV6yGkBttXjyUR0FdXm6mE7
+         bZMu1xYZ9srq0DV1GO/LWi2bH9RBECR9LQ43Ss4VLnVR1YcmJDdhGWiUw//7OXPjx/nS
+         FeRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Y+YeVpF+XXNXv6igumvGpGrAaQhmDe2XduTo8xGKCNM=;
-        b=j3sxVXyBVu6a8My2TpclhCvHcnDdKzdhRVrZHZ3sPNMtk0kPX2Ma21SHDYnez9h8VX
-         xbgxg3XImWT0a84i1lYcnCTwv3qLGcWKSxqoKc13CwmywDZpiYzds4btHKmxGsxHKj/E
-         9iJMJwa4Z8NRSO+a5E2aJhcctnPGJFHgNYmESL66eO1Kp6Kwr/MzXljzrpiOxlhe0PgQ
-         W79EurC/L5V9wOj7SfghLHjE24y0Toq2/ar4VtPXIcwomKNAg8a0GCZ2NR+vKZjGuXzE
-         ezyWKczWXNzfWmKwOOhkIW35aOHXIRHBRoFyq4dAXIT+0XRZPrJ60yCQGhuvBR8aH37q
-         0LFg==
-X-Gm-Message-State: AOAM530LVThMaBvK9YTbjUp4cPdAPUrkKSoB1m1861G7cZ7PcCF75yCt
-        i1XukETvUdmq9ubyK+eCHp/L2DhB1svB3WuC
-X-Google-Smtp-Source: ABdhPJyAWDnEf73EJQ2xtQ/tjqK8JJQHB26dASCBxTB3qthtJ1S/h5Slz6yOHwSC2UdCbKFEyqqrNg==
-X-Received: by 2002:aca:b505:0:b0:322:a524:8859 with SMTP id e5-20020acab505000000b00322a5248859mr4133243oif.2.1650551252015;
-        Thu, 21 Apr 2022 07:27:32 -0700 (PDT)
+        bh=m7Omfp8qxTFOxdaAFMRCs/6HBwzH1tM1JfZpT1G5B5o=;
+        b=kCRRR8kJneVHeuBxuk7tPjJJ9qleBUHGjeOhuEY8egvyhip9N4Ai2kQHTIXQfgell2
+         XAo9X5gkn6AO005jIoFcAwCjDGhbs2qCyxhxLOST8p86YIIkLgiHMLx4oJ2o76v29Umv
+         yiKkraiCVlhsv3lbMt7HFiSe9L1W/9GY9BqJGcelhUSEv7iYxmagcJ+nkmP8XHrWclw+
+         s092zqr6cd/HTjTlCg6KVuFk9Aii6XgAiseAN/JVG3u0DvDb1VkC0X2PMOfU8pBjOeiP
+         tga2GSIpBRB3RaCErA277IYvdW72IDi6ZhNOtSKQOoY4MQaKcMWphtzUDRizeJf0f6hw
+         a2XA==
+X-Gm-Message-State: AOAM533A6kgTjWJYbUCMkJlp1yZbJZ67+fTMF7ASpBt6qAW0lHfssZLr
+        yu+XvtSsGcQ8kGDnJIQlKXao+w==
+X-Google-Smtp-Source: ABdhPJyxHm7q3JV4wpfp91Ur5qj5rZ0BiwRzvn/dy+Dt+2TmEcdfxIVioZ2xOwUrLEeqayOdmc6xdA==
+X-Received: by 2002:a05:6808:144f:b0:322:f5ac:b370 with SMTP id x15-20020a056808144f00b00322f5acb370mr13700oiv.120.1650551253101;
+        Thu, 21 Apr 2022 07:27:33 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.31
+        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 07:27:31 -0700 (PDT)
+        Thu, 21 Apr 2022 07:27:32 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Mukesh Savaliya <msavaliy@codeaurora.org>,
-        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Akash Asthana <akashast@codeaurora.org>,
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v2 4/4] dt-bindings: qcom: geni-se: Update UART schema reference
-Date:   Thu, 21 Apr 2022 09:27:07 -0500
-Message-Id: <165055095990.2574292.9008815958206587881.b4-ty@linaro.org>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: sm8450: Add QUP and DMA nodes
+Date:   Thu, 21 Apr 2022 09:27:08 -0500
+Message-Id: <165055095990.2574292.3587423704527745863.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220404182938.29492-5-singh.kuldeep87k@gmail.com>
-References: <20220404182938.29492-1-singh.kuldeep87k@gmail.com> <20220404182938.29492-5-singh.kuldeep87k@gmail.com>
+In-Reply-To: <20220414101630.1189052-1-vkoul@kernel.org>
+References: <20220414101630.1189052-1-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -75,20 +70,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 Apr 2022 23:59:37 +0530, Kuldeep Singh wrote:
-> We now have geni based QUP UART controller individual binding, update
-> reference in parent schema and remove properties from common wrapper.
+On Thu, 14 Apr 2022 15:46:23 +0530, Vinod Koul wrote:
+> This series adds the gpi_dma nodes followed by the i2c and spi nodes for the
+> three qups found in the SM8450 SoC.
 > 
-> With removal of last child node schema, remove common properties of all
-> the controllers as they have become obsolete now.
+> While at it, iommus was missing for qup0/qup1, so fix that up too.
 > 
+> Lastly enable the spi and i2c nodes found on the QRD board.
 > 
 > [...]
 
 Applied, thanks!
 
-[4/4] dt-bindings: qcom: geni-se: Update UART schema reference
-      commit: 6579f39290bf056442850094b8f4b95163c17996
+[1/7] arm64: dts: qcom: sm8450: Add gpi_dma nodes
+      commit: b9c8433083097327cad19fbf633fb0735a008315
+[2/7] arm64: dts: qcom: sm8450: Fix missing iommus for qup
+      commit: 488922c1a372579bf2caf40933e7459e3c86276f
+[3/7] arm64: dts: qcom: sm8450: Add qup nodes for qup0
+      commit: a84e88e9a00334f1468a9f69a77091dbe80b7a3b
+[4/7] arm64: dts: qcom: sm8450: Add qup nodes for qup1
+      commit: 1a380216fd6fcf7135b2b413bb9431fc98e2fa23
+[5/7] arm64: dts: qcom: sm8450: Add qup nodes for qup2
+      commit: ba640cd31342b45dcf2f95f6ca7dcbc46629919f
+[6/7] arm64: dts: qcom: sm8450: Fix missing iommus for qup1
+      commit: 67ebdc6dd1e2049fd9620f0572bc81a809afbe24
+[7/7] arm64: dts: qcom: sm8450-qrd: Enable spi and i2c nodes
+      commit: d953239726e971ecaee45d86b4bcd605be839b2a
 
 Best regards,
 -- 
