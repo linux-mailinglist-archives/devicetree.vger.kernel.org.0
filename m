@@ -2,114 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF185099D0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF6A509A12
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386281AbiDUH6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51722 "EHLO
+        id S1386342AbiDUIEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 04:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386270AbiDUH6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:58:22 -0400
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C616D14006
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:55:33 -0700 (PDT)
-Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 607DF2CA971;
-        Thu, 21 Apr 2022 09:55:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1650527731;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZpQe7I0qfISQzBp6OdH99ET7LGqCNHIm5wpnvInHgbY=;
-        b=17qULL0woLTgnaBxbCZJHpWHqL14Qg9TSsdXpEA9RTPIZUGVKHVrUChvS5inYxEzc5YcZ+
-        1yvOa5rcaSWTzZZkOcqGQykfsBd4KXkd7FrQQbYE0HlRsk8yLKPlhwIP3vNtKxEWc0QMFH
-        uexAXeHswH9HEWqMwtncc3T9WPwSuh6A6kjSBNcohchvqX995AGweWDIudKMzQBMENoZLp
-        NigA+F1D33HF/+MWouFDwiIJMWl7KyDNjOp311hganFzXSIRO5pqqOL7uk4QEceomDkqrm
-        XXtVOD0ow5eshtuESZgmdaffIl9S679BU21EhKw/Ms6dpb0ERvGwhyWWbjx1vg==
-Message-ID: <0a48cd99805736d6a01573effa28f771fdbe9485.camel@svanheule.net>
-Subject: Re: [PATCH v1 2/6] gpio: realtek-otto: Support reversed port layouts
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bert Vermeulen <bert@biot.com>, linux-kernel@vger.kernel.org,
-        andy.shevchenko@gmail.com
-Date:   Thu, 21 Apr 2022 09:55:30 +0200
-In-Reply-To: <CACRpkdYmKbHOZChSHjB-ykQCyCziwYTO_+Ai2vheo0y-vD_akA@mail.gmail.com>
-References: <cover.1649533972.git.sander@svanheule.net>
-         <7105ae382d7b328102f66b39ffd7c94998e85265.1649533972.git.sander@svanheule.net>
-         <CACRpkdYmKbHOZChSHjB-ykQCyCziwYTO_+Ai2vheo0y-vD_akA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
+        with ESMTP id S1344890AbiDUIEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:04:14 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C610326F5
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:01:25 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id b24so5427547edu.10
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:01:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=MjMj7j2b58g3Fs2GDoRx9AQenU1ytemGpXtMCrxETUc=;
+        b=NYdGQxPPwnRdIBVwF7pPrMR6GN1BDIcM0wDpBYNTF+2n4Gad4PqA8rEEzED/xk+1eZ
+         0lK1WjBy/qAX+TXrQ9FmP/n605QPm6LIUb/UsG8afL/FClUWaRvec/X4CyIxCtEKTgYO
+         dYYgoG+shjdDoy+zLXCAY2BZDZgZ33JGo0aady4rulQeCfiBwZsbBsyRYAchXtrns/A1
+         RA6WiEvyzMX4/E4z8oOLj8yKedcICvBAatoOyNtI+4sm1ax121UKcpFFPVP9OrPbIoga
+         kMpy0my6M1Wg/f9Oczhtb6NdZS69ufzTgEP7bKH2SOdQNZxyNKmHtJxZ9PY1NoFfznf7
+         UOOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MjMj7j2b58g3Fs2GDoRx9AQenU1ytemGpXtMCrxETUc=;
+        b=5ZIiTxMzrtiuZAA2QUiNVFaBPxiDjoNUXhs8GmwXfxCc2ctfk9IDoaS99yU6UEQEs3
+         kNr3twFhRHiOXP59MZJi811TgEiRsc4WEg32kyuw4aJnnNFOnuAY0b5ag/90dDymkERe
+         0JnfFcDs+vYrrcZAwldLxjxzc9Kdxrgi27OCtjcqukUIVuDoHgYpJyrgNwlOYZcWq3ik
+         kaCIGkRNe4OdDdx/rxtU5OGoyh+o+EdB9zhbZAlxbGuyYEMbEZRROndvPf1lg5TcciD1
+         gw42DGk1XTfNsni3R5I0qcWrVGsHcSgLK3fXvKdfY3SNebK81yBIiChRljvLrnOfKQQT
+         44CQ==
+X-Gm-Message-State: AOAM532KavZXrqcCuMIxZXH4ptcr/ZZRkOpRsLr4iSAYbKQaXqPMJFxD
+        X82C/z43PuLSInlqZzHhF2oxGvwN4LUs6Q==
+X-Google-Smtp-Source: ABdhPJyarBv6DNgivhvvzolW+CQw8vVO1R8UHNq38QMh0dgBHplqLk+dS95uG2+e9Egg0If3tYFQzA==
+X-Received: by 2002:a05:6402:2547:b0:423:f342:e0e3 with SMTP id l7-20020a056402254700b00423f342e0e3mr17476265edb.371.1650528084407;
+        Thu, 21 Apr 2022 01:01:24 -0700 (PDT)
+Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id j10-20020aa7de8a000000b004215209b077sm10565025edv.37.2022.04.21.01.01.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 01:01:23 -0700 (PDT)
+Message-ID: <f7c5c3f9-0083-c0b0-dc49-e66139268312@linaro.org>
+Date:   Thu, 21 Apr 2022 10:01:23 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: dts: mt8183-kukui: align SPI NOR node name with
+ dtschema
+Content-Language: en-US
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220407142143.293740-1-krzysztof.kozlowski@linaro.org>
+ <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
+ <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-On Thu, 2022-04-21 at 01:01 +0200, Linus Walleij wrote:
-> On Sat, Apr 9, 2022 at 9:56 PM Sander Vanheule <sander@svanheule.net> wrote:
+On 20/04/2022 14:35, Matthias Brugger wrote:
 > 
-> > +       if (dev_flags & GPIO_PORTS_REVERSED) {
-> > +               bgpio_flags = 0;
-> > +               ctrl->port_offset_u8 = realtek_gpio_port_offset_u8_rev;
-> > +               ctrl->port_offset_u16 = realtek_gpio_port_offset_u16_rev;
-> > +       } else {
-> > +               bgpio_flags = BGPIOF_BIG_ENDIAN_BYTE_ORDER;
-> > +               ctrl->port_offset_u8 = realtek_gpio_port_offset_u8;
-> > +               ctrl->port_offset_u16 = realtek_gpio_port_offset_u16;
-> > +       }
 > 
-> Just checking: is this really a different silicon block, or is this
-> GPIO_PORTS_REVERSED flag passed around just a way of saying:
+> On 20/04/2022 11:10, Krzysztof Kozlowski wrote:
+>> On Thu, 7 Apr 2022 16:21:43 +0200, Krzysztof Kozlowski wrote:
+>>> The node names should be generic and SPI NOR dtschema expects "flash".
+>>>
+>>>
+>>
+>> Looks like no one wants to take this, so let me take care of it.
+>>
 > 
-> if (!IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) ...?
+> First thing would have been a ping on the patch, don't you think? 
 
-The kernel for RTL930x SoC is built with CONFIG_CPU_BIG_ENDIAN=y, just like the
-older SoCs that were previously supported. The SoC's IRQ controller is also the
-same across RTL930x/RTL839x/RTL838x, even though 32-bit registers are used
-there.
+And what does it change? The operating-points clean up [1] was sent in
+August last year, then in this April, and you responded only when I
+wrote pick-up. The Google cros-ec clean up was sent in Feb and two weeks
+later pinged [2].
 
-On RTL838x/RTL839x the GPIO IRQ control registers have byte layout:
-	[H1] [L1] [H2] [L2]
-	[H3] [L3] [H4] [L4]
+Pinging and resending apparently does not help. It's okay, happens, we
+are all extra busy and we all pretty often do it as part of
+community/hobby/spare time.
 
-On RTL930x, the GPIO IRQ control registers are:
-	[H2] [L2] [H1] [L1]
-	[H4] [L4] [H3] [L3]
-which is the reverse of:
-	[L1] [H1] [L2] [H2]
-	[L3] [H3] [L4] [H4]
+> Anyway as I 
+> said the last time, if you take DTS patches for mediatek
+
+I don't want to take the patches for Mediatek. But I also don't want to
+resend and ping each one of them because it did not work in the past.
+
+> , I'd need a stable 
+> branch I can merge so that we don't have any merge conflicts in the end.
+
+Can you just pick the patch?
 
 
-Same for the GPIO registers:
-	On RTL83xx: [P1] [P2] [P3] [P4] (four 8b ports)
-	On RTL930x: [P4] [P3] [P2] [P1] (one BE32 port)
+[1]
+https://lore.kernel.org/all/?q=%22arm64%3A+dts%3A+mediatek%3A+align+operating-points+table+name+with+dtschema%22
 
-It looks like the RTL930x could use a little-endian interpretation of the 32b
-registers, followed by a little-endian interpretation of the contained port
-values. That would mean two reorderings for every 16b read or write operation,
-and manual manipulation of the register values. Although I have to say that the
-current offset calculation is not too pretty either.
+[2]
+https://lore.kernel.org/all/?q=%22arm64%3A+dts%3A+mt8183%3A+align+Google+CROS+EC+PWM+node+name+with+dtschema%22
 
-We also discussed this with Andy with the original submission of the driver:
-https://lore.kernel.org/linux-gpio/CAHp75VdrqE0kBwzK9Jk7pZGjyfFnhatfa8UY0z-3T1w1PrbAbw@mail.gmail.com/
-
-Best,
-Sander
+Best regards,
+Krzysztof
