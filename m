@@ -2,147 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED41E509B21
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 446DE509B42
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386901AbiDUIw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 04:52:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33424 "EHLO
+        id S1386958AbiDUIyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 04:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386979AbiDUIwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:52:54 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC338BF5B
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:50:05 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id p65so7483424ybp.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:50:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=C1t5mUF1ebuEHByKOPa7jvd5uPJ4IKlhTRldMrpukDU=;
-        b=X7X1O9iZdMtSeshylJiakmEOV4UCGYmtQG5/k2PnUtQR35LhOowY9T0zT0TZ7chMfw
-         PfGEjARNnp5i4aK9OW15d4E4lmkPv0Vfa2+oFSvEzlbOUzewFHAWSTPyjUYccbN26eKB
-         YEtp4B+p7iKbdk4d2wq3m84k/DDtbU/vgWpSc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C1t5mUF1ebuEHByKOPa7jvd5uPJ4IKlhTRldMrpukDU=;
-        b=4g3sfgp03maXRg7bcc9HLKpdLkwPn1VCqL744otkVhwfPivbIAucMPh/JZxu/Xkwxa
-         fF04Jazd+YWqtLgZFWx09TTXkO9jHQawdJ6Ji9RJlwz5jCCaZHDxyK1+Z70hT+XhaAxg
-         9UBksBEss9siofe3TwxR54Vs1LVXcuN1Qc1O/Wz27e3CSNu5KC4VlUwIS8/UwkjzNrGg
-         s2nQq6c7cyDmZFsaOuYfdglwn1vDhFcIwEt2xDQbXUln6U+tngZwY1GQaH5qU94Hm+yC
-         vJjqFK9Dd7ddT/isFeDP6Cp3Zxmo2ShCu64HcY/sNqcIeEEIqcYmPXV3rxc36ayF9Lrv
-         E/kg==
-X-Gm-Message-State: AOAM531ZvS7v6gySaVU8felM3k/MKAvQTOGH8R1imkl8g13Ad8A6nR8o
-        5rc5SzMhL5WyPdjtu5iKP661G/OWekw1xbunB3H7fg==
-X-Google-Smtp-Source: ABdhPJyp/x2iHg2u/UbKD2umcDkFiw3TdbXVeOp6mmt8vzeFktbi6PtrjNtBzfFq1Myl4QMjaHUyxzECRA36CLqzFgs=
-X-Received: by 2002:a25:2ac3:0:b0:645:36f4:2db3 with SMTP id
- q186-20020a252ac3000000b0064536f42db3mr12076194ybq.189.1650531004985; Thu, 21
- Apr 2022 01:50:04 -0700 (PDT)
+        with ESMTP id S1381575AbiDUIyJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:54:09 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8775913E9F;
+        Thu, 21 Apr 2022 01:51:18 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 4F8616000A;
+        Thu, 21 Apr 2022 08:51:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650531076;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=HptSnXZn+eLxnS7R0lwjRkbdn7VnxhdvVp7LHSqiq8Y=;
+        b=grLj/QtNwEsoQf8kH5POI8QIfTSTKPFT+mQxx7O5d1TeR7UP6JO0LhUfHhgKtAXQdmPLGe
+        IRuwrQjmDNq82ddriv4mdKKAsBHimkQ7Cai0zNfx21c8ocwmHiE0oeVwxk4Oc0nrJhwHS8
+        8weCpi8PiekFFDYle36iSNCpf8IsrUHw17OunUfCXd52O/z+eMybr5BK3dFP0n/X9F0aPy
+        0hsmPvvt2UgW9j4szTXO+rA7K/XWIk04MTu2VywBRexta+bEy7wds76ZuY95IVgujV4mjJ
+        60DRMTQXZ5jXoUAhu7OthWJWVAYBzkLad7mIls4U/ZIS5jJyJ0bujkeuFx9vwg==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v11 0/9] RZN1 DMA support
+Date:   Thu, 21 Apr 2022 10:51:03 +0200
+Message-Id: <20220421085112.78858-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20220414025023.11516-1-Nick.Fan@mediatek.com> <ee2f0819-8c9e-4160-c4ae-fb4ad0da3f3b@collabora.com>
- <b6509465-b7c7-0e66-071a-be85793cce58@arm.com>
-In-Reply-To: <b6509465-b7c7-0e66-071a-be85793cce58@arm.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 21 Apr 2022 16:49:54 +0800
-Message-ID: <CAGXv+5EhBB2LiQ_XL_ya7aceE7SBqZpjrbXe-gf81ed8qbeKBw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: Add DT schema for Arm Mali Valhall GPU
-To:     Steven Price <steven.price@arm.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Nick Fan <nick.fan@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 14, 2022 at 8:47 PM Steven Price <steven.price@arm.com> wrote:
->
-> On 14/04/2022 12:51, AngeloGioacchino Del Regno wrote:
-> > Il 14/04/22 04:50, Nick Fan ha scritto:
-> >> Add devicetree schema for Arm Mali Valhall GPU
-> >>
-> >> Define a compatible string for the Mali Valhall GPU
-> >> for MediaTek's SoC platform.
-> >>
-> >> Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
-> >
-> > Hello Nick,
-> > Unfortunately, this binding is completely wrong.
->
-> I think that's unfair, although there is room for improvement.
->
-> > First of all, there's no arm,mali-valhall driver upstream - this will be
-> > managed
-> > by panfrost later, yes, but right now there's no support.
->
-> We need a binding agreed upon before support can be added.
+Hello,
 
-+1. I asked them to send an updated binding for their hardware so that
-we could have a discussion about it and converge on something.
+This is the series bringing DMA support to RZN1 platforms.
+Other series follow with eg. UART and RTC support as well.
 
-> > Then, you're also setting opp-microvolt in a way that will never (or, at
-> > least,
-> > not anytime soon) be supported by the upstream driver, as it manages
-> > only one
-> > supply for devfreq scaling.
->
-> The mt8183 binding (already in tree) is very similar. The binding also
-> should be describing the hardware not what the driver supports. There
-> are indeed limitations in Panfrost for supporting multiple supplies, but
-> that's something that needs improving in the driver not a reason to
-> block a (presumably correct) description of the hardware. I can't
-> comments on whether the specifics of the mt8192 are correct.
+There is no other conflicting dependency with the other series, so this
+series can now entirely be merged in the dmaengine tree I believe.
 
-Having an agreed upon binding also means that we can bring our downstream
-driver into alignment, instead of having to maintain a device tree fork.
+Cheers,
+Miquèl
 
-And +1 to being able to handle just one supply is a limitation of the
-driver. Panfrost in its current state would just not enable devfreq
-if more than supply is given [1]. Looking deeper, the OPP core currently
-doesn't support more than one regulator for a given device.
+Changes in v11:
+* Renamed two defines.
+* Changed the way the bitmap is declared.
+* Updated the cover letter: this series can now go in through the
+  dmaengine tree.
 
-> > Besides, please don't push bindings that have no upstream driver,
-> > especially if
-> > these are for downstream drivers requiring proprietary components, while a
-> > completely open source implementation is in the works.
->
-> More constructively, Alyssa has already posted a patch (as part of the
-> series adding driver support) which would extend the existing Bifrost
-> bindings to (pre-CSF) Valhall:
->
-> https://lore.kernel.org/dri-devel/20220211202728.6146-2-alyssa.rosenzweig@collabora.com/
->
-> I'm not sure I see the point of having a separate binding document for
-> Valhall considering the (pre-CSF) hardware is the same from the kernel
-> perspective.
+Changes in v10:
+* Collected more tags.
+* Dropped the mutex from the dmamux driver.
+* Added missing includes in the dmamux driver.
+* Replaced set_bit() by test_and_set_bit() in order to check if the chan
+  is already used or not in the dmamux driver.
+* Corrected the misuse of the set_bit() macro in the dmamux driver.
 
-So I suppose the next step should be to move the required MediaTek
-specific changes into the existing binding instead of having a new
-one?
+Changes in v9:
+* Collected more tags.
+* Changed a u32 into a regular bitmap and used the bitmap API.
+* Reordered two function calls to save one extra line.
+* Added a define to avoid a magic value.
 
-Separately I think we would need a new binding to spell out the
-requirements of MediaTek's two supply OPP table? Or maybe this could
-be in the description of the Mali binding?
+Changes in v8:
+* Collected more tags.
+* Moved the Makefile line adding the dmamux driver to the bottom of the
+  file.
+* Reversed the logic in a ternary operation as suggested by Andy.
+* Changed a bit the naming of a #define as suggested by Andy.
 
+Changes in v7:
+* This time, really added Stephen's Acks (sorry for the error).
+* Moved an error check to get rid of one mutex_unlock/lock call as
+  suggested by Ilpo.
+* Split the patch adding the dmamux driver as advised by Vinod. One
+  patch introduces the dmamux driver, the other populates the children
+  of the system controller. As the original patch got acked by Stephen
+  Boyd, I moved his tag to the patch touching the clock controller only.
 
-Thanks
-ChenYu
+Changes in v6:
+* Added Stephen's acks.
+* Fixed an extra newline added in the middle of nowhere.
+* Rebased on top of v5.18-rc1.
 
-[1] https://patchwork.freedesktop.org/patch/429782/
+Changes in v5:
+* Used gotos in rzn1_dmamux_route_allocate().
+* Changed the prefix to "dmaengine:".
+* Dropped the partial transfers fix.
+* Added Rob's acks.
+
+Changes in v4:
+* Freed "map" in the error path of the dmamux driver.
+* Improved a bit the style as requested by Prabhakar.
+* Dropped a __maybe_unused.
+* Reorder the includes.
+* Added a dependency on ARCH_RZN1.
+* Added Rob's Ack.
+* Added a reg property to the dmamux binding file.
+* Referenced the dmamux binding from the system controller file.
+* Called of_platform_populate from the end of the system controller
+  (clock) driver probe in order to probe the dmamux if it was
+  populated.
+* Added DMA properties to all the relevant UARTs.
+
+Changes in v3:
+* Added Reviewed-by tags.
+* Exported the set_dmamux* symbol properly.
+* Dropped a useless check in the probe and moved the sysctrl_priv
+  assignation to the end of the probe.
+* Renamed the dmamux driver
+* Added a couple of missing MODULE_ macros in the dmamux driver.
+* Decided to use a regular platform init call instead of the
+  arch_initcall() initially proposed.
+* s/%d/%u/ in printk's when appropriate.
+* Used a hardcoded value instead of dmamux->dmac_requests when
+  appropriate.
+* Changed the variable name "master" to "dmac_idx" to be more
+  descriptive.
+* Dropped most of the of_* calls in favor of #define's.
+* Fixed a typo.
+* Exported two symbols from 8250_dma.c.
+
+Changes in v2:
+* Clarified that the 'fix' regarding non aligned reads would only apply
+  to the DEV_TO_MEM case.
+* Fix the DMA controller compatible string (copy-paste error).
+* s/syscon/sysctrl/ as advised by Geert.
+* Disabled irqs when taking the spinlock from the clocks driver.
+* Moved the DMAMUX offset inside the driver.
+* Removed extra commas.
+* Improved the style as suggested by Andy.
+* Removed a dupplicated check against the device node presence.
+* Reduced the number of lines of code by using dev_err_probe().
+* Created a Kconfig symbol for DMAMUX to fix the two robot reports
+  received and be sure there was no useless overhead with other
+  platforms.
+* Exported the serial8250_{tx,rx}_dma() symbols.
+
+Miquel Raynal (9):
+  dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
+  dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
+  dt-bindings: dmaengine: Introduce RZN1 DMA compatible
+  soc: renesas: rzn1-sysc: Export function to set dmamux
+  dmaengine: dw: dmamux: Introduce RZN1 DMA router support
+  clk: renesas: r9a06g032: Probe possible children
+  dmaengine: dw: Add RZN1 compatible
+  ARM: dts: r9a06g032: Add the two DMA nodes
+  ARM: dts: r9a06g032: Describe the DMA router
+
+ .../clock/renesas,r9a06g032-sysctrl.yaml      |  11 ++
+ .../bindings/dma/renesas,rzn1-dmamux.yaml     |  51 ++++++
+ .../bindings/dma/snps,dma-spear1340.yaml      |   8 +-
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/r9a06g032.dtsi              |  40 +++++
+ drivers/clk/renesas/r9a06g032-clocks.c        |  36 +++-
+ drivers/dma/dw/Kconfig                        |   9 +
+ drivers/dma/dw/Makefile                       |   2 +
+ drivers/dma/dw/platform.c                     |   1 +
+ drivers/dma/dw/rzn1-dmamux.c                  | 155 ++++++++++++++++++
+ include/linux/soc/renesas/r9a06g032-sysctrl.h |  11 ++
+ 11 files changed, 323 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
+ create mode 100644 drivers/dma/dw/rzn1-dmamux.c
+ create mode 100644 include/linux/soc/renesas/r9a06g032-sysctrl.h
+
+-- 
+2.27.0
+
