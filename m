@@ -2,103 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB9A509A52
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E1B509A0E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386560AbiDUIND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 04:13:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60348 "EHLO
+        id S1386281AbiDUIHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 04:07:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386472AbiDUIM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:12:26 -0400
-X-Greylist: delayed 447 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 21 Apr 2022 01:09:38 PDT
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1514.securemx.jp [210.130.202.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D6691E3FA;
-        Thu, 21 Apr 2022 01:09:37 -0700 (PDT)
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1514) id 23L82Bu4008355; Thu, 21 Apr 2022 17:02:11 +0900
-Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 23L81pou023347; Thu, 21 Apr 2022 17:01:51 +0900
-X-Iguazu-Qid: 34trpTYxFGvHYfA6HI
-X-Iguazu-QSIG: v=2; s=0; t=1650528111; q=34trpTYxFGvHYfA6HI; m=C7/iOvyqr0mp6XzSqSaLODep2G3TdSKSUIk0yN+KuYg=
-Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
-        by relay.securemx.jp (mx-mr1511) id 23L81oNu017170
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Thu, 21 Apr 2022 17:01:50 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH] arm64: dts: visconti: Add clock controller support for TMPV7708
-Date:   Thu, 21 Apr 2022 17:01:43 +0900
-X-TSB-HOP2: ON
-Message-Id: <20220421080143.2135566-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230143AbiDUIHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:07:15 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A7F221C920;
+        Thu, 21 Apr 2022 01:04:25 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id C80FA1C810F7;
+        Thu, 21 Apr 2022 16:04:24 +0800 (CST)
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 21
+ Apr 2022 16:04:24 +0800
+Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Thu, 21 Apr 2022 16:04:24 +0800
+Message-ID: <80994f4b-136f-7669-4674-0c9826e88248@nuvoton.com>
+Date:   Thu, 21 Apr 2022 16:04:24 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 5/5] dt-bindings: arm: Add initial bindings for Nuvoton
+ Platform
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <ychuang570808@gmail.com>
+CC:     <robh+dt@kernel.org>, <sboyd@kernel.org>, <krzk+dt@kernel.org>,
+        <arnd@arndb.de>, <olof@lixom.net>, <will@kernel.org>,
+        <soc@kernel.org>, <cfli0@nuvoton.com>
+References: <20220418082738.11301-1-ychuang3@nuvoton.com>
+ <20220418082738.11301-6-ychuang3@nuvoton.com>
+ <fd9316a6-7df6-e1fa-50dc-ff50934afb5c@linaro.org>
+ <caf4867f-7f71-9262-f190-463325eb13ab@nuvoton.com>
+ <4e9eaede-2208-bd73-35ae-89e128562653@linaro.org>
+From:   Jacky Huang <ychuang3@nuvoton.com>
+In-Reply-To: <4e9eaede-2208-bd73-35ae-89e128562653@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds node of clock controller support for Toshiba Visconti TMPV7708.
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- arch/arm64/boot/dts/toshiba/tmpv7708.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-index 01d7ee61ad25..1683113a3c43 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-@@ -7,6 +7,7 @@
-  *
-  */
- 
-+#include <dt-bindings/clock/toshiba,tmpv770x.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-@@ -182,6 +183,12 @@ wdt_clk: wdt-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	osc2_clk: osc2-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <20000000>;
-+		#clock-cells = <0>;
-+	};
-+
- 	soc {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -216,6 +223,20 @@ gpio: gpio@28020000 {
- 			interrupt-parent = <&gic>;
- 		};
- 
-+		pipllct: clock-controller@24220000 {
-+			compatible = "toshiba,tmpv7708-pipllct";
-+			reg = <0 0x24220000 0 0x820>;
-+			#clock-cells = <1>;
-+			clocks = <&osc2_clk>;
-+		};
-+
-+		pismu: syscon@24200000 {
-+			compatible = "toshiba,tmpv7708-pismu", "syscon";
-+			reg = <0 0x24200000 0 0x2140>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		uart0: serial@28200000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0 0x28200000 0 0x1000>;
--- 
-2.34.1
+On 2022/4/21 下午 02:56, Krzysztof Kozlowski wrote:
+> On 21/04/2022 08:39, Jacky Huang wrote:
+>>
+>> On 2022/4/18 下午 08:11, Krzysztof Kozlowski wrote:
+>>> On 18/04/2022 10:27, Jacky Huang wrote:
+>>>> +properties:
+>>>> +  $nodename:
+>>>> +    const: '/'
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - enum:
+>>>> +          - nuvoton,ma35d1
+>>>> +          - nuvoton,ma35d1-evb
+>>>> +          - nuvoton,ma35d1-iot
+>>>> +          - nuvoton,ma35d1-som512
+>>>> +          - nuvoton,ma35d1-som1g
+>>> This does not match your DTS and does not look reasonable (SoC
+>>> compatible should not be part of this enum). Check some other board
+>>> bindings for examples.
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> I would like to modify it as follows:
+>>
+>> description: |
+>>     Boards with an ARMv8 based Nuvoton SoC shall have the following
+>>     properties.
+>>
+>> properties:
+>>     $nodename:
+>>       const: '/'
+>>     compatible:
+>>       oneOf:
+>>
+>>         - description: MA35D1 evaluation board
+>>           items:
+>>             - const: nuvoton,ma35d1-evb
+>>             - const: nuvoton,ma35d1
+>>
+>>         - description: MA35D1 IoT board
+>>           items:
+>>             - const: nuvoton,ma35d1-iot
+> Instead just enum with all board compatibles.
+
+How about to modify it as the follows:
+
+   compatible:
+     oneOf:
+
+       - description: MA35D1 evaluation board
+         items:
+           - enum:
+               - nuvoton,ma35d1-evb
+           - const: nuvoton,ma35d1
+
+       - description: MA35D1 IoT board
+         items:
+           - enum:
+               - nuvoton,ma35d1-iot
+           - const: nuvoton,ma35d1
+
+       - description: MA35D1 SOM board
+         items:
+           - enum:
+               - nuvoton,ma35d1-som512
+               - nuvoton,ma35d1-som1g
+           - const: nuvoton,ma35d1
+
+>> Thank you very much.
+>> Jacky Huang
+>>
+>
+> Best regards,
+> Krzysztof
+
+Sincerely,
+Jacky Huang
 
 
