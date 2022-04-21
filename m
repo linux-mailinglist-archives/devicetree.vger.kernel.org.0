@@ -2,87 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43814509DB9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 12:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17327509DBE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 12:36:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388420AbiDUKgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 06:36:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57418 "EHLO
+        id S1388445AbiDUKig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 06:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235786AbiDUKgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 06:36:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71FE32982B;
-        Thu, 21 Apr 2022 03:33:59 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id C15801F4555C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1650537238;
-        bh=q3xCURJeXpVp7nXTJCMDC/WN0t4IsJySZXDpsN3C7X0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JYHXY+4kyEuJoN0AMOX+NtpU5S6jCDuV+XPuSgm27PF8iK8xudxwnOX7HEwfFy57c
-         OMwZdgAup7zDOlpPequQYghojYp+y0oG2/2KhPTBsWho+ZvCXt6vjwRwTDR4a8OQQT
-         ek9eV2tuehJONEA2uqcZ1yVSRa1wERiqTwRzfscdg118C7AdEZ8Rn0b625UIEpzqHD
-         mXSIE3BTVPIA2tWEWcaYvhN547qRKZAFrQmXdyyz+QUbx1hE8VbHvHCOzzlS1FKKuF
-         RX9D9JmXSAJMl7zykR7U+pKPTuWzUk256nQ/HZckGxx01hTamu+UrHy7k0Y7wDbq3x
-         Po4CS2CqJlAog==
-Message-ID: <068165d5-6c25-2a65-0191-957b6b1d0680@collabora.com>
-Date:   Thu, 21 Apr 2022 12:33:55 +0200
+        with ESMTP id S1348260AbiDUKie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 06:38:34 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C166D3A1
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 03:35:43 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id ga4-20020a17090b038400b001d4b33c74ccso3502784pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 03:35:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=4vfQyttDdobHbBrio36ZO852PxT9+1cO/BhU8vf48uk=;
+        b=DuzY7rUHRzXoGFGfhE5pxkY0ntp+rTJLUsPtfGEvnjo/5lO4p6XBT4zfMfum6MNlLv
+         W1WpqwncMTZ4NSHeB9n0KzoyxOGpEYbY7wzyPSc9H6TlpX5rHzMG/3VK0/5jGwWj0Cub
+         P58MaqmRmI0H9M2ExfHFdm5CDoYboJKUfcL8YUNhsg83GLstj04ApVZjymIQutnBk/HK
+         JkVrzRlvZk8XfVMKAh0oHQQPv9f+NznFL8JkS+IQiN3lNA0w5F2Es5rhzTnRvOo1YxAu
+         Au5/Z91FNuyKt0hH4i9U0PS8Gvbnbo+Bm0eyG6xscBesz5uBhcucAUe4b8Cgh5fCvIIO
+         Kg+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=4vfQyttDdobHbBrio36ZO852PxT9+1cO/BhU8vf48uk=;
+        b=xHv3vUGvXG8qbG3ifeuvdH1q5Yr/XDoC3vmdwEFNbPNQHn+zHHE/PoGouasYn2fDJG
+         9ub7VZsc82fQNHkAIBwhkT0IrH0kvFMmjr6SLvYcie+y1aJ8Vwuj9KBgjfyG8pN9NAz8
+         qv4hgRKn3SzOHT8tXEEDtCXrMA1xsPGHH2MK5X0GY8Ws5vtWrgmnOyx/F5Nw8nqYSbsc
+         Eb1XJtG5H4YckFvqGRCb5Zrq2N7qQSNsnqftrJaZUkCGNIqZOci/56wT0GSm2DS+q8wv
+         lZ0z7Mgda1qUJCUfTkBWlgPywOoRlZHfpnU9wEJlLXVqGKT7AkTn8XWrsvVIVVaTaqdV
+         H+ZA==
+X-Gm-Message-State: AOAM531l5sRKYkJLOtfGjP1Kjp8jJegZaZQAxnda96aT4ltSGB9hLg2j
+        18s+HcjazwngxacStQYZLyJiMX98k26AbjEt+7U=
+X-Google-Smtp-Source: ABdhPJwd7wo1+saee0v/ztCSzf6gbJfz32plAbQWDq/WoyRuaNeufzFpy5DI8xX05ADz0KoWboKfmE7/mHOb60rlg0o=
+X-Received: by 2002:a17:902:f787:b0:152:157:eb7 with SMTP id
+ q7-20020a170902f78700b0015201570eb7mr24050901pln.109.1650537343388; Thu, 21
+ Apr 2022 03:35:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 7/7] arm64: dts: mediatek: mt6359: add node for PMIC keys
- support
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220415153629.1817202-1-fparent@baylibre.com>
- <20220415153629.1817202-8-fparent@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220415153629.1817202-8-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Sender: ndubuisio992@gmail.com
+Received: by 2002:a05:7300:1482:b0:5e:412:aee6 with HTTP; Thu, 21 Apr 2022
+ 03:35:42 -0700 (PDT)
+From:   Hannah Johnson <hannahjohnson8856@gmail.com>
+Date:   Thu, 21 Apr 2022 10:35:42 +0000
+X-Google-Sender-Auth: LR0vnZXJAVofE9ix5298pvrpqII
+Message-ID: <CAO7YTNnkiPMkRR0oaib4B1PakzLdgk5M3KWhsVcsVNiNKcSqQQ@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/04/22 17:36, Fabien Parent ha scritto:
-> Add node for the MT6359 PMIC keyboard in mt6359.dtsi.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-
-Hello Fabien,
-I agree that all MT6359 PMICs do support pmic-keys, but not all devices using
-this PMIC have physical keys connected to that.
-
-Besides, even if all of them did, it wouldn't be guaranteed that key-0 would be
-always KEY_POWER, as much as it wouldn't be guaranteed that key-1 would be always
-KEY_HOME.
-
-In my opinion, it *is* correct to add mediatek,mt6359-keys to the PMIC dtsi, but
-you should do that without declaring any key, hence it's enough to do:
-
-		mt6359_keys: mtk-pmic-keys {
-			compatible = "mediatek,mt6359-keys";
-		};
-
-... then, any machine that *actually does* have these keys connected and manageable
-in Linux should declare its own keys in its own dts/dtsi.
-
-Of course, this means that you'll have to remove your input.h inclusion as well.
-
-Regards,
-Angelo
-
+-- 
+Hello
+Nice to meet you
+my name is Hannah Johnson i will be glad if we get to know each other
+more better and share pictures i am  expecting your reply
+thank you
