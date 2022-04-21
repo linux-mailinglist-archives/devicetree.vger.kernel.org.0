@@ -2,99 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB239509874
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5F250989C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385408AbiDUG56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 02:57:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S1385434AbiDUG7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 02:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385488AbiDUG5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 02:57:06 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B09110F
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 23:54:12 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id v15so5209009edb.12
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 23:54:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2k962TOjn9cIi6o9LRxiYucZxC9pwRel/qitgtJoDBU=;
-        b=JYDD1qZpPGR/23UluceME28UFtKcOuJxb1BZ8dVkZybOHtfk4ybxP9bbwZrvl6jw4b
-         81YBFppebQ4aCbV7i4KJPR2IdOR/l1f+vTM6ovEg95jJNK9DpKKDuG4WjpWZYIVBo751
-         sE9LjD3acE39pE8BQVs9VjAeoRiNIakXJ6SrAF6kzAXD2AEenXWFPN5sY8btu0nLFxfp
-         Nx+MkQs3it3X5JKC2V1R4xm7qlsSZvrpgOTWMjVyLWTeyfKsHafwp2qrNhwfx3YziT30
-         DXi55Uq14K0rynaEKWd6Ok0Jb0W/BWBa+GrfdabsfysVWdB5+BHOCS8XOb0fSWet22qz
-         9fNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2k962TOjn9cIi6o9LRxiYucZxC9pwRel/qitgtJoDBU=;
-        b=crxvJwnNVNSTpFAwvLmnliuSqbmNb7xULLGJLngDY6AvaCZS+JoyQUIOlgRgJxhxrJ
-         j1YkzmLTVIe8iry6X0IAj4T+/h++D3a7U4wUvbT0GMGUEVm0S8tkDHIGwlDnMOODCwRL
-         AX1eLbPKSFCi3mNc8opMNpxQTJibl2rIiAifFWFc4KboW4rIvMgJGI/vCqkiTqsFAcN9
-         BfkQ4cVWfhEjUDKpD931locK0zFe7D9iZwmKfifgQVs0R01Nx/qY6J5gVz+xruj7LuFZ
-         AqXi7gMMrQNLZdNuwaEdgr/IDITJOiR1ZDrVqUtoOg8+FA2GUQLVfz1aJikNzhwTfpD+
-         DLtQ==
-X-Gm-Message-State: AOAM5306Vp7zrXT7v3NgsFrQbEq9crn4kXK0s4LKgG7syvcFuM4fIhby
-        uCuoEfTWcnkaFhxNFNKkzsrwoA==
-X-Google-Smtp-Source: ABdhPJzaklLC0LHx5HR8/i9VgTcXq5QbPfI6GUUCc4D+Iszuqzt/hY1yo3+e5Qa3tW2Mc545sh7adA==
-X-Received: by 2002:a05:6402:4493:b0:41d:83ca:35d6 with SMTP id er19-20020a056402449300b0041d83ca35d6mr2254118edb.89.1650524050755;
-        Wed, 20 Apr 2022 23:54:10 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id kb28-20020a1709070f9c00b006d5d8bf1b72sm7456045ejc.78.2022.04.20.23.54.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Apr 2022 23:54:10 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Zong Li <zong.li@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Bin Meng <bmeng.cn@gmail.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] riscv: dts: fu540-c000: fix duplicated dma compatible
-Date:   Thu, 21 Apr 2022 08:54:01 +0200
-Message-Id: <20220421065401.9303-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S1385484AbiDUG7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 02:59:10 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A55CF15FC8;
+        Wed, 20 Apr 2022 23:56:05 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 034B68106;
+        Thu, 21 Apr 2022 06:53:14 +0000 (UTC)
+Date:   Thu, 21 Apr 2022 09:56:03 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Message-ID: <YmEAA7kc4jNHSkGm@atomide.com>
+References: <20220414192722.2978837-1-dfustini@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220414192722.2978837-1-dfustini@baylibre.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove duplicated compatible to fix error:
+Hi,
 
-  u540-c000.dtsi:171.4-42: ERROR (duplicate_property_names): /soc/dma@3000000:compatible: Duplicate property name
+* Drew Fustini <dfustini@baylibre.com> [220414 19:24]:
+> TI AM437x SoCs support isolation of the IOs so that control is taken
+> from the peripheral they are connected to and overridden by values
+> present in the control register for that pad. This series documents a
+> new property 'ti,set-io-isolation' and updates the wkup_m3_ipc driver to
+> inform the CM3 firmware when that property is set.
 
-Fixes: 7eba954a8de8 ("riscv: dts: Add dma-channels property and modify compatible")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Care to list what hardware and board revisions you're able to test deep
+sleep with?
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index fa8c18c0e5b0..7ea6300191a5 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -168,7 +168,6 @@ uart0: serial@10010000 {
- 			status = "disabled";
- 		};
- 		dma: dma@3000000 {
--			compatible = "sifive,fu540-c000-pdma";
- 			compatible = "sifive,fu540-c000-pdma", "sifive,pdma0";
- 			reg = <0x0 0x3000000 0x0 0x8000>;
- 			interrupt-parent = <&plic0>;
--- 
-2.32.0
+Seems like my am437x-evm is too old for this where the board layout
+does not match the schematics for removing a resistor to enable this.
 
+Just wondering if I can still enable tests for this somehow :)
+
+Regards,
+
+Tony
