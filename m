@@ -2,153 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B31350A8C8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 21:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3930F50A8FD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 21:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1391774AbiDUTL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 15:11:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52218 "EHLO
+        id S1387407AbiDUTWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 15:22:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378558AbiDUTL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 15:11:26 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 458624CD49;
-        Thu, 21 Apr 2022 12:08:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BA259B828CD;
-        Thu, 21 Apr 2022 19:08:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CEDCC385A1;
-        Thu, 21 Apr 2022 19:08:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650568113;
-        bh=pEYDq1Q4e5rDzN3eRyGF3xFFJcxwOp83q2iiOlT0aSY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TGhrCQam+BzI8AblkY9oJC5GBIJvanyAPz+qTOneMa7ZXEkJd0ybqeh7WpQ+iYAgk
-         4eHrDvon85rWmiDFwa142SjfqfGihwK8beAXTWWnN0KPbf9pe6wCuhEU8Oatv6ZMOz
-         HhYTuF4oVgUeReR8Cx4b8p9897zD7cGevATUxdhUMDgwZQaj1pMFrp2saUfNqm67aK
-         lAsoOOhK23C79Kkj7ZiuoKnojUV33ZZaCobm8yJADOKqbpJFrjRAKscdVPS+SLB2am
-         LJ31ENmBc/jmfe2MvEk4jlS95eeLuq4edHC4xC9CxdoPlMBcQ3cKg0x1QQgN8VvrFo
-         b3ZIPlxe0Yvqg==
-Received: by mail-pl1-f172.google.com with SMTP id d15so5825022pll.10;
-        Thu, 21 Apr 2022 12:08:33 -0700 (PDT)
-X-Gm-Message-State: AOAM530g0RZKoVWj6k/0+OjJKyvOGwmvB1t1447Hi6VKbg1AmcGo4OVq
-        /tb3ZjrMba1ucf9pjzcc1OXLP+tugxUbwxnXAw==
-X-Google-Smtp-Source: ABdhPJx2/vfWAJgwxYJ1KQbeNopS2+xzJdE+dbc/rOWErLiBExZaizfaFLAsh3z3f2E0CAdu5U/TeCXH+YWQgDptf/E=
-X-Received: by 2002:a17:902:eb8c:b0:158:4cc9:6998 with SMTP id
- q12-20020a170902eb8c00b001584cc96998mr925604plg.35.1650568112939; Thu, 21 Apr
- 2022 12:08:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <f6086989-a4c1-4223-fad0-79bd5719432e@linaro.org>
- <20220421094421.288672-1-michael@walle.cc> <YmFo+EntwxIsco/t@robh.at.kernel.org>
- <30f2f62406bab8225cc88013b414016d@walle.cc>
-In-Reply-To: <30f2f62406bab8225cc88013b414016d@walle.cc>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 21 Apr 2022 14:08:21 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJr0fvqL_6CL__Q6aY0AVD+gL4=g46Y=j2r=fJy9jDwGg@mail.gmail.com>
-Message-ID: <CAL_JsqJr0fvqL_6CL__Q6aY0AVD+gL4=g46Y=j2r=fJy9jDwGg@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH 1/2 v4] dt-bindings: dspi: added for semtech sx1301
-To:     Michael Walle <michael@walle.cc>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        Changming Huang <jerry.huang@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yang-Leo Li <leoyang.li@nxp.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1389394AbiDUTWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 15:22:43 -0400
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE8BD24E;
+        Thu, 21 Apr 2022 12:19:51 -0700 (PDT)
+Received: from pps.filterd (m0150242.ppops.net [127.0.0.1])
+        by mx0a-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 23LExwPW027532;
+        Thu, 21 Apr 2022 19:18:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=QgBoamMiZEICwB0eYmyKiR9XUsMuhTjNYHT2xlss6Sc=;
+ b=T56p7236YxcGSJ6qtK+XTwx5TAfqCSsloLnoruXEhL5h1oQT6eOaGuCfpzuAnZwvZmfg
+ MjG/MmEJ1V95SPOHRDuLnoHXPrwgz4jieUJjplsYM6xOqt8K++h60+bOe78DZ/t3/Dsy
+ JAC6jm0+fQkUdG724yUdEzRBcJdN2dJytgllZIltmRcCzxBp+mU312GxW/lwFwBQ6k93
+ j/fodB9PlNpQjQwkr3Na6zWBPfI3mcpBEyK8ddP+pDh490n2Tk/w4t85+1mnb7rrsC2w
+ EsGoacuGr5s+25QoaF6YDnJLoJkTjtJBxtsGEavkEoT+DicsEPOi8SR5yOxZNGSQRlQ6 bQ== 
+Received: from g9t5008.houston.hpe.com (g9t5008.houston.hpe.com [15.241.48.72])
+        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3fk9h1j42p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 21 Apr 2022 19:18:42 +0000
+Received: from g9t2301.houston.hpecorp.net (g9t2301.houston.hpecorp.net [16.220.97.129])
+        by g9t5008.houston.hpe.com (Postfix) with ESMTP id CA30B64;
+        Thu, 21 Apr 2022 19:18:40 +0000 (UTC)
+Received: from hpe.com (cigateway-dev.us.rdlabs.hpecorp.net [10.14.73.30])
+        by g9t2301.houston.hpecorp.net (Postfix) with ESMTP id 4B5864A;
+        Thu, 21 Apr 2022 19:18:38 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        gregkh@linuxfoundation.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, linux@armlinux.org.uk, arnd@arndb.de,
+        olof@lixom.net, joel@jms.id.au, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
+Subject: [PATCH v5 00/11] Introduce HPE GXP Architecture
+Date:   Thu, 21 Apr 2022 14:20:23 -0500
+Message-Id: <20220421192023.109903-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: 4ZJK1Kxp7--H_yyUgkL8iP4CyE-fbXWb
+X-Proofpoint-GUID: 4ZJK1Kxp7--H_yyUgkL8iP4CyE-fbXWb
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-21_04,2022-04-21_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 adultscore=0 priorityscore=1501 mlxlogscore=999
+ phishscore=0 bulkscore=0 impostorscore=0 clxscore=1011 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2204210102
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 10:16 AM Michael Walle <michael@walle.cc> wrote:
->
-> Am 2022-04-21 16:23, schrieb Rob Herring:
->
-> > What's needed here is a connector node (and driver) for the mikrobus
-> > socket. The connector node's purpose is to decouple the host DT from
-> > add-on board overlay DT. Something like this:
->
-> Funny I had a similar idea to have a connector with all the
-> properties, but I failed to see how that would be of any help.
->
-> Do you mind an example of such an overlay? Judging by the spi
-> and i2c subnode, I guess it will amend the connector node and
-> fill in it's devices?
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Right.
+Changes since v4:
+ *Fixed version mismatch with patchset across all patches
+ *Fixed typos with ochi -> ohci echi -> ehci
+ *Adjusted Watchdog Kconfig file
+ *Adjusted various commit comments
+ *Removed un-necessary include file
+ *Updated outdated base revision to newer one to resolve merge
+  conflicts as well as pickup vendor binding change for hpe.
 
->
-> And all the child device properties will reference the connector,
-> correct?
+Changes since v3:
+ *Completely redid the dtsi file to represent architecture
+ *Reduced device tree size
+ *Rewrote the timer driver to start the watchdog driver due
+ to similar register region
+ *Made adjustments to timer
+ *Made adjustments to watchdog
+ *Changed gxp.yaml to hpe,gxp.yaml with changes
+ *Updated Maintainers to represent new file names
+ *Added hpe bindings to generic-ehci and generic-ohci
+ *Fixed clock architecture to be accurate
 
-Right.
+Changes since v2:
+ *Reduced size of changes, put them into patchset format
+ *Changed from txt->yaml
 
->
-> > connector {
-> >       // And a more specific compatible if pins can have alt funcs?
-> >       // Spec version needed?
-> >       compatible = "mikrobus-socket";
-> >
-> >       // Will need regulators defined if child devices expect
-> >       // regulators
-> >       vcc-33-supply = <&reg33>;
-> >       vcc-5-supply = <&reg5v>;
-> >
-> >       i2c-parent = <&i2c1>; // Already a defined property
-> >       spi-parent = <&spi0>; // New
->
-> uart/serial needed too?
+Changes since v1:
+ *Fixed compiler warnings
 
-Yes. Serial has the extra issue in the kernel that tty vs. serdev are
-mutually exclusive and decided by presence or not of a child node for
-the UART. That would need some work to dynamically switch. I think I
-have some old patches doing that, but they probably break some aspects
-of TTY expectations.
+The GXP is the HPE BMC SoC that is used in the majority
+of HPE Generation 10 servers. Traditionally the asic will
+last multiple generations of server before being replaced.
 
->
-> >
-> >       // RST pin
-> >       reset-gpios = <&gpio 4 0>;
-> >
-> >       // remap 'INT' (index 0) to host interrupt
-> >       #interrupt-cells = <2>;
-> >       #address-cells = <0>;
-> >       interrupt-map = <0 0 &gpio 3 0>;
-> >
-> >       spi {
->
-> For example:
->
-> my-device@0 {
->    reg = <0>;  // really needed? there is only one SPI CS line
+Info about SoC:
 
-Yes, needed.
+ HPE GXP is the name of the HPE Soc. This SoC is used to implement
+ many BMC features at HPE. It supports ARMv7 architecture based on
+ the Cortex A9 core. It is capable of using an AXI bus to which
+ a memory controller is attached. It has multiple SPI interfaces
+ to connect boot flash and BIOS flash. It uses a 10/100/1000 MAC
+ for network connectivity. It has multiple i2c engines to drive
+ connectivity with a host infrastructure. The initial patches
+ enable the watchdog and timer enabling the host to be able to
+ boot.
 
->    compatible = "my-device";
->    reset-gpios = // may be left unset if it's optional, but what
->                  // what if it is a required property and in hardware
->                  // its connected to the RST pin of the module?
+Nick Hawkins (11):
+  archh: arm: mach-hpe: Introduce the HPE GXP architecture
+  arch: arm: configs: multi_v7_defconfig
+  drivers: wdt: Introduce HPE GXP SoC Watchdog
+  clocksource/drivers: Add HPE GXP timer
+  dt-bindings: timer: Add HPE GXP Timer Binding
+  dt-bindings: watchdog: Add HPE GXP Watchdog timer binding
+  dt-bindings: arm: Add HPE GXP Binding
+  dt-bindings: usb: generic-ehci:  Add HPE GXP ehci binding
+  dt-bindings: usb: generic-ohci:  Add HPE GXP ohci binding
+  arch: arm: boot: dts: Introduce HPE GXP Device tree
+  maintainers: Introduce HPE GXP Architecture
 
-Probably should not be required and the connector driver manages it.
+ .../devicetree/bindings/arm/hpe,gxp.yaml      |  22 +++
+ .../bindings/timer/hpe,gxp-timer.yaml         |  49 +++++
+ .../devicetree/bindings/usb/generic-ehci.yaml |   1 +
+ .../devicetree/bindings/usb/generic-ohci.yaml |   1 +
+ .../bindings/watchdog/hpe,gxp-wdt.yaml        |  30 +++
+ MAINTAINERS                                   |  13 ++
+ arch/arm/Kconfig                              |   2 +
+ arch/arm/Makefile                             |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  13 ++
+ arch/arm/boot/dts/hpe-gxp.dtsi                | 128 ++++++++++++
+ arch/arm/configs/multi_v7_defconfig           |   3 +
+ arch/arm/mach-hpe/Kconfig                     |  17 ++
+ arch/arm/mach-hpe/Makefile                    |   1 +
+ arch/arm/mach-hpe/gxp.c                       |  16 ++
+ drivers/clocksource/Kconfig                   |   8 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-gxp.c               | 182 ++++++++++++++++++
+ drivers/watchdog/Kconfig                      |  11 ++
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/gxp-wdt.c                    | 166 ++++++++++++++++
+ 21 files changed, 668 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+ create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+ create mode 100644 Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+ create mode 100644 arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+ create mode 100644 arch/arm/boot/dts/hpe-gxp.dtsi
+ create mode 100644 arch/arm/mach-hpe/Kconfig
+ create mode 100644 arch/arm/mach-hpe/Makefile
+ create mode 100644 arch/arm/mach-hpe/gxp.c
+ create mode 100644 drivers/clocksource/timer-gxp.c
+ create mode 100644 drivers/watchdog/gxp-wdt.c
 
->    other-gpios = <&connector 2>;
->    vdd-supply = // what comes here? <&connector VCC_33>?
+-- 
+2.17.1
 
-That has to be figured out, but *-supply doesn't take arg cells
-currently. Probably the connector needs to define its own regulator
-nodes.
-
->    interrupts-extended = <&connector 0 ..>;
-> }
-
-Rob
