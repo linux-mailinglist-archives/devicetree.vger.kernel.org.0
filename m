@@ -2,85 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D5F550A25D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 882BF50A277
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389320AbiDUOad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:30:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36234 "EHLO
+        id S1389395AbiDUOae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:30:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389274AbiDUOaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:21 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 128243F305
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:29 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id z2so5780347oic.6
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:29 -0700 (PDT)
+        with ESMTP id S1389333AbiDUOaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:23 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EC83FBD2
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:30 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id v65so1065013oig.10
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=0w23URXeycXFwHQWgdXQr4pbeMphaV2jmFrrqqfSE3s=;
-        b=Kebsc3zy2R6yFz94yzcf5L02awCw06FtzoKktwaU4iZ/+LNtOXn4l4wjwnFA8Xih3N
-         VPPlS4BHiIxYilcUMU2sRgVAvEJxkOxD1J8/HnmpZ8Dh/hNWGzH1/Kd2Jgm4Bx5ugpM7
-         3BVW5CbZ9hV+f9TvQuGyzrFZZU9DimKCStk4OmEOdq1MzjP0Sw7WKH1fTQe0BZXj/NZD
-         t7O4lcWpctPZEB+jxdXNPnwMpmAJoKSOMFXWFss8V9bg7/RXtzsAdaEAR/MLDEL6RGZ4
-         6zKGlSwaAFZ5kUBI1dHspvlo3sqi37zqx2jNTTZfqMmED0PR8UnWCBcpEq3H4b9ykIB5
-         aLqQ==
+        bh=iy+XsehI6myAL6KVn5dImXgKFPVtiwpahoxHlaa6W+8=;
+        b=YL/XFCuKPTSpDT9LQ0u2gSLWguoJmeREzY3fUT2kajNVSBHiMcBeQIYPBsWAVI53Tw
+         O2gEBPqLa5XtoDiwwKnD/glOhKSSFNst4A3YoEgwlA36QaQdk1VKRi3i12bQ5AYuavem
+         miBA0FuUIFzrNd84QYVxH3kGm8AOwbOIV4GEsroyQY9MrEO3emTL5f8+oy2ROcEim8ux
+         EfpeOHh0MYnvkUVNM+ZmCi305wClm7GKFI7EvpByocn+6R/J+qU53MYUPqonG/ztF9AF
+         lKfRTEb8E2HLRd5qv+VhNku51bcI9pXl8Ya+vEJMctnqP9hV/0q0BNSQgACKxF/77MqN
+         gSoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=0w23URXeycXFwHQWgdXQr4pbeMphaV2jmFrrqqfSE3s=;
-        b=jLT/fpXHKlHrGz6kQvpi6i7qYpywN4QSUttYIECNs9j9HTjdP0ugktlSprRet2//hx
-         imxMb4OHIIqPUv4q+GuPxlVBLU0hL2feJLcaOra/43lb3+/bWA2GyEslbsKZaZSeI1fp
-         ZDPN8OmWC7aUVczD5i1RzS58Sk73NR0bHf70FnhiY7WENDhg8/Dut1Z9HhoLKOfxgEGZ
-         Xr9wbuhvz38z4ln7hAVXnfdqKc+cfdRdEW641vmOLmkODlV6XmKtVeeF2pL5r0Bc5Nzx
-         sACoglC63P+6xB3G0bk623b/2s9tO1pq+2FZrfFngEDYlD1eq+JVJwkls2HYK46C3BY/
-         sK8g==
-X-Gm-Message-State: AOAM531sF81c02LUIWBOZccWIxGkUukaMXRJDZVVwWFqMsea+F5rf58k
-        wnuWj86KmgeZA0sOgyKLWh0guQ==
-X-Google-Smtp-Source: ABdhPJxCL7XWF6jtZFt9pOGaDmdX7DhZt/kmdmrCbgrDyE4fGGQ4vEqB3z2nqbkDX62yOn6G/+njBg==
-X-Received: by 2002:aca:bed6:0:b0:322:bd33:7efc with SMTP id o205-20020acabed6000000b00322bd337efcmr4424116oif.95.1650551248383;
-        Thu, 21 Apr 2022 07:27:28 -0700 (PDT)
+        bh=iy+XsehI6myAL6KVn5dImXgKFPVtiwpahoxHlaa6W+8=;
+        b=BUHWBPpfgy6p3g4mvnHlrxFxufGfjoW4ZAXHNNctOmFNbUgQ4LlX09WyVikIYGelei
+         4sxpEaafaqdDZvXwYmnkoPn8R9nzDuUY4wwv4V39w2Ga9iYNXVT76FvIuPpHUbD300ko
+         U1Bh7DZ8GiBpe3Ycp2RHSN6lqSdBvqj6tQfWZAyoDP7YSbiKKkg4TikJ71K54UWMT08z
+         f4aC+OXOwidCXYnvLxIHH80fYc0/xO7MLCzOA+nHJ2qL6F1ONmWQfxB8IFcxk8jktO1J
+         Vf7zT4sSZr56y0Hsq/FOVyh2STEHymP1xUupJwxfu5vudNMLikfi5pfK5zDoTw79WlMT
+         YfLg==
+X-Gm-Message-State: AOAM531J/z8AZdUS+RCOpBodYyND4JfHvpnT5PmCRh0iC44og/ttOSNq
+        /2v5YiFV5WslJeAwesXOpYULQw==
+X-Google-Smtp-Source: ABdhPJwDJSTzhIjX39Fq4tMduvuKO7oY4rI+JlI6xy2v8gHC0G9bwShy/fxLVML9LC1jPY0qkdgzJQ==
+X-Received: by 2002:aca:ef0a:0:b0:323:24d2:1ccd with SMTP id n10-20020acaef0a000000b0032324d21ccdmr348679oih.261.1650551249529;
+        Thu, 21 Apr 2022 07:27:29 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.27
+        by smtp.gmail.com with ESMTPSA id s14-20020a0568302a8e00b006054e841915sm4296295otu.73.2022.04.21.07.27.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 07:27:27 -0700 (PDT)
+        Thu, 21 Apr 2022 07:27:28 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
         Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: sc7280: Add SAR sensors to herobrine crd
-Date:   Thu, 21 Apr 2022 09:27:04 -0500
-Message-Id: <165055095991.2574292.1674742785100690480.b4-ty@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Cc:     quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        devicetree@vger.kernel.org, quic_kriskura@quicinc.com,
+        quic_vpulyala@quicinc.com, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: (subset) [PATCH v13 6/6] arm64: dts: qcom: sc7280: Add wakeup-source property for USB node
+Date:   Thu, 21 Apr 2022 09:27:05 -0500
+Message-Id: <165055095990.2574292.11484347980865320517.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220415172238.1.I671bdf40fdfce7a35f6349fca0dc56145d4210ee@changeid>
-References: <20220415172238.1.I671bdf40fdfce7a35f6349fca0dc56145d4210ee@changeid>
+In-Reply-To: <1649704614-31518-7-git-send-email-quic_c_sanm@quicinc.com>
+References: <1649704614-31518-1-git-send-email-quic_c_sanm@quicinc.com> <1649704614-31518-7-git-send-email-quic_c_sanm@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 17:22:41 -0700, Matthias Kaehlcke wrote:
-> Enable the two SAR sensors of the CRD based on herobrine.
+On Tue, 12 Apr 2022 00:46:54 +0530, Sandeep Maheswaram wrote:
+> Adding wakeup-source property for USB controller in SC7280.
+> This property is added to inform that the USB controller is
+> wake up capable and to conditionally power down the phy during
+> system suspend.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280: Add SAR sensors to herobrine crd
-      commit: 5d04419045e7ad28155e2f7403599b2fdbd1548f
+[6/6] arm64: dts: qcom: sc7280: Add wakeup-source property for USB node
+      commit: 97276cbfb4fbe33c3ab8b5f5277a73c0b5f3732b
 
 Best regards,
 -- 
