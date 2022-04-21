@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0EC15099D5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B10CF5099DB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380551AbiDUHoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:44:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38556 "EHLO
+        id S234668AbiDUHo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:44:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386084AbiDUHoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:44:13 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67C713D1B
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:41:23 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id t25so5370017edt.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:41:23 -0700 (PDT)
+        with ESMTP id S1386082AbiDUHoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:44:25 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 008ED13F0C
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:41:35 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id y10so8207205ejw.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:41:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Uv7cPKaUArzIITMcA4aXXtgjHbTkK+doRZ3K15+Bmlo=;
-        b=hEOdozmXH3eaNDgD/oRHrc2xyadazXOIopE1mPkGfP/inUNms8Ac/2w3hzc+Hm2+Gb
-         UW1MyqxUquuMBdVIvhOlWnWkIO1GEM8aq3Ga9z8Xva98irEa8LF3oyHdOG96CZSuPyXB
-         KrMO/j/R6XMDFH928uvnZcUeQmmrKqXEaUzSy1QpC1dkdbP7YyiDNB6zmFr7klSD8Nw8
-         fjY17XZ8Bo05L5vz2b5OTZM1xm/j9djH7SNudYUvYhq5k3ULBC4CQA3H6fhMW12HLe82
-         llX7Kq4oQ76RO9rJGwAVydNvDSpPtR+RKWV71petPg314S6+d1qFLn+eNE/fTttsBzAX
-         iz2Q==
+        bh=0mWGoPQeeXb3JIgOuC6Z5yzEgMscPvxeNGmB5+cXvx4=;
+        b=xUkZ4Es1JYsFeSJYLoOZnMmeL7KIn9SJ4+alJKX+k5i73/dJK76+r38TZBIn27+qwJ
+         p48OfrYNWL23FZcLLZiCKgPYeEmL5hsTzdfIeQ8kxfXba2bGMkqQ5FjQbjUD5Q5BMT1t
+         HUFeUk37daLD+zAFy8d7l2nGc6Ztcw5UhjcfR8AupgI8AtdwIpwCOl6stWFHPpOLmiOP
+         tSXMU9UL+BAlX55M0Q6u00HFdZP/BOnUAgfaSCy3/kMAEW/pqI2h+Yk916nfSvnJlKpm
+         DAp+XfrualX1EvtkWpZ6GJ9ATnGlFGr+lZOHhE3fDCEEYV82NWps7hNCpV4K1UZH0UfP
+         zqVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Uv7cPKaUArzIITMcA4aXXtgjHbTkK+doRZ3K15+Bmlo=;
-        b=XKBEGky7jcZsTnxFVgi6bywQ4viPSvkqYNYD4MDUVAE9tywTqkmYLNDuLU3CS1MqtY
-         m8nd44hlX+968uLoMEdXwxt1eYkumsVLz2pslmJ74yLcAwdzHiD/YJS5Lt6RDreSqEAz
-         /qTMzBOceAU8qbPK8RiALisRadpXKb/O1UAylN+psGLBe7Jd73N7VuISluIYfx252Phr
-         l/ObuvgegsWXVugI7indAVgV27VPSwGV7NlwVVb7Qt2wuLNyuf85H6uDQGyV8CL9xaD3
-         6ScKMtop34wHF79tiQyjHEa8iFZbzsHyOIQ2jSnUT/niXjd6SSEucvPVp84v+YWC5AIE
-         2Czw==
-X-Gm-Message-State: AOAM533278lQpn1ezHfmZGqhMeww0nvHvEd7bY1lg8kGcXRBc9DewCBu
-        LvOi+c6+v7BKeezXltLcf2SxIQ==
-X-Google-Smtp-Source: ABdhPJyDSIJPWtDreUktJgwGwA4rnrToJQn+4WMfPlbwKSwdvhGWyc6rjslk3+RKyhdEolriw4H+lw==
-X-Received: by 2002:a05:6402:1148:b0:413:11e0:1f58 with SMTP id g8-20020a056402114800b0041311e01f58mr27030007edw.113.1650526882501;
-        Thu, 21 Apr 2022 00:41:22 -0700 (PDT)
+        bh=0mWGoPQeeXb3JIgOuC6Z5yzEgMscPvxeNGmB5+cXvx4=;
+        b=RhWqX8IetpaH8efgaGR/GULo/RK8PXjuRwPLwkcqDsm+M6QcxVWacSo4VOq9XQjP98
+         1qGqfOvX0+dp4jZ91O+EQCB6hXxtZSOF5fo8XRUcVLJjaaszyCFlof5m9A9CUf887jVM
+         UJPTy68p6UC1QPZvvAbQSRrRyHlReYAN/JTB0ArsEMBxiMXtNfh+XwahQKEd+f/TlsWQ
+         p/m9s52FrAQ7yKVGkj8acTuodnorfXZfPQmGTtSugom3Kj2pjXz7QIftg7G2RT1SQ+9y
+         Ht0hVrAMKUjFOCIlDlMvvmGcFT3X3FGsevI7K5yOV4xYX6HctH493I+qL+OW8yIlvhA2
+         Ccbw==
+X-Gm-Message-State: AOAM530HvBYy0Gnj6/3Njb2Agv6C1Dw/XjTD45hJD8N2RL0b3MbPwiZW
+        Qxuu7M8i1F0w6V+GHBz8P+t8Mg==
+X-Google-Smtp-Source: ABdhPJw7mmmZUrY45OvG5dk1ZDa03KiPj1bXPfY40WHusxoaBzn9OWjAmWQtlIQJpFFy4fYqKGt4yw==
+X-Received: by 2002:a17:906:c110:b0:6e8:3a96:996a with SMTP id do16-20020a170906c11000b006e83a96996amr21742540ejc.216.1650526894570;
+        Thu, 21 Apr 2022 00:41:34 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q2-20020a056402032200b00423d4516387sm7633157edw.75.2022.04.21.00.41.21
+        by smtp.gmail.com with ESMTPSA id e12-20020a170906c00c00b006e66eff7584sm7535179ejz.102.2022.04.21.00.41.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 00:41:21 -0700 (PDT)
-Message-ID: <e5dabb07-eb0f-539d-12da-784ef0096e34@linaro.org>
-Date:   Thu, 21 Apr 2022 09:41:21 +0200
+        Thu, 21 Apr 2022 00:41:33 -0700 (PDT)
+Message-ID: <3d56dc96-e15d-54bd-f4e0-7f323c7aac73@linaro.org>
+Date:   Thu, 21 Apr 2022 09:41:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 02/15] dt-bindings: arm: renesas: Document Renesas White
- Hawk boards
+Subject: Re: [PATCH 03/15] dt-bindings: reset: renesas,rst: Document r8a779g0
+ reset module
 Content-Language: en-US
 To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
         geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
@@ -62,9 +62,9 @@ To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
 Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-serial@vger.kernel.org
 References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
- <20220420084255.375700-3-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-4-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220420084255.375700-3-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420084255.375700-4-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,16 +78,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
-> Add device tree bindings documentation for Renesas R-Car V4H
-> White Hawk CPU and BreakOut boards.
+> Document bindings for the R-Car V4H (R8A779G0) reset module.
 > 
 > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  Documentation/devicetree/bindings/arm/renesas.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/reset/renesas,rst.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Squash it with your previous patch, please. Documenting just SoC and
-immediately later the board compatibles is too big split.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
