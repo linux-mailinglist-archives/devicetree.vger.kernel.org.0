@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE28350A152
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A20650A14D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 15:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388341AbiDUN6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 09:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34650 "EHLO
+        id S1388430AbiDUN6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 09:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388321AbiDUN6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:58:11 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F133C2C100
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:20 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id r18so5900915ljp.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:20 -0700 (PDT)
+        with ESMTP id S1388321AbiDUN6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 09:58:15 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B732C100
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:25 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id y11so5872608ljh.5
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 06:55:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0K5sa4UCW+AAk8i4/ssQSDWQtlDxhnoOfuuhPz50cEY=;
-        b=jGxPAuP4XxEcbpP5UQiKSIXfu1FSfEmNm582+CatDKdMYg6j5lpR1+a78whkdNttjP
-         sAbHbXu9KSFSGXYjPudc54+LySEdPjw/trgs9d6JIF4TNUmtaFa4eTURMugA4K9+lUgV
-         m8T9AAZ+2HuqO2HehsMjmVTlmBc0QJG4wx/vZ9qpv6t4hz8AM0Zcrj43tMH+oI8ntl3o
-         DfVNQx07ST+rV77ru3sLky5iwzKbl+ur+VOnG8M2H9Rx0CRKYiAOguwq3NxjhJQEK11u
-         PM5V/L6ixUoabkzioVbGJiu2nMdVCFXvo/0Yi/Ccwbq2TwHF+88QfhDEUFDOrbmd4+vM
-         PEDQ==
+        bh=lzEPZD4SC3I9SVQDbsAF0F1Rh7CzBkbKno9SVHKNclE=;
+        b=hVVJzRiOHbQ1DvCsfacjZTIvOgsTjjshIlvtvnLVwcm3Rrj8ItYANVLUNJGM3kBhYI
+         qekT1/u9T/mx3cdf+pNK1CFnIeqpZ7ie1jYDHAkqx+IKRFtHH6LsKCB8AD7pglIGEr+k
+         GeaVZzdNNyWf+6DGWeDJsfJiZvU5AKjZjz8VeoYvoLiQ+exa/uoIv7QkV43ibikf6Bde
+         n/mrKC5vwc8tRe8BeqSsd78Ptwh5/n0+34RbJ2fo0lTLEW4jZrwrXlD02NbnoKljEPBk
+         RlF1kya9OZdYIhF1Dda6nupcl263pICR0WEN3xhggWCE/cGgTHHFA+N8oV4ndBEDMR5A
+         ys6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0K5sa4UCW+AAk8i4/ssQSDWQtlDxhnoOfuuhPz50cEY=;
-        b=IGWdtLzfuBu9QN4WAcO6vsBUpfOGMiveXUtwEeO4jIODSFU/ShnX4kMIGV7P8ccWdY
-         FB5sJX3Yy2pJtUYLQwUKZJuF35tD8rjpvM7uqWtyZcfxMx7Wrf6z/GviEQkvX+VMrPIx
-         C0OPGaAxzoAGWFTWr1fdHHhn2cIAKhGNggA4M6bigSHb+diowBZfBYRHm622TfCJuFNE
-         51tvqH6IWDZeHqefS1AFhSDz4yip/F6+Ii6Ulqw4JKxa6BtDHJ2XYRaBhzlMWtYoyAWX
-         YfSpjc40VP5rw77yr3gQIu3c6+hpouyRRgZK6Qnws9RhXzAydf/AozZsi0tfPReFHf6H
-         gqXw==
-X-Gm-Message-State: AOAM533ehp5+YD3xLpZi3+9iu83RFmhikS8WGQANpC41NXoP+vLekKfX
-        aV+z6vlm9qJs4+mVPAQtxcXndFS1jNvsnfri2EJ6IQ==
-X-Google-Smtp-Source: ABdhPJw9+pH0JKX02raXdY3bFsTuK+Pi7yhGUW9FyrJtFC00/H/UBtSWuEUhk9cSRloTjSSG+8BIiRLJSajSNoBWl4E=
-X-Received: by 2002:a2e:8199:0:b0:24d:c3cc:ff45 with SMTP id
- e25-20020a2e8199000000b0024dc3ccff45mr9937023ljg.229.1650549319281; Thu, 21
- Apr 2022 06:55:19 -0700 (PDT)
+        bh=lzEPZD4SC3I9SVQDbsAF0F1Rh7CzBkbKno9SVHKNclE=;
+        b=L38VAaCcnNU69uqvqYQxagn+Xtkmd/ZKSR4XQH6Y7LYsTZPWYPBXKDu6gK6W8nDbR+
+         eDrXsdZcNGJmd0RwqJKncgSBHoLgo5k6N+RqNx5Y1zZPTtdR6NDVMYAqd7coU9fg07Uu
+         jGG2ylc2OReef0gRvBSUqaRJTdyUWJ+BVGU8U4MDc3NTrdHmnkSVA383yHYMf8qDSJt/
+         olei4OpQiPENSBpVDDoy/FRFGiTnD10383dhcUvI+SIH3MG5I0Fvs4TD7jlEKPu17rCl
+         vzuoLlytGJE7BjrTVV3t9SXoHoZaFLWpmVfHX7v+QH1N6d+a4Sc31IeVpW/XFvRPpUuq
+         G3yA==
+X-Gm-Message-State: AOAM531QqSXlcX/Y0nesUJYOLtY9rq/Yo/DwTTmWqqYIeTRSxAh4IO/e
+        PfKtdyb8o8o3TEH0H6WtAAAhNyOER/uFI8GhtnxTIQ==
+X-Google-Smtp-Source: ABdhPJwdp7CwjJHxh38xo1mngfbcuKzywJgB4sJ2e01ZpDfXKMcYq4nHRTIm9dwvY/IUZLkqyoDgioE1u0ngCHX2XtI=
+X-Received: by 2002:a2e:a552:0:b0:24d:c784:4b43 with SMTP id
+ e18-20020a2ea552000000b0024dc7844b43mr8126261ljn.4.1650549323893; Thu, 21 Apr
+ 2022 06:55:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220417144223.649201-1-linus.walleij@linaro.org>
-In-Reply-To: <20220417144223.649201-1-linus.walleij@linaro.org>
+References: <20220419024611.1327525-1-chris.packham@alliedtelesis.co.nz> <20220419024611.1327525-4-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20220419024611.1327525-4-chris.packham@alliedtelesis.co.nz>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 21 Apr 2022 15:54:43 +0200
-Message-ID: <CAPDyKFotPog=aez576hFeFWjy52GB14PvsS+772DWpim1jB1uQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Add small binding node on level shifters
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Thu, 21 Apr 2022 15:54:47 +0200
+Message-ID: <CAPDyKFoPpWn+RNLRm02c2D779GeBW_rM2_jUprnD=jnKQT4xHA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: convert orion-sdio to JSON schema
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        adrian.hunter@intel.com, nico@fluxnic.net,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -63,14 +67,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 17 Apr 2022 at 16:44, Linus Walleij <linus.walleij@linaro.org> wrote:
+On Tue, 19 Apr 2022 at 04:46, Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
 >
-> The VQMMC is often provided by a level shifter, so drop a small note
-> in the bindings that this can be the case and how that is done.
-> It is helpful information since this is pretty common.
+> Convert the orion-sdio binding to JSON schema.
 >
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Applied for next, thanks!
 
@@ -79,25 +82,89 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 513f3c8758aa..ff5ce89e5111 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -298,7 +298,10 @@ properties:
+> Notes:
+>     Changes in v2:
+>     - Add review from Krzysztof
 >
->    vqmmc-supply:
->      description:
-> -      Supply for the bus IO line power
-> +      Supply for the bus IO line power, such as a level shifter.
-> +      If the level shifter is controlled by a GPIO line, this shall
-> +      be modeled as a "regulator-fixed" with a GPIO line for
-> +      switching the level shifter on/off.
+>  .../bindings/mmc/marvell,orion-sdio.yaml      | 44 +++++++++++++++++++
+>  .../devicetree/bindings/mmc/orion-sdio.txt    | 16 -------
+>  2 files changed, 44 insertions(+), 16 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,orion-sdio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/orion-sdio.txt
 >
->    mmc-pwrseq:
->      $ref: /schemas/types.yaml#/definitions/phandle
+> diff --git a/Documentation/devicetree/bindings/mmc/marvell,orion-sdio.yaml b/Documentation/devicetree/bindings/mmc/marvell,orion-sdio.yaml
+> new file mode 100644
+> index 000000000000..8a97ded15aed
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/marvell,orion-sdio.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/marvell,orion-sdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell orion-sdio controller
+> +
+> +maintainers:
+> +  - Nicolas Pitre <nico@fluxnic.net>
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: marvell,orion-sdio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@d00d4000 {
+> +      compatible = "marvell,orion-sdio";
+> +      reg = <0xd00d4000 0x200>;
+> +      interrupts = <54>;
+> +      clocks = <&gateclk 17>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mmc/orion-sdio.txt b/Documentation/devicetree/bindings/mmc/orion-sdio.txt
+> deleted file mode 100644
+> index 10f0818a34c5..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/orion-sdio.txt
+> +++ /dev/null
+> @@ -1,16 +0,0 @@
+> -* Marvell orion-sdio controller
+> -
+> -This file documents differences between the core properties in mmc.txt
+> -and the properties used by the orion-sdio driver.
+> -
+> -- compatible: Should be "marvell,orion-sdio"
+> -- clocks: reference to the clock of the SDIO interface
+> -
+> -Example:
+> -
+> -       mvsdio@d00d4000 {
+> -               compatible = "marvell,orion-sdio";
+> -               reg = <0xd00d4000 0x200>;
+> -               interrupts = <54>;
+> -               clocks = <&gateclk 17>;
+> -       };
 > --
 > 2.35.1
 >
