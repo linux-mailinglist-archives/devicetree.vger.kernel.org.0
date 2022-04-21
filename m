@@ -2,116 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E67509A6D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90728509A4E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386431AbiDUIKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 04:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        id S1381720AbiDUIQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 04:16:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245045AbiDUIKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:10:47 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252E11E3C9
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:07:56 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id t6so2060364wra.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:07:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=m9wV+vIEZDL8KhprPYlhYVDn81Dgoq0DcYhAGk+490w=;
-        b=du9gEsiIZYwYSSHgVxteh57cU7mTdEFHlkGr4b/devaFuNqJoLUFrAIV5PI+p0E7fw
-         YLIsoSZ/jA79uXIHoD90HEkNd4wRqdbKvWHVM2sTyS6hbKW8Sad4piUCdXEn2vp56n6R
-         eGb6hicXJeuUa53OFmXryJu5xVwHcxuD8Oj/RSstVnmE28BD3NMaXJnHBkkc3U4a4sgd
-         WZKPviGs74pFKHwUkB8YtvknwXwiEKZU2FNztg18c+5PhkDwZ4M0yOdSI6iexi+Zg5lT
-         OYbC4qA5rogT1Hz1sMNvovkIjT2ypBw0xQ+QvrKS9b37yWEsKROeUlfskIECps37+VFf
-         KaEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=m9wV+vIEZDL8KhprPYlhYVDn81Dgoq0DcYhAGk+490w=;
-        b=t5cERcy9rZ7fop78gPd16RhqrOlAQeW3m0E8dQLeLvKjZLgG/UUCa/N2pUjr6BFgpN
-         /hTIz3zO24mQpizVVcaXVIlGT0NnUwEGvfbuO/KYWBhI5/hQftVE/q9vpeZuS+RpHBw6
-         BinLBGzyGXte5woFzzaB2xtGLbke8FuPxv2Kei96PK8LQc002hqCSkGuYtjF8ZDvYzd6
-         AkBOUZOSFykGnGZxOOAy78QQxLnfvKH2jqvRcrjJlF0OJI7PovxkrgTAUjIKsny4A9IX
-         h5FD9TbdqGt7oh/WY/lZeoJ9KgQuLw0xMYBDOzGVxG/XTjB4G3ovoXd0E61Mj/4bgTlg
-         AVNg==
-X-Gm-Message-State: AOAM532+bvvxv1woTmipnKV9lbOSS/P7r2g2wIfcstWIP0mB7KRxnYg6
-        CsEsh/YUIMSVvntT9vp0ATsBXA==
-X-Google-Smtp-Source: ABdhPJxyBztgLVIeedlBtMENS04Io2p1DpkMBDuu8qD87zZoXq4uHdG79UYVvBKbGBM6/Dyz/WHiNw==
-X-Received: by 2002:a05:6000:100c:b0:207:a2aa:8d15 with SMTP id a12-20020a056000100c00b00207a2aa8d15mr18159747wrx.394.1650528474628;
-        Thu, 21 Apr 2022 01:07:54 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id f7-20020a1c3807000000b0038ffac6f752sm1404892wma.45.2022.04.21.01.07.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 01:07:53 -0700 (PDT)
-Date:   Thu, 21 Apr 2022 09:07:51 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Alistair Francis <alistair23@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Alistair Francis <alistair@alistair23.me>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Zhang Rui <rui.zhang@intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Amit Kucheria <amitk@kernel.org>
-Subject: Re: [PATCH v20 1/4] mfd: silergy,sy7636a: Add config option
-Message-ID: <YmEQ1/Gs15gUxYdh@google.com>
-References: <20220330094126.30252-1-alistair@alistair23.me>
- <20220330094126.30252-2-alistair@alistair23.me>
- <45acc349-8fea-f755-065c-c561949c45af@roeck-us.net>
- <CAKmqyKOqjperoku_uOy4sCa6LmCUtfB7SCvhLEKxLtcwDkzRyA@mail.gmail.com>
+        with ESMTP id S236564AbiDUIQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:16:10 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0AFFC1EEEA;
+        Thu, 21 Apr 2022 01:13:20 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 4123D1C810EE;
+        Thu, 21 Apr 2022 16:13:20 +0800 (CST)
+Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 21
+ Apr 2022 16:13:19 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01B.nuvoton.com
+ (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Thu, 21 Apr
+ 2022 16:13:19 +0800
+Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Thu, 21 Apr 2022 16:13:19 +0800
+Message-ID: <257d878e-8455-2770-7868-c9445b0eabba@nuvoton.com>
+Date:   Thu, 21 Apr 2022 16:13:20 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 5/5] dt-bindings: arm: Add initial bindings for Nuvoton
+ Platform
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <ychuang570808@gmail.com>
+CC:     <robh+dt@kernel.org>, <sboyd@kernel.org>, <krzk+dt@kernel.org>,
+        <arnd@arndb.de>, <olof@lixom.net>, <will@kernel.org>,
+        <soc@kernel.org>, <cfli0@nuvoton.com>
+References: <20220418082738.11301-1-ychuang3@nuvoton.com>
+ <20220418082738.11301-6-ychuang3@nuvoton.com>
+ <fd9316a6-7df6-e1fa-50dc-ff50934afb5c@linaro.org>
+ <caf4867f-7f71-9262-f190-463325eb13ab@nuvoton.com>
+ <4e9eaede-2208-bd73-35ae-89e128562653@linaro.org>
+ <80994f4b-136f-7669-4674-0c9826e88248@nuvoton.com>
+ <43cb61ac-461f-e6ff-b495-44f8befde79f@linaro.org>
+From:   Jacky Huang <ychuang3@nuvoton.com>
+In-Reply-To: <43cb61ac-461f-e6ff-b495-44f8befde79f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKmqyKOqjperoku_uOy4sCa6LmCUtfB7SCvhLEKxLtcwDkzRyA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Apr 2022, Alistair Francis wrote:
 
-> On Thu, Mar 31, 2022 at 6:02 AM Guenter Roeck <linux@roeck-us.net> wrote:
-> >
-> > On 3/30/22 02:41, Alistair Francis wrote:
-> > > Add a specific MFD_SY7636A config option.
-> > >
-> > > As part of this change we can use MFD_SY7636A as a dependency for all
-> > > SY7636a components and also remove the name from MFD_SIMPLE_MFD_I2C as
-> > > it no longer needs to be selectable.
-> > >
-> > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> >
-> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> 
-> Any chance of getting this in for 5.18? It would be nice to have the
-> configs all sorted before the release
 
-Can't do anything without Mark's Ack.
+On 2022/4/21 下午 04:05, Krzysztof Kozlowski wrote:
+> On 21/04/2022 10:04, Jacky Huang wrote:
+>>
+>> On 2022/4/21 下午 02:56, Krzysztof Kozlowski wrote:
+>>> On 21/04/2022 08:39, Jacky Huang wrote:
+>>>> On 2022/4/18 下午 08:11, Krzysztof Kozlowski wrote:
+>>>>> On 18/04/2022 10:27, Jacky Huang wrote:
+>>>>>> +properties:
+>>>>>> +  $nodename:
+>>>>>> +    const: '/'
+>>>>>> +  compatible:
+>>>>>> +    items:
+>>>>>> +      - enum:
+>>>>>> +          - nuvoton,ma35d1
+>>>>>> +          - nuvoton,ma35d1-evb
+>>>>>> +          - nuvoton,ma35d1-iot
+>>>>>> +          - nuvoton,ma35d1-som512
+>>>>>> +          - nuvoton,ma35d1-som1g
+>>>>> This does not match your DTS and does not look reasonable (SoC
+>>>>> compatible should not be part of this enum). Check some other board
+>>>>> bindings for examples.
+>>>>>
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>> I would like to modify it as follows:
+>>>>
+>>>> description: |
+>>>>      Boards with an ARMv8 based Nuvoton SoC shall have the following
+>>>>      properties.
+>>>>
+>>>> properties:
+>>>>      $nodename:
+>>>>        const: '/'
+>>>>      compatible:
+>>>>        oneOf:
+>>>>
+>>>>          - description: MA35D1 evaluation board
+>>>>            items:
+>>>>              - const: nuvoton,ma35d1-evb
+>>>>              - const: nuvoton,ma35d1
+>>>>
+>>>>          - description: MA35D1 IoT board
+>>>>            items:
+>>>>              - const: nuvoton,ma35d1-iot
+>>> Instead just enum with all board compatibles.
+>> How about to modify it as the follows:
+>>
+>>     compatible:
+>>       oneOf:
+>>
+>>         - description: MA35D1 evaluation board
+>>           items:
+>>             - enum:
+>>                 - nuvoton,ma35d1-evb
+>>             - const: nuvoton,ma35d1
+>>
+>>         - description: MA35D1 IoT board
+>>           items:
+>>             - enum:
+>>                 - nuvoton,ma35d1-iot
+>>             - const: nuvoton,ma35d1
+>>
+>>         - description: MA35D1 SOM board
+>>           items:
+>>             - enum:
+>>                 - nuvoton,ma35d1-som512
+>>                 - nuvoton,ma35d1-som1g
+>>             - const: nuvoton,ma35d1
+>>
+> It's still almost the same. All boards together. You can add a comment
+> next to the compatible if you want some user-friendly name.
+>
+>
+> Best regards,
+> Krzysztof
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+OK, I got it. Like this,
+
+   compatible:
+     oneOf:
+
+       - description: MA35D1 based boards
+         items:
+           - enum:
+               - nuvoton,ma35d1-evb
+               - nuvoton,ma35d1-iot
+               - nuvoton,ma35d1-som512
+               - nuvoton,ma35d1-som1g
+           - const: nuvoton,ma35d1
+
+Sincerely,
+Jacky Huang
+
+
