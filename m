@@ -2,77 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D91CF50A40E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 17:27:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A670350A442
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 17:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357636AbiDUP3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 11:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57306 "EHLO
+        id S1389104AbiDUPdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 11:33:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239131AbiDUP3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 11:29:48 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DD833A32;
-        Thu, 21 Apr 2022 08:26:57 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23LDvd08019975;
-        Thu, 21 Apr 2022 17:26:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=bnf5gVjGaaUSSavfXeijykz7SrAnxDKyVAT7Cz7u7sw=;
- b=7/MWr2I6tQ4W5fApMYlAhsleylVxrIeY2fwLEn1AxJhbRVZP6arCNDuYpKeJqj0kCzyl
- 6gGS1b5G3yf9/rgKQ10fEny82gZSByubeVQ+nGKQ+Q/mdgt63zrKDaFtP3aPiJPzJg6Q
- pTdG9Fcc1d/v8uYiHOz0ABM7roxz8tIibWZL+MA8sSVrGUjYMOXSvVoVFJQIbAI6Hiwl
- r4YuRYTyf7tKpcJ9QVNnysK7w9Npxz0ltJccC6wgyX15IQam52+pzEir2Lt+80tM4knX
- zMeqN9CJy517IIU8p6SX6aIQVoQafU9E1/t/5k/k8HoLLaTYWah2vkGSkaxUeUpkQnP1 EQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fh09m5m8q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 21 Apr 2022 17:26:34 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9C18710002A;
-        Thu, 21 Apr 2022 17:26:33 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9403B22ECEC;
-        Thu, 21 Apr 2022 17:26:33 +0200 (CEST)
-Received: from [10.48.0.142] (10.75.127.46) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Thu, 21 Apr
- 2022 17:26:32 +0200
-Message-ID: <d4ec8c8b-9c2a-3556-9c33-2a1769a4ad80@foss.st.com>
-Date:   Thu, 21 Apr 2022 17:26:31 +0200
+        with ESMTP id S232348AbiDUPdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 11:33:46 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557209FC9;
+        Thu, 21 Apr 2022 08:30:56 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id E35C4221D4;
+        Thu, 21 Apr 2022 17:30:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650555054;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=DB5FAoSbLWdhpEwEjh6IFzH77cBk+PmntaqbnGfcqjU=;
+        b=kbvPYtwokdnUQQv4zexXnjhwUc8QJc5g7JEo/zNQowGai5zb7X02ijc+4W9XlCXzcC70Si
+        YD2PB3smg9y3gEbZuYqOnos8K8e9iRfbdn1RlK8RdMqlLydGnIs9/X4Cp9gwJqK+enp5VE
+        kFZI5HRbKHUt+HydQgnM0craUf6g5Tg=
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: fsl: convert fsl,layerscape-dcfg to YAML
+Date:   Thu, 21 Apr 2022 17:30:44 +0200
+Message-Id: <20220421153044.3496643-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH RESEND v3 13/13] ARM: dts: stm32: add RCC on STM32MP13x
- SoC family
-Content-Language: en-US
-To:     <gabriel.fernandez@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220316131000.9874-1-gabriel.fernandez@foss.st.com>
- <20220316131000.9874-14-gabriel.fernandez@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220316131000.9874-14-gabriel.fernandez@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-21_02,2022-04-21_01,2022-02-23_01
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,315 +50,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/16/22 14:10, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> 
-> Enables Reset and Clocks Controller on STM32MP13
-> 
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> ---
->   arch/arm/boot/dts/stm32mp131.dtsi  | 107 +++++++++++------------------
->   arch/arm/boot/dts/stm32mp133.dtsi  |   4 +-
->   arch/arm/boot/dts/stm32mp13xf.dtsi |   3 +-
->   3 files changed, 46 insertions(+), 68 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-> index 78eac53224d4..d7300b00ec19 100644
-> --- a/arch/arm/boot/dts/stm32mp131.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
-> @@ -4,6 +4,8 @@
->    * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
->    */
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/stm32mp13-clks.h>
-> +#include <dt-bindings/reset/stm32mp13-resets.h>
->   
->   / {
->   	#address-cells = <1>;
-> @@ -64,54 +66,8 @@ scmi_reset: protocol@16 {
->   			};
->   		};
->   	};
-> -	clocks {
-> -		clk_axi: clk-axi {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <266500000>;
-> -		};
-> -
-> -		clk_hse: clk-hse {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <24000000>;
-> -		};
-> -
-> -		clk_hsi: clk-hsi {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <64000000>;
-> -		};
-> -
-> -		clk_lsi: clk-lsi {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <32000>;
-> -		};
-> -
-> -		clk_pclk3: clk-pclk3 {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <104438965>;
-> -		};
->   
-> -		clk_pclk4: clk-pclk4 {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <133250000>;
-> -		};
-> -
-> -		clk_pll4_p: clk-pll4_p {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <50000000>;
-> -		};
-> -
-> -		clk_pll4_r: clk-pll4_r {
-> -			#clock-cells = <0>;
-> -			compatible = "fixed-clock";
-> -			clock-frequency = <99000000>;
-> -		};
-> +	clocks {
->   	};
->   
->   	intc: interrupt-controller@a0021000 {
-> @@ -148,7 +104,8 @@ uart4: serial@40010000 {
->   			compatible = "st,stm32h7-uart";
->   			reg = <0x40010000 0x400>;
->   			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clk_hsi>;
-> +			clocks = <&rcc UART4_K>;
-> +			resets = <&rcc UART4_R>;
->   			status = "disabled";
->   		};
->   
-> @@ -163,7 +120,8 @@ dma1: dma-controller@48000000 {
->   				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clk_pclk4>;
-> +			clocks = <&rcc DMA1>;
-> +			resets = <&rcc DMA1_R>;
->   			#dma-cells = <4>;
->   			st,mem2mem;
->   			dma-requests = <8>;
-> @@ -180,7 +138,8 @@ dma2: dma-controller@48001000 {
->   				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clk_pclk4>;
-> +			clocks = <&rcc DMA2>;
-> +			resets = <&rcc DMA2_R>;
->   			#dma-cells = <4>;
->   			st,mem2mem;
->   			dma-requests = <8>;
-> @@ -189,13 +148,29 @@ dma2: dma-controller@48001000 {
->   		dmamux1: dma-router@48002000 {
->   			compatible = "st,stm32h7-dmamux";
->   			reg = <0x48002000 0x40>;
-> -			clocks = <&clk_pclk4>;
-> +			clocks = <&rcc DMAMUX1>;
-> +			resets = <&rcc DMAMUX1_R>;
->   			#dma-cells = <3>;
->   			dma-masters = <&dma1 &dma2>;
->   			dma-requests = <128>;
->   			dma-channels = <16>;
->   		};
->   
-> +		rcc: rcc@50000000 {
-> +			compatible = "st,stm32mp13-rcc", "syscon";
-> +			reg = <0x50000000 0x1000>;
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +
-> +			clock-names = "hse", "hsi", "csi", "lse", "lsi";
-> +
+Convert the fsl,layerscape-dcfg binding to the new YAML format.
 
-It doesn't match with current yaml description. I'm preparing a patch to 
-update rcc yaml file. You will have to check that it matches with this node.
+One thing added here, compared to the original binding, is the clock
+controller subnode of the LS1028A SoC and its "simple-mfd" compatible as
+used in arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi as well as the
+little-endian and big-endian properties.
 
-> +			clocks = <&scmi_clk CK_SCMI_HSE>,
-> +				 <&scmi_clk CK_SCMI_HSI>,
-> +				 <&scmi_clk CK_SCMI_CSI>,
-> +				 <&scmi_clk CK_SCMI_LSE>,
-> +				 <&scmi_clk CK_SCMI_LSI>;
-> +		};
-> +
->   		exti: interrupt-controller@5000d000 {
->   			compatible = "st,stm32mp13-exti", "syscon";
->   			interrupt-controller;
-> @@ -206,14 +181,14 @@ exti: interrupt-controller@5000d000 {
->   		syscfg: syscon@50020000 {
->   			compatible = "st,stm32mp157-syscfg", "syscon";
->   			reg = <0x50020000 0x400>;
-> -			clocks = <&clk_pclk3>;
-> +			clocks = <&rcc SYSCFG>;
->   		};
->   
->   		mdma: dma-controller@58000000 {
->   			compatible = "st,stm32h7-mdma";
->   			reg = <0x58000000 0x1000>;
->   			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clk_pclk4>;
-> +			clocks = <&rcc MDMA>;
->   			#dma-cells = <5>;
->   			dma-channels = <32>;
->   			dma-requests = <48>;
-> @@ -225,8 +200,9 @@ sdmmc1: mmc@58005000 {
->   			reg = <0x58005000 0x1000>, <0x58006000 0x1000>;
->   			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
->   			interrupt-names = "cmd_irq";
-> -			clocks = <&clk_pll4_p>;
-> +			clocks = <&rcc SDMMC1_K>;
->   			clock-names = "apb_pclk";
-> +			resets = <&rcc SDMMC1_R>;
->   			cap-sd-highspeed;
->   			cap-mmc-highspeed;
->   			max-frequency = <130000000>;
-> @@ -239,8 +215,9 @@ sdmmc2: mmc@58007000 {
->   			reg = <0x58007000 0x1000>, <0x58008000 0x1000>;
->   			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
->   			interrupt-names = "cmd_irq";
-> -			clocks = <&clk_pll4_p>;
-> +			clocks = <&rcc SDMMC2_K>;
->   			clock-names = "apb_pclk";
-> +			resets = <&rcc SDMMC2_R>;
->   			cap-sd-highspeed;
->   			cap-mmc-highspeed;
->   			max-frequency = <130000000>;
-> @@ -250,7 +227,7 @@ sdmmc2: mmc@58007000 {
->   		iwdg2: watchdog@5a002000 {
->   			compatible = "st,stm32mp1-iwdg";
->   			reg = <0x5a002000 0x400>;
-> -			clocks = <&clk_pclk4>, <&clk_lsi>;
-> +			clocks = <&rcc IWDG2>, <&scmi_clk CK_SCMI_LSI>;
->   			clock-names = "pclk", "lsi";
->   			status = "disabled";
->   		};
-> @@ -289,7 +266,7 @@ gpioa: gpio@50002000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x0 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOA>;
->   				st,bank-name = "GPIOA";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 0 16>;
-> @@ -301,7 +278,7 @@ gpiob: gpio@50003000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x1000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOB>;
->   				st,bank-name = "GPIOB";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 16 16>;
-> @@ -313,7 +290,7 @@ gpioc: gpio@50004000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x2000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOC>;
->   				st,bank-name = "GPIOC";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 32 16>;
-> @@ -325,7 +302,7 @@ gpiod: gpio@50005000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x3000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOD>;
->   				st,bank-name = "GPIOD";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 48 16>;
-> @@ -337,7 +314,7 @@ gpioe: gpio@50006000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x4000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOE>;
->   				st,bank-name = "GPIOE";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 64 16>;
-> @@ -349,7 +326,7 @@ gpiof: gpio@50007000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x5000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOF>;
->   				st,bank-name = "GPIOF";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 80 16>;
-> @@ -361,7 +338,7 @@ gpiog: gpio@50008000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x6000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOG>;
->   				st,bank-name = "GPIOG";
->   				ngpios = <16>;
->   				gpio-ranges = <&pinctrl 0 96 16>;
-> @@ -373,7 +350,7 @@ gpioh: gpio@50009000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x7000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOH>;
->   				st,bank-name = "GPIOH";
->   				ngpios = <15>;
->   				gpio-ranges = <&pinctrl 0 112 15>;
-> @@ -385,7 +362,7 @@ gpioi: gpio@5000a000 {
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->   				reg = <0x8000 0x400>;
-> -				clocks = <&clk_pclk4>;
-> +				clocks = <&rcc GPIOI>;
->   				st,bank-name = "GPIOI";
->   				ngpios = <8>;
->   				gpio-ranges = <&pinctrl 0 128 8>;
-> diff --git a/arch/arm/boot/dts/stm32mp133.dtsi b/arch/arm/boot/dts/stm32mp133.dtsi
-> index 0fb1386257cf..531c263c9f46 100644
-> --- a/arch/arm/boot/dts/stm32mp133.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp133.dtsi
-> @@ -15,7 +15,7 @@ m_can1: can@4400e000 {
->   			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
->   			interrupt-names = "int0", "int1";
-> -			clocks = <&clk_hse>, <&clk_pll4_r>;
-> +			clocks = <&scmi_clk CK_SCMI_HSE>, <&rcc FDCAN_K>;
->   			clock-names = "hclk", "cclk";
->   			bosch,mram-cfg = <0x0 0 0 32 0 0 2 2>;
->   			status = "disabled";
-> @@ -28,7 +28,7 @@ m_can2: can@4400f000 {
->   			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->   			interrupt-names = "int0", "int1";
-> -			clocks = <&clk_hse>, <&clk_pll4_r>;
-> +			clocks = <&scmi_clk CK_SCMI_HSE>, <&rcc FDCAN_K>;
->   			clock-names = "hclk", "cclk";
->   			bosch,mram-cfg = <0x1400 0 0 32 0 0 2 2>;
->   			status = "disabled";
-> diff --git a/arch/arm/boot/dts/stm32mp13xf.dtsi b/arch/arm/boot/dts/stm32mp13xf.dtsi
-> index fa6889e30591..4d00e7592882 100644
-> --- a/arch/arm/boot/dts/stm32mp13xf.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp13xf.dtsi
-> @@ -10,7 +10,8 @@ cryp: crypto@54002000 {
->   			compatible = "st,stm32mp1-cryp";
->   			reg = <0x54002000 0x400>;
->   			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clk_axi>;
-> +			clocks = <&rcc CRYP1>;
-> +			resets = <&rcc CRYP1_R>;
->   			status = "disabled";
->   		};
->   	};
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+ .../arm/freescale/fsl,layerscape-dcfg.txt     | 19 ------
+ .../arm/freescale/fsl,layerscape-dcfg.yaml    | 68 +++++++++++++++++++
+ 2 files changed, 68 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt
+deleted file mode 100644
+index 10a91cc8b997..000000000000
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-Freescale DCFG
+-
+-DCFG is the device configuration unit, that provides general purpose
+-configuration and status for the device. Such as setting the secondary
+-core start address and release the secondary core from holdoff and startup.
+-
+-Required properties:
+-  - compatible: Should contain a chip-specific compatible string,
+-	Chip-specific strings are of the form "fsl,<chip>-dcfg",
+-	The following <chip>s are known to be supported:
+-	ls1012a, ls1021a, ls1043a, ls1046a, ls2080a, lx2160a
+-
+-  - reg : should contain base address and length of DCFG memory-mapped registers
+-
+-Example:
+-	dcfg: dcfg@1ee0000 {
+-		compatible = "fsl,ls1021a-dcfg";
+-		reg = <0x0 0x1ee0000 0x0 0x10000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.yaml b/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.yaml
+new file mode 100644
+index 000000000000..4396e96ecfc4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/freescale/fsl,layerscape-dcfg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale Layerscape Device Configuration Unit
++
++maintainers:
++  - Shawn Guo <shawnguo@kernel.org>
++  - Li Yang <leoyang.li@nxp.com>
++
++description: |
++  DCFG is the device configuration unit, that provides general purpose
++  configuration and status for the device. Such as setting the secondary
++  core start address and release the secondary core from holdoff and
++  startup.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,ls1012a-dcfg
++              - fsl,ls1021a-dcfg
++              - fsl,ls1043a-dcfg
++              - fsl,ls1046a-dcfg
++              - fsl,ls1088a-dcfg
++              - fsl,ls2080a-dcfg
++              - fsl,lx2160a-dcfg
++          - const: syscon
++
++      - items:
++          - enum:
++              - fsl,ls1028a-dcfg
++          - const: syscon
++          - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++  little-endian: true
++  big-endian: true
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  ranges: true
++
++patternProperties:
++  "^clock-controller@[0-9a-z]+$":
++    type: object
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    dcfg@1ee0000 {
++        compatible = "fsl,ls1021a-dcfg", "syscon";
++        reg = <0x1ee0000 0x10000>;
++    };
+-- 
+2.30.2
 
