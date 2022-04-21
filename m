@@ -2,145 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACB03509480
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 03:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E84A35094A3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 03:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383566AbiDUBLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Apr 2022 21:11:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40196 "EHLO
+        id S1383631AbiDUB3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Apr 2022 21:29:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378191AbiDUBLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 21:11:02 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B577E43
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 18:08:13 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bu29so6046734lfb.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Apr 2022 18:08:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PaUnbNt+lm1u9yE5wisBRk3m4mxTkfso+o7EcsoYb9U=;
-        b=mMgyk5nz/Y8n1Lj6vrQUNd5iJAn2E+0233wITVfUWqbApNDLFv2P7b27+6eSzJoWDL
-         t0nahvOc6wJ15MiIpsKeWs0NrqXR9RXJkkBDs3+5092owdZdTLhhNj+VLA8H1rGYQhNB
-         lXc9cpxs8m5Z3IuIVwneY0LQqDwM8QSs17KSD3OaJ5Hkkhve7Yzrv8XLkplj9scNw0Mh
-         op+UpykXWdb3gRwDuvNZCqSStJBVDMmlmxRoZdim+0kJtGzaUFQ7AOdKSmt9q22xGyfy
-         hzxcH+ZtySQMf/xAuovtiEg2lwqVUhpujH0WofcH75OafGIP6rnLjPmoGN7EKHwffPF2
-         oQ/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PaUnbNt+lm1u9yE5wisBRk3m4mxTkfso+o7EcsoYb9U=;
-        b=PPLludw5/RyQlVP5Xjvxj+6RoJbcH472wuvYr7lsEFTTxxX2SblasxmT8+nWHyJp3k
-         DxeT5uEG/M2noCFamKUAq9jjubgfY9Go0L5vSOQ2EDZeksC2mHWg51VlsZhNvNNtOs3K
-         0r6uWLtSS7lMxjoFNwN3wlq3NwJtxfY9bOmfIawsuzxV9d01UU/lY9TUrjGRTxxqMsNW
-         Silnu6bvlGQrku4I5ybOSRms+0ze+rCsPj/n/M+jUGeY/d16crtJ/n8g0q4jwLnwlujG
-         Fe3L2mVP6wbHNasSzPKaYQLew8aSLQ4/mNEfNdMWICqCD0FFyItuIXQpgdFXDtpF+PWf
-         nolw==
-X-Gm-Message-State: AOAM530eMY3OwwKrSRL6PyTF/rgcqpALErcdhL3OzRifKJxUvygU2dQF
-        6MPydnQlCznWpQGj1kzP1SQBB5tz4txj+px1u+aZqQ==
-X-Google-Smtp-Source: ABdhPJxhKAUyCkkPAjGWEELWh3qbbbzQYB5MSQk5Ht/V6TTVpoiQIzNDZ4iAXo0PDGcIqt8h6lJKcUanUp/MHHUasws=
-X-Received: by 2002:a05:6512:1155:b0:471:4c94:97c with SMTP id
- m21-20020a056512115500b004714c94097cmr13816995lfg.338.1650503291055; Wed, 20
- Apr 2022 18:08:11 -0700 (PDT)
+        with ESMTP id S1383623AbiDUB33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Apr 2022 21:29:29 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8635F13F4A;
+        Wed, 20 Apr 2022 18:26:37 -0700 (PDT)
+X-UUID: 5a05551d64e343ff8d5e5506ed38cb6a-20220421
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:92da5554-90da-46d7-8869-d39776fa4a9e,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:95
+X-CID-INFO: VERSION:1.1.4,REQID:92da5554-90da-46d7-8869-d39776fa4a9e,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
+        ION:quarantine,TS:95
+X-CID-META: VersionHash:faefae9,CLOUDID:e43092ef-06b0-4305-bfbf-554bfc9d151a,C
+        OID:52bde752a9fb,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: 5a05551d64e343ff8d5e5506ed38cb6a-20220421
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <hui.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1287322795; Thu, 21 Apr 2022 09:26:30 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 21 Apr 2022 09:26:28 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 21 Apr 2022 09:26:27 +0800
+From:   Hui-Liu Liu <hui.liu@mediatek.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
+        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <zhiyong.tao@mediatek.com>, <hsin-hsiung.wang@mediatek.com>,
+        <sean.wang@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <yuchen.huang@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v5 0/1] Add mt6359 node for MediaTek PMIC MT6359
+Date:   Thu, 21 Apr 2022 09:26:22 +0800
+Message-ID: <20220421012623.3446-1-hui.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CANXhq0r15Z9NZj+xr7K_2Tt5VbK2r4+f7Fpg-f9BY98ufgKxcw@mail.gmail.com>
- <mhng-75e55594-c878-4fad-9ffc-dc552111208e@palmer-ri-x1c9> <CAL_Jsq+5TbfFxD3p4ckvNw=jFweuvjQPRQfjmvPqZJga25o0pA@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+5TbfFxD3p4ckvNw=jFweuvjQPRQfjmvPqZJga25o0pA@mail.gmail.com>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Thu, 21 Apr 2022 09:07:59 +0800
-Message-ID: <CANXhq0rYBCQyGK-zfKdU51y03dSD9XsPwtCqg8a7xvxYV3LL+A@mail.gmail.com>
-Subject: Re: [PATCH v8 0/4] Determine the number of DMA channels by
- 'dma-channels' property
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>, Vinod <vkoul@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 20, 2022 at 10:26 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Tue, Apr 19, 2022 at 7:18 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> >
-> > On Mon, 11 Apr 2022 04:43:35 PDT (-0700), zong.li@sifive.com wrote:
-> > > On Mon, Apr 11, 2022 at 6:48 PM Vinod Koul <vkoul@kernel.org> wrote:
-> > >>
-> > >> On 11-04-22, 10:51, Zong Li wrote:
-> > >> > On Fri, Apr 8, 2022 at 9:13 PM Vinod Koul <vkoul@kernel.org> wrote:
-> > >> > >
-> > >> > > On 28-03-22, 17:52, Zong Li wrote:
-> > >> > > > The PDMA driver currently assumes there are four channels by default, it
-> > >> > > > might cause the error if there is actually less than four channels.
-> > >> > > > Change that by getting number of channel dynamically from device tree.
-> > >> > > > For backwards-compatible, it uses the default value (i.e. 4) when there
-> > >> > > > is no 'dma-channels' information in dts.
-> > >> > >
-> > >> > > Applied patch 1 & 4 to dmaengine-next, thanks
-> > >> >
-> > >> > Hi Vinod,
-> > >> > Thanks for your help and review. For patch 2 and 3, does it mean that
-> > >> > we should go through the riscv tree?
-> > >>
-> > >> Yes
-> > >>
-> > >
-> > > Hi Palmer,
-> > > Could you please help me to pick up the patch 2 and 3. Thanks :)
-> >
-> > Sorry about that, I forgot about this one.  I just put them on for-next,
-> > there was a minor merge conflict but it looks pretty simple.
->
-> Looks like you applied patch 1 too which Vinod already applied to the
-> dmaengine tree. And you changed the 1st line removing the "# " before
-> the SPDX tag which results in:
+This pathset add PMIC MT6359 related nodes.
 
-Hi Palmer,
-Many thanks for helping me to pick them into riscv-tree, It seems like
-we need to pick patch 2 and 3 in riscv tree, instead of patch 1 and 2.
-:)
+The series[1] send by Hsin-Hsiung will continue to upstream in this pathset afterwards.
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/1622011927-359-9-git-send-email-hsin-hsiung.wang@mediatek.com/
 
->
-> make[1]: *** Deleting file
-> 'Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.example.dts'
-> Traceback (most recent call last):
->   File "/usr/local/bin/dt-extract-example", line 52, in <module>
->     binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py",
-> line 434, in load
->     return constructor.get_single_data()
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py",
-> line 119, in get_single_data
->     node = self.composer.get_single_node()
->   File "_ruamel_yaml.pyx", line 718, in _ruamel_yaml.CParser.get_single_node
-> ruamel.yaml.composer.ComposerError: expected a single document in the stream
->   in "<unicode string>", line 1, column 1
-> but found another document
->   in "<unicode string>", line 2, column 1
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:26:
-> Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.example.dts]
-> Error 1
-> ./Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml:1:1:
-> [error] missing document start "---" (document-start)
->
->
-> Rob
+Changes in patch v5:
+1)Fix commit message typo.
+
+Changes in patch v4:
+1)Include mt6359.dtsi in mt8192-evb.dts.
+
+Changes in patch v3:
+1)Add commit messages.
+
+Changes in patch v2:
+1)Only add mt6359.dtsi, mt8192-evb.dts no need update.
+
+Changes in patch v1:
+1)Add "SPDX-License-Identifier: (GPL-2.0 OR MIT)" in mt6359.dtsi.
+
+*** BLURB HERE ***
+
+Hui Liu (1):
+  arm64: dts: mt6359: add PMIC MT6359 related nodes
+
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi    | 298 ++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   1 +
+ 2 files changed, 299 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6359.dtsi
+
+-- 
+2.25.1
+
+
