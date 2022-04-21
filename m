@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6426F509ABF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA67C509AB7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 10:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386700AbiDUIgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 04:36:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
+        id S1386716AbiDUIgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 04:36:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386696AbiDUIgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:36:01 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280F517077
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:33:12 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 21so5572540edv.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:33:12 -0700 (PDT)
+        with ESMTP id S1386697AbiDUIgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 04:36:35 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C310A1DA72
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:33:45 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id e30so2029266eda.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 01:33:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7hLXPIweBUa1OCSsueogoc1wGUx6MfJz9AL8E0t93jg=;
-        b=U4hZWxQ15Dqk0wtSihPrY5dFY+Zd20Mw5s2nwZe/wuuUZNAPoYt6v3Y+Pk721XjIMY
-         fN54vNkZUqedcCEZVb9LaQvCq4jyFloChkMzBlAMlwXRBBMOpjl3jV7yzfnn1L5h7d8f
-         gjhu4UIgZeV4rPAHSvnAV2Tru+nY6L+szdOV0wm5scuOBPPtQ2b9FU3br17C+1P9v2my
-         QgI/tuS6cJ4JdJCR74VtChP6CVi2iuGRe1XLq1ScwUPPjqsO+4RxTHGfZIg4aH9V8kPV
-         xLTZEN0Zs5SPdj1FWHSeNgQ9DPxTfBTZwvt72oMiooqYosg12DekYECdb8i0nE2r9shF
-         7FCQ==
+        bh=V2WbmSX86iwyUYHY5eBhcp7thUpxSpsjBxn93ZeJoc0=;
+        b=lRZ0CK3QdibA6OoJo+ZqQgi3Xpv/XBgVN8Q6v16kUczU+1zCpyuj3JNEGWYOwX+Jen
+         pbIyFLKg2jON+u5YbVP0u24ujJBVdDscZY0dInwRBOkUIaHM5j8dF74+H24W24JfomrM
+         i3GBb0Hnt2YeBN2GlfHQ+lX0MvzeLsjKlyUNNzWiVbX/NxehO7jpCjFkqshU/9lLbr1u
+         130PE8IUbHsORwnGyBcU5lZ+gde3GOf9LcmGqFYFcNR1oNZJ4B609ft+jyduYfSm63J/
+         Biz4yzHxTUozBs3y7TXjvUWyfuv4J8OSCdodwW8+t/AENQcNkwODBbAyGO+u5NnUizR4
+         cwbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7hLXPIweBUa1OCSsueogoc1wGUx6MfJz9AL8E0t93jg=;
-        b=Z3BeoPtWFP2Un9QGNjEUqyJ3VKRI3lVhPzC8syDQs4qsdyY9BInHae9VYK7hLAGHGt
-         M/940w2XSShREg22CaqLmS7no41I66HxyMSboJTYXbciw6i1qLhlJXjFb72DqPWLvXE9
-         A+IvPKI9scWxcRa+tT7wjW9hevnLVWEqT09EAFKuh0EfRc8DwbXxeyPDVS4noQQVeGqD
-         jgoZb/DYvu641CmLlEEioy26q4w3ZnUi3qGhDpvYaQqSch+ktATfbbjoSsp5L2XP1XC2
-         uPtlE0QxP+IB92nFc4CaWWPrVURt0bPAIadscMKmnKW14tZVZ1L2cuKe+V2Au07vCczX
-         gXcg==
-X-Gm-Message-State: AOAM533N4BiGsXrw6w/biDUhz7VkdOu82FgPYlDVHdr/MhiHrj9mv3Rg
-        ScIqD4R+ku3xsxkb86KltakeOI2HTn7A0g==
-X-Google-Smtp-Source: ABdhPJyNiZUR5/1EAoV+iZUhUgCKupJDomQq/+l5hKN9S0IbtjtPAKPEGxqD9/YunVEWQ5kpF8Kh7w==
-X-Received: by 2002:a05:6402:51d2:b0:424:536:94dd with SMTP id r18-20020a05640251d200b00424053694ddmr12066971edd.191.1650529990792;
-        Thu, 21 Apr 2022 01:33:10 -0700 (PDT)
+        bh=V2WbmSX86iwyUYHY5eBhcp7thUpxSpsjBxn93ZeJoc0=;
+        b=Y4BGzUIn0K8GHSuvBCV3NUbEVAwcyrrqX8z7MmnO1Hik7fQKhD3PYzq3oNxl0du6ok
+         3C4vI3ND0r+6j9pP+cC8IPxUPRXjb0F1dq8Xt8CV6cuUHI59L4AhJZDglAbCN3cYT/h7
+         +fOi2ZFo9I5F4NqXGHDLZPEhtwtG4m/B/yLqdGFsJX0IV04U35taeIwx3dmMT9Mqto4J
+         eGSjIJqkp+FEceQprEzEhSR4X+8rWbh2rnpNP+ZEsHnoWSQ44+nEbb+6syxaBYzbVAYU
+         4sw/x4868zmfZI3vwZoBcTDtTVfz2wTiWQwQ3fKOMl0ZC7q8TTP6Gd840blYcour6pLP
+         H4OQ==
+X-Gm-Message-State: AOAM530X3AhPDqtxS2IFUoMz2t6ZqAIGSO+Zgj6Blan+7L5GxldgprnA
+        /cWl6eHQ7VO+Be9dmqmr970oog==
+X-Google-Smtp-Source: ABdhPJx1gvMULhaSOwJfCd1OivifkOjmPHxz26ZNmxoshV7VGZDH28oZ1HZmQKW6myKCcQKEQsFW5w==
+X-Received: by 2002:a50:d613:0:b0:41d:71bb:4af3 with SMTP id x19-20020a50d613000000b0041d71bb4af3mr27861049edi.99.1650530024382;
+        Thu, 21 Apr 2022 01:33:44 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v8-20020a1709063bc800b006e898cfd926sm7546603ejf.134.2022.04.21.01.33.09
+        by smtp.gmail.com with ESMTPSA id s14-20020aa7cb0e000000b00410bf015567sm11050930edt.92.2022.04.21.01.33.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 01:33:10 -0700 (PDT)
-Message-ID: <51f47c39-4bd2-b378-2868-587c07caf399@linaro.org>
-Date:   Thu, 21 Apr 2022 10:33:09 +0200
+        Thu, 21 Apr 2022 01:33:43 -0700 (PDT)
+Message-ID: <0a9ec9f0-bfb6-7c33-ec5c-fc4b77c7c5a6@linaro.org>
+Date:   Thu, 21 Apr 2022 10:33:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v3 5/5] dt-bindings: arm: Add initial bindings for Nuvoton
- Platform
+Subject: Re: [PATCH 05/15] dt-bindings: power: Add r8a779g0 SYSC power domain
+ definitions
 Content-Language: en-US
-To:     Jacky Huang <ychuang3@nuvoton.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, ychuang570808@gmail.com
-Cc:     robh+dt@kernel.org, sboyd@kernel.org, krzk+dt@kernel.org,
-        arnd@arndb.de, olof@lixom.net, will@kernel.org, soc@kernel.org,
-        cfli0@nuvoton.com
-References: <20220418082738.11301-1-ychuang3@nuvoton.com>
- <20220418082738.11301-6-ychuang3@nuvoton.com>
- <fd9316a6-7df6-e1fa-50dc-ff50934afb5c@linaro.org>
- <caf4867f-7f71-9262-f190-463325eb13ab@nuvoton.com>
- <4e9eaede-2208-bd73-35ae-89e128562653@linaro.org>
- <80994f4b-136f-7669-4674-0c9826e88248@nuvoton.com>
- <43cb61ac-461f-e6ff-b495-44f8befde79f@linaro.org>
- <257d878e-8455-2770-7868-c9445b0eabba@nuvoton.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-6-yoshihiro.shimoda.uh@renesas.com>
+ <ff0711f5-0e41-9aae-0b2f-381f272481bb@linaro.org>
+ <CAMuHMdVKpVqxZkisyPU4G6w3pBD_4tEJk3zf3axvfTpvZOjnwA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <257d878e-8455-2770-7868-c9445b0eabba@nuvoton.com>
+In-Reply-To: <CAMuHMdVKpVqxZkisyPU4G6w3pBD_4tEJk3zf3axvfTpvZOjnwA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2022 10:13, Jacky Huang wrote:
-> OK, I got it. Like this,
+On 21/04/2022 10:07, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
->    compatible:
->      oneOf:
+> On Thu, Apr 21, 2022 at 9:44 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
+>>> Add power domain indices for R-Car V4H (r8a779g0).
+>>
+>> Are these values used by renesas,rcar-sysc (r8a779g0) - patch 4? If yes,
+>> maybe just squash it?
 > 
->        - description: MA35D1 based boards
->          items:
->            - enum:
->                - nuvoton,ma35d1-evb
->                - nuvoton,ma35d1-iot
->                - nuvoton,ma35d1-som512
->                - nuvoton,ma35d1-som1g
->            - const: nuvoton,ma35d1
+> They are used by driver and DT sources, so we typically keep this as
+> a separate patch, to be queued on a branch shared by driver and DT.
 
-Yes, exactly. Thank you.
+True, sounds good.
 
 Best regards,
 Krzysztof
