@@ -2,105 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 878F750A27D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ACD350A2A5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 16:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389324AbiDUOaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 10:30:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35700 "EHLO
+        id S232303AbiDUOic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 10:38:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389301AbiDUOaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:30:19 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF3513E5C2
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:25 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id p65so9022464ybp.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 07:27:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=rZBFlmHymTZ2XITuJ76uKuNQ0o0eA5W4vkdFBM1hN1c=;
-        b=HIUTIlxPXowbJ3dcoyknjSXqxR5CjgMSug5s2lgyUCH6fubEhvkPqSs0IQEDbIUavK
-         rsUZpjscswS7NpGcWsb4RmKrAcIcd8Szmtj1s/qcOR1cYUm45ffupKZabx5GPyeqlA3X
-         BW+y35hFDgzhnFox/GHjge6OtB6J5xqVUoQdR+SO5hJy97Q5J8JHBGhWGKORRF6ezZJJ
-         aLtfoRyuL76mWxeQWWMRn6UscTZmDGHerZo7SFSdKEw3tnsw2BeISqIz46UbGlEGFJdF
-         hofHZ2NlkXN5SCdQKsNHU/MnOPdwknu3LGVzxvS3Az86dxhgXmhw+xODOjaW0TXdWtVR
-         h2hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rZBFlmHymTZ2XITuJ76uKuNQ0o0eA5W4vkdFBM1hN1c=;
-        b=mIKcdl6pQ3+UfOJ2JevLgNMXvkBkIov4KV50AjLTUbHAtJG1D0x9U19vfvdvqHFtGP
-         6Gp5DAYi7LRpSU/xRJNezuuV1Rx4XbPmyZQvxpdMF34kEH5YDesCTl1FS59WPv9M6h4W
-         rzHuEmF/yVeK9J7JmFuPbcFHzomklUZhsjnkZf+o4nCudaa/prc8p0gHPlbYmD+S1cQE
-         DjAvppUkadG8Ih5P0oVdbalTofMf/bzbcP7zOEa4qKc9ySU1xKWfZY6I646YV253ot6L
-         hOL1rbEPDRQ16RYjSfok9KI6Tuo+KdHoDnXDadc4PpkVtD/3MRdCk6ggf+PKCozqNK9L
-         an2g==
-X-Gm-Message-State: AOAM530GIGxynvswmuVULjYZtIjcYj44r5TQ4cOvBF1ZoFqud5fFUVU8
-        QiXng9SbEGnQk6SoDBdWNui0JNPmM/gFmqYsR7mi6A==
-X-Google-Smtp-Source: ABdhPJxwa0wYivda5wva68xSE6bQM3iIiGgh0H/o0EtiG339T3VCMNkaKR8Ayly0FrW7pr65Fgv+eV4VQGZN5Tvmkzk=
-X-Received: by 2002:a25:4e82:0:b0:633:68d7:b864 with SMTP id
- c124-20020a254e82000000b0063368d7b864mr26018665ybb.514.1650551245081; Thu, 21
- Apr 2022 07:27:25 -0700 (PDT)
+        with ESMTP id S1389501AbiDUOi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 10:38:28 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 05A901EC40;
+        Thu, 21 Apr 2022 07:35:29 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C50BA1515;
+        Thu, 21 Apr 2022 07:35:28 -0700 (PDT)
+Received: from e120809.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6DD353F73B;
+        Thu, 21 Apr 2022 07:35:27 -0700 (PDT)
+From:   Diego Sueiro <diego.sueiro@arm.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     liviu.dudau@arm.com, sudeep.holla@arm.com,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nd@arm.com, diego.sueiro@arm.com
+Subject: [PATCH] arm64: dts: fvp: Add virtio-rng support
+Date:   Thu, 21 Apr 2022 15:35:21 +0100
+Message-Id: <ac3be672c636091ee1e079cadce776b1fb7e0b2e.1650543392.git.diego.sueiro@arm.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220413060729.27639-1-arinc.unal@arinc9.com>
-In-Reply-To: <20220413060729.27639-1-arinc.unal@arinc9.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 21 Apr 2022 16:27:13 +0200
-Message-ID: <CACRpkdbbMFYNNjAKwhysKpu1JVh2JSB-N=Y8QMx1JvMhCPBpwg@mail.gmail.com>
-Subject: Re: [PATCH 0/14] Refactor Ralink Pinctrl and Add Documentation
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 8:08 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
-9.com> wrote:
+The virtio-rng is available from FVP_Base_RevC-2xAEMvA version 11.17, so add
+the devicetree node to support it.
 
-> This patch series brings complete refactoring to the Ralink pinctrl drive=
-r
-> and its subdrivers.
+Signed-off-by: Diego Sueiro <diego.sueiro@arm.com>
+---
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts            | 3 ++-
+ arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi | 7 +++++++
+ arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi     | 2 +-
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-I just merged all the patches, the comments seem minor and any further
-fixes can certainly be done on top of this. Anyone interested in ralink
-working nicely is likely in the thread and we mostly care about that this
-works for OpenWrt, and if it works for them we are happy.
+diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+index 269b649934b5..a496e39e6204 100644
+--- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
++++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+@@ -241,6 +241,7 @@ bus@8000000 {
+ 				<0 0 41 &gic 0 0 GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+ 				<0 0 42 &gic 0 0 GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+ 				<0 0 43 &gic 0 0 GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
+-				<0 0 44 &gic 0 0 GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
++				<0 0 44 &gic 0 0 GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
++				<0 0 46 &gic 0 0 GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+index 33182d9e5826..1b6326514c97 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+@@ -21,6 +21,13 @@ virtio-net@150000 {
+ 					reg = <0x150000 0x200>;
+ 					interrupts = <44>;
+ 				};
++
++				virtio-rng@200000 {
++					compatible = "virtio,mmio";
++					reg = <0x200000 0x200>;
++					interrupts = <46>;
++					status = "disabled";
++				};
+ 			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+index 5f6cab668aa0..a999e7f52d8b 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+@@ -110,7 +110,7 @@ iofpga-bus@300000000 {
+ 				compatible = "simple-bus";
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+-				ranges = <0 3 0 0x200000>;
++				ranges = <0 3 0 0x210000>;
+ 
+ 				v2m_sysreg: sysreg@10000 {
+ 					compatible = "arm,vexpress-sysreg";
+-- 
+2.35.1
 
->   mips: dts: ralink: mt7621: use the new compatible string for MT7621 pin=
-ctrl
-
-This was a bit scary since we usually take these through the respective
-SoC tree, but I just applied it anyway, it makes logical sense in the
-series.
-
-I hope it will not lead to conflicts.
-
-Good work with this series!
-
-My personal headache with RT2880 is the Ralink RT2880F mini PCI card
-which apparently contains a non-reflashable firmware. It's not
-the RT2880:s fault though, I'm just always reminded of this when
-working with RT2880 :/
-
-Yours,
-Linus Walleij
