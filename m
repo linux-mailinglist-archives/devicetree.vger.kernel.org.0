@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17327509DBE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 12:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6ABF509DF4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 12:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1388445AbiDUKig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 06:38:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
+        id S234945AbiDUKuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 06:50:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348260AbiDUKie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 06:38:34 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C166D3A1
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 03:35:43 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id ga4-20020a17090b038400b001d4b33c74ccso3502784pjb.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 03:35:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=4vfQyttDdobHbBrio36ZO852PxT9+1cO/BhU8vf48uk=;
-        b=DuzY7rUHRzXoGFGfhE5pxkY0ntp+rTJLUsPtfGEvnjo/5lO4p6XBT4zfMfum6MNlLv
-         W1WpqwncMTZ4NSHeB9n0KzoyxOGpEYbY7wzyPSc9H6TlpX5rHzMG/3VK0/5jGwWj0Cub
-         P58MaqmRmI0H9M2ExfHFdm5CDoYboJKUfcL8YUNhsg83GLstj04ApVZjymIQutnBk/HK
-         JkVrzRlvZk8XfVMKAh0oHQQPv9f+NznFL8JkS+IQiN3lNA0w5F2Es5rhzTnRvOo1YxAu
-         Au5/Z91FNuyKt0hH4i9U0PS8Gvbnbo+Bm0eyG6xscBesz5uBhcucAUe4b8Cgh5fCvIIO
-         Kg+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=4vfQyttDdobHbBrio36ZO852PxT9+1cO/BhU8vf48uk=;
-        b=xHv3vUGvXG8qbG3ifeuvdH1q5Yr/XDoC3vmdwEFNbPNQHn+zHHE/PoGouasYn2fDJG
-         9ub7VZsc82fQNHkAIBwhkT0IrH0kvFMmjr6SLvYcie+y1aJ8Vwuj9KBgjfyG8pN9NAz8
-         qv4hgRKn3SzOHT8tXEEDtCXrMA1xsPGHH2MK5X0GY8Ws5vtWrgmnOyx/F5Nw8nqYSbsc
-         Eb1XJtG5H4YckFvqGRCb5Zrq2N7qQSNsnqftrJaZUkCGNIqZOci/56wT0GSm2DS+q8wv
-         lZ0z7Mgda1qUJCUfTkBWlgPywOoRlZHfpnU9wEJlLXVqGKT7AkTn8XWrsvVIVVaTaqdV
-         H+ZA==
-X-Gm-Message-State: AOAM531l5sRKYkJLOtfGjP1Kjp8jJegZaZQAxnda96aT4ltSGB9hLg2j
-        18s+HcjazwngxacStQYZLyJiMX98k26AbjEt+7U=
-X-Google-Smtp-Source: ABdhPJwd7wo1+saee0v/ztCSzf6gbJfz32plAbQWDq/WoyRuaNeufzFpy5DI8xX05ADz0KoWboKfmE7/mHOb60rlg0o=
-X-Received: by 2002:a17:902:f787:b0:152:157:eb7 with SMTP id
- q7-20020a170902f78700b0015201570eb7mr24050901pln.109.1650537343388; Thu, 21
- Apr 2022 03:35:43 -0700 (PDT)
+        with ESMTP id S231758AbiDUKuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 06:50:03 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 76F8B2BC9;
+        Thu, 21 Apr 2022 03:47:14 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 31C8B8106;
+        Thu, 21 Apr 2022 10:44:22 +0000 (UTC)
+Date:   Thu, 21 Apr 2022 13:47:12 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Scott Branden <sbranden@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>, kernel@pengutronix.de,
+        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v5 7/9] ARM: dts: omap3/4/5: fix ethernet node name for
+ different OMAP boards
+Message-ID: <YmE2MJfvMHH7BKCD@atomide.com>
+References: <20220216074927.3619425-1-o.rempel@pengutronix.de>
+ <20220216074927.3619425-8-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Sender: ndubuisio992@gmail.com
-Received: by 2002:a05:7300:1482:b0:5e:412:aee6 with HTTP; Thu, 21 Apr 2022
- 03:35:42 -0700 (PDT)
-From:   Hannah Johnson <hannahjohnson8856@gmail.com>
-Date:   Thu, 21 Apr 2022 10:35:42 +0000
-X-Google-Sender-Auth: LR0vnZXJAVofE9ix5298pvrpqII
-Message-ID: <CAO7YTNnkiPMkRR0oaib4B1PakzLdgk5M3KWhsVcsVNiNKcSqQQ@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220216074927.3619425-8-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello
-Nice to meet you
-my name is Hannah Johnson i will be glad if we get to know each other
-more better and share pictures i am  expecting your reply
-thank you
+* Oleksij Rempel <o.rempel@pengutronix.de> [220216 09:49]:
+> The node name of Ethernet controller should be "ethernet" instead of
+> "usbether" as required by Ethernet controller devicetree schema:
+>  Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> 
+> This patch can potentially affect boot loaders patching against full
+> node path instead of using device aliases.
+
+Picking up this patch into omap-for-v5.19/dt branch.
+
+Thanks,
+
+Tony
