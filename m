@@ -2,67 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6ABF509DF4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 12:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A71509DFB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 12:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234945AbiDUKuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 06:50:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36214 "EHLO
+        id S1352219AbiDUKu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 06:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbiDUKuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 06:50:03 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 76F8B2BC9;
-        Thu, 21 Apr 2022 03:47:14 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 31C8B8106;
-        Thu, 21 Apr 2022 10:44:22 +0000 (UTC)
-Date:   Thu, 21 Apr 2022 13:47:12 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>, kernel@pengutronix.de,
-        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v5 7/9] ARM: dts: omap3/4/5: fix ethernet node name for
- different OMAP boards
-Message-ID: <YmE2MJfvMHH7BKCD@atomide.com>
-References: <20220216074927.3619425-1-o.rempel@pengutronix.de>
- <20220216074927.3619425-8-o.rempel@pengutronix.de>
+        with ESMTP id S240995AbiDUKu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 06:50:56 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3756C25E95;
+        Thu, 21 Apr 2022 03:48:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DF144B823ED;
+        Thu, 21 Apr 2022 10:48:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D38FC385A5;
+        Thu, 21 Apr 2022 10:48:00 +0000 (UTC)
+Message-ID: <678a06f5-0519-dab3-35ac-5915b47d422e@xs4all.nl>
+Date:   Thu, 21 Apr 2022 12:47:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220216074927.3619425-8-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] media: mediatek: vcodec: Fix v4l2 compliance decoder cmd
+ test fail
+Content-Language: en-US
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220406012048.5970-1-yunfei.dong@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220406012048.5970-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Oleksij Rempel <o.rempel@pengutronix.de> [220216 09:49]:
-> The node name of Ethernet controller should be "ethernet" instead of
-> "usbether" as required by Ethernet controller devicetree schema:
->  Documentation/devicetree/bindings/net/ethernet-controller.yaml
+On 06/04/2022 03:20, Yunfei Dong wrote:
+> Will return -EINVAL using standard framework api when test stateless
+> decoder with cmd VIDIOC_(TRY)DECODER_CMD.
 > 
-> This patch can potentially affect boot loaders patching against full
-> node path instead of using device aliases.
+> Using another return value to adjust v4l2 compliance test for user
+> driver(GStreamer/Chrome) won't use decoder cmd.
+> 
+> Fixes: 8cdc3794b2e3 ("media: mtk-vcodec: vdec: support stateless API")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+> changes compared with v2:
+> - add reviewed-by tag
+> changes compared with v1:
+> - add Fixes: tag
+> ---
+>  drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> index 3859e4c651c6..69b0e797d342 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> @@ -51,8 +51,7 @@ static int vidioc_try_decoder_cmd(struct file *file, void *priv,
+>  
+>  	/* Use M2M stateless helper if relevant */
+>  	if (ctx->dev->vdec_pdata->uses_stateless_api)
+> -		return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv,
+> -								cmd);
+> +		return -ENOTTY;
+>  	else
+>  		return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
+>  }
 
-Picking up this patch into omap-for-v5.19/dt branch.
+So in other words, if the stateless api is used, then (TRY_)DECODER_CMD
+is not implemented. And that's because this driver doesn't set the
+V4L2_BUF_CAP_SUPPORTS_M2M_HOLD_CAPTURE_BUF capability as that's not needed.
+And so there is no need for (TRY_)DECODER_CMD to be implemented.
 
-Thanks,
+If that's the case, then it is much better to just disable these two
+ioctls with v4l2_disable_ioctl() if the stateless API is used.
 
-Tony
+And just drop the uses_stateless_api checks in both vidioc_try_decoder_cmd
+and vidioc_decoder_cmd. This patch only changed vidioc_try_decoder_cmd,
+but of course vidioc_decoder_cmd needs to be modified as well.
+
+Regards,
+
+	Hans
