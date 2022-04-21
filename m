@@ -2,94 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56765509C92
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3BA2509CA1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 11:47:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387396AbiDUJrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 05:47:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
+        id S1345361AbiDUJsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 05:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380705AbiDUJrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:47:20 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E2F25593;
-        Thu, 21 Apr 2022 02:44:30 -0700 (PDT)
-Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 5588F2222E;
-        Thu, 21 Apr 2022 11:44:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1650534268;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=K01P/G+CWauK4toU/LzXTmQWdHHNJGWFolPPvXFB4f8=;
-        b=YJYZ8QLxWmTaBccIVDc7P7vwdCKrddAJuGkjwLtP8zppuvfIzApujj8b9VklHCIz31mP/C
-        uy2D00edLX1hDmIAs6v2xHCTb0E5LGq9xcrbhX3Y5MY+mHCQq9mSrv2zv0xQm9Txxos+3o
-        Ys3W1c38UAzP9S+ryQ1usgPt8IsBWPs=
-From:   Michael Walle <michael@walle.cc>
-To:     krzysztof.kozlowski@linaro.org
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        jerry.huang@nxp.com, krzysztof.kozlowski+dt@linaro.org,
-        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [EXT] Re: [PATCH 1/2 v4] dt-bindings: dspi: added for semtech sx1301
-Date:   Thu, 21 Apr 2022 11:44:21 +0200
-Message-Id: <20220421094421.288672-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <f6086989-a4c1-4223-fad0-79bd5719432e@linaro.org>
-References: <f6086989-a4c1-4223-fad0-79bd5719432e@linaro.org>
+        with ESMTP id S1387850AbiDUJsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 05:48:21 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537451FA48;
+        Thu, 21 Apr 2022 02:45:32 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id a186so3145120qkc.10;
+        Thu, 21 Apr 2022 02:45:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZjJi9543XMKbwc8gK/qWwDNVyq7vtDMnwSeDFhUqSBc=;
+        b=NeP/EfBwi6tzTkEt0aFqu6JOJTmAQcXwxsS8C61BZ88JLLby1EdrQJJtxnywjFhcA6
+         kDv6Wa9R+9Tas2SFwqcmgOVucICuo3P6qXHI3BT7AcK2zpaBk8bjKLpuG7/f13zi6OsH
+         tygd4VdMafKwNHNyvWk7wxrYPrWGcoaTn4J5HhmFYV7xkaVHwOlFmfT/4FrN5vICClzs
+         tLQ3GfR1BKM8UoYHBgdb1eb9pGaquQ6fUm62++GmnEEuUd/vLWx5cXH5XRLJJIgXsbDD
+         rCOopySL0RSaU+OGGU6Mq/XblQyg+3LpRjEvXtcjP0KYQmwJHMbRpXrGzhDRoSkbkvOI
+         F6dg==
+X-Gm-Message-State: AOAM532WpvGCL71ldeHpujflAxhORH+xdiUnmW/LOFKQI46OAe/wqDf9
+        O/Oxy47LvYdiAKkBr1uPrxy44Id4cHfXiugQ
+X-Google-Smtp-Source: ABdhPJzizmHKHbrw/m2S4aYvxqcHb80SB6ef7M2hTy438UlekoX5Fz1paR64V4nleONn42rySNYe1A==
+X-Received: by 2002:a05:620a:4549:b0:69f:458:24e3 with SMTP id u9-20020a05620a454900b0069f045824e3mr639568qkp.646.1650534331214;
+        Thu, 21 Apr 2022 02:45:31 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id c17-20020a05622a025100b002f34db6a3a2sm580680qtx.4.2022.04.21.02.45.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 02:45:30 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id p65so7725723ybp.9;
+        Thu, 21 Apr 2022 02:45:30 -0700 (PDT)
+X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
+ c4-20020a5b0984000000b0063f8c38676cmr24425442ybq.393.1650534330547; Thu, 21
+ Apr 2022 02:45:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com> <20220420084255.375700-9-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420084255.375700-9-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 21 Apr 2022 11:45:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUjhdvsNFqJU+9p=BEq_Jnek=MT5RKu0Dg89nMB2gpMgw@mail.gmail.com>
+Message-ID: <CAMuHMdUjhdvsNFqJU+9p=BEq_Jnek=MT5RKu0Dg89nMB2gpMgw@mail.gmail.com>
+Subject: Re: [PATCH 08/15] dt-bindings: serial: renesas,hscif: Document
+ r8a779g0 bindings
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2022 11:11, Jerry Huang wrote:
->> Please also answer Michael's comments.
->> 
->> [Jerry Huang] I double checked the MikroBus devices, we used two MikcroBus devices:
->> BLE P click: https://www.mikroe.com/ble-p-click
->> BEE click: https://www.mikroe.com/bee-click 
->> Both of them are SPI interface connect to ls1028ardb through MiKcroBus interface.
->> So the name "semtech sx1301" is not correct for this node.
+On Wed, Apr 20, 2022 at 10:43 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> R-Car V4H (R8A779G0) SoC has the R-Car Gen4 compatible HSCIF ports,
+> so document the SoC specific bindings.
 >
-> I asked to remove the words "Devicetree bindings" and this was not finished.
-> 
-> Now you mention that entire name of device is wrong... It's confusing. I
-> don't know what device you are describing here. I expect you know. :)
-> 
-> What is this binding about exactly?
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-I *think* it's just exposing the mikrobus connector as an spidev device.
-There was a former attempt by Vladimir here [1]. Now as it the nature
-of such a connector that you can connect a myriad of devices there, it
-doesn't really make sense to have a just particular one described. What
-happens if that one will switch from spidev to a real driver in the
-kernel? So using "spidev" for the compatible would be the first reflex.
-But as described in the spidev driver this is plain wrong (and also causes
-a warning/info message it) because it should describe the actual hardware.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Thus I proposed to use DT overlays which are loaded according to what
-is actually attached to the header, so a real driver could be loaded.
+Gr{oetje,eeting}s,
 
-But there *could* be a sane default which then could be replaced in
-an DT overlay. Like "mirkobus-socket" or similar, which might expose
-spidev. Actually it is more than just SPI, there is GPIO and resets and
-I2C. Maybe it should be an MFD? I don't know. But that is something for
-the DT maintainers to decide if they'll allow such "generic" devices.
+                        Geert
 
--michael
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-[1] https://lore.kernel.org/linux-devicetree/20200318001603.9650-13-olteanv@gmail.com/
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
