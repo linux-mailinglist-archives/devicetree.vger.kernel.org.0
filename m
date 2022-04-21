@@ -2,136 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B05E850A5AC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 18:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C35FF50A5A3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 18:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231616AbiDUQdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 12:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46240 "EHLO
+        id S231368AbiDUQfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 12:35:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390651AbiDUQdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 12:33:41 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7023E48E53
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 09:28:53 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id md4so5406268pjb.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 09:28:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WkdhlTGKvN68SlRLMJdx437G/wIo/jBpfIeJhDG0Jck=;
-        b=g39jc98KyMqzeT74PT79TxjVzfhAFziSDBuq3v+ZuzvRsVporGEnbMVsRQ1b6C3o5X
-         54Vr2jaUQIApND2TCOlwd7uaPlyoPFPRpa5ytuI8OzdU9IqVVanwrl/aFYoyA6qIC44R
-         2rrP+NXlVDCcuyelWumY9NhKgwTvxPswO/qAo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WkdhlTGKvN68SlRLMJdx437G/wIo/jBpfIeJhDG0Jck=;
-        b=DZmjgTutp9G51Yjc0EI4yX9k9Zh3tCbn5c98hRqwiS29mF/nV3PB4MN0aV3XxJSA4d
-         9/3iRq23guw1E7mCw7LsbBbYtsLVk5mz2jP7dH1xEjKzFx9kD2meVcoBHzRm4Mlj2U58
-         iKxMoeVP3xGp6rXSWFZIq2jXaA5vWELAjaoxcejrjk1/4qZZM9LZAjkHMTfQheQtC2rC
-         dVtjWXaV85D8fY3z7F1O805s1r2YhuvX5DaTBmHdZlFB/KfMx+UsDdeAvuRpIlRpg73b
-         MxDujVrGTEh9swpJqgAueOVVH6FqIQIzkwqCZ8ELfn9mBvwMBbrw0mN9FMqrDjYT9CX1
-         0HfQ==
-X-Gm-Message-State: AOAM531mL7nrbcnbpIEKfDCUGE3iEKipcLyaso3Eet7J2BVK+IXL+/bS
-        9mdy3xH+yObyjYjzQEHKVOuelw==
-X-Google-Smtp-Source: ABdhPJwwEZAKewcyO4Htm0T4aE9t8nchCjvROAy5B3s0/2c0AxEY8XyA/EVhcuqsUwTSeh7+7XgOtw==
-X-Received: by 2002:a17:902:8306:b0:158:2d58:a36a with SMTP id bd6-20020a170902830600b001582d58a36amr82271plb.55.1650558533004;
-        Thu, 21 Apr 2022 09:28:53 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d426:5807:a72:7b27])
-        by smtp.gmail.com with UTF8SMTPSA id h13-20020a056a00230d00b004f427ffd485sm26982254pfh.143.2022.04.21.09.28.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 09:28:52 -0700 (PDT)
-Date:   Thu, 21 Apr 2022 09:28:50 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v9 03/12] arm64: dts: qcom: sc7280: Enable digital codecs
- and soundwire for CRD 3.0/3.1
-Message-ID: <YmGGQiD0L2GipcRt@google.com>
-References: <1650552459-21077-1-git-send-email-quic_srivasam@quicinc.com>
- <1650552459-21077-4-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S231875AbiDUQeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 12:34:50 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6CE55496B2;
+        Thu, 21 Apr 2022 09:31:36 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,279,1643641200"; 
+   d="scan'208";a="117591258"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 22 Apr 2022 01:31:35 +0900
+Received: from localhost.localdomain (unknown [10.226.92.11])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9351140065CE;
+        Fri, 22 Apr 2022 01:31:31 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 0/4] Add RZ/G2L Display support
+Date:   Thu, 21 Apr 2022 17:31:24 +0100
+Message-Id: <20220421163128.101520-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1650552459-21077-4-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 08:17:30PM +0530, Srinivasa Rao Mandadapu wrote:
-> Enable rx, tx and va macro codecs and soundwire nodes for
-> CRD rev5 (aka CRD 3.0/3.1) boards.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 35 +++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> index fd6eadc..d0794f2 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> @@ -69,6 +69,19 @@ ap_ts_pen_1v8: &i2c13 {
->  	};
->  };
->  
-> +&lpass_rx_macro {
-> +	status = "okay";
-> +};
-> +
-> +&lpass_tx_macro {
-> +	status = "okay";
-> +};
-> +
-> +&lpass_va_macro {
-> +	status = "okay";
-> +	vdd-micb-supply = <&vreg_bob>;
-> +};
-> +
->  /* For nvme */
->  &pcie1 {
->  	status = "okay";
-> @@ -89,6 +102,28 @@ ap_ts_pen_1v8: &i2c13 {
->  	status = "okay";
->  };
->  
-> +&swr0 {
-> +	status = "okay";
-> +
-> +	wcd_rx: codec@0,4 {
-> +		compatible = "sdw20217010d00";
-> +		reg = <0 4>;
-> +		#sound-dai-cells = <1>;
-> +		qcom,rx-port-mapping = <1 2 3 4 5>;
-> +	};
-> +};
-> +
-> +&swr1 {
-> +	status = "okay";
-> +
-> +	wcd_tx: codec@0,3 {
-> +		compatible = "sdw20217010d00";
-> +		reg = <0 3>;
-> +		#sound-dai-cells = <1>;
-> +		qcom,tx-port-mapping = <1 2 3 4>;
-> +	};
-> +};
+RZ/G2L LCD controller composed of Frame compression Processor(FCPVD),
+Video signal processor (VSPD) and Display unit(DU). The output of LCDC is
+connected to Display parallel interface and MIPI link video interface.
 
-The wcd9385 is on the qcard, so the wcd_tx/rx nodes should probably
-be added to sc7280-qcard.dtsi, and the CRD DT would only set 'status'.
+This patch series aims to add basic display support on RZ/G2L SMARC EVK
+platform. The output from DSI is connected to ADV7535.
+
+The DU controller is similar to R-Car as it is connected to VSPD,
+so most of code is based on R-Car with new CRTC/DRM driver specific to
+RZ/G2L
+
+V2->v3:
+ * Added new bindings for RZ/G2L DU
+ * Removed indirection and created new DRM driver based on R-Car DU
+v1->v2:
+ * Based on [1], all references to 'rzg2l_lcdc' replaced with 'rzg2l_du'
+ * Updated commit description for bindings
+ * Removed LCDC references from bindings
+ * Changed clock name from du.0->aclk from bindings
+ * Changed reset name from du.0->du from bindings
+ * Replaced crtc_helper_funcs->rcar_crtc_helper_funcs
+ * Updated macro DRM_RZG2L_LCDC->DRM_RZG2L_DU
+ * Replaced rzg2l-lcdc-drm->rzg2l-du-drm
+ * Added forward declaration for struct reset_control
+
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220312084205.31462-2-biju.das.jz@bp.renesas.com/
+
+RFC->v1:
+ * Changed  minItems->maxItems for renesas,vsps.
+ * Added RZ/G2L LCDC driver with special handling for CRTC reusing
+   most of RCar DU code
+ * Fixed the comments for num_rpf from rpf's->RPFs/ and vsp->VSP.
+RFC:
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-18-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-12-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-13-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-19-biju.das.jz@bp.renesas.com/
+
+Biju Das (4):
+  dt-bindings: display: Document Renesas RZ/G2L DU bindings
+  drm: rcar-du: Fix typo
+  drm: rcar-du: Add num_rpf to struct rcar_du_device_info
+  drm: rcar-du: Add RZ/G2L DU Support
+
+ .../bindings/display/renesas,rzg2l-du.yaml    | 159 ++++
+ drivers/gpu/drm/rcar-du/Kconfig               |  16 +-
+ drivers/gpu/drm/rcar-du/Makefile              |   9 +
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  17 +
+ drivers/gpu/drm/rcar-du/rcar_du_drv.h         |   2 +
+ drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |   8 +-
+ drivers/gpu/drm/rcar-du/rzg2l_du_crtc.c       | 745 +++++++++++++++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_crtc.h       | 104 +++
+ drivers/gpu/drm/rcar-du/rzg2l_du_drv.c        | 192 +++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_drv.h        | 102 +++
+ drivers/gpu/drm/rcar-du/rzg2l_du_encoder.c    | 113 +++
+ drivers/gpu/drm/rcar-du/rzg2l_du_encoder.h    |  29 +
+ drivers/gpu/drm/rcar-du/rzg2l_du_group.h      |  32 +
+ drivers/gpu/drm/rcar-du/rzg2l_du_kms.c        | 782 ++++++++++++++++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_kms.h        |  43 +
+ drivers/gpu/drm/rcar-du/rzg2l_du_regs.h       |  64 ++
+ drivers/gpu/drm/rcar-du/rzg2l_du_vsp.c        | 420 ++++++++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_vsp.h        |  93 +++
+ drivers/gpu/drm/rcar-du/rzg2l_du_writeback.c  | 247 ++++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_writeback.h  |  42 +
+ 20 files changed, 3212 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_crtc.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_crtc.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_drv.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_drv.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_encoder.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_encoder.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_group.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_kms.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_kms.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_regs.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_vsp.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_vsp.h
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_writeback.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_writeback.h
+
+-- 
+2.25.1
+
