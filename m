@@ -2,133 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDA4150A6C0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 19:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F85950A6CD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 19:15:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1390612AbiDURQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 13:16:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51410 "EHLO
+        id S1390636AbiDURSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 13:18:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1390611AbiDURQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 13:16:30 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CF649F26
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 10:13:38 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id a15so5563412pfv.11
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 10:13:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0wWl4FXsIp8hLfZULG/A/XCUJAdHvbIInSU0lqStIPU=;
-        b=Nz1ffXf4DLO/Z+REYJ+MklBjcQz3120iMfPJxRRLBbs3je06vjyBBG5FDxrRZpUAVc
-         CzrHppcMnYY8wINlwLWWHBR45H7waLoKxA9BRQg/lghY2I2Bvq9cv2Aatsw1aAyHZaaR
-         aILgytnNGQRyQ6d1JtLVuUSY4+56lr1DC3R+M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0wWl4FXsIp8hLfZULG/A/XCUJAdHvbIInSU0lqStIPU=;
-        b=wagBasZ9rmzXFo688aM/sVRNzSbHIEWcZcy/2rNu5c1dWjfzPpwEbmIylxsIaBSxdu
-         ke6d21ZLlQ5qvoQSBUe+wDgIXJXLaxymHBE+QW2lHLxAop20jT/S/FrgVidcOE4PkvjV
-         ma0X4ZG4rKZw1IsqpBEnd0K5JU0i4eiozJmzXplxoZxDNiFpMYnskPenRD8TX5V8Oule
-         biqgitWvx6xSDS8x4TKt6hPAU/26xyyg6PNC1uoPZRBkmhfWu3IDx+gvQNw8uFXpRl0J
-         5QIJGCvFcNYJ0O8ZN8Oybg7dd1T/4MhVhG+NQ/JT+1HQylaM6dNZNDdUChWiwZ5fffqs
-         2Xaw==
-X-Gm-Message-State: AOAM532jhj41uH3im9tgGGX5GZokjZ1x4rrjxdrXoiSvTmtdE1F08RSM
-        00bgSv9yOpxRp/Xo31Fw8OCLSA==
-X-Google-Smtp-Source: ABdhPJwwizAL1y5+YlDSH/nBYQykBSinMWD2PTa2LRu98o8m53hvdOoP+pi54/Xtb62Gp/3J7indrA==
-X-Received: by 2002:a62:1a0d:0:b0:50a:cf43:d757 with SMTP id a13-20020a621a0d000000b0050acf43d757mr734350pfa.5.1650561217681;
-        Thu, 21 Apr 2022 10:13:37 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d426:5807:a72:7b27])
-        by smtp.gmail.com with UTF8SMTPSA id p3-20020a056a000b4300b0050a4e73bf89sm21807495pfo.66.2022.04.21.10.13.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 10:13:37 -0700 (PDT)
-Date:   Thu, 21 Apr 2022 10:13:35 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v9 09/12] arm64: dts: qcom: sc7280: Enable lpass cpu node
- for CRD 1.0 and CRD 2.0
-Message-ID: <YmGQv7CN16yoLn82@google.com>
-References: <1650552459-21077-1-git-send-email-quic_srivasam@quicinc.com>
- <1650552459-21077-10-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S232229AbiDURSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 13:18:15 -0400
+Received: from out28-73.mail.aliyun.com (out28-73.mail.aliyun.com [115.124.28.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A9DDFBB;
+        Thu, 21 Apr 2022 10:15:22 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.4088587|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00781887-0.000144852-0.992036;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.NVFIb-b_1650561308;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NVFIb-b_1650561308)
+          by smtp.aliyun-inc.com(33.40.31.76);
+          Fri, 22 Apr 2022 01:15:18 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     gregkh@linuxfoundation.org, hminas@synopsys.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
+        paul@crapouillou.net
+Cc:     linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, reimu@sudomaker.com
+Subject: [PATCH v4 0/3] Add OTG support for Ingenic SoCs.
+Date:   Fri, 22 Apr 2022 01:15:05 +0800
+Message-Id: <1650561308-54704-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1650552459-21077-10-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 08:17:36PM +0530, Srinivasa Rao Mandadapu wrote:
+1.Add OTG support for the JZ4775 SoC, the JZ4780 SoC, the X1000
+  SoC, the X1600 SoC, the X1830 SoC, and the X2000 SoC.
+2.Introduce support for disable Ingenic overcurrent detection,
+  once selected it enables GOTGCTL register bits VbvalidOvEn
+  and VbvalidOvVal to disable the VBUS overcurrent detection.
 
-> Subject: arm64: dts: qcom: sc7280: Enable lpass cpu node for CRD 1.0 and CRD 2.0
+v1->v2:
+1.Add Rob Herring's Acked-by.
+2.Add Minas Harutyunyan's Acked-by.
+3.Use "activate_ingenic_overcurrent_detection" instead
+  "deactivate_ingenic_overcurrent_detection" as Greg's suggestion.
 
-nit: and the IDP boards?
+v2->v3:
+Refresh USB nodes in device tree files, remove "snps,dwc2" since
+it is nolonger needed.
 
-> Enable lpass cpu node for audio on sc7280 based platforms of revision 3
-> and 4 (aka CRD 1.0 and 2.0) boards.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 24196a1..2e991e8 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -274,6 +274,34 @@
->  	modem-init;
->  };
->  
-> +&lpass_cpu {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mi2s1_data0>, <&mi2s1_sclk>, <&mi2s1_ws>;
-> +
-> +	dai-link@1 {
-> +		reg = <MI2S_SECONDARY>;
-> +		qcom,playback-sd-lines = <0>;
-> +	};
-> +
-> +	dai-link@5 {
-> +		reg = <LPASS_DP_RX>;
-> +	};
-> +
-> +	dai-link@6 {
-> +		reg = <LPASS_CDC_DMA_RX0>;
-> +	};
-> +
-> +	dai-link@19 {
-> +		reg = <LPASS_CDC_DMA_TX3>;
-> +	};
-> +
-> +	dai-link@25 {
-> +		reg = <LPASS_CDC_DMA_VA_TX0>;
-> +	};
-> +};
-> +
->  &lpass_rx_macro {
->  	status = "okay";
->  };
-> -- 
-> 2.7.4
-> 
+v3->v4:
+Remove the compatible string of X1700 since it could use the X1600
+string　as the fallback.
+
+周琰杰 (Zhou Yanjie) (3):
+  dt-bindings: dwc2: Add bindings for new Ingenic SoCs.
+  USB: dwc2: Add OTG support for Ingenic SoCs.
+  MIPS: Ingenic: Refresh USB nodes to match driver changes.
+
+ Documentation/devicetree/bindings/usb/dwc2.yaml |  6 +++
+ arch/mips/boot/dts/ingenic/jz4780.dtsi          |  2 +-
+ arch/mips/boot/dts/ingenic/x1000.dtsi           |  2 +-
+ arch/mips/boot/dts/ingenic/x1830.dtsi           |  2 +-
+ drivers/usb/dwc2/core.c                         |  9 +++++
+ drivers/usb/dwc2/core.h                         |  5 +++
+ drivers/usb/dwc2/params.c                       | 49 ++++++++++++++++++++++++-
+ 7 files changed, 71 insertions(+), 4 deletions(-)
+
+-- 
+2.7.4
+
