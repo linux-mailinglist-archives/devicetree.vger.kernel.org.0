@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D016B50999B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EC15099D5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbiDUHo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60924 "EHLO
+        id S1380551AbiDUHoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:44:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385897AbiDUHmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:42:17 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C1FCE031
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:39:03 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id y10so8195388ejw.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:39:03 -0700 (PDT)
+        with ESMTP id S1386084AbiDUHoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:44:13 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67C713D1B
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:41:23 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id t25so5370017edt.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:41:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=61zWdSoSfwdGyGU44PP+1guwlHy3W/BFUYlSNhQpCK0=;
-        b=CBU7olitGiLQzzEx9iv6wPvEsjbkpfrTdaLx9MIyj5KLa35zGrbCLuN1J6hL5gfybY
-         L8nh5fo2YrgNW1FDKdtBOWGmBWIpeii0ODyz9vm9uEQeOeJzvDCJqQXOCsUut3tgw1N6
-         1k4Cc0RE8ojHMIc2RO7RQC9orFAuvMYGJe4MNfAiD+1xkt1F0rMXsXPy9pd9ff4OkOcE
-         7iGBAY+H4mo+sygXKBEqcRMxV4HdzrtytPUbRRoPHP1KYc9D82rdNwL66WIgFMX2p5eq
-         jEmYVFntcMnAxxevgaEv2kusq82D/1Ap0R/mrEW68VYqdCmt8xjwD0yUDsVV0iqaBwwa
-         7FUA==
+        bh=Uv7cPKaUArzIITMcA4aXXtgjHbTkK+doRZ3K15+Bmlo=;
+        b=hEOdozmXH3eaNDgD/oRHrc2xyadazXOIopE1mPkGfP/inUNms8Ac/2w3hzc+Hm2+Gb
+         UW1MyqxUquuMBdVIvhOlWnWkIO1GEM8aq3Ga9z8Xva98irEa8LF3oyHdOG96CZSuPyXB
+         KrMO/j/R6XMDFH928uvnZcUeQmmrKqXEaUzSy1QpC1dkdbP7YyiDNB6zmFr7klSD8Nw8
+         fjY17XZ8Bo05L5vz2b5OTZM1xm/j9djH7SNudYUvYhq5k3ULBC4CQA3H6fhMW12HLe82
+         llX7Kq4oQ76RO9rJGwAVydNvDSpPtR+RKWV71petPg314S6+d1qFLn+eNE/fTttsBzAX
+         iz2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=61zWdSoSfwdGyGU44PP+1guwlHy3W/BFUYlSNhQpCK0=;
-        b=4hHddgL/iDFSMYG7+73cfOSf7da4mCuvwdpOKD+8lA78HJhRjiomqiQsd7HTvMm91+
-         zXdd6IL+t9k0p8NBqbzo6D7UCRioGsZypoiVuj5GllP6yE5GUMWPRCfO+R6EIDc96Xmi
-         ugXVrfuMljHiiWssLDziYEcBRYifxxHt5IQPm99+N4I4LVPt1AdwzlOztKedj+OvmCfw
-         ztfjDATvGAW4+pQl6PIuj1FQ08bAh3K85JVMUTVGRzoQbiZBRtH0EFwRr5Zsntrf7IVB
-         5FLbtAZwc+lzJj0n91Eb34ruRmLqEeVZp1UrgtrVfS1dTB+dz00aK5FzU9STJ6XdXCPj
-         zxZA==
-X-Gm-Message-State: AOAM531l2nuGiD82/+rBNa6XJqxM5JbB0ATBxcTQzT+9Vd1s84kLWQB5
-        1VbKbD/6pk2MTr7UwnO9BZnc1w==
-X-Google-Smtp-Source: ABdhPJxaRfyAn8cs1xVngJOMFpWPzz5LlyNq2PV6KZNKfmogE+zYMSfsE/xO6jPk9Gbll6tTtRLyuQ==
-X-Received: by 2002:a17:906:2646:b0:6d5:d889:c92b with SMTP id i6-20020a170906264600b006d5d889c92bmr22061179ejc.696.1650526741998;
-        Thu, 21 Apr 2022 00:39:01 -0700 (PDT)
+        bh=Uv7cPKaUArzIITMcA4aXXtgjHbTkK+doRZ3K15+Bmlo=;
+        b=XKBEGky7jcZsTnxFVgi6bywQ4viPSvkqYNYD4MDUVAE9tywTqkmYLNDuLU3CS1MqtY
+         m8nd44hlX+968uLoMEdXwxt1eYkumsVLz2pslmJ74yLcAwdzHiD/YJS5Lt6RDreSqEAz
+         /qTMzBOceAU8qbPK8RiALisRadpXKb/O1UAylN+psGLBe7Jd73N7VuISluIYfx252Phr
+         l/ObuvgegsWXVugI7indAVgV27VPSwGV7NlwVVb7Qt2wuLNyuf85H6uDQGyV8CL9xaD3
+         6ScKMtop34wHF79tiQyjHEa8iFZbzsHyOIQ2jSnUT/niXjd6SSEucvPVp84v+YWC5AIE
+         2Czw==
+X-Gm-Message-State: AOAM533278lQpn1ezHfmZGqhMeww0nvHvEd7bY1lg8kGcXRBc9DewCBu
+        LvOi+c6+v7BKeezXltLcf2SxIQ==
+X-Google-Smtp-Source: ABdhPJyDSIJPWtDreUktJgwGwA4rnrToJQn+4WMfPlbwKSwdvhGWyc6rjslk3+RKyhdEolriw4H+lw==
+X-Received: by 2002:a05:6402:1148:b0:413:11e0:1f58 with SMTP id g8-20020a056402114800b0041311e01f58mr27030007edw.113.1650526882501;
+        Thu, 21 Apr 2022 00:41:22 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 25-20020a170906311900b006e87e5dd529sm7496681ejx.70.2022.04.21.00.39.00
+        by smtp.gmail.com with ESMTPSA id q2-20020a056402032200b00423d4516387sm7633157edw.75.2022.04.21.00.41.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 00:39:01 -0700 (PDT)
-Message-ID: <ff80981a-54e8-9163-ed62-bbb4e81bdb92@linaro.org>
-Date:   Thu, 21 Apr 2022 09:39:00 +0200
+        Thu, 21 Apr 2022 00:41:21 -0700 (PDT)
+Message-ID: <e5dabb07-eb0f-539d-12da-784ef0096e34@linaro.org>
+Date:   Thu, 21 Apr 2022 09:41:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: Fix can-clock node name
+Subject: Re: [PATCH 02/15] dt-bindings: arm: renesas: Document Renesas White
+ Hawk boards
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-References: <20220421073502.1824089-1-vkoul@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-3-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220421073502.1824089-1-vkoul@kernel.org>
+In-Reply-To: <20220420084255.375700-3-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,18 +77,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2022 09:35, Vinod Koul wrote:
-> Per DT spec node names should not have underscores (_) in them, so
-> change can_clock to can-clock.
+On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
+> Add device tree bindings documentation for Renesas R-Car V4H
+> White Hawk CPU and BreakOut boards.
 > 
-> Fixes: 5c44c564e449 ("arm64: dts: qcom: qrb5165-rb5: Add support for MCP2518FD")
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/renesas.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Squash it with your previous patch, please. Documenting just SoC and
+immediately later the board compatibles is too big split.
 
 
 Best regards,
