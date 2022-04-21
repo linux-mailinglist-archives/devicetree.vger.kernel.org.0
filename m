@@ -2,89 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8D25099A1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74E905099AF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Apr 2022 09:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385867AbiDUHtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 03:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44426 "EHLO
+        id S1386190AbiDUHvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 03:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386179AbiDUHt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:49:29 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80561C125;
-        Thu, 21 Apr 2022 00:46:18 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2ec05db3dfbso43103727b3.7;
-        Thu, 21 Apr 2022 00:46:18 -0700 (PDT)
+        with ESMTP id S1386182AbiDUHva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 03:51:30 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62F7AE55
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:48:40 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id r13so8279526ejd.5
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 00:48:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4gF7v+u5qfekoFHMTILqb5HQnMHDt0hFlVj2XdsKKGE=;
-        b=p1/u3kRmGTnPOnkOOYHSHuQuprla3aEGkJM1K20hYwFiIcBqtKc8VZ5l2RYVJX8A19
-         xDqvxne87HNMxNiF/dFgkyNtZWuGxIAzJPoYazLlAhwfunLUwzSGyXwe9h3le23C1XKz
-         9Rm0gOpg1RJAm3H+I9rU67mXH+7RdBIXEjYuZZZrFG7eDf1NcsdALI8gggv1co40om14
-         sBnzLmEEjUav4hVb6RZY9DZb/Zaijxj3m95TY3JVFci1wpPjxlqCix8EPglReA6rgVw5
-         Np+axScD6ngbpMakuKFgSdoJmpPGGuVL8M4GuUteGZJIdlgE2T9V3haFR9OfLJx03l/h
-         9OLg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=GPBUa5swIw6CZcs+Ui9I4QOAfuB4n7UzPWV5GhZeFFk=;
+        b=QnWxD0bY+y/mjv2MJWP2qs3pRdSZw8gK822S+RKNlvhiMzxbliBzoGxjncMgiQt47Z
+         oKSba9ZFFGHGJffpJSGCb27vkWX0c2U+KLVd+FWE5SosMF/MY+cGajpIe42CsFZUThvz
+         3RYRagCAYWGfF9jq7ceP9tSLTput9EFXv2AEXbs9bSnmuymDr8iIhq8+crcbqsviXaZB
+         1zxV9yWSMiuB4axPI6C4ZPCFuy2Wloyt/NauCRfUXLowyRMNTRXk5/ES+Jy5K5Co1nd8
+         +BTGjqBXPn8WB9FRt9LU6U5lZrlQBV+QKeEu5UZAsMIS3jdO3hLoOkTB3xUVC8Q6G7Oc
+         jdFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4gF7v+u5qfekoFHMTILqb5HQnMHDt0hFlVj2XdsKKGE=;
-        b=n8oqSU41aD2xZcCTI37+K33QdA9SZs7ToSPTWNhIitM3z5xnFl/zmqq+IFtnWyGndx
-         Sc1UsNlShfnt4bOcvLs5YFRETRENZEOT23JcPFZ+IQQMKCON3ps9GdLr+xL9m8oNrLXT
-         TNnZJk8aKaJC7OXAP0IT+J4tRtQv5ZQd07KW+7tiJpTXGvNEdVFlSWLxEJLPhfKoBAMH
-         Ft9tL9Dq5FmYFcdXKswO2Y5nCQ+MXVgLY0hkzzK/YdkQA/YEZfEQi3TGUxvFUtbxIiCq
-         ocNACAr1v7UJmdfq8M+rAo6BHYlKAgEwkyPOamukPHHIepfHEM2Gz4vhp15CznuKqG9F
-         GHzQ==
-X-Gm-Message-State: AOAM530Ttwve69c2H6lhp9ycAd0XLT2qb/SrGLwYQP6r5EELdIDyrdUZ
-        FDqIAZFP/rNy7Cz7QNmRXXKwE+w4JnJiqZLkmGA=
-X-Google-Smtp-Source: ABdhPJzQrF1xp8NXrzFDvpdgsCnONl8jgJLemRqlmq6FO4deZtH3gAF9dhs8jOdAoU/wyLB1x/pba4wdzIvSpXBh1Fc=
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr24596938ywb.132.1650527178014; Thu, 21
- Apr 2022 00:46:18 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=GPBUa5swIw6CZcs+Ui9I4QOAfuB4n7UzPWV5GhZeFFk=;
+        b=m5FewfF+aJiLMGayPPxw3ZvkfPF0vTBxOpu+YJMDmjSXs5RgFPQ9YwukfAmg7aU2Bt
+         TIH7BCZ0UnpJMUG/JWjhYhO9VYaIgeQnJk+bNiRci8lzhojy+4Vq5CXim6X4L8v7uX41
+         /JIcTvcnJMXiwayBD+KdVfg7+heNdbbKQmS8lderefKXX0H+GirpQOJ0HkrIoiSsqoa+
+         /kbgOSPSKdNV03GilVfL46DAam+udS3+POkKhrxH+6/8eVNytJxbzsfwJLmmQyLqX6Vj
+         R5dh1e1wi08eWiDLD2xKDqIcIwntSu7ma4D3j28Q5kYIDxnHTc7JEl+41keygkJgsUnk
+         XwSQ==
+X-Gm-Message-State: AOAM532gKdQJL272eLAyaZTbU9Oa+2L+0ewpqNbz7Q0M73dcoDRU0UBr
+        9WL8KtLTAsjpXeCaXKIjC4jD4g==
+X-Google-Smtp-Source: ABdhPJxxTIo0EJoqdQpU8qs9oxCB3A4HgYEhrYg2UFz+M03ekQxi8wWpCgLWaZnq0SwOPDBm8wdDNw==
+X-Received: by 2002:a17:906:2c42:b0:6e8:7b4b:3abb with SMTP id f2-20020a1709062c4200b006e87b4b3abbmr21979503ejh.565.1650527319278;
+        Thu, 21 Apr 2022 00:48:39 -0700 (PDT)
+Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id i22-20020a1709063c5600b006e8a8a48baesm7622125ejg.99.2022.04.21.00.48.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Apr 2022 00:48:38 -0700 (PDT)
+Message-ID: <c86f78ac-ccf5-30ad-5de4-33211ca8b351@linaro.org>
+Date:   Thu, 21 Apr 2022 09:48:37 +0200
 MIME-Version: 1.0
-References: <20220421065401.9303-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220421065401.9303-1-krzysztof.kozlowski@linaro.org>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Thu, 21 Apr 2022 15:46:06 +0800
-Message-ID: <CAEUhbmVBM1PG_6amTU2OCCNJDiTd6oKEJCGGv=2DOr8hOw16xw@mail.gmail.com>
-Subject: Re: [PATCH] riscv: dts: fu540-c000: fix duplicated dma compatible
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Zong Li <zong.li@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 07/15] dt-bindings: clock: Add r8a779g0 CPG Core Clock
+ Definitions
+Content-Language: en-US
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-8-yoshihiro.shimoda.uh@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220420084255.375700-8-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 2:54 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Remove duplicated compatible to fix error:
->
->   u540-c000.dtsi:171.4-42: ERROR (duplicate_property_names): /soc/dma@3000000:compatible: Duplicate property name
->
-> Fixes: 7eba954a8de8 ("riscv: dts: Add dma-channels property and modify compatible")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 20/04/2022 10:42, Yoshihiro Shimoda wrote:
+> Add all Clock Pulse Generator Core Clock Outputs for the Renesas
+> R-Car V4H (R8A779G0) SoC.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 1 -
->  1 file changed, 1 deletion(-)
->
+>  include/dt-bindings/clock/r8a779g0-cpg-mssr.h | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/r8a779g0-cpg-mssr.h
+> 
+> diff --git a/include/dt-bindings/clock/r8a779g0-cpg-mssr.h b/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
+> new file mode 100644
+> index 000000000000..07a94cf45581
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
+> @@ -0,0 +1,87 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
 
-Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+Any reason why not licensing it the same as bindings document
+(GPL-2.0-only OR BSD-2-Clause)? The same applies to patch 5.
+
+MIT and BSD-2-clause are almost the same, AFAIR, so let's stick to one
+(BSD-2-clause) for consistency?
+
+
+Best regards,
+Krzysztof
