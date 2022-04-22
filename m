@@ -2,144 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9145250BEF5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B8050BF45
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233749AbiDVRs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 13:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58322 "EHLO
+        id S230102AbiDVSEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:04:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232474AbiDVRsy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:48:54 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57EE7B576
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:26 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id t6-20020a056830224600b00605491a5cd7so5941182otd.13
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=rg2t3QjS7swC7CCiD53ULPLxJwbqove3OB++0DlUPOM=;
-        b=rnQZnBYynxzLCkaXTaGnxFQL4AnOzdgbt+/LyfgIxZnFmh2kLZYF489V/PStkDRRk3
-         ELRQRo2dmDDnWjViR5NBAGniSK4SV30vYUAREBVPT6rixhn6Z3ZxjCE/ypI+r3c/OLsA
-         itQ9wujwDjGfB1gINksmSU1Tlr2sG/OrryEuBTWr6eXsBIhtqzCUbmsidLdh8bRPOwof
-         XQpDV7bqra0eFhoTtXIxH4P8sIxHFHeIb3VM/lpdH5riMPJtJhIsjdxC4AArPIXk/6qu
-         PS4OyA8Cf62F9JoCLsK87DJnBamhrR2x9P0X6xsk+zwqA0MuLmLM0LbG6ENlECOzYXTf
-         whuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rg2t3QjS7swC7CCiD53ULPLxJwbqove3OB++0DlUPOM=;
-        b=jZrlj7DMyoWRmthSr9RuSczHLmxh1EE6eqTz8KW/rEVXGx9q6divII3/9m/KBvHLdp
-         dwzuK6adRz7xqmH2RLz4RJqKYKUOgHnfDtGvayJHX208s9bhimXKWg4icwdtIm4OWIL6
-         74/A6bJrWfcYI1OtQccmHe/wdRWY4N6c1B8dqIFTuCVBdKk60gka83ouu6+eroiDSalz
-         CrZzU/dY+GBmbaGZ8Pgfj+doHqE2c1+j9c86kSWQNCgq18EE68QTRd6/zlHdAjVv0Ufh
-         D0y2f+YiZvnG3OeORtLhq6iGkFpQgnFsUrnSXkrc70ZDkNW5CPdVTh5o5vQduwTMpLWb
-         RSaw==
-X-Gm-Message-State: AOAM531DxaIrOXr/sSinuCWzATWsxYkp7PVDKKBk6DZS0IDhehP6R7ni
-        fb/X9db/fIDz4rVyG1pHhY2twg==
-X-Google-Smtp-Source: ABdhPJzrJ9MT6DuHvfnHQFUTPgYGuhuBV0Pg3wovOt7szDKz5NOAaGD5S8Ep8UHUxc+wv1y5bNPlxg==
-X-Received: by 2002:a05:6830:440a:b0:605:87ec:9b23 with SMTP id q10-20020a056830440a00b0060587ec9b23mr1505671otv.151.1650649388208;
-        Fri, 22 Apr 2022 10:43:08 -0700 (PDT)
-Received: from eze-laptop ([190.190.187.68])
-        by smtp.gmail.com with ESMTPSA id z5-20020a4a8085000000b0033a2f400b17sm1033343oof.25.2022.04.22.10.43.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 10:43:07 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 14:43:01 -0300
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-To:     Christopher Obbard <chris.obbard@collabora.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Alex Bee <knaerzche@gmail.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add vdec support for RK3328
-Message-ID: <YmLpJQwdcSPHgZag@eze-laptop>
-References: <20220422133803.989256-1-chris.obbard@collabora.com>
- <20220422133803.989256-4-chris.obbard@collabora.com>
+        with ESMTP id S235772AbiDVR7O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:59:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F50C0E5F;
+        Fri, 22 Apr 2022 10:56:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2959260C4F;
+        Fri, 22 Apr 2022 17:56:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB90EC385A4;
+        Fri, 22 Apr 2022 17:56:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650650178;
+        bh=pELO3OB3ysuZ0HLLVF+76Td+K+2oS2riNU2A6pWuAQQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=onsonSbGFnf70GvkcHnOGcW60J4t+hCRPSu27HBZyLxIKZue1AzAFSAp7gjH7msAy
+         t0bWaVEpRA3WGOcgHuNeTG/TtRZ6zffLZCIUwOnkpyZuVEPHXLRWW2Cal/dtJ12T5v
+         nTpxci8oAWZSo5QBpzz4QmqdenLo4Zdre1qx51M/ZAJWSaYp0pLZwwlIpuSxFUBSas
+         9FbqfJRUNPSMmuAUcLXE7jpiZa5GdlBpR92NXQldxxWavP+ByXXe8cui3KbuaeSaMp
+         59jKUGcsn/PmnuFTs4UduUHL6KQwJQrU9bAyp8M/VwDEzFcbNdGhncx4chluhE/ar/
+         WfBea4fkJeprA==
+Date:   Fri, 22 Apr 2022 10:56:16 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?UTF-8?B?xaBpcHJhZ2E=?= <alsi@bang-olufsen.dk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net v2 1/2] dt-bindings: net: dsa: realtek: cleanup
+ compatible strings
+Message-ID: <20220422105616.15f4695d@kernel.org>
+In-Reply-To: <CAJq09z5zU1WT4bHjv-=aX49XweKnOmLhnL2w8gSaBe7=Ov1APw@mail.gmail.com>
+References: <20220418233558.13541-1-luizluca@gmail.com>
+        <165044941250.8751.17513068846690831070.git-patchwork-notify@kernel.org>
+        <CAJq09z5zU1WT4bHjv-=aX49XweKnOmLhnL2w8gSaBe7=Ov1APw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220422133803.989256-4-chris.obbard@collabora.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 02:38:03PM +0100, Christopher Obbard wrote:
-> The RK3328 has an vdec device with dedicated iommu.
-> Describe the device and required power-domains in the
-> devicetree.
+On Wed, 20 Apr 2022 17:29:00 -0300 Luiz Angelo Daros de Luca wrote:
+> > This series was applied to netdev/net-next.git (master)
+> > by David S. Miller <davem@davemloft.net>:
+> >
+> > On Mon, 18 Apr 2022 20:35:57 -0300 you wrote:  
+> > > Compatible strings are used to help the driver find the chip ID/version
+> > > register for each chip family. After that, the driver can setup the
+> > > switch accordingly. Keep only the first supported model for each family
+> > > as a compatible string and reference other chip models in the
+> > > description.
+> > >
+> > > The removed compatible strings have never been used in a released kernel.
+> > >
+> > > [...]  
+> >
+> > Here is the summary with links:
+> >   - [net,v2,1/2] dt-bindings: net: dsa: realtek: cleanup compatible strings
+> >     https://git.kernel.org/netdev/net-next/c/6f2d04ccae9b
+> >   - [net,v2,2/2] net: dsa: realtek: remove realtek,rtl8367s string
+> >     https://git.kernel.org/netdev/net-next/c/fcd30c96af95
+> >  
 > 
-> Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+> I was expecting to get those patches merged to net as well. Otherwise,
+> the "realtek,rtl8367s" we are removing will get into a released
+> kernel.
 
-Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-
-> ---
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 25 +++++++++++++++++++++++-
->  1 file changed, 24 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> index f8ef149fedad..390e1e4a8fc9 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> @@ -306,6 +306,10 @@ power-domain@RK3328_PD_HEVC {
->  			};
->  			power-domain@RK3328_PD_VIDEO {
->  				reg = <RK3328_PD_VIDEO>;
-> +				clocks = <&cru ACLK_RKVDEC>,
-> +					 <&cru HCLK_RKVDEC>,
-> +					 <&cru SCLK_VDEC_CABAC>,
-> +					 <&cru SCLK_VDEC_CORE>;
->  				#power-domain-cells = <0>;
->  			};
->  			power-domain@RK3328_PD_VPU {
-> @@ -660,6 +664,25 @@ vpu_mmu: iommu@ff350800 {
->  		power-domains = <&power RK3328_PD_VPU>;
->  	};
->  
-> +	vdec: video-codec@ff360000 {
-> +		compatible = "rockchip,rk3328-vdec", "rockchip,rk3399-vdec";
-> +		reg = <0x0 0xff360000 0x0 0x400>;
-> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>,
-> +			 <&cru SCLK_VDEC_CABAC>, <&cru SCLK_VDEC_CORE>;
-> +		clock-names = "axi", "ahb", "cabac", "core";
-> +		assigned-clocks = <&cru ACLK_RKVDEC>, <&cru SCLK_VDEC_CABAC>,
-> +				  <&cru SCLK_VDEC_CORE>;
-> +		assigned-clock-rates = <400000000>, <400000000>, <300000000>;
-> +		resets = <&cru SRST_VDEC_A>, <&cru SRST_VDEC_H>,
-> +			 <&cru SRST_VDEC_CABAC>, <&cru SRST_VDEC_CORE>,
-> +			 <&cru SRST_VDEC_NIU_A>, <&cru SRST_VDEC_NIU_H>;
-> +		reset-names = "video_a", "video_h", "video_cabac", "video_core",
-> +			"niu_a", "niu_h";
-> +		iommus = <&vdec_mmu>;
-> +		power-domains = <&power RK3328_PD_VIDEO>;
-> +	};
-> +
->  	vdec_mmu: iommu@ff360480 {
->  		compatible = "rockchip,iommu";
->  		reg = <0x0 0xff360480 0x0 0x40>, <0x0 0xff3604c0 0x0 0x40>;
-> @@ -667,7 +690,7 @@ vdec_mmu: iommu@ff360480 {
->  		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>;
->  		clock-names = "aclk", "iface";
->  		#iommu-cells = <0>;
-> -		status = "disabled";
-> +		power-domains = <&power RK3328_PD_VIDEO>;
->  	};
->  
->  	vop: vop@ff370000 {
-> -- 
-> 2.34.1
-> 
+Seems reasonable. Unless someone objects I'll "yolo it" and apply 
+the patches to net as well.
