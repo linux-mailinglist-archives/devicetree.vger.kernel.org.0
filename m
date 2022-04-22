@@ -2,235 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FE250C308
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B77150C2EF
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232399AbiDVWTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:19:33 -0400
+        id S232427AbiDVWTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:19:36 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233279AbiDVWS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:18:29 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82BC524EB9B
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:10:12 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id q22so11055297ljh.10
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:10:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xFeOtJuaV8reMhpK/AQiVQIOApHzYKJaZY7pKJ38rnU=;
-        b=h4qH1Bs65mZuxO1vz/kPsc1KiE5EyIyPiTjIDhXV8Gpb9Y6nS4NUJIRNdNQrSvWyF/
-         dY7b6XDNGNIr696Ix6ylgphn5GqPj3X3qZq2cQl1B1OgsCvwBpT7jc2vKoWO0xFrVPP5
-         ilTfyGlt1EZnE62PMqgHJD4gDgFN1zB09+0v1cDfl/Y0ez5rJG7stkaJPMtpAWWvFEmP
-         EHaEVi0vWOfDRwbG2kDPq6pPxoD6AWSaqUs2FZexEbDT+WaL+QwU3Vbmentk7oJ/yg0N
-         SKBRgDiAcSjn65mQRbJ2+nptv39ydnWeFGZBuErzQAMAdHFZkO9Xfsl87/fOHYv4/Yh3
-         hFwg==
+        with ESMTP id S233839AbiDVWSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:18:49 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130B6694B7;
+        Fri, 22 Apr 2022 14:10:49 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-e5ca5c580fso9912442fac.3;
+        Fri, 22 Apr 2022 14:10:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xFeOtJuaV8reMhpK/AQiVQIOApHzYKJaZY7pKJ38rnU=;
-        b=o01DrBojE/CSxBkr15p/b9cD7BBH5ziNLaE1vMFqY38O/KCFTVrfpNaTzBlkHYIPQJ
-         l2lN50wbQGe5X0inFMTNfCUjEczIienwsz0gJx+dImpSEGXNa1u12MPaRFJ6Nfbt3hHA
-         ADGzPyieUxtpY+tnmSgP4+3L3vM4QXjzgynWvFTSuSdJqMHmDfoiGvqffatfQwyXV2PO
-         Cmsr9jP9TcXui+xxR2d7NfiMei9y4nlUrkc+NutIiCwJqDngfVWAo24Po9kgPkFkma3V
-         FrtWAvzIK2A83G2pr2fAsi+1V2WcumuYWqPlKFtRGr1Kie6/p252y25GMIKLsFIKvbCH
-         l7Og==
-X-Gm-Message-State: AOAM530xPEt5Cbh5vtPMUIKi+4q5ICDqiiGsny+pJsRd4Hc/tTf4iysF
-        5U+Lxtx++5ciRmIBpQtaNEn0VQ==
-X-Google-Smtp-Source: ABdhPJyg28RMqPSrMIWUjzaPSwIMi3WXLYU4k0MRVsdya1CRl/JmbfpTSXDOdyK3bloCVljegeh+PQ==
-X-Received: by 2002:a2e:8e93:0:b0:24d:ab45:4053 with SMTP id z19-20020a2e8e93000000b0024dab454053mr3782121ljk.231.1650661810160;
-        Fri, 22 Apr 2022 14:10:10 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 6-20020ac24d46000000b0046bb728b873sm351240lfp.252.2022.04.22.14.10.09
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Tkutjbl6M6F7ROD9a26bDdNrkbSWhhcwmMr6zx2IOcE=;
+        b=ZirOYALXVp6GpUyspYwVQMB5/ICgiyzdUUCALQdL5D0dC4yyfuofhyDQOOf5gCb3L/
+         hNkS3ERBwQIvcphCUsvMlB3EKZej8bPNbgaDjz9XGJDgJ3qoPm8hx0v4/QdMVrEEH7yU
+         iOpNLhHuOCEbNJlWDJuFdV9xtb07K9qM4sJeeRQbH36bIa2xkCktRzWjLpJTTO2OLLVj
+         GMZIjIftJ2VnInLi7VVe1dNc/uPVd0qyIk6WDzUY18sR6EHihbMkUPitBOTcoiCjfK+b
+         kLlBvY2nZRBaQ9HhuxH0HMa7RANK3O7qSz/2lFP06xTGeDqJc5tN0uH5yJ08+zzVGHza
+         vC5Q==
+X-Gm-Message-State: AOAM530w44R8gm1wa/QEw6zZLxTgVfXf/LXDBWVIvBoKlZa0t/MVTuYC
+        DEyeYTpoeSdVLsL+EDAjJQ==
+X-Google-Smtp-Source: ABdhPJxgDVs7xvcysn1Di8tXdOlKYuPI1U7BFRO4ay+lXkeVtgeYsglZ1My+1O/4c4tx67VSav4XdA==
+X-Received: by 2002:a05:6870:9689:b0:e6:bcf:4b6 with SMTP id o9-20020a056870968900b000e60bcf04b6mr6980687oaq.64.1650661848365;
+        Fri, 22 Apr 2022 14:10:48 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u20-20020a4a9e94000000b003291f6ac4b2sm1238286ook.28.2022.04.22.14.10.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 14:10:09 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: qcom: replace deprecated perst-gpio with perst-gpios
-Date:   Sat, 23 Apr 2022 00:10:02 +0300
-Message-Id: <20220422211002.2012070-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422211002.2012070-1-dmitry.baryshkov@linaro.org>
-References: <20220422211002.2012070-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Fri, 22 Apr 2022 14:10:47 -0700 (PDT)
+Received: (nullmailer pid 2784281 invoked by uid 1000);
+        Fri, 22 Apr 2022 21:10:47 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20220422071534.15653-1-tinghan.shen@mediatek.com>
+References: <20220422071534.15653-1-tinghan.shen@mediatek.com>
+Subject: Re: [PATCH v1] dt-bindings: dsp: mediatek: add mt8186 dsp document
+Date:   Fri, 22 Apr 2022 16:10:47 -0500
+Message-Id: <1650661847.232289.2784280.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace deprecated perst-gpio properties with up-to-date perst-gpios
-in the Qualcomm device trees.
+On Fri, 22 Apr 2022 15:15:34 +0800, Tinghan Shen wrote:
+> This patch adds mt8186 dsp document. The dsp is used for Sound Open
+> Firmware driver node. It includes registers, clocks, memory regions,
+> and mailbox for dsp.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+> 
+> This patch depends on MT8186 clock bindings.
+> https://lore.kernel.org/all/20220409132251.31725-2-chun-jie.chen@mediatek.com/
+> 
+> ---
+>  .../bindings/dsp/mediatek,mt8186-dsp.yaml     | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts            | 6 +++---
- arch/arm64/boot/dts/qcom/ipq8074-hk01.dts              | 4 ++--
- arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi             | 4 ++--
- arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi         | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts             | 4 ++--
- 8 files changed, 14 insertions(+), 14 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index f623db8451f1..9fb33850e46c 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -497,20 +497,20 @@ config {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
- 	vddpe-3v3-supply = <&wlan_en>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 130 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 130 GPIO_ACTIVE_LOW>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
- &pcie2 {
- 	status = "okay";
--	perst-gpio = <&tlmm 114 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 114 GPIO_ACTIVE_LOW>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-index b5e1eaa367bf..2d5ee337054c 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-@@ -54,12 +54,12 @@ &blsp1_uart5 {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpios = <&tlmm 61 0x1>;
- };
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpios = <&tlmm 58 0x1>;
- };
- 
- &pcie_phy0 {
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-index 07e670829676..3c0ac747de0e 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-@@ -44,12 +44,12 @@ &blsp1_uart5 {
- 
- &pcie0 {
- 	status = "ok";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpios = <&tlmm 58 0x1>;
- };
- 
- &pcie1 {
- 	status = "ok";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpios = <&tlmm 61 0x1>;
- };
- 
- &pcie_phy0 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-index 3bb50cecd62d..b90000223d69 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-@@ -195,8 +195,8 @@ &mmcc {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
--	wake-gpio = <&tlmm 37 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
- 	vddpe-3v3-supply = <&wlan_en>;
- 	vdda-supply = <&pm8994_l28>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index a80c578484ba..b067b9f95189 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -99,7 +99,7 @@ pms405_s3: s3 {
- &pcie {
- 	status = "okay";
- 
--	perst-gpio = <&tlmm 43 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
- 
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&perst_state>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index dc17f2079695..461ba68fd939 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -362,7 +362,7 @@ &pcie1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_clkreq_n>, <&ssd_rst_l>, <&pe_wake_odl>;
- 
--	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
- 	vddpe-3v3-supply = <&pp3300_ssd>;
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b89d896..8abf8077be11 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -240,7 +240,7 @@ &ipa {
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
- 
- 	vddpe-3v3-supply = <&nvme_3v3_regulator>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 28fe45c5d516..1aadd5504631 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -502,7 +502,7 @@ &mss_pil {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
- 	enable-gpio = <&tlmm 134 GPIO_ACTIVE_HIGH>;
- 
- 	vddpe-3v3-supply = <&pcie0_3p3v_dual>;
-@@ -520,7 +520,7 @@ &pcie0_phy {
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 102 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 102 GPIO_ACTIVE_LOW>;
- 
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_default_state>;
--- 
-2.35.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.example.dts:22:18: fatal error: dt-bindings/clock/mt8186-clk.h: No such file or directory
+   22 |         #include <dt-bindings/clock/mt8186-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
