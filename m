@@ -2,395 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EEA650AECD
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 06:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E883B50AEFC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 06:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380237AbiDVEOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 00:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54568 "EHLO
+        id S1386716AbiDVET3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 00:19:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1443860AbiDVEOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 00:14:36 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C960F4EA1D;
-        Thu, 21 Apr 2022 21:11:43 -0700 (PDT)
-X-UUID: 978b7541e73947dfbd02af73bafea141-20220422
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:5c8673dd-15f5-4363-be61-5b7dc22ceae5,OB:10,L
-        OB:0,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham
-        ,ACTION:release,TS:88
-X-CID-INFO: VERSION:1.1.4,REQID:5c8673dd-15f5-4363-be61-5b7dc22ceae5,OB:10,LOB
-        :0,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D
-        ,ACTION:quarantine,TS:88
-X-CID-META: VersionHash:faefae9,CLOUDID:2537b9ef-06b0-4305-bfbf-554bfc9d151a,C
-        OID:67dca7fe364a,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
-        le:nil,QS:0,BEC:nil
-X-UUID: 978b7541e73947dfbd02af73bafea141-20220422
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1272521452; Fri, 22 Apr 2022 12:11:38 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 22 Apr 2022 12:11:32 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Apr
- 2022 12:11:30 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 22 Apr 2022 12:11:29 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S1443940AbiDVETX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 00:19:23 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2132.outbound.protection.outlook.com [40.107.237.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D39D4EF57;
+        Thu, 21 Apr 2022 21:16:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HLbgCY1qIkpHuYtDDNYW3YuZP1BBAHw47TwZ6gPnKy84pYyxYoc0Y+NNb7jyB9j2I0nVCwiOgAWKhv8J2j3g7kVhQq8qr67qIt1w3mZpZVEvAVIX0ftIuDHLIRAOuit6871GWOgWsKmRPHuIP6q+IovR/vkCWJCpSxD5fC/H9W2rpZQqdy+O6LObX32Kd9xdSEobtMroAicm9GI3xsgZLM6c5pn7NmhrPgwK4S5rEQTR/2C7F2IFLV+JfxuEPc9GUrcyrVSJ9gTBBZeT9ptgL2YP186h91PNvn3A56eFaQmZh0DuLlDK6G7re6P+dsmhsjidCK0uLTaHiE5Ieb6UIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RqJ0do5Ufr31eAIWkzJkXcZrHV55htGGO9+Kc3unhmg=;
+ b=Ur/+HxmMozp2dO4kBz7EZYOF62OjzTp/bv6fiP+xwOypwGGhdIwZH5qO00RNbnD21iPqeXV8WqEL7cvf0T+nugOPLHhUN5H8Bjs0X6qYqyV83LPo3WGmIhup6jPccvWA3d/6+RSaX+K7gt4jGK0RcYXJ1JDzlTpmJIP429qfWeSnbtV0yaAv8Q+rfBETMt0LrjeBqCItYZR3YzALavPMdS4JcGKqIVyZ2vbmKDuXl78uKIwO2n537Qh7H3SrVrytbGvsLzM5IFv6auPK6h7Wf8MmE4mDuFgNN1TCU5BlMM1qojnlp1NjfVgLvz7llt8QY95T7v2mdjfzcCS+5uM0yA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RqJ0do5Ufr31eAIWkzJkXcZrHV55htGGO9+Kc3unhmg=;
+ b=mOMy3S9Sw62GHvFD5Z+QCRXKPKDTDjAjRpziWCCDujva2r/hzCeH+dv6gkycwaDxxSJHKvbjucmawkm52P/J+FU6a92i2LuZruDiQwCZsnt/9k4I4ADVgDhFztqaSc5yXhDimGSbahFId7JsGIDLNTplxZd6DYbLZYX5LeoodaE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ BL0PR0102MB3587.prod.exchangelabs.com (2603:10b6:207:38::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5164.25; Fri, 22 Apr 2022 04:16:27 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::319b:4612:e6f4:f22c]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::319b:4612:e6f4:f22c%3]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
+ 04:16:26 +0000
+Message-ID: <b9e0273c-9fa1-b0e7-8737-863a94767654@os.amperecomputing.com>
+Date:   Fri, 22 Apr 2022 11:16:13 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.8.0
+Subject: Re: [PATCH v7 0/3] Add SSIF BMC driver
+Content-Language: en-US
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Corey Minyard <minyard@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Wei-Shun Chang <weishunc@google.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
-        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <jian.yang@mediatek.com>
-Subject: [PATCH v6 2/2] phy: mediatek: Add PCIe PHY driver
-Date:   Fri, 22 Apr 2022 12:11:25 +0800
-Message-ID: <20220422041125.12732-3-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220422041125.12732-1-jianjun.wang@mediatek.com>
-References: <20220422041125.12732-1-jianjun.wang@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
+In-Reply-To: <20220422040803.2524940-1-quan@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR04CA0017.apcprd04.prod.outlook.com
+ (2603:1096:4:197::15) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 56e748ef-9eb2-4e56-6e7a-08da2416de58
+X-MS-TrafficTypeDiagnostic: BL0PR0102MB3587:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR0102MB35876AFF3BB4C6A1475BE6FAF2F79@BL0PR0102MB3587.prod.exchangelabs.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: j6gCo7i7qughfr/+40oJYJzwCccgL8m8PSqm9oygv+c0RFgD2KkZeH4raxYK2cJcxVVyvcJMN6QRJj+0pu88qQN4wdHN81tP30mM74NUxXaB+tXeHue+LmaAT+GLqF+yUiDkeCnASjT/rFfxxDuTXXAy3dGaEutp8cHlIXNyUwcfXJMukeppgEhcTxH6aSWxP/GD03RRJqK1OFLHLgvN7gQOy2mrkfo2x3O5fgrOrqmwNC+0JXoHlTO4pt+vVXqf60PfEAJRT7ZZYQD5/6aYqPxzTs1s+vNrtjHd9vlV6w/xWCqWhn2QQapGeNObQeg3A4dZPxKiUN1iAgBXpU4DL+xFCuaq1lK7bjIxHsG9cESiC3qP9GWRYP06SJrbHlJlcMblKnkY3ch67b1ffZFfGQeWt44Z8ECFLRYpWavlF4Hvr8rwala4bBaetgbxWimhaanMG22b7cWbDswJggKu52+1Y72Etsjv/erZ7330UQBiyvKA53rK1fBWG64yxk2s4IcCrALlYlH96b+Wv/erqA3guIxm9IRwlXfh2bRaHemx4iAftfVy1g8KHGXtYbSEZJjF9r/MG8f99l/9HZGJox8tJev0huxTonzHix0W1nQhCX87uH5I4JeQP+mjjPfuN60Ea2UCntpyG4TLGujzM7TgxW4VeeYpkmo1+vV+ZVXBLy/AKun5oWW6q50MKwMVLKAcIpNTwVTW2xWt8ZK3Xcl/KwLvCaT1t3sgv6nVKJCWHQ5FHd32d6zsXM7/qxbTB6Eq3mW2lTZO/Glmc54yv72KrgipMJLFu9NWmSijkYGQKoi58+vvrPcex9WoqYPxlQoC2LjdcdouYuifPLjzbA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(316002)(186003)(31696002)(4326008)(921005)(31686004)(38100700002)(54906003)(66946007)(7416002)(86362001)(110136005)(8676002)(6486002)(38350700002)(8936002)(966005)(83380400001)(52116002)(2906002)(66476007)(66556008)(5660300002)(508600001)(53546011)(6512007)(6506007)(2616005)(26005)(6666004)(107886003)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXlHUmxBb3dhZ3VLT2RrTzFBbzFaK2NuaUhvck43SzJja3RUbzZrMjZ4dFkr?=
+ =?utf-8?B?VmxrRHNyR3Q5ekRJendqMURTeTcxVThtR1B3QTJ5clFxRHZJVXBDKzVrZC9k?=
+ =?utf-8?B?OThKd2RDdmhwU2VJN1lqTnkzeWJZYzhnY3BFOFUydlhZd2orNFFVVWkzY3E4?=
+ =?utf-8?B?ZWRWNk91ci9pQXhpQmFJb09YaFlmTVdZWDN6dHlvTTVhTUlBYlF0aTVkVG45?=
+ =?utf-8?B?RWtkZzNRYWk3NlpUNU5IZUZBVTg0TWl4bDJzZ2NkdHUzNWpuRDZ4bGlybE5B?=
+ =?utf-8?B?K2I4cW5ST2w0WHRwa1JpZCtKRGhGdVVGRTRjLzZSbjg0cDZtRnVJWks1elMx?=
+ =?utf-8?B?RDNGaHRReVYzbEJhemdxTjd2Zlh1dWF0OHBMVXlHcmFvZEMzdTM3YVRPdERN?=
+ =?utf-8?B?STF2SEdTd2pmb2QzeitaaWE3OVJoeGpnSlprbTdLcndxdCtpeUxtQnBmaWY0?=
+ =?utf-8?B?S1NIWDA1Z3Y0MWpCQWlYekJRSmdLZ0VzWDNvSnZDZ0RUbEI3UkUzaCs2VEpX?=
+ =?utf-8?B?dWYzY1JJSzZOY3YyWTRMM3dOS3EvN1U2Q2dFMlA5L1loNGFxZGJiaDNZNitY?=
+ =?utf-8?B?dUN5enRmb0kyaVN4a3UzNzd2RWRiK2RrMDJDQzFLeVR0a3Y1bnpLZzVqT1A1?=
+ =?utf-8?B?dW02ZnFxQzV1M3hSeE9WOG9XbDBWZnRJZEZ3UWxOaVNiaDlGOGdMcjhRSUtV?=
+ =?utf-8?B?NXRzVHppQU92anFNOXdMTVBRUnpwNGhpZllKcXhqTG40b2ZIRjY5Nm9la2xU?=
+ =?utf-8?B?RHNQeFhTbEZScUM1Y05WRjd2ZnFhblRrdUt1TXNoeXBrN0lVMXBtMDVwR0dU?=
+ =?utf-8?B?NzNDZkJydkJIT29DOTloQng1cnp2RGQvejlFMkg0ZFpBeXBhTlc1MlJlT3Rx?=
+ =?utf-8?B?SEJ4cTd1Nit5UkRjczA0VlFlcEFNeGhwOG1yTzhqWWk1djM1NWNiVHpKcFFn?=
+ =?utf-8?B?a2FRK2txUS9OMitNUDhoK213My9aODhBbklMNHFwMkE0UHZqU1pYd3NwdmNE?=
+ =?utf-8?B?RHJOSkFPV2h1NXV4TlhIRDNvUjJVUy8wOHIwS1c1Sk1CZ2dDUy93VmJrUUI1?=
+ =?utf-8?B?bWZ3UlJIVGVBUG42OXVpM1g5a3FjN2w1MmxhYnVUZUJ0cTRsQi9XeFE5Q2Iz?=
+ =?utf-8?B?Q2xQdWM5Z1lZQmREbUIwK3Fsd1ZKRzBwaE50NWJ0UDY5aFRYQzdOZFhJTHBs?=
+ =?utf-8?B?eUdpRUg4bnBhUFNEN20xeS81bHAxS1J2a3VoTHNianFzcEFNdHd3OVAzTGhq?=
+ =?utf-8?B?Q1djYk9tT0NKNk4vZ1E1YmxidHhzY0VFTWZjdTFMVG5JZjJ6WEs5ZUFMUTU4?=
+ =?utf-8?B?WlZ3SDl3TXRSeDJlZG8ybTdiVGN5bkhRTWFMNFBOVDJqeTFGUWFyQk9FZk5E?=
+ =?utf-8?B?Z1FNajRBRVhUT01Tc0cyOC9ESlZZT0Z5U2lPdjJZQ0tzZDI3YmRhVllvTkl5?=
+ =?utf-8?B?VCtIU3g4SU9wNTJJYW51ZFhNVGpNbkdvT0RjdUc3anQrRCtXbDVNYStKUHJE?=
+ =?utf-8?B?NkZoMEdNWDE4UVlOeGZNdlJFSUtpQ00wTm9FZitBa2lZY216R0xZd2V3K0Fw?=
+ =?utf-8?B?eGhDR0YwVExmKzVkcFlxbHpUWG9ycmo4UWVLVnJ1VEM5MHA4YXBpejRvL1VO?=
+ =?utf-8?B?emh2M2FDNjBaZjM5WWtvYUc3SzFGQlN5NmdZcm4xd3BLTkRkdFVta3BERkxI?=
+ =?utf-8?B?ejQ1TnV2WllocDNsUjVMQ09aNjVWSm1VSEVkOXR4aEVVdkdCWVZJL1IxWk1q?=
+ =?utf-8?B?TjdyUkdrcEgzYm1UakM2ZXp1ZnFIRnM5Y1BpZHhjbDN5SytWcW9FMW9wNlI3?=
+ =?utf-8?B?M3M4SHpHY3BHWTcxdk1ybmJ1RUdwOEpxQXVzdWpYd0ZLV3RIZWtJbGFiSCtP?=
+ =?utf-8?B?bUNYcEpkZ1FkRG4yZWUycjBRbmpTWUkrMHdQeUU1N0kwZnY3dndEM25TWkpN?=
+ =?utf-8?B?aHpmS0ZyUGwrQ3N4OC9rSFB4NEJZbWpEdE0rd0pWRFkyOFE5Q3U2UUhsNldK?=
+ =?utf-8?B?KzBXdURiUkxtMWRIcVRBeHpkaW1NS1hOVXI2UVhkQ2dZa2JrcUpSQVcvWXM5?=
+ =?utf-8?B?eElvQ2x5OFJRVzgzNmx1SmNvdm5EakZGcU54Ujg0V1dZcTc1cmZGQkZpUklz?=
+ =?utf-8?B?VlVDa1pFY243MVgzdWs3TVpLdnhnbVIySEhnc0xsMm83YWpBQ0dOZXNTS050?=
+ =?utf-8?B?emNDbU9hK3hJeTV6REEwcTgwM3VObVQ4YjhOazJ5NGhuWUxaYjZyVUJ2VDRD?=
+ =?utf-8?B?dUczcjRVZlhoSUYxNUxtVVg5dUw2NEdlMExMUFptNXNsY0dEZUtJYkNFNnpD?=
+ =?utf-8?B?a1YrV2VISnlua2xSaHJlMWd6bERZUlVpRHppQ3JCazQ5L2lXVUZFSWwyTDg1?=
+ =?utf-8?Q?ISIuj3a/WPHQmRyhilap1+pRKkT7kT6iKbOaA?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56e748ef-9eb2-4e56-6e7a-08da2416de58
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 04:16:26.8314
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p009AsYoJ9f+mVuW0Ycn90ZdTNUAyFaotQILy4dNY0oe4iEzBe/GbkMYGaSXfkR4bnyrSWA5BnYNlI75pCoUulBavdc6dmTUZH4oj8Vey+8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR0102MB3587
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe GEN3 PHY driver support on MediaTek chipsets.
+Added Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+as I'm not aware of the email change
+- Quan
 
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/phy/mediatek/Kconfig        |  11 ++
- drivers/phy/mediatek/Makefile       |   1 +
- drivers/phy/mediatek/phy-mtk-pcie.c | 266 ++++++++++++++++++++++++++++
- 3 files changed, 278 insertions(+)
- create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
-
-diff --git a/drivers/phy/mediatek/Kconfig b/drivers/phy/mediatek/Kconfig
-index 55f8e6c048ab..387ed1b3f2cc 100644
---- a/drivers/phy/mediatek/Kconfig
-+++ b/drivers/phy/mediatek/Kconfig
-@@ -55,3 +55,14 @@ config PHY_MTK_MIPI_DSI
- 	select GENERIC_PHY
- 	help
- 	  Support MIPI DSI for Mediatek SoCs.
-+
-+config PHY_MTK_PCIE
-+	tristate "MediaTek PCIe-PHY Driver"
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	depends on OF
-+	select GENERIC_PHY
-+	help
-+	  Say 'Y' here to add support for MediaTek PCIe PHY driver.
-+	  This driver create the basic PHY instance and provides initialize
-+	  callback for PCIe GEN3 port, it supports software efuse
-+	  initialization.
-diff --git a/drivers/phy/mediatek/Makefile b/drivers/phy/mediatek/Makefile
-index ace660fbed3a..788c13147f63 100644
---- a/drivers/phy/mediatek/Makefile
-+++ b/drivers/phy/mediatek/Makefile
-@@ -6,6 +6,7 @@
- obj-$(CONFIG_PHY_MTK_TPHY)		+= phy-mtk-tphy.o
- obj-$(CONFIG_PHY_MTK_UFS)		+= phy-mtk-ufs.o
- obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-xsphy.o
-+obj-$(CONFIG_PHY_MTK_PCIE)		+= phy-mtk-pcie.o
- 
- phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
- phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
-diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c b/drivers/phy/mediatek/phy-mtk-pcie.c
-new file mode 100644
-index 000000000000..c04616e24311
---- /dev/null
-+++ b/drivers/phy/mediatek/phy-mtk-pcie.c
-@@ -0,0 +1,266 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 MediaTek Inc.
-+ * Author: Jianjun Wang <jianjun.wang@mediatek.com>
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include "phy-mtk-io.h"
-+
-+#define PEXTP_ANA_GLB_00_REG		0x9000
-+/* Internal Resistor Selection of TX Bias Current */
-+#define EFUSE_GLB_INTR_SEL		GENMASK(28, 24)
-+
-+#define PEXTP_ANA_LN0_TRX_REG		0xa000
-+
-+#define PEXTP_ANA_TX_REG		0x04
-+/* TX PMOS impedance selection */
-+#define EFUSE_LN_TX_PMOS_SEL		GENMASK(5, 2)
-+/* TX NMOS impedance selection */
-+#define EFUSE_LN_TX_NMOS_SEL		GENMASK(11, 8)
-+
-+#define PEXTP_ANA_RX_REG		0x3c
-+/* RX impedance selection */
-+#define EFUSE_LN_RX_SEL			GENMASK(3, 0)
-+
-+#define PEXTP_ANA_LANE_OFFSET		0x100
-+
-+/**
-+ * struct mtk_pcie_lane_efuse - eFuse data for each lane
-+ * @tx_pmos: TX PMOS impedance selection data
-+ * @tx_nmos: TX NMOS impedance selection data
-+ * @rx_data: RX impedance selection data
-+ * @lane_efuse_supported: software eFuse data is supported for this lane
-+ */
-+struct mtk_pcie_lane_efuse {
-+	u32 tx_pmos;
-+	u32 tx_nmos;
-+	u32 rx_data;
-+	bool lane_efuse_supported;
-+};
-+
-+/**
-+ * struct mtk_pcie_phy_data - phy data for each SoC
-+ * @num_lanes: supported lane numbers
-+ * @sw_efuse_supported: support software to load eFuse data
-+ */
-+struct mtk_pcie_phy_data {
-+	int num_lanes;
-+	bool sw_efuse_supported;
-+};
-+
-+/**
-+ * struct mtk_pcie_phy - PCIe phy driver main structure
-+ * @dev: pointer to device
-+ * @phy: pointer to generic phy
-+ * @sif_base: IO mapped register base address of system interface
-+ * @data: pointer to SoC dependent data
-+ * @sw_efuse_en: software eFuse enable status
-+ * @efuse_glb_intr: internal resistor selection of TX bias current data
-+ * @efuse: pointer to eFuse data for each lane
-+ */
-+struct mtk_pcie_phy {
-+	struct device *dev;
-+	struct phy *phy;
-+	void __iomem *sif_base;
-+	const struct mtk_pcie_phy_data *data;
-+
-+	bool sw_efuse_en;
-+	u32 efuse_glb_intr;
-+	struct mtk_pcie_lane_efuse *efuse;
-+};
-+
-+static void mtk_pcie_efuse_set_lane(struct mtk_pcie_phy *pcie_phy,
-+				    unsigned int lane)
-+{
-+	struct mtk_pcie_lane_efuse *data = &pcie_phy->efuse[lane];
-+	void __iomem *addr;
-+
-+	if (!data->lane_efuse_supported)
-+		return;
-+
-+	addr = pcie_phy->sif_base + PEXTP_ANA_LN0_TRX_REG +
-+	       lane * PEXTP_ANA_LANE_OFFSET;
-+
-+	mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG, EFUSE_LN_TX_PMOS_SEL,
-+			    FIELD_PREP(EFUSE_LN_TX_PMOS_SEL, data->tx_pmos));
-+
-+	mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG, EFUSE_LN_TX_NMOS_SEL,
-+			    FIELD_PREP(EFUSE_LN_TX_NMOS_SEL, data->tx_nmos));
-+
-+	mtk_phy_update_bits(addr + PEXTP_ANA_RX_REG, EFUSE_LN_RX_SEL,
-+			    FIELD_PREP(EFUSE_LN_RX_SEL, data->rx_data));
-+}
-+
-+/**
-+ * mtk_pcie_phy_init() - Initialize the phy
-+ * @phy: the phy to be initialized
-+ *
-+ * Initialize the phy by setting the efuse data.
-+ * The hardware settings will be reset during suspend, it should be
-+ * reinitialized when the consumer calls phy_init() again on resume.
-+ */
-+static int mtk_pcie_phy_init(struct phy *phy)
-+{
-+	struct mtk_pcie_phy *pcie_phy = phy_get_drvdata(phy);
-+	int i;
-+
-+	if (!pcie_phy->sw_efuse_en)
-+		return 0;
-+
-+	/* Set global data */
-+	mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_GLB_00_REG,
-+			    EFUSE_GLB_INTR_SEL,
-+			    FIELD_PREP(EFUSE_GLB_INTR_SEL, pcie_phy->efuse_glb_intr));
-+
-+	for (i = 0; i < pcie_phy->data->num_lanes; i++)
-+		mtk_pcie_efuse_set_lane(pcie_phy, i);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops mtk_pcie_phy_ops = {
-+	.init	= mtk_pcie_phy_init,
-+	.owner	= THIS_MODULE,
-+};
-+
-+static int mtk_pcie_efuse_read_for_lane(struct mtk_pcie_phy *pcie_phy,
-+					unsigned int lane)
-+{
-+	struct mtk_pcie_lane_efuse *efuse = &pcie_phy->efuse[lane];
-+	struct device *dev = pcie_phy->dev;
-+	char efuse_id[16];
-+	int ret;
-+
-+	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_pmos", lane);
-+	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse->tx_pmos);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read %s\n", efuse_id);
-+
-+	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_nmos", lane);
-+	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse->tx_nmos);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read %s\n", efuse_id);
-+
-+	snprintf(efuse_id, sizeof(efuse_id), "rx_ln%d", lane);
-+	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse->rx_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read %s\n", efuse_id);
-+
-+	if (!(efuse->tx_pmos || efuse->tx_nmos || efuse->rx_data))
-+		return dev_err_probe(dev, -EINVAL,
-+				     "No eFuse data found for lane%d, but dts enable it\n",
-+				     lane);
-+
-+	efuse->lane_efuse_supported = true;
-+
-+	return 0;
-+}
-+
-+static int mtk_pcie_read_efuse(struct mtk_pcie_phy *pcie_phy)
-+{
-+	struct device *dev = pcie_phy->dev;
-+	bool nvmem_enabled;
-+	int ret, i;
-+
-+	/* nvmem data is optional */
-+	nvmem_enabled = device_property_read_bool(dev, "nvmem-cells");
-+	if (!nvmem_enabled)
-+		return 0;
-+
-+	ret = nvmem_cell_read_variable_le_u32(dev, "glb_intr",
-+					      &pcie_phy->efuse_glb_intr);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read glb_intr\n");
-+
-+	pcie_phy->sw_efuse_en = true;
-+
-+	pcie_phy->efuse = devm_kzalloc(dev, pcie_phy->data->num_lanes *
-+				       sizeof(*pcie_phy->efuse), GFP_KERNEL);
-+	if (!pcie_phy->efuse)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pcie_phy->data->num_lanes; i++) {
-+		ret = mtk_pcie_efuse_read_for_lane(pcie_phy, i);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mtk_pcie_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct phy_provider *provider;
-+	struct mtk_pcie_phy *pcie_phy;
-+	int ret;
-+
-+	pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
-+	if (!pcie_phy)
-+		return -ENOMEM;
-+
-+	pcie_phy->sif_base = devm_platform_ioremap_resource_byname(pdev, "sif");
-+	if (IS_ERR(pcie_phy->sif_base))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->sif_base),
-+				     "Failed to map phy-sif base\n");
-+
-+	pcie_phy->phy = devm_phy_create(dev, dev->of_node, &mtk_pcie_phy_ops);
-+	if (IS_ERR(pcie_phy->phy))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
-+				     "Failed to create PCIe phy\n");
-+
-+	pcie_phy->dev = dev;
-+	pcie_phy->data = of_device_get_match_data(dev);
-+	if (!pcie_phy->data)
-+		return dev_err_probe(dev, -EINVAL, "Failed to get phy data\n");
-+
-+	if (pcie_phy->data->sw_efuse_supported) {
-+		/*
-+		 * Failed to read the efuse data is not a fatal problem,
-+		 * ignore the failure and keep going.
-+		 */
-+		ret = mtk_pcie_read_efuse(pcie_phy);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+	}
-+
-+	phy_set_drvdata(pcie_phy->phy, pcie_phy);
-+
-+	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(provider))
-+		return dev_err_probe(dev, PTR_ERR(provider),
-+				     "PCIe phy probe failed\n");
-+
-+	return 0;
-+}
-+
-+static const struct mtk_pcie_phy_data mt8195_data = {
-+	.num_lanes = 2,
-+	.sw_efuse_supported = true,
-+};
-+
-+static const struct of_device_id mtk_pcie_phy_of_match[] = {
-+	{ .compatible = "mediatek,mt8195-pcie-phy", .data = &mt8195_data },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
-+
-+static struct platform_driver mtk_pcie_phy_driver = {
-+	.probe	= mtk_pcie_phy_probe,
-+	.driver	= {
-+		.name = "mtk-pcie-phy",
-+		.of_match_table = mtk_pcie_phy_of_match,
-+	},
-+};
-+module_platform_driver(mtk_pcie_phy_driver);
-+
-+MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
-+MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.18.0
+On 22/04/2022 11:08, Quan Nguyen wrote:
+> This series add support the SSIF BMC driver which is to perform in-band
+> IPMI communication with their host in management (BMC) side.
+> 
+> SSIF BMC driver in this series is tested with Aspeed AST2500.
+> 
+> Discussion for v6: https://lkml.org/lkml/2022/3/10/340
+> 
+> v7:
+>    + Remove unnecessary del_timer() in response_timeout()        [Corey]
+>    + Change compatible string from "ampere,ssif-bmc" to "ssif-bmc"  [Jae]
+>    + Dropped the use of ssif_msg_len() macro, use the len directly [Quan]
+>    + Solve possible issue if both response timer and ssif_bmc_write()
+>    occurred at the same time                                      [Corey]
+>    + Fix wrong return type of ssif_bmc_poll()         [kernel robot test]
+>    + Refactor and introduce ssif_part_buffer struct to replace the
+>    response_buf to manage each send/receive part of ssif           [Quan]
+>    + Change SSIF_BAD_SMBUS state to SSIF_ABORTING state           [Corey]
+>    + Support abort feature to skip the current bad request/response and
+>    wait until next new request                                    [Corey]
+>    + Refactor the PEC calculation to avoid the re-calculate the PEC on
+>    each I2C_SLAVE_WRITE_RECEIVED event                             [Quan]
+>    + Fix the use of error-proned idx                              [Corey]
+>    + Defer the test for valid SMBus command until the read/write part
+>    is determined                                                   [Quan]
+>    + Change/split unsupported_smbus_cmd() to
+>    supported_[write|read]_cmd()                                   [Corey]
+>    + Abort the request if somehow its size exceeded 255 bytes      [Quan]
+> 
+> v6:
+>    + Drop the use of slave_enable()                             [Wolfram]
+>    + Make i2c-aspeed to issue RxCmdLast command on all
+>    I2C_SLAVE_WRITE_REQUESTED event to assert NAK when slave busy   [Quan]
+>    + Make i2c slave to return -EBUSY when it's busy                [Quan]
+>    + Drop the aborting feature as return Completion Code 0xFF may stop
+>    host to retry and make ipmi_ssif.so fails to load               [Quan]
+>    + Add timer to recover slave from busy state when no response   [Quan]
+>    + Clean request/response buffer appropriately                   [Quan]
+>    + Add some minor change on error and warning messages           [Quan]
+> 
+> v5:
+>    + Correct the patches order to fix the bisect issue found by
+>    kernel build robot
+> 
+> v4:
+>    + Fix recursive spinlock                                      [Graeme]
+>    + Send response with Completion code 0xFF when aborting         [Quan]
+>    + Fix warning with dt_binding_check                              [Rob]
+>    + Change aspeed-ssif-bmc.yaml to ssif-bmc.yaml                  [Quan]
+>    + Added bounding check on SMBus writes and the whole request     [Dan]
+>    + Moved buffer to end of struct ssif_bmc_ctx to avoid context
+>      corruption if somehow buffer is written past the end           [Dan]
+>    + Return -EINVAL if userspace buffer too small, don't
+>      silence truncate                                       [Corey, Joel]
+>    + Not necessary to check NONBLOCK in lock                      [Corey]
+>    + Enforce one user at a time                                    [Joel]
+>    + Reject write with invalid response length from userspace     [Corey]
+>    + Add state machines for better ssif bmc state handling         [Quan]
+>    + Drop ssif_bmc_aspeed.c and make ssif_bmc.c is generic
+>      SSIF BMC driver                                               [Quan]
+>    + Change compatible string "aspeed,ast2500-ssif-bmc" to
+>      "ampere,ssif-bmc"                                             [Quan]
+>    + Toggle Slave enable in i2c-aspeed to turn on/off slave mode   [Ryan]
+>    + Added slave_enable() to struct i2c_algorithm to control
+>      slave mode and to address the recursive spinlock      [Graeme, Ryan]
+>    + Abort current request with invalid SMBus write or
+>      invalid command                                               [Quan]
+>    + Abort all request if there is pending response                [Quan]
+>    + Changed validate_pec() to validate_request()                  [Quan]
+>    + Add unsupported_smbus_cmd() to handle unknown SMBus command   [Quan]
+>    + Print internal state string for ease investigating issue      [Quan]
+>    + Move to READY state on SLAVE_STOP event                       [Quan]
+>    + Change initilize_transfer() to process_smbus_cmd()            [Quan]
+>    + Introduce functions for each slave event                      [Quan]
+> 
+> v3:
+>    + Switched binding doc to use DT schema format                   [Rob]
+>    + Splited into generic ssif_bmc and aspeed-specific      [Corey, Joel]
+>    + Removed redundant license info                                [Joel]
+>    + Switched to use traditional if-else                           [Joel]
+>    + Removed unused ssif_bmc_ioctl()                               [Joel]
+>    + Made handle_request()/complete_response() to return void      [Joel]
+>    + Refactored send_ssif_bmc_response() and
+>    receive_ssif_bmc_request()                                     [Corey]
+>    + Remove mutex                                                 [Corey]
+>    + Use spin_lock/unlock_irqsave/restore in callback             [Corey]
+>    + Removed the unnecessary memset                               [Corey]
+>    + Switch to use dev_err()                                      [Corey]
+>    + Combine mask/unmask two interrupts together                  [Corey]
+>    + Fixed unhandled Tx done with NAK                              [Quan]
+>    + Late ack'ed Tx done w/wo Ack irq                              [Quan]
+>    + Use aspeed-specific exported aspeed_set_slave_busy() when
+>    slave busy to fix the deadlock                 [Graeme, Philipp, Quan]
+>    + Clean buffer for last multipart read                          [Quan]
+>    + Handle unknown incoming command                               [Quan]
+> 
+> v2:
+>    + Fixed compiling error with COMPILE_TEST for arc
+> 
+> Quan Nguyen (3):
+>    ipmi: ssif_bmc: Add SSIF BMC driver
+>    bindings: ipmi: Add binding for SSIF BMC driver
+>    i2c: aspeed: Assert NAK when slave is busy
+> 
+>   .../devicetree/bindings/ipmi/ssif-bmc.yaml    |  38 +
+>   drivers/char/ipmi/Kconfig                     |  11 +
+>   drivers/char/ipmi/Makefile                    |   1 +
+>   drivers/char/ipmi/ssif_bmc.c                  | 780 ++++++++++++++++++
+>   drivers/char/ipmi/ssif_bmc.h                  | 107 +++
+>   drivers/i2c/busses/i2c-aspeed.c               |   5 +-
+>   6 files changed, 941 insertions(+), 1 deletion(-)
+>   create mode 100644 Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+>   create mode 100644 drivers/char/ipmi/ssif_bmc.c
+>   create mode 100644 drivers/char/ipmi/ssif_bmc.h
+> 
 
