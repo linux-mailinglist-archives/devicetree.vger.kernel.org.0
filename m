@@ -2,151 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F9250B567
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCE3F50B575
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:43:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446783AbiDVKog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 06:44:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42608 "EHLO
+        id S1352844AbiDVKqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 06:46:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446674AbiDVKod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:44:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A1A0F4F;
-        Fri, 22 Apr 2022 03:41:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C11A8B82C14;
-        Fri, 22 Apr 2022 10:41:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 535B0C385A0;
-        Fri, 22 Apr 2022 10:41:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650624090;
-        bh=XgeHDscq4XiMKn3nikqVv26WbVAc1uoCYL9IXMXzt9U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U7rO0t94WUjIwU5upicuh6PLMNXEsvt+bhoOcdH63t/Tzz6noC7mBAFjt9F4SVCPC
-         zhPYMjy8XQTXW3nUsCL5rB3dO0Fg6kXiv8NHCiVx0ypj1bfN+V8tQ2rtU1f/zIIjfD
-         vMmhwAZFoLdjZ4Y/NzHy7a56lvCVySO8qfe1tEYlwUdHBK84jbKWYuBlFhyv0S/+Mw
-         3nchJRG4qQh3OUWbPpyMB/EQf2PDXJqXgnz2QALSevvdK3MAySn+EDH665betUemdD
-         8xQGZ2ykaOUOY3DPT/OQt2LmksyDnzOHePeNILOiIA4N/OEK+3UTj2DkmazxBDSmx4
-         qCfJo4EmMsRBw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nhqj6-0002YD-2f; Fri, 22 Apr 2022 12:41:24 +0200
-Date:   Fri, 22 Apr 2022 12:41:24 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+        with ESMTP id S1446828AbiDVKqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:46:30 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6BE27FC0;
+        Fri, 22 Apr 2022 03:43:35 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1650624211; bh=4zKNiCJ9mR8YNKg4xV+9DRTe5znRz0G2bXHhsbBhsuc=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=rbvLx9uVaZ9KLhaZck/JuJlU9H9gFERagLBhE3o2ytCZKQ11iJiiO/8KqezzNuSTn
+         pQCc4HfjB8ZDB11RdeTfmScFbabJXyS6U+rAc6/SCe8v9PGAjQPSd/0lUJEYEhBJb/
+         DAcjFfxZ553jXRIzeWyzghfGmwfRSlnEi3hT8HRc=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <YkXKmxJ0R3qpUoH4@sirena.org.uk>
+Date:   Fri, 22 Apr 2022 12:43:30 +0200
+Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Prasad Malisetty <quic_pmaliset@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 1/5] phy: qcom-qmp: add support for pipe clock muxing
-Message-ID: <YmKGVP5T/ijPvV+g@hovoldconsulting.com>
-References: <20220421102041.17345-1-johan+linaro@kernel.org>
- <20220421102041.17345-2-johan+linaro@kernel.org>
- <f4cfc1b3-2a85-f948-ff2c-27588cbe2210@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f4cfc1b3-2a85-f948-ff2c-27588cbe2210@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <YkWfziQzprEsWL72@sirena.org.uk>
+ <CCE4A06E-6D6F-457D-B3C5-C36209BF38D3@cutebit.org>
+ <YkW4MPh8VWc8eSGg@sirena.org.uk>
+ <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
+ <YkXKmxJ0R3qpUoH4@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 02:36:05PM +0300, Dmitry Baryshkov wrote:
-> On 21/04/2022 13:20, Johan Hovold wrote:
-> > Some QMP PHYs need to remux to their pipe clock input to the pipe clock
-> > output generated by the PHY before powering on the PHY and restore the
-> > default source during power down.
-> > 
-> > Add support for an optional pipe clock mux which will be reparented to
-> > the generated pipe clock before powering on the PHY and restored to the
-> > default reference source on power off.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
- 
-> > +static int qcom_qmp_phy_pipe_clk_enable(struct qmp_phy *qphy)
-> > +{
-> > +	struct qcom_qmp *qmp = qphy->qmp;
-> > +	int ret;
-> > +
-> > +	ret = clk_set_parent(qphy->pipemux_clk, qmp->pipe_clksrc);
-> > +	if (ret)
-> > +		dev_err(qmp->dev, "failed to reparent pipe clock: %d\n", ret);
-> > +
-> > +
-> > +	ret = clk_prepare_enable(qphy->pipe_clk);
-> > +	if (ret) {
-> > +		dev_err(qmp->dev, "failed to enable pipe clock: %d\n", ret);
-> > +		goto err_restore_parent;
-> > +	}
-> 
-> So, what you do here is you manually set the parent of 
-> GCC_PCIE_1_PIPE_CLK_SRC to PHY pipe clock right before enabling 
-> GCC_PCIE_1_PIPE_CLK and set it back to XO after disabling 
-> GCC_PCIE_1_PIPE_CLK.
-> 
-> My proposal is doing exactly the same, but doing that automatically 
-> through the clock infrastructure. After removing pipe_clock handling 
-> from pcie driver itself, we can be sure that nobody is playing dirty 
-> tricks around the pipe_clock.
 
-Yes, the end result is similar, but I believe handling it explicitly in
-the driver is preferred for a number of reasons that I've already
-mentioned. Not least because the mux needs to be updated when the PHY is
-powered on, not when the GCC pipe clock is ungated.
+> On 31. 3. 2022, at 17:36, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Thu, Mar 31, 2022 at 05:04:32PM +0200, Martin Povi=C5=A1er wrote:
+>>> On 31. 3. 2022, at 16:18, Mark Brown <broonie@kernel.org> wrote:
+>=20
+>>> Yes, having two devices driving the bus at the same time wouldn't be
+>>> great.  How is the TDM slot selection for the signals done in the
+>>> hardware, I'm not seeing anything immediately obvious in the driver?
+>>> I'd have thought that things would be implemented such that you =
+could
+>>> implement speaker protection on all speakers simultaneously but =
+perhaps
+>>> not.
+>=20
+>> I don=E2=80=99t know. I would have to go study the details of this. =
+Should I see
+>> if I can find a combination of =E2=80=98ASI1 Sel=E2=80=99 =
+=E2=80=98VSENSE=E2=80=99 =E2=80=98ISENSE=E2=80=99 settings
+>> that would lead to driver conflict on one of the models, or is there
+>> a chance we could hide those controls just on the basis of =E2=80=98it =
+doesn=E2=80=99t
+>> do anything usable and is possibly dangerous=E2=80=99?
+>=20
+> If ISENSE and VSENSE output are controlled by the same mux as routing
+> then we should lock one of the controls out for at least stereo =
+devices
+> (it might be a good idea to check if the output is actually high Z =
+when
+> ISENSE and VSENSE are off rather than just driving zeros, if not it
+> definitely has to be the routing control).  My instinct is that it's
+> better to preserve the ability to implement speaker protection in =
+future
+> since that is something that'd be broadly useful, especially if =
+someone
+> comes up with a generic speaker protection implementation in which =
+case
+> there should be an awful lot of systems out there which could benefit.=20=
 
-In practise, powering on the PHY and ungating the clock happen to
-coincide in time because only the PHY driver will use the GCC pipe
-clock, but conceptually they are unrelated (and as the GDSC hang shows,
-something in the system appears to be ungating the clock while the PHY
-is powered off).
 
-The QMP PHY driver implementation is much more straight forward and
-easier to reason about than having the mux implementation spread out
-over multiple clock drivers where it's not clear at all what is really
-going on or why (and even debugfs will give you a false view of the
-clock tree state).
+Sorry for having put this on hold for a while.
 
-> > +
-> > +	return 0;
-> > +
-> > +err_restore_parent:
-> > +	clk_set_parent(qphy->pipemux_clk, qphy->piperef_clk);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void qcom_qmp_phy_pipe_clk_disable(struct qmp_phy *qphy)
-> > +{
-> > +	struct qcom_qmp *qmp = qphy->qmp;
-> > +	int ret;
-> > +
-> > +	clk_disable_unprepare(qphy->pipe_clk);
-> > +
-> > +	ret = clk_set_parent(qphy->pipemux_clk, qphy->piperef_clk);
-> > +	if (ret)
-> > +		dev_err(qmp->dev, "failed to reparent pipe clock: %d\n", ret);
-> > +}
-> > +
+I looked in the TAS2770 and TAS2764 drivers/datasheets, and to answer
+the questions we had:
 
-Johan
+ * VSENSE/ISENSE output slots are configured independently of audio =
+samples
+   routing. Kernel drivers configure the slots based on the =
+'ti,imon-slot-no'
+   and 'ti,vmon-slot-no' properties of devicetree.
+
+ * By default codecs transmit Hi-Z for duration of unused slots.
+
+So once we supply the devicetree props it should be electrically sound
+under any configuration of userspace knobs.
+
+One final thought on the playback routing controls: On systems with >2
+speakers, the codecs need to be assigned slots through set_tdm_slot.
+The macaudio driver RFCed here assigns a single slot to each speaker,
+making the effect of each speaker's routing control this:
+
+  'I2C offset' -- uses a random slot
+
+  'Left' 'Right' 'LeftRight' -- uses the single slot we configured
+
+I suppose I better assign two slots to speakers in each left-right pair
+of the same kind (e.g. woofer 1, woofer 2, tweeter). This way the
+routing control will mimic its behavior from simple stereo systems but
+replicated within each left-right pair.  (I would prefer to hide the
+controls altogether, but as I learned that hiding things unless proven
+dangerous is an ASoC non-goal, this way I can make the controls do
+something interesting.)
+
+Martin
+
