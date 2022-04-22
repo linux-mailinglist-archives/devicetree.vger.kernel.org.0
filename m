@@ -2,110 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EB150B3BC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 11:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6619750B3B9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 11:16:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233697AbiDVJQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 05:16:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60712 "EHLO
+        id S1356741AbiDVJQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 05:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1445897AbiDVJOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 05:14:47 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0210F51E73;
-        Fri, 22 Apr 2022 02:11:54 -0700 (PDT)
+        with ESMTP id S1445924AbiDVJQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 05:16:27 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05BED51E73;
+        Fri, 22 Apr 2022 02:13:31 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id bv16so10090797wrb.9;
+        Fri, 22 Apr 2022 02:13:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650618715; x=1682154715;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=8hSCRwlohxcmON6wRi2DT8Nu6dpWslfWDoOD78Huig8=;
-  b=u8KtcgAgFAZdwrcoyBQOOQP4Kir5eFGBi9422wIsO13L6S3kXQyYABl9
-   vQXWBz7IN9Q00DbIDCvDJwgc8hDqRAGxgpD3WKjb8dLiKsOjj1s1AeYsD
-   1d5TyRWVixvxL6nRRMqISMLcb+s7OPWi7KJnkw49we1ZLxAOmyPWfX8F1
-   Q=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 22 Apr 2022 02:11:54 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 02:11:54 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 22 Apr 2022 02:11:54 -0700
-Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 22 Apr 2022 02:11:47 -0700
-From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <robdclark@gmail.com>, <seanpaul@chromium.org>,
-        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
-        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
-        <quic_khsieh@quicinc.com>, <bjorn.andersson@linaro.org>,
-        <sean@poorly.run>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dmitry.baryshkov@linaro.org>, <quic_vproddut@quicinc.com>,
-        <quic_aravindh@quicinc.com>, <steev@kali.org>
-Subject: [PATCH v9 4/4] drm/msm/dp: Support the eDP modes given by panel
-Date:   Fri, 22 Apr 2022 14:41:06 +0530
-Message-ID: <1650618666-15342-5-git-send-email-quic_sbillaka@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1650618666-15342-1-git-send-email-quic_sbillaka@quicinc.com>
-References: <1650618666-15342-1-git-send-email-quic_sbillaka@quicinc.com>
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=MaE3GXyvHmqVxToj1PrhkmxenvkXCbYA8oJuVzgMVWA=;
+        b=kznRNsvQX84099UN4iJsrnjEmeF4UCzhOiY3ZgjjIYOt6CNO2SFACmKweUpT0rN/WP
+         f1jyNSGwObAIlvfQwn3EyMjQwkqVwRZB7q2ODhuBT2mqHTSBlW1PedWWgb+GJUt8HMj4
+         w1wxfi9fkDBpCi38wECyA13iPOr3UJ7JQbx1Z+StsIcpIWsvvcMLPv9eWm2Df9adND1+
+         cCv6T9GtLOOLzqv4Foy54M8BvEyICEa8E+hZFH7byrw2pp5s0CE9OihcyalW5D9x2aQQ
+         QDAJkAOkKAhWUzfm5dZ5Zo6AxeNXafWTuyH3bB9et1g8C4rpxsGcGCaubOYTcuAdgIBi
+         vU6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MaE3GXyvHmqVxToj1PrhkmxenvkXCbYA8oJuVzgMVWA=;
+        b=6Vajg0UJYTntGOTDxHL0XPhm3AoIIAz9tC75SRevr8WnDhgN53lVBM0D66XDOlq08c
+         XMwevPpdE3oqBVsDsyKCMc44G6ZfwdcXDGMn3nSEVOPsenh3D/Xu81KCZBS7NJqajCYK
+         f0C3Vtma4HTZ2ntFWjGjkN7aK/w1KuLti2vQfCAfc7h2ealh/ll9TwyLNpoTjwuzf2p0
+         Yjagvx4fwpoENtRFi4xCZRSLYbY6aX4602X1OliAvlQ5xf0j5KdZR8WmEc0/0+J8wDLh
+         SQON384JofTfk0MQwfKRhu02Sb0mmcoPHLb19nsf8We430y8vFb9hZJaB/cq4J/GyytE
+         iVOw==
+X-Gm-Message-State: AOAM533PVohoEzyoJYL1GA/1qDMe/T0Y4QuZkJgqpeUAxdYhqC/3Xodq
+        y+hKgBuoEidyqo4JMrSlJpI=
+X-Google-Smtp-Source: ABdhPJwjOvr2Z0NMSnDaa6MLjmARYQmBC/rlBknEZ0hCAQB2/hoMy8dQYTuQr3iI9l4fnajMagMZJw==
+X-Received: by 2002:a5d:6211:0:b0:1ef:85dd:c96b with SMTP id y17-20020a5d6211000000b001ef85ddc96bmr2831151wru.456.1650618809425;
+        Fri, 22 Apr 2022 02:13:29 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id l28-20020a05600c1d1c00b0038ece66f1b0sm1238159wms.8.2022.04.22.02.13.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 02:13:28 -0700 (PDT)
+Message-ID: <234d411c-1386-d661-71e3-f1f30f5cbf36@gmail.com>
+Date:   Fri, 22 Apr 2022 11:13:27 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: mt8183-kukui: align SPI NOR node name with
+ dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220407142143.293740-1-krzysztof.kozlowski@linaro.org>
+ <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
+ <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
+ <f7c5c3f9-0083-c0b0-dc49-e66139268312@linaro.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <f7c5c3f9-0083-c0b0-dc49-e66139268312@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The eDP controller does not have a reliable way keep panel
-powered on to read the sink capabilities. So, the controller
-driver cannot validate if a mode can be supported by the
-source. We will rely on the panel driver to populate only
-the supported modes for now.
+Hi Krzysztof,
 
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
-Changes in v9:
-  - none
+On 21/04/2022 10:01, Krzysztof Kozlowski wrote:
+> On 20/04/2022 14:35, Matthias Brugger wrote:
+>>
+>>
+>> On 20/04/2022 11:10, Krzysztof Kozlowski wrote:
+>>> On Thu, 7 Apr 2022 16:21:43 +0200, Krzysztof Kozlowski wrote:
+>>>> The node names should be generic and SPI NOR dtschema expects "flash".
+>>>>
+>>>>
+>>>
+>>> Looks like no one wants to take this, so let me take care of it.
+>>>
+>>
+>> First thing would have been a ping on the patch, don't you think?
+> 
+> And what does it change? The operating-points clean up [1] was sent in
+> August last year, then in this April, and you responded only when I
+> wrote pick-up. The Google cros-ec clean up was sent in Feb and two weeks
+> later pinged [2].
+> 
 
-Changes in v8:
-  - add the drm/msm/dp tag in the commit title
+That I answered to the pick-up is just plain coincidence that I had some time to 
+look into the patches. Sorry for being unresponsive. I'm happy that you care 
+about MediaTek patches. If you think there will more patches in this cycle or 
+future cycles, we can also agree on you taking the patches and send me a pull 
+request later. I only want to avoid any merge conflicts, that's all.
 
- drivers/gpu/drm/msm/dp/dp_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Pinging and resending apparently does not help. It's okay, happens, we
+> are all extra busy and we all pretty often do it as part of
+> community/hobby/spare time.
+> 
+>> Anyway as I
+>> said the last time, if you take DTS patches for mediatek
+> 
+> I don't want to take the patches for Mediatek. But I also don't want to
+> resend and ping each one of them because it did not work in the past.
+> 
+>> , I'd need a stable
+>> branch I can merge so that we don't have any merge conflicts in the end.
+> 
+> Can you just pick the patch?
+> 
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index f197694..49fac955 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -998,6 +998,14 @@ enum drm_mode_status dp_bridge_mode_valid(struct drm_bridge *bridge,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * The eDP controller currently does not have a reliable way of
-+	 * enabling panel power to read sink capabilities. So, we rely
-+	 * on the panel driver to populate only supported modes for now.
-+	 */
-+	if (dp->is_edp)
-+		return MODE_OK;
-+
- 	if ((dp->max_pclk_khz <= 0) ||
- 			(dp->max_pclk_khz > DP_MAX_PIXEL_CLK_KHZ) ||
- 			(mode->clock > dp->max_pclk_khz))
--- 
-2.7.4
+I pushed it to v5.18-next/dts64 [1]
 
+Let me know if there are other patches that you want me to take.
+
+Regards,
+Matthias
+
+
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/log/?h=v5.18-next/dts64
+
+> 
+> [1]
+> https://lore.kernel.org/all/?q=%22arm64%3A+dts%3A+mediatek%3A+align+operating-points+table+name+with+dtschema%22
+> 
+> [2]
+> https://lore.kernel.org/all/?q=%22arm64%3A+dts%3A+mt8183%3A+align+Google+CROS+EC+PWM+node+name+with+dtschema%22
+> 
+> Best regards,
+> Krzysztof
