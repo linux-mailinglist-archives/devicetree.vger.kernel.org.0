@@ -2,182 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D796250BBF8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B91850BBFD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1449576AbiDVPrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 11:47:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
+        id S1442580AbiDVPsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 11:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1449618AbiDVPr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:47:27 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2099.outbound.protection.outlook.com [40.92.22.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FE3B5E174;
-        Fri, 22 Apr 2022 08:43:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X/RPXY4cZvQxP8fLExszzZZ1B/pq5BSQZFZ0d6aXXm34ty7AcpJofT84egDNCqoLsN51UKPgyiYUbR4lT+9LOJyd7/5CLOTMQKuT1emk8pJNQpygOQv8BJRTew1wjsoMk8JctD/6Re66bwStMAqFFb997aSm/npAPl4Nmkc4pwImXg7InKBq47eXvTWzP/gGV+ArO9eGW7TXacaMaYVGSMisYaSFKPiAwOubHDXEV9nv+fqkbp3LZtmlwoWDTJ9F8Ilgk9zsiOsje8lYtp9thHmko6uOjWIyx2nrW3AYTv22SPGCJhO7XXmtbNPgncipDcmFdlz30pInfDr01C3jZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t+bTY2ZVoe/uYb7D+uWnrBT52CTLm5pFsPRHeuvrRSc=;
- b=itczoN2K0+2YW2Xy6mS0/TSiEp4aQby0UKEXlIa8cjwKTurA5O4aaPhtmEdnZXSW3PLD8R14YK3u5ffc/Pgl9+qKqaRMsQKr57S7ZLmzLCyubx0d3nv4QHZm8yU/q82ZHtpmnDGrTTUnyUnlDsilOkI+ZWJueF0meu4cWLiW8B28Igt+0zf6lNvhV0J1HuYRZ63Acpj0EgHPXzugwr/R5QW6E95Qg1sPUbClLsecI/ewd5wdaDUU8DdZMCoV4OiozIy7yD0U8FhnD9IzHMRwQziHwTDJ7AV84BjUj8G6r/pHt58UlRiO5up/lh86GAJOYmdK5pGNfFl40gW6vXRAEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t+bTY2ZVoe/uYb7D+uWnrBT52CTLm5pFsPRHeuvrRSc=;
- b=fQ6NeQeYLR5H4Vgb/ubCAV/ErinZkvsQ8HjsuCMgNoUaIcJsb/WGaAYWCTSsH7mcEoJmC/qlqhTzdPxNLFx/EcUbMlm1yqQy541RG4ueylznKQR79/GJQXYdQISvx89GA4j3crR/J97pQOyY+Yulbw5nyU2so6BNCKnpCJen+Z/Dtu2dhVZfxcCI81/eHmhVnxFFPDPvWtHDUobWvWh4ijF2u8iZABonr0OX5bxMTa6VR/i8czxkMOMDmyL9KN8t4geKQ24gzcIIIWa5S1+VW1AzKQPMxzwNeJa3CZA3EoxM3vDCzxvQxJUHXq0qeypXFWnAOCjnIkZC9FdhT3EAsw==
-Received: from BYAPR20MB2472.namprd20.prod.outlook.com (2603:10b6:a03:155::16)
- by DM5PR2001MB1836.namprd20.prod.outlook.com (2603:10b6:4:17::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Fri, 22 Apr
- 2022 15:43:35 +0000
-Received: from BYAPR20MB2472.namprd20.prod.outlook.com
- ([fe80::3480:160a:eb92:d6e3]) by BYAPR20MB2472.namprd20.prod.outlook.com
- ([fe80::3480:160a:eb92:d6e3%6]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
- 15:43:35 +0000
-From:   icenowy@outlook.com
-To:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 12/12] arm64: allwinner: dts: r329: add support for Sipeed MaixSense
-Date:   Fri, 22 Apr 2022 23:41:15 +0800
-Message-ID: <BYAPR20MB247223406A5E8E97C9CEB3BBBCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422140902.1058101-1-icenowy@aosc.io>
-References: <20220422140902.1058101-1-icenowy@aosc.io>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN:  [aelFEiau9+SgNya5lSH1eLWQorp9uU4l]
-X-ClientProxiedBy: HK0PR03CA0116.apcprd03.prod.outlook.com
- (2603:1096:203:b0::32) To BYAPR20MB2472.namprd20.prod.outlook.com
- (2603:10b6:a03:155::16)
-X-Microsoft-Original-Message-ID: <20220422154115.1068642-10-icenowy@outlook.com>
+        with ESMTP id S1449624AbiDVPrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:47:40 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FEFD5EBDC
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:44:24 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id t11so17107819eju.13
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:44:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=JemFIsNtCjKL4LPEQBY/hGFmz6ljVMLTFme29Py2nSY=;
+        b=kE/4yTd0BeJARbm77TZxpuVTgL9v+x0jEMOVZU0iv8mB4Q/g9GO6hh5+am0qj/rd/t
+         u+A52haGAJ/7nt9iC+R4z2XOc/1dpqW3HlNeU65zPR8tscx47q6/cYR3Z/1HkOljee9v
+         DCSYOZ88FcIQlkkqV84NK7eQuH9+MiiPF9mlTLCHzkOe5LU8efKWDR9PmW71uAyKYS5R
+         EZLNGpjRSttXrn5kv6lyCkk/2jGGYWvN5oqmjFSnZv3JRmbnx692DdN2oUN7TWo2g/Op
+         IaUxLeYJ3/Yx1wZ104lFif6x6UO2fQ9tXUQ3C6xP3XuBabvHOw+S7xI3FQ4SWLmPnrdP
+         oYkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=JemFIsNtCjKL4LPEQBY/hGFmz6ljVMLTFme29Py2nSY=;
+        b=02OHOK3eNTN4RQpirooeQBm9O2NV1asits2QShzbfzoG+7pB6DVR6g4Y+XAXCjYj5F
+         TFZo2+Z4d2bz3rpuR1Y5ekMmzfXMkLXYjXfXcKJmMhdgMHiIB608DqJ9EwCNr2VuFF2c
+         UabO90dCqqxDh/sUJCSbZT8FLnV07G22H7S/EDPY4hKWZoAHzhVWGMu/75IuZ5g2jQDy
+         XAuUdsDXnchRQbjYLk/CDhE1C7DvzSSQA4l9Ab6O3rWzakW8gl97YnBvylZlD5evVlKj
+         fKKZFCWspVpD6j4O3Wg5OnQ0cFR/XcAlqmS9lWKDWph1hPW8BRiM6BTrAnt/OZdmzNXo
+         e95g==
+X-Gm-Message-State: AOAM530Jz+d/bwCk6hiNphrXpJ/uuQCH0y3wDdy8otffnFfB2Uyj+02u
+        DzC8LSN8GQWaD9uKcPDZ7QgXmg==
+X-Google-Smtp-Source: ABdhPJxuA+3Y8AE3ukYq9N7qqdw5yx7eXG2giExj/lpkeyAWZqsokfAbfxqRUhRzv4xOHYacE1Cwuw==
+X-Received: by 2002:a17:907:3f9e:b0:6f2:b3d8:63c0 with SMTP id hr30-20020a1709073f9e00b006f2b3d863c0mr2938068ejc.86.1650642263097;
+        Fri, 22 Apr 2022 08:44:23 -0700 (PDT)
+Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id s2-20020a1709066c8200b006e4e1b1f875sm866663ejr.199.2022.04.22.08.44.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 08:44:22 -0700 (PDT)
+Message-ID: <e2e4ead0-d8eb-1302-93e9-f330807d811e@linaro.org>
+Date:   Fri, 22 Apr 2022 17:44:21 +0200
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b48b6c1d-f524-4925-ad14-08da2476dcdf
-X-MS-TrafficTypeDiagnostic: DM5PR2001MB1836:EE_
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GAaI8+cj1+02jsPbmH9NhjFPBwRdFMV9IDolRftLrJX/QENyzqH8XHA4lgbAdHRGozD5epUSAY5RNnapuKNJMp0o9k0EuQJ5aM6sXDHIJDFwrc0YfvkkLsTtMUuyXWnb6LzYvryJfLMeBWtAmdCkg7paMLfz5AgVVI2wK+3MOgEJbwgmGeAAJw/EoYlYIRDlrbvBjrp0fziNQg+njghZwHfR4/M9WHPv5I9KusgIaLZNKYqEpXvPynTaLvxsS7ug915fIifvDtxEsNvVzs2TJU55tBAxls0as7Uy/q4qa/2RkEE+ftnpvxFDij7tCfruo6mHCu1166gxL9Mw6ShtEIN8uWK/5kFoa2PtnhGrbRpC7QnKbq7e5hAuM4aJxF2KlKZByfiDJ3NSH4M13wiBphOj/4pcpTwthJVtXqERrX/FBr1M1wezJU5g/kN7PzCAwdNBs8fWj7wCKZ2QYsLoyCq1c/Y2ClqGNWpRF14pKwJ8ToEKP/FqbB1I0uCdXgOEtv+3sAUlaLAupbl2pDUQ96z7vjkmR2Y4IW9qvD63xgzSsDYweeAUJ6WDSD0E7lmVOyi5mxiRSO8MR4C6HJwMmQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kMMbtJ6dsQTBd3j7Z6gaaG5HUhffU+zYHNToyYCavladsYUdsmWrMe5RGixT?=
- =?us-ascii?Q?a0AYK2cw1PVpzjNPEguJ+ocoBFWmGgMJsdKcopQm6G2bYlMsY7QNoqnhTvdT?=
- =?us-ascii?Q?AwdyHztv67waCym+BS6GMEV0zDbqsCkJWWCs4lwX8NG5KGMx/1oMbXqutWEo?=
- =?us-ascii?Q?cY7iPny0Dlrhm3VmVEtjWTCS/ClzeKqGBoIU3nVeBunGGzfIus1QYBHUJ4ce?=
- =?us-ascii?Q?GodsQniKWMeVRG271JnzRl2xSKgdp8vwRiG7ABbJjsfwN92dwVyz/WaNkcpy?=
- =?us-ascii?Q?dzVHXcLOCQ3TmnvXhdmhidUaD5VJ2V6NzfPBVySyY8oIAmz63qv2JCHosH1z?=
- =?us-ascii?Q?ZW3CXmHQpZNqhgoGirvb4pvHaHQXicjZv2gIWprvihYYj6HwvUSfRxma/57n?=
- =?us-ascii?Q?CnmGuJimvuNFJfHzzJLKE0XJcfdPvvy8IcMKRSP2UhYVAmO7JQPBMK2AFQ0j?=
- =?us-ascii?Q?lI6H0LEgVJ0B5hl2BIie6PLoQjd6JrRw6RTD2pfob8YDBc3daEhlGRQdGfUy?=
- =?us-ascii?Q?k+A2o4sl+SiAQZE4lnjpefcFA8NAIVLQuVsgD2KtPTZIQkbbHyg+j5MQTOiy?=
- =?us-ascii?Q?basG7IaNwW58deOfVOe79Uv4bfOWCgKwtrZAObIWTyBTuCJfC0P/2vAPs3cv?=
- =?us-ascii?Q?3wqcsVRy2famyhiDB3KWklJYVKxaCjGU1eOy+5Dw9AHwEKAfDO2pktjra9WO?=
- =?us-ascii?Q?Ixg4agYXwvsIOvHhhXBQDtlAbXl/BLsSiGVbO49cAGWnipEHovB+CsTAaBQ3?=
- =?us-ascii?Q?tq89o/6AC/X5x0OOM0aUteiSmP0PfN001Da0vuhGeX5Tgb9dPQGuZDKxbh4f?=
- =?us-ascii?Q?X6I/QhlpthBHd5WKKpjFU4TkMnbTR4nDYQfSNraJFCTDxSj+LjMrNNimzExg?=
- =?us-ascii?Q?lBkq5Mn1qxlNXBJxR/JZQD+GRrlLsUgQnav9U15Urj7+Ag6S0kmI33HIA/Jh?=
- =?us-ascii?Q?ENDO02AsCBij6R8qvUAI6vxXAsTa3rzHG7mYsfKhoLoxAPUWRfukw8O1RDX3?=
- =?us-ascii?Q?+n6FInBRmg0nmDBnS/GulD7p3q8jj7QWWM00MobH1MCI5lFoap6gpG1fKx6Q?=
- =?us-ascii?Q?3BAgrhFPUYyycODyy96j1+49DrRvEN9lvXjdOYwurVLCBA5gE6GeEbtHgmBY?=
- =?us-ascii?Q?YKEiMisN42NnfPMAw6SCal1BfO5xKvWndu4RgCGZaMtce5CwxbVG73Zn1JXJ?=
- =?us-ascii?Q?GMkZGO1aAeHVW5L7a1ir4oJncgLMJZjMcoj+9o6FuR4u6UIicW/iQOxqk5Sg?=
- =?us-ascii?Q?HaIU+GvmyI2AxLFPwCybk7sgQ79pnHuyDKoOI5GpXBPCAj3135Lghsvg3Otu?=
- =?us-ascii?Q?UCnjDQD/4KPgjGAiEXxeHe3WJLRtVPq3/VYfY3w0sJn5J0ihBmaHCFnWw1Qa?=
- =?us-ascii?Q?xqYwqBgV/xIBEO0LaJbtcNnGTEd44H+KmzBaoJ7A1W6mU0Mz3N0syYlAqXmK?=
- =?us-ascii?Q?gUfORZ/NGh8=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b48b6c1d-f524-4925-ad14-08da2476dcdf
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR20MB2472.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 15:43:35.8764
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR2001MB1836
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] dt-bindings: watchdog: mediatek: Convert binding to
+ YAML
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+References: <20220422121017.23920-1-allen-kh.cheng@mediatek.com>
+ <20220422121017.23920-3-allen-kh.cheng@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220422121017.23920-3-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Icenowy Zheng <icenowy@aosc.io>
+On 22/04/2022 14:10, Allen-KH Cheng wrote:
+> Convert Mediatek watchdog devicetree binding to YAML.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> ---
+>  .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
+>  .../devicetree/bindings/watchdog/mtk-wdt.yaml | 76 +++++++++++++++++++
+>  2 files changed, 76 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> deleted file mode 100644
+> index 762c62e428ef..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Mediatek SoCs Watchdog timer
+> -
+> -The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
+> -before the expiry.
+> -
+> -Required properties:
+> -
+> -- compatible should contain:
+> -	"mediatek,mt2701-wdt", "mediatek,mt6589-wdt": for MT2701
+> -	"mediatek,mt2712-wdt": for MT2712
+> -	"mediatek,mt6582-wdt", "mediatek,mt6589-wdt": for MT6582
+> -	"mediatek,mt6589-wdt": for MT6589
+> -	"mediatek,mt6797-wdt", "mediatek,mt6589-wdt": for MT6797
+> -	"mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
+> -	"mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
+> -	"mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
+> -	"mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
+> -	"mediatek,mt8183-wdt": for MT8183
+> -	"mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
+> -	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+> -	"mediatek,mt8192-wdt": for MT8192
+> -	"mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
+> -
+> -- reg : Specifies base physical address and size of the registers.
+> -
+> -Optional properties:
+> -- mediatek,disable-extrst: disable send output reset signal
+> -- interrupts: Watchdog pre-timeout (bark) interrupt.
+> -- timeout-sec: contains the watchdog timeout in seconds.
+> -- #reset-cells: Should be 1.
+> -
+> -Example:
+> -
+> -watchdog: watchdog@10007000 {
+> -	compatible = "mediatek,mt8183-wdt",
+> -		     "mediatek,mt6589-wdt";
+> -	mediatek,disable-extrst;
+> -	reg = <0 0x10007000 0 0x100>;
+> -	interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
+> -	timeout-sec = <10>;
+> -	#reset-cells = <1>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
+> new file mode 100644
+> index 000000000000..5788617027c8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/mtk-wdt.yaml#
 
-Sipeed MaixSense is a R329 devkit based on Maix IIA SoM.
+File name: mtk,wdt.yaml
 
-Add support for it.
+I assume all future MediaTek watchdogs (even these unpublished and
+developed in some years) will fit into this schema. :) If not, then
+maybe better to name the file by the compatible... but it's not a must.
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../dts/allwinner/sun50i-r329-maixsense.dts   | 37 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek SoCs Watchdog timer
+> +
+> +maintainers:
+> +  - Runyang Chen <runyang.chen@mediatek.com>
+> +  - Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> +
+> +description: |+
+> +  The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
+> +  before the expiry.
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: mediatek,mt2712-wdt
+> +      - const: mediatek,mt6589-wdt
+> +      - const: mediatek,mt8183-wdt
+> +      - const: mediatek,mt8192-wdt
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 8fa5c060a4fe..81fe954ba2ef 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -38,3 +38,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-r329-maixsense.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts b/arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts
-new file mode 100644
-index 000000000000..1876b9d0b080
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2021 Sipeed
-+
-+/dts-v1/;
-+
-+#include "sun50i-r329-maix-iia.dtsi"
-+
-+/ {
-+	model = "Sipeed MaixSense";
-+	compatible = "sipeed,maixsense", "sipeed,maix-iia",
-+		     "allwinner,sun50i-r329";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		mmc0 = &mmc0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_pf_pins>;
-+
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
--- 
-2.35.1
+All these four entries should be an enum.
 
+> +
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt2701-wdt
+> +              - mediatek,mt6582-wdt
+> +              - mediatek,mt6797-wdt
+> +              - mediatek,mt7622-wdt
+> +              - mediatek,mt7623-wdt
+> +              - mediatek,mt7629-wdt
+> +              - mediatek,mt7986-wdt
+> +              - mediatek,mt8173-wdt
+> +              - mediatek,mt8183-wdt
+> +              - mediatek,mt8186-wdt
+> +              - mediatek,mt8192-wdt
+> +              - mediatek,mt8195-wdt
+> +              - mediatek,mt8516-wdt
+> +          - const: mediatek,mt6589-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  timeout-sec: true
+
+You do not need this, it's coming from watchdog schema.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    watchdog@10007000 {
+> +        compatible = "mediatek,mt8183-wdt",
+> +                     "mediatek,mt6589-wdt";
+> +        mediatek,disable-extrst;
+
+Did you test your bindings? Does not look like. Please run
+dt_binding_check (see writing-schema for instructions).
+
+> +        reg = <0x10007000 0x100>;
+> +        interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
+
+Wrong interrupt flag.
+
+> +        timeout-sec = <10>;
+> +        #reset-cells = <1>;
+> +    };
+> +
+> +...
+
+
+Best regards,
+Krzysztof
