@@ -2,87 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C03D150B6B6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9486C50B6DE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:09:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447253AbiDVMDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 08:03:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58990 "EHLO
+        id S1384839AbiDVMLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 08:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1447214AbiDVMDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:03:08 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7F763F7;
-        Fri, 22 Apr 2022 05:00:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F1A4AB82CBD;
-        Fri, 22 Apr 2022 12:00:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AFE4AC385AC;
-        Fri, 22 Apr 2022 12:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650628812;
-        bh=zQrMIPHuCAwcsFxTQf+xe50+KfMsAf58w2aK7PIWyxA=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=jRcyA83SgmjoxxcHSAymG7T0TD1JTJILZlhRnJF2er0gTxRBVzfdroFSwzLLbqrHR
-         aImLb+UotcueB50SVhHlW25qipXa5PTScXHtLP4TwgMhpjGQQX1WxOuZORF5WjSwvK
-         /ERY6qWXJHZHNdLwCsuHGaw9ldlpXbZ1lZOhSUVpzgSJF5Eidlp/oxR+noj7toGVLs
-         vZ6+VDr5SlwC/G2uyzEqrJauoli5+18+QTg99Z2xso6OVw+sGK/PyJ/Xoxj3YzYxUm
-         Mnt8Z6FrByS9PQWdrCUMxneKaRHAMSMvR3npr6JmNX9fP0RO6a7g44Plz9tn9Fmg9/
-         UH/ot/smjjdSA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9664AE85D90;
-        Fri, 22 Apr 2022 12:00:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1345568AbiDVMLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:11:51 -0400
+X-Greylist: delayed 170682 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 22 Apr 2022 05:08:57 PDT
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0E056431
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 05:08:57 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id EEDEE24000B;
+        Fri, 22 Apr 2022 12:08:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650629336;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=pmL6z+0b94SN7KtUORnpGXczTLqkiQjmgEiGXpj9g8g=;
+        b=knEreIWuP1Cz+14fMaLukrcRIyaxiCWzce/e+wImyHspCtNkYkiHxNRU27kQPxMSIGbeqx
+        MXSb6Zfu38otkoMW1qYCDDk+vCK84RcyDHbs5NNpxt4Ly1/yUrmtyo+6qsn4hDYHs62j5y
+        IpV8/b/QGfXyp9bCXA1JUvdcFImIiezMZpK8MthKEvKm93aWalg9IGBNJkQxpQ5yaf8cT8
+        HARCz3Fqy7PrI/wUIxqdtlfiqGxjkVAJC9/y/cQFdBu4/91Mu86qPx8kiaFQYN4Z357gUB
+        ZjxKI+4RZt4RpFDfsE5cJuD5MPjw4sOgqZz/VcBRKs5R3NztM55t8M14/AzUFQ==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v3 0/8] RZN1 USB Host support
+Date:   Fri, 22 Apr 2022 14:08:42 +0200
+Message-Id: <20220422120850.769480-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 0/2] net: macb: Make ZynqMP SGMII phy configuration optional
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165062881261.32249.18140200057485548714.git-patchwork-notify@kernel.org>
-Date:   Fri, 22 Apr 2022 12:00:12 +0000
-References: <1650452590-32948-1-git-send-email-radhey.shyam.pandey@xilinx.com>
-In-Reply-To: <1650452590-32948-1-git-send-email-radhey.shyam.pandey@xilinx.com>
-To:     Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, michals@xilinx.com,
-        harinik@xilinx.com, git@xilinx.com
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi,
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+This series add support for the USB Host controllers available on
+RZN1 (r9a06g032) SOC.
 
-On Wed, 20 Apr 2022 16:33:08 +0530 you wrote:
-> This patchset drop phy-names property from MACB node and also make
-> SGMII Phy configuration optional. The motivation for this change
-> is to support traditional usescase in which first stage bootloader
-> does PS-GT configuration, and should still be supported in macb
-> driver.
-> 
-> 
-> [...]
+These USB Host controllers are PCI OHCI/EHCI controllers located
+behind a bridge.
 
-Here is the summary with links:
-  - [1/2] dt-bindings: net: cdns,macb: Drop phy-names property for ZynqMP SGMII PHY
-    https://git.kernel.org/netdev/net-next/c/3ac8316e09b0
-  - [2/2] net: macb: In ZynqMP initialization make SGMII phy configuration optional
-    https://git.kernel.org/netdev/net-next/c/29e96fe9e0ec
+Regards,
+Herve
 
-You are awesome, thank you!
+Changes v2:
+- Convert bindings to json-schema
+- Update clocks description
+- Remove unneeded '.compatible = "renesas,pci-r9a06g032"'
+
+Changes v3:
+- Remove the unneeded patch that calls clk_bulk_prepare_enable()
+- Rework the device tree binding (conversion from .txt and RZ/N1 support)
+- Use the RZ/N1 SOCs family only in the driver match compatible string.
+- Enable PM and PM_GENERIC_DOMAIN for RZ/N1 and add the missing
+  '#power-domain-cells' in sysctrl node.
+
+Herve Codina (8):
+  dt-bindings: PCI: pci-rcar-gen2: Convert bindings to json-schema
+  dt-bindings: PCI: renesas,pci-rcar-gen2: Add device tree support for
+    r9a06g032
+  PCI: rcar-gen2: Add RZ/N1 SOCs support
+  soc: renesas: rzn1: Select PM and PM_GENERIC_DOMAINS configs
+  ARM: dts: r9a06g032: Add missing '#power-domain-cells'
+  ARM: dts: r9a06g032: Add internal PCI bridge node
+  ARM: dts: r9a06g032: Add USB PHY DT support
+  ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
+
+ .../devicetree/bindings/pci/pci-rcar-gen2.txt |  84 --------
+ .../bindings/pci/renesas,pci-rcar-gen2.yaml   | 187 ++++++++++++++++++
+ arch/arm/boot/dts/r9a06g032.dtsi              |  48 +++++
+ drivers/pci/controller/pci-rcar-gen2.c        |   1 +
+ drivers/soc/renesas/Kconfig                   |   2 +
+ 5 files changed, 238 insertions(+), 84 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/pci-rcar-gen2.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.35.1
 
