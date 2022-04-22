@@ -2,88 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C40550BBC8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CABA50BBD5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355408AbiDVPnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 11:43:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46380 "EHLO
+        id S1449477AbiDVPn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 11:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234219AbiDVPlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:41:16 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FCC35AECC;
-        Fri, 22 Apr 2022 08:38:22 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id w4so11572877wrg.12;
-        Fri, 22 Apr 2022 08:38:22 -0700 (PDT)
+        with ESMTP id S234254AbiDVPnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:43:24 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C6E9583A3;
+        Fri, 22 Apr 2022 08:40:30 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso8201982wme.5;
+        Fri, 22 Apr 2022 08:40:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QhhufdrYma19zmloa3Gp0l15zXYz5cGKva41oCbR3Xc=;
-        b=VwcNRCjNTLZgGgF6a7zs6SLC8e1Xv586fn+wjvq3TTPpmV+shP9HPJi5h6yUPCbwUK
-         3F9n/vsgWGU93PQyM6GTS4ITbpqdx9PXgccgj4YpPZHYLFzLu8/XqVILvxvySsen7wy9
-         IYvgp25XLH4bNcDTDpL7yXmHQx+Z0SLzzc11ukpsjHjNIDV9WkKeiTYIxN06pb4XSAGU
-         HyRVJO2hLsbARNvu5nbXV/j8UVKHd0Iv45Wy6sNNjD/2cIe4Jn9+YYhX11p0WHML0J/2
-         9tuWnhUtj562PqPlhLfsE6UERyqEG8RV8PRExY/uOl//sbWDVh+x78lrTi9xxgNMwOD7
-         CyTg==
+        bh=ES0l6S93mE+Wb+3kqpTJgwQ5QqgD39UykyyH0mPFa1A=;
+        b=eAJDeSA5ES65uo2n7FwOPrhjMXpb1/30wYGIYDKU1AzFS1Oqvazunp1Lgruo6FULJd
+         N1IB7K2+Ifwa9kYQkwb3cmGFVMpYNerQIo6Xf5XWsYkCezu38OlPmhnwNMBTL/W5oCn2
+         L75ox71Pu3LZ/UYtIbm1TWt+gVsRU+MzQneRGct7i/4SWy81zHrPejYrVdeI/YMaPpPx
+         HmXn74qleRfqwuZZ2MVnbuefcR2uqjqw5yZFHI09alDi/A25qW1nE0me6ZBWB4tJciqf
+         3h4tTceozSY5WFT6wJ/px99wf0HGPFeQ2Mvngrekpv9MRQunqTkTNZxTeL/FkV9IMbNe
+         XHyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QhhufdrYma19zmloa3Gp0l15zXYz5cGKva41oCbR3Xc=;
-        b=O6aUL9p51Ck4gH6xiYU1U641kc+8430pg8mSoloyXmdCetjt9CJnlsv9B4kShArrf9
-         sOK35DOdku+ZB113fKMjGzM3tXsEHFqEeWbE/qGQD7H2Ioe7zN7wF/sa495xOu1hXNOF
-         JiONd803P1bno+UVH5Q2d5g5jm3s7CJqpOyr9IBPZw7eNr4e/zoZy2mu+YUeMbYiW43s
-         i55DV0HKu7RGjXtqLmsmPSwUuIC3QFYmbdvj/Ol7UNUbmpryXwKeBMoB5EVAofVftjJU
-         051TTRVy9FeBeXvBYZTXe6ab5y17x008syIO7oo1FpVAnKjfgis4AMYBp0Dq+V+GVCNI
-         GbGQ==
-X-Gm-Message-State: AOAM5336wFC0h0njnGlpDqVpOn8wwoiYTFwNEXHxif3HMLQWZxzBHdg1
-        yQbBq79XqaDXRQcLEpd06a8=
-X-Google-Smtp-Source: ABdhPJzs5IwZfxCuSmdATaN96kg4oNBC54s3d8Tgbg0QBR1dz79ohwaqNoQd0Mthn411pnQJu33AOg==
-X-Received: by 2002:a05:6000:136b:b0:20a:c416:e914 with SMTP id q11-20020a056000136b00b0020ac416e914mr4342554wrz.167.1650641900962;
-        Fri, 22 Apr 2022 08:38:20 -0700 (PDT)
+        bh=ES0l6S93mE+Wb+3kqpTJgwQ5QqgD39UykyyH0mPFa1A=;
+        b=i16dVesuOrpmaFQGvUc54Z+kr6riITFAKIMhsXtUq38VPU/jiAnuC0p67lmfmH+hTT
+         nZ/OSly2xI/+AQLDyd7eO0kCd5BOPgTZv6wclepII+e++qfufcSG9kQXxuPALirEKSh+
+         hcLc0i5rtYMIZcLJ0eW/oyJthe+LsTT6mC72cbPF1+kAEhnLqQ7duSGNhw0ALNxHXbqj
+         V4IjG+wxwSy2Ccpic2K/ZmA/r1wcOJD+spsPuMINFIjJvN8OVYCseT25venDPjtcIi2w
+         45MqVLegkUVZOzGBlyGf3GWIcOIOL5NkgfotNoUVRe+fih+xMi4qFB7s2WSV1nDJx3Q2
+         a8OQ==
+X-Gm-Message-State: AOAM532mA27PQIWb6T2ZmUB/6SJSICViHi3x98X/ztaPLlCZX82t0VDe
+        LJeaACx1ozfa4i7c7cixY0g=
+X-Google-Smtp-Source: ABdhPJyTYQRjuZT+Ec8SM434CWQGeFUn2UkQ3zQWg/RiYa7Z+9pAMLI2nF/jZpTCnEOzRThwH++fmg==
+X-Received: by 2002:a05:600c:1e1e:b0:38e:baaa:aae0 with SMTP id ay30-20020a05600c1e1e00b0038ebaaaaae0mr4563460wmb.157.1650642029069;
+        Fri, 22 Apr 2022 08:40:29 -0700 (PDT)
 Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id w4-20020a7bc104000000b0038eba17a797sm4687044wmi.31.2022.04.22.08.38.19
+        by smtp.gmail.com with ESMTPSA id y11-20020a056000168b00b0020a919422ccsm2434199wrd.109.2022.04.22.08.40.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 08:38:20 -0700 (PDT)
-Message-ID: <ca127f7f-0620-1c03-4f39-206945b0e612@gmail.com>
-Date:   Fri, 22 Apr 2022 17:38:18 +0200
+        Fri, 22 Apr 2022 08:40:28 -0700 (PDT)
+Message-ID: <9a766c52-f085-0ce4-5072-5a602e533740@gmail.com>
+Date:   Fri, 22 Apr 2022 17:40:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v24 0/7] soc: mediatek: SVS: introduce MTK SVS
+Subject: Re: [PATCH v1 0/3] Fixes for Mediatek dt-bindings
 Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>
-References: <20220420102044.10832-1-roger.lu@mediatek.com>
- <7hczhbe3wn.fsf@baylibre.com>
- <3d463c8b099fdb1c9a0df9e615a8ca1d8a034120.camel@mediatek.com>
- <7hsfq6ql4v.fsf@baylibre.com>
- <d67d5f4f2ec96ade2398e7c0897dbb16bf5fb145.camel@mediatek.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "N?colas F. R. A. Prado" <nfraprado@collabora.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20220225225854.81038-1-nfraprado@collabora.com>
+ <20220404152256.mkksr4oqjt65ytlf@notapiano> <YmLGyIOStJJAGSJG@builder.lan>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <d67d5f4f2ec96ade2398e7c0897dbb16bf5fb145.camel@mediatek.com>
+In-Reply-To: <YmLGyIOStJJAGSJG@builder.lan>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -96,69 +89,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 22/04/2022 04:24, Roger Lu wrote:
-> Hi Kevin,
+On 22/04/2022 17:16, Bjorn Andersson wrote:
+> On Mon 04 Apr 10:22 CDT 2022, N?colas F. R. A. Prado wrote:
 > 
-> On Thu, 2022-04-21 at 12:41 -0700, Kevin Hilman wrote:
->> Hi Roger,
+>> Hi Matthias,
 >>
->> Roger Lu <roger.lu@mediatek.com> writes:
+>> Maybe you could pick this series through your tree? It addresses some dtc
+>> warnings that are introduced with the new nodes in mt8192.dtsi that you just
+>> picked up on your v5.18-next/dts64 branch.
 >>
->>> On Wed, 2022-04-20 at 16:22 -0700, Kevin Hilman wrote:
->>
->> [...]
->>
->>>> That being said, it would be really nice to see an integration tree
->>>> where this was all tested on mainline (e.g. v5.17, or v5.18-rc)
->>>>
->>>> For example, I can apply this to v5.18-rc2 and boot on my mt8183-pumpkin
->>>> board, it fails to probe[1] because there is no CCI node in the upstream
->>>> mt8183.dtsi.
->>>>
->>>> I'm assuming this series is also not very useful without the CPUfreq
->>>> series from Rex, so being able to test this, CCI and CPUfreq together on
->>>> MT8183 on a mainline kernel would be very helpful.
->>>>
->>>> Kevin
->>>>
->>>> [1]
->>>> [    0.573332] mtk-svs 1100b000.svs: cannot find cci node
->>>> [    0.574061] mtk-svs 1100b000.svs: error -ENODEV: svs platform probe
->>>> fail
->>>
->>> Just share. I've tested this series on below two platforms and it works as
->>> expected.
->>> - mt8183-Krane (kernel-v5.10)
->>> - mt8192-Hayato (kernel-v5.4)
->>
->> Unfortunately testing on v5.4 and v5.10 with lots of other additional
->> out-of-tree patches does not give much confidence that this series works
->> with upstream, especially when I've given a few reasons why it will not
->> work uptream.
->>
->> The examples I gave above for CCI and CPUs/cluster disable are good
->> examples, but another one I forgot to mention is the dependency on Mali.
->> The SVS driver will never probe because it also depens on a "mali" node,
->> which doesn't exist upstream either (but panfrost does, and acutually
->> loads/probes fine on v5.17/v5.18) so this should be fixed to work with
->> upstream panfrost.
->>
->> IMO, in order for this to be merged upstream, it should at least have
->> some basic validation with upstream, and so far I have not even been
->> able to make it successfuly probe.  To do that, you will need to either
->> provide a list of the dependencies for testing this with mainline
->> (e.g. CCI series, CPUfreq series, any DT changes), or even better, an
->> integration tree based on recent mainline (e.g. v5.17 stable, or
->> v5.18-rc) which shows all the patches (in addition to this series) used
->> to validate this on mainline.
 > 
-> No problem. We'll find a machine that can be run correctly with recent mainline
-> (e.g. v5.17 stable, or v5.18-rc) and add patches (CCI series + CPUfreq series +
-> any DT changes) to test this SVS series. Thanks very much.
+> I don't see a reply from Matthias, so I've picked up this (the
+> remoteproc) fix in our tree.
 > 
 
-Thanks Roger. I'll wait until this got tested with upstream Linux, before I will 
-apply all the patches.
+That's totally fine. I'm reluctant to take random dt-binding patches as it can 
+provoke merge conflicts when there are other patches on the same binding taken 
+by the driver maintainer. Normally I leave it to the driver maintainer to take 
+such kind of patches.
 
 Regards,
 Matthias
+
+> Thanks,
+> Bjorn
+> 
+>> Thanks,
+>> Nícolas
+>>
+>> On Fri, Feb 25, 2022 at 05:58:51PM -0500, Nícolas F. R. A. Prado wrote:
+>>>
+>>> This series has some fixes for Mediatek dt-bindings. It solves some
+>>> warnings printed by dtbs_check, both for already merged Devicetrees, as
+>>> well as some that would be introduced by the changes to mt8192.dtsi in
+>>> [1].
+>>>
+>>> [1] https://lore.kernel.org/all/20220218091633.9368-1-allen-kh.cheng@mediatek.com/
+>>>
+>>>
+>>> Nícolas F. R. A. Prado (3):
+>>>    dt-bindings: remoteproc: mediatek: Add interrupts property to mtk,scp
+>>>    dt-bindings: usb: mtk-xhci: Allow wakeup interrupt-names to be
+>>>      optional
+>>>    media: dt-bindings: mtk-vcodec-encoder: Add power-domains property
+>>>
+>>>   .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml     | 3 +++
+>>>   Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml      | 3 +++
+>>>   Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 1 +
+>>>   3 files changed, 7 insertions(+)
+>>>
+>>> -- 
+>>> 2.35.1
