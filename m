@@ -2,140 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0893350BFA0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 965F250BF73
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231425AbiDVSLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:11:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60154 "EHLO
+        id S230306AbiDVS2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237308AbiDVSGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:06:49 -0400
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 604B0CB034;
-        Fri, 22 Apr 2022 11:03:53 -0700 (PDT)
-Received: from relay2-d.mail.gandi.net (unknown [217.70.183.194])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 45B50C4ACF;
-        Fri, 22 Apr 2022 18:03:38 +0000 (UTC)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 047FB40007;
-        Fri, 22 Apr 2022 18:03:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650650598;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=VPD766nSJcaJm4ocTejvtHL28KZVn5XxjnRSnnmGrFQ=;
-        b=bCv6PLRKK5d8jQ1HlJ8AsG1+dJijAspReLv2VKaRrr8cZQLihn+NrFwB6KhGWqD0yJv8gD
-        uh916X+ONjxMXAfQ9VA7ViZ3o7vOka0yr67Ofg1Si9MKvoS/Y0e9rqzWd0OAvXCgsENKcw
-        tWQK8f0uxyNnaLkPMW7XZKnwhtOmFDt+h/8MjjfaA6yrMXQID7PuyIkjirD8itof11wapP
-        fuQnHlBU+STlgoznqezTMKUxipPclrsV/WojwpYzAncK8S9xzEvgeJh+rC/MxarPA5bpSB
-        u7jTqgPodjOhxxWHGAl9bq3zEeOXJNj0/N+12IKv5He6qPLic0i9deJYJ69qNw==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH net-next 5/5] ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet controller
-Date:   Fri, 22 Apr 2022 20:03:05 +0200
-Message-Id: <20220422180305.301882-6-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
-References: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S232773AbiDVS2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:28:10 -0400
+X-Greylist: delayed 180 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 22 Apr 2022 11:25:14 PDT
+Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52AA2A70A
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 11:25:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=43yGbpLRS8jsRRS3GIzeflk7R/ljcAqAXPy1IW9Yx8k=;
+        b=NLhf28yDiPg9caWdkXyvLoDkhEQslSksaIx12UIajAx92cJcZPhgCtkAYFCeJfcysmfWfDEEBRYnJ
+         90iJ/nSw0UCOMXt2jcpt8sP1D2V2sHy5Z5QYUwriqyWso5cnqUMUfvFKucqcJMWXpEx/2DGKmt/tHk
+         Ifda3xh6XombEEHF1qJuCjNN9p5dcT0x88DnzSlK9v6bMrKkxDBagGHXtrRCB+9owwWxOjzExcob2J
+         9RRfMKfQ8z1knlBu4Te615GgFXkYMD4QTbprEhgwz1snzPtUqH1MtLB0NSDxnZtf8FQDgVXXGnrUz7
+         qnQKoG0OF+b8hgaSb5xOnVwNHYmCbiQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=43yGbpLRS8jsRRS3GIzeflk7R/ljcAqAXPy1IW9Yx8k=;
+        b=bTHPTNeSs2L9lnRJh1yFPQ+KqKe2nuvSUNtk8CRFSpRA4cCRIHl4zbD7hzCszS5RgqzDjn0pTNCs1
+         q5FYECkBg==
+X-HalOne-Cookie: 3a39bb7a6cb29e5fc279994f315d74b0460e907b
+X-HalOne-ID: 46ac5ff7-c268-11ec-8225-d0431ea8bb10
+Received: from mailproxy3.cst.dirpod3-cph3.one.com (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+        id 46ac5ff7-c268-11ec-8225-d0431ea8bb10;
+        Fri, 22 Apr 2022 18:16:06 +0000 (UTC)
+Date:   Fri, 22 Apr 2022 20:16:04 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add DataImage
+ FG040346DSSWBG04 compatible string
+Message-ID: <YmLw5LrYYE06M7N4@ravnborg.org>
+References: <20220422102242.18959-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422102242.18959-1-marex@denx.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
-connected to the CPU through the internal IPQESS Ethernet controller.
-
-This commit adds support for this internal interface, which is
-internally connected to a modified version of the QCA8K Ethernet switch.
-
-This Ethernet controller only support a specific internal interface mode
-for connection to the switch.
-
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 42 +++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index cac92dde040f..52761c801258 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -38,6 +38,7 @@ aliases {
- 		spi1 = &blsp1_spi2;
- 		i2c0 = &blsp1_i2c3;
- 		i2c1 = &blsp1_i2c4;
-+		ethernet0 = &gmac;
- 	};
- 
- 	cpus {
-@@ -668,6 +669,47 @@ swport5: port@5 { /* MAC5 */
- 			};
- 		};
- 
-+		gmac: ethernet@c080000 {
-+			compatible = "qcom,ipq4019-ess-edma";
-+			reg = <0xc080000 0x8000>;
-+			interrupts = <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
-+
-+			status = "disabled";
-+
-+			phy-mode = "internal";
-+		};
-+
- 		mdio: mdio@90000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.35.1
-
+On Fri, Apr 22, 2022 at 12:22:41PM +0200, Marek Vasut wrote:
+> Add DataImage FG040346DSSWBG04 4.3" 480x272 TFT LCD 24bit DPI panel
+> compatible string.
+> 
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> ---
+> V2: Add AB from Thomas
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 1eb9dd4f8f58..cfe7bb9f89de 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -105,6 +105,8 @@ properties:
+>        - chunghwa,claa101wb01
+>          # Chunghwa Picture Tubes Ltd. 10.1" WXGA TFT LCD panel
+>        - chunghwa,claa101wb03
+> +        # DataImage, Inc. 4.3" WQVGA (480x272) TFT LCD panel with 24-bit parallel interface.
+> +      - dataimage,fg040346dsswbg04
+>          # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
+>        - dataimage,scf0700c48ggu18
+>          # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
+> -- 
+> 2.35.1
