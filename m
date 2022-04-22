@@ -2,101 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C017B50ADE6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 04:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C853950ADFE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 04:47:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1443416AbiDVCm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Apr 2022 22:42:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39846 "EHLO
+        id S243708AbiDVCuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Apr 2022 22:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1443443AbiDVCm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 22:42:27 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A294BFDE;
-        Thu, 21 Apr 2022 19:39:35 -0700 (PDT)
-X-UUID: 415f771859064e5692dbb0e1a109ab1e-20220422
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:64c30808-95ef-4b35-adbc-97ad578ac3d2,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:faefae9,CLOUDID:e0c28bf0-da02-41b4-b6df-58f4ccd36682,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 415f771859064e5692dbb0e1a109ab1e-20220422
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1258356137; Fri, 22 Apr 2022 10:39:28 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 22 Apr 2022 10:39:27 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Apr
- 2022 10:39:25 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 22 Apr 2022 10:39:25 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1359495AbiDVCuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Apr 2022 22:50:09 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2115.outbound.protection.outlook.com [40.107.243.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 413E14C7B7;
+        Thu, 21 Apr 2022 19:47:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ap/VEWHUE6+85bIifep7VDNftLWRosucg3nGPUj+EXBELIRj0fsPbyKD0WSYkECamcpNpLuVBCAGYKtN1ptaVIhp4I7xOtAy1DTYTWjbJd0qkrfD3EtvgL6b6oTx6bJNg+p7jMDy/5ZiTv5kj7VEpbNK74CCKfyolMq2xE4WptLvHBET56zQ9UdXpa2DJFljP2p+8IqL9B7WSxSUOg9WJDzvY/U1k6ge59fi+jCtwRnFLaZVjhw/2Jn1lkb83v/3LxCUOy/bV+PCqLEyKIBpwS6QLMLns8oYxXcSzTfSPDuWDl10++hJofVKQztRsdRUPN8mAmHxYPwt4AvM/Vgunw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Di4c3G+nkTz60rGdAqg0n9+ZMfkpd4f8R5UlLlKdOTs=;
+ b=mMLkUQ9fEolPch/QyzR1isJbXv07yhzWhkdnC3WuR2zPW0X/WZFPPx/K9e6+j2+/brhbUDXbLFO0/4esUMgAp33cBk5qhWjvV//EYyWdu2XYSYhL0c9xXcCfu0aNId7toSFZm96hxwYZCMA4AkrIgNqu6FKohoCnI5zttTuOT3h4XwyhrLYQxMDjtG7tua2zzMr9LYIrR4yutHStY3WDWe7hYrQzRW7+dHAfdQqgtgDpjQnudghKjHJuYbkIpDhs+5ZO7lnUEqhTwVjrejg1kcW/pOoyaW2vMbN97RR6L/sGwvkoDYR2XqmQuwyL8oTPmycNmFn33v+3AdmVEwdNqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Di4c3G+nkTz60rGdAqg0n9+ZMfkpd4f8R5UlLlKdOTs=;
+ b=WE3v305u7vFsLuFO8FgfHsEYXEb7OVtGrsKagr/oTcQJmLhO/Tpa2WX05tULZge3qV+kuuC9vJ0jXyxblxSPkNGU3QzRKGKQVniMsQoiDCvFZuSHopobu/pqhnUTaKCG+b4RgR8TbrppyeojAxKtNh5Cj5h12NjmEZnZ7tbvCGU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ BN0PR01MB6845.prod.exchangelabs.com (2603:10b6:408:14a::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5186.13; Fri, 22 Apr 2022 02:47:13 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::319b:4612:e6f4:f22c]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::319b:4612:e6f4:f22c%3]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
+ 02:47:13 +0000
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-Subject: [PATCH v1 2/2] mailbox: mediatek: support mt8186 adsp mailbox
-Date:   Fri, 22 Apr 2022 10:39:09 +0800
-Message-ID: <20220422023909.6584-3-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.15.GIT
-In-Reply-To: <20220422023909.6584-1-tinghan.shen@mediatek.com>
-References: <20220422023909.6584-1-tinghan.shen@mediatek.com>
-MIME-Version: 1.0
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: [PATCH v8 0/9] Add Ampere's Altra SMPro MFD and its child drivers
+Date:   Fri, 22 Apr 2022 09:46:44 +0700
+Message-Id: <20220422024653.2199489-1-quan@os.amperecomputing.com>
+X-Mailer: git-send-email 2.35.1
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: SG2P153CA0023.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::10)
+ To SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9885009d-d035-45ca-4d06-08da240a679a
+X-MS-TrafficTypeDiagnostic: BN0PR01MB6845:EE_
+X-Microsoft-Antispam-PRVS: <BN0PR01MB6845F9B465DC13B05DA202A6F2F79@BN0PR01MB6845.prod.exchangelabs.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1mdc9b/0rV3Ay3rXRU6E6YzFlp6OLlaV5N+JZ036zcvCUea5bWt3Fe17IFLu2vq3/uj8gpomr79ddJ+5HxmYqxeXaMtZwYrY4PjNY+8vl7kukGXAoVhu+E0NBg3r0oqHREamEl3ReC+vQc9l1isF/fD55hdf5llYXQSvEUOf07hNrSYONjsqrEbEXj8GyNXd5C6HdLqQw7bP9sDaeEWgtsAgDlR1avRBH0Mmo4K/CZVDR1bqxJtH+FnuDS4Yoj0pnQWIcdAiPOyyDlExpQj/3r7VxWajFNu59PAhE6SET/vc1RduIRKmCdimzuu39H2Fcnpvqt2qruZpIukdkBsWHxgBldkp7s19xaaElOVMGKSMl4N4A0MZy+whxj1RuieTvHSH5qDvS9V3OJC/4qCniiQSeTtk7/O124L5gRz0gSRWaNVcfWcx1hMbEln+Y70ILstYnFoFdAZo5uNi2GQiQXLpGcQwLKHPvY1wKZQ25pwSLqyEzRLCjMJpTTTMOHO6XYuvb/kdyzFnT/+7bhf4JTSOv4OSEW6oGMc32i24v2v0D4z1pD+EXsxzpJDjlC7h0UbZGb4hrX/KvtDa6yrr/gpcX0Q8cWehNNAd8LRz1avimi3rDeIcyGvDG6xleUxBpTKH2WIvOpEGEFr7u59ylY12lwESGYZ/R6y0d0EjQilCi85Yf4TU+QMgcifXqKX2Uge/Y8fD09D98J0bZScwGXSQof3yUeb4904/EHbycxc9i7AnDSz/0zl1sGE6yB7afyv2O2zTLke8bdA/nnf/HeSXX1lkB8mda52aYHMM6M6E6UZSyPPUB9wNFf8PzPSD
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4326008)(316002)(8676002)(6486002)(966005)(86362001)(38100700002)(38350700002)(8936002)(508600001)(5660300002)(54906003)(110136005)(66476007)(66556008)(921005)(7416002)(107886003)(66946007)(1076003)(83380400001)(186003)(52116002)(6512007)(2616005)(26005)(6506007)(2906002)(6666004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gL6nKr6jNUs5HEXa3lG7kp1pXRdwLnDUWKthJO3Ae7vjqeuyC8f3SOL4XdqY?=
+ =?us-ascii?Q?CDnm53hF5MJWOFc/gNsoqvNhxCRqeOzmKOwOr8S756FQsvUga/4zI9v8A1FN?=
+ =?us-ascii?Q?vrQTFV7HtWMRKeKpqNHbvbfK0yh3OUcGFvWm3g5zHsLxAHSgDqsOtUASRSDv?=
+ =?us-ascii?Q?S59ZqhjbE3sW96ugVlydNONBBiztRYtufC6ooJS32O9c1pHLpypCcUZhtEs0?=
+ =?us-ascii?Q?0NMzA1XKDgyk8qPkQe8tTcasudhzzSfUEzutkuyxABniK8rpzBJZJ6j9M8L3?=
+ =?us-ascii?Q?Tv6gd3ckxky/NI97lVE7iHhwYM6Xa+oAT88NghYUAA7eHLB5Z+91U6kx5KFF?=
+ =?us-ascii?Q?uWJgGdiF1aX2j1Fwodbx9dEKWEki2vm6gTOJfRfeOzQ0kBfHP8x2B4jLs1QA?=
+ =?us-ascii?Q?1ZvAdumotTkTerQtTwnHtGCGl/eWp4tKO/0ZsaRUWyBmsBJRQQ1BtjCZBWnW?=
+ =?us-ascii?Q?H2QBXHr5VLyl9RTGfUExbPOdsvKJ/CzsxYBp8lspastPcDTn3GdP/oOIrTBS?=
+ =?us-ascii?Q?X8qmh0ECSfp7fzGybtuyLIuikf6ukznjHhthk+QnAQ9toGDXO6c5YpF0jfdt?=
+ =?us-ascii?Q?Xwn9q1U04gqngkM3hCpvRQKwFjRfn8NXiuCh3kqWOIRU0HYbxP4e480CyVr1?=
+ =?us-ascii?Q?0w2D0ooDhloPXziisoYHOYA28mcEypDR4F0LCSqZZm/ovYUIIrk6FO8D+71X?=
+ =?us-ascii?Q?zwqJYXs38ppWL6lT48q1V+SCWnLTRK2+j97iYo06QMu3Uq4lkDlpj6tq2+Nh?=
+ =?us-ascii?Q?t/9vwf7DRSPwcWT+LxzYpeFNFz1b/wKfwkx9LJpe0bqvC1o7qe9ahVBexAec?=
+ =?us-ascii?Q?LTAW8zN8t0O+6rXkpzpnwgO0cDs81vJJF66AxMK8zSO0XrG8PjGzz7bfQFt1?=
+ =?us-ascii?Q?10k+n/HAwOp8o1hhFXMcuvg1K3i0dU7DVphH9hOrQrmFVp/jD+LVLq1wT4j/?=
+ =?us-ascii?Q?obZTMEmpoKlIzDne/QOfOxz+9TuHG7bhAvZfOoMQSu0dQVWOeDV23Wl9CrzS?=
+ =?us-ascii?Q?t+iEAnfn6E2CNxut3u8GF6hXFWQm6WYgG/tSVhoGld9BCkBJe9Pxo1wSoqea?=
+ =?us-ascii?Q?z2FeCgRYsM4Y6mQZIzKWdfseafowbe9Vzp6OiF4k26gc64v8JXGCM/i/iLyQ?=
+ =?us-ascii?Q?DQj7+KlCNCdRFOHoBpS43zkUcAdEV8osGLRrF/ozJhm4alVy2774E1Ty/J5A?=
+ =?us-ascii?Q?6eg2sqJ6H4GKMc9V+I/G2R4+5sJH4v7lCHzsDLHWkNp6wY+iPq5xpXrargGq?=
+ =?us-ascii?Q?H2mgFEcGRf0RQfpCmhiYX2i+gUzWTO3CQr1s8s7vVxpwKqcis+l+ozaoWVLM?=
+ =?us-ascii?Q?Yoz9GDDP2Wjqb/J0XYLsbSuem5Gix3VnhvVM/8gk2VkQMyA6yI4u9KWhGZop?=
+ =?us-ascii?Q?uGP8wrfa6ZrvNxA+atSI6pBpI7B5tQn3mGmnfdNQziQnX7XQXyPGei9z6Lbo?=
+ =?us-ascii?Q?6Fg77zN8NL8BxbRa9yw1BvUED2+fDSDs7rPtUR5Jx0y8uK4fGgtuNDVsC2Tc?=
+ =?us-ascii?Q?k4zB3CTAle/4M3jFPvp/fOAUxjw1d1AnZVhCJGxViPo2/KEcAKLSgKTris2+?=
+ =?us-ascii?Q?vVRO0096++IHMSgWCWp0G8WZTldqZ4cPOTqQylQejI8EID/xxN9ykhjB1DSj?=
+ =?us-ascii?Q?6+HaAQfbmIKQ54w+sYeTxdevFOc6qMZ+thVj6kin4HKaXSjePB4ctZpWveEE?=
+ =?us-ascii?Q?YCu3VuWZZjxk3TjzywFFSn2lgF+hQyK28sS8cN/pp4eeaaEV4WRMoq7Iddb9?=
+ =?us-ascii?Q?fBv4CLgckS0RMBfH/vOeaMrIPW5qPAFDHdIirE+r0rz1fVy6Qpd9?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9885009d-d035-45ca-4d06-08da240a679a
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 02:47:13.6846
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tJ50s8u+VH6WOHE9ep233ICV2EHxSfwyNFpumK+D05cKtUkbvKTWX/z3fhdWoD4PteQEpQ/m+DcjSCV2RlH+4qhID+kTo1Zr6k2zGI9XpnY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR01MB6845
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support of mt8186 adsp mailbox.
+The SMpro co-processor on Ampere Altra processor family is to monitor
+and report various data included hwmon-related info, RAS errors, and
+other miscellaneous information. The SMPro MFD driver initializes the
+register map and instantiates all sub-devices. All the specifics will
+be handled in the child drivers.
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
----
- drivers/mailbox/mtk-adsp-mailbox.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This patch set includes support for Ampere SMpro hwmon, errmon, and
+misc as the child drivers. The hwmon driver supports accessing various
+CPU sensors provided by the SMpro co-processor including temperature,
+power, voltages, and current found on Ampere Altra processor family.
+The errmon driver supports monitoring and reporting RAS-related errors.
+The misc driver is to support reporting boot progress and other
+miscellaneous information.
 
-diff --git a/drivers/mailbox/mtk-adsp-mailbox.c b/drivers/mailbox/mtk-adsp-mailbox.c
-index 5e7378090c7b..14bc0057de81 100644
---- a/drivers/mailbox/mtk-adsp-mailbox.c
-+++ b/drivers/mailbox/mtk-adsp-mailbox.c
-@@ -149,6 +149,13 @@ static int mtk_adsp_mbox_probe(struct platform_device *pdev)
- 	return devm_mbox_controller_register(dev, &priv->mbox);
- }
- 
-+static const struct mtk_adsp_mbox_cfg mt8186_adsp_mbox_cfg = {
-+	.set_in		= 0x00,
-+	.set_out	= 0x04,
-+	.clr_in		= 0x08,
-+	.clr_out	= 0x0C,
-+};
-+
- static const struct mtk_adsp_mbox_cfg mt8195_adsp_mbox_cfg = {
- 	.set_in		= 0x00,
- 	.set_out	= 0x1c,
-@@ -157,6 +164,7 @@ static const struct mtk_adsp_mbox_cfg mt8195_adsp_mbox_cfg = {
- };
- 
- static const struct of_device_id mtk_adsp_mbox_of_match[] = {
-+	{ .compatible = "mediatek,mt8186-adsp-mbox", .data = &mt8186_adsp_mbox_cfg },
- 	{ .compatible = "mediatek,mt8195-adsp-mbox", .data = &mt8195_adsp_mbox_cfg },
- 	{},
- };
+Discussion for v7: https://lkml.org/lkml/2022/3/21/125
+
+v8:
+  + Insert 'break;' to avoid fall-through          [kernel test robot]
+  + Avoid uninitialized variable use               [kernel test robot]
+  + Remove unused #*_cells                                 [Krzysztof]
+  + Switch to use sysfs_emit()                                  [Greg]
+  + Sysfs to return single value only                           [Greg]
+  + Fix KernelVerion field in Documentation/ABI/testing doc     [Greg]
+  + Change errors_* sysfs to error_*                            [Quan]
+  + Add overflow_[core|mem|pcie|other]_[ce|ue] sysfs to report
+  overflow status of each type of HW errors                     [Quan]
+  + Update wording in Kconfig for smpro-errmon and smpro-misc   [Quan]
+  + Masks reserved bit when read 10-bit power value             [Quan]
+  + Add some minor refactor                                     [Quan]
+
+v7:
+  + Add docs to Documentation/ABI/testing                       [Greg]
+  + Re-order patches to avoid compile dependency           [Lee Jones]
+  + Remove regmap_acquire/release_lock()                        [Quan]
+  + Install regmap bus->read/write() to handle multiple types of bus
+    access                                                      [Quan]
+  + Replace i2c block read by regmap_noinc_read()               [Quan]
+  + Fix wrong return type of *show/store()         [kernel test robot]
+  + Update GPL version                                          [Quan]
+  + Add some others minor code refactor                         [Quan]
+
+v6:
+  + Introduced smpro-errmon, smpro-misc as smpro-mfd sub-device [Quan]
+
+v5:
+  + Introduced the smpro-mfd driver and drop the use of
+  simple-mfd-i2c driver to avoid DT node with no resource in child
+  device DT nodes [Rob]
+  + Removed the use of reg DT property in child driver [Quan]
+  + Validated ManufactureID when probing smpro-mfd drivers [Quan]
+  + As child devices are instantiated by SMPro MFD driver, drop the
+  ManufacturerID checking in child driver, ie: smpro-hwmon [Quan]
+  + Revised commit messages [Quan]
+
+v4:
+  + Revised commit message [Quan]
+  + Fixed build issue found by kernel test robot [Guenter]
+  + Returned regmap_read() error code [Guenter]
+
+v3:
+  + Supported list of compatible string [Rob]
+  + Introduced reg property in DT to specify reg offset [Rob]
+  + Updated description and other minor changes in yaml file [Rob]
+  + Handled negative temperature value [Guenter]
+  + Returned -ENODEV if Manufacturer ID is wrong [Guenter]
+  + Refactored smpro_read_string() and smpro_temp_read() [Guenter]
+  + Removed smpro_write() function [Guenter]
+  + Added minor refactor changes [Quan]
+
+v2:
+  + Used 'struct of_device_id's .data attribute [Lee Jones]
+  + Removed "virtual" sensors [Guenter]
+  + Fixed typo "mili" to "milli", "nanoWatt" to "microWatt" [Guenter]
+  + Reported SOC_TDP as "Socket TDP" using max attributes [Guenter]
+  + Clarified "highest" meaning in documentation [Guenter]
+  + Corrected return error code when host is turn off [Guenter]
+  + Reported MEM HOT Threshold for all DIMMs as temp*_crit [Guenter]
+  + Removed license info as SPDX-License-Identifier existed [Guenter]
+  + Added is_visible() support [Guenter]
+  + Used HWMON_CHANNEL_INFO() macro and LABEL attributes [Guenter]
+  + Made is_valid_id() return boolean [Guenter]
+  + Returned -EPROBE_DEFER when smpro reg inaccessible [Guenter]
+  + Removed unnecessary error message when dev register fail [Guenter]
+  + Removed Socket TDP sensor [Quan]
+  + Changed "ampere,ac01-smpro" to "ampere,smpro" [Quan]
+  + Included sensor type and channel in labels [Quan]
+  + Refactorized code to fix checkpatch.pl --strict complaint [Quan]
+
+Quan Nguyen (9):
+  hwmon: smpro: Add Ampere's Altra smpro-hwmon driver
+  docs: hwmon: (smpro-hwmon) Add documentation
+  misc: smpro-errmon: Add Ampere's SMpro error monitor driver
+  docs: misc-devices: (smpro-errmon) Add documentation
+  misc: smpro-misc: Add Ampere's Altra SMpro misc driver
+  docs: misc-devices: (smpro-misc) Add documentation
+  dt-bindings: mfd: Add bindings for Ampere Altra SMPro MFD driver
+  mfd: smpro-mfd: Adds Ampere's Altra SMpro MFD driver
+  docs: ABI: testing: Document the Ampere Altra Family's SMpro sysfs
+    interfaces
+
+ .../sysfs-bus-platform-devices-ampere-smpro   | 157 ++++++
+ .../devicetree/bindings/mfd/ampere,smpro.yaml |  42 ++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/smpro-hwmon.rst           | 101 ++++
+ Documentation/misc-devices/index.rst          |   2 +
+ Documentation/misc-devices/smpro-errmon.rst   | 198 ++++++++
+ Documentation/misc-devices/smpro-misc.rst     |  82 +++
+ drivers/hwmon/Kconfig                         |   8 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/smpro-hwmon.c                   | 465 +++++++++++++++++
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/smpro-mfd.c                       | 134 +++++
+ drivers/misc/Kconfig                          |  22 +
+ drivers/misc/Makefile                         |   2 +
+ drivers/misc/smpro-errmon.c                   | 477 ++++++++++++++++++
+ drivers/misc/smpro-misc.c                     | 161 ++++++
+ 17 files changed, 1866 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+ create mode 100644 Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+ create mode 100644 Documentation/hwmon/smpro-hwmon.rst
+ create mode 100644 Documentation/misc-devices/smpro-errmon.rst
+ create mode 100644 Documentation/misc-devices/smpro-misc.rst
+ create mode 100644 drivers/hwmon/smpro-hwmon.c
+ create mode 100644 drivers/mfd/smpro-mfd.c
+ create mode 100644 drivers/misc/smpro-errmon.c
+ create mode 100644 drivers/misc/smpro-misc.c
+
 -- 
-2.18.0
+2.35.1
 
