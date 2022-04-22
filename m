@@ -2,140 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53FC450AF00
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 06:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8371450AF60
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1443926AbiDVEUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 00:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
+        id S1444072AbiDVFKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 01:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1443932AbiDVEUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 00:20:17 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2099.outbound.protection.outlook.com [40.107.243.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6664EF49;
-        Thu, 21 Apr 2022 21:17:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N3f3fFFR5nCz79c1agStHeeCjzsDKBBXM5zEy+LsaNsB5ZzEysxNzbVjlx4mTI86h3egqQzcieUsA/LbJG1h7bNZLj2MGrmlvjl2FbKcI6BgJvh78m1c9QpGDCFvyGmoyehPnVFvtsWPpshdqLGprm+7KSc1gL8bxY3fyeAKNEujEiwctLE5kYwhinZzwaHiXSgfptIWd3VOo5MWdAk2YV/IPAV3CtmwacBnRI1f8hLSBqQ0cN6bRJPr/kKQ6qM0JX5RJURyKBEYZWJONCSOPOxIz2fK2O9kKZnLQGm9HkhNgcjSrGhxjWyBncca7pYNESeJPEL+qR+CRUdrcIEj2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O8omORoRY5GJn8BYoDOVegpYoOZ845Ck39hesIml8I0=;
- b=nCCuic6/bpsWGS4xWZMhp64GhjH9rBhxo4wmEnDh89vgKOCQbrHk6j+Af6MTmEFQQPJjrfyjcoBoRFMFsFJ+iBHi1EFLcuj2dMcVKReovbL1Nq1aj+qoYYEL8G9QQjuC3IGLS9QPGmdbMyGB7uO4Gmd2pVwIDLRm12lkpa27WPaH0u4ryR1fduypxjSEXDutB4uP0VcVrbBCm9DGT33j94Jb3gM9RqKjoJeHfg9zEp/dyZfm7lnc0I4wp6heGaGXKn8njcaHmWKq0yse0qwCB3KYE4vIAJCnaLU7rUQLj42R2HN98+MR9b4LS5Khe2PPtfwf8D63yZFd1bccHnvVZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O8omORoRY5GJn8BYoDOVegpYoOZ845Ck39hesIml8I0=;
- b=aRv/LgyZRiMp8eWlgbuny33IH7+XyS2hUDcKDSzbGTmHfp3DXbPUjyIncE16OSNfp8x03xVrfhR0ZLeRAv++via6wpPr0Rx+9KQ5l9Twjo0YwfrKIfnifaql5gYAj7Zmn+/rxt/GvwByagwQPYuZvCR5GjySXX7MoqsyitCsl+I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
- BN6PR01MB2644.prod.exchangelabs.com (2603:10b6:404:d0::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5186.13; Fri, 22 Apr 2022 04:17:19 +0000
-Received: from SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::319b:4612:e6f4:f22c]) by SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::319b:4612:e6f4:f22c%3]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
- 04:17:19 +0000
-Message-ID: <6fcbe1e0-b011-7537-b61b-50bfe15f0ce5@os.amperecomputing.com>
-Date:   Fri, 22 Apr 2022 11:17:08 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.8.0
-Subject: Re: [PATCH v7 3/3] i2c: aspeed: Assert NAK when slave is busy
-Content-Language: en-US
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Corey Minyard <minyard@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
- <20220422040803.2524940-4-quan@os.amperecomputing.com>
-In-Reply-To: <20220422040803.2524940-4-quan@os.amperecomputing.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR04CA0010.apcprd04.prod.outlook.com
- (2603:1096:4:197::11) To SJ0PR01MB7282.prod.exchangelabs.com
- (2603:10b6:a03:3f2::24)
+        with ESMTP id S1444078AbiDVFKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:10:41 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256444B412;
+        Thu, 21 Apr 2022 22:07:47 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23M57IgX013026;
+        Fri, 22 Apr 2022 00:07:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650604038;
+        bh=1jhdjBmYmmhMCJsX/t+vd/T+6pDWrDfmxcBUmfGeFc8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=pINIU37VyQZP4ww7xdYXgLgr9rzw+kXTjnyxkADXvkE9bhDKex6s/y3F+I3dWz1kj
+         MueRQ/ZscMGRgkS+9RE9D+MSzvmpiyrhzzgeuETwi6FQbB7rRa5kCUDJ6/sgqIwzpK
+         QAAKs3h1HJP7nqejF6IaiL5KU840Yp+b726D1GNw=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23M57Doo016351
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 22 Apr 2022 00:07:18 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
+ Apr 2022 00:07:17 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 22 Apr 2022 00:07:17 -0500
+Received: from [10.24.69.236] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23M57Cdu059389;
+        Fri, 22 Apr 2022 00:07:13 -0500
+Message-ID: <c1de4293-a058-5e25-9be2-b61ac39f43a3@ti.com>
+Date:   Fri, 22 Apr 2022 10:37:12 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c9a2a244-7436-4722-5285-08da2416fd95
-X-MS-TrafficTypeDiagnostic: BN6PR01MB2644:EE_
-X-Microsoft-Antispam-PRVS: <BN6PR01MB2644DCA27D694741C8ACE499F2F79@BN6PR01MB2644.prod.exchangelabs.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0UHUR0Q04PjPsE1LO/jScVbtQ9hQ6MtgfRdmM+icpNFwpBHTMN1mYba3TC3s4F8P13SVUTHYAYCweEiJwQN2vlXYOqIZ5D3jpoTAngOFja7qeU3sMLFsX/cNAxxzmaH5PIiDw4fywqcWEN5Rhf+GXt/zDnLUYeEWJjvjg7ekc120eOkWJZMy/IAVQvtQiIRbt52raKh+wKiH7p9vfKygS2JBlKm4I3RT1OJf4uOTSiEs/iZxqFBKW5sXzv1lCL3ssDCnaF1Wogv+b3a/MK0bRMC71QDIpk0O7ctTndRcVM2ypeES+klAxdjV1kLFshysVJtg0f/hnnGEJawtVOPfKsRk/FyyorMf7IVY6YyY9Cuw2H/lpQjUroWHAUR+dmqxAsQ82mMhzDroS5SeU2xSnhLrFoxCHzi7D5T2sdX3UActneXRrKW1PyRfrPdGdq8ApIpJXfMRFozphsJ289SMiJFB2vy3LGEA0V7LHQEyPBb/8A8HBae0EQ47eCT4lSY8pQauzl6pmFBLChnK0Wvwj2CMzkKTdo3aDgSUaxTeET74WG0+138gvFqYIYwuk9wllsaYEyhdhzfn4XUKq3RdirLdAvuTwV4aRtjeR+3jMkmGevdq/3xB0aTQbmaArj+Inb20CFRVj/zPYnF2TVAwgCz0BMp950fCz9PUBAV37skkBWB1zJf4C/LmsZQ81N6Q+X7azZBzbFlMlrpFqNLGg0HAljUJpp/BkJvtamHPwtGi68GrNJiTfqymBkcdFNyf
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66476007)(31696002)(2906002)(86362001)(316002)(6486002)(52116002)(6666004)(8936002)(508600001)(38350700002)(110136005)(6512007)(83380400001)(54906003)(66556008)(107886003)(4326008)(53546011)(921005)(6506007)(31686004)(5660300002)(186003)(26005)(2616005)(66946007)(38100700002)(8676002)(7416002)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZFFnZ0YxNUVmeGFlbGRvU00xTWk0TXJ5QXhIdDVRWGo2Y3l2L0tSNzRFcmcz?=
- =?utf-8?B?TlErb21NbndySDRqWTg0ZW1KWkRYUU1FbWNGT1p1aXRFQlhZaVJkM3lhMmJ0?=
- =?utf-8?B?anFJUEYrY2xuUzBFdWVLOHZhb1J3RnRyaUw1eWtvQ0kvd005UEppMm91UGRv?=
- =?utf-8?B?ZHdRbHlJVnZrWHBmWC9nYnhSY2paUmNsQVBnYlA5NjhMQjY0aWdEWDBFc3Rs?=
- =?utf-8?B?Ui9OUk9wZjhXV096eFc3d1dBUUIrOE5vdE54UkplWmd5dWFhQnp6TWEvMGlC?=
- =?utf-8?B?M3RnZ3BydU1LS3VjM1FWL0dlZXRqYzgxa1NYY2pPOTVNNUptd0d5aFJlbHg5?=
- =?utf-8?B?UUE2UGZjNFJBTFp3bjNaclJoNUdtbkNEMklJK25PeHJ5T3FiZFdPMCtmRENl?=
- =?utf-8?B?WmpWZCtsVTJ5dUVJaFJhWEQrbG12ODcyQ1RBSVNWQzhPTDlVdyt1a285S09t?=
- =?utf-8?B?NmR4eU1GS3ordXdjRzdUcGpHVVM1V2Y0NVBiYnlFNUZNS0pHYXVPbGczblRQ?=
- =?utf-8?B?Zks0K1AxUWtyMVlnbmdUZVBHZ2FrWlFoRjQ3dFJaZGh2UEdna1dGWGMyOWV2?=
- =?utf-8?B?V3MzK1dOVFBSZFY2VFpIMDNzQlhHVDdLQktrVk1UcVE1QVhlYjFqcXR3S1l5?=
- =?utf-8?B?eTRIWFBwNWMrZTNuZnFHaWdqTG1iWFZ2L3FYYURvVG1kZ2lHK2RvNVJQSTRq?=
- =?utf-8?B?cTVxc05DU0J5cHFFdWtYUk5XRDNPd0VJZGpGNlVoZlpJOTRzSHdqNXZzWng0?=
- =?utf-8?B?UStRTGY3NWxrTUVPMHVLaXJWTGF5ZVF3K3hsODN0d1RJZW5mcWNRcllieVdC?=
- =?utf-8?B?L21wZTg3QU40NDIxOVpWSkJGTElpVTB5MlVGbmZ0czgrcW9BOU91ZjU1Vy9s?=
- =?utf-8?B?Ykl4NnFkNU5BcW44amNsWktOQU5hZC9zblc5dmxaZXdibHRhZWQyS20xM2Iv?=
- =?utf-8?B?N2lFdmZIME5wWFVQbkYxYyswWHJHckRUenlXTFlJb0h3R2VTYSthUmt3U054?=
- =?utf-8?B?RUE1a3dSRkJtTTRYNlJZYjRwNzc4a3ZLbjNWL1BuWTFYc0w0VzYvRHlkWUtK?=
- =?utf-8?B?N2JCOXVKQlRhMkRZV3UrcWtZWHRNRVZXcjVTdG9kdFpSVmZESng0c200cHFE?=
- =?utf-8?B?ck40ZHUvTENQZk5zNlhnV1NERmZYN0RnOEYvWHJ2WVpHWEhzK2diVFFwTXBn?=
- =?utf-8?B?NDBlVFhxY2JHaUJ6K01jRis5VitLR0gzMXY4MWY0Q2hINVZMc003OVY2RCtY?=
- =?utf-8?B?M2krQ0V2Wmp0eno1T3RJbGpRR1creVBheDEzcWIwS0hFYk9YOXZxanc0WHNk?=
- =?utf-8?B?VlQzOFkxd01QV0dnU1F0M0J6dUxKaTkrYlU5ckJRcyt1cmRjWHdrZ2M3TWdm?=
- =?utf-8?B?TEpRZjRMU0JGOHM1MzdRMEpiT1pYcUphZ0FZY01UMXhaQURqa3dUOERJSjBh?=
- =?utf-8?B?NVRZRFNCZlV3eC9qaUdrWmhUSktPQldBdVZoOGlOWTd5a2hWN0RoeGR0QmlZ?=
- =?utf-8?B?YTM2Z1JsSVd2M2dTSVZaQXBqeWVhU0dsMUJQS1Jyc2phM1I2MEZ5WTRIclFE?=
- =?utf-8?B?dlc0TElVTnorOVVxNzNuU0U1VUVzK215QmlSVUYvTHZoUDFBTi9IN2dhZzdC?=
- =?utf-8?B?Q0ZPaWdSaEFaL3Q0L0ZBWjJXeXNvRDNTNkc3WmNQV1RkK09zTXFKWTVVL1dC?=
- =?utf-8?B?YlprVGl5dnhJaGpWY0IraW83dzhpbS9YVUkrOTQwVWdIbzFnT3pLOTF5QXBJ?=
- =?utf-8?B?d0lWRXRJYzBrV1RRL1V0Tzl2d3V3MHFnTU1CcjZKVW9GMDdibDN2cGYwd0k0?=
- =?utf-8?B?RHdBN216WDh1VGF4dldMM29wNjRrNHNKdWhndkk1azNNeitpOE5mL25vOHNt?=
- =?utf-8?B?TkNmaXBoNXRKUmZUTUt0MWJRWVZXdXRvVEE2YjBmYjBJdVUxd2g3Q2txM00z?=
- =?utf-8?B?bi84V3R6VEhhZHROMENPZlJFVFl2Mk1zNlFrZnhzbitXdzlIZlVvd1pDWlB3?=
- =?utf-8?B?dzI4UUxtVDNkUk5sUWoyUGQyKysvWllCMWQ2aTUxeHVSQ1kxSk1VQkFtaTJw?=
- =?utf-8?B?WFU3bUczYWwrN0pOZlVLK2NVSmd5ODVuR2hTUlV4QVUyWTJpMFhqR0l2NWVt?=
- =?utf-8?B?Y1NwMUdYdnlPd2JGaVIvQmNaSmpRU3E3U2EveStwZS9US3JtcGE3OGdHRVVV?=
- =?utf-8?B?aFZlWUR4ZnpVRCs4MkxlWS83cXdoV0g4bmdjMURoVlhwYjdhTnhvN2JhLzB1?=
- =?utf-8?B?WW9tTm55TWhOY24rUTA1Y2U0cVJmck81aHhSSjc4b3l2TnJoWTd0bjMzWGJi?=
- =?utf-8?B?N3lGUEZta0w0MTVvZ3o3OWpMcFozdzNXUU03M1lMdHZMY25Td25Hb2hnM0FH?=
- =?utf-8?Q?qhhnmajVyYEFzNPaP0W+k5OfO2aADM9i5yxZu?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9a2a244-7436-4722-5285-08da2416fd95
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 04:17:19.2084
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A9DWohszdBS51oM4HXuxEEqDFvNzCilHFO7lZe4OrVXcC/NkbWmtPk0qY/Qv4lSuCNBiJ7zpA4nsU7XgbU5QBi8qysVTzQh4K7XovZ6L7H4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR01MB2644
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: usb: tps6598x: Make the interrupts
+ property optional
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Martin Kepplinger <martink@posteo.de>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220414083120.22535-1-a-govindraju@ti.com>
+ <20220414083120.22535-2-a-govindraju@ti.com>
+ <be8ab691-98f1-5fb9-fec8-7213a2288d07@kernel.org>
+ <56c72151-af5f-366b-b17f-24b9fb6264da@ti.com>
+ <ae54dbb1-2b02-cba2-5de2-cf3d9a4e35f5@kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+In-Reply-To: <ae54dbb1-2b02-cba2-5de2-cf3d9a4e35f5@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -143,48 +81,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-as I'm not aware of the email change
-- Quan
+Hi Roger,
+
+On 21/04/22 00:46, Roger Quadros wrote:
+> Hi,
+> 
+> On 18/04/2022 08:19, Aswath Govindraju wrote:
+>> Hi Roger,
+>>
+>> On 14/04/22 23:40, Roger Quadros wrote:
+>>> Hi,
+>>>
+>>> On 14/04/2022 11:31, Aswath Govindraju wrote:
+>>>> Support for polling has been added in the driver, which will be used by
+>>>> default if interrupts property is not populated. Therefore, remove
+>>>> interrupts and interrupt-names from the required properties and add a note
+>>>> under interrupts property describing the above support in driver.
+>>>>
+>>>> Suggested-by: Roger Quadros <rogerq@kernel.org>
+>>>
+>>> I did not suggest to make interrupts optional by default.
+>>>
+>>> What I suggested was that if a DT property exists to explicitly
+>>> indicate polling mode then interrupts are not required.
+>>>
+>>
+>> ohh okay, got it. However, may I know if adding a dt property to
+>> indicate polling for aiding the driver, is the correct approach to model it?
+>>
+>> In terms of modelling hardware, as interrupts are not connected we are
+>> not populating the interrupts property. Shouldn't that be all. If we are
+>> adding a property explicitly to indicate polling that can be used by
+>> driver, wouldn't that be a software aid being added in the device tree?
+> 
+> The hardware (tps6598x chip) has an interrupt pin and is expected to be used
+> in normal case.
+> 
+> Some buggy boards might have forgot to connect it. We are adding polling mode only for these buggy boards. ;)
+> So polling mode is an exception.
+> 
+
+Yes as you mentioned the interrupt line is expected to connected but
+there could be cases where there are not enough pins on the SoC and
+polling is used intentionally. In these cases this would be a feature
+rather than a bug.
+
+Also, I feel like not adding interrupts property in the dt nodes will
+indicate polling. My question is why are we adding an extra property
+(which is being used only as an aid in the driver) when this feature can
+be modeled by making interrupts property optional.
+
+Thanks,
+Aswath
+
+> cheers,
+> -roger
+> 
+>>
+>> Thanks,
+>> Aswath
+>>
+>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++--
+>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+>>>> index a4c53b1f1af3..1c4b8c6233e5 100644
+>>>> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+>>>> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+>>>> @@ -25,6 +25,8 @@ properties:
+>>>>  
+>>>>    interrupts:
+>>>>      maxItems: 1
+>>>> +    description:
+>>>> +      If interrupts are not populated then by default polling will be used.
+>>>>  
+>>>>    interrupt-names:
+>>>>      items:
+>>>> @@ -33,8 +35,6 @@ properties:
+>>>>  required:
+>>>>    - compatible
+>>>>    - reg
+>>>> -  - interrupts
+>>>> -  - interrupt-names
+>>>>  
+>>>>  additionalProperties: true
+>>>>  
+>>>
+>>> cheers,
+>>> -roger
 
 
-On 22/04/2022 11:08, Quan Nguyen wrote:
-> When processing I2C_SLAVE_WRITE_REQUESTED event, if slave returns
-> -EBUSY, i2c controller should issue RxCmdLast command to assert NAK
-> on the bus.
-> 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
-> v7:
->    + None
-> 
-> v6:
->    + New introduced in v6                      [Quan]
-> 
->   drivers/i2c/busses/i2c-aspeed.c | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
-> index 771e53d3d197..ebc2b92656c8 100644
-> --- a/drivers/i2c/busses/i2c-aspeed.c
-> +++ b/drivers/i2c/busses/i2c-aspeed.c
-> @@ -244,6 +244,7 @@ static u32 aspeed_i2c_slave_irq(struct aspeed_i2c_bus *bus, u32 irq_status)
->   	u32 command, irq_handled = 0;
->   	struct i2c_client *slave = bus->slave;
->   	u8 value;
-> +	int ret;
->   
->   	if (!slave)
->   		return 0;
-> @@ -311,7 +312,9 @@ static u32 aspeed_i2c_slave_irq(struct aspeed_i2c_bus *bus, u32 irq_status)
->   		break;
->   	case ASPEED_I2C_SLAVE_WRITE_REQUESTED:
->   		bus->slave_state = ASPEED_I2C_SLAVE_WRITE_RECEIVED;
-> -		i2c_slave_event(slave, I2C_SLAVE_WRITE_REQUESTED, &value);
-> +		ret = i2c_slave_event(slave, I2C_SLAVE_WRITE_REQUESTED, &value);
-> +		if (ret == -EBUSY)
-> +			writel(ASPEED_I2CD_M_S_RX_CMD_LAST, bus->base + ASPEED_I2C_CMD_REG);
->   		break;
->   	case ASPEED_I2C_SLAVE_WRITE_RECEIVED:
->   		i2c_slave_event(slave, I2C_SLAVE_WRITE_RECEIVED, &value);
-
+-- 
+Thanks,
+Aswath
