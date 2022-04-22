@@ -2,53 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE3F50B575
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E990050B5C3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:57:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352844AbiDVKqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 06:46:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
+        id S1446963AbiDVLAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 07:00:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446828AbiDVKqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:46:30 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6BE27FC0;
-        Fri, 22 Apr 2022 03:43:35 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1650624211; bh=4zKNiCJ9mR8YNKg4xV+9DRTe5znRz0G2bXHhsbBhsuc=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=rbvLx9uVaZ9KLhaZck/JuJlU9H9gFERagLBhE3o2ytCZKQ11iJiiO/8KqezzNuSTn
-         pQCc4HfjB8ZDB11RdeTfmScFbabJXyS6U+rAc6/SCe8v9PGAjQPSd/0lUJEYEhBJb/
-         DAcjFfxZ553jXRIzeWyzghfGmwfRSlnEi3hT8HRc=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <YkXKmxJ0R3qpUoH4@sirena.org.uk>
-Date:   Fri, 22 Apr 2022 12:43:30 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <YkWfziQzprEsWL72@sirena.org.uk>
- <CCE4A06E-6D6F-457D-B3C5-C36209BF38D3@cutebit.org>
- <YkW4MPh8VWc8eSGg@sirena.org.uk>
- <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
- <YkXKmxJ0R3qpUoH4@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S245078AbiDVLAL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:00:11 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7874656401;
+        Fri, 22 Apr 2022 03:57:16 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id CB776580F59;
+        Fri, 22 Apr 2022 06:57:15 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Fri, 22 Apr 2022 06:57:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1650625035; x=1650632235; bh=t0Vm9xILeM
+        tEm0+ZRmoAPUxhxs4H3KoDqpfSFpCeFCw=; b=YyohwOWwHOsgUBEhklxIw81jQH
+        9k7QTlQ/m1chfbM67m+0hW+J9gC6M6REt0RZOv0kxcV3mVU0ScXWAtz8bTJoRWfr
+        h39uvBYqPEsgR7nFb0qijB/+vstZUi0TZ/how9i+VZQaoGnq2HsUShd/DZjOM72Y
+        UbnN0SFcAOLXFNkmucRsE7gGWzHf/I8SXDQN841DdKmdE9P+1T0UqTQn74Vi2pm9
+        /b13SwhKwJOQaaABmogrWklj6+cOSFo6dwcSWlMJIipbLw2teTqkYit9CbvlQsHx
+        /2bmmHf76lj9iXG9hJRVNy5Yt8FDk3ftKcfgEw2cx0UoIH9ztTjiHZ/MdTOg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1650625035; x=
+        1650632235; bh=t0Vm9xILeMtEm0+ZRmoAPUxhxs4H3KoDqpfSFpCeFCw=; b=i
+        U8nPM70ubfTAq9JEpnksZSiKccgJS/v8kX9pGTdKcgUiBHN4rDQM/c4Lgq4JL2HR
+        iDy00wOWuSCQAZXoDyWtLxu1Utf5X88aPC0doymtVSzDLd4/S2Ep2Jj6cHBekpTG
+        2KZkDoTxrrlmJNmgj449qTFBH3KZS9w2tLHkCrodp5EGzuuDP6/3hLw1mQSAdjb3
+        vF3oeIRT3hw/ReJoP7uA6fQkrPBGSbt9Ygbsgu7hVv2UgL2mdrMmSkVY9ABIAUMC
+        X2hou/ZnmrbeIWf6MhaZEYnc30U7xcYJ5cRUuwMU3+tTmOc3CpYO5qaufhDCnjhF
+        YPdaRylLN7MKSl4PYIogw==
+X-ME-Sender: <xms:CopiYvpMg8hB7wNpmcKj2c9-fUTff0aV2fB5qx5MxUk88lFsfRZuXA>
+    <xme:CopiYpp-fmHr5lxSrNy6k0HXJwDwH2MfQqaD6w-jP_5XDLZehoZDf5xqH0_9PwF2D
+    _3Q7UW1zdGwZMDyILI>
+X-ME-Received: <xmr:CopiYsOb8mHfLnR-4-ETneMFMMtqW8Xf_gwFS7tf9GX0HylDPpLpF5Xhk194DVmeXTKHVfvIXDostCKkkkARyFRA6elGSxqRXSK26Ws>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrtdeggdefvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepledvueduvdegleeufeetjeeuvefhieehjedutddtffekleekgeduiefgffdt
+    hffgnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+    thgvtghh
+X-ME-Proxy: <xmx:CopiYi7w5KJVhVmQgmTJeLJvfycuQZkbrISLSqb7SB_NXdvUAZyoPA>
+    <xmx:CopiYu5b75WZpoAisop1NSRQcW46FVY3pRultQY6ns1ZPAx292OLXA>
+    <xmx:CopiYqiU0Ie1XFuc5PcX1rrVtTeSuAFCCFvXYu8cAeqaid2zrKOvxQ>
+    <xmx:C4piYhwlFs3WkiNwqadkyWiP3PYOKVYUrZAEDGBE5fWMd4iufn3zFw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 22 Apr 2022 06:57:14 -0400 (EDT)
+Date:   Fri, 22 Apr 2022 12:57:12 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Guillaume Ranquet <granquet@baylibre.com>
+Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
+        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
+        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
+        vkoul@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-phy@lists.infradead.org, markyacoub@google.com,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 01/22] dt-bindings: mediatek,dpi: Add DP_INTF
+ compatible
+Message-ID: <20220422105712.bdpbwliificvon4j@houat>
+References: <20220327223927.20848-1-granquet@baylibre.com>
+ <20220327223927.20848-2-granquet@baylibre.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="anrqwesp6j2b4lfg"
+Content-Disposition: inline
+In-Reply-To: <20220327223927.20848-2-granquet@baylibre.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -56,77 +96,81 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-> On 31. 3. 2022, at 17:36, Mark Brown <broonie@kernel.org> wrote:
+--anrqwesp6j2b4lfg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Mon, Mar 28, 2022 at 12:39:06AM +0200, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 >=20
-> On Thu, Mar 31, 2022 at 05:04:32PM +0200, Martin Povi=C5=A1er wrote:
->>> On 31. 3. 2022, at 16:18, Mark Brown <broonie@kernel.org> wrote:
+> DP_INTF is similar to DPI but does not have the exact same feature set
+> or register layouts.
 >=20
->>> Yes, having two devices driving the bus at the same time wouldn't be
->>> great.  How is the TDM slot selection for the signals done in the
->>> hardware, I'm not seeing anything immediately obvious in the driver?
->>> I'd have thought that things would be implemented such that you =
-could
->>> implement speaker protection on all speakers simultaneously but =
-perhaps
->>> not.
+> DP_INTF is the sink of the display pipeline that is connected to the
+> DisplayPort controller and encoder unit. It takes the same clocks as
+> DPI.
 >=20
->> I don=E2=80=99t know. I would have to go study the details of this. =
-Should I see
->> if I can find a combination of =E2=80=98ASI1 Sel=E2=80=99 =
-=E2=80=98VSENSE=E2=80=99 =E2=80=98ISENSE=E2=80=99 settings
->> that would lead to driver conflict on one of the models, or is there
->> a chance we could hide those controls just on the basis of =E2=80=98it =
-doesn=E2=80=99t
->> do anything usable and is possibly dangerous=E2=80=99?
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 >=20
-> If ISENSE and VSENSE output are controlled by the same mux as routing
-> then we should lock one of the controls out for at least stereo =
-devices
-> (it might be a good idea to check if the output is actually high Z =
-when
-> ISENSE and VSENSE are off rather than just driving zeros, if not it
-> definitely has to be the routing control).  My instinct is that it's
-> better to preserve the ability to implement speaker protection in =
-future
-> since that is something that'd be broadly useful, especially if =
-someone
-> comes up with a generic speaker protection implementation in which =
-case
-> there should be an awful lot of systems out there which could benefit.=20=
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
+yaml
+> index dd2896a40ff0..2dba80ad3b18 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -4,16 +4,16 @@
+>  $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: mediatek DPI Controller Device Tree Bindings
+> +title: mediatek DPI/DP_INTF Controller
+> =20
+>  maintainers:
+>    - CK Hu <ck.hu@mediatek.com>
+>    - Jitao shi <jitao.shi@mediatek.com>
+> =20
+>  description: |
+> -  The Mediatek DPI function block is a sink of the display subsystem and
+> -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a parall=
+el
+> -  output bus.
+> +  The Mediatek DPI and DP_INTF function blocks are a sink of the display
+> +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel da=
+ta on a
+> +  parallel output bus.
+> =20
+>  properties:
+>    compatible:
+> @@ -23,6 +23,7 @@ properties:
+>        - mediatek,mt8173-dpi
+>        - mediatek,mt8183-dpi
+>        - mediatek,mt8192-dpi
+> +      - mediatek,mt8195-dpintf
 
+It seems a bit weird to have all instances of DP_INTF with a separator
+but the compatible doesn't have one?
 
-Sorry for having put this on hold for a while.
+Is there a reason to not use dp-intf?
 
-I looked in the TAS2770 and TAS2764 drivers/datasheets, and to answer
-the questions we had:
+Maxime
 
- * VSENSE/ISENSE output slots are configured independently of audio =
-samples
-   routing. Kernel drivers configure the slots based on the =
-'ti,imon-slot-no'
-   and 'ti,vmon-slot-no' properties of devicetree.
+--anrqwesp6j2b4lfg
+Content-Type: application/pgp-signature; name="signature.asc"
 
- * By default codecs transmit Hi-Z for duration of unused slots.
+-----BEGIN PGP SIGNATURE-----
 
-So once we supply the devicetree props it should be electrically sound
-under any configuration of userspace knobs.
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYmKKCAAKCRDj7w1vZxhR
+xWHVAP9XOs5mllTpT84nKFlJqhBvEdANoAc/yLINNdL4rTwK/AEA2W/abW6SXtii
+kYk/IHsQm/a6SEpxbGGVFYXWq6N3fQE=
+=Cd+2
+-----END PGP SIGNATURE-----
 
-One final thought on the playback routing controls: On systems with >2
-speakers, the codecs need to be assigned slots through set_tdm_slot.
-The macaudio driver RFCed here assigns a single slot to each speaker,
-making the effect of each speaker's routing control this:
-
-  'I2C offset' -- uses a random slot
-
-  'Left' 'Right' 'LeftRight' -- uses the single slot we configured
-
-I suppose I better assign two slots to speakers in each left-right pair
-of the same kind (e.g. woofer 1, woofer 2, tweeter). This way the
-routing control will mimic its behavior from simple stereo systems but
-replicated within each left-right pair.  (I would prefer to hide the
-controls altogether, but as I learned that hiding things unless proven
-dangerous is an ASoC non-goal, this way I can make the controls do
-something interesting.)
-
-Martin
-
+--anrqwesp6j2b4lfg--
