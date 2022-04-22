@@ -2,131 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE0E50BD28
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C95450BD2E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382115AbiDVQfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 12:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36834 "EHLO
+        id S1449736AbiDVQf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 12:35:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389617AbiDVQfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:35:19 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90F65EDF6;
-        Fri, 22 Apr 2022 09:32:25 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id br15so809767lfb.9;
-        Fri, 22 Apr 2022 09:32:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YewSinPcGEIeTbpWSFNv/QaYp2GFPGAdYjpjIS4ZQuY=;
-        b=QpUHz1vVPZYl1ycw382VVPxZtDcCpYg9jeqLetG000tFyQ18XJS015+5bAQqA6dx89
-         9gVQ7zIAWH2KzxKxl4dDiA2funO+ozgnPI+NfDVhW32i9F1MGVa5BrYD2IYn3CVBALwB
-         l3QnapdrQeSLGmk1G/CHAw+DfkmqfZl242vs5phnP9pALQvmO2gGDRxmYRxjPBUqnDB8
-         u4nSgB31wclp1Yt4qn43kcUu2YM4RNBMssrvyNDF+5wejwWhnmlTyAhLTrRyEv8+CXr9
-         7rsIZSTTWEGvoY9QahEIVFY/qfySR/ooP9pbigZxOBpAyJwWejd9g+OP34C+hNqlGMyp
-         Q8tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YewSinPcGEIeTbpWSFNv/QaYp2GFPGAdYjpjIS4ZQuY=;
-        b=XS8fUAwK7Xcexho8eeMrqkbohTz4ib7Pdu/WHfMQ0TtaKQKJaTktlqxql3zPXb4ijL
-         eJF/KAW5DTQ6n6x2l8i7r2vKZeehcziN9OaKDWDfEOcfEsrPQdbeJ8Ii5kIaUOZk9aqZ
-         cUPSBplzV5tLSsuc2bQE1558eyWflzG+9vFMMrgVqsOQybdK2vojt1qHvCuCmgUqQTJ2
-         zT8HFiSh4GSJdnbyxZyTrJ1yQqmQ79By0Ru9MPiNb3P83c1I+/SHaUx4k1Y5ff0vndwr
-         kEX4U0f3GSL2J7r6AIxD9OmT7EijFbNrW66WpaYHyEj65i8ZkoT15EY0Cm7OI9WZrsw4
-         Up6g==
-X-Gm-Message-State: AOAM532BCmX6FhSSYQxiwxTVQImyam6rQfyMfG8qv407f9K8TmIX3tLc
-        4uPZPXWbkPQsI7Dv6/dqdFE=
-X-Google-Smtp-Source: ABdhPJxsRAU0DiEyPLHTIbsCE9CV7Ihho1WvyGZYkNK20zcsObdi8pplNFmCWlfpI6F5gVdvdEgaSw==
-X-Received: by 2002:a05:6512:16a9:b0:44a:2f67:3b29 with SMTP id bu41-20020a05651216a900b0044a2f673b29mr3859596lfb.153.1650645143913;
-        Fri, 22 Apr 2022 09:32:23 -0700 (PDT)
-Received: from orome ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id j7-20020a056512028700b00471bab03deesm277168lfp.38.2022.04.22.09.32.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 09:32:22 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 18:32:20 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-Cc:     claudiu.beznea@microchip.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] dt-bindings: pwm: convert atmel pwm to json-schema
-Message-ID: <YmLYlFEFA0eGqEco@orome>
-References: <20220307153656.177589-1-sergiu.moga@microchip.com>
+        with ESMTP id S1354009AbiDVQfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:35:55 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034E85DA79;
+        Fri, 22 Apr 2022 09:33:02 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id EFEFF8393B;
+        Fri, 22 Apr 2022 18:32:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650645180;
+        bh=H6Ng9dU4SgWEq5Ejz5YMWUlWTgL9RMB8+WAFzJPrCxI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=wUbVqSkmAaXvc7xWxOapahlsTdkDRDpelDR7H+PXo3O5FiNGmx2hWE/rkBi47POK4
+         dYthtV04SJcZwaJ+TncknDAUP2CdcL7Aaej2VaPuzUwy0Y8e9u+ikVG92hXT7lZUl9
+         xa33paX4YmxlkY5HgiuGHlK8vp/cv+Nf/VkMrCc5pX76x8GWYITkf+2H5n/ysuqqSK
+         4YQGIQlIkYF/VHtnBVHBC7LhcYslwfv5DkoqVnKb1lmq71oK0/TWDLp1Ig/oHVYu8r
+         j2VY7861GFMg5zvKxn4KNwe6b1MMOwa8srhjVVHTK/XZbwAjOjY+jeJi65FdpBTJ6j
+         WBJW0NZ2TPa0Q==
+Message-ID: <174bea56-3e99-e01c-4133-f1350d34448d@denx.de>
+Date:   Fri, 22 Apr 2022 18:32:59 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BMMd2rJA7OnOnIT7"
-Content-Disposition: inline
-In-Reply-To: <20220307153656.177589-1-sergiu.moga@microchip.com>
-User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 6/8] ARM: dts: stm32: enable optee firmware and SCMI
+ support on STM32MP15
+Content-Language: en-US
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>, arnd@arndb.de,
+        robh+dt@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        soc@kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>, etienne.carriere@st.com
+References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
+ <20220422150952.20587-7-alexandre.torgue@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20220422150952.20587-7-alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 4/22/22 17:09, Alexandre Torgue wrote:
+> Enable optee and SCMI clocks/reset protocols support.
+> 
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index 7fdc324b3cf9..1b2fd3426a81 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -115,6 +115,33 @@
+>   		status = "disabled";
+>   	};
+>   
+> +	firmware {
+> +		optee: optee {
+> +			compatible = "linaro,optee-tz";
+> +			method = "smc";
+> +			status = "disabled";
+> +		};
 
---BMMd2rJA7OnOnIT7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Mar 07, 2022 at 05:36:54PM +0200, Sergiu Moga wrote:
-> This patch series addresses the conversion of the Atmel PWM DT
-> binding to the DT Schema format and adds the SAMA7G5 compatible to
-> the respective converted binding.
->=20
-> Changes since v2:
-> - Moved `allOf` between `maintainers and `properties`
-> - Replaced `additionalProperties: true` with
->  `unevaluatedProperties: false`
-> - Used 4 spaces indentation for `examples`
-> - Modified file path in `MAINTAINERS`
->=20
-> Sergiu Moga (2):
->   dt-bindings: pwm: convert atmel pwm to json-schema
->   dt-bindings: pwm: at91: Add SAMA7G5 compatible strings list
->=20
->  .../bindings/pwm/atmel,at91sam-pwm.yaml       | 47 +++++++++++++++++++
->  .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 --------------
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 48 insertions(+), 36 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,at91sam-p=
-wm.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
-
-Applied, thanks.
-
-Thierry
-
---BMMd2rJA7OnOnIT7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmJi2JQACgkQ3SOs138+
-s6FSvA//Y0U6CmqV/ssGT2v/ciRSryyP2fXgj3fWC/WgDBV4NkwMV+WFO1UpyP93
-KfUO1IQTwAOBxaI33vdqKzkYzRdN3xt1/oEEV2pFz+uDiw30xecwslpJQvsHLKid
-BpRvwjaZuzurIaxYEbRwV6CWGyxtGrLXt7DoQ1aQl9X4x5M2nZZaPIFJYC7kirpl
-tctAwP8FKc/spZ4NFktKuDGvQnIHUGxYI6/6GWhx67ILJ2zJnR9AowxxNs6ID+2o
-vr3zW/AIhSoLA04xoWdNDqyv3cuT3lod0DedaHRzucHv3kGyeoF8Vfhi+QyUxKVs
-NGXMJjrfqnqVwlvVtQt99EEug8NTX+R9a6viuTEQKLX9L34l2A1jt65dMXPS7POy
-kk1OrV4v9s3BJsY4tEUH0aFRTHhj1NCs7VJeJjxi9lH7bCAbq/IlwFLSO1ojWcuC
-YxXcJ2VdUQrGKvp93CThbdhwrly2xXrOpck2FWz7xCc3yBcHOHm+wOmtbq06oMFW
-wCJHt6bp/eC0XLsPlIGMg9q63vL5PlkYkKT4cMKE6vhhuNKmC3I4iUBiPICO5n/b
-klGE8BrjdsvAPqeQmdMPCuxYP7MZGnrczzcItjVlkOsSlyMbppRNL721S2Baid0G
-WPfO7j5gD+jeYobA9icC78f3pr5XhwSOpM8mtSdskdtpYiLQdks=
-=vpYA
------END PGP SIGNATURE-----
-
---BMMd2rJA7OnOnIT7--
+Doesn't this TEE node get automatically generated and patched into DT by 
+the TEE ? I think OpTee-OS does that.
