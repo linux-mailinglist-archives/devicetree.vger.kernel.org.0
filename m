@@ -2,169 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E63F50B4E1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB40850B4E8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446489AbiDVKXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 06:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55746 "EHLO
+        id S1446396AbiDVKZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 06:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235156AbiDVKXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:23:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E4C387BB;
-        Fri, 22 Apr 2022 03:20:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S235156AbiDVKZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:25:54 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75D4F54BE5
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 03:23:02 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 26ED061E6E;
-        Fri, 22 Apr 2022 10:20:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78215C385A4;
-        Fri, 22 Apr 2022 10:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650622855;
-        bh=l8DMuJMxhFg3oWj3P06LfAZsH8ZofBIGfJ+Zsxq3M3c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tXz8dnNMqZa1305TV+OZTAXZYU1mQErY7qQwDOrLEGInkAMbEIzqrG3b+N/MezYx+
-         nltOcc4WCszV0jlGsgS1jSmOpfo+zKsVzo3QSZyQ+n4wkjVgoZgzp6Ak5D7/TmmJ2X
-         OqlL4P+FUNqoeKRzqD69pPyT0SP9R1wxn9ZML6uohJbjy12uHgUFabDfUL5BAu+U+I
-         3zZf2YNJh6naLmWslpXXKwp13wozl37QHGEhPsNnvVmppbSUoKH9TTGIzMJMBK5JKR
-         ToquwwGVQQmCB9ufrgASyzefmiULPiVKvutwkGXcCs2etHqxKwQ7ihzemQ8w0C2IDF
-         FgVInoYZe6cag==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nhqPA-0002Om-Fm; Fri, 22 Apr 2022 12:20:49 +0200
-Date:   Fri, 22 Apr 2022 12:20:48 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2688C8186D;
+        Fri, 22 Apr 2022 12:22:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650622980;
+        bh=Ny7NWkl8uriuaT0g2E4LEHXq8AExjh+FJOsGUX23860=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PHV+gIhBRaQukKgIMOePySlBrYE8us88OiN0R7i4gV2/izlLPJAh4JCn0gzuXiI4F
+         wYbaTtY2eXF3jZFqegjl6ldBTQCsenRwYYbRKVdq16DvX/PlN0bS3afP9A/NSxQgOO
+         a5wZo45dUFC9RDcnYTj2yxRo+qPeYhktWzGp4lb9l+xeD668FwWomXkc/uQdL4i6E9
+         2V6+lJzPxURn8JvSIg4tLbn23eGTwQGVYjxsUDhv/7AtYYED2NTisyXIgrjC3CRYJQ
+         GXwW9mUrMiTQpQhXHnEEF+k5/bogoRFPfBkinjoH/Jih6czHJrlPGDNMZemYlu8igr
+         kMbqDVKJrYOxA==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Prasad Malisetty <quic_pmaliset@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 1/5] phy: qcom-qmp: add support for pipe clock muxing
-Message-ID: <YmKBgGHtfDcO1Mkg@hovoldconsulting.com>
-References: <20220421102041.17345-1-johan+linaro@kernel.org>
- <20220421102041.17345-2-johan+linaro@kernel.org>
- <de4f9514-5132-f208-d43f-4c50afcda203@linaro.org>
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: display: simple: Add DataImage FG040346DSSWBG04 compatible string
+Date:   Fri, 22 Apr 2022 12:22:41 +0200
+Message-Id: <20220422102242.18959-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <de4f9514-5132-f208-d43f-4c50afcda203@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 02:08:27PM +0300, Dmitry Baryshkov wrote:
-> On 21/04/2022 13:20, Johan Hovold wrote:
-> > Some QMP PHYs need to remux to their pipe clock input to the pipe clock
-> > output generated by the PHY before powering on the PHY and restore the
-> > default source during power down.
-> > 
-> > Add support for an optional pipe clock mux which will be reparented to
-> > the generated pipe clock before powering on the PHY and restored to the
-> > default reference source on power off.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >   drivers/phy/qualcomm/phy-qcom-qmp.c | 71 ++++++++++++++++++++++++++---
-> >   1 file changed, 65 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> > index 7d2d1ab061f7..bc6db9670291 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> > @@ -3292,6 +3292,8 @@ struct qmp_phy_combo_cfg {
-> >    * @rx2: iomapped memory space for second lane's rx (in dual lane PHYs)
-> >    * @pcs_misc: iomapped memory space for lane's pcs_misc
-> >    * @pipe_clk: pipe clock
-> > + * @pipemux_clk: pipe clock source mux
-> > + * @piperef_clk: pipe clock default reference source
-> >    * @index: lane index
-> >    * @qmp: QMP phy to which this lane belongs
-> >    * @lane_rst: lane's reset controller
-> > @@ -3311,6 +3313,8 @@ struct qmp_phy {
-> >   	void __iomem *rx2;
-> >   	void __iomem *pcs_misc;
-> >   	struct clk *pipe_clk;
-> > +	struct clk *pipemux_clk;
-> > +	struct clk *piperef_clk;
-> >   	unsigned int index;
-> >   	struct qcom_qmp *qmp;
-> >   	struct reset_control *lane_rst;
-> > @@ -3346,6 +3350,7 @@ struct qcom_qmp {
-> >   	void __iomem *dp_com;
-> >   
-> >   	struct clk_bulk_data *clks;
-> > +	struct clk *pipe_clksrc;
-> 
-> Please move this to qmp_phy too.
+Add DataImage FG040346DSSWBG04 4.3" 480x272 TFT LCD 24bit DPI panel
+compatible string.
 
-Ok.
- 
-> > +	/* Get optional pipe clock mux and default reference source clock. */
-> > +	qphy->pipemux_clk = of_clk_get_by_name(np, "mux");
-> > +	if (IS_ERR(qphy->pipemux_clk)) {
-> > +		ret = PTR_ERR(qphy->pipemux_clk);
-> > +		if (ret == -EPROBE_DEFER)
-> > +			return ret;
-> > +
-> > +		qphy->pipemux_clk = NULL;
-> 
-> This makes the driver ignore every possible erorr except -EPROBE_DEFER. 
-> However the driver should behave in quite the oppposite way. Please use 
-> devm_clk_get_optional() instead. It would do that in better way.
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: Add AB from Thomas
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-We'd need to add an optional version of devm_get_clk_from_child() for
-that due to the questionable "lane" child nodes this driver uses.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 1eb9dd4f8f58..cfe7bb9f89de 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -105,6 +105,8 @@ properties:
+       - chunghwa,claa101wb01
+         # Chunghwa Picture Tubes Ltd. 10.1" WXGA TFT LCD panel
+       - chunghwa,claa101wb03
++        # DataImage, Inc. 4.3" WQVGA (480x272) TFT LCD panel with 24-bit parallel interface.
++      - dataimage,fg040346dsswbg04
+         # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
+       - dataimage,scf0700c48ggu18
+         # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
+-- 
+2.35.1
 
-The above works for an RFC, but testing for -EINVAL and -ENOENT handles
-a few more theoretical errnos until an optional helper is in place.
-
-> Not to mention that this code leaks a refcount on the clock.
-
-True, just like the driver has been doing with the pipe clock and lane
-reset since it was merged. I'll fix that up.
-
-> > +	} else {
-> > +		qphy->piperef_clk = of_clk_get_by_name(np, "ref");
-> > +		if (IS_ERR(qphy->piperef_clk)) {
-> > +			ret = PTR_ERR(qphy->piperef_clk);
-> > +			return dev_err_probe(dev, ret,
-> > +					     "failed to get lane%d piperef_clk\n",
-> > +					     id);
-> > +		}
-> > +	}
-> > +
-> 
-> As a second thought.
-> This needs to be more explicit. If the chipset requires the pipe clock 
-> remuxing, we must fail if the clocks were not provided. So depending on 
-> the qmp instance/property the driver should either use devm_clk_get() 
-> (instead of _optional) or skip this block completely.
-
-No, the kernel is not a DT validator (and we have the YAML bindings for
-that now).
-
-> But this will not work with earlier DTS files.
-
-So this is not a problem (but if we really wanted to have the driver
-validate the DT it can be done by updating the compatible strings).
-
-Johan
