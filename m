@@ -2,120 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95EA450C003
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4309250BFE9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:44:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbiDVSxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:53:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52532 "EHLO
+        id S229505AbiDVSn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:43:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230087AbiDVSxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:53:32 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986191FC1E2;
-        Fri, 22 Apr 2022 11:46:28 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id p21so9523789ioj.4;
-        Fri, 22 Apr 2022 11:46:28 -0700 (PDT)
+        with ESMTP id S229500AbiDVSn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:43:58 -0400
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845A528E3D;
+        Fri, 22 Apr 2022 11:39:56 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id e30so7907012eda.0;
+        Fri, 22 Apr 2022 11:39:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VZJZWU/RxygMbphG0Oj9zjd06v34ardwpbG1ITBoIDw=;
-        b=YZrWTzrqWk1rSABVylk7srJID3fDK9uMYJG42OPvae8wfCRKj7ksYtYZn7xN0yrP8i
-         e41Zp35cubbwqYSgd29HYOnVMmbr5qt6fEZ8X/yNW7wvKE6Of2E2X84vq2sbLpm0v1ft
-         7Yc10MU2AuvdmmQhwLN/afW/ybLHkuYWzff9R78t3w/+XyhG60uKEsY2w5UdcUX6Fu2J
-         LMy2HV3lFWnIFWErseiwxIAg5WQVCIyoHpY/usBPF0WEoB6IZcWuDlIdWhOUBNbbC3U9
-         o1RNHfw+J/BuziFmLiNgBRaa2DJDNESPnhnvUgumXYSBsoCUt6ByYC2DxaEy9zCJP3wE
-         T5/w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bPNNWfLorKQdlTFIcjMKIT2TFnHa6NCO/tOM3FpNRzI=;
+        b=pP6MZqf6ePvtfF8C835aDJIPBvIV4lDmCDZhjumIvJCQVxJtJREqUoC0VxvW6c78CI
+         W1Db4zEr+1RPlTjOQCGM2twHKDnpTZHL4FYuvzjhHG0ZblJmKqye31fbrgxc3NKypZ1I
+         Ug3HvhkTfBISMUd/Jrb4wumZvYE1Z6LFM5tuRsWGOKsfJRunnWB1fLbjGce/CsMUYyo3
+         JMdpCSzshEeL2Q+5usL2vPWhlKRzLHKvxcK1dGqVPO0b7or2wMsySbttMus3R4kVqv1l
+         BRRLX+sMN8v3A4fxeTVpW8gtLjWSnxUPPqgkpZtNjsvsa7VSqCun6TQhFpUATMUeg8Q8
+         mlig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VZJZWU/RxygMbphG0Oj9zjd06v34ardwpbG1ITBoIDw=;
-        b=kHZH3WGNLzMYnQKcX8w+DjR3WAXSQpLinbGqW5w6I+rEOnh/ZT64SWJeh7jkE1ri7j
-         /iwRNcrdmd97m71ku5XJFNqyrMxi6BVVW0jGxKaXVSnV2t/66ka04Vp2aLIlErHhVgnC
-         +OGvv8fw17i7m7UnCgvFD+rYGoa0L5jQWh1QsUVIZKmhT+BvANvGQQcij+xy6Orper7K
-         Hoaqy2IDoz/f2oXlF2a5CklBXkODa3cwecJP86EFBqxjZBptJ6DFmqGf2c8UORPPtNe0
-         dUeTaKqxyUz+Z5fYw8btueZwrfZzPwxp0xeb5xwicVl13DuW/pb/jgOjet2PpmGBtzu5
-         9sZQ==
-X-Gm-Message-State: AOAM532BUKYCl2ZIoeMNB2cEkA9lRvdRRPihzegTQz15+rknz0Fo4eYD
-        LjU777hxgeqezvjk64N+zI41Sghjp+I=
-X-Google-Smtp-Source: ABdhPJzt8+ULZ4U/JS1QogjvrFZ9RPxY2qsOw5RmC0oJk1pCiWYhJttEH2fg8OhbQGWlcVH7Xy1Pxw==
-X-Received: by 2002:a65:41c3:0:b0:363:5711:e234 with SMTP id b3-20020a6541c3000000b003635711e234mr5039062pgq.386.1650652113575;
-        Fri, 22 Apr 2022 11:28:33 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id b17-20020a056a000a9100b004e1b7cdb8fdsm3593300pfl.70.2022.04.22.11.28.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 11:28:32 -0700 (PDT)
-Message-ID: <68c4710d-013e-85e0-154d-413f4e13b27e@gmail.com>
-Date:   Fri, 22 Apr 2022 11:28:30 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bPNNWfLorKQdlTFIcjMKIT2TFnHa6NCO/tOM3FpNRzI=;
+        b=cPrpl+IQ1PS1qREDOo0BcziXavDqAPCtiBNTW+h/xpfoS/4doseyAtinKFa11Liztx
+         lrlIsvAF/ykT2PEh+tv4q0Dj1m0sAijNW+Fd0yrNYTETw62LE73f1KvHpdIwB8JaG5pX
+         EvmdNWs2UmuWXNWbxSvhis29ts6mur5lzUFvD1jeyt2LtNlxgG84Zd5n3wFGJlE0lH8j
+         bCwOxoD6fImHacX9HA9ofhErqTiwEbgcPpSG941oh45/Tlge4kc2p/d2K09am0a82r2h
+         X6Hvy4vyiJupG1oTsUE25wyXoDa9jm55GoB4w0Z9kaUH/GgfsN8EUFtVQBsfUYVxBOzz
+         i98A==
+X-Gm-Message-State: AOAM531L+Q3ZS3k+IgP4ZZRd4+AmX7RXvVDGxBiJvF/ts2M1pwcvGG/N
+        f1blcohI5synUsRJoUW/N4FivV/291agsupulIo=
+X-Google-Smtp-Source: ABdhPJwE2DVZWKHijzJDzimQ+LsCESxc4MQeRHdyFiQT+g0Dn0dBzdTwYzWmusdEEtXivLVlXKGE0ciNAZff560gHD8=
+X-Received: by 2002:a50:bae3:0:b0:425:b2b5:6248 with SMTP id
+ x90-20020a50bae3000000b00425b2b56248mr6239060ede.281.1650652404409; Fri, 22
+ Apr 2022 11:33:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH net-next 2/5] net: dsa: add out-of-band tagging protocol
-Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-References: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
- <20220422180305.301882-3-maxime.chevallier@bootlin.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220422180305.301882-3-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220419160058.9998-1-markuss.broks@gmail.com> <20220419160058.9998-2-markuss.broks@gmail.com>
+In-Reply-To: <20220419160058.9998-2-markuss.broks@gmail.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Date:   Fri, 22 Apr 2022 21:33:13 +0300
+Message-ID: <CANhJrGMe0Vxt_KxzMX_9oGyaFeMi5hmNCYje99a8DB-tHZKuYg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: regulator: Add bindings for Silicon
+ Mitus SM5703 regulators
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/22/22 11:03, Maxime Chevallier wrote:
-> This tagging protocol is designed for the situation where the link
-> between the MAC and the Switch is designed such that the Destination
-> Port, which is usually embedded in some part of the Ethernet Header, is
-> sent out-of-band, and isn't present at all in the Ethernet frame.
-> 
-> This can happen when the MAC and Switch are tightly integrated on an
-> SoC, as is the case with the Qualcomm IPQ4019 for example, where the DSA
-> tag is inserted directly into the DMA descriptors. In that case,
-> the MAC driver is responsible for sending the tag to the switch using
-> the out-of-band medium. To do so, the MAC driver needs to have the
-> information of the destination port for that skb.
-> 
-> This tagging protocol relies on a new set of fields in skb->shinfo to
-> transmit the dsa tagging information to and from the MAC driver.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+On Fri, Apr 22, 2022 at 8:36 PM Markuss Broks <markuss.broks@gmail.com> wrote:
+>
+> This patch adds device-tree bindings for regulators on Silicon Mitus
+> SM5703 MFD.
+>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
+>  .../siliconmitus,sm5703-regulator.yaml        | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml b/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+> new file mode 100644
+> index 000000000000..a8ffd3ecf3a5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/siliconmitus,sm5703-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Silicon Mitus SM5703 multi function device regulators
+> +
+> +maintainers:
+> +  - Markuss Broks <markuss.broks@gmail.com>
+> +
+> +description: |
+> +  SM5703 regulators node should be a sub node of the SM5703 MFD node. See SM5703 MFD
+> +  bindings at Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+> +  Regulator nodes should be named as USBLDO_<number>, BUCK, VBUS, LDO_<number>.
+> +  The definition for each of these nodes is defined using the standard
+> +  binding for regulators at Documentation/devicetree/bindings/regulator/regulator.txt.
 
-First off, I am not a big fan of expanding skb::shared_info because it 
-is sensitive to cache line sizes and is critical for performance at much 
-higher speeds, I would expect Eric and Jakub to not be terribly happy 
-about it.
+Maybe It'd be better to nowadays refer to the regulators.yaml
 
-The Broadcom systemport (bcmsysport.c) has a mode where it can extract 
-the Broadcom tag and put it in front of the actual packet contents which 
-appears to be very similar here. From there on, you can have two strategies:
-
-- have the Ethernet controller mangle the packet contents such that the 
-QCA tag is located in front of the actual Ethernet frame and create a 
-new tagging protocol variant for QCA, similar to the TAG_BRCM versus 
-TAG_BRCM_PREPEND
-
-- provide the necessary information for the tagger to work using an out 
-of band mechanism, which is what you have done, in which case, maybe you 
-can use skb->cb[] instead of using skb::shared_info?
--- 
-Florian
+Best Regards
+-- Matti Vaittinen
