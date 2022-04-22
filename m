@@ -2,185 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 366BA50C0E6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 23:04:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 634BC50C112
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 23:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbiDVVFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 17:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
+        id S229927AbiDVV0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 17:26:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiDVVFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 17:05:50 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C377217DC7
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 13:01:02 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id u17-20020a05600c211100b0038eaf4cdaaeso8648663wml.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 13:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5zGZiMitS1evgY9qIYenBHSrFm6S3d/BLWaCHm4n4f0=;
-        b=1ImwZnzv/pW4MYKDl7BNUFvreWwbrSTg0DMQTP4+TSk5IK+AkNdFJyixtjirDgA3f+
-         NJCUBPDMZrT7O0sNprnYcjiTPtwDG0ef8tBtsH8e21qrzxeNAXuV0OSq5jtwqxWhNxzo
-         qPA3vWsBdP4djkk0IQ5cIrb/r/yGmeyL/R5EZAf+TTic4/JAbT2BLdpJLppvxLXRdAfN
-         Dl/PhHMhjcxa0UtTrH2h4ZwPaFlqqGxeco7raSz9VbkTYOcbHUDlieH9P0v48qTkoRM6
-         MDUWYx0e3kBJ7RafnzceQVJtqyMH+Mm59cYr7ei7tf8+E1TLthrSJaNtUPeqoy7vBJmz
-         fGmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5zGZiMitS1evgY9qIYenBHSrFm6S3d/BLWaCHm4n4f0=;
-        b=af+aCgJaXfwhcUzUUY4jxxhrB+ba1gle9lSBhauTT0tBUQlLsWEs9Sj1+HtREgl75k
-         1NgZqTxwQ0T0aSSgrwXVA/xauwdCfxByxrrFyRMXoRryEOXGBmT7p75doHUABugyMZwh
-         fr1qIiJTw8w63R5rwlHXRFnXlZ3VlRbIV4/wRb5XqDHrksD3NAW902PhCtstPdTKxZB6
-         gSR1Rhj5RpVlaWjIxQVDvgl5ay5m8eOcDyKaTfd+cx9OUGpB+OI8IXiJvM8O/esA6AvA
-         lcJ9bI8NVSQe5nf7vhrp+laUEfYBqmq21iZHKGzztQVdhgPKwsqvPFmRHlOQrFaYR9BY
-         Vo/w==
-X-Gm-Message-State: AOAM530O6baRDdcW1KI5b7upMZKamgUai/6NiML7JCKXzo95gBdWBhgW
-        8QKHm0fsdIr2O/XfhqMIq57jQg==
-X-Google-Smtp-Source: ABdhPJxafWASbjCLREtp5weepR8B65VITkUSrM/NS4txPAdZiUIXRh8lCcv0VRgQxZRDr4eaie+oSA==
-X-Received: by 2002:a05:600c:1d12:b0:391:3cf6:243e with SMTP id l18-20020a05600c1d1200b003913cf6243emr5559100wms.137.1650657551183;
-        Fri, 22 Apr 2022 12:59:11 -0700 (PDT)
-Received: from [192.168.2.222] ([51.37.209.28])
-        by smtp.gmail.com with ESMTPSA id az20-20020a05600c601400b0038ffb253bb3sm6160948wmb.36.2022.04.22.12.59.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 12:59:10 -0700 (PDT)
-Message-ID: <0f99ec7b-0c2f-cf6c-162d-af615eb73373@conchuod.ie>
-Date:   Fri, 22 Apr 2022 20:59:09 +0100
+        with ESMTP id S229680AbiDVV0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 17:26:05 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3444825CA09;
+        Fri, 22 Apr 2022 13:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=IJ9Mu/aUYM3vuD5oQcui/J0/WhPDdyFZPtdQU+Ga/QI=; b=T1tOkSyynfaYwEC/xaB+p6az3Z
+        XtQ2o1NqRu4SayBGALcPLXyZykVvU5An2x8p6KxswgnsA7y9ZqXOckyg10qAdYaxD1v/tTnx308tr
+        3W0frA8HsyBxGGYZJ3dC1060Ed0pognN1wfkuOy5+1/JWKY9TF19h+gO4BQyUbykPAwM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nhzkl-00H2Uf-Si; Fri, 22 Apr 2022 22:19:43 +0200
+Date:   Fri, 22 Apr 2022 22:19:43 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next 1/5] net: ipqess: introduce the Qualcomm IPQESS
+ driver
+Message-ID: <YmMN37VjQNwhLDuX@lunn.ch>
+References: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
+ <20220422180305.301882-2-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 0/9] More PolarFire SoC Fixes for 5.18
-Content-Language: en-US
-To:     Palmer Dabbelt <palmer@rivosinc.com>, atulkhare@rivosinc.com
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, aou@eecs.berkeley.edu,
-        Paul Walmsley <paul.walmsley@sifive.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, daire.mcnamara@microchip.com,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
-        conor.dooley@microchip.com
-References: <mhng-185e3a61-0634-4671-adfd-a1cc223920cf@palmer-ri-x1c9>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <mhng-185e3a61-0634-4671-adfd-a1cc223920cf@palmer-ri-x1c9>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422180305.301882-2-maxime.chevallier@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 20:39, Palmer Dabbelt wrote:
-> On Wed, 13 Apr 2022 00:58:27 PDT (-0700), conor.dooley@microchip.com wrote:
->> Hey all,
->> After the clock driver for the PolarFire SoC was accepted I started work
->> on the onboard RTC & found out that the reference clock for the rtc was
->> actually missing from the clock driver.
->>
->> While restructuring the clock driver to add support for the rtc
->> reference, I also noticed that there were some problems with how the FIC
->> clocks were being used. The FIC clocks are the cpu side inputs to the
->> AXI fabric interconnections & are not the clocks for any peripherals.
->>
->> This first three patches in this series fixes the problems with the FICs:
->> - the fic clocks incorrectly had the AHB clock as their parents
->> - the last fic, named differently to the others, had not been set as
->>   a critical clock
->> - some peripherals on the fabric side were incorrectly using the cpu
->>   side fic clocks, resulting in incorrect rates.
->>
->> The second part of the series fixes the missing rtc reference clock.
->> There are three main changes:
->> - Changing the reference clock in the dt to the external 125 MHz
->>   oscillator rather than using the output of an internal pll. This has
->>   the added benefit of not requiring changes to the device tree if this
->>   part of the bitstream changes.
->> - Adding a new clock into the driver that sits above the existing
->>   configurable clocks & has the external reference as a parent. The new
->>   clock provides the parent for the AHB/AXI clocks which formerly came
->>   from the device tree.
->> - Adding the rtc reference clock to the dt bindings, device tree and
->>   clock driver at the configurable clock level, alongside AXI and AHB.
->>
->> I kept series separate from [0] since that's tied to the CONFIG_PM stuff
->> & fixes a specific problem.
->>
->> Changes since v1:
->> After speaking with Krzysztof, I have merged the rtc reference changes
->> [1] with these fixes for 5.18. This was done since the relevant drivers
->> and bindings only arrived in v5.18 & there'll now be no issue with
->> breaking the ABI.
->> Backwards compatiblity with the device tree from before 5.18 will be
->> broken by these changes, but the board did not boot then anyway... If
->> that is not okay, please lmk.
->>
->> The patch renaming sys_base was dropped since that's not a fix.
->>
->> Version 1 would not apply without [0] & that should be fixed too.
->>
->> Thanks,
->> Conor.
->>
->> Changes since v2:
->> - Wrapped text in dt-binding changes at 80 cols
->> - Ordered the clock defines numerically in the binding header
->> - Fixed the Fixes tag on the last patch and added the second tag
->>
->> [0] https://lore.kernel.org/linux-riscv/20220408143646.3693104-1-conor.dooley@microchip.com
->> [1] https://lore.kernel.org/linux-riscv/20220411072340.740981-1-conor.dooley@microchip.com
->>
->> Conor Dooley (9):
->>   clk: microchip: mpfs: fix parents for FIC clocks
->>   clk: microchip: mpfs: mark CLK_ATHENA as critical
->>   riscv: dts: microchip: fix usage of fic clocks on mpfs
->>   dt-bindings: clk: mpfs document msspll dri registers
->>   dt-bindings: clk: mpfs: add defines for two new clocks
->>   dt-bindings: rtc: add refclk to mpfs-rtc
->>   clk: microchip: mpfs: re-parent the configurable clocks
->>   clk: microchip: mpfs: add RTCREF clock control
->>   riscv: dts: microchip: reparent mpfs clocks
->>
->>  .../bindings/clock/microchip,mpfs.yaml        |  13 +-
->>  .../bindings/rtc/microchip,mfps-rtc.yaml      |  15 +-
->>  .../dts/microchip/microchip-mpfs-fabric.dtsi  |  16 +-
->>  .../microchip/microchip-mpfs-icicle-kit.dts   |   2 +-
->>  .../boot/dts/microchip/microchip-mpfs.dtsi    |  10 +-
->>  drivers/clk/microchip/clk-mpfs.c              | 191 +++++++++++++++---
->>  .../dt-bindings/clock/microchip,mpfs-clock.h  |   5 +-
->>  7 files changed, 211 insertions(+), 41 deletions(-)
-> 
-> Thanks.  These generally look good to me, but I don't see acks from everyone.  I'm perfectly fine treating these as fixes and taking them through the RISC-V tree, but looks like it's mostly clk stuff so
-> 
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> +static int ipqess_axi_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct net_device *netdev;
+> +	phy_interface_t phy_mode;
+> +	struct resource *res;
+> +	struct ipqess *ess;
+> +	int i, err = 0;
+> +
+> +	netdev = devm_alloc_etherdev_mqs(&pdev->dev, sizeof(struct ipqess),
+> +					 IPQESS_NETDEV_QUEUES,
+> +					 IPQESS_NETDEV_QUEUES);
+> +	if (!netdev)
+> +		return -ENOMEM;
+> +
+> +	ess = netdev_priv(netdev);
+> +	ess->netdev = netdev;
+> +	ess->pdev = pdev;
+> +	spin_lock_init(&ess->stats_lock);
+> +	SET_NETDEV_DEV(netdev, &pdev->dev);
+> +	platform_set_drvdata(pdev, netdev);
 
-Ye, hopefully they go via clk. Stephen replied to v1 or 2 so
-I figure they're in his queue :)
+....
 
-> 
-> in case someone else wants to take it.  I've put these over at palmer/riscv-pfsoc-clk but haven't merged that anywhere, I'll hold off until at least next week to give everyone time to chime in.
-> 
-> On a somewhat related note, I'm getting some DT schema failures
->    /scratch/riscv-systems-ci-fixes/check/dt_check/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: /: memory@80000000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->            From schema: /home/palmer/.local/lib/python3.8/site-packages/dtschema-2022.3.2-py3.8.egg/dtschema/schemas/memory.yaml
->    /scratch/riscv-systems-ci-fixes/check/dt_check/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: /: memory@1000000000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
->            From schema: /home/palmer/.local/lib/python3.8/site-packages/dtschema-2022.3.2-py3.8.egg/dtschema/schemas/memory.yaml
->    /scratch/riscv-systems-ci-fixes/check/dt_check/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: soc: syscontroller: {'compatible': ['microchip,mpfs-sys-controller'], 'mboxes': [[15, 0]], 'status': ['okay']} should not be valid under {'type': 'object'}
->            From schema: /home/palmer/.local/lib/python3.8/site-packages/dtschema-2022.3.2-py3.8.egg/dtschema/schemas/simple-bus.yaml
->    Looks like none of them are new from this patch set, though.  Atul's been chasing down various DT schema failures so they might be fixed already.
+> +
+> +	ipqess_set_ethtool_ops(netdev);
+> +
+> +	err = register_netdev(netdev);
+> +	if (err)
+> +		goto err_out;
 
-Ye, I do know about those. I meant to try deleting the clocks
-property but didn't get a chance, just been busy. It's not
-related to this series nor does it matter if it makes it prior
-to 5.18 so I was going to submit it on its own.
-The other is in my list-of-things-to-ask-Rob/Krzk-when-I-know-
-for-sure-what-my-question-actually-is...
+Before register_netdev() even returns, your devices can be in use, the
+open callback called and packets sent. This is particularly true for
+NFS root. Which means any setup done after this is probably wrong.
 
-Thanks,
-Conor.
+> +
+> +	err = ipqess_hw_init(ess);
+> +	if (err)
+> +		goto err_out;
+> +
+> +	for (i = 0; i < IPQESS_NETDEV_QUEUES; i++) {
+> +		int qid;
+> +
+> +		netif_tx_napi_add(netdev, &ess->tx_ring[i].napi_tx,
+> +				  ipqess_tx_napi, 64);
+> +		netif_napi_add(netdev,
+> +			       &ess->rx_ring[i].napi_rx,
+> +			       ipqess_rx_napi, 64);
+> +
+> +		qid = ess->tx_ring[i].idx;
+> +		err = devm_request_irq(&ess->netdev->dev, ess->tx_irq[qid],
+> +				       ipqess_interrupt_tx, 0,
+> +				       ess->tx_irq_names[qid],
+> +				       &ess->tx_ring[i]);
+> +		if (err)
+> +			goto err_out;
+> +
+> +		qid = ess->rx_ring[i].idx;
+> +		err = devm_request_irq(&ess->netdev->dev, ess->rx_irq[qid],
+> +				       ipqess_interrupt_rx, 0,
+> +				       ess->rx_irq_names[qid],
+> +				       &ess->rx_ring[i]);
+> +		if (err)
+> +			goto err_out;
+> +	}
+
+All this should probably go before netdev_register().
+
+> +static int ipqess_get_strset_count(struct net_device *netdev, int sset)
+> +{
+> +	switch (sset) {
+> +	case ETH_SS_STATS:
+> +		return ARRAY_SIZE(ipqess_stats);
+> +	default:
+> +		netdev_dbg(netdev, "%s: Invalid string set", __func__);
+
+Unsupported would be better than invalid.
+
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+
+  Andrew
