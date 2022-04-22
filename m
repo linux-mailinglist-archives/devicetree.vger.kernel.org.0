@@ -2,148 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5557550B616
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 13:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C56B450B623
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 13:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447033AbiDVLZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 07:25:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40144 "EHLO
+        id S1442794AbiDVLbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 07:31:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446980AbiDVLZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:25:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB17541AC;
-        Fri, 22 Apr 2022 04:22:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5E2361F72;
-        Fri, 22 Apr 2022 11:22:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25151C385A0;
-        Fri, 22 Apr 2022 11:22:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650626535;
-        bh=SVW4zVvibn9z+IjAwyBEd5JkQQkXUtOD1zca6C1BokE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qqInEFY2cO4FTnCH8Gno5qENJk/44n3MG8a3wISfMNbDgBokbaZ7vvr+qaZVsI27K
-         i/VwnIIIbXQceDYv0RAf7WYyxiTpWag2UFtrdfL2mC/attGJ1kr9GGgJxyTL35FDt0
-         SVEs8jdWWJveITVcdjC1Z+BBasxW4ilFyxeyNQGEWMhhl2oarOsIo5ZRE/s7n8WK29
-         E8FRNSTUeDUZ+HPQ7tnDqqlvzH/oG0ZspRVjbDvuzfsktZUAxzVXzMIUzFWa9ks5+Q
-         QkvKB3D94/j5v/Xc8a3s47FqgRn5wUTZWUkSJzw+PhcuThk+V5rwoy4G28IWV7jeTt
-         9sm4LcyOh1m0Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nhrMW-0002mB-2D; Fri, 22 Apr 2022 13:22:08 +0200
-Date:   Fri, 22 Apr 2022 13:22:08 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+        with ESMTP id S232054AbiDVLbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:31:17 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0703754F9F;
+        Fri, 22 Apr 2022 04:28:22 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1650626900; bh=nnRPoDn9UVOQmCSWBi2f0yPJ71M+pe94PUc3/C0TV6E=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=BAChplZkXMuMU7YQjAHHfzse8aIDAhSV5emQZaIx7Fr664MnS1WotKU9oMqA0G08L
+         oXMJk5Zl8gsP1sytZjTBTyJAUSP9cPK8UoNsouQlgULCRve8jQJ5qZOdAtY4pCgwnh
+         ywCL6HvHVjTcsUbT0ceA4vN62COm59lDp5Bn/fMM=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <YmKPQ6kLCPz+2XTJ@sirena.org.uk>
+Date:   Fri, 22 Apr 2022 13:28:20 +0200
+Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Prasad Malisetty <quic_pmaliset@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 1/5] phy: qcom-qmp: add support for pipe clock muxing
-Message-ID: <YmKP4FXXm6NhQFYK@hovoldconsulting.com>
-References: <20220421102041.17345-1-johan+linaro@kernel.org>
- <20220421102041.17345-2-johan+linaro@kernel.org>
- <de4f9514-5132-f208-d43f-4c50afcda203@linaro.org>
- <YmKBgGHtfDcO1Mkg@hovoldconsulting.com>
- <CAA8EJpqTzcwAtxk+XtAWdZaKEx2=VduPiVBp+CWj=_C-921YJg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpqTzcwAtxk+XtAWdZaKEx2=VduPiVBp+CWj=_C-921YJg@mail.gmail.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B68302F2-3D77-4065-8A16-A9CC690AE10B@cutebit.org>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <YkWfziQzprEsWL72@sirena.org.uk>
+ <CCE4A06E-6D6F-457D-B3C5-C36209BF38D3@cutebit.org>
+ <YkW4MPh8VWc8eSGg@sirena.org.uk>
+ <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
+ <YkXKmxJ0R3qpUoH4@sirena.org.uk>
+ <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
+ <YmKPQ6kLCPz+2XTJ@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[ Again, please trim unnecessary context from your replies. ]
 
-On Fri, Apr 22, 2022 at 01:35:01PM +0300, Dmitry Baryshkov wrote:
-> On Fri, 22 Apr 2022 at 13:20, Johan Hovold <johan@kernel.org> wrote:
-> >
-> > On Thu, Apr 21, 2022 at 02:08:27PM +0300, Dmitry Baryshkov wrote:
-> > > On 21/04/2022 13:20, Johan Hovold wrote:
 
-> > > > +   /* Get optional pipe clock mux and default reference source clock. */
-> > > > +   qphy->pipemux_clk = of_clk_get_by_name(np, "mux");
-> > > > +   if (IS_ERR(qphy->pipemux_clk)) {
-> > > > +           ret = PTR_ERR(qphy->pipemux_clk);
-> > > > +           if (ret == -EPROBE_DEFER)
-> > > > +                   return ret;
-> > > > +
-> > > > +           qphy->pipemux_clk = NULL;
+> On 22. 4. 2022, at 13:19, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Fri, Apr 22, 2022 at 12:43:30PM +0200, Martin Povi=C5=A1er wrote:
+>=20
+>> I looked in the TAS2770 and TAS2764 drivers/datasheets, and to answer
+>> the questions we had:
+>=20
+>> * VSENSE/ISENSE output slots are configured independently of audio =
+samples
+>>   routing. Kernel drivers configure the slots based on the =
+'ti,imon-slot-no'
+>>   and 'ti,vmon-slot-no' properties of devicetree.
+>=20
+>> * By default codecs transmit Hi-Z for duration of unused slots.
+>=20
+>> So once we supply the devicetree props it should be electrically =
+sound
+>> under any configuration of userspace knobs.
+>=20
+> Great, that's a relief.
+>=20
+>> One final thought on the playback routing controls: On systems with =
+>2
+>> speakers, the codecs need to be assigned slots through set_tdm_slot.
+>> The macaudio driver RFCed here assigns a single slot to each speaker,
+>> making the effect of each speaker's routing control this:
+>=20
+>>  'I2C offset' -- uses a random slot
+>=20
+>>  'Left' 'Right' 'LeftRight' -- uses the single slot we configured
+>=20
+>> I suppose I better assign two slots to speakers in each left-right =
+pair
+>> of the same kind (e.g. woofer 1, woofer 2, tweeter). This way the
+>> routing control will mimic its behavior from simple stereo systems =
+but
+>> replicated within each left-right pair.  (I would prefer to hide the
+>> controls altogether, but as I learned that hiding things unless =
+proven
+>> dangerous is an ASoC non-goal, this way I can make the controls do
+>> something interesting.)
+>=20
+> I don't quite grasp the difference between the arrangement you're
+> proposing and assigning a single slot to each speaker?  Possibly it's
+> just a reordering of the slots?
 
-> > > > +   } else {
-> > > > +           qphy->piperef_clk = of_clk_get_by_name(np, "ref");
-> > > > +           if (IS_ERR(qphy->piperef_clk)) {
-> > > > +                   ret = PTR_ERR(qphy->piperef_clk);
-> > > > +                   return dev_err_probe(dev, ret,
-> > > > +                                        "failed to get lane%d piperef_clk\n",
-> > > > +                                        id);
-> > > > +           }
-> > > > +   }
-> > > > +
-> > >
-> > > As a second thought.
-> > > This needs to be more explicit. If the chipset requires the pipe clock
-> > > remuxing, we must fail if the clocks were not provided. So depending on
-> > > the qmp instance/property the driver should either use devm_clk_get()
-> > > (instead of _optional) or skip this block completely.
-> >
-> > No, the kernel is not a DT validator (and we have the YAML bindings for
-> > that now).
-> 
-> It is not about DT validation. It is about passing a correct DT.
+Ah, maybe what=E2=80=99s missing is the fact that the way the speaker =
+amp drivers
+are written, if they are assigned two slots with a call to set_tdm_slot,
+the first slot is considered 'left' and the second is 'right'.
 
-Heh. That's the same thing.
+So in the arrangement I am proposing the 'Left', 'Right' and 'LeftRight'
+values of the routing control have the nominal effect (within the =
+left-right
+speaker pair), while in the other arrangement it is as I described =
+above.
 
-> The file can come up from the kernel. It can come from the older
-> kernel.  OR it can come from the vendor. Or it even might be being a
-> part of firmware flashed into the device.  So we can not assume that
-> the DT is correct just because the in-kernel DT passes YAML
-> validation.
-
-Again, no. The kernel does not need to implement DT validation and can
-assume that the DT describes the hardware accurately. If the DT says
-there's a mux, the driver can use it. If there's no mux in DT, the
-driver can assume it isn't there.
-
-The only thing that complicates things here is the sc7280 dts which has
-been released in 5.16. We don't care about Qualcomm's kernels and dts.
-
-> So, as I wrote, the whole patchset needs much more care about compatibility.
-> 
-> > > But this will not work with earlier DTS files.
-> >
-> > So this is not a problem (but if we really wanted to have the driver
-> > validate the DT it can be done by updating the compatible strings).
-> 
-> We should not update compatible strings just because the driver
-> changes. Compat strings describe the hardware, not the Linux point of
-> view on it.
-
-We can, it's a documented practise in case a binding needs to be
-updated in an incompatible way:
-
-	https://www.kernel.org/doc/html/latest/devicetree/bindings/ABI.html
-
-But I don't think it'll be needed here.
-
-Johan
