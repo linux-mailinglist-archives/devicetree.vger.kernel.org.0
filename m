@@ -2,85 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1A6150B7A5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E25950B7AA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231286AbiDVM5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 08:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60704 "EHLO
+        id S233817AbiDVM5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 08:57:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1447654AbiDVMxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:53:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC5DDEFE;
-        Fri, 22 Apr 2022 05:50:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 48CC862043;
-        Fri, 22 Apr 2022 12:50:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A0525C385A4;
-        Fri, 22 Apr 2022 12:50:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650631812;
-        bh=H/9gLsV79O9kH0xuO7AgIyJUXk83OWQVXtEfVS2L+mc=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=uGqFsN+AWj9is9iuX+f1n2uBR6c9pWrzGNOj22lW0Z4+oD7DnOYdLBj1O0Kk7bc+f
-         vtmevJpA6vZU8cTh1RILYlWafB7d6PCzTDZ7XFBGF4kEhMpMyARhMG1gx/UfVOgjss
-         1lCm//A45p918ley5HKpI7sePjdYdLUelDU9RLh21qzwK+d9JO1r7uuALtaNNy/xDO
-         TVq+DrYRZphWwVumD1f1rUcKXRyvs1uXuw7sTCyXkCovilXlR5rF2L8+p5vOjZ3SuW
-         QILEt+g8fSWpfcqlwU53hw7V3B+TulZjNUzMHK/mdOS8BZIa33MX8CUiuxc5EpyOdH
-         DzcZfDH+A5HYw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6A43FE85D90;
-        Fri, 22 Apr 2022 12:50:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 net-next] dt-bindings: net: mediatek,net: convert to the
- json-schema
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165063181242.24908.11489160264789538643.git-patchwork-notify@kernel.org>
-Date:   Fri, 22 Apr 2022 12:50:12 +0000
-References: <6b417ab35163bd8a4bef4bd38cf46d777925bd26.1650463289.git.lorenzo@kernel.org>
-In-Reply-To: <6b417ab35163bd8a4bef4bd38cf46d777925bd26.1650463289.git.lorenzo@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi@redhat.com,
-        devicetree@vger.kernel.org, robh@kernel.org, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, john@phrozen.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233872AbiDVM4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:56:52 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D72B52B00;
+        Fri, 22 Apr 2022 05:53:58 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1650632035; bh=Rr2b05NP3wGMyQRhBvV1IUry/zX4H2Dk7P7NRyvj4Tc=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=S2seNKR6yDu5lByMYBXtbttAJdb1b0jPUip8DgWFAkRfkxD3ictQ41YsHmflWx7Jt
+         ZD8Gqu1wZkLj4wbBUECqLWYLgwPXkly6M/+vFY+k4B81Erg0Fdt7CREtFGbIoACJlI
+         LHvoYzn8dmLlHQFq0Wf1Gr97+ZrFIpCXzoHBcxCs=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <YmKjL9bOtOmsFWTs@sirena.org.uk>
+Date:   Fri, 22 Apr 2022 14:53:54 +0200
+Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <3CD969AD-7316-4D83-AD92-CC85ED817125@cutebit.org>
+References: <YkW4MPh8VWc8eSGg@sirena.org.uk>
+ <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
+ <YkXKmxJ0R3qpUoH4@sirena.org.uk>
+ <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
+ <YmKPQ6kLCPz+2XTJ@sirena.org.uk>
+ <B68302F2-3D77-4065-8A16-A9CC690AE10B@cutebit.org>
+ <YmKSgHrbb/7koM36@sirena.org.uk>
+ <A1574F30-62D2-467D-A40B-8FD7C6B8BCFA@cutebit.org>
+ <YmKeEKa0w2xLM9cL@sirena.org.uk>
+ <6F6130F3-381C-4AB7-B618-CDC4C4A37C9B@cutebit.org>
+ <YmKjL9bOtOmsFWTs@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This patch was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
 
-On Wed, 20 Apr 2022 16:07:07 +0200 you wrote:
-> This patch converts the existing mediatek-net.txt binding file
-> in yaml format.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
-> Changes since v2:
-> - remove additionalItems for clock-names properties
-> - move mediatek,sgmiisys definition out of the if block
-> 
-> [...]
+> On 22. 4. 2022, at 14:44, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Fri, Apr 22, 2022 at 02:36:03PM +0200, Martin Povi=C5=A1er wrote:
+>=20
+>>> Ah, I think the confusion here is that I'm using slot and channel
+>>> interchangably whereas you're saying that previously the driver =
+would
+>>> allocate two channels to each speaker with duplicate data?
+>=20
+>> I guess you could say that. Not that there=E2=80=99s duplicate data =
+on the I2S
+>> bus, but the speaker amp would previously be configured to look for =
+the
+>> left and right channel in the same TDM slot (see e.g. set_tdm_slot of
+>> tas2770 [0]).  (Each speaker amp drives a single speaker, but it =
+still
+>> has a notion of left and right channel.)
+>=20
+> Oh, I see - the speaker actually allows configuration of the slots
+> independently.  Usually the left/right thing on mono devices only does
+> something for I2S where the bus clocking enforces that there be both
+> left and right channels.  Either configuration is fine by me TBH, if =
+you
+> can do that then you could just keep them mapped to the same channel
+> then mark the control as disabled since it should have no effect.
 
-Here is the summary with links:
-  - [v3,net-next] dt-bindings: net: mediatek,net: convert to the json-schema
-    https://git.kernel.org/netdev/net-next/c/c78c5a660439
+Well but is there some established way to mark a control as disabled?
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Another issue here is that if I disable it I can=E2=80=99t leave the =
+routing
+control in it=E2=80=99s default value, which is =E2=80=98I2C Offset=E2=80=99=
+ and makes the speaker
+amp ignore the slot mapping.
 
