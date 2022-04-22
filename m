@@ -2,131 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3AB50B1A4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:30:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E8950B21E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444094AbiDVHb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 03:31:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46900 "EHLO
+        id S1445101AbiDVHzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 03:55:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1444810AbiDVHby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 03:31:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB4E5158C
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 00:29:01 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nhnin-0008KM-5Z; Fri, 22 Apr 2022 09:28:53 +0200
-Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nhnii-004Vyv-Nh; Fri, 22 Apr 2022 09:28:47 +0200
-Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nhnid-009IUY-IK; Fri, 22 Apr 2022 09:28:43 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v11 24/24] dt-bindings: display: rockchip: dw-hdmi: fix ports description
-Date:   Fri, 22 Apr 2022 09:28:41 +0200
-Message-Id: <20220422072841.2206452-25-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220422072841.2206452-1-s.hauer@pengutronix.de>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+        with ESMTP id S1445083AbiDVHzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 03:55:47 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41406515A2;
+        Fri, 22 Apr 2022 00:52:52 -0700 (PDT)
+X-UUID: a3ea85c0fad94e919aaa64e283ad7b9f-20220422
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:48c58dec-f2dc-4e2b-9295-d65b9ce99c50,OB:0,LO
+        B:0,IP:0,URL:8,TC:0,Content:28,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:36
+X-CID-META: VersionHash:faefae9,CLOUDID:784fc1ef-06b0-4305-bfbf-554bfc9d151a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:3,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: a3ea85c0fad94e919aaa64e283ad7b9f-20220422
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2063175171; Fri, 22 Apr 2022 15:52:45 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 22 Apr 2022 15:52:43 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Apr
+ 2022 15:52:41 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Apr 2022 15:52:40 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
+        <hsinyi@google.com>, <khilman@baylibre.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH V4 00/14] cpufreq: mediatek: Cleanup and support MT8183 and MT8186
+Date:   Fri, 22 Apr 2022 15:52:25 +0800
+Message-ID: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Current port description doesn't cover all possible cases. It currently
-expects one single port with two endpoints.
+Cpufreq is a DVFS driver used for power saving to scale the clock frequency
+and supply the voltage for CPUs. This series do some cleanup for MediaTek
+cpufreq drivers and add support for MediaTek SVS[2] and MediaTek CCI
+devfreq[3] which are supported in MT8183 and MT8186.
 
-When the HDMI connector is described in the device tree there can be two
-ports, first one going to the VOP and the second one going to the connector.
+Changes for V4:
+1. Revise drivers from reviewers' suggestion.
+2. Fix name of opp table issue.
 
-Also on SoCs which only have a single VOP there will be only one
-endpoint instead of two.
+Changes for V3:
+1. Rebased to linux-next-20220414.
+2. Drop accepted patches.
+3. Drop "cpufreq: mediatek: Use maximum voltage in init stage" because we
+   make sure the voltage we set is safe for both mediatek cci and cpufreq.
+4. Rename cci property to mediatek,cci.
+5. Adjust order of cleanup patches.
+6. Add new patches for cleanup, handle infinite loop and MT8183 dts.
+7. Revise drivers from reviewers' suggestion.
+8. Revise commit message of some patches to avoid confusion and misunderstand.
+9. Revise "cpufreq: mediatek: Link CCI device to CPU".
+   We do not return successful to pretend we set the target frequency done
+   when cci is not ready. Instead, we find and set a safe voltage so that we
+   can set the target cpufrequency.
 
-This patch addresses both issues. With this there can either be a single
-port ("port") , or two of them ("port@0", "port@1") when the connector
-is also in the device tree. Also the first or only port can either have
-one endpoint ("endpoint") for single VOP SoCs or two ("endpoint@0",
-"endpoint@1") for dual VOP SoCs.
+Changes for V2:
+1. Drop the modification of transforming cpufreq-mediatek into yaml and
+   only add the MediaTek CCI property for MediaTek cpufreq.
+2. Split the original patches into several patches.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+Reference series:
+[1]: V1 of this series is present by Jia-Wei Chang.
+     message-id:20220307122151.11666-1-jia-wei.chang@mediatek.com
 
-Notes:
-    Changes since v6:
-    - Add Reviewed-by: Rob Herring <robh@kernel.org>
-    Changes since v5:
-    - new patch
+[2]: The MediaTek CCI devfreq driver is introduced in another series.
+     message-id:20220408052150.22536-1-johnson.wang@mediatek.com
 
- .../display/rockchip/rockchip,dw-hdmi.yaml    | 24 +++++++------------
- 1 file changed, 9 insertions(+), 15 deletions(-)
+[3]: The MediaTek SVS driver is introduced in another series.
+     message-id:20220221063939.14969-1-roger.lu@mediatek.com
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index d7cb2b2be60e8..7e59dee15a5f4 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -97,27 +97,21 @@ properties:
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
--    properties:
--      port:
--        $ref: /schemas/graph.yaml#/$defs/port-base
--        unevaluatedProperties: false
-+    patternProperties:
-+      "^port(@0)?$":
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: Input of the DWC HDMI TX
--
-         properties:
-+          endpoint:
-+            description: Connection to the VOP
-           endpoint@0:
--            $ref: /schemas/graph.yaml#/properties/endpoint
-             description: Connection to the VOPB
--
-           endpoint@1:
--            $ref: /schemas/graph.yaml#/properties/endpoint
-             description: Connection to the VOPL
--
--        required:
--          - endpoint@0
--          - endpoint@1
--
--    required:
--      - port
-+    properties:
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output of the DWC HDMI TX
- 
-   rockchip,grf:
-     $ref: /schemas/types.yaml#/definitions/phandle
+Andrew-sh.Cheng (1):
+  cpufreq: mediatek: Add opp notification support
+
+Jia-Wei Chang (6):
+  cpufreq: mediatek: Record previous target vproc value
+  cpufreq: mediatek: Move voltage limits to platform data
+  cpufreq: mediatek: Add .get function
+  cpufreq: mediatek: Make sram regulator optional
+  cpufreq: mediatek: Refine mtk_cpufreq_voltage_tracking()
+  cpufreq: mediatek: Add support for MT8186
+
+Rex-BC Chen (7):
+  dt-bindings: cpufreq: mediatek: Add MediaTek CCI property
+  cpufreq: mediatek: Use device print to show logs
+  cpufreq: mediatek: Replace old_* with pre_*
+  cpufreq: mediatek: Link CCI device to CPU
+  arm64: dts: mediatek: Add opp table and clock property for MT8183 cpufreq
+  arm64: dts: mediatek: Add MediaTek CCI node for MT8183
+  arm64: dts: mediatek: Add mediatek,cci property for MT8183 cpufreq
+
+ .../bindings/cpufreq/cpufreq-mediatek.txt     |   5 +
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |  36 ++
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   4 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 285 ++++++++++
+ drivers/cpufreq/mediatek-cpufreq.c            | 504 ++++++++++++------
+ 5 files changed, 670 insertions(+), 164 deletions(-)
+
 -- 
-2.30.2
+2.18.0
 
