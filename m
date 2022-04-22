@@ -2,107 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8197750AF5A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D00150AF67
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444024AbiDVFKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 01:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
+        id S1356967AbiDVFMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 01:12:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356762AbiDVFKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:10:36 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F674B412;
-        Thu, 21 Apr 2022 22:07:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650604064; x=1682140064;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ajU9/Al2pgTxbWYKHerN11BN/gqxMlOTbM0s5jP5RnM=;
-  b=J9OtC5dfZfXKCXWKfcKVPa36OkJcY9G2yYj+jIhWrrQ1gkgFwj37Wayo
-   Rv8D0tywyhhuld728cHhRsQV5wgFaOvChU9T8eMb75oSzSqP55gbXehrz
-   DbWYvy8XwAsmRnf82XSPHj/XV/och90vzsgY2v8jHzXldKl7PUEvLwZTM
-   PmrWwk/rwI5SgdSjn7s3mGeFUlkDFr3QVuiw2tmR4VFu/sW+ror2HAqpt
-   odc9M0rd1mJ6zNjDS0bqyWY+P3NGf1fvkgLCc+XGW5IEf4oNCDn5FwjfE
-   hyYOnqPMfv3z2IuSfv8Lgk+KPrlE5lXcr13hqulpnFd7yzVtZmsSiLkOz
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="289692713"
-X-IronPort-AV: E=Sophos;i="5.90,280,1643702400"; 
-   d="scan'208";a="289692713"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 22:07:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,280,1643702400"; 
-   d="scan'208";a="867218414"
-Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2022 22:07:41 -0700
-Received: from kbuild by 3abc53900bec with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nhlW8-0009F8-Lq;
-        Fri, 22 Apr 2022 05:07:40 +0000
-Date:   Fri, 22 Apr 2022 13:07:23 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     kbuild-all@lists.01.org, jejb@linux.ibm.com,
-        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v4 4/7] scsi: ufs-renesas: Add support for Renesas R-Car
- UFS controller
-Message-ID: <202204221216.csH6k6mX-lkp@intel.com>
-References: <20220420025450.289578-5-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S242030AbiDVFMA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:12:00 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C614F441
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 22:09:07 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id i63so6439298pge.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 22:09:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=IxkWrK2BHkhEkKKlVUNG0OHecJx6kgtTQfmR8oiK8fY=;
+        b=lqpCouB++8hljbNrHceC1Qyuwuw+vCI2Fhh8ZFdRfXxhXpRkv6g2BA/tNxAPsxgvkr
+         u1w04SPrnfVYkE3mFoG48Ti9k/z8UT5WYiln4iNHoRm7Qifnv87ZE8YThHZXSPIBk33s
+         cgEeltKzihF2u7m2Rx9L52X77Ftym+qXjgfxCuWWrIicVaP5Jg2SgwIWdin/gaEyFEzu
+         Ext803WlCRXwXzZsLwuqtVS8NVNTVT8D2RbXIjdgnN1qqvJ94LfZ42ZuTXANLZ0OPeeR
+         uCoDCo74DxXysCvLAG+sDPte7QHEDlbnJ1EX97I3Lp3cztRaLWZL5JySGaZxqqrOs+bj
+         SaVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IxkWrK2BHkhEkKKlVUNG0OHecJx6kgtTQfmR8oiK8fY=;
+        b=ia8PzbHRvzVsz6nfoiB0dFv7jwj6UmTji1J5q21YJQKfLnvTQKSja2oEmQAJ0HTFdh
+         90odw7YX+Mp5eQsiAVBm6sUZ6LBvuKSnOVqyVcnRvd2x2Dde3ksGkmmnVf3SZBrRbgqz
+         E+E0OoluWPRmuJZnARqqsH0vUKW+QF5icUHGuh7AV2Op8NF58pUqSnwQGPobYgI10VzU
+         CEYVvMP3/M9dXJ15/D/OfiDzajUeHZ37C7tG39rjeZyGPsvZQ6WQsGeJCuYacSPJsjMu
+         KmHO+QBSAJ52QJ/O1tvcREkuXbkXwls4+AuOcCbef8t41dWfhCoM7i9sf/GL52dplNu9
+         SJow==
+X-Gm-Message-State: AOAM531N3JznhT6AEY/MGGDAeBuCKwBL5SW7MUzK7DC2H5DbW99ayDg9
+        T8RZBZ/0aZ8+3iV8YUTIcfhpkQ==
+X-Google-Smtp-Source: ABdhPJzee0DpsxJWDBhWAOgmHW7pXvMAFcHq9PAexcssqN/6IoJ0HKyEyTKjakiAzo82w81k4zugdA==
+X-Received: by 2002:a05:6a00:e0b:b0:4fa:a167:5b35 with SMTP id bq11-20020a056a000e0b00b004faa1675b35mr3121349pfb.69.1650604146814;
+        Thu, 21 Apr 2022 22:09:06 -0700 (PDT)
+Received: from x1 ([2601:1c2:1001:7090:dbb3:3d38:62d2:5de5])
+        by smtp.gmail.com with ESMTPSA id e126-20020a621e84000000b0050567191161sm854912pfe.210.2022.04.21.22.09.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Apr 2022 22:09:06 -0700 (PDT)
+Date:   Thu, 21 Apr 2022 22:10:06 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Message-ID: <YmI4rjkpX9krZAGn@x1>
+References: <20220414192722.2978837-1-dfustini@baylibre.com>
+ <YmEAA7kc4jNHSkGm@atomide.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220420025450.289578-5-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YmEAA7kc4jNHSkGm@atomide.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yoshihiro,
+On Thu, Apr 21, 2022 at 09:56:03AM +0300, Tony Lindgren wrote:
+> Hi,
+> 
+> * Drew Fustini <dfustini@baylibre.com> [220414 19:24]:
+> > TI AM437x SoCs support isolation of the IOs so that control is taken
+> > from the peripheral they are connected to and overridden by values
+> > present in the control register for that pad. This series documents a
+> > new property 'ti,set-io-isolation' and updates the wkup_m3_ipc driver to
+> > inform the CM3 firmware when that property is set.
+> 
+> Care to list what hardware and board revisions you're able to test deep
+> sleep with?
+> 
+> Seems like my am437x-evm is too old for this where the board layout
+> does not match the schematics for removing a resistor to enable this.
+> 
+> Just wondering if I can still enable tests for this somehow :)
+> 
+> Regards,
+> 
+> Tony
 
-I love your patch! Yet something to improve:
+Do you know what revision of the am437x-gp-evm that you have?
 
-[auto build test ERROR on geert-renesas-devel/next]
-[also build test ERROR on v5.18-rc3 next-20220421]
-[cannot apply to mkp-scsi/for-next jejb-scsi/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+The AM437X_GP_EVM_3K0006_SCHEMATIC_REV1_5B schematic [1] for the
+AM437x-GP-EVM shows that the EN pin on the TPS51200 is connected to SoC
+ball N25 which is GPIO5_7.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/treewide-scsi-ufs-Add-support-for-Renesas-R-Car-UFS-controller/20220420-105751
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20220422/202204221216.csH6k6mX-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/32b072c876095bb212d9bfb12f3b86d32bea1d07
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yoshihiro-Shimoda/treewide-scsi-ufs-Add-support-for-Renesas-R-Car-UFS-controller/20220420-105751
-        git checkout 32b072c876095bb212d9bfb12f3b86d32bea1d07
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
+Unfortunately, the only AM437x board that I have is the AM437x IDK [2]
+which unfortunately does not have the TSP51200 EN pin connected to the
+the SoC. In addition, the am437x-gp-evm is the only board that is
+allowed to enable off mode due to am43xx_check_off_mode_enable() in
+arch/arm/mach-omap2/pm33xx-core.c
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Thank you,
+Drew
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-drivers/scsi/ufs/ufs-renesas: struct of_device_id is 196 bytes.  The last of 1 is:
-0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x72 0x65 0x6e 0x65 0x73 0x61 0x73 0x2c 0x72 0x38 0x61 0x37 0x37 0x39 0x66 0x30 0x2d 0x75 0x66 0x73 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
->> FATAL: modpost: drivers/scsi/ufs/ufs-renesas: struct of_device_id is not terminated with a NULL entry!
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+[1] https://www.ti.com/lit/zip/tidrc79
+[2] https://www.ti.com/lit/zip/sprr396
