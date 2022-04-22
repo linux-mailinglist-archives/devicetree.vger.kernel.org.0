@@ -2,143 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F1A50BC1F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E6FF50BC32
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1448102AbiDVPy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 11:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58322 "EHLO
+        id S1449608AbiDVP5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 11:57:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1449529AbiDVPy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:54:28 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947BE17E05
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:51:34 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id s18so17303123ejr.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:51:34 -0700 (PDT)
+        with ESMTP id S234345AbiDVP5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:57:42 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532DF237CE;
+        Fri, 22 Apr 2022 08:54:48 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id x17so15014465lfa.10;
+        Fri, 22 Apr 2022 08:54:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cz3+sah/zpqCzimPE3ANH7Z5ZXDqOyXDNUXTlP3XsBc=;
-        b=dbzEeE8PdyShzDof20Q8pvdW3YV4GPnLux30KOoQziRaealnVmZQbZ2lf5YyKwvFHb
-         MpqLJIdfIBlNmhLWAT7sRDvwWXH5nqdX3/RBb2OUuBt/PSkUa4adZ8+rzMaiPgjU5lPy
-         nQzsKB077hDpDo7EgfRccgHRCjkysA1VGY74mS6WClttIcvdogz1UWPtY/N6C3ikEYKW
-         o/3ReRiIsqqmekl1lT4GFeSZcvIZxZlWz3laVYVhPub5m19g5DyXJ2zhcYaJwsPifasJ
-         wRYahkIxH4cClFt39go6AWNYJTus0eg9iJLaly6g1evKlqWK5Wn6Xd18cPNB9Q5JQsOm
-         2mBA==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=lks2EMkJckKXXGPYQAgtI2m89X51SNXNx9xbd5ZHWuQ=;
+        b=RCNN9kyQCGrAsGwyCpavddgEtmbY9NeuE4Ot7kXpayx0n+zJI3lsI2t2ZO2EJFl5c2
+         sHK53YgOIlt6ckp0cZbPr6vfAmIMg7odXi4ueWZepSa/bSJPEUEYU2tmbuOMgYTh8QWN
+         dD8qYrjW5nH4I9/XgVeFtd9GutaSlGxrewRSxVwS4EaJJfilF6Qsl+4kPxuxsyOQ3DT7
+         XEZlBoNHQ5u86W+Wq0TO2e3QXnGrzD75ca8cb7JE78OFFhDiWzVvQtCO+BmHhyrRZ0qu
+         qHeedafEFUp4Qw/bXtmYn0jCL4Hx8yEJmkQj2kSqKiQbNqKjRtJHB+v8OZcXnp20B01T
+         0/QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cz3+sah/zpqCzimPE3ANH7Z5ZXDqOyXDNUXTlP3XsBc=;
-        b=6i2XeLmiqIdGmoo7zof3sgE9I2eFAy9U/wfu/nSYINERd1RTlJDKslbXUC2vhYSuAZ
-         MYotSch9FexSOQECG9OlzWbOw1kJAKiLTbpe2/1EZTvv3piaFdoDW2wKZwMKR/AwLdju
-         mFp8SEH1bhIWepGqBizP5xpfBPf2TLbcKhyC0smEr9JHCeC7YfLGH/ccDhBS+C4t5Hdz
-         bF9syqSvCCW/kDbaoVC+t/Aqs3oF+bKR4kqqN5Ury2xVbtN3kjgbozZhjECV5g7Ydh3U
-         s3AiGlw9LmQYwHBe+y6KKnMiL0/40rh1Ng/53VthSKsZMxLE2hRrmBEddhyFeGC9vA7e
-         TX1A==
-X-Gm-Message-State: AOAM533ZZNPKvv7iX0TjTMQUAonPL4sawzEVt6MHLSQtkmpvbt/7dpfD
-        BfF73uShkgR6vqQUwL3YY9DHGQ==
-X-Google-Smtp-Source: ABdhPJxWmRux1ijuYLwW2X+knXfCBFZooOH5VHQHfdpGiTWmPug4O2Fb3TKtOK1RyI/3QzamwF3qSw==
-X-Received: by 2002:a17:906:5d07:b0:6ef:f147:caee with SMTP id g7-20020a1709065d0700b006eff147caeemr4890150ejt.292.1650642693128;
-        Fri, 22 Apr 2022 08:51:33 -0700 (PDT)
-Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i26-20020a50d75a000000b0041e84bb406fsm1071387edj.0.2022.04.22.08.51.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 08:51:32 -0700 (PDT)
-Message-ID: <338344c8-1812-de27-80f2-df4c2dc3c17b@linaro.org>
-Date:   Fri, 22 Apr 2022 17:51:31 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lks2EMkJckKXXGPYQAgtI2m89X51SNXNx9xbd5ZHWuQ=;
+        b=3HsOo9PPWykQoAxyA8zmsUyjrlHFECvLud50tzg4mOPb2RvZ2Sx9pUbu7RnGFnFUwe
+         lXkpz6CjuR4vrgfqCBJdXV+he1C4jWQ7PSLelM2JN4vVEcyrIOKcANg0okipqyuGWi1i
+         3rR/XSxKvmRVLHdPkxVJQWJoK3Zvdd9oCy7FOxyKvj2Q5NHPv9uGUjGOZ3y9ogIbKumf
+         77AyiFM1fvQC5uKe7vA67VIeZUBSOBxjSgJQhzl9RPQ6kDgtHumJHCETKLJH59hTMipy
+         XinbljZCUvcReKWdduOyCEWOUJ538Kb3tErxJw0O9z+5NEx2zl/9qxPofQA3A1gWFG5s
+         GamA==
+X-Gm-Message-State: AOAM531yPW+l4Bhrdf10y/7kXnKqKwve9Rx/k4kPm9TUe30dyHoByYuC
+        9ELHRNI/j0lgajFZxA1TakuziVMJsK8=
+X-Google-Smtp-Source: ABdhPJzr+3Gb2AIG7O7wrQYBlHeGFDGlNWyVADyEhW/hlpfcokuiZn9eYXUjmLhKsBDzcqhS2x/4CQ==
+X-Received: by 2002:a05:6512:3d14:b0:46b:81d9:b9ee with SMTP id d20-20020a0565123d1400b0046b81d9b9eemr3542774lfv.109.1650642886407;
+        Fri, 22 Apr 2022 08:54:46 -0700 (PDT)
+Received: from orome ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id f4-20020a193804000000b00471a32f8f72sm264901lfa.229.2022.04.22.08.54.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 08:54:45 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 17:54:42 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     paul@crapouillou.net, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: timer: Add PWM compatible for X1000
+ SoC
+Message-ID: <YmLPwtJYRE+qI2oJ@orome>
+References: <20220224234133.15708-1-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/6] dt-bindings: pci/qcom-pcie: specify reg-names
- explicitly
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220422114841.1854138-1-dmitry.baryshkov@linaro.org>
- <20220422114841.1854138-4-dmitry.baryshkov@linaro.org>
- <fe9c5691-caa1-79b4-666b-daac8913b546@linaro.org>
- <CAA8EJpr=XE-8fo+99+KjTEffS1jmBibQnbN1T4ZcgkhWCDucpg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJpr=XE-8fo+99+KjTEffS1jmBibQnbN1T4ZcgkhWCDucpg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wslXXE2EBCJbUgwQ"
+Content-Disposition: inline
+In-Reply-To: <20220224234133.15708-1-aidanmacdonald.0x0@gmail.com>
+User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 17:47, Dmitry Baryshkov wrote:
-> On Fri, 22 Apr 2022 at 15:55, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 22/04/2022 13:48, Dmitry Baryshkov wrote:
->>> Instead of specifying the enum of possible reg-names, specify them
->>> explicitly. This allows us to specify which chipsets need the "atu"
->>> regions, which do not. Also it clearly describes which platforms
->>> enumerate PCIe cores using the dbi region and which use parf region for
->>> that.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 96 ++++++++++++++++---
->>>  1 file changed, 81 insertions(+), 15 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> index 7210057d1511..e78e63ea4b25 100644
->>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> @@ -35,21 +35,6 @@ properties:
->>>            - qcom,pcie-ipq6018
->>>        - const: snps,dw-pcie
->>>
->>> -  reg:
->>> -    minItems: 4
->>> -    maxItems: 5
->>
->> This should stay.
->>
->>> -
->>> -  reg-names:
->>> -    minItems: 4
->>> -    maxItems: 5
->>> -    items:
->>> -      enum:
->>> -        - parf # Qualcomm specific registers
->>> -        - dbi # DesignWare PCIe registers
->>> -        - elbi # External local bus interface registers
->>> -        - config # PCIe configuration space
->>> -        - atu # ATU address space (optional)
->>
->> Move one of your lists for specific compatibles here and name last
->> element optional (minItems: 4).
->>
->> You will need to fix the order of regs in DTS to match the one defined here.
-> 
-> I see your idea. I wanted to be explicit, which platforms need atu and
-> which do not. You'd prefer not to.
 
-Opposite, I wish platforms to be specific, which need atu which not.
-However I wish the strictly defined, same order for everyone because it
-looks possible.
+--wslXXE2EBCJbUgwQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Let's probably drop this for now. The bindings proposed in patch 1
-> work for now. I will work on updating reg-names later.
+On Thu, Feb 24, 2022 at 11:41:33PM +0000, Aidan MacDonald wrote:
+> The PWM hardware on the X1000 SoC is almost identical to other
+> Ingenic SoCs, so it can be used with only minor driver changes.
+>=20
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> ---
+> It seems Thierry picked up the driver patch separately (thanks for
+> that) so here's the DTS changes on their own. Would've uploaded a
+> v2 sooner but I was busy the past couple weeks and couldn't spend
+> any time on kernel stuff. I guess this isn't a v2 per se, but for
+> completeness:
+>=20
+> v1: https://lore.kernel.org/linux-mips/20220209231141.20184-1-aidanmacdon=
+ald.0x0@gmail.com/
+>=20
+>  Documentation/devicetree/bindings/timer/ingenic,tcu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
+Looks like I also somehow ended up applying this snippet, though
+possibly from the earlier patch.
 
-Best regards,
-Krzysztof
+Thierry
+
+--wslXXE2EBCJbUgwQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmJiz8IACgkQ3SOs138+
+s6G8TA//aNfTdXlORXO6PccUeVulC2D1QRHujiQBe2dGOgoilLVkRc49K8fHizPf
+sOQ3ALFaibR6O1A9WjO0DuIQ//l/gt9NlTsuhFzklL8wkn6wy+lPEeUWpEyks+f2
+aly8o9m7zYBNhIDcB3M+t9DQ5YhrU5MlQRwDutupWSs7ayW2PrWJEsl7OoL2pjLM
+Y2M4JkcGD43WoYQsAuJxn+ZKYWC7pT7PeaO3sQpt9+/UzzFP9NWbSubVpfESNSE+
+38vmuytaEZtlLsnwPUJcf5xR99DmyEfIFcrlnxHGY1l9AnpVbAKGygtTE4l++Xrp
+LrIPob/y6eBC6J0BnOQ2hNBMNxxs6kL5smFgGPw+YlB1kBsYNLpG6RUBxsF6dv1k
+t0kVKYuiSojMF682A5ga1KUHPqL/FXAFpqT4HrciqHN8AHymaR50K6kMIybSNn6P
+gUxHr4hPDsaqmDDfyrnUyle+UbmCnP9TuHsikNj1LMgFXT7K58BYpM3uisLDlPap
+IMxQS5JizTulZ1Db+u4B0hgRk2vA0u320XGbP8Wf2wlvqxRaGSfFgDNo6WSzA3mz
+C4Ip+2eUjXpmAv5Ly91KYRvcOLWQ42glDhlNbAS6u/bEus8jN2isum9fXv6ctNeB
+caeel3DG+SZIAAs04/lEtTK2L65SyjLOXkw4QyBfegt/qMF6Tfs=
+=SaPD
+-----END PGP SIGNATURE-----
+
+--wslXXE2EBCJbUgwQ--
