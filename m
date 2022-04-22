@@ -2,106 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 367CD50C41E
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE62650C324
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbiDVWlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:41:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48814 "EHLO
+        id S233014AbiDVWi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233301AbiDVWjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:39:44 -0400
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C951F478C
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:30:57 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-e9027efe6aso2642690fac.10
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:30:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=U5kbOYIbw9W5idi/w7UWPQThlgNI5YFtm66gzqTVHwI=;
-        b=EosFqLT95BxHAVUXgvmDMUV5Lz2xaMtfJWrbZhJGacLzWlPy34JcgfMzn6ruT8Jsx1
-         /k/R+WO/a7/sW8WbwMoxUHuURYkIbCwrSeHhuFoEIigjXEhwSnf7lnkTrpCrS9B9b3oE
-         tysYeR6jkN+E5fSBIA12eW/xrV9n6zaAKHLeQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U5kbOYIbw9W5idi/w7UWPQThlgNI5YFtm66gzqTVHwI=;
-        b=r7nEeEiAaQ5whk4xjbjDeYbTe0JMx/6V1cEuzP6QRvxAx3FYWcmzToUHwhhZ1B66m4
-         BCKQSt5LFRpEFMQR9//GRXJsYTdMkeK+EQYapZJclmGKSUGXalrH7Wmn6q3HmQHd74MT
-         h2zjyTlSfWPS+CTJ+rGNHNhTirHmwXYL80rFbGTTACoyJbuiAQsYVyjEItYNx/9wC5fQ
-         k3VRobKv0r5XrNlutB/dS6FFQX9vqFbVwn9Xy9zaiHqA2GNfErrhOtJQLZc4we8D0fYz
-         ePOlCfTnceDsQIuR5A+vhrQJ4GouVlzfTpTdldbbQazLUn5axlv84VcKxfmvVf8mvhTn
-         H8qw==
-X-Gm-Message-State: AOAM5317YLwrlEfvMnqSoQStWV9N7G/f7bq83yDj8hrWt2W79Hn5KDAw
-        0OcORNvG0wn1Qa+/mU1oHn9cYva+Qb1YcQ==
-X-Google-Smtp-Source: ABdhPJzJ07qszw6srRpsPHUiNVf7zbKYzJ5hu40DkMqn2j3wMFLmW5tnu/Ucr3LTdOXuZO2YX+YXlg==
-X-Received: by 2002:a17:90a:d0c5:b0:1c9:ec78:18e5 with SMTP id y5-20020a17090ad0c500b001c9ec7818e5mr17636056pjw.53.1650653079678;
-        Fri, 22 Apr 2022 11:44:39 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:404c:8721:29:87a4])
-        by smtp.gmail.com with UTF8SMTPSA id ch10-20020a056a00288a00b0050a51a95e91sm3041025pfb.201.2022.04.22.11.44.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 11:44:38 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 11:44:36 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ULTRA-WIDEBAND (UWB) SUBSYSTEM:" 
-        <linux-usb@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_kriskura@quicinc.com, quic_vpulyala@quicinc.com
-Subject: Re: [PATCH v14 2/7] PM / wakeup: Add device_children_wakeup_capable()
-Message-ID: <YmL3lMaR79wPMEfY@google.com>
-References: <1650395470-31333-1-git-send-email-quic_c_sanm@quicinc.com>
- <1650395470-31333-3-git-send-email-quic_c_sanm@quicinc.com>
- <CAJZ5v0h2ZKPN6SERPnASPywZfeOWXWncJgNZ1WZa80+=M4DCiQ@mail.gmail.com>
+        with ESMTP id S233734AbiDVWhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:37:41 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40C62435A4;
+        Fri, 22 Apr 2022 14:48:40 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23MJ2KjN024036;
+        Fri, 22 Apr 2022 14:02:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650654140;
+        bh=NCM8mzjQH8QiT4AT02wOLT4awLcH+bAUoX5oBTbp0nU=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=u46vFj9mgkxJ4kojRRWfpdLSGkE5WzS0UpENurVyP13TL1Prbq1ehfXLKC2JsrgZI
+         CN8yGCDZMsDo9Q5MDoiT+CccPcK/wfsOeq5y/C9H3J7PIGxWROzdRA+vF8ZU9RgfxS
+         ehcheVKVEuuRwfQ5Ifz1in/sGX8rYTtR/BNAUUdQ=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23MJ2Kit005174
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 22 Apr 2022 14:02:20 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
+ Apr 2022 14:02:20 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 22 Apr 2022 14:02:20 -0500
+Received: from [10.249.34.110] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23MJ2Jlc051088;
+        Fri, 22 Apr 2022 14:02:19 -0500
+Message-ID: <ad47db06-7f5c-399f-0ad0-81f720e6f035@ti.com>
+Date:   Fri, 22 Apr 2022 14:02:19 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAJZ5v0h2ZKPN6SERPnASPywZfeOWXWncJgNZ1WZa80+=M4DCiQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/6] dt-bindings: ti,sci: Add ti,ctx-memory-region
+ property
+Content-Language: en-US
+To:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20220421203659.27853-1-d-gerlach@ti.com>
+ <20220421203659.27853-2-d-gerlach@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20220421203659.27853-2-d-gerlach@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 01:57:17PM +0200, Rafael J. Wysocki wrote:
-> On Tue, Apr 19, 2022 at 9:11 PM Sandeep Maheswaram
-> <quic_c_sanm@quicinc.com> wrote:
-> >
-> > From: Matthias Kaehlcke <mka@chromium.org>
-> >
-> > Add device_children_wakeup_capable() which checks whether the device itself
-> > or one if its descendants is wakeup capable.
+On 4/21/22 3:36 PM, Dave Gerlach wrote:
+> Add documentation for the ti,ctx-memory-region property which is a
+> phandle to a reserved-memory carveout to be used by the ti_sci driver
+> storage of low power mode memory context. This is optional for normal
+> system operation but required to enabled suspend-to-mem usage of Deep
+> Sleep state.
 > 
-> device_wakeup_path() exists for a very similar purpose.
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> ---
+>   .../devicetree/bindings/arm/keystone/ti,sci.yaml         | 9 +++++++++
+>   1 file changed, 9 insertions(+)
 > 
-> Is it not usable for whatever you need the new function introduced here?
+> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> index 34f5f877d444..ec88aa88a2a0 100644
+> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> @@ -61,6 +61,15 @@ properties:
+>     mboxes:
+>       minItems: 2
+>   
+> +  ti,ctx-memory-region:
+> +    description:
+> +      Phandle to the reserved memory node to be associated with the
+> +      ti-sci device, to be used for saving low power context. The
+> +      reserved memory node should be a carveout node, and should
+> +      be defined as per the bindings in
+> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
 
-I wasn't aware of it's function, there are no doc comments and the
-name isn't really self explanatory.
 
-In a quick test device_wakeup_path() returned inconsistent values for the
-root hub, sometimes true, others false when a wakeup capable USB device was
-connected.
+Why does this have to be yet another reserved carveout region,
+should be dynamically allocated.
+
+Andrew
+
+
+>     ti,system-reboot-controller:
+>       description: Determines If system reboot can be triggered by SoC reboot
+>       type: boolean
