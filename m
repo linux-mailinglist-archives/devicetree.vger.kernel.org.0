@@ -2,64 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 064A550C448
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50EEF50C41B
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233385AbiDVWfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56318 "EHLO
+        id S233924AbiDVWoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:44:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233202AbiDVWf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:35:28 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE49B2CCB95;
-        Fri, 22 Apr 2022 14:28:00 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id e15-20020a9d63cf000000b006054e65aaecso6382645otl.0;
-        Fri, 22 Apr 2022 14:28:00 -0700 (PDT)
+        with ESMTP id S233508AbiDVWnj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:43:39 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA8B20F201
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:40:34 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id c23so13627478plo.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hprmnOUA4/3FlmJh7kQF6XL3/Oe5JP21iOb+ppvENHA=;
+        b=VdTgxJp6iaQGYLdO2T00e5mydN8yUlSBKdxKAR02oKgdllMIajdCnVACLvEDHFAm0K
+         +FdTgKJYWpIdn0HVA3RD0Ql+Vl0U2Q0CyCxHBWI8W56ilGD7Bdh0PK0Ho6bF49WHDXH6
+         WrFIMtgPHK9MqZchFV7tUBu3FHfY/x4rQj7vlxQ6bvaQDGcFvS4155E5zFh5RNxjf/zq
+         wnOYaXbdhPyWGL2hUvO9hiETdErtm3tKRfS24aAbvMbl/UQn/Fjo2xF6Ldw9kixJdZ84
+         B2zbkO5eAi3VuDIrZhhODYWj7oqQ3yL+07L9w/3Q7N2IQIEv5wS/okO4N3rdG3E5bphy
+         0prA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jaxMqNYGtR9/GKTe6XSZEtOnCayZXLADx5gspn1sMaU=;
-        b=F133HIy+xcswRSWGJVv71yrJ4Ga0GCxl6j4ha/9jpfxXfYx6RINEws9fkwoGq24qe/
-         MvpkqzAK1vg9GlGg6galfdz1X974TXTQHGbftX6kZ6sR9+X6g2n0DWGBvabPMmTWnwVl
-         IuPyugS5EiLBwgWIi/5avrjNsxLxhd5M2gASi1reu0DVMrkYYrhSLvLVHGPlL8Zmwlxw
-         JGk950IiSEMSQA3wcPNvLirJBaeWfKDT4D6FSUi3wxH6gGw1ODJMiX8OnrukGqFfYc8y
-         jOA98z59vIqMrNemM2OWKuzG90KkDTcpbxWYsNLTH4siD0R0BnDGor74wpxLm1W+P+Xl
-         iP8A==
-X-Gm-Message-State: AOAM531eGOmorAQMwx6fINeLe38YQkGNGo5CwKQa/X0fpCHpdYdz6heB
-        hrKQAhpsiQFNlWZbL/zujg==
-X-Google-Smtp-Source: ABdhPJyVlTpz8f4H1tIkdFIcTZaYs0+eqvGbNHOIUHnieRI58LSaZYbm5RhBLf4fkz2E5vAMRo2VXQ==
-X-Received: by 2002:a9d:5381:0:b0:605:777f:b65b with SMTP id w1-20020a9d5381000000b00605777fb65bmr2562755otg.189.1650662880236;
-        Fri, 22 Apr 2022 14:28:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v20-20020a056830141400b00604d7cb9bb1sm1196168otp.43.2022.04.22.14.27.59
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=hprmnOUA4/3FlmJh7kQF6XL3/Oe5JP21iOb+ppvENHA=;
+        b=e/W2CEU8NP+trSmUsgOROFg3T4JWW5K53B76DRTUVW4q8D6++1+mefvmkNtjA0qXAg
+         M4NEKJZka4K455HIYn/NAJNBY+XT9oCwAco4ipefUXyO4beduQJiozox/iw2ADL0ri4b
+         8lPyAKe+R0/A+YFFmMMd4YzJgFfpWosAPeR11x+XmfgXss2NG8m++ty+HE9Z7E51somW
+         NSUU5BxziOWskxZTsK/VVgg6ymIVxZVKcnyL1vmtHlSV+30MTPZcJwbDVNV8N2E8gmAf
+         M6KEe/qf5fSJOWJQJDYPfp1uEPn6EZL0DPJpsgGoxl576r2d0/Qber+ftDWQSIDwjZVO
+         fFxg==
+X-Gm-Message-State: AOAM533NJZcptp6f0jVbkENeeT+wS31x7vBMFKQVuBDuQWgAzJgJ9qsy
+        Lqp1W7P8BbSNtXVZBTq1ZUtZCw==
+X-Google-Smtp-Source: ABdhPJy36dziWxrx9VNGKb+ZJ9QYf23DzNrptVA5BjFCnHIlqW+yS/E17cWlIdJ736Efbyw8yGz3uw==
+X-Received: by 2002:a17:90a:8418:b0:1d2:7c69:e3bf with SMTP id j24-20020a17090a841800b001d27c69e3bfmr18408269pjn.44.1650663634143;
+        Fri, 22 Apr 2022 14:40:34 -0700 (PDT)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id i6-20020a628706000000b0050adb5a4452sm3540245pfe.101.2022.04.22.14.40.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 14:27:59 -0700 (PDT)
-Received: (nullmailer pid 2836931 invoked by uid 1000);
-        Fri, 22 Apr 2022 21:27:58 -0000
-Date:   Fri, 22 Apr 2022 16:27:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH 2/8] dt-bindings: nvmem: sfp: Add clock properties
-Message-ID: <YmMd3liryJlZRMuA@robh.at.kernel.org>
-References: <20220421175657.1259024-1-sean.anderson@seco.com>
- <20220421175657.1259024-3-sean.anderson@seco.com>
- <4a45db184fbadc278624571dfbeb5004@walle.cc>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a45db184fbadc278624571dfbeb5004@walle.cc>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        Fri, 22 Apr 2022 14:40:33 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 14:40:33 -0700 (PDT)
+X-Google-Original-Date: Fri, 22 Apr 2022 14:40:27 PDT (-0700)
+Subject:     Re: [PATCH v3 0/9] More PolarFire SoC Fixes for 5.18
+In-Reply-To: <986c73df-9634-d18b-eed3-37584fa2ea89@conchuod.ie>
+CC:     sboyd@kernel.org, mturquette@baylibre.com, aou@eecs.berkeley.edu,
+        Paul Walmsley <paul.walmsley@sifive.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, daire.mcnamara@microchip.com,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+        conor.dooley@microchip.com, atulkhare@rivosinc.com
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     mail@conchuod.ie
+Message-ID: <mhng-08dea5a1-77b8-4b79-93e3-cda9fffdf2ff@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,68 +73,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 08:12:34PM +0200, Michael Walle wrote:
-> Am 2022-04-21 19:56, schrieb Sean Anderson:
-> > To program fuses, it is necessary to set the fuse programming time. This
-> > is determined based on the value of the platform clock. Add a clock
-> > property.
-> 
-> For some context: Sean was adding the SFP support in u-boot and
-> I referred him to this binding. I didn't need the clock to just
-> read the data. But Sean is right, we need the clock for the
-> programming. I was unaware of that. The binding is still yet to
-> be released with v5.18, thus I think it is still possible to make
-> the clock mandatory.
+On Fri, 22 Apr 2022 14:10:55 PDT (-0700), mail@conchuod.ie wrote:
+>
+>
+> On 22/04/2022 22:00, Stephen Boyd wrote:
+>> Quoting Conor Dooley (2022-04-22 12:59:09)
+>>> On 22/04/2022 20:39, Palmer Dabbelt wrote:
+>>>>
+>>>> Thanks.  These generally look good to me, but I don't see acks from everyone.  I'm perfectly fine treating these as fixes and taking them through the RISC-V tree, but looks like it's mostly clk stuff so
+>>>>
+>>>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>>>
+>>> Ye, hopefully they go via clk. Stephen replied to v1 or 2 so
+>>> I figure they're in his queue :)
+>>
+>> It helps to be explicit in the cover letter. It's in my queue but I put
+>> it on hold because the cover letter didn't clarify what tree it was
+>> intended for nor the priority of what is being fixed.
+>
+> Ah right, my bad. The coordinating things between trees stuff is
+> still pretty new to me. If you could take the lot via clk, that'd
+> be great?
 
-Please add this detail to the commit message. Otherwise, it looks like 
-an ABI break to make a new property required.
+No problem, the multi-tree stuff is always tricky.  It ended up in my 
+queue too, but I fast-forward to the latest version of each set as I 
+stumble into earlier ones so I guess I got here quickly.
 
-> 
-> > Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> 
-> Fixes: 6f9817cdcc82 ("dt-bindings: nvmem: add fsl,layerscape-sfp binding")
-> 
-> -michael
-> 
-> > ---
-> > 
-> >  .../bindings/nvmem/fsl,layerscape-sfp.yaml         | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> > b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> > index b7798e903191..54086f50157d 100644
-> > --- a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> > +++ b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
-> > @@ -24,15 +24,29 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> > 
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description:
-> > +      The SFP clock. Typically, this is the platform clock divided by
-> > 4.
-> > +
-> > +  clock-names:
-> > +    const: sfp
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - clock-names
-> > +  - clocks
-> > 
-> >  unevaluatedProperties: false
-> > 
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
-> >      efuse@1e80000 {
-> >          compatible = "fsl,ls1028a-sfp";
-> >          reg = <0x1e80000 0x8000>;
-> > +        clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-> > +                            QORIQ_CLK_PLL_DIV(4)>;
-> > +        clock-names = "sfp";
-> >      };
+Having these go through clk is better for me, I'll ignore them.
+
+Thanks!
+
+>> Is boot broken? Do I need to send these up to Linus next week as part of
+>> fixes for this merge window?
+>
+> Boot is not broken, I was hoping this would go into 5.18 to avoid
+> having to deal with two different sorts of reference clock DT
+> entries - 5.18 where the DT provides the mss pll & 5.18+n where
+> the DT provides the input to the mss pll.
+>
+> So, not next week urgent, but as fixes for this window please.
+>
+> Thanks,
+> Conor.
