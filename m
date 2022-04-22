@@ -2,105 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B04D50B8A5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:36:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6F650B8AF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447782AbiDVNjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 09:39:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38770 "EHLO
+        id S1448072AbiDVNlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 09:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237165AbiDVNjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:39:15 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5F7546AA;
-        Fri, 22 Apr 2022 06:36:22 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id e189so9024000oia.8;
-        Fri, 22 Apr 2022 06:36:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=mQS+mOe2orSMjiuLFsak+S6Ca0B4tVfq9g6O7NPHWAQ=;
-        b=aMR1K9CzPAxhN8KDw480pW+SHgYNKuUQ8Q5gMouQ3jVNHPmKGs+RQEezSpR+bHp/YK
-         rnJfcmXxrEj+aFcp/md4gT8zssbVe5ws1nbPAbB+o5v0fGpKypN0o8Ue9xT5ImJrXQkt
-         f4YrvFuGBJtUSGpXGSCSuQRjqH9FvqbKnEhF7RTcL8fjMRE4KW0PPKGGGKO7TvxEYDe0
-         PE8/ugG5X57A0iLUmNs1xrHSGXqcTHOndEPaoo+BUMS5D6/Segctcq3eqC1A2Ow0cQ4m
-         VPEIVFPvijPOH0pGmfsdx4BuJzudxYx/Ki8IGWDUcRyCgJPzbNai3R8+3faoFdis4v8P
-         INJA==
-X-Gm-Message-State: AOAM531RVfqcsA7eLJsV86uZFAbxkB1ZL6MWjNqQHVVRDnpCQwviTZMY
-        VVz+MYdPoZuNj8rgonxrDg==
-X-Google-Smtp-Source: ABdhPJybbmyWLxjo+nixlNq8Gcu+L6g7VQW1TV9wDUUa3TsjK9C1tjWSNmly786wjxHUXRr7AyXEZQ==
-X-Received: by 2002:a05:6808:2388:b0:324:f195:bcb5 with SMTP id bp8-20020a056808238800b00324f195bcb5mr616056oib.238.1650634581771;
-        Fri, 22 Apr 2022 06:36:21 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id fu17-20020a0568705d9100b000e2b43e7fbasm628156oab.16.2022.04.22.06.36.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 06:36:21 -0700 (PDT)
-Received: (nullmailer pid 1895586 invoked by uid 1000);
-        Fri, 22 Apr 2022 13:36:20 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1354189AbiDVNlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:41:17 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3208583BD;
+        Fri, 22 Apr 2022 06:38:24 -0700 (PDT)
+Received: from obbardc-laptop.home (unknown [IPv6:2a00:23c7:6883:e501:cf51:f3a2:10b5:accf])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: obbardc)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 5A9D81F468AD;
+        Fri, 22 Apr 2022 14:38:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1650634703;
+        bh=lG0LG0N9MIhYCL292BSrPyGfr6h7Zn6+FnaySiga34Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=V5I1K3kUcRLc+b1lAryowpEJmIGmIfT/ATOPIGXQvh2LIICCrr9AZkaLLS4CjlVVP
+         vHpsq+sV6YJVok+GmYTMCqVMTfbkQAWimpvdh/Bhp4NeKHL9nNwsHnSIufOroxMCFm
+         797ojzujRiNaTI/JAG9iJNPSBqeFWtfAk5sllWHYpehP9lbij4KdffHLcRSy7u+96O
+         MFOgNHVjYtatEO8XhnWQS0GSMUXU81Jz70rrdigM1+B7hIUWFzmLPzXJR00KkkDpYS
+         /LVfCQK03PBRKawar0iBoONLW50DrmCKYgvvbGiRndtnSJSmhb8GNKqKvPkTCX2IZh
+         egWh32jhhKoJw==
+From:   Christopher Obbard <chris.obbard@collabora.com>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Michael Walle <michael@walle.cc>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>
-In-Reply-To: <20220421175657.1259024-3-sean.anderson@seco.com>
-References: <20220421175657.1259024-1-sean.anderson@seco.com> <20220421175657.1259024-3-sean.anderson@seco.com>
-Subject: Re: [PATCH 2/8] dt-bindings: nvmem: sfp: Add clock properties
-Date:   Fri, 22 Apr 2022 08:36:20 -0500
-Message-Id: <1650634580.180348.1895585.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Alex Bee <knaerzche@gmail.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Christopher Obbard <chris.obbard@collabora.com>
+Subject: [PATCH 0/3] Rockchip RK3328 VDEC support
+Date:   Fri, 22 Apr 2022 14:38:00 +0100
+Message-Id: <20220422133803.989256-1-chris.obbard@collabora.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Apr 2022 13:56:51 -0400, Sean Anderson wrote:
-> To program fuses, it is necessary to set the fuse programming time. This
-> is determined based on the value of the platform clock. Add a clock
-> property.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
->  .../bindings/nvmem/fsl,layerscape-sfp.yaml         | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+This series adds VDEC support for the Rockchip RK3328 SoC which
+uses the staging rkvdec driver.
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
-
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
+Testing was performed using both v4l-compliance and (mainline)
+gstreamer using the fluster framework. I can include full test
+results if that would be useful.
 
 
-efuse@1e80000: 'clock-names' is a required property
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb
+    $ v4l2-compliance -m0
+    v4l2-compliance 1.22.1, 64 bits, 64-bit time_t
+    ...
+    Grand Total for rkvdec device /dev/media0: 54, Succeeded: 54, Failed: 0, Warnings: 0
 
-efuse@1e80000: 'clocks' is a required property
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb
-	arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb
+
+    $ python3 fluster.py run -j1 -ts JVT-AVC_V1 -d GStreamer-H.264-V4L2SL-Gst1.0
+    ...
+    Ran 111/135 tests successfully               in 392.885 secs
+
+
+    $ python3 fluster.py run -j1 -ts VP9-TEST-VECTORS -d GStreamer-VP9-V4L2SL-Gst1.0
+    ...
+    Ran 206/303 tests successfully               in 1170.120 secs
+
+
+
+Cheers,
+
+Chris
+
+Christopher Obbard (3):
+  media: dt-bindings: media: rockchip-vdec: Add RK3328 compatible
+  arm64: dts: rockchip: Rename vdec_mmu node for RK3328
+  arm64: dts: rockchip: Add vdec support for RK3328
+
+ .../bindings/media/rockchip,vdec.yaml         |  1 +
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      | 27 +++++++++++++++++--
+ 2 files changed, 26 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
 
