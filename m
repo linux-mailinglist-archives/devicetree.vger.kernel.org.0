@@ -2,116 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9981650B796
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1A6150B7A5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447628AbiDVMsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 08:48:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58460 "EHLO
+        id S231286AbiDVM5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 08:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbiDVMsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:48:00 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CFD81A394;
-        Fri, 22 Apr 2022 05:45:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1650631501; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gAoD2y0Qvn4mZ56K12HLHvmWzPEXxA7h9UsTynmvszw=;
-        b=F0CU+FRxy3btZ6gcjitq6iZG4oWkaNqUcvbPKniuxJoYPFNt3NnBb0Y02Xl4tz0ZBQfL8u
-        C6hQwMBEdabTwOntELojvjWGjmPLzWcTXhLQ/QK5pTmDYXKV6JXREOsxuGuGIu0+j8ln5C
-        MB9Fd8rsZ/Xaht9Zad+Hzw2TaxNDVMM=
-Date:   Fri, 22 Apr 2022 13:44:50 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v4 1/3] dt-bindings: dwc2: Add bindings for new Ingenic
- SoCs.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     gregkh@linuxfoundation.org, hminas@synopsys.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
-        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, reimu@sudomaker.com
-Message-Id: <QERQAR.SQYC38Q7CE0Z2@crapouillou.net>
-In-Reply-To: <1650561308-54704-2-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1650561308-54704-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1650561308-54704-2-git-send-email-zhouyanjie@wanyeetech.com>
+        with ESMTP id S1447654AbiDVMxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:53:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC5DDEFE;
+        Fri, 22 Apr 2022 05:50:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 48CC862043;
+        Fri, 22 Apr 2022 12:50:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A0525C385A4;
+        Fri, 22 Apr 2022 12:50:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650631812;
+        bh=H/9gLsV79O9kH0xuO7AgIyJUXk83OWQVXtEfVS2L+mc=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=uGqFsN+AWj9is9iuX+f1n2uBR6c9pWrzGNOj22lW0Z4+oD7DnOYdLBj1O0Kk7bc+f
+         vtmevJpA6vZU8cTh1RILYlWafB7d6PCzTDZ7XFBGF4kEhMpMyARhMG1gx/UfVOgjss
+         1lCm//A45p918ley5HKpI7sePjdYdLUelDU9RLh21qzwK+d9JO1r7uuALtaNNy/xDO
+         TVq+DrYRZphWwVumD1f1rUcKXRyvs1uXuw7sTCyXkCovilXlR5rF2L8+p5vOjZ3SuW
+         QILEt+g8fSWpfcqlwU53hw7V3B+TulZjNUzMHK/mdOS8BZIa33MX8CUiuxc5EpyOdH
+         DzcZfDH+A5HYw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6A43FE85D90;
+        Fri, 22 Apr 2022 12:50:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 net-next] dt-bindings: net: mediatek,net: convert to the
+ json-schema
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165063181242.24908.11489160264789538643.git-patchwork-notify@kernel.org>
+Date:   Fri, 22 Apr 2022 12:50:12 +0000
+References: <6b417ab35163bd8a4bef4bd38cf46d777925bd26.1650463289.git.lorenzo@kernel.org>
+In-Reply-To: <6b417ab35163bd8a4bef4bd38cf46d777925bd26.1650463289.git.lorenzo@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi@redhat.com,
+        devicetree@vger.kernel.org, robh@kernel.org, davem@davemloft.net,
+        kuba@kernel.org, pabeni@redhat.com, john@phrozen.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+Hello:
 
-Le ven., avril 22 2022 at 01:15:06 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou=
- Yanjie)=20
-<zhouyanjie@wanyeetech.com> a =C3=A9crit :
-> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000=20
-> SoC,
-> the X1600 SoC, the X1830 SoC, and the X2000 SoC from Ingenic.
->=20
-> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
-eetech.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
+
+On Wed, 20 Apr 2022 16:07:07 +0200 you wrote:
+> This patch converts the existing mediatek-net.txt binding file
+> in yaml format.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->=20
-> Notes:
->     v1->v2:
->     Add Rob Herring's Acked-by.
->=20
->     v2->v3:
->     No change.
->=20
->     v3->v4:
->     Remove the compatible string of X1700 since it could use the=20
-> X1600 string
->     as the fallback.
->=20
->  Documentation/devicetree/bindings/usb/dwc2.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml=20
-> b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> index 4cebce6..2218df8 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> @@ -17,6 +17,12 @@ properties:
->      oneOf:
->        - const: brcm,bcm2835-usb
->        - const: hisilicon,hi6220-usb
-> +      - const: ingenic,jz4775-otg
-> +      - const: ingenic,jz4780-otg
-> +      - const: ingenic,x1000-otg
-> +      - const: ingenic,x1600-otg
-> +      - const: ingenic,x1830-otg
-> +      - const: ingenic,x2000-otg
+> Changes since v2:
+> - remove additionalItems for clock-names properties
+> - move mediatek,sgmiisys definition out of the if block
+> 
+> [...]
 
-You should probably also add:
-- items:
-    - const: ingenic,x1700-otg
-    - const: ingenic,x1600-otg
+Here is the summary with links:
+  - [v3,net-next] dt-bindings: net: mediatek,net: convert to the json-schema
+    https://git.kernel.org/netdev/net-next/c/c78c5a660439
 
-As discussed in your v3.
-
-Cheers,
--Paul
-
->        - items:
->            - const: rockchip,rk3066-usb
->            - const: snps,dwc2
-> --
-> 2.7.4
->=20
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
