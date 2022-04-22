@@ -2,267 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 509CF50BB3E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B5BF50BB56
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236075AbiDVPLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 11:11:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54274 "EHLO
+        id S1449203AbiDVPNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 11:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346046AbiDVPK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:10:56 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D63641D
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:08:02 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id b7so11457322plh.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:08:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=K4HaIW/vxFAL44m1pOYXWPSNjY/gkA+yaMxMowC6UUM=;
-        b=v0yY2R8anlaP/oXUeyvIuBz1bJ/Ft2t9uPTLDaU7VRCg2UMWEne0FaGoIMuLhAvDvu
-         fyd5DEUOogCYx/7B+KeGRvTwsQktkcgPZEOqzuBFm0jkCW787d/Z5/d9YGdVTHTNfBbb
-         DOhb+PyEJLMkYRR3scNH9EZzd+IXcIugnhI/n0n1a93AFt0O9XTyPCHDak7o1uAIoi5L
-         cY/l85WP47swuKNjv3Xa01tCNRLu8abSXhgYjCu30drNsxyUIezsZkv+vmz6tk4cqXSZ
-         2ECGtvtYty7kcVTrWFNrm4me/iVkiRjpTpXdghrFcCO6oyECxb6x9T4MyDIGVxaBK2r8
-         oSMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=K4HaIW/vxFAL44m1pOYXWPSNjY/gkA+yaMxMowC6UUM=;
-        b=Yd/47WwQt9gmwi3OBgvuNl+Uag6AOFFNs8OKWRM0MssuIRaeTXNWJxIpp+uPtXssv0
-         hNHjeKhDDPwII/puDq2l1CRWssVNL3SdebFF18oxp/2SvZoFKOf1PXW0IlocqluX6rCw
-         CEkTU1x0AxdmTffJ1e8bwuRilv9h3JiFg66//BeTy02FY0CFPa8K6CJY0jVjEBhlS9Cj
-         bu/QbbeExEiWmqbAJiUbpKuqmhXhgG9aSCcw/ouEzlfTULsNHoidhIpXRRHBfrrOlNUX
-         aLbyKeDVsHkLkqP0to6t2yVqvF5jw3EEa3IMwZyBqr/TbpZ4Umr41AfXdHmN11cUDoWR
-         YsnA==
-X-Gm-Message-State: AOAM532MX4FRfUH3CAsXiZoSJL4FPPvvg6kypOp2/n312fUxMxp0czoc
-        O4oMC4keW36elN7m/jJMhi6+BQ==
-X-Google-Smtp-Source: ABdhPJx5ATBOzB5TKDH52ypXORAEGKGhYrvejRrJXxN1YQ/2irwp3TANehXl6sHyPzQ8YUMPnMaWWw==
-X-Received: by 2002:a17:90b:19d7:b0:1c7:3413:87e0 with SMTP id nm23-20020a17090b19d700b001c7341387e0mr5966941pjb.132.1650640082435;
-        Fri, 22 Apr 2022 08:08:02 -0700 (PDT)
-Received: from atishp.ba.rivosinc.com ([66.220.2.162])
-        by smtp.gmail.com with ESMTPSA id 12-20020a17090a030c00b001d5793b6f71sm6650605pje.13.2022.04.22.08.08.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 08:08:01 -0700 (PDT)
-From:   Atish Patra <atishp@rivosinc.com>
-To:     kvm@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, kvm-riscv@lists.infradead.org
-Subject: [v2 PATCH] RISC-V: KVM: Introduce ISA extension register
-Date:   Fri, 22 Apr 2022 08:05:19 -0700
-Message-Id: <20220422150519.3818093-1-atishp@rivosinc.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1449276AbiDVPNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:13:14 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043C45C643;
+        Fri, 22 Apr 2022 08:10:20 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23MEwj20006781;
+        Fri, 22 Apr 2022 17:09:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=qntsBUku//AI5Nch4VT1ASqySX8P0QSy2neo7hBxy8E=;
+ b=2SFSZCYzEbtJLWELwSD2KXAiey89kwJ7f/ow7heOep5g4+8hq2FdZIGB/xiGp4E2qNLQ
+ 6DL6NGAE9fBx6b4CBc62m12fLJPA3AgQYuefu47JPQqqlbxXAnEEN6PRUWrxhPmoszHD
+ hEHbKVmNnQWceM6xMF0c9QFWiwEr9C988urHmOW7NDJ8aLDjaLhOdsYEywvNdnZTzfi0
+ RPQIE197lV89c9FiwO5Fcg7S4fi9UXVsxQBc+ULbKQoiAHrYM5WPvU6iuJlUslwWkx6L
+ itQnx8V4+jurSxdxBnavmSd1SpN3FFpRhg4RZwq3fY/zYoXtBLQW/CxqDsDJuW31ZLN6 vQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ffpqh9mcc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 22 Apr 2022 17:09:55 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C4DEF10002A;
+        Fri, 22 Apr 2022 17:09:54 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id ABAA6233C62;
+        Fri, 22 Apr 2022 17:09:54 +0200 (CEST)
+Received: from localhost (10.75.127.49) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 22 Apr
+ 2022 17:09:54 +0200
+From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
+To:     <arnd@arndb.de>, <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, <soc@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Marek Vasut <marex@denx.de>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        <etienne.carriere@st.com>
+Subject: [PATCH 0/8] Add SCMI version of ST boards
+Date:   Fri, 22 Apr 2022 17:09:44 +0200
+Message-ID: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-22_04,2022-04-22_01,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, there is no provision for vmm (qemu-kvm or kvmtool) to
-query about multiple-letter ISA extensions. The config register
-is only used for base single letter ISA extensions.
+The aim of this series is to add OPTEE and SCMI support for STM32 boards in
+order to enable secure services for clocks and resets. New boards have been added
+to enable this support in order to not break boot of current STM32 boards users. 
 
-A new ISA extension register is added that will allow the vmm
-to query about any ISA extension one at a time. It is enabled for
-both single letter or multi-letter ISA extensions. The ISA extension
-register is useful to if the vmm requires to retrieve/set single
-extension while the config register should be used if all the base
-ISA extension required to retrieve or set.
+This series targets only boards provided by ST which are:
+-STM32MP157A-DK1
+-STM32MP157C-DK2
+-STM32MP157C-ED1
+-STM32MP157C-EV1
 
-For any multi-letter ISA extensions, the new register interface
-must be used.
+Some modifications in bindings files (yaml and .h) was needed and OPTEE/TEE
+configs are now enabled by default for ARCH_STM32 architecture.
 
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
----
-Changes from v1->v2:
-1. Sending the patch separate from sstc series as it is unrelated.
-2. Removed few redundant lines.
+Note that patch [1] "dt-bindings: rcc: Add optional external ethernet RX clock
+properties" done by Marek has been already merged in Rob tree.
 
-The kvm tool patches can be found here.
+Thanks
+Alex
 
-https://github.com/atishp04/kvmtool/tree/sstc_v2
+Alexandre Torgue (7):
+  dt-bindings: clock: stm32mp1: describes clocks if
+    "st,stm32mp1-rcc-secure"
+  dt-bindings: clock: stm32mp15: rename CK_SCMI define
+  dt-bindings: reset: stm32mp15: rename RST_SCMI define
+  ARM: stm32: select OPTEE on MPU family
+  ARM: dts: stm32: enable optee firmware and SCMI support on STM32MP15
+  dt-bindings: arm: stm32: Add SCMI version of STM32 boards
+    (DK1/DK2/ED1/EV1)
+  ARM: dts: stm32: Add SCMI version of STM32 boards (DK1/DK2/ED1/EV1)
 
----
- arch/riscv/include/uapi/asm/kvm.h | 20 +++++++
- arch/riscv/kvm/vcpu.c             | 98 +++++++++++++++++++++++++++++++
- 2 files changed, 118 insertions(+)
+Marek Vasut (1):
+  dt-bindings: rcc: Add optional external ethernet RX clock properties
 
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index f808ad1ce500..92bd469e2ba6 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -82,6 +82,23 @@ struct kvm_riscv_timer {
- 	__u64 state;
- };
- 
-+/**
-+ * ISA extension IDs specific to KVM. This is not the same as the host ISA
-+ * extension IDs as that is internal to the host and should not be exposed
-+ * to the guest. This should always be contiguous to keep the mapping simple
-+ * in KVM implementation.
-+ */
-+enum KVM_RISCV_ISA_EXT_ID {
-+	KVM_RISCV_ISA_EXT_A = 0,
-+	KVM_RISCV_ISA_EXT_C,
-+	KVM_RISCV_ISA_EXT_D,
-+	KVM_RISCV_ISA_EXT_F,
-+	KVM_RISCV_ISA_EXT_H,
-+	KVM_RISCV_ISA_EXT_I,
-+	KVM_RISCV_ISA_EXT_M,
-+	KVM_RISCV_ISA_EXT_MAX,
-+};
-+
- /* Possible states for kvm_riscv_timer */
- #define KVM_RISCV_TIMER_STATE_OFF	0
- #define KVM_RISCV_TIMER_STATE_ON	1
-@@ -123,6 +140,9 @@ struct kvm_riscv_timer {
- #define KVM_REG_RISCV_FP_D_REG(name)	\
- 		(offsetof(struct __riscv_d_ext_state, name) / sizeof(__u64))
- 
-+/* ISA Extension registers are mapped as type 7 */
-+#define KVM_REG_RISCV_ISA_EXT		(0x07 << KVM_REG_RISCV_TYPE_SHIFT)
-+
- #endif
- 
- #endif /* __LINUX_KVM_RISCV_H */
-diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index aad430668bb4..93492eb292fd 100644
---- a/arch/riscv/kvm/vcpu.c
-+++ b/arch/riscv/kvm/vcpu.c
-@@ -365,6 +365,100 @@ static int kvm_riscv_vcpu_set_reg_csr(struct kvm_vcpu *vcpu,
- 	return 0;
- }
- 
-+/* Mapping between KVM ISA Extension ID & Host ISA extension ID */
-+static unsigned long kvm_isa_ext_arr[] = {
-+	RISCV_ISA_EXT_a,
-+	RISCV_ISA_EXT_c,
-+	RISCV_ISA_EXT_d,
-+	RISCV_ISA_EXT_f,
-+	RISCV_ISA_EXT_h,
-+	RISCV_ISA_EXT_i,
-+	RISCV_ISA_EXT_m,
-+};
-+
-+static int kvm_riscv_vcpu_get_reg_isa_ext(struct kvm_vcpu *vcpu,
-+					  const struct kvm_one_reg *reg)
-+{
-+	unsigned long __user *uaddr =
-+			(unsigned long __user *)(unsigned long)reg->addr;
-+	unsigned long reg_num = reg->id & ~(KVM_REG_ARCH_MASK |
-+					    KVM_REG_SIZE_MASK |
-+					    KVM_REG_RISCV_ISA_EXT);
-+	unsigned long reg_val = 0;
-+	unsigned long host_isa_ext;
-+
-+	if (KVM_REG_SIZE(reg->id) != sizeof(unsigned long))
-+		return -EINVAL;
-+
-+	if (reg_num >= KVM_RISCV_ISA_EXT_MAX || reg_num >= ARRAY_SIZE(kvm_isa_ext_arr))
-+		return -EINVAL;
-+
-+	host_isa_ext = kvm_isa_ext_arr[reg_num];
-+	if (__riscv_isa_extension_available(NULL, host_isa_ext))
-+		reg_val = 1; /* Mark the given extension as available */
-+
-+	if (copy_to_user(uaddr, &reg_val, KVM_REG_SIZE(reg->id)))
-+		return -EFAULT;
-+
-+	return 0;
-+}
-+
-+static int kvm_riscv_vcpu_set_reg_isa_ext(struct kvm_vcpu *vcpu,
-+					  const struct kvm_one_reg *reg)
-+{
-+	unsigned long __user *uaddr =
-+			(unsigned long __user *)(unsigned long)reg->addr;
-+	unsigned long reg_num = reg->id & ~(KVM_REG_ARCH_MASK |
-+					    KVM_REG_SIZE_MASK |
-+					    KVM_REG_RISCV_ISA_EXT);
-+	unsigned long reg_val;
-+	unsigned long host_isa_ext;
-+	unsigned long host_isa_ext_mask;
-+
-+	if (KVM_REG_SIZE(reg->id) != sizeof(unsigned long))
-+		return -EINVAL;
-+
-+	if (reg_num >= KVM_RISCV_ISA_EXT_MAX || reg_num >= ARRAY_SIZE(kvm_isa_ext_arr))
-+		return -EINVAL;
-+
-+	if (copy_from_user(&reg_val, uaddr, KVM_REG_SIZE(reg->id)))
-+		return -EFAULT;
-+
-+	host_isa_ext = kvm_isa_ext_arr[reg_num];
-+	if (!__riscv_isa_extension_available(NULL, host_isa_ext))
-+		return	-EOPNOTSUPP;
-+
-+	if (host_isa_ext >= RISCV_ISA_EXT_BASE &&
-+	    host_isa_ext < RISCV_ISA_EXT_MAX) {
-+		/** Multi-letter ISA extension. Currently there is no provision
-+		 * to enable/disable the multi-letter ISA extensions for guests.
-+		 * Return success if the request is to enable any ISA extension
-+		 * that is available in the hardware.
-+		 * Return -EOPNOTSUPP otherwise.
-+		 */
-+		if (!reg_val)
-+			return -EOPNOTSUPP;
-+		else
-+			return 0;
-+	}
-+
-+	/* Single letter base ISA extension */
-+	if (!vcpu->arch.ran_atleast_once) {
-+		host_isa_ext_mask = BIT_MASK(host_isa_ext);
-+		if (!reg_val && (host_isa_ext_mask & KVM_RISCV_ISA_DISABLE_ALLOWED))
-+			vcpu->arch.isa &= ~host_isa_ext_mask;
-+		else
-+			vcpu->arch.isa |= host_isa_ext_mask;
-+		vcpu->arch.isa &= riscv_isa_extension_base(NULL);
-+		vcpu->arch.isa &= KVM_RISCV_ISA_ALLOWED;
-+		kvm_riscv_vcpu_fp_reset(vcpu);
-+	} else {
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
- static int kvm_riscv_vcpu_set_reg(struct kvm_vcpu *vcpu,
- 				  const struct kvm_one_reg *reg)
- {
-@@ -382,6 +476,8 @@ static int kvm_riscv_vcpu_set_reg(struct kvm_vcpu *vcpu,
- 	else if ((reg->id & KVM_REG_RISCV_TYPE_MASK) == KVM_REG_RISCV_FP_D)
- 		return kvm_riscv_vcpu_set_reg_fp(vcpu, reg,
- 						 KVM_REG_RISCV_FP_D);
-+	else if ((reg->id & KVM_REG_RISCV_TYPE_MASK) == KVM_REG_RISCV_ISA_EXT)
-+		return kvm_riscv_vcpu_set_reg_isa_ext(vcpu, reg);
- 
- 	return -EINVAL;
- }
-@@ -403,6 +499,8 @@ static int kvm_riscv_vcpu_get_reg(struct kvm_vcpu *vcpu,
- 	else if ((reg->id & KVM_REG_RISCV_TYPE_MASK) == KVM_REG_RISCV_FP_D)
- 		return kvm_riscv_vcpu_get_reg_fp(vcpu, reg,
- 						 KVM_REG_RISCV_FP_D);
-+	else if ((reg->id & KVM_REG_RISCV_TYPE_MASK) == KVM_REG_RISCV_ISA_EXT)
-+		return kvm_riscv_vcpu_get_reg_isa_ext(vcpu, reg);
- 
- 	return -EINVAL;
- }
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |  17 +++
+ .../bindings/clock/st,stm32mp1-rcc.yaml       |  34 ++++++
+ arch/arm/boot/dts/Makefile                    |   4 +
+ arch/arm/boot/dts/stm32mp151.dtsi             |  41 +++++++
+ arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts    |  86 +++++++++++++++
+ arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts    |  95 +++++++++++++++++
+ arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts    |  91 ++++++++++++++++
+ arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts    | 100 ++++++++++++++++++
+ arch/arm/mach-stm32/Kconfig                   |   2 +
+ include/dt-bindings/clock/stm32mp1-clks.h     |  46 ++++----
+ include/dt-bindings/reset/stm32mp1-resets.h   |  24 ++---
+ 11 files changed, 503 insertions(+), 37 deletions(-)
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
+
 -- 
-2.25.1
+2.17.1
 
