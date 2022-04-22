@@ -2,204 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA9C750BFC3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95EA450C003
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbiDVS2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:28:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44102 "EHLO
+        id S230169AbiDVSxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234390AbiDVS2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:28:36 -0400
-Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3064427B05
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 11:25:38 -0700 (PDT)
+        with ESMTP id S230087AbiDVSxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:53:32 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986191FC1E2;
+        Fri, 22 Apr 2022 11:46:28 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id p21so9523789ioj.4;
+        Fri, 22 Apr 2022 11:46:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=b+ZHKdcwQaS5B0cIyyHCJQ/iG8M95qaEPvoQiuH6VqE=;
-        b=kMd2rYOf+uckkbUqznCR0jcdE/ejwcu1MJxl9By1bS5KJiXC97PM2VYsPYLDQe1zgdXJOTffGkRQw
-         70wYu740zEgVZA1BsCAkGo6rOazg1N5UfWfW7eKokdXQ6QAT0DRLhTHXN9I9ALVOnBukgf0fD7UMTB
-         wd+3bVkhNp715IXRvxN5O6fUkPqyTBYI3mjO4685Xz2786Ar/adq2h0NbBIGYIdrC7ZfhPMSNpm5o4
-         NZEi45KYSdm5gchRZ+DbrOHiA4o1GXc5HriRXFr7ZpJKWmY/jVdhcjM+dCampR8jLADs3ZTigfUKkt
-         L6G7QSKTQATA02r9NBsCcGI5+Sirhxw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=b+ZHKdcwQaS5B0cIyyHCJQ/iG8M95qaEPvoQiuH6VqE=;
-        b=HZxagInTnlE0twK3jOYG1Sj60VJh+VhcLoREvTaf5dnNKuPSGxC24hoUIoMvE9YZeQZaXvbaYUgY/
-         zIHVfFcCg==
-X-HalOne-Cookie: 2a0dae1011355b26a4b5764f2b4b8a05d4995d30
-X-HalOne-ID: 4d744611-c269-11ec-8225-d0431ea8bb10
-Received: from mailproxy2.cst.dirpod4-cph3.one.com (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
-        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id 4d744611-c269-11ec-8225-d0431ea8bb10;
-        Fri, 22 Apr 2022 18:23:27 +0000 (UTC)
-Date:   Fri, 22 Apr 2022 20:23:25 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robby Cai <robby.cai@nxp.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Implement
- simple NXP i.MX8M LDB bridge
-Message-ID: <YmLynWrjFb+28nGW@ravnborg.org>
-References: <20220418145105.76986-1-marex@denx.de>
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=VZJZWU/RxygMbphG0Oj9zjd06v34ardwpbG1ITBoIDw=;
+        b=YZrWTzrqWk1rSABVylk7srJID3fDK9uMYJG42OPvae8wfCRKj7ksYtYZn7xN0yrP8i
+         e41Zp35cubbwqYSgd29HYOnVMmbr5qt6fEZ8X/yNW7wvKE6Of2E2X84vq2sbLpm0v1ft
+         7Yc10MU2AuvdmmQhwLN/afW/ybLHkuYWzff9R78t3w/+XyhG60uKEsY2w5UdcUX6Fu2J
+         LMy2HV3lFWnIFWErseiwxIAg5WQVCIyoHpY/usBPF0WEoB6IZcWuDlIdWhOUBNbbC3U9
+         o1RNHfw+J/BuziFmLiNgBRaa2DJDNESPnhnvUgumXYSBsoCUt6ByYC2DxaEy9zCJP3wE
+         T5/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=VZJZWU/RxygMbphG0Oj9zjd06v34ardwpbG1ITBoIDw=;
+        b=kHZH3WGNLzMYnQKcX8w+DjR3WAXSQpLinbGqW5w6I+rEOnh/ZT64SWJeh7jkE1ri7j
+         /iwRNcrdmd97m71ku5XJFNqyrMxi6BVVW0jGxKaXVSnV2t/66ka04Vp2aLIlErHhVgnC
+         +OGvv8fw17i7m7UnCgvFD+rYGoa0L5jQWh1QsUVIZKmhT+BvANvGQQcij+xy6Orper7K
+         Hoaqy2IDoz/f2oXlF2a5CklBXkODa3cwecJP86EFBqxjZBptJ6DFmqGf2c8UORPPtNe0
+         dUeTaKqxyUz+Z5fYw8btueZwrfZzPwxp0xeb5xwicVl13DuW/pb/jgOjet2PpmGBtzu5
+         9sZQ==
+X-Gm-Message-State: AOAM532BUKYCl2ZIoeMNB2cEkA9lRvdRRPihzegTQz15+rknz0Fo4eYD
+        LjU777hxgeqezvjk64N+zI41Sghjp+I=
+X-Google-Smtp-Source: ABdhPJzt8+ULZ4U/JS1QogjvrFZ9RPxY2qsOw5RmC0oJk1pCiWYhJttEH2fg8OhbQGWlcVH7Xy1Pxw==
+X-Received: by 2002:a65:41c3:0:b0:363:5711:e234 with SMTP id b3-20020a6541c3000000b003635711e234mr5039062pgq.386.1650652113575;
+        Fri, 22 Apr 2022 11:28:33 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id b17-20020a056a000a9100b004e1b7cdb8fdsm3593300pfl.70.2022.04.22.11.28.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 11:28:32 -0700 (PDT)
+Message-ID: <68c4710d-013e-85e0-154d-413f4e13b27e@gmail.com>
+Date:   Fri, 22 Apr 2022 11:28:30 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220418145105.76986-1-marex@denx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH net-next 2/5] net: dsa: add out-of-band tagging protocol
+Content-Language: en-US
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+References: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
+ <20220422180305.301882-3-maxime.chevallier@bootlin.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220422180305.301882-3-maxime.chevallier@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 04:51:04PM +0200, Marek Vasut wrote:
-> The i.MX8MP contains two syscon registers which are responsible
-> for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
-> which represents this serializer as a bridge.
+On 4/22/22 11:03, Maxime Chevallier wrote:
+> This tagging protocol is designed for the situation where the link
+> between the MAC and the Switch is designed such that the Destination
+> Port, which is usually embedded in some part of the Ethernet Header, is
+> sent out-of-band, and isn't present at all in the Ethernet frame.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Maxime Ripard <maxime@cerno.tech>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robby Cai <robby.cai@nxp.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
-Acked-by: Sam Ravnborg <sam@ravnborg.org> but you need an ack from
-someone else before you apply as I am not an expert here.
+> This can happen when the MAC and Switch are tightly integrated on an
+> SoC, as is the case with the Qualcomm IPQ4019 for example, where the DSA
+> tag is inserted directly into the DMA descriptors. In that case,
+> the MAC driver is responsible for sending the tag to the switch using
+> the out-of-band medium. To do so, the MAC driver needs to have the
+> information of the destination port for that skb.
+> 
+> This tagging protocol relies on a new set of fields in skb->shinfo to
+> transmit the dsa tagging information to and from the MAC driver.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-	Sam
-> ---
-> V2: - Consistently use fsl,imx8mp-ldb as compatible
->     - Drop items: from compatible:
->     - Replace minItems with maxItems in clocks:
->     - Drop quotes from clock-names const: ldb
->     - Rename syscon to fsl,syscon
->     - Use generic name of ldb-lvds in example
-> ---
->  .../bindings/display/bridge/nxp,ldb.yaml      | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
-> new file mode 100644
-> index 0000000000000..f3182566eb316
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/nxp,ldb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8M DPI to LVDS bridge chip
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +description: |
-> +  The i.MX8MP contains two syscon registers which are responsible
-> +  for configuring the on-SoC DPI-to-LVDS serializer. This describes
-> +  those registers as bridge within the DT.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8mp-ldb
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: ldb
-> +
-> +  fsl,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: A phandle to media block controller.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for DPI input.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for LVDS Channel-A output (panel or bridge).
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for LVDS Channel-B output (panel or bridge).
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - fsl,syscon
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +    bridge {
-> +        compatible = "fsl,imx8mp-ldb";
-> +        clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-> +        clock-names = "ldb";
-> +        fsl,syscon = <&media_blk_ctrl>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +
-> +                ldb_from_lcdif2: endpoint {
-> +                    remote-endpoint = <&lcdif2_to_ldb>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +
-> +                ldb_lvds_ch0: endpoint {
-> +                    remote-endpoint = <&ldb_to_lvdsx4panel>;
-> +                };
-> +            };
-> +
-> +            port@2 {
-> +                reg = <2>;
-> +
-> +                ldb_lvds_ch1: endpoint {
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.35.1
+First off, I am not a big fan of expanding skb::shared_info because it 
+is sensitive to cache line sizes and is critical for performance at much 
+higher speeds, I would expect Eric and Jakub to not be terribly happy 
+about it.
+
+The Broadcom systemport (bcmsysport.c) has a mode where it can extract 
+the Broadcom tag and put it in front of the actual packet contents which 
+appears to be very similar here. From there on, you can have two strategies:
+
+- have the Ethernet controller mangle the packet contents such that the 
+QCA tag is located in front of the actual Ethernet frame and create a 
+new tagging protocol variant for QCA, similar to the TAG_BRCM versus 
+TAG_BRCM_PREPEND
+
+- provide the necessary information for the tagger to work using an out 
+of band mechanism, which is what you have done, in which case, maybe you 
+can use skb->cb[] instead of using skb::shared_info?
+-- 
+Florian
