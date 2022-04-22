@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B954650BCBB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 756E650BCD3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378325AbiDVQUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 12:20:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51154 "EHLO
+        id S1381784AbiDVQ0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 12:26:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378335AbiDVQUX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:20:23 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0705DA53;
-        Fri, 22 Apr 2022 09:17:28 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23MGHCcm121089;
-        Fri, 22 Apr 2022 11:17:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650644232;
-        bh=iYC92yO0nVNTBrV4ZcAROnLEimDhVCylf0MCz4FDpg8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=XxG5mI0ikG5jZo4MowM6zesP/gy4T+x3jrUd68nqr/HcbxXAG7jpFJnwWTpjidPJ+
-         C3NI1cG10RFpY1ZaY+aujncHqwwFUL9xKCHsWPbWhdQIzKLVfsYnm/nbHhbZkHxFLU
-         f571unjgjXI5Qz+xdaA/G4TGYXrLum1bgX3hm8FA=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23MGHCXr059334
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 22 Apr 2022 11:17:12 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
- Apr 2022 11:17:11 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 22 Apr 2022 11:17:11 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23MGHBxn019241;
-        Fri, 22 Apr 2022 11:17:11 -0500
-Date:   Fri, 22 Apr 2022 11:17:11 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rahul T R <r-ravikumar@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>
-Subject: Re: [PATCH v3 0/2] DSS: Add support for DisplayPort
-Message-ID: <20220422161711.jkderbw5r4wxwgjf@crudeness>
-References: <20220406165852.13026-1-r-ravikumar@ti.com>
- <ed64bf63-95c6-94ae-4c4f-a206250f44a9@ti.com>
- <20220422141637.4hz5nrlpjapmqezw@uda0490373>
+        with ESMTP id S1383278AbiDVQ0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:26:44 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461CA5E153;
+        Fri, 22 Apr 2022 09:23:50 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23MEpQ9i028200;
+        Fri, 22 Apr 2022 18:23:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=Tz26t0AEffOCF28o5Wo7UmIZsHLJeggiP4B5JFJg+Zg=;
+ b=owHoJCPIopVgvMeN3/8z8Z9eGsj6w1DEtBRojS8tGJMoncZyZ+n1UOMMVfhruvn6KPg8
+ hkf577hLz1C6B+nrVS4jOdQMJ3umiTR7u0NV34UQAtiVX0Helh2c9YelGGlNEZGjAtVf
+ CP0yyXfxfwa8u055Kmwr6Zkyo4za5NEK1F4wLFK0rRA+VefMxFCS8GkEe/vi3XNlcTHt
+ jAhIHTYkTvZSC8CUxugEGtPWl47/3JFXujhjYnU70f9ann6Ul1ubAIhz6zu4oygCorsO
+ K/HVoiYoq7MISMNv3VB7v6DwEYDdOCym0y9HQpG8XIJxyUL1Ocz2Omh5eIJuuhROgKeI ug== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fkskgtdv3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 22 Apr 2022 18:23:27 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9BB8810002A;
+        Fri, 22 Apr 2022 18:23:26 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8F14D23BDF1;
+        Fri, 22 Apr 2022 18:23:26 +0200 (CEST)
+Received: from [10.48.0.142] (10.75.127.46) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 22 Apr
+ 2022 18:23:26 +0200
+Message-ID: <d731e89f-feef-fa7d-d2e7-0d1f9af118cd@foss.st.com>
+Date:   Fri, 22 Apr 2022 18:23:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220422141637.4hz5nrlpjapmqezw@uda0490373>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 5/8] ARM: stm32: select OPTEE on MPU family
+Content-Language: en-US
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>, <arnd@arndb.de>,
+        <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        <soc@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Marek Vasut <marex@denx.de>,
+        <etienne.carriere@st.com>,
+        "Pengutronix Kernel Team" <kernel@pengutronix.de>
+References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
+ <20220422150952.20587-6-alexandre.torgue@foss.st.com>
+ <3d5969cc-2210-3c7c-01c8-3f5c3789e54b@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <3d5969cc-2210-3c7c-01c8-3f5c3789e54b@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-04-22_04,2022-04-22_01,2022-02-23_01
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:46-20220422, Rahul T R wrote:
-> On 12:51-20220415, Vignesh Raghavendra wrote:
-> > 
-> > 
-> > On 06/04/22 10:28 pm, Rahul T R wrote:
-> > > The following series of patches enables DisplayPort on
-> > > j721e-evm
-> > > 
-> > > Tomi Valkeinen (2):
-> > >   arm64: dts: ti: k3-j721e-main: add DP & DP PHY
-> > >   arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
-> > > 
-> > > v2:
-> > >    - use phandle with a parameter to refer clocks insted of
-> > >      sub nodes in serdes_wiz node
-> > >    - move phy link node to board DTS file
-> > > 
-> > > v3:
-> > >    - Fix the regulator node name as per the DT spec
-> > >    - Use Macro for GPIO type
-> > > 
-> > > boot logs:
-> > >    https://gist.githubusercontent.com/ravi-rahul/1bdbc3f77ab381e486c8394650c2e85d/raw/f04584c30181821c4ee83aee7781a9ba143cd3f3/j7_DP_upstream.log
-> > > 
-> > > kernel patch verify report:
-> > >    https://gist.githubusercontent.com/ravi-rahul/a982fef3fae03ec0dbdd5cb475a4cb25/raw/c8230370746e9878daf9527c3aa9d82eed7aa33c/report-kernel-patch-verify.txt
-> > 
-> > Hmm, With dtbs_check I see (on v5.18-rc1 tag)
-> > 
-> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: ports: 'port@0' is a required property
-> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: ports: 'port@4' is a required property
-> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: 'phys' is a required property
-> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: 'phy-names' is a required property
-> > 
-> > This goes away with 2/2 although adds:
-> > +<stdout>: Warning (graph_child_address): /bus@100000/dss@4a00000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
-> > 
-> > 
-> > Do we need to have empty ports node in j721e-main.dtsi for dp-bridge?   And something similar wrt phys as well?
-> > 
-> > Regards
-> > Vignesh
-> 
-> Hi Vignesh,
-> 
-> Thanks for the review!
-> Not sure why kernel patch verify did not catch this
+Hi Ahmad,
 
-if you are'nt able to install all the required packages and version of
-packages, then use the kpv wrapper script for docker container that
-already packages things.
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+On 4/22/22 17:37, Ahmad Fatoum wrote:
+> Hello Alex,
+> 
+> On 22.04.22 17:09, Alexandre Torgue wrote:
+>> Select CONFIG_OPTEE for STM32MP15 and STM32MP13 by default. Final
+>> activation will done thanks to device tree.
+>>
+>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>>
+>> diff --git a/arch/arm/mach-stm32/Kconfig b/arch/arm/mach-stm32/Kconfig
+>> index 98145031586f..b322cf2a136f 100644
+>> --- a/arch/arm/mach-stm32/Kconfig
+>> +++ b/arch/arm/mach-stm32/Kconfig
+>> @@ -6,6 +6,8 @@ menuconfig ARCH_STM32
+>>   	select HAVE_ARM_ARCH_TIMER if ARCH_MULTI_V7
+>>   	select ARM_GIC if ARCH_MULTI_V7
+>>   	select ARM_PSCI if ARCH_MULTI_V7
+>> +	select TEE if ARCH_MULTI_V7
+>> +	select OPTEE if ARCH_MULTI_V7
+> 
+> Users may want to use OPTEE as a module without it being a SCMI provider
+> or not use OPTEE at all. I'd prefer you drop this patch and leave it
+> to users to configure their kernel appropriately.
+> 
+
+Yes, I can understand, I did this one too quickly forgetting that every 
+multi_v7config users will inherit of this config.
+
+thanks
+Alex
+
+> Cheers,
+> Ahmad
+> 
+> 
+>>   	select ARM_AMBA
+>>   	select ARCH_HAS_RESET_CONTROLLER
+>>   	select CLKSRC_STM32
+> 
+> 
+> 
+> 
+
