@@ -2,212 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E37850B117
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:07:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D329F50B138
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386931AbiDVHJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 03:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34736 "EHLO
+        id S1444723AbiDVHSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 03:18:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiDVHJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 03:09:51 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6CA50E31;
-        Fri, 22 Apr 2022 00:06:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650611219; x=1682147219;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=K5K/9LP5qRdw+kAG2wypguFk5flX/j+CqMO4RT/vvxA=;
-  b=kXelw/wzOaRh/LIF0UmBSG/g+2d8r3X74W3/LVmQ9JQ/NLZTcGqtRPwy
-   UuyzXDQoHDlDOAMKQqaHYiVDRjoBbYjjfcfdEmqZAuh9WRZJN2/Xx+lED
-   rcbR8z86KxiQEAZ6qEhh1to9RFsdAG65pcCooF1Jjx/txez7dxiaKoYjA
-   1geoRA7KUyWvIrTYor0ZLWMyjDKruPM+P6GqtHbJaf9ljip2JY4//wF6h
-   ag3AQigB2e/7oCDWXLMRnL9Set9EdqK3f04q140kxZ2iKQLz0PyoZq4rA
-   xdURsFUkndRpJA2IUVpfIsF/BC1NRzTwpL05R0/3pN0icjkoRLkwUgubZ
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="325049925"
-X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; 
-   d="scan'208";a="325049925"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 00:06:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; 
-   d="scan'208";a="577715736"
-Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 22 Apr 2022 00:06:53 -0700
-Received: from kbuild by 3abc53900bec with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nhnNU-0009M8-Fo;
-        Fri, 22 Apr 2022 07:06:52 +0000
-Date:   Fri, 22 Apr 2022 15:06:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Ryan Lee <ryan.lee.analog@gmail.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        ckeepax@opensource.cirrus.com, tanureal@opensource.cirrus.com,
-        cy_huang@richtek.com, pierre-louis.bossart@linux.intel.com,
-        drhodes@opensource.cirrus.com, pbrobinson@gmail.com,
-        hdegoede@redhat.com, lukas.bulwahn@gmail.com, stephan@gerhold.net,
-        arnd@arndb.de, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ryans.lee@analog.com
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org
-Subject: Re: [PATCH V2 2/2] ASoC: max98396: add amplifier driver
-Message-ID: <202204221550.phNeKLyn-lkp@intel.com>
-References: <20220421230253.823798-2-ryan.lee.analog@gmail.com>
+        with ESMTP id S1386732AbiDVHSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 03:18:36 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31E439B84;
+        Fri, 22 Apr 2022 00:15:42 -0700 (PDT)
+X-UUID: 491d445a835548d2a02accb29f8cd3ea-20220422
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:80b17aca-6b6c-4c22-a8af-b9e43eafd7b9,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:100
+X-CID-INFO: VERSION:1.1.4,REQID:80b17aca-6b6c-4c22-a8af-b9e43eafd7b9,OB:0,LOB:
+        0,IP:0,URL:25,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:100
+X-CID-META: VersionHash:faefae9,CLOUDID:a2f1bfef-06b0-4305-bfbf-554bfc9d151a,C
+        OID:b4f7ef9c0733,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: 491d445a835548d2a02accb29f8cd3ea-20220422
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 404748199; Fri, 22 Apr 2022 15:15:40 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 22 Apr 2022 15:15:38 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Apr 2022 15:15:38 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1] dt-bindings: dsp: mediatek: add mt8186 dsp document
+Date:   Fri, 22 Apr 2022 15:15:34 +0800
+Message-ID: <20220422071534.15653-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220421230253.823798-2-ryan.lee.analog@gmail.com>
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ryan,
+This patch adds mt8186 dsp document. The dsp is used for Sound Open
+Firmware driver node. It includes registers, clocks, memory regions,
+and mailbox for dsp.
 
-Thank you for the patch! Perhaps something to improve:
+Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+---
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on v5.18-rc3 next-20220421]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This patch depends on MT8186 clock bindings.
+https://lore.kernel.org/all/20220409132251.31725-2-chun-jie.chen@mediatek.com/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Lee/ASoC-dt-bindings-max98396-add-amplifier-driver/20220422-070610
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: arm-buildonly-randconfig-r003-20220421 (https://download.01.org/0day-ci/archive/20220422/202204221550.phNeKLyn-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5bd87350a5ae429baf8f373cb226a57b62f87280)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/1acb9ac9acbd834a2e93c2127be6bdd1716dc6dd
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Ryan-Lee/ASoC-dt-bindings-max98396-add-amplifier-driver/20220422-070610
-        git checkout 1acb9ac9acbd834a2e93c2127be6bdd1716dc6dd
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash sound/soc/codecs/
+---
+ .../bindings/dsp/mediatek,mt8186-dsp.yaml     | 93 +++++++++++++++++++
+ 1 file changed, 93 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> sound/soc/codecs/max98396.c:408:7: warning: variable 'update' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-                   if (format != (reg & MAX98396_PCM_MODE_CFG_FORMAT_MASK))
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   sound/soc/codecs/max98396.c:411:7: note: uninitialized use occurs here
-                   if (update)
-                       ^~~~~~
-   sound/soc/codecs/max98396.c:408:3: note: remove the 'if' if its condition is always true
-                   if (format != (reg & MAX98396_PCM_MODE_CFG_FORMAT_MASK))
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   sound/soc/codecs/max98396.c:349:13: note: initialize the variable 'update' to silence this warning
-           bool update;
-                      ^
-                       = 0
-   1 warning generated.
-
-
-vim +408 sound/soc/codecs/max98396.c
-
-   339	
-   340	static int max98396_dai_set_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
-   341	{
-   342		struct snd_soc_component *component = codec_dai->component;
-   343		struct max98396_priv *max98396 = snd_soc_component_get_drvdata(component);
-   344		unsigned int format;
-   345		unsigned int bclk_pol = 0;
-   346		unsigned int fsync_pol = 0;
-   347		int ret, status;
-   348		int reg;
-   349		bool update;
-   350	
-   351		dev_dbg(component->dev, "%s: fmt 0x%08X\n", __func__, fmt);
-   352	
-   353		switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-   354		case SND_SOC_DAIFMT_NB_NF:
-   355			break;
-   356		case SND_SOC_DAIFMT_NB_IF:
-   357			fsync_pol = MAX98396_PCM_MODE_CFG_PCM_LRCLKEDGE;
-   358			break;
-   359		case SND_SOC_DAIFMT_IB_NF:
-   360			bclk_pol = MAX98396_PCM_MODE_CFG_PCM_BCLKEDGE;
-   361			break;
-   362		case SND_SOC_DAIFMT_IB_IF:
-   363			bclk_pol = MAX98396_PCM_MODE_CFG_PCM_BCLKEDGE;
-   364			fsync_pol = MAX98396_PCM_MODE_CFG_PCM_LRCLKEDGE;
-   365			break;
-   366	
-   367		default:
-   368			dev_err(component->dev, "DAI invert mode unsupported\n");
-   369			return -EINVAL;
-   370		}
-   371	
-   372		regmap_update_bits(max98396->regmap,
-   373				   MAX98396_R2041_PCM_MODE_CFG,
-   374				   MAX98396_PCM_MODE_CFG_PCM_LRCLKEDGE,
-   375				   fsync_pol);
-   376	
-   377		regmap_update_bits(max98396->regmap,
-   378				   MAX98396_R2042_PCM_CLK_SETUP,
-   379				   MAX98396_PCM_MODE_CFG_PCM_BCLKEDGE,
-   380				   bclk_pol);
-   381	
-   382		/* interface format */
-   383		switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-   384		case SND_SOC_DAIFMT_I2S:
-   385			format = MAX98396_PCM_FORMAT_I2S;
-   386			break;
-   387		case SND_SOC_DAIFMT_LEFT_J:
-   388			format = MAX98396_PCM_FORMAT_LJ;
-   389			break;
-   390		case SND_SOC_DAIFMT_DSP_A:
-   391			format = MAX98396_PCM_FORMAT_TDM_MODE1;
-   392			break;
-   393		case SND_SOC_DAIFMT_DSP_B:
-   394			format = MAX98396_PCM_FORMAT_TDM_MODE0;
-   395			break;
-   396		default:
-   397			return -EINVAL;
-   398		}
-   399	
-   400		ret = regmap_read(max98396->regmap, MAX98396_R210F_GLOBAL_EN, &status);
-   401		if (ret < 0)
-   402			return -EINVAL;
-   403	
-   404		if (status) {
-   405			ret = regmap_read(max98396->regmap, MAX98396_R2041_PCM_MODE_CFG, &reg);
-   406			if (ret < 0)
-   407				return -EINVAL;
- > 408			if (format != (reg & MAX98396_PCM_MODE_CFG_FORMAT_MASK))
-   409				update = true;
-   410			/* GLOBAL_EN OFF prior to pcm mode change */
-   411			if (update)
-   412				max98396_global_enable_onoff(max98396->regmap, false);
-   413		}
-   414	
-   415		regmap_update_bits(max98396->regmap,
-   416				   MAX98396_R2041_PCM_MODE_CFG,
-   417				   MAX98396_PCM_MODE_CFG_FORMAT_MASK,
-   418				   format);
-   419	
-   420		if (status && update)
-   421			max98396_global_enable_onoff(max98396->regmap, true);
-   422	
-   423		return 0;
-   424	}
-   425	
-
+diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+new file mode 100644
+index 000000000000..00a79e880895
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dsp/mediatek,mt8186-dsp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek mt8186 DSP core
++
++maintainers:
++  - Tinghan Shen <tinghan.shen@mediatek.com>
++
++description: |
++  MediaTek mt8186 SoC contains a DSP core used for
++  advanced pre- and post- audio processing.
++
++properties:
++  compatible:
++    const: mediatek,mt8186-dsp
++
++  reg:
++    items:
++      - description: Address and size of the DSP config registers
++      - description: Address and size of the DSP SRAM
++      - description: Address and size of the DSP secure registers
++      - description: Address and size of the DSP bus registers
++
++  reg-names:
++    items:
++      - const: cfg
++      - const: sram
++      - const: sec
++      - const: bus
++
++  clocks:
++    items:
++      - description: mux for audio dsp clock
++      - description: mux for audio dsp local bus
++
++  clock-names:
++    items:
++      - const: audiodsp_sel
++      - const: adsp_bus_sel
++
++  power-domains:
++    maxItems: 1
++
++  mboxes:
++    items:
++      - description: ipc reply between host and audio DSP.
++      - description: ipc request between host and audio DSP.
++
++  mbox-names:
++    items:
++      - const: mbox0
++      - const: mbox1
++
++  memory-region:
++    items:
++      - description: dma buffer between host and DSP.
++      - description: DSP system memory.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - power-domains
++  - mbox-names
++  - mboxes
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/mt8186-clk.h>
++    dsp@10680000 {
++        compatible = "mediatek,mt8186-dsp";
++        reg = <0x10680000 0x2000>,
++              <0x10800000 0x100000>,
++              <0x1068b000 0x100>,
++              <0x1068f000 0x1000>;
++        reg-names = "cfg", "sram", "sec", "bus";
++        clocks = <&topckgen CLK_TOP_AUDIODSP>,
++                 <&topckgen CLK_TOP_ADSP_BUS>;
++        clock-names = "audiodsp_sel",
++                      "adsp_bus_sel";
++        power-domains = <&spm 6>;
++        mbox-names = "mbox0", "mbox1";
++        mboxes = <&adsp_mailbox0>, <&adsp_mailbox1>;
++    };
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.18.0
+
