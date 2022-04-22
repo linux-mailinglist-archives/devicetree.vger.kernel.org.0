@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF21C50B4A9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12EEB50B4D9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446197AbiDVKKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 06:10:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
+        id S1446373AbiDVKW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 06:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233539AbiDVKKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:10:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391B053737;
-        Fri, 22 Apr 2022 03:07:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D1B3061E0C;
-        Fri, 22 Apr 2022 10:07:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34217C385A0;
-        Fri, 22 Apr 2022 10:07:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650622037;
-        bh=0yawq57opbcFXdcIH0roNewMtfcjckMA1vUB5NwgbJU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ahfXL6IIYcRZR0IorZG5eaC6uXloOgECvMsnb33CugSy6kgDAezyHUi+CMUqRBmyk
-         tnS0YM+XdWiHR0vlO1GtvOBczW1aZreIFNJHlBuwwlzRf2Hj28M/Iy+Wo0Dzh120zS
-         fye4SQOST9LaV+NK9zQwmAwG7x29nDCG6rHHElggozoDy/nPstosu52kGykPBpSf04
-         664MwKKMK40tOU3zv2qLfByYqTQRYUL18MXMaVNt+OThd+oXWZUqLsoGbJ45H9q2EV
-         bVJvSp/B9tKvn1dU1Lm8BvGttHm59bVT/u1gHygiOTsMFqIrpiM55gAPbaKo376GoK
-         rnDVPvmnFeq8g==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nhqBy-0002JI-J5; Fri, 22 Apr 2022 12:07:10 +0200
-Date:   Fri, 22 Apr 2022 12:07:10 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Prasad Malisetty <quic_pmaliset@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 2/5] arm64: dts: qcom: sc7280: move pipe mux handling
- to phy
-Message-ID: <YmJ+Ti81el2MzsHG@hovoldconsulting.com>
-References: <20220421102041.17345-1-johan+linaro@kernel.org>
- <20220421102041.17345-3-johan+linaro@kernel.org>
- <55d6e32b-9cf4-384c-1036-1adfb867ece8@linaro.org>
+        with ESMTP id S1446364AbiDVKW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:22:27 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5DE30575
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 03:19:34 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id l7so15502912ejn.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 03:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=kXcFFH5z+Qq976hXZFox/KSTDlgF6EIFrsS1pxqoR3E=;
+        b=fzSho7fftnlfP6pm6gBKxMNmgczxN0xGRrvch89F48Ef5lSwiPZkoBlYcBQGYsd6yN
+         uf5ZwrEPayELqr67sKmxMd7e7k7Bupu+uJyMB2V+NhxmNLVZfKrf+C/GSWj37YqMstOG
+         SHzsIt6qgBXwEgHCPqKGaQhkxggpwOcCB5MGhXtbesTdsOiqtwVGZWPX+Wy4eVPHjyVD
+         QPiiEucI5EKUignwPzeb3rFfeOZwgzijIq0c4CNo1THhrtLRczYOYswSCq/Z8Pz/Rq5K
+         +PdEUm4lJr/AwVJ8kFIzogLe6pJOiuMJ/KAmCrnR6X/qrwqk7r3y6nLqxWbeoA501TJt
+         +krQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=kXcFFH5z+Qq976hXZFox/KSTDlgF6EIFrsS1pxqoR3E=;
+        b=LtS4qTJXhfT+Wt0FDwU+hbrx2+Gkbr/NIYcQL2+R/K6GIrLZKpZG5wg8q87DveKUgE
+         CKY1NE6iJdGDwQ0Qn7ibOz9EeaP04Dolt6ZaXl/kNpqDA3crYVQ7JM9VC1NmJrO38rpm
+         l9df2WP7GRgaiHsofGeXcERynuZstaszxDWk+u5eq+40HodQddFB3QBSNp54Z21YPtYM
+         AbgbQSNujuO0DEZ633SJ7fVU57GLr+j6fS3o/YF8u9pYeYygddgYYG76wjXhV4ihQv52
+         aL7FyW135I1Sr5GWvLl4pDqwjO7LFFXID3fZbaHH+DnMfFPVaAnDwpIssz9P0o2URRCJ
+         GZjQ==
+X-Gm-Message-State: AOAM530xorcTXnn0l9Q9O8+DidM2hE+lG4LwE0hFjIJZE1IT03PFFZ0u
+        quvVK0ZSrN1M19xRzLujW+X58A==
+X-Google-Smtp-Source: ABdhPJzpcfN9v+Xc/2V8AerRTWsfjkHFGJs3Y9L5m0NP00FcGjDpxBiE0tR98fplIEFcypQ2+HP4Fw==
+X-Received: by 2002:a17:906:28cd:b0:6e8:98a4:4ccd with SMTP id p13-20020a17090628cd00b006e898a44ccdmr3461568ejd.390.1650622773400;
+        Fri, 22 Apr 2022 03:19:33 -0700 (PDT)
+Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id ka6-20020a170907990600b006ce54c95e3csm603058ejc.161.2022.04.22.03.19.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 03:19:32 -0700 (PDT)
+Message-ID: <29fc53bd-1016-fe6b-0c82-6f2fbd8171ee@linaro.org>
+Date:   Fri, 22 Apr 2022 12:19:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <55d6e32b-9cf4-384c-1036-1adfb867ece8@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: dts: mt8183-kukui: align SPI NOR node name with
+ dtschema
+Content-Language: en-US
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220407142143.293740-1-krzysztof.kozlowski@linaro.org>
+ <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
+ <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
+ <f7c5c3f9-0083-c0b0-dc49-e66139268312@linaro.org>
+ <234d411c-1386-d661-71e3-f1f30f5cbf36@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <234d411c-1386-d661-71e3-f1f30f5cbf36@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,73 +79,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 01:59:04PM +0300, Dmitry Baryshkov wrote:
-> On 21/04/2022 13:20, Johan Hovold wrote:
-> > The QMP PHY pipe clock remuxing is part of the PHY, which is both the
-> > producer and the consumer of the pipe clock.
-> > 
-> > Update the PCIe controller and PHY node to reflect the new binding.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 18 ++++++------------
-> >   1 file changed, 6 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > index c07765df9303..b3a9630262dc 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -1837,11 +1837,7 @@ pcie1: pci@1c08000 {
-> >   					<0 0 0 3 &intc 0 0 0 438 IRQ_TYPE_LEVEL_HIGH>,
-> >   					<0 0 0 4 &intc 0 0 0 439 IRQ_TYPE_LEVEL_HIGH>;
-> >   
-> > -			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
-> > -				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
-> > -				 <&pcie1_lane 0>,
-> > -				 <&rpmhcc RPMH_CXO_CLK>,
-> > -				 <&gcc GCC_PCIE_1_AUX_CLK>,
-> > +			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
-> >   				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-> >   				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
-> >   				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
-> > @@ -1849,11 +1845,7 @@ pcie1: pci@1c08000 {
-> >   				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-> >   				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
-> >   
-> > -			clock-names = "pipe",
-> > -				      "pipe_mux",
-> > -				      "phy_pipe",
-> > -				      "ref",
-> > -				      "aux",
-> > +			clock-names = "aux",
-> >   				      "cfg",
-> >   				      "bus_master",
-> >   				      "bus_slave",
-> > @@ -1910,8 +1902,10 @@ pcie1_lane: lanes@1c0e200 {
-> >   				      <0 0x01c0e600 0 0x170>,
-> >   				      <0 0x01c0e800 0 0x200>,
-> >   				      <0 0x01c0ee00 0 0xf4>;
-> > -				clocks = <&gcc GCC_PCIE_1_PIPE_CLK>;
-> > -				clock-names = "pipe0";
-> > +				clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
-> > +					 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
-> > +					 <&rpmhcc RPMH_CXO_CLK>;
-> > +				clock-names = "pipe0", "mux", "ref";
+On 22/04/2022 11:13, Matthias Brugger wrote:
 > 
-> This will not be compatible with earlier DTB files, which was a problem 
-> up to now.
+> I pushed it to v5.18-next/dts64 [1]
+> 
+> Let me know if there are other patches that you want me to take.
 
-That depends. The above wasn't added until 5.16 so we may still be able
-to fix it.
+Thanks! I dropped it from my tree.
 
-The NAK you got from Rob earlier was when you removed clocks that have
-been in the devicetree for several years:
 
-	https://lore.kernel.org/all/YgQ+tGhLqwUCsTUo@robh.at.kernel.org/
-
-and would still be needed by older kernels.
-
-Worst case, we need to keep both sets for sc7280 (i.e. like we need to
-do with the pipe clocks that have been around for years).
-
-Johan
+Best regards,
+Krzysztof
