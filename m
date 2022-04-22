@@ -2,195 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1CDA50B280
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 10:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6066C50B28F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 10:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239104AbiDVICs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 04:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42372 "EHLO
+        id S1350953AbiDVIFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 04:05:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1445433AbiDVICd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 04:02:33 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EDB522DB;
-        Fri, 22 Apr 2022 00:59:34 -0700 (PDT)
-X-UUID: 07d33d54a5f64cbca11cc0f602d23146-20220422
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:b6f8feab-30f0-4076-b9ad-efc5c60dbb00,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:faefae9,CLOUDID:f691c1ef-06b0-4305-bfbf-554bfc9d151a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 07d33d54a5f64cbca11cc0f602d23146-20220422
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 938408934; Fri, 22 Apr 2022 15:59:26 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 22 Apr 2022 15:59:16 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Apr
- 2022 15:59:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 22 Apr 2022 15:59:16 +0800
-Message-ID: <177a0be5289045602fdbde295b1bd076bee9e854.camel@mediatek.com>
-Subject: Re: [PATCH v1] dt-bindings: dsp: mediatek: add mt8186 dsp document
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        with ESMTP id S1445443AbiDVIFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 04:05:19 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B37E1527D1;
+        Fri, 22 Apr 2022 01:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=cZWm1q63rwYi32f1VKD80rczQVSL9KwMkpmg6YC11cM=; b=PSkCcqo0nrud4oXCPvekf/9txM
+        5q7ZlWXBzBOIdJ2TETKLOitv6M9pNEhPzeYA9+2BWPVKj5KSh4VGKx7TDGrapMquJQVK3FMKiqHRS
+        HNVbmv4KKEF4po2JmQ/Jp6WQSoK72cxnrPQjghMvNhwl7uhQLANud0gxI1oBrxoo6qVf56OgW7QVV
+        HD5jM2n9TO0fANCHzZlJEK9pRUBMkZhUlg6WBvE7N2E3p7TZlEgHW4H+rVXeiv0SHWsh3JsGNrpZA
+        2h8nZ7tfFiePi8x6QhSGF8WKsi51rV1eAq+ebU5z0+1rI1X8fgyK8pRJk+vvmNBP1FEI0SmQnvJRj
+        1s1KCSCg==;
+Received: from [89.212.21.243] (port=36186 helo=localhost.localdomain)
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <primoz.fiser@norik.com>)
+        id 1nhnh2-007P6W-Qh;
+        Fri, 22 Apr 2022 09:27:12 +0200
+From:   Primoz Fiser <primoz.fiser@norik.com>
+To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Support Opensource <support.opensource@diasemi.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 22 Apr 2022 15:59:15 +0800
-In-Reply-To: <20220422071534.15653-1-tinghan.shen@mediatek.com>
-References: <20220422071534.15653-1-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Primoz Fiser <primoz.fiser@norik.com>,
+        Andrej Picej <andrej.picej@norik.com>, upstream@phytec.de
+Subject: [PATCH 1/3] dt-bindings: mfd: da9063: watchdog: add suspend disable option
+Date:   Fri, 22 Apr 2022 09:27:11 +0200
+Message-Id: <20220422072713.3172345-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-04-22 at 15:15 +0800, Tinghan Shen wrote:
-> This patch adds mt8186 dsp document. The dsp is used for Sound Open
-> Firmware driver node. It includes registers, clocks, memory regions,
-> and mailbox for dsp.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
-> 
-> This patch depends on MT8186 clock bindings.
-> 
-https://lore.kernel.org/all/20220409132251.31725-2-chun-jie.chen@mediatek.com/
-> 
-> ---
->  .../bindings/dsp/mediatek,mt8186-dsp.yaml     | 93
-> +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8186-
-> dsp.yaml b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-
-> dsp.yaml
-> new file mode 100644
-> index 000000000000..00a79e880895
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dsp/mediatek,mt8186-dsp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek mt8186 DSP core
+Document the watchdog disable option which can be used if the hardware
+automatic suspend option is broken.
 
-Hello Tinghan,
+Based on commit c514430c51ee8 ("dt-bindings: watchdog: da9062: add
+suspend disable option").
 
-Please use MediaTek.
-Thanks.
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+---
+ Documentation/devicetree/bindings/mfd/da9063.txt | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-BRs,
-Rex
-
-> +
-> +maintainers:
-> +  - Tinghan Shen <tinghan.shen@mediatek.com>
-> +
-> +description: |
-> +  MediaTek mt8186 SoC contains a DSP core used for
-> +  advanced pre- and post- audio processing.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8186-dsp
-> +
-> +  reg:
-> +    items:
-> +      - description: Address and size of the DSP config registers
-> +      - description: Address and size of the DSP SRAM
-> +      - description: Address and size of the DSP secure registers
-> +      - description: Address and size of the DSP bus registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: cfg
-> +      - const: sram
-> +      - const: sec
-> +      - const: bus
-> +
-> +  clocks:
-> +    items:
-> +      - description: mux for audio dsp clock
-> +      - description: mux for audio dsp local bus
-> +
-> +  clock-names:
-> +    items:
-> +      - const: audiodsp_sel
-> +      - const: adsp_bus_sel
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  mboxes:
-> +    items:
-> +      - description: ipc reply between host and audio DSP.
-> +      - description: ipc request between host and audio DSP.
-> +
-> +  mbox-names:
-> +    items:
-> +      - const: mbox0
-> +      - const: mbox1
-> +
-> +  memory-region:
-> +    items:
-> +      - description: dma buffer between host and DSP.
-> +      - description: DSP system memory.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - mbox-names
-> +  - mboxes
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mt8186-clk.h>
-> +    dsp@10680000 {
-> +        compatible = "mediatek,mt8186-dsp";
-> +        reg = <0x10680000 0x2000>,
-> +              <0x10800000 0x100000>,
-> +              <0x1068b000 0x100>,
-> +              <0x1068f000 0x1000>;
-> +        reg-names = "cfg", "sram", "sec", "bus";
-> +        clocks = <&topckgen CLK_TOP_AUDIODSP>,
-> +                 <&topckgen CLK_TOP_ADSP_BUS>;
-> +        clock-names = "audiodsp_sel",
-> +                      "adsp_bus_sel";
-> +        power-domains = <&spm 6>;
-> +        mbox-names = "mbox0", "mbox1";
-> +        mboxes = <&adsp_mailbox0>, <&adsp_mailbox1>;
-> +    };
+diff --git a/Documentation/devicetree/bindings/mfd/da9063.txt b/Documentation/devicetree/bindings/mfd/da9063.txt
+index 91b79a21d403..aa8b800cc4ad 100644
+--- a/Documentation/devicetree/bindings/mfd/da9063.txt
++++ b/Documentation/devicetree/bindings/mfd/da9063.txt
+@@ -64,10 +64,13 @@ Sub-nodes:
+     and KEY_SLEEP.
+ 
+ - watchdog : This node defines settings for the Watchdog timer associated
+-  with the DA9063 and DA9063L. There are currently no entries in this
+-  binding, however compatible = "dlg,da9063-watchdog" should be added
+-  if a node is created.
++  with the DA9063 and DA9063L. The node should contain the compatible property
++  with the value "dlg,da9063-watchdog".
+ 
++  Optional watchdog properties:
++  - dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
++  Only use this option if you can't use the watchdog automatic suspend
++  function during a suspend (see register CONTROL_B).
+ 
+ Example:
+ 
+-- 
+2.25.1
 
