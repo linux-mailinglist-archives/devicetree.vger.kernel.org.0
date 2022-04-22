@@ -2,98 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF9E50B6FF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6013E50B705
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447425AbiDVMM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 08:12:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34942 "EHLO
+        id S1348157AbiDVMN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 08:13:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1447376AbiDVMMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:12:20 -0400
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6D156764;
-        Fri, 22 Apr 2022 05:09:19 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 26BAA240008;
-        Fri, 22 Apr 2022 12:09:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1650629358;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=eAmUY6poiqDINT9jc4YZdKTXBn0uAtKS+NvA7rwB+54=;
-        b=Z0EW5dCQBO22vHZW458iiLO0S0MdG8ZN4GIV0lExa601vVH9/ukxpHAh3umnFRV1l6KGk9
-        x/PxtEGspIXKgKcS5hC/tyGXAGr37IblUqTRu8Pjvgc9D1Es30PZ5kE8N3P4Hs/W5FvnjP
-        or83R5yOpRzNlJ/mSBSA23jACwtVYdQE2ZNrqAuUsmdPloHB2Jn9/VZg5cf0Ozk3dwTHIa
-        iAf1ZV0bY/EHU3XlS+oT9aABtXo/2AS4PwTrX7LytkErOPAgj5RyIhsSiDeJ8x35HmkagU
-        6Uchj8i62D3uzAumFl61Q7HAEtGkRS6uPl9AjsJSyuxFhn8SBf7aJ/NfNFOLUA==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1447359AbiDVMN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:13:26 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A6E31DC0;
+        Fri, 22 Apr 2022 05:10:27 -0700 (PDT)
+X-UUID: 1f2a789614b84f91914db5a6dce5a996-20220422
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:1761c73e-7895-44f1-a589-0d3049ca5de7,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:1761c73e-7895-44f1-a589-0d3049ca5de7,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:4d54c9ef-06b0-4305-bfbf-554bfc9d151a,C
+        OID:90a404c54476,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: 1f2a789614b84f91914db5a6dce5a996-20220422
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 187390448; Fri, 22 Apr 2022 20:10:21 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 22 Apr 2022 20:10:20 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Apr
+ 2022 20:10:19 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Apr 2022 20:10:19 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v3 8/8] ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
-Date:   Fri, 22 Apr 2022 14:08:50 +0200
-Message-Id: <20220422120850.769480-9-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422120850.769480-1-herve.codina@bootlin.com>
-References: <20220422120850.769480-1-herve.codina@bootlin.com>
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <nfraprado@collabora.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 0/2] dt-bindings: watchdog: mediatek: Convert binding to YAML
+Date:   Fri, 22 Apr 2022 20:10:15 +0800
+Message-ID: <20220422121017.23920-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the PCI USB devices that are behind the PCI bridge, adding
-necessary links to the USB PHY device.
+Based on kernel/git/groeck/linux-staging.git, watchdog-next
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Add align watchdog node name with dtschema PATCH to fix dtbs_check warnings.
 
-diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-index 58af07eb75c9..8dc50c09ac65 100644
---- a/arch/arm/boot/dts/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/r9a06g032.dtsi
-@@ -246,6 +246,18 @@ pci_usb: pci@40030000 {
- 			interrupt-map = <0x0000 0 0 1 &gic GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH
- 					 0x0800 0 0 1 &gic GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH
- 					 0x1000 0 0 2 &gic GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			usb@1,0 {
-+				reg = <0x800 0 0 0 0>;
-+				phys = <&usbphy>;
-+				phy-names = "usb";
-+			};
-+
-+			usb@2,0 {
-+				reg = <0x1000 0 0 0 0>;
-+				phys = <&usbphy>;
-+				phy-names = "usb";
-+			};
- 		};
- 	};
- 
+Allen-KH Cheng (2):
+  arm64: dts: mt8516: align watchdog node name with dtschema
+  dt-bindings: watchdog: mediatek: Convert binding to YAML
+
+ .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
+ .../devicetree/bindings/watchdog/mtk-wdt.yaml | 76 +++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi      |  2 +-
+ 3 files changed, 77 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
+
 -- 
-2.35.1
+2.18.0
 
