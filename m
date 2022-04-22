@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12EEB50B4D9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E63F50B4E1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:21:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446373AbiDVKW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 06:22:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54462 "EHLO
+        id S1446489AbiDVKXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 06:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446364AbiDVKW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:22:27 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5DE30575
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 03:19:34 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id l7so15502912ejn.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 03:19:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=kXcFFH5z+Qq976hXZFox/KSTDlgF6EIFrsS1pxqoR3E=;
-        b=fzSho7fftnlfP6pm6gBKxMNmgczxN0xGRrvch89F48Ef5lSwiPZkoBlYcBQGYsd6yN
-         uf5ZwrEPayELqr67sKmxMd7e7k7Bupu+uJyMB2V+NhxmNLVZfKrf+C/GSWj37YqMstOG
-         SHzsIt6qgBXwEgHCPqKGaQhkxggpwOcCB5MGhXtbesTdsOiqtwVGZWPX+Wy4eVPHjyVD
-         QPiiEucI5EKUignwPzeb3rFfeOZwgzijIq0c4CNo1THhrtLRczYOYswSCq/Z8Pz/Rq5K
-         +PdEUm4lJr/AwVJ8kFIzogLe6pJOiuMJ/KAmCrnR6X/qrwqk7r3y6nLqxWbeoA501TJt
-         +krQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kXcFFH5z+Qq976hXZFox/KSTDlgF6EIFrsS1pxqoR3E=;
-        b=LtS4qTJXhfT+Wt0FDwU+hbrx2+Gkbr/NIYcQL2+R/K6GIrLZKpZG5wg8q87DveKUgE
-         CKY1NE6iJdGDwQ0Qn7ibOz9EeaP04Dolt6ZaXl/kNpqDA3crYVQ7JM9VC1NmJrO38rpm
-         l9df2WP7GRgaiHsofGeXcERynuZstaszxDWk+u5eq+40HodQddFB3QBSNp54Z21YPtYM
-         AbgbQSNujuO0DEZ633SJ7fVU57GLr+j6fS3o/YF8u9pYeYygddgYYG76wjXhV4ihQv52
-         aL7FyW135I1Sr5GWvLl4pDqwjO7LFFXID3fZbaHH+DnMfFPVaAnDwpIssz9P0o2URRCJ
-         GZjQ==
-X-Gm-Message-State: AOAM530xorcTXnn0l9Q9O8+DidM2hE+lG4LwE0hFjIJZE1IT03PFFZ0u
-        quvVK0ZSrN1M19xRzLujW+X58A==
-X-Google-Smtp-Source: ABdhPJzpcfN9v+Xc/2V8AerRTWsfjkHFGJs3Y9L5m0NP00FcGjDpxBiE0tR98fplIEFcypQ2+HP4Fw==
-X-Received: by 2002:a17:906:28cd:b0:6e8:98a4:4ccd with SMTP id p13-20020a17090628cd00b006e898a44ccdmr3461568ejd.390.1650622773400;
-        Fri, 22 Apr 2022 03:19:33 -0700 (PDT)
-Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ka6-20020a170907990600b006ce54c95e3csm603058ejc.161.2022.04.22.03.19.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 03:19:32 -0700 (PDT)
-Message-ID: <29fc53bd-1016-fe6b-0c82-6f2fbd8171ee@linaro.org>
-Date:   Fri, 22 Apr 2022 12:19:31 +0200
+        with ESMTP id S235156AbiDVKXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 06:23:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E4C387BB;
+        Fri, 22 Apr 2022 03:20:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 26ED061E6E;
+        Fri, 22 Apr 2022 10:20:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78215C385A4;
+        Fri, 22 Apr 2022 10:20:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650622855;
+        bh=l8DMuJMxhFg3oWj3P06LfAZsH8ZofBIGfJ+Zsxq3M3c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tXz8dnNMqZa1305TV+OZTAXZYU1mQErY7qQwDOrLEGInkAMbEIzqrG3b+N/MezYx+
+         nltOcc4WCszV0jlGsgS1jSmOpfo+zKsVzo3QSZyQ+n4wkjVgoZgzp6Ak5D7/TmmJ2X
+         OqlL4P+FUNqoeKRzqD69pPyT0SP9R1wxn9ZML6uohJbjy12uHgUFabDfUL5BAu+U+I
+         3zZf2YNJh6naLmWslpXXKwp13wozl37QHGEhPsNnvVmppbSUoKH9TTGIzMJMBK5JKR
+         ToquwwGVQQmCB9ufrgASyzefmiULPiVKvutwkGXcCs2etHqxKwQ7ihzemQ8w0C2IDF
+         FgVInoYZe6cag==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1nhqPA-0002Om-Fm; Fri, 22 Apr 2022 12:20:49 +0200
+Date:   Fri, 22 Apr 2022 12:20:48 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Prasad Malisetty <quic_pmaliset@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH RFC 1/5] phy: qcom-qmp: add support for pipe clock muxing
+Message-ID: <YmKBgGHtfDcO1Mkg@hovoldconsulting.com>
+References: <20220421102041.17345-1-johan+linaro@kernel.org>
+ <20220421102041.17345-2-johan+linaro@kernel.org>
+ <de4f9514-5132-f208-d43f-4c50afcda203@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: mt8183-kukui: align SPI NOR node name with
- dtschema
-Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220407142143.293740-1-krzysztof.kozlowski@linaro.org>
- <165044570803.75184.17759035800452933385.b4-ty@linaro.org>
- <38f29c29-e3c2-240a-23a0-509c4febf1ca@gmail.com>
- <f7c5c3f9-0083-c0b0-dc49-e66139268312@linaro.org>
- <234d411c-1386-d661-71e3-f1f30f5cbf36@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <234d411c-1386-d661-71e3-f1f30f5cbf36@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <de4f9514-5132-f208-d43f-4c50afcda203@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,14 +71,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 11:13, Matthias Brugger wrote:
+On Thu, Apr 21, 2022 at 02:08:27PM +0300, Dmitry Baryshkov wrote:
+> On 21/04/2022 13:20, Johan Hovold wrote:
+> > Some QMP PHYs need to remux to their pipe clock input to the pipe clock
+> > output generated by the PHY before powering on the PHY and restore the
+> > default source during power down.
+> > 
+> > Add support for an optional pipe clock mux which will be reparented to
+> > the generated pipe clock before powering on the PHY and restored to the
+> > default reference source on power off.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >   drivers/phy/qualcomm/phy-qcom-qmp.c | 71 ++++++++++++++++++++++++++---
+> >   1 file changed, 65 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> > index 7d2d1ab061f7..bc6db9670291 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> > @@ -3292,6 +3292,8 @@ struct qmp_phy_combo_cfg {
+> >    * @rx2: iomapped memory space for second lane's rx (in dual lane PHYs)
+> >    * @pcs_misc: iomapped memory space for lane's pcs_misc
+> >    * @pipe_clk: pipe clock
+> > + * @pipemux_clk: pipe clock source mux
+> > + * @piperef_clk: pipe clock default reference source
+> >    * @index: lane index
+> >    * @qmp: QMP phy to which this lane belongs
+> >    * @lane_rst: lane's reset controller
+> > @@ -3311,6 +3313,8 @@ struct qmp_phy {
+> >   	void __iomem *rx2;
+> >   	void __iomem *pcs_misc;
+> >   	struct clk *pipe_clk;
+> > +	struct clk *pipemux_clk;
+> > +	struct clk *piperef_clk;
+> >   	unsigned int index;
+> >   	struct qcom_qmp *qmp;
+> >   	struct reset_control *lane_rst;
+> > @@ -3346,6 +3350,7 @@ struct qcom_qmp {
+> >   	void __iomem *dp_com;
+> >   
+> >   	struct clk_bulk_data *clks;
+> > +	struct clk *pipe_clksrc;
 > 
-> I pushed it to v5.18-next/dts64 [1]
+> Please move this to qmp_phy too.
+
+Ok.
+ 
+> > +	/* Get optional pipe clock mux and default reference source clock. */
+> > +	qphy->pipemux_clk = of_clk_get_by_name(np, "mux");
+> > +	if (IS_ERR(qphy->pipemux_clk)) {
+> > +		ret = PTR_ERR(qphy->pipemux_clk);
+> > +		if (ret == -EPROBE_DEFER)
+> > +			return ret;
+> > +
+> > +		qphy->pipemux_clk = NULL;
 > 
-> Let me know if there are other patches that you want me to take.
+> This makes the driver ignore every possible erorr except -EPROBE_DEFER. 
+> However the driver should behave in quite the oppposite way. Please use 
+> devm_clk_get_optional() instead. It would do that in better way.
 
-Thanks! I dropped it from my tree.
+We'd need to add an optional version of devm_get_clk_from_child() for
+that due to the questionable "lane" child nodes this driver uses.
 
+The above works for an RFC, but testing for -EINVAL and -ENOENT handles
+a few more theoretical errnos until an optional helper is in place.
 
-Best regards,
-Krzysztof
+> Not to mention that this code leaks a refcount on the clock.
+
+True, just like the driver has been doing with the pipe clock and lane
+reset since it was merged. I'll fix that up.
+
+> > +	} else {
+> > +		qphy->piperef_clk = of_clk_get_by_name(np, "ref");
+> > +		if (IS_ERR(qphy->piperef_clk)) {
+> > +			ret = PTR_ERR(qphy->piperef_clk);
+> > +			return dev_err_probe(dev, ret,
+> > +					     "failed to get lane%d piperef_clk\n",
+> > +					     id);
+> > +		}
+> > +	}
+> > +
+> 
+> As a second thought.
+> This needs to be more explicit. If the chipset requires the pipe clock 
+> remuxing, we must fail if the clocks were not provided. So depending on 
+> the qmp instance/property the driver should either use devm_clk_get() 
+> (instead of _optional) or skip this block completely.
+
+No, the kernel is not a DT validator (and we have the YAML bindings for
+that now).
+
+> But this will not work with earlier DTS files.
+
+So this is not a problem (but if we really wanted to have the driver
+validate the DT it can be done by updating the compatible strings).
+
+Johan
