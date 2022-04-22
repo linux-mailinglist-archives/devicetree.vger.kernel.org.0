@@ -2,47 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D580050BFAF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35FB750BF7D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232021AbiDVSLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:11:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
+        id S232905AbiDVSL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234265AbiDVSF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:05:59 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A921183B0;
-        Fri, 22 Apr 2022 11:02:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1650650029; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=36SBTaNp7dcTwurtvjqe7McQ+kB/vBW59yh6tlX/7i8=;
-        b=BPNDxQt/o50fWYfoDGVkwMu81csPM+9pmWJwPV3spGu9npSLkECl3pJuHungufYWLRFOC7
-        5Nrr0lLYcWZUeG4e+7vJR9j1YAGDLBrQ9UG1WEGQiiMjBhUN7BGGOEV/cwIpPYvSAXhIZV
-        CQWPYwr4aCSh1qE2gE3q4eszxbJPM8Y=
-Date:   Fri, 22 Apr 2022 18:53:39 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 2/2] mips: dts: ingenic: x1000: Add PWM device tree
- node
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Message-Id: <FP5RAR.CXCRD56PL7G72@crapouillou.net>
-In-Reply-To: <YmLT1VA8ZL57CQkO@orome>
-References: <20220224234133.15708-1-aidanmacdonald.0x0@gmail.com>
-        <20220224234133.15708-2-aidanmacdonald.0x0@gmail.com>
-        <YmLT1VA8ZL57CQkO@orome>
+        with ESMTP id S237276AbiDVSGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:06:47 -0400
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3855DE49EE;
+        Fri, 22 Apr 2022 11:03:48 -0700 (PDT)
+Received: from relay2-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::222])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 9BFA3C1EAB;
+        Fri, 22 Apr 2022 18:03:30 +0000 (UTC)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9D3B140004;
+        Fri, 22 Apr 2022 18:03:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650650591;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=DzFYMdqiUbF9fkv7pZJyHpakFyvM1o8fMoCSIs24IhI=;
+        b=RGvD/NEBQqLT/SR04JDPMP/MpuR40CZoxYwPDS/m1/julhFNlmXsZMWK/wwoXBpMnUXz98
+        iwmD98uPcM1m2u+EvaRCGz7mIbu+3ZfhF0yLWjaGENudt90TaWLhSevlOFduTUlO8UJqva
+        ASh13xDJ4Ood7hCa/QYKKo20gl9VEKa4+z6auIKXxhkGYVrmYQIHomzae8yL7IEm8FENOu
+        DQ3x0KWanLSz6v6eEv7NHStsdHifXkufpIQxK1oBJfXwkTus0zVjUms7z2BAcd2Wt9jIV3
+        gE56JdI5XEFjbgMGT8OmPY4QpUSOnQ5Vif9xuyvRbCa+lXMTTj5hnpPNV4AM7w==
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH net-next 0/5] net: ipqess: introduce Qualcomm IPQESS driver
+Date:   Fri, 22 Apr 2022 20:03:00 +0200
+Message-Id: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,64 +59,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thierry,
+Hello everyone,
 
-Le ven., avril 22 2022 at 18:12:05 +0200, Thierry Reding=20
-<thierry.reding@gmail.com> a =E9crit :
-> On Thu, Feb 24, 2022 at 11:41:34PM +0000, Aidan MacDonald wrote:
->>  Copied from the jz4740 devicetree and trimmed to 5 timers, which
->>  is what the hardware supports.
->>=20
->>  Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
->>  ---
->>   arch/mips/boot/dts/ingenic/x1000.dtsi | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->=20
-> However I don't see this upstream yet, neither in Linus' tree nor in
-> linux-next. Paul, do you still have this on your radar?
+This series introduces a new driver, for the Qualcomm IPQESS Ethernet
+Controller, found on the IPQ4019.
 
-I don't have a tree so that would be a patch for Thomas (Cc'd) to go=20
-through the linux-mips tree.
-(Note to Thomas: patch 1 is already applied in the pwm tree)
+The driver itself is pretty straightforward, but has lived out-of-tree
+for a while. I've done my best to clean-up some outdated API calls, but
+some might remain.
 
-The changes look good though, so:
+This controller is somewhat special, since it's part of the IPQ4019 SoC
+which also includes an QCA8K switch, and uses the IPQESS controller for
+the CPU port. The switch is so tightly intergrated with the MAC that it
+is connected to the MAC using an internal link (hence the fact that we
+only support PHY_INTERFACE_MODE_INTERNAL), and this has some
+consequences on the DSA side.
 
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+The tagging for the switch isn't done inband as most switch do, but
+out-of-band, the DSA tag being included in the DMA descriptor.
 
-Cheers,
--Paul
+So, this series also includes a new DSA tagging protocol, that sets the
+DSA port index into skb->shinfo, so that the MAC driver can use it to
+build the descriptor. This is definitely unusual, so I'l very openned to
+suggestions, comments and reviews on the tagging side of this series.
 
->=20
-> Thierry
->=20
->>=20
->>  diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi=20
->> b/arch/mips/boot/dts/ingenic/x1000.dtsi
->>  index 8bd27edef216..0dcf37527c8e 100644
->>  --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
->>  +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
->>  @@ -127,6 +127,19 @@ wdt: watchdog@0 {
->>   			clocks =3D <&tcu TCU_CLK_WDT>;
->>   			clock-names =3D "wdt";
->>   		};
->>  +
->>  +		pwm: pwm@40 {
->>  +			compatible =3D "ingenic,x1000-pwm";
->>  +			reg =3D <0x40 0x80>;
->>  +
->>  +			#pwm-cells =3D <3>;
->>  +
->>  +			clocks =3D <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
->>  +				 <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_TIMER3>,
->>  +				 <&tcu TCU_CLK_TIMER4>;
->>  +			clock-names =3D "timer0", "timer1", "timer2",
->>  +				      "timer3", "timer4";
->>  +		};
->>   	};
->>=20
->>   	rtc: rtc@10003000 {
->>  --
->>  2.34.1
->>=20
+Thanks to the Sartura folks who worked on a base version of this driver,
+and provided test hardware.
 
+Best regards,
+
+Maxime Chevallier
+
+Maxime Chevallier (5):
+  net: ipqess: introduce the Qualcomm IPQESS driver
+  net: dsa: add out-of-band tagging protocol
+  net: ipqess: Add out-of-band DSA tagging support
+  net: dt-bindings: Introduce the Qualcomm IPQESS Ethernet controller
+  ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet
+    controller
+
+ .../devicetree/bindings/net/qcom,ipqess.yaml  |   94 ++
+ MAINTAINERS                                   |    6 +
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |   42 +
+ drivers/net/ethernet/qualcomm/Kconfig         |   11 +
+ drivers/net/ethernet/qualcomm/Makefile        |    2 +
+ drivers/net/ethernet/qualcomm/ipqess/Makefile |    8 +
+ drivers/net/ethernet/qualcomm/ipqess/ipqess.c | 1258 +++++++++++++++++
+ drivers/net/ethernet/qualcomm/ipqess/ipqess.h |  515 +++++++
+ .../ethernet/qualcomm/ipqess/ipqess_ethtool.c |  168 +++
+ include/linux/skbuff.h                        |    7 +
+ include/net/dsa.h                             |    2 +
+ net/dsa/Kconfig                               |    7 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_oob.c                             |   45 +
+ 14 files changed, 2166 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,ipqess.yaml
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/Makefile
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c
+ create mode 100644 net/dsa/tag_oob.c
+
+-- 
+2.35.1
 
