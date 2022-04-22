@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E69B550BDDF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3001C50BDF4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377782AbiDVRI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 13:08:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37590 "EHLO
+        id S234450AbiDVRKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 13:10:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379449AbiDVRI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:08:26 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E5E78FC2
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:05:30 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id n8so12201369plh.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:05:29 -0700 (PDT)
+        with ESMTP id S230387AbiDVRKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:10:12 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83BF7888E8
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:07:13 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id k23so17636022ejd.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:07:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=w5Fh61tvMI9u3EP1h/xxxSiqzyNcEuilOSuCPwJLpv4=;
-        b=L7NN759twCDLbvEjspSxjhn+bTpAGvk9JbCNA6/+w/LOL4u9oYeRR1Cj1oEmqIVwBX
-         +wMeWY/CJ39NQBHuSDF0KY1rVyYBnG5EQg8grBxD5LRqSLkrCDoqrAqOrMFzfarbMOKB
-         efcDKjChCO/J0dlaLxVRSQzzTJgVjkwZkI4mc=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=HuaHFmqvQqnIyK40h6V5f/iowB3mu3oIEkcjqTultSk=;
+        b=WkxCwPEM5BKiLQpoW8yI3vRR/7oRMqP6IemLSS9GzlcAwzMQ5Uc47r38D3xAzU0Wh2
+         cJJVFNI/OXUH+3o7c85aTCx37AUKEytfJL1t+DgF2z+yUy4fsGGt5rz+g6lDCEBpge9m
+         7p4IGdGY41KivyiNIje7WbmTToHThzLh7gB153B2jGnJT4jXX3XCt2nRxz0KmQ4bWbMn
+         FDtL0HU8jkpAxollLUl0zDQTk3RbFZdJ/SR59QS3YiIEgTu8mnkV25AWU8CEMihxInTC
+         O/m2MkmIdW6c4C+FWZ6cWwndBei/t8CNN/+G1ECuEjZsXQUYBf4UWTi6yi+xkwfPc1eI
+         u+Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=w5Fh61tvMI9u3EP1h/xxxSiqzyNcEuilOSuCPwJLpv4=;
-        b=R13BvfpM3ZdPjHUi6NLEFBRBrd448hfYFPszg0XsTh+rc4iyDM482PpxlOsqMyJoYX
-         s+GTjtppjFjVYr9ejAcaZxZYRfmcapiAyg1ZQyT4aNJhKfI/vNZO7VSLdp61aSfuGCW4
-         6peQ7SBskQ2XkWCLT/T1agJMwq09SZmaHP+vRN6fUAWy2hkpxkZbVVTAfLiLCogfmsrP
-         LKb6hpSJ4+BPsoXvxP1o+Q6qiecMtAOgRsrE/v+j8CFNsemJ9x6VOu5GkVEem5tCx93t
-         lO75CdF1QdMi7UVLGUfhVnOfJIvVRCVqDBEOHRAnhSWYFfKze/vSL+QomfBOcjwXXqd4
-         eKzQ==
-X-Gm-Message-State: AOAM532m/vUJrNdT8xPQbyxGh5G/B3KxdoLLItyyTjoMDRMO3mTnuLPF
-        h3SarJKvO7PGmsd02W3T7lqr2A==
-X-Google-Smtp-Source: ABdhPJwCztp9V8GVGJ09fmOY5Z3kg5VnisfuUiFpB1LNNzVLwAB6pP5WRtsauFK2kDh8h5gT9UJHFA==
-X-Received: by 2002:a17:902:ccd0:b0:156:7ac2:5600 with SMTP id z16-20020a170902ccd000b001567ac25600mr5678780ple.156.1650647129217;
-        Fri, 22 Apr 2022 10:05:29 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:404c:8721:29:87a4])
-        by smtp.gmail.com with UTF8SMTPSA id m2-20020a62a202000000b0050ce7925e1esm3146631pff.35.2022.04.22.10.05.26
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HuaHFmqvQqnIyK40h6V5f/iowB3mu3oIEkcjqTultSk=;
+        b=k4sQ7IsW9aYAgEOsi/gD9XZa81+XawO6MgA8X+kMdXrPoMddM86Q1mPZ978Yz+zdwQ
+         aGakSAhceEU7h/iUeZUCpgiJ7cc7PkX61FMYp0Vqp/VS/p1qIejMFJXkmzLGj8YCzVYv
+         AJkTp7yNnVlaQ/1np3NTRK5dp/D0vKgCCeKsED74g0/xvzgYEO/O1ODe0hYwPrBFAve7
+         SolhbrBcU5DltYz090Knng6OjU5CdWyYksn4c6/eO2NXHDKnlwsgYMyWrAP8ZWPAosKH
+         tQOvsCIGbCF6mndPRSYi/MVyC8gI5HRLsf2L5W+kKOR0zTo2a+ATQRYErSCEwc77Gm7b
+         2bYQ==
+X-Gm-Message-State: AOAM531nOy2JxVXVUXaByqXOJKmQgfoe/MjwfqP8BpxTo8f0fgTZzCwI
+        ObjdSVDUHY8JM+poBpXf6RIXTQ==
+X-Google-Smtp-Source: ABdhPJw33mJXV5pnWAH2xVmAmR/b8XhX+8WpfcVcwaTudi+ZVFG9u+HRSB4xvm24l55uj1mv9DkVNg==
+X-Received: by 2002:a17:907:9482:b0:6da:a24e:e767 with SMTP id dm2-20020a170907948200b006daa24ee767mr5000350ejc.479.1650647232087;
+        Fri, 22 Apr 2022 10:07:12 -0700 (PDT)
+Received: from [192.168.0.233] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id tk20-20020a170907c29400b006efc91707d8sm820399ejc.107.2022.04.22.10.07.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 10:05:28 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 10:05:25 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v10 12/12] arm64: dts: qcom: sc7280: Add sound node for
- CRD 3.0/3.1
-Message-ID: <YmLgVVYwJx9nBj8l@google.com>
-References: <1650636521-18442-1-git-send-email-quic_srivasam@quicinc.com>
- <1650636521-18442-13-git-send-email-quic_srivasam@quicinc.com>
+        Fri, 22 Apr 2022 10:07:11 -0700 (PDT)
+Message-ID: <857e78dd-b8e8-d55e-3b3c-cbbfb7c98505@linaro.org>
+Date:   Fri, 22 Apr 2022 19:07:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1650636521-18442-13-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 4/5] dt-bindings: mmc: Add Broadcom optional sdio_freq
+ clock
+Content-Language: en-US
+To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
+Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220421182803.6495-1-kdasu.kdev@gmail.com>
+ <20220421182803.6495-5-kdasu.kdev@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220421182803.6495-5-kdasu.kdev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 07:38:41PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add dt nodes for sound card support on rev5+ (aka CRD 3.0/3.1) boards,
-> which is using WCD9385 headset playback, capture, I2S speaker playback
-> and DMICs via VA macro.
+On 21/04/2022 20:28, Kamal Dasu wrote:
+> The 72116B0 has improved SDIO controllers that allow the max clock
+> rate to be increased from a max of 100MHz to a max of 150MHz.
+> Optional "sdio_freq" clock is used to drive the bus clock if present
+> optional property "clock-frequency" specifies a base clock frequency
+> in Hz that overrides the base clock frequency in the CAPS registers.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> ---
+>  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      | 29 +++++++++++++++----
+>  1 file changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> index dccd5ad96981..1b45a918400a 100644
+> --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> @@ -10,8 +10,6 @@ maintainers:
+>    - Al Cooper <alcooperx@gmail.com>
+>    - Florian Fainelli <f.fainelli@gmail.com>
+>  
+> -allOf:
+> -  - $ref: mmc-controller.yaml#
+>  
+>  properties:
+>    compatible:
+> @@ -42,23 +40,44 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    maxItems: 1
+> -    description:
+> -      handle to core clock for the sdhci controller.
+> +    minItems: 1
+> +    items:
+> +      - description: handle to core clock for the sdhci controller
+> +      - description: improved 150Mhz clock for sdhci controller (Optional clock)
+>  
+>    clock-names:
+> +    minItems: 1
+>      items:
+>        - const: sw_sdio
+> +      - const: sdio_freq # Optional clock
+> +
+> +  clock-frequency:
+> +    description: Should be the frequency (in Hz) of the base controller clock
+> +    minimum: 400000
+> +    maximum: 150000000
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Why do you need this property? The mmc-controller.yaml already has
+max-frequency, so maybe that suits your needs?
+
+
+Best regards,
+Krzysztof
