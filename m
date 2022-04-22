@@ -2,209 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71EF850B095
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 08:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B84850B0BA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 08:38:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444359AbiDVGa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 02:30:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38340 "EHLO
+        id S1444458AbiDVGlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 02:41:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1444354AbiDVGa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 02:30:26 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1F750B1A;
-        Thu, 21 Apr 2022 23:27:33 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id t12so8732649pll.7;
-        Thu, 21 Apr 2022 23:27:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ANMx7UH+NPfrCbf5cBhjV/dhC+h0aHFxPNEZIAsabjU=;
-        b=k5jhh7JuRVyX9TWrpxlSEbEX0Nt171tL79woBXkQhSEowN/D5gl3ReKtH5hmggd+MK
-         A5YYH1IFGTWHZT5qocCGTFO6Hs3IaMYrJEbRQw9xo/qpzIspmZtbKYfLXkNgDV801L/j
-         Tms9s0xRKbQJPkwz8QOlJEJXqN/3cl7IyJIpjEGIgYVDrwZrttXrvPKse+0mQN40gDPM
-         CI670odqJAdu0tIY3ph6lF6nveSmvj5FI8TzhwXsT5lNCygkJqwCE7JhcHhHM/X5MoLP
-         1KBR74mVof1wQs2cXNf6Q/jaaQ7aFQq1RamEDKZAFasSHv/YwA1rbVcCRx/ocaq1ZlYd
-         KKKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ANMx7UH+NPfrCbf5cBhjV/dhC+h0aHFxPNEZIAsabjU=;
-        b=kUVmYHyiQMeeGTEmhrPpDC18OAt8jiE+If955fkcozst+d91op1+mOVQlkpA1JmOcP
-         WKHrjuHRsuJOs6Qno3RseLrUbX1bD7v94X2M/p7nBPult3Qa5T6r9rHHy60LjRtzU0lT
-         KR/BxaaXlxqMwAHi8r3tnfb2GgJqswxXuB0Sp/8rYNOoBZZUHT4O4TlV3c0Fzgv7c3a5
-         r4vILnwVVjRJr5qPRvQOl2ndhqTGmmCT4djZIUHrD9/sT+Z1qg1OPseMpIvTdtCNL1xi
-         eeXLFf52nWtC+qQsrmo8/bcBSiRnYB18NhjsUYF7bWcFXVt7s/tq9qA5SuKfAub0K+Xw
-         Y3Yw==
-X-Gm-Message-State: AOAM530BY2TaUSnoS/WFrFBPWI8nfMsRrH0yxkNPfj/BbScSB92/sI+p
-        n9k54LDd41FSx7H/qbpd0k8=
-X-Google-Smtp-Source: ABdhPJw5TsqA0mzOzghri1mOJpJnumOn+l0EIBtdBgOzXtpDip5iImbMUpnV0AYWewMwJnUqZZtRfg==
-X-Received: by 2002:a17:90b:3ec8:b0:1d3:e8cd:e8f9 with SMTP id rm8-20020a17090b3ec800b001d3e8cde8f9mr3647578pjb.156.1650608852598;
-        Thu, 21 Apr 2022 23:27:32 -0700 (PDT)
-Received: from [192.168.43.80] (subs02-180-214-232-22.three.co.id. [180.214.232.22])
-        by smtp.gmail.com with ESMTPSA id y5-20020a17090a600500b001cd4989ff62sm4808707pji.41.2022.04.21.23.27.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Apr 2022 23:27:32 -0700 (PDT)
-Message-ID: <07155685-3adf-09c8-9a13-6c8249d5fd74@gmail.com>
-Date:   Fri, 22 Apr 2022 13:27:25 +0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v8 4/9] docs: misc-devices: (smpro-errmon) Add
- documentation
-Content-Language: en-US
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Lee Jones <lee.jones@linaro.org>,
+        with ESMTP id S1444418AbiDVGlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 02:41:04 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2102.outbound.protection.outlook.com [40.107.113.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C9103FD9F;
+        Thu, 21 Apr 2022 23:38:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B6eC34CfcIXZV1LQc9Yf8aOm48LV2rMbezGXRJo51/mCUuk0sH4Vp7fWXttkVQPBF0bfzyFxUUaYXNZatB1VLM3lk3+NdQVoPk2V8kKYpZ+avEpKnau8IU9rg3ijs/HRoRo7z1xOu6s0O4X5UBWUYZJHKww5waNaW00IiHrvA1Bf0qJV866MfCqEC2xe/XDw2UFVma1n1dZXOEFsX06Z7xTSCs/GdCVWzEeA8dgMENUcSboY2wDVEEzLsWZRvhnxm8sC0+QnUTfJi11KLfNx1nOvYrk+o24pws+h0joGvTlsPyNRro2Ql5R9Lk7cIvg7k82fEoaOH23bCP6iXvurpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+P3Xru1bjknVU6d73rWkyyKSbknUOzWQGQc6+fXoUFc=;
+ b=WEP+3S26lZMgVJj6725PVoO69N1Epu65sHYi8/FzVfaIwjHCLSmqkDZ1irkzACAMTKO5Te62IBtWnKIDbFG8dgLfo/5ujT2h2e7KYp0RFwLxefneaUUWNULYITHgaRN+n9P5TtX766YDZuXxoMbi/4MsKwI31XISdOF/iGjqox2kMuAJ1CTF/t6MB4gXt1OW1lzLtXEx0+1WSyLwlIRmdvB/lQZKanuD20O2cZQoIsKXjSCZD9SWSugnWyKkepbXQlN7Dyh/8Ci/8bpq6bZK0VajWoKbxRsNWQ5ELPMX6Co88/VFRPtAOxqOeiHF+otLnvRp23kj1H+Gr1HfiKkeTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+P3Xru1bjknVU6d73rWkyyKSbknUOzWQGQc6+fXoUFc=;
+ b=RKssP13ARzVsncsqZssTlXhTn881dcyvDRBMjjKRotRfd04jg4SC0U/8YCZn3HALoregOClpY/i3ZQ8OxmcxKWH6DCtPLwJTVBSL1Z4VMwTDXnBY+ydlS3pbNZXY0H/7e1fi6r20UyXmlrUxEdCSSSJeY9strqhn5QjansRnJJk=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB7219.jpnprd01.prod.outlook.com
+ (2603:1096:400:f0::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14; Fri, 22 Apr
+ 2022 06:38:09 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::205e:c981:34d8:dbcf]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::205e:c981:34d8:dbcf%9]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
+ 06:38:09 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20220422024653.2199489-1-quan@os.amperecomputing.com>
- <20220422024653.2199489-5-quan@os.amperecomputing.com>
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <20220422024653.2199489-5-quan@os.amperecomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Subject: RE: [PATCH 12/15] clk: renesas: rcar-gen4: Add CLK_TYPE_GEN4_PLL4
+Thread-Topic: [PATCH 12/15] clk: renesas: rcar-gen4: Add CLK_TYPE_GEN4_PLL4
+Thread-Index: AQHYVJKk7Eepwr6CTk2d/zas10xUmKz6Y5OAgAEZ/QA=
+Date:   Fri, 22 Apr 2022 06:38:09 +0000
+Message-ID: <TYBPR01MB534101335CC81CC959E3B118D8F79@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220420084255.375700-13-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdXdgvcf0w06GaaSZSqdEwytKi+tNXpsUb29vXmKrB=gYA@mail.gmail.com>
+In-Reply-To: <CAMuHMdXdgvcf0w06GaaSZSqdEwytKi+tNXpsUb29vXmKrB=gYA@mail.gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6b4b6d65-aa85-4b4f-b1bb-08da242aaa58
+x-ms-traffictypediagnostic: TYCPR01MB7219:EE_
+x-microsoft-antispam-prvs: <TYCPR01MB721991ADAD774632EF33043AD8F79@TYCPR01MB7219.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LBHbNPuoYf6zab6inwdaAoB8bT21MJPjj/q1SukSqYiJ99H36wuoyE80QOZIH8ljIxYTkoV9XEZaPqh+DApSSKUBqSv8DWjdA0AEQN3KgDP646A9/f1WiOnyiMSjT97weH5R23J6v5vLvCYy8ubWK11orPBRchuIiIQ0SccNVr+W1oDMCKCpihq4QpNk0394VOK2KMQq/Ssb8EoRAR/NulZeju/O6rObVsEbROegnc8vgueSISQhpQLanPxRMLTXLyUqUrwxBc/PTwxQpyJkyaSeHN2D4g6DXBjDdxGSMBrTo11HoAFq/XKvPoUoFyQkjE+jUxqOH6Vx2gcqW69ZUS/wKyngl6/XHhNVC8R7pWCkarDMfTifoWSqNAyIMmqpHqjxkMcteBbqo/cJJMkzFvAXFsm2VESiP+LLfuoQYCTKyDCJlEglfnHVXS4hjRxc+/W/jFo4dB0ueo8k6ypGE1uZoShAY/WuLI7W7DxI3UitobuZBEg3IzkxJRwStJ2my582XzpVZQk8OW60dLxNuekQYd7lFx/nT1zkkhsA2psIeNgYkrgk4e5b7xmvGJe93mx4oRR+IW7UohKpOybFH5dueHcGj3+w/W+pmhzQXpSJlJEPrMrI8S/Hoj3Qj/9o4iFk+sF27nGqTt9czN0hHnffoeCs1vAXk9Ubt4068hkihNPByk8TuYAtNPN23T/9MDGqChKSTCzWuvjGYn5zjw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(55016003)(186003)(122000001)(54906003)(316002)(6916009)(86362001)(83380400001)(38070700005)(38100700002)(52536014)(33656002)(6506007)(9686003)(7696005)(2906002)(53546011)(5660300002)(66556008)(76116006)(66946007)(8676002)(8936002)(66446008)(66476007)(71200400001)(4326008)(64756008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SktaZUg0RW9hUUxFeHhQakZlZXZVSTJVQm5BKy9oNWFSREFSQlQvOFRqTFRF?=
+ =?utf-8?B?RWFIOUpWV1NzamZ3cVVyc0RrbjQ4MzkrekxuRDZaelNvZzkrem5kVmFQWFNT?=
+ =?utf-8?B?cERHL2RvVGxhaDNTVVRmVDFwNlBvVVV3Y1NRSWlDNnFDeVd2Yjl2Rnd0OE1j?=
+ =?utf-8?B?VUlxejFCNXdnZlhqeCtzSkdQOTJscjlab2xjbk8vMmY1aXF1T3huWmJwSGZK?=
+ =?utf-8?B?SDc1bERWQVVpSlZaZ2hYc1B4QXBsNG5NZVBIK0tvWXBxMFVHRDFPeTZ4MEgv?=
+ =?utf-8?B?cS9qd0RqSis1bTNnZko2TjMrb0liUjhoeDdOWlM3cDlXWitUOHJMRFpnQU9B?=
+ =?utf-8?B?Q2tYOHVKVnJnOXVvdXpnOVpTTUxwOC9ZbW10c0VDWVNJVU51aHIrQUFwLzJT?=
+ =?utf-8?B?dXUvZTQyRk5MTnhSNmhYaUViRjRhbUtFY1JYL3hzTjhLeko1anlkMEtTUEtF?=
+ =?utf-8?B?enRORjVGTFlUQzFTNjl3L0piTkZIK0Raak9zQ3QvU1pKSDdwYnFCM2dEN1Z1?=
+ =?utf-8?B?eWxmeUJWdEJvQ1VUQjcreXZFMk5hL1ArSUlzVVEyUjVTeWp5SVhrSHJkYUlX?=
+ =?utf-8?B?TTYrbnpvKzBSK2twcXFvYmRaSm05WmpnTUlBaE53SDZFZ2h4Nk42WURIZWpY?=
+ =?utf-8?B?bjhoYUl5N0VoOE1BVVFUQi9kcWF3ZDl3OEtUK2JSMWZDdW9qMFFidWpqQ0x1?=
+ =?utf-8?B?a2UyaDNIbTN2cmVLSDNxamVYcDV0bXRtVHprVjdOdjlxTktEc3VSbVF5Uk9Z?=
+ =?utf-8?B?TmxkMElBYzZncnV5dzlLWVlXa202ZktIRE9ZdGpsZnc1U3UrSVJtZ1BwWUVh?=
+ =?utf-8?B?ZnY4SC80a1FjUkhkTGdHcmEzeW1nckYvamd6dm5JbFV4WWRGeTFPMzAraWJy?=
+ =?utf-8?B?QTBHdFlzWVM1RkN1VUwwRVVWcVRZMlRJS3ZMWGQxazBaeEsrdUMyM1ZNdkRY?=
+ =?utf-8?B?MThtdm1SRUhYRjZPUFJ0TWRMWTNLNFhrUVd0emJxVk5kemlHZGZncWVrMUtM?=
+ =?utf-8?B?RDdyWnJTVkNUZGdCOS9oZ3ZOOSsxMnBNemJPcGk0M3pJVlM1RDlNL3hDZVI1?=
+ =?utf-8?B?UnJ6czdWak5kNElMWHJjTDV4RXlJSldndU5RY2JPbEM3VlRQcldSQ1JQT2Rz?=
+ =?utf-8?B?b3ZhOVNxL204ZVlVUWZ1WDgzRjdOMk1rRncxOURYKzNsL2JnVkFQeXhBdDdq?=
+ =?utf-8?B?ZzlrbjNJdmlMT3E0c2U3VmRDL3VneXlZSmVZMzl3SW53c21rd251SlZ1ZEF6?=
+ =?utf-8?B?bXhhRXZ5YldYeTZPQzZFbll4SnVRYlhxVFN1dnZZWXJBcmlaRlMrTDVHQk5Q?=
+ =?utf-8?B?VitQZnRmcXA3MUxHUUFZTXBuNUZ5NXIycVVabXJ6QTM5cHp6aVVQbVJ0RDBh?=
+ =?utf-8?B?QVpqSjBhdWpKTXQ1SHNvdEFmNVFoTGJCQVNqdlYzQmVSTG9HOU85ZnJwOGRF?=
+ =?utf-8?B?ZERZU1BtVkpUd21JaUVjYkdOVXVwYjFBcTlEaTc3bXdLYUFmWm1ockRmc3RZ?=
+ =?utf-8?B?YjlXK3paTXZxRG5xdlBaak5pdDVpczlHaEpzbkRGMVN6SUVGSHVSNnJQclFF?=
+ =?utf-8?B?am5sOXBsQUd1bXdiTm5HSC90NkZ1cEpFOE15bytTb01rQ1ZXa3dwVms2T3hR?=
+ =?utf-8?B?OGRWRkdrdTlxYVN4K0VPalVUSGt3QS83UkhFd2g3b3R3ZXpNYmx4N0V0cHV4?=
+ =?utf-8?B?TGswanROcmtHcnFJSGZqQ2tzZTRwbWRGWFZlQVNyN3NsbHJXT2NXWngwcjFq?=
+ =?utf-8?B?ck5GbUU3bk1DeTB3TjVhYVArbUpFUmJWNW1xLzNsTW91OENwMTdHWFZuUmdw?=
+ =?utf-8?B?UGdZaVlVZFJIaGlObGZDV1I1L05EN1IyY2Z2V0RwVXBDZWRWMkdsVDB3WGIx?=
+ =?utf-8?B?dDVkNFlFb1FTWUhIMGlXQjVDckQrYnZGaUdNSVVNSTFpR0tYbU5VcTdUY2dE?=
+ =?utf-8?B?S0ZTU1c4TUlya2t6VXJzRUM0RGFvMjZDQ1NvMGZ3UGtkRUNGSmc3d0dkUkdV?=
+ =?utf-8?B?b1NTdTRaYjRmM3crQUpvdjdPemtEMkZmcE9LSVYyWW5URllKZCsxd2c0TUk2?=
+ =?utf-8?B?djNyZDBWTk5oZUR3N3QvcXZicEZTcFJDMkliQkFvR3FSSkgzeFVScGoyMHRP?=
+ =?utf-8?B?OWE2MzZZK0Q3RFhlN1FMVVBNZ2xDc0xkeHEzcWY5RUZ4UmF0UDB6UUxLRXh1?=
+ =?utf-8?B?c1VIS1U2OTdXZDdxZzIyRUVHTENXV1JRZUMrd2d0ckhPcGxqS2FRM0U4ajhG?=
+ =?utf-8?B?L0ZUd3ZJeEwxaXdXZ3dBVHlBY3ZJU2NlMUFDKzFUWHZ1dnBZN2Y5UHJ0dUEy?=
+ =?utf-8?B?L1M3Q3ZEUExvMUl4MCt1MDFqbDlpWG5XeHZoQTVVZGJ2dCtreTFmZGNtWnVP?=
+ =?utf-8?Q?njvPH9XhV1qDRNzld0FmdCfAAluHa6GFaGN9V94r2Yqm8?=
+x-ms-exchange-antispam-messagedata-1: vEd9yNWqVY+5NsMf389AU3zAQuYapRMxqQM=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b4b6d65-aa85-4b4f-b1bb-08da242aaa58
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2022 06:38:09.0887
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Znsup5Cm40vw8piK/18SZsqa1s92HKQBCuT3it9IuQHHoLCvxG1Yt2g7RkM90cdeV8efikOCQj2K26ZB+ZATzEow+HRzMGCQPwPr5P2MyZ5fqBpwTiPLWWlPw9Da2dzM
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB7219
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/22/22 09:46, Quan Nguyen wrote:
-> Adds documentation for Ampere(R)'s Altra(R) SMpro errmon driver.
-> 
-
-Hi Quan,
-
-Building htmldocs, I got this new warning:
-
-/home/bagas/repo/linux-stable/Documentation/misc-devices/smpro-errmon.rst:128: WARNING: Malformed table.
-Column span alignment problem in table line 56.
-
-============   ==========    =========   ===============  ================
-Error Group    Error Type    Sub type    Sub component    Instance
-CPM            0             0           Snoop-Logic      CPM #
-CPM            0             2           Armv8 Core 1     CPM #
-MCU            1             1           ERR1             MCU # | SLOT << 11
-MCU            1             2           ERR2             MCU # | SLOT << 11
-MCU            1             3           ERR3             MCU #
-MCU            1             4           ERR4             MCU #
-MCU            1             5           ERR5             MCU #
-MCU            1             6           ERR6             MCU #
-MCU            1             7           Link Error       MCU #
-Mesh           2             0           Cross Point      X | (Y << 5) | NS <<11
-Mesh           2             1           Home Node(IO)    X | (Y << 5) | NS <<11
-Mesh           2             2           Home Node(Mem)   X | (Y << 5) | NS <<11 | device<<12
-Mesh           2             4           CCIX Node        X | (Y << 5) | NS <<11
-2P Link        3             0           N/A              Altra 2P Link #
-GIC            5             0           ERR0             0
-GIC            5             1           ERR1             0
-GIC            5             2           ERR2             0
-GIC            5             3           ERR3             0
-GIC            5             4           ERR4             0
-GIC            5             5           ERR5             0
-GIC            5             6           ERR6             0
-GIC            5             7           ERR7             0
-GIC            5             8           ERR8             0
-GIC            5             9           ERR9             0
-GIC            5             10          ERR10            0
-GIC            5             11          ERR11            0
-GIC            5             12          ERR12            0
-GIC            5             13-21       ERR13            RC# + 1
-SMMU           6             TCU         100              RC #
-SMMU           6             TBU0        0                RC #
-SMMU           6             TBU1        1                RC #
-SMMU           6             TBU2        2                RC #
-SMMU           6             TBU3        3                RC #
-SMMU           6             TBU4        4                RC #
-SMMU           6             TBU5        5                RC #
-SMMU           6             TBU6        6                RC #
-SMMU           6             TBU7        7                RC #
-SMMU           6             TBU8        8                RC #
-SMMU           6             TBU9        9                RC #
-PCIe AER       7             Root        0                RC #
-PCIe AER       7             Device      1                RC #
-PCIe RC        8             RCA HB      0                RC #
-PCIe RC        8             RCB HB      1                RC #
-PCIe RC        8             RASDP       8                RC #
-OCM            9             ERR0        0                0
-OCM            9             ERR1        1                0
-OCM            9             ERR2        2                0
-SMpro          10            ERR0        0                0
-SMpro          10            ERR1        1                0
-SMpro          10            MPA_ERR     2                0
-PMpro          11            ERR0        0                0
-PMpro          11            ERR1        1                0
-PMpro          11            MPA_ERR     2                0
-=============  ==========    =========   ===============  ================
-
-I have applied the following fixup:
-
-From f16c63afa2064247507762ffcb623f575043f4a6 Mon Sep 17 00:00:00 2001
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-Date: Fri, 22 Apr 2022 13:16:31 +0700
-Subject: [PATCH] fixup for "docs: misc-devices: (smpro-errmon) Add
- documentation"
-
-Fix table syntax warning
-
-Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
----
- Documentation/misc-devices/smpro-errmon.rst | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/misc-devices/smpro-errmon.rst b/Documentation/misc-devices/smpro-errmon.rst
-index 53599904da7008..818f12bd8aca4d 100644
---- a/Documentation/misc-devices/smpro-errmon.rst
-+++ b/Documentation/misc-devices/smpro-errmon.rst
-@@ -70,8 +70,9 @@ The format of the error lines is defended on the alert/event type.
- 
- Below table defines the value of Error types, Sub Types, Sub component and instance:
- 
--    ============   ==========    =========   ===============  ================
-+    ============   ==========    =========   ===============  ====================================
-     Error Group    Error Type    Sub type    Sub component    Instance
-+    ============   ==========    =========   ===============  ====================================
-     CPM            0             0           Snoop-Logic      CPM #
-     CPM            0             2           Armv8 Core 1     CPM #
-     MCU            1             1           ERR1             MCU # | SLOT << 11
-@@ -125,7 +126,7 @@ Below table defines the value of Error types, Sub Types, Sub component and insta
-     PMpro          11            ERR0        0                0
-     PMpro          11            ERR1        1                0
-     PMpro          11            MPA_ERR     2                0
--    =============  ==========    =========   ===============  ================
-+    ============   ==========    =========   ===============  ====================================
- 
- 
- 2) Type 2 for the Internal SMpro/PMpro alert types::
--- 
-An old man doll... just what I always wanted! - Clara
-
-For consistency with the fixup, you need to format the tables so that
-headings will be emphasized, by adding second ='s line before first
-content row.
-
-Thanks.
-
--- 
-An old man doll... just what I always wanted! - Clara
+SGkgR2VlcnQtc2FuLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmV2aWV3IQ0KDQo+IEZyb206IEdl
+ZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogVGh1cnNkYXksIEFwcmlsIDIxLCAyMDIyIDEwOjQ4IFBN
+DQo+IA0KPiBIaSBTaGltb2RhLXNhbiwNCj4gDQo+IE9uIFdlZCwgQXByIDIwLCAyMDIyIGF0IDEw
+OjQzIEFNIFlvc2hpaGlybyBTaGltb2RhDQo+IDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2Fz
+LmNvbT4gd3JvdGU6DQo+ID4gUi1DYXIgVjRIIChyOGE3NzlnMCkgaGFzIFBMTDQgc28gdGhhdCBh
+ZGQgQ0xLX1RZUEVfR0VONF9QTEw0Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWW9zaGloaXJv
+IFNoaW1vZGEgPHlvc2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPg0KPiANCj4gVGhhbmtz
+IGZvciB5b3VyIHBhdGNoIQ0KPiANCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9jbGsvcmVuZXNhcy9y
+OGE3NzlmMC1jcGctbXNzci5jIHwgMTggKysrKysrKysrLS0tLS0tLS0tDQo+ID4gIGRyaXZlcnMv
+Y2xrL3JlbmVzYXMvcmNhci1nZW40LWNwZy5jICAgICB8ICA1ICsrKysrDQo+ID4gIGRyaXZlcnMv
+Y2xrL3JlbmVzYXMvcmNhci1nZW40LWNwZy5oICAgICB8ICAzICsrKw0KPiA+ICAzIGZpbGVzIGNo
+YW5nZWQsIDE3IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pDQo+IA0KPiBZb3UgZm9yZ290
+IHRvIHVwZGF0ZSBkcml2ZXJzL2Nsay9yZW5lc2FzL3I4YTc3OWEwLWNwZy1tc3NyLmMuDQoNCkkg
+Y29tcGxldGVseSBmb3Jnb3QgaXQuIEknbGwgZml4IGl0Lg0KDQo+IEhlbmNlIGFsbCBjbG9ja3Mg
+ZGVyaXZlZCBmcm9tIFBMTDUgaGF2ZSBhIHplcm8gcmF0ZSwgY2F1c2luZyB0aGUNCj4gU0RISSBk
+cml2ZXIgdG8gZW50ZXIgYW4gaW5maW5pdGUgbG9vcCBpbiByZW5lc2FzX3NkaGlfc2V0X2Nsb2Nr
+KCkNCj4gKGNsb2NrID0gMCk6DQo+IA0KPiAgICAgICAgIGZvciAoY2xrID0gMHg4MDAwMDA4MDsg
+bmV3X2Nsb2NrID49IChjbG9jayA8PCAxKTsgY2xrID4+PSAxKQ0KPiAgICAgICAgICAgICAgICAg
+Y2xvY2sgPDw9IDE7DQo+IA0KPiBBZGRpbmcgdGhlIG1pc3NpbmcgUExMNCBtdWwvZGl2IGNvbHVt
+bnMgZml4ZXMgdGhhdC4NCg0KSSBnb3QgaXQuDQoNCj4gVGhlIHJlc3QgTEdUTS4NCg0KVGhhbmsg
+eW91IGZvciB5b3VyIHJldmlldyENCg0KQmVzdCByZWdhcmRzLA0KWW9zaGloaXJvIFNoaW1vZGEN
+Cg0KPiBHcntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAgICAgICAgICAgICAgICAgIEdl
+ZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExp
+bnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+IA0KPiBJbiBwZXJzb25h
+bCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhh
+Y2tlci4gQnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAi
+cHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdC4NCj4gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcw0K
