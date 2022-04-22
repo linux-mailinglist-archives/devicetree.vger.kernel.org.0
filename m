@@ -2,155 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D228450BB9C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48BDF50BBA9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1449389AbiDVPZ4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 22 Apr 2022 11:25:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
+        id S1390094AbiDVP3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 11:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1449396AbiDVPZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:25:55 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F9356208;
-        Fri, 22 Apr 2022 08:23:01 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id hh4so5698324qtb.10;
-        Fri, 22 Apr 2022 08:23:01 -0700 (PDT)
+        with ESMTP id S1381691AbiDVP3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:29:05 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4BE95C36A
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:26:10 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-2f7b90e8b37so11420607b3.6
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:26:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=cendmS9M+hafp0sRCCph1x27cQg8ck+RUugsVgjF93A=;
+        b=HPCC0BoCw6ykEbCKdUPsUuhud+Jm8fA9JvYHPoufofQHEikiMGHEce8K5EdVxKgzZM
+         22I4Bt6pTXn6zLaqg9gaYYClTALy34p/wVztFYCelOCw30uw4NtEag8FqiiUpAElH6l1
+         1ujvUe3ZWLTokxjOloGgNWM5PxXCmn2CEwWbopFOGw90+xIHwPtzL52v5a821eWiCDM5
+         zZJYWc6wRTjMEtgoTyLhBsfWA4cLzgxecrH04Ykp93dtLXPoXkxsk56oN0YD7A6U8KPv
+         gQGAs8m5+9CmS0//DfKmYoZMAiyYHDkQViB/oKY8Z0q115JRkVfGSueOCuYvhDTuamyY
+         bKVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=eoS/W5UvalYkcGjGH1/+VEhC1v58PNAr8XIYRC+qU1s=;
-        b=RkVs9cW9bIXu2Pq3qrrp+7ny8+AZPidUr26N68sAQShLMt86x11d6vW+rA0p9g3Zjj
-         kNZ53AQ3c4fHUPfajIX86z45TeDtLT9sMTalOWHgQd/6Lo7oCpYUwvFs7oeBQkEtu7Kn
-         H+lNPItMKeZWUVLydyMHreq5NzFo9szgrGWVHi89nG6oSNqJatYajzHZ/1Y2jLAqKKZH
-         ojYts3ruhJYYW6GDhR21cYu4ADRB5QgpAELn0Q1S3UQejYd9LQsfeV4oHSSpbgPw6uQ+
-         RIi0iot+iaDHiZjXUZ4pHqiu16ejKxM8NsqKilD/ZfM2pO2Mcwi0+uT+z5O5FWc6cF/B
-         YXuQ==
-X-Gm-Message-State: AOAM530GBlXqx5pz3oSE2WHhsWeN0aqExII9KYfywM9MBbiOeZQiFSdI
-        GQhFpIXAqYO56grIoQFHz97IEqTVw51egQ==
-X-Google-Smtp-Source: ABdhPJw/jsypCSUgzB2UmpZCn2EkVm87IGCAgjVMuF8vjC65s8jQ4vl+reMlkDBSYNcwdg7xGioNXw==
-X-Received: by 2002:ac8:5509:0:b0:2f1:ea6f:55b8 with SMTP id j9-20020ac85509000000b002f1ea6f55b8mr3652781qtq.379.1650640980043;
-        Fri, 22 Apr 2022 08:23:00 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id j12-20020ae9c20c000000b0067ec380b320sm1037875qkg.64.2022.04.22.08.22.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 08:22:59 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-2f7b90e8b37so11326257b3.6;
-        Fri, 22 Apr 2022 08:22:59 -0700 (PDT)
-X-Received: by 2002:a81:4782:0:b0:2eb:1cb1:5441 with SMTP id
- u124-20020a814782000000b002eb1cb15441mr4962418ywa.479.1650640979112; Fri, 22
- Apr 2022 08:22:59 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=cendmS9M+hafp0sRCCph1x27cQg8ck+RUugsVgjF93A=;
+        b=2ACpCFm/R35YMk66PtyJkn007u8f5HBTGJa6kLZjYzSOx2Y9hf/H39cYD4kKOu1B4A
+         qEr39ANhKqnW0y1jsohbAA2Kw5VrkpW1R/CKqFz3Tq8jpvzxpYtKZMayLnHesrHvQlZ1
+         MSNNGtk0AWq+f4CoChI9koiv/w37L9c34nC47wz30g4kyr3ZwBvHqaMUnF0Y5h2VQYWQ
+         EKoC93BChAZ0iwa5KOJFiB5vS8vHp9+PUfgswq1d1DPZlbPjvBQC/v48qJYJalUJaLdm
+         6m0WfJt1DIp22y4msoFLoCWKGn6P2XNUsfmbORqgwHtDTFWvq51P9sAUx1XqGBqY976z
+         FwyQ==
+X-Gm-Message-State: AOAM5315z0LqugNgV4sY28g32uODzbpmSPX/0vLPzxfiG/BwmGmTmBTD
+        ABRMJNe0wI+0LDPOVWrw35F7yoEBp/iz6WiqkGZ56w==
+X-Google-Smtp-Source: ABdhPJxKDFi4fdtFBUxSSp/n3JUrQcugRePBV3YZJvmejB6Lum1ef3U68ixfHRnQTgqBd5TBZs1hBXbnJLh+d8p3vb0=
+X-Received: by 2002:a81:9210:0:b0:2f4:d8f7:98e9 with SMTP id
+ j16-20020a819210000000b002f4d8f798e9mr5376228ywg.265.1650641169866; Fri, 22
+ Apr 2022 08:26:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220330154024.112270-1-phil.edworthy@renesas.com>
- <20220330154024.112270-3-phil.edworthy@renesas.com> <CAMuHMdWaiAZNWmU5itJWJy3fEMmR1hQc7QRWpe6mi3AYkSewgw@mail.gmail.com>
- <TYYPR01MB7086BD705F91E855F0D3FD45F5F79@TYYPR01MB7086.jpnprd01.prod.outlook.com>
- <CAMuHMdWtLxdXztfLxSvb57WOO46qTW6c+fD=P0O5qicop=b+3g@mail.gmail.com> <TYYPR01MB708615E7E58B7833184B5CDFF5F79@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYYPR01MB708615E7E58B7833184B5CDFF5F79@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 22 Apr 2022 17:22:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWeK91MVmYhxa8m7PbO_6E_CtaDVV+=QgyAns_=oCUYvA@mail.gmail.com>
-Message-ID: <CAMuHMdWeK91MVmYhxa8m7PbO_6E_CtaDVV+=QgyAns_=oCUYvA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/13] dt-bindings: serial: renesas,em-uart: Document
- r9a09g011 bindings
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Fri, 22 Apr 2022 20:55:58 +0530
+Message-ID: <CA+G9fYu8GoJ1-Tf=-LHFGTvuHdjABLWSGH=pfxTojwEXSjxTbw@mail.gmail.com>
+Subject: OF: ERROR: Bad of_node_put() on /ocp/interconnect@4a000000/segment@0/target-module@8000/cm_core@0/clock@c00/clock@0
+To:     Linux-Next Mailing List <linux-next@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        lkft-triage@lists.linaro.org,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
+        <devicetree@vger.kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        dev.kurt@vandijck-laurijssen.be,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Phil,
+Linux next-20220412 booting on arm beagle board x15 device found the
+following warnings.
+This is still happening on today's linux next-20220422.
 
-On Fri, Apr 22, 2022 at 11:31 AM Phil Edworthy
-<phil.edworthy@renesas.com> wrote:
-> On 22 April 2022 09:45 Geert Uytterhoeven wrote:
-> > On Fri, Apr 22, 2022 at 10:28 AM Phil Edworthy wrote:
-> > > On 20 April 2022 22:26 Geert Uytterhoeven wrote:
-> > > > On Wed, Mar 30, 2022 at 5:41 PM Phil Edworthy wrote:
-> > > > > The Renesas RZ/V2M (r9a09g011) SoC uses a uart that is compatible
-> > with
-> > > > the
-> > > > > EMMA Mobile SoC.
-> > > > >
-> > > > > Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> > > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > ---
-> > > > > v2: Fix dtbs_check by adding missing alternative binding
-> > > >
-> > > > Thanks for your patch, which is now commit 7bb301812b628099
-> > > > ("dt-bindings: serial: renesas,em-uart: Document r9a09g011
-> > > > bindings") in tty/tty-next.
-> > > >
-> > > > > --- a/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/serial/renesas,em-uart.yaml
-> > > > However, unlike EMEV2, RZ/V2M defines two clocks: pclk and sclk.
-> > > > Hence please update the clocks section to reflect that.
-> > > You are right that the uart has two clocks.
-> > >
-> > > Note though that pclk is shared by both uarts. The HW manual says:
-> > > "ch. 1 is for use with the ISP support package, so do not
-> > > use registers related to this channel.". Due to this, section
-> > > 48.5.2.50 Clock ON/OFF Control Register 15 (CPG_CLK_ON15) says
-> > > that bit 20, CLK4_ONWEN (enable for URT_PCLK) should be written
-> > > as 0.
-> > >
-> > > I took this to mean that the URT_PCLK is enabled by the ISP firmware
-> > > and software must not touch it. I am not sure if the DT bindings
-> > > should document a clock that is specified as do not touch in the
-> > > HW manual. This is a bit of a grey area.
-> >
-> > "DT describes hardware, not software policy".
-> >
-> > But I agree this is a grey area.
-> I wish the HW manual either didn’t mention this clock that you should
-> not touch, or didn’t specify anything as "used by the ISP firmware" :)
+[    0.000000] Linux version 5.18.0-rc2-next-20220412
+(tuxmake@tuxmake) (arm-linux-gnueabihf-gcc (Debian 10.2.1-6) 10.2.1
+20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP @1649744781
+[    0.000000] CPU: ARMv7 Processor [412fc0f2] revision 2 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+[    0.000000] OF: fdt: Machine model: TI AM5728 BeagleBoard-X15
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at 0x95800000,
+size 56 MiB
+[    0.000000] OF: reserved mem: initialized node
+ipu2-memory@95800000, compatible id shared-dma-pool
+[    0.000000] Reserved memory: created CMA memory pool at 0x99000000,
+size 64 MiB
+[    0.000000] OF: reserved mem: initialized node
+dsp1-memory@99000000, compatible id shared-dma-pool
+[    0.000000] Reserved memory: created CMA memory pool at 0x9d000000,
+size 32 MiB
+[    0.000000] OF: reserved mem: initialized node
+ipu1-memory@9d000000, compatible id shared-dma-pool
+[    0.000000] Reserved memory: created CMA memory pool at 0x9f000000,
+size 8 MiB
+[    0.000000] OF: reserved mem: initialized node
+dsp2-memory@9f000000, compatible id shared-dma-pool
+[    0.000000] cma: Reserved 64 MiB at 0xfb800000
+[    0.000000] OMAP4: Map 0xafe00000 to (ptrval) for dram barrier
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000080000000-0x00000000afdfffff]
+[    0.000000]   Normal   empty
+[    0.000000]   HighMem  [mem 0x00000000afe00000-0x00000000ffffefff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x00000000afdfffff]
+[    0.000000]   node   0: [mem 0x00000000b0000000-0x00000000ffffefff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x00000000ffffefff]
+[    0.000000] On node 0, zone HighMem: 512 pages in unavailable ranges
+[    0.000000] DRA752 ES2.0
+[    0.000000] percpu: Embedded 16 pages/cpu s35028 r8192 d22316 u65536
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 522051
+[    0.000000] Kernel command line: console=ttyS2,115200n8
+root=PARTUUID=008ff1a4-d1d9-294a-89cd-d80f952045d9 rw rootfstype=ext4
+rootwait
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7,
+524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144
+bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 1812440K/2095100K available (16384K kernel
+code, 2662K rwdata, 8720K rodata, 2048K init, 649K bss, 53284K
+reserved, 229376K cma-reserved, 1245180K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] ftrace: allocating 59389 entries in 175 pages
+[    0.000000] ftrace: allocated 174 pages with 5 groups
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: RCU event tracing is enabled.
+[    0.000000] rcu: RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=2.
+[    0.000000] Rude variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay
+is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] GIC: Using split EOI/Deactivate mode
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] kfence: initialized - using 2097152 bytes for 255
+objects at 0x(ptrval)-0x(ptrval)
+[    0.000000] random: get_random_bytes called from
+start_kernel+0x54c/0x6fc with crng_init=0
+[    0.000000] ------------[ cut here ]------------
+[    0.000000] WARNING: CPU: 0 PID: 0 at lib/refcount.c:25 kobject_get+0x9c/0xa0
+[    0.000000] refcount_t: addition on 0; use-after-free.
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted
+5.18.0-rc2-next-20220412 #1
+[    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
+[    0.000000]  unwind_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x58/0x70
+[    0.000000]  dump_stack_lvl from __warn+0xd0/0x144
+[    0.000000]  __warn from warn_slowpath_fmt+0x98/0xbc
+[    0.000000]  warn_slowpath_fmt from kobject_get+0x9c/0xa0
+[    0.000000]  kobject_get from of_node_get+0x1c/0x24
+[    0.000000]  of_node_get from of_fwnode_get+0x3c/0x48
+[    0.000000]  of_fwnode_get from fwnode_get_nth_parent+0x34/0x104
+[    0.000000]  fwnode_get_nth_parent from fwnode_full_name_string+0x34/0xa0
+[    0.000000]  fwnode_full_name_string from device_node_string+0x5fc/0x6c8
+[    0.000000]  device_node_string from pointer+0x3c8/0x670
+[    0.000000]  pointer from vsnprintf+0x22c/0x3cc
+[    0.000000]  vsnprintf from vprintk_store+0x114/0x43c
+[    0.000000]  vprintk_store from vprintk_emit+0x78/0x2bc
+[    0.000000]  vprintk_emit from vprintk_default+0x28/0x30
+[    0.000000]  vprintk_default from _printk+0x30/0x54
+[    0.000000]  _printk from of_node_release+0x124/0x12c
+[    0.000000]  of_node_release from kobject_put+0xc4/0x294
+[    0.000000]  kobject_put from ti_dt_clocks_register+0x284/0x32c
+[    0.000000]  ti_dt_clocks_register from dra7xx_dt_clk_init+0x18/0x11c
+[    0.000000]  dra7xx_dt_clk_init from omap5_realtime_timer_init+0x10/0x21c
+[    0.000000]  omap5_realtime_timer_init from start_kernel+0x560/0x6fc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] ---[ end trace 0000000000000000 ]---
+login-action: exception
+#
+[    0.000000] ------------[ cut #
+[login-action] Waiting for messages, (timeout 00:14:33)
+here ]------------
+[    0.000000] WARNING: CPU: 0 PID: 0 at lib/refcount.c:28
+fwnode_get_nth_parent+0x50/0x104
+[    0.000000] refcount_t: underflow; use-after-free.
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W
+  5.18.0-rc2-next-20220412 #1
+[    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
+[    0.000000]  unwind_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x58/0x70
+[    0.000000]  dump_stack_lvl from __warn+0xd0/0x144
+[    0.000000]  __warn from warn_slowpath_fmt+0x98/0xbc
+[    0.000000]  warn_slowpath_fmt from fwnode_get_nth_parent+0x50/0x104
+[    0.000000]  fwnode_get_nth_parent from fwnode_full_name_string+0x34/0xa0
+[    0.000000]  fwnode_full_name_string from device_node_string+0x5fc/0x6c8
+[    0.000000]  device_node_string from pointer+0x3c8/0x670
+[    0.000000]  pointer from vsnprintf+0x22c/0x3cc
+[    0.000000]  vsnprintf from vprintk_store+0x114/0x43c
+[    0.000000]  vprintk_store from vprintk_emit+0x78/0x2bc
+[    0.000000]  vprintk_emit from vprintk_default+0x28/0x30
+[    0.000000]  vprintk_default from _printk+0x30/0x54
+[    0.000000]  _printk from of_node_release+0x124/0x12c
+[    0.000000]  of_node_release from kobject_put+0xc4/0x294
+[    0.000000]  kobject_put from ti_dt_clocks_register+0x284/0x32c
+[    0.000000]  ti_dt_clocks_register from dra7xx_dt_clk_init+0x18/0x11c
+[    0.000000]  dra7xx_dt_clk_init from omap5_realtime_timer_init+0x10/0x21c
+[    0.000000]  omap5_realtime_timer_init from start_kernel+0x560/0x6fc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] ---[ end trace 0000000000000000 ]---
+login-action: exception
+#
+[    0.000000] ------------[ cut here ]--------#
+[login-action] Waiting for messages, (timeout 00:14:33)
+----
+[    0.000000] WARNING: CPU: 0 PID: 0 at lib/refcount.c:22 kobject_get+0x88/0xa0
+[    0.000000] refcount_t: saturated; leaking memory.
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W
+  5.18.0-rc2-next-20220412 #1
+[    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
+[    0.000000]  unwind_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x58/0x70
+[    0.000000]  dump_stack_lvl from __warn+0xd0/0x144
+[    0.000000]  __warn from warn_slowpath_fmt+0x98/0xbc
+[    0.000000]  warn_slowpath_fmt from kobject_get+0x88/0xa0
+[    0.000000]  kobject_get from of_node_get+0x1c/0x24
+[    0.000000]  of_node_get from of_fwnode_get+0x3c/0x48
+[    0.000000]  of_fwnode_get from fwnode_get_nth_parent+0x34/0x104
+[    0.000000]  fwnode_get_nth_parent from fwnode_full_name_string+0x34/0xa0
+[    0.000000]  fwnode_full_name_string from device_node_string+0x5fc/0x6c8
+[    0.000000]  device_node_string from pointer+0x3c8/0x670
+[    0.000000]  pointer from vsnprintf+0x22c/0x3cc
+[    0.000000]  vsnprintf from vprintk_store+0x114/0x43c
+[    0.000000]  vprintk_store from vprintk_emit+0x78/0x2bc
+[    0.000000]  vprintk_emit from vprintk_default+0x28/0x30
+[    0.000000]  vprintk_default from _printk+0x30/0x54
+[    0.000000]  _printk from of_node_release+0x124/0x12c
+[    0.000000]  of_node_release from kobject_put+0xc4/0x294
+[    0.000000]  kobject_put from ti_dt_clocks_register+0x284/0x32c
+[    0.000000]  ti_dt_clocks_register from dra7xx_dt_clk_init+0x18/0x11c
+[    0.000000]  dra7xx_dt_clk_init from omap5_realtime_timer_init+0x10/0x21c
+[    0.000000]  omap5_realtime_timer_init from start_kernel+0x560/0x6fc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] ---[ end trace 0000000000000000 ]---
+login-action: exception
+#
+[    0.000000] OF: ERROR: Bad of_node_put() on
+/ocp/interconnect@4a000000/segment@0/targe#
+[login-action] Waiting for messages, (timeout 00:14:33)
+t-module@8000/cm_core@0/clock@c00/clock@0
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W
+  5.18.0-rc2-next-20220412 #1
+[    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
+[    0.000000]  unwind_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x58/0x70
+[    0.000000]  dump_stack_lvl from kobject_put+0xc4/0x294
+[    0.000000]  kobject_put from ti_dt_clocks_register+0x284/0x32c
+[    0.000000]  ti_dt_clocks_register from dra7xx_dt_clk_init+0x18/0x11c
+[    0.000000]  dra7xx_dt_clk_init from omap5_realtime_timer_init+0x10/0x21c
+[    0.000000]  omap5_realtime_timer_init from start_kernel+0x560/0x6fc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] OF: ERROR: Bad of_node_put() on
+/ocp/interconnect@4a000000/segment@0/target-module@8000/cm_core@0/clock@1100/clock@20
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W
+  5.18.0-rc2-next-20220412 #1
+[    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
+[    0.000000]  unwind_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x58/0x70
+[    0.000000]  dump_stack_lvl from kobject_put+0xc4/0x294
+[    0.000000]  kobject_put from ti_dt_clocks_register+0x284/0x32c
+[    0.000000]  ti_dt_clocks_register from dra7xx_dt_clk_init+0x18/0x11c
+[    0.000000]  dra7xx_dt_clk_init from omap5_realtime_timer_init+0x10/0x21c
+[    0.000000]  omap5_realtime_timer_init from start_kernel+0x560/0x6fc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] OF: ERROR: Bad of_node_put() on
+/ocp/interconnect@4ae00000/segment@0/target-module@6000/prm@0/clock@1800/clock@20
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W
+  5.18.0-rc2-next-20220412 #1
+[    0.000000] Hardware name: Generic DRA74X (Flattened Device Tree)
 
-Yeah, hardware manuals making too many assumptions about the software
-that will run on it will lead to headaches...
 
-> > One option would be to mark URT_PCLK critical, so it won't be disabled.
-> > But that would still mean it's enabled by Linux, i.e. Linux would set
-> > CLK4_ONWEN to 1 while enabling the clock.
-> >
-> > Another option would be to create URT_PCLK as a non-gateable clock,
-> > so Linux won't ever touch the register bits.
-> >
-> > Or just ignore URT_PCLK and do nothing, like you did ;-)
-> > Would it be possible for a user to not use the ISP firmware at all,
-> > and go full Linux, hence using both UART channels and URT_PCLK?
-> It is possible to not use the ISP firmware, but them what do we do?
-> Ignore everything in the HW manual that says "ISP firmware"?
->
-> Ideally, we want to only enable a clock if it's not already enabled,
-> but not turn it off if it is enabled. Isn't that a critical clk?
+link:
+https://lkft.validation.linaro.org/scheduler/job/4882391#L2104
 
-__clk_core_init() explicitly enables clocks marked with
-CLK_IS_CRITICAL.  I think it does so without checking the hardware
-if the clock is already enabled or not, so probably it will access
-the reserved hardware bits regardless.
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
 
-Gr{oetje,eeting}s,
+metadata:
+  git_ref: master
+  git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
+  git_sha: d0c745e7b2d6ce8bcc768b32361ab8ef520821ee
+  git_describe: next-20220412
+  kernel_version: 5.18.0-rc2
+  kernel-config: https://builds.tuxbuild.com/27gbKLQxkCjWcdfqbhpWsh5Ocq0/config
+  build-url: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next/-/pipelines/514668403
+  artifact-location: https://builds.tuxbuild.com/27gbKLQxkCjWcdfqbhpWsh5Ocq0
+  toolchain: gcc-10
 
-                        Geert
 
 --
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Linaro LKFT
+https://lkft.linaro.org
