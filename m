@@ -2,129 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F39550B9E4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 16:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EAC950B9EB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 16:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1448530AbiDVOTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 10:19:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38506 "EHLO
+        id S1448578AbiDVOWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 10:22:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448526AbiDVOTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 10:19:50 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AED75AEDB;
-        Fri, 22 Apr 2022 07:16:56 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23MEGep0020829;
-        Fri, 22 Apr 2022 09:16:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650637000;
-        bh=Btht3bJsm2pNgZ1+h8mMkgg47aM7ac0qLihAqIO4ZCY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=uyxtvlYqS6hJG0InCHJqL6ouH+zvY7ZmLo6L8inFqms7sonKrL+RRH4uicW6/cZUx
-         2cHIDeGTbv26IYYiEwylXnNkMpaH6/aFQvyKMEjYB5H6sYQm+O7HRURo9GYGIv9gjj
-         BNPnykeWst1R3g0DP4wtVwwm+H5Z2sPR8OqdQIAk=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23MEGeeg034900
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 22 Apr 2022 09:16:40 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
- Apr 2022 09:16:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 22 Apr 2022 09:16:40 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23MEGcui026816;
-        Fri, 22 Apr 2022 09:16:39 -0500
-Date:   Fri, 22 Apr 2022 19:46:38 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@canonical.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>
-Subject: Re: [PATCH v3 0/2] DSS: Add support for DisplayPort
-Message-ID: <20220422141637.4hz5nrlpjapmqezw@uda0490373>
-References: <20220406165852.13026-1-r-ravikumar@ti.com>
- <ed64bf63-95c6-94ae-4c4f-a206250f44a9@ti.com>
+        with ESMTP id S1448601AbiDVOWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 10:22:40 -0400
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1508E5B3C5;
+        Fri, 22 Apr 2022 07:19:47 -0700 (PDT)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-e68392d626so3680834fac.4;
+        Fri, 22 Apr 2022 07:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=X7u3kglhM0VkTW03FStsvrOnIn+Xj3SEcCEn4rSVb2M=;
+        b=doxXGTkzNgr961Vtac0I8Zhl1wa8l2EJNGL/EiZdctp1nfqY1r9tiLc66rTrOW3sEi
+         RM00KIuonmmVfjOozzjwUSfYjHAUfJ7amPN0xWq/HHhvULB5GFvMHxpxNEbuhAlEYCL0
+         6Nf8JzIoaCqKa+yuJ6fWuhCX5BK68o+amMSrl/s+9arho0DStmzkxahga3IuG+Ocn4BR
+         PoOR2jNDY8NCUcyc/VPL7BFtTkGadWnHZhkOTxupp2+jsz2C+D+htRUAK66VY8lCl0TZ
+         BYTnBGEsVFMl4EEb4TVVqEkULyAgxKx3JIT2srrQxoXOaRNhusHjeY9oh7fKTUj8Qw0Q
+         gPYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=X7u3kglhM0VkTW03FStsvrOnIn+Xj3SEcCEn4rSVb2M=;
+        b=s2kEAt3+bzufjJM1jyFkvkZd+LNJI1bdFIciJODMSAbue1Qqk0OZvnbIlHM8A5WQW0
+         c0WHgGkpLrFs/oobnhq//DehpvSAxCv7oPB9+djJ7sQrQCgWSS7lSGRWge+nVqHs3tpy
+         WYKtrGXUzU3huF1oanulhYJFySdft9PvnsN4fPxFJOJinps0+OgzlGrQbaL1xFix/v2C
+         BSpSRieuEANAeHv31HJT6+DM90ttFTPPCx97AscSuJnxdnPKcsLiufz7nb3sipWl6lTB
+         rgEAKABphLGgbcTmV8zYqdh/9NNzP2MSTmG2KQk01/9McSBDVOFtZMx+i3PXA+bFqy/0
+         AaHA==
+X-Gm-Message-State: AOAM531JavnePIbMOZaajtsjeaxFiVLKilwY6yJYpHXrloD1yrmb2czD
+        XnBLtG0RELPLEV3DhheYSN8=
+X-Google-Smtp-Source: ABdhPJyRUn+Uq4kLyzdsgMmHE5kkqjywZFQ2SL5fSRXPWW5Su/ofYv0nnbjSTPRCJnLsPK5NNqvn4A==
+X-Received: by 2002:a05:6870:589d:b0:d6:dc7f:6b10 with SMTP id be29-20020a056870589d00b000d6dc7f6b10mr1955692oab.175.1650637181912;
+        Fri, 22 Apr 2022 07:19:41 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id c14-20020a4ad20e000000b0033a371fa815sm806446oos.37.2022.04.22.07.19.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 07:19:41 -0700 (PDT)
+Message-ID: <4373b922-bd07-c02d-e43f-0426690cf47d@gmail.com>
+Date:   Fri, 22 Apr 2022 16:19:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ed64bf63-95c6-94ae-4c4f-a206250f44a9@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH V2 2/3] arm64: dts: mt8183: Update disp_aal node
+ compatible
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie,
+        yongqiang.niu@mediatek.com, jason-jh.lin@mediatek.com,
+        nancy.lin@mediatek.com, allen-kh.cheng@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220411035843.19847-1-rex-bc.chen@mediatek.com>
+ <20220411035843.19847-3-rex-bc.chen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220411035843.19847-3-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:51-20220415, Vignesh Raghavendra wrote:
-> 
-> 
-> On 06/04/22 10:28 pm, Rahul T R wrote:
-> > The following series of patches enables DisplayPort on
-> > j721e-evm
-> > 
-> > Tomi Valkeinen (2):
-> >   arm64: dts: ti: k3-j721e-main: add DP & DP PHY
-> >   arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
-> > 
-> > v2:
-> >    - use phandle with a parameter to refer clocks insted of
-> >      sub nodes in serdes_wiz node
-> >    - move phy link node to board DTS file
-> > 
-> > v3:
-> >    - Fix the regulator node name as per the DT spec
-> >    - Use Macro for GPIO type
-> > 
-> > boot logs:
-> >    https://gist.githubusercontent.com/ravi-rahul/1bdbc3f77ab381e486c8394650c2e85d/raw/f04584c30181821c4ee83aee7781a9ba143cd3f3/j7_DP_upstream.log
-> > 
-> > kernel patch verify report:
-> >    https://gist.githubusercontent.com/ravi-rahul/a982fef3fae03ec0dbdd5cb475a4cb25/raw/c8230370746e9878daf9527c3aa9d82eed7aa33c/report-kernel-patch-verify.txt
-> 
-> Hmm, With dtbs_check I see (on v5.18-rc1 tag)
-> 
-> +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: ports: 'port@0' is a required property
-> +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: ports: 'port@4' is a required property
-> +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: 'phys' is a required property
-> +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: 'phy-names' is a required property
-> 
-> This goes away with 2/2 although adds:
-> +<stdout>: Warning (graph_child_address): /bus@100000/dss@4a00000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
-> 
-> 
-> Do we need to have empty ports node in j721e-main.dtsi for dp-bridge?   And something similar wrt phys as well?
-> 
-> Regards
-> Vignesh
 
-Hi Vignesh,
 
-Thanks for the review!
-Not sure why kernel patch verify did not catch this
-
-I can fix the warnings for ports by adding empty ports in 1/2
-For "phys" I can move the phy node from 2/2 to 1/2
-But the commit will spill over both dtsi and dts files
-is that okay, can you please give your inputs here
-
-Regards
-Rahul T R
- 
+On 11/04/2022 05:58, Rex-BC Chen wrote:
+> The driver data of MT8183 and MT8173 are different.
+> The value of has_gamma for MT8173 is true while the value of MT8183 is
+> false. Therefore, the compatible of disp_aal for MT8183 is not suitable
+> for the compatible for MT8173.
 > 
-> > 
-> >  .../dts/ti/k3-j721e-common-proc-board.dts     | 78 ++++++++++++++++++-
-> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 65 ++++++++++++++++
-> >  2 files changed, 139 insertions(+), 4 deletions(-)
-> > 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Applied thanks!
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 4b08691ed39e..a3616005d65c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1466,8 +1466,7 @@
+>   		};
+>   
+>   		aal0: aal@14010000 {
+> -			compatible = "mediatek,mt8183-disp-aal",
+> -				     "mediatek,mt8173-disp-aal";
+> +			compatible = "mediatek,mt8183-disp-aal";
+>   			reg = <0 0x14010000 0 0x1000>;
+>   			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_LOW>;
+>   			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
