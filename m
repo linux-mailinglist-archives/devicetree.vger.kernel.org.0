@@ -2,147 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EBEB50BCA9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B954650BCBB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357831AbiDVQPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 12:15:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47904 "EHLO
+        id S1378325AbiDVQUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 12:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357434AbiDVQPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:15:04 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1735C85D;
-        Fri, 22 Apr 2022 09:12:10 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id bu29so15173604lfb.0;
-        Fri, 22 Apr 2022 09:12:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=tUo95tRg9oswGTOGs7YDeTbiPQNo1Vj+yujmZ07iNkE=;
-        b=FLa3FV0MSiyAgF2qyUNtURfbCSQxRppSlJuyLPRYJCUhCKwdEJcbnUznBjJaW5PmFQ
-         clVb3BnSlvpBRd7Un9kv49I0jweeB9Q+IEw2idcC1n8H5og+XR/wZJ0ke4iZ3czRD5tQ
-         cuMBls+ZtSi1BD4F4tL4AkioVEUE3qE/D0CIJLegjKlvgqlxGcltFPj3pqPEjdi+/tml
-         vMM3PrkJKFsB8PNhcyCvgoZHcyQdBlmxb4xDmB+90ryGui/OoiYFKVi+XzrwMr/ypgJd
-         z3dorO1J1uzxWOUJVO8+h15OWXkq5DN91Bt6+XYRmK/SD7vUICWns9iF64rBHwU2gXDk
-         OTxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tUo95tRg9oswGTOGs7YDeTbiPQNo1Vj+yujmZ07iNkE=;
-        b=tygrQht4ELLDHJpMOrtrGKUPXLNvUXFid2hEee1NTk8rDXdKeakaL02tiujtbc8RHO
-         JJX5EkYregSlsFiVC+Szy6U6AYbu9YSX8x05cPf+mX5IzVeYY8ty4/pjQboQ3fAy4kkn
-         +d9BeajuyU2iHEPkAyuR7lM0wD1OaItMix7KqHsECE0xiVsLv/oW/kDQqHcf5faO/A0d
-         9OzhKESA9WDPJY33Ca07Ugp/QjvvQiTqfc3qguozau0JtmFPr/7Xjp/Ob/2ZRxV96Mfe
-         l6AaNABp/sJvrg8YnbMhzlobSz/+nEzvOh4e0/HB4Xb14RArs8W52DxM1ifmNJqe6sbD
-         XeAg==
-X-Gm-Message-State: AOAM533Vt4Bdol/14jIT3aOrV8ZjNg2SK+wpbefLKsWpBecsCaeCT6+f
-        zanEtTbRHmVfKTqUt06IGm1sditgADM=
-X-Google-Smtp-Source: ABdhPJyqLOH8nj96lV9crARCF1zTsrgpxWcFrXkyn1Y7RcoQRDIU1n10tbVDioOk+9ho+Nz5J1f6Ag==
-X-Received: by 2002:a05:6512:34da:b0:46b:b7fd:1eca with SMTP id w26-20020a05651234da00b0046bb7fd1ecamr3619901lfr.481.1650643929213;
-        Fri, 22 Apr 2022 09:12:09 -0700 (PDT)
-Received: from orome ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id s8-20020a2e9c08000000b0024af06d6674sm254891lji.61.2022.04.22.09.12.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 09:12:08 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 18:12:05 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        paul@crapouillou.net
-Cc:     robh+dt@kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] mips: dts: ingenic: x1000: Add PWM device tree
- node
-Message-ID: <YmLT1VA8ZL57CQkO@orome>
-References: <20220224234133.15708-1-aidanmacdonald.0x0@gmail.com>
- <20220224234133.15708-2-aidanmacdonald.0x0@gmail.com>
+        with ESMTP id S1378335AbiDVQUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:20:23 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0705DA53;
+        Fri, 22 Apr 2022 09:17:28 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23MGHCcm121089;
+        Fri, 22 Apr 2022 11:17:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650644232;
+        bh=iYC92yO0nVNTBrV4ZcAROnLEimDhVCylf0MCz4FDpg8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XxG5mI0ikG5jZo4MowM6zesP/gy4T+x3jrUd68nqr/HcbxXAG7jpFJnwWTpjidPJ+
+         C3NI1cG10RFpY1ZaY+aujncHqwwFUL9xKCHsWPbWhdQIzKLVfsYnm/nbHhbZkHxFLU
+         f571unjgjXI5Qz+xdaA/G4TGYXrLum1bgX3hm8FA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23MGHCXr059334
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 22 Apr 2022 11:17:12 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
+ Apr 2022 11:17:11 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 22 Apr 2022 11:17:11 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23MGHBxn019241;
+        Fri, 22 Apr 2022 11:17:11 -0500
+Date:   Fri, 22 Apr 2022 11:17:11 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rahul T R <r-ravikumar@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>
+Subject: Re: [PATCH v3 0/2] DSS: Add support for DisplayPort
+Message-ID: <20220422161711.jkderbw5r4wxwgjf@crudeness>
+References: <20220406165852.13026-1-r-ravikumar@ti.com>
+ <ed64bf63-95c6-94ae-4c4f-a206250f44a9@ti.com>
+ <20220422141637.4hz5nrlpjapmqezw@uda0490373>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="oqekWBq8aThw7qyZ"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220224234133.15708-2-aidanmacdonald.0x0@gmail.com>
-User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220422141637.4hz5nrlpjapmqezw@uda0490373>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19:46-20220422, Rahul T R wrote:
+> On 12:51-20220415, Vignesh Raghavendra wrote:
+> > 
+> > 
+> > On 06/04/22 10:28 pm, Rahul T R wrote:
+> > > The following series of patches enables DisplayPort on
+> > > j721e-evm
+> > > 
+> > > Tomi Valkeinen (2):
+> > >   arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+> > >   arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
+> > > 
+> > > v2:
+> > >    - use phandle with a parameter to refer clocks insted of
+> > >      sub nodes in serdes_wiz node
+> > >    - move phy link node to board DTS file
+> > > 
+> > > v3:
+> > >    - Fix the regulator node name as per the DT spec
+> > >    - Use Macro for GPIO type
+> > > 
+> > > boot logs:
+> > >    https://gist.githubusercontent.com/ravi-rahul/1bdbc3f77ab381e486c8394650c2e85d/raw/f04584c30181821c4ee83aee7781a9ba143cd3f3/j7_DP_upstream.log
+> > > 
+> > > kernel patch verify report:
+> > >    https://gist.githubusercontent.com/ravi-rahul/a982fef3fae03ec0dbdd5cb475a4cb25/raw/c8230370746e9878daf9527c3aa9d82eed7aa33c/report-kernel-patch-verify.txt
+> > 
+> > Hmm, With dtbs_check I see (on v5.18-rc1 tag)
+> > 
+> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: ports: 'port@0' is a required property
+> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: ports: 'port@4' is a required property
+> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: 'phys' is a required property
+> > +/workdir/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb: dp-bridge@a000000: 'phy-names' is a required property
+> > 
+> > This goes away with 2/2 although adds:
+> > +<stdout>: Warning (graph_child_address): /bus@100000/dss@4a00000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+> > 
+> > 
+> > Do we need to have empty ports node in j721e-main.dtsi for dp-bridge?   And something similar wrt phys as well?
+> > 
+> > Regards
+> > Vignesh
+> 
+> Hi Vignesh,
+> 
+> Thanks for the review!
+> Not sure why kernel patch verify did not catch this
 
---oqekWBq8aThw7qyZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Feb 24, 2022 at 11:41:34PM +0000, Aidan MacDonald wrote:
-> Copied from the jz4740 devicetree and trimmed to 5 timers, which
-> is what the hardware supports.
->=20
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-> ---
->  arch/mips/boot/dts/ingenic/x1000.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-
-However I don't see this upstream yet, neither in Linus' tree nor in
-linux-next. Paul, do you still have this on your radar?
-
-Thierry
-
->=20
-> diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/i=
-ngenic/x1000.dtsi
-> index 8bd27edef216..0dcf37527c8e 100644
-> --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
-> @@ -127,6 +127,19 @@ wdt: watchdog@0 {
->  			clocks =3D <&tcu TCU_CLK_WDT>;
->  			clock-names =3D "wdt";
->  		};
-> +
-> +		pwm: pwm@40 {
-> +			compatible =3D "ingenic,x1000-pwm";
-> +			reg =3D <0x40 0x80>;
-> +
-> +			#pwm-cells =3D <3>;
-> +
-> +			clocks =3D <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
-> +				 <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_TIMER3>,
-> +				 <&tcu TCU_CLK_TIMER4>;
-> +			clock-names =3D "timer0", "timer1", "timer2",
-> +				      "timer3", "timer4";
-> +		};
->  	};
-> =20
->  	rtc: rtc@10003000 {
-> --=20
-> 2.34.1
->=20
-
---oqekWBq8aThw7qyZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmJi09MACgkQ3SOs138+
-s6FFpRAAuH7U4JXdUlpL70pOW1ieMwEBCfi6FD7Ek1vDFOOMpYKWTmbckzoBi3JW
-nAbs6B3aKDgnopG7nui6lyS7XYosRXjgnvn05FIFdKApcAkE929MplQAG7x8JOuC
-pCHfLXuTkh3pngiZtyvVpqJ4ymT1e2Z1IV7is215b8SmUhotOtAPFS1gpbRXQLWR
-bTqfdaoxYHpmTHU5lcoZAzU3cqzAP28Ae/xhMoiSK+6ZaPpDGimC7MszBkGgJQZi
-VQ2PvhbIthFk7tAaBekRj9pQiD6pdk2IA+bctSpOcUoVp9NRvudgmm5rBEEKPuOf
-Sr7VNVd9/HNWGAiMtEGb3SbbUbBxzVXNxEWRz+NtO9Y6R4h8IpWmMIH/SMoR7fYy
-+Ea3HdylX2TENnuH+wonQAdNqJ0t5w2hlkjltJLDJUOqgF3KkugdMylzhWMpv3Dj
-anltpfr9KWN48c2N8VsBuUSfVlU0SZB6cV7dHq+8JTpucva/YtD+0gdwofl4cERF
-czY9p20Bzw1vlfCIDaeH1qLv/e5e5jGlJVmF8GFAA6CyyhNWit/5uWO57GATvSqE
-inSRdtOdmJkfnB91+bu2mpeirRIe5lM+8FfIW22OT4W0OXHSXC3ViLbLAa6w1zjm
-oIJroWw1T0nFvfsz9+PRPGVIqfD1KllKDrj8awyEtowT5wDC2Wg=
-=9GL8
------END PGP SIGNATURE-----
-
---oqekWBq8aThw7qyZ--
+if you are'nt able to install all the required packages and version of
+packages, then use the kpv wrapper script for docker container that
+already packages things.
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
