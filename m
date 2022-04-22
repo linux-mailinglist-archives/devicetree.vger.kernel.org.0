@@ -2,117 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F04D50BF41
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D580050BFAF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbiDVSDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:03:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43646 "EHLO
+        id S232021AbiDVSLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:11:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235673AbiDVSCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:02:37 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1F6FF111142;
-        Fri, 22 Apr 2022 10:59:42 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E78851FB;
-        Fri, 22 Apr 2022 10:59:13 -0700 (PDT)
-Received: from bogus (unknown [10.57.11.83])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F04AE3F73B;
-        Fri, 22 Apr 2022 10:59:11 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 18:59:07 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: xen: Add xen,scmi-devid property
- description for SCMI
-Message-ID: <20220422175907.5i5ic443nqdaqtxx@bogus>
-References: <cover.1646639462.git.oleksii_moisieiev@epam.com>
- <5859bb58c8caf87985deb84d7f6bfc8182bd6a59.1646639462.git.oleksii_moisieiev@epam.com>
- <Yie47a4lqXjVzgxI@robh.at.kernel.org>
- <20220316164619.GA3489934@EPUAKYIW015D>
- <YjIzeyNoWhVAY5HK@bogus>
- <alpine.DEB.2.22.394.2203181644560.2910984@ubuntu-linux-20-04-desktop>
- <YjmvFZOqAcnoBcR+@bogus>
- <20220322192146.GA145617@EPUAKYIW015D>
- <20220323105422.2t726d5wbr5h2ksl@bogus>
- <20220328085202.GA1192834@EPUAKYIW015D>
+        with ESMTP id S234265AbiDVSF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:05:59 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A921183B0;
+        Fri, 22 Apr 2022 11:02:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1650650029; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=36SBTaNp7dcTwurtvjqe7McQ+kB/vBW59yh6tlX/7i8=;
+        b=BPNDxQt/o50fWYfoDGVkwMu81csPM+9pmWJwPV3spGu9npSLkECl3pJuHungufYWLRFOC7
+        5Nrr0lLYcWZUeG4e+7vJR9j1YAGDLBrQ9UG1WEGQiiMjBhUN7BGGOEV/cwIpPYvSAXhIZV
+        CQWPYwr4aCSh1qE2gE3q4eszxbJPM8Y=
+Date:   Fri, 22 Apr 2022 18:53:39 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 2/2] mips: dts: ingenic: x1000: Add PWM device tree
+ node
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Message-Id: <FP5RAR.CXCRD56PL7G72@crapouillou.net>
+In-Reply-To: <YmLT1VA8ZL57CQkO@orome>
+References: <20220224234133.15708-1-aidanmacdonald.0x0@gmail.com>
+        <20220224234133.15708-2-aidanmacdonald.0x0@gmail.com>
+        <YmLT1VA8ZL57CQkO@orome>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220328085202.GA1192834@EPUAKYIW015D>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 08:52:04AM +0000, Oleksii Moisieiev wrote:
+Hi Thierry,
 
-[...]
+Le ven., avril 22 2022 at 18:12:05 +0200, Thierry Reding=20
+<thierry.reding@gmail.com> a =E9crit :
+> On Thu, Feb 24, 2022 at 11:41:34PM +0000, Aidan MacDonald wrote:
+>>  Copied from the jz4740 devicetree and trimmed to 5 timers, which
+>>  is what the hardware supports.
+>>=20
+>>  Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+>>  ---
+>>   arch/mips/boot/dts/ingenic/x1000.dtsi | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>=20
+> However I don't see this upstream yet, neither in Linus' tree nor in
+> linux-next. Paul, do you still have this on your radar?
 
->
-> Based on what Sudeep have suggested, I think we may think about the approach
-> of the Generic Linux device-id, which can be used for SCMI needs as the
-> device id.
->
-> I have some ideas, how the generic device_id can be implemented.
-> From my understanding - the Generic Device Id is the unique identifier, which
-> can be set for the Device node in the Device-tree. This identifier is
-> already set for each node by DTC and called phandle.
->
+I don't have a tree so that would be a patch for Thomas (Cc'd) to go=20
+through the linux-mips tree.
+(Note to Thomas: patch 1 is already applied in the pwm tree)
 
-IIUC phandle is used as reference to the device node in the device tree
-and it is generated by DTC. I assume we can't use that for the "device ID"
-being discussed under the $subject.
+The changes look good though, so:
 
-> I've tried setting phandle for the device-nodes, such as:
->
-> &usb0 {
->     /* .... */
-> 	phandle = <0x10>;
-> }
->
-> DTC seems to work properly with this constant phandle. All links works
-> for usb0 and all nodes, which doesn't have constant phandle receives
-> calculated phandle during device-tree compilation.
->
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 
-Indeed.
+Cheers,
+-Paul
 
-> Also DTC will fail if I set 2 same phandle values in different
-> device nodes. So we can rely on phandle as on the unique device id.
->
-> What do you think about using phandle to set the device_id?
->
-> The alternative way I see for now is to itroduce additional property to SCMI
-> node, which includes list of the device-ids, such as:
->
+>=20
+> Thierry
+>=20
+>>=20
+>>  diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi=20
+>> b/arch/mips/boot/dts/ingenic/x1000.dtsi
+>>  index 8bd27edef216..0dcf37527c8e 100644
+>>  --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
+>>  +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
+>>  @@ -127,6 +127,19 @@ wdt: watchdog@0 {
+>>   			clocks =3D <&tcu TCU_CLK_WDT>;
+>>   			clock-names =3D "wdt";
+>>   		};
+>>  +
+>>  +		pwm: pwm@40 {
+>>  +			compatible =3D "ingenic,x1000-pwm";
+>>  +			reg =3D <0x40 0x80>;
+>>  +
+>>  +			#pwm-cells =3D <3>;
+>>  +
+>>  +			clocks =3D <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
+>>  +				 <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_TIMER3>,
+>>  +				 <&tcu TCU_CLK_TIMER4>;
+>>  +			clock-names =3D "timer0", "timer1", "timer2",
+>>  +				      "timer3", "timer4";
+>>  +		};
+>>   	};
+>>=20
+>>   	rtc: rtc@10003000 {
+>>  --
+>>  2.34.1
+>>=20
 
-I don't like this idea as this means every user of the "device ID" property
-will now have to add such a list which sounds like a duplication to me.
 
-> scmi {
-> 	compatible = "arm,scmi-smc";
-> 	/* ... */
-> 	device-ids = <&usb0 17,
-> 				  &usb1 42,
-> 				  ....
-> 				>;
-> }
->
-> Looking forward for your opinion.
-> Maybe you can share some ideas about how the device-id can be
-> implemented?
-
---
-Regards,
-Sudeep
