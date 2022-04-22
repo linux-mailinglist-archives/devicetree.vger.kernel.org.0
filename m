@@ -2,70 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F37250B261
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 430EE50B22B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:59:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344635AbiDVH5J convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 22 Apr 2022 03:57:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
+        id S1445353AbiDVIA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 04:00:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1445182AbiDVH5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 03:57:04 -0400
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AFF522D1;
-        Fri, 22 Apr 2022 00:53:54 -0700 (PDT)
-Received: by mail-qv1-f50.google.com with SMTP id e17so5467458qvj.11;
-        Fri, 22 Apr 2022 00:53:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=tggspirRgaeR4RvyIWiBijycx+/HqfnmFSxlQfeFHJc=;
-        b=lEJAnJddX3wpQLAEplU40Hdxsp1ZnqA0LYE72ZNNJlWnJ52GxEpXFjPb++3QROPL7c
-         XhRjQ2UTN62nooKJMDNuX3ayLkZ/ewNMsatutu+6cIZYAKcdG5vjkZRDJ09udEs7MaSP
-         JdD76PcTqQoqZmZZZlp6qGK+xR2NFv4vo9UkTAC3N9LkNCvbectdU3p71F0d9SJ/6NKW
-         887TueGcny8eQ0057vvsbzsYT7zYasG0HsoXN3rVvUbdYuZ9rBiTrnvTF5xz0MdhCy5i
-         yobEVp6bt9C6jBUYIZ13RNAP3xDGRX8EGS4s93Hr2YB5C9UzrS9FPeNQh2kPpRoXpOdR
-         EnAg==
-X-Gm-Message-State: AOAM533fyPqBWyY4SYx12XCNSrOCqH5d/Zfqygwlp2uLpmLX/EA9s58N
-        +5TcV+uaEa4L0RpXekUJx4lBj+KKDY+2NQ==
-X-Google-Smtp-Source: ABdhPJyuAEEHFnEEY+HBvugxgQ4rtKfWFUDmG9ji9rQAN3I06hLpT/3dnZ5UDIhKDKi4Bb+7GtT4Ag==
-X-Received: by 2002:a05:6214:d02:b0:441:824a:a99a with SMTP id 2-20020a0562140d0200b00441824aa99amr2349431qvh.69.1650614033849;
-        Fri, 22 Apr 2022 00:53:53 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id a23-20020a05620a103700b00699d49c511dsm591586qkk.104.2022.04.22.00.53.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 00:53:53 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-2ec04a2ebadso76931447b3.12;
-        Fri, 22 Apr 2022 00:53:53 -0700 (PDT)
-X-Received: by 2002:a81:4f0d:0:b0:2ec:1556:815 with SMTP id
- d13-20020a814f0d000000b002ec15560815mr3603625ywb.256.1650614033040; Fri, 22
- Apr 2022 00:53:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220421163128.101520-1-biju.das.jz@bp.renesas.com> <20220421163128.101520-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220421163128.101520-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 22 Apr 2022 09:53:41 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWMmkY+_O_oyKeumuOqNvw_KJaDxuiwrETc3W-kCV2MCg@mail.gmail.com>
-Message-ID: <CAMuHMdWMmkY+_O_oyKeumuOqNvw_KJaDxuiwrETc3W-kCV2MCg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: display: Document Renesas RZ/G2L DU bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1445418AbiDVIAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 04:00:02 -0400
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam08on2109.outbound.protection.outlook.com [40.107.100.109])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CEE522E3;
+        Fri, 22 Apr 2022 00:56:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F8Wed9wpOiGmGtqE9MEAJjio8qb4Bit7xzHIgP174AjgjAXW61Lwg1ckc2FQpCCtAFlWp0gPeoLAKVfzC1tF2Uc29XWQ+IefNQNt4jTP0E1bPOJR3Aj9bLC6bNI8JeRClxsLJI2LkLyBXeIMTZ/eybxNHkgIJ+6WrPSazkfFfaGydUxFmJM/cmvFHId+W3waYAjbC+S0QDM/+PF0e53CH3FGCQ/Jls0CzqdG3qfqz1b9ZX+4Z7dG1Cm0zbZQP8egoRiXS2dvMuxNwLb0dxWKCayfsJgsYxJ+k7XadnTmynDqemko8g9sgfMwExe+APCpG0g8ViSr5j4CR9z0ZrgORQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sSdpXd107G+76ZcOMCNQlJdCAB2/rS9PPGx2LAPowz0=;
+ b=n5PD9yIPKkTTZ7aBu98OyxljBxFvQ6b0opO8Uwqy1aCtC/vSQVLzkLWQ7AO9F++zBqAek6nfajlIO6qE2mJkYAKxF7kISgWE3fGK7Dz082HhylDEZj3M3AM9/grVOExXHhTYLmKhAxAgfoSRXF1eQICtEf8N8aB08UPwgKwYsbRV2L0EmVW8rH2Pm6TwjXHRMKCEvzBXl9caOOTMgxt7JCKW3eZWwznhUW7ITQ9yoMAek7OXwQDhYcWPdgNhykaULLqf6C3TldMmvZyLq1vQ2+Q+ACcZXsY7qDLzHHslZb+ogR6gL9F6/BfP5lmVNj60E4XA6C78Usty29KWLD4IJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sSdpXd107G+76ZcOMCNQlJdCAB2/rS9PPGx2LAPowz0=;
+ b=WBxuwn41C0xELpL9gHihOJN7x2x1tO5Go286ufpI40IP1qLvwVyMxVNH5hsBQbQ/AwnxvfWuc11rCqKvE0Vlnktw1wjZbNSBhk/Vnn1zPlYHmZ1fFnjf6x/mUjOByzduiczYp8iGzp9H/QqutBVakBJwO2CPhHtyaPnYZFZukZ8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ SA1PR01MB6800.prod.exchangelabs.com (2603:10b6:806:185::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5186.13; Fri, 22 Apr 2022 07:56:47 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::319b:4612:e6f4:f22c]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::319b:4612:e6f4:f22c%3]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
+ 07:56:47 +0000
+Message-ID: <0e719834-5745-4a82-20e8-541f3bc6b6eb@os.amperecomputing.com>
+Date:   Fri, 22 Apr 2022 14:56:33 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.8.0
+Subject: Re: [PATCH v7 2/3] bindings: ipmi: Add binding for SSIF BMC driver
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Corey Minyard <minyard@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
+ <20220422040803.2524940-3-quan@os.amperecomputing.com>
+ <153da61e-dc9d-467e-221c-b48d6f54c6c2@os.amperecomputing.com>
+ <55cbbc16-5769-ecd2-e65e-c3b39a34dfbb@linaro.org>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <55cbbc16-5769-ecd2-e65e-c3b39a34dfbb@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2P153CA0028.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::9)
+ To SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 680f0aeb-51b2-4171-573b-08da2435a684
+X-MS-TrafficTypeDiagnostic: SA1PR01MB6800:EE_
+X-Microsoft-Antispam-PRVS: <SA1PR01MB68009B51D8623CE59F7520E2F2F79@SA1PR01MB6800.prod.exchangelabs.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7pvWP8+OFWJpaCCVu8V0AxhONnzei5TGGTQLvTlItXs8HmDNL6nqrjvpLHy/AqinpPAteJHQ+h13yC0QEpMDrVNRaB3f9ljYBpuuaJUsLlOoUTtwraM0MFmi8ZU7gYgHF8MhMfXtb9hJ9U3g0JgICQywJviBsru7mByfOIqke8TruxYG5VNzP+jVwrxoUooLo6lqR/Gi96LglCapkwyAIJZuCWgjAiTQe8+DVIrKgOkPMJwJE2YSALT9EnkojoU6UXOyIbzzCuDQ8//URqF57Sul8qqQlLwRmTEVebHokq1b3qjokFsjn0ndgXtZIdgnVoKdee37F2bTnFEvmD7lrmtHYo0nCOPUppEZbhRgN+ytayKinDISyam1M382zzbJQ7/WueUQrK2tCBpP64ux6fmdaT/QHDok1owlH2GR/z3lYpMmITSUW+YAqVtccrdoFXoKwO0zgQB7GHIOHkcZT3GcLjlLOODboyHJ0iU+3vcPfMO+Ga9Q5ZM/v1DkCbyiwU3BJM7UG5296k03nPzcSue9+KHxRYSjnRThziHyn5tM+EvCfkEXHNn/QO4p3/sNDl7iLCMm4zliUT0n7ZuITWi39ncG9J1aVHPMqsvYYGRBcghamnMIYX01Z+PyOGL0aF9q9JdPgmxPUzBDnjfVNs58CXpcBAIN4hLMrnPhyCRx3w+XoSbz8gyLn1Cbwc+SizOOa3HG3I8fRXn9unviF7h57QjnHY0tEcH4ysdpvwKcB/daopvGf1zLnPEHIVDn
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(5660300002)(31696002)(38100700002)(8936002)(54906003)(38350700002)(921005)(2906002)(7416002)(53546011)(6512007)(4744005)(107886003)(26005)(110136005)(186003)(6506007)(2616005)(6486002)(508600001)(6666004)(52116002)(66556008)(66476007)(4326008)(66946007)(8676002)(316002)(86362001)(31686004)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGdqaEJEOEgrdi9RVVVlSG1VOFRkOUdpNkdmSURMaW1ZdmJhWnBDeUNQcERB?=
+ =?utf-8?B?VGRxUkZmOVdveHBxZG4veFQyNnU5Ujg1cGdtUzNTc2pmaS8vMUMvYS9PU0NX?=
+ =?utf-8?B?YkZocEl4ZFk1QWZVMnNvNTJaNFVxem5qeFgxQzByeG9XaWhEMVhDYmJ0NE9y?=
+ =?utf-8?B?K0lWL1Y5Nm9HbzRRNHhSV01UZ1REc2d5Z3VrZHE0SFBJTWNjdTVXS1N5bjEx?=
+ =?utf-8?B?MHRWNHBDcHBBRXc4UkpCSHRlVU1UaGdxRmV0anJOZWRwNTgxTDZBQnhROWw1?=
+ =?utf-8?B?Wnc4VWUyVEQ0THI5N3FWWUI2cVBYMlh1bzluWk1UMjJxL0t2ZDloNzZkbzM1?=
+ =?utf-8?B?dnVGenFhSkdtQUZ5cWFYcjFHU2JPWXZ5alVHQmxraWxzMVRzZUxEcHpiQ21O?=
+ =?utf-8?B?S2tFMXB3Q29EUzhsZnovbGl0ZWdleFE2NEtPU1VYN3ZqQXNVSmlsNmxVaytW?=
+ =?utf-8?B?S1k5ZmZHSjFYZ2N6MC9uM0NScUFwc0Y5MitRemNyblc0cGhpNm9Pak5ZbU9m?=
+ =?utf-8?B?Z01zK2k3Tld5Wk1jalEyQURQdWNESTZtUFFMY1EwTElGZkpTbDhaczByVnd2?=
+ =?utf-8?B?SnZjM0xvNjR5TUhCa2E0b1N6M1BCbEJFZFdsU2tzN01lcXh1bEVYS0lBUVV6?=
+ =?utf-8?B?c2RnZm8vTC9Hc0J6aHhOSjN4WHlSZkt3L1FzeU1QaXVtdTdkV1F3WGdpamJv?=
+ =?utf-8?B?aU9vdG9IREdBVmFjclRhU0UzazdKWmhLcGpsb2oxeElzcVFNVEJiM1VyeFdW?=
+ =?utf-8?B?ZnN6YTNCQ1dWZXRYU3BFOGswRSs4ZTNLODYrQUJ0NnhrVjU1SFlOcjlBTWg4?=
+ =?utf-8?B?TlR4VmVpQ3VmYXJwZ2grYkhnNWhMMityRUtWWTVDT1NFMDNVbEVBSVkzeVFB?=
+ =?utf-8?B?Si8wL3dLYTlNSGF0UzdDanJXTGgzNGdJQlNSNXRrV0VCQTV0UmgxOENSZzA4?=
+ =?utf-8?B?QU4yQlZvTVhmT3BvaVNjQUZxWG90REt4ZWJLaUtNYXNsUXFrNHl1SC9FTVdk?=
+ =?utf-8?B?VkpzcjdVS2VnMkd3ZThBTDMyWml5R0U5RkFYL1MxYi94ekZ4Q3c5eHEwWWVE?=
+ =?utf-8?B?QSsya3VaVkhlaFVxVUVoZ2lBemkxZkZTSEVlRVBZZDRPZndsYjV5dkNIeHRD?=
+ =?utf-8?B?bFdBSHJSdlRVd3VpVnZQTGlkL282MjhkNzdaTFcwWUNRdHJabGJXb3Y2bUcv?=
+ =?utf-8?B?Q2wzTE9DckYxTVFYM0JhVUtqMEp0azZpTkhsSVdhU2J6OHJwWHpqWlpZUnBr?=
+ =?utf-8?B?L29uN1Flc0NDOVlFMUNwcE1JUEpGakszWVN0VU1ONXZjSEhNMnd4QUE4alJV?=
+ =?utf-8?B?dStZT203QkpKNTBXcFhodGx5Tm02N2RIazJzeGFKa2VRQ0Vibm50K05aSDYw?=
+ =?utf-8?B?anc2M21lMXVaUXFwbThjRTQwaXhwTVl4aSsrenB5ZjJCYVdMVWRzejhXQ0dN?=
+ =?utf-8?B?OG1XR2NsSlE4MndVTU1hR2crdTY5T2RpakU3VjA4aTRsUzJHMU53cVBJUmdT?=
+ =?utf-8?B?N3JyNzRyVVFBbGF1U1BzbUl6V0R3VHRVdWk0YUlXeU5CNnI4NG1kK09HcEM3?=
+ =?utf-8?B?azV0L3ZMNzhQTGV5SnZXZ3ZsUEdkVm5oeUp2WVZNd1UrYWx4L1g0L2tQVlQ1?=
+ =?utf-8?B?dW12eWdGeFQwTzIxRnFPRXZ1dGgvU09iWjI1U2JMeHdlZnZONHd4VUZ5YVFq?=
+ =?utf-8?B?VGF0THhZckhkc1R4bXBDUngvS3FSOWJ2dXVzeHJYdGN5V0QyeWhOcVY5ZEUv?=
+ =?utf-8?B?UGsycTlia01tNDFpUCt4cG1KTnhwYnlLYkp4Q0lOYi9yN3hscStxZWJVZkxs?=
+ =?utf-8?B?LzJ6dEdlZWRtOG1tTktQRExKNnZNT082Zi9PamhBMTJtdUc2ck1mSjRTNk40?=
+ =?utf-8?B?WlFja1FVdEVtV3lFL0V3bUdSZkZRYmpacVF4S1E2WENpcTJjNUI2bE1xOVJs?=
+ =?utf-8?B?UytwMWN3VUx2VjlFWGdzWWdsOS9wL1JkRHV2em51QVEwVzJ2RFRXUzZHMHNr?=
+ =?utf-8?B?aXcyR3Nvc2tycFphNXpTVEIrdW9KSkwzdjJHTEJXSjM1ZDlpSDlrWlV4cUt6?=
+ =?utf-8?B?TU9TakZoMmF6RFdUTnZhY000WVFjd0hBblNhRGZqNkpoOXhBam9NOXVlS2pp?=
+ =?utf-8?B?MjVUVG1OdFdwVDUxZmlVUjlnS2ZvR1RDV2UvV0piOXZvcWN0ZE1IeldlVXdv?=
+ =?utf-8?B?M0dNRnk0NTk5UWkyZWRhYStzYlNIc3Z2ZC9oa0FtQ2t1N0w1ZCtrcmFFL0t6?=
+ =?utf-8?B?UGJGQVQyM2dWcW9vVU4vTmw0Z2g4ei8vVFVJR0tSaHdqbDJzbDVhdzlsWnhs?=
+ =?utf-8?B?OTBmOHkxU3RxR2lkbHVWRUNEdVI1WTZVQzA2UURkNkVHQnBMSldmWW4vd0ov?=
+ =?utf-8?Q?FYYaLbM198a5oaqV2xTUGqEYvzWUpqNrnms5I?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 680f0aeb-51b2-4171-573b-08da2435a684
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 07:56:47.6290
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O48cexixpxuQzkXVcpXtVAurL5Eh4OrfVd5aaZPpfKf1HjX1+VYlJ4Y+l19nJ5xGgbTkML/vlROZcg2MUfyWkRNATrNwyuX1xf5046vwzsY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR01MB6800
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,110 +145,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+My apology, Krzysztof.
 
-On Thu, Apr 21, 2022 at 6:31 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> The RZ/G2L LCD controller is composed of Frame Compression Processor
-> (FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
->
-> The DU module supports the following hardware features
-> − Display Parallel Interface (DPI) and MIPI LINK Video Interface
-> − Display timing master
-> − Generates video timings
-> − Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
-> − Supports Progressive
-> − Input data format (from VSPD): RGB888, RGB666
-> − Output data format: same as Input data format
-> − Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
-> − Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
->
-> This patch document DU module found on RZ/G2L LCDC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+This patchset was rebased with the tag next-20220421.
 
-Thanks for your patch!
+And it was my fault actually.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> @@ -0,0 +1,159 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L Display Unit (DU)
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
-> +  and RZ/V2L SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,du-r9a07g044c # for RZ/G2LC compatible DU
-> +      - renesas,du-r9a07g044l # for RZ/G2L compatible DU
+I was using last revision's recipient list after compare recipient names 
+with the output of get_maintainer.pl to make sure everyone included. But 
+I missed that your email @canonical.com was changed.
 
-Please use the format "<manuf>,<soc>-<modulo>" for new bindings.
+Will be more carefully next time.
+Best regards,
+- Quan
 
-I thought there was no need to differentiate RZ/G2LC and RZ/G2L, as
-the only difference is a wiring difference due to the limited number
-of pins on the RZ/G2LC package, as per your confirmation[1]?
-Hence please just use "renesas,r9a07g044-du".
+On 22/04/2022 14:21, Krzysztof Kozlowski wrote:
+> On 22/04/2022 06:16, Quan Nguyen wrote:
+>> Added Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> as I'm not aware of the email change
+> 
+> The email change from @canonical.com was 1.5 months ago, so it would be
+> better if rebase your changes on more recent Linux kernel. You get all
+> proper .mailmap entries.
+> 
+> 
+> Best regards,
+> Krzysztof
 
-Do you want a family-specific compatible value ("rzg2l-"), as this
-IP block is shared by (at least) RZ/GL(C), RZ/V2L, and RZ/G2UL?
-
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,du-r9a07g044c
-> +    then:
-> +      properties:
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              description: DSI 0
-> +          required:
-> +            - port@0
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,du-r9a07g044l
-> +    then:
-> +      properties:
-> +        ports:
-> +          properties:
-> +            port@0:
-> +              description: DPAD 0
-> +            port@1:
-> +              description: DSI 0
-> +          required:
-> +            - port@0
-> +            - port@1
-
-Having different port numbers for the common DSI0 output indeed
-complicates matters ;-)
-
-[1] https://lore.kernel.org/r/OS0PR01MB5922C4C58329F538A418547886ED9@OS0PR01MB5922.jpnprd01.prod.outlook.com/
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
