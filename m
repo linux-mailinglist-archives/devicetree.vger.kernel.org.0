@@ -2,204 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB3C50C065
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 21:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBCAA50C0BC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 22:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbiDVTc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 15:32:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39730 "EHLO
+        id S229568AbiDVUoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 16:44:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbiDVTcS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 15:32:18 -0400
-Received: from out28-220.mail.aliyun.com (out28-220.mail.aliyun.com [115.124.28.220])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697D714AF79;
-        Fri, 22 Apr 2022 12:10:27 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07483067|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0236375-0.00029974-0.976063;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047190;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.NVyzeph_1650654599;
-Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NVyzeph_1650654599)
-          by smtp.aliyun-inc.com(33.37.68.185);
-          Sat, 23 Apr 2022 03:10:00 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     broonie@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, paul@crapouillou.net,
-        contact@artur-rojek.eu, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, reimu@sudomaker.com
-Subject: [PATCH v2 3/3] SPI: Ingenic: Add support for new Ingenic SoCs.
-Date:   Sat, 23 Apr 2022 03:09:43 +0800
-Message-Id: <1650654583-89933-4-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1650654583-89933-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1650654583-89933-1-git-send-email-zhouyanjie@wanyeetech.com>
+        with ESMTP id S229547AbiDVUop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 16:44:45 -0400
+Received: from mailrelay2-1.pub.mailoutpod1-cph3.one.com (mailrelay2-1.pub.mailoutpod1-cph3.one.com [46.30.210.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76E82F9BF7
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 12:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=+0GjcSgNYR8svEKkgbaCXst4oyUKLyZjqbzEFlv8CkY=;
+        b=IdBRbAfPJ1WO3PxgSP8kUWKodGRvNu9c4ciTV3s0+IL8HTy0fF6hopRXZ6ssJb+WhAj30hxMNsHX4
+         R0RfYwhOzhYqelQL8iyxzKOJKI3x3bVpkez2yKt9vELUDDWyO19FJg9+tMY2AijG2ePD7i0ONiS2VP
+         XEQ45Q8ekWeesZrVLNpiUOibKbz3Dz+BQwPgE3W/BoCqIijJ6etejZo9aT24gJ0nEueqBpAI1fy2fL
+         pKsyvuvNpm0EkXYJr4xj2XYZqmAqOXWJJyGc6UhH5iHqQr8T5cUIve7i4jT0QnibHHKYQtKqmvR4lx
+         3ZpDhiUp/3on6/O8Ffy5foWEUjfQmtA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=+0GjcSgNYR8svEKkgbaCXst4oyUKLyZjqbzEFlv8CkY=;
+        b=LitUeSnTg09toInfwG96fFjgbC564NKTUDGshZIKvRKV5xjcmHPoAGTPLB54meywklY/vBpaaezB5
+         1jo0pvgCA==
+X-HalOne-Cookie: 9b0a04b396573c0eaff4eedf26990ba5de679069
+X-HalOne-ID: 7c949492-c268-11ec-a906-d0431ea8a290
+Received: from mailproxy2.cst.dirpod4-cph3.one.com (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+        id 7c949492-c268-11ec-a906-d0431ea8a290;
+        Fri, 22 Apr 2022 18:17:36 +0000 (UTC)
+Date:   Fri, 22 Apr 2022 20:17:35 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     robh+dt@kernel.org, hs@denx.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Startek
+ KD070WVFPA043-C069A panel
+Message-ID: <YmLxP0ToKC6Hlo25@ravnborg.org>
+References: <20220420005625.990999-1-festevam@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220420005625.990999-1-festevam@gmail.com>
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,URIBL_BLACK autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1.Since it would be dangerous to specify a newer SoC's compatible
-  string as the fallback of an older SoC's compatible string, we
-  add support for the "ingenic,jz4775-spi" compatible string in
-  the driver.
-
-  This will permit to support the JZ4775 by having:
-  compatible = "ingenic,jz4775-spi";
-
-  Instead of doing:
-  compatible = "ingenic,jz4775-spi", "ingenic,jz4780-spi";
-
-2.Add support for probing the spi-ingenic driver on the X1000 SoC
-  from Ingenic. From the X1000 SoC onwards, the maximum frequency
-  allowed by the SSI module of Ingenic SoCs has been changed from
-  54MHz to 50MHz. So "max_speed_hz" is introduced in "jz_soc_info"
-  to set different maximum frequency values.
-
-3.Add support for probing the spi-ingenic driver on the X2000 SoC
-  from Ingenic. The X2000 SoC has only one native chip select line,
-  so "max_native_cs" is introduced in "jz_soc_info" to set different
-  maximum number of native chip select lines.
-
-4.Because of the introduction of support for the X-series SoCs, the
-  current driver is not only applicable to the JZ-series SoCs, so
-  the description texts has been modified to avoid misunderstanding.
-
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
----
-
-Notes:
-    v1->v2:
-    No change.
-
- drivers/spi/Kconfig       |  4 ++--
- drivers/spi/spi-ingenic.c | 42 +++++++++++++++++++++++++++++++++++++-----
- 2 files changed, 39 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index d2815eb..cca92a8 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -419,10 +419,10 @@ config SPI_IMX
- 	  This enables support for the Freescale i.MX SPI controllers.
- 
- config SPI_INGENIC
--	tristate "Ingenic JZ47xx SoCs SPI controller"
-+	tristate "Ingenic SoCs SPI controller"
- 	depends on MACH_INGENIC || COMPILE_TEST
- 	help
--	  This enables support for the Ingenic JZ47xx SoCs SPI controller.
-+	  This enables support for the Ingenic SoCs SPI controller.
- 
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called spi-ingenic.
-diff --git a/drivers/spi/spi-ingenic.c b/drivers/spi/spi-ingenic.c
-index bb512ca..4854956 100644
---- a/drivers/spi/spi-ingenic.c
-+++ b/drivers/spi/spi-ingenic.c
-@@ -1,8 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * SPI bus driver for the Ingenic JZ47xx SoCs
-+ * SPI bus driver for the Ingenic SoCs
-  * Copyright (c) 2017-2021 Artur Rojek <contact@artur-rojek.eu>
-  * Copyright (c) 2017-2021 Paul Cercueil <paul@crapouillou.net>
-+ * Copyright (c) 2022 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-  */
- 
- #include <linux/clk.h>
-@@ -52,6 +53,9 @@ struct jz_soc_info {
- 	u32 bits_per_word_mask;
- 	struct reg_field flen_field;
- 	bool has_trendian;
-+
-+	unsigned int max_speed_hz;
-+	unsigned int max_native_cs;
- };
- 
- struct ingenic_spi {
-@@ -418,7 +422,7 @@ static int spi_ingenic_probe(struct platform_device *pdev)
- 
- 	if (device_property_read_u32(dev, "num-cs", &num_cs)) {
- 		dev_warn(dev, "Number of chip select lines not specified.\n");
--		num_cs = 2;
-+		num_cs = pdata->max_native_cs;
- 	}
- 
- 	platform_set_drvdata(pdev, ctlr);
-@@ -433,9 +437,9 @@ static int spi_ingenic_probe(struct platform_device *pdev)
- 	ctlr->max_dma_len = SPI_INGENIC_FIFO_SIZE;
- 	ctlr->bits_per_word_mask = pdata->bits_per_word_mask;
- 	ctlr->min_speed_hz = 7200;
--	ctlr->max_speed_hz = 54000000;
-+	ctlr->max_speed_hz = pdata->max_speed_hz;
- 	ctlr->use_gpio_descriptors = true;
--	ctlr->max_native_cs = 2;
-+	ctlr->max_native_cs = pdata->max_native_cs;
- 	ctlr->num_chipselect = num_cs;
- 	ctlr->dev.of_node = pdev->dev.of_node;
- 
-@@ -459,17 +463,44 @@ static const struct jz_soc_info jz4750_soc_info = {
- 	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 17),
- 	.flen_field = REG_FIELD(REG_SSICR1, 4, 7),
- 	.has_trendian = false,
-+
-+	.max_speed_hz = 54000000,
-+	.max_native_cs = 2,
- };
- 
- static const struct jz_soc_info jz4780_soc_info = {
- 	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 32),
- 	.flen_field = REG_FIELD(REG_SSICR1, 3, 7),
- 	.has_trendian = true,
-+
-+	.max_speed_hz = 54000000,
-+	.max_native_cs = 2,
-+};
-+
-+static const struct jz_soc_info x1000_soc_info = {
-+	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 32),
-+	.flen_field = REG_FIELD(REG_SSICR1, 3, 7),
-+	.has_trendian = true,
-+
-+	.max_speed_hz = 50000000,
-+	.max_native_cs = 2,
-+};
-+
-+static const struct jz_soc_info x2000_soc_info = {
-+	.bits_per_word_mask = SPI_BPW_RANGE_MASK(2, 32),
-+	.flen_field = REG_FIELD(REG_SSICR1, 3, 7),
-+	.has_trendian = true,
-+
-+	.max_speed_hz = 50000000,
-+	.max_native_cs = 1,
- };
- 
- static const struct of_device_id spi_ingenic_of_match[] = {
- 	{ .compatible = "ingenic,jz4750-spi", .data = &jz4750_soc_info },
-+	{ .compatible = "ingenic,jz4775-spi", .data = &jz4780_soc_info },
- 	{ .compatible = "ingenic,jz4780-spi", .data = &jz4780_soc_info },
-+	{ .compatible = "ingenic,x1000-spi", .data = &x1000_soc_info },
-+	{ .compatible = "ingenic,x2000-spi", .data = &x2000_soc_info },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, spi_ingenic_of_match);
-@@ -483,7 +514,8 @@ static struct platform_driver spi_ingenic_driver = {
- };
- 
- module_platform_driver(spi_ingenic_driver);
--MODULE_DESCRIPTION("SPI bus driver for the Ingenic JZ47xx SoCs");
-+MODULE_DESCRIPTION("SPI bus driver for the Ingenic SoCs");
- MODULE_AUTHOR("Artur Rojek <contact@artur-rojek.eu>");
- MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
-+MODULE_AUTHOR("周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>");
- MODULE_LICENSE("GPL");
--- 
-2.7.4
-
+On Tue, Apr 19, 2022 at 09:56:24PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Add Startek KD070WVFPA043-C069A 7" TFT LCD panel compatible string.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 1eb9dd4f8f58..e190eef66872 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -294,6 +294,8 @@ properties:
+>        - starry,kr070pe2t
+>          # Starry 12.2" (1920x1200 pixels) TFT LCD panel
+>        - starry,kr122ea0sra
+> +        # Startek KD070WVFPA043-C069A 7" TFT LCD panel
+> +      - startek,kd070wvfpa
+>          # Team Source Display Technology TST043015CMHX 4.3" WQVGA TFT LCD panel
+>        - team-source-display,tst043015cmhx
+>          # Tianma Micro-electronics TM070JDHG30 7.0" WXGA TFT LCD panel
+> -- 
+> 2.25.1
