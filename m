@@ -2,121 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B7BC50BF44
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F04D50BF41
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232304AbiDVSEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
+        id S229552AbiDVSDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:03:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237669AbiDVSA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:00:56 -0400
-Received: from out28-121.mail.aliyun.com (out28-121.mail.aliyun.com [115.124.28.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5342E3CDF;
-        Fri, 22 Apr 2022 10:58:00 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07922698|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0173879-0.00791888-0.974693;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047193;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.NVx3TFr_1650650244;
-Received: from 192.168.30.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.NVx3TFr_1650650244)
-          by smtp.aliyun-inc.com(11.95.168.178);
-          Sat, 23 Apr 2022 01:57:25 +0800
-Subject: Re: [PATCH v4 1/3] dt-bindings: dwc2: Add bindings for new Ingenic
- SoCs.
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     gregkh@linuxfoundation.org, hminas@synopsys.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, tsbogend@alpha.franken.de,
-        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, reimu@sudomaker.com
-References: <1650561308-54704-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1650561308-54704-2-git-send-email-zhouyanjie@wanyeetech.com>
- <QERQAR.SQYC38Q7CE0Z2@crapouillou.net>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <5654205d-8829-6bca-f1be-0ef8e31dd0c0@wanyeetech.com>
-Date:   Sat, 23 Apr 2022 01:57:23 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        with ESMTP id S235673AbiDVSCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:02:37 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1F6FF111142;
+        Fri, 22 Apr 2022 10:59:42 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E78851FB;
+        Fri, 22 Apr 2022 10:59:13 -0700 (PDT)
+Received: from bogus (unknown [10.57.11.83])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F04AE3F73B;
+        Fri, 22 Apr 2022 10:59:11 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 18:59:07 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: xen: Add xen,scmi-devid property
+ description for SCMI
+Message-ID: <20220422175907.5i5ic443nqdaqtxx@bogus>
+References: <cover.1646639462.git.oleksii_moisieiev@epam.com>
+ <5859bb58c8caf87985deb84d7f6bfc8182bd6a59.1646639462.git.oleksii_moisieiev@epam.com>
+ <Yie47a4lqXjVzgxI@robh.at.kernel.org>
+ <20220316164619.GA3489934@EPUAKYIW015D>
+ <YjIzeyNoWhVAY5HK@bogus>
+ <alpine.DEB.2.22.394.2203181644560.2910984@ubuntu-linux-20-04-desktop>
+ <YjmvFZOqAcnoBcR+@bogus>
+ <20220322192146.GA145617@EPUAKYIW015D>
+ <20220323105422.2t726d5wbr5h2ksl@bogus>
+ <20220328085202.GA1192834@EPUAKYIW015D>
 MIME-Version: 1.0
-In-Reply-To: <QERQAR.SQYC38Q7CE0Z2@crapouillou.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220328085202.GA1192834@EPUAKYIW015D>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Mon, Mar 28, 2022 at 08:52:04AM +0000, Oleksii Moisieiev wrote:
 
-On 2022/4/22 下午8:44, Paul Cercueil wrote:
-> Hi Zhou,
->
-> Le ven., avril 22 2022 at 01:15:06 +0800, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com> a écrit :
->> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000 SoC,
->> the X1600 SoC, the X1830 SoC, and the X2000 SoC from Ingenic.
->>
->> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>
->> Notes:
->>     v1->v2:
->>     Add Rob Herring's Acked-by.
->>
->>     v2->v3:
->>     No change.
->>
->>     v3->v4:
->>     Remove the compatible string of X1700 since it could use the 
->> X1600 string
->>     as the fallback.
->>
->>  Documentation/devicetree/bindings/usb/dwc2.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml 
->> b/Documentation/devicetree/bindings/usb/dwc2.yaml
->> index 4cebce6..2218df8 100644
->> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
->> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
->> @@ -17,6 +17,12 @@ properties:
->>      oneOf:
->>        - const: brcm,bcm2835-usb
->>        - const: hisilicon,hi6220-usb
->> +      - const: ingenic,jz4775-otg
->> +      - const: ingenic,jz4780-otg
->> +      - const: ingenic,x1000-otg
->> +      - const: ingenic,x1600-otg
->> +      - const: ingenic,x1830-otg
->> +      - const: ingenic,x2000-otg
->
-> You should probably also add:
-> - items:
->    - const: ingenic,x1700-otg
->    - const: ingenic,x1600-otg
->
-> As discussed in your v3.
-
-
-Sure.
-
-
-Thanks and best regards!
-
+[...]
 
 >
-> Cheers,
-> -Paul
+> Based on what Sudeep have suggested, I think we may think about the approach
+> of the Generic Linux device-id, which can be used for SCMI needs as the
+> device id.
 >
->>        - items:
->>            - const: rockchip,rk3066-usb
->>            - const: snps,dwc2
->> -- 
->> 2.7.4
->>
+> I have some ideas, how the generic device_id can be implemented.
+> From my understanding - the Generic Device Id is the unique identifier, which
+> can be set for the Device node in the Device-tree. This identifier is
+> already set for each node by DTC and called phandle.
 >
+
+IIUC phandle is used as reference to the device node in the device tree
+and it is generated by DTC. I assume we can't use that for the "device ID"
+being discussed under the $subject.
+
+> I've tried setting phandle for the device-nodes, such as:
+>
+> &usb0 {
+>     /* .... */
+> 	phandle = <0x10>;
+> }
+>
+> DTC seems to work properly with this constant phandle. All links works
+> for usb0 and all nodes, which doesn't have constant phandle receives
+> calculated phandle during device-tree compilation.
+>
+
+Indeed.
+
+> Also DTC will fail if I set 2 same phandle values in different
+> device nodes. So we can rely on phandle as on the unique device id.
+>
+> What do you think about using phandle to set the device_id?
+>
+> The alternative way I see for now is to itroduce additional property to SCMI
+> node, which includes list of the device-ids, such as:
+>
+
+I don't like this idea as this means every user of the "device ID" property
+will now have to add such a list which sounds like a duplication to me.
+
+> scmi {
+> 	compatible = "arm,scmi-smc";
+> 	/* ... */
+> 	device-ids = <&usb0 17,
+> 				  &usb1 42,
+> 				  ....
+> 				>;
+> }
+>
+> Looking forward for your opinion.
+> Maybe you can share some ideas about how the device-id can be
+> implemented?
+
+--
+Regards,
+Sudeep
