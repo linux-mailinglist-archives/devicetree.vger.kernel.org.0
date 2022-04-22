@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE62650C324
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DDB550C1AB
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 00:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233014AbiDVWi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:38:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46944 "EHLO
+        id S231444AbiDVWHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:07:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233734AbiDVWhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:37:41 -0400
+        with ESMTP id S231518AbiDVWGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:06:52 -0400
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40C62435A4;
-        Fri, 22 Apr 2022 14:48:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A804D1FB8A7;
+        Fri, 22 Apr 2022 13:51:39 -0700 (PDT)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
         by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23MJ2KjN024036;
         Fri, 22 Apr 2022 14:02:20 -0500
@@ -61,53 +61,13 @@ In-Reply-To: <20220421203659.27853-2-d-gerlach@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,BODY_EMPTY,
+        DKIM_INVALID,DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/21/22 3:36 PM, Dave Gerlach wrote:
-> Add documentation for the ti,ctx-memory-region property which is a
-> phandle to a reserved-memory carveout to be used by the ti_sci driver
-> storage of low power mode memory context. This is optional for normal
-> system operation but required to enabled suspend-to-mem usage of Deep
-> Sleep state.
-> 
-> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-> ---
->   .../devicetree/bindings/arm/keystone/ti,sci.yaml         | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> index 34f5f877d444..ec88aa88a2a0 100644
-> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> @@ -61,6 +61,15 @@ properties:
->     mboxes:
->       minItems: 2
->   
-> +  ti,ctx-memory-region:
-> +    description:
-> +      Phandle to the reserved memory node to be associated with the
-> +      ti-sci device, to be used for saving low power context. The
-> +      reserved memory node should be a carveout node, and should
-> +      be defined as per the bindings in
-> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
 
-
-Why does this have to be yet another reserved carveout region,
-should be dynamically allocated.
-
-Andrew
-
-
->     ti,system-reboot-controller:
->       description: Determines If system reboot can be triggered by SoC reboot
->       type: boolean
