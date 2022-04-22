@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B628A50C3E4
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88F150C450
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233365AbiDVWtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:49:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46754 "EHLO
+        id S233679AbiDVW5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:57:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234667AbiDVWsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:48:21 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D34D1B305F
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:08:04 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2eafabbc80aso98919867b3.11
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:08:04 -0700 (PDT)
+        with ESMTP id S234195AbiDVW5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:57:41 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944663420F0
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:51 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id e189so10556751oia.8
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=rKAG+J5Q8lcvvd/biftxVJOIEqMrFvSTtBVDRerigCk=;
-        b=gW2ZtWypeVc/O6j08D9/hby6Pss2xm53tySxwlkDAbxboHmNQ4lXaAVg6r7Pvyy9+J
-         dZuggtnxZWNDRqiE5rHib9T8JFdYx6xMSzE7e13VM7rWGhOw8wsnDtBFKEoe7/GbSMRE
-         dagY2aApKLUl2NfmqDv3lE7vzROus4LEohYSeX/dDKiKk1VW5LUzkWjlTfBB8azMNGpF
-         0jid58yJIinT+wdN3WOcvT8UO9NYeq10Vf6JMU/q1RxVqa1kFUa0/zE5gFPl69uyaUJA
-         P1kAw2HwyDZ3ZmY5SOZnFklOXUX/u02XXQcurPb7jq5isIZP/slUEvgRwFRN8I0r+rBO
-         GHvg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zshTmKTlwWpNs+bPCyPg2G4xzDcF+pfyEHctS9lyUmM=;
+        b=p18Ea3C4s1iYRhpjXGv+Q/z6sLN27GiKyszpjW0gjWX20QRsSCMVqd4yA/Lh7GOi9g
+         /NZuoRazntRsAsm7WAgnDef7b9pUyzSbPBgJLpfKe4YaPvU0WJ0QR75I/vUhDq4iF6RT
+         QUQKylKyqoeB5ZCAIKx5U/i6opxvjNvTD9dkTdx4Ut2k/jC9uC6xqzQstUbv9ArUTpU5
+         eylxKDHkC64LZd0jHtQ00UXgy1/AShQ8KDXPe60eVxQwS3eWzG5ASX7cvsgM48zY4w1Q
+         +k+q0r3URNAs8mcCu2n5GkmNiYnEkray5b5LPhbWNoTNHhoOnpg7Ib3g+qRBL5oC5/Xx
+         q97w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rKAG+J5Q8lcvvd/biftxVJOIEqMrFvSTtBVDRerigCk=;
-        b=TnpjJfuuOAkHhywlVfLUjv/6tqG9LHxY4dtPnxq8+ep3KmJGlDS5THl1i/7oGBpmum
-         4f4S57X2UdPZJcx0uvgkAhnfSLJIoSi8qI4SUisReZrQyZfFwZKGq3436gnfMBaGnh+H
-         F+rApUmPtm0C+A97Dn8xgEPgF9quJ9jt84+U9QmBi1/2hGXHDCOtihs6iImaeE8mUJey
-         3A0HMzpX/l+Z+ikyGFD9jFn1a9hD+p90kmgIpPQzMTiyhrCINGe0WG7zNSC1ktFT2MWI
-         8BKRpAx8XBkQBRPlCbWawLOs2DeTS7NbZQCHt8ctk51TElBClACD871I/zKWIfb+g/Y9
-         340Q==
-X-Gm-Message-State: AOAM530g6YO9cFT84501VPp8oCmliNwbqHhPkFIsopIbxwbiz3rg1Knh
-        qwAfDtbhVxEhZeYkwB40z8DdGeWkv7+R5UiAnpDujw==
-X-Google-Smtp-Source: ABdhPJyi/ikQ9hdlwSSUnoOGQLb3feHoaGPFFTBFoKKCXX8WPkAGeGuqi/XkQMXnVdVgTorUtasyV/+Uykb/P4sdCpg=
-X-Received: by 2002:a81:5dc5:0:b0:2eb:3feb:686c with SMTP id
- r188-20020a815dc5000000b002eb3feb686cmr7290345ywb.268.1650665254777; Fri, 22
- Apr 2022 15:07:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220413060729.27639-1-arinc.unal@arinc9.com> <CACRpkdbbMFYNNjAKwhysKpu1JVh2JSB-N=Y8QMx1JvMhCPBpwg@mail.gmail.com>
- <26418320-64e0-3ed2-c792-7f72878b7592@arinc9.com> <CAMhs-H_d8jUa4=4eVjQxo+h-XeRgiMYC1H_xYtPLb8jHDVYL2Q@mail.gmail.com>
- <6cdec3bc-4715-29c8-f4a1-df1408940a75@arinc9.com>
-In-Reply-To: <6cdec3bc-4715-29c8-f4a1-df1408940a75@arinc9.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 23 Apr 2022 00:07:23 +0200
-Message-ID: <CACRpkdbebE3RiviZ3NiVL4W2S1HN7Q21jSma6abup_nEVjX6+w@mail.gmail.com>
-Subject: Re: [PATCH 0/14] Refactor Ralink Pinctrl and Add Documentation
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zshTmKTlwWpNs+bPCyPg2G4xzDcF+pfyEHctS9lyUmM=;
+        b=g1WLv0IUBFWCqBMiwzVIVaZm4Ib2C+K87F5Mcl8qsx+esGFYzScvnm8oEdLr7D2GEf
+         LYNNI8xdX0VCzlg2ZkJ6t1f0jjdRIYcaoDsQM/3DUqCYGVKCuWoOJv4xs9G5M6FrHXv4
+         kVnOA8rwymvtgVLIYaIqiszGmK8gF8+Hk9a03Yenb041mPfpY1FX19eoQDRcOYFXdRUI
+         T6s2KoGVN8hzyKWYjC8Kuds6rnUnp4HuZMFQ5iqY1IX9A12vXHJiN1epYumRyQY3brs4
+         y4OhzeiweVXM5Ah9AqjGJn3iK+hqBQR7gOTMeWtKfWrj4eyCzFfGJwNEx2jvH0dk2BZN
+         awgQ==
+X-Gm-Message-State: AOAM532Ss+ibmT6WpqL1Klcd0a8jc5tS8Le8rccQTDP88YwVWhU4dqsl
+        wo7bE001maU4ofBwERMSyYk9Hg==
+X-Google-Smtp-Source: ABdhPJy2wkzUusvXDfhRYywzAm+d4ZCyFMdNt0N57JRQDI6OHyUJyvx5APLKi6X+9Gnrlb3M4ed0/A==
+X-Received: by 2002:a05:6808:1828:b0:322:4891:8832 with SMTP id bh40-20020a056808182800b0032248918832mr7699862oib.172.1650666110356;
+        Fri, 22 Apr 2022 15:21:50 -0700 (PDT)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id js4-20020a056870bac400b000e687cdf5adsm1049224oab.55.2022.04.22.15.21.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 15:21:49 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        erkin.bozoglu@xeront.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: [PATCH v5 0/7] typec: mux: Introduce support for multiple USB TypeC muxes
+Date:   Fri, 22 Apr 2022 15:23:44 -0700
+Message-Id: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -80,26 +75,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 8:14 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
-9.com> wrote:
+This series introduces a level of indirection between the controller's view of
+a typec_mux/switch and the implementation and then expands that to support
+multiple drivers.
 
-> >> Thanks. There is a v2 of this series which has been waiting for a week=
-,
-> >> I hope that was the one you applied as you replied under v1 (I'm not
-> >> sure which repository you applied this so I can't check myself).
-> >
-> > Linus adds patches through the linux-pinctrl tree as pinctrl maintainer=
-. Check:
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.gi=
-t/log/?h=3Ddevel
->
-> Thanks Sergio. I see v1 was applied, oops. What to do?
+This is needed in order to support devices such as the Qualcomm Snapdragon 888
+HDK, which does muxing and orientation handling in the QMP (USB+DP) PHY and SBU
+muxing in the external FSA4480 chip.
 
-No problem, I backed it out (had to back out some stuff pulled on top too..=
-.)
-then re-pulled the stuff I pulled on top, then applied v2 on top.
-Let's see how much I screwed up :D
+Bjorn Andersson (7):
+  device property: Add helper to match multiple connections
+  device property: Use multi-connection matchers for single case
+  usb: typec: mux: Check dev_set_name() return value
+  usb: typec: mux: Introduce indirection
+  usb: typec: mux: Allow multiple mux_devs per mux
+  dt-bindings: usb: Add binding for fcs,fsa4480
+  usb: typec: mux: Add On Semi fsa4480 driver
 
-Yours,
-Linus Walleij
+ .../devicetree/bindings/usb/fcs,fsa4480.yaml  |  72 +++++
+ drivers/base/property.c                       |  96 +++++--
+ drivers/usb/typec/bus.c                       |   2 +-
+ drivers/usb/typec/mux.c                       | 271 +++++++++++++-----
+ drivers/usb/typec/mux.h                       |  12 +-
+ drivers/usb/typec/mux/Kconfig                 |  10 +
+ drivers/usb/typec/mux/Makefile                |   1 +
+ drivers/usb/typec/mux/fsa4480.c               | 218 ++++++++++++++
+ drivers/usb/typec/mux/intel_pmc_mux.c         |   8 +-
+ drivers/usb/typec/mux/pi3usb30532.c           |   8 +-
+ include/linux/property.h                      |   5 +
+ include/linux/usb/typec_mux.h                 |  22 +-
+ 12 files changed, 614 insertions(+), 111 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+ create mode 100644 drivers/usb/typec/mux/fsa4480.c
+
+-- 
+2.35.1
+
