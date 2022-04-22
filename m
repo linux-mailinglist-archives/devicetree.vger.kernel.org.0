@@ -2,130 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2BD50BEC9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F77350BEC5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:35:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232046AbiDVRif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 13:38:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38108 "EHLO
+        id S231461AbiDVRiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 13:38:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231931AbiDVRi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:38:26 -0400
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE27915821;
-        Fri, 22 Apr 2022 10:35:25 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 653F8FB04;
-        Fri, 22 Apr 2022 19:24:24 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id FUzJat0K8MxW; Fri, 22 Apr 2022 19:24:21 +0200 (CEST)
-Date:   Fri, 22 Apr 2022 19:24:15 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
-        daniel@ffwll.ch, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        robert.chiras@nxp.com, martin.kepplinger@puri.sm
-Subject: Re: [PATCH resend v8 1/5] drm/bridge: nwl-dsi: Set PHY mode in
- nwl_dsi_mode_set()
-Message-ID: <YmLkv4PYsi+XiFr5@qwark.sigxcpu.org>
-References: <20220419010852.452169-1-victor.liu@nxp.com>
- <20220419010852.452169-2-victor.liu@nxp.com>
+        with ESMTP id S235436AbiDVRiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:38:16 -0400
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97246559A
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:35:16 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id g20so11251963edw.6
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:35:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=HNZdGuTlB4ZyqdNx0zZ57VA5IMyL05uRbRN7pIK/unU=;
+        b=Cpl1dt70H22hHb3a2k1F/gZybtWw8PyK4eyMjsQQl0/ADKOTqNg2NeU3zNTfbl72Mi
+         RFz6P9DN+6K2ISa+Al6MARv2R6WgSTO+ScXPKeDRNEzeGHrSIVYBdykS//l8W8Jmld75
+         xX20GzzptN1Wq7caPyUSIX2LosdIWn3JaaXt/SzsrV23qvimMx90F6gaQiY6wd6Y4789
+         TFkVxrJEEublyn1TvmLSC/WmlH2eVPq9Ynp4dQ36X6QRA7AbFbh8GhiwkqrTCif1WXAO
+         QFBkGmWaozknYFoz1garLCKHmerRkgk5+voQnFGvZlkziiZpjMhHZ04gYNP+JVt21KNT
+         t7wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HNZdGuTlB4ZyqdNx0zZ57VA5IMyL05uRbRN7pIK/unU=;
+        b=fCrZNgduvaXbOd0wwZUukl3WkwxtU7BmAcffh1aQl893oJ85TUUKKt9WGJk/ILCERU
+         BUE3/XwKiribVKHmRbIT14TOGO1Uyo8oV3fkEJJL4BChFyMIlFSs2u9FM5BLnuwBJjmq
+         zBE/66q/vv31oLU92a90PCtshsz2IjFyUIUMwOsxbbhat2N4yb0MtXUZ1hqy4F9o7pU2
+         WlVqUz6/aYVDpq23MuXv0FMbJCQShM0pKCP94khC+Svrct2pXA82ZRF2QXLn50adt3rM
+         uHq9k2sBhJzfjReS4wf/gifyvXdmTPk4PWpVOSKcpRt/LMYB5HouykdfOFP0vURp8ZG0
+         Gx4Q==
+X-Gm-Message-State: AOAM532xddh9UMbh0df4RzzKYLHhmCPfiHml6HCtXYDKSFBgidVBuwVL
+        KZ9WnlYP3X5Hpf620a13nKcSnQ==
+X-Google-Smtp-Source: ABdhPJwuFz3R4GDMR+B6w7XF06kzjDOus8Sj9fbqhs9sCpzbm0EvLdbLOHqYo8h0m41JFU4Qqn4CYg==
+X-Received: by 2002:a05:6402:90c:b0:415:d340:4ae2 with SMTP id g12-20020a056402090c00b00415d3404ae2mr6053079edz.331.1650648402270;
+        Fri, 22 Apr 2022 10:26:42 -0700 (PDT)
+Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709066d8700b006d4b4d137fbsm944012ejt.50.2022.04.22.10.26.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 10:26:41 -0700 (PDT)
+Message-ID: <f2e5a34b-ed02-91a1-bc7b-fecaa95e227e@linaro.org>
+Date:   Fri, 22 Apr 2022 19:26:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220419010852.452169-2-victor.liu@nxp.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
-        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH V4 01/14] dt-bindings: cpufreq: mediatek: Add MediaTek CCI
+ property
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
+        hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+ <20220422075239.16437-2-rex-bc.chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220422075239.16437-2-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Tue, Apr 19, 2022 at 09:08:48AM +0800, Liu Ying wrote:
-> The Northwest Logic MIPI DSI host controller embedded in i.MX8qxp
-> works with a Mixel MIPI DPHY + LVDS PHY combo to support either
-> a MIPI DSI display or a LVDS display.  So, this patch calls
-> phy_set_mode() from nwl_dsi_mode_set() to set PHY mode to MIPI DPHY
-> explicitly.
+On 22/04/2022 09:52, Rex-BC Chen wrote:
+> MediaTek Cache Coherent Interconnect (CCI) uses software devfreq module
+> for scaling clock frequency and adjust voltage.
+> The phandle could be linked between CPU and MediaTek CCI for some
+> MediaTek SoCs, like MT8183 and MT8186.
+> Therefore, we add this property in cpufreq-mediatek.txt.
 > 
-> Cc: Guido Günther <agx@sigxcpu.org>
-> Cc: Robert Chiras <robert.chiras@nxp.com>
-> Cc: Martin Kepplinger <martin.kepplinger@puri.sm>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
-> v7->v8:
-> * Resend with Andrzej's and Jernej's mail addressed updated.
+>  .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt         | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> v6->v7:
-> * No change.
-> 
-> v5->v6:
-> * Rebase the series upon v5.17-rc1.
-> * Set PHY mode in ->mode_set() instead of ->pre_enable() in the nwl-dsi
->   bridge driver due to the rebase.
-> * Drop Guido's R-b tag due to the rebase.
-> 
-> v4->v5:
-> * No change.
-> 
-> v3->v4:
-> * No change.
-> 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * Add Guido's R-b tag.
-> 
->  drivers/gpu/drm/bridge/nwl-dsi.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c b/drivers/gpu/drm/bridge/nwl-dsi.c
-> index d5945501a5ee..85bab7372af1 100644
-> --- a/drivers/gpu/drm/bridge/nwl-dsi.c
-> +++ b/drivers/gpu/drm/bridge/nwl-dsi.c
-> @@ -666,6 +666,12 @@ static int nwl_dsi_mode_set(struct nwl_dsi *dsi)
->  		return ret;
->  	}
->  
-> +	ret = phy_set_mode(dsi->phy, PHY_MODE_MIPI_DPHY);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(dev, "Failed to set DSI phy mode: %d\n", ret);
-> +		goto uninit_phy;
-> +	}
-> +
->  	ret = phy_configure(dsi->phy, phy_cfg);
->  	if (ret < 0) {
->  		DRM_DEV_ERROR(dev, "Failed to configure DSI phy: %d\n",
-> ret);
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> index b8233ec91d3d..3387e1e2a2df 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> @@ -20,6 +20,11 @@ Optional properties:
+>  	       Vsram to fit SoC specific needs. When absent, the voltage scaling
+>  	       flow is handled by hardware, hence no software "voltage tracking" is
+>  	       needed.
+> +- mediatek,cci:
+> +	MediaTek Cache Coherent Interconnect (CCI) uses the software devfreq module to
+> +	scale the clock frequency and adjust the voltage.
 
-I can't currently test this but it still looks good so
+Devfreq is a SW mechanism, it should not be part of bindings description.
 
-Reviewed-by: Guido Günther <agx@sigxcpu.org>
+> +	For details, please refer to
+> +	Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
 
-Cheers,
- -- Guido
+Since the file does not exist, I have troubles reviewing it. First of
+all, you already have "mediatek,cci-control" property in DT, so why
+using different name?
 
-> -- 
-> 2.25.1
-> 
+Second, it looks like you want to put devfreq into bindings instead of
+using proper interconnect bindings.
+
+Best regards,
+Krzysztof
