@@ -2,103 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3A250B849
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A4350B862
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447895AbiDVNX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 09:23:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55040 "EHLO
+        id S1377199AbiDVN0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 09:26:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1447892AbiDVNX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:23:27 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46ED557B22
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 06:20:33 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id y20so16361883eju.7
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 06:20:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZydoTw4mzwMScLgM9P3CZWDQFTuiETQUDxvT9OfBlMQ=;
-        b=PU9bDqmz9ld9PMvW3oMEIEtZLnZQ6yQnz+QRBQd2Xv5sbFT1dL1KEnCjaY+qF8tGRU
-         A84q8yQz/+CZoZskM+CRtbdNqJ+7Yr5Trc4oO3o0SXsyOov957se2W27FkGgsr3Ldpdw
-         rwF9TV2rAcS72mjqy463StssqyHfEYHvrmpVq4S95yleCFluzvnExiLbXPCXMU4sU+Vd
-         zFOJr4i9lh22efm4Mj6cgDVEWgucUtWvxbEi3uRBYcm+J66/iUHajQ9ZXf7pbkc0EbMw
-         bjyQ6tcMFiYrN+d6sCWjdoYE972bOGrRva0VH3v1dEm0jqwyIWEkYzrwZ8/49azhlP+R
-         T7gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZydoTw4mzwMScLgM9P3CZWDQFTuiETQUDxvT9OfBlMQ=;
-        b=tgi2fqmANdzBw0oR9+UF53sfLi8mU1tXK98vmXtvqoD6hYSUZ11/2sPgh4E6rKYcFe
-         khSlQQkkTm3CiWlnGakAULwWXTZ0JuMXjF8H383/vYLySmMUKOH0/Wb5MZyWmHnU1qle
-         wM3s+aGNS8xb0NUIYl5q4OcFlkdcw/OPJxfEn+ImWAhojaX9l5VWcsqTh3J3CZMmeYPi
-         g4QOCvv9gfLSx3+cdAtVGgS4+DRPZPo+ro8KVOw8Id4EW713yQ7tZHnGNQXvHsn8zYKy
-         W1Ub8NdG/IYxtSGmcMiR7R86/yLT7BKJMzh6RG39AEuSdtKjzvAXnPj5jfXHFEm5wVnV
-         fJKA==
-X-Gm-Message-State: AOAM531qLl02V+i2h224/k6kR69rnuDTo9SFr1yE0FCmBB4AD1rc6DjU
-        FHpXPS/C1VkoN65SezCHaY/lIg==
-X-Google-Smtp-Source: ABdhPJxBg6BT8rjPBDIiVtDEFoZGtHhGa256rmzmn9SueVEyXZnbXafDagCdRy/6vVh+o+rqLIgkmg==
-X-Received: by 2002:a17:906:9c84:b0:6e0:7c75:6f01 with SMTP id fj4-20020a1709069c8400b006e07c756f01mr4100078ejc.103.1650633631882;
-        Fri, 22 Apr 2022 06:20:31 -0700 (PDT)
-Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p17-20020a17090635d100b006efcc06218dsm771025ejb.18.2022.04.22.06.20.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 06:20:31 -0700 (PDT)
-Message-ID: <c24e3a22-6ffa-f566-ee05-3aac030de8ff@linaro.org>
-Date:   Fri, 22 Apr 2022 15:20:30 +0200
+        with ESMTP id S232831AbiDVN0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:26:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9832C583A0;
+        Fri, 22 Apr 2022 06:23:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 00D7C620A9;
+        Fri, 22 Apr 2022 13:23:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B7BC385A0;
+        Fri, 22 Apr 2022 13:23:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650633827;
+        bh=0wP0O47cfWb7KPvm1ysuIetJ74QEy9EwsCeai68tPXg=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=T+v+4H4mDS8vF4/C8h/544QCxf3S1n2ayJsHufZmPEWWfHpKc2qI2/sQs04VsTu6d
+         U7OKVQw2rwyUlKNG4dbb3vbUG7LEAplGB6kGGPm7V0o4LWByWGd6nf1T2pr1emPCzS
+         +kVDWQeYO+Vk57etpOrAvsKpn0RhkxkIgnO7sStJR18MuQlqjlFW3920LlCMx/Itz/
+         MPQKajvRR85mBofGZAoO7NOU9Kp0LyHGRpm58MgqBFPSQefyUuTnGHcfdiR4s+DyFf
+         odDRM7XztGXiqGmJqCu/nggPAkc9r95SCd/YKxG5zl6wjOaSOeAOek6hSzx7J23pAV
+         S34Xep0I1BNUQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     u0084500@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        cy_huang@richtek.com, lgirdwood@gmail.com, alice_chen@richtek.com
+In-Reply-To: <1650610255-6180-1-git-send-email-u0084500@gmail.com>
+References: <1650610255-6180-1-git-send-email-u0084500@gmail.com>
+Subject: Re: [PATCH] regulator: dt-bindings: Revise the rt5190a buck/ldo description
+Message-Id: <165063382544.419666.7006851480891588487.b4-ty@kernel.org>
+Date:   Fri, 22 Apr 2022 14:23:45 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: stop using snps,dw-pcie falback
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220422114841.1854138-1-dmitry.baryshkov@linaro.org>
- <20220422114841.1854138-6-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422114841.1854138-6-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 13:48, Dmitry Baryshkov wrote:
-> Qualcomm PCIe devices are not really compatible with the snps,dw-pcie.
-> Unlike the generic IP core, they have special requirements regarding
-> enabling clocks, toggling resets, using the PHY, etc.
+On Fri, 22 Apr 2022 14:50:55 +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> This is not to mention that platform snps-dw-pcie driver expects to find
-> two IRQs declared, while Qualcomm platforms use just one.
+> Revise the rt5190a bucks and ldo property description.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
->  arch/arm64/boot/dts/qcom/qcs404.dtsi  | 2 +-
->  arch/arm64/boot/dts/qcom/sdm845.dtsi  | 4 ++--
->  arch/arm64/boot/dts/qcom/sm8250.dtsi  | 6 +++---
->  4 files changed, 9 insertions(+), 9 deletions(-)
 > 
 
+Applied to
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
+Thanks!
 
-Best regards,
-Krzysztof
+[1/1] regulator: dt-bindings: Revise the rt5190a buck/ldo description
+      commit: dfd2b37edf7ef469574ef7f36e3a1905ac9ead62
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
