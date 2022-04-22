@@ -2,157 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1721150C44B
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E92350C392
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbiDVW2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:28:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36674 "EHLO
+        id S233089AbiDVWf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232984AbiDVW13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:27:29 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C9831C9CE0;
-        Fri, 22 Apr 2022 14:20:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650662419; x=1682198419;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8oZmbcJgaLEluY4MIs8edkXFbtUVeZ9n1fl2FQ+iUbA=;
-  b=kJGLDCdx9C1PNY3UqEYU2MHpUor31XnYDshCnXcSsvJZU9Z5Xsb7j4W8
-   PLL3B4tztuJn5gjQ5xet6qMLXvTAcgNs3gf7Sqrnpg2b+1Hqc39sNK7rK
-   TnXx9TT64XZFO9E+aNTCtmM5CrIrNKrtifcGMjY+W/nZKKhvuech7HInR
-   GtSp4YiPc+KK6t7tngpplf8ffR2vyHMF+5WaBtB08in6JLeseZVtlZo2/
-   y3ShcXUpf+cI5Z2SLfk1TJivSSQ8PcjcoKDMqOVmaCcltsD9QafhSf2V9
-   NrVGoRaTKE2METarNKoBjq2tKa46sSZrcZZaXgA3fg6om8b7kW+63lJPb
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="289914444"
-X-IronPort-AV: E=Sophos;i="5.90,282,1643702400"; 
-   d="scan'208";a="289914444"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 14:20:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,282,1643702400"; 
-   d="scan'208";a="659211292"
-Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 22 Apr 2022 14:20:14 -0700
-Received: from kbuild by 3abc53900bec with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1ni0hJ-000Aag-Ri;
-        Fri, 22 Apr 2022 21:20:13 +0000
-Date:   Sat, 23 Apr 2022 05:19:22 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v8 8/9] mfd: smpro-mfd: Adds Ampere's Altra SMpro MFD
- driver
-Message-ID: <202204230554.4528TqPu-lkp@intel.com>
-References: <20220422024653.2199489-9-quan@os.amperecomputing.com>
+        with ESMTP id S233207AbiDVWfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:35:08 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD212CB47C
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:27:31 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id j2so16797544ybu.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:27:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v4i3AmNv4FLK6btws/jh0kCSYBAa4f3ciHtxOpc3dZs=;
+        b=JRDatOGFzKK/uf+U50BmSx+6g4Pa7D170MDb5ReJoxJCi2YJ+O1LWcsk3ZR+cCBvOv
+         GbI3hNcEt8op7qRcvRwQ1rF5AX0KZrXSyqZ64VdMU5KrD7qR1RorXlZ7BdfS/vwlCh/u
+         mu0Nbnoz3MxCqG5idEmXqe7YNX3p+7DVU7y0VRUEwRAjMCgtMxMuM8yFYoIs7OpITDVV
+         NFr9xZzrgfbvZDJjyHfftICMW18Gae8pnfjA0n5Tq4hFDIEo2naboitBPARNTgAuA9wV
+         NLIyepcfEUNoedq5wC333803/JJ4N5AOBz2KgH3OzXG8wBAGvmI5B9QYV9q2Is2Q60Rq
+         2Edw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v4i3AmNv4FLK6btws/jh0kCSYBAa4f3ciHtxOpc3dZs=;
+        b=EkqSfa+msbYPeafnQQA+sShwyOZ+QAoj0pAK4WuE/cMj/W6CkXl6gqtf4MD08C0hLE
+         1LwZraX2/c00AyBqxGslFNPeJMGTl2aqhmNK/3ygknYCzWKWmhP2RV+vPi2V22skFjG8
+         rR75tapI0ZmXZoG+xdtFS+7i4LDEdKGgJhwsurc0RDLhh6gbb0UG7+LJypYFEb7AfaDS
+         ItowPlhD4HQii5NQPm5Z13+AA4h7Pd7rVxhImuZapqIbdqxQHDCy0t90VRUkIfjdAk/i
+         NeIGrAEVm8rbhhMKpNXq47phbvxh6jTB/IALvetj3SSkwB1LAe1MR/R2Ql1o4tQWB5a9
+         pDeA==
+X-Gm-Message-State: AOAM531+vppHZXDGYrt7IXaGkJgUV7t2K+fVNVDr5DBDHe2TrgBsU5tT
+        m0YX889MpCy9b1wD47zmHU23vkjvUfqox1v0iyBKEg==
+X-Google-Smtp-Source: ABdhPJy5uOpR6QqOApr8JTXnRyyqvChXNpcmelnBXNb6YY6fm53l19ExMBperiDNdyr16+uDrBTu9QvaUkCjxxjaNPc=
+X-Received: by 2002:a5b:8c8:0:b0:641:e8de:a6f4 with SMTP id
+ w8-20020a5b08c8000000b00641e8dea6f4mr6385815ybq.533.1650662851086; Fri, 22
+ Apr 2022 14:27:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220422024653.2199489-9-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <1650285427-19752-1-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1650285427-19752-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 22 Apr 2022 23:27:20 +0200
+Message-ID: <CACRpkdYuojrAdz1G_ePeuaEX1Q4hQah=nQuOuW=v0Ty_FOk0Ag@mail.gmail.com>
+Subject: Re: [PATCH v13 0/7] Add pin control support for lpass sc7280
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quan,
+On Mon, Apr 18, 2022 at 2:37 PM Srinivasa Rao Mandadapu
+<quic_srivasam@quicinc.com> wrote:
+>
+> This patch series is to split lpass variant common pin control
+> functions and SoC specific functions and to add lpass sc7280 pincontrol support.
+> It also Adds dt-bindings for lpass sc7280 lpass lpi pincontrol.
+>
+> Changes Since V12:
 
-I love your patch! Perhaps something to improve:
+Bjorn says he's happy so I applied this v13 version for v5.19.
+Any remaining nits can certainly be fixed in-tree.
 
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on groeck-staging/hwmon-next lee-mfd/for-mfd-next v5.18-rc3 next-20220422]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Thanks for you tireless work on making this work the right way!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Quan-Nguyen/Add-Ampere-s-Altra-SMPro-MFD-and-its-child-drivers/20220422-105732
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git c50c29a806113614098efd8da9fd7b48d605ba45
-config: arm-randconfig-r004-20220422 (https://download.01.org/0day-ci/archive/20220423/202204230554.4528TqPu-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 5bd87350a5ae429baf8f373cb226a57b62f87280)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/09ec873f0dd4611cb2df0150923d8906b9c5b2d1
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Quan-Nguyen/Add-Ampere-s-Altra-SMPro-MFD-and-its-child-drivers/20220422-105732
-        git checkout 09ec873f0dd4611cb2df0150923d8906b9c5b2d1
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash arch/arm/mach-at91/ drivers/hwmon/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/hwmon/smpro-hwmon.c:376:3: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
-                   default:
-                   ^
-   drivers/hwmon/smpro-hwmon.c:376:3: note: insert 'break;' to avoid fall-through
-                   default:
-                   ^
-                   break; 
-   1 warning generated.
-
-
-vim +376 drivers/hwmon/smpro-hwmon.c
-
-e1354080fc83378 Quan Nguyen 2022-04-22  359  
-e1354080fc83378 Quan Nguyen 2022-04-22  360  static umode_t smpro_is_visible(const void *data, enum hwmon_sensor_types type,
-e1354080fc83378 Quan Nguyen 2022-04-22  361  				u32 attr, int channel)
-e1354080fc83378 Quan Nguyen 2022-04-22  362  {
-e1354080fc83378 Quan Nguyen 2022-04-22  363  	const struct smpro_hwmon *hwmon = data;
-e1354080fc83378 Quan Nguyen 2022-04-22  364  	unsigned int value;
-e1354080fc83378 Quan Nguyen 2022-04-22  365  	int ret;
-e1354080fc83378 Quan Nguyen 2022-04-22  366  
-e1354080fc83378 Quan Nguyen 2022-04-22  367  	switch (type) {
-e1354080fc83378 Quan Nguyen 2022-04-22  368  	case hwmon_temp:
-e1354080fc83378 Quan Nguyen 2022-04-22  369  		switch (attr) {
-e1354080fc83378 Quan Nguyen 2022-04-22  370  		case hwmon_temp_input:
-e1354080fc83378 Quan Nguyen 2022-04-22  371  		case hwmon_temp_label:
-e1354080fc83378 Quan Nguyen 2022-04-22  372  		case hwmon_temp_crit:
-e1354080fc83378 Quan Nguyen 2022-04-22  373  			ret = regmap_read(hwmon->regmap, temperature[channel].reg, &value);
-e1354080fc83378 Quan Nguyen 2022-04-22  374  			if (ret || value == 0xFFFF)
-e1354080fc83378 Quan Nguyen 2022-04-22  375  				return 0;
-e1354080fc83378 Quan Nguyen 2022-04-22 @376  		default:
-e1354080fc83378 Quan Nguyen 2022-04-22  377  			break;
-e1354080fc83378 Quan Nguyen 2022-04-22  378  		}
-e1354080fc83378 Quan Nguyen 2022-04-22  379  		break;
-e1354080fc83378 Quan Nguyen 2022-04-22  380  	default:
-e1354080fc83378 Quan Nguyen 2022-04-22  381  		break;
-e1354080fc83378 Quan Nguyen 2022-04-22  382  	}
-e1354080fc83378 Quan Nguyen 2022-04-22  383  
-e1354080fc83378 Quan Nguyen 2022-04-22  384  	return 0444;
-e1354080fc83378 Quan Nguyen 2022-04-22  385  }
-e1354080fc83378 Quan Nguyen 2022-04-22  386  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Yours,
+Linus Walleij
