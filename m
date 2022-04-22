@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561B650BB78
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0191750BB85
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 17:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357795AbiDVPTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 11:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33690 "EHLO
+        id S1357069AbiDVPUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 11:20:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448911AbiDVPTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:19:22 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D198D1402E
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:16:28 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so8919435fac.7
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:16:28 -0700 (PDT)
+        with ESMTP id S1449352AbiDVPUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 11:20:01 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEAF5DA12
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:17:08 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id lc2so16953521ejb.12
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:17:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=46ALeKzd0IFj5VWKeGIv6vysrvZd6kvXkqYlg2eppOM=;
-        b=v1V4Xy7vq+gsCarfOHOKIFnScMvDmomLpQW8suZaTLw8At1krVCkIbp27NHUiXM9W/
-         Kx/Mwsl4YN4YouTnBD3irXnQ79KXev/TWkt66kfLkBxGziZ/sjHz9GQHukE+IhwMB20d
-         YzR+CkTS1p/Gzmszy6iC4isYLZNfpZd1dPTuHwsgqDf9l3eVIKB2Mq4gCoyZ2T1PTomV
-         zpLH65G5wcDD4+/Prdg/+7cOSHoYO2dG5E+i6Qbs0TJLNZiEJl+6mODeEIdXKdQXw4j8
-         JNzi/Sb5KB7cKPQn0oP3LCUz1aiDYjasuisPCwNCJczoAoNBtBcLDl1ie0u2Jys3nZJ0
-         XZsA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bCYg7vAuheGkarssmttLzV2pY8DshumVmOA1bng63AI=;
+        b=MEHquvyCw0wwPt7kCehis+PVhTx3pdKhV9pM8R14d3I84H9iWWWE6KzzCxSsYQhhsl
+         c83Cbt0ZGqEK5noq0q1nj6TCqfNagjRO4ZvehG7CajbMG52gB3gjedYjBEbc1tmEBrbI
+         A/ZhHFcuM+kMPol4W5p8CvCk05gkvpyT0o8xg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=46ALeKzd0IFj5VWKeGIv6vysrvZd6kvXkqYlg2eppOM=;
-        b=MjF+HZSituxZPB9KxHEMWxY9LoJZ2fQAhNzU9QcxVH0J0F2RZTln3G93EPtOkCxosE
-         SctpdqdRm7fikVr2q/AO379s4jZhVmiRsGx1Xbh7NWa0D/H7jahuvNWNz0eVlVj7g7EV
-         yoASJzn6PkG4+cNso25r9uTX3E+Nd1tjNx3lVAvOWY5fWzLP1Z2XHjOoF604F/HB9BxI
-         4K2Mw1ML6m+gcxyQ3bqynfH96NbU9Hh2safO+0WWODP1lWINzaMBzv24NT+MN9hNePxe
-         Uv1PXs8+yQuFrEDPNXfd+iApBa+W1W6OxeSmpQnzdESfPdmrBo6G6gW11iYxmsCBtX4r
-         w23w==
-X-Gm-Message-State: AOAM53056BXHFNkqKruhKWoDlLoiSuUNu+mgkOAUGmbVY7uF0APAR+u3
-        8KgjX2jHozEkjD6/wp8CFa2K4w==
-X-Google-Smtp-Source: ABdhPJyljeQgjHrCPpzEbOJ5Ve6w2vzSSfOb46fgEWxtHLHwjUqmFOaGwW/u2GKHjNuvtVV+snqvYA==
-X-Received: by 2002:a05:6870:d0d3:b0:e2:d945:985 with SMTP id k19-20020a056870d0d300b000e2d9450985mr6008888oaa.185.1650640588164;
-        Fri, 22 Apr 2022 08:16:28 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id v36-20020a056830092400b006045a6c8047sm827759ott.12.2022.04.22.08.16.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 08:16:27 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 10:16:24 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     "N?colas F. R. A. Prado" <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 0/3] Fixes for Mediatek dt-bindings
-Message-ID: <YmLGyIOStJJAGSJG@builder.lan>
-References: <20220225225854.81038-1-nfraprado@collabora.com>
- <20220404152256.mkksr4oqjt65ytlf@notapiano>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bCYg7vAuheGkarssmttLzV2pY8DshumVmOA1bng63AI=;
+        b=B0DuegRIcTGtGJZbkiRhVH62rcgoDCAPnXneLeGqUa7SajobUdMnTYsY/WxNzzRdn2
+         UJl5j11FrI+WhuOLuCZ+OX8NOyDbWW55EpNVsqIFfQ/LezGaHvPSJu44wnAC1Yj+zNCJ
+         Q2umihBbJlecYn4pwrkacx7uhDXqUa5ro74ZJQW8g4628nuNfcdxqxER9GqtFrrUET8e
+         xnuFC1hVed5FqLpXS/zSTk+ddzeZj+Ck9H/FRGgTHPDos4GomnsGQB6GlGMCopDGhkBe
+         9BSos9ni+SLnb67rvnkLEW87oRYSvp0t8pnjY9THIp2iB2UEYON6YK0jYGDwGIcCm+4s
+         Mmjg==
+X-Gm-Message-State: AOAM533WjmMXHL9uTNB0QbYuwbtoPt1msmPVcr9jF8z0zLaHOadLVA3l
+        zIk/6nXIFuzIPoAGhe1THYUM6uOXc4LoYOY2GZ8=
+X-Google-Smtp-Source: ABdhPJzAC9Ih3Ioo/Hu/xrx71fveKURbCiFJk+luSxoKN9BbOo+F1r0hI8h5k9L1DOS4hZJHg5Pijg==
+X-Received: by 2002:a17:907:2144:b0:6e8:78c1:8c61 with SMTP id rk4-20020a170907214400b006e878c18c61mr4619543ejb.89.1650640626625;
+        Fri, 22 Apr 2022 08:17:06 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
+        by smtp.gmail.com with ESMTPSA id q9-20020a170906770900b006d20acf7e2bsm833845ejm.200.2022.04.22.08.17.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 08:17:06 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id u17-20020a05600c211100b0038eaf4cdaaeso8174950wml.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 08:17:05 -0700 (PDT)
+X-Received: by 2002:a05:600c:3c99:b0:392:b49c:7b79 with SMTP id
+ bg25-20020a05600c3c9900b00392b49c7b79mr4569863wmb.199.1650640625481; Fri, 22
+ Apr 2022 08:17:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220404152256.mkksr4oqjt65ytlf@notapiano>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <1647919631-14447-1-git-send-email-quic_vpolimer@quicinc.com> <1647919631-14447-2-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1647919631-14447-2-git-send-email-quic_vpolimer@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 22 Apr 2022 08:16:51 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xe1bOuiG0T7Y3rRN0cmsjdUK-sDvE-E02eDfSdKih9MA@mail.gmail.com>
+Message-ID: <CAD=FV=Xe1bOuiG0T7Y3rRN0cmsjdUK-sDvE-E02eDfSdKih9MA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/5] drm/msm/disp/dpu1: set mdp clk to the maximum
+ frequency in opp table during probe
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,44 +78,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 04 Apr 10:22 CDT 2022, N?colas F. R. A. Prado wrote:
+Hi,
 
-> Hi Matthias,
-> 
-> Maybe you could pick this series through your tree? It addresses some dtc
-> warnings that are introduced with the new nodes in mt8192.dtsi that you just
-> picked up on your v5.18-next/dts64 branch.
-> 
+On Mon, Mar 21, 2022 at 8:27 PM Vinod Polimera
+<quic_vpolimer@quicinc.com> wrote:
+>
+> Set mdp clock to max clock rate during probe/bind sequence from the
+> opp table so that rails are not at undetermined state. Since we do not
+> know what will be the rate set in boot loader, it would be ideal to
+> vote at max frequency. There could be a firmware display programmed
+> in bootloader and we want to transition it to kernel without underflowing.
+> The clock will be scaled down later when framework sends an update.
+>
+> Fixes: 25fdd5933e4c ("drm/msm: Add SDM845 DPU support")
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-I don't see a reply from Matthias, so I've picked up this (the
-remoteproc) fix in our tree.
+Just wanted to confirm that this patch will be queued up somewhat
+soon. I think it's good to go but I don't see it in any trees yet. ;-)
 
-Thanks,
-Bjorn
+FWIW, I can also say that I've tested this patch and it fixes the
+underrun issues on sc7280-herobrine-rev1.
 
-> Thanks,
-> Nícolas
-> 
-> On Fri, Feb 25, 2022 at 05:58:51PM -0500, Nícolas F. R. A. Prado wrote:
-> > 
-> > This series has some fixes for Mediatek dt-bindings. It solves some
-> > warnings printed by dtbs_check, both for already merged Devicetrees, as
-> > well as some that would be introduced by the changes to mt8192.dtsi in
-> > [1].
-> > 
-> > [1] https://lore.kernel.org/all/20220218091633.9368-1-allen-kh.cheng@mediatek.com/
-> > 
-> > 
-> > Nícolas F. R. A. Prado (3):
-> >   dt-bindings: remoteproc: mediatek: Add interrupts property to mtk,scp
-> >   dt-bindings: usb: mtk-xhci: Allow wakeup interrupt-names to be
-> >     optional
-> >   media: dt-bindings: mtk-vcodec-encoder: Add power-domains property
-> > 
-> >  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml     | 3 +++
-> >  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml      | 3 +++
-> >  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 1 +
-> >  3 files changed, 7 insertions(+)
-> > 
-> > -- 
-> > 2.35.1
+Tested-by: Douglas Anderson <dianders@chromium.org>
+
+-Doug
