@@ -2,167 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D54A450B664
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 13:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5111B50B66D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 13:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1447149AbiDVLvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 07:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51796 "EHLO
+        id S1447166AbiDVLvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 07:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380235AbiDVLvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:51:17 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB22941FAA;
-        Fri, 22 Apr 2022 04:48:24 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id c10so10707777wrb.1;
-        Fri, 22 Apr 2022 04:48:24 -0700 (PDT)
+        with ESMTP id S1447159AbiDVLvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:51:39 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D59256414
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 04:48:45 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id bj36so9271141ljb.13
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 04:48:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=USB9sQq04sTiAxmM8QQ7srYcUe8WlCh4HajD9OSYJ6o=;
-        b=NzIx/QXqWbn00uU3BKoOzzQ56jbjOJFxXvcFNZMrrnkUcYyLYKtefdD4B78DxLpyqy
-         qUQ9OjzuQBnOr/NBhm5cq4zASqJLzRaB1X5ETy+ZBJCgwVFkK/zrUXnkdQ9B8d3l77C+
-         bao0jbWUFczaF4rNJfcMB7mdp/yMwDyP4KyXyd6As4FJx7vPiMZUMGrAjKQPVv35LQJj
-         GqAET5OL4PFyFr7gaAn9/AhWfCWTSGI2nmpvnnI9E/dHu5T50OtUb/zQmZdaohc7UcqI
-         /eW15+8FEZei1tw7AoLxovxndZxe2RiSJ7Vha7VoigGvm5EavC4yPYXHvGFfC+G+Atct
-         EL2Q==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UZT/TykfMBCVk8d3xWr6e8o/MGP9L3Bc57oie76TSkw=;
+        b=W+7yNPwJBCf6O8jxaNp7vTbIrZfvI98OqXcx6TEPsRsqoUsSvp7CrYdAChOPhlCWYw
+         bs6f80ubE3uyH2iKZ0OHKc6iW2cDWLMydzMgJXP1vnoN/QCsEU41UUdCzIK1rawryw0Z
+         VMPcpI4JRVvKEYZ2FUJZHJjOmhmBWvd2TCOQ68P9d1gGHZJfnyX81dKOrX27eYCw0CaD
+         c+e2mLEV/4AK3BstUPbMc3iXkGxMbdwq4XFQMUeeb7DWEIXZ7d/GJYsZy9RBnehEc9m3
+         1qpaxPGcWa3uGaKExa962sH+ZE8DXFPB5A4laq/NZh1Hhwhcf/pn1m2DYgePofeGX/9f
+         kNaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=USB9sQq04sTiAxmM8QQ7srYcUe8WlCh4HajD9OSYJ6o=;
-        b=EH6w5il3tp1KTM58yRNLyANmFzqI4pGgitZd8kaPpiY0YKtCtoTEX7gmgdnlTqvKvP
-         zEATzJzbSdhC4g3+R+Wnz9mq545ZjlB7G2KtkV9C53eiMR+EUKFd6I/XleOLFKj+Ta6T
-         rWytwqKBKHbKgDIrXW/4JR1IgLQUnigTMah7OSt1pCjlI/jVnehOtauvvxIoOFlHZCad
-         QFznAncxQpll/T1Pr/093y5wQVBKPr634Cl+ECc+z2PAJNE+FV2XJJPXAhe1QDMwOokO
-         +9ancQ4AX/40slyS33w9MFXTdfhRQ6sJst65cpahdYO5vG+/ALagXANK5Xlf/883xJOo
-         /oHg==
-X-Gm-Message-State: AOAM531TgsTt8/ixLj409qobkSTyro9E95EQj/VX5OTY4Rf11q2rlDPV
-        ZKURLH30x5t6+0pYEVOodzY=
-X-Google-Smtp-Source: ABdhPJxnLaVOa0YHXafmOZJInj59XC4WGJzkGDmdMfbuZG+DNqLpxPS7LhSSaxyFsScgD1taCf5JDw==
-X-Received: by 2002:a5d:6486:0:b0:20a:93fe:dd09 with SMTP id o6-20020a5d6486000000b0020a93fedd09mr3483295wri.436.1650628103145;
-        Fri, 22 Apr 2022 04:48:23 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05600c441000b0038ebcbadcedsm5107504wmn.2.2022.04.22.04.48.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 04:48:22 -0700 (PDT)
-Message-ID: <2cd07faf-e903-e55b-85c1-ce7a823ddb8b@gmail.com>
-Date:   Fri, 22 Apr 2022 13:48:21 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v17 11/21] drm/mediatek: add display merge start/stop API
- for cmdq support
-Content-Language: en-US
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>,
+        bh=UZT/TykfMBCVk8d3xWr6e8o/MGP9L3Bc57oie76TSkw=;
+        b=dXr8DmcrtF0omg1NxakEeKr7acMNSQ03fsyvWYiOio40AekirBbxZiFVJiToLMpNFq
+         m9vJDdnsGGYqqHghzfu4oNFhSKSTwKgkR6SGOVsJ6AlkO8U9lV3xQbPPWWnq2k5J8ihC
+         YffOlMK5aUaYA93klfseGiRfzIuHHK6LjWp37F2ntNJ2MLMVp2q/TIWC9XGlEQKgV4d2
+         og2rT+5dRdL9H3egr9lEgi4uW5TNLE802YqKhEt83Vg4GCzPSYi2V/AgVgnlo7km3R9z
+         YhR6eMvX5y2KcTr6nfYhMRu7yxTHEq8Zfs2OCa2CDiu3A4ookRYAAXH2Lkisa4T1NTj6
+         AB+Q==
+X-Gm-Message-State: AOAM530v6W79NQU+bS3uZ8f+UrdrPESmZH92SRc731SjXxVEvJFOSC2A
+        Z3L7ff+wjUq93llkrsRuQuXysg==
+X-Google-Smtp-Source: ABdhPJyppi8DNcV45XTcmBLpWWHvYlql+hZLlqy8Nnn2S80SviDVAFF4inFYXqNrUenHR2Sg97ArUA==
+X-Received: by 2002:a2e:8e93:0:b0:24d:ab45:4053 with SMTP id z19-20020a2e8e93000000b0024dab454053mr2487282ljk.231.1650628123482;
+        Fri, 22 Apr 2022 04:48:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru ([188.162.65.189])
+        by smtp.gmail.com with ESMTPSA id h7-20020a19ca47000000b0047014ca10f2sm200695lfj.8.2022.04.22.04.48.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 04:48:43 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
-        singo.chang@mediatek.com, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220416020749.29010-1-nancy.lin@mediatek.com>
- <20220416020749.29010-12-nancy.lin@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220416020749.29010-12-nancy.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/6] dt-bindings: YAMLify pci/qcom,pcie schema
+Date:   Fri, 22 Apr 2022 14:48:35 +0300
+Message-Id: <20220422114841.1854138-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert pci/qcom,pcie schema to YAML description. The first patch
+introduces several warnings which are fixed by the other patches in the
+series.
 
+Note regarding the snps,dw-pcie compatibility. The Qualcomm PCIe
+controller uses Synopsys PCIe IP core. However it is not just fused to
+the address space. Accessing PCIe registers requires several clocks and
+regulators to be powered up. Thus it can be assumed that the qcom,pcie
+bindings are not fully compatible with the snps,dw-pcie schema.
 
-On 16/04/2022 04:07, Nancy.Lin wrote:
-> Add merge start/stop API for cmdq support. The ovl_adaptor merges
-> are configured with each drm plane update. Need to enable/disable
-> merge with cmdq making sure all the settings taken effect in the
-> same vblank.
-> 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   drivers/gpu/drm/mediatek/mtk_disp_drv.h   |  2 ++
->   drivers/gpu/drm/mediatek/mtk_disp_merge.c | 20 +++++++++++++++++---
->   2 files changed, 19 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> index 53aa988dde3b..43a412525b75 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> @@ -66,6 +66,8 @@ void mtk_merge_stop(struct device *dev);
->   void mtk_merge_advance_config(struct device *dev, unsigned int l_w, unsigned int r_w,
->   			      unsigned int h, unsigned int vrefresh, unsigned int bpc,
->   			      struct cmdq_pkt *cmdq_pkt);
-> +void mtk_merge_start_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt);
-> +void mtk_merge_stop_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt);
->   
->   void mtk_ovl_bgclr_in_on(struct device *dev);
->   void mtk_ovl_bgclr_in_off(struct device *dev);
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_merge.c b/drivers/gpu/drm/mediatek/mtk_disp_merge.c
-> index 40da0555416d..c0d9b43b2a66 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_merge.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_merge.c
-> @@ -67,17 +67,31 @@ struct mtk_disp_merge {
->   };
->   
->   void mtk_merge_start(struct device *dev)
+Dmitry Baryshkov (6):
+  dt-bindings: pci/qcom,pcie: convert to YAML
+  dt-bindings: pci/qcom,pcie: add schema for sc7280 chipset
+  dt-bindings: pci/qcom-pcie: specify reg-names explicitly
+  dt-bindings: pci/qcom,pcie: stop using snps,dw-pcie fallback
+  arm64: dts: qcom: stop using snps,dw-pcie falback
+  arm: dts: qcom: stop using snps,dw-pcie falback
 
-Probably not my call, but wouldn't it make sense to enhance mtk_merge_start to 
-pass 'struct cmdq_pkt *cmdq_pkt' directly instead of adding this 'adapter'?
+ .../devicetree/bindings/pci/qcom,pcie.txt     | 397 ----------
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 701 ++++++++++++++++++
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |   2 +-
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |   2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   6 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   4 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   6 +-
+ 8 files changed, 712 insertions(+), 408 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.yaml
 
-In the end this is up to Chun-Kuang.
+-- 
+2.35.1
 
-Regards,
-Matthias
-
-> +{
-> +	mtk_merge_start_cmdq(dev, NULL);
-> +}
-> +
-> +void mtk_merge_stop(struct device *dev)
->   {
->   	struct mtk_disp_merge *priv = dev_get_drvdata(dev);
->   
-> -	writel(MERGE_EN, priv->regs + DISP_REG_MERGE_CTRL);
-> +	mtk_merge_stop_cmdq(dev, NULL);
->   }
->   
-> -void mtk_merge_stop(struct device *dev)
-> +void mtk_merge_start_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt)
-> +{
-> +	struct mtk_disp_merge *priv = dev_get_drvdata(dev);
-> +
-> +	mtk_ddp_write(cmdq_pkt, 1, &priv->cmdq_reg, priv->regs,
-> +		      DISP_REG_MERGE_CTRL);
-> +}
-> +
-> +void mtk_merge_stop_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt)
->   {
->   	struct mtk_disp_merge *priv = dev_get_drvdata(dev);
->   
-> -	writel(0x0, priv->regs + DISP_REG_MERGE_CTRL);
-> +	mtk_ddp_write(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
-> +		      DISP_REG_MERGE_CTRL);
->   }
->   
->   static void mtk_merge_fifo_setting(struct mtk_disp_merge *priv,
