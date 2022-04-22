@@ -2,188 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2551250B7AC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 14:56:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15EAE50B7E1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231828AbiDVM6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 08:58:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
+        id S239890AbiDVNJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 09:09:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233935AbiDVM6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 08:58:20 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A8BD5FB3
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 05:55:27 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 21so10332313edv.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 05:55:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6vgHlzcKC268jTWZ9odOWX/FSZ6GN/04Cms2yj6NXO8=;
-        b=a1of9vQz8vasCH1atiME1s6g4QTTKaL+N5yYSEejqN2v3DuJ4CrAnnWhx0wYeTM4AY
-         ZCYFvp9rFBHMjEXH69F4Z4RH9dt9HIwhdSg9Wp6TspiZKSjvq+XRHwkotIr9OjX20h4Y
-         hLO2nAP2K1myaVpARQtg4KEJ4vZTst8cjtgzLs/BfCWidJGHDTnow79aRsNO0QtlPp5O
-         +ihdtjzHfsHJljhmO2nSAMtqQcQFUb0E8MdzkjUm6kvlZvgTJp5mixobudVqprgDxX9g
-         rBtYpZLiiUiYU7FPVazTF2JmXvCAMukEHS9h2kDTAE8UIS+pxw0yfT+UlRDkhHNtoYyC
-         uapA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6vgHlzcKC268jTWZ9odOWX/FSZ6GN/04Cms2yj6NXO8=;
-        b=6kLU85pGQrGPBezvl4RVAcSLrP5/QVTc5un5gJZ+D+aMnTm05oF+qxlT9WrTHXvMBw
-         XFU08rqYFfyG4ZHbLl8WcZlHvV1bWSglwnsKeJZJNTeEbZZA0HJGVuWJrJupMO7VQljF
-         GXIJnhIuoOKbrY9N+ml/44qv+pZhLmA9neP+jcpa9IzqyGohOO+q6eIqeQRNXSrObYTl
-         eOrgasEB15K6xdUHBeM/YN8vOT2tlNRf44sv7XYxKtdbldkyNxTjMAc76pKQT6PoxMEE
-         Io2NjPZ54966mmO3v5TIdelXKMYbKY2lmIAyLe2NauuPk7HSekLn+6z/FNSpiHc4H0Ts
-         xvIA==
-X-Gm-Message-State: AOAM531Vrvssd9H0pdLGvD6fCeFFQ/teFhTem12qli29dkb3kqKvaoxb
-        CySYR+8aMHsFSniwBZoWEzPFQA==
-X-Google-Smtp-Source: ABdhPJzI1Jcy6wmQ4Uw+AZ385Sm2PGtBq4LI0ya6/KbcNmsbCsgd6VEPxn3uSUPGBvEd583NfftG6g==
-X-Received: by 2002:a05:6402:1581:b0:41d:9b15:1432 with SMTP id c1-20020a056402158100b0041d9b151432mr4804679edv.386.1650632125571;
-        Fri, 22 Apr 2022 05:55:25 -0700 (PDT)
-Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g9-20020aa7c849000000b00412fc6bf26dsm876417edt.80.2022.04.22.05.55.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 05:55:25 -0700 (PDT)
-Message-ID: <fe9c5691-caa1-79b4-666b-daac8913b546@linaro.org>
-Date:   Fri, 22 Apr 2022 14:55:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/6] dt-bindings: pci/qcom-pcie: specify reg-names
- explicitly
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S233857AbiDVNJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:09:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51ACC22B3E;
+        Fri, 22 Apr 2022 06:06:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E18A962067;
+        Fri, 22 Apr 2022 13:06:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B50C385A4;
+        Fri, 22 Apr 2022 13:06:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650632803;
+        bh=hDIXGys28YU1AgFgBUhJKgfBRTj9j4CvWUnRGcwIekE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GDVYCD4SK6NLWfa+RGm24cWgtClaJixuJEYfnuky3gUNwzOfdD0CGXZO8Eu/sY+j1
+         ZVC92Jrn8r2HESDlKi3bCxMxW5eKidgN/pXmpI2z2xOz1dU5cRx55slt3VyedgM2/A
+         M+AL4OFN4MsUVYb53/Hp55PLCflOuaV4AylLzVKmgZQfWe58+xa8KNcHAGmegzsIOP
+         +IWFHNFUMKBg79uVOZOznzEwT1+8z/vDxqgSAVLq6pAqw561qXm9LJd6gXsB/bFQLr
+         LoZ8cI+qF5MpFp1om5KR9PnEJlffpw1x/NCG43Xz5qsd2L2vEw8IsPmnEDUhWb0pU+
+         LZb3bg00ZPS4w==
+Date:   Fri, 22 Apr 2022 14:06:37 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
+Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220422114841.1854138-1-dmitry.baryshkov@linaro.org>
- <20220422114841.1854138-4-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422114841.1854138-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
+Message-ID: <YmKoXbh04ZEs3dSZ@sirena.org.uk>
+References: <YkXKmxJ0R3qpUoH4@sirena.org.uk>
+ <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
+ <YmKPQ6kLCPz+2XTJ@sirena.org.uk>
+ <B68302F2-3D77-4065-8A16-A9CC690AE10B@cutebit.org>
+ <YmKSgHrbb/7koM36@sirena.org.uk>
+ <A1574F30-62D2-467D-A40B-8FD7C6B8BCFA@cutebit.org>
+ <YmKeEKa0w2xLM9cL@sirena.org.uk>
+ <6F6130F3-381C-4AB7-B618-CDC4C4A37C9B@cutebit.org>
+ <YmKjL9bOtOmsFWTs@sirena.org.uk>
+ <3CD969AD-7316-4D83-AD92-CC85ED817125@cutebit.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="h//nqm2TleJK+t0c"
+Content-Disposition: inline
+In-Reply-To: <3CD969AD-7316-4D83-AD92-CC85ED817125@cutebit.org>
+X-Cookie: Whoever dies with the most toys wins.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 13:48, Dmitry Baryshkov wrote:
-> Instead of specifying the enum of possible reg-names, specify them
-> explicitly. This allows us to specify which chipsets need the "atu"
-> regions, which do not. Also it clearly describes which platforms
-> enumerate PCIe cores using the dbi region and which use parf region for
-> that.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 96 ++++++++++++++++---
->  1 file changed, 81 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index 7210057d1511..e78e63ea4b25 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -35,21 +35,6 @@ properties:
->            - qcom,pcie-ipq6018
->        - const: snps,dw-pcie
->  
-> -  reg:
-> -    minItems: 4
-> -    maxItems: 5
 
-This should stay.
+--h//nqm2TleJK+t0c
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -
-> -  reg-names:
-> -    minItems: 4
-> -    maxItems: 5
-> -    items:
-> -      enum:
-> -        - parf # Qualcomm specific registers
-> -        - dbi # DesignWare PCIe registers
-> -        - elbi # External local bus interface registers
-> -        - config # PCIe configuration space
-> -        - atu # ATU address space (optional)
+On Fri, Apr 22, 2022 at 02:53:54PM +0200, Martin Povi=C5=A1er wrote:
 
-Move one of your lists for specific compatibles here and name last
-element optional (minItems: 4).
+> > Oh, I see - the speaker actually allows configuration of the slots
+> > independently.  Usually the left/right thing on mono devices only does
+> > something for I2S where the bus clocking enforces that there be both
+> > left and right channels.  Either configuration is fine by me TBH, if you
+> > can do that then you could just keep them mapped to the same channel
+> > then mark the control as disabled since it should have no effect.
 
-You will need to fix the order of regs in DTS to match the one defined here.
+> Well but is there some established way to mark a control as disabled?
 
-> -
->    interrupts:
->      maxItems: 1
->  
-> @@ -108,6 +93,87 @@ required:
->  
->  allOf:
->    - $ref: /schemas/pci/pci-bus.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-apq8064
-> +              - qcom,pcie-ipq4019
-> +              - qcom,pcie-ipq8064
-> +              - qcom,pcie-ipq8064v2
-> +              - qcom,pcie-ipq8074
-> +              - qcom,pcie-qcs404
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 4
-> +          maxItems: 4
+snd_ctl_activate_id().
 
-Only maxItems: 4
+> Another issue here is that if I disable it I can=E2=80=99t leave the rout=
+ing
+> control in it=E2=80=99s default value, which is =E2=80=98I2C Offset=E2=80=
+=99 and makes the speaker
+> amp ignore the slot mapping.
 
-> +        reg-names:
-> +          items:
-> +            - const: dbi # DesignWare PCIe registers
-> +            - const: elbi # External local bus interface registers
-> +            - const: parf # Qualcomm specific registers
-> +            - const: config # PCIe configuration space
+Sure, that's fine - if a control genuinely has no effect it's fine to
+hide it from userspace.  The issue is where it's just that you don't see
+the use, if the control demonstrably does nothing then that's fine.
 
-No need for this, instead only maxItems:4
+--h//nqm2TleJK+t0c
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-ipq6018
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 5
-> +          maxItems: 5
+-----BEGIN PGP SIGNATURE-----
 
-Only minItems:5 should be needed.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJiqFwACgkQJNaLcl1U
+h9AV8gf9GwzHMBap1p3cUin8nTIQKJwTl9QCbOmThnWJbuYKWeALxn2lKmviBaj9
+cK6oSVKCxCZlda0aKQSesJ4okIAQLbk1o4567sntkbBp6CuktSmlTOir7R6xVydZ
+IP/+pe8VGfqKFgLN+IHvNPMwOOA22UfsGhAA5M3A7i4B4qApwIVJlQicJ4TwD7y1
+jCZABx6q6DJoq7nclV1aSGvFZOZqGy2YxtAkHBs9vACqznwKchY7Z2lqZC7e0ys4
+Yl571RGhhMUWViVPe1xg65Jg/GOWHnzggLuPEk7M7ZGnriQF5KvEVVLpAaW8Wt0c
+F1qXhhnmhgJzm6oJkzV/zd7+paTaRg==
+=qSEG
+-----END PGP SIGNATURE-----
 
-> +        reg-names:
-> +          items:
-> +            - const: dbi # DesignWare PCIe registers
-> +            - const: elbi # External local bus interface registers
-> +            - const: atu # ATU address space (optional)
-> +            - const: parf # Qualcomm specific registers
-> +            - const: config # PCIe configuration space
-
-This can be removed.
-
-All other cases should be merged with the ones here.
-
-Best regards,
-Krzysztof
+--h//nqm2TleJK+t0c--
