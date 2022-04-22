@@ -2,173 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 430EE50B22B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7D350B27E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 10:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1445353AbiDVIA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 04:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40092 "EHLO
+        id S1445398AbiDVICV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 04:02:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1445418AbiDVIAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 04:00:02 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam08on2109.outbound.protection.outlook.com [40.107.100.109])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CEE522E3;
-        Fri, 22 Apr 2022 00:56:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F8Wed9wpOiGmGtqE9MEAJjio8qb4Bit7xzHIgP174AjgjAXW61Lwg1ckc2FQpCCtAFlWp0gPeoLAKVfzC1tF2Uc29XWQ+IefNQNt4jTP0E1bPOJR3Aj9bLC6bNI8JeRClxsLJI2LkLyBXeIMTZ/eybxNHkgIJ+6WrPSazkfFfaGydUxFmJM/cmvFHId+W3waYAjbC+S0QDM/+PF0e53CH3FGCQ/Jls0CzqdG3qfqz1b9ZX+4Z7dG1Cm0zbZQP8egoRiXS2dvMuxNwLb0dxWKCayfsJgsYxJ+k7XadnTmynDqemko8g9sgfMwExe+APCpG0g8ViSr5j4CR9z0ZrgORQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sSdpXd107G+76ZcOMCNQlJdCAB2/rS9PPGx2LAPowz0=;
- b=n5PD9yIPKkTTZ7aBu98OyxljBxFvQ6b0opO8Uwqy1aCtC/vSQVLzkLWQ7AO9F++zBqAek6nfajlIO6qE2mJkYAKxF7kISgWE3fGK7Dz082HhylDEZj3M3AM9/grVOExXHhTYLmKhAxAgfoSRXF1eQICtEf8N8aB08UPwgKwYsbRV2L0EmVW8rH2Pm6TwjXHRMKCEvzBXl9caOOTMgxt7JCKW3eZWwznhUW7ITQ9yoMAek7OXwQDhYcWPdgNhykaULLqf6C3TldMmvZyLq1vQ2+Q+ACcZXsY7qDLzHHslZb+ogR6gL9F6/BfP5lmVNj60E4XA6C78Usty29KWLD4IJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sSdpXd107G+76ZcOMCNQlJdCAB2/rS9PPGx2LAPowz0=;
- b=WBxuwn41C0xELpL9gHihOJN7x2x1tO5Go286ufpI40IP1qLvwVyMxVNH5hsBQbQ/AwnxvfWuc11rCqKvE0Vlnktw1wjZbNSBhk/Vnn1zPlYHmZ1fFnjf6x/mUjOByzduiczYp8iGzp9H/QqutBVakBJwO2CPhHtyaPnYZFZukZ8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
- SA1PR01MB6800.prod.exchangelabs.com (2603:10b6:806:185::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5186.13; Fri, 22 Apr 2022 07:56:47 +0000
-Received: from SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::319b:4612:e6f4:f22c]) by SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::319b:4612:e6f4:f22c%3]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
- 07:56:47 +0000
-Message-ID: <0e719834-5745-4a82-20e8-541f3bc6b6eb@os.amperecomputing.com>
-Date:   Fri, 22 Apr 2022 14:56:33 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.8.0
-Subject: Re: [PATCH v7 2/3] bindings: ipmi: Add binding for SSIF BMC driver
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Corey Minyard <minyard@acm.org>,
+        with ESMTP id S1445384AbiDVICR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 04:02:17 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0FBF527C6;
+        Fri, 22 Apr 2022 00:59:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1650614364; x=1682150364;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VNrOIsgR/2M+tjpgcaLOR6tT5XMMHe+vpYMTNT8yqJE=;
+  b=FQnx7c+5lFmkzTIpWm/qcVESF6Nk/PeTaPlLahcNnkDin+IEW2njl9gX
+   khJ85nsE4dX7LjZysRHd2pzWa4rrcbGHMpxJnuGV3ezsIrUHnTpvKG0dj
+   IHvS/3nZdmIgM2ydWeS3VLyGnWC7LxJNmj7b5gxo8B6s9vp7LVUVlF7m2
+   005SQlbnpEwKov3f6XSNyiTakVI6sj9EvWTa/zlsZmgHZ0L7zRB+yNii6
+   m6lG161OTEJ3XHNvwqIX5FkezT17RTkyvQcBa+DdeDae6/bTyxSWD309E
+   yX+9Ge9PCVA8N5dHsfIKn77z7KYg3tixmj0H24OVv2RqOzAdf11FE3MgT
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="264385685"
+X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; 
+   d="scan'208";a="264385685"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 00:59:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; 
+   d="scan'208";a="648522037"
+Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 22 Apr 2022 00:59:19 -0700
+Received: from kbuild by 3abc53900bec with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nhoCF-0009uY-1P;
+        Fri, 22 Apr 2022 07:59:19 +0000
+Date:   Fri, 22 Apr 2022 15:58:33 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
- <20220422040803.2524940-3-quan@os.amperecomputing.com>
- <153da61e-dc9d-467e-221c-b48d6f54c6c2@os.amperecomputing.com>
- <55cbbc16-5769-ecd2-e65e-c3b39a34dfbb@linaro.org>
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-In-Reply-To: <55cbbc16-5769-ecd2-e65e-c3b39a34dfbb@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2P153CA0028.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::9)
- To SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24)
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     kbuild-all@lists.01.org, Wei-Shun Chang <weishunc@google.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
+        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
+        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
+Subject: Re: [PATCH v6 2/2] phy: mediatek: Add PCIe PHY driver
+Message-ID: <202204221513.SZZHW8dq-lkp@intel.com>
+References: <20220422041125.12732-3-jianjun.wang@mediatek.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 680f0aeb-51b2-4171-573b-08da2435a684
-X-MS-TrafficTypeDiagnostic: SA1PR01MB6800:EE_
-X-Microsoft-Antispam-PRVS: <SA1PR01MB68009B51D8623CE59F7520E2F2F79@SA1PR01MB6800.prod.exchangelabs.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7pvWP8+OFWJpaCCVu8V0AxhONnzei5TGGTQLvTlItXs8HmDNL6nqrjvpLHy/AqinpPAteJHQ+h13yC0QEpMDrVNRaB3f9ljYBpuuaJUsLlOoUTtwraM0MFmi8ZU7gYgHF8MhMfXtb9hJ9U3g0JgICQywJviBsru7mByfOIqke8TruxYG5VNzP+jVwrxoUooLo6lqR/Gi96LglCapkwyAIJZuCWgjAiTQe8+DVIrKgOkPMJwJE2YSALT9EnkojoU6UXOyIbzzCuDQ8//URqF57Sul8qqQlLwRmTEVebHokq1b3qjokFsjn0ndgXtZIdgnVoKdee37F2bTnFEvmD7lrmtHYo0nCOPUppEZbhRgN+ytayKinDISyam1M382zzbJQ7/WueUQrK2tCBpP64ux6fmdaT/QHDok1owlH2GR/z3lYpMmITSUW+YAqVtccrdoFXoKwO0zgQB7GHIOHkcZT3GcLjlLOODboyHJ0iU+3vcPfMO+Ga9Q5ZM/v1DkCbyiwU3BJM7UG5296k03nPzcSue9+KHxRYSjnRThziHyn5tM+EvCfkEXHNn/QO4p3/sNDl7iLCMm4zliUT0n7ZuITWi39ncG9J1aVHPMqsvYYGRBcghamnMIYX01Z+PyOGL0aF9q9JdPgmxPUzBDnjfVNs58CXpcBAIN4hLMrnPhyCRx3w+XoSbz8gyLn1Cbwc+SizOOa3HG3I8fRXn9unviF7h57QjnHY0tEcH4ysdpvwKcB/daopvGf1zLnPEHIVDn
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(5660300002)(31696002)(38100700002)(8936002)(54906003)(38350700002)(921005)(2906002)(7416002)(53546011)(6512007)(4744005)(107886003)(26005)(110136005)(186003)(6506007)(2616005)(6486002)(508600001)(6666004)(52116002)(66556008)(66476007)(4326008)(66946007)(8676002)(316002)(86362001)(31686004)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGdqaEJEOEgrdi9RVVVlSG1VOFRkOUdpNkdmSURMaW1ZdmJhWnBDeUNQcERB?=
- =?utf-8?B?VGRxUkZmOVdveHBxZG4veFQyNnU5Ujg1cGdtUzNTc2pmaS8vMUMvYS9PU0NX?=
- =?utf-8?B?YkZocEl4ZFk1QWZVMnNvNTJaNFVxem5qeFgxQzByeG9XaWhEMVhDYmJ0NE9y?=
- =?utf-8?B?K0lWL1Y5Nm9HbzRRNHhSV01UZ1REc2d5Z3VrZHE0SFBJTWNjdTVXS1N5bjEx?=
- =?utf-8?B?MHRWNHBDcHBBRXc4UkpCSHRlVU1UaGdxRmV0anJOZWRwNTgxTDZBQnhROWw1?=
- =?utf-8?B?Wnc4VWUyVEQ0THI5N3FWWUI2cVBYMlh1bzluWk1UMjJxL0t2ZDloNzZkbzM1?=
- =?utf-8?B?dnVGenFhSkdtQUZ5cWFYcjFHU2JPWXZ5alVHQmxraWxzMVRzZUxEcHpiQ21O?=
- =?utf-8?B?S2tFMXB3Q29EUzhsZnovbGl0ZWdleFE2NEtPU1VYN3ZqQXNVSmlsNmxVaytW?=
- =?utf-8?B?S1k5ZmZHSjFYZ2N6MC9uM0NScUFwc0Y5MitRemNyblc0cGhpNm9Pak5ZbU9m?=
- =?utf-8?B?Z01zK2k3Tld5Wk1jalEyQURQdWNESTZtUFFMY1EwTElGZkpTbDhaczByVnd2?=
- =?utf-8?B?SnZjM0xvNjR5TUhCa2E0b1N6M1BCbEJFZFdsU2tzN01lcXh1bEVYS0lBUVV6?=
- =?utf-8?B?c2RnZm8vTC9Hc0J6aHhOSjN4WHlSZkt3L1FzeU1QaXVtdTdkV1F3WGdpamJv?=
- =?utf-8?B?aU9vdG9IREdBVmFjclRhU0UzazdKWmhLcGpsb2oxeElzcVFNVEJiM1VyeFdW?=
- =?utf-8?B?ZnN6YTNCQ1dWZXRYU3BFOGswRSs4ZTNLODYrQUJ0NnhrVjU1SFlOcjlBTWg4?=
- =?utf-8?B?TlR4VmVpQ3VmYXJwZ2grYkhnNWhMMityRUtWWTVDT1NFMDNVbEVBSVkzeVFB?=
- =?utf-8?B?Si8wL3dLYTlNSGF0UzdDanJXTGgzNGdJQlNSNXRrV0VCQTV0UmgxOENSZzA4?=
- =?utf-8?B?QU4yQlZvTVhmT3BvaVNjQUZxWG90REt4ZWJLaUtNYXNsUXFrNHl1SC9FTVdk?=
- =?utf-8?B?VkpzcjdVS2VnMkd3ZThBTDMyWml5R0U5RkFYL1MxYi94ekZ4Q3c5eHEwWWVE?=
- =?utf-8?B?QSsya3VaVkhlaFVxVUVoZ2lBemkxZkZTSEVlRVBZZDRPZndsYjV5dkNIeHRD?=
- =?utf-8?B?bFdBSHJSdlRVd3VpVnZQTGlkL282MjhkNzdaTFcwWUNRdHJabGJXb3Y2bUcv?=
- =?utf-8?B?Q2wzTE9DckYxTVFYM0JhVUtqMEp0azZpTkhsSVdhU2J6OHJwWHpqWlpZUnBr?=
- =?utf-8?B?L29uN1Flc0NDOVlFMUNwcE1JUEpGakszWVN0VU1ONXZjSEhNMnd4QUE4alJV?=
- =?utf-8?B?dStZT203QkpKNTBXcFhodGx5Tm02N2RIazJzeGFKa2VRQ0Vibm50K05aSDYw?=
- =?utf-8?B?anc2M21lMXVaUXFwbThjRTQwaXhwTVl4aSsrenB5ZjJCYVdMVWRzejhXQ0dN?=
- =?utf-8?B?OG1XR2NsSlE4MndVTU1hR2crdTY5T2RpakU3VjA4aTRsUzJHMU53cVBJUmdT?=
- =?utf-8?B?N3JyNzRyVVFBbGF1U1BzbUl6V0R3VHRVdWk0YUlXeU5CNnI4NG1kK09HcEM3?=
- =?utf-8?B?azV0L3ZMNzhQTGV5SnZXZ3ZsUEdkVm5oeUp2WVZNd1UrYWx4L1g0L2tQVlQ1?=
- =?utf-8?B?dW12eWdGeFQwTzIxRnFPRXZ1dGgvU09iWjI1U2JMeHdlZnZONHd4VUZ5YVFq?=
- =?utf-8?B?VGF0THhZckhkc1R4bXBDUngvS3FSOWJ2dXVzeHJYdGN5V0QyeWhOcVY5ZEUv?=
- =?utf-8?B?UGsycTlia01tNDFpUCt4cG1KTnhwYnlLYkp4Q0lOYi9yN3hscStxZWJVZkxs?=
- =?utf-8?B?LzJ6dEdlZWRtOG1tTktQRExKNnZNT082Zi9PamhBMTJtdUc2ck1mSjRTNk40?=
- =?utf-8?B?WlFja1FVdEVtV3lFL0V3bUdSZkZRYmpacVF4S1E2WENpcTJjNUI2bE1xOVJs?=
- =?utf-8?B?UytwMWN3VUx2VjlFWGdzWWdsOS9wL1JkRHV2em51QVEwVzJ2RFRXUzZHMHNr?=
- =?utf-8?B?aXcyR3Nvc2tycFphNXpTVEIrdW9KSkwzdjJHTEJXSjM1ZDlpSDlrWlV4cUt6?=
- =?utf-8?B?TU9TakZoMmF6RFdUTnZhY000WVFjd0hBblNhRGZqNkpoOXhBam9NOXVlS2pp?=
- =?utf-8?B?MjVUVG1OdFdwVDUxZmlVUjlnS2ZvR1RDV2UvV0piOXZvcWN0ZE1IeldlVXdv?=
- =?utf-8?B?M0dNRnk0NTk5UWkyZWRhYStzYlNIc3Z2ZC9oa0FtQ2t1N0w1ZCtrcmFFL0t6?=
- =?utf-8?B?UGJGQVQyM2dWcW9vVU4vTmw0Z2g4ei8vVFVJR0tSaHdqbDJzbDVhdzlsWnhs?=
- =?utf-8?B?OTBmOHkxU3RxR2lkbHVWRUNEdVI1WTZVQzA2UURkNkVHQnBMSldmWW4vd0ov?=
- =?utf-8?Q?FYYaLbM198a5oaqV2xTUGqEYvzWUpqNrnms5I?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 680f0aeb-51b2-4171-573b-08da2435a684
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 07:56:47.6290
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O48cexixpxuQzkXVcpXtVAurL5Eh4OrfVd5aaZPpfKf1HjX1+VYlJ4Y+l19nJ5xGgbTkML/vlROZcg2MUfyWkRNATrNwyuX1xf5046vwzsY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR01MB6800
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422041125.12732-3-jianjun.wang@mediatek.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My apology, Krzysztof.
+Hi Jianjun,
 
-This patchset was rebased with the tag next-20220421.
+I love your patch! Yet something to improve:
 
-And it was my fault actually.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v5.18-rc3 next-20220421]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I was using last revision's recipient list after compare recipient names 
-with the output of get_maintainer.pl to make sure everyone included. But 
-I missed that your email @canonical.com was changed.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jianjun-Wang/phy-mediatek-Add-PCIe-PHY-driver/20220422-121407
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220422/202204221513.SZZHW8dq-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c2ea770ff29995df64bc82ad12ece5b671415a62
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jianjun-Wang/phy-mediatek-Add-PCIe-PHY-driver/20220422-121407
+        git checkout c2ea770ff29995df64bc82ad12ece5b671415a62
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash
 
-Will be more carefully next time.
-Best regards,
-- Quan
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-On 22/04/2022 14:21, Krzysztof Kozlowski wrote:
-> On 22/04/2022 06:16, Quan Nguyen wrote:
->> Added Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> as I'm not aware of the email change
-> 
-> The email change from @canonical.com was 1.5 months ago, so it would be
-> better if rebase your changes on more recent Linux kernel. You get all
-> proper .mailmap entries.
-> 
-> 
-> Best regards,
-> Krzysztof
+All errors (new ones prefixed by >>):
 
+   drivers/phy/mediatek/phy-mtk-pcie.c: In function 'mtk_pcie_efuse_set_lane':
+>> drivers/phy/mediatek/phy-mtk-pcie.c:92:29: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+      92 |                             FIELD_PREP(EFUSE_LN_TX_PMOS_SEL, data->tx_pmos));
+         |                             ^~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/FIELD_PREP +92 drivers/phy/mediatek/phy-mtk-pcie.c
+
+    78	
+    79	static void mtk_pcie_efuse_set_lane(struct mtk_pcie_phy *pcie_phy,
+    80					    unsigned int lane)
+    81	{
+    82		struct mtk_pcie_lane_efuse *data = &pcie_phy->efuse[lane];
+    83		void __iomem *addr;
+    84	
+    85		if (!data->lane_efuse_supported)
+    86			return;
+    87	
+    88		addr = pcie_phy->sif_base + PEXTP_ANA_LN0_TRX_REG +
+    89		       lane * PEXTP_ANA_LANE_OFFSET;
+    90	
+    91		mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG, EFUSE_LN_TX_PMOS_SEL,
+  > 92				    FIELD_PREP(EFUSE_LN_TX_PMOS_SEL, data->tx_pmos));
+    93	
+    94		mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG, EFUSE_LN_TX_NMOS_SEL,
+    95				    FIELD_PREP(EFUSE_LN_TX_NMOS_SEL, data->tx_nmos));
+    96	
+    97		mtk_phy_update_bits(addr + PEXTP_ANA_RX_REG, EFUSE_LN_RX_SEL,
+    98				    FIELD_PREP(EFUSE_LN_RX_SEL, data->rx_data));
+    99	}
+   100	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
