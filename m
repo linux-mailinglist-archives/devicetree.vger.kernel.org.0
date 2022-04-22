@@ -2,50 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A4350B862
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23A2F50B86C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377199AbiDVN0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 09:26:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
+        id S1443130AbiDVN3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 09:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbiDVN0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:26:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9832C583A0;
-        Fri, 22 Apr 2022 06:23:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 00D7C620A9;
-        Fri, 22 Apr 2022 13:23:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B7BC385A0;
-        Fri, 22 Apr 2022 13:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650633827;
-        bh=0wP0O47cfWb7KPvm1ysuIetJ74QEy9EwsCeai68tPXg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=T+v+4H4mDS8vF4/C8h/544QCxf3S1n2ayJsHufZmPEWWfHpKc2qI2/sQs04VsTu6d
-         U7OKVQw2rwyUlKNG4dbb3vbUG7LEAplGB6kGGPm7V0o4LWByWGd6nf1T2pr1emPCzS
-         +kVDWQeYO+Vk57etpOrAvsKpn0RhkxkIgnO7sStJR18MuQlqjlFW3920LlCMx/Itz/
-         MPQKajvRR85mBofGZAoO7NOU9Kp0LyHGRpm58MgqBFPSQefyUuTnGHcfdiR4s+DyFf
-         odDRM7XztGXiqGmJqCu/nggPAkc9r95SCd/YKxG5zl6wjOaSOeAOek6hSzx7J23pAV
-         S34Xep0I1BNUQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     u0084500@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, lgirdwood@gmail.com, alice_chen@richtek.com
-In-Reply-To: <1650610255-6180-1-git-send-email-u0084500@gmail.com>
-References: <1650610255-6180-1-git-send-email-u0084500@gmail.com>
-Subject: Re: [PATCH] regulator: dt-bindings: Revise the rt5190a buck/ldo description
-Message-Id: <165063382544.419666.7006851480891588487.b4-ty@kernel.org>
-Date:   Fri, 22 Apr 2022 14:23:45 +0100
+        with ESMTP id S234679AbiDVN3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:29:44 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5855520C;
+        Fri, 22 Apr 2022 06:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650634012; x=1682170012;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ibCD8n+74D25bQ/6Jrl39b9qR5VPuTVM9OJHM9wXnOk=;
+  b=ydASwxOyfDaiPRJLLS+1ewfPPyzdDWOg2KxbNRObZccS7Z/cqpjfix6M
+   USRLRWmiBPW/Ccf0m4pPaxNlbe5AW5WdiWGu7Mt70CV3TMq60dWuQol3p
+   qTv+Zh40tQL3uFPMMHgVrKLi90prSzldCRCCcrkuxOJq5T2izHrmv2otW
+   k=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 22 Apr 2022 06:26:51 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 06:26:50 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 22 Apr 2022 06:26:50 -0700
+Received: from [10.216.36.2] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 22 Apr
+ 2022 06:26:44 -0700
+Message-ID: <fb53452a-0898-407e-5e86-897aeab446bc@quicinc.com>
+Date:   Fri, 22 Apr 2022 18:56:41 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v8 2/4] arm64: dts: qcom: sc7280: Add nodes for wcd9385
+ and max98360a codec
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1650291252-30398-1-git-send-email-quic_srivasam@quicinc.com>
+ <1650291252-30398-3-git-send-email-quic_srivasam@quicinc.com>
+ <Yl2VmW18QAJl9v+m@google.com>
+ <5ac149ac-4862-e8c9-185c-524c4b111961@quicinc.com>
+ <5d4b7c44-62e1-aaa6-3116-f58e1a1b437b@quicinc.com>
+ <YmF7TRlxUWWQ394e@google.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <YmF7TRlxUWWQ394e@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,37 +76,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 14:50:55 +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Revise the rt5190a bucks and ldo property description.
-> 
-> 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/1] regulator: dt-bindings: Revise the rt5190a buck/ldo description
-      commit: dfd2b37edf7ef469574ef7f36e3a1905ac9ead62
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+On 4/21/2022 9:12 PM, Matthias Kaehlcke wrote:
+Thanks for your time Matthias!!
+> On Thu, Apr 21, 2022 at 12:31:52PM +0530, Srinivasa Rao Mandadapu wrote:
+>> On 4/19/2022 4:54 PM, Srinivasa Rao Mandadapu wrote:
+>>> On 4/18/2022 10:15 PM, Matthias Kaehlcke wrote:
+>>> Thanks for your time and valuable inputs Matthias!!!
+>>>> On Mon, Apr 18, 2022 at 07:44:10PM +0530, Srinivasa Rao Mandadapu wrote:
+>>>>> Add wcd938x and  max98360a codecs for audio use case on
+>>>>> sc7280 based platforms.
+>>>>> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
+>>>>> Add amp_en node for  max98360a codec.
+>>>> General note: I don't think it's a good practice to add stuff like
+>>>> this to
+>>>> multiple boards in a single patch. Why?
+>>>>
+>>>> First the subject of such a patch tends to be vague ("arm64: dts: qcom:
+>>>> sc7280: Add nodes for wcd9385 and max98360a codec"), in this case it
+>>>> gives
+>>>> no hint about the boards. If someone was interested in picking changes
+>>>> for a given board they can't easily identify from the subject that the
+>>>> change is relevant for them.
+>>>>
+>>>> Changes touching multiple boards are more likely to cause conflicts when
+>>>> being picked (or reverted), both upstream and in downstream trees (which
+>>>> unfortunately have to exist for product development). Downstream trees
+>>>> might only pick changes for the board(s) they target, patches that touch
+>>>> mutiple boards often cause conflicts due to context deltas in the
+>>>> 'irrelevant' boards.
+>>>>
+>>>> Lastly it's usually easier to get a patch reviewed (in the sense of
+>>>> getting a 'Reviewed-by' tag) and landed that does a single thing.
+>>> Yes, agree to your opinion. In a nutshell, we will include board
+>>> name(ex: herobrine)
+>>>
+>>> in commit message and split the patches per external codec.
+>>>
+>>> Actually, in Initial herobrine boards, EVT and IDP, has both maxim
+>>> speaker and WCD codec,
+>>>
+>>> hence we included in same patch.
+>>>
+>>>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>>>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>>>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |  6 ++
+>>>>>    arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  8 +++
+>>>>>    arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 97
+>>>>> ++++++++++++++++++++++++++
+>>>>>    3 files changed, 111 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>>>>> b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>>>>> index 344338a..aa0bf6e2 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+>>>>> @@ -87,6 +87,12 @@ ap_ts_pen_1v8: &i2c13 {
+>>>>>        pins = "gpio51";
+>>>>>    };
+>>>>>    +&wcd938x {
+>>>>> +    pinctrl-names = "default";
+>>>>> +    pinctrl-0 = <&us_euro_hs_sel>;
+>>>>> +    us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+>>>>> +};
+>>>> Since this is added for the CRD rev3 it probably should also be added to
+>>>> sc7280-herobrine-crd.dts
+>>> Okay. Will add in corresponding latest herobrine CRD dts file also.
+>>>>> +
+>>>>>    &tlmm {
+>>>>>        tp_int_odl: tp-int-odl {
+>>>>>            pins = "gpio7";
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>>> b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>>> index d58045d..f247403 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>>>>> @@ -20,6 +20,14 @@
+>>>>>    #include "sc7280-chrome-common.dtsi"
+>>>>>      / {
+>>>>> +    max98360a: audio-codec-0 {
+>>>>> +        compatible = "maxim,max98360a";
+>>>>> +        pinctrl-names = "default";
+>>>>> +        pinctrl-0 = <&amp_en>;
+>>>>> +        sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+>>>>> +        #sound-dai-cells = <0>;
+>>>>> +    };
+>>>>> +
+>>>>>        chosen {
+>>>>>            stdout-path = "serial0:115200n8";
+>>>>>        };
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>>>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>>>> index 2f863c0..8dad599 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>>>> @@ -20,6 +20,42 @@
+>>>>>            serial1 = &uart7;
+>>>>>        };
+>>>>>    +    max98360a: audio-codec-0 {
+>>>>> +        compatible = "maxim,max98360a";
+>>>>> +        pinctrl-names = "default";
+>>>>> +        pinctrl-0 = <&amp_en>;
+>>>>> +        sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+>>>>> +        #sound-dai-cells = <0>;
+>>>>> +    };
+>>>>> +
+>>>>> +    wcd938x: audio-codec-1 {
+>>>> Why 'wcd938x' and not 'wcd9385'?
+>>> Actually same driver is used for both wcd9380 and wcd9385. Here we can
+>>> use specific name as per board.
+>>>
+>>> Will change accordingly.
+>> At present, dt-bindgs also has wcd938x. So will update the name in bindings
+>> and here post this series.
+>>
+>> is it okay?
+> I don't think it's strictly necessary to update the binding, as
+> 'wcd938x' is only used in the example, and also it's not really
+> wrong. Then again, if the example in the binding uses a
+> specific wcd version it might make it less likely that the
+> wildcard name is used in future board DTs. Up to you :)
+Okay. Will update accordingly.
