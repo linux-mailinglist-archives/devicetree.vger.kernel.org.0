@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FD6150C3A9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A7A50C440
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234184AbiDVW6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51840 "EHLO
+        id S233711AbiDVW54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234175AbiDVW5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:57:39 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D78342C43
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:52 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id z2so10576489oic.6
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:52 -0700 (PDT)
+        with ESMTP id S234215AbiDVW5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:57:42 -0400
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70BA4263CAB
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:53 -0700 (PDT)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-e604f712ecso10045278fac.9
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XENFSBCAxirOMSvN5P45H1Vvs6fWH0AA/S+LYBu5Oow=;
-        b=bACNTkVaiUGXihYZDcQV9PLoJAjDwUaKU0nJbvLHLSp9EtlSmlIOcdlRlODArPFKE4
-         6dTDsPDnHZ3Ufdg74nOFzASENI2z+QVfy254paHTUJrIPVmKsvFSqeOKwY3mrfJU6gil
-         5iDO9pn3xe/hy9WtI0nfvFh/jt00HXQggQPPtjtj5VQ6uU3DUdi4CqCyIeCP1DcXQm3i
-         jHsmBr79i5kdSdgf72LxJpOiQv9Mo7/2UIXm3oHMpNwpTXjwNPP0y07l6kIceye/fjnI
-         8c41lBph9vfCBfv+YSMIpJWeDHUtdXAbQep3lfDzHtN+Y6dIwg69llcmwsNiQpcq8gec
-         f58g==
+        bh=5WJANqKYC0uOwc9pHxoXMF3q63zMtKx1xf7OKCPf+Fc=;
+        b=uthw0bR1T+hvsbqlpfq3kVyFnz9kfquznheJF2Eheau3SbrFUFBM7k946RQICA84iL
+         +xpnkZGMw1h4UFs7xnhomn2V/SPwp8JDVJd0W8G6QjwWpDTomn60Qthg9pD41nGlmEbA
+         q1irLx6H2YqzHFC1iZsDi7wc9GA+p1B9vYBJ7iAQ04qQdGWVvh+016mXSXPiQbrxOUo/
+         74H6WCKYAs7uWiCAQrBON9ZjJxP/zpH7kljtCxymFwaVZhi3IN81Fx0hcijrD0akLZN1
+         rPM53YiQ7OsGxA/XkBFssJI+Ni33ftKFLAH+KoOGkYH5po//lrEASLlirdXtRDjqaZ1u
+         G3cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XENFSBCAxirOMSvN5P45H1Vvs6fWH0AA/S+LYBu5Oow=;
-        b=SSZiFLMHFcVRS5V9KKYs0rTBvJMz4pnh8ki0up20vWY4TVSvSis83YiaaxlXDVhuRu
-         Us1ijOjZ7eZhgFTyP3zMIbftjXL+rS9vjMusRaeAV7E/YjldVVb3YZdLE1ybZ/9o/CP6
-         frscndatUX313/KiVYFsXwU7uy7lgxEg5QUFiuq6IHm5pNj5exg2QKyBimOOrDkinBWi
-         09SjQGQmMMSr2Ub7yjWnh7pC+2w+jWGC2bjaglVHJKC8NmRp8w+IlMdVaGbBmzI4gQyf
-         DmaI/T2cpm8hAP6NHIe8LjijF2PWoHL7vQku33MJ+LYpX34cvSRdr8N1yCMEtow6vpsr
-         041g==
-X-Gm-Message-State: AOAM532tjy6O5nszdmi+BjPexswi3hBwJk2vM4Y82bBw1Fr4tqws6OXY
-        YXNRgdwFYbJxbiHohb04PvE+CQ==
-X-Google-Smtp-Source: ABdhPJxUu+TIzAagwVAFL737HsQohEi6OYw8fsVfAEoixHQTgXTXln0yE3HNaoph719hM+yRvhkKkw==
-X-Received: by 2002:a05:6808:124b:b0:2da:38f0:945f with SMTP id o11-20020a056808124b00b002da38f0945fmr7623223oiv.171.1650666111443;
-        Fri, 22 Apr 2022 15:21:51 -0700 (PDT)
+        bh=5WJANqKYC0uOwc9pHxoXMF3q63zMtKx1xf7OKCPf+Fc=;
+        b=NoCmOqxb6D/JWBfguP5hSWxa3TOlaSzKiZ+bZBwAS+62vNoH3CShDFXDUJwGLD3RFe
+         nAMpgpIjqW1wxWGqELSdb2KZZinfNLLNwHkbk4z1cem8vcDf8DKbO7sJ147bPjQh+fYR
+         gkXkbNvYxKrafaWsbAUDNLofZizAwWNNacJ1fIOesGlWsRG28l8IAE49il1dcZYM2aMh
+         0cDS++zAyXBcVwOURl2L3utSstapCFXtUwTps/u1F9wGSP8B71H6Us3Db1Fz+MHkoZss
+         SsaecFIX8sLzcK10Oi3Ga/lKYzZsOn2DeX8kdyFIkH9dSegoOxgqe/EnwN65szaDOVO0
+         LsEw==
+X-Gm-Message-State: AOAM532PtniMM/28DN+Qs4zeWTbnSy8F/FgTVGcWhr1VHl1yTKds810O
+        nr4muCUr/4aI9mi1GEvIkFKI4w==
+X-Google-Smtp-Source: ABdhPJwSUqlaOIAUy4BPNAE9huiM3YDyDvJ842NV6mi/ujWxNBcGD09OfXFrcIPMy0Dxb7jgYWU22A==
+X-Received: by 2002:a05:6870:e244:b0:e9:150b:5d21 with SMTP id d4-20020a056870e24400b000e9150b5d21mr318161oac.234.1650666112565;
+        Fri, 22 Apr 2022 15:21:52 -0700 (PDT)
 Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id js4-20020a056870bac400b000e687cdf5adsm1049224oab.55.2022.04.22.15.21.50
+        by smtp.gmail.com with ESMTPSA id js4-20020a056870bac400b000e687cdf5adsm1049224oab.55.2022.04.22.15.21.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 15:21:50 -0700 (PDT)
+        Fri, 22 Apr 2022 15:21:52 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Hans de Goede <hdegoede@redhat.com>
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: [PATCH v5 1/7] device property: Add helper to match multiple connections
-Date:   Fri, 22 Apr 2022 15:23:45 -0700
-Message-Id: <20220422222351.1297276-2-bjorn.andersson@linaro.org>
+Subject: [PATCH v5 2/7] device property: Use multi-connection matchers for single case
+Date:   Fri, 22 Apr 2022 15:23:46 -0700
+Message-Id: <20220422222351.1297276-3-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
 References: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
@@ -77,174 +77,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some cases multiple connections with the same connection id
-needs to be resolved from a fwnode graph.
+The newly introduced helpers for searching for matches in the case of
+multiple connections can be resused by the single-connection case, so do
+this to save some duplication.
 
-One such example is when separate hardware is used for performing muxing
-and/or orientation switching of the SuperSpeed and SBU lines in a USB
-Type-C connector. In this case the connector needs to belong to a graph
-with multiple matching remote endpoints, and the Type-C controller needs
-to be able to resolve them both.
-
-Add a new API that allows this kind of lookup.
-
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
 
 Changes since v4:
-- Added "Add" to patch subject
-- Added "(Optional)" kernel-doc of fwnode_connection_find_matches()
+- None
 
- drivers/base/property.c  | 109 +++++++++++++++++++++++++++++++++++++++
- include/linux/property.h |   5 ++
- 2 files changed, 114 insertions(+)
+ drivers/base/property.c | 55 ++++-------------------------------------
+ 1 file changed, 5 insertions(+), 50 deletions(-)
 
 diff --git a/drivers/base/property.c b/drivers/base/property.c
-index 36401cfe432c..babab8cec7a0 100644
+index babab8cec7a0..337c95fea217 100644
 --- a/drivers/base/property.c
 +++ b/drivers/base/property.c
-@@ -1201,6 +1201,40 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
- 	return NULL;
+@@ -1176,31 +1176,6 @@ const void *device_get_match_data(struct device *dev)
+ }
+ EXPORT_SYMBOL_GPL(device_get_match_data);
+ 
+-static void *
+-fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+-			  void *data, devcon_match_fn_t match)
+-{
+-	struct fwnode_handle *node;
+-	struct fwnode_handle *ep;
+-	void *ret;
+-
+-	fwnode_graph_for_each_endpoint(fwnode, ep) {
+-		node = fwnode_graph_get_remote_port_parent(ep);
+-		if (!fwnode_device_is_available(node)) {
+-			fwnode_handle_put(node);
+-			continue;
+-		}
+-
+-		ret = match(node, con_id, data);
+-		fwnode_handle_put(node);
+-		if (ret) {
+-			fwnode_handle_put(ep);
+-			return ret;
+-		}
+-	}
+-	return NULL;
+-}
+-
+ static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+ 						const char *con_id, void *data,
+ 						devcon_match_fn_t match,
+@@ -1235,28 +1210,6 @@ static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+ 	return count;
  }
  
-+static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
-+						const char *con_id, void *data,
-+						devcon_match_fn_t match,
-+						void **matches,
-+						unsigned int matches_len)
-+{
-+	struct fwnode_handle *node;
-+	struct fwnode_handle *ep;
-+	unsigned int count = 0;
-+	void *ret;
-+
-+	fwnode_graph_for_each_endpoint(fwnode, ep) {
-+		if (matches && count >= matches_len) {
-+			fwnode_handle_put(ep);
-+			break;
-+		}
-+
-+		node = fwnode_graph_get_remote_port_parent(ep);
-+		if (!fwnode_device_is_available(node)) {
-+			fwnode_handle_put(node);
-+			continue;
-+		}
-+
-+		ret = match(node, con_id, data);
-+		fwnode_handle_put(node);
-+		if (ret) {
-+			if (matches)
-+				matches[count] = ret;
-+			count++;
-+		}
-+	}
-+	return count;
-+}
-+
- static void *
- fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
- 		    void *data, devcon_match_fn_t match)
-@@ -1223,6 +1257,37 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
- 	return NULL;
- }
+-static void *
+-fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+-		    void *data, devcon_match_fn_t match)
+-{
+-	struct fwnode_handle *node;
+-	void *ret;
+-	int i;
+-
+-	for (i = 0; ; i++) {
+-		node = fwnode_find_reference(fwnode, con_id, i);
+-		if (IS_ERR(node))
+-			break;
+-
+-		ret = match(node, NULL, data);
+-		fwnode_handle_put(node);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	return NULL;
+-}
+-
+ static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+ 					  const char *con_id, void *data,
+ 					  devcon_match_fn_t match,
+@@ -1303,16 +1256,18 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+ 				   const char *con_id, void *data,
+ 				   devcon_match_fn_t match)
+ {
++	unsigned int count;
+ 	void *ret;
  
-+static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
-+					  const char *con_id, void *data,
-+					  devcon_match_fn_t match,
-+					  void **matches,
-+					  unsigned int matches_len)
-+{
-+	struct fwnode_handle *node;
-+	unsigned int count = 0;
-+	unsigned int i;
-+	void *ret;
-+
-+	for (i = 0; ; i++) {
-+		if (matches && count >= matches_len)
-+			break;
-+
-+		node = fwnode_find_reference(fwnode, con_id, i);
-+		if (IS_ERR(node))
-+			break;
-+
-+		ret = match(node, NULL, data);
-+		fwnode_handle_put(node);
-+		if (ret) {
-+			if (matches)
-+				matches[count] = ret;
-+			count++;
-+		}
-+	}
-+
-+	return count;
-+}
-+
- /**
-  * fwnode_connection_find_match - Find connection from a device node
-  * @fwnode: Device node with the connection
-@@ -1250,3 +1315,47 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
- 	return fwnode_devcon_match(fwnode, con_id, data, match);
+ 	if (!fwnode || !match)
+ 		return NULL;
+ 
+-	ret = fwnode_graph_devcon_match(fwnode, con_id, data, match);
+-	if (ret)
++	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match, &ret, 1);
++	if (count)
+ 		return ret;
+ 
+-	return fwnode_devcon_match(fwnode, con_id, data, match);
++	count = fwnode_devcon_matches(fwnode, con_id, data, match, &ret, 1);
++	return count ? ret : NULL;
  }
  EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
-+
-+/**
-+ * fwnode_connection_find_matches - Find connections from a device node
-+ * @fwnode: Device node with the connection
-+ * @con_id: Identifier for the connection
-+ * @data: Data for the match function
-+ * @match: Function to check and convert the connection description
-+ * @matches: (Optional) array of pointers to fill with matches
-+ * @matches_len: Length of @matches
-+ *
-+ * Find up to @matches_len connections with unique identifier @con_id between
-+ * @fwnode and other device nodes. @match will be used to convert the
-+ * connection description to data the caller is expecting to be returned
-+ * through the @matches array.
-+ * If @matches is NULL @matches_len is ignored and the total number of resolved
-+ * matches is returned.
-+ *
-+ * Return: Number of matches resolved, or negative errno.
-+ */
-+int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
-+				   const char *con_id, void *data,
-+				   devcon_match_fn_t match,
-+				   void **matches, unsigned int matches_len)
-+{
-+	unsigned int count_graph;
-+	unsigned int count_ref;
-+
-+	if (!fwnode || !match)
-+		return -EINVAL;
-+
-+	count_graph = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
-+						  matches, matches_len);
-+
-+	if (matches) {
-+		matches += count_graph;
-+		matches_len -= count_graph;
-+	}
-+
-+	count_ref = fwnode_devcon_matches(fwnode, con_id, data, match,
-+					  matches, matches_len);
-+
-+	return count_graph + count_ref;
-+}
-+EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
-diff --git a/include/linux/property.h b/include/linux/property.h
-index fc24d45632eb..a5b429d623f6 100644
---- a/include/linux/property.h
-+++ b/include/linux/property.h
-@@ -451,6 +451,11 @@ static inline void *device_connection_find_match(struct device *dev,
- 	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
- }
- 
-+int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
-+				   const char *con_id, void *data,
-+				   devcon_match_fn_t match,
-+				   void **matches, unsigned int matches_len);
-+
- /* -------------------------------------------------------------------------- */
- /* Software fwnode support - when HW description is incomplete or missing */
  
 -- 
 2.35.1
