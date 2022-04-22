@@ -2,396 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3289D50BD86
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF68750BD8E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 18:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1449860AbiDVQwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 12:52:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50158 "EHLO
+        id S1449867AbiDVQyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 12:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1449836AbiDVQwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:52:22 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253945F8DC
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 09:49:28 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id i20so15509633ybj.7
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 09:49:28 -0700 (PDT)
+        with ESMTP id S1449871AbiDVQyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 12:54:20 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0512D5F8DE;
+        Fri, 22 Apr 2022 09:51:26 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id y32so15294134lfa.6;
+        Fri, 22 Apr 2022 09:51:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yjyLuNFV4sqz/6Z5vCk0BquB2BUmGkkNwZpzUE7yayc=;
-        b=NtuKuR9ejemQ0Vbhk022ozJzoN15S796zqY5kgkmqgh6HhdelrBgcjSgK1k9bJTUeU
-         qAX5HUlKUr0VW3Z7IRW9qQNyKnSrlEEmphawhq+/XXaJXZ5bzQyITUIQq5A25JcMsdXd
-         9Vc+b5SzYFyBzlXLCZQzXncxo/aEo9dmbXP8+94K8cH8tjsWFSdbGQiMEO7jn2ixHC++
-         PTLxiKs+YoPEA8ZZQwVNL/r+5Fx/s7WWheIsrekxPAxC2VirHqN2dieFniKqZ7/VnejI
-         DyLcnJ0pBcwo7QY2WU4HaPsGvCRsVR9RuBxG8Cxsg/0BHOiDXg4Uh2Liehyk8AKrXJ82
-         uiKQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=99hspxuLODhQpov2wjpLVe38h5x1eJYakvWm7x8e6iI=;
+        b=F23kF0eGH2ZVB+UGEjmW9/zKmFnzoAMLghAwzApvwMCcMhtBG9yJPpY4U1QzTxgJqh
+         dlRXZHbEg3zZ7nY0RRV+8fUOu1XkZkXeqKyrW16n02fiZBATqOd2CzVkTaqbBEsKlX+6
+         r6aK5PoP5QLM42PK/aLq8s/VUKQChEmq/ezbmXtxZxY1a/RDaoMGUVuns/+Ft+exgVHV
+         qbfu1h52HdfRiNt9rNvFnhuiPOsYt6N8H7gak3I0DBjmtU3G2m7PdaKAunzdkWOdWVMV
+         ovHh6R/nKxeNIZ67iu83BqdSWGokrQ3h7RK4/vcpMr2+xi4nqmoXe2TQmCa8LS8q13oq
+         2CTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yjyLuNFV4sqz/6Z5vCk0BquB2BUmGkkNwZpzUE7yayc=;
-        b=ZmLnE+qtTbZ8eOmey6FSYxRQfYBxoguJg17dE53pnI1KwxRmi40ICAB2ztGNsdxq02
-         /jCFfAYnwNRQlfIQMLx4NBDR4SdITF3ka2wx39hw9S3xBuCmq+nVs7WNratSEz9Cz/ka
-         LzV0WB+3t36t2Kvd5hIawSjPve1oIKIL1jYNdtTLbExaGNTRP8y+YYFE5wM76/y+M/MJ
-         XP43F88aB5qsq/zvnsCUpKxywXRGgPTVFCVXef7YXiZBj8Qztvu5Adpp9D3eB9iFoYNg
-         HdtVX9WYVQiG+zHi0NUBX81KK2oKXrB2aN2SgzVtkCk7JpY4zfFYfngfWxFdNfDxAH+a
-         Rpyw==
-X-Gm-Message-State: AOAM531sMXjAaqPetHm6EZCCjFnfBQH/ETnW9ryrOw0b2mM2LGwPws9A
-        yVbCH6fTW0MD0rW91aKpkC9tk3/3poo1UDor0KEWvCXSoAU=
-X-Google-Smtp-Source: ABdhPJwy2xeRF63SDT0AhX59gghBPDPyHcSHhZA6XKRkTCrbOimvg+nahXvjrYYDANXbKLK5Gf9/epRz2Ei1gMsmB6A=
-X-Received: by 2002:a25:d507:0:b0:63d:a541:1a8c with SMTP id
- r7-20020a25d507000000b0063da5411a8cmr5548591ybe.92.1650646167265; Fri, 22 Apr
- 2022 09:49:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220422114841.1854138-1-dmitry.baryshkov@linaro.org>
- <20220422114841.1854138-2-dmitry.baryshkov@linaro.org> <cbc35460-9ca0-0caa-7e7e-8458ec0b8f36@linaro.org>
-In-Reply-To: <cbc35460-9ca0-0caa-7e7e-8458ec0b8f36@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 22 Apr 2022 19:49:16 +0300
-Message-ID: <CAA8EJprvk8kt-Vq5WdeMqqZGJpMN5N9AaAAG1xp=pGM+EQF9Fw@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: pci/qcom,pcie: convert to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=99hspxuLODhQpov2wjpLVe38h5x1eJYakvWm7x8e6iI=;
+        b=6FY5FYnS1St3K6vtckp1HCF1HGA1h0gC6c3GI822TaqBEt8EaDzH3TVjK0adfUOrpU
+         N9Kl6EK/7nsZ3YV2J5O3ILtHk6KP21R1wP5DPrIBejLHmVAPHeRm028ZWM2SmLED3sh+
+         x572An9S5Il2udEBGz35WI6rg9KB/j/3Y269m8uEcRFcOwq6/ywtYCpj5/mH3Mc1z6Qx
+         1Ebr/EecZXzsa8wE38ZAj2BV6FTa6GoRZGOCzGhaCO8mkMsnoEz+S2VrdWV+Wxi90rhy
+         Uywi66LCGs7PFxsfKmfwet8vJZYoXajEoyrLjydT2pVw9AtuavFuql2IchOH3PoEY7/e
+         5XHA==
+X-Gm-Message-State: AOAM530eKJjkjhIWXv10iTEK+8ecxWsWc/DPqGLjkcs/91PzgSgPLIRK
+        dlqmigfP0qJpRAMUCGezkn0=
+X-Google-Smtp-Source: ABdhPJxHzbye4XRLnSvBlQObswNpXjTS3XrDqE1jJLqg0maTMcfec1EnyxM49kxDQRnXmTUAz/llKg==
+X-Received: by 2002:a05:6512:499:b0:46f:d419:a19b with SMTP id v25-20020a056512049900b0046fd419a19bmr3576799lfq.654.1650646284247;
+        Fri, 22 Apr 2022 09:51:24 -0700 (PDT)
+Received: from otyshchenko.router ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id n2-20020a056512310200b0046e2f507a3asm279742lfb.167.2022.04.22.09.51.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 22 Apr 2022 09:51:23 -0700 (PDT)
+From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
+To:     xen-devel@lists.xenproject.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>
+Subject: [PATCH V1 4/6] dt-bindings: Add xen,dev-domid property description for xen-grant DMA ops
+Date:   Fri, 22 Apr 2022 19:51:01 +0300
+Message-Id: <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1650646263-22047-1-git-send-email-olekstysh@gmail.com>
+References: <1650646263-22047-1-git-send-email-olekstysh@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 at 16:10, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/04/2022 13:48, Dmitry Baryshkov wrote:
-> > Changes to examples:
-> >  - Inline clock and reset numbers rather than including dt-bindings
-> >    files because of conflicts between the headers
-> >  - Split ranges properties to follow current practice
-> >
-> > Changes to the schema:
-> >  - Fixed the ordering of clock-names/reset-names according to
-> >    the dtsi files.
-> >  - Mark vdda-supply as required only for apq/ipq8064 (as it was marked
-> >    as generally required in the txt file).
-> >
-> > Note: while it was not clearly described in text schema, the majority of
-> > Qualcomm platforms follow the snps,dw-pcie schema and use two
-> > compatibility strings in the DT files: platform-specific one and a
-> > fallback to the generic snps,dw-pcie one. This will be sorted out in the
-> > next patches.
->
-> I don't get why you add snps,dw-pcie fallback here, even though original
-> bindings (except examples, which are not bindings) were not mentioning
-> it. Maybe just skip it?
+From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
-Ack, I'll squash the snps,dw-pcie patch into this one.
+Introduce Xen specific binding for the virtualized device (e.g. virtio)
+to be used by Xen grant DMA-mapping layer in the subsequent commit.
 
->
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../devicetree/bindings/pci/qcom,pcie.txt     | 397 ------------
-> >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 607 ++++++++++++++++++
-> >  2 files changed, 607 insertions(+), 397 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> >  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >
->
-> (...)
->
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > new file mode 100644
-> > index 000000000000..89a1021df9bc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > @@ -0,0 +1,607 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/qcom,pcie.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm PCI express root complex
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > +  - Stanimir Varbanov <svarbanov@mm-sol.com>
-> > +
-> > +description: |
-> > +  Qualcomm PCIe root complex controller is bansed on the Synopsys DesignWare
-> > +  PCIe IP.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - qcom,pcie-ipq8064
-> > +          - qcom,pcie-ipq8064-v2
-> > +          - qcom,pcie-apq8064
-> > +          - qcom,pcie-apq8084
-> > +          - qcom,pcie-msm8996
-> > +          - qcom,pcie-ipq4019
-> > +          - qcom,pcie-ipq8074
-> > +          - qcom,pcie-qcs404
-> > +          - qcom,pcie-sc8180x
-> > +          - qcom,pcie-sdm845
-> > +          - qcom,pcie-sm8250
-> > +          - qcom,pcie-sm8450-pcie0
-> > +          - qcom,pcie-sm8450-pcie1
-> > +          - qcom,pcie-ipq6018
-> > +      - const: snps,dw-pcie
-> > +
-> > +  reg:
-> > +    minItems: 4
-> > +    maxItems: 5
-> > +
-> > +  reg-names:
-> > +    minItems: 4
-> > +    maxItems: 5
-> > +    items:
-> > +      enum:
-> > +        - parf # Qualcomm specific registers
-> > +        - dbi # DesignWare PCIe registers
-> > +        - elbi # External local bus interface registers
-> > +        - config # PCIe configuration space
-> > +        - atu # ATU address space (optional)> +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: "msi"
-> > +
-> > +  clocks: true
->
-> min/maxItems
->
-> same for clock-names
->
-> > +
-> > +  vdda-supply:
-> > +    description: A phandle to the core analog power supply
-> > +
-> > +  vdda_phy-supply:
-> > +    description: A phandle to the core analog power supply for PHY
-> > +
-> > +  vdda_refclk-supply:
-> > +    description: A phandle to the core analog power supply for IC which generates reference clock
-> > +
-> > +  vddpe-3v3-supply:
-> > +    description: A phandle to the PCIe endpoint power supply
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +
-> > +  phy-names:
-> > +    items:
-> > +      - const: "pciephy"
-> > +
-> > +  perst-gpio:
-> > +    description: GPIO pin number of PERST# signal
-> > +    maxItems: 1
-> > +    deprecated: true
->
-> Old binding did not have it.
+This binding indicates that Xen grant mappings scheme needs to be
+enabled for the device which DT node contains that property and specifies
+the ID of Xen domain where the corresponding backend resides. The ID
+(domid) is used as an argument to the grant mapping APIs.
 
-Ack, dropping.
+This is needed for the option to restrict memory access using Xen grant
+mappings to work which primary goal is to enable using virtio devices
+in Xen guests.
 
->
-> > +
-> > +  perst-gpios:
-> > +    description: GPIO controlled connection to PERST# signal
-> > +    maxItems: 1
-> > +
->
-> You miss here power-domains, resets and reset-names with min/maxItems.
+Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+---
+Changes RFC -> V1:
+   - update commit subject/description and text in description
+   - move to devicetree/bindings/arm/
+---
+ .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
 
-power-domains are described later in the non-8064 cases.
+diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+new file mode 100644
+index 00000000..ef0f747
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xen specific binding for the virtualized device (e.g. virtio)
++
++maintainers:
++  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
++
++select: true
++
++description:
++  This binding indicates that Xen grant mappings scheme needs to be enabled
++  for that device and specifies the ID of Xen domain where the corresponding
++  device (backend) resides. This is needed for the option to restrict memory
++  access using Xen grant mappings to work.
++
++properties:
++  xen,dev-domid:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The domid (domain ID) of the domain where the device (backend) is running.
++
++additionalProperties: true
++
++examples:
++  - |
++    virtio_block@3000 {
++            compatible = "virtio,mmio";
++            reg = <0x3000 0x100>;
++            interrupts = <41>;
++
++            /* The device is located in Xen domain with ID 1 */
++            xen,dev-domid = <1>;
++    };
+-- 
+2.7.4
 
-Will add everything here.
-
->
-> > +  wake-gpio:
-> > +    description: GPIO pin number of WAKE# signal
-> > +    maxItems: 1
-> > +    deprecated: true
->
-
-Ack dropping.
-
->
-> > +
-> > +  wake-gpios:
-> > +    description: GPIO controlled connection to WAKE# signal
-> > +    maxItems: 1
-> > +
-> > +  iommu-map: true
-> > +  iommu-map-mask: true
->
-> Not present in old binding. If this is trully needed, mention it in
-> commit msg.
-
-They are used on newer platforms. Will mention it.
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - interrupt-names
->
-> What about interrupt-cells, clocks, clock-names, resets, reset-names?
-
-Ugh. Missed them, adding back.
-
->
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,pcie-apq8064
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 3
-> > +          maxItems: 3
-> > +        clock-names:
-> > +          items:
-> > +            - const: core # Clocks the pcie hw block
-> > +            - const: iface # Configuration AHB clock
-> > +            - const: phy # Clocks the pcie PHY block
-> > +        resets:
-> > +          minItems: 5
-> > +          maxItems: 5
-> > +        reset-names:
-> > +          items:
-> > +            - const: axi # AXI reset
-> > +            - const: ahb # AHB reset
-> > +            - const: por # POR reset
-> > +            - const: pci # PCI reset
-> > +            - const: phy # PHY reset
->
-> Missing required properties e.g. some supplies.
-
-Ok, I'll merge all apq8064 and ipq8064 entries into a single if/then condition.
-
-> Plus one blank line.
->
-> The same applies below to other ifs.
->
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,pcie-ipq8064
-> > +              - qcom,pcie-ipq8064v2
->
-> (...)
->
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    pcie@1b500000 {
-> > +      compatible = "qcom,pcie-ipq8064", "snps,dw-pcie";
-> > +      reg = <0x1b500000 0x1000
-> > +             0x1b502000 0x80
-> > +             0x1b600000 0x100
-> > +             0x0ff00000 0x100000>;
->
-> Convert the example to match current bindings, so reg should be split.
-
-I wonder why the dt_bindings check didn't warn me about it.
-
->
-> > +      reg-names = "dbi", "elbi", "parf", "config";
-> > +      device_type = "pci";
-> > +      linux,pci-domain = <0>;
-> > +      bus-range = <0x00 0xff>;
-> > +      num-lanes = <1>;
-> > +      #address-cells = <3>;
-> > +      #size-cells = <2>;
-> > +      ranges = <0x81000000 0 0 0x0fe00000 0 0x00100000>,
-> > +               <0x82000000 0 0 0x08000000 0 0x07e00000>;
-> > +      interrupts = <GIC_SPI 238 IRQ_TYPE_NONE>;
->
-> Looks like wrong IRQ flag.
-
-Ack
-
->
-> > +      interrupt-names = "msi";
-> > +      #interrupt-cells = <1>;
-> > +      interrupt-map-mask = <0 0 0 0x7>;
-> > +      interrupt-map = <0 0 0 1 &intc 0 36 IRQ_TYPE_LEVEL_HIGH>,
-> > +                      <0 0 0 2 &intc 0 37 IRQ_TYPE_LEVEL_HIGH>,
-> > +                      <0 0 0 3 &intc 0 38 IRQ_TYPE_LEVEL_HIGH>,
-> > +                      <0 0 0 4 &intc 0 39 IRQ_TYPE_LEVEL_HIGH>;
-> > +      clocks = <&gcc 41>,
-> > +               <&gcc 43>,
-> > +               <&gcc 44>,
-> > +               <&gcc 42>,
-> > +               <&gcc 248>;
-> > +      clock-names = "core", "iface", "phy", "aux", "ref";
-> > +      resets = <&gcc 27>,
-> > +               <&gcc 26>,
-> > +               <&gcc 25>,
-> > +               <&gcc 24>,
-> > +               <&gcc 23>,
-> > +               <&gcc 22>;
-> > +      reset-names = "axi", "ahb", "por", "pci", "phy", "ext";
-> > +      pinctrl-0 = <&pcie_pins_default>;
-> > +      pinctrl-names = "default";
-> > +      vdda-supply = <&pm8921_s3>;
-> > +      vdda_phy-supply = <&pm8921_lvs6>;
-> > +      vdda_refclk-supply = <&ext_3p3v>;
-> > +    };
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    pcie@fc520000 {
-> > +      compatible = "qcom,pcie-apq8084", "snps,dw-pcie";
-> > +      reg = <0xfc520000 0x2000>,
-> > +            <0xff000000 0x1000>,
-> > +            <0xff001000 0x1000>,
-> > +            <0xff002000 0x2000>;
-> > +      reg-names = "parf", "dbi", "elbi", "config";
-> > +      device_type = "pci";
-> > +      linux,pci-domain = <0>;
-> > +      bus-range = <0x00 0xff>;
-> > +      num-lanes = <1>;
-> > +      #address-cells = <3>;
-> > +      #size-cells = <2>;
-> > +      ranges = <0x81000000 0 0          0xff200000 0 0x00100000>,
-> > +               <0x82000000 0 0x00300000 0xff300000 0 0x00d00000>;
-> > +      interrupts = <GIC_SPI 243 IRQ_TYPE_NONE>;
->
-> Ditto.
-
-Ack
-
-
---
-With best wishes
-Dmitry
