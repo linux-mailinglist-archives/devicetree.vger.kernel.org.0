@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B182450BE8D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3617950BE89
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231312AbiDVR2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 13:28:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47644 "EHLO
+        id S230449AbiDVR1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 13:27:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231422AbiDVR2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:28:07 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449356174;
-        Fri, 22 Apr 2022 10:25:07 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id z2so9764784oic.6;
-        Fri, 22 Apr 2022 10:25:07 -0700 (PDT)
+        with ESMTP id S230336AbiDVR1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:27:53 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5941D3736;
+        Fri, 22 Apr 2022 10:24:51 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id e2so5741079wrh.7;
+        Fri, 22 Apr 2022 10:24:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lexdz5hngsBhmPhxr+sTw6q5KgJQRlPt5Z2EPIdm99Y=;
-        b=Zungingls9hmWdfS+naDCyI78V9iY7Kxhf998yiIEnbKfvh65fB5UCRIm2ZmWkr8w2
-         T1Dhsg8BkQoXpFnY4x/6vNroeCzYECnLuVeRWFTVf/ejjUMReASMLojXMqRFB3Mf/OVx
-         du6rJG+6BgML4bBFVVLuFhc8Hd3Rh3sXRLqkrouyoMYJNqwTDWdVGqmX1uPguJNvkRF7
-         li3P65TV6/0FVU4Q9SkA7FVKpsQQwAGVpczon4b77QPX4wge/3YAoTI8ZH+vP05XiFqy
-         jbqy0gdDKI8G0WCIL07AmY44NViEOwuDm7xkxsKIzo5/SDUENVATCrdHgX93ldB4sOnO
-         E5Ww==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xC6xYScRzKyY7Ku7pzr1NBkMX7NLxc7XsF8pApyXIHo=;
+        b=Q/218R6ozACViKCGt+eAOz9Nu+opl7iFUgLKn4+wewBSXlOtlcoIN3LwFbOmga/pt1
+         AluPoFH5YPAm9a/mkHBL/dtTYz4Yc5372KomAUsiTaKf9o8dtoE6/nEPKBrhl31QomuP
+         OHYO9Wq2i+DotLTvdgXsPLC+mcI7Zesjd9SGTqzJbK2570Td7a7r+QQf5efolrdM5/4D
+         tuS0dapolc2LPxUAEgCWKhB/ePXF6R0EW7tw3Mwkl2GH+CZsldOQLU3fGDKyl7tn9tWk
+         fVDevpCAg7G0N8glWr3gVD00PComT+I5oVdSR7YiPPdwsF2uWwm9vGMrTlAyaWN5TT0k
+         3NEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=lexdz5hngsBhmPhxr+sTw6q5KgJQRlPt5Z2EPIdm99Y=;
-        b=2Yx47Xg7nYEe3ymhxfhv+UZUkuYhswzz9iVhIMiCHXATGuCgOZMLXk3JZ6+9AIlzh9
-         dF9TTGxR1jNbqrikBSZDtGfNVjvXI0LM/dGVJwYYHYATDa5EE8wtqokxNWb/XwYi8lOR
-         AeUBKJIDwZgsMSo7SGWlueOIxmE8e43s+IjIHNLOyH/tn29xdBl3PTocNB9g3VNRq63Y
-         6exeFCveKkQA4QhrZpgfbzVUdrVp0cMKGjxeom3EP+3foeVxtQQtoR7/756czd/xPjC6
-         FW6I+z6ai/E0cRSdGq07mVoN+A3yHwfzr8cVRiZHwujUtD2DHrVMnx3CgDNQ87zP6hvY
-         oJlw==
-X-Gm-Message-State: AOAM532z+tN55npXU6/uv9XmP2ChAmrUvPqBl2YX2le5JUTGruT6w5BF
-        G+8vjgaeFLzJiwOXrAbRDufw8mXfZ+Q=
-X-Google-Smtp-Source: ABdhPJxMDJKIgmMcJcU/zvtD4vcC/XckcDFIRR7sN1EmVmwCkp085QTP+g0ejuORKvaEYxobPEHqNA==
-X-Received: by 2002:a17:90a:a82:b0:1c9:ef95:486 with SMTP id 2-20020a17090a0a8200b001c9ef950486mr17219039pjw.93.1650647702829;
-        Fri, 22 Apr 2022 10:15:02 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id d21-20020a056a0010d500b004fd9ee64134sm3166611pfu.74.2022.04.22.10.15.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 10:15:02 -0700 (PDT)
-Message-ID: <39f813e9-13d8-db15-1fcb-a93b27e46798@gmail.com>
-Date:   Fri, 22 Apr 2022 10:14:58 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xC6xYScRzKyY7Ku7pzr1NBkMX7NLxc7XsF8pApyXIHo=;
+        b=mbmuhB43VzrR1j2QIzeh5iqG1wMr9QrEw6c2ydxVQXjeSmQxWwOgihPQXfjk24qXVw
+         6NKX1NbFMtzXr5wyATsfcAqzgz0im5qcz8yRCgnpupywY6/jYr/dnEzx7U8IO9D83rpY
+         bSOQ0ozxNnZX1J3jUGH0yurvP8olAjA1mCJRO3jOm6s4KkVcCa7egv6EgfqHtzfJuJey
+         anTHjZzIkpTTU62KQgsBWfa7Sl82L506UKgotJJ/6u+vcwzPEPe/FJKdf5tqTZrRvzJj
+         zlzWi3v0MBeNuGOQy6hw7fciZyaugbQhJMLKsnZ7OYTfoNjrWfnGmuy44KGb9PalAwsl
+         RpfQ==
+X-Gm-Message-State: AOAM5301GrEUybiOU80k3VFc1Q7QvsHxpone5fyD0UoclBYFksDfOEPq
+        xpDuXyFB7drnZhWTaQl7rjg=
+X-Google-Smtp-Source: ABdhPJxk/X2jJZ6pOgPFkXfKeLM7Dg+F1l4m6NjKP1MkbsgCOJcSawdzNQyN8OCtg0xRhwFrMYSAuQ==
+X-Received: by 2002:adf:bd91:0:b0:209:19ac:7159 with SMTP id l17-20020adfbd91000000b0020919ac7159mr4440144wrh.3.1650648209602;
+        Fri, 22 Apr 2022 10:23:29 -0700 (PDT)
+Received: from orome ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id m1-20020a1ca301000000b003929c4bf250sm5048975wme.13.2022.04.22.10.23.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 10:23:28 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 19:23:26 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Hammer Hsieh <hammerh0314@gmail.com>
+Cc:     u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wells.lu@sunplus.com, hammer.hsieh@sunplus.com
+Subject: Re: [PATCH v4 0/2] Add PWM driver for Suplus SP7021 SoC
+Message-ID: <YmLkjriZCm+juYEP@orome>
+References: <1647945781-10191-1-git-send-email-hammerh0314@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/5] mmc: sdhci-brcmstb: Enable Clock Gating to save power
-Content-Language: en-US
-To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
-Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220421182803.6495-1-kdasu.kdev@gmail.com>
- <20220421182803.6495-4-kdasu.kdev@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220421182803.6495-4-kdasu.kdev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="PDxV6ewWHonbNhBw"
+Content-Disposition: inline
+In-Reply-To: <1647945781-10191-1-git-send-email-hammerh0314@gmail.com>
+User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,19 +73,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/21/22 11:28, Kamal Dasu wrote:
-> From: Al Cooper <alcooperx@gmail.com>
-> 
-> Enabling this feature will allow the controller to stop the bus
-> clock when the bus is idle. The feature is not part of the standard
-> and is unique to newer Arasan cores and is enabled with a bit in a
-> vendor specific register. This feature will only be enabled for
-> non-removable devices because they don't switch the voltage and
-> clock gating breaks SD Card volatge switching.
-> 
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+--PDxV6ewWHonbNhBw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Mar 22, 2022 at 06:42:59PM +0800, Hammer Hsieh wrote:
+> This is a patch series for PWM driver for Suplus SP7021 SoC.
+>=20
+> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+> many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
+> etc.) into a single chip. It is designed for industrial control.
+
+I just noticed as I was trying to do test builds that ARCH_SUNPLUS
+doesn't exist yet. Are there any plans to add those in the near future?
+
+I can always use COMPILE_TEST to do test build, but I like to also do
+proper builds because they sometimes flag things that COMPILE_TEST
+misses (like this one).
+
+Thierry
+
+--PDxV6ewWHonbNhBw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmJi5I4ACgkQ3SOs138+
+s6GIyBAAufn0SqDugjZ/SHA57bfeqkXYHC9QHBnh6YoNb4KViSPCGPaDTz0UeOEQ
+kTs9D5IKBhCsU1eD9lsiFgp2xkKFZ0jA8f3KG3m11rVrd2fuQA9tNU9h0zJm4mYl
+fU35TZYrVKWZwviSj2hgcyDHIS7uCsQczRIzzcAeSpisMICYJvjCM1jdEu6mKLwA
+sJxXQQL10ck7zxskTiyA7qDKlyVsPyJUzm998+D+v2hDqWh4BgvUBQhjYckNTwy2
+F76EVk/L5GmQNV5Ta9vI0xJo76BMUUrDISdsCG79FM0A0AXHs63nHGL9b4vaLScb
+OTh8QwnxtDkWKbRpECU/u56zM3eRRG+CVdogjnIKGSvJeEIW9ewHr6Dk5U+aLeld
+Y/NhVwV0mClXmMHmjlcTH96jslxbZJlg4V9flyP56Va7gv1+0FbdxYKiYrFB0A4z
+dT6XSG0hLaGKOvWT2Fw3ZOtwHn40ViHeO0+tMFxSToPeAtdkmX4bRqLO/2Ief4kO
+DRqdZz+sV8i0D4vAi69c9N5fKpzBPlXBoblFwFgWb/spI+dLXNV1CQ/xdxeHhZew
+AGQQZeZPZgPH1HL0jEJI0tjJEJ7XCH7m4bSu5nfeUMzpBDl4Z7ZncAGF6dwG4ozf
+c86uiEQ3MUvI46sItRsd79FBF3E9LJUYHWbLC5iExuZwNKEnVo8=
+=/3J5
+-----END PGP SIGNATURE-----
+
+--PDxV6ewWHonbNhBw--
