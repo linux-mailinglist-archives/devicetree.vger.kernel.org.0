@@ -2,132 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC9E50C309
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367CD50C41E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232289AbiDVWPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:15:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57976 "EHLO
+        id S233332AbiDVWlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:41:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232204AbiDVWPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:15:16 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD3323668D;
-        Fri, 22 Apr 2022 14:05:18 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id b17so6961114qvp.6;
-        Fri, 22 Apr 2022 14:05:18 -0700 (PDT)
+        with ESMTP id S233301AbiDVWjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:39:44 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C951F478C
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:30:57 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-e9027efe6aso2642690fac.10
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:30:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DpzKp6GQylN2DVn3Q8F44AaoMz54tuxDB2xUboNmmNk=;
-        b=pzvr3/UvSftncfosMfmgiWOYhMYbYHuIZTCgY5hDDTvmyy0dEedr9JVfuEeVSTpSm5
-         Wod5E9A0cF7e6X5SdVy8UQacTpGtFKdz/js8K/09qJ95ej2UAw2PGlDkrsu+YG2dXUGA
-         p/jEJQdqi+LBuQNomKnUI+S9NQyVkZ2ZnEbNnNiPIsX8T4w6VzABtzJx/TXysyHMCVQ+
-         ScUWgjAh3cPwFtBgN8jKf/CoS7zoCpT0JVr0YNB0YwEC8YxElSpInoxiPR7dP6Gy9x+x
-         Z2XHiikQMiTNKC8bErgRGi2i/cEQhRjtXly2a1DC44EwlTnp4zUihn+XzrUyE57MfFZT
-         LYeg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=U5kbOYIbw9W5idi/w7UWPQThlgNI5YFtm66gzqTVHwI=;
+        b=EosFqLT95BxHAVUXgvmDMUV5Lz2xaMtfJWrbZhJGacLzWlPy34JcgfMzn6ruT8Jsx1
+         /k/R+WO/a7/sW8WbwMoxUHuURYkIbCwrSeHhuFoEIigjXEhwSnf7lnkTrpCrS9B9b3oE
+         tysYeR6jkN+E5fSBIA12eW/xrV9n6zaAKHLeQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DpzKp6GQylN2DVn3Q8F44AaoMz54tuxDB2xUboNmmNk=;
-        b=N+dern6iTZrA/2UvQsr6Y52jn8zymardWbbx95HxpdlyZEHU0GjMAhiSiuBcWU6ygK
-         JvfCgYSLuYmROy/fJwQDjacL8Z26faSRt/7q+beB70rfc12J3+jrUYoa3of+uVgVOn8r
-         E0I3Cha8DP6onWwoH6uDGhYrXN0tjv0lYjfsOL/h4s6rAHmkmMnRct/kEU5pURDnwn+u
-         jLIR9LJuEdROgHTQH9jEsbxMhgu77xSQKO3yBuhhcTCkBSyEq0t6vd7LJxhqOmp1tFVj
-         /fsF/Urs+Z1Da7L6xRV5AHESN3hbjFZCoDcZ475N18TUP89AJOhbCYU+21J3cifOSl/X
-         tnWQ==
-X-Gm-Message-State: AOAM533V03zKTB0KHH5xciSahmWiExG0lVdxqoqtnCrR4CoYYoVLgztQ
-        L0rfaX+MxMSzwBqpHdHMyvbxV359xb7uLrvxjhSuX17I
-X-Google-Smtp-Source: ABdhPJyDTdfYVPmGi9JCDZSwQ3dGVcvDeC8/OPyjPu7IjhwDECkrHzuq3quIB48TTMhTBLoEclHmpE49GOqp3rGJBbM=
-X-Received: by 2002:ad4:5943:0:b0:446:5c3e:2c2a with SMTP id
- eo3-20020ad45943000000b004465c3e2c2amr4554955qvb.75.1650653101635; Fri, 22
- Apr 2022 11:45:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <BYAPR20MB24721F9954252BECBEF486ACBCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
-In-Reply-To: <BYAPR20MB24721F9954252BECBEF486ACBCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Fri, 22 Apr 2022 11:44:35 -0700
-Message-ID: <CA+E=qVfMm=8aQOM_HW_3EeqqLi-Fgn1Ex3h6kor89FQ0KfTvRw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: sun8i-thermal: add binding for
- R329 THS
-To:     icenowy@outlook.com
-Cc:     Yangtao Li <tiny.windzz@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=U5kbOYIbw9W5idi/w7UWPQThlgNI5YFtm66gzqTVHwI=;
+        b=r7nEeEiAaQ5whk4xjbjDeYbTe0JMx/6V1cEuzP6QRvxAx3FYWcmzToUHwhhZ1B66m4
+         BCKQSt5LFRpEFMQR9//GRXJsYTdMkeK+EQYapZJclmGKSUGXalrH7Wmn6q3HmQHd74MT
+         h2zjyTlSfWPS+CTJ+rGNHNhTirHmwXYL80rFbGTTACoyJbuiAQsYVyjEItYNx/9wC5fQ
+         k3VRobKv0r5XrNlutB/dS6FFQX9vqFbVwn9Xy9zaiHqA2GNfErrhOtJQLZc4we8D0fYz
+         ePOlCfTnceDsQIuR5A+vhrQJ4GouVlzfTpTdldbbQazLUn5axlv84VcKxfmvVf8mvhTn
+         H8qw==
+X-Gm-Message-State: AOAM5317YLwrlEfvMnqSoQStWV9N7G/f7bq83yDj8hrWt2W79Hn5KDAw
+        0OcORNvG0wn1Qa+/mU1oHn9cYva+Qb1YcQ==
+X-Google-Smtp-Source: ABdhPJzJ07qszw6srRpsPHUiNVf7zbKYzJ5hu40DkMqn2j3wMFLmW5tnu/Ucr3LTdOXuZO2YX+YXlg==
+X-Received: by 2002:a17:90a:d0c5:b0:1c9:ec78:18e5 with SMTP id y5-20020a17090ad0c500b001c9ec7818e5mr17636056pjw.53.1650653079678;
+        Fri, 22 Apr 2022 11:44:39 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:404c:8721:29:87a4])
+        by smtp.gmail.com with UTF8SMTPSA id ch10-20020a056a00288a00b0050a51a95e91sm3041025pfb.201.2022.04.22.11.44.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 11:44:38 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 11:44:36 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
         Linux PM <linux-pm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Icenowy Zheng <icenowy@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:ULTRA-WIDEBAND (UWB) SUBSYSTEM:" 
+        <linux-usb@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_kriskura@quicinc.com, quic_vpulyala@quicinc.com
+Subject: Re: [PATCH v14 2/7] PM / wakeup: Add device_children_wakeup_capable()
+Message-ID: <YmL3lMaR79wPMEfY@google.com>
+References: <1650395470-31333-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1650395470-31333-3-git-send-email-quic_c_sanm@quicinc.com>
+ <CAJZ5v0h2ZKPN6SERPnASPywZfeOWXWncJgNZ1WZa80+=M4DCiQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0h2ZKPN6SERPnASPywZfeOWXWncJgNZ1WZa80+=M4DCiQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 9:12 AM <icenowy@outlook.com> wrote:
->
-> From: Icenowy Zheng <icenowy@aosc.io>
->
-> R329 has a thermal sensor controller that has only one sensor, and the
-> structure of it is like the H6 one.
->
-> Add device tree binding for it.
->
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> ---
->  .../devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml  | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-> index 6e0b110153b0..87b4103e0a5f 100644
-> --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-> @@ -20,6 +20,7 @@ properties:
->        - allwinner,sun50i-a100-ths
->        - allwinner,sun50i-h5-ths
->        - allwinner,sun50i-h6-ths
-> +      - allwinner,sun50i-r329-ths
->
->    clocks:
->      minItems: 1
-> @@ -63,6 +64,7 @@ allOf:
->              enum:
->                - allwinner,sun50i-a100-ths
->                - allwinner,sun50i-h6-ths
-> +              - allwinner,sun50i-r329-ths
->
->      then:
->        properties:
-> @@ -85,6 +87,7 @@ allOf:
->          compatible:
->            contains:
->              const: allwinner,sun8i-h3-ths
-> +            const: allwinner,sun8i-r329-ths
->
->      then:
->        properties:
+On Fri, Apr 22, 2022 at 01:57:17PM +0200, Rafael J. Wysocki wrote:
+> On Tue, Apr 19, 2022 at 9:11 PM Sandeep Maheswaram
+> <quic_c_sanm@quicinc.com> wrote:
+> >
+> > From: Matthias Kaehlcke <mka@chromium.org>
+> >
+> > Add device_children_wakeup_capable() which checks whether the device itself
+> > or one if its descendants is wakeup capable.
+> 
+> device_wakeup_path() exists for a very similar purpose.
+> 
+> Is it not usable for whatever you need the new function introduced here?
 
-There's also a check at line #99 that requires clock, clock-names and
-resets properties for thermal sensors in other Allwinner SoCs. Are
-these not required for r329?
+I wasn't aware of it's function, there are no doc comments and the
+name isn't really self explanatory.
 
-Also are you planning to add a node for thermal sensor to r329 dtsi?
-
-
-> --
-> 2.35.1
->
+In a quick test device_wakeup_path() returned inconsistent values for the
+root hub, sometimes true, others false when a wakeup capable USB device was
+connected.
