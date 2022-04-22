@@ -2,88 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E92350C392
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 064A550C448
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233089AbiDVWf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:35:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
+        id S233385AbiDVWfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:35:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233207AbiDVWfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:35:08 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD212CB47C
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:27:31 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id j2so16797544ybu.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:27:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v4i3AmNv4FLK6btws/jh0kCSYBAa4f3ciHtxOpc3dZs=;
-        b=JRDatOGFzKK/uf+U50BmSx+6g4Pa7D170MDb5ReJoxJCi2YJ+O1LWcsk3ZR+cCBvOv
-         GbI3hNcEt8op7qRcvRwQ1rF5AX0KZrXSyqZ64VdMU5KrD7qR1RorXlZ7BdfS/vwlCh/u
-         mu0Nbnoz3MxCqG5idEmXqe7YNX3p+7DVU7y0VRUEwRAjMCgtMxMuM8yFYoIs7OpITDVV
-         NFr9xZzrgfbvZDJjyHfftICMW18Gae8pnfjA0n5Tq4hFDIEo2naboitBPARNTgAuA9wV
-         NLIyepcfEUNoedq5wC333803/JJ4N5AOBz2KgH3OzXG8wBAGvmI5B9QYV9q2Is2Q60Rq
-         2Edw==
+        with ESMTP id S233202AbiDVWf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:35:28 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE49B2CCB95;
+        Fri, 22 Apr 2022 14:28:00 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id e15-20020a9d63cf000000b006054e65aaecso6382645otl.0;
+        Fri, 22 Apr 2022 14:28:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v4i3AmNv4FLK6btws/jh0kCSYBAa4f3ciHtxOpc3dZs=;
-        b=EkqSfa+msbYPeafnQQA+sShwyOZ+QAoj0pAK4WuE/cMj/W6CkXl6gqtf4MD08C0hLE
-         1LwZraX2/c00AyBqxGslFNPeJMGTl2aqhmNK/3ygknYCzWKWmhP2RV+vPi2V22skFjG8
-         rR75tapI0ZmXZoG+xdtFS+7i4LDEdKGgJhwsurc0RDLhh6gbb0UG7+LJypYFEb7AfaDS
-         ItowPlhD4HQii5NQPm5Z13+AA4h7Pd7rVxhImuZapqIbdqxQHDCy0t90VRUkIfjdAk/i
-         NeIGrAEVm8rbhhMKpNXq47phbvxh6jTB/IALvetj3SSkwB1LAe1MR/R2Ql1o4tQWB5a9
-         pDeA==
-X-Gm-Message-State: AOAM531+vppHZXDGYrt7IXaGkJgUV7t2K+fVNVDr5DBDHe2TrgBsU5tT
-        m0YX889MpCy9b1wD47zmHU23vkjvUfqox1v0iyBKEg==
-X-Google-Smtp-Source: ABdhPJy5uOpR6QqOApr8JTXnRyyqvChXNpcmelnBXNb6YY6fm53l19ExMBperiDNdyr16+uDrBTu9QvaUkCjxxjaNPc=
-X-Received: by 2002:a5b:8c8:0:b0:641:e8de:a6f4 with SMTP id
- w8-20020a5b08c8000000b00641e8dea6f4mr6385815ybq.533.1650662851086; Fri, 22
- Apr 2022 14:27:31 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jaxMqNYGtR9/GKTe6XSZEtOnCayZXLADx5gspn1sMaU=;
+        b=F133HIy+xcswRSWGJVv71yrJ4Ga0GCxl6j4ha/9jpfxXfYx6RINEws9fkwoGq24qe/
+         MvpkqzAK1vg9GlGg6galfdz1X974TXTQHGbftX6kZ6sR9+X6g2n0DWGBvabPMmTWnwVl
+         IuPyugS5EiLBwgWIi/5avrjNsxLxhd5M2gASi1reu0DVMrkYYrhSLvLVHGPlL8Zmwlxw
+         JGk950IiSEMSQA3wcPNvLirJBaeWfKDT4D6FSUi3wxH6gGw1ODJMiX8OnrukGqFfYc8y
+         jOA98z59vIqMrNemM2OWKuzG90KkDTcpbxWYsNLTH4siD0R0BnDGor74wpxLm1W+P+Xl
+         iP8A==
+X-Gm-Message-State: AOAM531eGOmorAQMwx6fINeLe38YQkGNGo5CwKQa/X0fpCHpdYdz6heB
+        hrKQAhpsiQFNlWZbL/zujg==
+X-Google-Smtp-Source: ABdhPJyVlTpz8f4H1tIkdFIcTZaYs0+eqvGbNHOIUHnieRI58LSaZYbm5RhBLf4fkz2E5vAMRo2VXQ==
+X-Received: by 2002:a9d:5381:0:b0:605:777f:b65b with SMTP id w1-20020a9d5381000000b00605777fb65bmr2562755otg.189.1650662880236;
+        Fri, 22 Apr 2022 14:28:00 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v20-20020a056830141400b00604d7cb9bb1sm1196168otp.43.2022.04.22.14.27.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 14:27:59 -0700 (PDT)
+Received: (nullmailer pid 2836931 invoked by uid 1000);
+        Fri, 22 Apr 2022 21:27:58 -0000
+Date:   Fri, 22 Apr 2022 16:27:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 2/8] dt-bindings: nvmem: sfp: Add clock properties
+Message-ID: <YmMd3liryJlZRMuA@robh.at.kernel.org>
+References: <20220421175657.1259024-1-sean.anderson@seco.com>
+ <20220421175657.1259024-3-sean.anderson@seco.com>
+ <4a45db184fbadc278624571dfbeb5004@walle.cc>
 MIME-Version: 1.0
-References: <1650285427-19752-1-git-send-email-quic_srivasam@quicinc.com>
-In-Reply-To: <1650285427-19752-1-git-send-email-quic_srivasam@quicinc.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 22 Apr 2022 23:27:20 +0200
-Message-ID: <CACRpkdYuojrAdz1G_ePeuaEX1Q4hQah=nQuOuW=v0Ty_FOk0Ag@mail.gmail.com>
-Subject: Re: [PATCH v13 0/7] Add pin control support for lpass sc7280
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4a45db184fbadc278624571dfbeb5004@walle.cc>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 2:37 PM Srinivasa Rao Mandadapu
-<quic_srivasam@quicinc.com> wrote:
->
-> This patch series is to split lpass variant common pin control
-> functions and SoC specific functions and to add lpass sc7280 pincontrol support.
-> It also Adds dt-bindings for lpass sc7280 lpass lpi pincontrol.
->
-> Changes Since V12:
+On Thu, Apr 21, 2022 at 08:12:34PM +0200, Michael Walle wrote:
+> Am 2022-04-21 19:56, schrieb Sean Anderson:
+> > To program fuses, it is necessary to set the fuse programming time. This
+> > is determined based on the value of the platform clock. Add a clock
+> > property.
+> 
+> For some context: Sean was adding the SFP support in u-boot and
+> I referred him to this binding. I didn't need the clock to just
+> read the data. But Sean is right, we need the clock for the
+> programming. I was unaware of that. The binding is still yet to
+> be released with v5.18, thus I think it is still possible to make
+> the clock mandatory.
 
-Bjorn says he's happy so I applied this v13 version for v5.19.
-Any remaining nits can certainly be fixed in-tree.
+Please add this detail to the commit message. Otherwise, it looks like 
+an ABI break to make a new property required.
 
-Thanks for you tireless work on making this work the right way!
-
-Yours,
-Linus Walleij
+> 
+> > Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> 
+> Fixes: 6f9817cdcc82 ("dt-bindings: nvmem: add fsl,layerscape-sfp binding")
+> 
+> -michael
+> 
+> > ---
+> > 
+> >  .../bindings/nvmem/fsl,layerscape-sfp.yaml         | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> > b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> > index b7798e903191..54086f50157d 100644
+> > --- a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> > +++ b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+> > @@ -24,15 +24,29 @@ properties:
+> >    reg:
+> >      maxItems: 1
+> > 
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description:
+> > +      The SFP clock. Typically, this is the platform clock divided by
+> > 4.
+> > +
+> > +  clock-names:
+> > +    const: sfp
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - clock-names
+> > +  - clocks
+> > 
+> >  unevaluatedProperties: false
+> > 
+> >  examples:
+> >    - |
+> > +    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
+> >      efuse@1e80000 {
+> >          compatible = "fsl,ls1028a-sfp";
+> >          reg = <0x1e80000 0x8000>;
+> > +        clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+> > +                            QORIQ_CLK_PLL_DIV(4)>;
+> > +        clock-names = "sfp";
+> >      };
