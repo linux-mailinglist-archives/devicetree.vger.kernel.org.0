@@ -2,80 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D3EA50BA8E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 16:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E593350BA9C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 16:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1448886AbiDVOvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 10:51:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
+        id S1448596AbiDVOy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 10:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448896AbiDVOu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 10:50:59 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37C465C361;
-        Fri, 22 Apr 2022 07:48:05 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id bv16so11368059wrb.9;
-        Fri, 22 Apr 2022 07:48:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kszdO6wU0Mqq85Z4KS0Qv5qQ/jWZuPbQJLH0mbPBngY=;
-        b=ckimHfSHANKWUZV3VNpsoUCavtkIeyvi842IphJyJDXHazb6pz6QO69HxtEqvgVPGi
-         zumAINHBO2LlvtZM5M/MSFotIgPRrjYEWorlg7qKlvb2lguNYF8A0ktY8sU3TD0MQkV5
-         6J1q6l1l2ALaOrpIx0xccDzU+Jti7wY6R6NHPX/xyDl6Nj+kJ6mnqe/4Wppxn4Pub5n4
-         mGW7zNZEUp7hFZL2MUIeKS4RmOJvmzlmdud5eGqr4RpxswqyIJKWEyrx2pNiyTD+zmrQ
-         YbOwF6caCllB37Wq1zfBi3uSBB1fk56owycsj0buZuZru3OVC9zG3ZkMs+SLRP0OAB+I
-         ocTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kszdO6wU0Mqq85Z4KS0Qv5qQ/jWZuPbQJLH0mbPBngY=;
-        b=VYeS74LFehmN8X3DMTIzKjYAH5EL2LbZTGstoGmKeeVW/Tqko77g7lOL5TJF6lZYZt
-         WNTc2xgHk7UmWaYW2Fx6O0nE3BLlrnlhriUIjt9EmzLmnBcnoIDgtVKppXr3xyz4FyCD
-         gbV4jbwgfvLFEGGr7gBFIyjxdllRgx0TNA004tkWgeZb0lVje6oKq/395q/w9FkRar+S
-         T3f39eR2Qo2uBCyEmyh+iaL8/z5ePAQaSyWZxacfNJXyP5Zdha9nCcXoR+EjHjFjK4Z+
-         RFC1NJ80+AdRk9g5x3EhmP6WJBe1EGqywKzyfyj9NGBYM9NgheeEEbH+kFh95xGM4CSu
-         KnFw==
-X-Gm-Message-State: AOAM5303tKFWh5JteRt9RGbrPdxdbNz/2p2u/X7VjY76ByU94X4lRTtw
-        hUhWc5YX8+gMxa7VWaaPC31sQApLvT1WrA==
-X-Google-Smtp-Source: ABdhPJyCKTiS68ltMDOjoqogI8DPaUY5lhMrd/Ldxc9wQ1klvoy7rTcUWwqKZZR1Opu84lCAH6Zg6A==
-X-Received: by 2002:a05:6000:2cd:b0:20a:9403:1681 with SMTP id o13-20020a05600002cd00b0020a94031681mr4019160wry.474.1650638883804;
-        Fri, 22 Apr 2022 07:48:03 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id w4-20020a7bc104000000b0038eba17a797sm4603969wmi.31.2022.04.22.07.48.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 07:48:03 -0700 (PDT)
-Message-ID: <db89b86f-4b53-db99-8ec5-e4e469b02694@gmail.com>
-Date:   Fri, 22 Apr 2022 16:48:01 +0200
+        with ESMTP id S234257AbiDVOy5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 10:54:57 -0400
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140089.outbound.protection.outlook.com [40.107.14.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232BA5BE73;
+        Fri, 22 Apr 2022 07:52:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ld5cJjSp38MF2IY8yQz1wAw4lLFUl8fK2Js+a+wPtc64Up/Fbm/70zcomHMZTwxX4GvG8If5zm2SfJpHRXbsBRd+U5xlf6KqBYFgSMjMJ/FfQ/FiHHhlMn+X53uzf89JJdO8FiOrLQQwkBGCwMXyooBbA8ZGoXvxEKE76gHJ40cXot+MGJY393WgAPxjX/UEB4TwrONbVLeCH04RS81c+ci+Hh6UejWIaFCxN1IbeUTIKtah/UH40SkPbIi1GnPkPw15OolGwaEyM7hI1QLzTFjriyDfryBZ4skSpFaTYqDGEX3d6JnjMCCkKqbc4PJfaVxx48pA0H2XRzoeK0RxbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z5acmMh8E/k9GIyQ/ip6zzof7eVVQ/fSIPeYsb5C6vY=;
+ b=XeSDMyf6uhd/7BmNNt6nN65G2OJZN0EA8WpZd9fQzn1BUX9QFQM9SVMDhJvCr/3b4AGjWK87MUpEIm+5wVUkTWJJGhOnZ2c+iUxOUJmvIpV9McdLbS4hAmVvICdHln8qS0nq7VnCVgUReXsxROTZgGoZu08LS4DuqAvjHo0zNIwhMbN3sAR/3+ZUmByMW52eqJFPqGjKsFn2FydmCzj2KFFok3ED77aMFoZZLMXNrJz2CRPo6ZiJ/ydDO2d/Nyv61qCOgoRZwiVno/ZYAJaAld4QC+XBsNQe1zungK1wYEVmOzwi8hmiOzZqgVJTaDy/K/xllibNMG1xppvWZYn/ig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z5acmMh8E/k9GIyQ/ip6zzof7eVVQ/fSIPeYsb5C6vY=;
+ b=p9f1rdkIavN/xToq1O8XQpX4PKFNxoWdRp97RQufG7LaZRs72ITTrFxxwW382+T2sZ/S5rmamKIxH8i2x5jILo7KrKJp3hsLBypxqDn3+yyCCSiwIGzLePwJWdtcBrOM5cggGi38nujtJtnAzjSicYmwxZ092WgfX9vDrCRoBtP2BqLvS6DApxH/fV3lgVywNI6VcOa+FxuYOIewuxvYCr0T+qm7A5vuovEukYPYnXvBMi/FmP4kBIE10uN3pwxoa8NSKRUwFs6TfpkOb1YJm7F6a/gZXc60VDRs0AkcxYU4skmU8KHgp7Vq3US60uHjaM6a/J1++/RAYmSm0Sr9Xg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by DB6PR0302MB2792.eurprd03.prod.outlook.com (2603:10a6:4:af::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Fri, 22 Apr
+ 2022 14:51:58 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::714d:2b6:a995:51bd]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::714d:2b6:a995:51bd%4]) with mapi id 15.20.5186.015; Fri, 22 Apr 2022
+ 14:51:58 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        Sean Anderson <sean.anderson@seco.com>
+Subject: [PATCH v2 0/9] nvmem: sfp: binding updates and additions
+Date:   Fri, 22 Apr 2022 10:51:38 -0400
+Message-Id: <20220422145147.2210587-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.35.1.1320.gc452695387.dirty
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BL1PR13CA0065.namprd13.prod.outlook.com
+ (2603:10b6:208:2b8::10) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v14 0/2] Add basic SoC support for mediatek mt8195
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Henry Chen <henryc.chen@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
-References: <20220411022724.11005-1-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220411022724.11005-1-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: fb0591c1-b634-4445-587e-08da246fa6c7
+X-MS-TrafficTypeDiagnostic: DB6PR0302MB2792:EE_
+X-Microsoft-Antispam-PRVS: <DB6PR0302MB2792FB911E44CE05EBB5260E96F79@DB6PR0302MB2792.eurprd03.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dcwSF57eNxg3rBWCE1Nh0K9+OruggYDmal9CELw/y3233p3yjuAG8fyRYMHg+IBDkJtwVKPGV/bNR7c2n5hfx5AoH5EkRBGCXkIAeqhszT7yLPB/38N4vzNr8NarxLpwPgzNwmgiw7xCdmPpCLSZY6FJV3uR3otOBXPojpTg0U32pzLCRO4B8CKCB7jZalSWwjKRsootVPLH8tww2AlaM3oiuvWW2K+aP/NlIr3B5E1BnIIBz6iVkByp94bBcspWa1r+wqY3E+Vxo8rQLwoq9U+TatGVmkhCi5o/GdeRhJsc6dzxjEAnvvGqxhO7lRWahQ415xd27dSkojivDw0oU+yk2OjQ9/af8dAZ241nEqmBIBMlDsZwKtg8vz2uZSgWMMEw6eLuKOHgZnyLhqAKb1r5e40etjLMFhRpU02NiRMCjmR+rH8zZ6q4b1u5VwSHlTKlr//fiAhSs8QjKDj5OIRgitjzdRNH8ooJdBofUNZlKaV3nf503Cf4siuSTnADZuX8f5gD19RAfPprw1n5nypAaiMji2LCer4va3a6q2WOEIORVbsYIKLv/JRkTi/zrBMPBulAbPpGQzN8ACZrJ4mv8A4zuoLBFr8xlGvH7ty+GmaAz5TjpmwT+Tb4swLO7Ac0nIomz0/6cG8lGhqrrLvACls0rYZofFF/Shp/BnqCEYxjTSSkkasbG1B0d0w/67u7BdUeHgDwaFNFPXx3w2dsAZqNw2uxhJeir3OdwMZvwRMOngZ25oxNnJst+Im3mIc8ej1qX1ZcEsgGE5kThmVMRjUQ9dam0N/eUDjC9N8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(38350700002)(36756003)(966005)(6486002)(508600001)(186003)(38100700002)(52116002)(83380400001)(8676002)(4326008)(66556008)(66946007)(66476007)(6512007)(86362001)(6506007)(316002)(2616005)(8936002)(26005)(1076003)(107886003)(15650500001)(54906003)(44832011)(7416002)(6666004)(5660300002)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0N8XtmvG5brIvCrpT1aS2PsKrbztRyXr+N+33utao4M5uQ5YsLp5O/fYZr2g?=
+ =?us-ascii?Q?v3kEwocSQ3tc1U09flkaGRlczbXn+q22S5fupP/eZ+ChK8JfjRdwOv9KAYHE?=
+ =?us-ascii?Q?OlEr6OPDR9w4vvdcpzvuQ60/dNBQRIkqie5y8imeOxP4le4brYkfQkvtrbQ2?=
+ =?us-ascii?Q?xr3d7wPquaLuQcZrnEInkDp3tmQeG+9JO3BoH9sFx+JjwWLvf048ezR5gVHi?=
+ =?us-ascii?Q?5qbUeoesHi65Soq7MnpDo1pkMHga87FWqMfXlZsaWynxze77u94NYePv56QM?=
+ =?us-ascii?Q?ba8CcSigYoOu8VjRumEhZoAhjFFJtDNinMC0kmYMgSIMnEYLqI1EbciLXjiv?=
+ =?us-ascii?Q?iVGiszvQIS7tgBMctsfogq1hxwZHUoHlZJWJRjKpY4fBDackbw7NNWC1udm3?=
+ =?us-ascii?Q?djFzugvmdm/UYeVuPCtuo6Wbp9yfXTTpxjQ35liDy56CmLecGpL4i7YvK6OS?=
+ =?us-ascii?Q?OD8eftAt/hecwmD7esAkq6jmPc0ol/p07gBzTfMiBDv+3GGPnh2Brwo/8AkB?=
+ =?us-ascii?Q?HmDWPNr+MlyI+ow7ARc+tjFMkWS6/mwUsO8vq6RHKxqq2TVdWltEaptLQdLx?=
+ =?us-ascii?Q?IiN9SxIQ+c+kGMK5VZG76+iqeSI1qkirp2uCtq2xzt/4OfsHnc1Sx4qpS4vP?=
+ =?us-ascii?Q?oFo2KNl64P2559LTSDw10qypYovzCtlVGjC7YUwq4Dv6r8Jf2WNKm+f+01uZ?=
+ =?us-ascii?Q?txfSEL7rP1P9tNYl10guxfzN9lJKZVOe72m5mtF1U27Eb0ngZWjGuAj60AaN?=
+ =?us-ascii?Q?ghq326yZ07mHwmkQQrsmgG+tVVPkxl87NICeu3EzJqda8Vuwy7iH5zC72Bx5?=
+ =?us-ascii?Q?Q7ICep9vPFp5npNusdVQ8tMk3qFn6iLctphQPtO/o3HFrOH2zC9bSPE2+hGJ?=
+ =?us-ascii?Q?RIaL1LKxf8RVtGPUAd/rNuNer0DzrBRI6mFVNCCXmxGcSAwKATFSsAr5k0Et?=
+ =?us-ascii?Q?rREHUeYEIsA7/2yEooUb1W0LGPMgH3jBF1+OWd2i1R47EkEn5OIkWkOR/aY+?=
+ =?us-ascii?Q?52sIdb4e1cHNi3u6lgzO5YU32Rhs8luNvJUh+0T9pQGpE/D2OJ3Bi4wBMRY5?=
+ =?us-ascii?Q?wNoC3eM2DqA1vDybzNYhFzFY1/4L7Mp8E1qPZ8Cp+xGQWsojpCFcz7+hVxHt?=
+ =?us-ascii?Q?cb0mTSDMUxbzzMUe28vSq8Qjo9x8VKwBCrv/K2U7hBr+LxJqoPBRzvv8bl2v?=
+ =?us-ascii?Q?yiuU7+0JF5YwtDl9Saw7pE/KdUiVJgzEM6DuCKPz+DgAJH8GFgWP2oQmIerZ?=
+ =?us-ascii?Q?EB2w/k4UK6l6U5O4L86C8PwBiEAYz+KhVB+hTgd3g9uLRxexP8k2pAZCNDaG?=
+ =?us-ascii?Q?WTPGUxoluqSzFTpiMKNxxZ6axS6tJWJQILQPsWZQR5esr0UI+h4XLYsikdGT?=
+ =?us-ascii?Q?a5QAi+KCbE18naYmjU5LGSeu7xxM+z5JPYBsjPeTeaPYClY8Oh8wP/e6Nq7x?=
+ =?us-ascii?Q?bnQEM5OumDsNqCVQsX7raaXK7+KS1GagPKc9tEWp8UynUtR05uRjk+tSNOzh?=
+ =?us-ascii?Q?0F9mXAZ6Tyz0Iy3fRYerH9x/Zyzb98i5nL//MPtGyDeqDHiljylwBmyhINa7?=
+ =?us-ascii?Q?ydf7ntsCU2r1k/ovdljfc9wvG8hDbuN5yMXyewduPmql/gVdDUBwgP9pXSe2?=
+ =?us-ascii?Q?s2q4ssQgKPW72kHZZn8WH14dpR/yqwy0JmqF0kJVlgtaJusUr+NmYtmU7kTH?=
+ =?us-ascii?Q?ksrjxXHa8SrKCetqRIvjpqciNwb2m6mPjv1vP1XHEVs41OnMmybnqBdzzKSa?=
+ =?us-ascii?Q?3YJLR1Sw0cULjVDl4Y4qrxDqcWRxM30=3D?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb0591c1-b634-4445-587e-08da246fa6c7
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2022 14:51:58.6273
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: psDzt+jQ+7/ZK+EAFcBjHx1bB0SYmK7rDPGnziFCGmUsshD/z548Pttfr5jPfmKo1EsmNzp5T5bPLrMRWHWgMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0302MB2792
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,99 +118,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds several properties to the Layerscape Security Fuse Processor
+(SFP) necessary for writing. Although the Linux driver does not use
+these bindings, I plan to use them in U-Boot [1]. It also adds a new
+compatibles for Trust Architecture (TA) 2.1 devices. In addition, it
+also adds an SFP binding for all TA 2.1 and 3.0 devices.
 
+[1] https://lore.kernel.org/u-boot/7c8e206a-cd40-2a77-6282-7f4bead2b13a@seco.com/T/#m591f8425b6f096ab3d54e6f7bd258e41cfa4c43b
 
-On 11/04/2022 04:27, Tinghan Shen wrote:
-> This series adds basic SoC support for Mediatek's SoC MT8195.
+Changes in v2:
+- Mention "regulator" in the description for ta-prog-sfp-supply
+- Convert sfp driver to use regmap
+- Fix various typos in commit messages
 
-Both patches applied to their respective branches.
+Sean Anderson (9):
+  dt-bindings: nvmem: sfp: Fix typo
+  dt-bindings: nvmem: sfp: Add clock properties
+  dt-bindings: nvmem: sfp: Add TA_PROG_SFP supply
+  dt-bindings: nvmem: sfp: Add compatible binding for TA 2.1 SFPs
+  arm64: dts: ls1028a: Update SFP binding to include clock
+  ARM: dts: layerscape: Add SFP binding for TA 2.1 devices
+  ARM: dts: Add SFP binding for TA 3.0 devices
+  nvmem: sfp: Use regmap
+  nvmem: sfp: Add support for TA 2.1 devices
 
-Thanks!
+ .../bindings/nvmem/fsl,layerscape-sfp.yaml    | 30 ++++++++++++++--
+ arch/arm/boot/dts/ls1021a.dtsi                |  7 ++++
+ .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi |  8 +++++
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  5 ++-
+ .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi |  8 +++++
+ .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |  8 +++++
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  8 +++++
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi |  8 +++++
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  8 +++++
+ drivers/nvmem/Kconfig                         |  1 +
+ drivers/nvmem/layerscape-sfp.c                | 36 ++++++++++++++-----
+ 11 files changed, 115 insertions(+), 12 deletions(-)
 
-> 
-> ---
-> Changes in v14:
->    - update pwrap dt-bindings
->      this patch is picked from 20220411014121.15015-2-zhiyong.tao@mediatek.com
->    - enable u3phy2 and u3phy3 in evb dts
-> Changes in v13:
->    - add more description of reg items in mtk-sd.yaml
-> Changes in v12:
->    - update mtk-sd.yaml to extend reg property and fix yamllint error
->    - add xhci nodes and move xhci3 property (usb2-lpm-disable) to evb.dts
-> Changes in v11:
->    - rebase on 5.17-rc4
-> Changes in v10:
->    - clean CC list
-> Changes in v9:
->    - remove duplicated cpus dt-bindings patch in v8
-> Changes in v8:
->    - v7 mediatek,spi-mtk-nor.yaml patch is applied in branch for-5.17 at
->      kernel/git/broonie/spi.git
->    - v7 pinctrl-mt8195.yaml patch is applied in branch for-next at
->      kernel/git/linusw/linux-pinctrl.git
->    - add cortex-a78 compatible to cpus dt-bindings
->    - add mediatek,drive-strength-adv property to pinctrl dt-bindings
->    - fix evb dts
->      - remove i2c nodes with disabled status from dts
->      - fix pin properties not match pinctrl dt-bindings
->      - remove unnecessary u3port*
->    - fix dtsi
->      - fix node format
->      - reorder oscillator* nodes
->      - fix node name of cpu idle nodes
->      - remove clock-frequency property in the timer node
->      - reorder clock and clock names in usb nodes
-> Changes in v7:
->    - refine title of spi-nor dt-bindings patch
->    - refine commit message of pinctrl dt-bindings patch
->    - update pinctrl-mt8195.yaml
->      - change property pattern from 'pins' to '^pins'
->      - update examples with new property in descriptions
->      - add new example
->    - drop '_' from node names of pinctrl subnodes in mt8195-evb.dts
-> Changes in v6:
->    - rebase on 5.16-rc1
->    - add new clock name to spi-nor dt-bindings
->    - add "pins" property in pinctrl dt-bindings
->    - fix fails of dtbs_checks
->      - remove "arm,armv8" not matched in yaml from cpu compatile
->      - fix node name of xhci
->      - remvoe xhci upstreaming wakeup properties
->      - remove xhci unused properties address-cells and size-cells
->      - fix node name of ufs-phy
->      - fix node name of spi-nor
->      - fix node name and sub-nodes of pinctrl
->      - fix mmc compatible
-> Changes in v5:
->    - enable basic nodes in mt8195-evb.dts
->    - remove dedicated clock nodes
->    - add mmc2 node
->    - fix interrupt number of pinctrl node
->    - update clock nodes to apply internal fixes
->    - add dt-bindings for perficfg node
-> 
-> v4 thread:
-> https://lore.kernel.org/all/20210922093303.23720-2-seiya.wang@mediatek.com/
-> v3 thread:
-> https://lore.kernel.org/all/20210601075350.31515-2-seiya.wang@mediatek.com/
-> v2 thread:
-> https://lore.kernel.org/all/20210319023427.16711-10-seiya.wang@mediatek.com/
-> v1 thread:
-> https://lore.kernel.org/all/20210316111443.3332-11-seiya.wang@mediatek.com/
-> ---
-> 
-> Tinghan Shen (1):
->    arm64: dts: Add mediatek SoC mt8195 and evaluation board
-> 
-> Zhiyong.Tao (1):
->    dt-bindings: pwrap: mediatek: fix pwrap document for mt8195
-> 
->   .../bindings/soc/mediatek/pwrap.txt           |   10 +-
->   arch/arm64/boot/dts/mediatek/Makefile         |    1 +
->   arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  181 +++
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 1045 +++++++++++++++++
->   4 files changed, 1232 insertions(+), 5 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> 
+-- 
+2.35.1.1320.gc452695387.dirty
+
