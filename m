@@ -2,360 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDCCE50C3E9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12AFF50C3BE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233545AbiDVW6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51622 "EHLO
+        id S233712AbiDVWxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234245AbiDVW5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:57:43 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5463766B5
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:59 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-e604f712ecso10045465fac.9
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:21:59 -0700 (PDT)
+        with ESMTP id S233726AbiDVWxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:53:21 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB77A1999F1
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:32:45 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id y21so5870462wmi.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 15:32:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YfdyUeRBKR7/kufYH33kid5tsUaSAg2QglexM2TYAZE=;
-        b=S25cr15PWqZVQoaeR93yTdLNOyjL74an2NA5fiXvUN03SfqBvkwUc6/NJ90wfypL6n
-         7qnczyOLRDGNi6Qy28R0x8oTvofoG9WX/Fc27z5mU0aF1mw0AB7pFoU6mLVNG/5JGeVW
-         OLj2uQPq8NFb6be6O4z0NPT1JhEAWH2HfCh9e/NBdrzGjq9oKTg4VDm9F+Li5xCUfOEv
-         ULg+g6VaAjSjYqTqGODCKxJAIEtj6flZaplXDSM8WtFAFZrHaSEgt4p3gmRhd1MC8wvr
-         e+lRijbqUCY2tzpQHXe+yGcltJKrP9sBBoqrHPWSs+mansOmL6v0I1MDmZKJBUHp0BuZ
-         +hDw==
+        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QjDGFJQ5+1+ljveXxjlk6iDPqQSULywPpuzcwSFf81I=;
+        b=GzBxg70l/bOHPRVWxgyL2QxnrcNVvHr2+e8esQjVjta19VNcNKBIYPwA6HNkPep8z3
+         Z3xQoYeA6gLP4hM5bFKR8V8U1RChQXKTgc6tVLccT2QDWkZqgBSRqN65rNxQcuKbF0HP
+         dgAoSDRlqrv/3vq+DUN50Nh7LS3ZZoDN2dMhr3dsknagGLrRS6u3xJgyP7IeUcgWelin
+         voZAHwBeV+N+4o43re+HKF8SgDrzhNYUS6We95HjmUxW2V6qG7TR4W/Op2JFU9AjMU6c
+         j1PCgHLP4uTp6geEHSoC2ZRP8z3nLoVJ3CL69t1BpgHeLgDE7cL+8a3jFwScZdfDjnaV
+         F1+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YfdyUeRBKR7/kufYH33kid5tsUaSAg2QglexM2TYAZE=;
-        b=P//3Irx7FfqjpedSyc6w9YKmp5wtGoQ+MxsLNL6wQtgiSt3MSXAtTRGrWE8pq003Bo
-         ITtmt9NaCeVXyCJxp5OkF71FRWh6uc7r01zGC9OddD3STpcBflxC9sdkJoD/ymJKjRlD
-         5yBJ7qyqLMwNasu/7xw+6K4Y4CydqoybSv2l71ctYQp5uLwmAu0HvY2z1IOV5QQhkbYn
-         oQyL3jGcRcjqgrvPa0pLD5W929zfWIhvACVcbYcsbMGzcVwGCnQRPeCvtl/PeTjGLFgT
-         JvQbcBePGFV9k5zNNEZa0IViSrv0E52ZknS+kNNb1tXZNPXzx6u2suDWDb8Yr3HWnTmv
-         VePg==
-X-Gm-Message-State: AOAM533bR+Ey5sxoKbfA3JD0bDkX6EcchT15D41UZ3/RtS85B/ZUBZ6m
-        1J+KdtHyvCmGXN9pREhLLBBtZA==
-X-Google-Smtp-Source: ABdhPJxzLx2x/E6WOR5Si0YdPNktJBV8OkVVmeAAG7G+uedRUBkDjgfJ8N9psrJxZUh6jlA7ixI/8g==
-X-Received: by 2002:a05:6870:5802:b0:de:ce5e:33ea with SMTP id r2-20020a056870580200b000dece5e33eamr2967613oap.57.1650666118478;
-        Fri, 22 Apr 2022 15:21:58 -0700 (PDT)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id js4-20020a056870bac400b000e687cdf5adsm1049224oab.55.2022.04.22.15.21.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 15:21:57 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: [PATCH v5 7/7] usb: typec: mux: Add On Semi fsa4480 driver
-Date:   Fri, 22 Apr 2022 15:23:51 -0700
-Message-Id: <20220422222351.1297276-8-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
-References: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QjDGFJQ5+1+ljveXxjlk6iDPqQSULywPpuzcwSFf81I=;
+        b=yRWguOrAlu7qmWlWTuuw42lIqrYu+kDIp7+yoJFZ9HE7gfjc8PdKSD195n2ehuwlxI
+         7/hnxQtben54LtUca9ylK8HNSG9M9UgeEHfRzUqfwm5sMA1kKPEjFR5otFdEMTblgPa3
+         21sS9cAyQd6RKI/F37D7BEBG0ifSCJSuhcplYFx7qe5JFmvnoLwEkMm1euITtCnzbhNf
+         rmdZINJjDuTAPXxJfizIOZwGrDUDEt+BbFS9TZs7bB85MskvyC1AzlDqoimVnQsQDeY8
+         x0AP6q+KLhVAbeT2/b006xMoKrfKpIIqQ15/IagF7jK+hwvEX1mAw+1mnTdrj4w4yfNx
+         vsTw==
+X-Gm-Message-State: AOAM530ChqKriAL8E8WhKgg2bES0cHhvUP5dHNTg4r4h6JiS2sR5y7kV
+        qPYqeoHTEfeulHWkNvHtFXzvbQ==
+X-Google-Smtp-Source: ABdhPJwPi/GQDOa8NP7gyEDIAvUeuE6yGVBDKV31z32nXAT4dfyCH+cdIGbkqNxLyDROau+EGU45gw==
+X-Received: by 2002:a05:600c:1584:b0:38e:c80e:b8b5 with SMTP id r4-20020a05600c158400b0038ec80eb8b5mr14901989wmf.99.1650666763976;
+        Fri, 22 Apr 2022 15:32:43 -0700 (PDT)
+Received: from [192.168.2.222] ([51.37.209.28])
+        by smtp.gmail.com with ESMTPSA id f11-20020a7bcc0b000000b0037e0c362b6dsm2572514wmh.31.2022.04.22.15.32.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 15:32:43 -0700 (PDT)
+Message-ID: <c12b44ae-9d8a-c0dc-880e-fd960715e519@conchuod.ie>
+Date:   Fri, 22 Apr 2022 23:32:41 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 0/9] More PolarFire SoC Fixes for 5.18
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     atulkhare@rivosinc.com, Palmer Dabbelt <palmer@rivosinc.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+References: <mhng-185e3a61-0634-4671-adfd-a1cc223920cf@palmer-ri-x1c9>
+ <0f99ec7b-0c2f-cf6c-162d-af615eb73373@conchuod.ie>
+ <CAL_JsqJpd1dBNmWcsbLQZAWj=0am_98ztonOxEgGjXBGddfiNA@mail.gmail.com>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <CAL_JsqJpd1dBNmWcsbLQZAWj=0am_98ztonOxEgGjXBGddfiNA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ON Semiconductor FSA4480 is a USB Type-C port multimedia switch with
-support for analog audio headsets. It allows sharing a common USB Type-C
-port to pass USB2.0 signal, analog audio, sideband use wires and analog
-microphone signal.
+On 22/04/2022 22:52, Rob Herring wrote:
+> On Fri, Apr 22, 2022 at 2:59 PM Conor Dooley <mail@conchuod.ie> wrote:
+>> On 22/04/2022 20:39, Palmer Dabbelt wrote:
+>>> On Wed, 13 Apr 2022 00:58:27 PDT (-0700), conor.dooley@microchip.com wrote:
+>>>> Hey all,
+>>>> After the clock driver for the PolarFire SoC was accepted I started work
+>>>> on the onboard RTC & found out that the reference clock for the rtc was
+>>>> actually missing from the clock driver.
+>>>>
+>>>> While restructuring the clock driver to add support for the rtc
+>>>> reference, I also noticed that there were some problems with how the FIC
+>>>> clocks were being used. The FIC clocks are the cpu side inputs to the
+>>>> AXI fabric interconnections & are not the clocks for any peripherals.
+>>>>
+>>>> This first three patches in this series fixes the problems with the FICs:
+>>>> - the fic clocks incorrectly had the AHB clock as their parents
+>>>> - the last fic, named differently to the others, had not been set as
+>>>>   a critical clock
+>>>> - some peripherals on the fabric side were incorrectly using the cpu
+>>>>   side fic clocks, resulting in incorrect rates.
+>>>>
+>>>> The second part of the series fixes the missing rtc reference clock.
+>>>> There are three main changes:
+>>>> - Changing the reference clock in the dt to the external 125 MHz
+>>>>   oscillator rather than using the output of an internal pll. This has
+>>>>   the added benefit of not requiring changes to the device tree if this
+>>>>   part of the bitstream changes.
+>>>> - Adding a new clock into the driver that sits above the existing
+>>>>   configurable clocks & has the external reference as a parent. The new
+>>>>   clock provides the parent for the AHB/AXI clocks which formerly came
+>>>>   from the device tree.
+>>>> - Adding the rtc reference clock to the dt bindings, device tree and
+>>>>   clock driver at the configurable clock level, alongside AXI and AHB.
+>>>>
+>>>> I kept series separate from [0] since that's tied to the CONFIG_PM stuff
+>>>> & fixes a specific problem.
+>>>>
+>>>> Changes since v1:
+>>>> After speaking with Krzysztof, I have merged the rtc reference changes
+>>>> [1] with these fixes for 5.18. This was done since the relevant drivers
+>>>> and bindings only arrived in v5.18 & there'll now be no issue with
+>>>> breaking the ABI.
+>>>> Backwards compatiblity with the device tree from before 5.18 will be
+>>>> broken by these changes, but the board did not boot then anyway... If
+>>>> that is not okay, please lmk.
+>>>>
+>>>> The patch renaming sys_base was dropped since that's not a fix.
+>>>>
+>>>> Version 1 would not apply without [0] & that should be fixed too.
+>>>>
+>>>> Thanks,
+>>>> Conor.
+>>>>
+>>>> Changes since v2:
+>>>> - Wrapped text in dt-binding changes at 80 cols
+>>>> - Ordered the clock defines numerically in the binding header
+>>>> - Fixed the Fixes tag on the last patch and added the second tag
+>>>>
+>>>> [0] https://lore.kernel.org/linux-riscv/20220408143646.3693104-1-conor.dooley@microchip.com
+>>>> [1] https://lore.kernel.org/linux-riscv/20220411072340.740981-1-conor.dooley@microchip.com
+>>>>
+>>>> Conor Dooley (9):
+>>>>   clk: microchip: mpfs: fix parents for FIC clocks
+>>>>   clk: microchip: mpfs: mark CLK_ATHENA as critical
+>>>>   riscv: dts: microchip: fix usage of fic clocks on mpfs
+>>>>   dt-bindings: clk: mpfs document msspll dri registers
+>>>>   dt-bindings: clk: mpfs: add defines for two new clocks
+>>>>   dt-bindings: rtc: add refclk to mpfs-rtc
+>>>>   clk: microchip: mpfs: re-parent the configurable clocks
+>>>>   clk: microchip: mpfs: add RTCREF clock control
+>>>>   riscv: dts: microchip: reparent mpfs clocks
+>>>>
+>>>>  .../bindings/clock/microchip,mpfs.yaml        |  13 +-
+>>>>  .../bindings/rtc/microchip,mfps-rtc.yaml      |  15 +-
+>>>>  .../dts/microchip/microchip-mpfs-fabric.dtsi  |  16 +-
+>>>>  .../microchip/microchip-mpfs-icicle-kit.dts   |   2 +-
+>>>>  .../boot/dts/microchip/microchip-mpfs.dtsi    |  10 +-
+>>>>  drivers/clk/microchip/clk-mpfs.c              | 191 +++++++++++++++---
+>>>>  .../dt-bindings/clock/microchip,mpfs-clock.h  |   5 +-
+>>>>  7 files changed, 211 insertions(+), 41 deletions(-)
+>>>
+>>> Thanks.  These generally look good to me, but I don't see acks from everyone.  I'm perfectly fine treating these as fixes and taking them through the RISC-V tree, but looks like it's mostly clk stuff so
+>>>
+>>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>>
+>> Ye, hopefully they go via clk. Stephen replied to v1 or 2 so
+>> I figure they're in his queue :)
+>>
+>>>
+>>> in case someone else wants to take it.  I've put these over at palmer/riscv-pfsoc-clk but haven't merged that anywhere, I'll hold off until at least next week to give everyone time to chime in.
+>>>
+>>> On a somewhat related note, I'm getting some DT schema failures
+>>>    /scratch/riscv-systems-ci-fixes/check/dt_check/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: /: memory@80000000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>>            From schema: /home/palmer/.local/lib/python3.8/site-packages/dtschema-2022.3.2-py3.8.egg/dtschema/schemas/memory.yaml
+>>>    /scratch/riscv-systems-ci-fixes/check/dt_check/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: /: memory@1000000000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>>            From schema: /home/palmer/.local/lib/python3.8/site-packages/dtschema-2022.3.2-py3.8.egg/dtschema/schemas/memory.yaml
+>>>    /scratch/riscv-systems-ci-fixes/check/dt_check/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: soc: syscontroller: {'compatible': ['microchip,mpfs-sys-controller'], 'mboxes': [[15, 0]], 'status': ['okay']} should not be valid under {'type': 'object'}
+>>>            From schema: /home/palmer/.local/lib/python3.8/site-packages/dtschema-2022.3.2-py3.8.egg/dtschema/schemas/simple-bus.yaml
+>>>    Looks like none of them are new from this patch set, though.  Atul's been chasing down various DT schema failures so they might be fixed already.
+>>
+>> Ye, I do know about those. I meant to try deleting the clocks
+>> property but didn't get a chance, just been busy. It's not
+>> related to this series nor does it matter if it makes it prior
+>> to 5.18 so I was going to submit it on its own.
+>> The other is in my list-of-things-to-ask-Rob/Krzk-when-I-know-
+>> for-sure-what-my-question-actually-is...
+> 
+> microchip,mpfs-sys-controller doesn't have MMIO registers, so it's not
+> on a MMIO bus (aka simple-bus). Move it to an appropriate location
+> (top level if not part of something else).
 
-Due to lacking upstream audio support for testing, the audio muxing is
-left untouched, but implementation of muxing the SBU lines is provided
-as a pair of Type-C mux and switch devices. This provides the necessary
-support for enabling the DisplayPort altmode on devices with this
-circuit.
-
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
-
-Changes since v4:
-- Disable locking of the regmap
-- Use dev_fwnode() instead of explicit dereference
-
- drivers/usb/typec/mux/Kconfig   |  10 ++
- drivers/usb/typec/mux/Makefile  |   1 +
- drivers/usb/typec/mux/fsa4480.c | 218 ++++++++++++++++++++++++++++++++
- 3 files changed, 229 insertions(+)
- create mode 100644 drivers/usb/typec/mux/fsa4480.c
-
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index edead555835e..5eb2c17d72c1 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -2,6 +2,16 @@
- 
- menu "USB Type-C Multiplexer/DeMultiplexer Switch support"
- 
-+config TYPEC_MUX_FSA4480
-+	tristate "ON Semi FSA4480 Analog Audio Switch driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Driver for the ON Semiconductor FSA4480 Analog Audio Switch, which
-+	  provides support for muxing analog audio and sideband signals on a
-+	  common USB Type-C connector.
-+	  If compiled as a module, the module will be named fsa4480.
-+
- config TYPEC_MUX_PI3USB30532
- 	tristate "Pericom PI3USB30532 Type-C cross switch driver"
- 	depends on I2C
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 280a6f553115..e52a56c16bfb 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
-+obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-diff --git a/drivers/usb/typec/mux/fsa4480.c b/drivers/usb/typec/mux/fsa4480.c
-new file mode 100644
-index 000000000000..6184f5367190
---- /dev/null
-+++ b/drivers/usb/typec/mux/fsa4480.c
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021-2022 Linaro Ltd.
-+ * Copyright (C) 2018-2020 The Linux Foundation
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/regmap.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define FSA4480_SWITCH_ENABLE	0x04
-+#define FSA4480_SWITCH_SELECT	0x05
-+#define FSA4480_SWITCH_STATUS1	0x07
-+#define FSA4480_SLOW_L		0x08
-+#define FSA4480_SLOW_R		0x09
-+#define FSA4480_SLOW_MIC	0x0a
-+#define FSA4480_SLOW_SENSE	0x0b
-+#define FSA4480_SLOW_GND	0x0c
-+#define FSA4480_DELAY_L_R	0x0d
-+#define FSA4480_DELAY_L_MIC	0x0e
-+#define FSA4480_DELAY_L_SENSE	0x0f
-+#define FSA4480_DELAY_L_AGND	0x10
-+#define FSA4480_RESET		0x1e
-+#define FSA4480_MAX_REGISTER	0x1f
-+
-+#define FSA4480_ENABLE_DEVICE	BIT(7)
-+#define FSA4480_ENABLE_SBU	GENMASK(6, 5)
-+#define FSA4480_ENABLE_USB	GENMASK(4, 3)
-+
-+#define FSA4480_SEL_SBU_REVERSE	GENMASK(6, 5)
-+#define FSA4480_SEL_USB		GENMASK(4, 3)
-+
-+struct fsa4480 {
-+	struct i2c_client *client;
-+
-+	/* used to serialize concurrent change requests */
-+	struct mutex lock;
-+
-+	struct typec_switch_dev *sw;
-+	struct typec_mux_dev *mux;
-+
-+	struct regmap *regmap;
-+
-+	u8 cur_enable;
-+	u8 cur_select;
-+};
-+
-+static const struct regmap_config fsa4480_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = FSA4480_MAX_REGISTER,
-+	/* Accesses only done under fsa4480->lock */
-+	.disable_locking = true,
-+};
-+
-+static int fsa4480_switch_set(struct typec_switch_dev *sw,
-+			      enum typec_orientation orientation)
-+{
-+	struct fsa4480 *fsa = typec_switch_get_drvdata(sw);
-+	u8 new_sel;
-+
-+	mutex_lock(&fsa->lock);
-+	new_sel = FSA4480_SEL_USB;
-+	if (orientation == TYPEC_ORIENTATION_REVERSE)
-+		new_sel |= FSA4480_SEL_SBU_REVERSE;
-+
-+	if (new_sel == fsa->cur_select)
-+		goto out_unlock;
-+
-+	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-+		/* Disable SBU output while re-configuring the switch */
-+		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE,
-+			     fsa->cur_enable & ~FSA4480_ENABLE_SBU);
-+
-+		/* 35us to allow the SBU switch to turn off */
-+		usleep_range(35, 1000);
-+	}
-+
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, new_sel);
-+	fsa->cur_select = new_sel;
-+
-+	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-+		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-+
-+		/* 15us to allow the SBU switch to turn on again */
-+		usleep_range(15, 1000);
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&fsa->lock);
-+
-+	return 0;
-+}
-+
-+static int fsa4480_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
-+{
-+	struct fsa4480 *fsa = typec_mux_get_drvdata(mux);
-+	u8 new_enable;
-+
-+	mutex_lock(&fsa->lock);
-+
-+	new_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-+	if (state->mode >= TYPEC_DP_STATE_A)
-+		new_enable |= FSA4480_ENABLE_SBU;
-+
-+	if (new_enable == fsa->cur_enable)
-+		goto out_unlock;
-+
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, new_enable);
-+	fsa->cur_enable = new_enable;
-+
-+	if (new_enable & FSA4480_ENABLE_SBU) {
-+		/* 15us to allow the SBU switch to turn off */
-+		usleep_range(15, 1000);
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&fsa->lock);
-+
-+	return 0;
-+}
-+
-+static int fsa4480_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct typec_switch_desc sw_desc = { };
-+	struct typec_mux_desc mux_desc = { };
-+	struct fsa4480 *fsa;
-+
-+	fsa = devm_kzalloc(dev, sizeof(*fsa), GFP_KERNEL);
-+	if (!fsa)
-+		return -ENOMEM;
-+
-+	fsa->client = client;
-+	mutex_init(&fsa->lock);
-+
-+	fsa->regmap = devm_regmap_init_i2c(client, &fsa4480_regmap_config);
-+	if (IS_ERR(fsa->regmap))
-+		return dev_err_probe(dev, PTR_ERR(fsa->regmap), "failed to initialize regmap\n");
-+
-+	fsa->cur_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-+	fsa->cur_select = FSA4480_SEL_USB;
-+
-+	/* set default settings */
-+	regmap_write(fsa->regmap, FSA4480_SLOW_L, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_R, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_MIC, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_SENSE, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_GND, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_R, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_MIC, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_SENSE, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_AGND, 0x09);
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, fsa->cur_select);
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-+
-+	sw_desc.drvdata = fsa;
-+	sw_desc.fwnode = dev_fwnode(dev);
-+	sw_desc.set = fsa4480_switch_set;
-+
-+	fsa->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(fsa->sw))
-+		return dev_err_probe(dev, PTR_ERR(fsa->sw), "failed to register typec switch\n");
-+
-+	mux_desc.drvdata = fsa;
-+	mux_desc.fwnode = dev_fwnode(dev);
-+	mux_desc.set = fsa4480_mux_set;
-+
-+	fsa->mux = typec_mux_register(dev, &mux_desc);
-+	if (IS_ERR(fsa->mux)) {
-+		typec_switch_unregister(fsa->sw);
-+		return dev_err_probe(dev, PTR_ERR(fsa->mux), "failed to register typec mux\n");
-+	}
-+
-+	i2c_set_clientdata(client, fsa);
-+	return 0;
-+}
-+
-+static int fsa4480_remove(struct i2c_client *client)
-+{
-+	struct fsa4480 *fsa = i2c_get_clientdata(client);
-+
-+	typec_mux_unregister(fsa->mux);
-+	typec_switch_unregister(fsa->sw);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id fsa4480_table[] = {
-+	{ "fsa4480" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, fsa4480_table);
-+
-+static const struct of_device_id fsa4480_of_table[] = {
-+	{ .compatible = "fcs,fsa4480" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, fsa4480_of_table);
-+
-+static struct i2c_driver fsa4480_driver = {
-+	.driver = {
-+		.name = "fsa4480",
-+		.of_match_table = fsa4480_of_table,
-+	},
-+	.probe_new	= fsa4480_probe,
-+	.remove		= fsa4480_remove,
-+	.id_table	= fsa4480_table,
-+};
-+module_i2c_driver(fsa4480_driver);
-+
-+MODULE_DESCRIPTION("ON Semiconductor FSA4480 driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.35.1
-
+sys controller is meant to have a qspi flash too, which I hadn't added
+yet as it does not work with sample silicon.
+I'll send a fix for both warnings Monday.
+Thanks,
+Conor.
