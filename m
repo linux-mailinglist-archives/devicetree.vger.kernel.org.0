@@ -2,86 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66CD50BFE7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4407E50BFE3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbiDVSqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47384 "EHLO
+        id S229531AbiDVSps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:45:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbiDVSqY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:46:24 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D02E12758B;
-        Fri, 22 Apr 2022 11:42:27 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id a10so9955294oif.9;
-        Fri, 22 Apr 2022 11:42:27 -0700 (PDT)
+        with ESMTP id S229500AbiDVSpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:45:47 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E26A1E0C0F
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 11:41:05 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-e9027efe6aso2185346fac.10
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 11:41:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=hUAGJI7MZIzFGBlWW57hloz6jpEOZG9rptUBKkWEgMk=;
-        b=TVybQ9BGLyIfiMbQ8yLpEWT3buhFfnziUIlE3M+S7kswwHnSHyCXOYVWdTYkMoa2Hp
-         TjLBIFbXJ1L3liznezkxkj4G/lXpyCLk0M1OtcYMhd5FnA/1d4yn2/fBOpfrKsy5GGso
-         pjsxDdCIweB59jQDBnAJRPDmEfjt83ZQ72c182ocNXUK9jFOukuzxg1evZl5xBqcIBGJ
-         b2D9npXg69VFXjCXW1xQTsiAxIFqoH7PgLqGKIkWqv9whdskSrioK/1hgKwu8Ep36xZl
-         p5rUU6Zy44txzPKM2APsYISxbKYIwC8DmJtnav/QxRUAvlW/vmScJRtBYiESVTgBal0z
-         +/9Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LSNY6HVO8IFreVRhOftkxSgz6DO0IOlvH+QazxsX1ho=;
+        b=Iba2vVvBxtXSgnDlhWMHnfn96Hw0popi3Q7X963rynCXrctVGtncOJ2BaTymYuw6aa
+         ylEAMeGLE5LIVd+56qR62jkJWVbauhLxJCrY8KZQ6KU28EvNMuIkY1hNcGK5dNqsV6EG
+         Ig1l8q5T2NYNaYWWuRzkA2vpuvCooQfyJAGDipH7rZ2nx1uVIODj4MWrQ1uwlc8wYCLa
+         mW3lvlqVLo0/dK3reD3uqW9yijX8KXORlR7NGZPH8DQMCNj5Rc+yPRfTCcSo3V1clL0m
+         ukYu2v+0t+19GjICJkQr3LUhN/oaY1Xptv4+hxNRXIQeMMwEBzFA/RybEE2V8EaQXvSg
+         ZIpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=hUAGJI7MZIzFGBlWW57hloz6jpEOZG9rptUBKkWEgMk=;
-        b=0pa+WEyotZo02iCoQ5449qaljtmMwLntshQ6GzSg0FwTCSXhYjEOr0MdzU8++qeEPQ
-         aCGMpubYaLOG1qQJ5MKCXIfya+Qr16qfRXmKXNJWo5slqAIbF0cM0TvhLvbocIeDwcAL
-         UixHjCYliJfPott9F8V94OIxLQXykD4y1oM7I1itbMJEl/6eVWWBL++eiTY+DfqEiYeY
-         RmwK6obeBPUSkP1tsyHvby/ziFWmkaf0aLVM+zTuWbPZYtAZl343we6sfvrnjOnvbpHR
-         3nSeekWVmS8nT3u49EmIwUC50t7b8+jOZLKzcId+Y4+71z0nIACFZJqZ14VY5MrT7sow
-         kzBA==
-X-Gm-Message-State: AOAM531HodrqvWRNUpKK7/bMhP1L4/3RdWD8pdkKyVzw5yi7MX5tRNrj
-        FdrX8K7L4sDKK8XthpE3fIs=
-X-Google-Smtp-Source: ABdhPJxXTOlR3CyOaSls0W1PFuow9H3jq2A9kiQEbWk0nPfmXNkGykl0l6n5RNsWtUtRazUUrdDGNA==
-X-Received: by 2002:aca:5c44:0:b0:322:ed86:2c08 with SMTP id q65-20020aca5c44000000b00322ed862c08mr2831409oib.17.1650652459466;
-        Fri, 22 Apr 2022 11:34:19 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i16-20020a056870d41000b000e1a3a897basm953335oag.26.2022.04.22.11.34.18
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LSNY6HVO8IFreVRhOftkxSgz6DO0IOlvH+QazxsX1ho=;
+        b=pWNS0DsSm6F9LQeMimwzlKD4+zZlw2q/Q1+3czo36CMi6JNnieBS6diID5pLquMaVJ
+         c4YgWGzFBcPtB23mT+QGeLCS0i2F18xx6FPalFkwoIGggnnZDUjNxmca+pkUv1K0bC5/
+         mDztmvW658zY18nU3Vw3ehCxLC0UfyXEgfOwbF4gvUpgy66Ru883Vjec97DF/FDjioGN
+         RhsWNd5Pak1pE+KRA9fRFMfyRHt4rawFk9PFrA6/uqfmpmt+S5DZ64nu0r2oPd6mEGzg
+         N4o0+OHCuVVhYKivpKGKhL9uDNTPHdocbLNrrMjvEX6lGRdDaxxJLTpCsfWywsfzbeIW
+         NN2A==
+X-Gm-Message-State: AOAM530FPHYoigSRnI2aJu7UbJdhLscGdwFL3VtX696HNRyipqmId65M
+        m3YoZ4YQ7Lj0UDSYVa2zzrg=
+X-Google-Smtp-Source: ABdhPJxoFP1/hipX77FqcQUyEAOSv1tW+vEbmuu6sWAEFvAKoa0D0HwsO6XZftkvjo/0jL+bQA2bkw==
+X-Received: by 2002:a05:6870:f29a:b0:de:eaa4:233a with SMTP id u26-20020a056870f29a00b000deeaa4233amr2586448oap.137.1650652584580;
+        Fri, 22 Apr 2022 11:36:24 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:485:4b69:9f29:454f:1c77:1b6b])
+        by smtp.gmail.com with ESMTPSA id h21-20020a056808015500b00323c43663e2sm1006651oie.32.2022.04.22.11.36.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 11:34:18 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 22 Apr 2022 11:34:17 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Subject: Re: [PATCH 3/7] watchdog: npcm: Enable clock if provided
-Message-ID: <20220422183417.GB2637654@roeck-us.net>
-References: <20220422183012.444674-1-j.neuschaefer@gmx.net>
- <20220422183012.444674-4-j.neuschaefer@gmx.net>
+        Fri, 22 Apr 2022 11:36:24 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     sam@ravnborg.org
+Cc:     robh+dt@kernel.org, hs@denx.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 1/2] dt-bindings: display: simple: Add Startek KD070WVFPA043-C069A panel
+Date:   Fri, 22 Apr 2022 15:36:13 -0300
+Message-Id: <20220422183614.1762470-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220422183012.444674-4-j.neuschaefer@gmx.net>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,48 +67,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 08:30:08PM +0200, Jonathan Neuschäfer wrote:
-> On the Nuvoton WPCM450 SoC, with its upcoming clock driver, peripheral
-> clocks are individually gated and ungated. Therefore, the watchdog
-> driver must be able to ungate the watchdog clock.
-> 
-> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> ---
->  drivers/watchdog/npcm_wdt.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/watchdog/npcm_wdt.c b/drivers/watchdog/npcm_wdt.c
-> index 28a24caa2627c..6d27f0e16188e 100644
-> --- a/drivers/watchdog/npcm_wdt.c
-> +++ b/drivers/watchdog/npcm_wdt.c
-> @@ -3,6 +3,7 @@
->  // Copyright (c) 2018 IBM Corp.
-> 
->  #include <linux/bitops.h>
-> +#include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/interrupt.h>
->  #include <linux/kernel.h>
-> @@ -180,6 +181,7 @@ static int npcm_wdt_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct npcm_wdt *wdt;
-> +	struct clk *clk;
->  	int irq;
->  	int ret;
-> 
-> @@ -191,6 +193,13 @@ static int npcm_wdt_probe(struct platform_device *pdev)
->  	if (IS_ERR(wdt->reg))
->  		return PTR_ERR(wdt->reg);
-> 
-> +	clk = devm_clk_get_optional(&pdev->dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
-> +
-> +	if (clk)
-> +		clk_prepare_enable(clk);
-> +
+From: Fabio Estevam <festevam@denx.de>
 
-This needs a matching clk_disable_unprepare().
+Add Startek KD070WVFPA043-C069A 7" TFT LCD panel compatible string.
 
-Guenter
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+---
+Changes since v1:
+- None. Only added Sam's ack.
+
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 1eb9dd4f8f58..e190eef66872 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -294,6 +294,8 @@ properties:
+       - starry,kr070pe2t
+         # Starry 12.2" (1920x1200 pixels) TFT LCD panel
+       - starry,kr122ea0sra
++        # Startek KD070WVFPA043-C069A 7" TFT LCD panel
++      - startek,kd070wvfpa
+         # Team Source Display Technology TST043015CMHX 4.3" WQVGA TFT LCD panel
+       - team-source-display,tst043015cmhx
+         # Tianma Micro-electronics TM070JDHG30 7.0" WXGA TFT LCD panel
+-- 
+2.25.1
+
