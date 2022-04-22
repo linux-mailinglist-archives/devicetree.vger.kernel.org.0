@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB0C450C39A
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2464550C46E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:12:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232573AbiDVWTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:19:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49180 "EHLO
+        id S232622AbiDVWTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:19:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233846AbiDVWSt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:18:49 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6627319FA88;
-        Fri, 22 Apr 2022 14:10:50 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id t15so10433523oie.1;
-        Fri, 22 Apr 2022 14:10:50 -0700 (PDT)
+        with ESMTP id S234178AbiDVWTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:19:12 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3CC232BCC4
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:10:58 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id h25so6676667wrc.13
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 14:10:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Nv090Fcw5CRXAaqf5egbVl68mvzRIHG6Z9TCjtt4enM=;
+        b=PIt2cs6jOIOUgaIna9c9dpTesElZzi3jz1neSNkXEomyGjBVvXOjSMkMZa20d8GjHn
+         erpB9HYm3lg9hrfn1M//0zFVvG+EbcFUubN1KHYOhKenQOPxFNLOqqLsCuWhiWkeElBE
+         Jqs9U9EJMCcXPLC6GdUw63M9JCWvA9OKaNdPswN7ACPgo8/PBXFusy870BIyn5yhw36I
+         CvUzyiq/XEzRjXKDo9XzuH7K414dVacWP5Pnyx+uNEbDw8+/BaHeb28uUfs7NZcBIAMV
+         jdRLpuFPPVZaiR4KJSA/dKfpp+lRyIHFxkB4PAtAWBoGVYJDC7kjOhS/E39JWtnZXP0C
+         2v7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ga2tgBX0PUJR1Zp9dNHUDhZ65+RalcaTSUDM/UaOuB0=;
-        b=BTlKvE1DljZL73xoXGj+rYz4KSGKZikh3QkQfYnHcgFlN/iirUdQCg3Lmcz+LqDyAh
-         LQXCy4mtqd+zNTmWoZGnrAPtG1zioKO7vB96GPMq/xSWQqQ8wGmWk0XRe9aQMU9Dqy7q
-         L9c3TobdfdBlBcyXl+M8w6Z7alik83Z8C9Hm0rq9eqmCtgoNRywYhnAUG3c4cWnAqRtv
-         YconLNfSpRnucpxNb+Eum9pcZKRSAcrilPfOakXlKYtAMU3exwJTKAX6d/Q+tOIYlbaB
-         8XzLLkPIDGrmZGbsLO41BWZsnYfmvfgvBN5VqqGVv8ljUrpIIkBxENXLmORwWQgmQ6rD
-         QWqQ==
-X-Gm-Message-State: AOAM531adRC5rISUA9OjpQDVtxB6pRcT+TAxw2yhgDeHYxMMGvK8e49G
-        O326g2/zoAC5Q16NuoI8GA==
-X-Google-Smtp-Source: ABdhPJzFHB9JO0IzPSFAchdfBVlM9sHQgwENS+VHWa+J8qyq8EMl+Sc62ZjBkTrPhKSMWIQmP8rNAA==
-X-Received: by 2002:a05:6808:1992:b0:322:ca0b:cce3 with SMTP id bj18-20020a056808199200b00322ca0bcce3mr3152103oib.168.1650661849712;
-        Fri, 22 Apr 2022 14:10:49 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i22-20020a056808031600b003229333b14esm1154598oie.47.2022.04.22.14.10.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 14:10:49 -0700 (PDT)
-Received: (nullmailer pid 2784290 invoked by uid 1000);
-        Fri, 22 Apr 2022 21:10:47 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, davem@davemloft.net,
-        Andrew Lunn <andrew@lunn.ch>, thomas.petazzoni@bootlin.com,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220422180305.301882-5-maxime.chevallier@bootlin.com>
-References: <20220422180305.301882-1-maxime.chevallier@bootlin.com> <20220422180305.301882-5-maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 4/5] net: dt-bindings: Introduce the Qualcomm IPQESS Ethernet controller
-Date:   Fri, 22 Apr 2022 16:10:47 -0500
-Message-Id: <1650661847.285325.2784289.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Nv090Fcw5CRXAaqf5egbVl68mvzRIHG6Z9TCjtt4enM=;
+        b=fINa5+Ou7TRlLirIDp9GDslaQpXYwffpTHrGXb8BwfOIxH5YozKAXizhiu7uViG0cw
+         Yt0rTae6KyyxkGyG/fJslF4zkmypd3Ie8pO0tYVnX4Rs4X3uJb2jIgAl7ZjsRwlY7dRF
+         /xoW8n7UrXSsXGaOG1tW3GjIP4G+ZzpaCqvhAyANmZc1iteUz2MZaBbSLvhbmIrvy7Ri
+         EW2fnYjcCkNEyBkeBXL/NmBIUm+MRRgzWDiSMmUrusNTxmZkDChe+XQ//btlJ6ECSLUq
+         EwGx8t4u0LiqkiPAhyRbwHRn6GOp25EJa3Ywqpj73/Ho0lais+g+wbnKMf1q7qZQwX2q
+         6QQg==
+X-Gm-Message-State: AOAM530yBqCt9BI9UmzFYRUrmeZPsMJdmIhTV8FT59cDLsa8QGAy7z/A
+        SATuEXzRDdTJQB36a0nMOadV3A==
+X-Google-Smtp-Source: ABdhPJwxuOWuvmk+e3OO09OIMy4zsdVziUGh9Xv6Vja6F3VDwf9pI5Otah7WhFWcP1DDUrl34YXANA==
+X-Received: by 2002:a05:6000:1547:b0:20a:79dd:289f with SMTP id 7-20020a056000154700b0020a79dd289fmr5406068wry.56.1650661857407;
+        Fri, 22 Apr 2022 14:10:57 -0700 (PDT)
+Received: from [192.168.2.222] ([51.37.209.28])
+        by smtp.gmail.com with ESMTPSA id n2-20020adfc602000000b0020ac8335e46sm2970537wrg.99.2022.04.22.14.10.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Apr 2022 14:10:56 -0700 (PDT)
+Message-ID: <986c73df-9634-d18b-eed3-37584fa2ea89@conchuod.ie>
+Date:   Fri, 22 Apr 2022 22:10:55 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 0/9] More PolarFire SoC Fixes for 5.18
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     mturquette@baylibre.com, aou@eecs.berkeley.edu,
+        Paul Walmsley <paul.walmsley@sifive.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, daire.mcnamara@microchip.com,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+        conor.dooley@microchip.com, atulkhare@rivosinc.com
+References: <mhng-185e3a61-0634-4671-adfd-a1cc223920cf@palmer-ri-x1c9>
+ <0f99ec7b-0c2f-cf6c-162d-af615eb73373@conchuod.ie>
+ <20220422210040.68019C385AA@smtp.kernel.org>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <20220422210040.68019C385AA@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 20:03:04 +0200, Maxime Chevallier wrote:
-> Add the DT binding for the IPQESS Ethernet Controller. This is a simple
-> controller, only requiring the phy-mode, interrupts, clocks, and
-> possibly a MAC address setting.
+
+
+On 22/04/2022 22:00, Stephen Boyd wrote:
+> Quoting Conor Dooley (2022-04-22 12:59:09)
+>> On 22/04/2022 20:39, Palmer Dabbelt wrote:
+>>>
+>>> Thanks.  These generally look good to me, but I don't see acks from everyone.  I'm perfectly fine treating these as fixes and taking them through the RISC-V tree, but looks like it's mostly clk stuff so
+>>>
+>>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>>
+>> Ye, hopefully they go via clk. Stephen replied to v1 or 2 so
+>> I figure they're in his queue :)
 > 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> ---
->  .../devicetree/bindings/net/qcom,ipqess.yaml  | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/qcom,ipqess.yaml
-> 
+> It helps to be explicit in the cover letter. It's in my queue but I put
+> it on hold because the cover letter didn't clarify what tree it was
+> intended for nor the priority of what is being fixed.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Ah right, my bad. The coordinating things between trees stuff is
+still pretty new to me. If you could take the lot via clk, that'd
+be great?
+ 
+> Is boot broken? Do I need to send these up to Linus next week as part of
+> fixes for this merge window?
 
-yamllint warnings/errors:
+Boot is not broken, I was hoping this would go into 5.18 to avoid
+having to deal with two different sorts of reference clock DT
+entries - 5.18 where the DT provides the mss pll & 5.18+n where
+the DT provides the input to the mss pll.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/net/qcom,ipqess.example.dts:26.27-28 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/net/qcom,ipqess.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
+So, not next week urgent, but as fixes for this window please.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Thanks,
+Conor.
