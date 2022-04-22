@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D00150AF67
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F68C50AF85
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356967AbiDVFMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 01:12:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
+        id S229609AbiDVFje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 01:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242030AbiDVFMA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:12:00 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C614F441
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 22:09:07 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id i63so6439298pge.11
-        for <devicetree@vger.kernel.org>; Thu, 21 Apr 2022 22:09:07 -0700 (PDT)
+        with ESMTP id S232306AbiDVFYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:24:43 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 933954F442;
+        Thu, 21 Apr 2022 22:21:49 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id kc12so117073qvb.0;
+        Thu, 21 Apr 2022 22:21:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IxkWrK2BHkhEkKKlVUNG0OHecJx6kgtTQfmR8oiK8fY=;
-        b=lqpCouB++8hljbNrHceC1Qyuwuw+vCI2Fhh8ZFdRfXxhXpRkv6g2BA/tNxAPsxgvkr
-         u1w04SPrnfVYkE3mFoG48Ti9k/z8UT5WYiln4iNHoRm7Qifnv87ZE8YThHZXSPIBk33s
-         cgEeltKzihF2u7m2Rx9L52X77Ftym+qXjgfxCuWWrIicVaP5Jg2SgwIWdin/gaEyFEzu
-         Ext803WlCRXwXzZsLwuqtVS8NVNTVT8D2RbXIjdgnN1qqvJ94LfZ42ZuTXANLZ0OPeeR
-         uCoDCo74DxXysCvLAG+sDPte7QHEDlbnJ1EX97I3Lp3cztRaLWZL5JySGaZxqqrOs+bj
-         SaVA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=hL4RE3KhpgsczmHCd82s+GTL+VM0PpuQ4vRV61iW2so=;
+        b=oPZH6cT4eFog/QoZgdRzBGjRtrP5yokMOG7gimEQZYOF7B251XF9oEC/ehKdXpeV7r
+         zuMYbACCZhfqN61KvP1Wp39J8ZIJo2B98SXecewmZsXgjiwGEto+p5mHd4V6Sln7eClG
+         AxsThV3BEZYUACZQL8eELE8ilrKOuG/WIkPz+jI/bjspk6PdlfmUBxnpkgrLznGnz2BF
+         v+MPPtX6MDBsK/W1UKQNU4Q0T/HQUvrdsHKqvmbj2C67mK+dCE6ubv46ZMaWr2M0YFTB
+         qWo8b9Anc495wTdv+1IkBVNMe1d4eLZK11PsqP1czTCeFj7PadIFsssut8OWcMJlJz2L
+         LWnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IxkWrK2BHkhEkKKlVUNG0OHecJx6kgtTQfmR8oiK8fY=;
-        b=ia8PzbHRvzVsz6nfoiB0dFv7jwj6UmTji1J5q21YJQKfLnvTQKSja2oEmQAJ0HTFdh
-         90odw7YX+Mp5eQsiAVBm6sUZ6LBvuKSnOVqyVcnRvd2x2Dde3ksGkmmnVf3SZBrRbgqz
-         E+E0OoluWPRmuJZnARqqsH0vUKW+QF5icUHGuh7AV2Op8NF58pUqSnwQGPobYgI10VzU
-         CEYVvMP3/M9dXJ15/D/OfiDzajUeHZ37C7tG39rjeZyGPsvZQ6WQsGeJCuYacSPJsjMu
-         KmHO+QBSAJ52QJ/O1tvcREkuXbkXwls4+AuOcCbef8t41dWfhCoM7i9sf/GL52dplNu9
-         SJow==
-X-Gm-Message-State: AOAM531N3JznhT6AEY/MGGDAeBuCKwBL5SW7MUzK7DC2H5DbW99ayDg9
-        T8RZBZ/0aZ8+3iV8YUTIcfhpkQ==
-X-Google-Smtp-Source: ABdhPJzee0DpsxJWDBhWAOgmHW7pXvMAFcHq9PAexcssqN/6IoJ0HKyEyTKjakiAzo82w81k4zugdA==
-X-Received: by 2002:a05:6a00:e0b:b0:4fa:a167:5b35 with SMTP id bq11-20020a056a000e0b00b004faa1675b35mr3121349pfb.69.1650604146814;
-        Thu, 21 Apr 2022 22:09:06 -0700 (PDT)
-Received: from x1 ([2601:1c2:1001:7090:dbb3:3d38:62d2:5de5])
-        by smtp.gmail.com with ESMTPSA id e126-20020a621e84000000b0050567191161sm854912pfe.210.2022.04.21.22.09.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Apr 2022 22:09:06 -0700 (PDT)
-Date:   Thu, 21 Apr 2022 22:10:06 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
-Message-ID: <YmI4rjkpX9krZAGn@x1>
-References: <20220414192722.2978837-1-dfustini@baylibre.com>
- <YmEAA7kc4jNHSkGm@atomide.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=hL4RE3KhpgsczmHCd82s+GTL+VM0PpuQ4vRV61iW2so=;
+        b=ZLWFGvhwqfKO9aVLHPZse68DSkAKMMpYqB6aTy5RF/Z+jmuJmbHdfEvJ2yDeqcBthh
+         EdvhFDxkefzhVlF9iaQuCt4tYBnWigUTzcbEn4ZWsWqXcFr2UM2YnFdKQ+3SQF2QhqYw
+         51l3I7lI7FqciEwZ7/lh4z1H/LLTHWyrprzIQoYMXJjvzgv/kxhX0S8NAT+x7DkEBBxA
+         pwRHry2iMtUZx3HSSrVtmOdxYil4LfADxWQLUDjGavTAS7eQh3q4AO/ZeHSBoa7+BMZy
+         EhATigMOKvKfG/Wp1kWq8ZrwAMxTk+SFNwVaBdU2SJTytUENBio9f8PgRciH+yOoIGaB
+         Kw9Q==
+X-Gm-Message-State: AOAM530ZXB8epIYeWjs+IxRDaXXzgEITbaPqIHW5/qkMWzvJyOSVCN1o
+        HsBGugcfYe6LFYl9SW31zNrf4X2YvynF9Ovf/AQ=
+X-Google-Smtp-Source: ABdhPJyN3psO4kSFD8fbsmu96H/8mfECMCXljvl609zKdqflOH2NZhqDBoliBbIsFDfFk1+o+6RwvksmzjIoHhXMH/I=
+X-Received: by 2002:a05:6214:d0e:b0:446:716a:fff2 with SMTP id
+ 14-20020a0562140d0e00b00446716afff2mr2099927qvh.38.1650604908751; Thu, 21 Apr
+ 2022 22:21:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YmEAA7kc4jNHSkGm@atomide.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20220413060729.27639-1-arinc.unal@arinc9.com> <CACRpkdbbMFYNNjAKwhysKpu1JVh2JSB-N=Y8QMx1JvMhCPBpwg@mail.gmail.com>
+ <26418320-64e0-3ed2-c792-7f72878b7592@arinc9.com>
+In-Reply-To: <26418320-64e0-3ed2-c792-7f72878b7592@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Fri, 22 Apr 2022 07:21:38 +0200
+Message-ID: <CAMhs-H_d8jUa4=4eVjQxo+h-XeRgiMYC1H_xYtPLb8jHDVYL2Q@mail.gmail.com>
+Subject: Re: [PATCH 0/14] Refactor Ralink Pinctrl and Add Documentation
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        erkin.bozoglu@xeront.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,42 +79,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 09:56:03AM +0300, Tony Lindgren wrote:
-> Hi,
-> 
-> * Drew Fustini <dfustini@baylibre.com> [220414 19:24]:
-> > TI AM437x SoCs support isolation of the IOs so that control is taken
-> > from the peripheral they are connected to and overridden by values
-> > present in the control register for that pad. This series documents a
-> > new property 'ti,set-io-isolation' and updates the wkup_m3_ipc driver to
-> > inform the CM3 firmware when that property is set.
-> 
-> Care to list what hardware and board revisions you're able to test deep
-> sleep with?
-> 
-> Seems like my am437x-evm is too old for this where the board layout
-> does not match the schematics for removing a resistor to enable this.
-> 
-> Just wondering if I can still enable tests for this somehow :)
-> 
-> Regards,
-> 
-> Tony
+Hi Arin=C3=A7,
 
-Do you know what revision of the am437x-gp-evm that you have?
+On Thu, Apr 21, 2022 at 4:44 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
+9.com> wrote:
+>
+> On 21/04/2022 17:27, Linus Walleij wrote:
+> > On Wed, Apr 13, 2022 at 8:08 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@a=
+rinc9.com> wrote:
+> >
+> >> This patch series brings complete refactoring to the Ralink pinctrl dr=
+iver
+> >> and its subdrivers.
+> >
+> > I just merged all the patches, the comments seem minor and any further
+> > fixes can certainly be done on top of this. Anyone interested in ralink
+> > working nicely is likely in the thread and we mostly care about that th=
+is
+> > works for OpenWrt, and if it works for them we are happy.
+> >
+> >>    mips: dts: ralink: mt7621: use the new compatible string for MT7621=
+ pinctrl
+> >
+> > This was a bit scary since we usually take these through the respective
+> > SoC tree, but I just applied it anyway, it makes logical sense in the
+> > series.
+> >
+> > I hope it will not lead to conflicts.
+> >
+> > Good work with this series!
+>
+> Thanks. There is a v2 of this series which has been waiting for a week,
+> I hope that was the one you applied as you replied under v1 (I'm not
+> sure which repository you applied this so I can't check myself).
 
-The AM437X_GP_EVM_3K0006_SCHEMATIC_REV1_5B schematic [1] for the
-AM437x-GP-EVM shows that the EN pin on the TPS51200 is connected to SoC
-ball N25 which is GPIO5_7.
+Linus adds patches through the linux-pinctrl tree as pinctrl maintainer. Ch=
+eck:
 
-Unfortunately, the only AM437x board that I have is the AM437x IDK [2]
-which unfortunately does not have the TSP51200 EN pin connected to the
-the SoC. In addition, the am437x-gp-evm is the only board that is
-allowed to enable off mode due to am43xx_check_off_mode_enable() in
-arch/arm/mach-omap2/pm33xx-core.c
+https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/lo=
+g/?h=3Ddevel
 
-Thank you,
-Drew
-
-[1] https://www.ti.com/lit/zip/tidrc79
-[2] https://www.ti.com/lit/zip/sprr396
+Best regards,
+    Sergio Paracuellos
+>
+> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=3D6323=
+70
+>
+> Ar=C4=B1n=C3=A7
