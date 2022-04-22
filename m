@@ -2,90 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED8F50B0D9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 08:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8E750B10D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 09:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348193AbiDVGx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 02:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52728 "EHLO
+        id S1444644AbiDVHHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 03:07:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354331AbiDVGxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 02:53:55 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E2D50E1B;
-        Thu, 21 Apr 2022 23:51:03 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id i63so6601579pge.11;
-        Thu, 21 Apr 2022 23:51:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id;
-        bh=4Wc8Q98GrLH2JXm1ijz0bJeEzM27gF1q86nt7x/XBLM=;
-        b=ASqmtlDD/KkKoadlyOYAlU/GLfAkQQ41jNZy5WzV9yZG8Zex500C8IESu3O5O2VGx6
-         ty+dmsslXkdyuh8ExxybTGiyOkpkl3BOZA4/7ZSaFBXTimkQ7WB8ioygfmMRQJVL7RML
-         x+a5STN1uc6j2QndLGpc9rIkTFfVaiBDHhHZqHgemmCjbXmgF8btkjHj76jSqduaZScL
-         7UH0LIN9FGqKvab3e0XXbFTrgXOi6RqQNjAQr4d9f/TgD/ipUOMsZt1ZXOltfJEYU6hM
-         aBNCs+Og51JIAY9l2xnLCtoYAizg+0cBZXyJlQVulD8eepTzeLzC7IAAw5SVr1NvFM71
-         yIUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=4Wc8Q98GrLH2JXm1ijz0bJeEzM27gF1q86nt7x/XBLM=;
-        b=kHo6KB3D0k8P1NNVD4J9eliGZMY5aAFVTfo+vU72czFBlzqz9Y7wd588lTqqG+gzZC
-         ofNlXIpJweRc1zUZwUAQ2yA8xCLKDQlHaq/EO5PYgl02eagLh+0v9/4saq76sYp/foNN
-         sbplVDyNkl4vJJzqQWMWokb+DxgMYeOeMfn9KkWO6waRiRT2CDzxrIClqinK/uzAY7Jb
-         IVrekirNcNsTlthr7n3wRpboMtl+cHmQ0tD+apIqComLC8KHyxzee41QfHQd0Y6nLIuc
-         sIxLmZXAqqiX03WQNozgIvDkGUj++K/rmbarqy2TVphakOWSYk3aO88VMykfhppcW6UU
-         3hiw==
-X-Gm-Message-State: AOAM533BtvothVwAGYVF6t2HBquKrgtTwRNq5ghXSSpW+Z7Hkrhse11w
-        UItGVGZlMoxKf67b3vQVRwU=
-X-Google-Smtp-Source: ABdhPJyTJ880OXGmAIQvY/NrO4RuNN659KKt394gk47rGbE53NnuDc77t2ly61CGqf4px6zLCJ93fw==
-X-Received: by 2002:a63:d30e:0:b0:39d:ade9:ab0d with SMTP id b14-20020a63d30e000000b0039dade9ab0dmr2789836pgg.51.1650610263037;
-        Thu, 21 Apr 2022 23:51:03 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:477:11a5:b8c8:12d2:abba:7a5c])
-        by smtp.gmail.com with ESMTPSA id o11-20020a62cd0b000000b0050ce8f98136sm1251102pfg.149.2022.04.21.23.50.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 21 Apr 2022 23:51:02 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, cy_huang@richtek.com,
-        alice_chen@richtek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] regulator: dt-bindings: Revise the rt5190a buck/ldo description
-Date:   Fri, 22 Apr 2022 14:50:55 +0800
-Message-Id: <1650610255-6180-1-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1443752AbiDVHHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 03:07:17 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180DA5130F
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 00:04:23 -0700 (PDT)
+Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id BAD6C2CB0E3;
+        Fri, 22 Apr 2022 09:04:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1650611061;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=wlADY8n35L2Ou7uvyeVSyLqPISR1e/igSs6VXk/afno=;
+        b=2z/g+n7+dT+FurhJHIQnLUTHRWFUTSrGyIyTGcvtHHQJMYsJvn+SC/gkpvBeRX51lAm/L4
+        yysFkL9Q+w1MRei//reAKfjwiV4SlPL+Tdjb2UleIxA1YdhYBc9MYMVRXWo6jvMIm31hnB
+        unP4QlspRwi+PNwj605uXLIZFX10cJQZteWtGZq6Zh8hrBzSLofW0LgCwD4gct6xts7vjz
+        BWtErvfLBtxcrUxhqZCQ6GxUpWPTil3neRuNDqwARyKH4GTVghSBpLJIp/RLDOq3X97jxf
+        NLGZ8bjU9oouRusSoWjz5XSCGq20aSNYf9HgIeIFJ/Y0vv1apjCpAE8+xYHtrQ==
+Message-ID: <b8b62753ad5235e065b4cb0856a7a7c33438dfbb.camel@svanheule.net>
+Subject: Re: [PATCH v1 3/6] gpio: realtek-otto: Support per-cpu interrupts
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bert Vermeulen <bert@biot.com>, linux-kernel@vger.kernel.org
+Date:   Fri, 22 Apr 2022 09:04:20 +0200
+In-Reply-To: <87h76mahsl.wl-maz@kernel.org>
+References: <cover.1649533972.git.sander@svanheule.net>
+         <8d4e0848f233c2c1b98aa141741c61d95cd3843f.1649533972.git.sander@svanheule.net>
+         <CACRpkdbSdDAKiFAsHBosdVDpBhWW-Keoq+t8GJ5LsyWjOZwp_g@mail.gmail.com>
+         <87h76mahsl.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi Linus, Marc,
 
-Revise the rt5190a bucks and ldo property description.
+On Thu, 2022-04-21 at 10:48 +0100, Marc Zyngier wrote:
+> On Thu, 21 Apr 2022 00:04:16 +0100,
+> Linus Walleij <linus.walleij@linaro.org> wrote:
+> > 
+> > On Sat, Apr 9, 2022 at 9:56 PM Sander Vanheule <sander@svanheule.net> wrote:
+> > 
+> > > On SoCs with multiple cores, it is possible that the GPIO interrupt
+> > > controller supports assigning specific pins to one or more cores.
+> > > 
+> > > IRQ balancing can be performed on a line-by-line basis if the parent
+> > > interrupt is routed to all available cores, which is the default upon
+> > > initialisation.
+> > > 
+> > > Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> > 
+> > That sounds complicated.
+> > 
+> > Sounds like something the IRQ maintainer (Marc Z) should
+> > have a quick look at.
+> 
+> This is pretty odd indeed. There seem to be a direct mapping between
+> the GPIOs and the CPU it interrupts (or at least that's what the code
+> seem to express). However, I don't see a direct relation between the
+> CPUs and the chained interrupt. It isn't even clear if this interrupt
+> itself is per-CPU.
+> 
+> So this begs a few questions:
+> 
+> - is the affinity actually affecting the target CPU? or is it
+>   affecting the target mux?
+> 
+> - how is the affinity of the mux interrupt actually enforced?
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- .../devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+There are three interrupt controllers at play here:
+   1. MIPS CPU interrupt controller: drivers/irqchip/irq-mips-cpu.c
+      One interrupt controller per VPE, so in this case there are two. Provides
+      per-CPU interrupts.
+   2. SoC interrupt controller: drivers/irqchip/irq-realtek-rtl.c
+      Also one interrupt controller per VPE. I suppose these will also be per-
+      CPU, although this isn't implemented in the driver yet, and I don't think
+      I yet fully understand how should work in the kernel.
+   3. GPIO interrupt controller: drivers/gpio/gpio-realtek-otto.c
+      One interrupt controller for the entire GPIO bank, with optional
+      configurable affinity (this patch) for the different VPEs.
 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
-index 28725c5..edb411b 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
-@@ -58,7 +58,7 @@ properties:
-         type: object
-         $ref: regulator.yaml#
-         description: |
--          regulator description for buck1 and buck4.
-+          regulator description for buck1 to buck4, and ldo.
- 
-         properties:
-           regulator-allowed-modes:
--- 
-2.7.4
+For the RTL839x series of SoCs, this results in the following:
 
+GPIO LINES SOC IRQ MIPS
++--------+ +-----------+ HW IRQ +--------+
+--->| GPIO | | SOC IRQ | LINES | IRQ |
+--->| BANK |-----o-->| VPE0 CTRL |=========>| VPE0 |
+. | | | +-----------+ +--------+
+. +--------+ | 
+. |
+| +-----------+ +--------+
+\-->| SOC IRQ | | IRQ |
+| VPE1 CTRL |=========>| VPE1 |
++-----------+ +--------+
+
+
+For RTL930x, where GPIO IRQ affinity is configurable:
+
+GPIO LINES SOC IRQ MIPS
++--------+ +-----------+ HW IRQ +--------+
+--->| GPIO |-------->| SOC IRQ | LINES | IRQ |
+--->| BANK | | VPE0 CTRL |=========>| VPE0 |
+. | |-----\ +-----------+ +--------+
+. +--------+ | 
+. |
+| +-----------+ +--------+
+\-->| SOC IRQ | | IRQ |
+| VPE1 CTRL |=========>| VPE1 |
++-----------+ +--------+
+
+The interrupt for the GPIO controller can be muxed to any of the MIPS HW
+interrupts on any (or all) of the VPEs, and these muxes (SoC IRQ controllers)
+can be configured independently per CPU. The SoC IRQ line index is fixed, and
+consistent for both VPEs.
+Only in the second diagram can individual GPIO interrupts be muxed to any of the
+VPEs, but there is still only one IRQ line per VPE for all selected GPIO lines.
+
+I hopes this helps to clarify the situation. We don't have any real
+documentation, so this is basically derived from registers descriptions in SDK
+headers and testing the interrupt behaviour.
+
+Best,
+Sander
