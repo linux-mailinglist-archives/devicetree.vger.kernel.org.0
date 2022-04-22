@@ -2,386 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D113750BF83
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA9C750BFC3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 20:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbiDVS2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 14:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44532 "EHLO
+        id S230025AbiDVS2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 14:28:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbiDVS2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:28:41 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2FAEA8167D;
-        Fri, 22 Apr 2022 11:25:46 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0CE041FB;
-        Fri, 22 Apr 2022 11:16:23 -0700 (PDT)
-Received: from [10.57.80.98] (unknown [10.57.80.98])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 362863F73B;
-        Fri, 22 Apr 2022 11:16:19 -0700 (PDT)
-Message-ID: <36551341-60f5-8b61-59d1-176ece8204d6@arm.com>
-Date:   Fri, 22 Apr 2022 19:16:13 +0100
+        with ESMTP id S234390AbiDVS2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 14:28:36 -0400
+Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3064427B05
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 11:25:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=b+ZHKdcwQaS5B0cIyyHCJQ/iG8M95qaEPvoQiuH6VqE=;
+        b=kMd2rYOf+uckkbUqznCR0jcdE/ejwcu1MJxl9By1bS5KJiXC97PM2VYsPYLDQe1zgdXJOTffGkRQw
+         70wYu740zEgVZA1BsCAkGo6rOazg1N5UfWfW7eKokdXQ6QAT0DRLhTHXN9I9ALVOnBukgf0fD7UMTB
+         wd+3bVkhNp715IXRvxN5O6fUkPqyTBYI3mjO4685Xz2786Ar/adq2h0NbBIGYIdrC7ZfhPMSNpm5o4
+         NZEi45KYSdm5gchRZ+DbrOHiA4o1GXc5HriRXFr7ZpJKWmY/jVdhcjM+dCampR8jLADs3ZTigfUKkt
+         L6G7QSKTQATA02r9NBsCcGI5+Sirhxw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=b+ZHKdcwQaS5B0cIyyHCJQ/iG8M95qaEPvoQiuH6VqE=;
+        b=HZxagInTnlE0twK3jOYG1Sj60VJh+VhcLoREvTaf5dnNKuPSGxC24hoUIoMvE9YZeQZaXvbaYUgY/
+         zIHVfFcCg==
+X-HalOne-Cookie: 2a0dae1011355b26a4b5764f2b4b8a05d4995d30
+X-HalOne-ID: 4d744611-c269-11ec-8225-d0431ea8bb10
+Received: from mailproxy2.cst.dirpod4-cph3.one.com (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+        id 4d744611-c269-11ec-8225-d0431ea8bb10;
+        Fri, 22 Apr 2022 18:23:27 +0000 (UTC)
+Date:   Fri, 22 Apr 2022 20:23:25 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Implement
+ simple NXP i.MX8M LDB bridge
+Message-ID: <YmLynWrjFb+28nGW@ravnborg.org>
+References: <20220418145105.76986-1-marex@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCHv1 18/19] arm64: dts: rockchip: Add base DT for rk3588 SoC
-Content-Language: en-GB
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@lists.collabora.co.uk,
-        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-References: <20220422170920.401914-1-sebastian.reichel@collabora.com>
- <20220422170920.401914-19-sebastian.reichel@collabora.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220422170920.401914-19-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220418145105.76986-1-marex@denx.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-04-22 18:09, Sebastian Reichel wrote:
-> From: Kever Yang <kever.yang@rock-chips.com>
+On Mon, Apr 18, 2022 at 04:51:04PM +0200, Marek Vasut wrote:
+> The i.MX8MP contains two syscon registers which are responsible
+> for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
+> which represents this serializer as a bridge.
 > 
-> This initial version supports (single core) CPU, dma, interrupts, timers,
-> UART and SDHCI. In short - everything necessary to boot Linux on this
-> system on chip.
-> 
-> The DT is split into rk3588 and rk3588s, which is a reduced version
-> (i.e. with less peripherals) of the former.
-> 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> [rebase, squash and reword commit message]
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Maxime Ripard <maxime@cerno.tech>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robby Cai <robby.cai@nxp.com>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+Acked-by: Sam Ravnborg <sam@ravnborg.org> but you need an ack from
+someone else before you apply as I am not an expert here.
+
+	Sam
 > ---
->   arch/arm64/boot/dts/rockchip/rk3588.dtsi  |   6 +
->   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 501 ++++++++++++++++++++++
->   include/dt-bindings/clock/rk3588-cru.h    |   1 +
->   3 files changed, 508 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
->   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> V2: - Consistently use fsl,imx8mp-ldb as compatible
+>     - Drop items: from compatible:
+>     - Replace minItems with maxItems in clocks:
+>     - Drop quotes from clock-names const: ldb
+>     - Rename syscon to fsl,syscon
+>     - Use generic name of ldb-lvds in example
+> ---
+>  .../bindings/display/bridge/nxp,ldb.yaml      | 96 +++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
 > new file mode 100644
-> index 000000000000..ddb3ccff1299
+> index 0000000000000..f3182566eb316
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> @@ -0,0 +1,6 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-> + */
+> +++ b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/nxp,ldb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include "rk3588s.dtsi"
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> new file mode 100644
-> index 000000000000..f7d3ad4384b3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -0,0 +1,501 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-> + */
+> +title: NXP i.MX8M DPI to LVDS bridge chip
 > +
-> +#include <dt-bindings/clock/rk3588-cru.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
 > +
-> +/ {
-> +	compatible = "rockchip,rk3588";
+> +description: |
+> +  The i.MX8MP contains two syscon registers which are responsible
+> +  for configuring the on-SoC DPI-to-LVDS serializer. This describes
+> +  those registers as bridge within the DT.
 > +
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8mp-ldb
 > +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +		serial5 = &uart5;
-> +		serial6 = &uart6;
-> +		serial7 = &uart7;
-> +		serial8 = &uart8;
-> +		serial9 = &uart9;
-> +	};
+> +  clocks:
+> +    maxItems: 1
 > +
-> +	clocks {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-
-I'm pretty sure that doing clocks as fake buses fell out of favour long ago.
-
+> +  clock-names:
+> +    const: ldb
 > +
-> +		spll: spll {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <702000000>;
-> +			clock-output-names = "spll";
-> +		};
+> +  fsl,syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to media block controller.
 > +
-> +		xin24m: xin24m {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <24000000>;
-> +			clock-output-names = "xin24m";
-> +		};
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 > +
-> +		xin32k: xin32k {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <32768>;
-> +			clock-output-names = "xin32k";
-> +		};
-
-Do those two really belong in the SoC DTSI? On previous SoCs they're 
-typically external inputs, and while the 24MHz is usually a crystal 
-which can be largely taken for granted, the 32KHz is often provided by 
-an RTC chip or similar which might need proper modelling.
-
-> +	};
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Video port for DPI input.
 > +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Video port for LVDS Channel-A output (panel or bridge).
 > +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu_l0>;
-> +				};
-> +			};
-> +		};
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Video port for LVDS Channel-B output (panel or bridge).
 > +
-> +		cpu_l0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +			capacity-dmips-mhz = <530>;
-> +			clocks = <&scmi_clk SCMI_CLK_CPUL>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_cache_l0>;
-> +			#cooling-cells = <2>;
-> +			dynamic-power-coefficient = <228>;
-> +		};
-
-Is there any particular reason for not including more of the CPUs?
-
+> +    required:
+> +      - port@0
+> +      - port@1
 > +
-> +		l2_cache_l0: l2-cache-l0 {
-> +			compatible = "cache";
-> +			cache-size = <131072>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +			next-level-cache = <&l3_cache>;
-> +		};
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - fsl,syscon
+> +  - ports
 > +
-> +		l3_cache: l3-cache {
-> +			compatible = "cache";
-> +			cache-size = <3145728>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <4096>;
-> +		};
-> +	};
+> +additionalProperties: false
 > +
-> +	arm-pmu {
-> +		compatible = "arm,armv8-pmuv3";
-
-Please use the correct Cortex-A55 compatible.
-
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-affinity = <&cpu_l0>;
-
-Is affinity meaningful for a single CPU? If this is going to need to be 
-a partitioned PPI once the Cortex-A76 PMU shows up as well, start as you 
-mean to go on.
-
-> +	};
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
 > +
-> +	firmware {
-> +		optee: optee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
+> +    bridge {
+> +        compatible = "fsl,imx8mp-ldb";
+> +        clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
+> +        clock-names = "ldb";
+> +        fsl,syscon = <&media_blk_ctrl>;
 > +
-> +		scmi: scmi {
-> +			compatible = "arm,scmi-smc";
-> +			shmem = <&scmi_shmem>;
-> +			arm,smc-id = <0x82000010>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
 > +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
+> +            port@0 {
+> +                reg = <0>;
 > +
-> +				assigned-clocks = <&scmi_clk SCMI_SPLL>;
-> +				assigned-clock-rates = <700000000>;
-> +			};
+> +                ldb_from_lcdif2: endpoint {
+> +                    remote-endpoint = <&lcdif2_to_ldb>;
+> +                };
+> +            };
 > +
-> +			scmi_reset: protocol@16 {
-> +				reg = <0x16>;
-> +				#reset-cells = <1>;
-> +			};
-> +		};
+> +            port@1 {
+> +                reg = <1>;
 > +
-> +		sdei: sdei {
-> +			compatible = "arm,sdei-1.0";
-> +			method = "smc";
-> +		};
-> +	};
+> +                ldb_lvds_ch0: endpoint {
+> +                    remote-endpoint = <&ldb_to_lvdsx4panel>;
+> +                };
+> +            };
 > +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
+> +            port@2 {
+> +                reg = <2>;
 > +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-
-A mask representing all 4 of one (of 8) CPUs, for a GICv2 which we don't 
-have? I doubt it ;)
-
-> +	};
-> +
-> +	sram@10f000 {
-> +		compatible = "mmio-sram";
-> +		reg = <0x0 0x0010f000 0x0 0x100>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x0 0x0010f000 0x100>;
-> +
-> +		scmi_shmem: sram@0 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0x100>;
-> +		};
-> +	};
-> +
-> +	php_grf: syscon@fd5b0000 {
-> +		compatible = "rockchip,rk3588-php-grf", "syscon";
-> +		reg = <0x0 0xfd5b0000 0x0 0x1000>;
-> +	};
-> +
-> +	ioc: syscon@fd5f0000 {
-> +		compatible = "rockchip,rk3588-ioc", "syscon";
-> +		reg = <0x0 0xfd5f0000 0x0 0x10000>;
-> +	};
-> +
-> +	syssram: sram@fd600000 {
-> +		compatible = "mmio-sram";
-> +		reg = <0x0 0xfd600000 0x0 0x100000>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x0 0xfd600000 0x100000>;
-> +	};
-> +
-> +	cru: clock-controller@fd7c0000 {
-> +		compatible = "rockchip,rk3588-cru";
-> +		rockchip,grf = <&php_grf>;
-> +		reg = <0x0 0xfd7c0000 0x0 0x5c000>;
-> +		#clock-cells = <1>;
-> +		#reset-cells = <1>;
-> +
-> +		assigned-clocks =
-> +			<&cru PLL_PPLL>, <&cru PLL_AUPLL>,
-> +			<&cru PLL_NPLL>, <&cru PLL_GPLL>,
-> +			<&cru ACLK_CENTER_ROOT>,
-> +			<&cru HCLK_CENTER_ROOT>, <&cru ACLK_CENTER_LOW_ROOT>,
-> +			<&cru ACLK_TOP_ROOT>, <&cru PCLK_TOP_ROOT>,
-> +			<&cru ACLK_LOW_TOP_ROOT>, <&cru PCLK_PMU0_ROOT>,
-> +			<&cru HCLK_PMU_CM0_ROOT>, <&cru ACLK_VOP>,
-> +			<&cru ACLK_BUS_ROOT>, <&cru CLK_150M_SRC>,
-> +			<&cru CLK_GPU>;
-> +		assigned-clock-rates =
-> +			<100000000>, <786432000>,
-> +			<850000000>, <1188000000>,
-> +			<702000000>,
-> +			<400000000>, <500000000>,
-> +			<800000000>, <100000000>,
-> +			<400000000>, <100000000>,
-> +			<200000000>, <500000000>,
-> +			<375000000>, <150000000>,
-> +			<200000000>;
-> +	};
-> +
-> +	sdhci: mmc@fe2e0000 {
-> +		compatible = "rockchip,rk3588-dwcmshc", "snps,dwcmshc-sdhci";
-> +		reg = <0x0 0xfe2e0000 0x0 0x10000>;
-> +		interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
-> +		assigned-clocks = <&cru BCLK_EMMC>, <&cru TMCLK_EMMC>, <&cru CCLK_EMMC>;
-> +		assigned-clock-rates = <200000000>, <24000000>, <200000000>;
-> +		clocks = <&cru CCLK_EMMC>, <&cru HCLK_EMMC>,
-> +			 <&cru ACLK_EMMC>, <&cru BCLK_EMMC>,
-> +			 <&cru TMCLK_EMMC>;
-> +		clock-names = "core", "bus", "axi", "block", "timer";
-> +		resets = <&cru SRST_C_EMMC>, <&cru SRST_H_EMMC>,
-> +			 <&cru SRST_A_EMMC>, <&cru SRST_B_EMMC>,
-> +			 <&cru SRST_T_EMMC>;
-> +		reset-names = "core", "bus", "axi", "block", "timer";
-> +		max-frequency = <200000000>;
-> +		status = "disabled";
-> +	};
-> +
-> +	gic: interrupt-controller@fe600000 {
-> +		compatible = "arm,gic-v3";
-> +		reg = <0x0 0xfe600000 0 0x10000>, /* GICD */
-> +		      <0x0 0xfe680000 0 0x100000>; /* GICR */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		its: interrupt-controller@fe640000 {
-> +			compatible = "arm,gic-v3-its";
-> +			msi-controller;
-> +			#msi-cells = <1>;
-> +			reg = <0x0 0xfe640000 0x0 0x20000>;
-> +		};
-> +	};
-
-Does the ITS (and other bits related to GIC memory accesses) actually 
-work, or will we have more of the same issues as RK356x?
-
-Thanks,
-Robin.
+> +                ldb_lvds_ch1: endpoint {
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.35.1
