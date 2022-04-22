@@ -2,177 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8371450AF60
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8197750AF5A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 07:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1444072AbiDVFKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 01:10:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47746 "EHLO
+        id S1444024AbiDVFKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 01:10:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1444078AbiDVFKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:10:41 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256444B412;
-        Thu, 21 Apr 2022 22:07:47 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23M57IgX013026;
-        Fri, 22 Apr 2022 00:07:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650604038;
-        bh=1jhdjBmYmmhMCJsX/t+vd/T+6pDWrDfmxcBUmfGeFc8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=pINIU37VyQZP4ww7xdYXgLgr9rzw+kXTjnyxkADXvkE9bhDKex6s/y3F+I3dWz1kj
-         MueRQ/ZscMGRgkS+9RE9D+MSzvmpiyrhzzgeuETwi6FQbB7rRa5kCUDJ6/sgqIwzpK
-         QAAKs3h1HJP7nqejF6IaiL5KU840Yp+b726D1GNw=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23M57Doo016351
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 22 Apr 2022 00:07:18 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
- Apr 2022 00:07:17 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 22 Apr 2022 00:07:17 -0500
-Received: from [10.24.69.236] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23M57Cdu059389;
-        Fri, 22 Apr 2022 00:07:13 -0500
-Message-ID: <c1de4293-a058-5e25-9be2-b61ac39f43a3@ti.com>
-Date:   Fri, 22 Apr 2022 10:37:12 +0530
+        with ESMTP id S1356762AbiDVFKg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 01:10:36 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F674B412;
+        Thu, 21 Apr 2022 22:07:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1650604064; x=1682140064;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ajU9/Al2pgTxbWYKHerN11BN/gqxMlOTbM0s5jP5RnM=;
+  b=J9OtC5dfZfXKCXWKfcKVPa36OkJcY9G2yYj+jIhWrrQ1gkgFwj37Wayo
+   Rv8D0tywyhhuld728cHhRsQV5wgFaOvChU9T8eMb75oSzSqP55gbXehrz
+   DbWYvy8XwAsmRnf82XSPHj/XV/och90vzsgY2v8jHzXldKl7PUEvLwZTM
+   PmrWwk/rwI5SgdSjn7s3mGeFUlkDFr3QVuiw2tmR4VFu/sW+ror2HAqpt
+   odc9M0rd1mJ6zNjDS0bqyWY+P3NGf1fvkgLCc+XGW5IEf4oNCDn5FwjfE
+   hyYOnqPMfv3z2IuSfv8Lgk+KPrlE5lXcr13hqulpnFd7yzVtZmsSiLkOz
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="289692713"
+X-IronPort-AV: E=Sophos;i="5.90,280,1643702400"; 
+   d="scan'208";a="289692713"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2022 22:07:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,280,1643702400"; 
+   d="scan'208";a="867218414"
+Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2022 22:07:41 -0700
+Received: from kbuild by 3abc53900bec with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nhlW8-0009F8-Lq;
+        Fri, 22 Apr 2022 05:07:40 +0000
+Date:   Fri, 22 Apr 2022 13:07:23 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     kbuild-all@lists.01.org, jejb@linux.ibm.com,
+        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH v4 4/7] scsi: ufs-renesas: Add support for Renesas R-Car
+ UFS controller
+Message-ID: <202204221216.csH6k6mX-lkp@intel.com>
+References: <20220420025450.289578-5-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: usb: tps6598x: Make the interrupts
- property optional
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>,
-        Martin Kepplinger <martink@posteo.de>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220414083120.22535-1-a-govindraju@ti.com>
- <20220414083120.22535-2-a-govindraju@ti.com>
- <be8ab691-98f1-5fb9-fec8-7213a2288d07@kernel.org>
- <56c72151-af5f-366b-b17f-24b9fb6264da@ti.com>
- <ae54dbb1-2b02-cba2-5de2-cf3d9a4e35f5@kernel.org>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-In-Reply-To: <ae54dbb1-2b02-cba2-5de2-cf3d9a4e35f5@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220420025450.289578-5-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
+Hi Yoshihiro,
 
-On 21/04/22 00:46, Roger Quadros wrote:
-> Hi,
-> 
-> On 18/04/2022 08:19, Aswath Govindraju wrote:
->> Hi Roger,
->>
->> On 14/04/22 23:40, Roger Quadros wrote:
->>> Hi,
->>>
->>> On 14/04/2022 11:31, Aswath Govindraju wrote:
->>>> Support for polling has been added in the driver, which will be used by
->>>> default if interrupts property is not populated. Therefore, remove
->>>> interrupts and interrupt-names from the required properties and add a note
->>>> under interrupts property describing the above support in driver.
->>>>
->>>> Suggested-by: Roger Quadros <rogerq@kernel.org>
->>>
->>> I did not suggest to make interrupts optional by default.
->>>
->>> What I suggested was that if a DT property exists to explicitly
->>> indicate polling mode then interrupts are not required.
->>>
->>
->> ohh okay, got it. However, may I know if adding a dt property to
->> indicate polling for aiding the driver, is the correct approach to model it?
->>
->> In terms of modelling hardware, as interrupts are not connected we are
->> not populating the interrupts property. Shouldn't that be all. If we are
->> adding a property explicitly to indicate polling that can be used by
->> driver, wouldn't that be a software aid being added in the device tree?
-> 
-> The hardware (tps6598x chip) has an interrupt pin and is expected to be used
-> in normal case.
-> 
-> Some buggy boards might have forgot to connect it. We are adding polling mode only for these buggy boards. ;)
-> So polling mode is an exception.
-> 
+I love your patch! Yet something to improve:
 
-Yes as you mentioned the interrupt line is expected to connected but
-there could be cases where there are not enough pins on the SoC and
-polling is used intentionally. In these cases this would be a feature
-rather than a bug.
+[auto build test ERROR on geert-renesas-devel/next]
+[also build test ERROR on v5.18-rc3 next-20220421]
+[cannot apply to mkp-scsi/for-next jejb-scsi/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Also, I feel like not adding interrupts property in the dt nodes will
-indicate polling. My question is why are we adding an extra property
-(which is being used only as an aid in the driver) when this feature can
-be modeled by making interrupts property optional.
+url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/treewide-scsi-ufs-Add-support-for-Renesas-R-Car-UFS-controller/20220420-105751
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20220422/202204221216.csH6k6mX-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/32b072c876095bb212d9bfb12f3b86d32bea1d07
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yoshihiro-Shimoda/treewide-scsi-ufs-Add-support-for-Renesas-R-Car-UFS-controller/20220420-105751
+        git checkout 32b072c876095bb212d9bfb12f3b86d32bea1d07
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
 
-Thanks,
-Aswath
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> cheers,
-> -roger
-> 
->>
->> Thanks,
->> Aswath
->>
->>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++--
->>>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
->>>> index a4c53b1f1af3..1c4b8c6233e5 100644
->>>> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
->>>> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
->>>> @@ -25,6 +25,8 @@ properties:
->>>>  
->>>>    interrupts:
->>>>      maxItems: 1
->>>> +    description:
->>>> +      If interrupts are not populated then by default polling will be used.
->>>>  
->>>>    interrupt-names:
->>>>      items:
->>>> @@ -33,8 +35,6 @@ properties:
->>>>  required:
->>>>    - compatible
->>>>    - reg
->>>> -  - interrupts
->>>> -  - interrupt-names
->>>>  
->>>>  additionalProperties: true
->>>>  
->>>
->>> cheers,
->>> -roger
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
+drivers/scsi/ufs/ufs-renesas: struct of_device_id is 196 bytes.  The last of 1 is:
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x72 0x65 0x6e 0x65 0x73 0x61 0x73 0x2c 0x72 0x38 0x61 0x37 0x37 0x39 0x66 0x30 0x2d 0x75 0x66 0x73 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+>> FATAL: modpost: drivers/scsi/ufs/ufs-renesas: struct of_device_id is not terminated with a NULL entry!
 
 -- 
-Thanks,
-Aswath
+0-DAY CI Kernel Test Service
+https://01.org/lkp
