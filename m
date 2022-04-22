@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A60AA50BEFC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9145250BEF5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbiDVRtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 13:49:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58320 "EHLO
+        id S233749AbiDVRs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 13:48:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbiDVRsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:48:52 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2990F38BFC
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:18 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id a10so9806499oif.9
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:17 -0700 (PDT)
+        with ESMTP id S232474AbiDVRsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:48:54 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57EE7B576
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:26 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id t6-20020a056830224600b00605491a5cd7so5941182otd.13
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=Nr2dHmWfiNPPrGPgPCaM1uOSlB4d/YNPDX461LAtgB8=;
-        b=LQaiOYQpAliM0d9+oDbPUjhZcr5YhYhYhJjLJzQqcDyc3/r8G4CoKBR2Cg0QE9I7mO
-         hat8Tg2yJPa7jo2Sv3+uwgiDIurI6pYh+1T0R8uTYc61ttH5Z6o4owOliAOaq0ciUHgi
-         JdLhFCcTci5eC3s/5LdfXhf9MbKvxiLYbPKp+hG1ba3wAhkXTQzjbQ/7Odq510IYNURx
-         iRK91dpBbsCeyt/zDj1BdElOESE/FxrK4eb4VDideQKoF57bf3Oh/DxzTUhkZ+1Y+OA2
-         AwErendhnh45Do8iHSD1YX6TDpnEQSO0Ec8o79h+Xm8nGlZRQRsKKIdkcFXCBcCIgxOy
-         eB3Q==
+        bh=rg2t3QjS7swC7CCiD53ULPLxJwbqove3OB++0DlUPOM=;
+        b=rnQZnBYynxzLCkaXTaGnxFQL4AnOzdgbt+/LyfgIxZnFmh2kLZYF489V/PStkDRRk3
+         ELRQRo2dmDDnWjViR5NBAGniSK4SV30vYUAREBVPT6rixhn6Z3ZxjCE/ypI+r3c/OLsA
+         itQ9wujwDjGfB1gINksmSU1Tlr2sG/OrryEuBTWr6eXsBIhtqzCUbmsidLdh8bRPOwof
+         XQpDV7bqra0eFhoTtXIxH4P8sIxHFHeIb3VM/lpdH5riMPJtJhIsjdxC4AArPIXk/6qu
+         PS4OyA8Cf62F9JoCLsK87DJnBamhrR2x9P0X6xsk+zwqA0MuLmLM0LbG6ENlECOzYXTf
+         whuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Nr2dHmWfiNPPrGPgPCaM1uOSlB4d/YNPDX461LAtgB8=;
-        b=3Y15zm2iaE5YadZ3NzEgenrF2apSdxCxt7IenKc6sHg+JwyLQIOPlPveQzeyF1iErm
-         VxkxY4vsM3JJasLW6sbaWnKFd1+ra3B1oqwqbf/c2yoQUDjtahXVXmjwVXEv4H7GjmoN
-         VvmchMz2jBb7vqjMNX/RvoNVRbxriAAf2nJOtUXf56b1960OE2ggbcl8vji2wdegWEi6
-         AUO4P2YFqJFfslLZOyE/9jQa+iqO3s0x2tYubqtMc0OI/v42zf2xrVfXgNCE7FMPGWwV
-         3jdBOY+gTPo2rnC9fDUqO/mXbRBPXhz9YN7Gfb7B81BgBqLcJ6SW7JpM3HCY+HAguZ71
-         6zNQ==
-X-Gm-Message-State: AOAM531ZDr16P/linAcWPNjT8i1MwdSW+XiuEzWm87LPRZZMRVaaHkL4
-        5cKqIwgKxoMqtqBytmAR42AO7A==
-X-Google-Smtp-Source: ABdhPJwiTQjcOmeurwc6R+Gx9T5404cqLZmOEizI5ZBPUFKo8ZFoHVx4xFsOsrLwiWUvW9+vx5hOUw==
-X-Received: by 2002:a05:6808:17a3:b0:324:fcbf:3142 with SMTP id bg35-20020a05680817a300b00324fcbf3142mr523793oib.5.1650649370137;
-        Fri, 22 Apr 2022 10:42:50 -0700 (PDT)
+        bh=rg2t3QjS7swC7CCiD53ULPLxJwbqove3OB++0DlUPOM=;
+        b=jZrlj7DMyoWRmthSr9RuSczHLmxh1EE6eqTz8KW/rEVXGx9q6divII3/9m/KBvHLdp
+         dwzuK6adRz7xqmH2RLz4RJqKYKUOgHnfDtGvayJHX208s9bhimXKWg4icwdtIm4OWIL6
+         74/A6bJrWfcYI1OtQccmHe/wdRWY4N6c1B8dqIFTuCVBdKk60gka83ouu6+eroiDSalz
+         CrZzU/dY+GBmbaGZ8Pgfj+doHqE2c1+j9c86kSWQNCgq18EE68QTRd6/zlHdAjVv0Ufh
+         D0y2f+YiZvnG3OeORtLhq6iGkFpQgnFsUrnSXkrc70ZDkNW5CPdVTh5o5vQduwTMpLWb
+         RSaw==
+X-Gm-Message-State: AOAM531DxaIrOXr/sSinuCWzATWsxYkp7PVDKKBk6DZS0IDhehP6R7ni
+        fb/X9db/fIDz4rVyG1pHhY2twg==
+X-Google-Smtp-Source: ABdhPJzrJ9MT6DuHvfnHQFUTPgYGuhuBV0Pg3wovOt7szDKz5NOAaGD5S8Ep8UHUxc+wv1y5bNPlxg==
+X-Received: by 2002:a05:6830:440a:b0:605:87ec:9b23 with SMTP id q10-20020a056830440a00b0060587ec9b23mr1505671otv.151.1650649388208;
+        Fri, 22 Apr 2022 10:43:08 -0700 (PDT)
 Received: from eze-laptop ([190.190.187.68])
-        by smtp.gmail.com with ESMTPSA id q11-20020a05683033cb00b005e686fd52d6sm965139ott.17.2022.04.22.10.42.46
+        by smtp.gmail.com with ESMTPSA id z5-20020a4a8085000000b0033a2f400b17sm1033343oof.25.2022.04.22.10.43.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Apr 2022 10:42:48 -0700 (PDT)
-Date:   Fri, 22 Apr 2022 14:42:43 -0300
+        Fri, 22 Apr 2022 10:43:07 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 14:43:01 -0300
 From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 To:     Christopher Obbard <chris.obbard@collabora.com>
 Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -60,50 +60,86 @@ Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Rename vdec_mmu node for RK3328
-Message-ID: <YmLpE+AfZ4UYmn9O@eze-laptop>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add vdec support for RK3328
+Message-ID: <YmLpJQwdcSPHgZag@eze-laptop>
 References: <20220422133803.989256-1-chris.obbard@collabora.com>
- <20220422133803.989256-3-chris.obbard@collabora.com>
+ <20220422133803.989256-4-chris.obbard@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220422133803.989256-3-chris.obbard@collabora.com>
+In-Reply-To: <20220422133803.989256-4-chris.obbard@collabora.com>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 02:38:02PM +0100, Christopher Obbard wrote:
-> All other rockchip devices which have vdec nodes do not
-> have an rk prefix. Remove the prefix from the (currently
-> unused) rkvdec_mmu node for consistency with other
-> devices.
+On Fri, Apr 22, 2022 at 02:38:03PM +0100, Christopher Obbard wrote:
+> The RK3328 has an vdec device with dedicated iommu.
+> Describe the device and required power-domains in the
+> devicetree.
 > 
 > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
 
 Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 
 > ---
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 25 +++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
 > 
 > diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> index b822533dc7f1..f8ef149fedad 100644
+> index f8ef149fedad..390e1e4a8fc9 100644
 > --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
 > +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> @@ -660,7 +660,7 @@ vpu_mmu: iommu@ff350800 {
+> @@ -306,6 +306,10 @@ power-domain@RK3328_PD_HEVC {
+>  			};
+>  			power-domain@RK3328_PD_VIDEO {
+>  				reg = <RK3328_PD_VIDEO>;
+> +				clocks = <&cru ACLK_RKVDEC>,
+> +					 <&cru HCLK_RKVDEC>,
+> +					 <&cru SCLK_VDEC_CABAC>,
+> +					 <&cru SCLK_VDEC_CORE>;
+>  				#power-domain-cells = <0>;
+>  			};
+>  			power-domain@RK3328_PD_VPU {
+> @@ -660,6 +664,25 @@ vpu_mmu: iommu@ff350800 {
 >  		power-domains = <&power RK3328_PD_VPU>;
 >  	};
 >  
-> -	rkvdec_mmu: iommu@ff360480 {
-> +	vdec_mmu: iommu@ff360480 {
+> +	vdec: video-codec@ff360000 {
+> +		compatible = "rockchip,rk3328-vdec", "rockchip,rk3399-vdec";
+> +		reg = <0x0 0xff360000 0x0 0x400>;
+> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>,
+> +			 <&cru SCLK_VDEC_CABAC>, <&cru SCLK_VDEC_CORE>;
+> +		clock-names = "axi", "ahb", "cabac", "core";
+> +		assigned-clocks = <&cru ACLK_RKVDEC>, <&cru SCLK_VDEC_CABAC>,
+> +				  <&cru SCLK_VDEC_CORE>;
+> +		assigned-clock-rates = <400000000>, <400000000>, <300000000>;
+> +		resets = <&cru SRST_VDEC_A>, <&cru SRST_VDEC_H>,
+> +			 <&cru SRST_VDEC_CABAC>, <&cru SRST_VDEC_CORE>,
+> +			 <&cru SRST_VDEC_NIU_A>, <&cru SRST_VDEC_NIU_H>;
+> +		reset-names = "video_a", "video_h", "video_cabac", "video_core",
+> +			"niu_a", "niu_h";
+> +		iommus = <&vdec_mmu>;
+> +		power-domains = <&power RK3328_PD_VIDEO>;
+> +	};
+> +
+>  	vdec_mmu: iommu@ff360480 {
 >  		compatible = "rockchip,iommu";
 >  		reg = <0x0 0xff360480 0x0 0x40>, <0x0 0xff3604c0 0x0 0x40>;
->  		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -667,7 +690,7 @@ vdec_mmu: iommu@ff360480 {
+>  		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>;
+>  		clock-names = "aclk", "iface";
+>  		#iommu-cells = <0>;
+> -		status = "disabled";
+> +		power-domains = <&power RK3328_PD_VIDEO>;
+>  	};
+>  
+>  	vop: vop@ff370000 {
 > -- 
 > 2.34.1
 > 
