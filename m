@@ -2,140 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 634BC50C112
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 23:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 235D350C11E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 23:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbiDVV0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 17:26:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
+        id S229983AbiDVVi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 17:38:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiDVV0F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 17:26:05 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3444825CA09;
-        Fri, 22 Apr 2022 13:22:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=IJ9Mu/aUYM3vuD5oQcui/J0/WhPDdyFZPtdQU+Ga/QI=; b=T1tOkSyynfaYwEC/xaB+p6az3Z
-        XtQ2o1NqRu4SayBGALcPLXyZykVvU5An2x8p6KxswgnsA7y9ZqXOckyg10qAdYaxD1v/tTnx308tr
-        3W0frA8HsyBxGGYZJ3dC1060Ed0pognN1wfkuOy5+1/JWKY9TF19h+gO4BQyUbykPAwM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nhzkl-00H2Uf-Si; Fri, 22 Apr 2022 22:19:43 +0200
-Date:   Fri, 22 Apr 2022 22:19:43 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next 1/5] net: ipqess: introduce the Qualcomm IPQESS
- driver
-Message-ID: <YmMN37VjQNwhLDuX@lunn.ch>
-References: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
- <20220422180305.301882-2-maxime.chevallier@bootlin.com>
+        with ESMTP id S229789AbiDVViZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 17:38:25 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6921DFC79
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 13:43:29 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id f17so16543386ybj.10
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 13:43:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0JRCh/BqOi4YkLGUiJfecYURU86aNbte4r9osUN03Ek=;
+        b=CBGTb4d3eS7HJsTVlLbQoizdcgj00FRfmsbMjOINCCIgO/lh/nw8HFb5PtXjHizyAi
+         BYZ+XVlLA6yn5KwojjjMps9Uw9kqcWQDjdEkeaNPwRettOULYGjgSkpIY7XNeOVgjp4A
+         FIE3gEgnj+PkohreuAOunK9gW7Al2WCCKjSjTUSlVHG/1U5fxBJSxNvMJGAczW6PjXoh
+         y4AV9yCqVYPPG6eAHwjn1K7OVRJaWNnRZmQ5k+B+yQJzKfxtyAomy7dOiJ4j6TfHe3jQ
+         knLd0SPuH892Kmh/jfFnbYPiifqBIPHRECqY5lA5x4ux6cXe213gkYziWEoSlo2BOORF
+         LlXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0JRCh/BqOi4YkLGUiJfecYURU86aNbte4r9osUN03Ek=;
+        b=ZX5/zY7m4JRmFgnQjIjO72TPb5j5LvQ5wUjO+JTqI5OKuoEFh9y7Fs/vooiTd/SppR
+         23dy6xCH6SidsMH51VqCDlrQtsHXZ4fx6w5aGU6k3JjGAe/pHYWG5yQtKmtPS7bpZqJ2
+         ymF/woQUqgmyRZN232OEGEM12BH/0Tao88AmSz3CwyohkgjG5O1/qmrnkExo8jZ59CbM
+         ZahceKfvtzi5GLu6Ql63Z7b2eEpULKgroe2IU+JtdA0OA1Z3MXrUHYaa2s4WWzM9I295
+         eaOeGq4+s55huVtDAO3/C/NCR9WAuqpR+PQnrv0nMQtvtqZkSPY+wyamVWM+Nq2iDQgy
+         uz9A==
+X-Gm-Message-State: AOAM531gcDRc17a2ZP03AZ2cq2ImxppnGgHwk9KWtBgqNdpec6YrBoLg
+        TKj41oTquSdR0EFH+llKASgaORNEIsVN5eHAK1Sf1y7lZe8=
+X-Google-Smtp-Source: ABdhPJw9gNNFIjL44oXwYR0XZt26gSCXKZ91nXCIwqis42lHTyFg4ODQiziVUiiGspHnYemb6VnQASFqhnYF8zKxMxw=
+X-Received: by 2002:a0d:f0c3:0:b0:2f4:d291:9dde with SMTP id
+ z186-20020a0df0c3000000b002f4d2919ddemr6790754ywe.437.1650659758236; Fri, 22
+ Apr 2022 13:35:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220422180305.301882-2-maxime.chevallier@bootlin.com>
+References: <20220422170920.401914-1-sebastian.reichel@collabora.com> <20220422170920.401914-15-sebastian.reichel@collabora.com>
+In-Reply-To: <20220422170920.401914-15-sebastian.reichel@collabora.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 22 Apr 2022 22:35:47 +0200
+Message-ID: <CACRpkda-yLgH7mC6GkMgh5e3+c+4cBrRc9Ryist+zYJh2z9_Sw@mail.gmail.com>
+Subject: Re: [PATCHv1 14/19] gpio: rockchip: add support for rk3588
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@lists.collabora.co.uk,
+        Jianqun Xu <jay.xu@rock-chips.com>, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int ipqess_axi_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct net_device *netdev;
-> +	phy_interface_t phy_mode;
-> +	struct resource *res;
-> +	struct ipqess *ess;
-> +	int i, err = 0;
-> +
-> +	netdev = devm_alloc_etherdev_mqs(&pdev->dev, sizeof(struct ipqess),
-> +					 IPQESS_NETDEV_QUEUES,
-> +					 IPQESS_NETDEV_QUEUES);
-> +	if (!netdev)
-> +		return -ENOMEM;
-> +
-> +	ess = netdev_priv(netdev);
-> +	ess->netdev = netdev;
-> +	ess->pdev = pdev;
-> +	spin_lock_init(&ess->stats_lock);
-> +	SET_NETDEV_DEV(netdev, &pdev->dev);
-> +	platform_set_drvdata(pdev, netdev);
+On Fri, Apr 22, 2022 at 7:09 PM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
 
-....
+> From: Jianqun Xu <jay.xu@rock-chips.com>
+>
+> Add V2.1 rockchip gpio controller type, which is part of the
+> RK3588 SoC.
+>
+> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> +
-> +	ipqess_set_ethtool_ops(netdev);
-> +
-> +	err = register_netdev(netdev);
-> +	if (err)
-> +		goto err_out;
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Before register_netdev() even returns, your devices can be in use, the
-open callback called and packets sent. This is particularly true for
-NFS root. Which means any setup done after this is probably wrong.
+This looks like something that can just be merged to Bartosz
+tree as there are no dependencies on the other patches.
 
-> +
-> +	err = ipqess_hw_init(ess);
-> +	if (err)
-> +		goto err_out;
-> +
-> +	for (i = 0; i < IPQESS_NETDEV_QUEUES; i++) {
-> +		int qid;
-> +
-> +		netif_tx_napi_add(netdev, &ess->tx_ring[i].napi_tx,
-> +				  ipqess_tx_napi, 64);
-> +		netif_napi_add(netdev,
-> +			       &ess->rx_ring[i].napi_rx,
-> +			       ipqess_rx_napi, 64);
-> +
-> +		qid = ess->tx_ring[i].idx;
-> +		err = devm_request_irq(&ess->netdev->dev, ess->tx_irq[qid],
-> +				       ipqess_interrupt_tx, 0,
-> +				       ess->tx_irq_names[qid],
-> +				       &ess->tx_ring[i]);
-> +		if (err)
-> +			goto err_out;
-> +
-> +		qid = ess->rx_ring[i].idx;
-> +		err = devm_request_irq(&ess->netdev->dev, ess->rx_irq[qid],
-> +				       ipqess_interrupt_rx, 0,
-> +				       ess->rx_irq_names[qid],
-> +				       &ess->rx_ring[i]);
-> +		if (err)
-> +			goto err_out;
-> +	}
-
-All this should probably go before netdev_register().
-
-> +static int ipqess_get_strset_count(struct net_device *netdev, int sset)
-> +{
-> +	switch (sset) {
-> +	case ETH_SS_STATS:
-> +		return ARRAY_SIZE(ipqess_stats);
-> +	default:
-> +		netdev_dbg(netdev, "%s: Invalid string set", __func__);
-
-Unsupported would be better than invalid.
-
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-
-  Andrew
+Yours,
+Linus Walleij
