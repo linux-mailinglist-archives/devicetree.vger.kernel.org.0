@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B195550C1FA
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 00:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC9E50C309
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbiDVWEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 18:04:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59654 "EHLO
+        id S232289AbiDVWPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 18:15:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231178AbiDVWEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:04:02 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091E341A96D;
-        Fri, 22 Apr 2022 13:47:03 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id g20so11811891edw.6;
-        Fri, 22 Apr 2022 13:47:03 -0700 (PDT)
+        with ESMTP id S232204AbiDVWPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 18:15:16 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD3323668D;
+        Fri, 22 Apr 2022 14:05:18 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id b17so6961114qvp.6;
+        Fri, 22 Apr 2022 14:05:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=RqJyh8C27vk9uziAAsZ9Sko9+svvUdiSo3Q1oIPdtew=;
-        b=L6gGTQ/6DfQIlosX6rFW28zXn4rmTt2yEc4fSS7LlDRCx3GrzyWACj2e3H/hSS4EVa
-         Zzf6rxAQVnSZ/0HYb5wpTSch47y4/x1p0qvv4LVbGn3yYb8Uvnj0gS+QmEqeYBFLlSLF
-         Jf6w0khn0nRUft/3CCa6tJ5X4TJO+iqtGz3YwiKu21TfYwZ608QOGpAnXRJp9BrzHgLd
-         0d3h6JN3unzrTHDSqngln9ajQWduYt5+CpgudMb0/x2SoNx+PabIrYbX2ijhT0YVrHfm
-         2m1HOtnbbQCkLNCPnDV296p+lPUM1q99Kb4IfHzWP4Sm/hIXPnEWBwMJAZNL6g2IJyJI
-         iVSQ==
+        bh=DpzKp6GQylN2DVn3Q8F44AaoMz54tuxDB2xUboNmmNk=;
+        b=pzvr3/UvSftncfosMfmgiWOYhMYbYHuIZTCgY5hDDTvmyy0dEedr9JVfuEeVSTpSm5
+         Wod5E9A0cF7e6X5SdVy8UQacTpGtFKdz/js8K/09qJ95ej2UAw2PGlDkrsu+YG2dXUGA
+         p/jEJQdqi+LBuQNomKnUI+S9NQyVkZ2ZnEbNnNiPIsX8T4w6VzABtzJx/TXysyHMCVQ+
+         ScUWgjAh3cPwFtBgN8jKf/CoS7zoCpT0JVr0YNB0YwEC8YxElSpInoxiPR7dP6Gy9x+x
+         Z2XHiikQMiTNKC8bErgRGi2i/cEQhRjtXly2a1DC44EwlTnp4zUihn+XzrUyE57MfFZT
+         LYeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=RqJyh8C27vk9uziAAsZ9Sko9+svvUdiSo3Q1oIPdtew=;
-        b=hxSG9UZMyCNtAhq3d8gc9aooEbvJc+U7Uqu5WhIw3IyvXal8L66gA+JLzgd0yk+OYF
-         UeVxDPD7uaG61aKyC6+5QKCLCsyx1MrUQJSVuP+45C6BfWPBhqkGmDc/E58Or84PP5LE
-         sQalUo09uxk5CfWBmroXsRihoawNnIvttoRcjHhl69gLxIiGLy1vr1ToqOuTZ4Q785ow
-         UfKrixlEkTxIYakDwEPO/7SgMLmKGtsMxr16M0lSfP6VX2zSuncirh3pzb/fEfD1wO/3
-         hgvBw9eh+G2ROFNJceGx4FRZza9a/ir6O6YJScioKKFU8v4fxzCLRZwbkH3MpoglxnsK
-         j/QQ==
-X-Gm-Message-State: AOAM533I3RiOKfYxNJAzCrAW79GjHvT0IYcoSq5P1cxs0gsePcuTriLt
-        H/6bpXP64GDveymIMCNMMEhet3MhG845EJ/HbLFQhvMcCrY=
-X-Google-Smtp-Source: ABdhPJzONtYAysnLGqYOw6ud3FIKqGeCWT3xH7YoCMRjE9o+FmNs9pOgTW2YtKCoHB+4692wuPWCMYQhFhyZoAhR4V4=
-X-Received: by 2002:a05:6402:e:b0:423:d5ff:8fce with SMTP id
- d14-20020a056402000e00b00423d5ff8fcemr6251542edu.407.1650652652753; Fri, 22
- Apr 2022 11:37:32 -0700 (PDT)
+        bh=DpzKp6GQylN2DVn3Q8F44AaoMz54tuxDB2xUboNmmNk=;
+        b=N+dern6iTZrA/2UvQsr6Y52jn8zymardWbbx95HxpdlyZEHU0GjMAhiSiuBcWU6ygK
+         JvfCgYSLuYmROy/fJwQDjacL8Z26faSRt/7q+beB70rfc12J3+jrUYoa3of+uVgVOn8r
+         E0I3Cha8DP6onWwoH6uDGhYrXN0tjv0lYjfsOL/h4s6rAHmkmMnRct/kEU5pURDnwn+u
+         jLIR9LJuEdROgHTQH9jEsbxMhgu77xSQKO3yBuhhcTCkBSyEq0t6vd7LJxhqOmp1tFVj
+         /fsF/Urs+Z1Da7L6xRV5AHESN3hbjFZCoDcZ475N18TUP89AJOhbCYU+21J3cifOSl/X
+         tnWQ==
+X-Gm-Message-State: AOAM533V03zKTB0KHH5xciSahmWiExG0lVdxqoqtnCrR4CoYYoVLgztQ
+        L0rfaX+MxMSzwBqpHdHMyvbxV359xb7uLrvxjhSuX17I
+X-Google-Smtp-Source: ABdhPJyDTdfYVPmGi9JCDZSwQ3dGVcvDeC8/OPyjPu7IjhwDECkrHzuq3quIB48TTMhTBLoEclHmpE49GOqp3rGJBbM=
+X-Received: by 2002:ad4:5943:0:b0:446:5c3e:2c2a with SMTP id
+ eo3-20020ad45943000000b004465c3e2c2amr4554955qvb.75.1650653101635; Fri, 22
+ Apr 2022 11:45:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220419160058.9998-1-markuss.broks@gmail.com>
- <20220419160058.9998-2-markuss.broks@gmail.com> <Yl7pqgjza/ZfajyM@sirena.org.uk>
- <0599e7ac-bd06-8d56-b510-0f27f4cc6790@gmail.com> <Yl8Jm9XqR3YTrW9Y@sirena.org.uk>
-In-Reply-To: <Yl8Jm9XqR3YTrW9Y@sirena.org.uk>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Date:   Fri, 22 Apr 2022 21:37:20 +0300
-Message-ID: <CANhJrGPXJYf4Bf3oBLGB2v3AwyvJbompjX34qOaKXsEhFda0zw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: regulator: Add bindings for Silicon
- Mitus SM5703 regulators
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>
+References: <BYAPR20MB24721F9954252BECBEF486ACBCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
+In-Reply-To: <BYAPR20MB24721F9954252BECBEF486ACBCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Fri, 22 Apr 2022 11:44:35 -0700
+Message-ID: <CA+E=qVfMm=8aQOM_HW_3EeqqLi-Fgn1Ex3h6kor89FQ0KfTvRw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: sun8i-thermal: add binding for
+ R329 THS
+To:     icenowy@outlook.com
+Cc:     Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Icenowy Zheng <icenowy@aosc.io>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -74,28 +78,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 9:05 PM Mark Brown <broonie@kernel.org> wrote:
+On Fri, Apr 22, 2022 at 9:12 AM <icenowy@outlook.com> wrote:
 >
-> On Tue, Apr 19, 2022 at 08:45:07PM +0300, Markuss Broks wrote:
+> From: Icenowy Zheng <icenowy@aosc.io>
 >
-> > I took an example from the rohm,bd71847-pmic.yaml MFD binding, they have
-> > regulators at a separate regulators { } node, with a separate dt-binding for
-> > it. I'm not sure what should I do, I'd be more than happy to follow a better
-> > example if you can show me it.
+> R329 has a thermal sensor controller that has only one sensor, and the
+> structure of it is like the H6 one.
 >
-> Basically either just remove the compatible and have the MFD directly
-> instantiate the device like sky81452 or put a separate node for each
-> regualtor like wm831x does (but without any DT support).
+> Add device tree binding for it.
+>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> ---
+>  .../devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml  | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> index 6e0b110153b0..87b4103e0a5f 100644
+> --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - allwinner,sun50i-a100-ths
+>        - allwinner,sun50i-h5-ths
+>        - allwinner,sun50i-h6-ths
+> +      - allwinner,sun50i-r329-ths
+>
+>    clocks:
+>      minItems: 1
+> @@ -63,6 +64,7 @@ allOf:
+>              enum:
+>                - allwinner,sun50i-a100-ths
+>                - allwinner,sun50i-h6-ths
+> +              - allwinner,sun50i-r329-ths
+>
+>      then:
+>        properties:
+> @@ -85,6 +87,7 @@ allOf:
+>          compatible:
+>            contains:
+>              const: allwinner,sun8i-h3-ths
+> +            const: allwinner,sun8i-r329-ths
+>
+>      then:
+>        properties:
 
-Just a note that the BD71847 does not have own "compatible" for the
-regulators. There's only "compatible" in the MFD node - and MFD just
-kicks the regulator driver. Regulators get the handle to the node from
-the parent device. I think it should serve as a valid example of what
-Mark described as
+There's also a check at line #99 that requires clock, clock-names and
+resets properties for thermal sensors in other Allwinner SoCs. Are
+these not required for r329?
 
-> Basically either just remove the compatible and have the MFD directly
-> instantiate the device
+Also are you planning to add a node for thermal sensor to r329 dtsi?
 
 
-Best Regards
--- Matti Vaittinen
+> --
+> 2.35.1
+>
