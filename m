@@ -2,128 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E3250BEE6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A60AA50BEFC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 19:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbiDVRmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 13:42:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54920 "EHLO
+        id S230208AbiDVRtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 13:49:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbiDVRmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:42:08 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FF7E7F43;
-        Fri, 22 Apr 2022 10:39:08 -0700 (PDT)
+        with ESMTP id S230415AbiDVRsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 13:48:52 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2990F38BFC
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:18 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id a10so9806499oif.9
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 10:45:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650649148; x=1682185148;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=0fpFqQYd/Wbv3V4oC9q2pZUt7Qc5kv653iWEvAomgFI=;
-  b=ZuOLpuMQZNe3m4hwMlM6YJDxrTrvA4No229fI8Wj6+VtHUtlX/v6LHj6
-   dFK4pXs+qSKOxMFm+LNejCvXgLWodhvYGTVedSCg5bMbh3BnC/S+3Kvct
-   uWGvDElzSfkbn6kJ0K6ucyB7ANX8x79HYBdYMnbR+Y6fmHEZpqwZ3jN0c
-   0=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 22 Apr 2022 10:35:21 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 10:35:20 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 22 Apr 2022 10:35:18 -0700
-Received: from [10.111.175.210] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 22 Apr
- 2022 10:35:15 -0700
-Message-ID: <c68e92ea-ee92-6aeb-1d51-5e265052ef43@quicinc.com>
-Date:   Fri, 22 Apr 2022 10:35:13 -0700
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Nr2dHmWfiNPPrGPgPCaM1uOSlB4d/YNPDX461LAtgB8=;
+        b=LQaiOYQpAliM0d9+oDbPUjhZcr5YhYhYhJjLJzQqcDyc3/r8G4CoKBR2Cg0QE9I7mO
+         hat8Tg2yJPa7jo2Sv3+uwgiDIurI6pYh+1T0R8uTYc61ttH5Z6o4owOliAOaq0ciUHgi
+         JdLhFCcTci5eC3s/5LdfXhf9MbKvxiLYbPKp+hG1ba3wAhkXTQzjbQ/7Odq510IYNURx
+         iRK91dpBbsCeyt/zDj1BdElOESE/FxrK4eb4VDideQKoF57bf3Oh/DxzTUhkZ+1Y+OA2
+         AwErendhnh45Do8iHSD1YX6TDpnEQSO0Ec8o79h+Xm8nGlZRQRsKKIdkcFXCBcCIgxOy
+         eB3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Nr2dHmWfiNPPrGPgPCaM1uOSlB4d/YNPDX461LAtgB8=;
+        b=3Y15zm2iaE5YadZ3NzEgenrF2apSdxCxt7IenKc6sHg+JwyLQIOPlPveQzeyF1iErm
+         VxkxY4vsM3JJasLW6sbaWnKFd1+ra3B1oqwqbf/c2yoQUDjtahXVXmjwVXEv4H7GjmoN
+         VvmchMz2jBb7vqjMNX/RvoNVRbxriAAf2nJOtUXf56b1960OE2ggbcl8vji2wdegWEi6
+         AUO4P2YFqJFfslLZOyE/9jQa+iqO3s0x2tYubqtMc0OI/v42zf2xrVfXgNCE7FMPGWwV
+         3jdBOY+gTPo2rnC9fDUqO/mXbRBPXhz9YN7Gfb7B81BgBqLcJ6SW7JpM3HCY+HAguZ71
+         6zNQ==
+X-Gm-Message-State: AOAM531ZDr16P/linAcWPNjT8i1MwdSW+XiuEzWm87LPRZZMRVaaHkL4
+        5cKqIwgKxoMqtqBytmAR42AO7A==
+X-Google-Smtp-Source: ABdhPJwiTQjcOmeurwc6R+Gx9T5404cqLZmOEizI5ZBPUFKo8ZFoHVx4xFsOsrLwiWUvW9+vx5hOUw==
+X-Received: by 2002:a05:6808:17a3:b0:324:fcbf:3142 with SMTP id bg35-20020a05680817a300b00324fcbf3142mr523793oib.5.1650649370137;
+        Fri, 22 Apr 2022 10:42:50 -0700 (PDT)
+Received: from eze-laptop ([190.190.187.68])
+        by smtp.gmail.com with ESMTPSA id q11-20020a05683033cb00b005e686fd52d6sm965139ott.17.2022.04.22.10.42.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 10:42:48 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 14:42:43 -0300
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To:     Christopher Obbard <chris.obbard@collabora.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Alex Bee <knaerzche@gmail.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Rename vdec_mmu node for RK3328
+Message-ID: <YmLpE+AfZ4UYmn9O@eze-laptop>
+References: <20220422133803.989256-1-chris.obbard@collabora.com>
+ <20220422133803.989256-3-chris.obbard@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v9 2/4] drm/msm/dp: Support only IRQ_HPD and REPLUG
- interrupts for eDP
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sean Paul <sean@poorly.run>, Sean Paul <seanpaul@chromium.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <1650618666-15342-1-git-send-email-quic_sbillaka@quicinc.com>
- <1650618666-15342-3-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=WWa8n0MJB8ks7bgrSj1Qop1Z5hvfEAOWtFcmsz38eR_w@mail.gmail.com>
- <83129bad-44a9-bec7-f931-8067ef1b9d4d@quicinc.com>
- <CAD=FV=Vu_0vxb_D+8n3qhNZ66nRXBp5vxshChmOM-ToPJxk=aA@mail.gmail.com>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <CAD=FV=Vu_0vxb_D+8n3qhNZ66nRXBp5vxshChmOM-ToPJxk=aA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422133803.989256-3-chris.obbard@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug
-
-On 4/22/2022 9:10 AM, Doug Anderson wrote:
-> Hi,
+On Fri, Apr 22, 2022 at 02:38:02PM +0100, Christopher Obbard wrote:
+> All other rockchip devices which have vdec nodes do not
+> have an rk prefix. Remove the prefix from the (currently
+> unused) rkvdec_mmu node for consistency with other
+> devices.
 > 
-> On Fri, Apr 22, 2022 at 9:05 AM Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
->>
->> Hi Doug
->>
->> For the lockdep error, the splat looks similar to what kuogee fixed
->> recently.
->>
->> Can you please check if below patch is present in your tree?
->>
->> https://patchwork.freedesktop.org/patch/481396/
+> Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+
+Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Indeed I did have that in my tree already, but the lockdep splat is
-> still there. I think the problem is that we're now calling
-> dp_hpd_plug_handle() directly in dp_bridge_enable()
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> index b822533dc7f1..f8ef149fedad 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> @@ -660,7 +660,7 @@ vpu_mmu: iommu@ff350800 {
+>  		power-domains = <&power RK3328_PD_VPU>;
+>  	};
+>  
+> -	rkvdec_mmu: iommu@ff360480 {
+> +	vdec_mmu: iommu@ff360480 {
+>  		compatible = "rockchip,iommu";
+>  		reg = <0x0 0xff360480 0x0 0x40>, <0x0 0xff3604c0 0x0 0x40>;
+>  		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> -- 
+> 2.34.1
 > 
-> -Doug
-
-Yes, now i understood this particular issue better and not sure how this 
-wasn't caught. Perhaps some difference in the USE flags. Sankeerth didnt 
-have lockdebug and thats why didnt hit this.
-
-I have discussed with kuogee about why this change is needed and why 
-this wasnt being done in get_modes().
-
-It seems like originally, this was done for a quirk in the DP compliance 
-equipment that it did not publish the fail safe mode ( even though some 
-other modes were present ). Typically, any sink (as long as EDID read 
-went through ) adds the 640x480 fail safe mode.
-
-We could have done it in get_modes() even earlier but not sure how it 
-was missed or was there some other reason.
-
-Nonetheless, kuogee will post the change to move this to get_modes() 
-shortly.
-
-Thanks
-
-Abhinav
