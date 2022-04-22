@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0880350C4D6
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA90F50C4E6
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 01:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbiDVXZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 19:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39412 "EHLO
+        id S229559AbiDVXcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 19:32:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbiDVXZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 19:25:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE201F3133;
-        Fri, 22 Apr 2022 16:00:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D2D3614BB;
-        Fri, 22 Apr 2022 23:00:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABEEC385A4;
-        Fri, 22 Apr 2022 23:00:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650668436;
-        bh=i3k4Z+wq+0X0ubvvjcLYArt+TLHMdxZUdHM1xhLD/BY=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=Xj7t9bXwLftOK6Wn2xSX5vGqV5VDq4zyr6DxzaGMlOikdAPrXgpep/Xhxocbey161
-         /Yd5kPFmohPRLw2OhkmpBq1AaEq1ZHlyyn+XijNZq4BtcPDq+LqaikTsS8fuhthm/U
-         Lz4xi+GzuHsx5VQ9qQCPSgspu3pWky/VJaqwx4E3VHQYIrwN7slyzw/DKoDci+pVhN
-         OZOBiUwvHSsmSnxeU1NQ5jK4o4sdt2uwZ7HRO2c6jLRvCBqdD/cVTicSPYrzu6XIZg
-         Ag9FRVb5V1cw/AGlUJAnjKOsrr6oanSlaQrtTNCYsfq0ogVQQiH7AumNcbcx/cvA5a
-         I4grC0fhpEQfA==
-Date:   Fri, 22 Apr 2022 16:00:35 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
-cc:     xen-devel@lists.xenproject.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH V1 4/6] dt-bindings: Add xen, dev-domid property description
- for xen-grant DMA ops
-In-Reply-To: <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2204221527500.915916@ubuntu-linux-20-04-desktop>
-References: <1650646263-22047-1-git-send-email-olekstysh@gmail.com> <1650646263-22047-5-git-send-email-olekstysh@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S229908AbiDVXbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 19:31:50 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B0611D839F;
+        Fri, 22 Apr 2022 16:10:35 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23MNARUn122407;
+        Fri, 22 Apr 2022 18:10:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1650669027;
+        bh=ZZ/QtBCCPXr1BiXBtjLSNK3sFCTt3ukLuz8jgWXTpoc=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=L/VlDCiTml6RY/kZhpNKUXZNUCvs9HWRRIxMFVHUFRmcic4i4Ez/wzSbV0mgXhSgv
+         rkhtTERX2G3OlxStOLixhVVYrMA2J4MVtl0QDzoFx8vJ+tqxix3yPJkR5RnIjFl8Vv
+         GorLWOMkVKPtMkcIAby+9d06B7pbICo9HWrOzAUg=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23MNARqt059488
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 22 Apr 2022 18:10:27 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 22
+ Apr 2022 18:10:27 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 22 Apr 2022 18:10:27 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23MNARdH028478;
+        Fri, 22 Apr 2022 18:10:27 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Nishanth Menon <nm@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH v2 1/2] ARM: dts: keystone: align SPI NOR node name with dtschema
+Date:   Fri, 22 Apr 2022 18:10:26 -0500
+Message-ID: <165066895341.31707.1212055932669760544.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220420090247.73410-1-krzysztof.kozlowski@linaro.org>
+References: <20220420090247.73410-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,88 +67,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+Hi Krzysztof Kozlowski,
+
+On Wed, 20 Apr 2022 11:02:46 +0200, Krzysztof Kozlowski wrote:
+> The node names should be generic and SPI NOR dtschema expects "flash".
 > 
-> Introduce Xen specific binding for the virtualized device (e.g. virtio)
-> to be used by Xen grant DMA-mapping layer in the subsequent commit.
 > 
-> This binding indicates that Xen grant mappings scheme needs to be
-> enabled for the device which DT node contains that property and specifies
-> the ID of Xen domain where the corresponding backend resides. The ID
-> (domid) is used as an argument to the grant mapping APIs.
-> 
-> This is needed for the option to restrict memory access using Xen grant
-> mappings to work which primary goal is to enable using virtio devices
-> in Xen guests.
-> 
-> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
-Looks OK to me. Just a couple of grammar improvements below. Aside from
-those, I have no further comments.
+I have applied the following to branch ti-keystone-dts-next on [1].
+Thank you!
+
+[1/2] ARM: dts: keystone: align SPI NOR node name with dtschema
+      commit: 625f5c507994fd8ff9c70b2477902b0e3e1f355f
+[2/2] ARM: dts: keystone: fix missing fallback and case in SPI NOR node compatible
+      commit: 6273a1864d437553ab4220d1abc010c5bb758ad2
 
 
-> ---
-> Changes RFC -> V1:
->    - update commit subject/description and text in description
->    - move to devicetree/bindings/arm/
-> ---
->  .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> new file mode 100644
-> index 00000000..ef0f747
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xen specific binding for the virtualized device (e.g. virtio)
+-> Side note: this probably needs fixes in yaml, but the sitn is no different
+than before, but improved due to the fixup . (minor fixes done in commit for
+capitalization)
 
-NIT: Xen specific binding for virtualized devices (e.g. virtio)
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +maintainers:
-> +  - Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> +
-> +select: true
-> +
-> +description:
-> +  This binding indicates that Xen grant mappings scheme needs to be enabled
-> +  for that device and specifies the ID of Xen domain where the corresponding
-> +  device (backend) resides. This is needed for the option to restrict memory
-> +  access using Xen grant mappings to work.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-NIT:
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-This binding indicates that Xen grant mappings need to be enabled for
-the device, and it specifies the ID of the domain where the
-corresponding device (backend) resides. The property is required to
-restrict memory access using Xen grant mappings.
-
-
-> +properties:
-> +  xen,dev-domid:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The domid (domain ID) of the domain where the device (backend) is running.
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    virtio_block@3000 {
-> +            compatible = "virtio,mmio";
-> +            reg = <0x3000 0x100>;
-> +            interrupts = <41>;
-> +
-> +            /* The device is located in Xen domain with ID 1 */
-> +            xen,dev-domid = <1>;
-> +    };
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
