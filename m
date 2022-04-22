@@ -2,93 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E990050B5C3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 12:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D2150B60D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 13:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446963AbiDVLAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 07:00:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55160 "EHLO
+        id S1447100AbiDVLWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 07:22:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245078AbiDVLAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:00:11 -0400
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7874656401;
-        Fri, 22 Apr 2022 03:57:16 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CB776580F59;
-        Fri, 22 Apr 2022 06:57:15 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Fri, 22 Apr 2022 06:57:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1650625035; x=1650632235; bh=t0Vm9xILeM
-        tEm0+ZRmoAPUxhxs4H3KoDqpfSFpCeFCw=; b=YyohwOWwHOsgUBEhklxIw81jQH
-        9k7QTlQ/m1chfbM67m+0hW+J9gC6M6REt0RZOv0kxcV3mVU0ScXWAtz8bTJoRWfr
-        h39uvBYqPEsgR7nFb0qijB/+vstZUi0TZ/how9i+VZQaoGnq2HsUShd/DZjOM72Y
-        UbnN0SFcAOLXFNkmucRsE7gGWzHf/I8SXDQN841DdKmdE9P+1T0UqTQn74Vi2pm9
-        /b13SwhKwJOQaaABmogrWklj6+cOSFo6dwcSWlMJIipbLw2teTqkYit9CbvlQsHx
-        /2bmmHf76lj9iXG9hJRVNy5Yt8FDk3ftKcfgEw2cx0UoIH9ztTjiHZ/MdTOg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1650625035; x=
-        1650632235; bh=t0Vm9xILeMtEm0+ZRmoAPUxhxs4H3KoDqpfSFpCeFCw=; b=i
-        U8nPM70ubfTAq9JEpnksZSiKccgJS/v8kX9pGTdKcgUiBHN4rDQM/c4Lgq4JL2HR
-        iDy00wOWuSCQAZXoDyWtLxu1Utf5X88aPC0doymtVSzDLd4/S2Ep2Jj6cHBekpTG
-        2KZkDoTxrrlmJNmgj449qTFBH3KZS9w2tLHkCrodp5EGzuuDP6/3hLw1mQSAdjb3
-        vF3oeIRT3hw/ReJoP7uA6fQkrPBGSbt9Ygbsgu7hVv2UgL2mdrMmSkVY9ABIAUMC
-        X2hou/ZnmrbeIWf6MhaZEYnc30U7xcYJ5cRUuwMU3+tTmOc3CpYO5qaufhDCnjhF
-        YPdaRylLN7MKSl4PYIogw==
-X-ME-Sender: <xms:CopiYvpMg8hB7wNpmcKj2c9-fUTff0aV2fB5qx5MxUk88lFsfRZuXA>
-    <xme:CopiYpp-fmHr5lxSrNy6k0HXJwDwH2MfQqaD6w-jP_5XDLZehoZDf5xqH0_9PwF2D
-    _3Q7UW1zdGwZMDyILI>
-X-ME-Received: <xmr:CopiYsOb8mHfLnR-4-ETneMFMMtqW8Xf_gwFS7tf9GX0HylDPpLpF5Xhk194DVmeXTKHVfvIXDostCKkkkARyFRA6elGSxqRXSK26Ws>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrtdeggdefvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepledvueduvdegleeufeetjeeuvefhieehjedutddtffekleekgeduiefgffdt
-    hffgnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
-    thgvtghh
-X-ME-Proxy: <xmx:CopiYi7w5KJVhVmQgmTJeLJvfycuQZkbrISLSqb7SB_NXdvUAZyoPA>
-    <xmx:CopiYu5b75WZpoAisop1NSRQcW46FVY3pRultQY6ns1ZPAx292OLXA>
-    <xmx:CopiYqiU0Ie1XFuc5PcX1rrVtTeSuAFCCFvXYu8cAeqaid2zrKOvxQ>
-    <xmx:C4piYhwlFs3WkiNwqadkyWiP3PYOKVYUrZAEDGBE5fWMd4iufn3zFw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 22 Apr 2022 06:57:14 -0400 (EDT)
-Date:   Fri, 22 Apr 2022 12:57:12 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 01/22] dt-bindings: mediatek,dpi: Add DP_INTF
- compatible
-Message-ID: <20220422105712.bdpbwliificvon4j@houat>
-References: <20220327223927.20848-1-granquet@baylibre.com>
- <20220327223927.20848-2-granquet@baylibre.com>
+        with ESMTP id S1447071AbiDVLWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 07:22:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32A35523C;
+        Fri, 22 Apr 2022 04:19:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 91427B82C2E;
+        Fri, 22 Apr 2022 11:19:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C96AC385A0;
+        Fri, 22 Apr 2022 11:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650626378;
+        bh=zru8/UW9zmtAG0/PK5iDxBFRfJ8xYdeBvwTmA9VEK8g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BFFN+sPTXdnJk+Sp2znrcBOGnDhEq/ShO1v6/yJkZyAMaRVVOMgL8Y/sxkmuDq0/y
+         NDfUXGw+porWAGWdY+2rRSYyvUukVuMEpW7ZA/6eMQ2mhk74CwKBR3n13ub1wF/imm
+         nJb9mf1iV/h1dvfahX0RHBpSlpRgfuxbXYoAr19tQAWQka94k0bKFC8/ifhv0ymalX
+         4Bmq23wGE5nBm+5lh6rSeoTh1OK5Bt02nNUIiEYEZoetl5lz31D9THVwSO3tvvRRzG
+         P0tEg7JEiLu0E5zAtbKtRaYjQOPIvLw+QZWmi5e5vQ2YBdECTTT2BlNDy+PF5wwXvj
+         07YN3tRQ0kdkQ==
+Date:   Fri, 22 Apr 2022 12:19:31 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
+Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
+Message-ID: <YmKPQ6kLCPz+2XTJ@sirena.org.uk>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <YkWfziQzprEsWL72@sirena.org.uk>
+ <CCE4A06E-6D6F-457D-B3C5-C36209BF38D3@cutebit.org>
+ <YkW4MPh8VWc8eSGg@sirena.org.uk>
+ <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
+ <YkXKmxJ0R3qpUoH4@sirena.org.uk>
+ <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="anrqwesp6j2b4lfg"
+        protocol="application/pgp-signature"; boundary="8nVJ3HZ/2fzKiGhv"
 Content-Disposition: inline
-In-Reply-To: <20220327223927.20848-2-granquet@baylibre.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <DB0255C3-C9EC-4EFA-A377-C4BB1073D9B3@cutebit.org>
+X-Cookie: Whoever dies with the most toys wins.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,81 +69,63 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---anrqwesp6j2b4lfg
-Content-Type: text/plain; charset=us-ascii
+--8nVJ3HZ/2fzKiGhv
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Fri, Apr 22, 2022 at 12:43:30PM +0200, Martin Povi=C5=A1er wrote:
 
-On Mon, Mar 28, 2022 at 12:39:06AM +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
->=20
-> DP_INTF is similar to DPI but does not have the exact same feature set
-> or register layouts.
->=20
-> DP_INTF is the sink of the display pipeline that is connected to the
-> DisplayPort controller and encoder unit. It takes the same clocks as
-> DPI.
->=20
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
-yaml
-> index dd2896a40ff0..2dba80ad3b18 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-> @@ -4,16 +4,16 @@
->  $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: mediatek DPI Controller Device Tree Bindings
-> +title: mediatek DPI/DP_INTF Controller
-> =20
->  maintainers:
->    - CK Hu <ck.hu@mediatek.com>
->    - Jitao shi <jitao.shi@mediatek.com>
-> =20
->  description: |
-> -  The Mediatek DPI function block is a sink of the display subsystem and
-> -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a parall=
-el
-> -  output bus.
-> +  The Mediatek DPI and DP_INTF function blocks are a sink of the display
-> +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel da=
-ta on a
-> +  parallel output bus.
-> =20
->  properties:
->    compatible:
-> @@ -23,6 +23,7 @@ properties:
->        - mediatek,mt8173-dpi
->        - mediatek,mt8183-dpi
->        - mediatek,mt8192-dpi
-> +      - mediatek,mt8195-dpintf
+> I looked in the TAS2770 and TAS2764 drivers/datasheets, and to answer
+> the questions we had:
 
-It seems a bit weird to have all instances of DP_INTF with a separator
-but the compatible doesn't have one?
+>  * VSENSE/ISENSE output slots are configured independently of audio sampl=
+es
+>    routing. Kernel drivers configure the slots based on the 'ti,imon-slot=
+-no'
+>    and 'ti,vmon-slot-no' properties of devicetree.
 
-Is there a reason to not use dp-intf?
+>  * By default codecs transmit Hi-Z for duration of unused slots.
 
-Maxime
+> So once we supply the devicetree props it should be electrically sound
+> under any configuration of userspace knobs.
 
---anrqwesp6j2b4lfg
+Great, that's a relief.
+
+> One final thought on the playback routing controls: On systems with >2
+> speakers, the codecs need to be assigned slots through set_tdm_slot.
+> The macaudio driver RFCed here assigns a single slot to each speaker,
+> making the effect of each speaker's routing control this:
+
+>   'I2C offset' -- uses a random slot
+
+>   'Left' 'Right' 'LeftRight' -- uses the single slot we configured
+
+> I suppose I better assign two slots to speakers in each left-right pair
+> of the same kind (e.g. woofer 1, woofer 2, tweeter). This way the
+> routing control will mimic its behavior from simple stereo systems but
+> replicated within each left-right pair.  (I would prefer to hide the
+> controls altogether, but as I learned that hiding things unless proven
+> dangerous is an ASoC non-goal, this way I can make the controls do
+> something interesting.)
+
+I don't quite grasp the difference between the arrangement you're
+proposing and assigning a single slot to each speaker?  Possibly it's
+just a reordering of the slots?
+
+--8nVJ3HZ/2fzKiGhv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYmKKCAAKCRDj7w1vZxhR
-xWHVAP9XOs5mllTpT84nKFlJqhBvEdANoAc/yLINNdL4rTwK/AEA2W/abW6SXtii
-kYk/IHsQm/a6SEpxbGGVFYXWq6N3fQE=
-=Cd+2
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJij0MACgkQJNaLcl1U
+h9BqUwf/QG0XzaX2s8b8WvT2Muxmu2J/H8wKfS7X/M+RzZh+hf9jkcmuXNvf6y+x
+szSnDY6wVDj8SHavGkPVPalUX3PogMNjOds6SJOIuEcKyDgenL9Rq0GluoyIKytF
+DrRr20N0WM7w4kPKuH/IdpkMjy3Oh+Afqiqp+FX11DmVGkvATcH6qTRlLqB78p2y
+VBnW5KrSXnkIc77pXVf4lYNb9Y+0f6ey4MIkEdq+/UO7dzzqNMUbLiIbvpkm9WxP
+AXVjwSl0RxhabUPZPYh1UpMW6V+DgfDim/4poEkvrX64cqUMtS3wLIzumNV3Xg6K
+G5V+FiiYQCyqYup6Z/ozRckIakyeBg==
+=0ea9
 -----END PGP SIGNATURE-----
 
---anrqwesp6j2b4lfg--
+--8nVJ3HZ/2fzKiGhv--
