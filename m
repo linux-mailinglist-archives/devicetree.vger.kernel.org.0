@@ -2,89 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7B850B801
-	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F6BD50B80A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Apr 2022 15:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359436AbiDVNO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 09:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
+        id S1447766AbiDVNQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 09:16:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383443AbiDVNOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:14:25 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC0F48890
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 06:11:32 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id k23so16358234ejd.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 06:11:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=V4rCAl/VsMXGRmoKV9M0tqPzlmugWmFVKZTuciVyBE8=;
-        b=NIUu32ceaN+2jg59UOiopsetEcXfblHX7Es0mNEWnRHjXzzeib2CADsLB3GjXK2nEa
-         u/UW6265JDDb8ekuAAW79pM806946jRzYTAPDX0CDGyctsiR7WwtPW8/rYaDokB9JkiI
-         tveItcHZfq0Pt/B4W5tcMSk1XF0sIsx8aVCS7vdS6fodKH4NKfvhPtho+590kgBIbsZp
-         pjsERH9MOuSAQPuXSgOXhzdZjsjbzeELrqSvEo6bWm9eT5WZA1FIBEBRQ1dsPmDFGNZA
-         spJg3uOIfY8AH42EY6TejHxPhEHwXswKP5Py0gslWwvaxo1jP9LtsuhZ1ZBPhh1S14cU
-         kX2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=V4rCAl/VsMXGRmoKV9M0tqPzlmugWmFVKZTuciVyBE8=;
-        b=MgdqyUxoOjNx5lLmTtqtGRG1JveC2v2hnCHIcNToXYWcgrs751hD3klv+TQwUm9FZY
-         ZBvmkCw2Ido+xZrLcYAlhTuRExwRYTuyg14wRUOjVHWCQoFhjDzEl4a5IgEqKWL5djeJ
-         M6NO8ke/rPQ7ZP6OZflgrD3sJY/cz6VD+E2yu6IwCHRULbbToscYG1dxvYM1znxBzSM7
-         qtvZr6+WAtYk7Puy05CkXaLcR7jDquySsW45m39Szp+5zKmdH4mGg8azdhjsX+yulTSm
-         5f6pYHm5Qdz7fzUQQeddVRamNwapHGnDtBObJlKJNnXI0zpLg7ervzSgqI5b1V8X0/sg
-         x4tw==
-X-Gm-Message-State: AOAM5314XnVwtExB+BrkgUTp7A7eyXiIBkGkvlZ2b8x3M9xQuA5JesAX
-        uDhM3Ec6F5nhdZWwRnR0sagHXQ==
-X-Google-Smtp-Source: ABdhPJyFelF5DC6xKgnvaCZLaxSeczfq56UmZfRD2s0izYrrnztbpdg6AIL3KyCPXSmSE2Cen3tsUA==
-X-Received: by 2002:a17:907:c1b:b0:6f0:1335:6fb with SMTP id ga27-20020a1709070c1b00b006f0133506fbmr4207848ejc.294.1650633090731;
-        Fri, 22 Apr 2022 06:11:30 -0700 (PDT)
-Received: from [192.168.0.232] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id br14-20020a170906d14e00b006e88db05620sm760722ejb.146.2022.04.22.06.11.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Apr 2022 06:11:30 -0700 (PDT)
-Message-ID: <d0884594-d962-d423-e34d-9ab123ebccc1@linaro.org>
-Date:   Fri, 22 Apr 2022 15:11:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/6] dt-bindings: pci/qcom,pcie: add schema for sc7280
- chipset
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S1447762AbiDVNQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 09:16:17 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12491580CC;
+        Fri, 22 Apr 2022 06:13:23 -0700 (PDT)
+X-UUID: 6138ec2611544777a7e3d64ad49c2697-20220422
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:79621356-7dff-4807-ab2b-182c4c366ad6,OB:0,LO
+        B:10,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:79621356-7dff-4807-ab2b-182c4c366ad6,OB:0,LOB:
+        10,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:b9bbcaef-06b0-4305-bfbf-554bfc9d151a,C
+        OID:9f9ef6ce3947,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
+        le:nil,QS:0,BEC:nil
+X-UUID: 6138ec2611544777a7e3d64ad49c2697-20220422
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1977651601; Fri, 22 Apr 2022 21:13:20 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 22 Apr 2022 21:13:19 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Apr 2022 21:13:18 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220422114841.1854138-1-dmitry.baryshkov@linaro.org>
- <20220422114841.1854138-3-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422114841.1854138-3-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 0/1] dt-bindings: timer: mediatek: Convert binding to YAML
+Date:   Fri, 22 Apr 2022 21:13:16 +0800
+Message-ID: <20220422131317.25410-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 13:48, Dmitry Baryshkov wrote:
-> Add support for sc7280-specific clock and reset definitions.
+Based on tag: next-20220422, linux-next/master + [1],
 
-Add it at the end, please. First all the cleanups and changes, then new
-devices.
+In [1], mt8186 compatible should be applied, but I don't find this.
+I convert binding to YAML base on [1].
 
-Best regards,
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/all/98be733a-62b0-4cf6-ab27-992ea49da5b1@linaro.org/$
+
+Allen-KH Cheng (1):
+  dt-bindings: timer: mediatek: Convert binding to YAML
+
+ .../bindings/timer/mediatek,mtk-timer.txt     | 42 ----------
+ .../bindings/timer/mediatek,mtk-timer.yaml    | 79 +++++++++++++++++++
+ 2 files changed, 79 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/mediatek,mtk-timer.yaml
+
+-- 
+2.18.0
+
