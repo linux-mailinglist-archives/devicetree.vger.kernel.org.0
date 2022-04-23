@@ -2,59 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01E4750C881
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 11:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFE650C887
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 11:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234381AbiDWJMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 05:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48584 "EHLO
+        id S233528AbiDWJR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 05:17:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234324AbiDWJM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 05:12:27 -0400
-Received: from mxout04.lancloud.ru (mxout04.lancloud.ru [45.84.86.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082C0229ED2;
-        Sat, 23 Apr 2022 02:09:27 -0700 (PDT)
-Received: from LanCloud
-DKIM-Filter: OpenDKIM Filter v2.11.0 mxout04.lancloud.ru 3CC9920C4771
-Received: from LanCloud
-Received: from LanCloud
-Received: from LanCloud
-Subject: Re: [PATCH v3 7/8] ARM: dts: r9a06g032: Add USB PHY DT support
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
-CC:     Rob Herring <robh@kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20220422120850.769480-1-herve.codina@bootlin.com>
- <20220422120850.769480-8-herve.codina@bootlin.com>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <ed432ba2-6081-4d82-bdc9-cd88cb52ca1f@omp.ru>
-Date:   Sat, 23 Apr 2022 12:09:23 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        with ESMTP id S231971AbiDWJRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 05:17:55 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C6564705
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 02:14:57 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id q7so6494984wrm.5
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 02:14:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=l9GiO+JTBstyipJTtca0kHHsb17FGQMqHQg4tzHOg9Y=;
+        b=I6x1fhOQq1UOP7bEu54Th8XDxGR1vBQJDOvvHuuwxERrZjFYO0PwH5eIEtW1R4tvGe
+         jbJCQ/ypJHxEnBIvcz4uvYD5Q3t64g6wEapHnkTFq0Dgk2EWKDSEuJHhenRSXWsT4xM6
+         uCin1qtu4zjQ8/WV9w3JOTANdTYEmDAYxYEu0fEkcY/00IkaEYxJpP61vYL41+OYtIrG
+         ilQD0tNxY1oB7vvrrU6fIqsf7gLM/4MR8ufOnqGjzIIqKQl6g6uvhckGYzWyD54zhXSJ
+         wq0oPZ7EDOIW/GVW1j95hBiEvWSS96jYQdPOdYfvw8jk0QGVvMVIbbxBN3T5+2YmAGcL
+         jJsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=l9GiO+JTBstyipJTtca0kHHsb17FGQMqHQg4tzHOg9Y=;
+        b=4eXchAPEqssNmQjsVp2HpLgHhO5bP1LpaInjKXIobCYO6xhEFgYXO3yOWLIsm8bSru
+         dTreRNxg1i3+Y83OrdSabLie+5mH4eLRch2ylNZYL6pKsTzysH67FKKb2fXxf9qcWcB9
+         PcxV5hrXItEwE3qjvaCHwvSfZ8jgUIjWyAjgcUljUW8MmpgisNWRiq94JHmFfcpctxy2
+         DykCELcmW0rGT/IdXBmYm0yVkvyFrXbex5CfaJtepRNBZkehZoJtFAWFGBgpliGlK89o
+         YKqyhl18es1I6W0GDfQulVA0aFaovGIhi8GPhCOY+4d0qfKW44WuXxq7U+UUQc9TW55+
+         hWfg==
+X-Gm-Message-State: AOAM530x6pPgraggNpPBSghVbDSMlA4h4LQA8DhdOwHh0n+Fi5Fkrn80
+        BXsUX3PQ1+bgH5kxE90EY3cBEw==
+X-Google-Smtp-Source: ABdhPJwMLoo6duhvirnDSrZ+rc9W2RxbhhwNNlNhQzNPP7zNSpOEPQnD+bX1JeZ0h5fkFmrnZ0MV1A==
+X-Received: by 2002:adf:fe47:0:b0:20a:c899:829f with SMTP id m7-20020adffe47000000b0020ac899829fmr6102700wrs.165.1650705295840;
+        Sat, 23 Apr 2022 02:14:55 -0700 (PDT)
+Received: from google.com (203.75.199.104.bc.googleusercontent.com. [104.199.75.203])
+        by smtp.gmail.com with ESMTPSA id p7-20020a5d4e07000000b002079a418430sm3597982wrt.85.2022.04.23.02.14.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Apr 2022 02:14:55 -0700 (PDT)
+Date:   Sat, 23 Apr 2022 09:14:53 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        qperret@google.com, will@kernel.org, maz@kernel.org
+Subject: Re: [PATCH  v2 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YmPDjWK5X1O3HQvk@google.com>
+References: <20220422141949.3456505-1-sebastianene@google.com>
+ <20220422141949.3456505-3-sebastianene@google.com>
+ <YmOhmzmBL36rBO30@kroah.com>
 MIME-Version: 1.0
-In-Reply-To: <20220422120850.769480-8-herve.codina@bootlin.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [192.168.11.198]
-X-ClientProxiedBy: LFEXT02.lancloud.ru (fd00:f066::142) To
- LFEX1907.lancloud.ru (fd00:f066::207)
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YmOhmzmBL36rBO30@kroah.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,29 +77,184 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+On Sat, Apr 23, 2022 at 08:50:03AM +0200, Greg Kroah-Hartman wrote:
+> On Fri, Apr 22, 2022 at 02:19:50PM +0000, Sebastian Ene wrote:
 
-On 4/22/22 3:08 PM, Herve Codina wrote:
+Hello Greg,
 
-> Define the r9a06g032 generic part of the USB PHY device node.
+> > This patch adds support for a virtual watchdog which relies on the
+> > per-cpu hrtimers to pet at regular intervals.
+> > 
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  drivers/misc/Kconfig  |   8 ++
+> >  drivers/misc/Makefile |   1 +
+> >  drivers/misc/vm-wdt.c | 215 ++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 224 insertions(+)
+> >  create mode 100644 drivers/misc/vm-wdt.c
+> > 
+> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > index 2b9572a6d114..0e710149ff95 100644
+> > --- a/drivers/misc/Kconfig
+> > +++ b/drivers/misc/Kconfig
+> > @@ -493,6 +493,14 @@ config OPEN_DICE
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config VM_WATCHDOG
+> > +	tristate "Virtual Machine Watchdog"
+> > +	select LOCKUP_DETECTOR
+> > +	help
+> > +	  Detect CPU locks on the virtual machine.
+> > +	  To compile this driver as a module, choose M here: the
+> > +	  module will be called vm-wdt.
+> > +
+> >  source "drivers/misc/c2port/Kconfig"
+> >  source "drivers/misc/eeprom/Kconfig"
+> >  source "drivers/misc/cb710/Kconfig"
+> > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> > index 2ec634354cf5..868e28d01b75 100644
+> > --- a/drivers/misc/Makefile
+> > +++ b/drivers/misc/Makefile
+> > @@ -59,3 +59,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+> >  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+> >  obj-$(CONFIG_UID_SYS_STATS)	+= uid_sys_stats.o
+> >  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+> > +obj-$(CONFIG_VM_WATCHDOG) += vm-wdt.o
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  arch/arm/boot/dts/r9a06g032.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+> No tab?
 > 
-> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-> index 33581f0c55c4..58af07eb75c9 100644
-> --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> @@ -59,6 +59,12 @@ ext_rtc_clk: extrtcclk {
->  		clock-frequency = <0>;
->  	};
->  
-> +	usbphy: usbphy {
 
-   I think the node name should be "usb-phy"...
+I will add one.
 
-[...]
+> > \ No newline at end of file
+> > diff --git a/drivers/misc/vm-wdt.c b/drivers/misc/vm-wdt.c
+> > new file mode 100644
+> > index 000000000000..ea4351754645
+> > --- /dev/null
+> > +++ b/drivers/misc/vm-wdt.c
+> > @@ -0,0 +1,215 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> 
+> I have to ask, do you really mean "+" here as this is not the overall
+> license of the kernel.  It's not a normal license for your employer to
+> pick, so as long as you have legal approval, it's fine, but if not, you
+> need to get that.
+> 
 
-MBR, Sergey
+Thanks for letting me know, I think this should be :
+SPDX-License-Identifier: GPL-2.0 without "+".
+
+> > +//
+> > +// Virtual watchdog driver.
+> > +//  Copyright (C) Google, 2022
+> > +
+> > +#define pr_fmt(fmt) "vm-watchdog: " fmt
+> 
+> It's a driver, you shouldn't need any pr_* calls.
+>
+
+I will remove those.
+
+> > +
+> > +#include <linux/cpu.h>
+> > +#include <linux/init.h>
+> > +#include <linux/io.h>
+> > +#include <linux/kernel.h>
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/module.h>
+> > +#include <linux/nmi.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/param.h>
+> > +#include <linux/percpu.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/slab.h>
+> > +
+> > +#define DRV_NAME			"vm_wdt"
+> 
+> KBUILD_MODNAME?
+> 
+> > +#define DRV_VERSION			"1.0"
+> 
+> "versions" mean nothing once the code is in the kernel, please drop
+> this.
+> 
+
+I will drop this.
+
+> But why isn't this in the normal watchdog subdirectory?  Why is this a
+> special driver?
+> 
+> > +
+> > +#define VMWDT_REG_STATUS		(0x00)
+> > +#define VMWDT_REG_LOAD_CNT		(0x04)
+> > +#define VMWDT_REG_CURRENT_CNT		(0x08)
+> > +#define VMWDT_REG_CLOCK_FREQ_HZ		(0x0C)
+> > +#define VMWDT_REG_LEN			(0x10)
+> > +
+> > +#define VMWDT_DEFAULT_CLOCK_HZ		(10)
+> > +#define VMWDT_DEFAULT_TIMEOT_SEC	(8)
+> > +
+> > +struct vm_wdt_s {
+> > +	void __iomem *membase;
+> > +	u32 clock_freq;
+> > +	u32 expiration_sec;
+> > +	u32 ping_timeout_ms;
+> > +	struct hrtimer per_cpu_hrtimer;
+> > +	struct platform_device *dev;
+> > +};
+> > +
+> > +#define vmwdt_reg_write(wdt, reg, value)	\
+> > +	iowrite32((value), (wdt)->membase + (reg))
+> > +#define vmwdt_reg_read(wdt, reg)		\
+> > +	io32read((wdt)->membase + (reg))
+> > +
+> > +static struct platform_device *virt_dev;
+> > +
+> > +static enum hrtimer_restart vmwdt_timer_fn(struct hrtimer *hrtimer)
+> > +{
+> > +	struct vm_wdt_s *cpu_wdt;
+> > +	u32 ticks;
+> > +
+> > +	cpu_wdt = container_of(hrtimer, struct vm_wdt_s, per_cpu_hrtimer);
+> > +	ticks = cpu_wdt->clock_freq * cpu_wdt->expiration_sec;
+> > +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_LOAD_CNT, ticks);
+> > +	hrtimer_forward_now(hrtimer, ms_to_ktime(cpu_wdt->ping_timeout_ms));
+> > +
+> > +	return HRTIMER_RESTART;
+> > +}
+> > +
+> > +static void vmwdt_start(void *arg)
+> > +{
+> > +	u32 ticks;
+> > +	int cpu = smp_processor_id();
+> > +	struct vm_wdt_s *cpu_wdt = arg;
+> > +	struct hrtimer *hrtimer = &cpu_wdt->per_cpu_hrtimer;
+> > +
+> > +	pr_info("cpu %u vmwdt start\n", cpu);
+> 
+> When drivers work properly, they are quiet.
+> 
+
+I will drop this.
+
+> Again, why not have this in drivers/watchdog/ and use the apis there
+> instead of creating a custom one for no reason?
+> 
+
+I submitted this patch to the drivers/watchdog and I received some
+feedback on it stating that this type of driver is not intended to be
+used with watchdog core, because the drivers don't have a notion of
+CPU. Moreover, we need to keep track of the elapsed time on a per-cpu
+basis and the core watchdog framework doesn't provide this
+functionality.
+
+> thanks,
+> 
+> greg k-h
+
+Thanks,
+Sebastian
