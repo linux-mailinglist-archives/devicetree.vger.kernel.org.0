@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12DE350C95F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:50:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE8E450C963
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234975AbiDWKxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
+        id S235071AbiDWKzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 06:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbiDWKxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:53:15 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAAB19284
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:50:18 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id m20so98384ejj.10
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:50:18 -0700 (PDT)
+        with ESMTP id S232758AbiDWKzD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:55:03 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A9B1FB0D0
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:52:06 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id g13so20862994ejb.4
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:52:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Jt7t08XM71PPX5xDtgCOGsTpwspL9tE75jus/MAoHPs=;
-        b=oiGi0POJilcBtbNKFabGqepzIv5pT7yhzyyjLcErSA31f46wuqqBvktkCjPkXh7B6a
-         W7z02GDMuxTOqE4KtXIc0Y29LuJgN0+WF8oU/Ey0cWRa3gQWrvml7hKb2O50xvUz55RJ
-         otapMq3bH+10LO/MQHplcbA6tu087jwYC9Djmli8LEy/xmhM6UL++NM/r7P6J8iu39KB
-         /CoTrDNvjphExO15q+wj6stCx8OPv2sOsVyj+OxavdVeiWbCwfUSIeasKjRLoRWoywzM
-         Eia39gSF0CFMVhdHVjf8phWl8lTaATTWlwba7gysFc4ImVqcH42mVDPxbqfNMHsB4nVk
-         BcQQ==
+        bh=yGPt/mNpWWrOQ8JYPp5zOeJM1AwLjJHd/VxeaRoxS/g=;
+        b=FeMJBzVYJCu5iuakegHQoq7T1UjOgKxYLZFFM04aOBON6ouKF4bnGG7ZQo/H5hjAEJ
+         f8r98k6BVN2PIt+uquahOGQaXsYqyZhCAvUM8nArvBjRO6VEABfiW+0iZVXcjvsduIQV
+         o97CWrVW5DwXYw2IX+TDQDaIrTUZBycoBGs1ZT1PHI+q2pceXJMTexV1DwQO7QmQG1vL
+         gaWFUCcQRRTkmaOholvifwz3lgga/JAZ+Y6ZooVWDTrVdHONgeQndyrVZVwsl+qwjoRd
+         uR3jrtePUwKYuBm97v/jBzsjd5IbuO3zngfykL8+j3lTs38cEKZWQlWS+uLFhdy9hT1b
+         U2vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Jt7t08XM71PPX5xDtgCOGsTpwspL9tE75jus/MAoHPs=;
-        b=igRrOY+TwkZh7TNOF2DeRtbYMakV7s0t5PLcgWY0Fy8SAe6p0Kskd4K18+/iexMol2
-         9FlPaJM4i1lwTskoi9fnfki/O6S3rl6aBYUdyDvZ8matMg+FMYz+SP+QITSRhXFvu1Gp
-         l4tcWLGI3uaonUt9g7uk80lFgE2R+COPIV2+O+p093dEpg5+pjZ+rYbnCC/dGfP+uB10
-         s4of9dU9mhIY1Atrfnhh1JvR7DT3Qj249PKwSgJpLz1Jw9WgeeNCozubG3N3uUgNh6eP
-         ombydh7RgdJTVszzytWVYXFuOSbSqlRAvbQZ6i4yh0/2ZqLbzkM43db/4ArIFHRIg6Pa
-         9lEQ==
-X-Gm-Message-State: AOAM532NMtnysPWw6ACkodXM0my8H0aK1DF1aYFndZDM0fgyBMoPJ6gT
-        lHVGVAHvej8a3oT4IjkTQmnKGQ==
-X-Google-Smtp-Source: ABdhPJwQ9yuMbQh0RzFC223R05bz86jGS0wl4UTmhWhvIadkKNLf19ZFl6pOwvCie3p+j3xnvWswSA==
-X-Received: by 2002:a17:907:c06:b0:6e0:9149:8047 with SMTP id ga6-20020a1709070c0600b006e091498047mr7687864ejc.765.1650711017261;
-        Sat, 23 Apr 2022 03:50:17 -0700 (PDT)
+        bh=yGPt/mNpWWrOQ8JYPp5zOeJM1AwLjJHd/VxeaRoxS/g=;
+        b=Tv0UjuDHhi8Qj9GpmICZxrg9huXOe5w2sIShetaLYdnU+k2OAPbfPajRIjWDDpgcTv
+         pdbptWTq6Vb2iQCNe0vxzmso/GNTjh2b3TGh9U4nJbTepijN/NX5puYNdWZTV3tfdL6/
+         boae1dNgNPkQ9zyYFwY9LOTOdN9wmE+ntQRVxNb7NREt6GwoU40R7caQf5yjurEi6dvC
+         9QC+KR39OTX2rNmS5WKMDllnzTA7R7IZ8TkLMxJkgtRI5OF2eyOPGwAuKCVC9Pz+mY3T
+         59fEnRYZ9K0uTr5LvLXuSWZ5P5O/6H4Sc1suCoWsRRCAdEGH6Oes9Zp+tY6IJx7++ubD
+         IS6g==
+X-Gm-Message-State: AOAM5310V+sk8PSX0nCB8QTyEWmvbRBvHZr6XzLP5YqB/OBuPEzvASr1
+        IwCERTgP/qIrwVg3e25JKoGSVA==
+X-Google-Smtp-Source: ABdhPJzD3HJ7Q5n2ETTVurxNh/apy7DsoaCyPYbmEli1g0u6/qoBGi40V+p82qf13/UcXbuET4Qd/A==
+X-Received: by 2002:a17:907:3e03:b0:6da:8c5a:6d4a with SMTP id hp3-20020a1709073e0300b006da8c5a6d4amr8141145ejc.585.1650711124878;
+        Sat, 23 Apr 2022 03:52:04 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s9-20020a056402520900b00425c1e6764fsm1741688edd.9.2022.04.23.03.50.16
+        by smtp.gmail.com with ESMTPSA id b26-20020a1709062b5a00b006e8daae2359sm1565521ejg.95.2022.04.23.03.52.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:50:16 -0700 (PDT)
-Message-ID: <704ffa56-4bae-fc33-fddf-3e3dd8be0db9@linaro.org>
-Date:   Sat, 23 Apr 2022 12:50:15 +0200
+        Sat, 23 Apr 2022 03:52:04 -0700 (PDT)
+Message-ID: <8c565aa7-3b3b-3034-3301-c87c7265384b@linaro.org>
+Date:   Sat, 23 Apr 2022 12:52:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v5 05/11] dt-bindings: timer: Add HPE GXP Timer Binding
+Subject: Re: [PATCH v5 06/11] dt-bindings: watchdog: Add HPE GXP Watchdog
+ timer binding
 Content-Language: en-US
 To:     nick.hawkins@hpe.com, verdun@hpe.com, joel@jms.id.au,
         arnd@arndb.de, openbmc@lists.ozlabs.org
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20220421192132.109954-1-nick.hawkins@hpe.com>
- <20220421192132.109954-6-nick.hawkins@hpe.com>
+ <20220421192132.109954-7-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220421192132.109954-6-nick.hawkins@hpe.com>
+In-Reply-To: <20220421192132.109954-7-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,21 +81,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/04/2022 21:21, nick.hawkins@hpe.com wrote:
-> diff --git a/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+> ---
+>  .../bindings/watchdog/hpe,gxp-wdt.yaml        | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
 > new file mode 100644
-> index 000000000000..a4572be8d89a
+> index 000000000000..c20da146352f
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
-> @@ -0,0 +1,49 @@
+> +++ b/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> @@ -0,0 +1,30 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/timer/hpe,gxp-timer.yaml#
+> +$id: http://devicetree.org/schemas/watchdog/hpe,gxp-wdt.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: HPE GXP TIMER
+> +title: HPE GXP Controlled Watchdog
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
 
-s/TIMER/Timer/
+allOf goes after maintainers, before properties.
 
 > +
 > +maintainers:
@@ -102,51 +112,22 @@ s/TIMER/Timer/
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - const: hpe,gxp-timer
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: iopclk
-
-s/iopclk/iop/
-
+> +    const: hpe,gxp-wdt
 > +
 > +required:
 > +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
 > +
-> +additionalProperties: true
-
-This has to be false and you need to define the children (since you use
-simple-mfd).
-
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    timer0: timer@c0000000 {
-> +        compatible = "hpe,gxp-timer","simple-mfd";
+> +    watchdog0:  watchdog {
 
-Missing space after ','.
+Doubled space.
 
-> +        reg = <0x80 0x16>;
-> +        interrupts = <0>;
-> +        interrupt-parent = <&vic0>;
-> +        clocks = <&iopclk>;
-> +        clock-names = "iopclk";
+> +      compatible = "hpe,gxp-wdt";
 > +    };
+> +
 
 
 Best regards,
