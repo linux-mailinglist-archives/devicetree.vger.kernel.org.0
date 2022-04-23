@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B15650CCB0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6353850CCB2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:43:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236291AbiDWRpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 13:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
+        id S233401AbiDWRqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 13:46:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235171AbiDWRpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:45:49 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D4B1C82D2
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:42:51 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id b24so13955612edu.10
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:42:51 -0700 (PDT)
+        with ESMTP id S235171AbiDWRqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:46:50 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C1F1C82DB
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:43:52 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id ks6so22101916ejb.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:43:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9p7hpzsmtTc9QGDX/fB8QkBk2oCeRKBf5+Q+ZQxOGkM=;
-        b=Suk07hwdPec/Z3adst9dj8gL5IksUcg4Ok3VxZfv5T5c0pdeoMm3coxmgQf44Fxzo6
-         gDo68MjbOf77xyVkuG8XZTeuPkq45Ac6u/IYdVEwrrXaCq67vIu23mjMTC54qd6sFTkt
-         4sVkvVJxnMxCZZY4T2XbPamtGrdONf6Zd00WUmJLtJtZaOhdQDwXq1akaRMLI95lq6VN
-         Nz943hO6o4QuiFUyCBA1EqJ0TMFlps3IY2tJKwx2C6AY8Yg1Ib0uO5XwpQwyeBZ3HrUU
-         FEQMTP7QoL7FBM86CjeFOYRm3TGsGlwVDlndMG8WF52mgmC7ESjEnAl90IH15o5eFrL2
-         8IPg==
+        bh=umoai+3MMlu0qxk8dS3RGbYx/7xWlXxSF/p+Tkc36tQ=;
+        b=mMSgnGQ5BB4kio4uLhvAxw1k97ezG3KWGiosSAZ63q8Zi9FCb9byuDbAzyl2uKPGuu
+         ULAoNgvvo+8rHa73fwtyUq+VTsTS0OTfuI1gcw6XUS3Dx1MYoS7otRK3vx1hdxaqgGky
+         8NxijyMicHQoPJVz6UuX+pPuDiQ8QBSMezw0f+ubwqb3QTAm8cbbW4P6OwilH6nalPeV
+         61wrr/Tt31F7Jb18LGR7s0rI71vQPf11Fx3WLtWG1OdBgm3101s+RjTSwzqxZzhSX74k
+         ixHyYKVeFgjyn5yWMuTYns6o9Wv6bd4/0685Ne6Tv83UQysOucdBVrgv0DMuEq9R/ROc
+         EdCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9p7hpzsmtTc9QGDX/fB8QkBk2oCeRKBf5+Q+ZQxOGkM=;
-        b=Z+6laWNkLeZEYUnSPwiJPtJrux0/U8lHrwtgUZRMt1eS6jm0dSe37e6KnqNGumxszE
-         kgUKmP3+JFb6xmOvAsUv/kcWsi2sgDK9JZu5sBzN+Xns/N4zLxqqXGwj23m0rQf8yFzs
-         Wy1YvXVxaedobo4yi68h/jkrDkX5JQnnTKYd7G902l6Zu8rGOu5NVwfG3JsHjNjVOD0/
-         ii/WM/Y6/V1ioyNBuFjvps13TfOExOfk8rKEsDqJQqoxqskUv5rQAMUkFPpGOd32ySyZ
-         AxOlx7636ZVyBiGBlTxp3oEG4RlhMzb4uhJfhfLftTgxA33vM9U8gGzyWW0nv1EPT8zu
-         xWUQ==
-X-Gm-Message-State: AOAM530YyT1bTrsyGOVSxC0zloKTFbTDMKq/e/nd4PzpcueUA4beTZNs
-        IYMrjjJ18lQYhxSkj5nea2hzSw==
-X-Google-Smtp-Source: ABdhPJxPkJiKp+E7kn89TmKjM2//C+xbJlsbhWKOeu3wjaURwfWEdlQFVbRy63L3MGIxGg3aIT7B+w==
-X-Received: by 2002:a05:6402:4414:b0:419:28bc:55dc with SMTP id y20-20020a056402441400b0041928bc55dcmr11116781eda.130.1650735769898;
-        Sat, 23 Apr 2022 10:42:49 -0700 (PDT)
+        bh=umoai+3MMlu0qxk8dS3RGbYx/7xWlXxSF/p+Tkc36tQ=;
+        b=0GbzemegpdQHQgJ64Cketyt5B9EswB41w9v365jmX70qE450xiXZJ8TG/pfueenoeM
+         3PxYuaeIpPrdDuAopJseqLcnRGUHzn5ccSjMK7NROo3Z5PtxsQg1eqjRneW1PQpughAH
+         iuYJ0TD9SWE3RBJIfa01QEEuaXpPbh1OKYiP6kyJr6XHHeA2MAl/eanuJbM3Oo+xNkTh
+         kkkUuPieGYBbwRgSHrEVf7v6ZPMOVzWrJW58SbFbIOPRSz0smfvzGAHqLrZu1rVph+PT
+         HAAw7B8cw41yKN4QRMlAmMzyI6IshLqd2RAAFrU2kuxv6rr9LkpSZ4zcrOQRC2k5d3lE
+         X9JA==
+X-Gm-Message-State: AOAM530fDSSJqdGXg7RPq5wBmHsnBv+a+fp5NBmGLF6N750i3xeXC4lj
+        8NpEpZfKvUqmfllH/mmoqp4ndQ==
+X-Google-Smtp-Source: ABdhPJxlplz5fUNZvXQGG5M+ip/LSCEQb+5/WjryYXVYSriTE+x6zdb6+Q8B9qsar+FYm0Om+pHPJw==
+X-Received: by 2002:a17:906:d9cf:b0:6ee:32ef:8da with SMTP id qk15-20020a170906d9cf00b006ee32ef08damr9254201ejb.750.1650735831101;
+        Sat, 23 Apr 2022 10:43:51 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o2-20020a170906768200b006e89514a449sm1848954ejm.96.2022.04.23.10.42.48
+        by smtp.gmail.com with ESMTPSA id z16-20020a05640235d000b004258d76a908sm2445202edc.54.2022.04.23.10.43.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 10:42:49 -0700 (PDT)
-Message-ID: <9d79c0bf-45ba-6370-ed48-a3fa6ad5db29@linaro.org>
-Date:   Sat, 23 Apr 2022 19:42:48 +0200
+        Sat, 23 Apr 2022 10:43:50 -0700 (PDT)
+Message-ID: <cac6061b-95bb-5887-23b3-061831a5e071@linaro.org>
+Date:   Sat, 23 Apr 2022 19:43:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/7] dt-bindings: pci/qcom,pcie: resets are not defined
- for msm8996
+Subject: Re: [PATCH v2 3/7] dt-bindings: pci/qcom,pcie: add schema for sc7280
+ chipset
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +65,9 @@ Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20220422211002.2012070-1-dmitry.baryshkov@linaro.org>
- <20220422211002.2012070-3-dmitry.baryshkov@linaro.org>
+ <20220422211002.2012070-4-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422211002.2012070-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220422211002.2012070-4-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,11 +81,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/04/2022 23:09, Dmitry Baryshkov wrote:
-> On MSM8996/APQ8096 platforms the PCIe controller doesn't have any
-> resets. So move the requirement stance under the corresponding if
-> condition.
+> Add support for sc7280-specific clock and reset definitions.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Would be good to add in another patch the constraints for reg/reg-names,
+but it's not a big deal.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
