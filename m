@@ -2,97 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E92150CB13
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 16:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB14350CB17
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 16:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235524AbiDWOKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 10:10:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
+        id S235835AbiDWOP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 10:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235161AbiDWOKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 10:10:05 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CE7EBDF1;
-        Sat, 23 Apr 2022 07:07:07 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,284,1643641200"; 
-   d="scan'208";a="118907817"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Apr 2022 23:07:07 +0900
-Received: from localhost.localdomain (unknown [10.226.92.16])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 06BF34000689;
-        Sat, 23 Apr 2022 23:07:03 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a07g054: Fix external clk node names
-Date:   Sat, 23 Apr 2022 15:06:58 +0100
-Message-Id: <20220423140658.145000-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220423140658.145000-1-biju.das.jz@bp.renesas.com>
-References: <20220423140658.145000-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S234689AbiDWOP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 10:15:27 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B93710BF;
+        Sat, 23 Apr 2022 07:12:29 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 99BC11F468EE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1650723148;
+        bh=BWx5mSvodMtkWlhuz51Cu0E0Psrafg88NNLUjQ4EV70=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=I7hNx8xPopottQnaSXAf3ZPnGpLjzm3RrsH7R9L/DWaM5w6iQc7Q3I9J/zHRhTjQu
+         EUy0zVQQQQVoMOSn2frcrCu8NvNhbQ3jjDxJhzV54BkK6S0HtQ3rojwRGQ4hqDFZKl
+         OJK4mnxtQVfqpgdoT91Psg7zSbZ0CyadE79vXONe0JAKsiIMWjmjpbwVkz5pTGDQT/
+         r6kU75BRr0O8uxVn6Q+jar1ttDRwlJlIatcJPU09XOvxYH8yS3x7EudHo1YgKCxc73
+         xE6soZzvYvVyL98FJUGJIdehHdY4F5+eMs5jd7MPJfVMQijdYxomcf2Ps5tzr2PhHf
+         59xEJoaYXol9Q==
+Message-ID: <cdb243d7-af84-b647-ee29-e4d4ab04834b@collabora.com>
+Date:   Sat, 23 Apr 2022 17:12:24 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] dt-bindings: gnss: Add Broacom BCM4751 family bindings
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Johan Hovold <johan@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        David Heidelberg <david.heidelberg@collabora.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220414214337.311880-1-linus.walleij@linaro.org>
+ <f4deb182-ec18-6744-2c4c-adaed4ef7a33@collabora.com>
+ <CACRpkdbZnWJgkS2a0xXs_WG40jz6+aTSPt743Zigd0KZ8R=yww@mail.gmail.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <CACRpkdbZnWJgkS2a0xXs_WG40jz6+aTSPt743Zigd0KZ8R=yww@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix audio clk node names with "_" -> "-" and add suffix '-clk' for can and
-extal clks.
+On 4/23/22 00:50, Linus Walleij wrote:
+> On Mon, Apr 18, 2022 at 1:19 PM Dmitry Osipenko
+> <dmitry.osipenko@collabora.com> wrote:
+> 
+>> What are the chances of seeing the kernel driver for BCM4751+?
+> 
+> The kernel does not normally drive the GPS. The kernel has a small driver
+> dealing with hardware power on/off of the GPS and exposing
+> /dev/gnss0 to userspace.
+> 
+> See Johans lecture at:
+> https://events19.linuxfoundation.org/wp-content/uploads/2017/12/The-GNSS-Subsystem-Johan-Hovold-Hovold-Consulting-AB.pdf
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+IIUC, driver also should be needed for the firmware uploading, similarly
+to the BCM WiFi/BT chips, isn't it?
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index f35aa0311e9c..4313b9e3abed 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -13,14 +13,14 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
--	audio_clk1: audio_clk1 {
-+	audio_clk1: audio-clk1 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by boards that provide it */
- 		clock-frequency = <0>;
- 	};
- 
--	audio_clk2: audio_clk2 {
-+	audio_clk2: audio-clk2 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by boards that provide it */
-@@ -28,14 +28,14 @@ audio_clk2: audio_clk2 {
- 	};
- 
- 	/* External CAN clock - to be overridden by boards that provide it */
--	can_clk: can {
-+	can_clk: can-clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <0>;
- 	};
- 
- 	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
--	extal_clk: extal {
-+	extal_clk: extal-clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by the board */
--- 
-2.25.1
+>>  There are
+>> myriads of Android devices using that GPS chip. Previously the
+>> proprietary firmware interface of BCM4751 was an obstacle for addition
+>> of the driver to upstream kernel, did anything change?
+> 
+> Actually there is nothing stopping us from anyway merging device tree
+> bindings, even if no driver is on the horizon for Linux. The DT bindings
+> are not a Linux kernel thing. Actually we merged bindings like that in
+> the past. It makes it possible to create complete device trees, which
+> is nice. A driver for Linux can be slotted in at a later point.
+> 
+> Anyway, that is the boring answer.
+> 
+> Many if not all GPS:es (as all Wireless chips) have proprietary firmware
+> interfaces. This is normal. GPS:es are special since by tradition the
+> stack using them is in userspace. There exist free software userspace
+> stacks for misc GPS:es.
+> 
+> gpsd is the most common userspace daemon for GPS.
+> gpsd will then talk to /dev/gnss0 as any other TTY IIUC.
+> 
+> Replicant has a free implementation of the "MEIF" API for this GPS,
+> I think what is needed is really for someone to pick up, polish and
+> contribute that to gpsd
+> https://git.replicant.us/contrib/PaulK/bcm4751/
 
+My main curiosity is about whether you already have a working driver
+prototype, something you could share with us all, so we could start
+playing with it too :)
