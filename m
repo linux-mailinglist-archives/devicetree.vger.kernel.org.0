@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B81350C96F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FBF050C975
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229559AbiDWK4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
+        id S233371AbiDWLBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 07:01:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235138AbiDWK4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:56:32 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9211B2117DA
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:53:29 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id be20so4905653edb.12
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:53:29 -0700 (PDT)
+        with ESMTP id S230012AbiDWLBQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 07:01:16 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2289AD79
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:58:20 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id g20so13261591edw.6
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:58:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yr1zDNPtkjW900aFLa3t0O5qJZ8LqAWPxDbn7nFougw=;
-        b=bdojJAOuJSx0c7Q3dlBLZLdiScxAQHM/6QKbpaISyBNe7aZVIdlYpHKE0vmZWqm27M
-         2woc4vWbWIy6wDOKIupFVVISaw5SZ2oBCkI1U9yOBBo0DYb9UFPriTZMLT5/qRd+dgHd
-         Zy7acBXuj6wj9me9xM0DPHYLcVSWrOqVlM2uV7FtCMyQi7O4WdNhG4D9JMFA35nwgHja
-         o/RicXaRB3xeRmJ36jr9AN9xblPa7hqNEAK7He+F1f2P/degMWa6ptvXayCl/B80Vk3J
-         RQt3W4c54SSAKOyNKhK7N9Sr+ZVPb8b2A2A+0rVvGA69tvLibyeaSDgj7u90BPSQ8Wgg
-         mfQg==
+        bh=s8radedpzyLI4HDoWW69lEYh91W1j56nCvc9cs+YJf4=;
+        b=f+1QC0z11D0dcebGt2VWGRFrDZdkfukZznanhVnVqzbFa8wIWHbcPbkvDEWNVtyhst
+         8s2NczQTtq2QC+JpYxd/TASkMCIUmnVz5fJyne5/v8H504vCyh8oYcH3qxJO27Rat6gU
+         konsyNv6wwihHH0rZcIzJWveUrA72x0Rm1OAIAnPQuMPxRBoqNx+GJ6O47KZOlbAYAMh
+         12IGSRwMDLvPqAUtxiPTBORSQWvIPrRXhcQx99owgsLLGgT32rkVgHL0MtTBZnKHpqge
+         WcRI5qXwNNLYRCJklloUjYKGAmhdFZyRq454WIBtUFwO/6+c4jVneBIi0Sb8DCosTAz2
+         C1Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yr1zDNPtkjW900aFLa3t0O5qJZ8LqAWPxDbn7nFougw=;
-        b=ULCXK3JnMDFpuHNEa6TZeKXWP1s+AdZXwAdS4doi82UtlUzz2jZs9nZoe/B8g+4IYJ
-         n7cRR/xP2O1zBNo0cahHb2sSRL6pSfCdecvJBYL+YryzT3GesoNKqzvCQYNSvKhkhRHd
-         hCqi/+zron2MeeyuWXnFZlfpMlHJrMJ51TGpOlIUp5W75lobnGeyUFo9YA2Drs7+c9tS
-         cBaDLY602+v6TY+gsL4TEzGwafeBnWbovcfBHCvGGbmFaZjjVJwnZQhTk763F4oX2FTi
-         g6JxoNeHghn62uchY+6Wm1GTN9HriHQIVspE4n+JyLTtAEgf4n/w2LngHQEdCx45PgBr
-         tDRw==
-X-Gm-Message-State: AOAM533XynpXWtOgXf9BeQ3y+6SCyPMiojQGx+IquWByHGv9BroXsoZT
-        dygb3cSTafVoy/fjquVxxKzj8g==
-X-Google-Smtp-Source: ABdhPJzYtLa0sLCpEYWQkmaqUJh55e8ipbIGVhqmN9ILB24+teL38E3AZCDDleTlU/a7PV/Pbft57g==
-X-Received: by 2002:a05:6402:134e:b0:41d:774f:4c40 with SMTP id y14-20020a056402134e00b0041d774f4c40mr9550142edw.202.1650711208184;
-        Sat, 23 Apr 2022 03:53:28 -0700 (PDT)
+        bh=s8radedpzyLI4HDoWW69lEYh91W1j56nCvc9cs+YJf4=;
+        b=caCZ6yqPB+j0LBgRHrvI2Vsg6TKSPnRVGUY/GRLEpS6g3hMgObaJBWB0sA5tN0x1aY
+         iuAeMoDgQfW75aE5UBszHUWpDM95XeveflbyxgsKLVd/7kE382IBPNE0C67e57qR0wIw
+         QA3cNhaBotTP3pybbeNfSqIffXLpxnMIiwKzOTXVZt6hFfunN1+JqaBQVd2FWukhxips
+         0H14OkDyg7vVvd7zAuYbm59D+iMxvYkxaBolHC4nsuTPm3+kCzQ3pgOQH0xD0CRniJR+
+         dEgx7TlKUH+1eruTdI6tSJSlpNJ+J3EZr3RydVkSP/WII+4NTfa1AP+NeHcJF0doBE5Y
+         LO4g==
+X-Gm-Message-State: AOAM530e8KeBs1ofQYL0MDFKayEcI1Odu8XnZWAAe4sp88m8bxPiPvs2
+        At+VwHFdv8Q1w9Zo/KV42I2smQ==
+X-Google-Smtp-Source: ABdhPJyBynvCg3KqONUzxY9h9+AK16bU/MfXMIpRGXRtMy8+m8Xuy7Z4CzO34NAen2NKE/SMnmQ40A==
+X-Received: by 2002:a05:6402:5254:b0:424:78b:dfa4 with SMTP id t20-20020a056402525400b00424078bdfa4mr9604754edd.398.1650711498720;
+        Sat, 23 Apr 2022 03:58:18 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id oz20-20020a170906cd1400b006e872188edbsm1574618ejb.104.2022.04.23.03.53.27
+        by smtp.gmail.com with ESMTPSA id y19-20020a056402359300b00423e51be1cesm2076104edc.64.2022.04.23.03.58.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:53:27 -0700 (PDT)
-Message-ID: <45cab06a-1483-fbae-6724-5cf25bb81cce@linaro.org>
-Date:   Sat, 23 Apr 2022 12:53:26 +0200
+        Sat, 23 Apr 2022 03:58:18 -0700 (PDT)
+Message-ID: <2fdc71ed-b99c-22d9-c921-6eba134ee1f8@linaro.org>
+Date:   Sat, 23 Apr 2022 12:58:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v5 09/11] dt-bindings: usb: generic-ohci: Add HPE GXP ohci
- binding
+Subject: Re: [PATCH v5 07/11] dt-bindings: arm: Add HPE GXP Binding
 Content-Language: en-US
 To:     nick.hawkins@hpe.com, verdun@hpe.com, joel@jms.id.au,
         arnd@arndb.de, openbmc@lists.ozlabs.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220421192132.109954-1-nick.hawkins@hpe.com>
- <20220421192132.109954-10-nick.hawkins@hpe.com>
+ <20220421192132.109954-8-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220421192132.109954-10-nick.hawkins@hpe.com>
+In-Reply-To: <20220421192132.109954-8-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,13 +79,70 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 21/04/2022 21:21, nick.hawkins@hpe.com wrote:
 > From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> Add hpe,gxp-ohci to the generic-ohci list. This is to
-> enable the device tree support.
+> This adds support for the hpe,gxp binding.
 
-The last sentence is not needed, it's kind of obvious.
+Just "Add support for HPE GXP".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+>  The GXP is based on
+> the cortex a9 processor and supports arm7.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> ---
+> v5:
+> * Fix version log
+> v4:
+> * Removed gxp.yaml
+> * Created hpe,gxp.yaml based on reviewer input
+> v3:
+> * Created gxp.yaml
+> v2:
+> * No change
+> ---
+>  .../devicetree/bindings/arm/hpe,gxp.yaml      | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/hpe,gxp.yaml b/Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+> new file mode 100644
+> index 000000000000..cd86b67ea207
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+> @@ -0,0 +1,22 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/hpe,gxp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HPE BMC GXP SoC driver
+
+This is not a SoC driver anymore, so instead maybe:
+"HPE BMC GXP SoC platforms"
+or
+"HPE BMC GXP platforms"
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +maintainers:
+> +  - Nick Hawkins <nick.hawkins@hpe.com>
+> +  - Jean-Marie Verdun <verdun@hpe.com>
+> +
+> +properties:
+> +  compatible:
+You do not allow any extension of this (no oneOf), which is fine if you
+do not plan any other SoCs or SoMs. This is okay, but if there is a
+chance list will grow, then you should have here oneOf, like other bindings.
+
+> +    items:
+> +      - enum:
+> +          - hpe,gxp-dl360gen10
+> +      - const: hpe,gxp
+> +
+> +additionalProperties: true
+> +
+> +...
 
 
 Best regards,
