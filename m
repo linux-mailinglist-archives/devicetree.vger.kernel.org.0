@@ -2,52 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3704C50C660
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 04:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1761350C65D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 04:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231786AbiDWCKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 22:10:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53578 "EHLO
+        id S230128AbiDWCMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 22:12:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbiDWCKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 22:10:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E97C13938D;
-        Fri, 22 Apr 2022 19:07:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229919AbiDWCMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 22:12:08 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4A2139740
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 19:09:09 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A9B761581;
-        Sat, 23 Apr 2022 02:07:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BCD6C385A4;
-        Sat, 23 Apr 2022 02:07:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650679657;
-        bh=Hjoy/MGw9f0k9/2aqTPiEmWu2eaD4BY2AnpOdvDLAGY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=fn7LDR8PWloLKeb2pm4TPrApcLRZDC865eOSAbwBjgTLkdzBr4LIi5Amx2lh1gSVF
-         1+/e88vJYHA1XrSBttWCwAGg26yxgqkupQiCBNrgb9i6bnfqtJiBQnHrsizTVEVEyj
-         ygGkUVupgtmC7Fz5OnB6hZIugl1hTBbsxehkROTSxVPlLCqVWVz8lvmnFeffl/pTmU
-         jc15Dvpwsaf8oEFAqcKOyTyPIDxvc5XhwDj3FDU1kkW0ZzbdD1eYasZ//OK6UZWhlw
-         1fd8elPLHnXOm8kAcrdXdvSmSAPGeOpKFjVFVDBD9aDEoAFHyX6rfFq9DnZi1v7bJE
-         GBpPB8bW7T6uA==
-Content-Type: text/plain; charset="utf-8"
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 51D57839B9;
+        Sat, 23 Apr 2022 04:09:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650679745;
+        bh=eJKZzpCs6mdzACpHc7mFd5mf6sMhAM84s8dDtcqir5E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=xfTfV5gLVEt1ahC5fAmhonlO+EKT7plqt6MLIHGg85YSPKKZETiesRrsgkH+cLmNh
+         zHPxXbKxLwVynmp/p0btbSP9rx3T8snFsbdJWiYH6fO9e8bN/j1mv00c5MK6r3Qm4I
+         kIxcvx6nSEG8r49bvscM4/sWhwtbXarTALXBR5B7gq33OYoB1HzmGZgoZCuyD0t4iT
+         UdpUqazcdytgyUi76X2doDeCNT9n5sXRjZoDruHw7LjtZ413c8abm3tG6O/1vEDZZD
+         Kfkddoz0catYk2RHIR2z9tIxDyt+BDG8LKTkFhifuD/rzZuR62wObM/usrYVAtbSgA
+         Fnyzr50jRt/Kg==
+Message-ID: <241e0068-67bf-c6e2-129d-5b689e17182d@denx.de>
+Date:   Sat, 23 Apr 2022 04:09:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220415190343.6284-3-g-vlaev@ti.com>
-References: <20220415190343.6284-1-g-vlaev@ti.com> <20220415190343.6284-3-g-vlaev@ti.com>
-Subject: Re: [PATCH v2 2/2] clk: keystone: syscon-clk: Add support for AM62 epwm-tbclk
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, nm@ti.com, vigneshr@ti.com,
-        Georgi Vlaev <g-vlaev@ti.com>
-To:     Georgi Vlaev <g-vlaev@ti.com>, mturquette@baylibre.com,
-        robh+dt@kernel.org, ssantosh@kernel.org
-Date:   Fri, 22 Apr 2022 19:07:34 -0700
-User-Agent: alot/0.10
-Message-Id: <20220423020737.5BCD6C385A4@smtp.kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Implement
+ simple NXP i.MX8M LDB bridge
+Content-Language: en-US
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220418145105.76986-1-marex@denx.de>
+ <YmLzXDtZ9WNhTX2x@ravnborg.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <YmLzXDtZ9WNhTX2x@ravnborg.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,22 +66,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Georgi Vlaev (2022-04-15 12:03:43)
-> AM62 has 3 instances of EPWM modules. Each EPWM module has
-> an EPWM TBCLKEN module input used to individually enable or
-> disable its EPWM time-base clock. The EPWM time-base clock
-> enable input comes from the CTRLMMR_EPWM_TB_CLKEN register
-> bits 0 to 2 in CTRL_MMR0 module (6.1.1.4.1.48 [1]). This
-> is virtually the same setup as in AM64 but with 3 instead
-> of 9 clock providers on AM62.
->=20
-> Update the driver with the 3 instances of clocks associated
-> to a new compatible: "ti,am62-epwm-tbclk".
->=20
-> [1] https://www.ti.com/lit/pdf/spruiv7
->=20
-> Signed-off-by: Georgi Vlaev <g-vlaev@ti.com>
-> Tested-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
+On 4/22/22 20:26, Sam Ravnborg wrote:
+> Hi Marek, I read the patch once more.
+> 
+> On Mon, Apr 18, 2022 at 04:51:04PM +0200, Marek Vasut wrote:
+>> The i.MX8MP contains two syscon registers which are responsible
+> 
+> Here it says i.MX8MP
 
-Applied to clk-next
+Fixed, this and the bindings.
