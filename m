@@ -2,96 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EFC50CD52
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 21:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C17250CD63
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 22:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234409AbiDWT74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 15:59:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50310 "EHLO
+        id S237019AbiDWU2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 16:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234767AbiDWT7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 15:59:47 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BEFE19A495
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 12:56:46 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id z19so936316edx.9
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 12:56:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yNSMjzR/UC7gAKQriiodIhNkqmmIvXbfjZZmbtmDsBI=;
-        b=yzdnRPgskGVSMi8zv4oBko9lVeYwVJkxDSR6MCkGUoXeTAK/4NDODNNgZ26KgG/mOU
-         CoB2QmI5FRJiOq51uIk68eCareFVrvmvpKA6fadl6vN+B9T5RdthGC51nk1UKkl+rI8V
-         bjJ2huIzejbSjE72D4g4LFxCCdRX9/IA+qfbvCDwAyYtGJd+1W1YKHpSRD6XJtD/NGTi
-         CpaqFGoxA5vUA+GgVLLCa5jP0gs2G4OvNlibifucQX9N1C8ExbobxZ9RxTWEg1kPm5Q4
-         cw1AHrC+4rdOM3XxOEVWQzz9UEH9NMK1rgPaPN7MQiMNTT4/+pOMEGnmTuWdtFC0C1b1
-         hT4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yNSMjzR/UC7gAKQriiodIhNkqmmIvXbfjZZmbtmDsBI=;
-        b=HwzTjyI0DzTC5fbSZMnBc+f6kC5JP1170gzEufakzQO5WcPqS841JHeXhW1xp2w++H
-         JB2wbBLpwqB6Nm6pJJzVHxNAT+n4hxt40I66KcgEdwXOx3gFLITJ7XhOntnrUf+bjKjY
-         vswBX6XSYo5n1QavDecalEQm/zcfLtCv9uCiH3kONMWohTGGXDfMW0FQircsDyyAdv7r
-         SR/mveVgdvKj7+mjca5b1JCniDW4WLx29JlkezD/myh4bimGe3cOh6Zj5uGGGC8JCz3V
-         qN/jftNuLksK+ogCJzWLgyqmG/R3aCGWrkB7TBq3ACwUPeYrKDRx0HMdJnbOsnBhG2Km
-         5EfQ==
-X-Gm-Message-State: AOAM533035gKsKtCHANzubTxyZaBkZDNnXWpWdLKQzsgucPEQ7qN5bmA
-        Jmt/ok0HcXDwoWmFFWcY/nExGwPTYEB9TA==
-X-Google-Smtp-Source: ABdhPJzP7TI1ViD5VGn0KNvewzYBqWM6Mjpp1qDDQ0uaLL/LxQa1J8/5UFBb/Hc1PCg1kUb/MRd8iw==
-X-Received: by 2002:a05:6402:331c:b0:41d:9354:97c2 with SMTP id e28-20020a056402331c00b0041d935497c2mr11442391eda.300.1650743805113;
-        Sat, 23 Apr 2022 12:56:45 -0700 (PDT)
-Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p24-20020a056402045800b0041614c8f79asm2518327edw.88.2022.04.23.12.56.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 12:56:44 -0700 (PDT)
-Message-ID: <af3d5b2f-b245-6c10-1e2c-0f8f5a979fc0@linaro.org>
-Date:   Sat, 23 Apr 2022 21:56:43 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/5] dt-bindings: remoteproc: qcom: pas: Add MSM8226 adsp
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237020AbiDWU2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 16:28:00 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1524D10C5;
+        Sat, 23 Apr 2022 13:25:01 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,285,1643641200"; 
+   d="scan'208";a="118923824"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 24 Apr 2022 05:25:00 +0900
+Received: from localhost.localdomain (unknown [10.226.92.16])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6074D40F6CF7;
+        Sun, 24 Apr 2022 05:24:55 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220423155059.660387-1-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220423155059.660387-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: timer: renesas: ostm: Document Renesas RZ/G2UL OSTM
+Date:   Sat, 23 Apr 2022 21:24:52 +0100
+Message-Id: <20220423202452.148092-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/04/2022 17:50, Luca Weiss wrote:
-> Add the compatible for the adsp found in MSM8226.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+Document the General Timer Module(a.k.a OSTM) found on the RZ/G2UL SoC.
+OSTM module is identical to one found RZ/G2L SoC. No driver changes are
+required as generic compatible string "renesas,ostm" will be used as a
+fallback.
 
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ Documentation/devicetree/bindings/timer/renesas,ostm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+index c399a019dde7..3f526bdba3f7 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+@@ -23,6 +23,7 @@ properties:
+       - enum:
+           - renesas,r7s72100-ostm  # RZ/A1H
+           - renesas,r7s9210-ostm   # RZ/A2M
++          - renesas,r9a07g043-ostm # RZ/G2UL
+           - renesas,r9a07g044-ostm # RZ/G2{L,LC}
+           - renesas,r9a07g054-ostm # RZ/V2L
+       - const: renesas,ostm        # Generic
+-- 
+2.25.1
 
-
-Best regards,
-Krzysztof
