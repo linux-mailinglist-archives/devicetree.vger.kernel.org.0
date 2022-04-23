@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2770B50C93C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240AA50C94C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235028AbiDWKcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:32:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54020 "EHLO
+        id S235019AbiDWKcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 06:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234999AbiDWKbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:31:55 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D0E1C048B
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:28:58 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id l7so20818325ejn.2
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:28:58 -0700 (PDT)
+        with ESMTP id S235000AbiDWKcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:32:12 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED441C048B
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:29:15 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id e30so9666060eda.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:29:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2m9kAORld4iDB2KAPLh1iCsQe8VM2IonNBmHniXB+aI=;
-        b=abL3ZQ0jUA/UmIqEWJnORrPPfRhiBNtkKHGmN2VHZBZ4eLUI57QXL2YeGyD/UWdmw4
-         /PvZ6PoNwnmTYaJhZq7ClQMH2dHTn/quieJqvwegOB2EjRvWzvU8Sa4LJ629A3GG8pcE
-         vnwTF8Qc4+JhGtJ1LhWoHlORilVZ5qrChcfnsAlm/ddCPaRJ7tr8PATd6D8MqrnyE9P/
-         nYB0KB3NpBJXZWsCop8opcKElkfJxWNFgi2bvFFptKKE5qlpMhtor6zB6I1WiVUfgah7
-         451fMAWKE/vZvmly83beGV8CKvg5zZznrCim5huFff5u/7y8JeqMtuEgHz3DgynT0doo
-         XdIg==
+        bh=T1doDOEgacffxYLHRh8rB/qzYEgOkZW9WRd7tL8Bnmg=;
+        b=Uq2QkeMj4YDx/HQMSBiMYbQ6hB5oDmdQNO5vrv6RZsV0W4hbLOlfcQfE9Fx+SorbgG
+         MeBfPLDNjGQBN9jXgG5BBgWMk4ku+EZIK5tA7n91BL7LiJUig2PZR20nB4vhxhCfJcMG
+         t6d2xzbi1EuNuz47K+u9ehbXvvjZ8kcpDisSvAJK4yj0jNqNnr/FlmotFTQIdwngVGZi
+         87mIRQutpRMvI7Y76Ke2obhz8pH7azA2gURjmJ0JSv954JHBmzuGdv1BKUsPx5/slIgm
+         vwbdwjM6Bl9W5ADyXkYlNsUd38w3K77+S6uxSZ6nNh9W2/Sj+Q0SNxkXfiIZlZvSWi/e
+         IXsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2m9kAORld4iDB2KAPLh1iCsQe8VM2IonNBmHniXB+aI=;
-        b=5TW3iBZhgg4aKEEWWR8YsqkH8a7UVfqxDH+u2colpF7XyHwy9+ax3z1hBIh2gatJYT
-         FLl+3bOMHReRRRSGk9gHaYlMpyIl0ILNFvAL7YnRvN2rHY5zN//bmg5hweaPTHd2/8mR
-         2VlUY+KZdi7n4OjcE7OnEOJ4Hcv0zO5STUPhp41MTsjnD0CnF+NcAnAsbzEYK+G10Tuz
-         QLxadLoalti1SG8tMS+6hBs3AKWqyhMmuiD4tushAF3b7gKS5k6gMp9bWhBWo/Sih3Jv
-         bvsG+/594Xc6hYCt5dNVdVyqepOOAd8b1pubFLmB5pdUwC1EuhqIyWeddbnI+LN7t3Fd
-         4/wA==
-X-Gm-Message-State: AOAM533faIxn2mRpG0tyS81xM+zFCMCOq0Tm2JqxzrdDz4ev/t1JGvSK
-        UlyXgIbcEfoJ7pWqPFRgRnnLmA==
-X-Google-Smtp-Source: ABdhPJzNLgOfjlkn71D3XLc+z6mdb8U6FtuDFVeolu/miVVPX/dSL5gctTkJCIyZlGTqP6JpYcLBqg==
-X-Received: by 2002:a17:907:ea8:b0:6f3:72ef:2397 with SMTP id ho40-20020a1709070ea800b006f372ef2397mr2184159ejc.201.1650709737125;
-        Sat, 23 Apr 2022 03:28:57 -0700 (PDT)
+        bh=T1doDOEgacffxYLHRh8rB/qzYEgOkZW9WRd7tL8Bnmg=;
+        b=a9E5dq2sInjMDM4k8ATQO/x+ijvBTfAQejA5gkaFQ56KOyB8qKhnknFO5yskbTKD6q
+         0o5Xn+YOyjLAaWw1y9gKn4SB38/FqG/c5x0V7UQlsy6rkYK+mSR5+qjp4ociZUzn38O3
+         xfzHgvvqDhU5JqeL/lJIgGzDekfbEbPqthB5kItjR8eTqbVTeapPP/zj6VQcAqtT3UMK
+         TmFmuP0e1lkS13tG5Tc2SQcOw0qkg5PGGS5sbzpr2wmk7ZU8v7oM34q3sZ3FxXi6XvRd
+         bvBTDKFmy9CyDv/uAUvlv03RkF0WYiCZgAc6IXI1HC+Ln7msGopHXHrr2lVuMmngf6p9
+         3mAw==
+X-Gm-Message-State: AOAM533tqRG/GNGAprq7pgn1JN5GT4A5uXvpUvIRchssn2dqQqhINRoG
+        JgpXaYoGOr/qidAsCMKnkcf7eQ==
+X-Google-Smtp-Source: ABdhPJzzZENHEHVJTTVj4i/LY2EyfuP6i5J51hweFIRBo2TrNePYugK61Ib5JXoKcujbhrjpbonMsg==
+X-Received: by 2002:a05:6402:1941:b0:413:2555:53e3 with SMTP id f1-20020a056402194100b00413255553e3mr9457841edz.164.1650709754411;
+        Sat, 23 Apr 2022 03:29:14 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v10-20020a170906380a00b006a68610908asm1558632ejc.24.2022.04.23.03.28.56
+        by smtp.gmail.com with ESMTPSA id oz20-20020a170906cd1400b006e872188edbsm1557661ejb.104.2022.04.23.03.29.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:28:56 -0700 (PDT)
-Message-ID: <00448326-7bee-8cf4-5751-d967bc424aea@linaro.org>
-Date:   Sat, 23 Apr 2022 12:28:55 +0200
+        Sat, 23 Apr 2022 03:29:14 -0700 (PDT)
+Message-ID: <16311e64-6a7f-e20e-de12-5a9eab10af83@linaro.org>
+Date:   Sat, 23 Apr 2022 12:29:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH V3 13/17] dt-bindings: arm: mediatek: Add #reset-cells
- property for MT8195-sys-clock
+Subject: Re: [PATCH V3 14/17] dt-binding: mt8195: Add infra_ao reset bit
 Content-Language: en-US
 To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
         sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
@@ -67,15 +66,15 @@ Cc:     p.zabel@pengutronix.de, angelogioacchino.delregno@collabora.com,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
- <20220422060152.13534-14-rex-bc.chen@mediatek.com>
+ <20220422060152.13534-15-rex-bc.chen@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422060152.13534-14-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220422060152.13534-15-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,11 +82,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/04/2022 08:01, Rex-BC Chen wrote:
-> We will use the infra_ao reset which is defined in mt8195-sys-clock.
-> The maximum value of reset-cells is 2. Therefore, we add this patch to
-> define it.
+> To support reset of infra_ao, add the bit definition for thermal/SVS.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  include/dt-bindings/reset/mt8195-resets.h | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/include/dt-bindings/reset/mt8195-resets.h b/include/dt-bindings/reset/mt8195-resets.h
+> index a26bccc8b957..2479680616fb 100644
+> --- a/include/dt-bindings/reset/mt8195-resets.h
+> +++ b/include/dt-bindings/reset/mt8195-resets.h
+> @@ -26,4 +26,11 @@
+>  
+>  #define MT8195_TOPRGU_SW_RST_NUM               16
+>  
+> +/* INFRA RST0 */
+> +#define MT8195_INFRA_RST0_THERMAL_AP_RST       0
+> +/* INFRA RST3 */
+> +#define MT8195_INFRA_RST3_PTP_RST              5
+> +/* INFRA RST4 */
+> +#define MT8195_INFRA_RST4_THERMAL_MCU_RST      10
 
-Same comments as your other reset patch.
+Same comments as for other reset.
+
 
 Best regards,
 Krzysztof
