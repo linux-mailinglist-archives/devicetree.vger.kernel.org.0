@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9112C50CCB4
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744A550CCB9
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236662AbiDWRrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 13:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
+        id S236658AbiDWRsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 13:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236658AbiDWRrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:47:14 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7929E1C82D1
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:44:16 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id z99so13961018ede.5
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:44:16 -0700 (PDT)
+        with ESMTP id S236673AbiDWRs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:48:29 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 158A71C82DB
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:45:31 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id k23so22088409ejd.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:45:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4fquSciTRZOlg7b0ispu5BbxKa3Jubv+kFz0d5oG+RA=;
-        b=XeqM1sSDRBXJVVH/y59yu5LlAqVCgdD5OMyeN1kMzPSpTZcMR5eiWrFjLQ1tBC+Frz
-         RG5I1D78vKYlSU1+vx5UC+aMi5PyRHSNo+4QK7zgFY4nuG7AfuGPDlBXJPS2Y62mnLo1
-         zDsvSeIY8lL7hquqbqIwl8zck1GO9iEC01KIF2toX5hsc2xqrqtx0x0bVjKNrVYWENJV
-         AJZvLiB03clErs9QDOvUL0McN4Vidpe5AM7izLl+FVUZF1m+ii67SH8MGCSnyd0O9uE8
-         4EdRGkpt/ZBZxfEej8M4cSUwxcv+XuBu3nJ/tbLt/aEmpYaPEBPVOrLSCUnDMn+7yeMh
-         YNHg==
+        bh=tv8k2QNg8f0WWAxqQErrRdjZaMld74wjV/Sdmm45yvw=;
+        b=QA1CN7Yo/6gnRE7FGNyHY399Llyw07eMEHEMEHOzviC8T/cQspbvxBnPM4mpVMqez+
+         zlPAjJPV0XqL7Q9eUgAW51B/x2l2XVOkvzIKe796mUooQW2ycNZjpuel5iSt3AfvdPr+
+         LWB95jcBP17l5/2gvWrw6LkrUsfTFxGc2k/JLebkHKM9fRM1zwNygoC54umq7gLFXCFw
+         u776JpgOYMB1eFrdESimVciRNOJDxZK/CVC2McdODSJ7JcNMtf9ONdXycitO8DoipcpN
+         UWVQUG5Q4K7fIlUL2UhBtalPPvPuMfWuazTwtrQsz7rhu/jmhsr9NNy1kwnYVFA28r23
+         /YAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=4fquSciTRZOlg7b0ispu5BbxKa3Jubv+kFz0d5oG+RA=;
-        b=0RsZ9V24YWSjPQPvLHV90awe6+zlyddv6ceYWeLNXEhMWbAxeP6jtJnE3EpQqIJvyD
-         dAWlUbWlFmNNfpbdPyXlOHLYY2z5Saonf80P80qLwxZRd8PRdeufrJgDdlQANvu4mmWz
-         1R1okIhPSaUtlplA2bNLd7ErGddQjH/mOlUupR+bPhHnqW5kdsxeI1YEM3q6v4Lg1RPw
-         5twnRgc0i0XlhKgGH6ilc4iHXE2+1gBNlQjoOPlvXqrHNhAZa+qTHcQ4PY3NY2cVfA2U
-         UnJZPaPzszofTNZCZ4l292DHb8p18aswr7FnBbPv58h4Uj3EIH8/mRXdyyr334sEsBCl
-         O75w==
-X-Gm-Message-State: AOAM531B6ge5amzuOkdWhNWFu07t36RhYVwLhWJh87Ibfu40EPCoXtqw
-        Xq0C+wA/FD/gB22u4KMA4TFeAw==
-X-Google-Smtp-Source: ABdhPJw9MSnrDdf/ChTisUZhN5ibreso33tvScS+inGk5HTszlnDE/ThJWmSa8zK3qNf9DSrGzxdKg==
-X-Received: by 2002:a05:6402:4407:b0:423:9a59:16f3 with SMTP id y7-20020a056402440700b004239a5916f3mr10957770eda.74.1650735855115;
-        Sat, 23 Apr 2022 10:44:15 -0700 (PDT)
+        bh=tv8k2QNg8f0WWAxqQErrRdjZaMld74wjV/Sdmm45yvw=;
+        b=xdBIbSS1fk0MxqWC6htp2Tbu1QYbNhu/xdbzt0XOVD5LT/yY7DfONqjDOrKQZiq4ql
+         4/SWIoBMUZKvoXbhD0VOgAxGWDWFsrWUQ1GryKM6/98kIw2T2T8mJLXL3G+cPNBhvF2T
+         9WsKz8sizHDmgv7fFOqL74mCP3nvfqzp8HIXI3MFaROkrYo4jbL32lYM6I+UwRtQQlhp
+         Km4alHSP/R7HiUIas7VMlZjKRbsWK12Qyca0JtZDGDAnj+hwkDk2GbUWaJFy5R/LLJWb
+         aMOiHyLGHYanrQQV0XcBnyZ3KfcB712h2N45axfHVTm/WJDn+Ttu+HKlkYn5dFV//cAR
+         UZLg==
+X-Gm-Message-State: AOAM531qLe/z3oijEREWZjQVlQgRY15fHDmaItKlM5LdGXBaBxxVYUg8
+        VkjoV3uEsO7q94Od8YTvA5Gt/Q==
+X-Google-Smtp-Source: ABdhPJwtFCxar+dccJDt2FfSCA7OH7G26P7gbrmnXI+xFS4WCiwHqfZZI/jbOn2J+8dol6tfCtMcMQ==
+X-Received: by 2002:a17:906:7304:b0:6e0:6918:ef6f with SMTP id di4-20020a170906730400b006e06918ef6fmr9090867ejc.370.1650735929711;
+        Sat, 23 Apr 2022 10:45:29 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jt24-20020a170906ca1800b006ef606fe5f2sm1864294ejb.61.2022.04.23.10.44.14
+        by smtp.gmail.com with ESMTPSA id e22-20020a50d4d6000000b00425d4753b2esm917752edj.74.2022.04.23.10.45.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 10:44:14 -0700 (PDT)
-Message-ID: <2e925dbd-0766-576d-7a94-80a8dcc8d9ab@linaro.org>
-Date:   Sat, 23 Apr 2022 19:44:13 +0200
+        Sat, 23 Apr 2022 10:45:29 -0700 (PDT)
+Message-ID: <219696e6-2ae9-3265-8735-d612408df841@linaro.org>
+Date:   Sat, 23 Apr 2022 19:45:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 6/7] arm: dts: qcom-*: replace deprecated perst-gpio
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: replace deprecated perst-gpio
  with perst-gpios
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -65,9 +65,9 @@ Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20220422211002.2012070-1-dmitry.baryshkov@linaro.org>
- <20220422211002.2012070-7-dmitry.baryshkov@linaro.org>
+ <20220422211002.2012070-8-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422211002.2012070-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220422211002.2012070-8-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,13 +82,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/04/2022 23:10, Dmitry Baryshkov wrote:
 > Replace deprecated perst-gpio properties with up-to-date perst-gpios
-> in the arm32 Qualcomm Snapdragon device trees.
+> in the Qualcomm device trees.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+You also replaced wake-gpio in one case.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
