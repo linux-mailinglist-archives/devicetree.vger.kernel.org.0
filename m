@@ -2,114 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8AF250CABF
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 15:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFEF450CACB
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 15:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235937AbiDWNnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 09:43:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
+        id S235824AbiDWNtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 09:49:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235860AbiDWNmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 09:42:47 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C50B1759F2
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 06:39:50 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id m23so1888733ljc.0
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 06:39:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
-        b=lAfcX7bWhAiM9qF8UplivEufLN8b5gpEwGkIaQWc+/TyMXGXB54X7qbZ0xf5ad1imo
-         aW9vy+TvbUSWyn2SxkKuslAcVJL77BwkVE26NILN7lifOMfx+nSzBn6o80FmMa9YL/RX
-         CCaRkd7KirFN1ilEQGnJBgt+CTtCVQJ6sSlSOG0xFntNGeiE5jcrN2EzxaYuf8AvsYDf
-         AFFuVW9IfH29zQM6SUzM6Cj2iWF51BdJCj5VDzC52JBrfrkYwj9lVkzqsc3NlTlvLip2
-         b1Yi4nxEwS3b6cCcgUXA+RxKGOdRZUKND3dp+199b6dfMJWCXRi5AkuVTP2QK8dn2Ola
-         hkVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
-        b=TGkkMQY2aovISc3YPa3UsZD1nzDgOstwiiKKtChyXJfFuQO5DeiAGybVNgOhkIbNPu
-         pdnYNSFazS4df8TXwr4hM6pJ9b6GF51GTadIE23E3GP3G0FOxBjOX+1qHpVDKpmMaRsd
-         rm8ONy/CIrrhPTRjozDvseJq5Y91P6/my+yHkmXu0ClJ3vpFfi0JHUeD7/lU2SjyZu/7
-         tjBHgRugyfMST+v66JSduEkZZk7GvJ39J/3s5MJGalxj+XUvs7B4R0U1bpm/ZzkX0d+J
-         C4eXt4fhCMXgWc/quJcs45wOezt/AOvLMPjnGVlgbt4KHa5OoR/ZjkgJI1vHWLPshFEf
-         2jug==
-X-Gm-Message-State: AOAM532HfeTk04lWagU0I2f3VNWlJZAFPJgOzQDzlSOjexyf1L31fhPy
-        kb7x7IGWlHg2aHPYHc0I/OUNVA==
-X-Google-Smtp-Source: ABdhPJxNLdvhSGNd5ayRrc8CDk6a9IOgwYlVvuxyvZvzA5HmPMaFuVsPiXoPE3vLcgTwlI5tWirfXw==
-X-Received: by 2002:a2e:a4b4:0:b0:246:2930:53d7 with SMTP id g20-20020a2ea4b4000000b00246293053d7mr5715097ljm.74.1650721188494;
-        Sat, 23 Apr 2022 06:39:48 -0700 (PDT)
-Received: from eriador.lumag.spb.ru ([94.25.228.223])
-        by smtp.gmail.com with ESMTPSA id c21-20020a2ea795000000b0024ee0f8ef92sm544535ljf.36.2022.04.23.06.39.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Apr 2022 06:39:48 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S235827AbiDWNtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 09:49:07 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 68CB663527;
+        Sat, 23 Apr 2022 06:46:08 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,284,1643641200"; 
+   d="scan'208";a="118907135"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Apr 2022 22:46:07 +0900
+Received: from localhost.localdomain (unknown [10.226.92.16])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9D0FC4007F36;
+        Sat, 23 Apr 2022 22:46:04 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sm8250: provide additional MSI interrupts
-Date:   Sat, 23 Apr 2022 16:39:39 +0300
-Message-Id: <20220423133939.2123449-6-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220423133939.2123449-1-dmitry.baryshkov@linaro.org>
-References: <20220423133939.2123449-1-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document RZ/G2UL USBPHY Control bindings
+Date:   Sat, 23 Apr 2022 14:46:01 +0100
+Message-Id: <20220423134601.141975-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 each group of MSI interrupts is mapped to the separate host
-interrupt. Describe each of interrupts in the device tree for PCIe0
-host.
+Add device tree binding document for RZ/G2UL USBPHY Control Device.
+RZ/G2UL USBPHY Control Device is identical to one found on the RZ/G2L SoC.
+No driver changes are required as generic compatible string
+"renesas,rzg2l-usbphy-ctrl" will be used as a fallback.
 
-Tested on Qualcomm RB5 platform with first group of MSI interrupts being
-used by the PME and attached ath11k WiFi chip using second group of MSI
-interrupts.
-
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml     | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 410272a1e19b..0659ac45c651 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1807,8 +1807,15 @@ pcie0: pci@1c00000 {
- 			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
- 				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
- 
--			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7", "msi8";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+diff --git a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
+index 86c2569ced97..731b8ce01525 100644
+--- a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
++++ b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
+@@ -17,6 +17,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - renesas,r9a07g043-usbphy-ctrl # RZ/G2UL
+           - renesas,r9a07g044-usbphy-ctrl # RZ/G2{L,LC}
+           - renesas,r9a07g054-usbphy-ctrl # RZ/V2L
+       - const: renesas,rzg2l-usbphy-ctrl
 -- 
-2.35.1
+2.25.1
 
