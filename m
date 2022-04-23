@@ -2,86 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B16AB50C611
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 03:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3CE350C61C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 03:41:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbiDWBmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 21:42:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36668 "EHLO
+        id S229889AbiDWBoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 21:44:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231539AbiDWBmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 21:42:03 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F330362BCC
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 18:39:07 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id z2so10960843oic.6
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 18:39:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=7EJS8NNeeeYMyvlGg/Ekyb4WY0hHCp+wg2fhE6TIsAk=;
-        b=RYGnji360BubilqdVVBND2TBvUGRtQqlSZYtbv+32nSrl/HaxDiU9NvStswPNTPHNv
-         l5kk4CBhQPBzK8GQA2VPJHjjXUi1R2hmIzm4pifKn2ZVjffCZIePtPtXyHZFwQNqmGFf
-         fnjiOnL0u+ncqJZdbj1an/HbxZAaJ1sZeCrXM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=7EJS8NNeeeYMyvlGg/Ekyb4WY0hHCp+wg2fhE6TIsAk=;
-        b=WR3c6RwvVD8OeWm+7GK5tzv43WcLVKq3VxiZX0kIPB7UfXG5HYeGXtm8j8TDnmklt4
-         4k37ndCDVxijPQ1RJIGaVYMzcZDmm2kHhvQpOi4k8FffnsnhPBN7e9NrXZLpLxzvryZZ
-         NXeaFTSgR93dFm73aua3JLp1alLZRkefHeSodbFwLsopsOwS+C1eJ8VmGjlWrpG/R0JI
-         3nzoW7/YePAF2SXVshwd3DYgbQP/10lXZSuf8byBn4aNbNsg/s0zEhA6gip9tSDvQ7CM
-         OEAbCrAU+OzxQGjB1ukdz6BK9kF6L8mHSZj2zDYXyObsJxLiUTkZAnEMqYs8a44ODksP
-         vdtg==
-X-Gm-Message-State: AOAM532C1X5HbtlyVd0yR6G04ewMGyfs/xZhqD3x4veptSlTWi3737fK
-        uOnvur2jXiUQC3QGWZhnDp61pJuzMwdQdJGN0flspw==
-X-Google-Smtp-Source: ABdhPJykwLPlALEXFN/14+I62z2Ro0mrF6nz4lBhvSBstY/qhvFmCUzDDHH6zZMWwVedGzrAP/waI44abrHx0IYwWCQ=
-X-Received: by 2002:a05:6808:1296:b0:325:8fb:68f3 with SMTP id
- a22-20020a056808129600b0032508fb68f3mr56442oiw.193.1650677947414; Fri, 22 Apr
- 2022 18:39:07 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 22 Apr 2022 18:39:07 -0700
+        with ESMTP id S229681AbiDWBoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 21:44:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34F319AD93;
+        Fri, 22 Apr 2022 18:41:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C2FD61207;
+        Sat, 23 Apr 2022 01:41:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8574CC385A0;
+        Sat, 23 Apr 2022 01:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650678063;
+        bh=tuGqr6gU1mR99kcU7SKJ6rO0n2SxgGEXTouyCk2CgaU=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=WT6vLbePq92qdTMMPpP1ABP8r+vcFSCAK0o47fmPsc6iX4YKTZYgz9ppRyjrv6d/I
+         dUDRG/m/Hz/qwdk3HlIweANQiaA2YBV0yzNYUV0n4ULUbnj7thgkt2c5f5Sfcn+qPC
+         7VEtTP62rdp+NsbJIgVuCLf3m/QogP7Fqlq0z0pTTOlh0y9kuoqitqUdamzA4p1Gda
+         ddbYVL3JGqGDiC/FP1A2sVf4Dt1GdunnTVfE4X0UpmNgwZNtdKV5+WVyBrCoOQXmnK
+         IiPGQlPV1JzV12YMNXjYLdsMNv7VjH9ZKJB69NzJ6v3ziJEgcpakOimc4J/q7oMEJd
+         Yz3WYShCgs6mw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <1650618666-15342-5-git-send-email-quic_sbillaka@quicinc.com>
-References: <1650618666-15342-1-git-send-email-quic_sbillaka@quicinc.com> <1650618666-15342-5-git-send-email-quic_sbillaka@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220413075835.3354193-2-conor.dooley@microchip.com>
+References: <20220413075835.3354193-1-conor.dooley@microchip.com> <20220413075835.3354193-2-conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/9] clk: microchip: mpfs: fix parents for FIC clocks
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor.dooley@microchip.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, aou@eecs.berkeley.edu,
+        krzk+dt@kernel.org, mturquette@baylibre.com, palmer@rivosinc.com,
+        paul.walmsley@sifive.com, robh+dt@kernel.org
+Date:   Fri, 22 Apr 2022 18:41:01 -0700
 User-Agent: alot/0.10
-Date:   Fri, 22 Apr 2022 18:39:07 -0700
-Message-ID: <CAE-0n52Lh_+_cPq7ivi0GHaUkY8_mH4nsvXeBBEbVRHLvHDYcw@mail.gmail.com>
-Subject: Re: [PATCH v9 4/4] drm/msm/dp: Support the eDP modes given by panel
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     robdclark@gmail.com, seanpaul@chromium.org,
-        quic_kalyant@quicinc.com, quic_abhinavk@quicinc.com,
-        dianders@chromium.org, quic_khsieh@quicinc.com,
-        bjorn.andersson@linaro.org, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, dmitry.baryshkov@linaro.org,
-        quic_vproddut@quicinc.com, quic_aravindh@quicinc.com,
-        steev@kali.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Message-Id: <20220423014103.8574CC385A0@smtp.kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sankeerth Billakanti (2022-04-22 02:11:06)
-> The eDP controller does not have a reliable way keep panel
-> powered on to read the sink capabilities. So, the controller
-> driver cannot validate if a mode can be supported by the
-> source. We will rely on the panel driver to populate only
-> the supported modes for now.
->
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Quoting Conor Dooley (2022-04-13 00:58:28)
+> The fabric interconnects are on the AXI bus not AHB.
+> Update their parent clocks to fix this.
+>=20
+> Fixes: 635e5e73370e ("clk: microchip: Add driver for Microchip PolarFire =
+SoC")
+> Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Applied to clk-fixes
