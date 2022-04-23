@@ -2,69 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1492F50C7DF
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 09:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 998C050C7D8
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 08:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233589AbiDWHDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 03:03:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
+        id S233599AbiDWGxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 02:53:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbiDWHDM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 03:03:12 -0400
-X-Greylist: delayed 21580 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 23 Apr 2022 00:00:13 PDT
-Received: from relay2.mymailcheap.com (relay2.mymailcheap.com [217.182.66.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690E621D016;
-        Sat, 23 Apr 2022 00:00:10 -0700 (PDT)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay2.mymailcheap.com (Postfix) with ESMTPS id 58954401F1;
-        Sat, 23 Apr 2022 09:00:09 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id A55982A2AE;
-        Sat, 23 Apr 2022 07:00:08 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id p7e-EU69GfG7; Sat, 23 Apr 2022 07:00:04 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233589AbiDWGxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 02:53:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DED87F20C;
+        Fri, 22 Apr 2022 23:50:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Sat, 23 Apr 2022 07:00:04 +0000 (UTC)
-Received: from [172.16.34.145] (unknown [113.67.11.122])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 9A4894006D;
-        Sat, 23 Apr 2022 06:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1650697203; bh=yPdg0QI5aY/XsFreabP5oAUyZK4YyiVmnZuX8ctGVDY=;
-        h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
-        b=KP3UzXALBaQEBT5MkDngOnOF0pdVpdWMjz0TSJaLBe0jHy7WmUKOKvT8Z1yf32D3Y
-         +nGhA2rB16qn/P8gWQv82Dvr7pjy1CJq3wBAPSO2y22bPJBKZ+Y9mXRCpUHoKRiPyc
-         zkyaeu/RqdVZuSfqEBuFJFlnuSMRbTFptf2yoqDQ=
-Message-ID: <39659fd3a9c75c8ad1653c2ef34049b94595170b.camel@aosc.io>
-Subject: Re: [PATCH 1/4] dt-bindings: spi: sun6i: add DT bindings for
- Allwinner R329 SPI
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Samuel Holland <samuel@sholland.org>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <9ae7d1ee-4e2d-f3c1-f55f-e96b0e449b63@sholland.org>
-References: <20220422155639.1071645-1-icenowy@outlook.com>
-         <BYAPR20MB2472E8B10BFEF75E7950BBC0BCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
-         <9ae7d1ee-4e2d-f3c1-f55f-e96b0e449b63@sholland.org>
-Content-Type: text/plain; charset="UTF-8"
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0478F60B4D;
+        Sat, 23 Apr 2022 06:50:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCCF8C385A5;
+        Sat, 23 Apr 2022 06:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1650696608;
+        bh=N74KVf0Xg1tp9U6s88Q84deTqBztJDb0FzAXhMjhEW4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AXwHADvT9bmFHX0p2wyDgl0QCoHo4RZi3t+kVmn6d1P6Ky6rW4PALGL+H++PrHako
+         j2WeC/kzVQ2RX2z4KJJ925UrIusHekMufSMTKJOAJecBywBcsJE+tWglxJHXWqk09Q
+         PrKTaQJngGHIqMcsw90Gm7OiZyfq4nuObagEbcmA=
+Date:   Sat, 23 Apr 2022 08:50:03 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sebastian Ene <sebastianene@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, qperret@google.com
+Subject: Re: [PATCH  v2 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YmOhmzmBL36rBO30@kroah.com>
+References: <20220422141949.3456505-1-sebastianene@google.com>
+ <20220422141949.3456505-3-sebastianene@google.com>
 MIME-Version: 1.0
-Date:   Sat, 23 Apr 2022 08:10:31 +0800
-User-Agent: Evolution 3.40.4 
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        T_SPF_PERMERROR,URIBL_BLOCKED autolearn=no autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422141949.3456505-3-sebastianene@google.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,53 +54,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2022-04-22星期五的 18:49 -0500，Samuel Holland写道：
-> On 4/22/22 10:56 AM, icenowy@outlook.com wrote:
-> > From: Icenowy Zheng <icenowy@aosc.io>
-> > 
-> > Allwinner R329 SPI has two controllers, and the second one has
-> > helper
-> > functions for MIPI-DBI Type C.
-> > 
-> > Add compatible strings for these controllers
-> > 
-> > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> > ---
-> >  .../devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml        |
-> > 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-
-> > a31-spi.yaml
-> > b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-
-> > spi.yaml
-> > index ca4c95345a49..6354635241fc 100644
-> > --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-
-> > spi.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-
-> > spi.yaml
-> > @@ -21,6 +21,8 @@ properties:
-> >      oneOf:
-> >        - const: allwinner,sun6i-a31-spi
-> >        - const: allwinner,sun8i-h3-spi
-> > +      - const: allwinner,sun50i-r329-spi
-> > +      - const: allwinner,sun50i-r329-spi-dbi
+On Fri, Apr 22, 2022 at 02:19:50PM +0000, Sebastian Ene wrote:
+> This patch adds support for a virtual watchdog which relies on the
+> per-cpu hrtimers to pet at regular intervals.
 > 
-> As far as I'm aware, the SPI portion of the DBI controller is
-> register-compatible with the regular SPI controller. So I would
-> expect using
-> that as a fallback compatible for the DBI variant.
-
-This sounds reasonable.
-
+> Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> ---
+>  drivers/misc/Kconfig  |   8 ++
+>  drivers/misc/Makefile |   1 +
+>  drivers/misc/vm-wdt.c | 215 ++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 224 insertions(+)
+>  create mode 100644 drivers/misc/vm-wdt.c
 > 
-> Regards,
-> Samuel
-> 
-> >        - items:
-> >            - enum:
-> >                - allwinner,sun8i-r40-spi
-> > 
-> 
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 2b9572a6d114..0e710149ff95 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -493,6 +493,14 @@ config OPEN_DICE
+>  
+>  	  If unsure, say N.
+>  
+> +config VM_WATCHDOG
+> +	tristate "Virtual Machine Watchdog"
+> +	select LOCKUP_DETECTOR
+> +	help
+> +	  Detect CPU locks on the virtual machine.
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called vm-wdt.
+> +
+>  source "drivers/misc/c2port/Kconfig"
+>  source "drivers/misc/eeprom/Kconfig"
+>  source "drivers/misc/cb710/Kconfig"
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index 2ec634354cf5..868e28d01b75 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -59,3 +59,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+>  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+>  obj-$(CONFIG_UID_SYS_STATS)	+= uid_sys_stats.o
+>  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+> +obj-$(CONFIG_VM_WATCHDOG) += vm-wdt.o
 
+No tab?
 
+> \ No newline at end of file
+> diff --git a/drivers/misc/vm-wdt.c b/drivers/misc/vm-wdt.c
+> new file mode 100644
+> index 000000000000..ea4351754645
+> --- /dev/null
+> +++ b/drivers/misc/vm-wdt.c
+> @@ -0,0 +1,215 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+
+I have to ask, do you really mean "+" here as this is not the overall
+license of the kernel.  It's not a normal license for your employer to
+pick, so as long as you have legal approval, it's fine, but if not, you
+need to get that.
+
+> +//
+> +// Virtual watchdog driver.
+> +//  Copyright (C) Google, 2022
+> +
+> +#define pr_fmt(fmt) "vm-watchdog: " fmt
+
+It's a driver, you shouldn't need any pr_* calls.
+
+> +
+> +#include <linux/cpu.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +
+> +#include <linux/device.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/nmi.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/param.h>
+> +#include <linux/percpu.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#define DRV_NAME			"vm_wdt"
+
+KBUILD_MODNAME?
+
+> +#define DRV_VERSION			"1.0"
+
+"versions" mean nothing once the code is in the kernel, please drop
+this.
+
+But why isn't this in the normal watchdog subdirectory?  Why is this a
+special driver?
+
+> +
+> +#define VMWDT_REG_STATUS		(0x00)
+> +#define VMWDT_REG_LOAD_CNT		(0x04)
+> +#define VMWDT_REG_CURRENT_CNT		(0x08)
+> +#define VMWDT_REG_CLOCK_FREQ_HZ		(0x0C)
+> +#define VMWDT_REG_LEN			(0x10)
+> +
+> +#define VMWDT_DEFAULT_CLOCK_HZ		(10)
+> +#define VMWDT_DEFAULT_TIMEOT_SEC	(8)
+> +
+> +struct vm_wdt_s {
+> +	void __iomem *membase;
+> +	u32 clock_freq;
+> +	u32 expiration_sec;
+> +	u32 ping_timeout_ms;
+> +	struct hrtimer per_cpu_hrtimer;
+> +	struct platform_device *dev;
+> +};
+> +
+> +#define vmwdt_reg_write(wdt, reg, value)	\
+> +	iowrite32((value), (wdt)->membase + (reg))
+> +#define vmwdt_reg_read(wdt, reg)		\
+> +	io32read((wdt)->membase + (reg))
+> +
+> +static struct platform_device *virt_dev;
+> +
+> +static enum hrtimer_restart vmwdt_timer_fn(struct hrtimer *hrtimer)
+> +{
+> +	struct vm_wdt_s *cpu_wdt;
+> +	u32 ticks;
+> +
+> +	cpu_wdt = container_of(hrtimer, struct vm_wdt_s, per_cpu_hrtimer);
+> +	ticks = cpu_wdt->clock_freq * cpu_wdt->expiration_sec;
+> +	vmwdt_reg_write(cpu_wdt, VMWDT_REG_LOAD_CNT, ticks);
+> +	hrtimer_forward_now(hrtimer, ms_to_ktime(cpu_wdt->ping_timeout_ms));
+> +
+> +	return HRTIMER_RESTART;
+> +}
+> +
+> +static void vmwdt_start(void *arg)
+> +{
+> +	u32 ticks;
+> +	int cpu = smp_processor_id();
+> +	struct vm_wdt_s *cpu_wdt = arg;
+> +	struct hrtimer *hrtimer = &cpu_wdt->per_cpu_hrtimer;
+> +
+> +	pr_info("cpu %u vmwdt start\n", cpu);
+
+When drivers work properly, they are quiet.
+
+Again, why not have this in drivers/watchdog/ and use the apis there
+instead of creating a custom one for no reason?
+
+thanks,
+
+greg k-h
