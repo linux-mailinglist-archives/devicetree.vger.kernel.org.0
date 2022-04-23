@@ -2,154 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63DC750C929
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADF950C927
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234270AbiDWKUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
+        id S234880AbiDWKXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 06:23:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231953AbiDWKU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:20:29 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443191B5BC5
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:17:32 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id bv19so20733969ejb.6
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:17:32 -0700 (PDT)
+        with ESMTP id S230527AbiDWKX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:23:27 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A601B89C6
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:20:29 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id k23so20783492ejd.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:20:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Mklb5aXcxYipDAFtZhLjAH2YhDWDlT80DvRI+nyyIRY=;
-        b=IL7auybyir92nS7ynxcqpLhd4/Afr9KHN3opym3dFVqZqdIvG6G5WeaQeNSrud2jLf
-         YOmvQQC1Yjzd1BZ8hU14kf+Y5QZSBAbwzPgtOlJ0UhBEVdleQoNRNuXAqoeHXJbhRgxT
-         xLFvi5JZAMDlHBDAMiQqc9nnCF3YsHuZJskjGxq/dwzeMZzqJz+sjIspuHo/FO+yzZdn
-         1qftw1eWzxJw29oQvdL2nyHhuWSHuTaPqcznuTD0yTGGaXaha/oyQOFdDrt+X3K+tc4+
-         s8bLGGoQfRmv4426NZah/AATrSZpWe6rxBVbtrG3FZxHOCXznGFXmxd6XUxG1o22XBU3
-         bRMg==
+        bh=wFau58/3dbFFXW5s/rSRyjR0Vv6vq15uvojLlFyaWYw=;
+        b=VdBeLuXQeTfZ0WLS8qcex/zqFzDuiG8Txkpzd9okBbMJ4TgfIsIFJmbW7Tf99SDUoQ
+         jDozl0XWC7OEZ6qTd1JLMPr6dl6mvilBQdyKEKzH8OW9agDsvPmBN5W6j283532gx1nQ
+         MKdbMzmYHmf9+1S/2AXVdz8polAsDE+i7Og35b7TDRH84FLh0oABC4bn10uokB4GMmXr
+         RJ9baprrI9l2mL35Yor4CqdnWDHYtm78mZu5PaX7vEJexhH80EuAKtL1Vrnb0VpEpI1d
+         C61sPiiOwt1ZnMr75JCXwE6BBhUAsRrwaaW2u+lfmaMFzb7HvaMkm468iZIi0KV+yeZW
+         ryyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Mklb5aXcxYipDAFtZhLjAH2YhDWDlT80DvRI+nyyIRY=;
-        b=GKLQbJk0aWrJMVOUfoPT2czbDmpdzrrYpTrwMyZ5fYX+D3x22v2GHm3cIztfl+jq8U
-         8h9/4vb7s8jddX0aJyeM7H9Wddbo6PY1LhvznByPFNn3RKj1tC1AtHiZyPb995Z0dkUx
-         QON0gKUCDcLqx0AV7dTaRWUGEZjoqqkcd+0BHI086kWp4om5H1G+DdnkDik/Xw66U5ws
-         8/kkqrv3byAkePAVIKGAXSrZ7zEPIGdZebOPavZk+F7/zS3V3pSEZwjyhtQv1fAP2mAI
-         ljI92RALb9wD7iEdGux1xewNiwYhmvHwXzMtGbGwg33vIlugnHWIPY5r1fiwX7c4+e2X
-         u/JA==
-X-Gm-Message-State: AOAM5331HKMwDt0Zaw1/wndeft7UFFriLQbCd4yAsVUdzJZupG0Ng2i0
-        iPoumO4jQWFwwoSXRob+fq6p4w==
-X-Google-Smtp-Source: ABdhPJxnYTs0tniLxFUdD7NtLPSv45OL0EoKnxDQUZGPp9FZgg1EzeCxUp68BDPozKySpPgos26AyQ==
-X-Received: by 2002:a17:907:7e8b:b0:6f3:78f1:80b0 with SMTP id qb11-20020a1709077e8b00b006f378f180b0mr985409ejc.596.1650709050883;
-        Sat, 23 Apr 2022 03:17:30 -0700 (PDT)
+        bh=wFau58/3dbFFXW5s/rSRyjR0Vv6vq15uvojLlFyaWYw=;
+        b=DWF8MG7MrgPGbbkg623XLtaiLiKdSr7hId/qduYpg9CkA29axyMyJZnRZRboECzsVp
+         2HAbp4BU3VsRNJkHGZhMpXzjnWXndHbBPa9vhDhJkIBos2msp3j5gkxawr2Ma9wS6qMK
+         AQXL8bRTnyl+Aav4CsSuB0dq5niF95JgsQBUpFyqmB06fgrmAAelCYbCfE51kU/hQsOA
+         42BvQGTczf0dzoCdGfBRYgC7reFtzCV2dS2z08H6/cIeY8/9mkiY5Ew1gvQ8tJiNAUJ8
+         gNQTqQsd7lRmDYHkmYSQ7o6zTqHOtmMf8/wfYuTiYYrjYhkijf22XYmAlcPwA/hqTiRz
+         nveQ==
+X-Gm-Message-State: AOAM533BForveUoZ9P3bqhQxHvv1SJ13xj+NL38dpE02FhLrdO1651BK
+        bmsAGhNNHhfveiEoQF2hxI5wvQ==
+X-Google-Smtp-Source: ABdhPJyHlCCVCTAtns0efc4iZ7S75fDASI52u/P1Kc0Vy4D6sBJpiZ7iYAysEriC5MzcgajCOpK+XA==
+X-Received: by 2002:a17:907:9721:b0:6f3:806c:b9f4 with SMTP id jg33-20020a170907972100b006f3806cb9f4mr119631ejc.462.1650709227598;
+        Sat, 23 Apr 2022 03:20:27 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gq5-20020a170906e24500b006e87644f2f7sm1544023ejb.38.2022.04.23.03.17.30
+        by smtp.gmail.com with ESMTPSA id g9-20020aa7c849000000b00412fc6bf26dsm2063437edt.80.2022.04.23.03.20.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:17:30 -0700 (PDT)
-Message-ID: <fb8c2c57-38bf-065f-a781-beb2fb89353e@linaro.org>
-Date:   Sat, 23 Apr 2022 12:17:29 +0200
+        Sat, 23 Apr 2022 03:20:27 -0700 (PDT)
+Message-ID: <ad62836d-b66f-8423-8c9a-c3b9f90e0add@linaro.org>
+Date:   Sat, 23 Apr 2022 12:20:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: fsl: convert fsl,layerscape-scfg to YAML
+Subject: Re: [PATCH] dt-bindings: fsl: convert fsl,layerscape-dcfg to YAML
 Content-Language: en-US
 To:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220421153115.3496834-1-michael@walle.cc>
+References: <20220421153044.3496643-1-michael@walle.cc>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220421153115.3496834-1-michael@walle.cc>
+In-Reply-To: <20220421153044.3496643-1-michael@walle.cc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/2022 17:31, Michael Walle wrote:
-> Convert the fsl,layerscape-scfg binding to the new YAML format.
+On 21/04/2022 17:30, Michael Walle wrote:
+> Convert the fsl,layerscape-dcfg binding to the new YAML format.
 > 
-> Added, compared to the original binding, is the interrupt-controller
-> subnode as used in arch/arm/boot/dts/ls1021a.dtsi as well as the
-> litte-endian and big-endian properties.
+> One thing added here, compared to the original binding, is the clock
+> controller subnode of the LS1028A SoC and its "simple-mfd" compatible as
+> used in arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi as well as the
+> little-endian and big-endian properties.
 > 
 > Signed-off-by: Michael Walle <michael@walle.cc>
 > ---
->  .../arm/freescale/fsl,layerscape-scfg.txt     | 19 ------
->  .../arm/freescale/fsl,layerscape-scfg.yaml    | 58 +++++++++++++++++++
->  2 files changed, 58 insertions(+), 19 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.yaml
+>  .../arm/freescale/fsl,layerscape-dcfg.txt     | 19 ------
+>  .../arm/freescale/fsl,layerscape-dcfg.yaml    | 68 +++++++++++++++++++
+>  2 files changed, 68 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.yaml
 
-This should be moved to bindings/soc/freescale. Arm directory is only
-for top-level stuff.
-
-(...)
-
-> +description: |
-> +  SCFG is the supplemental configuration unit, that provides SoC specific
-> +  configuration and status registers for the chip. Such as getting PEX port
-> +  status.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,ls1012a-scfg
-> +          - fsl,ls1021a-scfg
-> +          - fsl,ls1028a-scfg
-> +          - fsl,ls1043a-scfg
-> +          - fsl,ls1046a-scfg
-> +      - const: syscon
-
-This was not present in old bindings, so please mention it in commit msg.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  little-endian: true
-> +  big-endian: true
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^interrupt-controller@[a-z0-9]+$":
-> +    $ref: /schemas/interrupt-controller.yaml#
-
-Do you have a specific FSL schema (bindings) for the child?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    scfg@1570000 {
-
-Generic node name, so I guess here it would be a "syscon".
-
-> +        compatible = "fsl,ls1021a-scfg", "syscon";
-> +        reg = <0x1570000 0x10000>;
-> +    };
-
+Same comments as for scfg (move to soc, generic node name, reference
+clock controller schema, mention adding syscon in commit msg).
 
 Best regards,
 Krzysztof
