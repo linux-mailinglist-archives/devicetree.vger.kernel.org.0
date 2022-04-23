@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B54350C903
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3895650C8EF
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234794AbiDWKF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:05:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
+        id S234807AbiDWKHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 06:07:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234784AbiDWKF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:05:57 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29627187475
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:02:59 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g20so13159903edw.6
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:02:59 -0700 (PDT)
+        with ESMTP id S234827AbiDWKG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:06:59 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6C9919980F
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:03:48 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id y20so20699987eju.7
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:03:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VxTbz/61EBkYnAtoeVOTreTiohwdB8m5aatXEPOs56Y=;
-        b=wKwr4PjmG2iH3MjybUlBF5EEF1KoicnTRf+lsmPwz/8ptiW4BTVJ8iPtTACg9Qw8cg
-         LSxrriHlFZ1JDnPpgSEt0PgdYJfWnW1eW1UMO3dwLrsE+lT5oBNOFQhs1BUd2JNNc8mM
-         CwObPksUx0Ydxp+FB+3Ebhos6a2qMrp425q9F17hscPkjCXSbg8jQRjyYjiYJ4ifSwb8
-         7qvRLVYuvbPzt96bRxRJgsmNwRJCm5u9Lxl67O4G3s87tzJSaK1R8NW+h1X+upmQDxZx
-         xTLUmtnsmOH7eL/URcE1HbqJZYxmyeyBKPNMOrXjlvyFkixMvEZW6eL1FB9mwHq86HKw
-         jezg==
+        bh=0Icd0QAbAtveEL91sUdo5gIKdYCb50RUGDVuACnzMBA=;
+        b=y0U6kKeTSJrRSx3RwWcQ0eQL1CpI9mjhmBG/0ir83Tb/3Sauck6I4DwtmPT3GdkTEM
+         TEff/fbyESPUovuRvnrVa21nS49D6kctnFlvdJtJ/UA+aLOez9oCL7OQCK4jKpCmSQj3
+         v6qTIkhxDTPoWAXQUOxfzHkr6Kj6vVHIMZYE7404AUgjroqkDNZhtwGmp06SGYIEVp0a
+         Nj37KgaVzGivlCYYk3c8mq0mdDvBxGMKordQJoxkFliqPA2+TVFfPxmzf0AfcPOY8b3R
+         edjDlnq0ZusqEQfdvu9VCC0Zbx7uoTPRUEKJQ3xKbOypA6S02LhE2Na9Z66E0Aibb8Ta
+         1Otg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VxTbz/61EBkYnAtoeVOTreTiohwdB8m5aatXEPOs56Y=;
-        b=4EZHgY7ko/RqHxDceULMogI/dX9H5OvmIzzWwysdrW4HIZdTrW9gaJn4/aRcKPf/zW
-         xEEki6jmWLrxbo/5IUTVR2zNqGAg8Jg7DbwujDqXSRqMckm8T+AShjg8nYhYiXw18lwc
-         8me6qrmGYWQusG68PHWHy20Fk0mUjw3ekcu3fgaDXdjVDc5SYQPIz2ww004PHdcKoe1c
-         7+cq6xghFYOnxf4uLZ0nD6K3yZR97f1gMUef58g7miGVhYMS27MBow8Nzm3d5pbWc53L
-         AUM3QALizok/jG/Raq071mcx05AYJFRVWIzyXkOf5aG4DAmJHjclJvQFU1azsZg/atoL
-         O7Pw==
-X-Gm-Message-State: AOAM532VJobFE5a+Ka/tjGgOxJakfHMeJacaGWZII8gw/l4r9RJgOCgo
-        9XVBYHJP2qSgzeJ98Z7saVrvAg==
-X-Google-Smtp-Source: ABdhPJxDW43NqQtrujSc4G0sjErIulv8al4rq9aXoSm0TYEn0LCABwGp2SAZ+HfqhRpD2xKNmOcETw==
-X-Received: by 2002:aa7:de93:0:b0:418:d700:662a with SMTP id j19-20020aa7de93000000b00418d700662amr9313643edv.107.1650708177812;
-        Sat, 23 Apr 2022 03:02:57 -0700 (PDT)
+        bh=0Icd0QAbAtveEL91sUdo5gIKdYCb50RUGDVuACnzMBA=;
+        b=O/zmV2ioD7ZDtUB/f3fg9UgS/tfkKRF5KSfC96BAYW9pnDhyMtyBtc25eb0OxwmuJm
+         UAOILnSViUC7GAv7BgGzCNae5E3gzhntKBZIvUcB1JBSYbUhvC2+buDZymf5wMa+aa1s
+         4Wtj0vx+xIEZdV+ssDZ7ehSSUPwyKXkS9gSjZW21i3iWW4uKPD7Q7wHb0Zi5Od6w+D/K
+         +fyarauX5YY10b+92xVVSlKU4z5FJlFwTMecajnG7uI2TRk5BvoM80/gpK0KAszdfTUI
+         b65bLfvCTiGguAk2nxkHBTbQ8Uu790gzzfS3UwsiCauEYE5YnkDwzStPX9/ZV9IVGnHh
+         Cepg==
+X-Gm-Message-State: AOAM531axAOmwx73aNtxxZOD03ZNW0tn5qn+EGtgI6cKhC02xwfLJp9D
+        w5N0NzkWxD0A+hbivjR8+qM9DA==
+X-Google-Smtp-Source: ABdhPJwwvzUM3czsC7y+DnJmlUATBP02rRRtHr6o+QLgSRIt2B1L09BhY9Em2/0XG1XFFaH+X/rp5A==
+X-Received: by 2002:a17:907:168a:b0:6da:9177:9fdd with SMTP id hc10-20020a170907168a00b006da91779fddmr7833441ejc.757.1650708227007;
+        Sat, 23 Apr 2022 03:03:47 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm1508043eji.67.2022.04.23.03.02.56
+        by smtp.gmail.com with ESMTPSA id g3-20020a1709063b0300b006e8872f6585sm1564265ejf.175.2022.04.23.03.03.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:02:57 -0700 (PDT)
-Message-ID: <1903537b-ff19-d261-aca7-43bc28978521@linaro.org>
-Date:   Sat, 23 Apr 2022 12:02:55 +0200
+        Sat, 23 Apr 2022 03:03:46 -0700 (PDT)
+Message-ID: <2e2f5a33-0286-7a89-3842-10d8cd3fdc65@linaro.org>
+Date:   Sat, 23 Apr 2022 12:03:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCHv1 15/19] dt-bindings: serial: snps-dw-apb-uart: Add
- Rockchip RK3588
+Subject: Re: [PATCHv1 16/19] dt-bindings: soc: rockchip: add initial rk3588
+ syscon compatibles
 Content-Language: en-US
 To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
         Heiko Stuebner <heiko@sntech.de>
@@ -73,9 +73,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, kernel@lists.collabora.co.uk,
         kernel@collabora.com
 References: <20220422170920.401914-1-sebastian.reichel@collabora.com>
- <20220422170920.401914-16-sebastian.reichel@collabora.com>
+ <20220422170920.401914-17-sebastian.reichel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422170920.401914-16-sebastian.reichel@collabora.com>
+In-Reply-To: <20220422170920.401914-17-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,13 +89,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/04/2022 19:09, Sebastian Reichel wrote:
-> Add a Rockchip RK3588 compatible.
+> Add IOC and PHP GRF syscon compatibles for RK3588.
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+You don't need to adjust anything in allOf:if:then: parts?
 
 Best regards,
 Krzysztof
