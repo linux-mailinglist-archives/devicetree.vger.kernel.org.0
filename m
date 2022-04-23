@@ -2,101 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2221950C5DC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 03:00:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2089450C5A2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 02:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbiDWBD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 21:03:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42526 "EHLO
+        id S229747AbiDWAQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 20:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbiDWBD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 21:03:28 -0400
-X-Greylist: delayed 39070 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 22 Apr 2022 18:00:31 PDT
-Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.66.161])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C3D5C671;
-        Fri, 22 Apr 2022 18:00:30 -0700 (PDT)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay3.mymailcheap.com (Postfix) with ESMTPS id 553EF3ECDF;
-        Sat, 23 Apr 2022 03:00:26 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id A2F5E2A374;
-        Sat, 23 Apr 2022 01:00:25 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Zdi33cixN-Om; Sat, 23 Apr 2022 01:00:24 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Sat, 23 Apr 2022 01:00:24 +0000 (UTC)
-Received: from [172.16.34.145] (unknown [113.67.11.122])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 6B041401C4;
-        Sat, 23 Apr 2022 01:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1650675623; bh=N4i/1Sl8XBZEoIx04G8sQIpXEjM3YdS6eNFHmG+4P2c=;
-        h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
-        b=j8JylXwwyvys35BdMKnA21asyRFKv5QAT5RyRJye1BcC4s4ZxAYq3xb4ALCDLsVxJ
-         yXrpji/F3661RFq/bT/yfPsdoJc8gwd28N2Fa41NhKFWxvDqTk7uxBtZo/NedaZcSt
-         fcg4g4Jn7K+v+hH5i+xOX1dSZtSlmfsOP3DQD4JM=
-Message-ID: <41a8e5353f95ec1031f5700588313d379b63ec78.camel@aosc.io>
-Subject: Re: [PATCH 4/4] spi: sun6i: add support for R329 SPI controllers
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Samuel Holland <samuel@sholland.org>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <0b5b586a-3bc7-384e-103c-e40d0b2fac23@sholland.org>
-References: <20220422155639.1071645-1-icenowy@outlook.com>
-         <BYAPR20MB2472717D5AC20E7702329996BCF79@BYAPR20MB2472.namprd20.prod.outlook.com>
-         <0b5b586a-3bc7-384e-103c-e40d0b2fac23@sholland.org>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S230364AbiDWAQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 20:16:42 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70D26F4B5
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 17:13:46 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-e604f712ecso10258717fac.9
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 17:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=zfFaHSOoCxM9k7WKIO+SokAw11U0tu3SQrHG+UYnnlM=;
+        b=SMTCDHnxPQC5SWcOnrjWlUXYfTnq2kSb7H1LnbYRP0ofrUmzM0854ZNXMkmhrSDnWT
+         3RZUnfA5zAxRFraIm7Qjx9cilV+2Ss7wB7JctfUBW0X5wdAlynDjUAwvHAr+dMNJ44BZ
+         s/fxmjw3HKSl+k+EjZ4bHrJ/VUc44pDQvSTwI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=zfFaHSOoCxM9k7WKIO+SokAw11U0tu3SQrHG+UYnnlM=;
+        b=JnhNmBGEA0/qVRH4DUZMhvl6I8dvRX1w5KHqoPUenIoceaTdDmdDDlj+4x4RVCjPVr
+         +uyEYWCZT20d3J7Ub83gALCCsn3kjuE8dcchyX0e/KXaM6TY9EX/c70RArq+PQLvHuXn
+         yqCMSdC+uPebfZIvcv+L2ycFP6Z2j9tJQmDeY7V64m8eCJpNLzbLgsvz+u/1mtdaLveV
+         sbWzbIQ2Ywk5F+MGR2bu4oGjE3Vz2ejZoaRKtDgy/rpxHHKPiZt5LhaJxZ8VUBEjWH+3
+         DVVZVrfhFNlOkX4BovQLRvXLHcAdpynwPc4fT1BzgR4IKGq/kF0rHwkZS4Zu9x4gedyA
+         JLQg==
+X-Gm-Message-State: AOAM533/M5867LnOjIqCiYf1daotZH+ulicidCpvQrBpPRBnS4NA8UEo
+        Wgy4wXatipCf9nOBxiRPROmeb+QT6cUVr9CTXqVeMg==
+X-Google-Smtp-Source: ABdhPJyDBwXV+rdQrcRoHA6+8NjnidEoQADmYUSSgyUssOflCC+zmPxyfEsir5j8jsvIFyT+93lwtCnrCsLX4JuITZg=
+X-Received: by 2002:a05:6870:15ca:b0:e9:551:6d1c with SMTP id
+ k10-20020a05687015ca00b000e905516d1cmr1773145oad.193.1650672826133; Fri, 22
+ Apr 2022 17:13:46 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 22 Apr 2022 17:13:45 -0700
 MIME-Version: 1.0
-Date:   Sat, 23 Apr 2022 08:07:10 +0800
-User-Agent: Evolution 3.40.4 
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,T_SPF_PERMERROR,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1650618666-15342-2-git-send-email-quic_sbillaka@quicinc.com>
+References: <1650618666-15342-1-git-send-email-quic_sbillaka@quicinc.com> <1650618666-15342-2-git-send-email-quic_sbillaka@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 22 Apr 2022 17:13:45 -0700
+Message-ID: <CAE-0n51VBDmOOworjpuB1nqVD-7055yqvn2Er5H13qgFC5R2AQ@mail.gmail.com>
+Subject: Re: [PATCH v9 1/4] drm/msm/dp: Add eDP support via aux_bus
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     robdclark@gmail.com, seanpaul@chromium.org,
+        quic_kalyant@quicinc.com, quic_abhinavk@quicinc.com,
+        dianders@chromium.org, quic_khsieh@quicinc.com,
+        bjorn.andersson@linaro.org, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, dmitry.baryshkov@linaro.org,
+        quic_vproddut@quicinc.com, quic_aravindh@quicinc.com,
+        steev@kali.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2022-04-22星期五的 18:59 -0500，Samuel Holland写道：
-> On 4/22/22 10:56 AM, icenowy@outlook.com wrote:
-> > From: Icenowy Zheng <icenowy@aosc.io>
-> > 
-> > R329 has two SPI controllers. One of it is quite similar to
-> > previous
-> > ones, but with internal clock divider removed; the other added MIPI
-> > DBI
-> > Type-C offload based on the first one.
-> > 
-> > Add basical support for these controllers. As we're not going to
-> > support the DBI functionality now, just implement the two kinds of
-> > controllers as the same.
-> 
-> I'm curious what speeds you were able to use SPI at. On D1, with
-> effectively
-> these same changes, I would always get corrupted data when reading
-> from the
-> onboard SPI NAND on the Nezha board. However, if I enabled the "new
-> mode of
-> sample timing" (bit 2 in GBL_CTL_REG), I got the correct data.
+Quoting Sankeerth Billakanti (2022-04-22 02:11:03)
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index d7a19d6..055681a 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
 
-See 7.3.3.10 of R329_User_Manual_v1.0.pdf ? (named SPI sample mode and
-Run Clock configuration)
+Some nitpicks
 
-> 
-> Regards,
-> Samuel
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
+> @@ -1508,7 +1509,8 @@ void msm_dp_irq_postinstall(struct msm_dp *dp_display)
+>
+>         dp_hpd_event_setup(dp);
+>
+> -       dp_add_event(dp, EV_HPD_INIT_SETUP, 0, 100);
+> +       if (!dp_display->is_edp)
+> +               dp_add_event(dp, EV_HPD_INIT_SETUP, 0, 100);
 
+Did it turn out that in fact DP isn't ready still to setup even after
+delaying the irq?
+
+>  }
+>
+>  void msm_dp_debugfs_init(struct msm_dp *dp_display, struct drm_minor *minor)
+> @@ -1530,6 +1532,65 @@ void msm_dp_debugfs_init(struct msm_dp *dp_display, struct drm_minor *minor)
+>         }
+>  }
+>
+> +static int dp_display_get_next_bridge(struct msm_dp *dp)
+> +{
+> +       int rc;
+> +       struct dp_display_private *dp_priv;
+> +       struct device_node *aux_bus;
+> +       struct device *dev;
+> +
+> +       dp_priv = container_of(dp, struct dp_display_private, dp_display);
+> +       dev = &dp_priv->pdev->dev;
+> +       aux_bus = of_get_child_by_name(dev->of_node, "aux-bus");
+> +
+> +       if (aux_bus && dp->is_edp) {
+> +               dp_display_host_init(dp_priv);
+> +               dp_catalog_ctrl_hpd_config(dp_priv->catalog);
+> +               dp_display_host_phy_init(dp_priv);
+> +               enable_irq(dp_priv->irq);
+> +
+> +               /*
+> +                * The code below assumes that the panel will finish probing
+> +                * by the time devm_of_dp_aux_populate_ep_devices() returns.
+> +                * This isn't a great assumption since it will fail if the
+> +                * panel driver is probed asynchronously but is the best we
+> +                * can do without a bigger driver reorganization.
+> +                */
+> +               rc = devm_of_dp_aux_populate_ep_devices(dp_priv->aux);
+> +               of_node_put(aux_bus);
+> +               if (rc)
+> +                       goto error;
+> +       } else if (dp->is_edp) {
+> +               DRM_ERROR("eDP aux_bus not found\n");
+> +               return -ENODEV;
+> +       }
+> +
+> +       /*
+> +        * External bridges are mandatory for eDP interfaces: one has to
+> +        * provide at least an eDP panel (which gets wrapped into panel-bridge).
+> +        *
+> +        * For DisplayPort interfaces external bridges are optional, so
+> +        * silently ignore an error if one is not present (-ENODEV).
+> +        */
+> +       rc = dp_parser_find_next_bridge(dp_priv->parser);
+> +       if (!dp->is_edp && rc == -ENODEV)
+> +               return 0;
+> +       else if (rc)
+
+Just an if because there's a return above.
+
+> +               goto error;
+> +
+> +       dp->next_bridge = dp_priv->parser->next_bridge;
+
+In which case it almost feels like it could be written
+
+	if (!dp->is_edp && rc == -ENODEV)
+		return 0;
+	if (!rc) {
+		dp->next_bridge = dp_priv->parser->next_bridge;
+		return 0;
+	}
+error:
+	if (dp->is_edp) {
+
+but I'm not worried either way, besides removing the else from the else-if.
+
+> +
+> +       return 0;
+> +
+> +error:
+> +       if (dp->is_edp) {
+> +               disable_irq(dp_priv->irq);
+> +               dp_display_host_phy_exit(dp_priv);
+> +               dp_display_host_deinit(dp_priv);
+> +       }
+> +       return rc;
+> +}
+> +
+>  int msm_dp_modeset_init(struct msm_dp *dp_display, struct drm_device *dev,
+>                         struct drm_encoder *encoder)
+>  {
+> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.h b/drivers/gpu/drm/msm/dp/dp_parser.h
+> index d371bae..950416c 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_parser.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_parser.h
+> @@ -125,7 +125,7 @@ struct dp_parser {
+>         u32 max_dp_lanes;
+>         struct drm_bridge *next_bridge;
+>
+> -       int (*parse)(struct dp_parser *parser, int connector_type);
+> +       int (*parse)(struct dp_parser *parser);
+>  };
+>
+>  /**
+> @@ -141,4 +141,15 @@ struct dp_parser {
+>   */
+>  struct dp_parser *dp_parser_get(struct platform_device *pdev);
+>
+> +/**
+> + * dp_parser_find_next_bridge() - find an additional bridge to DP
+> + *
+> + * @parser: dp_parser data from client
+> + * return: 0 if able to get the bridge else return an error code
+
+return comes after the description below. Also should be capitalized.
+You can check this by compiling with W=1 I believe, or run the
+kernel doc format script on the file..
+
+> + *
+> + * This function is used to find any additional bridge attached to
+> + * the DP controller. The eDP interface requires a panel bridge.
+
+Return: 0 if able to get the bridge, otherwise negative errno for failure
+
+> + */
+> +int dp_parser_find_next_bridge(struct dp_parser *parser);
+> +
