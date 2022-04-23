@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6574250CCAD
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B15650CCB0
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236647AbiDWRpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 13:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33096 "EHLO
+        id S236291AbiDWRpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 13:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236650AbiDWRpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:45:17 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C01E91C82E3
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:42:19 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g20so13976600edw.6
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:42:19 -0700 (PDT)
+        with ESMTP id S235171AbiDWRpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:45:49 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D4B1C82D2
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:42:51 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id b24so13955612edu.10
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:42:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LbRzeDAjy6fnrJr6yVrq75r/UBTFpWYg7kr1cOLO86c=;
-        b=OiINMpUtZfOhCA0Gwct8tazoRImEUSdbADFnsLxRR3qqtJQsHu9qQkynHHdJPIA8cB
-         v3yJJbhtQOYmwTfGRst1GsOno+mpxKEXeYbYqZO558Bsfj5BGf+fBKyC550FQNllQK/5
-         SJzFd135YJPBGl+gpbz0L16/7JC6M1ZhOVb9wsxY2H4oTx9lYVv303XXVarmxcMmxgM+
-         NMUcA5RI+SewINPXd+rYVLnKhQLx+T1psn3aeR8iv8CnqgliC6Zl/fLy0N66/8TbZM6T
-         OH5AqYt4OSmEaxD4gTbwZU6PMmwA3CAXYDfLuGXOg4I5xK9X628zlC9mhXPneWTXHh5X
-         76Bg==
+        bh=9p7hpzsmtTc9QGDX/fB8QkBk2oCeRKBf5+Q+ZQxOGkM=;
+        b=Suk07hwdPec/Z3adst9dj8gL5IksUcg4Ok3VxZfv5T5c0pdeoMm3coxmgQf44Fxzo6
+         gDo68MjbOf77xyVkuG8XZTeuPkq45Ac6u/IYdVEwrrXaCq67vIu23mjMTC54qd6sFTkt
+         4sVkvVJxnMxCZZY4T2XbPamtGrdONf6Zd00WUmJLtJtZaOhdQDwXq1akaRMLI95lq6VN
+         Nz943hO6o4QuiFUyCBA1EqJ0TMFlps3IY2tJKwx2C6AY8Yg1Ib0uO5XwpQwyeBZ3HrUU
+         FEQMTP7QoL7FBM86CjeFOYRm3TGsGlwVDlndMG8WF52mgmC7ESjEnAl90IH15o5eFrL2
+         8IPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LbRzeDAjy6fnrJr6yVrq75r/UBTFpWYg7kr1cOLO86c=;
-        b=CzpulBm6e3pUkZ1EHYSPe7GXP0QCILQBE0V10i93NBeZLCE4o6OmnfOfyyAF3rwCB2
-         YNsTI4cA0atgnkxlmzBCulXz7yhKgZdqPGHY7Tgw8OrqL5YSv4HobO6ohpNbTEX+kzfM
-         h/gBn7nQPY0gDRGt5B4bS91GCqzyI3fJjoQv+lRMjThvzfaADyRyBZNub52082M98FT2
-         xuEcSPRkdlWW3VWVfT8QdlLqU6Mf2ApxXU5O8w3oCcJ/lLMEIuJ92yGI4XxNst1vnhK5
-         yajG4+faDA23Qt5B6BF4natwrBLpMQ6Kwxf93kPLQ7iIkDYMsEIY6apwfBPMWSPLDC2B
-         zh7Q==
-X-Gm-Message-State: AOAM5305RD0bNXxkXnSwEp2UZogm+F3gplu/BUaYhOIoSazmICab4lzk
-        gPJLnAvzL39l1USbjqeSrYOpDQ==
-X-Google-Smtp-Source: ABdhPJyWfTWnUqm+XYX//SH7CuN+w8thcuMK/NbaH9V3Cv4kHlU+uprsMr2wijKMYKM7LicdlVCq3Q==
-X-Received: by 2002:a50:baa1:0:b0:418:849a:c66a with SMTP id x30-20020a50baa1000000b00418849ac66amr11178279ede.234.1650735738292;
-        Sat, 23 Apr 2022 10:42:18 -0700 (PDT)
+        bh=9p7hpzsmtTc9QGDX/fB8QkBk2oCeRKBf5+Q+ZQxOGkM=;
+        b=Z+6laWNkLeZEYUnSPwiJPtJrux0/U8lHrwtgUZRMt1eS6jm0dSe37e6KnqNGumxszE
+         kgUKmP3+JFb6xmOvAsUv/kcWsi2sgDK9JZu5sBzN+Xns/N4zLxqqXGwj23m0rQf8yFzs
+         Wy1YvXVxaedobo4yi68h/jkrDkX5JQnnTKYd7G902l6Zu8rGOu5NVwfG3JsHjNjVOD0/
+         ii/WM/Y6/V1ioyNBuFjvps13TfOExOfk8rKEsDqJQqoxqskUv5rQAMUkFPpGOd32ySyZ
+         AxOlx7636ZVyBiGBlTxp3oEG4RlhMzb4uhJfhfLftTgxA33vM9U8gGzyWW0nv1EPT8zu
+         xWUQ==
+X-Gm-Message-State: AOAM530YyT1bTrsyGOVSxC0zloKTFbTDMKq/e/nd4PzpcueUA4beTZNs
+        IYMrjjJ18lQYhxSkj5nea2hzSw==
+X-Google-Smtp-Source: ABdhPJxPkJiKp+E7kn89TmKjM2//C+xbJlsbhWKOeu3wjaURwfWEdlQFVbRy63L3MGIxGg3aIT7B+w==
+X-Received: by 2002:a05:6402:4414:b0:419:28bc:55dc with SMTP id y20-20020a056402441400b0041928bc55dcmr11116781eda.130.1650735769898;
+        Sat, 23 Apr 2022 10:42:49 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t1-20020a170906178100b006e7edb2c0bdsm1868427eje.15.2022.04.23.10.42.17
+        by smtp.gmail.com with ESMTPSA id o2-20020a170906768200b006e89514a449sm1848954ejm.96.2022.04.23.10.42.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 10:42:17 -0700 (PDT)
-Message-ID: <a6230e2e-3bb0-c47b-959a-1d4ed236ebd9@linaro.org>
-Date:   Sat, 23 Apr 2022 19:42:16 +0200
+        Sat, 23 Apr 2022 10:42:49 -0700 (PDT)
+Message-ID: <9d79c0bf-45ba-6370-ed48-a3fa6ad5db29@linaro.org>
+Date:   Sat, 23 Apr 2022 19:42:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: pci/qcom,pcie: convert to YAML
+Subject: Re: [PATCH v2 2/7] dt-bindings: pci/qcom,pcie: resets are not defined
+ for msm8996
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -64,9 +65,9 @@ Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20220422211002.2012070-1-dmitry.baryshkov@linaro.org>
- <20220422211002.2012070-2-dmitry.baryshkov@linaro.org>
+ <20220422211002.2012070-3-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422211002.2012070-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220422211002.2012070-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,66 +81,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/04/2022 23:09, Dmitry Baryshkov wrote:
-> Changes to the schema:
->  - Fixed the ordering of clock-names/reset-names according to
->    the dtsi files.
->  - Mark vdda-supply as required only for apq/ipq8064 (as it was marked
->    as generally required in the txt file).
+> On MSM8996/APQ8096 platforms the PCIe controller doesn't have any
+> resets. So move the requirement stance under the corresponding if
+> condition.
 > 
-
-Thank you for your patch. There is something to discuss/improve.
-
-(...)
-
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: "msi"
-
-Skip quotes. You anyway later remove them in other patchset.
-
-> +
-> +  # Common definitions for clocks, clock-names and reset.
-> +  # Platform constraints are described later.
-> +  clocks:
-> +    minItems: 3
-> +    maxItems: 12
-> +
-> +  clock-names:
-> +    minItems: 3
-> +    maxItems: 12
-> +
-> +  resets:
-> +    minItems: 1
-> +    maxItems: 12
-> +
-> +  resets-names:
-> +    minItems: 1
-> +    maxItems: 12
-> +
-> +  vdda-supply:
-> +    description: A phandle to the core analog power supply
-> +
-> +  vdda_phy-supply:
-> +    description: A phandle to the core analog power supply for PHY
-> +
-> +  vdda_refclk-supply:
-> +    description: A phandle to the core analog power supply for IC which generates reference clock
-> +
-> +  vddpe-3v3-supply:
-> +    description: A phandle to the PCIe endpoint power supply
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    items:
-> +      - const: "pciephy"
-
-Skip quotes.
-
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
