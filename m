@@ -2,195 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9C5850C675
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 04:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F6050C6CE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 05:01:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbiDWCTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Apr 2022 22:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59260 "EHLO
+        id S232324AbiDWDD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Apr 2022 23:03:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232110AbiDWCTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 22:19:38 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD33648E58
-        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 19:16:41 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9F4C6839B9;
-        Sat, 23 Apr 2022 04:16:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1650680200;
-        bh=c9Tpkb5qDmFmANarCqOokitXfKvtD3V291w7GgUKD6M=;
-        h=From:To:Cc:Subject:Date:From;
-        b=v/s5l2t20nxh59osQGoT5xOmTsP09I0L/p9eG9ErDx19rSCq49dhZf11TEyrqhA6D
-         Nv7brvVhHx4UM/zukFYq6iWvgLuFmeq3z2Y+9oRmk4s3JSGLOA0YGxTvT3J5tbMPib
-         3Os6D90mbVNtPHgKBCFy4/6MtcUzUmmgj4dWtaFmd2WBEOb/OCpcefW947LMZQPHI5
-         va4tC81/WW4QalrtC23PCY5B4oyLwrQ6JB2ol9rbCnow9J8qgv2+lwNNEAhzo9OMV9
-         JXe8iWnKlEz7ti246W5aa8RlWkqqIz3g+UluAkctZ4Ljx9pvGQXuXuUdMOQkZBir4p
-         UQOKPX7t5peWg==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
+        with ESMTP id S232301AbiDWDDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Apr 2022 23:03:54 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B80471FE6DA
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 20:00:57 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id e4so11117278oif.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Apr 2022 20:00:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Z01ZX/eSD7gWHPOLzm6BsqAyU5hOlUHJpTNJkHkEOQk=;
+        b=OQy5pbi2V8P7+8nbw7viv9EC72ztvMlIp4uoHQvN373CnFpxUXkLDcJiMbkwKSd1TX
+         /xi8gjeHVmuqnUV1Nhr5n3MYF6tej6+mG4Nx6gOSWLEn/ftlyavgPCjR66kNssmEVtW1
+         ARFGPOYoAHU7haQdipuTcAt1c3G4pfIpIRK0bn6qSnUDoYDU1Pz0euQJYi4criK9cuSh
+         m1kIWx+93qHWQYcLG+6ArbyWnOmtbXkpGz7hYDfsgIhCLfqy2e0tYkQSzPzsaIu1epVS
+         ad01IS6j8ABAIDLL/o03uYgzB5HTW9R+XMFXmtVenh77JzoAyYLQyDCylGJM47fmQRUW
+         lWuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Z01ZX/eSD7gWHPOLzm6BsqAyU5hOlUHJpTNJkHkEOQk=;
+        b=gKxLVGSqy7nUbVvqI+TFDJ6dDDvqanEKWo+B4Pp3ViSg8mwS8cyzghNQHexiZd7ioy
+         IVIruzw9FklW3Upx4nR5+YILi0yl3AYIGM3pQWafzJE6S8s+iKKOtYA3YUzq8qWdkQBm
+         /o/fhjRk+n+C6ZSSBJoOxzxA4qR/2Ig07sTcFfqx35q42zDScTQxSCxkDRd7F9vQI6ob
+         2tQEcLx6IljeplSzVcoqMh0QQfYPMV2yL81WZdXhtq5s3+HgAeBMCt71rFTfv836Q7ll
+         vYJ8e1rRmuZmIOs0kw0peOcqoYeeYvcGSAr5UOcuxN9n4vj9w3hOf98dmiWvww+xaWyO
+         +0gw==
+X-Gm-Message-State: AOAM5329XPCo/mYC1n8DxsSnvN7AkhAX+uPrsck9eJ47zCG7/p5jyR3c
+        /Us+mbueXBjtSN/Y7H/KS5xLiQ==
+X-Google-Smtp-Source: ABdhPJxaDzvRJf2bpiAF38YoDo5+oP+LcNWYr+r/d8JYzz3aKhSEJuv2rYkuoct5XvlvfFivi7Nskw==
+X-Received: by 2002:a05:6808:1881:b0:322:9e57:9e56 with SMTP id bi1-20020a056808188100b003229e579e56mr7863341oib.97.1650682856893;
+        Fri, 22 Apr 2022 20:00:56 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id b14-20020a056870160e00b000e67f5bd9b9sm1363747oae.45.2022.04.22.20.00.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Apr 2022 20:00:56 -0700 (PDT)
+Date:   Fri, 22 Apr 2022 20:02:57 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robby Cai <robby.cai@nxp.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: display: bridge: ldb: Implement simple NXP i.MX8MP LDB bridge
-Date:   Sat, 23 Apr 2022 04:16:24 +0200
-Message-Id: <20220423021625.512380-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_tdas@quicinc.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add Qualcomm SC8280XP GCC
+ bindings
+Message-ID: <YmNsYSxLtwLpw98t@ripper>
+References: <20220422230013.1332993-1-bjorn.andersson@linaro.org>
+ <20220423014824.912ACC385A0@smtp.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220423014824.912ACC385A0@smtp.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8MP contains two syscon registers which are responsible
-for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
-which represents this serializer as a bridge.
+On Fri 22 Apr 18:48 PDT 2022, Stephen Boyd wrote:
 
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Maxime Ripard <maxime@cerno.tech>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Robby Cai <robby.cai@nxp.com>
-Cc: Robert Foss <robert.foss@linaro.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: - Consistently use fsl,imx8mp-ldb as compatible
-    - Drop items: from compatible:
-    - Replace minItems with maxItems in clocks:
-    - Drop quotes from clock-names const: ldb
-    - Rename syscon to fsl,syscon
-    - Use generic name of ldb-lvds in example
-V3: - Add AB from Sam
-    - Consistently use MX8MP
----
- .../bindings/display/bridge/nxp,ldb.yaml      | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
+> Quoting Bjorn Andersson (2022-04-22 16:00:12)
+> > Add binding for the Qualcomm SC8280XP Global Clock controller.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Why no cover letter?
+> 
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
-new file mode 100644
-index 000000000000..9c1807f2ae43
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/nxp,ldb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP i.MX8MP DPI to LVDS bridge chip
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+description: |
-+  The i.MX8MP contains two syscon registers which are responsible
-+  for configuring the on-SoC DPI-to-LVDS serializer. This describes
-+  those registers as bridge within the DT.
-+
-+properties:
-+  compatible:
-+    const: fsl,imx8mp-ldb
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: ldb
-+
-+  fsl,syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle to media block controller.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for DPI input.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for LVDS Channel-A output (panel or bridge).
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for LVDS Channel-B output (panel or bridge).
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - fsl,syscon
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+
-+    bridge {
-+        compatible = "fsl,imx8mp-ldb";
-+        clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-+        clock-names = "ldb";
-+        fsl,syscon = <&media_blk_ctrl>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+
-+                ldb_from_lcdif2: endpoint {
-+                    remote-endpoint = <&lcdif2_to_ldb>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+
-+                ldb_lvds_ch0: endpoint {
-+                    remote-endpoint = <&ldb_to_lvdsx4panel>;
-+                };
-+            };
-+
-+            port@2 {
-+                reg = <2>;
-+
-+                ldb_lvds_ch1: endpoint {
-+                };
-+            };
-+        };
-+    };
--- 
-2.35.1
+I didn't have anything useful to write in it. Will provide you one in
+the future...
 
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+> > new file mode 100644
+> > index 000000000000..44e5f0d0a795
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+> > @@ -0,0 +1,199 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/qcom,gcc-sc8280xp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Global Clock & Reset Controller Binding for SC8280xp
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +
+> > +description: |
+> > +  Qualcomm global clock control module which supports the clocks, resets and
+> > +  power domains on SC8280xp.
+> > +
+> > +  See also:
+> > +  - dt-bindings/clock/qcom,gcc-sc8280xp.h
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,gcc-sc8280xp
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: XO reference clock
+> 
+> "clock" is redundant in all these descriptions. Please remove.
+> 
+
+You don't think it's a little bit odd to have description such as
+"Sleep", "PCIe 2a pipe" or First EMAC controller reference"?
+
+I mean I agree that it's obviously clocks we're talking about, but to me
+that makes it seems like the descriptions are cut short, just for the
+sake of avoiding "clock".
+
+> > +      - description: Sleep clock
+> > +      - description: UFS memory first RX symbol clock
+> > +      - description: UFS memory second RX symbol clock
+> > +      - description: UFS memory first TX symbol clock
+> > +      - description: UFS card first RX symbol clock
+> > +      - description: UFS card second RX symbol clock
+> > +      - description: UFS card first TX symbol clock
+> > +      - description: Primary USB SuperSpeed pipe clock
+> > +      - description: gcc_usb4_phy_pipegmux_clk_src
+> > +      - description: gcc_usb4_phy_dp_gmux_clk_src
+> > +      - description: gcc_usb4_phy_sys_pipegmux_clk_src
+> > +      - description: usb4_phy_gcc_usb4_pcie_pipe_clk
+> > +      - description: usb4_phy_gcc_usb4rtr_max_pipe_clk
+> > +      - description: Primary USB4 RX0 clock
+> > +      - description: Primary USB4 RX1 clock
+> > +      - description: Secondary USB SuperSpeed pipe clock
+> > +      - description: gcc_usb4_1_phy_pipegmux_clk_src
+> > +      - description: gcc_usb4_1_phy_dp_gmux_clk_src
+> > +      - description: gcc_usb4_1_phy_sys_pipegmux_clk_src
+> > +      - description: usb4_1_phy_gcc_usb4_pcie_pipe_clk
+> > +      - description: usb4_1_phy_gcc_usb4rtr_max_pipe_clk
+> > +      - description: Secondary USB4 RX0 clock
+> > +      - description: Secondary USB4 RX0 clock
+> > +      - description: Multiport USB first SupserSpeed pipe clock
+> > +      - description: Multiport USB second SuperSpeed pipe clock
+> > +      - description: PCIe 2a pipe clock
+> > +      - description: PCIe 2b pipe clock
+> > +      - description: PCIe 3a pipe clock
+> > +      - description: PCIe 3b pipe clock
+> > +      - description: PCIe 4 pipe clock
+> > +      - description: First EMAC controller reference clock
+> > +      - description: Second EMAC controller reference clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bi_tcxo
+> > +      - const: sleep_clk
+> 
+> And "_clk" postfix is redundant in all these strings. Remove?
+> 
+
+In this case I think they should include _clk, as they actually matches
+the clock names in the documentation.
+
+Regards,
+Bjorn
+
+> > +      - const: ufs_phy_rx_symbol_0_clk
+> > +      - const: ufs_phy_rx_symbol_1_clk
+> > +      - const: ufs_phy_tx_symbol_0_clk
+> > +      - const: ufs_card_rx_symbol_0_clk
+> > +      - const: ufs_card_rx_symbol_1_clk
+> > +      - const: ufs_card_tx_symbol_0_clk
+> > +      - const: usb3_phy_wrapper_gcc_usb30_pipe_clk
+> > +      - const: gcc_usb4_phy_pipegmux_clk_src
+> > +      - const: gcc_usb4_phy_dp_gmux_clk_src
+> > +      - const: gcc_usb4_phy_sys_pipegmux_clk_src
+> > +      - const: usb4_phy_gcc_usb4_pcie_pipe_clk
+> > +      - const: usb4_phy_gcc_usb4rtr_max_pipe_clk
+> > +      - const: qusb4phy_gcc_usb4_rx0_clk
+> > +      - const: qusb4phy_gcc_usb4_rx1_clk
+> > +      - const: usb3_uni_phy_sec_gcc_usb30_pipe_clk
