@@ -2,102 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB14350CB17
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 16:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3087B50CB40
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 16:36:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235835AbiDWOP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 10:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43304 "EHLO
+        id S229671AbiDWOjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 10:39:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234689AbiDWOP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 10:15:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B93710BF;
-        Sat, 23 Apr 2022 07:12:29 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id 99BC11F468EE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1650723148;
-        bh=BWx5mSvodMtkWlhuz51Cu0E0Psrafg88NNLUjQ4EV70=;
+        with ESMTP id S229500AbiDWOjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 10:39:43 -0400
+X-Greylist: delayed 557 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 23 Apr 2022 07:36:45 PDT
+Received: from mail.tambre.ee (mail.tambre.ee [IPv6:2a01:7e01:e001:cc::3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B783A203F65;
+        Sat, 23 Apr 2022 07:36:45 -0700 (PDT)
+Received: from [IPV6:2001:7d0:8a11:4700:d8bd:7f1f:5e8b:fc58] (fc58-5e8b-7f1f-d8bd-4700-8a11-07d0-2001.dyn.estpak.ee [IPv6:2001:7d0:8a11:4700:d8bd:7f1f:5e8b:fc58])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: raul)
+        by mail.tambre.ee (Postfix) with ESMTPSA id 8855980062;
+        Sat, 23 Apr 2022 17:27:24 +0300 (EEST)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.tambre.ee 8855980062
+Authentication-Results: mail.tambre.ee; dmarc=fail (p=reject dis=none) header.from=tambre.ee
+Authentication-Results: mail.tambre.ee; spf=fail smtp.mailfrom=tambre.ee
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.tambre.ee 8855980062
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tambre.ee; s=201812;
+        t=1650724045; bh=9gYBnH9KPURUghbXDsxTxayhdYgcj3IoMHz0DPDiA00=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=I7hNx8xPopottQnaSXAf3ZPnGpLjzm3RrsH7R9L/DWaM5w6iQc7Q3I9J/zHRhTjQu
-         EUy0zVQQQQVoMOSn2frcrCu8NvNhbQ3jjDxJhzV54BkK6S0HtQ3rojwRGQ4hqDFZKl
-         OJK4mnxtQVfqpgdoT91Psg7zSbZ0CyadE79vXONe0JAKsiIMWjmjpbwVkz5pTGDQT/
-         r6kU75BRr0O8uxVn6Q+jar1ttDRwlJlIatcJPU09XOvxYH8yS3x7EudHo1YgKCxc73
-         xE6soZzvYvVyL98FJUGJIdehHdY4F5+eMs5jd7MPJfVMQijdYxomcf2Ps5tzr2PhHf
-         59xEJoaYXol9Q==
-Message-ID: <cdb243d7-af84-b647-ee29-e4d4ab04834b@collabora.com>
-Date:   Sat, 23 Apr 2022 17:12:24 +0300
+        b=YFgvVKD7HJJ9Dxt3j4BzH1t+gogs0lTsdo/enGYiXmC3VXwnRvQ3t57zMMt0iZ+9u
+         Jq8Tz1pauz57NTsXO5SiXynbah+A6+ha5nqC4k3sxntLvGPG2geobXEyLphQ+AuEVQ
+         iYiQV19jWpvftSMs3dpA1XLNdylbAPuz7lv1tjUks0SW91D1PlFhJEePXndrLmM+rD
+         ikX5KpU9FGz3Rx+vUhn+9sQ3swxSMHZHaYzK1pi93hOFGrD7CbbqSH1P+dV0WtViIl
+         wKd75cZX/ZjdDfdzDOf0+l2ccErKsDzSqYtZDX96R7FvnavUjmMR5kBTQidW+GsD0V
+         CqQNvyZsmn+0w==
+Message-ID: <50b80804-e95c-2137-5d74-2451e5bb826f@tambre.ee>
+Date:   Sat, 23 Apr 2022 17:27:21 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: gnss: Add Broacom BCM4751 family bindings
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Johan Hovold <johan@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        David Heidelberg <david.heidelberg@collabora.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220414214337.311880-1-linus.walleij@linaro.org>
- <f4deb182-ec18-6744-2c4c-adaed4ef7a33@collabora.com>
- <CACRpkdbZnWJgkS2a0xXs_WG40jz6+aTSPt743Zigd0KZ8R=yww@mail.gmail.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <CACRpkdbZnWJgkS2a0xXs_WG40jz6+aTSPt743Zigd0KZ8R=yww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH V2 2/8] dt-bindings: PCI: tegra: Add device tree support
+ for Tegra234
+Content-Language: en-GB
+To:     Vidya Sagar <vidyas@nvidia.com>, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com
+Cc:     kishon@ti.com, vkoul@kernel.org, kw@linux.com, krzk@kernel.org,
+        p.zabel@pengutronix.de, mperttunen@nvidia.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kthota@nvidia.com,
+        mmaddireddy@nvidia.com, sagar.tv@gmail.com
+References: <20220423124858.25946-1-vidyas@nvidia.com>
+ <20220423124858.25946-3-vidyas@nvidia.com>
+From:   Raul Tambre <raul@tambre.ee>
+In-Reply-To: <20220423124858.25946-3-vidyas@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/23/22 00:50, Linus Walleij wrote:
-> On Mon, Apr 18, 2022 at 1:19 PM Dmitry Osipenko
-> <dmitry.osipenko@collabora.com> wrote:
-> 
->> What are the chances of seeing the kernel driver for BCM4751+?
-> 
-> The kernel does not normally drive the GPS. The kernel has a small driver
-> dealing with hardware power on/off of the GPS and exposing
-> /dev/gnss0 to userspace.
-> 
-> See Johans lecture at:
-> https://events19.linuxfoundation.org/wp-content/uploads/2017/12/The-GNSS-Subsystem-Johan-Hovold-Hovold-Consulting-AB.pdf
+On 2022-04-23 15:48, Vidya Sagar wrote:
+> @@ -47,16 +64,33 @@ Required properties:
+>     "p2u-N": where N ranges from 0 to one less than the total number of lanes
+>   - nvidia,bpmp: Must contain a pair of phandle to BPMP controller node followed
+>     by controller-id. Following are the controller ids for each controller.
+> +  Tegra194:
+> +  ---------
+>       0: C0
+>       1: C1
+>       2: C2
+>       3: C3
+>       4: C4
+>       5: C5
+> +  Tegra194:
 
-IIUC, driver also should be needed for the firmware uploading, similarly
-to the BCM WiFi/BT chips, isn't it?
+Should this be Tegra234?
 
->>  There are
->> myriads of Android devices using that GPS chip. Previously the
->> proprietary firmware interface of BCM4751 was an obstacle for addition
->> of the driver to upstream kernel, did anything change?
-> 
-> Actually there is nothing stopping us from anyway merging device tree
-> bindings, even if no driver is on the horizon for Linux. The DT bindings
-> are not a Linux kernel thing. Actually we merged bindings like that in
-> the past. It makes it possible to create complete device trees, which
-> is nice. A driver for Linux can be slotted in at a later point.
-> 
-> Anyway, that is the boring answer.
-> 
-> Many if not all GPS:es (as all Wireless chips) have proprietary firmware
-> interfaces. This is normal. GPS:es are special since by tradition the
-> stack using them is in userspace. There exist free software userspace
-> stacks for misc GPS:es.
-> 
-> gpsd is the most common userspace daemon for GPS.
-> gpsd will then talk to /dev/gnss0 as any other TTY IIUC.
-> 
-> Replicant has a free implementation of the "MEIF" API for this GPS,
-> I think what is needed is really for someone to pick up, polish and
-> contribute that to gpsd
-> https://git.replicant.us/contrib/PaulK/bcm4751/
+> +  ---------
+> +    0 : C0
+> +    1 : C1
+> +    2 : C2
+> +    3 : C3
+> +    4 : C4
+> +    5 : C5
+> +    6 : C6
+> +    7 : C7
+> +    8 : C8
+> +    9 : C9
+> +    10: C10
 
-My main curiosity is about whether you already have a working driver
-prototype, something you could share with us all, so we could start
-playing with it too :)
