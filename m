@@ -2,213 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8548750CCC3
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C6D50CCCA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 19:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236710AbiDWRwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 13:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60828 "EHLO
+        id S236672AbiDWSB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 14:01:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236685AbiDWRwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 13:52:31 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA9F34B8F
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:49:33 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id z19so729883edx.9
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:49:33 -0700 (PDT)
+        with ESMTP id S235339AbiDWSBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 14:01:55 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE481DA42C
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:58:57 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id x18so15331897wrc.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 10:58:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zzTlr5i1vBH3eZkwgYdNgfi9JX5fLc8qr1ql93tJV/Y=;
-        b=K+1SaZwztaHUvVqD4eNlYpZBN76mjtx6X5TywZ3y38vEWUlCs3d3C8MG++H7IoHYDC
-         obAlZ/MFE+RmLzK9BST6KuGjJgj2nvuxyf+EArxIFmALpq7dutV6VEVcrWnef1iZqfqu
-         gsvljKL8WC0w2kuY/LP5FZJr0Cljwtb0q6RJYd5mHPwTHiHZQMBsMsbMIkawn+YRaPV5
-         xR6zfWn6NS16/H+5Phh3JIRq6JLCN3166AGSz5ZSR/j3UDt27gwBrNEW3Jjy3UFAYwl/
-         O5ehOaVT1XdJYZaveHMdsVPQP/+X762VrAFvmtHYQHPLhYENkSK48IKmGKBAYGwuZ0vC
-         ol5Q==
+        bh=8Kp5Q1vS0qC7/glbftIgd1JyC43ZLOUVon+K5fIPn5o=;
+        b=kdFHFAQI714HGQRNu3HLEzwruvNHj2VG2kP5gN91fvdPuj5IQKcwIQ2h9B6TZe9++t
+         LRqVj6ve0sVqn92288cEAFhgJZ+5OEBGqs7KSN6IHMmpA4yOS8ByPlLU71u8VssdxID5
+         L1Ab5WnwFlgN3YJfk6UT7bXMX/d9APnKhinl0YiP0TGliMEvtrEVsDn7696t54iIo5Hk
+         dJXNS1B8jOE4XUs3e2686L7vXwB8zwVUYFWd/NbTl6bAlGuy7RwONIS2OCfJkp/k/Vbr
+         QzoZ1IUAufWjVmT4dp9rNQjWYP/XNO2Gz9ubSQo1xH80juy9eJfNFs3hdc2y0TarnAPe
+         pvdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zzTlr5i1vBH3eZkwgYdNgfi9JX5fLc8qr1ql93tJV/Y=;
-        b=j0oiS9urW29v20wC42JfXgtEpb3m2WkfEz9wyJpKQZ6D+p2IaRjm0Uv3y9PY8JO6ei
-         FIdjcc4P1Z2HPZkVdtEtTXwDime7DTOj2rCKZudhGH5xmBF8rtGgCZE0KdMpNYYlmHKY
-         U4bQn3HyeSfDrj1umnX+RQZHP+GPoeFEa6H2lFhV7aqS7VnRRLeg4lzgAuO1QJ+YPi6k
-         r0kT5SfIx2oj6wVJ6ljwr1+JQEq1U8LuqqXSd4CeRKsNcrzHRE1LgupcoaoL+ps3ZgB9
-         8UKk87m6qfVAfe1bz6tC+tqu3N+7pCK5jGg38qWs6+5zioSrSZsIvLh/PmPz+s6chX3U
-         5isA==
-X-Gm-Message-State: AOAM531ynGYXdCvN27oHvNX+KNYuEM5rdZ4SWPAb7jfiit250kZ5v4tF
-        81Gb5+brWcFAutkvxrVPR+80XA==
-X-Google-Smtp-Source: ABdhPJw/vOnH+HBxj1ggcvptoHPHf/x94iLfOJcPMwCd4J+FV95mNVywr9SyxLVrLvWEXCzt9EK7aA==
-X-Received: by 2002:a05:6402:4493:b0:41d:83ca:35d6 with SMTP id er19-20020a056402449300b0041d83ca35d6mr10731655edb.89.1650736172007;
-        Sat, 23 Apr 2022 10:49:32 -0700 (PDT)
-Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id r22-20020a17090638d600b006d584aaa9c9sm1871730ejd.133.2022.04.23.10.49.30
+        bh=8Kp5Q1vS0qC7/glbftIgd1JyC43ZLOUVon+K5fIPn5o=;
+        b=dXbo/lln5gWPCsmSxnUHnQHMl/ZfkrAHXewMMttvSHx8QzZnDv9nBvWclq6D9vSTBT
+         pbnyUFpRzJDfoCDlA3nVRx51ehiw2FxBlodIec8wKyItA24EH1J2/iyswvrGu2eCcJiP
+         K5DlLvZIUaEolK2oD/CMGo9YVk1+EyujqhLgsQACVTKNmLiqs1774X4XOWTKrXygKYlu
+         Gv1S/twzHxqxLklrdCWEP/xNPVNuQk9PP85BymLWtFu9FCEw1MNfCZgXhz6cAMYK69B2
+         NiV9hOLIih5+y8JZV2sA9TxtHEXsUDpr7yLwQgPesuls+6i0Q8em0ae2VbGsmKnhMz3l
+         3Law==
+X-Gm-Message-State: AOAM5315arGYvC1ys/jWwkpGOqY5g2Rqpnb7cuMjRYQ0Md8t8kmwJp/y
+        pbRz/gs9ayJbyE6rdfZNeXJmxQ==
+X-Google-Smtp-Source: ABdhPJy4qom34eZ6mVdIY8SbAZlO8Hyobh8HVWgZA+5RgKrP5ipkq5Vn3x0OnSwah/JrOmbFwKj6pQ==
+X-Received: by 2002:a05:6000:1864:b0:20a:9ac6:b166 with SMTP id d4-20020a056000186400b0020a9ac6b166mr8334383wri.354.1650736736178;
+        Sat, 23 Apr 2022 10:58:56 -0700 (PDT)
+Received: from [192.168.2.116] ([109.76.213.55])
+        by smtp.gmail.com with ESMTPSA id o13-20020a05600c4fcd00b00392951086efsm7744297wmq.34.2022.04.23.10.58.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 10:49:31 -0700 (PDT)
-Message-ID: <34d3bfdc-cf8c-bf63-4f67-57c8d6c9b780@linaro.org>
-Date:   Sat, 23 Apr 2022 19:49:30 +0200
+        Sat, 23 Apr 2022 10:58:55 -0700 (PDT)
+Message-ID: <207bacb2-40a3-49e9-e766-433d152149c4@conchuod.ie>
+Date:   Sat, 23 Apr 2022 18:58:53 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH net-next 4/5] net: dt-bindings: Introduce the Qualcomm
- IPQESS Ethernet controller
+Subject: Re: [PATCH v3 1/9] clk: microchip: mpfs: fix parents for FIC clocks
 Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-References: <20220422180305.301882-1-maxime.chevallier@bootlin.com>
- <20220422180305.301882-5-maxime.chevallier@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422180305.301882-5-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        aou@eecs.berkeley.edu, krzk+dt@kernel.org, mturquette@baylibre.com,
+        palmer@rivosinc.com, paul.walmsley@sifive.com, robh+dt@kernel.org
+Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220413075835.3354193-1-conor.dooley@microchip.com>
+ <20220413075835.3354193-2-conor.dooley@microchip.com>
+ <20220423014103.8574CC385A0@smtp.kernel.org>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <20220423014103.8574CC385A0@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 20:03, Maxime Chevallier wrote:
-> Add the DT binding for the IPQESS Ethernet Controller. This is a simple
-> controller, only requiring the phy-mode, interrupts, clocks, and
-> possibly a MAC address setting.
+On 23/04/2022 02:41, Stephen Boyd wrote:
+> Quoting Conor Dooley (2022-04-13 00:58:28)
+>> The fabric interconnects are on the AXI bus not AHB.
+>> Update their parent clocks to fix this.
+>>
+>> Fixes: 635e5e73370e ("clk: microchip: Add driver for Microchip PolarFire SoC")
+>> Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
 > 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> ---
->  .../devicetree/bindings/net/qcom,ipqess.yaml  | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/qcom,ipqess.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipqess.yaml b/Documentation/devicetree/bindings/net/qcom,ipqess.yaml
-> new file mode 100644
-> index 000000000000..8fec5633692f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipqess.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/qcom,ipqess.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm IPQ ESS EDMA Ethernet Controller Device Tree Bindings
+> Applied to clk-fixes
 
-s/Device Tree Bindings//
-
-> +
-> +allOf:
-> +  - $ref: "ethernet-controller.yaml#"
-
-allOf goes after maintainers.
-
-> +
-> +maintainers:
-> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,ipq4019e-ess-edma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 32
-> +    description: One interrupt per tx and rx queue, with up to 16 queues.
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  phy-mode: true
-> +
-> +  fixed-link: true
-> +
-> +  mac-address: true
-
-You don't need all these three. They come from ethernet-controller and
-you use unevaluatedProperties.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - phy-mode
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    gmac: ethernet@c080000 {
-> +        compatible = "qcom,ipq4019-ess-edma";
-> +        reg = <0xc080000 0x8000>;
-> +        interrupts = <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
-> +
-> +        status = "okay";
-
-No status in the example.
-
-> +
-> +        phy-mode = "internal";
-> +        fixed-link {
-> +            speed = <1000>;
-> +            full-duplex;
-> +            pause;
-> +            asym-pause;
-> +        };
-> +    };
-> +
-> +...
-
-
-Best regards,
-Krzysztof
+Thanks!
