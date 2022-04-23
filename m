@@ -2,130 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E79050CAAC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 15:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97B9D50CAB3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 15:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234327AbiDWNj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 09:39:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S235906AbiDWNnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 09:43:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232261AbiDWNjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 09:39:55 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A13C13C3D4;
-        Sat, 23 Apr 2022 06:36:58 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23NDantv090290;
-        Sat, 23 Apr 2022 08:36:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650721009;
-        bh=nZTG/Z0Q88uNNqF3Re5+dg/49/Y1ijjfTIsuMEzSTv0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=eGQWfOwgHyNFWjmKht2gVt2Aaug+qkU96Ms9xiIpdYsYmd6Atn+euDHGj7OkGNC0h
-         na1bU9wJ+3Vmf5PTkqgfqlz/DD+zYsLEMqLlr3sbku55JHG8R7iYRCifmA3fWsC4TZ
-         +uO0q1VWRvQdOLFJnjWS1w/JaKJHWexmT1NRmfkw=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23NDanjW006077
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 23 Apr 2022 08:36:49 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sat, 23
- Apr 2022 08:36:48 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Sat, 23 Apr 2022 08:36:48 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23NDansj015117;
-        Sat, 23 Apr 2022 08:36:49 -0500
-Date:   Sat, 23 Apr 2022 08:36:48 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Dave Gerlach <d-gerlach@ti.com>
-CC:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: ti,sci: Add ti,ctx-memory-region
- property
-Message-ID: <20220423133648.jlkeyfq7gjbwij5l@bonelike>
-References: <20220421203659.27853-1-d-gerlach@ti.com>
- <20220421203659.27853-2-d-gerlach@ti.com>
- <ad47db06-7f5c-399f-0ad0-81f720e6f035@ti.com>
- <2528be71-ca3f-566b-4769-36063c98ee0e@ti.com>
+        with ESMTP id S235823AbiDWNml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 09:42:41 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88AF11759F0
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 06:39:43 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x33so18828221lfu.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 06:39:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WmG3r1mZsoVYs6QsuMg1BBRJC+fIBK1Gsm9c/gPZCvQ=;
+        b=brJk0DzJNCmKD58MDuyNtEZdvjAvWql5feN/k63q8FkURGD2ZZiZOooj1Uweb4/nmY
+         aTQyhVHdXCM0i+znL3n04sOGYFJHam5eqgIX/5lEpaFnr3kmH/eTfgQRbbshTkV1Tr8G
+         maXIfNDgGmTEOaL5IC7UbaJpUvvgJRSkM7q6vsCd/Lj5wkvlJoONW44nW+bK7HFFL8rv
+         RI4yfiOEHPxAYViyGsVzk1MHxELD8Qw7F9+I/uL0Q9qbyXUQkZJdkY4zVmSchEyHg91R
+         NMAeTH0R7ShOtM5J+wxyj9tUTv1zhun70Xu7P994JBOA2B4Vf4v1upeeFQKC/YitGsHZ
+         Qggg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WmG3r1mZsoVYs6QsuMg1BBRJC+fIBK1Gsm9c/gPZCvQ=;
+        b=v2liTB6yJtikzPaY9ZdqQpKkJH7JksCEaSq2xcvFMKexpYvF2JE0gGYb/p5rTnszwl
+         07QBp3mZFDQJg+w3cJukHY4hOVYw9Mbiap/AT+9HbPJumjw2wQmokKySK0uscmpCucD4
+         ePbC5yDRYpX0/1lDAFFn07S2q/q8ijCNsdeBHcacqYKtoWXFwe8dNTD+6y5ixvjYsy1a
+         TdPUBuIorTEHrbP9POzfzoNsBVRActB7vasBhL2AJHUe4ENODXS2UhQUyc+tCXdLVlYP
+         4c8yIaZ23Oh2HDbxTz0SD/KSNR7Kchq93mWrNexdUvp3UaSQTPAoaRBGnLxAQ/794mXa
+         S+xg==
+X-Gm-Message-State: AOAM533tRrBHcmpxvcqcz8JI9iEoSJO3/EkYr5CsfT4bQ80GQ5HYzxJs
+        +r9IMiibViWMVLXRlbe4Y5o3Dw==
+X-Google-Smtp-Source: ABdhPJzNLqTQ0ZF1Gk+ntfeo51DuIfvr6hU33kAUNwB8sXvtjcrjTuyKjJ30vzcYy2TCS1mdmhm4tw==
+X-Received: by 2002:a05:6512:11cc:b0:44a:5770:7425 with SMTP id h12-20020a05651211cc00b0044a57707425mr6363344lfr.406.1650721181764;
+        Sat, 23 Apr 2022 06:39:41 -0700 (PDT)
+Received: from eriador.lumag.spb.ru ([94.25.228.223])
+        by smtp.gmail.com with ESMTPSA id c21-20020a2ea795000000b0024ee0f8ef92sm544535ljf.36.2022.04.23.06.39.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Apr 2022 06:39:41 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] PCI: qcom: Fix higher MSI vectors handling
+Date:   Sat, 23 Apr 2022 16:39:34 +0300
+Message-Id: <20220423133939.2123449-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2528be71-ca3f-566b-4769-36063c98ee0e@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:10-20220422, Dave Gerlach wrote:
-> Hi,
-> 
-> On 4/22/22 14:02, Andrew Davis wrote:
-> > On 4/21/22 3:36 PM, Dave Gerlach wrote:
-> >> Add documentation for the ti,ctx-memory-region property which is a
-> >> phandle to a reserved-memory carveout to be used by the ti_sci driver
-> >> storage of low power mode memory context. This is optional for normal
-> >> system operation but required to enabled suspend-to-mem usage of Deep
-> >> Sleep state.
-> >>
-> >> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-> >> ---
-> >>   .../devicetree/bindings/arm/keystone/ti,sci.yaml         | 9 +++++++++
-> >>   1 file changed, 9 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> >> index 34f5f877d444..ec88aa88a2a0 100644
-> >> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> >> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> >> @@ -61,6 +61,15 @@ properties:
-> >>     mboxes:
-> >>       minItems: 2
-> >>   
-> >> +  ti,ctx-memory-region:
-> >> +    description:
-> >> +      Phandle to the reserved memory node to be associated with the
-> >> +      ti-sci device, to be used for saving low power context. The
-> >> +      reserved memory node should be a carveout node, and should
-> >> +      be defined as per the bindings in
-> >> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> >> +    $ref: /schemas/types.yaml#/definitions/string
-> >> +
-> > 
-> > 
-> > Why does this have to be yet another reserved carveout region,
-> > should be dynamically allocated.
-> > 
-> 
-> This must be a fixed address in order to support other low power modes
-> which have not yet been introduced.
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 8ae0117418f3 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Please elaborate the need - Many of our devices, esp the AM62 class ones
-are memory constrained devices - LPM states are controlled entry states, why
-should we loose a chunk of DDR in operational state while waiting for
-the suspend or idle state to be invoked?
-OR, is the argument is as follows:
-- need a guarenteed memory for me to enter low power and not be
-  dependent on availability on attempt.
-- Latency overhead of allocation during a "hot path" such as cpu idle,
-  this is completely unacceptable?
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-  or something of that form.. please elaborate?
+Patchseries dependecies: [2] (landed in pci-next) and [3] (for the
+schema change).
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+
+Dmitry Baryshkov (5):
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: Teach dwc core to parse additional MSI interrupts
+  PCI: qcom: Handle MSI IRQs properly
+  dt-bindings: pci/qcom,pcie: support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 14 ++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 11 +++-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |  2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |  2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 53 ++++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |  3 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |  2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |  1 +
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |  2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |  2 +-
+ 10 files changed, 70 insertions(+), 22 deletions(-)
+
+
+base-commit: ce522ba9ef7e2d9fb22a39eb3371c0c64e2a433e
+prerequisite-patch-id: bfbbebbfd7a7f7acf46ddfa99da1cb259fbcf9e6
+prerequisite-patch-id: dc9fc1a533b2ee58336b6af58546ec4ce4dc69d1
+prerequisite-patch-id: d02abf52f065fee631769ed3362b5cba30c9b71e
+prerequisite-patch-id: ade72962f2915faef888a605b322fbfb063009d7
+prerequisite-patch-id: e7c1182f9dd63f4dec7f76b08f74b1b3152bf49d
+prerequisite-patch-id: fe65300b2a281a148e079e4d8cecb6018475abd6
+prerequisite-patch-id: 509ce8b6c53bc9426b6ffaaa63a4a64b221a8b18
+prerequisite-patch-id: f459fbbb2cfb317b8c85701eefd8f7c9e1a55b34
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.35.1
+
