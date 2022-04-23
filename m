@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CECD50CD17
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 20:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C771850CD19
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 20:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236822AbiDWTBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 15:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57680 "EHLO
+        id S236814AbiDWTBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 15:01:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236814AbiDWTBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 15:01:00 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DEB1C6C80
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 11:58:02 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id p18so8925128edr.7
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 11:58:02 -0700 (PDT)
+        with ESMTP id S236818AbiDWTBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 15:01:15 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80B434B8E
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 11:58:17 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id u15so22189873ejf.11
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 11:58:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KDS43gJpQc64yGTE0TIO+VRH9Efh+90pw1f8DmTrx0Q=;
-        b=cDQUTmXqfFRaWkInWPO8sFXlRktrF6ZqQ7dZ4rISCpIITT/YTzU6+5bbrIO0nfkv5M
-         r1a36C9JyFO0JFR5gky+srI77mWeo+ftkC0vYg04KBzxe34Fr+74OHB+Fqoc7L488K7S
-         GQPvesCHypUggcO/iPdACLgqwK74+rOb3p535mENa0iCcGJtsKTnVzPd5dc5o5vD5+QN
-         ibfqwI4Y0w/KFUW6qAmCaXsIrXZHS4q8iXGmkLjWxh8O5JrYlxFrOOpetcNRe/ivnTJc
-         bKDZQwvob87FUmOjv63e1KG/j8A+ipM4MAe1mgo3hnDEGECSxTqj/Xw4ruTk7haw+Vet
-         PhRw==
+        bh=Iv9M4OkgtaRvCoiJAy8qzTnQXxQuFrI58JdJzyBH2yE=;
+        b=EbWgnmv/cmUpjOe6imKJeQAc6QCEoIkIRTzxe/lO2PQZfTHet1FwlBblZTjEv2+Gac
+         iqoIDlbxRS2vMEOKGYdOXU9Ts9TU9peEMj4w0W2ClFbCZtcFwNOc9eWEgF90o4SThHhU
+         TQwTPaKTD0HW/BUndVc97qvcMh0IJ0aQCwEz5xcgm0PrQlArWSOtGlw50jy5ybX48EFj
+         P82STRYG+upyaP7Y1dQ2l2GRaIfJtrXz1BVBKnii9LtP3jzyYvXS1FZXu17iXWb33YVx
+         WFaWMmsnBcrWrVjD4QjRBQ6jkVX0M258JjehgTJEo+sI9f4Gl/f1c3zOZ+m96Cw9fV1j
+         Hc/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KDS43gJpQc64yGTE0TIO+VRH9Efh+90pw1f8DmTrx0Q=;
-        b=U9/dCuY7TiPiyaorNwYxPMU62TucY59EMypqBgtzj/zKAXNIU6buLREEUdJjENgP8E
-         5kDDKuXfqQpGog/zKECRxku6f7IjJFOJ/9T4dPJibn/6Y1MSYDsacxbYQ86bj0drsjIW
-         szDs9/W2sQ3O6SwBaW44PQsXFwxzZj5KRQhazyRs0KNtwoJ7FtZZIiQ9c5VgLc5Ed8wc
-         c8/4ag3ArG3hiamC28Xx+ZPi+ay21bsUR+lY4rujiSxx0SM5oLRHh66zqBlIEXtj6h02
-         gz5in4G5ExLIPBu2SlhzYSaMgQZk5m/eVdWNv6LlQfYsXFzmJLRa9pe6fhWVraAcy0QB
-         pvFQ==
-X-Gm-Message-State: AOAM5304bp1SGRW1gb1C7liqfYa6VKmBIYrR5YI7GTsfShlC8N32swnu
-        7EhjsiOrpmTK3FMoVBzqOPwd8g==
-X-Google-Smtp-Source: ABdhPJzu0e0ryibs+0D+DRPaxF+pV31lXfDqmK2OlZWOjnkAdDnDBdRdOwEEdRuP6y1JHdXvsIaNcQ==
-X-Received: by 2002:a05:6402:e99:b0:41d:11f2:85e0 with SMTP id h25-20020a0564020e9900b0041d11f285e0mr10986812eda.339.1650740281150;
-        Sat, 23 Apr 2022 11:58:01 -0700 (PDT)
+        bh=Iv9M4OkgtaRvCoiJAy8qzTnQXxQuFrI58JdJzyBH2yE=;
+        b=eo8R2ty8vb+ZldGg856T5csgBBUNDx+q1Qakeo5//lKcX2BB4i5m/QkoqG0FQCRlue
+         rUZf2lHS/zZ37rDlH7q7SC132yHXbeZoCHPbyUsRwISermTUd5KLPGRHxyav9tchV4ZM
+         37npK4AZBQZy8CkoFvaL+2FoSvimiFNwq4xLb5MUufJhsgLe4M4uzFwqWox19izrngcH
+         xztq3pl9Ut0E7+ROhVNz5cAynT4t6M7Y23WjIPb9xLgXu5UsoTy6N5cW/uxHDe2d2xiF
+         JRW7DGQiyQogx92T2hixHaS+N9+4FZJvQEs2PolcTW3Mv7+1VOWw1ScThl7NRvGbg9IV
+         EP5A==
+X-Gm-Message-State: AOAM531d0oeVXkZ6FcdzqnGymh/zx6QuTIpk2nFhMhnYbPDBP19pj8kE
+        H25/BXzRXL9jVTRvkVxTwefy3g==
+X-Google-Smtp-Source: ABdhPJxHzEcfSa378ZqltzxferYBiM134gmVCHZYwZylv2DWpH7hlgv1Lty1aRMnN2dg7bCwN4Bc9A==
+X-Received: by 2002:a17:907:961b:b0:6ef:fd58:8629 with SMTP id gb27-20020a170907961b00b006effd588629mr9240358ejc.589.1650740296313;
+        Sat, 23 Apr 2022 11:58:16 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cn27-20020a0564020cbb00b00418b0c7fbbfsm2471484edb.32.2022.04.23.11.58.00
+        by smtp.gmail.com with ESMTPSA id r15-20020a170906350f00b006e9c9cdb4f9sm1911965eja.202.2022.04.23.11.58.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 11:58:00 -0700 (PDT)
-Message-ID: <fd372f05-e811-a6c5-31ae-c80df44c9ae4@linaro.org>
-Date:   Sat, 23 Apr 2022 20:57:59 +0200
+        Sat, 23 Apr 2022 11:58:15 -0700 (PDT)
+Message-ID: <e0a77899-8ffe-6cdf-bca3-846b00bed4f5@linaro.org>
+Date:   Sat, 23 Apr 2022 20:58:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document
- RZ/G2UL USBPHY Control bindings
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G2UL SoC
 Content-Language: en-US
 To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org,
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
         Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
         linux-renesas-soc@vger.kernel.org
-References: <20220423134601.141975-1-biju.das.jz@bp.renesas.com>
+References: <20220423133154.141027-1-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220423134601.141975-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220423133154.141027-1-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,11 +81,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/04/2022 15:46, Biju Das wrote:
-> Add device tree binding document for RZ/G2UL USBPHY Control Device.
-> RZ/G2UL USBPHY Control Device is identical to one found on the RZ/G2L SoC.
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-usbphy-ctrl" will be used as a fallback.
+On 23/04/2022 15:31, Biju Das wrote:
+> Document RZ/G2U2L SSI bindings. RZ/G2UL SSI is identical to one found
+> on the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rz-ssi" will be used as a fallback.
+> 
+> While at it add a '.' at the end of dmas description for the first cell.
 > 
 > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
