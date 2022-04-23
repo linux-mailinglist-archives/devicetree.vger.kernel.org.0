@@ -2,102 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2280350CBE2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 17:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C574350CBEB
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 17:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231972AbiDWPny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 11:43:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59816 "EHLO
+        id S236082AbiDWPrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 11:47:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbiDWPnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 11:43:52 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86DB229810;
-        Sat, 23 Apr 2022 08:40:54 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id 12so12295817oix.12;
-        Sat, 23 Apr 2022 08:40:54 -0700 (PDT)
+        with ESMTP id S234447AbiDWPrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 11:47:45 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E520C2BB0B
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 08:44:47 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-e67799d278so7904942fac.11
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 08:44:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YzCcIN29nkpvI2UER8MH1YJgdnaztNku+DeAKFhxois=;
-        b=bPS7lQeO3AQ9qev+LMicfaSd2cBgPI+se275RPpaKqQnwfecEh47E4m9+HnMlB0ezP
-         t6O+ZVYNxjEDkV0BNMRbjM4IEZg+d8uXP/a7Emf+4OabAtCghFGftpb1bWV1mukLZ8qV
-         RmdYuBQUi3GSKaz/iM2CI3M2EvqekDDUQVCXfQEbBLiLMYE7astTlYy5L2VXmKgRzj7B
-         CoF26P+LzBc+1L4r/Xt1dgQnJlw+HDue2aR6QLVbKodN2yN4GD24YRBW4ltHto2V2ytr
-         5lYcNiReAge0Gp2UGylopYkGkUeXhgvRDOBrifLjOVh7PF9pQeb4wISN00XN+b7O9Vf6
-         MwfQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=WI4v9jTbsIcKFzbTFV4CkXCBay54N1Oo0tLcKG2okuk=;
+        b=GuCc7g12xSirTqULiexO/HNajNdmFb2nq0eVlcaz0hWMdnxOMIk5AeBAMqPyL0rYVl
+         MyvXwBc0tDxT1g1wi/Na74VHs+MMpCLVOCNuBRnNQYccRZvr/MHAzIyK7mu7VWVpRxnS
+         2zWuzRZCM9bVznfcRL1kSJRE+M+CxxTBdcY92OfyTcIYJBFBWe4C0NRAKHjdSUIVENHC
+         Xy4MWQrTivSTA6Ul6V8DvmPaHa+OhENFObjP1VJjSASeTRgGypP/0vY2zI0L8UwjUDoG
+         GUiSkSQlPu2plfvN4ZygVwuRULWkCX/AT5k4dMY1vakwjk16RPIUsOeK/9prQjRUtz9q
+         LvfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YzCcIN29nkpvI2UER8MH1YJgdnaztNku+DeAKFhxois=;
-        b=hg16LRLjvb1ddbAc7rP3ZOH/MDx/VdY2SiIbNeJv6MhAkT/0B9HUs0lXNhY0cQT2Z0
-         UNLWnOfEmfbVSZ18lF8XHceyqkuxWvDCpERWCaZHKDauG4Xsdx9vq+UzUols91cnCjzX
-         2IYUAj/PEnOnRUvRiq1QLkiDP5B8zCya19girCXq+mNv30y2zZnDIvqliwFU0WIv1+C1
-         1h7cK/z/fFqsgwG0EtwFdX0X8sb1A0Wsp3TmLy+CvjC0STavdlgJr6wCQ+vekmyxTkEQ
-         XBxdDNO7eLXVhHQ6BmlDThdZRcsEnymnsgmapkprwyrOgx3lTV5Ba2S5XV6WMFqbKpuE
-         210w==
-X-Gm-Message-State: AOAM530188DCOBOgCKR6fwFQdRDL4aKz6LPBNp8u1rm0N/qmHIX0tvPP
-        udoxDrtYtGxDIl3ErEbzudMlK2PQYVz7EKYwfaKOOqvLhMc=
-X-Google-Smtp-Source: ABdhPJwlk6fRtYGJNDzgjZpgoGD57WULA7uK7+foP97nQ4fYkNdwcgA5K3hCFaH4kNK0C2c1xex2GncA6WGM8t0RhGI=
-X-Received: by 2002:a05:6808:2396:b0:325:b6e:6cf0 with SMTP id
- bp22-20020a056808239600b003250b6e6cf0mr943271oib.288.1650728453616; Sat, 23
- Apr 2022 08:40:53 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WI4v9jTbsIcKFzbTFV4CkXCBay54N1Oo0tLcKG2okuk=;
+        b=gVs5nYu8fJDzD4Epnk0afwaouzCAnaWrxfJWa6rC8LwuX3eT+mwFHgMDvjM6Ow+mdr
+         XdJ+QRID0J3IId7UWtnotxt7GG678V6U+WJ629jLf/OvesqSTRn0V71twwTmorIfFjiQ
+         Id/2xOu8sneDJJAFAVsxzZKlOrlSfBQsx6+T7hsMn4MnHglYto+fmkk1D77yHsiDiw3b
+         I45KIKGSqBmmfksto+EYh53RqCjIb8gsHTPFAZhyu+3Tm+I0yUALddP1l2oJcAoqMGiW
+         sWP+Fgg+B8S+EHi14X/Sn1O7wJEmNLMRb1C8eSuN+Oj5jUgz7th2F2jKCql+rpArVg3v
+         3dUw==
+X-Gm-Message-State: AOAM5338lkDZ/RcXYyTArDwusUWNlwAHvu/QZrypBFQSdBLqt4asVBBC
+        6KuE1NGH0ZKngeKRY1L/psLyeQ==
+X-Google-Smtp-Source: ABdhPJwhzqzGCODM05j5yChA14I3TniITfBb/T0zYrHKD6GGVSxGnliKR/rMO0K34IDB5CGKJF3asg==
+X-Received: by 2002:a05:6870:4414:b0:e6:244f:78ba with SMTP id u20-20020a056870441400b000e6244f78bamr7984019oah.201.1650728687284;
+        Sat, 23 Apr 2022 08:44:47 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id g25-20020a544f99000000b002da70c710b8sm1933901oiy.54.2022.04.23.08.44.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Apr 2022 08:44:46 -0700 (PDT)
+Date:   Sat, 23 Apr 2022 08:46:47 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        bhupesh.linux@gmail.com, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, vkoul@kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: phy: qcom,qmp: Mark '#clock-cells'
+ as a 'optional' property
+Message-ID: <YmQfZ+h5tD6KbMID@ripper>
+References: <20220418205509.1102109-1-bhupesh.sharma@linaro.org>
+ <20220418205509.1102109-2-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-References: <20220409120819.3124209-1-gch981213@gmail.com>
-In-Reply-To: <20220409120819.3124209-1-gch981213@gmail.com>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Sat, 23 Apr 2022 23:40:41 +0800
-Message-ID: <CAJsYDVJa+UAZNKsYCDSDjjN4NYWZ987y9d_rpaKnmH-Q9i=Nxw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/5] spi: add support for Mediatek SPI-NAND controller
-To:     linux-spi@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220418205509.1102109-2-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 9, 2022 at 8:08 PM Chuanhong Guo <gch981213@gmail.com> wrote:
->
-> Mediatek has an extended version of their NAND Flash Interface which
-> has a SPI-NAND mode. In this mode, the controller can perform 1-bit
-> spi-mem ops for up-to 0xa0 bytes and typical SPI-NAND single, dual
-> and quad IO page cache ops with 2-byte address. Additionally, the
-> page cache ops can be performed with ECC and auto data formatting
-> using the ECC engine of the controller.
+On Mon 18 Apr 13:55 PDT 2022, Bhupesh Sharma wrote:
 
-There are two missing register configurations in this series.
-It wasn't affecting me back then because the bootloader set them
-for me. I'll send a v6 soon.
+> '#clock-cells' is not a required property for qmp-phy(s) in the
+> '/' node, but it should be is used in 'phy@' subnode (where it is
+> actually a 'required' property). Fix the same.
+> 
 
--- 
+It's not that #clock-cells is "not a required property", it's that the
+clock comes out of the phy (the child node), so there is no clocks
+provided by the parent device.
+
+
+Please rewrite the commit message.
+
+> This also fixes the following 'make dtbs_check' warning(s):
+> 
+> sm8350-microsoft-surface-duo2.dt.yaml: phy@1d87000:
+>   '#clock-cells' is a required property
+> 
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index 8b850c5ab116..c39ead81ecd7 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -66,9 +66,6 @@ properties:
+>        - description: Address and length of PHY's common serdes block.
+>        - description: Address and length of PHY's DP_COM control block.
+>  
+> -  "#clock-cells":
+> -    enum: [ 1, 2 ]
+> -
+>    "#address-cells":
+>      enum: [ 1, 2 ]
+>  
+> @@ -112,11 +109,13 @@ patternProperties:
+>      description:
+>        Each device node of QMP phy is required to have as many child nodes as
+>        the number of lanes the PHY has.
+> +    properties:
+> +      "#clock-cells":
+> +        enum: [ 0, 1, 2 ]
+
+The commit message doesn't mention the fact that 0 is also a valid
+value. Perhaps just keep it [1, 2] in this patch?
+
 Regards,
-Chuanhong Guo
+Bjorn
+
+>  
+>  required:
+>    - compatible
+>    - reg
+> -  - "#clock-cells"
+>    - "#address-cells"
+>    - "#size-cells"
+>    - ranges
+> @@ -468,7 +467,6 @@ examples:
+>      usb_2_qmpphy: phy-wrapper@88eb000 {
+>          compatible = "qcom,sdm845-qmp-usb3-uni-phy";
+>          reg = <0x088eb000 0x18c>;
+> -        #clock-cells = <1>;
+>          #address-cells = <1>;
+>          #size-cells = <1>;
+>          ranges = <0x0 0x088eb000 0x2000>;
+> -- 
+> 2.35.1
+> 
