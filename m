@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D01450C944
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2770B50C93C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:31:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234662AbiDWKbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:31:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52230 "EHLO
+        id S235028AbiDWKcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 06:32:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234749AbiDWKbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:31:33 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FCE71BBFBD
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:28:36 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id l7so20817389ejn.2
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:28:36 -0700 (PDT)
+        with ESMTP id S234999AbiDWKbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:31:55 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D0E1C048B
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:28:58 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id l7so20818325ejn.2
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:28:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rEPflbqVq1mwFueQyojCpMmcKQ/e36y3oykipPSeFRU=;
-        b=tG3JcefyPmF6/GrC/QJTrF6f5MpDidoi27/C1CIVpJIIzMgykgvW+RWmmiuDpBawlr
-         LMXsyNkcwWvwDMUMcjlOQIZYF93Vxljkd/IkIDfHE7DzIlteLFPfUqmTnf/wJJrD4KOu
-         BNMCkjeck9KI8/41gw9Kh4jIjya99qSm54prDXHt2DCnpPRbSKeCdhAxcDBU0U2mZTmR
-         x5FjHPHzR3JLSmYk++9mSLZEo+g9K5ypkPt2qNzVmLxXBjkbUSJBhZvOVCk/W21xFZtq
-         cLe6Lp76kMfmR+m/2jb+W+6rXnu7UjdPzCiaY51/6JB63t+UWVvxmOPZC7uPf/9/zbz9
-         hsBw==
+        bh=2m9kAORld4iDB2KAPLh1iCsQe8VM2IonNBmHniXB+aI=;
+        b=abL3ZQ0jUA/UmIqEWJnORrPPfRhiBNtkKHGmN2VHZBZ4eLUI57QXL2YeGyD/UWdmw4
+         /PvZ6PoNwnmTYaJhZq7ClQMH2dHTn/quieJqvwegOB2EjRvWzvU8Sa4LJ629A3GG8pcE
+         vnwTF8Qc4+JhGtJ1LhWoHlORilVZ5qrChcfnsAlm/ddCPaRJ7tr8PATd6D8MqrnyE9P/
+         nYB0KB3NpBJXZWsCop8opcKElkfJxWNFgi2bvFFptKKE5qlpMhtor6zB6I1WiVUfgah7
+         451fMAWKE/vZvmly83beGV8CKvg5zZznrCim5huFff5u/7y8JeqMtuEgHz3DgynT0doo
+         XdIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=rEPflbqVq1mwFueQyojCpMmcKQ/e36y3oykipPSeFRU=;
-        b=0yBWnd1Y0+ujz+HUeBteBReJAuiZt8t+eAGkPEANCfarsILj9XmBN1QnyKqkYFp4Gp
-         9zSuvO7cwYrx37h8XlYj71u+jvd1KYrH5XL0xfugeGmcO6w9sceDqDL0k5FSAZvzzvQ7
-         3EjWhEwWi7fT9Lt6LMwq8hGkRYoXbfoU9Kz+S8O7LPkM/p7mjG2Kki6uDPUoEvWHU6Km
-         PNZElPP/jR7SR2XMdz3JxY6PKLVl6Y1ecPN0vYhioH6dVaxMxdgzZWA4PA+BYwWKNNco
-         Vwninq4Bv/kc6zJ++ZWtqc8c4KCkFMT2gW9XmH8KWl5f2staQeTDVuU9DxkITzIekMof
-         KWKw==
-X-Gm-Message-State: AOAM533Aw56p7TL963Ava9XRPHqEApN+e3JD34QluiDDAnXBMbaNTin5
-        771ecT45CcwzlUNSVJ3nTMtflw==
-X-Google-Smtp-Source: ABdhPJwu4TU8jIiiy/g+V6aSryzHQOlfKpEwLod4n/B0Gps/UtOcoR7DPUCkVDSY6/TR/WKuWYhQRQ==
-X-Received: by 2002:a17:907:9482:b0:6da:8ad6:c8b5 with SMTP id dm2-20020a170907948200b006da8ad6c8b5mr7771140ejc.372.1650709715250;
-        Sat, 23 Apr 2022 03:28:35 -0700 (PDT)
+        bh=2m9kAORld4iDB2KAPLh1iCsQe8VM2IonNBmHniXB+aI=;
+        b=5TW3iBZhgg4aKEEWWR8YsqkH8a7UVfqxDH+u2colpF7XyHwy9+ax3z1hBIh2gatJYT
+         FLl+3bOMHReRRRSGk9gHaYlMpyIl0ILNFvAL7YnRvN2rHY5zN//bmg5hweaPTHd2/8mR
+         2VlUY+KZdi7n4OjcE7OnEOJ4Hcv0zO5STUPhp41MTsjnD0CnF+NcAnAsbzEYK+G10Tuz
+         QLxadLoalti1SG8tMS+6hBs3AKWqyhMmuiD4tushAF3b7gKS5k6gMp9bWhBWo/Sih3Jv
+         bvsG+/594Xc6hYCt5dNVdVyqepOOAd8b1pubFLmB5pdUwC1EuhqIyWeddbnI+LN7t3Fd
+         4/wA==
+X-Gm-Message-State: AOAM533faIxn2mRpG0tyS81xM+zFCMCOq0Tm2JqxzrdDz4ev/t1JGvSK
+        UlyXgIbcEfoJ7pWqPFRgRnnLmA==
+X-Google-Smtp-Source: ABdhPJzNLgOfjlkn71D3XLc+z6mdb8U6FtuDFVeolu/miVVPX/dSL5gctTkJCIyZlGTqP6JpYcLBqg==
+X-Received: by 2002:a17:907:ea8:b0:6f3:72ef:2397 with SMTP id ho40-20020a1709070ea800b006f372ef2397mr2184159ejc.201.1650709737125;
+        Sat, 23 Apr 2022 03:28:57 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gz15-20020a170906f2cf00b006f3802a963fsm52298ejb.21.2022.04.23.03.28.34
+        by smtp.gmail.com with ESMTPSA id v10-20020a170906380a00b006a68610908asm1558632ejc.24.2022.04.23.03.28.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:28:34 -0700 (PDT)
-Message-ID: <e5b18654-ce83-44ee-e4c8-4cdfc4ceaa1d@linaro.org>
-Date:   Sat, 23 Apr 2022 12:28:33 +0200
+        Sat, 23 Apr 2022 03:28:56 -0700 (PDT)
+Message-ID: <00448326-7bee-8cf4-5751-d967bc424aea@linaro.org>
+Date:   Sat, 23 Apr 2022 12:28:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH V3 12/17] dt-binding: mt8192: Add infra_ao reset bit
+Subject: Re: [PATCH V3 13/17] dt-bindings: arm: mediatek: Add #reset-cells
+ property for MT8195-sys-clock
 Content-Language: en-US
 To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
         sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
@@ -66,9 +67,9 @@ Cc:     p.zabel@pengutronix.de, angelogioacchino.delregno@collabora.com,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
- <20220422060152.13534-13-rex-bc.chen@mediatek.com>
+ <20220422060152.13534-14-rex-bc.chen@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422060152.13534-13-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220422060152.13534-14-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,38 +83,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/04/2022 08:01, Rex-BC Chen wrote:
-> To support reset of infra_ao, add the bit definition for thermal/PCIe/SVS.
-> 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  include/dt-bindings/reset/mt8192-resets.h | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/include/dt-bindings/reset/mt8192-resets.h b/include/dt-bindings/reset/mt8192-resets.h
-> index be9a7ca245b9..d5f3433175c1 100644
-> --- a/include/dt-bindings/reset/mt8192-resets.h
-> +++ b/include/dt-bindings/reset/mt8192-resets.h
-> @@ -27,4 +27,14 @@
->  
->  #define MT8192_TOPRGU_SW_RST_NUM				23
->  
-> +/* INFRA RST0 */
-> +#define MT8192_INFRA_RST0_LVTS_AP_RST				0
-> +/* INFRA RST2 */
-> +#define MT8192_INFRA_RST2_PCIE_PHY_RST				15
-> +/* INFRA RST3 */
-> +#define MT8192_INFRA_RST3_PTP_RST				5
-> +/* INFRA RST4 */
-> +#define MT8192_INFRA_RST4_LVTS_MCU				12
-> +#define MT8192_INFRA_RST4_PCIE_TOP				1
+> We will use the infra_ao reset which is defined in mt8195-sys-clock.
+> The maximum value of reset-cells is 2. Therefore, we add this patch to
+> define it.
 
-These should be the IDs of reset, not some register values/offsets.
-Therefore it is expected to have them incremented by 1.
-
-
-> +
->  #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8192 */
-
+Same comments as your other reset patch.
 
 Best regards,
 Krzysztof
