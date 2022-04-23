@@ -2,76 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0701650C94E
-	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B6E850C95B
+	for <lists+devicetree@lfdr.de>; Sat, 23 Apr 2022 12:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234903AbiDWKgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 06:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39992 "EHLO
+        id S232548AbiDWKtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 06:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234473AbiDWKgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:36:02 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947461D8C04
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:32:56 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id k23so20816773ejd.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:32:56 -0700 (PDT)
+        with ESMTP id S229732AbiDWKtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 06:49:39 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC1BBF33C
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:46:42 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id y20so20816100eju.7
+        for <devicetree@vger.kernel.org>; Sat, 23 Apr 2022 03:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tsJdL6DJfWiEvwfRIfk97/Nhp/cHKIkCfmyLbxjfN3I=;
-        b=xJC6UTkhkoYanFTTSfhaxHSdEiV/oIP0wsbTBrhXOkIPgQUTqPug4iUH8CQCnWj/GL
-         uKmUB0boeeHlHc+lFTRqU52DV02++d/2gRXjqylTkMywN2d3C8+xKyqk9QE9d7KdeDu1
-         g7/xfcqCKtwZTaYv3F7Pzi+dyWjRSEAkdVByRPdhYH6G9o5rtBbZup13qb3DkaiOVe4K
-         lx8/aU/2EP9t5w0zUB3i+/cmqxdJmn83RABo0rRjrptdhJPTjGe0jOW0D0nDd18kzr7d
-         2UpC2O6MxvPRphoF2cwzrXGMXmHPgVNy7VB/O3tU7WPTGUr8CEXJ2xC/mo3Kik2uNtW/
-         08+g==
+        h=message-id:date:mime-version:user-agent:content-language:to:cc:from
+         :subject:content-transfer-encoding;
+        bh=emkOfd5xWiMcU5IX0xxvzLYNLyQMfJ1OVBqTePDG4qo=;
+        b=Mnr657dX9d42owjnfMyYvw0Epvh9BbUF9lg3QdkM6WqktO6wUBxgm4NQd3PdGFl7Wa
+         9p1GENiovERqesML98NLXTxl45PWWcltcqBcQ0Kr50x974fmc5+COTWB8xZsmu0UrrXD
+         yQuo4inpVzmCyzyWpKpTgdCHM1yvwIp3+xmjDy8VGKvjyBldu+iygZ4S7cILH5AMzKhc
+         Hg/HRgt+1cqT5Dnf3xyXgwOQzJnyQPV19snnnGd1UPsstTvILAtbPclyRscPfqaYI+5R
+         k1U498s+wThkeotcWHVanIItpPf2qRJKwdQQ2Xvxok/amM+mEiOZBZrgmtnKsVkXdCyD
+         1u5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tsJdL6DJfWiEvwfRIfk97/Nhp/cHKIkCfmyLbxjfN3I=;
-        b=lgS8Rj4M7i/OHz3KN/hTGOWRGe6trCAAAE0bfkiMm25lEuM7iyrf9sdEB13olOOJVe
-         TeYGiBaFGv7JmVfuKmeTVIAm+YX/5XmS90KZ42dU4kUTEVWSNP4Srw1EDneNc+qXaBZt
-         fY50XHow7WXOUHQ0V5ahjMTs0I7/LYVuwKGxolK9VbrIDUGRUc4Rd0PBUM1YjRw1b3a4
-         CMOtv1UKa/vAH272iF/a06y+QXXyAFGvmwI922WOgQVSSsOuFQlfBgBxN5CcVkCKGQF8
-         SRz8TCd49HTOfhcGIJLzMGc4bpTNwNAcwmholWUsBsTrCdfrKsJ28mcRrhUoBxf9pVvU
-         agbQ==
-X-Gm-Message-State: AOAM532zmuZU2CZcxfG0pEAQmybu0pKxR4KOmaNHMIEgCMUNeKcRqMKZ
-        +2sxl1czR+VZGm8choyzE8UXrw==
-X-Google-Smtp-Source: ABdhPJzw23sr0PxRmACppdsVqcsGW5Xzf11v1G2nenM22VT4mr4skYMBrOi1mXs7vfxYFZbvZTdo1A==
-X-Received: by 2002:a17:907:1b26:b0:6ef:eaca:d2d8 with SMTP id mp38-20020a1709071b2600b006efeacad2d8mr7970655ejc.604.1650709975211;
-        Sat, 23 Apr 2022 03:32:55 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:from:subject:content-transfer-encoding;
+        bh=emkOfd5xWiMcU5IX0xxvzLYNLyQMfJ1OVBqTePDG4qo=;
+        b=prdX6xyHVv0nplZUsBGSE7gNnO+qLqX1tnMB6ib3ElAbNJh3sOQfq5dn6rFGfHGmn2
+         XEqgki9kisCI4Gm7CT9lN4/dkvReoA7NhrpTNATtRwyXm8eD403zU9Tt7ouYb9bshIxo
+         IRAjq76KAojEfazV6ekpd+/i5Fc6qhdszCawdANpAqZSf4WwrN8kzv1SZOwa+IZJLENO
+         UicSeuczBQJogiztI/Z9Td5wcLB3CuY0a6V85rpJD6CiVz0Skj4pp0QCcMnL/UPYEpBW
+         nM15OHyy648UyJ7hSPCQ+/niB2N5BiwmWKv/iB3yPJmEDQMHMMcTvi8g1QITuRBgIXw9
+         ay5A==
+X-Gm-Message-State: AOAM530VCGrF3syUfbsoxVelkomT+u6JGibvcguqBsBYMcSD8eUXauwm
+        1c9urbHHrtbrtS4IUFX+zeiouOWNIUzIqg==
+X-Google-Smtp-Source: ABdhPJw948PGkoWB02Q4jjD+R+xdr0lLadLwr6CksZSf5nin4BMTMWKk9aLil/YGYKG8rNQX5R6kSA==
+X-Received: by 2002:a17:906:974c:b0:6ef:f428:d527 with SMTP id o12-20020a170906974c00b006eff428d527mr7649074ejy.166.1650710801098;
+        Sat, 23 Apr 2022 03:46:41 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id au9-20020a170907092900b006e8985cc68asm1547842ejc.1.2022.04.23.03.32.54
+        by smtp.gmail.com with ESMTPSA id v26-20020aa7d65a000000b00424064b8ed2sm2061498edr.33.2022.04.23.03.46.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Apr 2022 03:32:54 -0700 (PDT)
-Message-ID: <c40a2dad-c7aa-f778-f1ac-971185691950@linaro.org>
-Date:   Sat, 23 Apr 2022 12:32:53 +0200
+        Sat, 23 Apr 2022 03:46:40 -0700 (PDT)
+Message-ID: <42fbcb55-b6ef-906f-7584-62a6097a8639@linaro.org>
+Date:   Sat, 23 Apr 2022 12:46:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am625-sk: Enable on board
- peripherals
 Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-References: <20220422065002.387753-1-vigneshr@ti.com>
- <20220422065002.387753-3-vigneshr@ti.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220422065002.387753-3-vigneshr@ti.com>
+Subject: PCI schema accepts unevaluated properties
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,65 +70,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2022 08:50, Vignesh Raghavendra wrote:
-> Add nodes for I2C IO expander, OSPI Flash, Eth PHYs, SD and eMMC that
-> are present on AM625 SK board.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Reviewed-by: Bryan Brattlof <bb@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 273 +++++++++++++++++++++++++
->  1 file changed, 273 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> index 0de4113ccd5de..5fc35898a1e2e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> @@ -9,6 +9,7 @@
->  
->  #include <dt-bindings/leds/common.h>
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/net/ti-dp83867.h>
->  #include "k3-am625.dtsi"
->  
->  / {
-> @@ -17,6 +18,12 @@ / {
->  
->  	aliases {
->  		serial2 = &main_uart0;
-> +		mmc0 = &sdhci0;
-> +		mmc1 = &sdhci1;
-> +		mmc2 = &sdhci2;
-> +		spi0 = &ospi0;
-> +		ethernet0 = &cpsw_port1;
-> +		ethernet1 = &cpsw_port2;
->  	};
->  
->  	chosen {
-> @@ -87,6 +94,33 @@ vcc_3v3_sys: regulator-2 {
->  		regulator-boot-on;
->  	};
->  
-> +	vdd_mmc1: fixed-regulator-sd {
+Hi Rob,
 
-Don't encode the type of binding into node name. Node name should be
-generic, so either regulator-0 or regulator-sd.
+Dmitry pointed out interesting issue when writing PCI schema. Consider
+the patch for Exynos PCI schema (which includes SNPS schema and
+unevaluatedProperties:false):
+https://pastebin.ubuntu.com/p/4SzxVP4N3j/
 
-> +		/* TPS22918DBVR */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		vin-supply = <&vcc_3v3_sys>;
-> +		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	vdd_sd_dv: gpio-regulator-TLV71033 {
+This passes `make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/` without a
+problem. It should not. The property is nowhere described, so
+unevaluatedProperties should scream.
 
-The same + do not mix cases, so regulator-1 or regulator-tlv71033
+Other bindings using unevaluated:false and some ref, also has this
+issue. The additionalProperties:false (when there is no ref for other
+schema) works correct.
 
+DT schema v2022.3.2.
 
 Best regards,
 Krzysztof
