@@ -2,44 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD02950D32C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 18:12:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CE7E50D345
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 18:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbiDXQPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 12:15:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60930 "EHLO
+        id S233471AbiDXQ3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 12:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234067AbiDXQPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 12:15:37 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19F514EC41;
-        Sun, 24 Apr 2022 09:12:35 -0700 (PDT)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D8E5E3E4;
-        Sun, 24 Apr 2022 18:12:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1650816754;
-        bh=Is6SG4GHs0jpYFv8X8J/PXs+1pgpkckU4nI98rQsNqw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FYBm3An+8PMBQ+S9TmlFudvueU8Gh3uzW8PBcIR0w9nu4xaciyGQCk1kbIrL3Ll52
-         o99pVFqxjj5Q7PPxB81w2z1lLUREtQlCSSONOouWuYAOkLyMpvLPTPAMBw+aAK6dW3
-         CWHxS/2SL5vnsihvED4VykSaC7wKNDVXMExybb1w=
-From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: Remove empty rgb output endpoints
-Date:   Sun, 24 Apr 2022 19:12:28 +0300
-Message-Id: <20220424161228.8147-2-laurent.pinchart+renesas@ideasonboard.com>
+        with ESMTP id S232125AbiDXQ3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 12:29:36 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DADCF8566D;
+        Sun, 24 Apr 2022 09:26:35 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4AD255C006B;
+        Sun, 24 Apr 2022 12:26:35 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Sun, 24 Apr 2022 12:26:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm2; t=1650817595; x=1650903995; bh=y9WhySCDOkgfaO0jzDCKtLpiP
+        Ul7HttVW333ZBcJFc8=; b=SqUV610VWrD1bDFGtDAal7j7ofoMHTpj1iJ6qgCil
+        VGLQqQpVt6kS9NmsidLI+DkPO1DE5t49TrW/Nvcu4TZauWrqvAgE9XCr+vYzfdPF
+        oblYDEh3U5V8ucTiVVm1qWCyX3NAubRZDCyrEYNhkLGm8tK8ApO0fk2U46WF6qx3
+        Zf52mX2pAOpnuQXUrPGrFs6C/J7YoTwrE1NRZijLdZ9GDJSAWSYCozzrLEtMcMzQ
+        wGtslPpL0fO1xqk1cK+tYYbMrROjylyxVNj0p+ZMGYGE1ws2/1us2yrJA0VaIiJn
+        dbccAmSX89YhCRNSM9D5nAEZ6kT4CDJ8fq1vsaNadpVEQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm1; t=1650817595; x=1650903995; bh=y
+        9WhySCDOkgfaO0jzDCKtLpiPUl7HttVW333ZBcJFc8=; b=x8Myl7b6lfjtioxL3
+        JqTBDq93IAYK9v1BTtOkYdKZiUu1sC2J/7/cMpQXP85Y74DGX+PixmEubeS3ul9W
+        qeK4cdKTGasvhbaC37yTbP8ietVg/nuxLRwwBJL5f1qnsoIka6CM3wZB9rVBDWnw
+        /ImpmweQbW0Hodd4LqeUKCHE1cTUXdQNVoF01mEnTHIJtNPTSdTHg1fJOfVg+0f3
+        pjtrMcyzGqj6T/zEqSQuukleOAq09b1NhRRf2guxIjCVxXxO2f6D276NTxgEvlXL
+        tdwsJLCTsdCNOaltsx75KmtWzSo23mrgUOe9uYupEaZF7RI/oGrJ8otDkwAHf2x8
+        e9TBg==
+X-ME-Sender: <xms:OnplYgxOcUnP3f1mZejLveZglnZ9k7FwaOdONyS0zmQ0GYGRtSFGhA>
+    <xme:OnplYkQfY7RPi3Ij_FxeRlDqHuN2cNYRZiNpvJqB1Ym4ed-gzFZSydj3AAeRETam-
+    61Nhahz7LTeXImCbw>
+X-ME-Received: <xmr:OnplYiXAW56wbCAv66g7lrA0k5t0DNjHHsi279udVt51Hg9K2eQh7kkdb_-_bHTxTegW7ApKnsUN2pCOZLMGqt7BeE_6fzQgdD2Hw6A2GoXEVsBKjJ-KIozXRRzjfVcDuu_LpA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrtdelgddutddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:OnplYuh5sVjVuOOpdtYFG3h-JP-ZW-eILsIA59-IDmjYCQaOotepUA>
+    <xmx:OnplYiAcOwXcQsrpgqLIfNmJEUyFmZ_fMsEC-Wz3GFReC3F9azZmkw>
+    <xmx:OnplYvJV1oP1FXbhSuuYyv7ir_FFXsSTFNisvKMbt_YW-wdAm_X9vA>
+    <xmx:O3plYjLJVRYdec_xyPcQQiL27WKwtpKdNOqqFXpOs3q_5AsafXxtXg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 24 Apr 2022 12:26:34 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH v3 00/14] drm/sun4i: Allwinner D1 Display Engine 2.0 Support
+Date:   Sun, 24 Apr 2022 11:26:18 -0500
+Message-Id: <20220424162633.12369-1-samuel@sholland.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220424161228.8147-1-laurent.pinchart+renesas@ideasonboard.com>
-References: <20220424161228.8147-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,290 +87,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Endpoints node must have a remote-endpoint property, as endpoints only
-exist to model a link between ports. Drop the empty rgb output endpoints
-from SoC dtsi files, and declare them in the board dts instead.
+This series adds binding and driver support for Display Engine 2.0
+variant found in the Allwinner D1.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
----
-Changes since v1:
+So far it has only been tested with HDMI. I will be sending the HDMI
+support series separately, because the hardware comes with a brand new
+custom HDMI PHY, which requires some refactoring to support cleanly.
 
-- Handle ulcb-kf.dtsi
----
- .../boot/dts/renesas/beacon-renesom-baseboard.dtsi     | 10 ++++++++--
- arch/arm64/boot/dts/renesas/draak.dtsi                 |  2 +-
- arch/arm64/boot/dts/renesas/ebisu.dtsi                 |  2 +-
- arch/arm64/boot/dts/renesas/r8a774a1.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a774b1.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts        |  2 +-
- arch/arm64/boot/dts/renesas/r8a774c0.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a774e1.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77951.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77960.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77961.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77965.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77970.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77980.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77990.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/r8a77995.dtsi              |  2 --
- arch/arm64/boot/dts/renesas/salvator-common.dtsi       |  2 +-
- arch/arm64/boot/dts/renesas/ulcb-kf.dtsi               | 10 ++++++++--
- 18 files changed, 20 insertions(+), 32 deletions(-)
+This series was tested on A33, D1 and H3.
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-index 5ad6cd1864c1..142e7ffbd2bd 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-@@ -272,8 +272,14 @@ &can1 {
- 	status = "okay";
- };
- 
--&du_out_rgb {
--	remote-endpoint = <&rgb_panel>;
-+&du {
-+	ports {
-+		port@0 {
-+			du_out_rgb: endpoint {
-+				remote-endpoint = <&rgb_panel>;
-+			};
-+		};
-+	};
- };
- 
- &ehci0 {
-diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts/renesas/draak.dtsi
-index eb0327c0df48..b09f06086840 100644
---- a/arch/arm64/boot/dts/renesas/draak.dtsi
-+++ b/arch/arm64/boot/dts/renesas/draak.dtsi
-@@ -285,7 +285,7 @@ &du {
- 
- 	ports {
- 		port@0 {
--			endpoint {
-+			du_out_rgb: endpoint {
- 				remote-endpoint = <&adv7123_in>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-index 67231c8576c5..9e6093524682 100644
---- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-@@ -356,7 +356,7 @@ &du {
- 
- 	ports {
- 		port@0 {
--			endpoint {
-+			du_out_rgb: endpoint {
- 				remote-endpoint = <&adv7123_in>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-index a65ba7ba1cae..58da4cad77f3 100644
---- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-@@ -2737,8 +2737,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-index 90519af646c4..621ba7160dd9 100644
---- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-@@ -2582,8 +2582,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-index 4e72e4f2bab0..5a6ea08ffd2b 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-@@ -172,7 +172,7 @@ &du {
- 
- 	ports {
- 		port@0 {
--			endpoint {
-+			du_out_rgb: endpoint {
- 				remote-endpoint = <&tda19988_in>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-index ff75ceec9fee..ee5bc5830a93 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-@@ -1870,8 +1870,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 
- 				port@1 {
-diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-index aefed8e0037f..e20e3e135229 100644
---- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-@@ -2857,8 +2857,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-index 383f5e199c17..a466d70e253b 100644
---- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-@@ -3334,8 +3334,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-index de38a05e5746..0e18e96a51fc 100644
---- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-@@ -2937,8 +2937,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index be84120d7650..6d4c49747778 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -2722,8 +2722,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-index f00de3f660c5..9cf98d988ffc 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-@@ -2749,8 +2749,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 				port@1 {
- 					reg = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a77970.dtsi b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-index ad021b2703ab..dc11845625c4 100644
---- a/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-@@ -1156,8 +1156,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 
- 				port@1 {
-diff --git a/arch/arm64/boot/dts/renesas/r8a77980.dtsi b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-index 71f7a5dad580..71d7df6dfd93 100644
---- a/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-@@ -1533,8 +1533,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 
- 				port@1 {
-diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-index 070a0c72cb67..d56ee6273dc3 100644
---- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-@@ -2031,8 +2031,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 
- 				port@1 {
-diff --git a/arch/arm64/boot/dts/renesas/r8a77995.dtsi b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-index be746a7f1ce1..e5ede5430424 100644
---- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-@@ -1350,8 +1350,6 @@ ports {
- 
- 				port@0 {
- 					reg = <0>;
--					du_out_rgb: endpoint {
--					};
- 				};
- 
- 				port@1 {
-diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-index 6092dc4531ad..30727d748d1f 100644
---- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-@@ -386,7 +386,7 @@ &du {
- 
- 	ports {
- 		port@0 {
--			endpoint {
-+			du_out_rgb: endpoint {
- 				remote-endpoint = <&adv7123_in>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-index ae532cd21708..5bcb84403ef6 100644
---- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-@@ -97,8 +97,14 @@ &can1 {
- 	status = "okay";
- };
- 
--&du_out_rgb {
--	remote-endpoint = <&adv7513_in>;
-+&du {
-+	ports {
-+		port@0 {
-+			du_out_rgb: endpoint {
-+				remote-endpoint = <&adv7513_in>;
-+			};
-+		};
-+	};
- };
- 
- &ehci0 {
+Changes in v3:
+ - Drop redundant minItems and maxItems
+
+Changes in v2:
+ - New patch: I/O helper portability
+ - Use Jernej's patches for mixer mode setting.
+ - Use an enumeration for the ccsc value.
+
+Jernej Skrabec (3):
+  sun4i/drm: engine: Add mode_set callback
+  sun4i/drm: backend: use mode_set engine callback
+  sun4i/drm: sun8i: use mode_set engine callback
+
+Samuel Holland (11):
+  dt-bindings: display: Separate clock item lists by compatible
+  dt-bindings: display: Add D1 display engine compatibles
+  drm/sun4i: Remove obsolete references to PHYS_OFFSET
+  drm/sun4i: hdmi: Use more portable I/O helpers
+  drm/sun4i: Allow building the driver on RISC-V
+  drm/sun4i: Allow VI layers to be primary planes
+  drm/sun4i: csc: Add support for the new MMIO layout
+  drm/sun4i: Add support for D1 mixers
+  drm/sun4i: Add support for D1 TCON TOP
+  drm/sun4i: Add support for D1 TCONs
+  drm/sun4i: Add compatible for D1 display engine
+
+ .../allwinner,sun4i-a10-display-engine.yaml   |   1 +
+ .../display/allwinner,sun4i-a10-tcon.yaml     |   2 +
+ .../allwinner,sun8i-a83t-de2-mixer.yaml       |   2 +
+ .../display/allwinner,sun8i-r40-tcon-top.yaml | 133 ++++++++++++------
+ drivers/gpu/drm/sun4i/Kconfig                 |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_backend.c         |  40 +++---
+ drivers/gpu/drm/sun4i/sun4i_crtc.c            |   1 +
+ drivers/gpu/drm/sun4i/sun4i_drv.c             |   1 +
+ drivers/gpu/drm/sun4i/sun4i_frontend.c        |   3 -
+ drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c        |   4 +-
+ drivers/gpu/drm/sun4i/sun4i_tcon.c            |   8 ++
+ drivers/gpu/drm/sun4i/sun8i_csc.c             |   7 +-
+ drivers/gpu/drm/sun4i/sun8i_csc.h             |   1 +
+ drivers/gpu/drm/sun4i/sun8i_mixer.c           |  74 ++++++++--
+ drivers/gpu/drm/sun4i/sun8i_mixer.h           |  14 +-
+ drivers/gpu/drm/sun4i/sun8i_tcon_top.c        |  15 +-
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  30 ----
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c        |   6 +-
+ drivers/gpu/drm/sun4i/sunxi_engine.h          |  27 ++++
+ 19 files changed, 251 insertions(+), 120 deletions(-)
+
 -- 
-Regards,
-
-Laurent Pinchart
+2.35.1
 
