@@ -2,238 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A6C50D1FE
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 15:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4DAF50D206
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 15:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234312AbiDXNXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 09:23:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
+        id S234510AbiDXN1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 09:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235679AbiDXNXo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 09:23:44 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C256BAE78
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 06:20:43 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id x17so21912702lfa.10
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 06:20:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Kg1LPvr7CNmKtgBxGFEj5Vun/S0D0osu3a6EbDsk4vU=;
-        b=jFvKfXj/9p7I4xMSNd9bJpzql//lURk4aUm+4lYHcMAq9PeVjBFTdzM4/Uev0XQR3X
-         hQXi8CcA1KMfZXcQcF2zCaTw6DhnGzf/fWU//Y3uB071wSahEXMdjht4/WF8gn3nfEiR
-         Uw7B5MK1OawxACK19WHIIHXr85hOHJAqw2K1+gN+5qzWwfHZHGosMqqT31ZzUDcG+ZDH
-         z1VaSyOPMzGvhPtXySA2el/qmBWpcwe6OIknLqNwUyALhEie3AC6f7MX8z/YPizrq3xE
-         ihm8URYld6PC1bUX43+1rLiyrM/pfWD3u5NUT2g8lJFn1YzpplBlADe+NtmM6AH0Fhg/
-         Dq/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Kg1LPvr7CNmKtgBxGFEj5Vun/S0D0osu3a6EbDsk4vU=;
-        b=7FGl1Xt64zjgun+Sd1niNnQihSla8ggkgF9I4HvRfgmxgJMm7wg0SxIotXcXqfVSBr
-         NyMpvlmNeUV4wYWqOo5tpwCKdmJcptlakCas60nl/OKUnxlZBlAcWlPjpWMXTL6Jnx0l
-         IPrvYReTwb1l39j/Nm8wbM549kiUKIjxSQd8JLPnAak5FRi8goLnzJbg/6mrbMEqplSQ
-         czKigPB4MxHRYtICILJaex9fCIDECUQFYPCDWyOXHtxQHwX4pCQEPg5vgQQ8B6mXF4Nl
-         sle4E/mPSFA5gVUTkT/PJJsiJ9tp5uDUpxgwWMdHy5SPS0UO58884km7Fm+OX+ovNuKR
-         pQwg==
-X-Gm-Message-State: AOAM531LMUmmurYdn58BeabpLY7kiNG1qwV64uyOhtYmVdAioeD0Tc+X
-        MidMC06Mq9VpNpzv3MAhUfcHvg==
-X-Google-Smtp-Source: ABdhPJwHabdj+YRrucPH4fDFwz18jeZ8gf+S++wFqmX+XKee6BhOQ4BY6KWNkOOPjFPdQd5wxbZ3/Q==
-X-Received: by 2002:a19:505d:0:b0:46d:167e:b9df with SMTP id z29-20020a19505d000000b0046d167eb9dfmr9970542lfj.184.1650806441983;
-        Sun, 24 Apr 2022 06:20:41 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id l12-20020a056512332c00b0046d0e0e5b44sm1015877lfe.20.2022.04.24.06.20.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 06:20:41 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 8/8] arm64: dts: qcom: replace deprecated perst-gpio with perst-gpios
-Date:   Sun, 24 Apr 2022 16:20:34 +0300
-Message-Id: <20220424132034.2235768-9-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220424132034.2235768-1-dmitry.baryshkov@linaro.org>
-References: <20220424132034.2235768-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S234388AbiDXN1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 09:27:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32FE92CCBA;
+        Sun, 24 Apr 2022 06:24:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D717FB80E01;
+        Sun, 24 Apr 2022 13:24:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 962D5C385A7;
+        Sun, 24 Apr 2022 13:23:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650806641;
+        bh=wvQkc+2uA8mjgxPugS0x7bNJfDwXVzXM+L26GM9WiR0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ueZMAQKT1e3rLJ4BaF6WWyYA/bLVkFMlZmuJB85pVPfB2fw+q8BgoYPg0BDE6N3Yg
+         eKaYsk9Qh62K/EcOJFvTRgZXnsJcM29iL5Av5A9QN/T53g0CmLugGluEugd+kztq9b
+         PJiFEx8hJth2an/TlBGvQn38tD2l+O0z953UDmbUJ68/Pp5qAAXtlUqI2qZLrOMAC/
+         PuG0RUWXQVvsmXzT+LhTN2X9fYALyLqeqTEjAq/Y3p7Vv9xxMpH1ZKiftN7dzgbdhW
+         i23yHfp2RJL+a5ZnHUqLwqO7oSYngDyB8MzQrniS+ru5zPbmYJvmt9e7sMOtfxSroG
+         DSthwVarRpj2Q==
+Date:   Sun, 24 Apr 2022 21:23:55 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>
+Subject: Re: [PATCH v2 00/17] protonic fixes
+Message-ID: <20220424132355.GD988429@dragon>
+References: <20220419044824.981747-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419044824.981747-1-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace deprecated perst-gpio and wake-gpio properties with up-to-date
-perst-gpios and wake-gpios in the Qualcomm device trees.
+On Tue, Apr 19, 2022 at 06:48:07AM +0200, Oleksij Rempel wrote:
+> changes v2:
+> - spell fixes
+> - rename arm -> ARM
+> 
+> This patch series provide two main part of changes:
+> - Remove prototype specific deprecated code not used in production.
+> - Unify vicut1 and victgo variants to reduce maintaining overhead.
+> 
+> David Jander (16):
+>   ARM: dts: imx6qdl-vicut1.dtsi: remove TiWi module
+>   ARM: dts: imx6qdl-vicut1.dtsi: Put nON_SWITCH in own pinctrl grp
+>   ARM: dts: imx6qdl-vicut1.dtsi: Remove PCIe
+>   ARM: dts: imx6qdl-vicut1/victgo: Remove UART2
+>   ARM: dts: imx6qdl-vicut1.dtsi: Fix LED names
+>   ARM: dts: imx6qdl-vicut1.dtsi: Fix debug LED gpio pins
+>   ARM: dts: imx6qdl-vicut1.dtsi: Update GPIO line names
+>   ARM: dts: imx6qdl-vicut1.dtsi: Remove conflicting pinctrl entry
+>   ARM: dts: imx6q-vicut1.dts: remove sata node
+>   ARM: dts: imx6dl-victgo.dts: update gpio names
+>   ARM: dts: imx6dl-victgo.dts: Factor out common parts to
+>     imx6qdl-victgo.dtsi
+>   ARM: dts: imx6qdl-vicut1.dtsi: Move some node out to DTS files
+>   ARM: dts: Remove imx6qdl-victgo.dtsi
+>   ARM: dts: imx6qdl-vicut1: Factor out common parts of 12inch board
+>     variants
+>   ARM: dts: imx6dl-victgo.dts: Remove touchscreen x axis inversion
+>   ARM: dts: imx6qdl-vicut1.dtsi: Add missing ISB led node
+> 
+> Oleksij Rempel (1):
+>   ARM: dts: imx6qdl-vicut1.dtsi: add thermal zone and attach tmp103 to
+>     it.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts            | 6 +++---
- arch/arm64/boot/dts/qcom/ipq8074-hk01.dts              | 4 ++--
- arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi             | 4 ++--
- arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi         | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts             | 4 ++--
- 8 files changed, 14 insertions(+), 14 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index f623db8451f1..9fb33850e46c 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -497,20 +497,20 @@ config {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
- 	vddpe-3v3-supply = <&wlan_en>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 130 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 130 GPIO_ACTIVE_LOW>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
- &pcie2 {
- 	status = "okay";
--	perst-gpio = <&tlmm 114 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 114 GPIO_ACTIVE_LOW>;
- 	vdda-supply = <&vreg_l28a_0p925>;
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-index b5e1eaa367bf..2d5ee337054c 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-@@ -54,12 +54,12 @@ &blsp1_uart5 {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpios = <&tlmm 61 0x1>;
- };
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpios = <&tlmm 58 0x1>;
- };
- 
- &pcie_phy0 {
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-index 07e670829676..3c0ac747de0e 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-@@ -44,12 +44,12 @@ &blsp1_uart5 {
- 
- &pcie0 {
- 	status = "ok";
--	perst-gpio = <&tlmm 58 0x1>;
-+	perst-gpios = <&tlmm 58 0x1>;
- };
- 
- &pcie1 {
- 	status = "ok";
--	perst-gpio = <&tlmm 61 0x1>;
-+	perst-gpios = <&tlmm 61 0x1>;
- };
- 
- &pcie_phy0 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-index 3bb50cecd62d..b90000223d69 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-@@ -195,8 +195,8 @@ &mmcc {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
--	wake-gpio = <&tlmm 37 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
- 	vddpe-3v3-supply = <&wlan_en>;
- 	vdda-supply = <&pm8994_l28>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index a80c578484ba..b067b9f95189 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -99,7 +99,7 @@ pms405_s3: s3 {
- &pcie {
- 	status = "okay";
- 
--	perst-gpio = <&tlmm 43 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
- 
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&perst_state>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index dc17f2079695..461ba68fd939 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -362,7 +362,7 @@ &pcie1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_clkreq_n>, <&ssd_rst_l>, <&pe_wake_odl>;
- 
--	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
- 	vddpe-3v3-supply = <&pp3300_ssd>;
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b89d896..8abf8077be11 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -240,7 +240,7 @@ &ipa {
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
- 
- 	vddpe-3v3-supply = <&nvme_3v3_regulator>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 28fe45c5d516..1aadd5504631 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -502,7 +502,7 @@ &mss_pil {
- 
- &pcie0 {
- 	status = "okay";
--	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
- 	enable-gpio = <&tlmm 134 GPIO_ACTIVE_HIGH>;
- 
- 	vddpe-3v3-supply = <&pcie0_3p3v_dual>;
-@@ -520,7 +520,7 @@ &pcie0_phy {
- 
- &pcie1 {
- 	status = "okay";
--	perst-gpio = <&tlmm 102 GPIO_ACTIVE_LOW>;
-+	perst-gpios = <&tlmm 102 GPIO_ACTIVE_LOW>;
- 
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie1_default_state>;
--- 
-2.35.1
-
+Applied all, thanks!
