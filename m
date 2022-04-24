@@ -2,190 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1622850D174
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 13:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F59650D1AA
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 14:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239266AbiDXLYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 07:24:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40826 "EHLO
+        id S229539AbiDXMYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 08:24:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239263AbiDXLYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 07:24:02 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205101FA4E
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 04:21:02 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id kq17so1364759ejb.4
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 04:21:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AP6kJABFBHG2D4OKzCzakTnuRW2oYbz1dDUS+gWnnRg=;
-        b=HY4c3l65zyTHDRs/EAWmOPFXQwGpFLHe4fxBZwhMaV/X2BXdQLqt8mkKYH/ElooINu
-         WwiglKCOkazE9EhJJ8mwQnwVfPxFU1ao+OECrHJbsLSw8GUsxkkCXXr98S60XNwIpmis
-         /1SvIjbszaKwuLCeI8ZaIbBh3TMDx1lnkNReGTVVTIdfLbGKrQsRbc3djz7J6kajJRRq
-         8QsF0LM7FWb4dPT0AOfU684L3Gp5+7dyz6kn2ggPXmgK8MTRGvx6LzIoIjLC1dfoUWxQ
-         zWpd32tsZXaiMH7UcalGAsIN9u52wNxGv0M4QZjwHZDsrkFKuyGrY/VE+zAPcIwxFuo1
-         Erww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=AP6kJABFBHG2D4OKzCzakTnuRW2oYbz1dDUS+gWnnRg=;
-        b=SSj4E4JYUTrOZ0NxSafiBYP7zs3s2rWZ47sQJzwX1LelZcO8CWRiDEDYc5lOlfEhor
-         9hXvVPmuj8ViA3lNArgC282Nx92M8LSgcwlJTP9GXZfVnwD2vUDcRrd+RfYnrkNdPv2O
-         /MlE85F5B9DGeDlR2dG5n9FosVdtl2Bnn/FdzoDDkOGoCN3cUIHX/vWZElDee38aJWXL
-         RGeOaEwNUNUiOn2FZeKXQSbysXXU6bJyLmVeai4Q/ntWx0sNXxLeCQImP28H3EHx/K/4
-         sC1MV3jydn9NRs7PNmc7DFUeT/7XnRhLeBmy/euCQ6Ns+JNUWHPzk7Gd3j/BmxX0o9fS
-         3s0A==
-X-Gm-Message-State: AOAM5334Sd6q3W/m7RJ2i8iNq6QA7uvVC6LFL9Kmgu46sY9EYzGTgyMQ
-        nKXhd1rDEixBNKVzNJjEDAmMBg==
-X-Google-Smtp-Source: ABdhPJy9CnCqBuQQXyUX9GmBqaN2/96mndm+kAM+viZb52Ak2mWIacdO4/j1+X4QFJGaP0AMU/vaOg==
-X-Received: by 2002:a17:907:9718:b0:6f3:9606:9fbd with SMTP id jg24-20020a170907971800b006f396069fbdmr141837ejc.290.1650799260622;
-        Sun, 24 Apr 2022 04:21:00 -0700 (PDT)
-Received: from [192.168.0.235] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id mb22-20020a170906eb1600b006f38dcf211bsm409345ejb.138.2022.04.24.04.20.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Apr 2022 04:21:00 -0700 (PDT)
-Message-ID: <baa73bda-91af-8a31-67f4-6d5615862c73@linaro.org>
-Date:   Sun, 24 Apr 2022 13:20:59 +0200
+        with ESMTP id S229437AbiDXMYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 08:24:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DCB583027;
+        Sun, 24 Apr 2022 05:21:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 27B5960BCC;
+        Sun, 24 Apr 2022 12:21:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AF15C385A7;
+        Sun, 24 Apr 2022 12:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650802912;
+        bh=7gxSeZgXvqRRvnnSUkmJGvEn/og1qUqiGqYeb8JB/88=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mLwToT0lqx6T0v62ep7KgVH2GPfp6ZUeZZt7ndYD9BiQURVjfFxHgY6XAv77UHN5m
+         ArfUdSWWRuTS4imxVvOK6FuU9f5+Vu3Jk9S/ugIEZa8vHQ5kYXkjfEQfa324wZBmVR
+         LeNStAxO2Dc7JJY9ncwRaeHCliBV2H3pKHRArcK+XMRV3viYUypcPiUJz2jpZKOaL/
+         XQH4cvG4xGjVEWBcELNBWcTjyveXhrgehyd3ec6hUg8Fbb2Gjw9Czt/3Ca5ZtNCq7K
+         jY96ohkNhfb5m+loZZ9Y9PiYKHIZT9ak6n2vpjxW5exlzxbDrunPCqQQW9btCy5ODd
+         Z6uJNsA+QdQVg==
+Date:   Sun, 24 Apr 2022 20:21:44 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: imx8mp: Add Engicam i.Core MX8M Plus
+ SoM
+Message-ID: <20220424122144.GS391514@dragon>
+References: <20220330191437.614065-2-abbaraju.manojsai@amarulasolutions.com>
+ <20220418144907.327511-1-abbaraju.manojsai@amarulasolutions.com>
+ <20220418144907.327511-2-abbaraju.manojsai@amarulasolutions.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V3 1/3] dt-bindings: clk: sprd: Add bindings for ums512
- clock controller
-Content-Language: en-US
-To:     Cixi Geng <gengcixi@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220418125630.2342538-1-gengcixi@gmail.com>
- <20220418125630.2342538-2-gengcixi@gmail.com>
- <714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org>
- <CAF12kFv6uioc7ATtXLpGTTDBFT1wYWZUBoyjQqP1bSUnut0pKA@mail.gmail.com>
- <a5a59f3c-00a3-afc5-24aa-1ae3de2600ec@linaro.org>
- <CAF12kFu5KW+fw=0kP6LrEqOvKYR38mELfPjG64=n+gudRxsZUQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAF12kFu5KW+fw=0kP6LrEqOvKYR38mELfPjG64=n+gudRxsZUQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220418144907.327511-2-abbaraju.manojsai@amarulasolutions.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2022 12:47, Cixi Geng wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年4月19日周二 14:38写道：
->>
->> On 19/04/2022 03:53, Cixi Geng wrote:
->>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年4月19日周二 00:28写道：
->>>>
->>>> On 18/04/2022 14:56, Cixi Geng wrote:
->>>>> From: Cixi Geng <cixi.geng1@unisoc.com>
->>>>>
->>>>> Add a new bindings to describe ums512 clock compatible string.
->>>>>
->>>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
->>>>> ---
->>>>>  .../bindings/clock/sprd,ums512-clk.yaml       | 112 ++++++++++++++++++
->>>>>  1 file changed, 112 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..89824d7c6be4
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
->>>>> @@ -0,0 +1,112 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +# Copyright 2022 Unisoc Inc.
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
->>>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>>>> +
->>>>> +title: UMS512 Clock Control Unit Device Tree Bindings
->>>>
->>>> Remove "Device Tree Bindings". You could do the same also in the
->>>> subject, because you repeat the prefix ("dt-bindings: clk: sprd: Add
->>>> ums512 clock controller").
->>>>
->>>>> +
->>>>> +maintainers:
->>>>> +  - Orson Zhai <orsonzhai@gmail.com>
->>>>> +  - Baolin Wang <baolin.wang7@gmail.com>
->>>>> +  - Chunyan Zhang <zhang.lyra@gmail.com>
->>>>> +
->>>>> +properties:
->>>>> +  "#clock-cells":
->>>>> +    const: 1
->>>>> +
->>>>> +  compatible:
->>>>
->>>> Put the compatible first, by convention and makes finding matching
->>>> bindings easier.
->>>>
->>>>> +    oneOf:
->>>>> +      - items:
->>>>> +          - const: sprd,ums512-glbregs
->>>>> +          - const: syscon
->>>>> +          - const: simple-mfd
->>>>
->>>> Why do you need simple-mfd for these? This looks like a regular syscon,
->>>> so usually does not come with children. What is more, why this "usual
->>>> syscon" is a separate clock controller in these bindings?
->>> there is a warning log before add these const.  and the reason we need
->>> the simply-mfd
->>> is some clock is a child of syscon node,which should set these compatible.
->>> failed to match any schema with compatible: ['sprd,ums512-glbregs',
->>> 'syscon', 'simple-mfd']
->>
->> Neither here nor later you did not answer the question - why do you need
->> such complex construction, instead of adding syscon to the clock controller?
->>
->> Let me paste again my concerns:
->>
->>   You have nodes with reg but without unit address ("rpll"). These nodes
->>   are modeled as children but they are not children - it's a workaround
->>   for exposing syscon, isn't it? The sc9863a looks like broken design,
->>   so please do not duplicate it here.
->>
->> IOW, sc9863a uses similar pattern as here and the DTS is made wrong.
->> Because of this you need to create complex ways to get the regmap for
->> the clock controller... Why not making it simple? Clock controller with
->> syscon?
+On Mon, Apr 18, 2022 at 08:19:06PM +0530, Manoj Sai wrote:
+> i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus
+> from Engicam.
 > 
-> I find the history discuss about the sp9863 clock[1] and last
-> ums512-clk dt-bindings patch[2] which from chunyan.
-> please refer to the reasons below.
+> General features:
+> - NXP i.MX8M Plus
+> - Up to 4GB LDDR4
+> - 8 eMMC
+> - Gigabit Ethernet
+> - USB 3.0, 2.0 Host/OTG
+> - PCIe 3.0 interface
+> - I2S
+> - LVDS
+> - rest of i.MX8M Plus features
 > 
-> These clocks are at the same register range with global registers.
-> the registers shared with more than one devices  which  basically
-> are multimedia devices. You may noticed that these are all gate
-> clocks which are in the global registers  ranges and are used to
-> controll the enable status of some devices or some part of devices.
+> i.Core MX8M Plus needs to mount on top of Engicam baseboards
+> for creating complete platform solutions.
 > 
-> [1] https://lore.kernel.org/all/CAAfSe-s0gcehu0ZDj=FTe5S7CzAHC5mahXBH2fJm7mXS7Xys1Q@mail.gmail.com/#r
-> [2] https://lore.kernel.org/all/163425295208.1688384.11023187625793114662@swboyd.mtv.corp.google.com/#r
+> Add support for it.
+> 
+> Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+> Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v2 :
+>  -corrected the naming convetion of nodes as per existing
+>   sources and bindings
+>  -added the iomux to the end as per nxp convention.
+> ---
+>  .../dts/freescale/imx8mp-icore-mx8mp.dtsi     | 184 ++++++++++++++++++
+>  1 file changed, 184 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> new file mode 100644
+> index 000000000000..8f6e8ef4b009
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> @@ -0,0 +1,184 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2018 NXP
+> + * Copyright (c) 2019 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutons(India)
+> + */
+> +
+> +/ {
+> +	compatible = "engicam,icore-mx8mp", "fsl,imx8mp";
+> +};
+> +
+> +&A53_0 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
 
-Which looks like discussion about different bindings. You had there a
-clock controller and additional clock device using "sprd,syscon". Why
-the rpll is a subdevice and not a part of clock controller. The same as
-all other clocks coming from that clock-controller, right? What is so
-special about rpll that is is a separate device, not part of the clock
-controller? It's the same address space, isn't it?
+Please have a newline between properties and child node.
 
-Best regards,
-Krzysztof
+> +	pmic@25 {
+> +		compatible = "nxp,pca9450c";
+> +		reg = <0x25>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
+
+Ditto
+
+Shawn
+
+> +		regulators {
+> +			buck1: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <720000>;
+> +				regulator-max-microvolt = <1000000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck2: BUCK2  {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <720000>;
+> +				regulator-max-microvolt = <1025000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +				nxp,dvs-run-voltage = <950000>;
+> +				nxp,dvs-standby-voltage = <850000>;
+> +			};
+> +
+> +			buck4: BUCK4 {
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3600000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5: BUCK5 {
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <1650000>;
+> +				regulator-max-microvolt = <1950000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <1045000>;
+> +				regulator-max-microvolt = <1155000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1650000>;
+> +				regulator-max-microvolt = <1950000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <1710000>;
+> +				regulator-max-microvolt = <1890000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +/* EMMC */
+> +&usdhc3 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
+> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_pmic: pmicgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_CE0_B__GPIO3_IO01	  0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
+> +		>;
+> +	};
+> +};
+> -- 
+> 2.25.1
+> 
