@@ -2,104 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3323650D29D
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 17:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B453A50D2A5
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 17:09:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231424AbiDXPHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 11:07:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59674 "EHLO
+        id S231636AbiDXPMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 11:12:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233299AbiDXPGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 11:06:41 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976001632E3
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 08:03:40 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id z99so15704894ede.5
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 08:03:40 -0700 (PDT)
+        with ESMTP id S231605AbiDXPMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 11:12:14 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F21BE66F9E;
+        Sun, 24 Apr 2022 08:09:12 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id j8so21587553pll.11;
+        Sun, 24 Apr 2022 08:09:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jwlK9jjG0EHaUq0duy+gRAUhYpTS7gfP9G9S4f5hT6g=;
-        b=zcZ1bDliQAxh18O9LMACpJmrsgH/tqMAiuZcptCSSx/J/brrF00uoSkAGzVwtq9qIo
-         6xeA/kNmN5XzMmH47LODWF2RL5QIEs/vG4aqK4akFx0EF/3T5jKs7VQ7IFCsScOhb//N
-         KS2rJamCo/ge16a3Imh0+oMPSEOgykmEXZFCnxhF0nbpKULXRYjdQmA3M8WoUyv4c5x/
-         +iUWfT+ksF5+ZBLE/47en/8MSOwjecreiD2hgBQrGrQRmI9g1/+WsmcwQVyyF+gTICWz
-         6+o2HQk+bHTK3CHTd4TlkdrJlaTS+8OeiapR4nlIh4ejdvo5o9k5GE7builpyItYLr8M
-         5riw==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Zx+YaIWJey4qzWLJKHpX/8eOZNZqHoxAIr2LpwgG1oI=;
+        b=HhLSNzrntAkIJsbkeLJX1axnBynXa/65EKVtiiPG3OTpRFtGTY6JuKYM0zZ3vvfCBU
+         RDlSqOhkO//MsibbAJeiWs3yE7x87TYQ0etBqLO9gD+yuk/bm6Pr4ygJidzPk96veBZf
+         O7daXyq6RFvuIjPSsoqcXYrTqEJ2EPX+VvgCYl82uK2X+ZEiNBkGHxx5GWPfQyEpQA/3
+         fug9YV3FWKx2+I8p4sOGf4wtGu8bqTgUjFuxiKI/ptKAl347VEcig9SdJ+lS8EjGX9ap
+         R9ru4MrPUGLJIGMa1aZDahFU+dIHSf6x3k00yUd/ZfQUk/MUkyjO7ul59tt5itjSglHR
+         P1KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jwlK9jjG0EHaUq0duy+gRAUhYpTS7gfP9G9S4f5hT6g=;
-        b=D7L0KKBl/AxDODOFihKR0bVa337CxZhowjxjs8THTA5p+dnQMjsC/q5/bgQ/IfxILr
-         QvLmAOy9TJPoh5x3GpfxREW7FW2+qZU5BLAi8V7FJp2krEtvU11HfcnAzjy9arxCUf2Q
-         KmufrWmT9+TLrcJsUiDRNO2KxqVyEmv91rDGUJGMQsD/jgfkz5mpjfufTGqqNdFUZ4eM
-         6FUI2wlUaX5x2RpLnETTaM4W9BWIfIXuZlcthKiHxOYqud/MSzWF/zMM/LncCzMlIQ56
-         l1lQcv7OWflKhuzO9X24BdZHokLavCKz1Gd52TGWzOQesiNiDXLz9E3iouw690XRWzjQ
-         gPFA==
-X-Gm-Message-State: AOAM530hBRC2gqZf8dabn7i+os4PdgxcRX0t7AhDeLdHoklv448fR/qk
-        aD5lRpvNa9f770qmNR9fHgokiA==
-X-Google-Smtp-Source: ABdhPJxNGI1Ojx4plkpT/9SMClX6rw44WPBHwNsLIXfnk89K2IgDc1ZS5RkgQK9gbZs3zSJPwnNQiA==
-X-Received: by 2002:a05:6402:274b:b0:423:fe73:95a0 with SMTP id z11-20020a056402274b00b00423fe7395a0mr14587786edd.224.1650812619186;
-        Sun, 24 Apr 2022 08:03:39 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y23-20020a170906071700b006e8a19cefa6sm2655165ejb.106.2022.04.24.08.03.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Zx+YaIWJey4qzWLJKHpX/8eOZNZqHoxAIr2LpwgG1oI=;
+        b=Z+42264eGnyXaFoJO+1bijug32qAqWydAJfKKvsqrg+2ibfUy/Jlr+va0qlJLrzLYl
+         eArsR6BsWuBk0dIMaaYNiTBsV0rVD6IPWVlQreFq1k6Am3BhZF8qG/+70KP33vk/Z6Kw
+         hmIsC7Ar0hdZqrE4Tf+m0iQ/sB4R88x7qKTji0xvoOr4ejhGxDIYOvqrn+Ml2Lh2ncAc
+         O8/BvIPJUpBFwVz3NkH6L8+L0rOnLxpueNtyws/eZW5LJ3e9b8W3j2xOC+dGXry7nQMs
+         tTZmOEgTKt3ZK+JGnVObOdyk61erneeE9ZzEgTc0VPtb3bM2uIxFE2OFjiY7fUmrGf8a
+         QZqg==
+X-Gm-Message-State: AOAM533wNzQazEBheZQU9MD3JKf/UH8yhRd8dk5GqrZ2insD0IEPTwXE
+        STANntHpSju92dmcipFeeL23vucDepM=
+X-Google-Smtp-Source: ABdhPJzFGGBCFpxapSXUNHoP4G5tCoGTm2UyFllGwbA9dCszVILsFulse0PeoGl54W7MuZ5CAuRDCA==
+X-Received: by 2002:a17:902:a585:b0:14d:58ef:65 with SMTP id az5-20020a170902a58500b0014d58ef0065mr13834388plb.139.1650812952455;
+        Sun, 24 Apr 2022 08:09:12 -0700 (PDT)
+Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
+        by smtp.gmail.com with ESMTPSA id h13-20020a056a00230d00b004f427ffd485sm9382792pfh.143.2022.04.24.08.09.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 08:03:38 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] dt-bindings: timer: samsung,exynos4210-mct: define strict clock order
-Date:   Sun, 24 Apr 2022 17:03:33 +0200
-Message-Id: <20220424150333.75172-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
-References: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
+        Sun, 24 Apr 2022 08:09:11 -0700 (PDT)
+Date:   Sun, 24 Apr 2022 08:09:09 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next 5/5] net: lan966x: Add support for PTP_PF_EXTTS
+Message-ID: <20220424150909.GA29569@hoboy.vegasvil.org>
+References: <20220424145824.2931449-1-horatiu.vultur@microchip.com>
+ <20220424145824.2931449-6-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220424145824.2931449-6-horatiu.vultur@microchip.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DTS should always have fixed clock order, even if it comes with
-clock-names property.  Drop the pattern to make the order strict.
-Existing DTS already match this.
+On Sun, Apr 24, 2022 at 04:58:24PM +0200, Horatiu Vultur wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/timer/samsung,exynos4210-mct.yaml     | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> @@ -321,6 +321,63 @@ irqreturn_t lan966x_ptp_irq_handler(int irq, void *args)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +irqreturn_t lan966x_ptp_ext_irq_handler(int irq, void *args)
+> +{
+> +	struct lan966x *lan966x = args;
+> +	struct lan966x_phc *phc;
+> +	unsigned long flags;
+> +	u64 time = 0;
+> +	time64_t s;
+> +	int pin, i;
+> +	s64 ns;
+> +
+> +	if (!(lan_rd(lan966x, PTP_PIN_INTR)))
+> +		return IRQ_NONE;
+> +
+> +	/* Go through all domains and see which pin generated the interrupt */
+> +	for (i = 0; i < LAN966X_PHC_COUNT; ++i) {
+> +		struct ptp_clock_event ptp_event = {0};
+> +
+> +		phc = &lan966x->phc[i];
+> +		pin = ptp_find_pin(phc->clock, PTP_PF_EXTTS, 0);
 
-diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-index 0e28d9bdb8cb..9c81d00b12e0 100644
---- a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-+++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-@@ -39,8 +39,8 @@ properties:
- 
-   clock-names:
-     items:
--      - pattern: "^(fin_pll|mct)$"
--      - pattern: "^(fin_pll|mct)$"
-+      - const: fin_pll
-+      - const: mct
- 
-   reg:
-     maxItems: 1
--- 
-2.32.0
+Not safe to call ptp_find_pin() from ISR.  See comment in include/linux/ptp_clock_kernel.h
 
+Thanks,
+Richard
