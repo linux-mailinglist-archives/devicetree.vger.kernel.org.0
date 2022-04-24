@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F59650D1AA
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 14:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5403750D1B0
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 14:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbiDXMYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 08:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        id S230360AbiDXMbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 08:31:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiDXMYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 08:24:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DCB583027;
-        Sun, 24 Apr 2022 05:21:53 -0700 (PDT)
+        with ESMTP id S229491AbiDXMbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 08:31:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714FB1586D6;
+        Sun, 24 Apr 2022 05:28:18 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 27B5960BCC;
-        Sun, 24 Apr 2022 12:21:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AF15C385A7;
-        Sun, 24 Apr 2022 12:21:49 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0F093B80E0F;
+        Sun, 24 Apr 2022 12:28:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 821C2C385A9;
+        Sun, 24 Apr 2022 12:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650802912;
-        bh=7gxSeZgXvqRRvnnSUkmJGvEn/og1qUqiGqYeb8JB/88=;
+        s=k20201202; t=1650803295;
+        bh=U07pGZ+oM4pZZ0DXrmNNM3ozgqH/xrTg93BTN5x0lVo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mLwToT0lqx6T0v62ep7KgVH2GPfp6ZUeZZt7ndYD9BiQURVjfFxHgY6XAv77UHN5m
-         ArfUdSWWRuTS4imxVvOK6FuU9f5+Vu3Jk9S/ugIEZa8vHQ5kYXkjfEQfa324wZBmVR
-         LeNStAxO2Dc7JJY9ncwRaeHCliBV2H3pKHRArcK+XMRV3viYUypcPiUJz2jpZKOaL/
-         XQH4cvG4xGjVEWBcELNBWcTjyveXhrgehyd3ec6hUg8Fbb2Gjw9Czt/3Ca5ZtNCq7K
-         jY96ohkNhfb5m+loZZ9Y9PiYKHIZT9ak6n2vpjxW5exlzxbDrunPCqQQW9btCy5ODd
-         Z6uJNsA+QdQVg==
-Date:   Sun, 24 Apr 2022 20:21:44 +0800
+        b=WL/yr6H3gcdvelIo2aqZSTrd21bZ1Tt4bynqV/k5PdsNKgUdVtayclaXFZ+G70PGw
+         2Rrbid7nQS2GLOk44fSAcRlbrHQNKr9C+vqVzqJa9m4XA9/NBNvc6VlcLRITw/TmMT
+         pO4ddgV9mKs3pXtN9B0NLE80wRY4MI/5uMqHqQP1Vsod05Ou2kfibURYctzKUkk+q/
+         IU+oJNsQx0gONSqtsHU8tD9lashXOaNI0HXethlyR2Q3LoFeNBn9XEBAQfMqvBj0Tg
+         7ArEBvL/XWzGyhwstz/3UbxXciufr3sNpfhw3/S2A7o+NpsufyJ6wGnO0y4eD+YjTm
+         pLcVwVayVHgyg==
+Date:   Sun, 24 Apr 2022 20:28:08 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
@@ -47,16 +47,16 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
         Suniel Mahesh <sunil@amarulasolutions.com>,
         Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: imx8mp: Add Engicam i.Core MX8M Plus
- SoM
-Message-ID: <20220424122144.GS391514@dragon>
+Subject: Re: [PATCH v2 3/3] Engicam EDIMM2.2 Starter Kit is an EDIMM 2.2 Form
+ Factor CapacitiveEvaluation Board.
+Message-ID: <20220424122808.GT391514@dragon>
 References: <20220330191437.614065-2-abbaraju.manojsai@amarulasolutions.com>
  <20220418144907.327511-1-abbaraju.manojsai@amarulasolutions.com>
- <20220418144907.327511-2-abbaraju.manojsai@amarulasolutions.com>
+ <20220418144907.327511-3-abbaraju.manojsai@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220418144907.327511-2-abbaraju.manojsai@amarulasolutions.com>
+In-Reply-To: <20220418144907.327511-3-abbaraju.manojsai@amarulasolutions.com>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -66,45 +66,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 08:19:06PM +0530, Manoj Sai wrote:
-> i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus
-> from Engicam.
+On Mon, Apr 18, 2022 at 08:19:07PM +0530, Manoj Sai wrote:
+> Genaral features:
+> - LCD 7" C.Touch
+> - microSD slot
+> - Ethernet 1Gb
+> - Wifi/BT
+> - 2x LVDS Full HD interfaces
+> - 3x USB 2.0
+> - 1x USB 3.0
+> - HDMI Out
+> - Plus PCIe
+> - MIPI CSI
+> - 2x CAN
+> - Audio Out
 > 
-> General features:
-> - NXP i.MX8M Plus
-> - Up to 4GB LDDR4
-> - 8 eMMC
-> - Gigabit Ethernet
-> - USB 3.0, 2.0 Host/OTG
-> - PCIe 3.0 interface
-> - I2S
-> - LVDS
-> - rest of i.MX8M Plus features
+> i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus from Engicam.
 > 
-> i.Core MX8M Plus needs to mount on top of Engicam baseboards
-> for creating complete platform solutions.
+> i.Core MX8M Plus needs to mount on top of this Evaluation board for
+> creating complete i.Core MX8M Plus EDIMM2.2 Starter Kit.
 > 
 > Add support for it.
 > 
 > Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
 > Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
 > Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
+
+Please have a short patch subject and prefix it like 'arm64: dts: ...'
+
 > ---
-> Changes for v2 :
+> Changes for v2:
 >  -corrected the naming convetion of nodes as per existing
->   sources and bindings
+>   sources and bindings.
 >  -added the iomux to the end as per nxp convention.
 > ---
->  .../dts/freescale/imx8mp-icore-mx8mp.dtsi     | 184 ++++++++++++++++++
->  1 file changed, 184 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../freescale/imx8mp-icore-mx8mp-edimm2.2.dts | 176 ++++++++++++++++++
+>  2 files changed, 177 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 85c2c9ba5110..1c06393b8ba9 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -83,6 +83,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dahlia.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dev.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+
+Keep the list sort alphabetically.
+
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts
 > new file mode 100644
-> index 000000000000..8f6e8ef4b009
+> index 000000000000..d623ea9dea2b
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
-> @@ -0,0 +1,184 @@
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts
+> @@ -0,0 +1,176 @@
 > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
 > + * Copyright (c) 2018 NXP
@@ -112,188 +133,183 @@ On Mon, Apr 18, 2022 at 08:19:06PM +0530, Manoj Sai wrote:
 > + * Copyright (c) 2020 Amarula Solutons(India)
 > + */
 > +
+> +/dts-v1/;
+> +
+> +#include "imx8mp.dtsi"
+> +#include "imx8mp-icore-mx8mp.dtsi"
+> +#include <dt-bindings/usb/pd.h>
+> +
 > +/ {
-> +	compatible = "engicam,icore-mx8mp", "fsl,imx8mp";
-> +};
+> +	model = "Engicam i.Core MX8M Plus EDIMM2.2 Starter Kit";
+> +	compatible = "engicam,icore-mx8mp-edimm2.2", "engicam,icore-mx8mp",
+> +		     "fsl,imx8mp";
 > +
-> +&A53_0 {
-> +	cpu-supply = <&buck2>;
-> +};
+> +	chosen {
+> +		stdout-path = &uart2;
+> +	};
 > +
-> +&A53_1 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-
-Please have a newline between properties and child node.
-
-> +	pmic@25 {
-> +		compatible = "nxp,pca9450c";
-> +		reg = <0x25>;
+> +	reg_usb1_vbus: regulator-usb1 {
+> +		compatible = "regulator-fixed";
 > +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-0 = <&pinctrl_reg_usb1>;
+> +		regulator-name = "usb1_host_vbus";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
 
-Ditto
+Why always-on?  Shouldn't be controlled by client device (usb1)?
 
-Shawn
-
-> +		regulators {
-> +			buck1: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <720000>;
-> +				regulator-max-microvolt = <1000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
+> +		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
 > +
-> +			buck2: BUCK2  {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <720000>;
-> +				regulator-max-microvolt = <1025000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +				nxp,dvs-run-voltage = <950000>;
-> +				nxp,dvs-standby-voltage = <850000>;
-> +			};
+> +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+> +		regulator-name = "VSD_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +};
 > +
-> +			buck4: BUCK4 {
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3600000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
+> +/* Ethernet */
+> +&eqos {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_eqos>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy0>;
+> +	status = "okay";
 > +
-> +			buck5: BUCK5 {
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <1950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
-> +			buck6: BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <1045000>;
-> +				regulator-max-microvolt = <1155000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1650000>;
-> +				regulator-max-microvolt = <1950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <1710000>;
-> +				regulator-max-microvolt = <1890000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
+> +		ethphy0: ethernet-phy@7 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			micrel,led-mode = <0>;
+> +			reg = <7>;
 > +		};
 > +	};
 > +};
 > +
-> +/* EMMC */
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	bus-width = <8>;
-> +	non-removable;
+> +/* console */
+> +&uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart2>;
+> +	status = "okay";
+> +};
+> +
+> +&usb3_phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_0 {
+
+Keep labeling nodes sort alphabetically.
+
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_0 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usb3_phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_1 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +/* SDCARD */
+> +&usdhc2 {
+> +	pinctrl-names = "default" ;
+> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> +	vmmc-supply = <&reg_usdhc2_vmmc>;
+> +	bus-width = <4>;
 > +	status = "okay";
 > +};
 > +
 > +&iomuxc {
-> +	pinctrl_i2c1: i2c1grp {
+> +	pinctrl_eqos: eqosgrp {
 > +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
-> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
+> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
+> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
+> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
+> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
+> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
+> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
+> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
+> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
+> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
+> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
+> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
+> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
+> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
+> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
+> +			MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07				0x19
 > +		>;
 > +	};
 > +
-> +	pinctrl_pmic: pmicgrp {
+> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
 > +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_CE0_B__GPIO3_IO01	  0x41
+> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
 > +		>;
 > +	};
 > +
-> +	pinctrl_usdhc3: usdhc3grp {
+> +	pinctrl_uart2: uart2grp {
 > +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
+> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x49
+> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x49
 > +		>;
 > +	};
 > +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +	pinctrl_uart3: uart3grp {
 > +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
+> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX	0x140
+> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX	0x140
+> +			MX8MP_IOMUXC_SD1_STROBE__UART3_DCE_CTS	0x140
 > +		>;
 > +	};
 > +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +	pinctrl_reg_usb1: regusb1grp {
+
+Keep pinctrl nodes sort alphabetically.
+
+Shawn
+
 > +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
+> +			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14	0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
 > +		>;
 > +	};
 > +};
