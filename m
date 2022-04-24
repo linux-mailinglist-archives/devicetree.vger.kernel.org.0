@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0535450D1DD
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 15:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA0950D1E2
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 15:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232911AbiDXNOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 09:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48048 "EHLO
+        id S233662AbiDXNSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 09:18:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbiDXNOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 09:14:33 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD0C025EA4
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 06:11:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233855AbiDXNSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 09:18:43 -0400
+Received: from ixit.cz (ip-94-112-206-30.net.upcbroadband.cz [94.112.206.30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49198E75;
+        Sun, 24 Apr 2022 06:15:35 -0700 (PDT)
+Received: from localhost.localdomain (unknown [185.14.232.186])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 3060FCE0AE7
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 13:11:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65661C385A9;
-        Sun, 24 Apr 2022 13:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650805886;
-        bh=g30mwhY/mvWjOiIVFy7Ggl/SJlKq3qiIg2P4u35RyI0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RsEtouDt/K0SInHT9HHr7dkD3OlQqtpS8EgApWMzZc08J1hQtxoKnavzeN/YwAy+Y
-         fQ4KwjWfKfhI2tBwQjGAu5GkkVgVUVjdMDFVExmZEnrweXTWmaUvNo/Gm0e3Gic4zq
-         uMvvzoMFi46QMXRc0bNJI71H8y5nlQbNUQgScKyIlfmLqiWzdT7Z7ZiSfxrgZFa6Et
-         lLbgt7riRRJRi9dr+Qeq0nEnYulrXLNMwdqHO+chDMlP+Y571Y0/4oK/4Cb0bzLBna
-         TmrldnpaL7z4xEs1Pp1iUCS91k+pq4JYQrb6gKaIAjagLr6ljaE3LgqUEo1SGQvuUL
-         CrqOGBiXuJn2g==
-Date:   Sun, 24 Apr 2022 21:11:12 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-        Rob Herring <robh@kernel.org>,
-        Fabio Estevam <festevam@denx.de>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        by ixit.cz (Postfix) with ESMTPSA id 4E2392007F;
+        Sun, 24 Apr 2022 15:15:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1650806133;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=zPQBmF6RCri6FaOeXB4uCyYG7fLRcwk0ijBNbmDhGyI=;
+        b=FW803gmT7/vhnipM26391eda+F4hv/rsvEAPtF+UiR8BmsjvZHJlYqmVsalxuvuPiFgYkV
+        fjSOP5TvQkclAlXIUTS4W2ABpWlC/++Avi/M0sspYsOaspNOmvQ/K9jXChl3xZ6zZsjJwt
+        5LL84YgU2PpCdOihkNndpqFGmkpc3MA=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
- based Menlo board
-Message-ID: <20220424131112.GA988429@dragon>
-References: <20220418132457.15849-1-marex@denx.de>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alex Elder <elder@kernel.org>
+Cc:     David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: net: qcom,ipa: fix example for upcomming smp2p conversion
+Date:   Sun, 24 Apr 2022 15:15:19 +0200
+Message-Id: <20220424131522.14185-1-david@ixit.cz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220418132457.15849-1-marex@denx.de>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_DYNAMIC,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 03:24:56PM +0200, Marek Vasut wrote:
-> Add DT compatible string for board based on the Toradex Verdin iMX8M
-> Mini SoM, the MX8Menlo. The board is a compatible replacement for
-> i.MX53 M53Menlo and features USB, multiple UARTs, ethernet, LEDs,
-> SD and eMMC.
-> 
-> Acked-by: Peng Fan <peng.fan@nxp.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Fabio Estevam <festevam@denx.de>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Fabio Estevam <festevam@denx.de>
-> Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: devicetree@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
+Example of mpss was missing required properties.
 
-Applied both, thanks!
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/net/qcom,ipa.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+index 58ecc62adfaa..852658b4d05c 100644
+--- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
++++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+@@ -182,6 +182,11 @@ examples:
+ 
+         smp2p-mpss {
+                 compatible = "qcom,smp2p";
++                mboxes = <&apss_shared 14>;
++                qcom,smem = <435>, <428>;
++                qcom,local-pid = <0>;
++                qcom,remote-pid = <1>;
++
+                 ipa_smp2p_out: ipa-ap-to-modem {
+                         qcom,entry-name = "ipa";
+                         #qcom,smem-state-cells = <1>;
+-- 
+2.35.1
+
