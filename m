@@ -2,166 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F226E50D2C9
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 17:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A7650D2E8
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 17:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbiDXPg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 11:36:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41108 "EHLO
+        id S229697AbiDXPqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 11:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiDXPQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 11:16:30 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C179D15DD62;
-        Sun, 24 Apr 2022 08:13:28 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id t6so14119183wra.4;
-        Sun, 24 Apr 2022 08:13:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FWeCcnpzZqH7svo/ZdB5Q/Oo1t1JBiHSzF3RVitO9AI=;
-        b=Gm8BIwyhq8yHVI47LdqrobLhOB/zcyGWNZJ8N4Vbax/cOxbo4+LOmw6PSI8Z8Qz0F+
-         j/UMUXmtqfgEW7l1AIjRMa9VQZVuqrCcONP7DGpkyBrPDRIftp64s2AANLUEcw4Y4J5e
-         GD1DQcKgH8ITWJBcSbZI61LA9RjRD36OljQUG7aoAIN10f3bMVNdkOrbcfe02qV2a1FM
-         oNo0Ru0tZqAFHFr+94pOueK9vWG4FL9deBwSd6Sw84RWZZ136t55YkSwal+tkY37R8kb
-         8RwrsabYmEnVrebn+Ypcn9dZNhQt9KEl3+w8Tp1iQBBq/RSeYx1qo7rNzntbuiIvgRRe
-         OVAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FWeCcnpzZqH7svo/ZdB5Q/Oo1t1JBiHSzF3RVitO9AI=;
-        b=4kqYV4cGZd/+UNS9/HVdZHirdvNQxTinJgqd5FnvD3Pf/ypsvn79DK5uSsKZM8VuEF
-         Wl/PgjK+MdajO//JlCIuKck20i47Ano6CjWSxllevJ4od5vX0OWYDfSxlVhFh/n9wR4d
-         msfbXyy0hlsBPTSybRG7uUlKqFrmfSgJUmgr1dcjFA50GMTn5gHK84OGjJltSDuT4kfI
-         36VG5VWzI9RmastOk7TLTC/Jz/nY9ZsuFcXGfaMojNDJrla9r7o835KmFvjrbrv7SEaC
-         EnmstSJaE3Ngi6TGDI9BGCrj3wUdh8MTDdQO83jjYonqmi299T+LWiziKdm3Ok2xxlM0
-         xixw==
-X-Gm-Message-State: AOAM531Z7WOJOsdNvd8vsVt5sSAyJrbwmceoa6Qol9aHqWt1veMVmEyX
-        Mnr5ig+YlkjpzuzgbIbuOawiCE4RGBPiD4ApIBw=
-X-Google-Smtp-Source: ABdhPJzfdZ8+nLnH1Kpa93XiW8FsjIIqN1jTW9uKwPw5/4uzXbPDdbXn1Ob18xayy7S/oNKmqzsqZhQtaCGlfY97wcw=
-X-Received: by 2002:adf:f50e:0:b0:20a:c54a:42b0 with SMTP id
- q14-20020adff50e000000b0020ac54a42b0mr10805165wro.511.1650813207388; Sun, 24
- Apr 2022 08:13:27 -0700 (PDT)
+        with ESMTP id S229487AbiDXPqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 11:46:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD25E32EFA;
+        Sun, 24 Apr 2022 08:43:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2F90F61033;
+        Sun, 24 Apr 2022 15:43:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4756DC385A7;
+        Sun, 24 Apr 2022 15:43:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650815016;
+        bh=LVe8ehDaLFY4166uKvg5YQ81xwVvz9DM1SS04H4e83k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ExOrsgZxgxRPqqLFPgCYiCFWFvZUKYdbNRkBO+C9uv5Kti7n3DGDhWLA1rSdz9Fys
+         3/zJY+Q63H2GjbGd+4Ao/aNK5hu9mZ27/UG4gyX+b7kfo9SIMC4rAiSXAFdPPHgsbY
+         1DVoKEzddS1c+n8N7Z39Ytgks8I3HBX7ISxCs8StImiw0e0YlGs/4Uq2eh+0j0sCsC
+         V7/zm2M6AOSYxSf5WLAZLf9x8Al5zyAZkU1Ms1hvFTBMSFE4IdGuCE5oGLXp8Khz2/
+         IQviD73aihDcC5y+EgVQTiJoL7i+ny0UT900LN/hvBjgamas6frLcoU49huGndTqk0
+         bG1RcNsVPSk4g==
+Date:   Sun, 24 Apr 2022 16:51:43 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v1 3/3] iio: adc: ad4130: add AD4130 driver
+Message-ID: <20220424165143.068ba254@jic23-huawei>
+In-Reply-To: <59033522-9095-319e-2710-cfac79e2d7e4@gmail.com>
+References: <20220413094011.185269-1-cosmin.tanislav@analog.com>
+        <20220413094011.185269-3-cosmin.tanislav@analog.com>
+        <20220416172117.230b5d8c@jic23-huawei>
+        <59033522-9095-319e-2710-cfac79e2d7e4@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20220418125630.2342538-1-gengcixi@gmail.com> <20220418125630.2342538-2-gengcixi@gmail.com>
- <714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org> <CAF12kFv6uioc7ATtXLpGTTDBFT1wYWZUBoyjQqP1bSUnut0pKA@mail.gmail.com>
- <a5a59f3c-00a3-afc5-24aa-1ae3de2600ec@linaro.org> <CAF12kFu5KW+fw=0kP6LrEqOvKYR38mELfPjG64=n+gudRxsZUQ@mail.gmail.com>
- <baa73bda-91af-8a31-67f4-6d5615862c73@linaro.org> <CAF12kFsxqdYERwhjC3tq9bNqzWS3P6Sb7VPCwHmQ=StF28Q-+A@mail.gmail.com>
- <5b00db5b-b179-af0f-71e4-e940c6a41018@linaro.org>
-In-Reply-To: <5b00db5b-b179-af0f-71e4-e940c6a41018@linaro.org>
-From:   Cixi Geng <gengcixi@gmail.com>
-Date:   Sun, 24 Apr 2022 23:12:51 +0800
-Message-ID: <CAF12kFt=L7CV5RDBViPSNb9Y_Te4JJ-TZrx2N+w_P2px7_FemQ@mail.gmail.com>
-Subject: Re: [PATCH V3 1/3] dt-bindings: clk: sprd: Add bindings for ums512
- clock controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2022=E5=B9=B4=
-4=E6=9C=8824=E6=97=A5=E5=91=A8=E6=97=A5 22:30=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 24/04/2022 16:22, Cixi Geng wrote:
-> >>>>
-> >>>> Neither here nor later you did not answer the question - why do you =
-need
-> >>>> such complex construction, instead of adding syscon to the clock con=
-troller?
-> >>>>
-> >>>> Let me paste again my concerns:
-> >>>>
-> >>>>   You have nodes with reg but without unit address ("rpll"). These n=
-odes
-> >>>>   are modeled as children but they are not children - it's a workaro=
-und
-> >>>>   for exposing syscon, isn't it? The sc9863a looks like broken desig=
-n,
-> >>>>   so please do not duplicate it here.
-> >>>>
-> >>>> IOW, sc9863a uses similar pattern as here and the DTS is made wrong.
-> >>>> Because of this you need to create complex ways to get the regmap fo=
-r
-> >>>> the clock controller... Why not making it simple? Clock controller w=
-ith
-> >>>> syscon?
-> >>>
-> >>> I find the history discuss about the sp9863 clock[1] and last
-> >>> ums512-clk dt-bindings patch[2] which from chunyan.
-> >>> please refer to the reasons below.
-> >>>
-> >>> These clocks are at the same register range with global registers.
-> >>> the registers shared with more than one devices  which  basically
-> >>> are multimedia devices. You may noticed that these are all gate
-> >>> clocks which are in the global registers  ranges and are used to
-> >>> controll the enable status of some devices or some part of devices.
-> >>>
-> >>> [1] https://lore.kernel.org/all/CAAfSe-s0gcehu0ZDj=3DFTe5S7CzAHC5mahX=
-BH2fJm7mXS7Xys1Q@mail.gmail.com/#r
-> >>> [2] https://lore.kernel.org/all/163425295208.1688384.1102318762579311=
-4662@swboyd.mtv.corp.google.com/#r
+On Sun, 17 Apr 2022 13:26:38 +0300
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
+
+> On 4/16/22 19:21, Jonathan Cameron wrote:
+> > On Wed, 13 Apr 2022 12:40:11 +0300
+> > Cosmin Tanislav <demonsingur@gmail.com> wrote:
+> >   
+> >> AD4130-8 is an ultra-low power, high precision,
+> >> measurement solution for low bandwidth battery
+> >> operated applications.
 > >>
-> >> Which looks like discussion about different bindings. You had there a
-> >> clock controller and additional clock device using "sprd,syscon". Why
-> >> the rpll is a subdevice and not a part of clock controller. The same a=
-s
-> >> all other clocks coming from that clock-controller, right? What is so
-> >> special about rpll that is is a separate device, not part of the clock
-> >> controller? It's the same address space, isn't it?
-> > The hardware spec design these clocks are not belonged to the syscon,
-> > the phandle is only used to get virtual  map address for clocks which
-> > have the same phsical address base with one syscon.(I don't know the
-> > historical reason for this design) It also can wroten a clock sperated =
-from
-> > syscon by add the reg which same as syscon. but will lead to a duplicat=
-e
-> > mapping--one is from the clock,and one is from syscon. which make diffi=
-culty
-> >  in analyzing some panic problems.
->
-> I don't understand still. You said that they do not belong to same
-> address space, right? But the sprd,ums512-apahb-gate in this patch or
-> mentioned rpll
-> (https://elixir.bootlin.com/linux/v5.18-rc3/source/arch/arm64/boot/dts/sp=
-rd/sharkl3.dtsi#L106)
-> does not reference any other address space. It's entire address space is
-> the same as address space of glbregs.
-Maybe I didn't describe clearly, what I said is these clocks isn't the
-syscom sub-clock.
-from chunyan's explain:
- they  are at the same register range with global registers. in
-originally we put them
-directly onto the bus indeed when submitting the patches for SC9863A
-clocks last year,
-and it had a private property named 'sprd,syscon' which could provide
-regmap for these clocks.
-after follow Rob's suggetion we make them a child of the syscon. these
-are all gate clocks which
-are in the global registers ranges and are used to controll the enable
-status of some devices
-or some part of devices.
->
-> So if it does not belong to the same address space, where is this space
-> defined?
->
-> Best regards,
-> Krzysztof
+> >> The fully integrated AFE (Analog Front-End)
+> >> includes a multiplexer for up to 16 single-ended
+> >> or 8 differential inputs, PGA (Programmable Gain
+> >> Amplifier), 24-bit Sigma-Delta ADC, on-chip
+> >> reference and oscillator, selectable filter
+> >> options, smart sequencer, sensor biasing and
+> >> excitation options, diagnostics, and a FIFO
+> >> buffer.
+> >>
+> >> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>  
+> > 
+> > Hi Cosmin,
+> > 
+> > I've only glanced at Andy's comments, so may well overlap in places
+> > though I'll try and avoid too much repetition if I happen to remember
+> > Andy commented on something already.
+> > 
+> > Only a few minor things from me.  For such a complex device this
+> > is looking pretty good for a first version posted.
+> > 
+> > Jonathan
+> > 
+> >   
+> >> ---
+> >>   MAINTAINERS              |    8 +
+> >>   drivers/iio/adc/Kconfig  |   13 +
+> >>   drivers/iio/adc/Makefile |    1 +
+> >>   drivers/iio/adc/ad4130.c | 2072 ++++++++++++++++++++++++++++++++++++++
+> >>   4 files changed, 2094 insertions(+)
+> >>   create mode 100644 drivers/iio/adc/ad4130.c
+> >>  
+> > 
+> > ...
+> >   
+> >> diff --git a/drivers/iio/adc/ad4130.c b/drivers/iio/adc/ad4130.c
+> >> new file mode 100644
+> >> index 000000000000..89fb9b413ff0
+> >> --- /dev/null
+> >> +++ b/drivers/iio/adc/ad4130.c
+> >> @@ -0,0 +1,2072 @@
+> >> +// SPDX-License-Identifier: GPL-2.0+
+> >> +/*
+> >> + * AD4130 SPI ADC driver
+> >> + *
+> >> + * Copyright 2022 Analog Devices Inc.
+> >> + */
+> >> +#include <asm/div64.h>
+> >> +#include <asm/unaligned.h>
+> >> +#include <linux/bitfield.h>
+> >> +#include <linux/bitops.h>
+> >> +#include <linux/clk.h>
+> >> +#include <linux/delay.h>
+> >> +#include <linux/device.h>
+> >> +#include <linux/err.h>
+> >> +#include <linux/gpio/driver.h>
+> >> +#include <linux/interrupt.h>
+> >> +#include <linux/irq.h>
+> >> +#include <linux/kernel.h>
+> >> +#include <linux/iio/buffer.h>
+> >> +#include <linux/iio/kfifo_buf.h>
+> >> +#include <linux/module.h>
+> >> +#include <linux/of_irq.h>
+> >> +#include <linux/property.h>
+> >> +#include <linux/regmap.h>
+> >> +#include <linux/regulator/consumer.h>
+> >> +#include <linux/spi/spi.h>
+> >> +
+> >> +#include <linux/iio/iio.h>
+> >> +#include <linux/iio/sysfs.h>
+> >> +
+> >> +#define AD4130_8_NAME			"ad4130-8"
+> >> +
+> >> +#define AD4130_COMMS_READ_MASK		BIT(6)
+> >> +
+> >> +#define AD4130_REG_STATUS		0x00
+> >> +#define AD4130_STATUS_POR_FLAG_MASK	BIT(4)
+> >> +
+> >> +#define AD4130_REG_ADC_CONTROL		0x01
+> >> +#define AD4130_BIPOLAR_MASK		BIT(14)  
+> > where possibly it is good to name register fields such that it's
+> > obvious which register they are fields of.  Makes it easier
+> > to be sure we have the right one.
+> > (I fell into this trap myself this week and wasted an hour or
+> > so before I figured out that there were two different registers
+> > with fields with exactly the same name ;)
+> > 
+> > Lots of different conventions for this one and I don't mind
+> > which one you pick. e.g.  This works, but isn't perfect by
+> > any means.
+> > 
+> > #define AD4130_ADC_CTRL_REG
+> > #define  AD4130_ADC_CTRL_BIPOLAR_MASK  
+> >  > Note I quite like the subtle indenting to make it easier  
+> > to read these definitions as well.
+> >   
+> 
+> Well. It's not late to change it now, if you insist.
+> 
+> If you look at my past drivers, I kept the register prefix
+> for masks, but it seemed kind of redundant and I dropped it
+> for this one.
+
+To a certain extent this is about consistency.  Even if it's
+not necessary for clarity in this particular driver I'd like
+to keep that clarity of definition in all drivers if possible
+to provide good examples for cases where maybe it's more
+important.
+
+> 
+> By subtle indenting, you mean, making the masks look like
+> sub-definitions of the register?
+
+Sort of - I mean the extra space as in the example above between
+define and the name.
+
+> 
+> >> +#define AD4130_INT_REF_VAL_MASK		BIT(13)
+> >> +#define AD4130_INT_REF_2_5V		2500000
+> >> +#define AD4130_INT_REF_1_25V		1250000
+> >> +#define AD4130_CSB_EN_MASK		BIT(9)
+> >> +#define AD4130_INT_REF_EN_MASK		BIT(8)
+> >> +#define AD4130_MODE_MASK		GENMASK(5, 2)
+> >> +#define AD4130_MCLK_SEL_MASK		GENMASK(1, 0)  
+
+
+> > ...
+> >   
+> >> +struct ad4130_state {
+> >> +	const struct ad4130_chip_info	*chip_info;
+> >> +	struct spi_device		*spi;
+> >> +	struct regmap			*regmap;
+> >> +	struct clk			*mclk;
+> >> +	struct regulator_bulk_data	regulators[4];
+> >> +	u32				irq_trigger;
+> >> +	u32				inv_irq_trigger;
+> >> +
+> >> +	/*
+> >> +	 * Synchronize access to members of driver state, and ensure atomicity
+> >> +	 * of consecutive regmap operations.
+> >> +	 */
+> >> +	struct mutex			lock;
+> >> +	struct completion		completion;
+> >> +
+> >> +	struct iio_chan_spec		chans[AD4130_MAX_CHANNELS];
+> >> +	struct ad4130_chan_info		chans_info[AD4130_MAX_CHANNELS];
+> >> +	struct ad4130_setup_info	setups_info[AD4130_MAX_SETUPS];
+> >> +	enum ad4130_pin_function	pins_fn[AD4130_MAX_ANALOG_PINS];
+> >> +	u32				vbias_pins[AD4130_MAX_ANALOG_PINS];
+> >> +	u32				num_vbias_pins;
+> >> +	int				scale_tbls[AD4130_REF_SEL_MAX]
+> >> +						  [AD4130_PGA_NUM][2];
+> >> +	struct gpio_chip		gc;
+> >> +	unsigned int			gpio_offsets[AD4130_MAX_GPIOS];
+> >> +	unsigned int			num_gpios;
+> >> +
+> >> +	u32			int_pin_sel;
+> >> +	bool			int_ref_en;
+> >> +	u32			int_ref_uv;
+> >> +	u32			mclk_sel;
+> >> +	bool			bipolar;
+> >> +
+> >> +	unsigned int		num_enabled_channels;
+> >> +	unsigned int		effective_watermark;
+> >> +	unsigned int		watermark;
+> >> +
+> >> +	struct spi_message	fifo_msg;
+> >> +	struct spi_transfer	fifo_xfer[2];
+> >> +
+> >> +	/*
+> >> +	 * DMA (thus cache coherency maintenance) requires the
+> >> +	 * transfer buffers to live in their own cache lines.
+> >> +	 */
+> >> +	u8			reset_buf[AD4130_RESET_BUF_SIZE] ____cacheline_aligned;
+> >> +	u8			reg_write_tx_buf[4];
+> >> +	u8			reg_read_tx_buf[1];
+> >> +	u8			reg_read_rx_buf[3];
+> >> +	u8			fifo_tx_buf[2];
+> >> +	u8			fifo_rx_buf[AD4130_FIFO_SIZE *
+> >> +					    AD4130_FIFO_MAX_SAMPLE_SIZE];  
+> > 
+> > This is quite a large buffer.  Perhaps it would be better to drain the fifo
+> > in multiple steps if it is very full?  I guess that could be added
+> > later if anyone ever ran into a problem with the buffer size.
+> >   
+> 
+> We're quite time-constrained when receiving the FIFO watermark
+> interrupt, I'm not sure two separate transfers would be any better.
+
+Potential issue is that you get an SPI master that can't do such a bit
+transfer.  There are a few out there which are quite limited because
+they aren't DMA based. As stated, perhaps this is one to fix only
+when someone runs into the problem.
+
+> 
+> >   
+> >> +};  
+> >   
+> >> +
+> >> +static const struct iio_info ad4130_info = {
+> >> +	.read_raw = ad4130_read_raw,
+> >> +	.read_avail = ad4130_read_avail,
+> >> +	.write_raw_get_fmt = ad4130_write_raw_get_fmt,
+> >> +	.write_raw = ad4130_write_raw,
+> >> +	.update_scan_mode = ad4130_update_scan_mode,
+> >> +	.hwfifo_set_watermark = ad4130_set_fifo_watermark,
+> >> +	.debugfs_reg_access = ad4130_reg_access,
+> >> +};
+> >> +
+> >> +static int ad4130_buffer_postenable(struct iio_dev *indio_dev)
+> >> +{
+> >> +	struct ad4130_state *st = iio_priv(indio_dev);
+> >> +	int ret;
+> >> +
+> >> +	mutex_lock(&st->lock);
+> >> +
+> >> +	ret = ad4130_set_watermark_interrupt_en(st, true);
+> >> +	if (ret)
+> >> +		goto out;
+> >> +
+> >> +	/* When the chip enters FIFO mode, IRQ polarity is inversed. */  
+> > 
+> > That is downright odd :)  Perhaps a datasheet section reference is
+> > appropriate here.  
+> 
+> Page 65, FIFO Watermark Interrupt section.
+> 
+> +
+> 
+> Page 71, Bit Descriptions for STATUS Register, RDYB.
+> 
+> I'll add them as a comment.
+
+Great.
+
+...
+
+...
+
+> >> +	ret = ad4130_parse_fw_children(indio_dev);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	for (i = 0; i < AD4130_MAX_GPIOS; i++) {
+> >> +		if (st->pins_fn[i + AD4130_AIN2_P1] != AD4130_PIN_FN_NONE)
+> >> +			continue;  
+> > 
+> > I'm a bit confused. pins_fn seems to be for the Analog pins, yet here is being
+> > used for the GPIOs?  Maybe some explanatory comments
+> >   
+> 
+> AIN2 = P1, AIN3 = P2, AIN4 = P3, AIN5 = P4. I'll add some comments.
+
+Ah. I'd missed that relationship.
+
+> 
+> >> +
+> >> +		st->gpio_offsets[st->num_gpios++] = i;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}  
+...
+
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	ret = clk_prepare_enable(st->mclk);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	ret = devm_add_action_or_reset(dev, ad4130_clk_disable_unprepare,
+> >> +				       st->mclk);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	if (st->int_ref_uv == AD4130_INT_REF_2_5V)
+> >> +		int_ref_val = AD4130_INT_REF_VAL_2_5V;
+> >> +	else
+> >> +		int_ref_val = AD4130_INT_REF_VAL_1_25V;
+> >> +
+> >> +	/* Switch to SPI 4-wire mode. */
+> >> +	val = AD4130_CSB_EN_MASK;
+> >> +	val |= st->bipolar ? AD4130_BIPOLAR_MASK : 0;  
+> > 
+> > Prefer field PREP even for these single bit cases >  
+> 
+> Do you want this for the places where I used `status ? mask : 0`
+> inside regmap_update_bits() calls too?
+
+That would be great.   Though probably not for the gpio one as
+that is used in a more complex fashion so would be more confusing
+done with two FIELD_PREP() calls.
+
+> 
+> >> +	val |= st->int_ref_en ? AD4130_INT_REF_EN_MASK : 0;
+
+Sorry I didn't get back to this earlier (I see you sent a v2 and v3).
+Fun week of spec review against a short timescale so I've not had any
+time to get much IIO mailing list reading done!
+
+Thanks,
+
+Jonathan
+
+
