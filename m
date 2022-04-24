@@ -2,130 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA0D50CEF4
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 05:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A88250CF08
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 05:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238067AbiDXDaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Apr 2022 23:30:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58488 "EHLO
+        id S238082AbiDXD4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Apr 2022 23:56:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237363AbiDXD3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 23:29:39 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 730ED105207;
-        Sat, 23 Apr 2022 20:26:36 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id y14so10983003pfe.10;
-        Sat, 23 Apr 2022 20:26:36 -0700 (PDT)
+        with ESMTP id S236524AbiDXD4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Apr 2022 23:56:22 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8E918351;
+        Sat, 23 Apr 2022 20:53:23 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id a5so9302724qvx.1;
+        Sat, 23 Apr 2022 20:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dTSKZRhjg25O5C1jlBW1LRl5IUhwoxhhyCVs3jC3lXs=;
-        b=NQEwgIsyvQM+8c91zHJp/VLeFL09cmvrN/vlUyahcrDgfjqF0SOWuHfyKAebhXKaGB
-         8CDfEF/W//rKPtjwmgE/i1SsC8KrAP0TsaHOjEGv/YFAhMkXwQkEcxo7FAaj51MDJciG
-         C+BZE/k+XF1IPrsGNVcTf0u0VgX9jmXoYj7RMJ8gg7I1HtnT+C3y5pO/5gQbaWYWxr4u
-         Mv+yHTv0SJwqegA4QhJW9D6NITCZiLRCumAsqrYAn7mFQnBOOXBd5pA69m4NV7ItlNPt
-         AKTeCQ0KuwivsKU7Sj06o2fF5omHx5+c/CwcDOh/bqTgnjst0d1r6HB5Mz6G/roFBqXn
-         0kiw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=6jWJt9XTXVVwmHW6n7cY0VehyahZoXhvY7honrosNaM=;
+        b=UHOC4oaV0BK0SaJf96f+kbk6a9WOcVogxsr62v7w+RBq1tdVir5KiH5uikGln619q3
+         dkaRuLKXu+QOZOXiEejJziFxEyogLLE3eQezNiv80pEIbt8qn9ESnd1m+36MHWqEsOlg
+         BI5kR8SmQtMLYmvizST8jFFom5YQ2wnu/ctkNMO9pDGgs4ysrYc7HehF1WUly3KSf6bQ
+         3RJZZKOIwUEpNBRwmgTzB48flpCNmiKJGChCtiwLeOmRM4hjzFXWl8TydWWyZhbESz+H
+         f6R2Hua/4A8qF5iAt4D+D79e4uubIVgLyam5gGoUSIlqAyA4Sty1FHWiAyo9g/quGH2u
+         6Tmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dTSKZRhjg25O5C1jlBW1LRl5IUhwoxhhyCVs3jC3lXs=;
-        b=Cj9m7RCmdtALCILFdj5OxyW/l9U90FUJXn4KgJT6jL36RAyFNt5djZXftjqZGMH5WF
-         N1MkK4JNGJaW2jdPYu2qGFPtTvQqjLOYmnhAZbO94opEY9TMFHhphvoWrlzryi1zCXTe
-         efsz2yIRc81JO32HmJwcKSUM3dCu17fxPT0CSn7b/GCp/nA1p5yZECK/+ru1GNzyTs4n
-         CH085KzTIzk1U8PYLF8jWSaXD7c/cQFhBpt8E82JVsCpZBc1v161Q4QhRY2v2dkk2AsD
-         4aAz3kWl97i18kyg25HJuVvrcCqj0O6sfNWOqRG0RFpms8cvqDGqCk1s8gFnMW4t6L2p
-         ektQ==
-X-Gm-Message-State: AOAM532bSx4gj3ego3ww0zNTEFE3663iYr8QTgU3coyGZSPZ7frP0AFH
-        c9E4QAHh8GWHSDPH1CIwKAwzkTfbByBxUzZC
-X-Google-Smtp-Source: ABdhPJwnCkDmNFP2ub0LUJ5XFBOw3WVX1bkBhe4XHDPGH7PdIKzQy9kZ9No2Rbpa1oUDlTX3Rbfi3g==
-X-Received: by 2002:a63:358c:0:b0:39c:c97a:ee80 with SMTP id c134-20020a63358c000000b0039cc97aee80mr9999124pga.7.1650770795849;
-        Sat, 23 Apr 2022 20:26:35 -0700 (PDT)
-Received: from guoguo-omen.lan ([222.201.153.219])
-        by smtp.gmail.com with ESMTPSA id r76-20020a632b4f000000b003820643e1c2sm5790724pgr.59.2022.04.23.20.26.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Apr 2022 20:26:35 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list),
-        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
-Subject: [PATCH v6 5/5] arm64: dts: mediatek: add mtk-snfi for mt7622
-Date:   Sun, 24 Apr 2022 11:25:27 +0800
-Message-Id: <20220424032527.673605-6-gch981213@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220424032527.673605-1-gch981213@gmail.com>
-References: <20220424032527.673605-1-gch981213@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=6jWJt9XTXVVwmHW6n7cY0VehyahZoXhvY7honrosNaM=;
+        b=7CXkcVus//QbnKRTJr5JvPqUeK63avo3wCW0tzgBbXi/VD/o+WqSn9iMXonT8YyfxQ
+         dO30KmzLkSzyMqLgLqv4tYMWi06HlYuryW49dBF98pv70d5rDBWM6K8Qq879LQeLYN8E
+         AMJshC/vMpADMMChsfGpt3aITJi7UgRulLmIHZATURHjxNoD3/cuupKepVLjGchgJNdS
+         vPwG4WqVvQC87ba5vdrxKTjTC5M6cmaoKOdpjTK14gDS6zpNcDOmS0jjAO0/y7CcZaG8
+         a/PPNHvnRMN/k78suaYLqC4n3CYJM3NcMso7TtGzOLsgbAfnJy5Io2BAONtVYVh/hS1C
+         zM3Q==
+X-Gm-Message-State: AOAM530lTNQtRy66+xxj6xz1CXVvUXpNiscQw3W5sWRHHjh3ec+EsvcH
+        CjEg2siQCAOjCm6KY/jXxnU=
+X-Google-Smtp-Source: ABdhPJz5JdrJrl5qLtHz+/NCpPnsgRZA3P+rkWCFTYCInOshw9B3LibU+/G07m3g5ZT2dcBgwo6hIw==
+X-Received: by 2002:a05:6214:2344:b0:441:8201:7246 with SMTP id hu4-20020a056214234400b0044182017246mr9094442qvb.120.1650772402262;
+        Sat, 23 Apr 2022 20:53:22 -0700 (PDT)
+Received: from [10.4.10.60] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id r7-20020a05622a034700b002f337000725sm3855022qtw.42.2022.04.23.20.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Apr 2022 20:53:21 -0700 (PDT)
+Message-ID: <506edc5d-8f66-5414-361a-0b517d8c4f38@gmail.com>
+Date:   Sat, 23 Apr 2022 23:53:19 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v1 08/12] clk: imx: Add initial support for i.MXRT1170
+ clock driver
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, linux-imx@nxp.com
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        aisheng.dong@nxp.com, stefan@agner.ch, linus.walleij@linaro.org,
+        daniel.lezcano@linaro.org, tglx@linutronix.de, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org, linux@armlinux.org.uk,
+        abel.vesa@nxp.com, dev@lynxeye.de, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, leoyang.li@nxp.com,
+        sebastian.reichel@collabora.com, cniedermaier@dh-electronics.com,
+        clin@suse.com, giulio.benetti@benettiengineering.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+References: <20220326144313.673549-1-Mr.Bossman075@gmail.com>
+ <20220326144313.673549-9-Mr.Bossman075@gmail.com>
+ <20220423030331.0E85CC385A0@smtp.kernel.org>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <20220423030331.0E85CC385A0@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a device-tree node for the MTK SPI-NAND Flash Interface
-for MT7622 device tree.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
-Changes since v1:
-  1. use the newly introduced nand-ecc-engine instead
-  2. reword commit message
-Change in v2-v6: none
 
- arch/arm64/boot/dts/mediatek/mt7622.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index f232f8baf4e8..8c2563a3919a 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -545,6 +545,18 @@ nandc: nfi@1100d000 {
- 		status = "disabled";
- 	};
- 
-+	snfi: spi@1100d000 {
-+		compatible = "mediatek,mt7622-snand";
-+		reg = <0 0x1100d000 0 0x1000>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		clocks = <&pericfg CLK_PERI_NFI_PD>, <&pericfg CLK_PERI_SNFI_PD>;
-+		clock-names = "nfi_clk", "pad_clk";
-+		nand-ecc-engine = <&bch>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	bch: ecc@1100e000 {
- 		compatible = "mediatek,mt7622-ecc";
- 		reg = <0 0x1100e000 0 0x1000>;
--- 
-2.35.1
-
+On 4/22/22 23:03, Stephen Boyd wrote:
+> Quoting Jesse Taube (2022-03-26 07:43:09)
+>> diff --git a/drivers/clk/imx/clk-imxrt1170.c b/drivers/clk/imx/clk-imxrt1170.c
+>> new file mode 100644
+>> index 000000000000..041aea3d4b02
+>> --- /dev/null
+>> +++ b/drivers/clk/imx/clk-imxrt1170.c
+>> @@ -0,0 +1,391 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>> +/*
+>> + * Copyright (C) 2022
+>> + * Author(s):
+>> + * Jesse Taube <Mr.Bossman075@gmail.com>
+>> + */
+>> +#include <linux/clk.h>
+>> +#include <linux/of_address.h>
+> 
+> Is this include used?
+> 
+Yes `of_iomap`
+>> +#include <linux/of_irq.h>
+> 
+> Is this include used?
+> 
+No, but includes
+#include <linux/slab.h>
+for `kzalloc`
+>> +#include <linux/platform_device.h>
+> 
+> Need to include clk-provider.h
+> 
+>> +#include <dt-bindings/clock/imxrt1170-clock.h>
+>> +
+>> +#include "clk.h"
+>> +
+>> +#define CLOCK_MUX_DEFAULT "rcosc48M_div2", "osc", "rcosc400M", "rcosc16M"
+>> +
+>> +#define LPCG_GATE(gate) (0x6000 + (gate * 0x20))
+>> +
+>> +#define DEF_CLOCK(flags, macro, name) \
+>> +do { \
+>> +       hws[macro##_SEL] = imx_clk_hw_mux(#name"_sel", ccm_base + (name * 0x80), \
+>> +               8, 3, root_clocks[name], 8); \
+>> +       hws[macro##_GATE] = imx_clk_hw_gate_dis_flags(#name"_gate", #name"_sel", \
+>> +               ccm_base + (name * 0x80), 24, flags); \
+>> +       hws[macro] = imx_clk_hw_divider(#name, #name"_gate", ccm_base + (name * 0x80), 0, 8); \
+>> +} while (0)
+>> +
+>> +enum root_clock_names {
+>> +       m7,             /* root clock m7. */
+> 
+> Is the comment adding any value? It has the enum name after "root clock"
+> and the enum is "root_clock_names" so it looks very obvious.
+> 
+>> +       m4,             /* root clock m4. */
+>> +       bus,            /* root clock bus. */
+>> +       bus_lpsr,       /* root clock bus lpsr. */
+> [...]
+>> +       end,            /* root clock end. */
+>> +};
+>> +
+>> +static const char * const root_clocks[79][8] = {
+>> +       {CLOCK_MUX_DEFAULT, "pll_arm", "pll1_sys", "pll3_sys", "pll_video"},
+> 
+> Space after { and before }
+> 
+>> +       {CLOCK_MUX_DEFAULT, "pll3_pfd3", "pll3_sys", "pll2_sys", "pll1_div5"},
+>> +       {CLOCK_MUX_DEFAULT, "pll3_sys", "pll1_div5", "pll2_sys", "pll2_pfd3"},
+> [...]
+>> +       {CLOCK_MUX_DEFAULT, "pll2_pfd3", "rcosc48M", "pll3_pfd1", "pll_audio"}
+>> +};
+>> +
+>> +static const char * const pll_arm_mux[] = {"pll_arm_pre", "osc"};
+>> +static const char * const pll3_mux[] = {"pll3_pre", "osc"};
+>> +static const char * const pll2_mux[] = {"pll2_pre", "osc"};
+>> +
+>> +static const struct clk_div_table post_div_table[] = {
+>> +       { .val = 3, .div = 1, },
+>> +       { .val = 2, .div = 8, },
+>> +       { .val = 1, .div = 4, },
+>> +       { .val = 0, .div = 2, },
+>> +       { }
+>> +};
+>> +
+>> +static struct clk_hw **hws;
+>> +static struct clk_hw_onecell_data *clk_hw_data;
+> 
+> Do either of these need to be static global variables? They could be
+> local function pointers allocated on the heap (like they already are).
+> 
+>> +
+>> +static int imxrt1170_clocks_probe(struct platform_device *pdev)
+>> +{
+> [...]
+>> +       hws[IMXRT1170_CLK_PLL2_PFD3] = imx_clk_hw_pfd("pll2_pfd3", "pll2_sys", pll_base + 0x270, 3);
+>> +
+>> +       /* CCM clocks */
+>> +       ccm_base = devm_platform_ioremap_resource(pdev, 0);
+>> +       if (WARN_ON(IS_ERR(ccm_base)))
+>> +               return PTR_ERR(ccm_base);
+>> +
+>> +       DEF_CLOCK(CLK_IS_CRITICAL, IMXRT1170_CLK_M7, m7);
+> 
+> Don't have macros do things to variables that are in global scope. It
+> makes things very non-obvious. Instead, pass hw to the macro, or better
+> yet make a static inline function and let the compiler decide to inline
+> it or not.
+> 
+>> +       DEF_CLOCK(CLK_IS_CRITICAL, IMXRT1170_CLK_M4, m4);
+> [...]
+>> +       DEF_CLOCK(0, IMXRT1170_CLK_CSI2_UI, csi2_ui);
+>> +       DEF_CLOCK(0, IMXRT1170_CLK_CSI, csi);
+>> +       DEF_CLOCK(0, IMXRT1170_CLK_CKO1, cko1);
+>> +       DEF_CLOCK(0, IMXRT1170_CLK_CKO2, cko2);
+>> +
+>> +       hws[IMXRT1170_CLK_USB] = imx_clk_hw_gate("usb", "bus", ccm_base + LPCG_GATE(115), 0);
+>> +
+>> +       clk_set_rate(hws[IMXRT1170_CLK_PLL_ARM]->clk, 90000000);
+> 
+> Use assigned-clock-rates?
+> 
+>> +
+>> +       imx_check_clk_hws(hws, IMXRT1170_CLK_END);
