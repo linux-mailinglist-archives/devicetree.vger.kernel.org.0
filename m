@@ -2,94 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7EB50D24F
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 16:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B03750D253
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 16:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239366AbiDXOiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 10:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40702 "EHLO
+        id S235675AbiDXOm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 10:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239382AbiDXOiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 10:38:08 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F868F17
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 07:35:06 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id dk23so1696024ejb.8
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 07:35:06 -0700 (PDT)
+        with ESMTP id S239172AbiDXOml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 10:42:41 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A46C38199
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 07:39:40 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id k23so25077470ejd.3
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 07:39:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p1y92a0ys+8BlMzltV+6PRIoIaIyS44PSnqPymzsofQ=;
-        b=AxiFwcakAZ85Cx/Vk+IkgBSKmvjbjzXleCHVk+Xgs+rds5tu0BvlrNLokAKjHndSpj
-         4BA43JSPLn4/ZMIRDgXoOPvtoH87VTZGDI4QpP06U+yQHfdT20zc5A6oYSd9nuc13s2B
-         chq7cZLR5t7jUQ9XCuld83N9MfAi6OIsaKPq/+5PW5zQJoNxsYXHrtLgG4U0r6JLRVf2
-         krwg6PB88AzCd8UxIQEvEcrF/XIODEHHJHamnicXzzPglOyXbKD2Gi5RifUoIZHqovVv
-         vXke64PJqQHGwsW/JGnwVHi2sCmivqZYTqi9+Y4IbmcdkLxDPMKsUr7xFS9vsrdzGf32
-         iA2Q==
+        bh=sGIGnRcORiyz6ALQ2u4/pZkSv1Oidm+ZI/regT6wqA0=;
+        b=MQS6HpnygwWQ+v5+kClKwPDQHTPm64pwU9XSQQ3KS6db3seA1YQXaxQ4o/uT2C75zo
+         uMDjJpNo0TX0chwCXWdtiboO14vckMdPSvzWKVfUQOQk+uv40sZ3So6PIHJYHPiiBUoB
+         R4EY2KHxl4hlJKBqCDGasw4XNF0tioJO2pM77PRwFHZRPihzDmByf9hSVgqM8YLM4WT4
+         XY4QkGeVblat4vTJ3voaSh/hhF7G2hVvKHwt0z8fi2ohQy6lZNo9l6NKVC0ZGn5m/ERp
+         IWqeGh+ncW6v8sYCwAEMT/Ro4ZIMJ0QrDqfSDll5Qr9VdiegtHzFw9cqbZwjf2DMoDih
+         rLGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=p1y92a0ys+8BlMzltV+6PRIoIaIyS44PSnqPymzsofQ=;
-        b=jsHWKbHKeqx0KfwUkFD/8XcR3+wOcVRsSSKIon9QcN9AyoH4UZUSUrQLU5FHEXJ67Q
-         v3Ap0fjfzB/6ce5wlRbEsjf4GsqBIiq6ybyJ/DXmLDk4rLTO1R1cJNq8hywm4Qz1U4wG
-         5kbWiLA1s3G2tQgG1tSzTHGjPgCBoX/9h4K6BNXW7csETh1dF9jllIBVtVJq3zms2hAe
-         G3+FRBVCVBIwmxpcgJaLAkcRbgsHkT6T+6hXOZ+16w6u9RsFfSs7ZCrtaS4wL7UjaCtF
-         zUOlHnO02mO9M9rivc0qb/jmIppZQ5i27mnT3gvXSLtpNaQQMvPag1gaLjAnU+gL2xMx
-         AZSg==
-X-Gm-Message-State: AOAM530dkvDZ0Ghp8e8AYm1qgm6Z4iWe2jZAlzMfvN/fKzihHL+M9lbG
-        MvjG9kObaEE19QDxQTzHOeR1PA==
-X-Google-Smtp-Source: ABdhPJwUNA/D4wNods/8Z3rAYGlxdB6I9sADPoEXHCjRgzVW2s7MzjjbBg48uChf5qMNZ/g7HSouhQ==
-X-Received: by 2002:a17:906:6a11:b0:6e8:d248:f8ea with SMTP id qw17-20020a1709066a1100b006e8d248f8eamr12181727ejc.500.1650810905208;
-        Sun, 24 Apr 2022 07:35:05 -0700 (PDT)
+        bh=sGIGnRcORiyz6ALQ2u4/pZkSv1Oidm+ZI/regT6wqA0=;
+        b=yoyQplkFIO5Sdiy9BGjuJQf8YRhvHhmrfQQRo2gtSdNxoay91s/u7YxZuZGgAkCO8U
+         o4lUoJp+FHtMvywWRQswTaI5ktj4xrvjICxDYnfimJrlZQipdPtWhUodKHm8lodkLwY2
+         XSfp4KEz1hhl+MyMq/7rITT0TURyqcw7feSgwLV+XfytrmDqwUl4PUacaV3Su4AMci7U
+         mjUDRKbdGR6wJ6+fjdDDzvLTruFv7t+DSe97S0NFfoON+lX1x3r0tWm2tdcTalqL8L3w
+         BXE+tuMMvM9I/edCs6+j8pbgCoDeshiZSvDV1tBWsbbMOioFu1zD07P/bxc31vskYfWa
+         1IkQ==
+X-Gm-Message-State: AOAM533ACl5rvMHFTXTNAQyq1v+8okoxWzgHRjOt4twDXW91fkbFKO9T
+        mUVwoLJG/lpwt//bpIA4goi3xBnp5ITBrg==
+X-Google-Smtp-Source: ABdhPJz72ENByBRkGeBbYwsJp+HUH6S8fiVg+HyFSfdr1+pHiyApAc3ejCoh3y/jBuCAJdnW+69Iqw==
+X-Received: by 2002:a17:906:974c:b0:6ef:f428:d527 with SMTP id o12-20020a170906974c00b006eff428d527mr11974862ejy.166.1650811178771;
+        Sun, 24 Apr 2022 07:39:38 -0700 (PDT)
 Received: from [192.168.0.235] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cn27-20020a0564020cbb00b00418b0c7fbbfsm3328532edb.32.2022.04.24.07.35.04
+        by smtp.gmail.com with ESMTPSA id a19-20020a50c313000000b0041fb0f2e155sm3419768edb.20.2022.04.24.07.39.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Apr 2022 07:35:04 -0700 (PDT)
-Message-ID: <a1a03326-0c7f-5478-2493-326cae0fa7d9@linaro.org>
-Date:   Sun, 24 Apr 2022 16:35:03 +0200
+        Sun, 24 Apr 2022 07:39:38 -0700 (PDT)
+Message-ID: <ddf78c65-7cac-04cf-9f8d-e19335815473@linaro.org>
+Date:   Sun, 24 Apr 2022 16:39:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/G2UL SoC
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Fix external clk node
+ names
 Content-Language: en-US
 To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-References: <20220424071323.151757-1-biju.das.jz@bp.renesas.com>
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220423140658.145000-1-biju.das.jz@bp.renesas.com>
+ <f9c6e5e2-c819-d309-0c11-b87deb772858@linaro.org>
+ <OS0PR01MB5922CFACC8FEC6D67E6BFC4986F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB59220968EBDF76A16F7E63A386F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <7bd2ae6d-c55f-4ab7-0c98-72da0d5d4050@linaro.org>
+ <OS0PR01MB5922619EE8816DA1676BAB4D86F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220424071323.151757-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <OS0PR01MB5922619EE8816DA1676BAB4D86F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/04/2022 09:13, Biju Das wrote:
-> Document RZ/G2UL WDT bindings. RZ/G2UL WDT is similar to one found
-> on the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rzg2l-wdt" will be used as a fallback.
+On 24/04/2022 12:22, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Thanks for the feedback.
+> 
+>> Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Fix external clk
+>> node names
+>>
+>> On 24/04/2022 09:50, Biju Das wrote:
+>>>> Subject: RE: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Fix external
+>>>> clk node names
+>>>>
+>>>> Hi Krzysztof Kozlowski,
+>>>>
+>>>> Thanks for the feedback.
+>>>>
+>>>>> Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Fix
+>>>>> external clk node names
+>>>>>
+>>>>> On 23/04/2022 16:06, Biju Das wrote:
+>>>>>> Fix audio clk node names with "_" -> "-" and add suffix '-clk' for
+>>>>>> can and extal clks.
+>>>>>>
+>>>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>>> ---
+>>>>>>  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 8 ++++----
+>>>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>>>> b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>>>> index 19287cccb1f0..4f9a84d7af08 100644
+>>>>>> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>>>> @@ -13,14 +13,14 @@ / {
+>>>>>>  	#address-cells = <2>;
+>>>>>>  	#size-cells = <2>;
+>>>>>>
+>>>>>> -	audio_clk1: audio_clk1 {
+>>>>>> +	audio_clk1: audio-clk1 {
+>>>>>
+>>>>> How about in such case keeping suffix "clk" everywhere and moving
+>>>>> the index
+>>>>> (1/2) to the first part? This way one day maybe schema will match
+>>>>> the clocks.
+>>>>
+>>>> Just a question,
+>>>>
+>>>> Your suggestion is "audio_clk1: audio-clk1" -> "audio_clk1: audio-clk"
+>>>>
+>>>> In that case, If you plan to drop the label in future, how will you
+>>>> differentiate between
+>>>> audio-clk1 and audio-clk2 with just node names?
+>>>
+>>> Or
+>>>
+>>> Do you want me to do the change like this?
+>>>
+>>> "audio_clk1: audio-clk1" -> "audio_clk_1: audio-clk-1"
+>>>
+>>> And fix the phandle reference in other dtsi files??
+>>
+>> My suggestion was to move the [12] part into the first part, so the suffix
+>> "clk" stays consistent:
+>> audio1-clk
+>> audio2-clk
+> 
+> From HW perspective,  there are 2 audio clocks, audio clock1(multiple and sub multiple of 44.1 Khz) 
+> and audio clk 2(Multiple and submultiple of 48Khz) connected to a single audio Codec.
+> 
+> Based on the sampling rate, through clock generator driver we can switch the clock source for 
+> audio mclock along with audio clock for SSI and we can support both these rates 
+> 
+> Since there is a single audio codec, I am not sure, audio1-clk and audio2-clk is a good choise.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The name of the clock is not "audio clock" but "audio", because you do
+not call a car "Ford Mustang car", but just "Ford Mustang". Therefore
+"clock" is not part of the name, but just description of a type.
+
+> 
+> What about like 
+> 
+> audio_clk1: audio-clk-1 ?
+> audio_clk2: audio-clk-2 ?
+> 
+> Which is consistent with naming used for cpu and opp-tables?
+
+
+It's not consistent with clk naming. Nodes should have generic names, so
+the generic part is "clk". You add specific audio/audio-X prefix or
+suffix - it's fine, but not both.
+
+This is exactly the trouble when you start using specific names and
+Devicetree spec explicitly asks for generic names. So maybe go with the
+spec and call of these "clk-[0-9]" and problem is gone.
 
 
 Best regards,
