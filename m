@@ -2,145 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6225E50D3B4
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 18:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CF3C50D39D
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 18:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232022AbiDXQ5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 12:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47394 "EHLO
+        id S232746AbiDXQwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 12:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235513AbiDXQ5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 12:57:09 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8597F30572;
-        Sun, 24 Apr 2022 09:54:08 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id z2so14712543oic.6;
-        Sun, 24 Apr 2022 09:54:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hRAH0k2Yx6YMl62m1v8EooRBhKPXrROU9TyI3nKQ9h4=;
-        b=pqFKMba01+YQBzDT+GkO1di7psZEsTPAWB+KXe11Zaiu3U4fE5VSs+f4mg4s3uzVLB
-         JVRXErrhf6YKDpVBDcF1ENOEZ+8ZQiVAQjaKH8ymMfzdJjIVUY8AQ80D2gl4g5ItXANv
-         1LruuPRNB//bZxP+luU2NpvFX8naDllvd4vo3C4VJ0ID+UjQqaBcWXerXco+UMo5hAVf
-         VfUBXtwcI7hB45lr3gKHkSeyndcI+N3NXeB/9sZne8O/6bb10zn204w/LUTq2OhmGXk4
-         a8bvMtf6esSOLo378VXVQrFL7HGJQJr5MSmAD/QXhp7Ofq6LJcm12MO/xdqQDEbpmF8y
-         XF9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=hRAH0k2Yx6YMl62m1v8EooRBhKPXrROU9TyI3nKQ9h4=;
-        b=a4wV79eTly3J5JO2iyB/Lu4729fx8E2dXGlTgKl1nJTqDN+cHRAYg8HFkpIPx70DuC
-         DBm5x1A7JknM96XW6uzTm9kYpQw6W8BgDw1Ih4Mn1ySozLnqZg/rffzaLNwmxwAROeOw
-         zEcTPK7yFwa3G0QGOhXjjJHAcLP7LfoOmAzxEE8bJczfqpLky0gRGvQKk79AdEoDQCHP
-         30KV0AGPvxjXYlgtUJdY6suFT5UUfX4AuKl/d1gc0at2jQClKH7h4RCzWKAedyiQZiYj
-         evEeTvvslh/iRjfnEzPBuxW4NH6Euw3GjuDFt/l7DiagWRQZMrrcRVZF5RLn4TnZ0abJ
-         Imtw==
-X-Gm-Message-State: AOAM532QvcK0ybZsCmztWUkAK+uf8gn2AlLStRGWxXaL22u7Mkd9ZJ6G
-        bsTak9yAUOau6w+rPVYwmZCwjCmRXJ8=
-X-Google-Smtp-Source: ABdhPJz+3UIw6L48V+U8cJJeoYzeRquJY0e6WI2ozWbeataP3bgDZ4fQUU96L8oEYqQWWE/6M3IMhg==
-X-Received: by 2002:a54:460b:0:b0:322:7964:1b60 with SMTP id p11-20020a54460b000000b0032279641b60mr6424342oip.16.1650819247782;
-        Sun, 24 Apr 2022 09:54:07 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r17-20020a056808211100b00322fbb8bb28sm2796779oiw.57.2022.04.24.09.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 09:54:07 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 24 Apr 2022 09:54:05 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] hwmon: (adt7475) Use enum chips when loading
- attenuator settings
-Message-ID: <20220424165405.GA748437@roeck-us.net>
-References: <20220323034056.260455-1-chris.packham@alliedtelesis.co.nz>
- <20220323034056.260455-4-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S229486AbiDXQwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 12:52:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23EC13E3B;
+        Sun, 24 Apr 2022 09:49:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 433D9611B4;
+        Sun, 24 Apr 2022 16:49:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A5FEC385A9;
+        Sun, 24 Apr 2022 16:49:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650818942;
+        bh=77Pl2K8NTUry4sZCW3/QnIlnyl6J6z/j1k9mYvZOCNA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=kdsEauZAbdyOaUz5DthJxSnOJEmeWAVplJlacmyj7v9YOhXxwSJ3QNDBaZ/DZGTPn
+         iyVQZjm1gYG9Hvn602mhdq4OZ0OhiGn1TmvhAJM4D3Hu0bv4nfxSjxufJzWMoCNDTn
+         flAFp7ovZxhBqPmRwDO6tt4UidF9y+8T+oeD//grWD9TO28cL9yjgA+ceTV6KAz2Lw
+         CdzSt9Of5Wj3JDItjTyltDEodBdgV8clKz+B5WeE6yDMgAV4DV5TK064aY7Ldxug4o
+         ydao8O9k6Dt27TZs+t4NU3WY2rzbn046Wiv2rOuPAIvFS8i0wga8FmIwT+U39xN9SK
+         YvVQvYFTFMsAg==
+Date:   Sun, 24 Apr 2022 17:57:10 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v2 0/2] iio: stk3310: Export near level property for
+ proximity sensor
+Message-ID: <20220424175710.0453ab11@jic23-huawei>
+In-Reply-To: <20220420112540.91907-1-arnaud.ferraris@collabora.com>
+References: <20220420112540.91907-1-arnaud.ferraris@collabora.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220323034056.260455-4-chris.packham@alliedtelesis.co.nz>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 04:40:56PM +1300, Chris Packham wrote:
-> Make use of enum chips and use a switch statement in load_attenuators()
-> so that the compiler can tell us if we've failed to cater for a
-> supported chip.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+On Wed, 20 Apr 2022 13:25:38 +0200
+Arnaud Ferraris <arnaud.ferraris@collabora.com> wrote:
 
-For my reference:
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-Guenter
-
-> ---
+> Userspace tools like iio-sensor-proxy need to be instructed the value from
+> which they should consider an object is "near". This threshold can be
+> exported through the sysfs ABI based on the "proximity-near-level"
+> device-tree property.
 > 
-> Notes:
->     Changes in v3:
->     - Reword commit message
->     - Use switch instead of if/else
->     Changes in v2:
->     - New
+> This patchset implements this property for the stk3310 driver and adds the
+> necessary bits to export its value to userspace. It is based on similar
+> changes applied to the vcnl4000 and ltr501 drivers.
 > 
->  drivers/hwmon/adt7475.c | 23 ++++++++++-------------
->  1 file changed, 10 insertions(+), 13 deletions(-)
+Series applied to the togreg branch of iio.git and pushed out as testing for
+0-day to work it's magic.
+
+Thanks,
+
+Jonathan
+
+> Changes in v2:
+>   - drop zero-assignment as the variable won't be modified if DT property
+>     is missing
 > 
-> diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
-> index 6de501de41b2..ac480e6e4818 100644
-> --- a/drivers/hwmon/adt7475.c
-> +++ b/drivers/hwmon/adt7475.c
-> @@ -1569,12 +1569,12 @@ static int set_property_bit(const struct i2c_client *client, char *property,
->  	return ret;
->  }
->  
-> -static int load_attenuators(const struct i2c_client *client, int chip,
-> +static int load_attenuators(const struct i2c_client *client, enum chips chip,
->  			    struct adt7475_data *data)
->  {
-> -	int ret;
-> -
-> -	if (chip == adt7476 || chip == adt7490) {
-> +	switch (chip) {
-> +	case adt7476:
-> +	case adt7490:
->  		set_property_bit(client, "adi,bypass-attenuator-in0",
->  				 &data->config4, 4);
->  		set_property_bit(client, "adi,bypass-attenuator-in1",
-> @@ -1584,18 +1584,15 @@ static int load_attenuators(const struct i2c_client *client, int chip,
->  		set_property_bit(client, "adi,bypass-attenuator-in4",
->  				 &data->config4, 7);
->  
-> -		ret = i2c_smbus_write_byte_data(client, REG_CONFIG4,
-> -						data->config4);
-> -		if (ret < 0)
-> -			return ret;
-> -	} else if (chip == adt7473 || chip == adt7475) {
-> +		return i2c_smbus_write_byte_data(client, REG_CONFIG4,
-> +						 data->config4);
-> +	case adt7473:
-> +	case adt7475:
->  		set_property_bit(client, "adi,bypass-attenuator-in1",
->  				 &data->config2, 5);
->  
-> -		ret = i2c_smbus_write_byte_data(client, REG_CONFIG2,
-> -						data->config2);
-> -		if (ret < 0)
-> -			return ret;
-> +		return i2c_smbus_write_byte_data(client, REG_CONFIG2,
-> +						 data->config2);
->  	}
->  
->  	return 0;
+> Arnaud Ferraris (2):
+>   dt-bindings: iio: light: stk33xx: Add proximity-near-level
+>   iio: stk3310: Export near level property for proximity sensor
+> 
+>  .../bindings/iio/light/stk33xx.yaml           |  6 +++++
+>  drivers/iio/light/stk3310.c                   | 25 +++++++++++++++++++
+>  2 files changed, 31 insertions(+)
+> 
+
