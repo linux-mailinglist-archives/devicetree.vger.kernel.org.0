@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDC450D15C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 12:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1622850D174
+	for <lists+devicetree@lfdr.de>; Sun, 24 Apr 2022 13:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239172AbiDXLBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 07:01:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44822 "EHLO
+        id S239266AbiDXLYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 07:24:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232783AbiDXLBG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 07:01:06 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F3EC12A83
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 03:58:06 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id g6so1627652ejw.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 03:58:06 -0700 (PDT)
+        with ESMTP id S239263AbiDXLYC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 07:24:02 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205101FA4E
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 04:21:02 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id kq17so1364759ejb.4
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 04:21:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dcNY2DH36HPv7NbH4purwsl1q+khfyhVwK0k3NHViJQ=;
-        b=KCChKWY3LlDWgFSBqGp9yeG4T9gr43DDNemWkKzBgI7Koo72cNSdkdmgD8N29EFfwu
-         3y/8KEI93fLbbeCmaQjILvMimg+TDsF+7UevM71yuisnE6oNQNhEEHEugeQ8wGRkoDEp
-         lfmQAcL/guRAbuS9F5y6ldlpurqt25X9MVdJE8mQk0nH5XH+Gs0YlVBn99JGraozOXNI
-         OEhOKkDjysukELr7lVM/FLjw3bRMGMFeuwpGzpQkzpHpZDSkfWMRL2eccdjUBESBguhC
-         6uVrQ8FdlZI7AfkGxtxe96CpbNfqPdx/XxeL/IS9VPgcoxvZLeJ9W4QN0OWjBVTYmKwV
-         mrNA==
+        bh=AP6kJABFBHG2D4OKzCzakTnuRW2oYbz1dDUS+gWnnRg=;
+        b=HY4c3l65zyTHDRs/EAWmOPFXQwGpFLHe4fxBZwhMaV/X2BXdQLqt8mkKYH/ElooINu
+         WwiglKCOkazE9EhJJ8mwQnwVfPxFU1ao+OECrHJbsLSw8GUsxkkCXXr98S60XNwIpmis
+         /1SvIjbszaKwuLCeI8ZaIbBh3TMDx1lnkNReGTVVTIdfLbGKrQsRbc3djz7J6kajJRRq
+         8QsF0LM7FWb4dPT0AOfU684L3Gp5+7dyz6kn2ggPXmgK8MTRGvx6LzIoIjLC1dfoUWxQ
+         zWpd32tsZXaiMH7UcalGAsIN9u52wNxGv0M4QZjwHZDsrkFKuyGrY/VE+zAPcIwxFuo1
+         Erww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=dcNY2DH36HPv7NbH4purwsl1q+khfyhVwK0k3NHViJQ=;
-        b=wkVmRsU/HAgjS34yi5bdqxgPlFdYd+nIC7uddpPP1XaVDzc01wMTbvv0S5Z7KTcYQ/
-         SymJozCz/GR6pnBKg6ACUE19otCSgpuCrSlg4nQyzCEKfbJMTURc7LUWUYik5U2GAXDI
-         56u0zw8BrXKkTLzUQ6FcvsdgIP0M03IE6c1iuXz0UOBfhQGHX4B/4GIF1E5nu+xOtVIo
-         Gt8Y3CjPyweAr8Rq9xH1nHMMQUE55D3umvmbOGtl06XS4GjoQgm0xaGra47HAqzqhybW
-         7zwyqGLWdUCYEpgrumbLxq45PC97kUbdLmCrE4g53p48WkLbp3IOVDxL+HSl3Ie7hGII
-         we8A==
-X-Gm-Message-State: AOAM530cp/l+ceEvqObukOtukNey7wQZJejR5mmEmvY1uJYczLsONgrt
-        LctOeemC7MauRWmaTSbemRVPjQ==
-X-Google-Smtp-Source: ABdhPJyUFJ0vMQAvNuwElDV7zr/Z3xxqNhh5KELlIMnFlY1Kk/PGfBGshVXfd3Me0GasMv02FUY1+A==
-X-Received: by 2002:a17:906:94d6:b0:6e8:d608:c960 with SMTP id d22-20020a17090694d600b006e8d608c960mr11929923ejy.96.1650797884710;
-        Sun, 24 Apr 2022 03:58:04 -0700 (PDT)
+        bh=AP6kJABFBHG2D4OKzCzakTnuRW2oYbz1dDUS+gWnnRg=;
+        b=SSj4E4JYUTrOZ0NxSafiBYP7zs3s2rWZ47sQJzwX1LelZcO8CWRiDEDYc5lOlfEhor
+         9hXvVPmuj8ViA3lNArgC282Nx92M8LSgcwlJTP9GXZfVnwD2vUDcRrd+RfYnrkNdPv2O
+         /MlE85F5B9DGeDlR2dG5n9FosVdtl2Bnn/FdzoDDkOGoCN3cUIHX/vWZElDee38aJWXL
+         RGeOaEwNUNUiOn2FZeKXQSbysXXU6bJyLmVeai4Q/ntWx0sNXxLeCQImP28H3EHx/K/4
+         sC1MV3jydn9NRs7PNmc7DFUeT/7XnRhLeBmy/euCQ6Ns+JNUWHPzk7Gd3j/BmxX0o9fS
+         3s0A==
+X-Gm-Message-State: AOAM5334Sd6q3W/m7RJ2i8iNq6QA7uvVC6LFL9Kmgu46sY9EYzGTgyMQ
+        nKXhd1rDEixBNKVzNJjEDAmMBg==
+X-Google-Smtp-Source: ABdhPJy9CnCqBuQQXyUX9GmBqaN2/96mndm+kAM+viZb52Ak2mWIacdO4/j1+X4QFJGaP0AMU/vaOg==
+X-Received: by 2002:a17:907:9718:b0:6f3:9606:9fbd with SMTP id jg24-20020a170907971800b006f396069fbdmr141837ejc.290.1650799260622;
+        Sun, 24 Apr 2022 04:21:00 -0700 (PDT)
 Received: from [192.168.0.235] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y3-20020a50ce03000000b00425bfb7f940sm2997125edi.11.2022.04.24.03.58.03
+        by smtp.gmail.com with ESMTPSA id mb22-20020a170906eb1600b006f38dcf211bsm409345ejb.138.2022.04.24.04.20.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Apr 2022 03:58:04 -0700 (PDT)
-Message-ID: <2642dc72-81c3-b535-a658-025eb23679d7@linaro.org>
-Date:   Sun, 24 Apr 2022 12:58:03 +0200
+        Sun, 24 Apr 2022 04:21:00 -0700 (PDT)
+Message-ID: <baa73bda-91af-8a31-67f4-6d5615862c73@linaro.org>
+Date:   Sun, 24 Apr 2022 13:20:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/5] dt-bindings: mtd: samsung-onenand: Add new binding
+Subject: Re: [PATCH V3 1/3] dt-bindings: clk: sprd: Add bindings for ums512
+ clock controller
 Content-Language: en-US
-To:     Jonathan Bakker <xc-racer2@live.ca>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Kyungmin Park <kyungmin.park@samsung.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220423034316.366488-2-xc-racer2@live.ca>
- <CY4PR04MB05678FDFC8BF8B15174ED639CBF69@CY4PR04MB0567.namprd04.prod.outlook.com>
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220418125630.2342538-1-gengcixi@gmail.com>
+ <20220418125630.2342538-2-gengcixi@gmail.com>
+ <714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org>
+ <CAF12kFv6uioc7ATtXLpGTTDBFT1wYWZUBoyjQqP1bSUnut0pKA@mail.gmail.com>
+ <a5a59f3c-00a3-afc5-24aa-1ae3de2600ec@linaro.org>
+ <CAF12kFu5KW+fw=0kP6LrEqOvKYR38mELfPjG64=n+gudRxsZUQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CY4PR04MB05678FDFC8BF8B15174ED639CBF69@CY4PR04MB0567.namprd04.prod.outlook.com>
+In-Reply-To: <CAF12kFu5KW+fw=0kP6LrEqOvKYR38mELfPjG64=n+gudRxsZUQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -79,135 +86,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/04/2022 05:45, Jonathan Bakker wrote:
-> Add a yaml binding document for the Samsung OneNAND controller.
-> It is found in several older Samsung SoC, notably the S5PV210.
+On 24/04/2022 12:47, Cixi Geng wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年4月19日周二 14:38写道：
+>>
+>> On 19/04/2022 03:53, Cixi Geng wrote:
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年4月19日周二 00:28写道：
+>>>>
+>>>> On 18/04/2022 14:56, Cixi Geng wrote:
+>>>>> From: Cixi Geng <cixi.geng1@unisoc.com>
+>>>>>
+>>>>> Add a new bindings to describe ums512 clock compatible string.
+>>>>>
+>>>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+>>>>> ---
+>>>>>  .../bindings/clock/sprd,ums512-clk.yaml       | 112 ++++++++++++++++++
+>>>>>  1 file changed, 112 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..89824d7c6be4
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+>>>>> @@ -0,0 +1,112 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +# Copyright 2022 Unisoc Inc.
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
+>>>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>>>> +
+>>>>> +title: UMS512 Clock Control Unit Device Tree Bindings
+>>>>
+>>>> Remove "Device Tree Bindings". You could do the same also in the
+>>>> subject, because you repeat the prefix ("dt-bindings: clk: sprd: Add
+>>>> ums512 clock controller").
+>>>>
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Orson Zhai <orsonzhai@gmail.com>
+>>>>> +  - Baolin Wang <baolin.wang7@gmail.com>
+>>>>> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  "#clock-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  compatible:
+>>>>
+>>>> Put the compatible first, by convention and makes finding matching
+>>>> bindings easier.
+>>>>
+>>>>> +    oneOf:
+>>>>> +      - items:
+>>>>> +          - const: sprd,ums512-glbregs
+>>>>> +          - const: syscon
+>>>>> +          - const: simple-mfd
+>>>>
+>>>> Why do you need simple-mfd for these? This looks like a regular syscon,
+>>>> so usually does not come with children. What is more, why this "usual
+>>>> syscon" is a separate clock controller in these bindings?
+>>> there is a warning log before add these const.  and the reason we need
+>>> the simply-mfd
+>>> is some clock is a child of syscon node,which should set these compatible.
+>>> failed to match any schema with compatible: ['sprd,ums512-glbregs',
+>>> 'syscon', 'simple-mfd']
+>>
+>> Neither here nor later you did not answer the question - why do you need
+>> such complex construction, instead of adding syscon to the clock controller?
+>>
+>> Let me paste again my concerns:
+>>
+>>   You have nodes with reg but without unit address ("rpll"). These nodes
+>>   are modeled as children but they are not children - it's a workaround
+>>   for exposing syscon, isn't it? The sc9863a looks like broken design,
+>>   so please do not duplicate it here.
+>>
+>> IOW, sc9863a uses similar pattern as here and the DTS is made wrong.
+>> Because of this you need to create complex ways to get the regmap for
+>> the clock controller... Why not making it simple? Clock controller with
+>> syscon?
 > 
-> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
-> ---
->  .../bindings/mtd/samsung,onenand.yaml         | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/samsung,onenand.yaml
+> I find the history discuss about the sp9863 clock[1] and last
+> ums512-clk dt-bindings patch[2] which from chunyan.
+> please refer to the reasons below.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/samsung,onenand.yaml b/Documentation/devicetree/bindings/mtd/samsung,onenand.yaml
-> new file mode 100644
-> index 000000000000..25012248add6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/samsung,onenand.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/samsung,onenand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung OneNAND controller
-> +
-> +maintainers:
-> +  - Jonathan Bakker <xc-racer2@live.ca>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,s3c6400-onenand
-> +      - samsung,s3c6410-onenand
-> +      - samsung,s5pv210-onenand
-> +
-> +  reg:
-> +    maxItems: 3
+> These clocks are at the same register range with global registers.
+> the registers shared with more than one devices  which  basically
+> are multimedia devices. You may noticed that these are all gate
+> clocks which are in the global registers  ranges and are used to
+> controll the enable status of some devices or some part of devices.
+> 
+> [1] https://lore.kernel.org/all/CAAfSe-s0gcehu0ZDj=FTe5S7CzAHC5mahXBH2fJm7mXS7Xys1Q@mail.gmail.com/#r
+> [2] https://lore.kernel.org/all/163425295208.1688384.11023187625793114662@swboyd.mtv.corp.google.com/#r
 
-Please describe the items or add reg-names.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: onenand
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 2
-
-Drop minItems.
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-
-Don't need these, they come from nand-controller.
-
-> +
-> +allOf:
-> +  - $ref: nand-controller.yaml
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,s5pv210-onenand
-> +    then:
-> +      required:
-> +        - interrupts
-> +        - clock-names
-> +        - clocks
-
-Others require it as well, don't they?
-
-> +
-> +patternProperties:
-> +  "^nand@[a-f0-9]+$":
-> +    type: object
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 1
-> +
-> +    additionalProperties: false
-
-Also not needed.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-
-With dropping all duplicated properties from nand-controller, this can
-be unevaluatedProperties:false. Unless for some reason parts of
-nand-controller schema are not valid here?
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/s5pv210.h>
-> +    onenand: nand-controller@b0600000 {
-> +        compatible = "samsung,s5pv210-onenand";
-> +        reg = <0xb0600000 0x2000>,
-> +          <0xb0000000 0x20000>,
-> +          <0xb0040000 0x20000>;
-
-Align the entries with first <> entry.
-
-> +        interrupt-parent = <&vic1>;
-> +        interrupts = <31>;
-> +        clocks = <&clocks CLK_NANDXL>, <&clocks DOUT_FLASH>;
-> +        clock-names = "bus", "onenand";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        nand@0 {
-> +          reg = <0>;
-> +        };
-> +    };
-
+Which looks like discussion about different bindings. You had there a
+clock controller and additional clock device using "sprd,syscon". Why
+the rpll is a subdevice and not a part of clock controller. The same as
+all other clocks coming from that clock-controller, right? What is so
+special about rpll that is is a separate device, not part of the clock
+controller? It's the same address space, isn't it?
 
 Best regards,
 Krzysztof
