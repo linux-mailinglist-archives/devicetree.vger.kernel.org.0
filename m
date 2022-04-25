@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D8850D8BA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 07:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF63550D8C3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 07:20:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241160AbiDYFUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 01:20:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57658 "EHLO
+        id S241231AbiDYFXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 01:23:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237644AbiDYFUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 01:20:35 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C412DD9;
-        Sun, 24 Apr 2022 22:17:27 -0700 (PDT)
+        with ESMTP id S241213AbiDYFXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 01:23:33 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925E22F3B3
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:20:29 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id c23so24535586plo.0
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:20:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650863847; x=1682399847;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=qAAiyq//qlwD5o1Z65odfkrvAYtitgtFY9JA6EBbbfw=;
-  b=ErYFwXzDZTCmxoonqlf7hsUEW/UPyr7FwrloY73xuJnMQksrweF+VgCA
-   hcgxDiNXmOkbQTBC9UPVURaQIGdTZbXeCc4/shhcwy6bNE2BzPtrrg0oI
-   blwg3wvvz56b9W+q6n2jswqqZOK8fsTEvM77veRSAfvmCgiHnOSIYp7gN
-   Y=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Apr 2022 22:17:26 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2022 22:17:25 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 24 Apr 2022 22:17:25 -0700
-Received: from [10.216.15.239] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 24 Apr
- 2022 22:17:21 -0700
-Message-ID: <d678588b-e38e-c9f8-c7e6-1786f8398ffc@quicinc.com>
-Date:   Mon, 25 Apr 2022 10:47:18 +0530
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wF5i8xk4P1LEOT63TuPgxEiYnBH2yC9okqwO1o9drxw=;
+        b=iOF65cuSfSWhbypFbJBFBMJTl+UaUdhiF/7UOHTuj27ZNSz5/JxyOam6auVBEv4cwM
+         bNZ2b3e3LEQcqJY1P5BraqF5BoLFOCGDxNqadUu3ikfZ6xwt7FIeKmjEm/VDqPTJiMOm
+         LckAitENppa3vGr18CjGEslM09RD3rZxokOKrDszaN/Mp51F8cEmmOF0cQD+0/qzTTWY
+         lOCySKh4JVBwV56+RKOu2qkZuUOd+hKnmUEatiHkpLU9uUgAiJ8G3NHXyIAYebk1N+5V
+         TvJQ5rgItaUCxXT4RgXzBB0mhNbY3iDkO+x+hvS7M6E12XKIZxTFbi7V63odtA3jgOep
+         fAMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wF5i8xk4P1LEOT63TuPgxEiYnBH2yC9okqwO1o9drxw=;
+        b=nu96NgyBzSKyoviiQWO+06eWrDar/Zun+ZTtIvVDGwRqfBf8aU6YupI4UrT/cbYycA
+         urzbnVWIzVklHZeZPxDDrspBL5TAWvIoCTbXTHW1Eg+ratIeXOlYPhFyGIUHS+YpOPh2
+         zdkMLWm4rBkf2JKkxbE9S9IDVuMb9w6nVfFZCj2xwYEcSJmHWSZ8DurC6eAIBSKq/0rj
+         +Tei0u3+jMGN/DS62BL/xt1k0NHvtTLD9CtucSJ7VYRXDrT/UwQSPwsnrLPlrNR8EKDC
+         SDctbYFpzc4M0Qq1ST8KIDl4wkEqbTSMU9W2bEJMoekLCK8vLiy2KKL+ps4yQ9644aht
+         lssw==
+X-Gm-Message-State: AOAM533YarvqCBwT9qEUCfXri6wfh2E9+WEScXhFm7+ci5WKeMU+xHqq
+        +iDhKMZ6qc0bilEmba14wJyYVg==
+X-Google-Smtp-Source: ABdhPJyx3JUtvWx3NQpb52P2n8q+ehDq/Rx6PQG85kdtJ6/357ZDL4xO9WmowD2hC1CP5Xtun1KeEQ==
+X-Received: by 2002:a17:902:690b:b0:159:65c:9044 with SMTP id j11-20020a170902690b00b00159065c9044mr16525727plk.47.1650864029110;
+        Sun, 24 Apr 2022 22:20:29 -0700 (PDT)
+Received: from localhost ([122.171.250.232])
+        by smtp.gmail.com with ESMTPSA id y16-20020a63b510000000b00398d8b19bbfsm8323113pge.23.2022.04.24.22.20.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 Apr 2022 22:20:28 -0700 (PDT)
+Date:   Mon, 25 Apr 2022 10:50:26 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+Subject: Re: [PATCH V4 05/14] cpufreq: mediatek: Add opp notification support
+Message-ID: <20220425052026.k3xfmmil4ujqeynh@vireshk-i7>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+ <20220422075239.16437-6-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add ldo_l17b regulator node
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <agross@kernel.org>, <robh+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <quic_rjendra@quicinc.com>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1650550779-8133-1-git-send-email-quic_srivasam@quicinc.com>
- <YmQiIJatomyUVahR@builder.lan>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <YmQiIJatomyUVahR@builder.lan>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422075239.16437-6-rex-bc.chen@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,43 +77,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22-04-22, 15:52, Rex-BC Chen wrote:
+> From: "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+> 
+> >From this opp notifier, cpufreq should listen to opp notification and do
 
-On 4/23/2022 9:28 PM, Bjorn Andersson wrote:
-Thanks for your time Bjorn!!
-> On Thu 21 Apr 09:19 CDT 2022, Srinivasa Rao Mandadapu wrote:
->
->> Add ldo_l17b in pm7325 regulator, which is required for
->> wcd codec vdd buck supply.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
->> index b833ba1..17d0c05 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
->> @@ -113,6 +113,11 @@
->>   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->>   		};
->>   
->> +		vreg_l17b_1p8: ldo17 {
->> +			regulator-min-microvolt = <1700000>;
->> +			regulator-max-microvolt = <1900000>;
-> Can you confirm that this doesn't need to be in HPM mode?
-HPM mode included and sent V2 patch.
->
-> Thanks,
-> Bjorn
->
->> +		};
->> +
->>   		vdd_px_wcd9385:
->>   		vdd_txrx:
->>   		vddpx_0:
->> -- 
->> 2.7.4
->>
+Why the extra ">" here ?
+
+> proper actions when receiving events of disable and voltage adjustment.
+> 
+> One of the user for this opp notifier is MediaTek SVS.
+> The MediaTek Smart Voltage Scaling (SVS) is a hardware which calculates
+> suitable SVS bank voltages to OPP voltage table.
+> 
+> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/cpufreq/mediatek-cpufreq.c | 92 +++++++++++++++++++++++++++---
+>  1 file changed, 84 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/cpufreq/mediatek-cpufreq.c b/drivers/cpufreq/mediatek-cpufreq.c
+> +static int mtk_cpufreq_opp_notifier(struct notifier_block *nb,
+> +				    unsigned long event, void *data)
+> +{
+> +	struct dev_pm_opp *opp = data;
+> +	struct dev_pm_opp *new_opp;
+> +	struct mtk_cpu_dvfs_info *info;
+> +	unsigned long freq, volt;
+> +	struct cpufreq_policy *policy;
+> +	int ret = 0;
+> +
+> +	info = container_of(nb, struct mtk_cpu_dvfs_info, opp_nb);
+> +
+> +	if (event == OPP_EVENT_ADJUST_VOLTAGE) {
+
+I don't see any call to dev_pm_opp_adjust_voltage() for your platform, how is
+this ever going to get called ?
+
+> +		freq = dev_pm_opp_get_freq(opp);
+> +
+> +		mutex_lock(&info->reg_lock);
+> +		if (info->opp_freq == freq) {
+> +			volt = dev_pm_opp_get_voltage(opp);
+> +			ret = mtk_cpufreq_set_voltage(info, volt);
+> +			if (ret)
+> +				dev_err(info->cpu_dev,
+> +					"failed to scale voltage: %d\n", ret);
+> +		}
+> +		mutex_unlock(&info->reg_lock);
+> +	} else if (event == OPP_EVENT_DISABLE) {
+> +		freq = dev_pm_opp_get_freq(opp);
+> +
+> +		/* case of current opp item is disabled */
+> +		if (info->opp_freq == freq) {
+> +			freq = 1;
+> +			new_opp = dev_pm_opp_find_freq_ceil(info->cpu_dev,
+> +							    &freq);
+> +			if (IS_ERR(new_opp)) {
+> +				dev_err(info->cpu_dev,
+> +					"all opp items are disabled\n");
+> +				ret = PTR_ERR(new_opp);
+> +				return notifier_from_errno(ret);
+> +			}
+> +
+> +			dev_pm_opp_put(new_opp);
+> +			policy = cpufreq_cpu_get(info->opp_cpu);
+> +			if (policy) {
+> +				cpufreq_driver_target(policy, freq / 1000,
+> +						      CPUFREQ_RELATION_L);
+> +				cpufreq_cpu_put(policy);
+
+IIUC, then you are trying to change the frequency if a currently used OPP is
+getting removed ? In that case, this problem is generic enough not to be fixed
+in a end driver. This should be fixed in core somehow.
+
+-- 
+viresh
