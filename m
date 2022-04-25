@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEBEE50E098
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 14:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2346350E0D1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 14:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235291AbiDYMpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 08:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45274 "EHLO
+        id S236103AbiDYM4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 08:56:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241862AbiDYMpT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 08:45:19 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B644D891A
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 05:42:15 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id j6so10614035qkp.9
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 05:42:15 -0700 (PDT)
+        with ESMTP id S234293AbiDYM4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 08:56:05 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECD22B1AC;
+        Mon, 25 Apr 2022 05:53:01 -0700 (PDT)
+Received: by mail-qk1-f169.google.com with SMTP id s4so10686683qkh.0;
+        Mon, 25 Apr 2022 05:53:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LZf1GrCckJe0wVu2MCyi5HuoNfLGjLy3HZ1VU5D0sTw=;
-        b=P8Kfe4KFIb/ZSBgLZ29FYJpiDK0C9xBZs4swDWUk1UeRVBkAHM27xPSE//ZIeUmD59
-         I9A4lql93gUuZ811uHUZGU7jtW+M59pmh+hAUR/tH/2BEIbx4qm4V+W9iRHBz6JVS7U9
-         Ioh+KqLXyAVcGst6M99lIjTz+66xTFSVQSb3GfIm01LR8Zr4prbqNUiCu2ondcQbQSSi
-         FCfl1iu4FwnM1wsD4xKevi2EQLfHBFOnXG+urohEHlmDOrT1bejYdx5MJVAeum0WrQ2T
-         OBVPoUCMni4DdM3pElDKemX0v9p2Jr0OJ8nD5HatYZNrQuPZ2+ZZpdOPwPTt16YMgbtQ
-         VtUA==
-X-Gm-Message-State: AOAM533LAZMWuejeJN7x58CfPaA0SMR5fwWl9woDR7LaRa4m04OEDevB
-        1ztpPWp4Eb10w3MmT2Ug6I5DwdsFobVj1A==
-X-Google-Smtp-Source: ABdhPJwanjcebEGUo8Yk6seCRccXCqJCBWNW2BsUAcS6u9MB4VxZuKh2Xf27cRfcR/+3zIRWVCmJJQ==
-X-Received: by 2002:a37:bbc4:0:b0:69c:3f31:3eb8 with SMTP id l187-20020a37bbc4000000b0069c3f313eb8mr9979624qkf.489.1650890534266;
-        Mon, 25 Apr 2022 05:42:14 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id h17-20020ac87d51000000b002f345058960sm6117310qtb.49.2022.04.25.05.42.13
-        for <devicetree@vger.kernel.org>
+        bh=uKBLvzpEGSIBr54zoQtzf0+gxoJzKeZeIIlQHCf6yKo=;
+        b=La3ufGSzfOO6drUj42uT4E8bM8Ik6K7zYq3Vpf/za9DK4mz78SoQmfpeTSCXJT2PUX
+         mnJgUne3994smRr1beaE15iU2Hg+ruBkJIxzxZHTBo7lVM83tMpNpd9TXcL2O7JJsXA6
+         wySm2tI/4XBY8wrik4ebA+8mnC/P0gem+nQSLI05CPkECgUELJ+kbR73WhwkhqPygkks
+         PNilfD0WtdzsgWTG/Kcr+ImMwLsS4BVIhCxfvWHKZx9Eec0P5tUVNCF/oVTEieq8TdAf
+         Qy4dBF3zMDXus4LbLelocb2eUpovNV63oheIJzr/C0Eok0gWI6WeypIUpxFxsHu9dTbi
+         vy8A==
+X-Gm-Message-State: AOAM531GqExwH21sDhke3bcYWXNhPcasDlwoT/zpH379KZiUFEU0V3PM
+        wgmqZbpxe0FGEm6VD10vXwJvshr5tul/3w==
+X-Google-Smtp-Source: ABdhPJx3YxKjRtX65g8uolxdlpRkrEqFMhgebNdysIWIoDOhXLJfra8whjxJ/kA3tkbTPv0joLUmXA==
+X-Received: by 2002:a05:620a:40d6:b0:69f:2d4b:4236 with SMTP id g22-20020a05620a40d600b0069f2d4b4236mr6472595qko.197.1650891180657;
+        Mon, 25 Apr 2022 05:53:00 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id j12-20020ae9c20c000000b0067ec380b320sm5016132qkg.64.2022.04.25.05.53.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 05:42:14 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id h7so3441867ybj.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 05:42:13 -0700 (PDT)
-X-Received: by 2002:a25:d84c:0:b0:648:7d5e:e2d4 with SMTP id
- p73-20020a25d84c000000b006487d5ee2d4mr1960099ybg.6.1650890533603; Mon, 25 Apr
- 2022 05:42:13 -0700 (PDT)
+        Mon, 25 Apr 2022 05:53:00 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2f7d19cac0bso40025577b3.13;
+        Mon, 25 Apr 2022 05:53:00 -0700 (PDT)
+X-Received: by 2002:a81:1cd5:0:b0:2f4:c3fc:2174 with SMTP id
+ c204-20020a811cd5000000b002f4c3fc2174mr16882015ywc.512.1650891180048; Mon, 25
+ Apr 2022 05:53:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220422211055.9278-1-palmer@rivosinc.com>
-In-Reply-To: <20220422211055.9278-1-palmer@rivosinc.com>
+References: <20220423131654.131390-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220423131654.131390-1-biju.das.jz@bp.renesas.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 25 Apr 2022 14:42:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV7d4XfStMiSmU3eZBb3mdHdsvqJZff358Rf3Cb-Kzx+Q@mail.gmail.com>
-Message-ID: <CAMuHMdV7d4XfStMiSmU3eZBb3mdHdsvqJZff358Rf3Cb-Kzx+Q@mail.gmail.com>
-Subject: Re: [PATCH] RISC-V: Allow the used to downgrade to sv48 when HW
- supports sv57
-To:     Palmer Dabbelt <palmer@rivosinc.com>
-Cc:     alexandre.ghiti@canonical.com,
-        linux-riscv <linux-riscv@lists.infradead.org>,
+Date:   Mon, 25 Apr 2022 14:52:47 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXSTjXqQ2GQh6HPyUSJ-ZMiUPS8PDXsk1ZhGV=y2zzJ+w@mail.gmail.com>
+Message-ID: <CAMuHMdXSTjXqQ2GQh6HPyUSJ-ZMiUPS8PDXsk1ZhGV=y2zzJ+w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: adc: Document Renesas RZ/V2L ADC
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -69,37 +72,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Palmer,.
+Hi Biju,
 
-On Fri, Apr 22, 2022 at 11:42 PM Palmer Dabbelt <palmer@rivosinc.com> wrote:
-> Similar to the previous patch, this allows a dt-selected downgrade to
-> sv48 on systems that support sv57 in case users don't need the extra VA
-> bits and want to save memory or improve performance.
+On Sat, Apr 23, 2022 at 3:17 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Document renesas RZ/V2L ADC bindings. RZ/V2L ADC is identical to RZ/G2L
+> with same number of channels.
 >
-> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
-> ---
-> This is on top of the patches from Alex's set that I dropped.
-
-You mean "[PATCH v3 13/13] riscv: Allow user to downgrade to sv39
-when hw supports sv48 if !KASAN"?
-20211206104657.433304-14-alexandre.ghiti@canonical.com
-
-For both: "DT describes hardware, not software policy"?
-
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -740,6 +740,11 @@ static __init void set_satp_mode(uintptr_t dtb_pa)
->                         if (!mmu_type)
->                                 continue;
+> While at it remove RZ/G2LC SoC from binding documentation as it does not
+> support ADC.
 >
-> +                       if (!strcmp(mmu_type, "riscv,sv48")) {
-> +                               disable_pgtable_l5();
-> +                               return;
-> +                       }
-> +
->                         if (!strcmp(mmu_type, "riscv,sv39")) {
->                                 disable_pgtable_l5();
->                                 disable_pgtable_l4();
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
 
