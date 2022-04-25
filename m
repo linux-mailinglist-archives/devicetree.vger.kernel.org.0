@@ -2,84 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E63A50D9C6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A036E50D9D0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234210AbiDYGwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 02:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60306 "EHLO
+        id S229834AbiDYHAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:00:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235613AbiDYGwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:52:10 -0400
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319646D195;
-        Sun, 24 Apr 2022 23:49:07 -0700 (PDT)
-Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
-         client-signature RSA-PSS (2048 bits) client-digest SHA256)
-        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
-        by mx1.riseup.net (Postfix) with ESMTPS id 4KmwbQ5KRkzDsMn;
-        Sun, 24 Apr 2022 23:49:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-        t=1650869346; bh=X9r/gViEyERj3QdfbSpzf1vJ7D4I2koJWoEPclEgUyk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=hU6Ht86PcVkEicT6g8dKFu+l8SWsrHNnWP11RbVrMgjVeoPwQpyObmWKp7VR80cx7
-         zvUw5BItgetPee1YlfEBnZrP+hNxkOuiuHMENK2I4f69QQgVJwBR4Xhw9VHU59qN8A
-         aTBAPqZS+yXt3s8VyJM8MLTSuR/W7d8INu9OutKA=
-X-Riseup-User-ID: B99F5AF868D304E13E026E41E8363AE8632B12E80FB7D65A24F398B2BFEA6E64
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-         by fews1.riseup.net (Postfix) with ESMTPSA id 4KmwbN3mNBz5vTc;
-        Sun, 24 Apr 2022 23:49:04 -0700 (PDT)
-From:   Dang Huynh <danct12@riseup.net>
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: pumpkin: Remove input-name property
-Date:   Mon, 25 Apr 2022 13:48:51 +0700
-Message-Id: <20220425064850.246228-1-danct12@riseup.net>
+        with ESMTP id S229757AbiDYHAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:00:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F23193E0;
+        Sun, 24 Apr 2022 23:57:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2FBEBB80ED5;
+        Mon, 25 Apr 2022 06:57:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFAE8C385A4;
+        Mon, 25 Apr 2022 06:57:08 +0000 (UTC)
+Message-ID: <dba106ac-cee1-2493-13c7-ad9aef556a49@xs4all.nl>
+Date:   Mon, 25 Apr 2022 08:57:07 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 6/9] media: uapi: Add a control for DW100 driver
+Content-Language: en-US
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
+        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
+        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
+        nicolas@ndufresne.ca, alexander.stein@ew.tq-group.com
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
+ <20220328141309.177611-7-xavier.roumegue@oss.nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220328141309.177611-7-xavier.roumegue@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property doesn't seem to exist in the documentation nor
-in source code, but for some reason it is defined in a bunch
-of device trees.
+On 28/03/2022 16:13, Xavier Roumegue wrote:
+> The DW100 driver gets the dewarping mapping as a binary blob from the
+> userspace application through a custom control.
+> The blob format is hardware specific so create a dedicated control for
+> this purpose.
+> 
+> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+> ---
+>  Documentation/userspace-api/media/drivers/dw100.rst | 12 ++++++++++++
+>  include/uapi/linux/dw100.h                          | 11 +++++++++++
+>  2 files changed, 23 insertions(+)
+>  create mode 100644 include/uapi/linux/dw100.h
+> 
+> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
+> index 4cd55c75628e..f6d684cadf26 100644
+> --- a/Documentation/userspace-api/media/drivers/dw100.rst
+> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
+> @@ -20,4 +20,16 @@ match the expected size inherited from the destination image resolution.
+>  More details on the DW100 hardware operations can be found in
+>  *chapter 13.15 DeWarp* of IMX8MP_ reference manuel.
+>  
+> +The Vivante DW100 m2m driver implements the following driver-specific control:
+> +
+> +``V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (integer)``
 
-Signed-off-by: Dang Huynh <danct12@riseup.net>
----
-This patch is a split of this treewide patch [1] to ease the 
-maintainers. 
+(integer) -> (__u32 array)
 
-[1]: https://patchwork.kernel.org/patch/12633497/
+But should this be a __u32 array at all? Wouldn't a __u16 array make more sense?
 
- arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+> +    Specifies to DW100 driver its dewarping map (aka LUT) blob as described in
+> +    *chapter 13.15.2.3 Dewarping Remap* of IMX8MP_ reference manual as an U32
+> +    dynamic array. The image is divided into many small 16x16 blocks. If the
+> +    width of the image is not divisible by 16, the size of the rightmost block
+> +    is the remainder. 
 
-diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index fcddec14738d..7a717f926929 100644
---- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -25,7 +25,6 @@ optee: optee@4fd00000 {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		input-name = "gpio-keys";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&gpio_keys_default>;
- 
--- 
-2.36.0
+Isn't the same true for the height?
 
+The dewarping map only saves the vertex coordinates of the
+> +    block. The dewarping grid map is comprised of vertex coordinates for x and y.
+> +    Each x, y coordinate register uses 16 bits (UQ12.4) to record the coordinate
+
+As mentioned before, UQ12.4 is not necessarily a standard notation. 'unsigned 12.4
+fixed point' is better, but you also need to specify exactly where the bits are
+stored inside the __u16. I.e.: 'the integer part is stored in the 12 most significant
+bits, and the fractional part is stored in the 4 least significant bits of the __u16.'
+
+> +    address, with the Y coordinate in the upper bits and X in the lower bits.
+
+And with a __u16 array this becomes: 'The array contains pairs of X, Y coordinates.'
+Or something along those lines.
+
+> +
+>  .. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
+> diff --git a/include/uapi/linux/dw100.h b/include/uapi/linux/dw100.h
+> new file mode 100644
+> index 000000000000..7fdcf2bf42e5
+> --- /dev/null
+> +++ b/include/uapi/linux/dw100.h
+> @@ -0,0 +1,11 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
+> +/* Copyright 2022 NXP */
+> +
+> +#ifndef __UAPI_DW100_H__
+> +#define __UAPI_DW100_H__
+> +
+> +#include <linux/v4l2-controls.h>
+> +
+
+Add a comment referring to the Documentation/userspace-api/media/drivers/dw100.rst
+documentation so users of this control know where to find the associated
+documentation.
+
+> +#define V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (V4L2_CID_USER_DW100_BASE + 1)
+> +
+> +#endif
+
+Regards,
+
+	Hans
