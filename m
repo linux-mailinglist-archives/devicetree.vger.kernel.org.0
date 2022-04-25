@@ -2,114 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDCBD50D995
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838A350D99F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:42:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231655AbiDYGoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 02:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40924 "EHLO
+        id S236248AbiDYGp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 02:45:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbiDYGof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:44:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB7620188;
-        Sun, 24 Apr 2022 23:41:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 97CF461264;
-        Mon, 25 Apr 2022 06:41:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AEE1C385A4;
-        Mon, 25 Apr 2022 06:41:29 +0000 (UTC)
-Message-ID: <28526ccf-4ae4-bd20-af16-67cb6bb8286a@xs4all.nl>
-Date:   Mon, 25 Apr 2022 08:41:27 +0200
+        with ESMTP id S236148AbiDYGp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:45:26 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E8C1F2B184;
+        Sun, 24 Apr 2022 23:42:21 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,287,1643641200"; 
+   d="scan'208";a="119051216"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 25 Apr 2022 15:42:20 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id B4AB44009BE6;
+        Mon, 25 Apr 2022 15:42:20 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v2 0/7] treewide: Initial support for R-Car V4H
+Date:   Mon, 25 Apr 2022 15:41:54 +0900
+Message-Id: <20220425064201.459633-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 4/9] media: Documentation: dw100: Add user
- documentation for the DW100 driver
-Content-Language: en-US
-To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
-        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
-        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
-        nicolas@ndufresne.ca, alexander.stein@ew.tq-group.com
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
- <20220328141309.177611-5-xavier.roumegue@oss.nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20220328141309.177611-5-xavier.roumegue@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2022 16:13, Xavier Roumegue wrote:
-> Add user documentation for the DW100 driver.
-> 
-> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> ---
->  .../userspace-api/media/drivers/dw100.rst     | 23 +++++++++++++++++++
->  .../userspace-api/media/drivers/index.rst     |  1 +
->  2 files changed, 24 insertions(+)
->  create mode 100644 Documentation/userspace-api/media/drivers/dw100.rst
-> 
-> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
-> new file mode 100644
-> index 000000000000..4cd55c75628e
-> --- /dev/null
-> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
-> @@ -0,0 +1,23 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +DW100 dewarp driver
-> +===========================
-> +
-> +The Vivante DW100 Dewarp Processor IP core found on i.MX8MP SoC applies a
-> +programmable geometrical transformation on input image to correct distorsion
-> +introduced by lenses.
-> +
-> +The transformation function is exposed by the hardware as a grid map with 16x16
-> +pixel macroblocks indexed using X, Y vertex coordinates. Each x, y coordinate
-> +register uses 16 bits to record the coordinate address in UQ12.4 fixed point
+This patch series adds initial support for the Renesas R-Car V4H
+(r8a779g0) SoC.
 
-'UQ12.4' is a mostly TI notation it seems: https://en.wikipedia.org/wiki/Q_(number_format)
+Changes from v1:
+ - Remove accepted patches from this series.
+ - Change the dt-binding files' license from (GPL-2.0 or MIT) to
+   (GPL-2.0-only OR BSD-2-Clause).
+ - Add some definitions in patch [2/7].
+ - Add "renesas,rcar-gen4-hscif" in a required property in patch [3/7].
+ - Modify r8a779a0-cpg-mssr.c in patch [4/7].
+https://lore.kernel.org/all/20220420084255.375700-1-yoshihiro.shimoda.uh@renesas.com/
 
-I would replace this with: ...in an unsigned 12.4 fixed point format
+Yoshihiro Shimoda (7):
+  dt-bindings: power: Add r8a779g0 SYSC power domain definitions
+  dt-bindings: clock: Add r8a779g0 CPG Core Clock Definitions
+  dt-bindings: serial: renesas,hscif: Document r8a779g0 bindings
+  clk: renesas: rcar-gen4: Add CLK_TYPE_GEN4_PLL4
+  clk: renesas: cpg-mssr: Add support for R-Car V4H
+  arm64: dts: renesas: Add Renesas R8A779G0 SoC support
+  arm64: dts: renesas: Add Renesas White Hawk boards support
 
-And in the control documentation this can be documented more precisely (I'll comment on
-that patch).
+ .../bindings/serial/renesas,hscif.yaml        |   7 +
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ .../dts/renesas/r8a779g0-white-hawk-cpu.dtsi  |  45 ++++
+ .../boot/dts/renesas/r8a779g0-white-hawk.dts  |  22 ++
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     | 122 ++++++++++
+ drivers/clk/renesas/Kconfig                   |   5 +
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r8a779a0-cpg-mssr.c       |  10 +-
+ drivers/clk/renesas/r8a779f0-cpg-mssr.c       |  18 +-
+ drivers/clk/renesas/r8a779g0-cpg-mssr.c       | 217 ++++++++++++++++++
+ drivers/clk/renesas/rcar-gen4-cpg.c           |   5 +
+ drivers/clk/renesas/rcar-gen4-cpg.h           |   3 +
+ drivers/clk/renesas/renesas-cpg-mssr.c        |   6 +
+ drivers/clk/renesas/renesas-cpg-mssr.h        |   1 +
+ include/dt-bindings/clock/r8a779g0-cpg-mssr.h |  90 ++++++++
+ include/dt-bindings/power/r8a779g0-sysc.h     |  45 ++++
+ 16 files changed, 585 insertions(+), 14 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+ create mode 100644 drivers/clk/renesas/r8a779g0-cpg-mssr.c
+ create mode 100644 include/dt-bindings/clock/r8a779g0-cpg-mssr.h
+ create mode 100644 include/dt-bindings/power/r8a779g0-sysc.h
 
-Regards,
-
-	Hans
-
-> +format.
-> +
-> +The dewarping map can be set from application through a dedicated v4l2 control.
-> +If not set or invalid, the driver computes an identity map prior to start the
-> +processing engine. The map is evaluated as invalid if the array size does not
-> +match the expected size inherited from the destination image resolution.
-> +
-> +More details on the DW100 hardware operations can be found in
-> +*chapter 13.15 DeWarp* of IMX8MP_ reference manuel.
-> +
-> +.. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
-> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
-> index 12e3c512d718..8826777321b0 100644
-> --- a/Documentation/userspace-api/media/drivers/index.rst
-> +++ b/Documentation/userspace-api/media/drivers/index.rst
-> @@ -33,6 +33,7 @@ For more details see the file COPYING in the source distribution of Linux.
->  
->  	ccs
->  	cx2341x-uapi
-> +	dw100
->          hantro
->  	imx-uapi
->  	max2175
+-- 
+2.25.1
 
