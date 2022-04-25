@@ -2,100 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF6050E72D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 19:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFDD750E768
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 19:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244000AbiDYR2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 13:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47900 "EHLO
+        id S233040AbiDYRkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 13:40:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243996AbiDYR2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 13:28:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CFB40E7A;
-        Mon, 25 Apr 2022 10:25:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CCCEA614D1;
-        Mon, 25 Apr 2022 17:24:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF16C385A9;
-        Mon, 25 Apr 2022 17:24:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650907499;
-        bh=vXLMQVewDuf4CxFBhVBTEkU0dP04DdfcWaEPsVlr1IQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=dPjlomPC9joKWwiksbIl6XiclQs1VrjOgEzaja2x7BIWGLucSaLbm3rcDs95VAxLo
-         hHM9Zc+XanlnzufRPZBt+DCG1ntiZ6c66VjbljVi9BN1743KLpw7qPAL4Uf24pIDMg
-         5e+sjVDN827TAZ/ma6JDNY1lV7QXameZQKf5c6lr0Xx2NZEyT0+zQBr2zKyQbj+iHC
-         xRbTS4CYyhxw4mVvp8OLnAgchxvDMWm8ToGAu0NVyqqrqcKLBhFtlK1KgZaPkaiH9y
-         byN84hIFljmbs3zMhSXRty5TupfqWORXZBL12BL1FBQqQakKee4SeaDKSKcwvStCIm
-         VY/IvlY1q/qaQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     krzk+dt@kernel.org, zhouyanjie@wanyeetech.com, robh+dt@kernel.org
-Cc:     linux-spi@vger.kernel.org, sernia.zhou@foxmail.com,
-        dongsheng.qiu@ingenic.com, contact@artur-rojek.eu,
-        reimu@sudomaker.com, linux-mips@vger.kernel.org,
-        zhenwenjin@gmail.com, linux-kernel@vger.kernel.org,
-        rick.tyliu@ingenic.com, aric.pzqi@ingenic.com,
-        devicetree@vger.kernel.org, paul@crapouillou.net
-In-Reply-To: <1650724725-93758-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1650724725-93758-1-git-send-email-zhouyanjie@wanyeetech.com>
-Subject: Re: [PATCH v3 0/3] Improve SPI support for Ingenic SoCs.
-Message-Id: <165090749609.584172.16916188059494565113.b4-ty@kernel.org>
-Date:   Mon, 25 Apr 2022 18:24:56 +0100
+        with ESMTP id S231847AbiDYRke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 13:40:34 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 741398C7E3;
+        Mon, 25 Apr 2022 10:37:29 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 15so5622891pgf.4;
+        Mon, 25 Apr 2022 10:37:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PjD/mfBFlz/AtrrL9x0Nf4kx8DWM5v1izBjt6/Kpab0=;
+        b=Hm4FE29UfoLbczENW+XUuxCsdMMB21yOePMZ4K7szKAY6zQSi9WbZ0m3noMmt3WdFf
+         qsTwr/PTWjYXoLhBldxZMfcLvy0xHaSk1DzPVavJ3Tv6LSbXOuuf1CgvMwZvjCSQ2ELT
+         MH1NMEW7Sd5Tp2B6vYcwVh14Mw5URoKlmENkbVYGpZjKa/Z1L3r+aj7/Z/lT6JfOd6hY
+         qdcC2pcp0KjvDNv/Hk9uUZXp09QkIJ0zvYRbQA63h5G2S8hoNgLuKcl6Cro30i752XtR
+         MA+eD4GRCz9X3sca2/MazGJVJXB9qFgSaVvnLp1dUkIbNk0Yqobk27DNZAMIs9wyVHzW
+         kMug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PjD/mfBFlz/AtrrL9x0Nf4kx8DWM5v1izBjt6/Kpab0=;
+        b=CfRQi9W6dtvRzaMuiOcqNXfJMdxxkvdkO+/+aS/WJCQE5ZLRWhHfOSegIU+fJBwjk3
+         wh94dvE8KxVgLw5lzPWp2edZhp9JfeEIox88WIpQrYXccvhv7YXIBAhZDMVll1wQPmmK
+         2O71mP3zV6HKZHI37iKFznhfsS2uSibEkKX4PpiHJEANkp6ihgVBDPFxUnMjBlBLZW5o
+         keOxrDiMbsDr4wp/wFkn8n7L/8aNSPyFexbDmndoDdbFyUSpLKDuGhvj0AecQkxHjUmQ
+         u2Zvl9aku92WcpA3hxyChMefT02yzZgyEJ/Vxe4rOZBYP1axTAxLYhSCuuZcV4iDTA95
+         v0ng==
+X-Gm-Message-State: AOAM532OCqkQH1sEy9mlrbavcT3gFHKKMltJoniLPKcBbzThuaVJ3GKa
+        +G3/ScpvrQXF+FexZNLzA7M=
+X-Google-Smtp-Source: ABdhPJzd1XOAwmlG/JRg8XpnkspvBtxjBREClAWoak8wuJRQq2EaPozR9A9EhbRPAaDnsVWD5jTavA==
+X-Received: by 2002:a63:8ac9:0:b0:3ab:dab:16b4 with SMTP id y192-20020a638ac9000000b003ab0dab16b4mr9077462pgd.129.1650908248880;
+        Mon, 25 Apr 2022 10:37:28 -0700 (PDT)
+Received: from localhost.localdomain (c-73-241-94-58.hsd1.ca.comcast.net. [73.241.94.58])
+        by smtp.gmail.com with ESMTPSA id c1-20020a17090ab28100b001cd4989fecfsm16218491pjr.27.2022.04.25.10.37.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Apr 2022 10:37:27 -0700 (PDT)
+From:   Ryan Lee <ryan.lee.analog@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, ckeepax@opensource.cirrus.com,
+        tanureal@opensource.cirrus.com, cy_huang@richtek.com,
+        pierre-louis.bossart@linux.intel.com,
+        drhodes@opensource.cirrus.com, pbrobinson@gmail.com,
+        hdegoede@redhat.com, lukas.bulwahn@gmail.com, stephan@gerhold.net,
+        arnd@arndb.de, ryan.lee.analog@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ryans.lee@analog.com
+Subject: [PATCH V3 1/2] ASoC: dt-bindings: max98396: add amplifier driver
+Date:   Mon, 25 Apr 2022 10:37:15 -0700
+Message-Id: <20220425173715.1827706-1-ryan.lee.analog@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 23 Apr 2022 22:38:42 +0800, 周琰杰 (Zhou Yanjie) wrote:
-> 1.Add support for using GPIOs as chip select lines on Ingenic SoCs.
-> 2.Add support for probing the spi-ingenic driver on the JZ4775 SoC,
->   the X1000 SoC, and the X2000 SoC.
-> 3.Modify annotation texts to be more in line with the current state.
-> 
-> v1->v2:
-> Use "device_property_read_u32()" instead "of_property_read_u32()" as
-> Paul Cercueil's suggestion.
-> 
-> [...]
+From: Ryan Lee <ryans.lee@analog.com>
 
-Applied to
+This patch adds dt-bindings information for Analog Devices MAX98396
+and MAX98397 Smart Amplifier.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+---
+  Changes from v1:
+    Fixed yamllint/dtschema/dtc warnings and errors
+  Changes from v2:
+    No change
 
-Thanks!
+ .../bindings/sound/adi,max98396.yaml          | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,max98396.yaml
 
-[1/3] SPI: Ingenic: Add support for use GPIO as chip select line.
-      commit: e64e9ad267ca22ee3db6f9d7a02dc8400a23d4c8
-[2/3] dt-bindings: SPI: Add bindings for new Ingenic SoCs.
-      commit: aecec8bbb225965c6f775b946ad7bf40736c8f09
-[3/3] SPI: Ingenic: Add support for new Ingenic SoCs.
-      commit: 6d72b11403549a34b485d2fe323c8a57b4dd1958
+diff --git a/Documentation/devicetree/bindings/sound/adi,max98396.yaml b/Documentation/devicetree/bindings/sound/adi,max98396.yaml
+new file mode 100644
+index 000000000000..ec4c10c2598a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/adi,max98396.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/adi,max98396.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX98396 Speaker Amplifier Device Tree Bindings
++
++maintainers:
++  - Ryan Lee <ryans.lee@analog.com>
++
++description:
++  The MAX98396 is a mono Class-DG speaker amplifier with I/V sense.
++  The device provides a PCM interface for audio data and a standard
++  I2C interface for control data communication.
++  The MAX98397 is a variant of MAX98396 with wide input supply range.
++
++properties:
++  compatible:
++    enum:
++      - adi,max98396
++      - adi,max98397
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++  adi,vmon-slot-no:
++    description: slot number of the voltage sense monitor
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,imon-slot-no:
++    description: slot number of the current sense monitor
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,spkfb-slot-no:
++    description: slot number of speaker DSP monitor
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    minimum: 0
++    maximum: 15
++    default: 0
++
++  adi,interleave-mode:
++    description:
++      For cases where a single combined channel for the I/V sense data
++      is not sufficient, the device can also be configured to share
++      a single data output channel on alternating frames.
++      In this configuration, the current and voltage data will be frame
++      interleaved on a single output channel.
++    type: boolean
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        max98396: amplifier@39 {
++            compatible = "adi,max98396";
++            reg = <0x39>;
++            adi,vmon-slot-no = <0>;
++            adi,imon-slot-no = <1>;
++            reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
++        };
++    };
+-- 
+2.25.1
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
