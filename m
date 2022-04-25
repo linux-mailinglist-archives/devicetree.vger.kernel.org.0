@@ -2,90 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD6D850E1D0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D0F50E1D7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242042AbiDYNe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 09:34:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53168 "EHLO
+        id S236146AbiDYNfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 09:35:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242045AbiDYNe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:34:27 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E713A29A;
-        Mon, 25 Apr 2022 06:31:21 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id m11so6287699oib.11;
-        Mon, 25 Apr 2022 06:31:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=GUfySEJJQHigKKbyCdUKKYOqIxCh0oO9rPKwD6ultJ0=;
-        b=Q5cvUAHbTFFraAFzgookFfGEjQZPwO4QP3peH+LWvHZBsu2ALM2KEB2MICtPjlyKWO
-         qE/gH2bQESi+Ups/Ksg6hVVaocgag/iIav57exGeKb+OszyqMCSk7Rtu7mfpWT1WniIC
-         0fsjBByGH8NGrlFE9qiAw//sixcyHRVIvQ+zCw1IHc57ubD3ZczAEC7wb7KxLxI4Mwpf
-         No7KuZBvvjIRw7lciBsqQdB4Q2Jm311bpQ5AT/pZlz7CeWYsQ0J9hui04H1YAriSit2c
-         AZKZv4AAXYSo4GafxTriBn3gx9iFhkKSlB6HceK2hspIgxU5LmFnBISq8loVpdPbTpEP
-         Dz0Q==
-X-Gm-Message-State: AOAM5314w7uXfmYB8wV/hWAL50B1DZNXBvygjN3wAWS3pshbJ6TZZkQP
-        Hq3hjfDGqXlPBF/5b4dpog==
-X-Google-Smtp-Source: ABdhPJxa46qPKjUROvXBgyXHn1w+wkciL8kidB567QnbYwcBqFlbJMT1L4DOwjjfyAJunbcJUTUk6g==
-X-Received: by 2002:a05:6808:1998:b0:323:2818:86c0 with SMTP id bj24-20020a056808199800b00323281886c0mr8261044oib.294.1650893480691;
-        Mon, 25 Apr 2022 06:31:20 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o19-20020a4a9593000000b0032176119e65sm4395149ooi.34.2022.04.25.06.31.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 06:31:20 -0700 (PDT)
-Received: (nullmailer pid 3715962 invoked by uid 1000);
-        Mon, 25 Apr 2022 13:31:19 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-In-Reply-To: <20220424131522.14185-2-david@ixit.cz>
-References: <20220424131522.14185-1-david@ixit.cz> <20220424131522.14185-2-david@ixit.cz>
-Subject: Re: [PATCH v2 2/3] dt-bindings: mailbox: qcom-ipcc: add missing properties into example
-Date:   Mon, 25 Apr 2022 08:31:19 -0500
-Message-Id: <1650893479.245343.3715961.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S242111AbiDYNfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:35:04 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 306BEBA8;
+        Mon, 25 Apr 2022 06:32:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,288,1643641200"; 
+   d="scan'208";a="119093272"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 25 Apr 2022 22:31:59 +0900
+Received: from localhost.localdomain (unknown [10.226.93.95])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 90EEC40065CF;
+        Mon, 25 Apr 2022 22:31:55 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: i2c: renesas,riic: Document RZ/G2UL SoC
+Date:   Mon, 25 Apr 2022 14:31:52 +0100
+Message-Id: <20220425133152.176949-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 24 Apr 2022 15:15:20 +0200, David Heidelberg wrote:
-> These missing required properties are needed for
-> smp2p binding reference checks.
-> 
-> Misc: adjusted examples properties formatting from dtsi.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../devicetree/bindings/mailbox/qcom-ipcc.yaml        | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
+Document RZ/G2UL I2C bindings. RZ/G2UL I2C is identical to one found on
+the RZ/G2L SoC. No driver changes are required as RZ/G2L compatible
+string "renesas,riic-rz" will be used as a fallback.
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v1->v2:
+ * Added Reset property required on RZ/G2UL SoC
+ * Added Ack from Krzysztof Kozlowski
+ * Added Rb tag from Geert
+---
+ Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-mailbox@ed18000: compatible:0: 'qcom,sm8450-ipcc' is not one of ['qcom,sm6350-ipcc', 'qcom,sm8250-ipcc', 'qcom,sm8350-ipcc', 'qcom,sc7280-ipcc']
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
+diff --git a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+index f4b235a87ac6..2f315489aaae 100644
+--- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
++++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+@@ -19,6 +19,7 @@ properties:
+       - enum:
+           - renesas,riic-r7s72100   # RZ/A1H
+           - renesas,riic-r7s9210    # RZ/A2M
++          - renesas,riic-r9a07g043  # RZ/G2UL
+           - renesas,riic-r9a07g044  # RZ/G2{L,LC}
+           - renesas,riic-r9a07g054  # RZ/V2L
+       - const: renesas,riic-rz      # RZ/A or RZ/G2L
+@@ -75,6 +76,7 @@ if:
+     compatible:
+       contains:
+         enum:
++          - renesas,riic-r9a07g043
+           - renesas,riic-r9a07g044
+           - renesas,riic-r9a07g054
+ then:
+-- 
+2.25.1
 
