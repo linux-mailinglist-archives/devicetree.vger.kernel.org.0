@@ -2,198 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4360350E1DB
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30FD850E1CE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbiDYNe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 09:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55694 "EHLO
+        id S242030AbiDYNeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 09:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242075AbiDYNe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:34:58 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B151BA8
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 06:31:54 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id v4so5688870ljd.10
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 06:31:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ccosb5OLlMLmZzgxt/IQ3pX0ynIyPqTno6b0V3kf4QY=;
-        b=h7uireBSCGtFURN6YqTRU6eeR3CHZOnsJGdnJeqP6QwMQSj2SGyD6UbXohwPydwgpb
-         vmp6zbfchpXP81+EMOgnQ6MZBbHkyY+H4yQJgu97wVoKnngHY0EhbUDlsCHJWCWJOO55
-         ivlRGRKFNW6E+Wcrd419jbvv0nqOCS8FuzKv8YcVTHRAUJ1b4xfdBe+mJkWIk6FPRvLy
-         NXvWLG8SAvVKJJ0hmO9ASek+ULoemo+DFdWIJR+7SwMOvu6bmOAjjCB7A6VYeShtF2II
-         fBr7jitEgZWVGOD0KrQl+SLq9Cylu1iLDtOwjDbx64PfOPqPBDHlSZFYZ1M5Tpp9qfVm
-         00XA==
+        with ESMTP id S242032AbiDYNeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:34:14 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 881802A6;
+        Mon, 25 Apr 2022 06:31:06 -0700 (PDT)
+Received: by mail-qk1-f170.google.com with SMTP id y129so10723365qkb.2;
+        Mon, 25 Apr 2022 06:31:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ccosb5OLlMLmZzgxt/IQ3pX0ynIyPqTno6b0V3kf4QY=;
-        b=g4CZcwHGc+xlE1TKnLF0X5sR92c8jY/SaryrEUXHnmXYujNVFdABkYlEhijW+skX/E
-         9OHXn1tQVyNedpOKBBglbLdw3IFxjP11KPKWDwGTHvWe+YerBOSQzIJ+2YKeTHT3EH+r
-         SI0r1EbZOqiI222/QEdPqmZ0NhFbYcFbxssPa8vZ5Ojaf74kdG3YYH11sBIO3r60uzh6
-         nUP4E3Jwzw4sKQDWm3drHcOTAQ9yHhpn4W5CmekIGfOKphsoy/TPKRyOUiWwTAT71gaP
-         d5VQ2bc/ekAEREIrV+UVTTESxj44PHHwO592Wzg8y3FH4XTcSJXeZ5mtL32QnMsqlOWu
-         s7Fg==
-X-Gm-Message-State: AOAM532OrxCPNj/kabyRTMpUKzy+OXlhrVprl2QC9nSV7Z3UyRoER99X
-        r/K1PZiugXxhXqFX6FnsJZycVw==
-X-Google-Smtp-Source: ABdhPJwNvTMsZhVhg8b9FrfRFyxjyOQegcTFZsO1MwPyhBNFwitqNOpsc85qd0SqXs/hSiiuG2mNFA==
-X-Received: by 2002:a2e:701a:0:b0:24f:a7d:2b2c with SMTP id l26-20020a2e701a000000b0024f0a7d2b2cmr5702849ljc.51.1650893512260;
-        Mon, 25 Apr 2022 06:31:52 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id v7-20020a196107000000b0046d05202c61sm1414553lfb.65.2022.04.25.06.31.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 06:31:51 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Johan Hovold <johan@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3] dt-bindings: gnss: Rewrite Mediatek bindings in YAML
-Date:   Mon, 25 Apr 2022 15:29:47 +0200
-Message-Id: <20220425132947.1311171-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BMWrCyXyLXwiGysVcfNBovGrw9zX+kXN/rJrng1KJKA=;
+        b=iGlUi5beuJK0RrVYCx9XGXtFVhytwuknMFlIT5NQizd3+aR7M38tWzvbEo2f/UiERp
+         Irh4ViTJeybEf3uCxH5nj/2QoUe3UIikk2loWASHIYpfNLx5ysUL51cS0bcAwcEC9+uH
+         18bYNegxtFAWF+ReVqEJVmgKPQ5LQeEwW9jfHcfQomt51wQr9QRrMRbXVtOC00GZgqi5
+         Ui0gJW46IZdF+b+8mXb836Vz+TfPPIzuhdzvEb8fHu6gWeXan3NX7hxBNBDQJnNMQ0Eh
+         dD3BLb4PcfyyQu8FEeSuO8dPgCWCy9D6QtKa8tbaibk+m8YsMOPri3gG/kFe8onHsFN+
+         DaBA==
+X-Gm-Message-State: AOAM533KTb7MCmJTgKGv270oLtv4AcKYhGkfYB9izAPBZV0CdvFxNyJF
+        n+fOTYeLVre6m+Zi75mFJgc48KwdsubSdg==
+X-Google-Smtp-Source: ABdhPJy67MmErAZ+ccrL7p/sQXyQhSAEApP2zHWJp55EsYJizpKrENZ885X2XfdYlVa5TuvZ3wc3Gg==
+X-Received: by 2002:a05:620a:20d2:b0:69e:93d4:214a with SMTP id f18-20020a05620a20d200b0069e93d4214amr9711209qka.40.1650893465430;
+        Mon, 25 Apr 2022 06:31:05 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id s19-20020a05622a179300b002e1ceeb21d0sm6295396qtk.97.2022.04.25.06.31.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 06:31:05 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id d12so7823822ybc.4;
+        Mon, 25 Apr 2022 06:31:05 -0700 (PDT)
+X-Received: by 2002:a25:8087:0:b0:641:dd06:577d with SMTP id
+ n7-20020a258087000000b00641dd06577dmr15775427ybk.207.1650893464808; Mon, 25
+ Apr 2022 06:31:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220424161228.8147-1-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20220424161228.8147-1-laurent.pinchart+renesas@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 25 Apr 2022 15:30:52 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJBwPuJnKj92=ufVqcwZ5HN3A3WHX8v-=Vkh9F4k3f1A@mail.gmail.com>
+Message-ID: <CAMuHMdWJBwPuJnKj92=ufVqcwZ5HN3A3WHX8v-=Vkh9F4k3f1A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: Remove empty lvds endpoints
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the Mediatek GNSS bindings in YAML.
+Hi Laurent,
 
-Cc: devicetree@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Add the missed gnss-fix-gpios.
-- Move allOf to right before the properties.
-- Keep the description on timepulse-gpios because it documents
-  which pins are used on this chip.
-ChangeLog v1->v2:
-- New patch since Krzysztof pointed out there is really just
-  one more binding to convert, so why not.
----
- .../devicetree/bindings/gnss/mediatek.txt     | 35 -----------
- .../devicetree/bindings/gnss/mediatek.yaml    | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 35 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
- create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.yaml
+On Sun, Apr 24, 2022 at 6:12 PM Laurent Pinchart
+<laurent.pinchart+renesas@ideasonboard.com> wrote:
+> Endpoints node must have a remote-endpoint property, as endpoints only
+> exist to model a link between ports. Drop the empty lvds endpoints from
+> SoC dtsi files, they should be instead declared in the board dts or in
+> overlays.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
-diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
-deleted file mode 100644
-index 80cb802813c5..000000000000
---- a/Documentation/devicetree/bindings/gnss/mediatek.txt
-+++ /dev/null
-@@ -1,35 +0,0 @@
--Mediatek-based GNSS Receiver DT binding
--
--Mediatek chipsets are used in GNSS-receiver modules produced by several
--vendors and can use a UART interface.
--
--Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
--properties.
--
--Required properties:
--
--- compatible	: Must be
--
--			"globaltop,pa6h"
--
--- vcc-supply	: Main voltage regulator (pin name: VCC)
--
--Optional properties:
--
--- current-speed		: Default UART baud rate
--- gnss-fix-gpios	: GPIO used to determine device position fix state
--			  (pin name: FIX, 3D_FIX)
--- reset-gpios		: GPIO used to reset the device (pin name: RESET, NRESET)
--- timepulse-gpios	: Time pulse GPIO (pin name: PPS1, 1PPS)
--- vbackup-supply	: Backup voltage regulator (pin name: VBAT, VBACKUP)
--
--Example:
--
--serial@1234 {
--	compatible = "ns16550a";
--
--	gnss {
--		compatible = "globaltop,pa6h";
--		vcc-supply = <&vcc_3v3>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/gnss/mediatek.yaml b/Documentation/devicetree/bindings/gnss/mediatek.yaml
-new file mode 100644
-index 000000000000..45cf01b27700
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gnss/mediatek.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gnss/mediatek.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek GNSS Receiver Device Tree Bindings
-+
-+maintainers:
-+  - Johan Hovold <johan@kernel.org>
-+
-+description:
-+  Mediatek chipsets are used in GNSS-receiver modules produced by several
-+  vendors and can use a UART interface.
-+
-+allOf:
-+  - $ref: gnss-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: globaltop,pa6h
-+
-+  vcc-supply:
-+    description:
-+      Main voltage regulator, pin name VCC.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: An optional reset line, with names such as RESET or NRESET.
-+      If the line is active low it should be flagged with GPIO_ACTIVE_LOW.
-+
-+  timepulse-gpios:
-+    description: Comes with pin names such as PPS1 or 1PPS.
-+
-+  gnss-fix-gpios:
-+    maxItems: 1
-+    description: GPIO used to determine device position fix state, pin names
-+      FIX or 3D_FIX.
-+
-+  vbackup-supply:
-+    description:
-+      Regulator providing backup voltage, pin names such as VBAT or VBACKUP.
-+
-+required:
-+  - compatible
-+  - vcc-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    serial {
-+        gnss {
-+            compatible = "globaltop,pa6h";
-+            vcc-supply = <&vcc_3v3>;
-+            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
-+        };
-+    };
--- 
-2.35.1
+Thanks for your patch!
 
+Looks like we still haven't managed yet to get Rob's attention, and
+extract his opinion about the general idea?
+
+Unless someone objects, I plan to queue this and patch 2/2 in
+renesas-devel for v5.19.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
