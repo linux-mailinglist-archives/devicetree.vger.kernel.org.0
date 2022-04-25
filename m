@@ -2,134 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C143350E571
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 18:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 007E750E574
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 18:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238091AbiDYQVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 12:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43544 "EHLO
+        id S241958AbiDYQXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 12:23:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235135AbiDYQVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 12:21:46 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE485C845;
-        Mon, 25 Apr 2022 09:18:41 -0700 (PDT)
-Received: by mail-qk1-f174.google.com with SMTP id d19so11141997qko.3;
-        Mon, 25 Apr 2022 09:18:41 -0700 (PDT)
+        with ESMTP id S240823AbiDYQXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 12:23:08 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1E0BCB4;
+        Mon, 25 Apr 2022 09:20:03 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id u17-20020a9d4d91000000b00605a73abac1so3109988otk.7;
+        Mon, 25 Apr 2022 09:20:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WmopMEhO5sJFa6N97UeuS8xj6v439U2xJGJI9H+fOkk=;
-        b=DxX5Ty4jmUn0D5FNwwBv8ooLxTYpmWIUGhJWQHyWn/Gu8xpyCAf4ypFNeUDgv9c9Mw
-         6zj1ti+x60e9rgU28CEFTRPJRfItC4IBhZtnQixRfUj43uUsmrSIMkhcQUcOFTwFvITK
-         Ll4eHdb0yWsKXVxN2ch75luSIi2ZxwlHFLMohNSK+SqJOaSqFVP1bQ9Do+SnqKDQ2up/
-         jWI6eXGyHgsG17ZMdoEacrNtWNi3EMxarvQFTZkU6e1ZkkctcInQEOpkoga3p4mNP/R1
-         3ihZ1zlp9WW4iIMbxDK3vKbXbgS9HtXFEqcTvJzqpJhXwLJ6R0att11pyTo07S01Tcjk
-         N0Vg==
-X-Gm-Message-State: AOAM533Y2TWMuGUGLRSMCWugUaraqXTy9X4Fs79Jwioksfb+hLKrmgIJ
-        0XFImG2jS/6HLkpTmQQUKH+kLtAnN5SGTg==
-X-Google-Smtp-Source: ABdhPJxTWChXVzYuuLjx4uora+ov5MmoM4yvCSzOIhk+JG+tW4wFW6PgktnEbFI55VZoLa0olNSaaA==
-X-Received: by 2002:a05:620a:4611:b0:69f:6a64:e694 with SMTP id br17-20020a05620a461100b0069f6a64e694mr1633421qkb.36.1650903520803;
-        Mon, 25 Apr 2022 09:18:40 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id d15-20020ac84e2f000000b002f36938f259sm1873797qtw.91.2022.04.25.09.18.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 09:18:40 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id r189so27977419ybr.6;
-        Mon, 25 Apr 2022 09:18:40 -0700 (PDT)
-X-Received: by 2002:a25:8087:0:b0:641:dd06:577d with SMTP id
- n7-20020a258087000000b00641dd06577dmr16564168ybk.207.1650903519962; Mon, 25
- Apr 2022 09:18:39 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WVzx8jGuknzLZVXV871qnwo3R/8/4lIfQ3q4P7qYiP4=;
+        b=hz3u/XIB6JTpQEmxrNhUjBQ1UH3QhGdtbhUoOsJYSnNaasZhFylNBbEmBx66xykF75
+         6/gXQcvEPCXHSMlO+b26MoZZbWPhF3IVmSvzxML5bk7tSrQZJbyUwAGJUlRYnE/vqhm9
+         E37IGI0jM6GUmX1nbztivfTxfiJjYZtWaj4xCdWtqmMe0a4cS9A6pbVaGGuA6lStNGqH
+         tqRfBD+AEbLVNgc6gOYSWjd/BFU+YDbcdIjqexAUQC/dfUuSI6xuS3w01CxW0qL5DNtb
+         oYLJ//sPCg0AqtPk5DETCciXIv6BpbDqtGTI8QDZs6w3Pu4dumNs6PVxgYGFu6lRdnTS
+         AeYA==
+X-Gm-Message-State: AOAM533q5V59X/LfUCIJAP4W/xflMhkez5RKEVrVexQxWz/hG3z6JQK7
+        QkmrlvGZOdRbuOsm16+fzg==
+X-Google-Smtp-Source: ABdhPJzfXcOuEIBBEabFnazcQvEjyn7uQ1TkMJPtAn90m2mnjgsYc5JRVkPqpVeBB6E+3L5JbxBqAQ==
+X-Received: by 2002:a9d:7acf:0:b0:605:5673:758b with SMTP id m15-20020a9d7acf000000b006055673758bmr6689923otn.27.1650903602749;
+        Mon, 25 Apr 2022 09:20:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z3-20020a056870d68300b000e2a0a74f9fsm3571803oap.37.2022.04.25.09.20.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Apr 2022 09:20:02 -0700 (PDT)
+Received: (nullmailer pid 3995652 invoked by uid 1000);
+        Mon, 25 Apr 2022 16:20:01 -0000
+Date:   Mon, 25 Apr 2022 11:20:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: timer: samsung,exynos4210-mct: drop
+ unneeded minItems
+Message-ID: <YmbKMWeBeINfv1wE@robh.at.kernel.org>
+References: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
+ <20220424150333.75172-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20220421085112.78858-1-miquel.raynal@bootlin.com> <20220421085112.78858-7-miquel.raynal@bootlin.com>
-In-Reply-To: <20220421085112.78858-7-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 25 Apr 2022 18:18:28 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWaViDYRnwdpD+m73ZisDSMKESfcGbanf6qXR1M2167EQ@mail.gmail.com>
-Message-ID: <CAMuHMdWaViDYRnwdpD+m73ZisDSMKESfcGbanf6qXR1M2167EQ@mail.gmail.com>
-Subject: Re: [PATCH v11 6/9] clk: renesas: r9a06g032: Probe possible children
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220424150333.75172-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+On Sun, 24 Apr 2022 17:03:32 +0200, Krzysztof Kozlowski wrote:
+> There is no need to add minItems when it is equal to maxItems.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/timer/samsung,exynos4210-mct.yaml        | 1 -
+>  1 file changed, 1 deletion(-)
+> 
 
-On Thu, Apr 21, 2022 at 10:51 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> The clock controller device on r9a06g032 takes all the memory range that
-> is described as being a system controller. This range contains many
-> different (unrelated?) registers besides the ones belonging to the clock
-> controller, that can necessitate to be accessed from other peripherals.
->
-> For instance, the dmamux registers are there. The dmamux "device" will
-> be described as a child node of the clock/system controller node, which
-> means we need the top device driver (the clock controller driver in this
-> case) to populate its children manually.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-
-Thanks for your patch!
-
-> --- a/drivers/clk/renesas/r9a06g032-clocks.c
-> +++ b/drivers/clk/renesas/r9a06g032-clocks.c
-> @@ -996,7 +997,7 @@ static int __init r9a06g032_clocks_probe(struct platform_device *pdev)
->
->         sysctrl_priv = clocks;
->
-> -       return 0;
-> +       return of_platform_populate(np, NULL, NULL, dev);
-
-This is a bit dangerous: in the (very unlikely) case that
-of_platform_populate() fails, the clock driver will fail to probe,
-and all managed cleanup will be done (not everything will be cleant
-up, though), while sysctrl_priv will still point to the now-freed
-r9a06g032_priv structure.
-
-So I think you just want to ignore the failure from
-of_platform_populate(), and return zero anyway.
-
->  }
->
->  static const struct of_device_id r9a06g032_match[] = {
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Acked-by: Rob Herring <robh@kernel.org>
