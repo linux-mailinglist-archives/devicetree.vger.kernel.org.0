@@ -2,126 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F9E50DE38
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 12:53:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E0050DE84
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 13:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237694AbiDYK4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 06:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47994 "EHLO
+        id S240178AbiDYLNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 07:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232849AbiDYK4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:56:04 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466877DAB7
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 03:52:58 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g23so10866948edy.13
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 03:52:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=c0GtfBkRSHeFZTruOwJRlqy+Sejoq8V+8yuUoZ3jFBc=;
-        b=CbbAqeWONmzWIiGLRvqkhXo3NhecQVj6nlqqLU92Lqr1pACc3YhhvLGZg1SouvWfQ+
-         8sH0Gko7TaEwFe7nRdN6dyYPtVZCcL0ae9htgY8wdfKxMPswxpxdM9dhNNCzQGqzw3Z7
-         0k5CRiWMlYKJiH03+Nx/K4ew/zYPywhIPfaJcrmgMkryaUAF6ksXyn4Jc+7VGXBm+3+X
-         jy2XsSb0qgG8wK+a7mEBgCBxyLrQSltcTgWZIlR8+9gqM6OCZuDjnB5RlYn476VRadCE
-         YwKnLkl31yV+HJI8g4PJM4SC+3OFnZngS2XtfFEO88N0Va6VH3OS/As8cr0nY00axZ9z
-         q5ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=c0GtfBkRSHeFZTruOwJRlqy+Sejoq8V+8yuUoZ3jFBc=;
-        b=EQQdb09DwghXOhRUqmLmbQrMRQ6BpeyDZOpJFOakwx6Z/WLyoauVVQA7GpN3p6pxsJ
-         dEmn1DpouEAAX755nBOX9tHD5etuqjdomf6i6HHyRoWMB45zOucOkwmuC9mRJrqk+mUJ
-         PtJp4GvgA+ySJWB1NL84btBVb223UzO+xMPNWQAlp/rPuf8La4YHLDGhf66+pp0vFpcN
-         6vKcU16/ENjUmoFjG55ieRoytPNxiH8oIc7rzzp9/5wgae7dbohuvUCmU6FBECT+h2PQ
-         77eQHLa//O4fKDBDF9oq8GwUtzCM+cSGXqtT5N3+KhtmuUjiVUfefqq9SGtrBwtZZjzI
-         Cudg==
-X-Gm-Message-State: AOAM533YFh507dcWWOlZyUmKy4amBYy5jP9Y1BTZ/xJ8yQ7i03Ayh7Ov
-        d2t6j7kGR4DBgL8f9x+QEttH4g==
-X-Google-Smtp-Source: ABdhPJy0dgkTb52njNWz9LvzMjEGTgEAOOjcVV8QzWTIaTLpb3m5wGPLOarhcpcQDrQ3D+MMkn43tw==
-X-Received: by 2002:a05:6402:27d0:b0:41a:68bf:ff26 with SMTP id c16-20020a05640227d000b0041a68bfff26mr18293476ede.102.1650883976805;
-        Mon, 25 Apr 2022 03:52:56 -0700 (PDT)
-Received: from [192.168.0.241] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w24-20020a50d798000000b00425eb9d893asm1016799edi.79.2022.04.25.03.52.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 03:52:56 -0700 (PDT)
-Message-ID: <9ff80bc2-d63b-14aa-5769-20bff6e3a21e@linaro.org>
-Date:   Mon, 25 Apr 2022 12:52:55 +0200
+        with ESMTP id S233379AbiDYLNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 07:13:39 -0400
+X-Greylist: delayed 514 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Apr 2022 04:10:33 PDT
+Received: from mail.cosmopool.net (h1.radempa.de [176.9.142.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CF7E712AD8
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 04:10:30 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.cosmopool.net (Postfix) with ESMTP id 3A2B790168A;
+        Mon, 25 Apr 2022 13:01:56 +0200 (CEST)
+Received: from mail.cosmopool.net ([127.0.0.1])
+        by localhost (mail.b.radempa.de [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 672odDHYvjf8; Mon, 25 Apr 2022 13:01:55 +0200 (CEST)
+Received: from webmail.cosmopool.net (localhost [127.0.0.1])
+        by mail.cosmopool.net (Postfix) with ESMTPSA id 4634F9004FE;
+        Mon, 25 Apr 2022 13:01:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ccbib.org; s=201902;
+        t=1650884515; bh=xZhRc9yY05nLmAbLSXvLWBHxam/xcmOns6t5R8P3spg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=a7lU1MxVpyhPBWR4LzcrQbrs6SaYQnyoMOKgAxYp9SkAdpxeI+V46M7f4R9dP4EgX
+         F3i/xtNN6xl08FJSz4UG3vMONy5IZu7s4MqZRXlT3auy+tP8CS4dIPUNp/hIwax0oJ
+         D5EsVejqvCzQYqbBF1TpS0KyTsJ/7vuWfJQYGRbY=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V4 01/14] dt-bindings: cpufreq: mediatek: Add MediaTek CCI
- property
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com
-Cc:     jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
-        hsinyi@google.com, khilman@baylibre.com,
-        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
- <20220422075239.16437-2-rex-bc.chen@mediatek.com>
- <f2e5a34b-ed02-91a1-bc7b-fecaa95e227e@linaro.org>
- <811bf944-a230-ab9b-583a-840e57af8a1e@linaro.org>
- <28f75ac2995b116af9b2accf760786d1d1798c93.camel@mediatek.com>
- <7873f0fa-25c3-191f-5096-3ceb9afd50cc@linaro.org>
- <c1b910098a0a5cbe06ec971c1bf745ac37986274.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c1b910098a0a5cbe06ec971c1bf745ac37986274.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Mon, 25 Apr 2022 12:01:54 +0100
+From:   Harald Geyer <harald@ccbib.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        <linux-sunxi@lists.linux.dev>, <devicetree@vger.kernel.org>,
+        Torsten Duwe <duwe@suse.de>
+Subject: Re: [PATCH] arm64: dts: allwinner: teres-i: Add GPIO port regulators
+In-Reply-To: <336f8b96-6eee-16a5-e896-e90c4020f740@sholland.org>
+References: <20220415165605.28560-1-harald@ccbib.org>
+ <336f8b96-6eee-16a5-e896-e90c4020f740@sholland.org>
+Message-ID: <462969fd722eec45aa5f142de48b7fbd@ccbib.org>
+X-Sender: harald@ccbib.org
+User-Agent: RoundCube Webmail/0.7.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 12:20, Rex-BC Chen wrote:
->> However I am not sure if you solved your problem... see below:
+On 24.04.2022 03:56, Samuel Holland wrote:
+> On 4/15/22 11:56 AM, Harald Geyer wrote:
+>> Allwinner A64 SoC has separate supplies for PC, PD, PE, PG and PL.
 >>
->>> For example:
->>> mediatek cci set 1.2V originally. When cpufreq want to adjust lower
->>> frequency adn set voltage to 1.0V.
->>> The framework will remain using 1.2V to prevent crash of mediatek
->>> cci.
+>> Usually supplies are linked via the 'regulator-name' property of
+>> regulator nodes. However when regulators are shared we need to
+>> declare the additional links in the pinctrl node.
 >>
->> No, regulator_set_voltage() for proc_reg says:
->> "NOTE: If the regulator is shared between several devices then the
->> lowest
->>  request voltage that meets the system constraints will be used."
->>
->> Not the highest. So when your devfreq and cpufreq boots, calling
->> regulator_set_voltage will still cause high frequency and low
->> voltage.
->>
-> 
-> From the driver comment, I think it still needs to match "meets the
-> system constraints".
-> 
-> From drivers, we can trace the driver and it finally to
-> regulator_get_optimal_voltage().
-> In [1], the framework will get max voltage while finding each device's
-> voltage.
-> 
-> [1]: 
-> https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L3815
+>> Signed-off-by: Harald Geyer <harald@ccbib.org>
+>
+> I'm curious if this solved an issue for you, or if this is just for 
+> accuracy.
+> Both of these regulators have the regulator-always-on property, so
+> they should have been enabled already.
 
-Right, actually in your case it's the regulator_check_consumers() above
-that line, because you
+You are right, there shouldn't be any change in functionality. It is 
+mostly
+for extra correctness. However the pincontrol driver started spewing 
+lot's
+of warnings about missing regulator nodes a few versions back. The 
+visible
+effect of this change is to silence those warnings. Also make the DTS 
+more
+future proof in case the driver is made even more picky in the future.
 
-I think it's quite generic problem, so would be worth solving for more
-regulator consumers, but your approach is fine. At least I do not have
-anything smarter, at the moment.
+> If it's the latter reason, why not add the other
+> ports? Regardless:
 
-Best regards,
-Krzysztof
+PD, PE and PL have dedicated regulators, that can be matched via the
+'regulator-name' property. I didn't want to specify the same 
+information
+in two places.
+
+For the PF supply, I couldn't find any connection information in the
+board schematic. I could have added a dummy regulator. But since there 
+is
+only one warning about pf-supply during driver initialization and not 
+the
+dozens of warnings I see about PC and PG, I figured, I'd rather not add
+information of dubious use or qualiy.
+
+best regards,
+Harald
+
+
+> Reviewed-by: Samuel Holland <samuel@sholland.org>
+>
+>> ---
+>>  arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts 
+>> b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+>> index aff0660b899c..cc316ef2e2d6 100644
+>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+>> @@ -197,6 +197,11 @@ &ohci1 {
+>>  	status = "okay";
+>>  };
+>>
+>> +&pio {
+>> +	vcc-pc-supply = <&reg_dcdc1>;
+>> +	vcc-pg-supply = <&reg_aldo2>;
+>> +};
+>> +
+>>  &pwm {
+>>  	status = "okay";
+>>  };
+>>
+
