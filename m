@@ -2,109 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAEA50E98F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A0A350E99F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237763AbiDYTiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 15:38:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38686 "EHLO
+        id S244991AbiDYTk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 15:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237034AbiDYTiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:38:23 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49754111151;
-        Mon, 25 Apr 2022 12:35:17 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 5A17883B2F;
-        Mon, 25 Apr 2022 21:35:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1650915315;
-        bh=FsZzdOsTx0wA9ngioPmnOF9El9tJsq70UI32iV/2VXU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=sBsXJ88X5iuiGoySi565D7ly4Q7lCcbnwUGgDkCE5k1JCrpc9r+7wPCUXHUrPfw2k
-         BJSgL6Hyib7axRTZlS2GdN/S3GzTcPdc/idG62EKbWHb5HTiubwXqyEHrEvxFVc8G6
-         rdiv/jRW2oU06M9nR5JNODNYpG38Ga0Guwk/8GbfY68OPugdR9xabNgFOdvmQCnaFW
-         Ao9s7pKy5jpoG58+rVARny6ZtMqdhg8qHsHfIQUDmbhmXQvBz7cSmJfiUhHo1bgL8a
-         xK4hi3B4Pjqbo+uPXOHkPBdtBSjaa6J//HoZtY1OguVgxCbC4fzPtoex1HMzvyIT6X
-         +zksEbCtiLjJQ==
-Message-ID: <a6fa8050-1860-fffb-e7eb-6603d2e0eec4@denx.de>
-Date:   Mon, 25 Apr 2022 21:35:13 +0200
+        with ESMTP id S244983AbiDYTk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:40:59 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1891D112447;
+        Mon, 25 Apr 2022 12:37:53 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id i38so9954765ybj.13;
+        Mon, 25 Apr 2022 12:37:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Sv8hAStxtYZLA7ttjMHDmBWNkg9R0he6yilL9E/on7U=;
+        b=Rm3XivQgs/+qfHTgBRxz6EnqsR5YnGqXNq6SpUmHifFzrPauwn6vlgLyAEZRxGkVne
+         NUaFb6Sw7lnrNY59Nk0EjE1hAHqwuQPTmDo19XR5IhO9RnkLG4gEUzH50njFyZm9sc/f
+         jvwRM/jT2L4tq7uFD9+qrAOKMFp1CSeZaenkXELOGulEVO6y8F3JIEPpR/CxTkQAkYQC
+         Bn8QW/c2vyY6sgOjIsJil8UIhvRGlwr0XIW0Eh+tA2qHxqrdyFdT0uTnK1X2ShxEq2zh
+         le/736GlWszQIlmHgbntrvfmZVq9ZvbRkwcHcQlj4cvpTv5jCIiCYxxyl4ELBG6OhXzW
+         jxdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Sv8hAStxtYZLA7ttjMHDmBWNkg9R0he6yilL9E/on7U=;
+        b=r8CdvhKtDiIBp0d9co1ctSN25OpHKc4SdS4bV21llex/ZuNq/A9X93WEg8iNztEDvB
+         OeO8x+lSlv3WpFNMbGKtj/ZpaSztkb+4IiEQAI01k9iug5af8oh+FbQCG+8bib61L48S
+         Rywa+LyaY3gGPxXg5uY52XicztoDsDHHYjZlxPTKEBrGzWbSKoO/neJZ+9xy4/ynDXCT
+         /1+xNAD1DJ6pPWkT5l7CFHSowj4SVCB5qi9Df1LAuEY65b8YKFSjtb6GmZGamXJQUyxE
+         TTzOmLcF1lb4qSKOs+ywM37xRd55DmB8MFnq5d2w4/y1VFGum5dghC18Fvuhc2b3zcp/
+         4IKw==
+X-Gm-Message-State: AOAM532MJBO4w7SvUnOfjLHPZ3KKtJPiYqfBGTs+YO74aJHYbAWV8aQh
+        iga5EXQ8+JKnMjiPFVRqVB67gKmL0J3eErSQN70=
+X-Google-Smtp-Source: ABdhPJx+MAl3lvFKD1Qba4L7n1K5/ljEL1sT3HVJgvt1iDEvua5oqXeT4ma4s6OJVaASqyJ8hlGCcxr5ZDsfp4axFO8=
+X-Received: by 2002:a25:af14:0:b0:645:36f1:c584 with SMTP id
+ a20-20020a25af14000000b0064536f1c584mr17794206ybh.366.1650915472252; Mon, 25
+ Apr 2022 12:37:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 2/8] dt-bindings: clock: stm32mp1: describes clocks if
- "st,stm32mp1-rcc-secure"
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>, arnd@arndb.de,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, soc@kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20220422170920.401914-1-sebastian.reichel@collabora.com>
+ <20220422170920.401914-19-sebastian.reichel@collabora.com>
+ <36551341-60f5-8b61-59d1-176ece8204d6@arm.com> <20220425181407.lknemxqooz7yidcz@mercury.elektranox.org>
+In-Reply-To: <20220425181407.lknemxqooz7yidcz@mercury.elektranox.org>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Mon, 25 Apr 2022 15:37:41 -0400
+Message-ID: <CAMdYzYr4ZNDzLGn-ArT4dW+F5c598rsWpACNMpuJRMY7a0yb=A@mail.gmail.com>
+Subject: Re: [PATCHv1 18/19] arm64: dts: rockchip: Add base DT for rk3588 SoC
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-kernel@vger.kernel.org,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>, etienne.carriere@st.com
-References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
- <20220422150952.20587-3-alexandre.torgue@foss.st.com>
- <dd48a7b5-ce08-5fb2-8236-8802ac91d827@denx.de>
- <YmbyUc5uTXoTD/nt@robh.at.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <YmbyUc5uTXoTD/nt@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        kernel@lists.collabora.co.uk,
+        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/25/22 21:11, Rob Herring wrote:
-> On Fri, Apr 22, 2022 at 06:31:25PM +0200, Marek Vasut wrote:
->> On 4/22/22 17:09, Alexandre Torgue wrote:
->>> In case of "st,stm32mp1-rcc-secure" (stm32mp1 clock driver with RCC
->>> security support hardened), "clocks" and "clock-names" describe oscillators
->>> and are required.
->>>
->>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
->>> index 7a251264582d..bb0e0b92e907 100644
->>> --- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
->>> @@ -58,14 +58,8 @@ properties:
->>>              - st,stm32mp1-rcc-secure
->>>              - st,stm32mp1-rcc
->>>          - const: syscon
->>> -
->>> -  clocks:
->>> -    description:
->>> -      Specifies the external RX clock for ethernet MAC.
->>> -    maxItems: 1
->>> -
->>> -  clock-names:
->>> -    const: ETH_RX_CLK/ETH_REF_CLK
->>> +  clocks: true
->>> +  clock-names: true
->>
->> It looks like this should rather be a property than a compatible string --
->> the compatible string is used by the OS to determine which hardware is
->> represented by a node, but here it is the same hardware in either case,
->> "st,stm32mp1-rcc" and "st,stm32mp1-rcc-secure", it is still the same
->> STM32MP1 RCC block, just configured differently by some bootloader stage.
->>
->> So why not just add one-liner property of the RCC block like ?
->> st,rcc-in-secure-configuration
-> 
-> Because using compatible was already decided.
+On Mon, Apr 25, 2022 at 2:14 PM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> Thanks for having a look.
+>
+> On Fri, Apr 22, 2022 at 07:16:13PM +0100, Robin Murphy wrote:
+> > On 2022-04-22 18:09, Sebastian Reichel wrote:
+> > > ...
+> > > +           cpu_l0: cpu@0 {
+> > > +                   device_type = "cpu";
+> > > +                   compatible = "arm,cortex-a55";
+> > > +                   reg = <0x0>;
+> > > +                   enable-method = "psci";
+> > > +                   capacity-dmips-mhz = <530>;
+> > > +                   clocks = <&scmi_clk SCMI_CLK_CPUL>;
+> > > +                   i-cache-size = <32768>;
+> > > +                   i-cache-line-size = <64>;
+> > > +                   i-cache-sets = <128>;
+> > > +                   d-cache-size = <32768>;
+> > > +                   d-cache-line-size = <64>;
+> > > +                   d-cache-sets = <128>;
+> > > +                   next-level-cache = <&l2_cache_l0>;
+> > > +                   #cooling-cells = <2>;
+> > > +                   dynamic-power-coefficient = <228>;
+> > > +           };
+> >
+> > Is there any particular reason for not including more of the CPUs?
+>
+> Yes, see below.
+>
+> > > +           its: interrupt-controller@fe640000 {
+> > > +                   compatible = "arm,gic-v3-its";
+> > > +                   msi-controller;
+> > > +                   #msi-cells = <1>;
+> > > +                   reg = <0x0 0xfe640000 0x0 0x20000>;
+> > > +           };
+> > > +   };
+> >
+> > Does the ITS (and other bits related to GIC memory accesses) actually work,
+> > or will we have more of the same issues as RK356x?
+>
+> The GIC in RK3588 is has the same shareability limitation as the RK356x,
+> but fixed the 32bit limitation. That's why I just added the boot cpu core
+> for now; adding any other cpu core breaks the boot without the downstream
+> shareability patch and I'm still investigating.
 
-I see ... may I ask why compatible is OK in this case even though this 
-is encoding a policy (secure/non-secure configuration of the same clock 
-IP) into DT ?
+There's no way to avoid this issue unfortunately.
+See my awful hacked together patch:
+https://gitlab.com/pine64-org/quartz-bsp/linux-next/-/commit/8b34fd2a74321f8f5d7731b63eee0f9e03d1393b
+
+Considering the ITS exists pretty much just for MSIs, and my PCIe
+series introduces support for legacy interrupts, you may get away with
+doing the mbi-alias currently implemented in rk356x.
+Note, there are *some* compatibility issues with mbi-alias MSIs,
+particularly with high IRQ cards like the Intel x520.
+
+>
+> -- Sebastian
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
