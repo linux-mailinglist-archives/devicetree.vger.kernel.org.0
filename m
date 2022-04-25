@@ -2,99 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30FD850E1CE
+	by mail.lfdr.de (Postfix) with ESMTP id 847E650E1CF
 	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242030AbiDYNeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 09:34:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
+        id S242066AbiDYNe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 09:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242032AbiDYNeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:34:14 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 881802A6;
-        Mon, 25 Apr 2022 06:31:06 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id y129so10723365qkb.2;
-        Mon, 25 Apr 2022 06:31:06 -0700 (PDT)
+        with ESMTP id S242048AbiDYNe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:34:27 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE2F2B1;
+        Mon, 25 Apr 2022 06:31:23 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id 12so17038166oix.12;
+        Mon, 25 Apr 2022 06:31:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BMWrCyXyLXwiGysVcfNBovGrw9zX+kXN/rJrng1KJKA=;
-        b=iGlUi5beuJK0RrVYCx9XGXtFVhytwuknMFlIT5NQizd3+aR7M38tWzvbEo2f/UiERp
-         Irh4ViTJeybEf3uCxH5nj/2QoUe3UIikk2loWASHIYpfNLx5ysUL51cS0bcAwcEC9+uH
-         18bYNegxtFAWF+ReVqEJVmgKPQ5LQeEwW9jfHcfQomt51wQr9QRrMRbXVtOC00GZgqi5
-         Ui0gJW46IZdF+b+8mXb836Vz+TfPPIzuhdzvEb8fHu6gWeXan3NX7hxBNBDQJnNMQ0Eh
-         dD3BLb4PcfyyQu8FEeSuO8dPgCWCy9D6QtKa8tbaibk+m8YsMOPri3gG/kFe8onHsFN+
-         DaBA==
-X-Gm-Message-State: AOAM533KTb7MCmJTgKGv270oLtv4AcKYhGkfYB9izAPBZV0CdvFxNyJF
-        n+fOTYeLVre6m+Zi75mFJgc48KwdsubSdg==
-X-Google-Smtp-Source: ABdhPJy67MmErAZ+ccrL7p/sQXyQhSAEApP2zHWJp55EsYJizpKrENZ885X2XfdYlVa5TuvZ3wc3Gg==
-X-Received: by 2002:a05:620a:20d2:b0:69e:93d4:214a with SMTP id f18-20020a05620a20d200b0069e93d4214amr9711209qka.40.1650893465430;
-        Mon, 25 Apr 2022 06:31:05 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id s19-20020a05622a179300b002e1ceeb21d0sm6295396qtk.97.2022.04.25.06.31.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 06:31:05 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id d12so7823822ybc.4;
-        Mon, 25 Apr 2022 06:31:05 -0700 (PDT)
-X-Received: by 2002:a25:8087:0:b0:641:dd06:577d with SMTP id
- n7-20020a258087000000b00641dd06577dmr15775427ybk.207.1650893464808; Mon, 25
- Apr 2022 06:31:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220424161228.8147-1-laurent.pinchart+renesas@ideasonboard.com>
-In-Reply-To: <20220424161228.8147-1-laurent.pinchart+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 25 Apr 2022 15:30:52 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWJBwPuJnKj92=ufVqcwZ5HN3A3WHX8v-=Vkh9F4k3f1A@mail.gmail.com>
-Message-ID: <CAMuHMdWJBwPuJnKj92=ufVqcwZ5HN3A3WHX8v-=Vkh9F4k3f1A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: Remove empty lvds endpoints
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Axyt9xLWwnpfr+htuIM2/g7D3vysIvMnk+0DJEac8Rg=;
+        b=0/n53HuI1/ClFQlYtQ6E8FngtWdd27krB/6K5hHNae9wsWHaszIT+7vffsh7tOxktL
+         b84KMHfb1jMhx5NP1CfmFbRiKUVC1W/TSarDz0IN7FFH4vDyt/Kjbhwb9SESJl/QmZA8
+         UOWoRjX3QlrTBtTEOXrs+nj9iJ9BkWSPKds6E9OvcH2TIPZe41Sb0jcqldsKOar3mts/
+         ySApG0qcv6wYKYWgA4HoQxQNkRn1mVTCjXixby6n1d79m6ccJd2V1xzQdcVkzbdfRBLz
+         BKizikU4JLWtf2VVCoKjCOKyYlU+PSg52OgitWCA8PTvYCt28syf62MUVQyP7DIw/UnL
+         VIow==
+X-Gm-Message-State: AOAM531NSuABgjp6Seoe7sJmcckl1k/cGP6oqwa9jeelwk09X5qUTsHr
+        eEqm/EUJouTaR7coZY68fg==
+X-Google-Smtp-Source: ABdhPJyVjn+HTDw2xumFtgvqDomRgaw07jqy9n+QJpvWG9J0fVtbmDg5NYHNy4qZ3JPmObwI1qJBVQ==
+X-Received: by 2002:a05:6808:f06:b0:324:f7bd:c3a with SMTP id m6-20020a0568080f0600b00324f7bd0c3amr6214113oiw.25.1650893482373;
+        Mon, 25 Apr 2022 06:31:22 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j126-20020acab984000000b002da77222b7dsm3717265oif.22.2022.04.25.06.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Apr 2022 06:31:21 -0700 (PDT)
+Received: (nullmailer pid 3715965 invoked by uid 1000);
+        Mon, 25 Apr 2022 13:31:19 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ashish Mhetre <amhetre@nvidia.com>
+Cc:     linux-tegra@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        vdumpa@nvidia.com, Snikam@nvidia.com, thierry.reding@gmail.com,
+        dmitry.osipenko@collabora.com, digetx@gmail.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220425075036.30098-4-amhetre@nvidia.com>
+References: <20220425075036.30098-1-amhetre@nvidia.com> <20220425075036.30098-4-amhetre@nvidia.com>
+Subject: Re: [Patch v8 3/4] dt-bindings: memory: tegra: Update validation for reg and reg-names
+Date:   Mon, 25 Apr 2022 08:31:19 -0500
+Message-Id: <1650893479.258020.3715964.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Mon, 25 Apr 2022 13:20:35 +0530, Ashish Mhetre wrote:
+> 
 
-On Sun, Apr 24, 2022 at 6:12 PM Laurent Pinchart
-<laurent.pinchart+renesas@ideasonboard.com> wrote:
-> Endpoints node must have a remote-endpoint property, as endpoints only
-> exist to model a link between ports. Drop the empty lvds endpoints from
-> SoC dtsi files, they should be instead declared in the board dts or in
-> overlays.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Thanks for your patch!
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Looks like we still haven't managed yet to get Rob's attention, and
-extract his opinion about the general idea?
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-Unless someone objects, I plan to queue this and patch 2/2 in
-renesas-devel for v5.19.
 
-Gr{oetje,eeting}s,
+memory-controller@2c00000: reg: [[0, 46137344, 0, 720896]] is too short
+	arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dtb
+	arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dtb
 
-                        Geert
+memory-controller@2c00000: reg: [[46137344, 1048576], [45613056, 262144], [24117248, 1048576]] is too short
+	arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dtb
+	arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb
+	arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+memory-controller@2c00000: 'reg-names' is a required property
+	arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dtb
+	arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb
+	arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
