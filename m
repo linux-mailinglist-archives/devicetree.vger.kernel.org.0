@@ -2,110 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3079E50E0F8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD92A50E105
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239134AbiDYNEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 09:04:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
+        id S234498AbiDYNGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 09:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231466AbiDYNEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:04:05 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2242DFF9;
-        Mon, 25 Apr 2022 06:01:01 -0700 (PDT)
-Received: by mail-qt1-f179.google.com with SMTP id d14so10194279qtw.5;
-        Mon, 25 Apr 2022 06:01:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+vnDAvBvlFIQr4wFseqaJb0VYP6iBq0UNmsGT7OX5bE=;
-        b=ma0Qzz3/ePuFeqZ4aO68ZPPe+jibwfBfMt0F92aE9nozkvUgHtVZIUzm8nc1qNumdp
-         MQyww0hQvGWsfP0wA91+llrk8AWF/7NeNS2fM8edvPj67HWF80XrkDu6nN0ougGTGSnV
-         UQOw2EeG3fedWjH8bc2jkZmJMfNNQCU9Vlp2mrEaAlYpFiFiiwaneWQN9cdevJlTwjLD
-         N76ZsUdfBXIzUaYrxof18qGffmHDHcHnWj90x6WLzQRNCiW/t+6M7NzqhW6rCdQWLIb/
-         LoINUnpgHKG00ZcJODRskIw4T6Uxn7Z/bfaxH+7VxuEEYo5TQXrs16Hv/yRW0saUA8PS
-         RzMw==
-X-Gm-Message-State: AOAM533ohjxSzafWVHW6blg53ytimbUFV99Vx6BTJcSyiaDE2KxygtbP
-        ihemHHQ2aR7b4rqlpACVn836MIxZ0x7+bg==
-X-Google-Smtp-Source: ABdhPJzIuMTEjme/di9IjJMr28eBRRce5qzVqU1RkxjZxKVTSJNT9D29Tqvw/yfVxMXcpDzj2a68LQ==
-X-Received: by 2002:a05:622a:1cf:b0:2f1:f542:7083 with SMTP id t15-20020a05622a01cf00b002f1f5427083mr11647836qtw.78.1650891660758;
-        Mon, 25 Apr 2022 06:01:00 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id l130-20020a37a288000000b0069e8290f28asm4978910qke.97.2022.04.25.06.01.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 06:01:00 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id f38so26886218ybi.3;
-        Mon, 25 Apr 2022 06:01:00 -0700 (PDT)
-X-Received: by 2002:a25:8087:0:b0:641:dd06:577d with SMTP id
- n7-20020a258087000000b00641dd06577dmr15632922ybk.207.1650891660240; Mon, 25
- Apr 2022 06:01:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220423132043.139672-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220423132043.139672-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 25 Apr 2022 15:00:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVu9ha7TYEDpZXjDBWDroEukzA0GwDhkOuohH7godG8dg@mail.gmail.com>
-Message-ID: <CAMuHMdVu9ha7TYEDpZXjDBWDroEukzA0GwDhkOuohH7godG8dg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: renesas,riic: Document RZ/G2UL SoC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229854AbiDYNGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:06:19 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B52E913D76;
+        Mon, 25 Apr 2022 06:03:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650891796; x=1682427796;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TCbxBJKDjx/pXpEyqjCCZTPX37Sf1AfCI5Sa6rwvQV8=;
+  b=frjy5xJ9toS//lrdEWlSAFXRKfwE35+roBJiBjyecfB4BpgkfOkJP6zX
+   j9hMBjY0MFRKIyZwRef4Y49EW1SIMavemxx3YTWoxdDG68+93JZ3dfvQf
+   6d4Nvdzou1x1tDrdTSJQFZmk/AJaB7O0/AOHj0aIP1PFTSsPaCrGe8Tdp
+   8=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 25 Apr 2022 06:03:15 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2022 06:03:14 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 25 Apr 2022 06:03:14 -0700
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 25 Apr 2022 06:03:07 -0700
+Date:   Mon, 25 Apr 2022 18:33:03 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
+        Len Brown <len.brown@intel.com>, "Pavel Machek" <pavel@ucw.cz>,
+        Linux PM <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:ULTRA-WIDEBAND (UWB) SUBSYSTEM:" 
+        <linux-usb@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_kriskura@quicinc.com>, <quic_vpulyala@quicinc.com>
+Subject: Re: [PATCH v14 2/7] PM / wakeup: Add device_children_wakeup_capable()
+Message-ID: <20220425130303.GA16319@hu-pkondeti-hyd.qualcomm.com>
+References: <1650395470-31333-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1650395470-31333-3-git-send-email-quic_c_sanm@quicinc.com>
+ <CAJZ5v0h2ZKPN6SERPnASPywZfeOWXWncJgNZ1WZa80+=M4DCiQ@mail.gmail.com>
+ <YmL3lMaR79wPMEfY@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <YmL3lMaR79wPMEfY@google.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hi Matthias,
 
-On Sat, Apr 23, 2022 at 3:20 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document RZ/G2UL I2C bindings. RZ/G2UL I2C is identical to one found on
-> the RZ/G2L SoC. No driver changes are required as RZ/G2L compatible
-> string "renesas,riic-rz" will be used as a fallback.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Fri, Apr 22, 2022 at 11:44:36AM -0700, Matthias Kaehlcke wrote:
+> On Fri, Apr 22, 2022 at 01:57:17PM +0200, Rafael J. Wysocki wrote:
+> > On Tue, Apr 19, 2022 at 9:11 PM Sandeep Maheswaram
+> > <quic_c_sanm@quicinc.com> wrote:
+> > >
+> > > From: Matthias Kaehlcke <mka@chromium.org>
+> > >
+> > > Add device_children_wakeup_capable() which checks whether the device itself
+> > > or one if its descendants is wakeup capable.
+> > 
+> > device_wakeup_path() exists for a very similar purpose.
+> > 
+> > Is it not usable for whatever you need the new function introduced here?
+> 
+> I wasn't aware of it's function, there are no doc comments and the
+> name isn't really self explanatory.
+> 
+> In a quick test device_wakeup_path() returned inconsistent values for the
+> root hub, sometimes true, others false when a wakeup capable USB device was
+> connected.
 
-Thanks for your patch!
+We will also test the same to double confirm the behavior of
+device_wakeup_path(). I am assuming that you checked device_wakeup_path()
+only during system suspend path.
 
-> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
-> @@ -19,6 +19,7 @@ properties:
->        - enum:
->            - renesas,riic-r7s72100   # RZ/A1H
->            - renesas,riic-r7s9210    # RZ/A2M
-> +          - renesas,riic-r9a07g043  # RZ/G2UL
->            - renesas,riic-r9a07g044  # RZ/G2{L,LC}
->            - renesas,riic-r9a07g054  # RZ/V2L
->        - const: renesas,riic-rz      # RZ/A or RZ/G2L
+Here is what I understood by looking at __device_suspend(). Please share
+your thoughts on this.
 
-You forgot to make the resets property required on RZ/G2UL.
+power.wakeup_path is set to true for the parent *after* a wakeup capable
+device is suspended. This means when the root hub(s) is suspended, it is
+propagated to xhci-plat and when xhci-plat is suspended, it is propagated
+to dwc3. bottom up propgation during system suspend.
 
-With that fixes:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I believe we can directly check something like this in the dwc3 driver
+instead of having another wrapper like device_children_wakeup_capable().
 
-Gr{oetje,eeting}s,
+diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+index 1170b80..a783257 100644
+--- a/drivers/usb/dwc3/core.c
++++ b/drivers/usb/dwc3/core.c
+@@ -1878,8 +1878,14 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+ 		break;
+ 	case DWC3_GCTL_PRTCAP_HOST:
+ 		if (!PMSG_IS_AUTO(msg)) {
++			/*
++			 * Don't kill the host when dwc3 is wakeup capable and
++			 * its children needs wakeup.
++			 */
++			if (device_may_wakeup(dwc->dev) && device_wakeup_path(dwc->dev))
++				handle_it();
++		} else {
+ 			dwc3_core_exit(dwc);
+-			break;
+ 		}
+ 
+ 		/* Let controller to suspend HSPHY before PHY driver suspends */
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Pavan
