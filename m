@@ -2,120 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16BCE50E16D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E310D50E150
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:14:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241923AbiDYNWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 09:22:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45302 "EHLO
+        id S238251AbiDYNRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 09:17:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240630AbiDYNV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:21:58 -0400
-X-Greylist: delayed 334 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Apr 2022 06:18:52 PDT
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 88D6819C1B;
-        Mon, 25 Apr 2022 06:18:52 -0700 (PDT)
-Received: from [192.168.20.2] (unknown [77.239.252.99])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id CE6281401AA;
-        Mon, 25 Apr 2022 13:13:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1650892397;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=NtMvqtWv7gKAIjVSrogMl1TwJ2S/Nzn3ITgo73M/4VU=;
-        b=qA8EsmCX23eV9yoU59uUqUrWZCNGRa+SlrMMUxE16M/Asod97hVFwxb4iosyhKn1zfLCZT
-        MBTK2hsffB7ym30XRxjjE1c0HdTagnkxTMAoIW1m/VpElg3MkZ84L40M8tZyL7aS1RlvM+
-        ua0sNfBHbLwgYo1lZBJ+HMzSgFHciBc=
-Message-ID: <b1c64333-c6a5-defd-ae27-0fb307647cb3@postmarketos.org>
-Date:   Mon, 25 Apr 2022 16:13:16 +0300
+        with ESMTP id S241312AbiDYNRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:17:37 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC0436306
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 06:14:33 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id p10so26099348lfa.12
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 06:14:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t0frPbcFivr/mUdiRu781o3Wa9Btm1C7EFtWPzSdw9g=;
+        b=VRd7VbuT8nJJjq0/HdtUBnNE9nN/OzM26/5YnlSVWDEZYk4Y0e65UD+cIYpJCj+bCK
+         z+1Kgg9b/vG4SnjxmKqyKjcnnGii53a4eFblsuDkmdBWP9lsTYK7tn/uGXrrQ2PbVyA0
+         /HXWoj+0HtzRXTOH5jYKRKDgQ7TEg7yXaZdYEb8549qg5XaPYN9C6tJX7r/GM2ubg3bJ
+         TjaRPwZYp+OO80JVwpQrEkUYyF3urhZ2aPR84Toe+u/ub2L/j+j2jbzNZX9TD6JGAiBs
+         ScnFTU8jAhSOV1v5Tmz2mYiFje1SCu189CtwkRvKUOASNaAdppvILULuw6Ym0+KJxJVK
+         K9ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t0frPbcFivr/mUdiRu781o3Wa9Btm1C7EFtWPzSdw9g=;
+        b=V43rMi2vL21Wt9RQjxg13v60xWL3HqcNzjVcnpdJb7zaT4vje7QKCiuAnSwHBr9Pc5
+         5cGUrWbVFqc+azSrijnGz/v3tm1hzOGy6wl9jL3zYtODfCmpIAh3Pawg1t7bbdOgx33r
+         TdsKdaqvoRYp5zgwKGDSgqTS9QRZiomdOuwVqz5chd/PuHmbB/r6owaELmp7uN+zQ7KJ
+         2YDA8KufFtDHcUMHdxcAK1FUE/VKe6Wtnx4XfvBbqtAaEj9AXZ8k6ZNWu2AqhWKtL//u
+         VbzwZsfWuvRLiGgoJiXDWV1cbtAMZOFZJJbV/CHsDj9U2q07nc7WIQlRgFGaxPHAoaPJ
+         4DAA==
+X-Gm-Message-State: AOAM531QLbBuptbbfEDntq88/US5HVrSLoXZpwevizKngx/39Y0RBZ0v
+        9Z56bPdkbaI4vxl0aHOHFSHHxkVa5VK/EXXYTSvShGhb8I0aVA==
+X-Google-Smtp-Source: ABdhPJwRfqdhVx3yV5wt4b627Kq+COlg3963BXQh8eRoMVyvXuCRX36cyRQuyTqc0V/Rn/e9S/uCIWgYCRxuPxA/II0=
+X-Received: by 2002:ac2:5f84:0:b0:471:fd0f:a6e7 with SMTP id
+ r4-20020ac25f84000000b00471fd0fa6e7mr6792261lfe.41.1650892471699; Mon, 25 Apr
+ 2022 06:14:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm660-xiaomi-lavender: Configure WLED
-Content-Language: en-US
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20220425032824.211975-1-danct12@riseup.net>
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <20220425032824.211975-1-danct12@riseup.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220422211055.9278-1-palmer@rivosinc.com> <CAMuHMdV7d4XfStMiSmU3eZBb3mdHdsvqJZff358Rf3Cb-Kzx+Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdV7d4XfStMiSmU3eZBb3mdHdsvqJZff358Rf3Cb-Kzx+Q@mail.gmail.com>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Mon, 25 Apr 2022 18:44:20 +0530
+Message-ID: <CAK9=C2WTY8+-98XuxRYTaRe4aVJufaB5wr35KRoTKEttUM7JzQ@mail.gmail.com>
+Subject: Re: [PATCH] RISC-V: Allow the used to downgrade to sv48 when HW
+ supports sv57
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Palmer Dabbelt <palmer@rivosinc.com>,
+        Alexandre Ghiti <alexandre.ghiti@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-25.04.2022 06:28, Dang Huynh wrote:
-> WLED is used for controlling display backlight on this phone.
-> 
+On Mon, Apr 25, 2022 at 6:12 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Palmer,.
+>
+> On Fri, Apr 22, 2022 at 11:42 PM Palmer Dabbelt <palmer@rivosinc.com> wrote:
+> > Similar to the previous patch, this allows a dt-selected downgrade to
+> > sv48 on systems that support sv57 in case users don't need the extra VA
+> > bits and want to save memory or improve performance.
+> >
+> > Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > ---
+> > This is on top of the patches from Alex's set that I dropped.
+>
+> You mean "[PATCH v3 13/13] riscv: Allow user to downgrade to sv39
+> when hw supports sv48 if !KASAN"?
+> 20211206104657.433304-14-alexandre.ghiti@canonical.com
+>
+> For both: "DT describes hardware, not software policy"?
 
-Hi!
+It is possible that HW is designed to support both Sv48 and Sv39 but
+there is some errata due to which Sv48 does not work correctly ?
 
-Interacting with wled changes brightness indeed, but results in the 
-following trace in dmesg:
+We should allow users to downgrade the MMU mode, due to
+their own reasons. In fact, users can also disable an extension
+by not showing it in the DT ISA string.
 
-```
-[  499.906317] ------------[ cut here ]------------
-[  499.906478] Unbalanced enable for IRQ 39
-[  499.910118] WARNING: CPU: 4 PID: 74 at kernel/irq/manage.c:774 
-__enable_irq+0x4c/0x80
-[  499.914094] Modules linked in:
-[  499.921705] CPU: 4 PID: 74 Comm: kworker/4:2 Not tainted 
-5.17.0-sdm660-07615-gd33d148796b0-dirty #23
-[  499.924800] Hardware name: Xiaomi Redmi Note 7 (DT)
-[  499.933988] Workqueue: events wled_ovp_work
-[  499.938571] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS 
-BTYPE=--)
-[  499.942803] pc : __enable_irq+0x4c/0x80
-[  499.949687] lr : __enable_irq+0x4c/0x80
-[  499.953506] sp : ffff800008a73d70
-[  499.957311] x29: ffff800008a73d70 x28: 0000000000000000 x27: 
-0000000000000000
-[  499.960890] x26: ffffad5f9fa4efc0 x25: ffff60283e4baf05 x24: 
-ffff602781f65130
-[  499.968010] x23: ffff60283e4baf00 x22: ffff60283e4b7180 x21: 
-0000000000000000
-[  499.975128] x20: 0000000000000027 x19: ffff602781136600 x18: 
-ffffffffffffffff
-[  499.982243] x17: 0000000000000000 x16: 0000000000000000 x15: 
-0000000000000001
-[  499.989363] x14: 0000000000000000 x13: ffffad5f9f92fea8 x12: 
-0000000000000357
-[  499.996479] x11: 000000000000011d x10: ffffad5f9f987ea8 x9 : 
-ffffad5f9f92fea8
-[  500.003597] x8 : 00000000ffffefff x7 : ffffad5f9f987ea8 x6 : 
-0000000000000000
-[  500.010714] x5 : 000000000000bff4 x4 : 0000000000000000 x3 : 
-0000000000000000
-[  500.017832] x2 : 0000000000000000 x1 : 0000000000000000 x0 : 
-ffff6027820c8000
-[  500.024954] Call trace:
-[  500.047230]  __enable_irq+0x4c/0x80
-[  500.062686]  enable_irq+0x48/0xa0
-[  500.078190]  wled_ovp_work+0x14/0x20
-[  500.093761]  process_one_work+0x1d0/0x320
-[  500.105080]  worker_thread+0x14c/0x444
-[  500.120700]  kthread+0x10c/0x110
-[  500.136347]  ret_from_fork+0x10/0x20
-[  500.151981] ---[ end trace 0000000000000000 ]---
-```
-
--- 
 Regards,
-Alexey Minnekhanov
-postmarketOS developer
-https://www.postmarketos.org
+Anup
+
+>
+> > --- a/arch/riscv/mm/init.c
+> > +++ b/arch/riscv/mm/init.c
+> > @@ -740,6 +740,11 @@ static __init void set_satp_mode(uintptr_t dtb_pa)
+> >                         if (!mmu_type)
+> >                                 continue;
+> >
+> > +                       if (!strcmp(mmu_type, "riscv,sv48")) {
+> > +                               disable_pgtable_l5();
+> > +                               return;
+> > +                       }
+> > +
+> >                         if (!strcmp(mmu_type, "riscv,sv39")) {
+> >                                 disable_pgtable_l5();
+> >                                 disable_pgtable_l4();
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
