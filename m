@@ -2,65 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93F0D50DB97
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:48:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 776B050DBA6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232457AbiDYIvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 04:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37654 "EHLO
+        id S232366AbiDYIxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 04:53:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237397AbiDYIvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:51:18 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7781D90CFA;
-        Mon, 25 Apr 2022 01:48:10 -0700 (PDT)
-X-UUID: 2e560d5a45c44bc8bbdbb1d4c8f693b3-20220425
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:7d832b6c-6a11-4cc6-9244-ef1b24255576,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:5
-X-CID-META: VersionHash:faefae9,CLOUDID:c31d03f0-06b0-4305-bfbf-554bfc9d151a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 2e560d5a45c44bc8bbdbb1d4c8f693b3-20220425
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1047185239; Mon, 25 Apr 2022 16:48:05 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 25 Apr 2022 16:48:04 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 25 Apr
- 2022 16:48:03 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 25 Apr 2022 16:48:03 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S232731AbiDYIxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:53:22 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB8FB1888;
+        Mon, 25 Apr 2022 01:50:18 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d15so11033538plh.2;
+        Mon, 25 Apr 2022 01:50:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XEF1fqkTA7SoInR5IA+7IfzdVc+rCVTbChZYDVnBlt8=;
+        b=hel2ha51wMOKVcyqusD+syK7aku+UAKzVvGkzQ4aALypEAEjUrQ0KjvBph2Jq/VxwV
+         ooseU1mCy4yxtWoM3a0iEQnNuUfxhqhAQnnaqZDml/Edl/ltXstBGkb9nN7hFumPLBJq
+         enySQUiIvrEnVnlRYw54qecoSTfR0JRodWJ9eD0lFgU4pWz64mZ2DQFHocAVk0Vt65qJ
+         wqJ3knndJQP45mwMk/M3ZU7ArOZ01KLrFsT6huxCo4FYgSZk6HeHZUIjYW0FUvyzIGqa
+         5JUTr0BWllla9FQl7+/niGfIcsSVefx2MMoMuwfNZqqy7yHOnukl9HommDjqxbIp2+ds
+         dHkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XEF1fqkTA7SoInR5IA+7IfzdVc+rCVTbChZYDVnBlt8=;
+        b=YDhscnAyRrTbvDT0sfuDb33oqNjy1mSyX7JAwE/7I1kgQexuUVf6qpnBsheZwwI/rv
+         vhMdSKG2NqdhjmfK89OdARkgfELfEH6V33B6AOk3FuPaRKI2UoYePR03hm6UpJg7l/d/
+         Vm97nPki7locCzfrbRGbiZqDQDSC5AvUqlq7O7FQcrPQBevrruO6KOfEYzra9V7oU8uP
+         ge3c9pNpLXkkdq/ON//RotrYS4IVl9B4Lvm6hhM6kPfBXQtvECxU3BZ5lxJpEJCHJ96p
+         ZdGKoBQucBLWIH/WWWxC2BUC8V445qcxYh5QOQKwE4AhjrCyrixyKI8Bq8xV9eKulfiE
+         RfOw==
+X-Gm-Message-State: AOAM532zvDR2M6HX/94qKBNhzGVxzEZg3UmimRjiMsJdQZfRtL+7wlYc
+        AhMQgRaVBrAz/P0gcm2sn9M=
+X-Google-Smtp-Source: ABdhPJwE9laMmZWBOsrohhJNiglGYilf3hEeOd8xI1jwk7vLAc5hg2EEKiny9Sb2rP3dc1DsLKSejQ==
+X-Received: by 2002:a17:90b:38c9:b0:1d8:efe1:6846 with SMTP id nn9-20020a17090b38c900b001d8efe16846mr14581300pjb.86.1650876618334;
+        Mon, 25 Apr 2022 01:50:18 -0700 (PDT)
+Received: from cyhuang-hp-elitebook-840-g3.rt ([2402:7500:569:b7a9:d402:1333:c60b:f1a1])
+        by smtp.gmail.com with ESMTPSA id y2-20020a17090ad0c200b001cd4989fedfsm14057309pjw.43.2022.04.25.01.50.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 25 Apr 2022 01:50:17 -0700 (PDT)
+Date:   Mon, 25 Apr 2022 16:50:10 +0800
+From:   ChiYuan Huang <u0084500@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>
-CC:     Lala Lin <lala.lin@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        "Chen-Yu Tsai" <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v2 1/1] dt-bindings: nvmem: mediatek: Convert mtk-efuse binding to YAML
-Date:   Mon, 25 Apr 2022 16:48:00 +0800
-Message-ID: <20220425084800.2021-2-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220425084800.2021-1-allen-kh.cheng@mediatek.com>
-References: <20220425084800.2021-1-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] regulator: richtek,rt4801: parse GPIOs per
+ regulator
+Message-ID: <20220425085005.GA21178@cyhuang-hp-elitebook-840-g3.rt>
+References: <20220425072455.27356-1-krzysztof.kozlowski@linaro.org>
+ <20220425072455.27356-3-krzysztof.kozlowski@linaro.org>
+ <20220425075812.GA29439@cyhuang-hp-elitebook-840-g3.rt>
+ <fe4b42c9-f747-145a-5fce-9be6fc3e19af@linaro.org>
+ <20220425080819.GA20397@cyhuang-hp-elitebook-840-g3.rt>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220425080819.GA20397@cyhuang-hp-elitebook-840-g3.rt>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,141 +79,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert MediaTek eFuse devicetree binding to YAML.
+On Mon, Apr 25, 2022 at 04:08:31PM +0800, ChiYuan Huang wrote:
+> On Mon, Apr 25, 2022 at 10:01:24AM +0200, Krzysztof Kozlowski wrote:
+> > On 25/04/2022 09:58, ChiYuan Huang wrote:
+> > >>  
+> > >> -	priv->enable_gpios = devm_gpiod_get_array_optional(&i2c->dev, "enable", GPIOD_OUT_HIGH);
+> > >> -	if (IS_ERR(priv->enable_gpios)) {
+> > >> -		dev_err(&i2c->dev, "Failed to get gpios\n");
+> > >> -		return PTR_ERR(priv->enable_gpios);
+> > >> +	for (i = 0; i < DSV_OUT_MAX; i++) {
+> > >> +		priv->enable_gpios[i] = devm_gpiod_get_index_optional(&i2c->dev,
+> > >> +								      "enable",
+> > >> +								      i,
+> > >> +								      GPIOD_OUT_HIGH);
+> > >> +		if (IS_ERR(priv->enable_gpios[i])) {
+> > >> +			dev_err(&i2c->dev, "Failed to get gpios\n");
+> > >> +			return PTR_ERR(priv->enable_gpios[i]);
+> > >> +		}
+> > >>  	}
+> > > You can directly removed all about 'enable-gpios' in probe phase.
+> > > Just keep of_parse_cb to get per regulator 'enable' gpio. 
+> > 
+> > We cannot, it would break the ABI and make the change backwards
+> > incompatible.
+> > 
+> 
+> Almost forget the backward compatibility.
+> 
+> I'm testing it right now. After that I'll add 'Tested-by' tag.
+> 
+> Thanks.
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
- .../devicetree/bindings/nvmem/mtk,efuse.yaml  | 70 +++++++++++++++++++
- .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ------------
- 2 files changed, 70 insertions(+), 43 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/nvmem/mtk,efuse.yaml
- delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+Tested-by: ChiYuan Huang <cy_huang@richtek.com>
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mtk,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mtk,efuse.yaml
-new file mode 100644
-index 000000000000..d056bc61dd5b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/mtk,efuse.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/mtk,efuse.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek eFuse device tree bindings
-+
-+maintainers:
-+  - Lala Lin <lala.lin@mediatek.com>
-+  - Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-+
-+allOf:
-+  - $ref: "nvmem.yaml#"
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - mediatek,mt8173-efuse
-+          - mediatek,efuse
-+      - items:
-+          - enum:
-+              - mediatek,mt7622-efuse
-+              - mediatek,mt7623-efuse
-+              - mediatek,mt8183-efuse
-+              - mediatek,mt8192-efuse
-+              - mediatek,mt8195-efuse
-+              - mediatek,mt8516-efuse
-+          - const: mediatek,efuse
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^.*@[0-9a-f]+$":
-+    type: object
-+
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description:
-+          Offset and size in bytes within the storage device.
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+
-+    efuse: efuse@10206000 {
-+            compatible = "mediatek,mt8173-efuse";
-+            reg	   = <0x10206000 0x1000>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+
-+            /* Data cells */
-+            thermal_calibration: calib@528 {
-+                reg = <0x528 0xc>;
-+            };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-deleted file mode 100644
-index 39d529599444..000000000000
---- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--= Mediatek MTK-EFUSE device tree bindings =
--
--This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
--
--Required properties:
--- compatible: should be
--	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
--	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
--	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
--	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
--	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
--	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
--- reg: Should contain registers location and length
--- bits: contain the bits range by offset and size
--
--= Data cells =
--Are child nodes of MTK-EFUSE, bindings of which as described in
--bindings/nvmem/nvmem.txt
--
--Example:
--
--	efuse: efuse@10206000 {
--		compatible = "mediatek,mt8173-efuse";
--		reg	   = <0 0x10206000 0 0x1000>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		/* Data cells */
--		thermal_calibration: calib@528 {
--			reg = <0x528 0xc>;
--		};
--	};
--
--= Data consumers =
--Are device nodes which consume nvmem data cells.
--
--For example:
--
--	thermal {
--		...
--		nvmem-cells = <&thermal_calibration>;
--		nvmem-cell-names = "calibration";
--	};
--- 
-2.18.0
-
+Best regards,
+ChiYuan Huang.
+> > 
+> > Best regards,
+> > Krzysztof
