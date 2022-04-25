@@ -2,152 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2877050D9AF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C54C50D9B1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:44:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238998AbiDYGpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 02:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43870 "EHLO
+        id S236595AbiDYGrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 02:47:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237577AbiDYGpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:45:33 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 21D6A2B1B5;
-        Sun, 24 Apr 2022 23:42:29 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,287,1643641200"; 
-   d="scan'208";a="119051228"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 25 Apr 2022 15:42:21 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 794244009BE6;
-        Mon, 25 Apr 2022 15:42:21 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 7/7] arm64: dts: renesas: Add Renesas White Hawk boards support
-Date:   Mon, 25 Apr 2022 15:42:01 +0900
-Message-Id: <20220425064201.459633-8-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220425064201.459633-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20220425064201.459633-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S236378AbiDYGrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:47:04 -0400
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC82B33E33;
+        Sun, 24 Apr 2022 23:43:58 -0700 (PDT)
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+         client-signature RSA-PSS (2048 bits) client-digest SHA256)
+        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+        by mx1.riseup.net (Postfix) with ESMTPS id 4KmwTT3SqczDqPv;
+        Sun, 24 Apr 2022 23:43:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+        t=1650869037; bh=9QTUQsz7p3LgCyGvQcd0KqFtKCU9hMDTBzgllMOejBs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NHw16rVcEtBkzoOUhSx66Dq1KF9ku7xVlnLjJ9u57e5wo6iBbtPCIHLFaQDCpcVKP
+         x6S3Xh888DsE15hnrtpI2XXzLNHb+ELVaK06HfPYuzUR2ZXd6rx7R4kWe4yTgrddW3
+         O7GHTgp+hFVZWiKrz5+IkZMJ9bVQ82tk/nrokhZ8=
+X-Riseup-User-ID: 8391CEFFC40D3B73A696D390F795B1501AF17B3A5691C965BCF9AC962B91551A
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+         by fews1.riseup.net (Postfix) with ESMTPSA id 4KmwTQ0hNjz5vY4;
+        Sun, 24 Apr 2022 23:43:53 -0700 (PDT)
+From:   Dang Huynh <danct12@riseup.net>
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sunxi: nanopi: Remove input-name property
+Date:   Mon, 25 Apr 2022 13:42:32 +0700
+Message-Id: <20220425064231.243482-1-danct12@riseup.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Initial support for the Renesas White Hawk CPU and BreakOut boards.
+This property doesn't seem to exist in the documentation nor
+in source code, but for some reason it is defined in a bunch
+of device trees.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Dang Huynh <danct12@riseup.net>
 ---
- arch/arm64/boot/dts/renesas/Makefile          |  2 +
- .../dts/renesas/r8a779g0-white-hawk-cpu.dtsi  | 45 +++++++++++++++++++
- .../boot/dts/renesas/r8a779g0-white-hawk.dts  | 22 +++++++++
- 3 files changed, 69 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dts
+This patch is a split of this treewide patch [1] to ease the 
+maintainers. 
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index fa9811251fd7..15309309a2e1 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -65,6 +65,8 @@ dtb-$(CONFIG_ARCH_R8A779A0) += r8a779a0-falcon.dtb
+[1]: https://patchwork.kernel.org/patch/12633497/
+
+ arch/arm/boot/dts/sun8i-h3-nanopi.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi b/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
+index fc45d5aaa67f..a9f749f49beb 100644
+--- a/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
++++ b/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
+@@ -75,7 +75,6 @@ led-1 {
  
- dtb-$(CONFIG_ARCH_R8A779F0) += r8a779f0-spider.dtb
+ 	r_gpio_keys {
+ 		compatible = "gpio-keys";
+-		input-name = "k1";
  
-+dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g0-white-hawk.dtb
-+
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs.dtb
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb.dtb
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb-kf.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-new file mode 100644
-index 000000000000..8784bce7ec22
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-@@ -0,0 +1,45 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the White Hawk CPU board
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+#include "r8a779g0.dtsi"
-+
-+/ {
-+	model = "Renesas White Hawk CPU board";
-+	compatible = "renesas,white-hawk-cpu", "renesas,r8a779g0";
-+
-+	memory@48000000 {
-+		device_type = "memory";
-+		/* first 128MB is reserved for secure area. */
-+		reg = <0x0 0x48000000 0x0 0x78000000>;
-+	};
-+
-+	memory@480000000 {
-+		device_type = "memory";
-+		reg = <0x4 0x80000000 0x0 0x80000000>;
-+	};
-+
-+	memory@600000000 {
-+		device_type = "memory";
-+		reg = <0x6 0x00000000 0x1 0x00000000>;
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <16666666>;
-+};
-+
-+&extalr_clk {
-+	clock-frequency = <32768>;
-+};
-+
-+&hscif0 {
-+	status = "okay";
-+};
-+
-+&scif_clk {
-+	clock-frequency = <24000000>;
-+};
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dts
-new file mode 100644
-index 000000000000..e905ac63b130
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the White Hawk CPU and BreakOut boards
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+#include "r8a779g0-white-hawk-cpu.dtsi"
-+
-+/ {
-+	model = "Renesas White Hawk CPU and Breakout boards based on r8a779g0";
-+	compatible = "renesas,white-hawk-breakout", "renesas,white-hawk-cpu", "renesas,r8a779g0";
-+
-+	aliases {
-+		serial0 = &hscif0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+	};
-+};
+ 		k1 {
+ 			label = "k1";
 -- 
-2.25.1
+2.36.0
 
