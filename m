@@ -2,207 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA4950DA11
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A3550DA48
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236946AbiDYHaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 03:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47322 "EHLO
+        id S232674AbiDYHlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:41:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236629AbiDYHaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:30:18 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD879FE2
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:27:13 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id n8so25151061plh.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:27:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rxyP1rA1NVCKi+Fqd9RTEgWTAs6MpVuSe+By3MBiK+g=;
-        b=uhHdnNiHGlo6+p+WxcM0C9NfBcZ1yMZ4ZL8lPJjCqFO59XftyiBXmxLnJ4x/8IHesk
-         Iz/e+72c+hpYYtSkpN9st79ktLRdF9ucEIcsSZFrJz8zW/33b/zII36XFlgftlgRt/Rn
-         NcV0nn+GcFItTljdcQkhhruORyaimT8Hcjdf+33DifIdLTWHRc7f4BBjOpmEow9TxUAk
-         H3AoQBVj8pg7peGOZ40pMWJPb4v77MByQ/hq2wnaWxWmitojdTlAcivhdbQ8eALivIcc
-         CxsiobTeJA1GwrggCLqf/tliVYwpbUOcyyC+5xohbYhPGazYOIMkwv+sGtPOlvneNaO1
-         ub6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rxyP1rA1NVCKi+Fqd9RTEgWTAs6MpVuSe+By3MBiK+g=;
-        b=jl0XNKihKmTUKvIXabUTYJTq8lUUDF4aeeQrHcPjcn+PBbNDRu/8q7vN+3WsOJcr3b
-         xrmUw/mhbvOj8HIfxHH7AeOjTFtfX+jmSnkK5haQKCRiVB3y1tB7BrMCMHSHIFq7GRcR
-         lril+0ClWW1x7RqRrH6iyFLWzyy/gyoywC/gpVmYRKQsdk1IF+LMSc2fLqRzmkGX5J3O
-         T5uGlO9HcTwfd6UGVNCynsHnS7q+FJbL+qBIiqevs8U99mz49Ch62K0/EiLhDReu3cuB
-         cSGdhr3x/KxdsX2l6s58j2jBrKwmKSOJ4/HaQ70G2hVJppND3pKIxofIUk0XeIeyYWra
-         t4xQ==
-X-Gm-Message-State: AOAM530jra1Xou11q/oM1m7BvvZSfnWkMNpqaZF15U0fCJQOS6HvGa8d
-        OZd81vi5ma1PNNqO5hRQTq7nDg==
-X-Google-Smtp-Source: ABdhPJxE5RcvTjEYwI71Iu772xtRFctxCEAFvy9tKFHoG9lHlSKr+lSmvTHqmcMFobuMjeZomF3jKA==
-X-Received: by 2002:a17:90b:3b46:b0:1c7:9ca8:a19e with SMTP id ot6-20020a17090b3b4600b001c79ca8a19emr29586651pjb.245.1650871632716;
-        Mon, 25 Apr 2022 00:27:12 -0700 (PDT)
-Received: from localhost ([122.171.250.232])
-        by smtp.gmail.com with ESMTPSA id p4-20020a637404000000b00375948e63d6sm8596664pgc.91.2022.04.25.00.27.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 00:27:12 -0700 (PDT)
-Date:   Mon, 25 Apr 2022 12:57:10 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
-Message-ID: <20220425072710.v6gwo4gu3aouezg4@vireshk-i7>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S238286AbiDYHld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:41:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA8C512AE3;
+        Mon, 25 Apr 2022 00:38:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 787F3612F4;
+        Mon, 25 Apr 2022 07:38:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AE90C385A4;
+        Mon, 25 Apr 2022 07:38:24 +0000 (UTC)
+Message-ID: <44c597b0-17f8-97cb-7922-7beff59c0b16@xs4all.nl>
+Date:   Mon, 25 Apr 2022 09:38:23 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 6/9] media: uapi: Add a control for DW100 driver
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
+ <20220328141309.177611-7-xavier.roumegue@oss.nxp.com>
+ <dba106ac-cee1-2493-13c7-ad9aef556a49@xs4all.nl>
+ <YmZJhI291wruvjlt@pendragon.ideasonboard.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <YmZJhI291wruvjlt@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-04-22, 17:43, Krzysztof Kozlowski wrote:
-> Devices might need to control several clocks when scaling the frequency
-> and voltage.  Example is the Universal Flash Storage (UFS) which scales
-> several independent clocks with change of performance levels.
+On 25/04/2022 09:11, Laurent Pinchart wrote:
+> On Mon, Apr 25, 2022 at 08:57:07AM +0200, Hans Verkuil wrote:
+>> On 28/03/2022 16:13, Xavier Roumegue wrote:
+>>> The DW100 driver gets the dewarping mapping as a binary blob from the
+>>> userspace application through a custom control.
+>>> The blob format is hardware specific so create a dedicated control for
+>>> this purpose.
+>>>
+>>> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+>>> ---
+>>>  Documentation/userspace-api/media/drivers/dw100.rst | 12 ++++++++++++
+>>>  include/uapi/linux/dw100.h                          | 11 +++++++++++
+>>>  2 files changed, 23 insertions(+)
+>>>  create mode 100644 include/uapi/linux/dw100.h
+>>>
+>>> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
+>>> index 4cd55c75628e..f6d684cadf26 100644
+>>> --- a/Documentation/userspace-api/media/drivers/dw100.rst
+>>> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
+>>> @@ -20,4 +20,16 @@ match the expected size inherited from the destination image resolution.
+>>>  More details on the DW100 hardware operations can be found in
+>>>  *chapter 13.15 DeWarp* of IMX8MP_ reference manuel.
+>>>  
+>>> +The Vivante DW100 m2m driver implements the following driver-specific control:
+>>> +
+>>> +``V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (integer)``
+>>
+>> (integer) -> (__u32 array)
+>>
+>> But should this be a __u32 array at all? Wouldn't a __u16 array make more sense?
+>>
+>>> +    Specifies to DW100 driver its dewarping map (aka LUT) blob as described in
+>>> +    *chapter 13.15.2.3 Dewarping Remap* of IMX8MP_ reference manual as an U32
+>>> +    dynamic array. The image is divided into many small 16x16 blocks. If the
+>>> +    width of the image is not divisible by 16, the size of the rightmost block
+>>> +    is the remainder. 
+>>
+>> Isn't the same true for the height?
+>>
+>> The dewarping map only saves the vertex coordinates of the
+>>> +    block. The dewarping grid map is comprised of vertex coordinates for x and y.
+>>> +    Each x, y coordinate register uses 16 bits (UQ12.4) to record the coordinate
+>>
+>> As mentioned before, UQ12.4 is not necessarily a standard notation. 'unsigned 12.4
+>> fixed point' is better, but you also need to specify exactly where the bits are
+>> stored inside the __u16. I.e.: 'the integer part is stored in the 12 most significant
+>> bits, and the fractional part is stored in the 4 least significant bits of the __u16.'
 > 
-> Add parsing of multiple clocks and clock names
+> Isn't that implied ? I've never seen fixed-point numbers stored the
+> other way around.
 
-This part is fine, the OPP core should be able to do this.
+True, perhaps that's overkill.
 
-> and scale all of them,
+> 
+> Regarding the Q notation, while it was coined by TI, I think it's
+> widespread enough to be used here. I don't mind much though.
 
-This is tricky as the OPP core can't really assume the order in which the clocks
-needs to be programmed. We had the same problem with multiple regulators and the
-same is left for drivers to do via the custom-api.
+I had to look it up :-)
 
-Either we can take the same route here, and let platforms add their own OPP
-drivers which can handle this, Or hide this all behind a basic device clock's
-driver, which you get with clk_get(dev, NULL).
+That might say more about me, though...
 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+I think the key phrase that is missing here is "fixed point".
 
-> +static int _generic_set_opp_clks_only(struct device *dev,
-> +				      struct opp_table *opp_table,
-> +				      struct dev_pm_opp *opp)
-> +{
-> +	int i, ret;
-> +
-> +	if (!opp_table->clks)
-> +		return 0;
-> +
-> +	for (i = 0; i < opp_table->clk_count; i++) {
-> +		if (opp->rates[i]) {
+Regards,
 
-This should mean that we can disable that clock and it isn't required.
+	Hans
 
-> +			ret = _generic_set_opp_clk_only(dev, opp_table->clks[i],
-> +							opp->rates[i]);
-> +			if (ret) {
-> +				dev_err(dev, "%s: failed to set clock %pC rate: %d\n",
-> +					__func__, opp_table->clks[i], ret);
-> +				return ret;
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
+> 
+>>> +    address, with the Y coordinate in the upper bits and X in the lower bits.
+>>
+>> And with a __u16 array this becomes: 'The array contains pairs of X, Y coordinates.'
+>> Or something along those lines.
+>>
+>>> +
+>>>  .. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
+>>> diff --git a/include/uapi/linux/dw100.h b/include/uapi/linux/dw100.h
+>>> new file mode 100644
+>>> index 000000000000..7fdcf2bf42e5
+>>> --- /dev/null
+>>> +++ b/include/uapi/linux/dw100.h
+>>> @@ -0,0 +1,11 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
+>>> +/* Copyright 2022 NXP */
+>>> +
+>>> +#ifndef __UAPI_DW100_H__
+>>> +#define __UAPI_DW100_H__
+>>> +
+>>> +#include <linux/v4l2-controls.h>
+>>> +
+>>
+>> Add a comment referring to the Documentation/userspace-api/media/drivers/dw100.rst
+>> documentation so users of this control know where to find the associated
+>> documentation.
+>>
+>>> +#define V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (V4L2_CID_USER_DW100_BASE + 1)
+>>> +
+>>> +#endif
+> 
 
-As said earlier, this won't work in the core.
-
-> +
->  static int _generic_set_opp_regulator(struct opp_table *opp_table,
->  				      struct device *dev,
->  				      struct dev_pm_opp *opp,
-> @@ -796,7 +835,7 @@ static int _generic_set_opp_regulator(struct opp_table *opp_table,
->  	}
->  
->  	/* Change frequency */
-> -	ret = _generic_set_opp_clk_only(dev, opp_table->clk, freq);
-> +	ret = _generic_set_opp_clks_only(dev, opp_table, opp);
->  	if (ret)
->  		goto restore_voltage;
->  
-> @@ -820,7 +859,7 @@ static int _generic_set_opp_regulator(struct opp_table *opp_table,
->  	return 0;
->  
->  restore_freq:
-> -	if (_generic_set_opp_clk_only(dev, opp_table->clk, old_opp->rate))
-> +	if (_generic_set_opp_clks_only(dev, opp_table, old_opp))
->  		dev_err(dev, "%s: failed to restore old-freq (%lu Hz)\n",
->  			__func__, old_opp->rate);
->  restore_voltage:
-> @@ -880,7 +919,7 @@ static int _set_opp_custom(const struct opp_table *opp_table,
-
-This is where we can handle it in your case, if you don't want to hide it behind
-a clk driver.
-
->  	}
->  
->  	data->regulators = opp_table->regulators;
-> -	data->clk = opp_table->clk;
-> +	data->clk = (opp_table->clks ? opp_table->clks[0] : NULL);
->  	data->dev = dev;
->  	data->old_opp.rate = old_opp->rate;
->  	data->new_opp.rate = freq;
-> @@ -969,8 +1008,8 @@ static void _find_current_opp(struct device *dev, struct opp_table *opp_table)
-
-I think this routine breaks as soon as we add support for multiple clocks.
-clks[0]'s frequency can be same for multiple OPPs and this won't get you the
-right OPP then.
-
->  	struct dev_pm_opp *opp = ERR_PTR(-ENODEV);
->  	unsigned long freq;
->  
-> -	if (!IS_ERR(opp_table->clk)) {
-> -		freq = clk_get_rate(opp_table->clk);
-> +	if (opp_table->clks && !IS_ERR(opp_table->clks[0])) {
-> +		freq = clk_get_rate(opp_table->clks[0]);
->  		opp = _find_freq_ceil(opp_table, &freq);
->  	}
->  
-> @@ -1070,7 +1109,7 @@ static int _set_opp(struct device *dev, struct opp_table *opp_table,
->  						 scaling_down);
->  	} else {
->  		/* Only frequency scaling */
-> -		ret = _generic_set_opp_clk_only(dev, opp_table->clk, freq);
-> +		ret = _generic_set_opp_clks_only(dev, opp_table, opp);
->  	}
->  
->  	if (ret)
-> @@ -1135,11 +1174,15 @@ int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq)
-
-This should have a BUG or WARN _ON() now if clock count is more than one. This
-routine can't be called unless custom handler is available.
-
-I skipped rest of the code as we need to work/decide on the design first.
-
-Thanks.
-
--- 
-viresh
