@@ -2,96 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2346350E0D1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 14:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49B0450E0D9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 14:55:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236103AbiDYM4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 08:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52708 "EHLO
+        id S234293AbiDYM6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 08:58:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234293AbiDYM4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 08:56:05 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECD22B1AC;
-        Mon, 25 Apr 2022 05:53:01 -0700 (PDT)
-Received: by mail-qk1-f169.google.com with SMTP id s4so10686683qkh.0;
-        Mon, 25 Apr 2022 05:53:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uKBLvzpEGSIBr54zoQtzf0+gxoJzKeZeIIlQHCf6yKo=;
-        b=La3ufGSzfOO6drUj42uT4E8bM8Ik6K7zYq3Vpf/za9DK4mz78SoQmfpeTSCXJT2PUX
-         mnJgUne3994smRr1beaE15iU2Hg+ruBkJIxzxZHTBo7lVM83tMpNpd9TXcL2O7JJsXA6
-         wySm2tI/4XBY8wrik4ebA+8mnC/P0gem+nQSLI05CPkECgUELJ+kbR73WhwkhqPygkks
-         PNilfD0WtdzsgWTG/Kcr+ImMwLsS4BVIhCxfvWHKZx9Eec0P5tUVNCF/oVTEieq8TdAf
-         Qy4dBF3zMDXus4LbLelocb2eUpovNV63oheIJzr/C0Eok0gWI6WeypIUpxFxsHu9dTbi
-         vy8A==
-X-Gm-Message-State: AOAM531GqExwH21sDhke3bcYWXNhPcasDlwoT/zpH379KZiUFEU0V3PM
-        wgmqZbpxe0FGEm6VD10vXwJvshr5tul/3w==
-X-Google-Smtp-Source: ABdhPJx3YxKjRtX65g8uolxdlpRkrEqFMhgebNdysIWIoDOhXLJfra8whjxJ/kA3tkbTPv0joLUmXA==
-X-Received: by 2002:a05:620a:40d6:b0:69f:2d4b:4236 with SMTP id g22-20020a05620a40d600b0069f2d4b4236mr6472595qko.197.1650891180657;
-        Mon, 25 Apr 2022 05:53:00 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id j12-20020ae9c20c000000b0067ec380b320sm5016132qkg.64.2022.04.25.05.53.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 05:53:00 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2f7d19cac0bso40025577b3.13;
-        Mon, 25 Apr 2022 05:53:00 -0700 (PDT)
-X-Received: by 2002:a81:1cd5:0:b0:2f4:c3fc:2174 with SMTP id
- c204-20020a811cd5000000b002f4c3fc2174mr16882015ywc.512.1650891180048; Mon, 25
- Apr 2022 05:53:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220423131654.131390-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220423131654.131390-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 25 Apr 2022 14:52:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXSTjXqQ2GQh6HPyUSJ-ZMiUPS8PDXsk1ZhGV=y2zzJ+w@mail.gmail.com>
-Message-ID: <CAMuHMdXSTjXqQ2GQh6HPyUSJ-ZMiUPS8PDXsk1ZhGV=y2zzJ+w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: adc: Document Renesas RZ/V2L ADC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S235070AbiDYM6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 08:58:44 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A029713E0F;
+        Mon, 25 Apr 2022 05:55:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0CE9CCE1119;
+        Mon, 25 Apr 2022 12:55:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9287CC385A7;
+        Mon, 25 Apr 2022 12:55:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650891331;
+        bh=HkfcpCc1eqbiLwGyeTmgQdMI4j+rgg6rvsaSC4eQ5IA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HnRk+psz8v1zx0VWCDqtiKUsIUhuHir+2OLLtUzHdXMQoKT1OTp29AKJtqiTBc9RH
+         Wxhj7GhbEkaD7JrhP6P8L70oos0BwM5CaxhCrTvJ6NOsBnDJ5byl7PgoxBHcuyQ3iy
+         AWOgIjAPo0glLjQdDJtt2oGa57B/TAs4nXFAdORYVulc2Dqnu+I51ADvdDHjDymhI5
+         WHauj0zBcdDceGsp6AWPEf4882AImysACZIP29oRLvVFvl+b/KWPkblFV3pofeGm7N
+         3U0QYOsC2GMUQLBr7ywyW3RuCV6QkpBPtY8oHP2rO53dQOqY9ZlkDawIusF89P3BEX
+         UmJwJ+mBCirGw==
+Date:   Mon, 25 Apr 2022 13:55:25 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
+Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [RFC PATCH 3/5] HACK: ASoC: Tolerate N-cpus-to-M-codecs links
+Message-ID: <YmaaPa8A03rWV7HE@sirena.org.uk>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <20220331000449.41062-4-povik+lin@cutebit.org>
+ <YkrkbBNYULLgeS5w@sirena.org.uk>
+ <904EB8A1-5561-4555-8030-B85703E24F2E@cutebit.org>
+ <YmaTHTKWAfM7FCcY@sirena.org.uk>
+ <9F8BCBA8-5EE3-4F87-9518-91CB7AB4E077@cutebit.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="O7wLMv3y86gLGqlc"
+Content-Disposition: inline
+In-Reply-To: <9F8BCBA8-5EE3-4F87-9518-91CB7AB4E077@cutebit.org>
+X-Cookie: An apple a day makes 365 apples a year.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Sat, Apr 23, 2022 at 3:17 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document renesas RZ/V2L ADC bindings. RZ/V2L ADC is identical to RZ/G2L
-> with same number of channels.
->
-> While at it remove RZ/G2LC SoC from binding documentation as it does not
-> support ADC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+--O7wLMv3y86gLGqlc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Mon, Apr 25, 2022 at 02:34:33PM +0200, Martin Povi=C5=A1er wrote:
+> > On 25. 4. 2022, at 14:25, Mark Brown <broonie@kernel.org> wrote:
 
-Gr{oetje,eeting}s,
+> > If you register two separate DAIs (well, links) with the API without
+> > doing anything else the API will just expose them to userspace as two
+> > separate things with no indication that they're related.
 
-                        Geert
+> Sure, but what I am addressing here is a single DAI link with multiple
+> CPU DAIs, invoked in DT like this:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 	dai-link@0 {
+> 		link-name =3D "Speakers";
+> 		mclk-fs =3D <256>;
+>=20
+> 		cpu {
+> 			sound-dai =3D <&mca 0>, <&mca 1>;
+> 		};
+> 		codec {
+> 			sound-dai =3D <&speaker_left_woof1>,
+> 				<&speaker_right_woof1>,
+> 				<&speaker_left_tweet>,
+> 				<&speaker_right_tweet>,
+> 				<&speaker_left_woof2>,
+> 				<&speaker_right_woof2>;
+> 		};
+> 	};
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+You could parse this into two separate links for the benefit of the
+framewokr if you're using a custom machine driver (which I suspect you
+probably have to).
+
+> >> What about this interim solution: In case of N-to-M links we put in
+> >> the most restrictive condition for checking capture/playback stream
+> >> validity: we check all of the CPU DAIs. Whatever ends up being the
+> >> proper solution later can only be less restrictive than this.
+
+> > That's not the issue here?
+
+> Well to me it looks like it is. Because if I invoke the DAI link like
+> I quoted above, and the platform driver supports it, the playback/capture
+> stream validity check is the only place it breaks down. Notwithstanding
+> this may be the wrong API as you wrote.
+
+I am surprised that doesn't otherwise explode TBH - at the very least
+I'd expect it to show two PCMs to userspace which if I'm understanding
+your description correctly isn't really what's going on.
+
+--O7wLMv3y86gLGqlc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJmmjwACgkQJNaLcl1U
+h9ARDQf/Vj3omBxQfzF9VW1hJ6eknKjHUHK3xR8JtMc6NNBVbLKwOHLwte5cwTT6
+Fyi8T+yuuIC8qEXbIR0UYYTPHK3oBqj+tqL+BCqbjJM47ZzpwOIJuBcdn6fU/QpC
+umLT2bIQOsVpkGmlvn9UH+U/dESOzPv8PjiSruIXiRGYam0j8H/jh8hiTQi6n6BZ
+yRy+GgjLdF9Ws9aB//xps5zY7RvauQ5CmnOYz0++56JITDTrWV1xXdZNEs7PXmCe
+UN4KxiMDwLX0nfce0k8S7Gyb8yE8PaZ5AQ66QCBKY7c1tI/qliUdrEhWieaCzt9/
+K78aAw2cGspFrQODHj8LAnpKCacFiQ==
+=QJEI
+-----END PGP SIGNATURE-----
+
+--O7wLMv3y86gLGqlc--
