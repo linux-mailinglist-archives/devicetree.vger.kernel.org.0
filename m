@@ -2,103 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B053A50DB03
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAB450DB22
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:27:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232635AbiDYI0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 04:26:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59500 "EHLO
+        id S232048AbiDYIak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 04:30:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbiDYIZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:25:47 -0400
-Received: from first.geanix.com (first.geanix.com [116.203.34.67])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B46E13DE0;
-        Mon, 25 Apr 2022 01:22:37 -0700 (PDT)
-Received: from Seans-MBP.hinnerup (unknown [185.17.218.86])
-        by first.geanix.com (Postfix) with ESMTPSA id A74DA1243266;
-        Mon, 25 Apr 2022 08:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1650874561; bh=zpyIMFNzUI8cZ+GpAKZh9PezH2X29eaTTMBolZ0ekmo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=IyXwGtRcBN7z0f8/jUgpgxTNma7fzj8RFmPhtigWEMwB77RqfxEcgvXnzOqrubUXI
-         Yny419lcf2Qw1B7+RNwAuIQTx5v4Q/pt/N7gBnbcXX7wa4aWo5DxB7XDo1Eo5KMpJc
-         yimxrmc7SmRpigT1yh/d4bxBwGG2+XU3g/52W58ym5/Ih0MpN0k4YPHtN5lTyHwlcn
-         ffKIUzccfics3BXXQg+yiLy7CqFQbL1DEivhYyWw3C/R7SIB5v6E4Y+n9C6wmCmg6D
-         DkELNwxssXOrhSXSYG51Xggq0kzpFdq+NavBxtEL76mp+grpapGqsyc0Dz4lBO6yO/
-         6V0ESEr5ZvTEA==
-Date:   Mon, 25 Apr 2022 10:16:01 +0200
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     Peter Rosin <peda@axentia.se>
-Cc:     linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S236632AbiDYIa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:30:26 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975CF1FA56;
+        Mon, 25 Apr 2022 01:26:16 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id hf18so9835646qtb.0;
+        Mon, 25 Apr 2022 01:26:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mw4/qeOxZMM6jmVeg1j9kXzpp/Z9Zm8EXt27iZCZExQ=;
+        b=apegmHRls/HBEYd8Lnx4qRSvXHf9jlxdyMUfjqVhiscl0ZUagmkLktLiTo1E2ne1QW
+         ngSfYTAMOSUaGHR4n/PpN6N4gBmFrcLW6yCPaDuBbV98xaF+owrVqIQ2ZdBnRIiPdqoR
+         O3y0nBT1QGAT6bZIdGMqXRH5lgb525NdzM1FncFu89D3NNSVEtnIzDs8dmEP1xBqzfV8
+         7XNCAreMLAmG9cs7YMaQDuMbOPiS6Q+QhoBU4R4iaOYJhPAAZyq5v08cXauEUocSIaEH
+         eQ+PiXXr2EaRW/Vov3we+7LysFT9Rkk5BZvtp4EXb2wpsRs8vU418XEH2+dOxF3NJa62
+         Z5Jw==
+X-Gm-Message-State: AOAM531kzI0jD7DKQt1M7wq3RuiBOKPNUXRArvV23+bH8XSV7dHAe5l/
+        kJWRr06KU6KzdJzn80KNwAUQnx4zGI0jBQ==
+X-Google-Smtp-Source: ABdhPJzodM3AwnhFiN9SE+W4ejCCunBwrPYXLtl8iFx6fhpZuHJ0QtRlVIG91h1UDNHi9bvaiUSdyg==
+X-Received: by 2002:a05:622a:64f:b0:2e0:6a11:7b0d with SMTP id a15-20020a05622a064f00b002e06a117b0dmr11283659qtb.9.1650875175469;
+        Mon, 25 Apr 2022 01:26:15 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id a28-20020a05620a02fc00b0069e8e766a0csm4749850qko.94.2022.04.25.01.26.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 01:26:15 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2f7b90e8b37so62489247b3.6;
+        Mon, 25 Apr 2022 01:26:15 -0700 (PDT)
+X-Received: by 2002:a81:5210:0:b0:2ef:21e3:54dd with SMTP id
+ g16-20020a815210000000b002ef21e354ddmr15569251ywb.438.1650875174882; Mon, 25
+ Apr 2022 01:26:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220425064201.459633-1-yoshihiro.shimoda.uh@renesas.com> <20220425064201.459633-3-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220425064201.459633-3-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 25 Apr 2022 10:26:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXN2i6qsavUW8FSB29OpL=k3yrDMp9u_2OKaQmeA5Q5mA@mail.gmail.com>
+Message-ID: <CAMuHMdXN2i6qsavUW8FSB29OpL=k3yrDMp9u_2OKaQmeA5Q5mA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: Add r8a779g0 CPG Core Clock Definitions
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: dac: ti-dac5571: add support for ti,dac121c081
-Message-ID: <20220425081601.cs42eujnghzxnxgt@Seans-MBP.hinnerup>
-References: <b657ebf9-e2e3-6d3f-e7e9-c660e860e54c@axentia.se>
- <6e63f598-ff54-6cb6-8c7d-83e9d6231af0@axentia.se>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6e63f598-ff54-6cb6-8c7d-83e9d6231af0@axentia.se>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 08:02:34AM +0200, Peter Rosin wrote:
-> It fits right in as a single 12-bit DAC.
-> 
-> Signed-off-by: Peter Rosin <peda@axentia.se>
-Reviewed-by: Sean Nyekjaer <sean@geanix.com>
-> ---
->  drivers/iio/dac/Kconfig      | 2 +-
->  drivers/iio/dac/ti-dac5571.c | 3 +++
->  2 files changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-> index c0bf0d84197f..d6248b188645 100644
-> --- a/drivers/iio/dac/Kconfig
-> +++ b/drivers/iio/dac/Kconfig
-> @@ -417,7 +417,7 @@ config TI_DAC5571
->  	help
->  	  Driver for the Texas Instruments
->  	  DAC5571, DAC6571, DAC7571, DAC5574, DAC6574, DAC7574, DAC5573,
-> -	  DAC6573, DAC7573, DAC8571, DAC8574.
-> +	  DAC6573, DAC7573, DAC8571, DAC8574, DAC121C081.
->  	  If compiled as a module, it will be called ti-dac5571.
-> diff --git a/drivers/iio/dac/ti-dac5571.c b/drivers/iio/dac/ti-dac5571.c
-> index 4a3b8d875518..ce542bd8b69e 100644
-> --- a/drivers/iio/dac/ti-dac5571.c
-> +++ b/drivers/iio/dac/ti-dac5571.c
-> @@ -13,6 +13,7 @@
->   * https://www.ti.com/lit/ds/symlink/dac5573.pdf
->   * https://www.ti.com/lit/ds/symlink/dac6573.pdf
->   * https://www.ti.com/lit/ds/symlink/dac7573.pdf
-> + * https://www.ti.com/lit/ds/symlink/dac121c081.pdf
->   */
->  #include <linux/iio/iio.h>
-> @@ -394,6 +395,7 @@ static const struct of_device_id dac5571_of_id[] = {
->  	{.compatible = "ti,dac5573"},
->  	{.compatible = "ti,dac6573"},
->  	{.compatible = "ti,dac7573"},
-> +	{.compatible = "ti,dac121c081"},
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, dac5571_of_id);
-> @@ -408,6 +410,7 @@ static const struct i2c_device_id dac5571_id[] = {
->  	{"dac5573", quad_8bit},
->  	{"dac6573", quad_10bit},
->  	{"dac7573", quad_12bit},
-> +	{"dac121c081", single_12bit},
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, dac5571_id);
-> -- 
-> 2.20.1
-> 
+On Mon, Apr 25, 2022 at 8:42 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add all Clock Pulse Generator Core Clock Outputs for the Renesas
+> R-Car V4H (R8A779G0) SoC.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue for v5.19 a branch shared by driver and DT.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
