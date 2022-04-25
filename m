@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF50350EAFE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 23:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECBA150EB06
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 23:08:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245569AbiDYVKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 17:10:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48244 "EHLO
+        id S229437AbiDYVKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 17:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245413AbiDYVKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 17:10:20 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6EE864737
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 14:07:13 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id w5-20020a17090aaf8500b001d74c754128so499995pjq.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 14:07:13 -0700 (PDT)
+        with ESMTP id S245594AbiDYVKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 17:10:21 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0466364BF9
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 14:07:16 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d15so13897998plh.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 14:07:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=7pa6zrNLxEFTJIYew9I+MslyE/BqjUU2Vfh9xpblR54=;
-        b=Shoz3tJtEfbeJHLbZbbAtm+y0n+qLrUd1IsVnLxx+HlgH0lU5Bzat9UjXBvtUxxkcZ
-         fWVUxh4HAjy8+bLXQnIQG4pqK/T/ki1Ts5oXpNSWDKVq5nlj2zefrPxGz04zSJctnqww
-         MdFeL7gkO8jwSYpuKBh4ELKQF7TnQPSYm6R2w=
+        bh=fYD/F2OSbA7Q4eCV40OrtxHiQtAfyrFTFEIn6t3W6f8=;
+        b=WvFR64qpnd4yCLm8ubU/W/DeKgWVe5sf1D05fbZmkSyTq8yGSG6v5hnDff1XSYazp6
+         83XXw1NiHbANd+TaAV+ZBDA2iYhNtL67l2+aocpmUGDCinB5/oxcsmHaIHzPCmL0lSdx
+         g5TTDnxbPbEk7GACTTB9R3BKu9hJsSL5XH2GA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=7pa6zrNLxEFTJIYew9I+MslyE/BqjUU2Vfh9xpblR54=;
-        b=pVS2luj17jy/mQKWaHhMG2pNkNjKf4OPdvd0/iHk/GoZCcElgrHJ8LZitqSR1CTwYt
-         Oz4dLgNReA5n4zzshqvVF6H2dBKuefisNXhrnHrobgw1vKcfhB9UYJZdvrqSNyYG0fIK
-         v0lwWuj4px+7mu8WRAmOrtQCrQhwXgg7Rlc+hNYKpsucmhUHWfIQf9XxeahnyMZZmuhY
-         2leRNdsXb76gFv7kIN231lpSL26/dIFEVZi46hdSpb1Be4I4scCFXuj5TH0+oixZWmjg
-         4ivGm/QDy7hvgPeR7jO7TTLJMcjLZ0opXchIIg0QyF30ldXcabwGsNBeTKmuq5vR9wyp
-         6chg==
-X-Gm-Message-State: AOAM530yLyd4r6WWT8xurTJo75iKYdLK7ZCF4upiwMs8AMNoSsMKnSwb
-        N9bSXVfbTkfeSeky/YIJHJ0zeQ==
-X-Google-Smtp-Source: ABdhPJx+uxbkSaPe2+0BH9EheOMTgYzUOtVzJymppogmrFVLTMjQ1PWdb8ch86SegBtXfRZtKHInSQ==
-X-Received: by 2002:a17:902:cf0f:b0:15a:24e0:d9b0 with SMTP id i15-20020a170902cf0f00b0015a24e0d9b0mr19745380plg.42.1650920833478;
-        Mon, 25 Apr 2022 14:07:13 -0700 (PDT)
+        bh=fYD/F2OSbA7Q4eCV40OrtxHiQtAfyrFTFEIn6t3W6f8=;
+        b=b0NRrSsg2eBn965Ap+uG/So2llYmc5Fq+nZVnPXP1aoDn+9aMIyptSHlEqP3uHThhs
+         55/WjLz1r8kip9z+FJ8ok3Mr6ouJc5yBjaIY2j45ZU4Xrsz2lo3frBqbmR7ai0rd4akT
+         esddclJCdPe8A+1lDy3ohLky4BBGbKfTWoFxM+4k/XcOWoZ2ZGtXec+v/orLlpwt8/hL
+         2dUrfcpbac4t2sAI+L+7LMMf+tCScAx2VmxYge4DmPMvOMUZ8FJIj1kKLBaSKeKC3Gh1
+         uRq3IJkUaKaBOUc0414r1UaiLxo3zFXUPIhvKanXdFhA1XVSg/Cpx9yI+fNh3cJ2gjde
+         a04g==
+X-Gm-Message-State: AOAM532T+U5dSzy4kCTSBJ33XfRlhVZKPx7Zxmjq3PIiFbI2z4ZxlUP5
+        SKnPsOBaqkll7sDEGUnADi8DcQ==
+X-Google-Smtp-Source: ABdhPJyG9Xx7/t8cUKO2ub7bBhrSNggYmBrlKgygY827SF0gU8Mp7i0d+ErwAnNSiBQq7WdPpARN0w==
+X-Received: by 2002:a17:902:ed89:b0:15a:d3e:ada6 with SMTP id e9-20020a170902ed8900b0015a0d3eada6mr20094621plj.94.1650920835532;
+        Mon, 25 Apr 2022 14:07:15 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:b820:7f63:f3dd:3da])
-        by smtp.gmail.com with ESMTPSA id b20-20020a62a114000000b0050d231e08ffsm8523202pff.37.2022.04.25.14.07.11
+        by smtp.gmail.com with ESMTPSA id b20-20020a62a114000000b0050d231e08ffsm8523202pff.37.2022.04.25.14.07.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 14:07:13 -0700 (PDT)
+        Mon, 25 Apr 2022 14:07:15 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Vinod Koul <vkoul@kernel.org>,
@@ -59,13 +59,11 @@ Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
         linux-arm-msm@vger.kernel.org, quic_kalyant@quicinc.com,
         Kuogee Hsieh <quic_khsieh@quicinc.com>,
         Douglas Anderson <dianders@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: msm/dp: List supplies in the bindings
-Date:   Mon, 25 Apr 2022 14:06:42 -0700
-Message-Id: <20220425140619.1.Ibfde5a26a7182c4b478d570c23d2649823ac2cce@changeid>
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] dt-bindings: phy: List supplies for qcom,edp-phy
+Date:   Mon, 25 Apr 2022 14:06:43 -0700
+Message-Id: <20220425140619.2.Iae013f0ff4599294189f3a6e91376fad137bbabf@changeid>
 X-Mailer: git-send-email 2.36.0.rc2.479.g8af0fa9b8e-goog
 In-Reply-To: <20220425210643.2420919-1-dianders@chromium.org>
 References: <20220425210643.2420919-1-dianders@chromium.org>
@@ -82,47 +80,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 We're supposed to list the supplies in the dt bindings but there are
-none in the DP controller bindings. Looking at the Linux driver and
-existing device trees, we can see that two supplies are expected:
-- vdda-0p9-supply
-- vdda-1p2-supply
+none in the eDP PHY bindings.
 
-Let's list them both in the bindings. Note that the datasheet for
-sc7280 doesn't describe these supplies very verbosely. For the 0p9
-supply, for instance, it says "Power for eDP 0.9 V circuits". This
-this is obvious from the property name, we don't bother cluttering the
-bindings with a description.
+Looking at the driver in Linux, I can see that there seem to be two
+relevant supplies: "vdda-phy" and "vdda-pll". Let's add those to the
+bindings.
+
+NOTE: from looking at the Qualcomm datasheet for sc7280, it's not
+immediately clear how to figure out how to fill in these supplies. The
+only two eDP related supplies are simply described as "power for eDP
+0.9V circuits" and "power for eDP 1.2V circuits". From guessing and
+from comparing how a similar PHY is hooked up on other similar
+Qualcomm boards, I'll make the educated guess that the 1.2V supply
+goes to "vdda-phy" and the 0.9V supply goes to "vdda-pll" and I'll use
+that in the example here.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- .../devicetree/bindings/display/msm/dp-controller.yaml      | 6 ++++++
+ Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-index cd05cfd76536..dba31108db51 100644
---- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-@@ -76,6 +76,9 @@ properties:
-   "#sound-dai-cells":
+diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+index a5850ff529f8..cf9e9b8011cb 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+@@ -41,6 +41,9 @@ properties:
+   "#phy-cells":
      const: 0
  
-+  vdda-0p9-supply: true
-+  vdda-1p2-supply: true
++  vdda-phy-supply: true
++  vdda-pll-supply: true
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-     properties:
-@@ -137,6 +140,9 @@ examples:
+ required:
+   - compatible
+   - reg
+@@ -65,5 +68,8 @@ examples:
  
-         power-domains = <&rpmhpd SC7180_CX>;
- 
-+        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
-+        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
+       #clock-cells = <1>;
+       #phy-cells = <0>;
 +
-         ports {
-             #address-cells = <1>;
-             #size-cells = <0>;
++      vdda-phy-supply = <&vdd_a_edp_0_1p2>;
++      vdda-pll-supply = <&vdd_a_edp_0_0p9>;
+     };
+ ...
 -- 
 2.36.0.rc2.479.g8af0fa9b8e-goog
 
