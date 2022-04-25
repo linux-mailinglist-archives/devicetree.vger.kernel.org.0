@@ -2,460 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAE9350E7B0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622FF50E7B1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236153AbiDYSEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 14:04:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
+        id S241441AbiDYSEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 14:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241441AbiDYSEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:04:30 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5134348E
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:01:25 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id e1so9883444ile.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:01:25 -0700 (PDT)
+        with ESMTP id S244196AbiDYSEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:04:38 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE4B46B10
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:01:32 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id kq17so8020868ejb.4
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:01:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fBuBMIfL41ODVT7H7ESbalnkiMR33vpYMTtgYXCIlZs=;
-        b=dvMmoITBE4jsvtT3UfJjCUj9m7lvy8mIYaU0o1avgHO/7tNRMXxCkuf46et9ssUcTl
-         5kfy/TGWNMYtoiu0Tqc0kQQxeqXzafI8gcHCYE7GMuxhSmDuZu0jTaoYHNu43wzkNf0/
-         XMF2LSNjh1riY2+C038rCNkrpsTwVvPA7SCSlhyF1ug7ACIpgGnGeTEMgVU7NDTYdX82
-         iO4RKlzHm0KpodQI44wGQfcUapyhc00/Gebyj1y2J6lX33xAhxLsV07PV2lh55oZkkIy
-         e8tcORq9BTTHL0b3t+SCbRH6AeOLaV+5dxtfD0IQThR3lq/itSls0vea89Si324yWTJx
-         vzqw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=cfMZHvtfOOtpqzqGF7A7q6AfqNEDLTUzF7hzywhBr9Q=;
+        b=vH2QMU1ey6We0PvkEgJ/ptfQ175t6wD0xgpkFMMJMtwcftkUya13dSdTWRiFwzN1+d
+         aDpiA6ZMLjVAXPi/Xoj7F3FZ3wfptJoJIk1TZ2WLz2yceAZTXkX4Y+scllFD90vAvhRp
+         xwnnOLG3IT6XofLBMwBCizXRXkJVLnfZSe4vtBjMFmM7OWOGVUoeeqNe8SX2fmAgzQxa
+         vXh7RG6OUiSRuOSn3bIwrZLj6HVxjkMMTDeuYfma7FPn5s7jWz+6jx+L6QAB5tSRPkie
+         lvloABrLkCYcs5wm2YgP11janJcJ2tFFBYESxzXUjmHr4pSgtPmfz4d4ByZEy/zEmEfR
+         Z9Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fBuBMIfL41ODVT7H7ESbalnkiMR33vpYMTtgYXCIlZs=;
-        b=PPi9ET6RONP40CcbhVpOkC35xHuBGEWNyhJ4tYo2TkCy8ynOkkuSeaYrSCLfzjByDs
-         2pOSbd9Sv/pM3NNXqAioCccJcZ3By92VSbr5f92Qg2YL9jplmbvJR67H7fUDGuem0e78
-         NP9xzApQfXEceQp8CAQbXGbW81mMQV//ZeawbWjsFFemq3q0YOyD7KP09tPXziYSMKfv
-         QamajYV+PDKJBtUUSYqxrvqrJnM0VRMyFok/hDrgv+yY85G06q7o7LblTPUvccAuxTlp
-         aIjk5ozN7d63GJGckSbD3dB45e8peiuHkR47rWsOWqzN387l3tTIo1JjCX6JhCsdzqYN
-         xuIg==
-X-Gm-Message-State: AOAM533ooYBW6qyFgY6esi8VdvDx9U6FlRsvR1Yd/Mt8vRhwUUTfAVBL
-        8sD0xFsscg4xaQ3KUy6nRkE=
-X-Google-Smtp-Source: ABdhPJy6nCzWRSSyPBqRMYhcs5A+dUeZopKijKf+MUo1hmy768jcVqHU8dsaWUP9B5vDPY+6atFV6w==
-X-Received: by 2002:a92:d212:0:b0:2cb:7635:9940 with SMTP id y18-20020a92d212000000b002cb76359940mr7144835ily.132.1650909684646;
-        Mon, 25 Apr 2022 11:01:24 -0700 (PDT)
-Received: from localhost.localdomain (cpe-65-29-252-111.wi.res.rr.com. [65.29.252.111])
-        by smtp.gmail.com with ESMTPSA id a1-20020a923301000000b002cae7560bfesm6447379ilf.62.2022.04.25.11.01.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 11:01:24 -0700 (PDT)
-From:   Daniel Kaehn <kaehndan@gmail.com>
-To:     tiwai@suse.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Daniel Kaehn <kaehndan@gmail.com>
-Subject: [PATCH v3 2/2] Add generic serial MIDI driver using serial bus API
-Date:   Mon, 25 Apr 2022 13:01:15 -0500
-Message-Id: <20220425180115.757247-3-kaehndan@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220425180115.757247-1-kaehndan@gmail.com>
-References: <20220425180115.757247-1-kaehndan@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cfMZHvtfOOtpqzqGF7A7q6AfqNEDLTUzF7hzywhBr9Q=;
+        b=vBjILefYgaIpm3e6wEb1RLy4Li/qyL8hhT1HEpIIRYQZQaUWQdmI/3b0ZpYgfz94Pi
+         gu60/XdzAtGd+9tF/7W4+gW4Lm//xMYGs62LnaE96RCuhnTVW9c29rBhpV16MYz8Ro6M
+         HyWGx6kU6/7AufcvjNahFJMwBsWZLJ2lKmaEmdP3ap7ZBVTGYu+CNhS5RMKjxWKr5t8g
+         C1MQ6o0nJEp/gCoq0zd10OA3luVwp9qqEGxP3q4lE9CIMmVdUG+a50bjNqfsbbGfIfsk
+         KMmefO5zEuB/VCWdgmiTq0ld/RCbVY+5H+uJevdzL84qYXXCVn9WzEU87pmUQW1gX89g
+         48SA==
+X-Gm-Message-State: AOAM5303FlYy5i7Z1PY4I28CQyUinhUlKj8BycKdNJ2vNgTTMbpE4A1H
+        MyUpI1NEo8Drspm/xovYRx+c1A==
+X-Google-Smtp-Source: ABdhPJzuXJBp2Ze6NPBKVZ/WJjzHtg+vePMnM6AFJx0uKL77SlAvF6GDXQNiVPtKP6xDyT8jIjWOAg==
+X-Received: by 2002:a17:907:6d8a:b0:6f1:7143:1ca3 with SMTP id sb10-20020a1709076d8a00b006f171431ca3mr16005452ejc.219.1650909691148;
+        Mon, 25 Apr 2022 11:01:31 -0700 (PDT)
+Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id b8-20020a056402084800b004207931a9cbsm5171751edz.36.2022.04.25.11.01.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 11:01:30 -0700 (PDT)
+Message-ID: <3bae519e-be5f-2736-0e7e-d23ea06121c8@linaro.org>
+Date:   Mon, 25 Apr 2022 20:01:29 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v1 2/7] dt-bindings: arm: rockchip: Add Pine64 SoQuartz
+ SoM
+Content-Language: en-US
+To:     Peter Geis <pgwipeout@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220425171344.1924057-1-pgwipeout@gmail.com>
+ <20220425171344.1924057-3-pgwipeout@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220425171344.1924057-3-pgwipeout@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Generic serial MIDI driver adding support for using serial devices
-compatible with the serial bus as raw MIDI devices, allowing using
-additional serial devices not compatible with the existing
-serial-u16550 driver. Supports only setting standard serial baudrates on
-the underlying serial device; however, the underlying serial device can
-be configured so that a requested 38.4 kBaud is actually the standard MIDI
-31.25 kBaud. Supports DeviceTree configuration.
+On 25/04/2022 19:13, Peter Geis wrote:
+> The SoQuartz system on module is designed to be pin compatible with the
+> RPi CM4 SoM. It is based on the rk3566 SoC and outputs on uart2 for
+> debug and console. The first carrier board supported is the CM4IO board
+> from RPi.
 
-Signed-off-by: Daniel Kaehn <kaehndan@gmail.com>
----
- sound/drivers/Kconfig          |  18 ++
- sound/drivers/Makefile         |   2 +
- sound/drivers/serial-generic.c | 316 +++++++++++++++++++++++++++++++++
- 3 files changed, 336 insertions(+)
- create mode 100644 sound/drivers/serial-generic.c
 
-diff --git a/sound/drivers/Kconfig b/sound/drivers/Kconfig
-index ca4cdf666f82..6f58a8531ed8 100644
---- a/sound/drivers/Kconfig
-+++ b/sound/drivers/Kconfig
-@@ -165,6 +165,24 @@ config SND_SERIAL_U16550
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called snd-serial-u16550.
- 
-+config SND_SERIAL_GENERIC
-+	tristate "Generic serial MIDI driver"
-+	depends on SERIAL_DEV_BUS
-+	depends on OF
-+	select SND_RAWMIDI
-+	help
-+	  To include support for mapping generic serial devices as raw
-+	  ALSA MIDI devices, say Y here. The driver only supports setting
-+	  the serial port to standard baudrates. To attain the standard MIDI
-+	  baudrate of 31.25 kBaud, configure the clock of the underlying serial
-+	  device so that a requested 3.84 kBaud will result in the standard speed.
-+
-+	  Use this devicetree binding to configure serial port mapping
-+	  <file:Documentation/devicetree/bindings/sound/serialmidi.yaml>
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called snd-serial-generic.
-+
- config SND_MPU401
- 	tristate "Generic MPU-401 UART driver"
- 	select SND_MPU401_UART
-diff --git a/sound/drivers/Makefile b/sound/drivers/Makefile
-index c0fe4eccdaef..b60303180a1b 100644
---- a/sound/drivers/Makefile
-+++ b/sound/drivers/Makefile
-@@ -10,6 +10,7 @@ snd-mtpav-objs := mtpav.o
- snd-mts64-objs := mts64.o
- snd-portman2x4-objs := portman2x4.o
- snd-serial-u16550-objs := serial-u16550.o
-+snd-serial-generic-objs := serial-generic.o
- snd-virmidi-objs := virmidi.o
- 
- # Toplevel Module Dependency
-@@ -17,6 +18,7 @@ obj-$(CONFIG_SND_DUMMY) += snd-dummy.o
- obj-$(CONFIG_SND_ALOOP) += snd-aloop.o
- obj-$(CONFIG_SND_VIRMIDI) += snd-virmidi.o
- obj-$(CONFIG_SND_SERIAL_U16550) += snd-serial-u16550.o
-+obj-$(CONFIG_SND_SERIAL_GENERIC) += snd-serial-generic.o
- obj-$(CONFIG_SND_MTPAV) += snd-mtpav.o
- obj-$(CONFIG_SND_MTS64) += snd-mts64.o
- obj-$(CONFIG_SND_PORTMAN2X4) += snd-portman2x4.o
-diff --git a/sound/drivers/serial-generic.c b/sound/drivers/serial-generic.c
-new file mode 100644
-index 000000000000..af1f19db33aa
---- /dev/null
-+++ b/sound/drivers/serial-generic.c
-@@ -0,0 +1,316 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ *   serial-generic.c
-+ *   Copyright (c) by Daniel Kaehn <kaehndan@gmail.com
-+ *   Based on serial-u16550.c by Jaroslav Kysela <perex@perex.cz>,
-+ *		                 Isaku Yamahata <yamahata@private.email.ne.jp>,
-+ *		                 George Hansper <ghansper@apana.org.au>,
-+ *		                 Hannu Savolainen
-+ *
-+ * Generic serial MIDI driver using the serdev serial bus API for hardware interaction
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/ioport.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/serdev.h>
-+#include <linux/serial_reg.h>
-+#include <linux/slab.h>
-+#include <linux/dev_printk.h>
-+
-+#include <sound/core.h>
-+#include <sound/rawmidi.h>
-+#include <sound/initval.h>
-+
-+MODULE_DESCRIPTION("Generic serial MIDI driver");
-+MODULE_LICENSE("GPL");
-+
-+#define SERIAL_MODE_INPUT_OPEN		(1 << 0)
-+#define SERIAL_MODE_OUTPUT_OPEN		(1 << 1)
-+#define SERIAL_MODE_INPUT_TRIGGERED	(1 << 2)
-+#define SERIAL_MODE_OUTPUT_TRIGGERED	(1 << 3)
-+
-+struct snd_serial_generic {
-+	struct serdev_device *serdev;
-+
-+	struct snd_card *card;
-+	struct snd_rawmidi *rmidi;
-+	struct snd_rawmidi_substream *midi_output;
-+	struct snd_rawmidi_substream *midi_input;
-+
-+	int filemode;		/* open status of file */
-+	unsigned int baudrate;
-+};
-+
-+static int snd_serial_generic_ensure_serdev_open(struct snd_serial_generic *drvdata)
-+{
-+	int err;
-+	unsigned int actual_baud;
-+
-+	if (!drvdata->filemode) {
-+		err = serdev_device_open(drvdata->serdev);
-+		if (err < 0)
-+			return err;
-+		if (drvdata->baudrate) {
-+			actual_baud = serdev_device_set_baudrate(drvdata->serdev,
-+				drvdata->baudrate);
-+			if (actual_baud != drvdata->baudrate) {
-+				dev_warn(drvdata->card->dev, "snd-serial-generic: requested %d baud for %s but it was actually set to %d\n",
-+					drvdata->baudrate, drvdata->card->shortname, actual_baud);
-+			}
-+		}
-+	}
-+	return 0;
-+}
-+
-+static int snd_serial_generic_input_open(struct snd_rawmidi_substream *substream)
-+{
-+	int err;
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+
-+	dev_dbg(drvdata->card->dev, "snd-serial-generic: DEBUG - Opening input for card %s\n",
-+		drvdata->card->shortname);
-+
-+	err = snd_serial_generic_ensure_serdev_open(drvdata);
-+	if (err < 0)
-+		return err;
-+
-+	drvdata->filemode |= SERIAL_MODE_INPUT_OPEN;
-+	drvdata->midi_input = substream;
-+	return 0;
-+}
-+
-+static int snd_serial_generic_input_close(struct snd_rawmidi_substream *substream)
-+{
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+
-+	drvdata->filemode &= ~SERIAL_MODE_INPUT_OPEN;
-+	drvdata->midi_input = NULL;
-+	if (!drvdata->filemode)
-+		serdev_device_close(drvdata->serdev);
-+	return 0;
-+}
-+
-+static void snd_serial_generic_input_trigger(struct snd_rawmidi_substream *substream,
-+					int up)
-+{
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+
-+	if (up)
-+		drvdata->filemode |= SERIAL_MODE_INPUT_TRIGGERED;
-+	else
-+		drvdata->filemode &= ~SERIAL_MODE_INPUT_TRIGGERED;
-+}
-+
-+static int snd_serial_generic_output_open(struct snd_rawmidi_substream *substream)
-+{
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+	int err;
-+
-+	dev_dbg(drvdata->card->dev, "snd-serial-generic: DEBUG - Opening output for card %s\n",
-+		drvdata->card->shortname);
-+
-+	err = snd_serial_generic_ensure_serdev_open(drvdata);
-+	if (err < 0)
-+		return err;
-+
-+	drvdata->filemode |= SERIAL_MODE_OUTPUT_OPEN;
-+	drvdata->midi_output = substream;
-+	return 0;
-+};
-+
-+static int snd_serial_generic_output_close(struct snd_rawmidi_substream *substream)
-+{
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+
-+	drvdata->filemode &= ~SERIAL_MODE_OUTPUT_OPEN;
-+	drvdata->midi_output = NULL;
-+	if (!drvdata->filemode)
-+		serdev_device_close(drvdata->serdev);
-+	return 0;
-+};
-+
-+#define INTERNAL_BUF_SIZE 256
-+
-+static void snd_serial_generic_output_write(struct snd_rawmidi_substream *substream)
-+{
-+	static char buf[INTERNAL_BUF_SIZE];
-+	int num_bytes;
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+
-+	while (!snd_rawmidi_transmit_empty(substream)) {
-+		num_bytes = snd_rawmidi_transmit_peek(substream, buf, INTERNAL_BUF_SIZE);
-+		num_bytes = serdev_device_write_buf(drvdata->serdev, buf, num_bytes);
-+		snd_rawmidi_transmit_ack(substream, num_bytes);
-+	}
-+}
-+
-+static void snd_serial_generic_output_trigger(struct snd_rawmidi_substream *substream,
-+					 int up)
-+{
-+	struct snd_serial_generic *drvdata = substream->rmidi->card->private_data;
-+
-+	if (up)
-+		drvdata->filemode |= SERIAL_MODE_OUTPUT_TRIGGERED;
-+	else
-+		drvdata->filemode &= ~SERIAL_MODE_OUTPUT_TRIGGERED;
-+	if (up)
-+		snd_serial_generic_output_write(substream);
-+}
-+
-+static const struct snd_rawmidi_ops snd_serial_generic_output = {
-+	.open =		snd_serial_generic_output_open,
-+	.close =	snd_serial_generic_output_close,
-+	.trigger =	snd_serial_generic_output_trigger,
-+};
-+
-+static const struct snd_rawmidi_ops snd_serial_generic_input = {
-+	.open =		snd_serial_generic_input_open,
-+	.close =	snd_serial_generic_input_close,
-+	.trigger =	snd_serial_generic_input_trigger,
-+};
-+
-+static int snd_serial_generic_receive_buf(struct serdev_device *serdev,
-+				const unsigned char *buf, size_t count)
-+{
-+	int ret;
-+	struct snd_serial_generic *drvdata = serdev_device_get_drvdata(serdev);
-+
-+	ret = snd_rawmidi_receive(drvdata->midi_input, buf, count);
-+	return ret < 0 ? 0 : ret;
-+}
-+
-+static void snd_serial_generic_write_wakeup(struct serdev_device *serdev)
-+{
-+	struct snd_serial_generic *drvdata = serdev_device_get_drvdata(serdev);
-+
-+	if (!snd_rawmidi_transmit_empty(drvdata->midi_output))
-+		snd_serial_generic_output_write(drvdata->midi_output);
-+}
-+
-+
-+static const struct serdev_device_ops snd_serial_generic_serdev_device_ops = {
-+	.receive_buf = snd_serial_generic_receive_buf,
-+	.write_wakeup = snd_serial_generic_write_wakeup
-+};
-+
-+static void snd_serial_generic_parse_dt(struct serdev_device *serdev,
-+				struct snd_serial_generic *drvdata)
-+{
-+	int err;
-+
-+	if (serdev->dev.of_node) {
-+		err = of_property_read_u32(serdev->dev.of_node, "speed", &drvdata->baudrate);
-+		if (err < 0) {
-+			dev_warn(drvdata->card->dev,
-+				"snd-serial-generic: MIDI device reading of speed DT param failed with error %d, using default baudrate of serial device\n",
-+				err);
-+			drvdata->baudrate = 0;
-+		}
-+	} else {
-+		dev_info(drvdata->card->dev, "snd-serial-generic: MIDI device speed DT param not set for %s, using default baudrate of serial device\n",
-+			drvdata->card->shortname);
-+		drvdata->baudrate = 0;
-+	}
-+}
-+
-+static void snd_serial_generic_substreams(struct snd_rawmidi_str *stream, int dev_num)
-+{
-+	struct snd_rawmidi_substream *substream;
-+
-+	list_for_each_entry(substream, &stream->substreams, list) {
-+		sprintf(substream->name, "Serial MIDI %d-%d", dev_num, substream->number);
-+	}
-+}
-+
-+static int snd_serial_generic_rmidi(struct snd_serial_generic *drvdata,
-+				int outs, int ins, struct snd_rawmidi **rmidi)
-+{
-+	struct snd_rawmidi *rrawmidi;
-+	int err;
-+
-+	err = snd_rawmidi_new(drvdata->card, drvdata->card->driver, 0, outs, ins, &rrawmidi);
-+	if (err < 0)
-+		return err;
-+
-+	snd_rawmidi_set_ops(rrawmidi, SNDRV_RAWMIDI_STREAM_INPUT,
-+				&snd_serial_generic_input);
-+	snd_rawmidi_set_ops(rrawmidi, SNDRV_RAWMIDI_STREAM_OUTPUT,
-+				&snd_serial_generic_output);
-+	strcpy(rrawmidi->name, drvdata->card->shortname);
-+
-+	snd_serial_generic_substreams(&rrawmidi->streams[SNDRV_RAWMIDI_STREAM_OUTPUT],
-+					drvdata->serdev->ctrl->nr);
-+	snd_serial_generic_substreams(&rrawmidi->streams[SNDRV_RAWMIDI_STREAM_INPUT],
-+					drvdata->serdev->ctrl->nr);
-+
-+	rrawmidi->info_flags = SNDRV_RAWMIDI_INFO_OUTPUT |
-+			       SNDRV_RAWMIDI_INFO_INPUT |
-+			       SNDRV_RAWMIDI_INFO_DUPLEX;
-+
-+	if (rmidi)
-+		*rmidi = rrawmidi;
-+	return 0;
-+}
-+
-+static int snd_serial_generic_probe(struct serdev_device *serdev)
-+{
-+	struct snd_card *card;
-+	struct snd_serial_generic *drvdata;
-+	int err;
-+
-+	err  = snd_devm_card_new(&serdev->dev, SNDRV_DEFAULT_IDX1,
-+				SNDRV_DEFAULT_STR1, THIS_MODULE,
-+				sizeof(struct snd_serial_generic), &card);
-+
-+	if (err < 0)
-+		return err;
-+
-+	strcpy(card->driver, "SerialMIDI");
-+	sprintf(card->shortname, "SerialMIDI-%d", serdev->ctrl->nr);
-+	sprintf(card->longname, "Serial MIDI device at serial%d", serdev->ctrl->nr);
-+
-+	drvdata = card->private_data;
-+
-+	drvdata->serdev = serdev;
-+	drvdata->card = card;
-+
-+	snd_serial_generic_parse_dt(serdev, drvdata);
-+
-+	err = snd_serial_generic_rmidi(drvdata, 1, 1, &drvdata->rmidi);
-+	if (err < 0)
-+		return err;
-+
-+	err = snd_card_register(card);
-+
-+	if (err < 0)
-+		return err;
-+
-+	serdev_device_set_client_ops(serdev, &snd_serial_generic_serdev_device_ops);
-+	serdev_device_set_drvdata(drvdata->serdev, drvdata);
-+
-+	return 0;
-+}
-+
-+#define SND_SERIAL_GENERIC_DRIVER	"snd-serial-generic"
-+
-+static const struct of_device_id snd_serial_generic_dt_ids[] = {
-+	{ .compatible = "serialmidi" },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, snd_serial_generic_dt_ids);
-+
-+static struct serdev_device_driver snd_serial_generic_driver = {
-+	.driver	= {
-+		.name		= SND_SERIAL_GENERIC_DRIVER,
-+		.of_match_table	= of_match_ptr(snd_serial_generic_dt_ids),
-+	},
-+	.probe	= snd_serial_generic_probe,
-+};
-+
-+module_serdev_device_driver(snd_serial_generic_driver);
--- 
-2.33.0
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
