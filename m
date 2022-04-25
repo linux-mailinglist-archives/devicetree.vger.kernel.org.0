@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D52250E939
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C08150E953
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240254AbiDYTO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 15:14:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
+        id S244886AbiDYTTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 15:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244893AbiDYTOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:14:21 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6016E2F3BA;
-        Mon, 25 Apr 2022 12:11:15 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id s21-20020a0568301e1500b006054da8e72dso11470331otr.1;
-        Mon, 25 Apr 2022 12:11:15 -0700 (PDT)
+        with ESMTP id S244900AbiDYTTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:19:40 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445C070933
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 12:16:32 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id y11so10009521ilp.4
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 12:16:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=79En++Vr1sBSFe95ZCwf7O++Q0VkaYApBB88Isyd460=;
+        b=bzG3eZUlAl0ggoOzuuLI5O1WhDZS9GQJIaFV+7UtNOc1o1feP84SPW4ERFgXkv4Ro5
+         6csM937vKr0j+oqPsbd2/0mWPwHuO12L5x4s/HUAVf9J0RdWR/zuqfwaJnt0SIfMQbup
+         54RpeG6bXZFjOMuMbCt5BvYJOnW72UpNFiwOW2jSMCXHMTAsMsCQ/fjitGFPqq1TNSDN
+         ez2ePnzRAvQl6wpERPaN8A/0irDpz5aCrlGfqLtdXeXsf8FJeG9HLdnyvsuD2bZUcBJj
+         +Ci1otaIuU9AwvgUvjO8+x0YkHXeCTugK15hVml1zqHppha012lY8mirasG4D892yQXk
+         EQkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KfvsdaNrqzE1BZExO2gpU9gM5Zw3mrEmzjGsDm/IN7Y=;
-        b=zz5caVfHghNswkFwZTDIF9TLg4iqUZDC266wt2z+Pnkn4OLLPEK8fChgsfPgRNAyaz
-         g+GtzOwR+e4vB0Va0sSHi6zeozHckSNs1SnzWHCLSELVXh4Bd5nPsKiDWzinavrlxo9c
-         RM3zjKxldq1C0WjZYtx2kFF4O5w8RU4ceAmdoRCoKZhaTQjB+Onqsy+/Aa1JkqnwkQ7e
-         RfqywunEM8laY5yx5jm3GMj8DwoeaLb1KkTcSM5GCcV/csjw6qrWSC6FvLIqWkW0gXoE
-         V9I8JjrLbNxUuSnjfzboPhvq+YJYz3aE+MWnDUFuERYPOS08uPjaAVAxNgwaVHceDttl
-         0amA==
-X-Gm-Message-State: AOAM531mphJOpbOAxlUaSuewTSG1PUV+2G4/SVoFop1ABau+4ifqTCCe
-        pPXoYRgAf/7vAYiOpYln7oJ+gotNCg==
-X-Google-Smtp-Source: ABdhPJw9uxpUO9LKnG040QuMwHyOzS4tHc0WimyBmaTy2/e4n1V3ST1BXyUY9YaMQrHV8DrvaiVaAQ==
-X-Received: by 2002:a05:6830:18f:b0:605:433b:c568 with SMTP id q15-20020a056830018f00b00605433bc568mr6954877ota.46.1650913874611;
-        Mon, 25 Apr 2022 12:11:14 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e26-20020a056820061a00b0035e46250f56sm4020495oow.13.2022.04.25.12.11.13
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=79En++Vr1sBSFe95ZCwf7O++Q0VkaYApBB88Isyd460=;
+        b=junRxUceUtpOtXKbcn20FEcJO9MdaeuK2CW9dEFPEEYzjXNpVDrOyYMzb8gummJi8P
+         ZYnAHFKHDNERmC4QkKzLMQeWtrG0KZHEBuZ9wIuEFqpO3OWvZo8tkKs1n/vt+vdKKVNW
+         cI7JHykF3bj1MLbtXjCnURZ6SrIgM8Ed9BMSilGGU8Koo5uaKGvyGSUccWKeck/2AjvE
+         ApRmeDSCXd9TG9kPyewaBWWF0CFuV4KZXbR6CuB+6faic6Jx+ad/XQIxvAHAd7BxER98
+         kXhDFN8We9WMmfZix1OGaa2G2sJSZy8UYwpvWFMY9aWoH5ohfZy50tRwV2OXgIYm0KHO
+         PhgA==
+X-Gm-Message-State: AOAM53147aq1T47XtiwoPidxIct1nnmL6k1fzijDaCnP6QRG6Nhh4Tsb
+        zRDLTnU9tzMY+MKyADZOvPI=
+X-Google-Smtp-Source: ABdhPJwAjDo4Y58LSzhwSJX4OrL4YeclpJC1tFCkJC7k94r0WLOgi/9zgr5Et8wZVl0oSYsymhx36g==
+X-Received: by 2002:a92:cccb:0:b0:2c2:7641:ed49 with SMTP id u11-20020a92cccb000000b002c27641ed49mr7662663ilq.271.1650914191606;
+        Mon, 25 Apr 2022 12:16:31 -0700 (PDT)
+Received: from localhost.localdomain (cpe-65-29-252-111.wi.res.rr.com. [65.29.252.111])
+        by smtp.gmail.com with ESMTPSA id m14-20020a92c52e000000b002cd804f045dsm5322842ili.1.2022.04.25.12.16.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 12:11:14 -0700 (PDT)
-Received: (nullmailer pid 83469 invoked by uid 1000);
-        Mon, 25 Apr 2022 19:11:13 -0000
-Date:   Mon, 25 Apr 2022 14:11:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>, arnd@arndb.de,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, soc@kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-kernel@vger.kernel.org,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>, etienne.carriere@st.com
-Subject: Re: [PATCH 2/8] dt-bindings: clock: stm32mp1: describes clocks if
- "st,stm32mp1-rcc-secure"
-Message-ID: <YmbyUc5uTXoTD/nt@robh.at.kernel.org>
-References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
- <20220422150952.20587-3-alexandre.torgue@foss.st.com>
- <dd48a7b5-ce08-5fb2-8236-8802ac91d827@denx.de>
+        Mon, 25 Apr 2022 12:16:31 -0700 (PDT)
+From:   Daniel Kaehn <kaehndan@gmail.com>
+To:     tiwai@suse.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Daniel Kaehn <kaehndan@gmail.com>
+Subject: [PATCH v4 0/2] Add generic serial MIDI driver using serial bus API
+Date:   Mon, 25 Apr 2022 14:16:01 -0500
+Message-Id: <20220425191602.770932-1-kaehndan@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dd48a7b5-ce08-5fb2-8236-8802ac91d827@denx.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,42 +67,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 06:31:25PM +0200, Marek Vasut wrote:
-> On 4/22/22 17:09, Alexandre Torgue wrote:
-> > In case of "st,stm32mp1-rcc-secure" (stm32mp1 clock driver with RCC
-> > security support hardened), "clocks" and "clock-names" describe oscillators
-> > and are required.
-> > 
-> > Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> > index 7a251264582d..bb0e0b92e907 100644
-> > --- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> > @@ -58,14 +58,8 @@ properties:
-> >             - st,stm32mp1-rcc-secure
-> >             - st,stm32mp1-rcc
-> >         - const: syscon
-> > -
-> > -  clocks:
-> > -    description:
-> > -      Specifies the external RX clock for ethernet MAC.
-> > -    maxItems: 1
-> > -
-> > -  clock-names:
-> > -    const: ETH_RX_CLK/ETH_REF_CLK
-> > +  clocks: true
-> > +  clock-names: true
-> 
-> It looks like this should rather be a property than a compatible string --
-> the compatible string is used by the OS to determine which hardware is
-> represented by a node, but here it is the same hardware in either case,
-> "st,stm32mp1-rcc" and "st,stm32mp1-rcc-secure", it is still the same
-> STM32MP1 RCC block, just configured differently by some bootloader stage.
-> 
-> So why not just add one-liner property of the RCC block like ?
-> st,rcc-in-secure-configuration
+Generic serial MIDI driver adding support for using serial devices
+compatible with the serial bus as raw MIDI devices, allowing using
+additional serial devices not compatible with the existing
+serial-u16550 driver. Supports only setting standard serial baudrates on
+the underlying serial device; however, the underlying serial device can
+be configured so that a requested 38.4 kBaud is actually the standard MIDI
+31.25 kBaud. Supports DeviceTree configuration.
 
-Because using compatible was already decided.
+Changes in v4:
+- Fix regressed typo - Correct 3.84 kBaud -> 38.4 kBaud in DT & Kconfig
+  (sorry about spam - noticed after sending v3 and didn't want to let
+  the error sit around for too long)
 
-Rob
+Changes in v3:
+- Replace use of snd_printk() with dev_* alternatives
+- Removed unnecessary initialization of err variables
+- Replaced instances of `== SERIAL_MODE_NOT_OPENED` with zero check
+- Loop on output_write to completely fill output buffer if data available
+- Depend on CONFIG_OF in Kconfig
+- Replace use of devm_kzalloc() with extra_size allocation in snd_devm_card_new()
+- Use module_serdev_device_driver() instead of module_init() and module_exit(0)
+
+Changes in v2:
+- Fix 'snd_serial_generic_write_wakeup' missing static keyword 
+- Correct 3.125 kBaud > 31.25 kBaud in documentation for MIDI         
+
+
+The need for this driver arose from a project using a Raspberry Pi4 which
+needed to receive and send raw MIDI with low latency. The pl011 UART
+used is not compatible with the existing serial MIDI driver made for
+u16550-style devices. Using a userspace program such as ttymidi to feed
+input from the TTY device to a virtual ALSA MIDI device was functional,
+but not ideal.
+
+I am not sure if a MIDI driver needing the mentioned 'hack' to clock
+38.4 kBaud down to the standard MIDI baud is permissible in the mainline
+kernel, but am submitting nevertheless in case it is useful. To my knowledge,
+it doesn't seem that there would be any way for this driver to manually
+configure a serial port to 31.25 kBaud using the serial bus API (please 
+correct me f I'm wrong). In my use case, I am actually configuring one port
+to run at 115.2 kBaud for faster communication with a custom onboard MIDI controller.
+
+Daniel Kaehn (2):
+  dt-bindings: sound: Add generic serial MIDI device
+  Add generic serial MIDI driver using serial bus API
+
+ .../devicetree/bindings/sound/serialmidi.yaml |  41 +++
+ sound/drivers/Kconfig                         |  18 +
+ sound/drivers/Makefile                        |   2 +
+ sound/drivers/serial-generic.c                | 319 ++++++++++++++++++
+ 4 files changed, 380 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/serialmidi.yaml
+ create mode 100644 sound/drivers/serial-generic.c
+
+
+base-commit: d615b5416f8a1afeb82d13b238f8152c572d59c0
+-- 
+2.33.0
+
