@@ -2,194 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCE4950DDC8
+	by mail.lfdr.de (Postfix) with ESMTP id 7063F50DDC7
 	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 12:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231223AbiDYKXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 06:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57562 "EHLO
+        id S233690AbiDYKYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 06:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240753AbiDYKXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:23:08 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EF14C78C;
-        Mon, 25 Apr 2022 03:20:04 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23P5rOI2009527;
-        Mon, 25 Apr 2022 12:19:42 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=SqyaY18cPEJ0zVd8s72TW+Wjrz7gIjA6d4bTmkbA1kI=;
- b=jbRbLq1TRsVssJtZ1PgB27fwHlNuEmn3hEic5Sk1gvcoU6NDL0wsXq5ylnPb0S2QyHwp
- xiA63xDw15DOkRRyzHbcNCVfpU0NvPil0C4YfndmX2HIOgKWZb98S8mn1VhtvEtL/LVi
- CgHSkw+mwoYl16v56iLYJ3nlCZd6xwPtPMNp0W+Oot/uuPkgH5Pu0CZT5k/9UEZ4RPi7
- pWB/pfc9JcSbhFB3plhMOW5Yk7WCb2Kj1Gz64TkC4rgG6VOe5rdHOgQfFeWhtgCp6QAg
- jkDTi8eugm0W2vC0oOQvAivt/LqT1MjgmbyR3C1TOiqcCQDA1Vjqv8aIaBVXohe4W+qE Vg== 
-Received: from eur01-ve1-obe.outbound.protection.outlook.com (mail-ve1eur01lp2052.outbound.protection.outlook.com [104.47.1.52])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fm6vk8hsx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 25 Apr 2022 12:19:42 +0200
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XxuxnSZj9WHDqC1ZUspvxMolM69EBKln7VYZFc/Hvt5TmfzedGnVOsk3oF/ubMl08r51c0iMmqcfoaDZ3J4TEJ6pdNFHAWELGhvmMM+HooawhQxttIyzHRukM5rXzQ59rszxdDy57sPmX3B40QvZFbatr2rtfbKEligQGjxbh5U7E1Knkhb9PALaRW1HnJDRVqw1jFkP/18LF8qRwPzheMY3Uwrqh1Z3RhHzS4AUX77/8jE/qzsBdRMr+6ASdImAkvuDUL842d+7DdAn28CTPCR8RI/96Fr54RP8MEqNOFHfAqELUTTtK5BGm6mnHVXvCDcKwwj6vzVVLC+HQXJWkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SqyaY18cPEJ0zVd8s72TW+Wjrz7gIjA6d4bTmkbA1kI=;
- b=Sm3AmeAG/ZRf4JFKJt+Ssj5+LRxxZPtv7GVxH1BdPCrLdgi5+fZcmH3wx/xSdWSEZKHPyl2NW2mdGyif2dY2/2JN5U6J+LFqasOTUVIozISBjKZ1R/lM+CsjXBTcGo3CXqJLAYdHRNwa3c8gWPAUMjC4Adjpty+SIrjL89rq09MEb6/dkV5jZuB4P5nSwImoui2Wu+/urbxbfaL6IzHJ8jojq6p54+WuuQGvbkC2TyeLjxFEF0UWp9FhwUHEmK4pwmp9WWVzMkIL29eSgWcrTBT/uoLwd6ydvS3VRyczykvsm+LRS6vTYV0TNbZFjoADKNtU/08FoCz3k9XjaKIGlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=st.com; dmarc=pass action=none header.from=st.com; dkim=pass
- header.d=st.com; arc=none
-Received: from PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:157::13)
- by DB6PR1001MB1126.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:4:65::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Mon, 25 Apr
- 2022 10:19:40 +0000
-Received: from PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::c9b:e555:1035:b086]) by PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::c9b:e555:1035:b086%9]) with mapi id 15.20.5186.021; Mon, 25 Apr 2022
- 10:19:40 +0000
-From:   Etienne CARRIERE <etienne.carriere@st.com>
-To:     Marek Vasut <marex@denx.de>,
-        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "soc@kernel.org" <soc@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S236544AbiDYKYL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:24:11 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4F853E11;
+        Mon, 25 Apr 2022 03:21:06 -0700 (PDT)
+X-UUID: 08903f58e0914418b670cfa033d53c5e-20220425
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:42a19959-8c17-493e-af10-58856b0d30c9,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:25
+X-CID-META: VersionHash:faefae9,CLOUDID:241006f0-06b0-4305-bfbf-554bfc9d151a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 08903f58e0914418b670cfa033d53c5e-20220425
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 748409254; Mon, 25 Apr 2022 18:20:58 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 25 Apr 2022 18:20:57 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 25 Apr
+ 2022 18:20:55 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 25 Apr 2022 18:20:55 +0800
+Message-ID: <c1b910098a0a5cbe06ec971c1bf745ac37986274.camel@mediatek.com>
+Subject: Re: [PATCH V4 01/14] dt-bindings: cpufreq: mediatek: Add MediaTek
+ CCI property
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
+        <hsinyi@google.com>, <khilman@baylibre.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH 6/8] ARM: dts: stm32: enable optee firmware and SCMI
- support on STM32MP15
-Thread-Topic: [PATCH 6/8] ARM: dts: stm32: enable optee firmware and SCMI
- support on STM32MP15
-Thread-Index: AQHYVlstOtyoewSfQ0uuhrGrUwLfTaz8IIuAgARMqxY=
-Date:   Mon, 25 Apr 2022 10:19:40 +0000
-Message-ID: <PAXPR10MB4687B8C3DF485E814AE8158BFDF89@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
-References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
- <20220422150952.20587-7-alexandre.torgue@foss.st.com>
- <174bea56-3e99-e01c-4133-f1350d34448d@denx.de>
-In-Reply-To: <174bea56-3e99-e01c-4133-f1350d34448d@denx.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_cf8c7287-838c-46dd-b281-b1140229e67a_Enabled=True;MSIP_Label_cf8c7287-838c-46dd-b281-b1140229e67a_SiteId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;MSIP_Label_cf8c7287-838c-46dd-b281-b1140229e67a_SetDate=2022-04-25T10:19:39.774Z;MSIP_Label_cf8c7287-838c-46dd-b281-b1140229e67a_Name=None
- (Unclassified);MSIP_Label_cf8c7287-838c-46dd-b281-b1140229e67a_ContentBits=0;MSIP_Label_cf8c7287-838c-46dd-b281-b1140229e67a_Method=Privileged;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b75c6604-f69b-4bde-b4e6-08da26a51be1
-x-ms-traffictypediagnostic: DB6PR1001MB1126:EE_
-x-ld-processed: 75e027c9-20d5-47d5-b82f-77d7cd041e8f,ExtAddr
-x-microsoft-antispam-prvs: <DB6PR1001MB11264E7D1CB577BE128A5BBBFDF89@DB6PR1001MB1126.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KQFnyFv8iLR/lNbO78059Iyn2r5YWF7MdcfCiT4U0BITg4cud9cJRU7JvW8HukgZKwD2Ut/liFpYE09//mD2VrkQXuBl/4QZT1dzPrqivZtceBy6HGFOoXIgTDRwDwRtIFzyWT2eI1NaKUM5PrmkHzixZU6YVDWiellNo5O117HdtZX1p9fXcJiEsQxv0i7z2PgG66LqzhngsGoPP0D9UrrbH3xJbikkuS7Jbg12lIme0EXiiCp6G551ZM1cZjGwook9l9X73P69c9lX3vNrEk7FErSgm/9fk3/uE+PJk1cxWaz3UQNZofq+hrKrEnl5zAwOw1KRB8rHVn8OpBpIS6C5nDS99gLc+Wm+dTW7mTN1zJMD+gx8Rs3i2tIsLVgiIv+11AmRE0R5IPK7Mz1boSjSFICBCqqIOSO41wbWU9L3aJqy0blLbv7o2s5i2U0Jon5/AznNVX6w1/xVw2ys3DA1qWS+F4EtffQSZYuc1OoWPDHJx1a8/kUzRxuCiDNSSy/thD1rfbgQFMgKfcCXM/oTkeSMmRRjxkFb3AbaEzMprmQTo5t4TEhsx3+oAhfclsLEmEljpdfADhw3kdFiuci98iq2ngyan/cHToLzeBHa9cGp2hNPgv7uWeXCGR7dINiDPLx1p9PWzcHmqgf6lWy2oz34ZXkJ4GkY9JoPcxjUVoOgP9XiEqvccGfIcGmAbm00XnSQRn8ML4hSZQ1y+Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(55236004)(53546011)(6506007)(7696005)(316002)(122000001)(7416002)(4744005)(86362001)(186003)(9686003)(26005)(38100700002)(8676002)(66446008)(5660300002)(66476007)(64756008)(83380400001)(52536014)(33656002)(76116006)(66946007)(54906003)(110136005)(2906002)(38070700005)(4326008)(71200400001)(66556008)(8936002)(508600001)(55016003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Wzn7R0uoz4HmolEtBsEbeHlCfw2UIaX5FhmY/bpts2JwTrbhZEeTy2xS+j?=
- =?iso-8859-1?Q?ZQm9U/HOdYOaCMTsMLcXSRq41vZ291nbhmyaAcnhNVyQYKbO5gD9qF13cU?=
- =?iso-8859-1?Q?iuYh0ttfdpH6dvYVBQnbHUVX0MPHFYcMYybWRMybkO21l05ot2CXUzsZXE?=
- =?iso-8859-1?Q?MobcENItAFJ2EbVPilqH6Rxil6Sy8aqxZFhl/NNGPHpKXCMHqyDlgyxQG8?=
- =?iso-8859-1?Q?PvS2qxMRqf1G6gKlaFrCkZgz11NJ8Zo98mscGJHmsWcAOQi82+skfFiTSe?=
- =?iso-8859-1?Q?mmCxYFOhZjOJr7ZxdiWZOHQ0IuyD7jKib4upkGhcLL7c574D0SlXE0BxJE?=
- =?iso-8859-1?Q?JB9i+MSLmE9WY7W8KiYBtFeANJw5WRfMahmzG/7xt5A3RzoANwhRwT93iF?=
- =?iso-8859-1?Q?D5Jj6lWS8GqZeAEsSn+VeUPPhm3/ff6hmUWOVCiZNX8sJz9rG2UlnPUCmr?=
- =?iso-8859-1?Q?C9qYhnOGeLN33HvMEGwJ+DybbRo+J/hbT2+KJmlZStwHA19p2hZ/GAQNBb?=
- =?iso-8859-1?Q?pHuyvIvhiU5dgUqBqMUfa6Zbgii18Q5XoNZePOGdWpc7bNeoESDQMWG3FY?=
- =?iso-8859-1?Q?ymAszZCb90hGjogqFXvr61mVYi6CJ05pE0D2FapGXI49jByo6xZGl0qRSi?=
- =?iso-8859-1?Q?pr9Ukj+r73V98in8EP2oG/ou16yLq6kF1M0MNsAIigqITFte4sPZ9+DWnC?=
- =?iso-8859-1?Q?M++witr3lzvEuXJ2icguB26ap9rV80W2DURDvq+W+/p7byfj5r98bIThdL?=
- =?iso-8859-1?Q?AgsBi/ZFLSa6LdLQDraFFQHlNnn8Z62Za7FScv/5+xoR2IijKOC72PE59g?=
- =?iso-8859-1?Q?KP9ebe3fVSrd4MH+YWDf12/eUr/KTbyucbP1loReO8tbrruNPwgm94+a4o?=
- =?iso-8859-1?Q?ZIrAf7Ik4OMlA8xl+D0ri8ggF98KFM/h/1KHXhw72qLytFxR4fX2e9L0uO?=
- =?iso-8859-1?Q?hzTnR7ZLNZC/0KyRj/tmJ5hqMmytOyK0Cn6OnvnoXDjXpf4V3n5gY75qpw?=
- =?iso-8859-1?Q?n9tR58Zq5hrPakZUDMqEYgyjZl+hbgcfeYg3Dx2kLUxjjiaCh7VNUmwF/W?=
- =?iso-8859-1?Q?X+KtM/MG4UkwXySiHk70DBLlriIYhPk/hHepqmBmCjTdAUOtb7ZNx0fU03?=
- =?iso-8859-1?Q?XFsEleHBMMNoJnxTocriFg/xC+w8t+iQQS0tzG+YhfQjZV+sSaUsiNAJ8L?=
- =?iso-8859-1?Q?qzCaEom8E3CE99/5DE0Rsu1TpXzr684sFiaDdVy8UkrU8P3v8bUTnt4uj2?=
- =?iso-8859-1?Q?+UqFFnuXoR9I/Hr+HrieqmXtg4Miu8LYVLKhbfdAqyeIGwbG1VBQAkZ9au?=
- =?iso-8859-1?Q?hezRXYT1QywfWexiwCGe9EcgLRTVDcWMRbCGxSH3xAU5N3MCZkY86OTzxa?=
- =?iso-8859-1?Q?pqJNu/ZRy/6BHKmXXoX1jeJxewty2EsQwA4O9fpnNKHSheJoZ3uxigrcoo?=
- =?iso-8859-1?Q?ki5Z6vJ8ge821kGoQP/V/oqLWWW1uO1H4vm/L756tqRwu5UJKHAcIVotkx?=
- =?iso-8859-1?Q?CNZdCE+wY0/yQmkeyRI/dfeFcXsfWya42ImSgem16Tubx8JnvJLtrMj5kP?=
- =?iso-8859-1?Q?h5xaPDzh2Oz/9JsMebjFYlhb7XebwhD3BXUd05DtcTXsdurWf+sIpAWn99?=
- =?iso-8859-1?Q?FzCyYk/AnVMmPPCfzknGEigRADl23Knz+uAPVmK0rAXUU/y24GXLewmVN6?=
- =?iso-8859-1?Q?1r/ghotYYvUlu4WV69UlycpVbJ/aJuTH0z581ThBxyWgTdwYIuC2RpvWsF?=
- =?iso-8859-1?Q?AJl1pwnNSFF0jsrlq4Rzuwj1/FiecriaJ5tZfCV899ULDl4Wkz37zSJdY0?=
- =?iso-8859-1?Q?28gwozgxfQ=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 25 Apr 2022 18:20:55 +0800
+In-Reply-To: <7873f0fa-25c3-191f-5096-3ceb9afd50cc@linaro.org>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+         <20220422075239.16437-2-rex-bc.chen@mediatek.com>
+         <f2e5a34b-ed02-91a1-bc7b-fecaa95e227e@linaro.org>
+         <811bf944-a230-ab9b-583a-840e57af8a1e@linaro.org>
+         <28f75ac2995b116af9b2accf760786d1d1798c93.camel@mediatek.com>
+         <7873f0fa-25c3-191f-5096-3ceb9afd50cc@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-OriginatorOrg: ST.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: b75c6604-f69b-4bde-b4e6-08da26a51be1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2022 10:19:40.5113
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XEQzT1g2niuGPeYajkvDM6P8LG9z9g17B9Hs1AAc5Gi7Rdvs006wqUkTIKGPgJyMNRef5RCIkq58Qg4NCrQUww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR1001MB1126
-X-Proofpoint-GUID: YkkzXfUz51oC-NK3JeyHC9UD1ETF6hy2
-X-Proofpoint-ORIG-GUID: YkkzXfUz51oC-NK3JeyHC9UD1ETF6hy2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-25_06,2022-04-22_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 priorityscore=1501
- suspectscore=0 spamscore=0 mlxscore=0 impostorscore=0 clxscore=1011
- mlxlogscore=819 lowpriorityscore=0 adultscore=0 malwarescore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2202240000
- definitions=main-2204250044
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marek,=0A=
-=0A=
-> From: Marek Vasut <marex@denx.de>=0A=
-> =0A=
-> > On 4/22/22 17:09, Alexandre Torgue wrote:=0A=
-> > Enable optee and SCMI clocks/reset protocols support.=0A=
-> > =0A=
-> > Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>=0A=
-> > =0A=
-> > diff --git a/arch/arm/boot/dts/stm32mp151.dtsi=0A=
-> > b/arch/arm/boot/dts/stm32mp151.dtsi=0A=
-> > index 7fdc324b3cf9..1b2fd3426a81 100644=0A=
-> > --- a/arch/arm/boot/dts/stm32mp151.dtsi=0A=
-> > +++ b/arch/arm/boot/dts/stm32mp151.dtsi=0A=
-> > @@ -115,6 +115,33 @@=0A=
-> >=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 status =3D "disabled";=0A=
-> >=A0=A0=A0=A0=A0=A0=A0 };=0A=
-> >=A0=A0 =0A=
-> > +=A0=A0=A0=A0 firmware {=0A=
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 optee: optee {=0A=
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 compatibl=
-e =3D "linaro,optee-tz";=0A=
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 method =
-=3D "smc";=0A=
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 status =
-=3D "disabled";=0A=
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 };=0A=
-> =0A=
-> Doesn't this TEE node get automatically generated and patched into DT by =
-=0A=
-> the TEE ? I think OpTee-OS does that.=0A=
-=0A=
-OP-TEE OS does that if it gets passed the DT from early boot stage which is=
- not always the case.=0A=
-=0A=
-Etienne=0A=
-=0A=
+On Mon, 2022-04-25 at 10:55 +0200, Krzysztof Kozlowski wrote:
+> On 25/04/2022 08:19, Rex-BC Chen wrote:
+> > On Fri, 2022-04-22 at 19:34 +0200, Krzysztof Kozlowski wrote:
+> > > On 22/04/2022 19:26, Krzysztof Kozlowski wrote:
+> > > > On 22/04/2022 09:52, Rex-BC Chen wrote:
+> > > > > MediaTek Cache Coherent Interconnect (CCI) uses software
+> > > > > devfreq
+> > > > > module
+> > > > > for scaling clock frequency and adjust voltage.
+> > > > > The phandle could be linked between CPU and MediaTek CCI for
+> > > > > some
+> > > > > MediaTek SoCs, like MT8183 and MT8186.
+> > > > > Therefore, we add this property in cpufreq-mediatek.txt.
+> > > > > 
+> > > > > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/cpufreq/cpufreq-
+> > > > > mediatek.txt         | 5
+> > > > > +++++
+> > > > >  1 file changed, 5 insertions(+)
+> > > > > 
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > > mediatek.txt
+> > > > > b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > > mediatek.txt
+> > > > > index b8233ec91d3d..3387e1e2a2df 100644
+> > > > > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > > mediatek.txt
+> > > > > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > > mediatek.txt
+> > > > > @@ -20,6 +20,11 @@ Optional properties:
+> > > > >  	       Vsram to fit SoC specific needs. When absent,
+> > > > > the
+> > > > > voltage scaling
+> > > > >  	       flow is handled by hardware, hence no software
+> > > > > "voltage
+> > > > > tracking" is
+> > > > >  	       needed.
+> > > > > +- mediatek,cci:
+> > > > > +	MediaTek Cache Coherent Interconnect (CCI) uses the
+> > > > > software
+> > > > > devfreq module to
+> > > > > +	scale the clock frequency and adjust the voltage.
+> > > > 
+> > > > Devfreq is a SW mechanism, it should not be part of bindings
+> > > > description.
+> > 
+> > Hello Krzysztof,
+> > 
+> > The reason we want to get the "mediatek,cci":
+> > We need to check the mediatek cci is ready and probed done.
+> > Because cpufreq and mediatek cci are sharing the same regulator in
+> > little core cpus.
+> > Therefore, to prevent high frequency low voltage issue, we need to
+> > make
+> > sure the mediatek cci is ready.
+> > 
+> > If mediatek cci is ready, cpufreq and mediatek cci will register
+> > the
+> > same regulator and from regulator's implementation, if there are
+> > two
+> > device using the same regulator, the framwork will make sure it's
+> > using
+> > the max voltage.
+> 
+> Thanks for explanation. The property should be described with what
+> you
+> said here. The property and description should match hardware, so
+> there
+> is no place for devfreq. Instead mention that power rail is shared or
+> voltage regulators are common.
+> 
+
+Hello Krzysztof,
+
+I will modify the description to the reason why we need mediatek,cci.
+
+> However I am not sure if you solved your problem... see below:
+> 
+> > For example:
+> > mediatek cci set 1.2V originally. When cpufreq want to adjust lower
+> > frequency adn set voltage to 1.0V.
+> > The framework will remain using 1.2V to prevent crash of mediatek
+> > cci.
+> 
+> No, regulator_set_voltage() for proc_reg says:
+> "NOTE: If the regulator is shared between several devices then the
+> lowest
+>  request voltage that meets the system constraints will be used."
+> 
+> Not the highest. So when your devfreq and cpufreq boots, calling
+> regulator_set_voltage will still cause high frequency and low
+> voltage.
+> 
+
+From the driver comment, I think it still needs to match "meets the
+system constraints".
+
+From drivers, we can trace the driver and it finally to
+regulator_get_optimal_voltage().
+In [1], the framework will get max voltage while finding each device's
+voltage.
+
+[1]: 
+https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L3815
+
+> > 
+> > Therefore, we need to confirm the mediatek cci is ready and
+> > register
+> > the regulator.
+> > 
+> > > > 
+> > > > > +	For details, please refer to
+> > > > > +	Documentation/devicetree/bindings/interconnect/mediatek
+> > > > > ,cci.yam
+> > > > > l
+> > > > 
+> > > > Since the file does not exist, I have troubles reviewing it.
+> > > > First
+> > > > of
+> > > > all, you already have "mediatek,cci-control" property in DT, so
+> > > > why
+> > > > using different name?
+> > 
+> > I am not sure where is "mediatek,cci-control". I think this name is
+> > not
+> > used before.
+> > 
+> 
+> Documentation/devicetree/bindings/net/mediatek-net.txt
+> 
+> > > > 
+> > > > Second, it looks like you want to put devfreq into bindings
+> > > > instead
+> > > > of
+> > > > using proper interconnect bindings.
+> > > 
+> > > Actually judging by the driver this looks like some
+> > > device-boot-time-ordering, so I wonder whether this is a proper
+> > > way
+> > > to
+> > > express it.
+> > 
+> > Yes, we need to get the mediatek cci node and let cpufreq and
+> > mediatek
+> > cci link succefully. In that case, we can know the mediatek cci is
+> > ready. And we can set the voltage using the regulator framwork.
+> > 
+> > [1]: 
+> > 
+https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/patch/20220422075239.16437-11-rex-bc.chen@mediatek.com/__;!!CTRNKA9wMg0ARbw!xOuKKyjBosmRcUseQXU9SiPu8msBXrrQAASdxwVbR0SU2inuXUtO180Y0Erkpy-JmOwu$
+> >  
+> 
+> Yes, I see the use case. I am not convinced yet whether this is
+> proper
+> approach...
+> 
+
+When mediatek cci is ready (probe done and register regulator done), we
+can confirm that regulator framwork will make sure the voltage setting
+is safe.
+
+BRs,
+Rex
+
+> 
+> Best regards,
+> Krzysztof
+
