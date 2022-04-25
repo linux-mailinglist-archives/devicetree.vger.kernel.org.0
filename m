@@ -2,151 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C85C50E40B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 17:08:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5355850E44B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 17:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242744AbiDYPLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 11:11:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51786 "EHLO
+        id S236853AbiDYP0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 11:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231972AbiDYPLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 11:11:10 -0400
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D81689AA;
-        Mon, 25 Apr 2022 08:08:05 -0700 (PDT)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-e5ca5c580fso16355866fac.3;
-        Mon, 25 Apr 2022 08:08:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=za1mZHss+li0ybPEY6i/L34F8j+pk+2DumO4nFr5Nqw=;
-        b=HOTPf6CKzKzNtGoZg5BVXqz56lD0FnvFQgQD/QpQp1mfRh5BLZkKlYB/4e+q1voe+D
-         DvtwJpjx10q5fE3em4lCpWGNIECHmNi/ok0z7UsAjJO94VwvAmVWERtLUUF/AVyUCoEN
-         bBB/TG/yuJpuEnfJyvea0qz7bVQhCfUoVb+fh/W4vL4a6B5oXDSiV/0RFgvBJHLaVs05
-         K8vGTzOh2yoHv6De3UwwJoNkzCC8aDfGjjmWOCDv7ugp9P8iT2RbrboATd+nd1ltD4Cd
-         pW5/ti8Yr/Jon7QRkHj4YBoClzCR3Bj+D0+CMCuVVyzlC5/g0jaUrW61hp8+6EtC9f0F
-         8gZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=za1mZHss+li0ybPEY6i/L34F8j+pk+2DumO4nFr5Nqw=;
-        b=5olCd3kCrKoIFbMlk0e2RrhfbtAiUszljHgncmYMPCHNXTuvh249JwvTbYRSyP1pPe
-         6MaxPaz3Un2H01z98DeGAhluSkMG7egTV7ZFzgi4Y5zzHFWcjqAPTwYr0O3RGWJsQa9r
-         rsecOvwMNKY+kN/avneQg1S88M/cZq7JjVMP1++9pC6TQ3p/T3rNDVH8+zA/sqLoljtw
-         xFrBIVB8n+J1s28nTtwCtLy7u10K5WPy80u1xcdhbPYSLAb6z1bB1fu0VBebpJq9KwG1
-         LrCnvJMgI//4i4c0NStqO5SDEk2he3Cscbnf7ZaOyaQwymOuULduPUnlNNXsI5+/0GJ+
-         EVlA==
-X-Gm-Message-State: AOAM531xNR3bGsQzV1PHm/Ip+X9Dj4FIR15ZL5w8rd37h8ZqUxP3lih6
-        0W4ZNhowKdIUXv0uLw5xKRQ21k7CjmE=
-X-Google-Smtp-Source: ABdhPJyzc6gXFrcLW8x8oJ6ozRGcsrCXhmmdRz6dFfIR7Qz8FnM7l8VZx/RvOA7UfN3sl1y6XrSwIA==
-X-Received: by 2002:a05:6870:15d0:b0:e9:12ad:288c with SMTP id k16-20020a05687015d000b000e912ad288cmr4799481oad.223.1650899284840;
-        Mon, 25 Apr 2022 08:08:04 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e26-20020a056820061a00b0035e46250f56sm3782576oow.13.2022.04.25.08.07.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 08:07:57 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 25 Apr 2022 08:07:48 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: hwmon: Add nuvoton,nct6775
-Message-ID: <20220425150748.GA4165124@roeck-us.net>
-References: <20220309005047.5107-1-zev@bewilderbeest.net>
- <20220309005047.5107-2-zev@bewilderbeest.net>
+        with ESMTP id S233952AbiDYP0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 11:26:09 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5B3E1245;
+        Mon, 25 Apr 2022 08:23:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 88251DF69E;
+        Mon, 25 Apr 2022 08:22:34 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ykxmL21nwvSi; Mon, 25 Apr 2022 08:22:33 -0700 (PDT)
+Message-ID: <d6c5c5663f8ae904d409240063295cf516e17dd1.camel@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1650900153; bh=PoAhs4rC8s2VNE3r6xYLUglE7+vVgjEdcfrBZL7HIYw=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=TwWQx10+OrU5+LF4ic3BCkWUrj/bBD5KMY098Yi8iUApqrklehSe05vVv8EPRVqUb
+         RWUi3fVqmTLK9uO7dolTzkIjwbG6BY4TCw7U0y/nzutY6qdNqZ+LK+qS5xZnCEkJEL
+         AefHq+1F6sbK5QHuHFKO3j4SgtDT2hD6HNDFjIwUmdL29WqGUcKVF3OQtCIYWBxmKT
+         +q4h9vT0Eay/TRIzdS6xvcFgzoN3UNppXHLBC/YZnD7gH0dxOsXVS6bPM/L1UMG6Jx
+         yZonZuU3caMCSVPm+4QLnTH7SpYampk4ZgzpjFalBtPyZiB5K9+LtRJfKH/wtdDw9o
+         QJHtNAjnwXevA==
+Subject: Re: [PATCH V4 07/11] arm64: dts: imx8mq: Enable both G1 and G2
+ VPU's with vpu-blk-ctrl
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     aford@beaconembedded.com, cphealy@gmail.com,
+        kernel test robot <lkp@intel.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Date:   Mon, 25 Apr 2022 17:22:24 +0200
+In-Reply-To: <20220125171129.472775-8-aford173@gmail.com>
+References: <20220125171129.472775-1-aford173@gmail.com>
+         <20220125171129.472775-8-aford173@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220309005047.5107-2-zev@bewilderbeest.net>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 04:50:42PM -0800, Zev Weiss wrote:
-> These Super I/O chips have an i2c interface that some systems expose
-> to a BMC; the BMC's device tree can now describe that via this
-> binding.
+Am Dienstag, dem 25.01.2022 um 11:11 -0600 schrieb Adam Ford:
+> With the Hantro G1 and G2 now setup to run independently, update
+> the device tree to allow both to operate.  This requires the
+> vpu-blk-ctrl node to be configured.  Since vpu-blk-ctrl needs
+> certain clock enabled to handle the gating of the G1 and G2
+> fuses, the clock-parents and clock-rates for the various VPU's
+> to be moved into the pgc_vpu because they cannot get re-parented
+> once enabled, and the pgc_vpu is the highest in the chain.
 > 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-This is still waiting for DT maintainer approval.
-
-Do you expect to add further properties along the line ?
-If not, you might consider adding the chips to trivial devices instead.
-
-Guenter
-
-> ---
->  .../bindings/hwmon/nuvoton,nct6775.yaml       | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-> new file mode 100644
-> index 000000000000..7b1054db46b3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 2df2510d0118..549b2440f55d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -737,7 +737,21 @@ pgc_gpu: power-domain@5 {
+>                                         pgc_vpu: power-domain@6 {
+>                                                 #power-domain-cells =
+> <0>;
+>                                                 reg =
+> <IMX8M_POWER_DOMAIN_VPU>;
+> -                                               clocks = <&clk
+> IMX8MQ_CLK_VPU_DEC_ROOT>;
+> +                                               clocks = <&clk
+> IMX8MQ_CLK_VPU_DEC_ROOT>,
+> +                                                        <&clk
+> IMX8MQ_CLK_VPU_G1_ROOT>,
+> +                                                        <&clk
+> IMX8MQ_CLK_VPU_G2_ROOT>;
+> +                                               assigned-clocks =
+> <&clk IMX8MQ_CLK_VPU_G1>,
+> +                                                                
+> <&clk IMX8MQ_CLK_VPU_G2>,
+> +                                                                
+> <&clk IMX8MQ_CLK_VPU_BUS>,
+> +                                                                
+> <&clk IMX8MQ_VPU_PLL_BYPASS>;
+> +                                               assigned-clock-
+> parents = <&clk IMX8MQ_VPU_PLL_OUT>,
+> +                                                                    
+>     <&clk IMX8MQ_VPU_PLL_OUT>,
+> +                                                                    
+>     <&clk IMX8MQ_SYS1_PLL_800M>,
+> +                                                                    
+>     <&clk IMX8MQ_VPU_PLL>;
+> +                                               assigned-clock-rates
+> = <600000000>,
+> +                                                                    
+>   <600000000>,
+> +                                                                    
+>   <800000000>,
+> +                                                                    
+>   <0>;
+>                                         };
+>  
+>                                         pgc_disp: power-domain@7 {
+> @@ -1457,30 +1471,31 @@ usb3_phy1: usb-phy@382f0040 {
+>                         status = "disabled";
+>                 };
+>  
+> -               vpu: video-codec@38300000 {
+> -                       compatible = "nxp,imx8mq-vpu";
+> -                       reg = <0x38300000 0x10000>,
+> -                             <0x38310000 0x10000>,
+> -                             <0x38320000 0x10000>;
+> -                       reg-names = "g1", "g2", "ctrl";
+> -                       interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> -                       interrupt-names = "g1", "g2";
+> +               vpu_g1: video-codec@38300000 {
+> +                       compatible = "nxp,imx8mq-vpu-g1";
+> +                       reg = <0x38300000 0x10000>;
+> +                       interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
+> +                       power-domains = <&vpu_blk_ctrl
+> IMX8MQ_VPUBLK_PD_G1>;
+> +               };
 > +
-> +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct6775.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +               vpu_g2: video-codec@38310000 {
+> +                       compatible = "nxp,imx8mq-vpu-g2";
+> +                       reg = <0x38310000 0x10000>;
+> +                       interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
+> +                       power-domains = <&vpu_blk_ctrl
+> IMX8MQ_VPUBLK_PD_G2>;
+> +               };
 > +
-> +title: Nuvoton NCT6775 and compatible Super I/O chips
-> +
-> +maintainers:
-> +  - Zev Weiss <zev@bewilderbeest.net>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,nct6106
-> +      - nuvoton,nct6116
-> +      - nuvoton,nct6775
-> +      - nuvoton,nct6776
-> +      - nuvoton,nct6779
-> +      - nuvoton,nct6791
-> +      - nuvoton,nct6792
-> +      - nuvoton,nct6793
-> +      - nuvoton,nct6795
-> +      - nuvoton,nct6796
-> +      - nuvoton,nct6797
-> +      - nuvoton,nct6798
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        superio@4d {
-> +            compatible = "nuvoton,nct6779";
-> +            reg = <0x4d>;
-> +        };
-> +    };
+> +               vpu_blk_ctrl: blk-ctrl@38320000 {
+> +                       compatible = "fsl,imx8mq-vpu-blk-ctrl";
+> +                       reg = <0x38320000 0x100>;
+> +                       power-domains = <&pgc_vpu>, <&pgc_vpu>,
+> <&pgc_vpu>;
+> +                       power-domain-names = "bus", "g1", "g2";
+>                         clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> -                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+> -                                <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> -                       clock-names = "g1", "g2", "bus";
+> -                       assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
+> -                                         <&clk IMX8MQ_CLK_VPU_G2>,
+> -                                         <&clk IMX8MQ_CLK_VPU_BUS>,
+> -                                         <&clk
+> IMX8MQ_VPU_PLL_BYPASS>;
+> -                       assigned-clock-parents = <&clk
+> IMX8MQ_VPU_PLL_OUT>,
+> -                                                <&clk
+> IMX8MQ_VPU_PLL_OUT>,
+> -                                                <&clk
+> IMX8MQ_SYS1_PLL_800M>,
+> -                                                <&clk
+> IMX8MQ_VPU_PLL>;
+> -                       assigned-clock-rates = <600000000>,
+> <600000000>,
+> -                                              <800000000>, <0>;
+> -                       power-domains = <&pgc_vpu>;
+> +                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
+> +                       clock-names = "g1", "g2";
+> +                       #power-domain-cells = <1>;
+>                 };
+>  
+>                 pcie0: pcie@33800000 {
+
+With this update, when testing suspend to ram on imx8mq, I get:
+
+buck4: failed to disable: -ETIMEDOUT
+
+where buck4 is power-supply of pgc_vpu. And thus the transition to
+suspend (and resuming) fails.
+
+Have you tested system suspend after the imx8m-blk-ctrl update on
+imx8mq?
+
+thank you,
+
+                                 martin
+
