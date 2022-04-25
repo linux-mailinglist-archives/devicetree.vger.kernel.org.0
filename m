@@ -2,98 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 677DA50DDF8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 12:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFBF450DE1E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 12:46:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234642AbiDYKfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 06:35:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60050 "EHLO
+        id S232320AbiDYKtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 06:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238896AbiDYKfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:35:52 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7F4186DF
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 03:32:28 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id y3so8335290ejo.12
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 03:32:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=l4U9a3Zi4lHZ61yfuUBIblmiOyI1fKpkBOTkv3JlGtQ=;
-        b=Ymlwiw0q6E1oM2ZVpnGCmW5V5/N40PyfUybcUSeQt3NKV3qWyOatxXuMVogNBBqF8a
-         BJOTudbuDHyOyOx71QYJCJ3WbK38vO3MGDojm1zz/+iY0XvAa878smvwmlRRtbwTkepr
-         bCZjBgmyCUvpDEdppU50eCERAGfHuc4z9XWzaW+tsniMqEGhRMzLOvRBniGcSOzppuRw
-         7ydvUDZbFWUqMU0Wgz59QlKDSBzfjOMJbdoncAFaGJHsgmVDfCJWVwYjhY1uI7UwrqGq
-         gw1qBTXBSNFSk+vVwrJ02Z5Ke3z+RPggu+luaRqxiRd7zs2ZUpt+jTXbWj5p0YxEY7vS
-         eaow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=l4U9a3Zi4lHZ61yfuUBIblmiOyI1fKpkBOTkv3JlGtQ=;
-        b=FSdse+z+x4U8RTyvH6wYc/uSjVY526101DCOmIbWsMQCeD6HUhow2wyMiSdjQKNIZ4
-         zeXWr+H5ekB9MLEwgQJVeweuFjJwsZTu+fk/k+TVvcHBXV15G7/dvS5z02V3GJK4ldK4
-         pJE7vyOw4P4WauNBX00Uxj2dgxZkwUv5YkrJ08/kgeRMod4vb26OZO9AvHXopHaSAJvS
-         7yFBYl8t0lZyJO0ESkaCmIiYhD+Og/2SdkjJc2omSxH07mbde2P9aTetdlgB5PuxcYV4
-         URGilP8+oMd+A80t1ZqBmg/TyPKYlZ+oZ3blfLK74ip85gxv1jIX9ZttK0olX7FavsTi
-         8SNg==
-X-Gm-Message-State: AOAM531zWzZJOG536WNd+AE8VObcoWUiL1pQJZZYa5IjhoMGxMOTeUBB
-        w0c1tlMaIvM4EMsa63x9RthCYw==
-X-Google-Smtp-Source: ABdhPJxcCZZQNOatq8Xg0snh4n+++QXiYb0f8DTwryfx5qVf1qv+dM8xahTIrDiTY/L1FxmLbA8f3w==
-X-Received: by 2002:a17:906:2989:b0:6f3:a215:8426 with SMTP id x9-20020a170906298900b006f3a2158426mr1188179eje.725.1650882747453;
-        Mon, 25 Apr 2022 03:32:27 -0700 (PDT)
-Received: from [192.168.0.241] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z21-20020a170906435500b006e8669fae36sm3486626ejm.189.2022.04.25.03.32.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 03:32:26 -0700 (PDT)
-Message-ID: <90c6fda4-b179-1d27-eb07-cfee0b375ec6@linaro.org>
-Date:   Mon, 25 Apr 2022 12:32:25 +0200
+        with ESMTP id S231984AbiDYKtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:49:39 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51ADD66FBA
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 03:46:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1650883594; x=1682419594;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=bxea3VVS+O9YCfhPSCWoWw7e2Q1KcEUmpVYcG83zJEA=;
+  b=KnYL+4kRo4qqUOlhVazkXOhiI6cGPymmjLfbRXrJbiAviftyPx/+ZXru
+   snh0ktoI76BP6cog9xJUr7mKBvsW01EVNO+mw+b+e5uoBUELYTcylKI9s
+   7XrrNIn5v5U6eao6AdN3f4lKYnIIvZTc3cWCtFBRCGXkBL4RGsY14YiDl
+   kEMhj5LELiKqhP9UcAkv/u6ZNoIiDmorRx/E4WIripTAg8eLHht8+f+NM
+   DrMnAjeBn4yXlHoqqhI/mHLMHEgfbb+5Kxz6mEBE9ivg6mFRBwnzBKpqK
+   NSAJIBpm9BEW/JNqUzLkSbgk6SPVRNXR8h3Wf99x2ZoVkzYsUhhf1LCtK
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,287,1643698800"; 
+   d="scan'208";a="93428160"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Apr 2022 03:46:33 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 25 Apr 2022 03:46:33 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Mon, 25 Apr 2022 03:46:31 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: [PATCH 1/2] riscv: dts: microchip: remove icicle memory clocks
+Date:   Mon, 25 Apr 2022 11:45:21 +0100
+Message-ID: <20220425104521.132538-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.35.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 4/5] dt-bindings: pci/qcom,pcie: support additional MSI
- interrupts
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220423133939.2123449-1-dmitry.baryshkov@linaro.org>
- <20220423133939.2123449-5-dmitry.baryshkov@linaro.org>
- <b1b0a459-5970-7a14-eb51-6a464fe83753@linaro.org>
-In-Reply-To: <b1b0a459-5970-7a14-eb51-6a464fe83753@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/04/2022 19:37, Krzysztof Kozlowski wrote:
-> On 23/04/2022 15:39, Dmitry Baryshkov wrote:
->> On Qualcomm platforms each group of 32 MSI vectors is routed to the
->> separate GIC interrupt. Document mapping of additional interrupts.
-> 
-> Is it on every Qualcomm platform? How many per each variant? IOW, this
-> should have a per-compatible constraints, if possible.
+The clock properties in the icicle kit's memory entries cause dtbs_check
+errors:
+arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dtb: /: memory@80000000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-After discussions on IRC, that finding such per-variant constraints is
-tricky:
+Get rid of the clocks to avoid the errors.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reported-by: Palmer Dabbelt <palmer@rivosinc.com>
+Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
+Fixes: 5b28df37d311 ("riscv: dts: microchip: update peripherals in icicle kit device tree")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
+diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
+index cd2fe80fa81a..ffe683d3f528 100644
+--- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
++++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
+@@ -32,14 +32,12 @@ cpus {
+ 	ddrc_cache_lo: memory@80000000 {
+ 		device_type = "memory";
+ 		reg = <0x0 0x80000000 0x0 0x2e000000>;
+-		clocks = <&clkcfg CLK_DDRC>;
+ 		status = "okay";
+ 	};
+ 
+ 	ddrc_cache_hi: memory@1000000000 {
+ 		device_type = "memory";
+ 		reg = <0x10 0x0 0x0 0x40000000>;
+-		clocks = <&clkcfg CLK_DDRC>;
+ 		status = "okay";
+ 	};
+ };
+-- 
+2.35.2
 
-Best regards,
-Krzysztof
