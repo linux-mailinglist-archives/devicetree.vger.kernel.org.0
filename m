@@ -2,89 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCB050EA06
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 22:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF5CF50EA18
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 22:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245183AbiDYUYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 16:24:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36072 "EHLO
+        id S245247AbiDYUYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 16:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245175AbiDYUYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 16:24:02 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DE3B8239;
-        Mon, 25 Apr 2022 13:20:57 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id a10so18415825oif.9;
-        Mon, 25 Apr 2022 13:20:57 -0700 (PDT)
+        with ESMTP id S245252AbiDYUYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 16:24:43 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C348D12A2B1
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 13:21:37 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id j15so9233243wrb.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 13:21:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=aJnJqffMjaG0ri/QRclvSYw2aUWdoPTVCuwI5Qrju5o=;
+        b=sl7ra+j6Bt9qCA5YA9CCSZEO92AZ7zg4XXJAYqPMRxoSage16TCBcLAmWNI0o7mjzb
+         8/fSewOxvkEL1Md3FkxPb9s8bXvMSfVLJRJMXGD4Esd4C5DlYbMHNcYpUr/97zQgCvlz
+         iuYpfJap9e00KUdixh7yVm7JvTALOU5zy4Rwqc1wwJajn7z+X8vOKafFpRHTs7Ie/WYC
+         TyvXmowDSmhTx7ZIWVwAmLEKII4XtW9JvsZZnvo7fKiL33rN0rnIppUCYyxqeWHWNeJK
+         ny6zt+G5oV9w3kMPeMzszKhbS2Q+s3im0sGznk7rIYvTpC5Vx6LwTAEHC2Kr3RQ+Wzrd
+         9bdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UYl3ObxUa/9hCeHQvInTEkQcuPIci9FGY8v4Ht1FoWE=;
-        b=zkuOokXLExIuiaS0e+Murh+5MyrK+DUf6j0IgY+rr+IclSHQLFipB/0YPWX10QNGsH
-         fMNAEx1kXC3VGOJoohi6IBDu7xR39fyyu1hmTQeX8pnrPv6e0aSonE5Eflthgk8/u66P
-         bE2EmrlZGkZW9u7DlsGiA3ig6csw8YQhWMt5giJG3B0HxrbsKt73QVAfhxOUolPHiQ61
-         hFq7QsjOEI21RXq75RB71OGU0Q5FOUlqCRfWbz9kjuBt8xteI9TloF4kJ+61Acd6ATH8
-         b4zX0IJ3ZtY4p8D+0T95ngC4FRY+8IIfUIJGxzeGXRA4mOWV3sesEB8QuQk7xsVH52St
-         YGqg==
-X-Gm-Message-State: AOAM5329GnMk7HsAEXK8+J8tfgofHPiAKOpizNpLamDfi0vgzEJO+RQU
-        CODpxKq/4cuQRpyWgCVeFg==
-X-Google-Smtp-Source: ABdhPJxsTlIu73Fj0yj3q/bfw/wS9Og8lsPiGy3ZLKu+7xWkQKarNY1lHbTfOUL9QIgAkSN3ScMzMA==
-X-Received: by 2002:aca:3587:0:b0:2ec:a23c:e197 with SMTP id c129-20020aca3587000000b002eca23ce197mr8995317oia.47.1650918056772;
-        Mon, 25 Apr 2022 13:20:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a37-20020a9d2628000000b0060563c52952sm4179146otb.8.2022.04.25.13.20.55
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=aJnJqffMjaG0ri/QRclvSYw2aUWdoPTVCuwI5Qrju5o=;
+        b=3AZmh5/5ajPYBid3utXdJqKDVKgFjWB7aFwR8Y71JZnEGziURd6WVx9IVRckFU3Axa
+         +4852LB3LfH8m7m3nhBJcNzbbxG9D86EphVIpVxeJ+QB+PFzd7QK6MnxCXJBuLGbaYbh
+         tkrOq/jqGB65k6CmFPy6icIfOmYI7fAPj9bTyMw0LR+a8pmLPQfi+1jCIAdx0Soph1+k
+         WEVWMOdhihblKT6pOpcorP3cMsBUW5Ja8HPPzJdpYuSpS37abh8if/YGsQGv1BLdjxET
+         /qlqPOVe5vr83P2PC0623ae36JHWNatFslh5DTDY00fy8FXSZBCFZLpf22n4TXLFtwcJ
+         Wxfw==
+X-Gm-Message-State: AOAM532BpvaEzjKW15DaWvbmekDT7PUVvjvHUd4pQ2gw3R7HtVE6+oqh
+        6/VFL7+G6KQz6xyL0ZkFageOGg==
+X-Google-Smtp-Source: ABdhPJwJmkxTG94X6EHc3EFU9IwqrOD//AwsgowEtN9tWuA1pca0pxKZby7Fy+7XLuqtKH9p5bz+1Q==
+X-Received: by 2002:a5d:64cb:0:b0:20a:903f:5d70 with SMTP id f11-20020a5d64cb000000b0020a903f5d70mr15352919wri.138.1650918096202;
+        Mon, 25 Apr 2022 13:21:36 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id p3-20020a5d59a3000000b0020a9132d1fbsm11101003wrr.37.2022.04.25.13.21.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 13:20:56 -0700 (PDT)
-Received: (nullmailer pid 203303 invoked by uid 1000);
-        Mon, 25 Apr 2022 20:20:55 -0000
-Date:   Mon, 25 Apr 2022 15:20:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: i2c: renesas,riic: Document RZ/G2UL SoC
-Message-ID: <YmcCp2b73bw4AYe/@robh.at.kernel.org>
-References: <20220425133152.176949-1-biju.das.jz@bp.renesas.com>
+        Mon, 25 Apr 2022 13:21:35 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v6 09/33] crypto: rockchip: remove non-aligned handling
+Date:   Mon, 25 Apr 2022 20:20:55 +0000
+Message-Id: <20220425202119.3566743-10-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220425202119.3566743-1-clabbe@baylibre.com>
+References: <20220425202119.3566743-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220425133152.176949-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Apr 2022 14:31:52 +0100, Biju Das wrote:
-> Document RZ/G2UL I2C bindings. RZ/G2UL I2C is identical to one found on
-> the RZ/G2L SoC. No driver changes are required as RZ/G2L compatible
-> string "renesas,riic-rz" will be used as a fallback.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v1->v2:
->  * Added Reset property required on RZ/G2UL SoC
->  * Added Ack from Krzysztof Kozlowski
->  * Added Rb tag from Geert
-> ---
->  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Now driver have fallback for un-aligned cases, remove all code handling
+those cases.
 
-Applied, thanks!
+Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ drivers/crypto/rockchip/rk3288_crypto.c       | 69 +++++--------------
+ drivers/crypto/rockchip/rk3288_crypto.h       |  4 --
+ drivers/crypto/rockchip/rk3288_crypto_ahash.c | 22 ++----
+ .../crypto/rockchip/rk3288_crypto_skcipher.c  | 39 +++--------
+ 4 files changed, 31 insertions(+), 103 deletions(-)
+
+diff --git a/drivers/crypto/rockchip/rk3288_crypto.c b/drivers/crypto/rockchip/rk3288_crypto.c
+index 4cff49b82983..b3db096e2ec2 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto.c
++++ b/drivers/crypto/rockchip/rk3288_crypto.c
+@@ -88,63 +88,26 @@ static int rk_load_data(struct rk_crypto_info *dev,
+ {
+ 	unsigned int count;
+ 
+-	dev->aligned = dev->aligned ?
+-		check_alignment(sg_src, sg_dst, dev->align_size) :
+-		dev->aligned;
+-	if (dev->aligned) {
+-		count = min(dev->left_bytes, sg_src->length);
+-		dev->left_bytes -= count;
+-
+-		if (!dma_map_sg(dev->dev, sg_src, 1, DMA_TO_DEVICE)) {
+-			dev_err(dev->dev, "[%s:%d] dma_map_sg(src)  error\n",
++	count = min(dev->left_bytes, sg_src->length);
++	dev->left_bytes -= count;
++
++	if (!dma_map_sg(dev->dev, sg_src, 1, DMA_TO_DEVICE)) {
++		dev_err(dev->dev, "[%s:%d] dma_map_sg(src)  error\n",
+ 				__func__, __LINE__);
+-			return -EINVAL;
+-		}
+-		dev->addr_in = sg_dma_address(sg_src);
++		return -EINVAL;
++	}
++	dev->addr_in = sg_dma_address(sg_src);
+ 
+-		if (sg_dst) {
+-			if (!dma_map_sg(dev->dev, sg_dst, 1, DMA_FROM_DEVICE)) {
+-				dev_err(dev->dev,
++	if (sg_dst) {
++		if (!dma_map_sg(dev->dev, sg_dst, 1, DMA_FROM_DEVICE)) {
++			dev_err(dev->dev,
+ 					"[%s:%d] dma_map_sg(dst)  error\n",
+ 					__func__, __LINE__);
+-				dma_unmap_sg(dev->dev, sg_src, 1,
+-					     DMA_TO_DEVICE);
+-				return -EINVAL;
+-			}
+-			dev->addr_out = sg_dma_address(sg_dst);
+-		}
+-	} else {
+-		count = (dev->left_bytes > PAGE_SIZE) ?
+-			PAGE_SIZE : dev->left_bytes;
+-
+-		if (!sg_pcopy_to_buffer(dev->first, dev->src_nents,
+-					dev->addr_vir, count,
+-					dev->total - dev->left_bytes)) {
+-			dev_err(dev->dev, "[%s:%d] pcopy err\n",
+-				__func__, __LINE__);
++			dma_unmap_sg(dev->dev, sg_src, 1,
++					DMA_TO_DEVICE);
+ 			return -EINVAL;
+ 		}
+-		dev->left_bytes -= count;
+-		sg_init_one(&dev->sg_tmp, dev->addr_vir, count);
+-		if (!dma_map_sg(dev->dev, &dev->sg_tmp, 1, DMA_TO_DEVICE)) {
+-			dev_err(dev->dev, "[%s:%d] dma_map_sg(sg_tmp)  error\n",
+-				__func__, __LINE__);
+-			return -ENOMEM;
+-		}
+-		dev->addr_in = sg_dma_address(&dev->sg_tmp);
+-
+-		if (sg_dst) {
+-			if (!dma_map_sg(dev->dev, &dev->sg_tmp, 1,
+-					DMA_FROM_DEVICE)) {
+-				dev_err(dev->dev,
+-					"[%s:%d] dma_map_sg(sg_tmp)  error\n",
+-					__func__, __LINE__);
+-				dma_unmap_sg(dev->dev, &dev->sg_tmp, 1,
+-					     DMA_TO_DEVICE);
+-				return -ENOMEM;
+-			}
+-			dev->addr_out = sg_dma_address(&dev->sg_tmp);
+-		}
++		dev->addr_out = sg_dma_address(sg_dst);
+ 	}
+ 	dev->count = count;
+ 	return 0;
+@@ -154,11 +117,11 @@ static void rk_unload_data(struct rk_crypto_info *dev)
+ {
+ 	struct scatterlist *sg_in, *sg_out;
+ 
+-	sg_in = dev->aligned ? dev->sg_src : &dev->sg_tmp;
++	sg_in = dev->sg_src;
+ 	dma_unmap_sg(dev->dev, sg_in, 1, DMA_TO_DEVICE);
+ 
+ 	if (dev->sg_dst) {
+-		sg_out = dev->aligned ? dev->sg_dst : &dev->sg_tmp;
++		sg_out = dev->sg_dst;
+ 		dma_unmap_sg(dev->dev, sg_out, 1, DMA_FROM_DEVICE);
+ 	}
+ }
+diff --git a/drivers/crypto/rockchip/rk3288_crypto.h b/drivers/crypto/rockchip/rk3288_crypto.h
+index 540b81a14b9b..a7de5738f6dc 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto.h
++++ b/drivers/crypto/rockchip/rk3288_crypto.h
+@@ -204,12 +204,8 @@ struct rk_crypto_info {
+ 	/* the public variable */
+ 	struct scatterlist		*sg_src;
+ 	struct scatterlist		*sg_dst;
+-	struct scatterlist		sg_tmp;
+ 	struct scatterlist		*first;
+ 	unsigned int			left_bytes;
+-	void				*addr_vir;
+-	int				aligned;
+-	int				align_size;
+ 	size_t				src_nents;
+ 	size_t				dst_nents;
+ 	unsigned int			total;
+diff --git a/drivers/crypto/rockchip/rk3288_crypto_ahash.c b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+index 16009bb0bf16..c762e462eb57 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto_ahash.c
++++ b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+@@ -236,8 +236,6 @@ static int rk_ahash_start(struct rk_crypto_info *dev)
+ 
+ 	dev->total = req->nbytes;
+ 	dev->left_bytes = req->nbytes;
+-	dev->aligned = 0;
+-	dev->align_size = 4;
+ 	dev->sg_dst = NULL;
+ 	dev->sg_src = req->src;
+ 	dev->first = req->src;
+@@ -272,15 +270,13 @@ static int rk_ahash_crypto_rx(struct rk_crypto_info *dev)
+ 
+ 	dev->unload_data(dev);
+ 	if (dev->left_bytes) {
+-		if (dev->aligned) {
+-			if (sg_is_last(dev->sg_src)) {
+-				dev_warn(dev->dev, "[%s:%d], Lack of data\n",
+-					 __func__, __LINE__);
+-				err = -ENOMEM;
+-				goto out_rx;
+-			}
+-			dev->sg_src = sg_next(dev->sg_src);
++		if (sg_is_last(dev->sg_src)) {
++			dev_warn(dev->dev, "[%s:%d], Lack of data\n",
++					__func__, __LINE__);
++			err = -ENOMEM;
++			goto out_rx;
+ 		}
++		dev->sg_src = sg_next(dev->sg_src);
+ 		err = rk_ahash_set_data_start(dev);
+ 	} else {
+ 		/*
+@@ -318,11 +314,6 @@ static int rk_cra_hash_init(struct crypto_tfm *tfm)
+ 	algt = container_of(alg, struct rk_crypto_tmp, alg.hash);
+ 
+ 	tctx->dev = algt->dev;
+-	tctx->dev->addr_vir = (void *)__get_free_page(GFP_KERNEL);
+-	if (!tctx->dev->addr_vir) {
+-		dev_err(tctx->dev->dev, "failed to kmalloc for addr_vir\n");
+-		return -ENOMEM;
+-	}
+ 	tctx->dev->start = rk_ahash_start;
+ 	tctx->dev->update = rk_ahash_crypto_rx;
+ 	tctx->dev->complete = rk_ahash_crypto_complete;
+@@ -345,7 +336,6 @@ static void rk_cra_hash_exit(struct crypto_tfm *tfm)
+ {
+ 	struct rk_ahash_ctx *tctx = crypto_tfm_ctx(tfm);
+ 
+-	free_page((unsigned long)tctx->dev->addr_vir);
+ 	crypto_free_ahash(tctx->fallback_tfm);
+ }
+ 
+diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+index 1ef94f8db2c5..d067b7f09165 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
++++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+@@ -356,7 +356,6 @@ static int rk_ablk_start(struct rk_crypto_info *dev)
+ 	dev->src_nents = sg_nents(req->src);
+ 	dev->sg_dst = req->dst;
+ 	dev->dst_nents = sg_nents(req->dst);
+-	dev->aligned = 1;
+ 
+ 	spin_lock_irqsave(&dev->lock, flags);
+ 	rk_ablk_hw_init(dev);
+@@ -376,13 +375,9 @@ static void rk_iv_copyback(struct rk_crypto_info *dev)
+ 
+ 	/* Update the IV buffer to contain the next IV for encryption mode. */
+ 	if (!(rctx->mode & RK_CRYPTO_DEC)) {
+-		if (dev->aligned) {
+-			memcpy(req->iv, sg_virt(dev->sg_dst) +
+-				dev->sg_dst->length - ivsize, ivsize);
+-		} else {
+-			memcpy(req->iv, dev->addr_vir +
+-				dev->count - ivsize, ivsize);
+-		}
++		memcpy(req->iv,
++		       sg_virt(dev->sg_dst) + dev->sg_dst->length - ivsize,
++		       ivsize);
+ 	}
+ }
+ 
+@@ -420,27 +415,16 @@ static int rk_ablk_rx(struct rk_crypto_info *dev)
+ 		skcipher_request_cast(dev->async_req);
+ 
+ 	dev->unload_data(dev);
+-	if (!dev->aligned) {
+-		if (!sg_pcopy_from_buffer(req->dst, dev->dst_nents,
+-					  dev->addr_vir, dev->count,
+-					  dev->total - dev->left_bytes -
+-					  dev->count)) {
+-			err = -EINVAL;
+-			goto out_rx;
+-		}
+-	}
+ 	if (dev->left_bytes) {
+ 		rk_update_iv(dev);
+-		if (dev->aligned) {
+-			if (sg_is_last(dev->sg_src)) {
+-				dev_err(dev->dev, "[%s:%d] Lack of data\n",
++		if (sg_is_last(dev->sg_src)) {
++			dev_err(dev->dev, "[%s:%d] Lack of data\n",
+ 					__func__, __LINE__);
+-				err = -ENOMEM;
+-				goto out_rx;
+-			}
+-			dev->sg_src = sg_next(dev->sg_src);
+-			dev->sg_dst = sg_next(dev->sg_dst);
++			err = -ENOMEM;
++			goto out_rx;
+ 		}
++		dev->sg_src = sg_next(dev->sg_src);
++		dev->sg_dst = sg_next(dev->sg_dst);
+ 		err = rk_set_data_start(dev);
+ 	} else {
+ 		rk_iv_copyback(dev);
+@@ -462,13 +446,9 @@ static int rk_ablk_init_tfm(struct crypto_skcipher *tfm)
+ 	algt = container_of(alg, struct rk_crypto_tmp, alg.skcipher);
+ 
+ 	ctx->dev = algt->dev;
+-	ctx->dev->align_size = crypto_tfm_alg_alignmask(crypto_skcipher_tfm(tfm)) + 1;
+ 	ctx->dev->start = rk_ablk_start;
+ 	ctx->dev->update = rk_ablk_rx;
+ 	ctx->dev->complete = rk_crypto_complete;
+-	ctx->dev->addr_vir = (char *)__get_free_page(GFP_KERNEL);
+-	if (!ctx->dev->addr_vir)
+-		return -ENOMEM;
+ 
+ 	ctx->fallback_tfm = crypto_alloc_skcipher(name, 0, CRYPTO_ALG_NEED_FALLBACK);
+ 	if (IS_ERR(ctx->fallback_tfm)) {
+@@ -488,7 +468,6 @@ static void rk_ablk_exit_tfm(struct crypto_skcipher *tfm)
+ 	struct rk_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
+ 
+ 	memzero_explicit(ctx->key, ctx->keylen);
+-	free_page((unsigned long)ctx->dev->addr_vir);
+ 	crypto_free_skcipher(ctx->fallback_tfm);
+ }
+ 
+-- 
+2.35.1
+
