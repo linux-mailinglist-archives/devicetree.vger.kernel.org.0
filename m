@@ -2,172 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7509950E291
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 16:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9547E50E28C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 16:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237408AbiDYOFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 10:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
+        id S232425AbiDYOF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 10:05:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbiDYOFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 10:05:31 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 136078BF35;
-        Mon, 25 Apr 2022 07:02:26 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 267B922248;
-        Mon, 25 Apr 2022 16:02:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1650895344;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Zxpt+P2/TjbAsFLFo9zxjw6TUQFtzK8CrPo1AAgUn9I=;
-        b=JkkjRENvmm37PQILYRfSyk3KDcHOWnCUw5+wVDLkhGMfxR6Y6u2E3IyftnpRInVgLgHLlg
-        +clgR21tFwJOaOIaTOTFC6/UKeFJnAn1qdoBZ0o1kDr31Mjkvv6YjXRCbfay3ng3YaIEBI
-        wAtoYTC69BMGtZY4z9GCKQoLwupZNUY=
-From:   Michael Walle <michael@walle.cc>
+        with ESMTP id S230398AbiDYOF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 10:05:28 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9E4628BF21;
+        Mon, 25 Apr 2022 07:02:22 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,288,1643641200"; 
+   d="scan'208";a="119094832"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 25 Apr 2022 23:02:21 +0900
+Received: from localhost.localdomain (unknown [10.226.93.95])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E94684006DF7;
+        Mon, 25 Apr 2022 23:02:17 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: fsl: convert fsl,layerscape-scfg to YAML
-Date:   Mon, 25 Apr 2022 16:02:14 +0200
-Message-Id: <20220425140214.32448-2-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220425140214.32448-1-michael@walle.cc>
-References: <20220425140214.32448-1-michael@walle.cc>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: usb: renesas,usbhs: Document RZ/G2UL bindings
+Date:   Mon, 25 Apr 2022 15:02:15 +0100
+Message-Id: <20220425140215.186797-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the fsl,layerscape-scfg binding to the new YAML format.
+Document RZ/G2ULSoC bindings. USBHS block is identical to one
+found on RZ/A2 SoC. No driver changes are required as generic compatible
+string "renesas,rza2-usbhs" will be used as a fallback.
 
-In the device trees, the device node always have a "syscon"
-compatible, which wasn't mentioned in the previous binding.
+While at it, make the resets property required on RZ/{G2L,G2UL,V2L} SoC.
 
-Also added, compared to the original binding, is the
-interrupt-controller subnode as used in arch/arm/boot/dts/ls1021a.dtsi
-as well as the litte-endian and big-endian properties.
-
-Signed-off-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
-changes since v1:
- - moved to soc/fsl/fsl,layerscape-scfg.yaml
- - generic name for node in example
- - mention added "syscon" compatible in commit message
- - reference specific interrupt controller
+v1->v2:
+ * Updated Interrupts description for RZ/G2UL
+ * make the resets property required on RZ/{G2L,G2UL,V2L} SoC.
+ * Added Ack from Krzysztof Kozlowski
+ * Added Rb tag from Geert
+---
+ Documentation/devicetree/bindings/usb/renesas,usbhs.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- .../arm/freescale/fsl,layerscape-scfg.txt     | 19 ------
- .../bindings/soc/fsl/fsl,layerscape-scfg.yaml | 58 +++++++++++++++++++
- 2 files changed, 58 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
-deleted file mode 100644
-index 0ab67b0b216d..000000000000
---- a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Freescale SCFG
--
--SCFG is the supplemental configuration unit, that provides SoC specific
--configuration and status registers for the chip. Such as getting PEX port
--status.
--
--Required properties:
--  - compatible: Should contain a chip-specific compatible string,
--	Chip-specific strings are of the form "fsl,<chip>-scfg",
--	The following <chip>s are known to be supported:
--	ls1012a, ls1021a, ls1043a, ls1046a, ls2080a.
--
--  - reg: should contain base address and length of SCFG memory-mapped registers
--
--Example:
--	scfg: scfg@1570000 {
--		compatible = "fsl,ls1021a-scfg";
--		reg = <0x0 0x1570000 0x0 0x10000>;
--	};
-diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-new file mode 100644
-index 000000000000..8d088b5fe823
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/fsl/fsl,layerscape-scfg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Layerscape Supplemental Configuration Unit
-+
-+maintainers:
-+  - Shawn Guo <shawnguo@kernel.org>
-+  - Li Yang <leoyang.li@nxp.com>
-+
-+description: |
-+  SCFG is the supplemental configuration unit, that provides SoC specific
-+  configuration and status registers for the chip. Such as getting PEX port
-+  status.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - fsl,ls1012a-scfg
-+          - fsl,ls1021a-scfg
-+          - fsl,ls1028a-scfg
-+          - fsl,ls1043a-scfg
-+          - fsl,ls1046a-scfg
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  little-endian: true
-+  big-endian: true
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^interrupt-controller@[a-z0-9]+$":
-+    $ref: /schemas/interrupt-controller/fsl,ls-extirq.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    syscon@1570000 {
-+        compatible = "fsl,ls1021a-scfg", "syscon";
-+        reg = <0x1570000 0x10000>;
-+    };
+diff --git a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
+index 0bb841b28003..bad55dfb2fa0 100644
+--- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
++++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
+@@ -19,6 +19,7 @@ properties:
+       - items:
+           - enum:
+               - renesas,usbhs-r7s9210   # RZ/A2
++              - renesas,usbhs-r9a07g043 # RZ/G2UL
+               - renesas,usbhs-r9a07g044 # RZ/G2{L,LC}
+               - renesas,usbhs-r9a07g054 # RZ/V2L
+           - const: renesas,rza2-usbhs
+@@ -118,6 +119,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - renesas,usbhs-r9a07g043
+               - renesas,usbhs-r9a07g044
+               - renesas,usbhs-r9a07g054
+     then:
+@@ -128,6 +130,8 @@ allOf:
+             - description: U2P_INT_DMA[0]
+             - description: U2P_INT_DMA[1]
+             - description: U2P_INT_DMAERR
++      required:
++        - resets
+     else:
+       properties:
+         interrupts:
 -- 
-2.30.2
+2.25.1
 
