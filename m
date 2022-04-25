@@ -2,200 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C265E50DBC5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 086C350DBD4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:59:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbiDYI6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 04:58:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56108 "EHLO
+        id S235835AbiDYJB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 05:01:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234504AbiDYI6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:58:39 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D0313DC8
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 01:55:32 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id u15so28183275ejf.11
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 01:55:32 -0700 (PDT)
+        with ESMTP id S230087AbiDYJBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 05:01:54 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391B513DCE;
+        Mon, 25 Apr 2022 01:58:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IcmGf7R5oIWNJUW6YdAgXljamJfNzgr+F6RCVbOHK3E=;
-        b=lnUMKK+1OUk9P/nASz5GkwqePWMvnfPG+lQJXZnZkCmVP4gQrMoFLGORFc2hEqvtZK
-         sAb2sZQC8Fdx16dteLPlaMVwYzc07q+My98+bFhcwvZ2Tc4T7zlDoq0YuBAr5W1MeCIW
-         4HghiKVjdKGLQp+/LutqOTTazYWT1v2za6tbR00yDrK036UXNGvWVe7auEC2ckESqqwh
-         Dhz9QIdvpTrJvAJ+AMtG21UdzhQVOK56D5HzpmwzLXsAzKxwunKrBjGFXE2VfsxRbUzv
-         cv7XDo2P/2VaJtvuBDJW9PSyA3dqjQ4w/LrPHrbvk3rc+IC4oI6yB0nDHKHRS+j+Ddif
-         hAOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IcmGf7R5oIWNJUW6YdAgXljamJfNzgr+F6RCVbOHK3E=;
-        b=ScxVVqzPXG6tFiAQt90L/qMocaJboGEj/J12j3tEs9wXMjWosWuyGSB+qFC/SOg2T4
-         QQjcC51E5HDm996fk17NuatDIs/fDo7JHuJUeWVL/O5NbDelgYS8WJvfc27zlQSz1Ch/
-         4O0GyOM7BZ9F9LLg1P+jYbuIQJPoe9v+Xp10X/nrSSA5i59eacCj7dldvZ7gfLWVAV7r
-         Xk9fBMvupDIgiUjIkks2sQ1nDqwgqwe1Nda7NaktrjiHVYdg/4xmcumGCDG4HVYWFuhW
-         hW1LAqd6xLYitviYCSPSaoipFxOHk62oLxEcHNLmgQcdH8NS/el7rK7y/BRZc41TiJbU
-         1C9g==
-X-Gm-Message-State: AOAM5336RuAFo0xfxY8eLYxiWiBBcSCraeUDeH7BSnXgv++aTIN1bQnu
-        go23q2XDniUjN+Py11xpP7z7Ug==
-X-Google-Smtp-Source: ABdhPJzVqoCmpWy0gNz3RLiWwx/wLVbIA8e6fPMteVvo0inali36p0hVI/pVtBzsJGwIy/owIIIRYw==
-X-Received: by 2002:a17:906:49d4:b0:6d6:e5ec:9a23 with SMTP id w20-20020a17090649d400b006d6e5ec9a23mr15443661ejv.79.1650876930923;
-        Mon, 25 Apr 2022 01:55:30 -0700 (PDT)
-Received: from [192.168.0.240] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c5-20020a170906d18500b006ce371f09d4sm3368048ejz.57.2022.04.25.01.55.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 01:55:30 -0700 (PDT)
-Message-ID: <7873f0fa-25c3-191f-5096-3ceb9afd50cc@linaro.org>
-Date:   Mon, 25 Apr 2022 10:55:29 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650877131; x=1682413131;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/LMMZBwH6tN0t1Z2BqS7eB4GESXopgySii1X8NSdGyk=;
+  b=b7IWoB4kBBhkk9jD6uJZ3sb9228iQx4NjF8BOLHgffkxcH/8+ZsTIbJr
+   YhtipDj06g0rwjx93Uu03P5rv96Mr++Wp+qFODAqcv6rFsaTypgg0OkO7
+   ys4bQ/puZh6OnX5OEuBfBFSxjIH5wVniJLKMlePg/Pp4uzTZt7acxyR03
+   8=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 25 Apr 2022 01:58:50 -0700
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2022 01:58:50 -0700
+Received: from mingxue-gv.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 25 Apr 2022 01:58:48 -0700
+Date:   Mon, 25 Apr 2022 16:58:44 +0800
+From:   Minghao Xue <quic_mingxue@quicinc.com>
+To:     <mst@redhat.com>
+CC:     "Michael S. Tsirkin" <mst@redhat.com>, <jasowang@redhat.com>,
+        <robh+dt@kernel.org>, <jean-philippe@linaro.org>,
+        <virtualization@lists.linux-foundation.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_ztu@quicinc.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: virtio: mmio: add optional
+ wakeup-source property
+Message-ID: <20220425085844.GA7652@mingxue-gv.qualcomm.com>
+References: <20220325015945.GA17578@mingxue-gv.qualcomm.com>
+ <20220328164228-mutt-send-email-mst@kernel.org>
+ <20220329074610.GA20342@mingxue-gv.qualcomm.com>
+ <a35529be-d9cb-9913-76aa-653faed87b54@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V4 01/14] dt-bindings: cpufreq: mediatek: Add MediaTek CCI
- property
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com
-Cc:     jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
-        hsinyi@google.com, khilman@baylibre.com,
-        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
- <20220422075239.16437-2-rex-bc.chen@mediatek.com>
- <f2e5a34b-ed02-91a1-bc7b-fecaa95e227e@linaro.org>
- <811bf944-a230-ab9b-583a-840e57af8a1e@linaro.org>
- <28f75ac2995b116af9b2accf760786d1d1798c93.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <28f75ac2995b116af9b2accf760786d1d1798c93.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <a35529be-d9cb-9913-76aa-653faed87b54@linaro.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 08:19, Rex-BC Chen wrote:
-> On Fri, 2022-04-22 at 19:34 +0200, Krzysztof Kozlowski wrote:
->> On 22/04/2022 19:26, Krzysztof Kozlowski wrote:
->>> On 22/04/2022 09:52, Rex-BC Chen wrote:
->>>> MediaTek Cache Coherent Interconnect (CCI) uses software devfreq
->>>> module
->>>> for scaling clock frequency and adjust voltage.
->>>> The phandle could be linked between CPU and MediaTek CCI for some
->>>> MediaTek SoCs, like MT8183 and MT8186.
->>>> Therefore, we add this property in cpufreq-mediatek.txt.
->>>>
->>>> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
->>>> ---
->>>>  .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt         | 5
->>>> +++++
->>>>  1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>> mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>> mediatek.txt
->>>> index b8233ec91d3d..3387e1e2a2df 100644
->>>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>> mediatek.txt
->>>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>> mediatek.txt
->>>> @@ -20,6 +20,11 @@ Optional properties:
->>>>  	       Vsram to fit SoC specific needs. When absent, the
->>>> voltage scaling
->>>>  	       flow is handled by hardware, hence no software "voltage
->>>> tracking" is
->>>>  	       needed.
->>>> +- mediatek,cci:
->>>> +	MediaTek Cache Coherent Interconnect (CCI) uses the software
->>>> devfreq module to
->>>> +	scale the clock frequency and adjust the voltage.
->>>
->>> Devfreq is a SW mechanism, it should not be part of bindings
->>> description.
+On Tue, Mar 29, 2022 at 09:59:31AM +0200, Krzysztof Kozlowski wrote:
+> On 29/03/2022 09:46, Minghao Xue wrote:
+> > On Mon, Mar 28, 2022 at 04:42:59PM -0400, Michael S. Tsirkin wrote:
+> >> On Fri, Mar 25, 2022 at 09:59:45AM +0800, Minghao Xue wrote:
+> >>> Some systems want to set the interrupt of virtio_mmio device
+> >>> as a wakeup source. On such systems, we'll use the existence
+> >>> of the "wakeup-source" property as a signal of requirement.
+> >>>
+> >>> Signed-off-by: Minghao Xue <quic_mingxue@quicinc.com>
+> >>
+> >> I don't have enough of a clue about dt to review this.
+> >> Pls get some acks from people with DT expertise.
+> >>
+> > Hi Michael,
+> > I had a discussion with Krzysztof on the first version of patch. And we've
+> > got aligned. 
+> > 
 > 
-> Hello Krzysztof,
+> I thought I reviewed this and provided an ack, but apparently I did not.
+> Sorry for late response.
 > 
-> The reason we want to get the "mediatek,cci":
-> We need to check the mediatek cci is ready and probed done.
-> Because cpufreq and mediatek cci are sharing the same regulator in
-> little core cpus.
-> Therefore, to prevent high frequency low voltage issue, we need to make
-> sure the mediatek cci is ready.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> If mediatek cci is ready, cpufreq and mediatek cci will register the
-> same regulator and from regulator's implementation, if there are two
-> device using the same regulator, the framwork will make sure it's using
-> the max voltage.
+Hi Michael,
+I'm writting email to ask will you help upstream these two patches? And
+how's the progress?
 
-Thanks for explanation. The property should be described with what you
-said here. The property and description should match hardware, so there
-is no place for devfreq. Instead mention that power rail is shared or
-voltage regulators are common.
-
-However I am not sure if you solved your problem... see below:
-
-> For example:
-> mediatek cci set 1.2V originally. When cpufreq want to adjust lower
-> frequency adn set voltage to 1.0V.
-> The framework will remain using 1.2V to prevent crash of mediatek cci.
-
-No, regulator_set_voltage() for proc_reg says:
-"NOTE: If the regulator is shared between several devices then the lowest
- request voltage that meets the system constraints will be used."
-
-Not the highest. So when your devfreq and cpufreq boots, calling
-regulator_set_voltage will still cause high frequency and low voltage.
-
-> 
-> Therefore, we need to confirm the mediatek cci is ready and register
-> the regulator.
->
->>>
->>>> +	For details, please refer to
->>>> +	Documentation/devicetree/bindings/interconnect/mediatek,cci.yam
->>>> l
->>>
->>> Since the file does not exist, I have troubles reviewing it. First
->>> of
->>> all, you already have "mediatek,cci-control" property in DT, so why
->>> using different name?
-> 
-> I am not sure where is "mediatek,cci-control". I think this name is not
-> used before.
-> 
-
-Documentation/devicetree/bindings/net/mediatek-net.txt
-
->>>
->>> Second, it looks like you want to put devfreq into bindings instead
->>> of
->>> using proper interconnect bindings.
->>
->> Actually judging by the driver this looks like some
->> device-boot-time-ordering, so I wonder whether this is a proper way
->> to
->> express it.
-> 
-> Yes, we need to get the mediatek cci node and let cpufreq and mediatek
-> cci link succefully. In that case, we can know the mediatek cci is
-> ready. And we can set the voltage using the regulator framwork.
-> 
-> [1]: 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20220422075239.16437-11-rex-bc.chen@mediatek.com/
-
-Yes, I see the use case. I am not convinced yet whether this is proper
-approach...
-
-
-Best regards,
-Krzysztof
+Thanks,
+Minghao
