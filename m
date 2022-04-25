@@ -2,48 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A3550DA48
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15A5750DA57
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232674AbiDYHlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 03:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46424 "EHLO
+        id S240035AbiDYHrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:47:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238286AbiDYHld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:41:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA8C512AE3;
-        Mon, 25 Apr 2022 00:38:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 787F3612F4;
-        Mon, 25 Apr 2022 07:38:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AE90C385A4;
-        Mon, 25 Apr 2022 07:38:24 +0000 (UTC)
-Message-ID: <44c597b0-17f8-97cb-7922-7beff59c0b16@xs4all.nl>
-Date:   Mon, 25 Apr 2022 09:38:23 +0200
+        with ESMTP id S235673AbiDYHrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:47:23 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC193ED06
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:44:19 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id m20so7201648ejj.10
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=JrB/10he0HIKz2yInIofsfwUiiztggNtOXcFd7ZGrD0=;
+        b=OBrFTxv635LOhGPjF3X6CPjip+yymQeU5gF8ljhVhywlkvsqwhW8zpJCHCp50x3M3q
+         3fcHDrCJGFAelmEg3FkmZ6Kpj9nDlzNL/JctxHzUIG9y4zw6n/QwpfB4yInFvh89Gt09
+         9WdbxFmC2UO5spstHKk1KhULhkZ4qbSlnwEH2G0k9GaQzLXGH+wRMKr+G0cUk4ZzdScQ
+         xn4XnDkd+vElRgO3K64rlgpLI1651EPzrr9Xi5CCUalhTRmagO0p4z+klh1/5F/teacN
+         fIzMrr/I0ds5T2pHalka9BL0k0valG+CvxKICjKZPcoz3vYTtmEipeHeAx7yvz6LFkoB
+         CWRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=JrB/10he0HIKz2yInIofsfwUiiztggNtOXcFd7ZGrD0=;
+        b=V+zs4Xk0DXyBKufjfHtPe//uF1SfSy/n8uXRH5tG252vfEJKt0nFueJHoiFFgkjhHt
+         Sva2LFYLGpk0LkO5hdZcojPdewwQzmo6jEhoc+wfysTXErFK3u6Kch6vclTjB9JNmRc2
+         hi42EhacvmfX9a3KCM9FvWBnks3Xy8w/xVux6OdgkxEnDYatAJDsfj3TtZ9JY+NmjCbg
+         N+JZPd3bm57NRsJXp5e9Vz6BfeK5CtCB5cW2IZwqPStHakHeVTE+mPc3jd9pEgakJlzf
+         UoTzIcHhbyJMuSNOunkskYVMBBAYIt/PtirPAcWy85uANWsQocdCthmhcgGJoqEdlwCo
+         tM1w==
+X-Gm-Message-State: AOAM533WQizrioYi4iYup5JtuwvNiIkRmgocSFkV2b88LevVKm3ljUo3
+        279jdDr2fK41vEOY8+bNVcYS9ipuxcN1hg==
+X-Google-Smtp-Source: ABdhPJzoR8hWi0TTFKaza0g6P3fEa1fH1Mej3RlmPEr6AHXq6uPtjaZB/MhB1Brgqh+O4Ux9WzfRUw==
+X-Received: by 2002:a17:907:6d87:b0:6f0:1e1d:dfb1 with SMTP id sb7-20020a1709076d8700b006f01e1ddfb1mr14994362ejc.678.1650872657709;
+        Mon, 25 Apr 2022 00:44:17 -0700 (PDT)
+Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id b25-20020a056402139900b0041904036ab1sm4237897edv.5.2022.04.25.00.44.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 00:44:17 -0700 (PDT)
+Message-ID: <64411bc7-ce4d-9f85-be8f-c93d6b2a0360@linaro.org>
+Date:   Mon, 25 Apr 2022 09:44:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 6/9] media: uapi: Add a control for DW100 driver
+Subject: Re: [PATCH V3 11/17] dt-bindings: arm: mediatek: Add #reset-cells
+ property for MT8192-sys-clock
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
-        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
-        robh+dt@kernel.org, nicolas@ndufresne.ca,
-        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
- <20220328141309.177611-7-xavier.roumegue@oss.nxp.com>
- <dba106ac-cee1-2493-13c7-ad9aef556a49@xs4all.nl>
- <YmZJhI291wruvjlt@pendragon.ideasonboard.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <YmZJhI291wruvjlt@pendragon.ideasonboard.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
+        <Chun-Jie.Chen@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        =?UTF-8?B?UnVueWFuZyBDaGVuICjpmYjmtqbmtIsp?= 
+        <Runyang.Chen@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
+ <20220422060152.13534-12-rex-bc.chen@mediatek.com>
+ <288f55f3-b3ed-32b8-9a44-652f3d53617d@linaro.org>
+ <fdedea6f20738bfe2ede7e526aa653af1ac35768.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <fdedea6f20738bfe2ede7e526aa653af1ac35768.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,102 +97,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 09:11, Laurent Pinchart wrote:
-> On Mon, Apr 25, 2022 at 08:57:07AM +0200, Hans Verkuil wrote:
->> On 28/03/2022 16:13, Xavier Roumegue wrote:
->>> The DW100 driver gets the dewarping mapping as a binary blob from the
->>> userspace application through a custom control.
->>> The blob format is hardware specific so create a dedicated control for
->>> this purpose.
->>>
->>> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
->>> ---
->>>  Documentation/userspace-api/media/drivers/dw100.rst | 12 ++++++++++++
->>>  include/uapi/linux/dw100.h                          | 11 +++++++++++
->>>  2 files changed, 23 insertions(+)
->>>  create mode 100644 include/uapi/linux/dw100.h
->>>
->>> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
->>> index 4cd55c75628e..f6d684cadf26 100644
->>> --- a/Documentation/userspace-api/media/drivers/dw100.rst
->>> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
->>> @@ -20,4 +20,16 @@ match the expected size inherited from the destination image resolution.
->>>  More details on the DW100 hardware operations can be found in
->>>  *chapter 13.15 DeWarp* of IMX8MP_ reference manuel.
->>>  
->>> +The Vivante DW100 m2m driver implements the following driver-specific control:
->>> +
->>> +``V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (integer)``
+On 25/04/2022 04:37, Rex-BC Chen wrote:
+>>> +  '#reset-cells':
+>>> +    maximum: 2
 >>
->> (integer) -> (__u32 array)
+>> Why this is a maximum? Usually this is const, so how do you use it
+>> (with
+>> what values)?
 >>
->> But should this be a __u32 array at all? Wouldn't a __u16 array make more sense?
->>
->>> +    Specifies to DW100 driver its dewarping map (aka LUT) blob as described in
->>> +    *chapter 13.15.2.3 Dewarping Remap* of IMX8MP_ reference manual as an U32
->>> +    dynamic array. The image is divided into many small 16x16 blocks. If the
->>> +    width of the image is not divisible by 16, the size of the rightmost block
->>> +    is the remainder. 
->>
->> Isn't the same true for the height?
->>
->> The dewarping map only saves the vertex coordinates of the
->>> +    block. The dewarping grid map is comprised of vertex coordinates for x and y.
->>> +    Each x, y coordinate register uses 16 bits (UQ12.4) to record the coordinate
->>
->> As mentioned before, UQ12.4 is not necessarily a standard notation. 'unsigned 12.4
->> fixed point' is better, but you also need to specify exactly where the bits are
->> stored inside the __u16. I.e.: 'the integer part is stored in the 12 most significant
->> bits, and the fractional part is stored in the 4 least significant bits of the __u16.'
-> 
-> Isn't that implied ? I've never seen fixed-point numbers stored the
-> other way around.
+> We need to let the driver compatible with previous setting in
+> drivers/clk/mediatek/reset.c
 
-True, perhaps that's overkill.
+Then it should be enum [1, 2], because '0' is not valid.
+
+> There are two use cases in our reset driver:
+> (Refer to [1])
+> 
+> 1. #reset-cells = <1>
+>    When we input the argument, the older driver
+> use is to calculate  
+>    bank and bit by different method. From the implementation of
+>    reset_xlate(), we can see if the argument number is 1, it will
+>    return directly.
+
+I understand this is an old binding with older compatibles, so this
+should be restricted per each variant (allOf:if:then)... but wait, old
+binding did not allow any reset-cells! You add an entirely new binding
+property and already want to support some older (deprecated?) way.
 
 > 
-> Regarding the Q notation, while it was coined by TI, I think it's
-> widespread enough to be used here. I don't mind much though.
-
-I had to look it up :-)
-
-That might say more about me, though...
-
-I think the key phrase that is missing here is "fixed point".
-
-Regards,
-
-	Hans
-
+> 2. #reset-cells = <2>
+>    The input arguments is offset and bit. When we input two arguments,
+>    we can use reset_xlate() to calculate the corresponding id to assert
+>    and deassert.
 > 
->>> +    address, with the Y coordinate in the upper bits and X in the lower bits.
->>
->> And with a __u16 array this becomes: 'The array contains pairs of X, Y coordinates.'
->> Or something along those lines.
->>
->>> +
->>>  .. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
->>> diff --git a/include/uapi/linux/dw100.h b/include/uapi/linux/dw100.h
->>> new file mode 100644
->>> index 000000000000..7fdcf2bf42e5
->>> --- /dev/null
->>> +++ b/include/uapi/linux/dw100.h
->>> @@ -0,0 +1,11 @@
->>> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
->>> +/* Copyright 2022 NXP */
->>> +
->>> +#ifndef __UAPI_DW100_H__
->>> +#define __UAPI_DW100_H__
->>> +
->>> +#include <linux/v4l2-controls.h>
->>> +
->>
->> Add a comment referring to the Documentation/userspace-api/media/drivers/dw100.rst
->> documentation so users of this control know where to find the associated
->> documentation.
->>
->>> +#define V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (V4L2_CID_USER_DW100_BASE + 1)
->>> +
->>> +#endif
+> [1]:
+> https://lore.kernel.org/all/20220422060152.13534-10-rex-bc.chen@mediatek.com/
 > 
+> If it's acceptable, I will add this in commit message.
 
+
+Best regards,
+Krzysztof
