@@ -2,156 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B14C150E4C4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 17:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01BCD50E4E7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 17:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236122AbiDYPxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 11:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45334 "EHLO
+        id S243079AbiDYP7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 11:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242990AbiDYPxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 11:53:45 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7B43A72D
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 08:50:40 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id d6so13861663ede.8
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 08:50:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=PYLQycevSzi4tL2WdwyMagoUb8rFgRrz33radZLcMd0=;
-        b=ZgjvAM+ZqtHsmn6SjoPSWIUopXkarEsFiH0XHaPnkKcAZ5Jn+7TTcIwrFtbJOoNOWY
-         gmxale4xvy5QIO6ESP1HvOkzrn5igeOYKiRPYGjLrVVe6HbjGIU68ZHT8e26dYp8g0zC
-         vnchqUHtFqX3AQmPXwRqvZgarrzbvKGVMQRQRs6ehlblH8NgQ+rhstLXkG1ylXjq8JUz
-         h4CRw4GtENQRfdOxLH0iy9w7q8slzmp26CaUxtRUnA153mP8HHcKXtc08/QSm6PfU9LW
-         93Ibq/9YOMZLtQHZNdYZMt2U+i2XZXVzGWnnYEtzE8PPVmFqbb+B2OfRtxIZCC21Gf40
-         OLAg==
+        with ESMTP id S243052AbiDYP7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 11:59:11 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 533083F31D;
+        Mon, 25 Apr 2022 08:56:07 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-e93ff05b23so3390699fac.9;
+        Mon, 25 Apr 2022 08:56:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=PYLQycevSzi4tL2WdwyMagoUb8rFgRrz33radZLcMd0=;
-        b=wwFyvVvpX923MSvF/NpSwUw/PQlKcLD2zkB5LSQHfFXMPLmW+baptb+HcKid2T5EyO
-         F7eHCQgtFYxQciZmU2hii8p94xh1W8LMLsiz3anC9NaZtlD5wPqDBkFkBLjfvn7R/Dwb
-         nUUeURakJWr7EHuL9UrSslCIUgG5HZzfp/eM7iejQ3vaU3zo1WWppM2j3sQpHJ5U+mh4
-         vHpaeneH4oxTwyW+8mbp/LsedsjeLXeIrDK9JM0c6XVV16tpfYGdj6f7Bt/m+PrRJA6l
-         6xg9Fsgc1NwSWOKnb2c2Ay1o7AM6/oO9zYekPSloPRnEw4bMbD43hsQ2w8HdNwv6GkZA
-         6y1w==
-X-Gm-Message-State: AOAM533AqPCfIFuMvA0urDoxswdwEZUv3p0ThIOO01I480/P82uPbwUD
-        N6AH04eDhuQICGuoJVkcxINZ5A==
-X-Google-Smtp-Source: ABdhPJzzizUnNNmbYcKKYRk3MT2+N6aSaIwnrYS/1gK8XUgwi9cO4Xc0VfcTeqLygekgq9cD2GUxTw==
-X-Received: by 2002:aa7:c946:0:b0:416:226f:f8a6 with SMTP id h6-20020aa7c946000000b00416226ff8a6mr19656971edt.360.1650901839436;
-        Mon, 25 Apr 2022 08:50:39 -0700 (PDT)
-Received: from [192.168.0.243] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s11-20020a170906284b00b006e108693850sm3701064ejc.28.2022.04.25.08.50.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 08:50:38 -0700 (PDT)
-Message-ID: <886fda10-fad9-83c4-10f1-1ae36cf0a6b0@linaro.org>
-Date:   Mon, 25 Apr 2022 17:50:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Fix external clk node
- names
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WzWHzJwvI1YDOjifiK5zK9xLEEWNcPatflkVwV3CNuo=;
+        b=5bcLOFvpgJIbHkTPGUjTriBCtBJt9Sas59xoqTuqw7NPl7WxK3ZL8vPr/U/WRMnsV4
+         g9YEVFrX/EWdFoYlcYUM0ZiSuwLMkBxPiFLXAmZSUSPCAe4GLC/1Zp8ND+3+zZz5GnU3
+         AG893nalRydA2yys+QIP7UX3HMuWAves+W/AICuGlWPdFF4VR4DwFxxIlfi9wBaRppOQ
+         apfG2XZWbFKX6KMxwOIuo4WRAbcp0s0UzqMegvkui/rbvHHIWcOSrFOmVuH5EiBL9v9Y
+         kKvkc6zwVmSGaSp7Ab3D6ZCB/agu+oYIWsboaSW3OH2cGOME3dgGyi4qaLd0QbHf/iIu
+         QVPA==
+X-Gm-Message-State: AOAM532kYsNYsdQ7wBq5/71+XjzIHy1B39N0HwNE2j/hap1Xnc15e37j
+        5+XYrCleA9U8/jrKkBtglg==
+X-Google-Smtp-Source: ABdhPJyPQ8/QljI2VNCdMD5ZCs9UmxeOXcXs7325MEcBQ5fMSfUVDwchl6dRhxjgfuxnOxX9p2s6EA==
+X-Received: by 2002:a05:6870:961b:b0:e2:ffb9:f526 with SMTP id d27-20020a056870961b00b000e2ffb9f526mr11477742oaq.146.1650902166630;
+        Mon, 25 Apr 2022 08:56:06 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id lc23-20020a056871419700b000e70c74e060sm3330025oab.8.2022.04.25.08.56.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Apr 2022 08:56:06 -0700 (PDT)
+Received: (nullmailer pid 3956143 invoked by uid 1000);
+        Mon, 25 Apr 2022 15:56:04 -0000
+Date:   Mon, 25 Apr 2022 10:56:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     frowand.list@gmail.com
+Cc:     linux-kernel@vger.kernel.org, Jan Kiszka <jan.kiszka@siemens.com>,
+        Slawomir Stepien <slawomir.stepien@nokia.com>,
+        devicetree@vger.kernel.org, Slawomir Stepien <sst@poczta.fm>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220423140658.145000-1-biju.das.jz@bp.renesas.com>
- <f9c6e5e2-c819-d309-0c11-b87deb772858@linaro.org>
- <OS0PR01MB5922CFACC8FEC6D67E6BFC4986F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <OS0PR01MB59220968EBDF76A16F7E63A386F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <7bd2ae6d-c55f-4ab7-0c98-72da0d5d4050@linaro.org>
- <OS0PR01MB5922619EE8816DA1676BAB4D86F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <ddf78c65-7cac-04cf-9f8d-e19335815473@linaro.org>
- <OS0PR01MB59222BF5C0D4749C8AAFC57F86F89@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB59222BF5C0D4749C8AAFC57F86F89@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        pantelis.antoniou@konsulko.com
+Subject: Re: [PATCH v4 1/2] of: overlay: rename variables to be consistent
+Message-ID: <YmbElDC2GBUNY1E+@robh.at.kernel.org>
+References: <20220420222505.928492-1-frowand.list@gmail.com>
+ <20220420222505.928492-2-frowand.list@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220420222505.928492-2-frowand.list@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 17:28, Biju Das wrote:
->>>> My suggestion was to move the [12] part into the first part, so the
->>>> suffix "clk" stays consistent:
->>>> audio1-clk
->>>> audio2-clk
->>>
->>> From HW perspective,  there are 2 audio clocks, audio clock1(multiple
->>> and sub multiple of 44.1 Khz) and audio clk 2(Multiple and submultiple
->> of 48Khz) connected to a single audio Codec.
->>>
->>> Based on the sampling rate, through clock generator driver we can
->>> switch the clock source for audio mclock along with audio clock for
->>> SSI and we can support both these rates
->>>
->>> Since there is a single audio codec, I am not sure, audio1-clk and
->> audio2-clk is a good choise.
->>
->> The name of the clock is not "audio clock" but "audio", because you do not
->> call a car "Ford Mustang car", but just "Ford Mustang". Therefore "clock"
->> is not part of the name, but just description of a type.
+On Wed, 20 Apr 2022 17:25:04 -0500, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
 > 
-> The hardware mention the name as AUDIO_CLK1 and AUDIO_CLK2.
-
-The hardware document might call it "AUDIO_CLK_REAL_CLK_CLK" and it
-won't be an argument to call device node that way in DTS.
-
-> There are 2 Clock availables for audio interface.
-> In that case if you term it as audio1-clk and audio-clk2,
-> But as you said clk-1-audio and clk-2-audio will be correct?
-
-If you change all other clocks to follow same principle - generic name
-followed by specific suffix - then yes. Then you should have
-"clk-extal", "clk-can" etc.
-
+> Variables change name across function calls when there is not a good
+> reason to do so.  Fix by changing "fdt" to "new_fdt" and "tree" to
+> "overlay_root".
 > 
->>
->>>
->>> What about like
->>>
->>> audio_clk1: audio-clk-1 ?
->>> audio_clk2: audio-clk-2 ?
->>>
->>> Which is consistent with naming used for cpu and opp-tables?
->>
->>
->> It's not consistent with clk naming. Nodes should have generic names, so
->> the generic part is "clk". You add specific audio/audio-X prefix or suffix
->> - it's fine, but not both.
->>
->> This is exactly the trouble when you start using specific names and
->> Devicetree spec explicitly asks for generic names. So maybe go with the
->> spec and call of these "clk-[0-9]" and problem is gone.
+> The name disparity was confusing when creating the following commit.
+> The name changes are in this separate commit to make review of the
+> following commmit less complex.
 > 
-> Ok Will change like
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
 > 
-> "audio_clk1: clk-1-audio"
+> ---
+> Changes since v3:
+>    - none
+> 
+> Changes since v2:
+>    - use new variable name "overlay_root" instead of new variable
+>      new "overlay_tree"
+> 
+>  drivers/of/overlay.c | 94 ++++++++++++++++++++++----------------------
+>  1 file changed, 47 insertions(+), 47 deletions(-)
 > 
 
-What do you mean "ok"? I said "clk-[0-9]", so "clk-0", "clk-1", "clk-2"
-and so on. No specific prefix.
-
-> Label name matches with hardware manual and node names as per Device tree spec.
-
-
-Best regards,
-Krzysztof
+Applied, thanks!
