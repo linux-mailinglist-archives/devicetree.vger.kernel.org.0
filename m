@@ -2,357 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F60950DBA5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C265E50DBC5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 10:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237695AbiDYIxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 04:53:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43230 "EHLO
+        id S231899AbiDYI6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 04:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234310AbiDYIxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:53:22 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86B4B1887;
-        Mon, 25 Apr 2022 01:50:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650876617; x=1682412617;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lgfwzF/QUvAmGUo4sQq1gEPq7nKsV+VBzxrAk5mJJsU=;
-  b=DsrsMqjsduQ34qU6eZTqDLImGH/SBdwmZJrBS4VZcTA13ylpWmPBfV7q
-   mUfrweWCJaJedt9atd/Iji7Xmv+yz7Ar/s2xTWcCtdZ4ReBs3tEIFkWW0
-   JA+wVOLa4GR9Y5/HqhHQFPu+4PwD2MGyTYNZ8NbS77GC1Zzbr7olgQUai
-   rlymIpFyr1M192fF4rZi2DLVsfxvzQG32VTfC77tQr/8NgRS4JnBIzslM
-   T9vmVHKSEdDvOhXkG8YL4+cdlSdQLD9PyW4hBM+dx8LefKu/fkiCakpfE
-   IwAO4R9JgrpaFaQ4JhAADGoQyuLtx2noRzrCjxtEpb7+yEvOnGC2y7m33
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10327"; a="351633971"
-X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; 
-   d="scan'208";a="351633971"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2022 01:50:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; 
-   d="scan'208";a="704469162"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 25 Apr 2022 01:50:12 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 25 Apr 2022 11:50:11 +0300
-Date:   Mon, 25 Apr 2022 11:50:11 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v5 7/7] usb: typec: mux: Add On Semi fsa4480 driver
-Message-ID: <YmZgw7TnJmy9db2W@kuha.fi.intel.com>
-References: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
- <20220422222351.1297276-8-bjorn.andersson@linaro.org>
+        with ESMTP id S234504AbiDYI6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 04:58:39 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D0313DC8
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 01:55:32 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id u15so28183275ejf.11
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 01:55:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IcmGf7R5oIWNJUW6YdAgXljamJfNzgr+F6RCVbOHK3E=;
+        b=lnUMKK+1OUk9P/nASz5GkwqePWMvnfPG+lQJXZnZkCmVP4gQrMoFLGORFc2hEqvtZK
+         sAb2sZQC8Fdx16dteLPlaMVwYzc07q+My98+bFhcwvZ2Tc4T7zlDoq0YuBAr5W1MeCIW
+         4HghiKVjdKGLQp+/LutqOTTazYWT1v2za6tbR00yDrK036UXNGvWVe7auEC2ckESqqwh
+         Dhz9QIdvpTrJvAJ+AMtG21UdzhQVOK56D5HzpmwzLXsAzKxwunKrBjGFXE2VfsxRbUzv
+         cv7XDo2P/2VaJtvuBDJW9PSyA3dqjQ4w/LrPHrbvk3rc+IC4oI6yB0nDHKHRS+j+Ddif
+         hAOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IcmGf7R5oIWNJUW6YdAgXljamJfNzgr+F6RCVbOHK3E=;
+        b=ScxVVqzPXG6tFiAQt90L/qMocaJboGEj/J12j3tEs9wXMjWosWuyGSB+qFC/SOg2T4
+         QQjcC51E5HDm996fk17NuatDIs/fDo7JHuJUeWVL/O5NbDelgYS8WJvfc27zlQSz1Ch/
+         4O0GyOM7BZ9F9LLg1P+jYbuIQJPoe9v+Xp10X/nrSSA5i59eacCj7dldvZ7gfLWVAV7r
+         Xk9fBMvupDIgiUjIkks2sQ1nDqwgqwe1Nda7NaktrjiHVYdg/4xmcumGCDG4HVYWFuhW
+         hW1LAqd6xLYitviYCSPSaoipFxOHk62oLxEcHNLmgQcdH8NS/el7rK7y/BRZc41TiJbU
+         1C9g==
+X-Gm-Message-State: AOAM5336RuAFo0xfxY8eLYxiWiBBcSCraeUDeH7BSnXgv++aTIN1bQnu
+        go23q2XDniUjN+Py11xpP7z7Ug==
+X-Google-Smtp-Source: ABdhPJzVqoCmpWy0gNz3RLiWwx/wLVbIA8e6fPMteVvo0inali36p0hVI/pVtBzsJGwIy/owIIIRYw==
+X-Received: by 2002:a17:906:49d4:b0:6d6:e5ec:9a23 with SMTP id w20-20020a17090649d400b006d6e5ec9a23mr15443661ejv.79.1650876930923;
+        Mon, 25 Apr 2022 01:55:30 -0700 (PDT)
+Received: from [192.168.0.240] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c5-20020a170906d18500b006ce371f09d4sm3368048ejz.57.2022.04.25.01.55.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 01:55:30 -0700 (PDT)
+Message-ID: <7873f0fa-25c3-191f-5096-3ceb9afd50cc@linaro.org>
+Date:   Mon, 25 Apr 2022 10:55:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220422222351.1297276-8-bjorn.andersson@linaro.org>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH V4 01/14] dt-bindings: cpufreq: mediatek: Add MediaTek CCI
+ property
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
+        hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+ <20220422075239.16437-2-rex-bc.chen@mediatek.com>
+ <f2e5a34b-ed02-91a1-bc7b-fecaa95e227e@linaro.org>
+ <811bf944-a230-ab9b-583a-840e57af8a1e@linaro.org>
+ <28f75ac2995b116af9b2accf760786d1d1798c93.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <28f75ac2995b116af9b2accf760786d1d1798c93.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 03:23:51PM -0700, Bjorn Andersson wrote:
-> The ON Semiconductor FSA4480 is a USB Type-C port multimedia switch with
-> support for analog audio headsets. It allows sharing a common USB Type-C
-> port to pass USB2.0 signal, analog audio, sideband use wires and analog
-> microphone signal.
+On 25/04/2022 08:19, Rex-BC Chen wrote:
+> On Fri, 2022-04-22 at 19:34 +0200, Krzysztof Kozlowski wrote:
+>> On 22/04/2022 19:26, Krzysztof Kozlowski wrote:
+>>> On 22/04/2022 09:52, Rex-BC Chen wrote:
+>>>> MediaTek Cache Coherent Interconnect (CCI) uses software devfreq
+>>>> module
+>>>> for scaling clock frequency and adjust voltage.
+>>>> The phandle could be linked between CPU and MediaTek CCI for some
+>>>> MediaTek SoCs, like MT8183 and MT8186.
+>>>> Therefore, we add this property in cpufreq-mediatek.txt.
+>>>>
+>>>> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+>>>> ---
+>>>>  .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt         | 5
+>>>> +++++
+>>>>  1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+>>>> mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+>>>> mediatek.txt
+>>>> index b8233ec91d3d..3387e1e2a2df 100644
+>>>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+>>>> mediatek.txt
+>>>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+>>>> mediatek.txt
+>>>> @@ -20,6 +20,11 @@ Optional properties:
+>>>>  	       Vsram to fit SoC specific needs. When absent, the
+>>>> voltage scaling
+>>>>  	       flow is handled by hardware, hence no software "voltage
+>>>> tracking" is
+>>>>  	       needed.
+>>>> +- mediatek,cci:
+>>>> +	MediaTek Cache Coherent Interconnect (CCI) uses the software
+>>>> devfreq module to
+>>>> +	scale the clock frequency and adjust the voltage.
+>>>
+>>> Devfreq is a SW mechanism, it should not be part of bindings
+>>> description.
 > 
-> Due to lacking upstream audio support for testing, the audio muxing is
-> left untouched, but implementation of muxing the SBU lines is provided
-> as a pair of Type-C mux and switch devices. This provides the necessary
-> support for enabling the DisplayPort altmode on devices with this
-> circuit.
+> Hello Krzysztof,
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> The reason we want to get the "mediatek,cci":
+> We need to check the mediatek cci is ready and probed done.
+> Because cpufreq and mediatek cci are sharing the same regulator in
+> little core cpus.
+> Therefore, to prevent high frequency low voltage issue, we need to make
+> sure the mediatek cci is ready.
+> 
+> If mediatek cci is ready, cpufreq and mediatek cci will register the
+> same regulator and from regulator's implementation, if there are two
+> device using the same regulator, the framwork will make sure it's using
+> the max voltage.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Thanks for explanation. The property should be described with what you
+said here. The property and description should match hardware, so there
+is no place for devfreq. Instead mention that power rail is shared or
+voltage regulators are common.
 
-> ---
-> 
-> Changes since v4:
-> - Disable locking of the regmap
-> - Use dev_fwnode() instead of explicit dereference
-> 
->  drivers/usb/typec/mux/Kconfig   |  10 ++
->  drivers/usb/typec/mux/Makefile  |   1 +
->  drivers/usb/typec/mux/fsa4480.c | 218 ++++++++++++++++++++++++++++++++
->  3 files changed, 229 insertions(+)
->  create mode 100644 drivers/usb/typec/mux/fsa4480.c
-> 
-> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-> index edead555835e..5eb2c17d72c1 100644
-> --- a/drivers/usb/typec/mux/Kconfig
-> +++ b/drivers/usb/typec/mux/Kconfig
-> @@ -2,6 +2,16 @@
->  
->  menu "USB Type-C Multiplexer/DeMultiplexer Switch support"
->  
-> +config TYPEC_MUX_FSA4480
-> +	tristate "ON Semi FSA4480 Analog Audio Switch driver"
-> +	depends on I2C
-> +	select REGMAP_I2C
-> +	help
-> +	  Driver for the ON Semiconductor FSA4480 Analog Audio Switch, which
-> +	  provides support for muxing analog audio and sideband signals on a
-> +	  common USB Type-C connector.
-> +	  If compiled as a module, the module will be named fsa4480.
-> +
->  config TYPEC_MUX_PI3USB30532
->  	tristate "Pericom PI3USB30532 Type-C cross switch driver"
->  	depends on I2C
-> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-> index 280a6f553115..e52a56c16bfb 100644
-> --- a/drivers/usb/typec/mux/Makefile
-> +++ b/drivers/usb/typec/mux/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
->  
-> +obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
->  obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
->  obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-> diff --git a/drivers/usb/typec/mux/fsa4480.c b/drivers/usb/typec/mux/fsa4480.c
-> new file mode 100644
-> index 000000000000..6184f5367190
-> --- /dev/null
-> +++ b/drivers/usb/typec/mux/fsa4480.c
-> @@ -0,0 +1,218 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2021-2022 Linaro Ltd.
-> + * Copyright (C) 2018-2020 The Linux Foundation
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +#include <linux/usb/typec_dp.h>
-> +#include <linux/usb/typec_mux.h>
-> +
-> +#define FSA4480_SWITCH_ENABLE	0x04
-> +#define FSA4480_SWITCH_SELECT	0x05
-> +#define FSA4480_SWITCH_STATUS1	0x07
-> +#define FSA4480_SLOW_L		0x08
-> +#define FSA4480_SLOW_R		0x09
-> +#define FSA4480_SLOW_MIC	0x0a
-> +#define FSA4480_SLOW_SENSE	0x0b
-> +#define FSA4480_SLOW_GND	0x0c
-> +#define FSA4480_DELAY_L_R	0x0d
-> +#define FSA4480_DELAY_L_MIC	0x0e
-> +#define FSA4480_DELAY_L_SENSE	0x0f
-> +#define FSA4480_DELAY_L_AGND	0x10
-> +#define FSA4480_RESET		0x1e
-> +#define FSA4480_MAX_REGISTER	0x1f
-> +
-> +#define FSA4480_ENABLE_DEVICE	BIT(7)
-> +#define FSA4480_ENABLE_SBU	GENMASK(6, 5)
-> +#define FSA4480_ENABLE_USB	GENMASK(4, 3)
-> +
-> +#define FSA4480_SEL_SBU_REVERSE	GENMASK(6, 5)
-> +#define FSA4480_SEL_USB		GENMASK(4, 3)
-> +
-> +struct fsa4480 {
-> +	struct i2c_client *client;
-> +
-> +	/* used to serialize concurrent change requests */
-> +	struct mutex lock;
-> +
-> +	struct typec_switch_dev *sw;
-> +	struct typec_mux_dev *mux;
-> +
-> +	struct regmap *regmap;
-> +
-> +	u8 cur_enable;
-> +	u8 cur_select;
-> +};
-> +
-> +static const struct regmap_config fsa4480_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = FSA4480_MAX_REGISTER,
-> +	/* Accesses only done under fsa4480->lock */
-> +	.disable_locking = true,
-> +};
-> +
-> +static int fsa4480_switch_set(struct typec_switch_dev *sw,
-> +			      enum typec_orientation orientation)
-> +{
-> +	struct fsa4480 *fsa = typec_switch_get_drvdata(sw);
-> +	u8 new_sel;
-> +
-> +	mutex_lock(&fsa->lock);
-> +	new_sel = FSA4480_SEL_USB;
-> +	if (orientation == TYPEC_ORIENTATION_REVERSE)
-> +		new_sel |= FSA4480_SEL_SBU_REVERSE;
-> +
-> +	if (new_sel == fsa->cur_select)
-> +		goto out_unlock;
-> +
-> +	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-> +		/* Disable SBU output while re-configuring the switch */
-> +		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE,
-> +			     fsa->cur_enable & ~FSA4480_ENABLE_SBU);
-> +
-> +		/* 35us to allow the SBU switch to turn off */
-> +		usleep_range(35, 1000);
-> +	}
-> +
-> +	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, new_sel);
-> +	fsa->cur_select = new_sel;
-> +
-> +	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-> +		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-> +
-> +		/* 15us to allow the SBU switch to turn on again */
-> +		usleep_range(15, 1000);
-> +	}
-> +
-> +out_unlock:
-> +	mutex_unlock(&fsa->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int fsa4480_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
-> +{
-> +	struct fsa4480 *fsa = typec_mux_get_drvdata(mux);
-> +	u8 new_enable;
-> +
-> +	mutex_lock(&fsa->lock);
-> +
-> +	new_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-> +	if (state->mode >= TYPEC_DP_STATE_A)
-> +		new_enable |= FSA4480_ENABLE_SBU;
-> +
-> +	if (new_enable == fsa->cur_enable)
-> +		goto out_unlock;
-> +
-> +	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, new_enable);
-> +	fsa->cur_enable = new_enable;
-> +
-> +	if (new_enable & FSA4480_ENABLE_SBU) {
-> +		/* 15us to allow the SBU switch to turn off */
-> +		usleep_range(15, 1000);
-> +	}
-> +
-> +out_unlock:
-> +	mutex_unlock(&fsa->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int fsa4480_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct typec_switch_desc sw_desc = { };
-> +	struct typec_mux_desc mux_desc = { };
-> +	struct fsa4480 *fsa;
-> +
-> +	fsa = devm_kzalloc(dev, sizeof(*fsa), GFP_KERNEL);
-> +	if (!fsa)
-> +		return -ENOMEM;
-> +
-> +	fsa->client = client;
-> +	mutex_init(&fsa->lock);
-> +
-> +	fsa->regmap = devm_regmap_init_i2c(client, &fsa4480_regmap_config);
-> +	if (IS_ERR(fsa->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(fsa->regmap), "failed to initialize regmap\n");
-> +
-> +	fsa->cur_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-> +	fsa->cur_select = FSA4480_SEL_USB;
-> +
-> +	/* set default settings */
-> +	regmap_write(fsa->regmap, FSA4480_SLOW_L, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_SLOW_R, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_SLOW_MIC, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_SLOW_SENSE, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_SLOW_GND, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_DELAY_L_R, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_DELAY_L_MIC, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_DELAY_L_SENSE, 0x00);
-> +	regmap_write(fsa->regmap, FSA4480_DELAY_L_AGND, 0x09);
-> +	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, fsa->cur_select);
-> +	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-> +
-> +	sw_desc.drvdata = fsa;
-> +	sw_desc.fwnode = dev_fwnode(dev);
-> +	sw_desc.set = fsa4480_switch_set;
-> +
-> +	fsa->sw = typec_switch_register(dev, &sw_desc);
-> +	if (IS_ERR(fsa->sw))
-> +		return dev_err_probe(dev, PTR_ERR(fsa->sw), "failed to register typec switch\n");
-> +
-> +	mux_desc.drvdata = fsa;
-> +	mux_desc.fwnode = dev_fwnode(dev);
-> +	mux_desc.set = fsa4480_mux_set;
-> +
-> +	fsa->mux = typec_mux_register(dev, &mux_desc);
-> +	if (IS_ERR(fsa->mux)) {
-> +		typec_switch_unregister(fsa->sw);
-> +		return dev_err_probe(dev, PTR_ERR(fsa->mux), "failed to register typec mux\n");
-> +	}
-> +
-> +	i2c_set_clientdata(client, fsa);
-> +	return 0;
-> +}
-> +
-> +static int fsa4480_remove(struct i2c_client *client)
-> +{
-> +	struct fsa4480 *fsa = i2c_get_clientdata(client);
-> +
-> +	typec_mux_unregister(fsa->mux);
-> +	typec_switch_unregister(fsa->sw);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i2c_device_id fsa4480_table[] = {
-> +	{ "fsa4480" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, fsa4480_table);
-> +
-> +static const struct of_device_id fsa4480_of_table[] = {
-> +	{ .compatible = "fcs,fsa4480" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, fsa4480_of_table);
-> +
-> +static struct i2c_driver fsa4480_driver = {
-> +	.driver = {
-> +		.name = "fsa4480",
-> +		.of_match_table = fsa4480_of_table,
-> +	},
-> +	.probe_new	= fsa4480_probe,
-> +	.remove		= fsa4480_remove,
-> +	.id_table	= fsa4480_table,
-> +};
-> +module_i2c_driver(fsa4480_driver);
-> +
-> +MODULE_DESCRIPTION("ON Semiconductor FSA4480 driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.35.1
+However I am not sure if you solved your problem... see below:
 
--- 
-heikki
+> For example:
+> mediatek cci set 1.2V originally. When cpufreq want to adjust lower
+> frequency adn set voltage to 1.0V.
+> The framework will remain using 1.2V to prevent crash of mediatek cci.
+
+No, regulator_set_voltage() for proc_reg says:
+"NOTE: If the regulator is shared between several devices then the lowest
+ request voltage that meets the system constraints will be used."
+
+Not the highest. So when your devfreq and cpufreq boots, calling
+regulator_set_voltage will still cause high frequency and low voltage.
+
+> 
+> Therefore, we need to confirm the mediatek cci is ready and register
+> the regulator.
+>
+>>>
+>>>> +	For details, please refer to
+>>>> +	Documentation/devicetree/bindings/interconnect/mediatek,cci.yam
+>>>> l
+>>>
+>>> Since the file does not exist, I have troubles reviewing it. First
+>>> of
+>>> all, you already have "mediatek,cci-control" property in DT, so why
+>>> using different name?
+> 
+> I am not sure where is "mediatek,cci-control". I think this name is not
+> used before.
+> 
+
+Documentation/devicetree/bindings/net/mediatek-net.txt
+
+>>>
+>>> Second, it looks like you want to put devfreq into bindings instead
+>>> of
+>>> using proper interconnect bindings.
+>>
+>> Actually judging by the driver this looks like some
+>> device-boot-time-ordering, so I wonder whether this is a proper way
+>> to
+>> express it.
+> 
+> Yes, we need to get the mediatek cci node and let cpufreq and mediatek
+> cci link succefully. In that case, we can know the mediatek cci is
+> ready. And we can set the voltage using the regulator framwork.
+> 
+> [1]: 
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220422075239.16437-11-rex-bc.chen@mediatek.com/
+
+Yes, I see the use case. I am not convinced yet whether this is proper
+approach...
+
+
+Best regards,
+Krzysztof
