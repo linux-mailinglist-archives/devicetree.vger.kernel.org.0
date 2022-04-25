@@ -2,182 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89AA350E8EE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 038E750E8FD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237138AbiDYS60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 14:58:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51984 "EHLO
+        id S234973AbiDYTFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 15:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244733AbiDYS5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:57:30 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C689CD65E
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:54:25 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id dk23so8104698ejb.8
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:54:24 -0700 (PDT)
+        with ESMTP id S229617AbiDYTFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:05:09 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D3112C42A
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 12:02:04 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bv19so31467425ejb.6
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 12:02:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HWkRDQJwMPlR19wYgPWzNkV4z1riKbIU1L+c6IyBvKg=;
-        b=lF1JmNOWX9Ja9KWsat+tf3cfY25xezlLRLC7mGeCe9/40bk6BQBEsjZjW9xwRmPCP1
-         8tii9cpMQHMQO48lpGeHlRPGSuRdz/1Z76IG45t77exBvY/KO96xA82PZgX0NVrX8QZB
-         0QrIxx3xQ4oQS3R8ytYiA5FBT2CLW8F/P8WdZR9CbctqlZZw1bqG2wO9j7NJyOy1YIyo
-         tdsNT4vTepS0SFFYgKGUISsThaziqHzM3z7J+NXkCAZEZ89rN2+SNA1DOrPuB8AOzC3l
-         R9KYHkLaKf/sobq/2vHIARBeVrbBL2so6wm/Sy77mdfqFH+3kUhr6YLdaTYjgs5P0PYa
-         VjxA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=86eu8C1NuZ5ZbLAvnLJZ3ViXQPmuM5BFpFlvB8h+gSc=;
+        b=fFPW7DvdkCdpHTS7fUtcq2xYBdh5xHvCTJyzgV5cpmOsdyVG3UhJWBUEiUiuUkwans
+         032ZbK5lINN648OsEjl7qu1JEM3qmXUVKL6zI60Y/bI7IkRGQlg4m+Nv1/J7nF9v20Hd
+         JKLcqK3RrHYdu2152oBFgGW5CvtKBPoiRTwCFYfqOY/OW3GHEXXGwYE/45ZYZlVs8EL1
+         RTs0LTch9MlETt2HkhDxPCwYOxSKzE0ZaIngdT+iWMtZ6O1NwM/iPxlDzqmNrJO4F3cB
+         wL7ieuQHhmLlLbljEWqeMLf0xmQfHuSlzKSAlAqlaEjn77zYJrgaTd640QgtxsEAx6Um
+         qqqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HWkRDQJwMPlR19wYgPWzNkV4z1riKbIU1L+c6IyBvKg=;
-        b=xBqFew0JL+WyuRnxwN+ANoB//X46fLUXHISyD2nk475PHWp+dJo2KRUQeu/OJ7/8OP
-         BRFFbm0mF1TcAM5qL42bf0ScJsDhA/xb3A0TbHmLd8RqSe5dutTT3aqY2jymQbZW6zlA
-         fBwzvrddU+FV6Kkt8mpqPiYkku0ieMRRLtzNYqZed23CYDtFk6kl4JpXyCfZvsW8AocY
-         p4QHMW+BTKIShxUNp4QTkRRXImFt6NgzBn4tUeAfTRdMHV7GPkJoBaVffhv/vRD1WFve
-         gnz1AlipcA7Al6dse4lGXdOAUio0kafhfp7ZIj+EkicJPbNGxqjF1iIuq5ybuVnRX1f3
-         x7Bw==
-X-Gm-Message-State: AOAM531hKGEgs/z3n/3c8af2N9uVjIeK2TZBntbT126ZAw0xkzVZKQfA
-        LG+WVQGkRwE8WpX4Lgj2dnV16VbjdxfN3xs1/r1xDlaNWEduRtqJ
-X-Google-Smtp-Source: ABdhPJxi/Fir6KRp+xFbi2zKLAqREypE5RELrBklhwSwvtecFh1/ffYTT07TB8BSuve6uqIUojMg1JBeeJdpj0F7J/Y=
-X-Received: by 2002:a17:906:1841:b0:6e8:872d:8999 with SMTP id
- w1-20020a170906184100b006e8872d8999mr17408232eje.492.1650912863652; Mon, 25
- Apr 2022 11:54:23 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=86eu8C1NuZ5ZbLAvnLJZ3ViXQPmuM5BFpFlvB8h+gSc=;
+        b=4a3uc579EgcA3tBM3fXLOrOHYNBy2T1SxTbzJx1tqy318c/LeNPkWFhVW1sYEx3mrm
+         kXnyTmw0xL80m3dyccJ+4LSPgmgj0Tj9ATDUV1P251+QOQSCfuv0YAgqKjPxVgwkWRvD
+         8mJmpMot1WN4w20U4+HANb/luAuoDF7dWVLFYyUP59JN3V+WljVtaSr7laVjDFiArVQU
+         R3V+2pgsAWKnBlgBf2DRHTsMG8DGXf6XMqXzp7E94y7lcdKRUKa9YA74ziUKS+nQ6yAd
+         EVRdUWrE0hhro84WQ/idoajGf0nfPSFj0s4La7kzPkDOrSLfX4y0lu4/1LCDxNKxet5C
+         9xuw==
+X-Gm-Message-State: AOAM530mXbJmyl4FXmR/muiBjRV+dd7wrU1OUQ3rt9j3tLvl6D1vhWbS
+        DYrgav04yxqBEfx74W6bQeKEiw==
+X-Google-Smtp-Source: ABdhPJxaB0QLXvOWSeekN6l2rUaWgWsrvGkar5NFKOLM83z0Iv+PAScj8UN8Il0D+RpYARK6sOoasg==
+X-Received: by 2002:a17:906:7304:b0:6da:9243:865 with SMTP id di4-20020a170906730400b006da92430865mr17450613ejc.665.1650913322693;
+        Mon, 25 Apr 2022 12:02:02 -0700 (PDT)
+Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id dm11-20020a170907948b00b006cf488e72e3sm3909403ejc.25.2022.04.25.12.02.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 12:02:02 -0700 (PDT)
+Message-ID: <c50819cb-8234-670f-c7c0-0507af2f96df@linaro.org>
+Date:   Mon, 25 Apr 2022 21:02:01 +0200
 MIME-Version: 1.0
-References: <20220425184631.684906-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220425184631.684906-1-krzysztof.kozlowski@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 25 Apr 2022 20:54:13 +0200
-Message-ID: <CAMRc=McwGpZU7FJ8v_OXkkx6Sdh_As3z7zZR=UaSHtO=Qm9eDQ@mail.gmail.com>
-Subject: Re: [RESENT PATCH v3] dt-bindings: gpio: add common consumer GPIO lines
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am625-sk: Enable on board
+ peripherals
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20220422065002.387753-1-vigneshr@ti.com>
+ <20220422065002.387753-3-vigneshr@ti.com>
+ <c40a2dad-c7aa-f778-f1ac-971185691950@linaro.org>
+ <8517d504-af9c-53f5-a51b-3bcdbb86d09f@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8517d504-af9c-53f5-a51b-3bcdbb86d09f@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 8:46 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Typical GPIO lines like enable, powerdown, reset or wakeup are not
-> documented as common, which leads to new variations of these (e.g.
-> pwdn-gpios).  Add a common schema which serves also as a documentation
-> for preferred naming.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
->
-> ---
->
-> Reason for resend:
-> ==================
-> Previously patch was on hold because richtek,rt4801 bindings were using
-> two GPIOs in "enable-gpios", so this schema would complain.  This was
-> resolved here:
-> https://lore.kernel.org/all/165089886500.211842.728549769223794277.b4-ty@kernel.org/
->
-> Changes since v2:
-> ==================
-> 1. Correct my email address.
-> 2. Add Rob's review.
->
-> Changes since v1:
-> ==================
-> 1. Select-true, add maxItems and description for each entry (Rob).
-> 2. Mention ACTIVE_LOW in bindings description (Linus).
-> 3. Add allOf for pwrseq reset-gpios case.
-> ---
->  .../bindings/gpio/gpio-consumer-common.yaml   | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml b/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
-> new file mode 100644
-> index 000000000000..40d0be31e200
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-consumer-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common GPIO lines
-> +
-> +maintainers:
-> +  - Bartosz Golaszewski <brgl@bgdev.pl>
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description:
-> +  Pay attention to using proper GPIO flag (e.g. GPIO_ACTIVE_LOW) for the GPIOs
-> +  using inverted signal (e.g. RESETN).
-> +
-> +select: true
-> +
-> +properties:
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO connected to the enable control pin.
-> +
-> +  reset-gpios:
-> +    description:
-> +      GPIO (or GPIOs for power sequence) connected to the device reset pin
-> +      (e.g. RESET or RESETN).
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO connected to the power down pin (hardware power down or power cut,
-> +      e.g. PD or PWDN).
-> +
-> +  pwdn-gpios:
-> +    maxItems: 1
-> +    description: Use powerdown-gpios
-> +    deprecated: true
-> +
-> +  wakeup-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO connected to the pin waking up the device from suspend or other
-> +      power-saving modes.
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mmc-pwrseq-simple
-> +    then:
-> +      properties:
-> +        reset-gpios:
-> +          minItems: 1
-> +          maxItems: 32
-> +    else:
-> +      properties:
-> +        reset-gpios:
-> +          maxItems: 1
-> +
-> +additionalProperties: true
-> --
-> 2.32.0
->
+On 25/04/2022 11:22, Vignesh Raghavendra wrote:
+>>> +		/* TPS22918DBVR */
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "vdd_mmc1";
+>>> +		regulator-min-microvolt = <3300000>;
+>>> +		regulator-max-microvolt = <3300000>;
+>>> +		regulator-boot-on;
+>>> +		enable-active-high;
+>>> +		vin-supply = <&vcc_3v3_sys>;
+>>> +		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
+>>> +	};
+>>> +
+>>> +	vdd_sd_dv: gpio-regulator-TLV71033 {
+>>
+>> The same + do not mix cases, so regulator-1 or regulator-tlv71033
+> 
+> I have fixed this in v3. But had one question though:
+> 
+> Per DT spec, 2.2.3 Path Names seems to indicate node-name-N when N is
+> 1,2,3.. So, is it valid to have regulator-tlv71033 as node-name -> does
+> not strictly seem to fit into node-name-N format ?
 
-Applied, thanks!
+No, "regulator-tlv71033" does not match DT spec. Indeed better to have
+some generic suffix, e.g. regulator-vbatt, but strictly speaking DT spec
+asks for just "regulator-[0-9]".
 
-Bart
+However several people prefer such descriptive suffix instead of
+"regulator-[0-9]" because it makes their life easier when extending DTSI
+(when both DTSI and DTS provide some of such regulators). Therefore I
+don't think it's that important to keep with the spec. Rob for example
+does not complain here, so probably I am stricter than him.
+
+In any case it would be good to have only suffix or only prefix, e.g.
+"regulator-foo-bar" or "foo-bar-regulator", so DT schema can match
+against it. Several other types of devices already require such naming.
+
+Best regards,
+Krzysztof
