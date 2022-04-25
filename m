@@ -2,103 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2E5D50D960
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A56350D975
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 08:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237102AbiDYGYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 02:24:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42680 "EHLO
+        id S231867AbiDYGdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 02:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241443AbiDYGYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:24:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2C13AA63;
-        Sun, 24 Apr 2022 23:20:52 -0700 (PDT)
-X-UUID: 7d7dd1a2c46c45448383c19f538b1ff3-20220425
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:55a30fbe-1aa7-41b0-9a24-5ac3f53f736c,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:53
-X-CID-INFO: VERSION:1.1.4,REQID:55a30fbe-1aa7-41b0-9a24-5ac3f53f736c,OB:0,LOB:
-        0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:53
-X-CID-META: VersionHash:faefae9,CLOUDID:000ffdef-06b0-4305-bfbf-554bfc9d151a,C
-        OID:5c2a2e49368b,Recheck:0,SF:13|15|28|17|19|48,TC:nil,Content:0,EDM:-3,Fi
-        le:nil,QS:0,BEC:nil
-X-UUID: 7d7dd1a2c46c45448383c19f538b1ff3-20220425
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1765017538; Mon, 25 Apr 2022 14:20:48 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 25 Apr 2022 14:20:47 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 25 Apr
- 2022 14:20:47 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 25 Apr 2022 14:20:46 +0800
-Message-ID: <88b2103944768732ab813c294bce88097321f501.camel@mediatek.com>
-Subject: Re: [PATCH V4 00/14] cpufreq: mediatek: Cleanup and support MT8183
- and MT8186
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <jia-wei.chang@mediatek.com>, <roger.lu@mediatek.com>,
-        <hsinyi@google.com>, <khilman@baylibre.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S241414AbiDYGcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 02:32:55 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEFD55C64F;
+        Sun, 24 Apr 2022 23:29:50 -0700 (PDT)
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.56])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Kmw690m01zGpL4;
+        Mon, 25 Apr 2022 14:27:13 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Mon, 25 Apr 2022 14:29:33 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Mon, 25 Apr 2022 14:29:31 +0800
+Subject: Re: [PATCH v22 0/9] support reserving crashkernel above 4G on arm64
+ kdump
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 25 Apr 2022 14:20:46 +0800
-In-Reply-To: <af95f353-c91d-844e-3bc1-e052f7d16e54@linaro.org>
-References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
-         <af95f353-c91d-844e-3bc1-e052f7d16e54@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <9e3f69fb-ac2b-6de5-459c-5d104247a0ac@huawei.com>
+ <YmYLO58lH0rf1c8B@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <ffd3d9bd-b1d9-3681-5e44-ba9094835b7b@huawei.com>
+Date:   Mon, 25 Apr 2022 14:29:31 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <YmYLO58lH0rf1c8B@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-04-22 at 19:23 +0200, Krzysztof Kozlowski wrote:
-> On 22/04/2022 09:52, Rex-BC Chen wrote:
-> > 
-> > Reference series:
-> > [1]: V1 of this series is present by Jia-Wei Chang.
-> >      message-id:20220307122151.11666-1-jia-wei.chang@mediatek.com
-> > 
-> > [2]: The MediaTek CCI devfreq driver is introduced in another
-> > series.
-> >      message-id:20220408052150.22536-1-johnson.wang@mediatek.com
-> > 
-> > [3]: The MediaTek SVS driver is introduced in another series.
-> >      message-id:20220221063939.14969-1-roger.lu@mediatek.com
+
+
+On 2022/4/25 10:45, Baoquan He wrote:
+> On 04/25/22 at 10:19am, Leizhen (ThunderTown) wrote:
+>>
+>> Hi, Catalin Marinas and Will Deacon:
+>>   Do you have time to review patches 3-4 and 6-7? These patches are a little more
+>> relevant to the arm64 architecture.
+>>
+>> Hi, Baoquan He:
+>>   Can you review patches 1 and 5 again?
 > 
-> These are not proper links. Please use lore references.
+> Yes, and I will test and review the whole series if no one check the
+> arm64 related changes.
+
+Okay, thank you so much.
+
 > 
-> 
-> Best regards,
-> Krzysztof
+>>
+>>
 
-Hello Krzysztof,
-
-I will use lore references in next version.
-Thanks.
-
-BRs,
-Rex
-
+-- 
+Regards,
+  Zhen Lei
