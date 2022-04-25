@@ -2,288 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC36F50D8DA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 07:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B77F50D8E1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 07:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241263AbiDYFc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 01:32:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33276 "EHLO
+        id S236625AbiDYFjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 01:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241267AbiDYFcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 01:32:50 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F16271B
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:29:47 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id k4so12963740plk.7
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:29:47 -0700 (PDT)
+        with ESMTP id S236811AbiDYFiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 01:38:54 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DAEB13F16
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:35:51 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id h12so20858567plf.12
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:35:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=v1IWN4lWqJqpX40fNSh2eZLPh8Lvp6Dl9ZDbsdmWTqI=;
-        b=lqHFsAoZlHZXSRJq/RtFfRz7RuAYIFhplhSopMyESsbG1CCQ2/HAj2vLem1B3OSkIY
-         qOygmK6oO8Fl/xykv5I16G6EGVGEaJxVE/cwnBzkqEcJRgRopF0XnkretFmwyouqqGR5
-         MyOKj62fq/NDJlFm4qCIE/aUwgpK1fHD8DBRaPkSABgHfKC1MdzNyg58TZhoK8dyh+pG
-         Ubwt4TkCt23sLGssZCuJyIQXHjap473rgIeIaSYRVFTqUI34UsvAtT+KloG6AAtssaie
-         gGC/zodhM7V3jmHsF7vn6n4f3VetBBzxc2e4fOUfwZOANMgiCkV4UTATud1ZS0TLdUja
-         e+ZQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=T2oxad3crhUuqjbi9y9dJMMYmCSsVXY7Ev+0B50BV+0=;
+        b=qDZG8k5tDIz4MvJx+OydJWKJelMxeRJN8ZN7/tavSk56FfCWp42xJTc/KSu57tV/mZ
+         fQdDDY/W8fp3//v3jBXi+EzaeIh882MAvQjc/0XqLfj2HLHTZtv/toIofCQo0DwZJvn3
+         gUyEmZBF+WiGVi2Wo1cwrDkw9jzGN6wgZoPmaip+7AESEsTdWwnuB/R9UZMFolm1bJxN
+         qpTJpPhIsP6ZscFHpeY/314oVST+nmNBwwDHAwiXJQbBfWK/aHZGgFZJmLd+iYV1Fwng
+         Yrh+1rzRBta+YycnMKuqiaaC2ddt7bzzYWAre8fH0Gf9NAOQkK39kzEGpHxJRZ5yIjJt
+         nUOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=v1IWN4lWqJqpX40fNSh2eZLPh8Lvp6Dl9ZDbsdmWTqI=;
-        b=vdBXZvhZXI62tXr6waaq3+Rbw5vaohIkBnWMzvlEFRnGGFG02SKIDkwlTmXRgz+vmH
-         65lZyAcZ/f5bGp0bmGBwd7X/xSIe9nsz0nXnDo5J2ymL/qeIcwhLERyky6ljN0cc3vRi
-         9kRPWVQvkizVtnpg5VhykgFLPQOTYE4B56TEsCsp710ee0jPdSsIErth4K49dJqf/l6B
-         iuLa7KYx82qCtt/iIlv9fq+iJnCKAanvsUV5YX5q7jQnx/Gn8vVicvOENPYJ2Rh8H6EC
-         sXm9K47RJNiMS14bB1gGIEWHzQoo21Nzy5lE31xaDAJjHO6Ugayu7KN0aU8EV9KFU3N9
-         hsaw==
-X-Gm-Message-State: AOAM5310VtHiIuKB0cixpcAqHsL817XZKVLOx5U+fUM3SHJ9Hb2bwuQY
-        y+Nbb6v0pIPqEf8trbpe1wSiAg==
-X-Google-Smtp-Source: ABdhPJzCMZt/PZweE/sFV+76M0SKokRPHoabxIY+QlCFkDB5u/f2fHWjyZhEU0e2mGMEdzYMyX8Tmw==
-X-Received: by 2002:a17:90b:4a41:b0:1d2:a83c:e480 with SMTP id lb1-20020a17090b4a4100b001d2a83ce480mr29202756pjb.18.1650864586885;
-        Sun, 24 Apr 2022 22:29:46 -0700 (PDT)
-Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:237c:3672:1f2:b81c])
-        by smtp.gmail.com with ESMTPSA id 5-20020a631045000000b0039d942d18f0sm8282017pgq.48.2022.04.24.22.29.46
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=T2oxad3crhUuqjbi9y9dJMMYmCSsVXY7Ev+0B50BV+0=;
+        b=oN/Q3tNuW6Y+qBptIR16Bvpt62+u4ka2wt5jOQRZaWCZTdTT4U3y6dKQeLjz2vN88A
+         k6F8aAXLxLz+CVzB9xbw2kAgoC8LVWalGWpOqyWAqlKToTedaZAl+SrgWk5GQin1EIXF
+         3yFrTPDvPyOl1dlNpwdKO6fJURO0GjSQ3oS4N+91pkFrZKeONRQccdogV+Xz4oiANvYN
+         OpkEbL+J/8rZBdlPNJo1paL2IW1HFSNmzTrCE3ho0SCqAU1jTauVu9aQZkyesiNxP8E8
+         6dLcLhoCL4P8DpQoHVbdd1N85SgiJrtkPp4d+REEn4Mz2oPmsbnQzXlQt2FsEN7Vwyl7
+         bOAQ==
+X-Gm-Message-State: AOAM533GBWeZ70vEJ7Ysy8r8PTKSZXmyoQAedfYGY5lKOHnuJbeYCO0U
+        kG5Udvbuy5KdGDbzTLuOl5shrw==
+X-Google-Smtp-Source: ABdhPJwnOiyciQSstf5JSoNHFmid7vkH7V23CkAvcMQLZ9tHebui2ItXK187LidqDcgz+iDQDT6d2Q==
+X-Received: by 2002:a17:903:410b:b0:15c:fd57:aa34 with SMTP id r11-20020a170903410b00b0015cfd57aa34mr6247282pld.82.1650864950700;
+        Sun, 24 Apr 2022 22:35:50 -0700 (PDT)
+Received: from localhost ([122.171.250.232])
+        by smtp.gmail.com with ESMTPSA id d141-20020a621d93000000b00505aa1026f1sm9768440pfd.51.2022.04.24.22.35.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 22:29:46 -0700 (PDT)
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Tony Lindgren <tony@atomide.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Drew Fustini <dfustini@baylibre.com>,
-        Keerthy <j-keerthy@ti.com>
-Subject: [PATCH 2/2] soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling
-Date:   Sun, 24 Apr 2022 22:28:06 -0700
-Message-Id: <20220425052806.484590-3-dfustini@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220425052806.484590-1-dfustini@baylibre.com>
-References: <20220425052806.484590-1-dfustini@baylibre.com>
+        Sun, 24 Apr 2022 22:35:50 -0700 (PDT)
+Date:   Mon, 25 Apr 2022 11:05:48 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, khilman@baylibre.com,
+        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V4 07/14] cpufreq: mediatek: Add .get function
+Message-ID: <20220425053548.72w2jh2g6lpzgz6g@vireshk-i7>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+ <20220422075239.16437-8-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422075239.16437-8-rex-bc.chen@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dave Gerlach <d-gerlach@ti.com>
+On 22-04-22, 15:52, Rex-BC Chen wrote:
+> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> 
+> We want to get opp frequency via opp table. Therefore, we add the function
+> "mtk_cpufreq_get()" to do this.
+> 
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/cpufreq/mediatek-cpufreq.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/cpufreq/mediatek-cpufreq.c b/drivers/cpufreq/mediatek-cpufreq.c
+> index e070a2619bcb..0b2ca0c8eddc 100644
+> --- a/drivers/cpufreq/mediatek-cpufreq.c
+> +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> @@ -71,6 +71,15 @@ static struct mtk_cpu_dvfs_info *mtk_cpu_dvfs_info_lookup(int cpu)
+>  	return NULL;
+>  }
+>  
+> +static unsigned int mtk_cpufreq_get(unsigned int cpu)
+> +{
+> +	struct mtk_cpu_dvfs_info *info;
+> +
+> +	info = mtk_cpu_dvfs_info_lookup(cpu);
+> +
+> +	return !info ? 0 : (info->opp_freq / 1000);
+> +}
+> +
+>  static int mtk_cpufreq_voltage_tracking(struct mtk_cpu_dvfs_info *info,
+>  					int new_vproc)
+>  {
+> @@ -588,7 +597,7 @@ static struct cpufreq_driver mtk_cpufreq_driver = {
+>  		 CPUFREQ_IS_COOLING_DEV,
+>  	.verify = cpufreq_generic_frequency_table_verify,
+>  	.target_index = mtk_cpufreq_set_target,
+> -	.get = cpufreq_generic_get,
+> +	.get = mtk_cpufreq_get,
 
-Allow loading of a binary containing i2c scaling sequences to be
-provided to the wkup_m3 firmware in order to properly scale voltage
-rails on the PMIC during low power modes like DeepSleep0. Proper binary
-format is determined by the FW in use.
+The .get callback should read the real frequency from hardware instead of
+fetching a cached freq value.
 
-Code expects firmware to have 0x0C57 present as the first two bytes
-followed by one byte defining offset to sleep sequence followed by one
-byte defining offset to wake sequence and then lastly both sequences.
-Each sequence is a series of I2C transfers in the form:
+>  	.init = mtk_cpufreq_init,
+>  	.exit = mtk_cpufreq_exit,
+>  	.register_em = cpufreq_register_em_with_opp,
+> -- 
+> 2.18.0
 
-u8 length | u8 chip address | u8 byte0/reg address | u8 byte1 | u8 byteN
-..
-
-The length indicates the number of bytes to transfer, including the
-register address. The length of each transfer is limited by the I2C
-buffer size of 32 bytes.
-
-Based on previous work by Russ Dill.
-
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-Signed-off-by: Keerthy <j-keerthy@ti.com>
-[dfustini: add NULL argument to rproc_da_to_va() call]
-[dfustini: replace FW_ACTION_HOTPLUG with FW_ACTION_UEVENT]
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- drivers/soc/ti/wkup_m3_ipc.c | 93 +++++++++++++++++++++++++++++++++++-
- include/linux/wkup_m3_ipc.h  |  9 ++++
- 2 files changed, 101 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/soc/ti/wkup_m3_ipc.c b/drivers/soc/ti/wkup_m3_ipc.c
-index 988162dd153a..007daf9af8b5 100644
---- a/drivers/soc/ti/wkup_m3_ipc.c
-+++ b/drivers/soc/ti/wkup_m3_ipc.c
-@@ -8,6 +8,7 @@
-  */
- 
- #include <linux/err.h>
-+#include <linux/firmware.h>
- #include <linux/kernel.h>
- #include <linux/kthread.h>
- #include <linux/interrupt.h>
-@@ -55,6 +56,12 @@
- #define M3_STATE_MSG_FOR_LP		3
- #define M3_STATE_MSG_FOR_RESET		4
- 
-+#define WKUP_M3_SD_FW_MAGIC		0x570C
-+
-+#define WKUP_M3_DMEM_START		0x80000
-+#define WKUP_M3_AUXDATA_OFFSET		0x1000
-+#define WKUP_M3_AUXDATA_SIZE		0xFF
-+
- static struct wkup_m3_ipc *m3_ipc_state;
- 
- static const struct wkup_m3_wakeup_src wakeups[] = {
-@@ -75,6 +82,81 @@ static const struct wkup_m3_wakeup_src wakeups[] = {
- 	{.irq_nr = 0,	.src = "Unknown"},
- };
- 
-+/**
-+ * wkup_m3_copy_aux_data - Copy auxiliary data to special region of m3 dmem
-+ * @data - pointer to data
-+ * @sz - size of data to copy (limit 256 bytes)
-+ *
-+ * Copies any additional blob of data to the wkup_m3 dmem to be used by the
-+ * firmware
-+ */
-+static unsigned long wkup_m3_copy_aux_data(struct wkup_m3_ipc *m3_ipc,
-+					   const void *data, int sz)
-+{
-+	unsigned long aux_data_dev_addr;
-+	void *aux_data_addr;
-+
-+	aux_data_dev_addr = WKUP_M3_DMEM_START + WKUP_M3_AUXDATA_OFFSET;
-+	aux_data_addr = rproc_da_to_va(m3_ipc->rproc,
-+				       aux_data_dev_addr,
-+				       WKUP_M3_AUXDATA_SIZE,
-+				       NULL);
-+	memcpy(aux_data_addr, data, sz);
-+
-+	return WKUP_M3_AUXDATA_OFFSET;
-+}
-+
-+static void wkup_m3_scale_data_fw_cb(const struct firmware *fw, void *context)
-+{
-+	unsigned long val, aux_base;
-+	struct wkup_m3_scale_data_header hdr;
-+	struct wkup_m3_ipc *m3_ipc = context;
-+	struct device *dev = m3_ipc->dev;
-+
-+	if (!fw) {
-+		dev_err(dev, "Voltage scale fw name given but file missing.\n");
-+		return;
-+	}
-+
-+	memcpy(&hdr, fw->data, sizeof(hdr));
-+
-+	if (hdr.magic != WKUP_M3_SD_FW_MAGIC) {
-+		dev_err(dev, "PM: Voltage Scale Data binary does not appear valid.\n");
-+		goto release_sd_fw;
-+	}
-+
-+	aux_base = wkup_m3_copy_aux_data(m3_ipc, fw->data + sizeof(hdr),
-+					 fw->size - sizeof(hdr));
-+
-+	val = (aux_base + hdr.sleep_offset);
-+	val |= ((aux_base + hdr.wake_offset) << 16);
-+
-+	m3_ipc->volt_scale_offsets = val;
-+
-+release_sd_fw:
-+	release_firmware(fw);
-+};
-+
-+static int wkup_m3_init_scale_data(struct wkup_m3_ipc *m3_ipc,
-+				   struct device *dev)
-+{
-+	int ret = 0;
-+
-+	/*
-+	 * If no name is provided, user has already been warned, pm will
-+	 * still work so return 0
-+	 */
-+
-+	if (!m3_ipc->sd_fw_name)
-+		return ret;
-+
-+	ret = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
-+				      m3_ipc->sd_fw_name, dev, GFP_ATOMIC,
-+				      m3_ipc, wkup_m3_scale_data_fw_cb);
-+
-+	return ret;
-+}
-+
- static void am33xx_txev_eoi(struct wkup_m3_ipc *m3_ipc)
- {
- 	writel(AM33XX_M3_TXEV_ACK,
-@@ -139,6 +221,7 @@ static irqreturn_t wkup_m3_txev_handler(int irq, void *ipc_data)
- 		}
- 
- 		m3_ipc->state = M3_STATE_INITED;
-+		wkup_m3_init_scale_data(m3_ipc, dev);
- 		complete(&m3_ipc->sync_complete);
- 		break;
- 	case M3_STATE_MSG_FOR_RESET:
-@@ -300,12 +383,15 @@ static int wkup_m3_prepare_low_power(struct wkup_m3_ipc *m3_ipc, int state)
- 	switch (state) {
- 	case WKUP_M3_DEEPSLEEP:
- 		m3_power_state = IPC_CMD_DS0;
-+		wkup_m3_ctrl_ipc_write(m3_ipc, m3_ipc->volt_scale_offsets, 5);
- 		break;
- 	case WKUP_M3_STANDBY:
- 		m3_power_state = IPC_CMD_STANDBY;
-+		wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 5);
- 		break;
- 	case WKUP_M3_IDLE:
- 		m3_power_state = IPC_CMD_IDLE;
-+		wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 5);
- 		break;
- 	default:
- 		return 1;
-@@ -319,7 +405,6 @@ static int wkup_m3_prepare_low_power(struct wkup_m3_ipc *m3_ipc, int state)
- 			       m3_ipc->isolation_conf, 4);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 2);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 3);
--	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 5);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 6);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 7);
- 
-@@ -528,6 +613,12 @@ static int wkup_m3_ipc_probe(struct platform_device *pdev)
- 	if (of_find_property(np, "ti,set-io-isolation", NULL))
- 		wkup_m3_set_io_isolation(m3_ipc);
- 
-+	ret = of_property_read_string(np, "ti,scale-data-fw",
-+				      &m3_ipc->sd_fw_name);
-+	if (ret) {
-+		dev_dbg(dev, "Voltage scaling data blob not provided from DT.\n");
-+	};
-+
- 	/*
- 	 * Wait for firmware loading completion in a thread so we
- 	 * can boot the wkup_m3 as soon as it's ready without holding
-diff --git a/include/linux/wkup_m3_ipc.h b/include/linux/wkup_m3_ipc.h
-index b706eac58f92..fef0fac60f8c 100644
---- a/include/linux/wkup_m3_ipc.h
-+++ b/include/linux/wkup_m3_ipc.h
-@@ -37,6 +37,9 @@ struct wkup_m3_ipc {
- 	int isolation_conf;
- 	int state;
- 
-+	unsigned long volt_scale_offsets;
-+	const char *sd_fw_name;
-+
- 	struct completion sync_complete;
- 	struct mbox_client mbox_client;
- 	struct mbox_chan *mbox;
-@@ -50,6 +53,12 @@ struct wkup_m3_wakeup_src {
- 	char src[10];
- };
- 
-+struct wkup_m3_scale_data_header {
-+	u16 magic;
-+	u8 sleep_offset;
-+	u8 wake_offset;
-+} __packed;
-+
- struct wkup_m3_ipc_ops {
- 	void (*set_mem_type)(struct wkup_m3_ipc *m3_ipc, int mem_type);
- 	void (*set_resume_address)(struct wkup_m3_ipc *m3_ipc, void *addr);
 -- 
-2.32.0
-
+viresh
