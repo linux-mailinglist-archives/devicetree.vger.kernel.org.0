@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007E750E574
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 18:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F8950E581
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 18:22:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241958AbiDYQXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 12:23:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48196 "EHLO
+        id S236656AbiDYQZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 12:25:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240823AbiDYQXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 12:23:08 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1E0BCB4;
-        Mon, 25 Apr 2022 09:20:03 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id u17-20020a9d4d91000000b00605a73abac1so3109988otk.7;
-        Mon, 25 Apr 2022 09:20:03 -0700 (PDT)
+        with ESMTP id S240823AbiDYQZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 12:25:27 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 671BB71A25;
+        Mon, 25 Apr 2022 09:22:22 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-e2442907a1so16580715fac.8;
+        Mon, 25 Apr 2022 09:22:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WVzx8jGuknzLZVXV871qnwo3R/8/4lIfQ3q4P7qYiP4=;
-        b=hz3u/XIB6JTpQEmxrNhUjBQ1UH3QhGdtbhUoOsJYSnNaasZhFylNBbEmBx66xykF75
-         6/gXQcvEPCXHSMlO+b26MoZZbWPhF3IVmSvzxML5bk7tSrQZJbyUwAGJUlRYnE/vqhm9
-         E37IGI0jM6GUmX1nbztivfTxfiJjYZtWaj4xCdWtqmMe0a4cS9A6pbVaGGuA6lStNGqH
-         tqRfBD+AEbLVNgc6gOYSWjd/BFU+YDbcdIjqexAUQC/dfUuSI6xuS3w01CxW0qL5DNtb
-         oYLJ//sPCg0AqtPk5DETCciXIv6BpbDqtGTI8QDZs6w3Pu4dumNs6PVxgYGFu6lRdnTS
-         AeYA==
-X-Gm-Message-State: AOAM533q5V59X/LfUCIJAP4W/xflMhkez5RKEVrVexQxWz/hG3z6JQK7
-        QkmrlvGZOdRbuOsm16+fzg==
-X-Google-Smtp-Source: ABdhPJzfXcOuEIBBEabFnazcQvEjyn7uQ1TkMJPtAn90m2mnjgsYc5JRVkPqpVeBB6E+3L5JbxBqAQ==
-X-Received: by 2002:a9d:7acf:0:b0:605:5673:758b with SMTP id m15-20020a9d7acf000000b006055673758bmr6689923otn.27.1650903602749;
-        Mon, 25 Apr 2022 09:20:02 -0700 (PDT)
+        bh=4CENEZKLdazSfBwTXd/Wd5rug0RnZCb0GE0cZM8DZsw=;
+        b=IdR/kSsBa2TuG8roUhmM4ijt85cZP2kVzQgEM4YpqdxA44Qcuo4q6IleFXGbDCzdX3
+         8d/fSRMiH6EEWD/q+31ScR5fDILWJuSWEYf/e+ZW0B1mMwUNGm6Y5Sk1XOCKy+oIzA+j
+         bIIC8a15VKLNfIA36840ch1iaoKCEuHzlwubvSwkBasoIyKCV3sOnS/d+foiwz98hnm3
+         RGYEZCjuPWmaKJMT2LUjMv6rHKTfFdIzwXnNj6y1UsY6FVnoJ+qqjZD1iGp8Gf+ZYYEY
+         HeFYa3S+VWpwA+Z/dHuqYvD9pTICCelpH/dMpD0XyBrg/ndDp8osEmnRfXt/QsZslWDd
+         l4gA==
+X-Gm-Message-State: AOAM533gqysl+HFiBhgLj0/kkCF8vHfuxJEloBMegFyNNgEJIQCV36hy
+        Cv+KwMx9vZ5AJo/Fagp1+g==
+X-Google-Smtp-Source: ABdhPJyI/nEGtLPHWlc0Symt/VRUWTe4lUKlOBu98Q75GPEnylf//TQhRgBUI583eoUOFky3f9Ezxw==
+X-Received: by 2002:a05:6870:ac06:b0:e9:cba:68cc with SMTP id kw6-20020a056870ac0600b000e90cba68ccmr5631933oab.144.1650903741623;
+        Mon, 25 Apr 2022 09:22:21 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056870d68300b000e2a0a74f9fsm3571803oap.37.2022.04.25.09.20.01
+        by smtp.gmail.com with ESMTPSA id p17-20020a4a3651000000b0035d9b838f21sm4534439ooe.10.2022.04.25.09.22.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 09:20:02 -0700 (PDT)
-Received: (nullmailer pid 3995652 invoked by uid 1000);
-        Mon, 25 Apr 2022 16:20:01 -0000
-Date:   Mon, 25 Apr 2022 11:20:01 -0500
+        Mon, 25 Apr 2022 09:22:21 -0700 (PDT)
+Received: (nullmailer pid 3999297 invoked by uid 1000);
+        Mon, 25 Apr 2022 16:22:20 -0000
+Date:   Mon, 25 Apr 2022 11:22:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: timer: samsung,exynos4210-mct: drop
- unneeded minItems
-Message-ID: <YmbKMWeBeINfv1wE@robh.at.kernel.org>
-References: <20220424150333.75172-1-krzysztof.kozlowski@linaro.org>
- <20220424150333.75172-2-krzysztof.kozlowski@linaro.org>
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Keerthy <j-keerthy@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: wkup-m3-ipc: Add ti,scale-data-fw
+ property
+Message-ID: <YmbKvN00F6vGawpE@robh.at.kernel.org>
+References: <20220425052806.484590-1-dfustini@baylibre.com>
+ <20220425052806.484590-2-dfustini@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220424150333.75172-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220425052806.484590-2-dfustini@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,13 +68,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 24 Apr 2022 17:03:32 +0200, Krzysztof Kozlowski wrote:
-> There is no need to add minItems when it is equal to maxItems.
+On Sun, Apr 24, 2022 at 10:28:05PM -0700, Drew Fustini wrote:
+> From: Dave Gerlach <d-gerlach@ti.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add documentation for ti,scale-data-fw property to enable I2C PMIC
+> voltage scaling during deep sleep. The property contains the name of a
+> binary file for the CM3 firmware to load.
+> 
+> Based on previous work by Russ Dill.
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> [dfustini: split from driver patch and convert to json-schema]
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 > ---
->  .../devicetree/bindings/timer/samsung,exynos4210-mct.yaml        | 1 -
->  1 file changed, 1 deletion(-)
+>  .../devicetree/bindings/soc/ti/wkup-m3-ipc.yaml       | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml b/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
+> index 88d690de050c..d2c248d82384 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
+> @@ -40,6 +40,12 @@ description: |+
+>    override the pin's existing bias (pull-up/pull-down) and value (high/low) when
+>    IO isolation is active.
+>  
+> +  Support for I2C PMIC Voltage Scaling
+> +  ====================================
+> +  It is possible to pass the name of a binary file to load into the CM3 memory.
+> +  The binary data is the I2C sequences for the CM3 to send out to the PMIC
+> +  during low power mode entry.
+> +
+>  properties:
+>    compatible:
+>      enum:
+> @@ -67,6 +73,11 @@ properties:
+>        mbox_wkupm3 child node.
+>      maxItems: 1
+>  
+> +  ti,scale-data-fw:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Name of the firmware binary in /lib/firmware to copy to CM3 aux data
 
-Acked-by: Rob Herring <robh@kernel.org>
+The location of firmware files is up to the OS.
+
+Is there other firmware? If not, 'firmware-name' is the somewhat 
+standard property for this.
+
+What's the default name?
+
+> +
+>    ti,vtt-gpio-pin:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: GPIO pin connected to enable pin on VTT regulator
+> -- 
+> 2.32.0
+> 
+> 
