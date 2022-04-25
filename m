@@ -2,140 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15A5750DA57
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4294550DA5E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240035AbiDYHrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 03:47:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34740 "EHLO
+        id S241415AbiDYHud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235673AbiDYHrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:47:23 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC193ED06
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:44:19 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id m20so7201648ejj.10
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:44:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JrB/10he0HIKz2yInIofsfwUiiztggNtOXcFd7ZGrD0=;
-        b=OBrFTxv635LOhGPjF3X6CPjip+yymQeU5gF8ljhVhywlkvsqwhW8zpJCHCp50x3M3q
-         3fcHDrCJGFAelmEg3FkmZ6Kpj9nDlzNL/JctxHzUIG9y4zw6n/QwpfB4yInFvh89Gt09
-         9WdbxFmC2UO5spstHKk1KhULhkZ4qbSlnwEH2G0k9GaQzLXGH+wRMKr+G0cUk4ZzdScQ
-         xn4XnDkd+vElRgO3K64rlgpLI1651EPzrr9Xi5CCUalhTRmagO0p4z+klh1/5F/teacN
-         fIzMrr/I0ds5T2pHalka9BL0k0valG+CvxKICjKZPcoz3vYTtmEipeHeAx7yvz6LFkoB
-         CWRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=JrB/10he0HIKz2yInIofsfwUiiztggNtOXcFd7ZGrD0=;
-        b=V+zs4Xk0DXyBKufjfHtPe//uF1SfSy/n8uXRH5tG252vfEJKt0nFueJHoiFFgkjhHt
-         Sva2LFYLGpk0LkO5hdZcojPdewwQzmo6jEhoc+wfysTXErFK3u6Kch6vclTjB9JNmRc2
-         hi42EhacvmfX9a3KCM9FvWBnks3Xy8w/xVux6OdgkxEnDYatAJDsfj3TtZ9JY+NmjCbg
-         N+JZPd3bm57NRsJXp5e9Vz6BfeK5CtCB5cW2IZwqPStHakHeVTE+mPc3jd9pEgakJlzf
-         UoTzIcHhbyJMuSNOunkskYVMBBAYIt/PtirPAcWy85uANWsQocdCthmhcgGJoqEdlwCo
-         tM1w==
-X-Gm-Message-State: AOAM533WQizrioYi4iYup5JtuwvNiIkRmgocSFkV2b88LevVKm3ljUo3
-        279jdDr2fK41vEOY8+bNVcYS9ipuxcN1hg==
-X-Google-Smtp-Source: ABdhPJzoR8hWi0TTFKaza0g6P3fEa1fH1Mej3RlmPEr6AHXq6uPtjaZB/MhB1Brgqh+O4Ux9WzfRUw==
-X-Received: by 2002:a17:907:6d87:b0:6f0:1e1d:dfb1 with SMTP id sb7-20020a1709076d8700b006f01e1ddfb1mr14994362ejc.678.1650872657709;
-        Mon, 25 Apr 2022 00:44:17 -0700 (PDT)
-Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b25-20020a056402139900b0041904036ab1sm4237897edv.5.2022.04.25.00.44.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 00:44:17 -0700 (PDT)
-Message-ID: <64411bc7-ce4d-9f85-be8f-c93d6b2a0360@linaro.org>
-Date:   Mon, 25 Apr 2022 09:44:15 +0200
+        with ESMTP id S240603AbiDYHuO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:50:14 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192DA11C04;
+        Mon, 25 Apr 2022 00:47:07 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9F2C260009;
+        Mon, 25 Apr 2022 07:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1650872826;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yol92uYBYu5c5ADYJPECESSMs16zXfz4k/koZ3ocm6Q=;
+        b=Yy92DEql1uyL2BDtVEAjk3oki/kgZ5bfq1+ArgerhnCsoEI4LZyM5ZFKh/Ad2IHa2GgB6l
+        6OZV0n3axgIyzwnstDvkXR/KKWFEbfq8YHWYk0b6Y+kBxXxuTq78H28itMzc2tyl/+yzI4
+        Cxreoe7wAsDSnafjnfAP7t0/AICcnhTdnwqLjG+inw8KDYmSQ9RJj27EWuktLS7s0wHGvd
+        66qUZQ27C0dXCxE5vI7quCTz7v1NhdRTTvbAW0Ak4i6+2Z87FOCVLeTtg3N7WmkvKg+oMl
+        p7Ylte63OCQ+jK1r6FvXa+lWqZhvYztfe5/K3gLW/X9DwAP+knCzMwrFon7tbg==
+Date:   Mon, 25 Apr 2022 09:47:02 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Drop empty and unreferenced binding .txt
+ files
+Message-ID: <20220425094702.5cdf4f2b@xps13>
+In-Reply-To: <20220422191958.2589318-1-robh@kernel.org>
+References: <20220422191958.2589318-1-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V3 11/17] dt-bindings: arm: mediatek: Add #reset-cells
- property for MT8192-sys-clock
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
-        <Chun-Jie.Chen@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        =?UTF-8?B?UnVueWFuZyBDaGVuICjpmYjmtqbmtIsp?= 
-        <Runyang.Chen@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
- <20220422060152.13534-12-rex-bc.chen@mediatek.com>
- <288f55f3-b3ed-32b8-9a44-652f3d53617d@linaro.org>
- <fdedea6f20738bfe2ede7e526aa653af1ac35768.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fdedea6f20738bfe2ede7e526aa653af1ac35768.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 04:37, Rex-BC Chen wrote:
->>> +  '#reset-cells':
->>> +    maximum: 2
->>
->> Why this is a maximum? Usually this is const, so how do you use it
->> (with
->> what values)?
->>
-> We need to let the driver compatible with previous setting in
-> drivers/clk/mediatek/reset.c
+Hi Rob,
 
-Then it should be enum [1, 2], because '0' is not valid.
+robh@kernel.org wrote on Fri, 22 Apr 2022 14:19:57 -0500:
 
-> There are two use cases in our reset driver:
-> (Refer to [1])
-> 
-> 1. #reset-cells = <1>
->    When we input the argument, the older driver
-> use is to calculate  
->    bank and bit by different method. From the implementation of
->    reset_xlate(), we can see if the argument number is 1, it will
->    return directly.
+> Drop a couple of old, empty .txt binding files which are no longer
+> referenced.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-I understand this is an old binding with older compatibles, so this
-should be restricted per each variant (allOf:if:then)... but wait, old
-binding did not allow any reset-cells! You add an entirely new binding
-property and already want to support some older (deprecated?) way.
+For the MTD file:
 
-> 
-> 2. #reset-cells = <2>
->    The input arguments is offset and bit. When we input two arguments,
->    we can use reset_xlate() to calculate the corresponding id to assert
->    and deassert.
-> 
-> [1]:
-> https://lore.kernel.org/all/20220422060152.13534-10-rex-bc.chen@mediatek.com/
-> 
-> If it's acceptable, I will add this in commit message.
+Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-
-Best regards,
-Krzysztof
+Thanks,
+Miqu=C3=A8l
