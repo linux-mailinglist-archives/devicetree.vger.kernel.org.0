@@ -2,153 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44C2F50DDCF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 12:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA2D550DDD6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 12:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234779AbiDYKYj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 25 Apr 2022 06:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
+        id S232020AbiDYK3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 06:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235736AbiDYKYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:24:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8EEA58E60
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 03:21:31 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nivqI-00049H-9V; Mon, 25 Apr 2022 12:21:18 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nivqH-0057yg-Ob; Mon, 25 Apr 2022 12:21:16 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nivqF-0005uW-Hw; Mon, 25 Apr 2022 12:21:15 +0200
-Message-ID: <1ec5ce3673dcdaa914e20ef2aae03f549d05ff9a.camel@pengutronix.de>
-Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Lizhi Hou <lizhi.hou@xilinx.com>,
-        Sonal Santan <sonal.santan@xilinx.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Brown <broonie@kernel.org>
-Date:   Mon, 25 Apr 2022 12:21:15 +0200
-In-Reply-To: <20220408174841.34458529@fixe.home>
-References: <20220324141237.297207-1-clement.leger@bootlin.com>
-         <Ykst0Vb4fk+iALzc@robh.at.kernel.org> <20220405092434.6e424ed4@fixe.home>
-         <YkxWeMNw9Ba0KjHM@robh.at.kernel.org> <20220405175120.23fc6b2a@fixe.home>
-         <CAL_JsqLdBcAw1KPnrATHqEngRWkx6moxDODH1xV67EKAufc6_w@mail.gmail.com>
-         <20220406094019.670a2956@fixe.home> <Yk2TVAfPVh9a1tUR@robh.at.kernel.org>
-         <20220408174841.34458529@fixe.home>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S234243AbiDYK3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 06:29:05 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C8A5DA24;
+        Mon, 25 Apr 2022 03:26:00 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 6C5E1810FC;
+        Mon, 25 Apr 2022 12:25:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1650882357;
+        bh=gXw9wbk3lFJ9g4L4B5F3yY9pXLjcZ/owkMTe5ZZCa0o=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=dgMcUi0GQt8nE0WH0AGCxbOzQ2uuSYSHeELx4TvjT+IWv+1SU9KXo9B/pdVY0lH/J
+         1+oi3EOMyMQhPRjB35uJRr2ir3prdwPQY3RKpr4lhNNlnQ7OZdpCUvucwWAFJSGvKy
+         aDz1l0nTTYM873Qck3SFEruHonUDYnwHioshjwVVL5cAgw+3G7vFXItRGK+fT8zx4F
+         5qklaoVmnu0qg5WcSJ2a1vqCxZofuxxcHkXRoCic37VlLg5/HIbdFKe+dxikxfmiLa
+         kQUBY70C8jE7IcQxuPe3Jfv+D+AQUWGxLq7pZjWlwJrVoc2xwCMt4ZxVKBpCOnwxJP
+         bawPT+pWtWsUw==
+Message-ID: <71c0dd94-8cd3-9ca0-f06d-ee13ad063618@denx.de>
+Date:   Mon, 25 Apr 2022 12:25:55 +0200
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 6/8] ARM: dts: stm32: enable optee firmware and SCMI
+ support on STM32MP15
+Content-Language: en-US
+To:     Etienne CARRIERE <etienne.carriere@st.com>,
+        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "soc@kernel.org" <soc@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
+ <20220422150952.20587-7-alexandre.torgue@foss.st.com>
+ <174bea56-3e99-e01c-4133-f1350d34448d@denx.de>
+ <PAXPR10MB4687B8C3DF485E814AE8158BFDF89@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <PAXPR10MB4687B8C3DF485E814AE8158BFDF89@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+On 4/25/22 12:19, Etienne CARRIERE wrote:
+> Hello Marek,
 
-On Fr, 2022-04-08 at 17:48 +0200, Clément Léger wrote:
-[...]
-> > > > > > I've told the Xilinx folks the same thing, but I would separate this
-> > > > > > into 2 parts. First is just h/w work in a DT based system. Second is
-> > > > > > creating a base tree an overlay can be applied to. The first part should
-> > > > > > be pretty straightforward. We already have PCI bus bindings. The only
-> > > > > > tricky part is getting address translation working from leaf device thru
-> > > > > > the PCI bus to host bus, but support for that should all be in place
-> > > > > > (given we support ISA buses off of PCI bus). The second part will
-> > > > > > require generating PCI DT nodes at runtime. That may be needed for both
-> > > > > > DT and ACPI systems as we don't always describe all the PCI hierarchy
-> > > > > > in DT.    
-> > > > > 
-> > > > > But then, if the driver generate the nodes, it will most probably
-> > > > > have to describe the nodes by hardcoding them right ?    
-> > > > 
-> > > > No, the kernel already maintains its own tree of devices. You just
-> > > > need to use that to generate the tree. That's really not much more
-> > > > than nodes with a 'reg' property encoding the device and function
-> > > > numbers.  
-> > > 
-> > > Just to clarified a point, my PCI device exposes multiple peripherals
-> > > behind one single PCI function.  
-> > 
-> > Right. I would expect your PCI device DT node to have a 'simple-bus' 
-> > child node with all those peripherals. And maybe there's other nodes 
-> > like fixed-clocks, etc.
-> > 
-> > > To be sure I understood what you are suggesting, you propose to create
-> > > a DT node from the PCI driver that has been probed dynamically
-> > > matching this same PCI device with a 'reg' property. I also think
-> > > this would requires to generate some 'pci-ranges' to remap the
-> > > downstream devices that are described in the DTBO, finally, load the
-> > > overlay to be apply under this newly created node. Is that right ?  
-> > 
-> > Right. You'll need to take the BAR address(es) for the device and stick 
-> > those into 'ranges' to translate offsets to BAR+offset.
-> 
-> Hi Rob,
-> 
-> I got something working (address translation, probing and so on) using
-> what you started. I switch to using changeset however, I'm not sure that
-> it make sense for property creation since the node has not yet been
-> added to the tree. Attaching the node with changeset however seems
-> to make sense. But I'm no expert here, so any advise is welcome.
->
-> Based on what we said, I created a PCI driver which uses a builtin
-> overlay. In order to be able to apply the overlay on the correct PCI
-> node -the one on which the card was plugged) and thus be totally plug
-> and play, the 'target-path' property is patched using direct fdt
-> function and replaced the target with the PCI device node path.
-> I don't see any other way to do that before applying the overlay since
-> of_overlay_fdt_apply() takes a fdt blob as input.
-> 
-> The driver also insert correct ranges into the PCI device in order to
-> translate the downstream node addresses to BAR addresses. It seems
-> reasonnable to assume that this depends on the driver and thus should
-> not be done by the PCI of core at all.
-> 
-> Finally, the driver probes the newly added childs using
-> of_platform_populate(). With all of that, the address translation
-> and the probing works correctly and the platform devices are created.
-> There is still a few things to fix such as the following:
-> 
-> [ 2830.324773] OF: overlay: WARNING: memory leak will occur if overlay
-> removed, property: /pci/pci@2,6/dev@0,0/compatible
-> 
-> But it seems like this is something that works and would allow to
-> support various use cases. From what I see, it should also work on
-> other platforms. Major advantage of that over fwnode is that the
-> changes are pretty small and relatively contained.
+Hi,
 
-Could you show this off somewhere?
+>> From: Marek Vasut <marex@denx.de>
+>>
+>>> On 4/22/22 17:09, Alexandre Torgue wrote:
+>>> Enable optee and SCMI clocks/reset protocols support.
+>>>
+>>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>>>
+>>> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi
+>>> b/arch/arm/boot/dts/stm32mp151.dtsi
+>>> index 7fdc324b3cf9..1b2fd3426a81 100644
+>>> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+>>> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+>>> @@ -115,6 +115,33 @@
+>>>                  status = "disabled";
+>>>          };
+>>>     
+>>> +     firmware {
+>>> +             optee: optee {
+>>> +                     compatible = "linaro,optee-tz";
+>>> +                     method = "smc";
+>>> +                     status = "disabled";
+>>> +             };
+>>
+>> Doesn't this TEE node get automatically generated and patched into DT by
+>> the TEE ? I think OpTee-OS does that.
+> 
+> OP-TEE OS does that if it gets passed the DT from early boot stage which is not always the case.
 
-From this I take that fwnode support in the reset subsystem is not of
-use to you anymore. I'll postpone taking your patches then, until they
-are needed.
+Shouldn't that be something to fix ?
 
-regards
-Philipp
+I think R-Car3 does that already.
