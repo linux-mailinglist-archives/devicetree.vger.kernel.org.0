@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C71B950DA04
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33FEF50DA05
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:25:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234884AbiDYH2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 03:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41922 "EHLO
+        id S235161AbiDYH2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:28:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiDYH2I (ORCPT
+        with ESMTP id S234533AbiDYH2I (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:28:08 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D0F659C
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:25:02 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id l7so27893234ejn.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:25:02 -0700 (PDT)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E2465AD
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:25:04 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id r13so27868850ejd.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:25:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ziux6H1iLdKChog2LcoH/mwRGV3UHnm4TrKgNzHGB+Y=;
-        b=vaz1pXFPkazi/kenwkoRvbIftDZ05/krCbT3mRB+odfhQLBN5qoxfDpGnOXfNlGrij
-         0wyGUAt73u78jM4jlOh4XjS7U1UD/O3WJIKJk5y8xxyX+GCUdhUNtSw0yx00HKeX+STd
-         FpxRlfjH2KNsca63xAJrp36KG5VrNXjAamLO/HBKNqA3MKxpLkNX9FS/jE2GTs0acY67
-         0aEuI3eoLErEs52TZH86Wk2I5i+UCLnTbB9DzAFmtgYo8znw7iV/auBrNRzYF2sORtSP
-         z48KaobadC3mxsSjcFuH6dfNeXDfd+SxxGdu6CraFM40fB9ciq9CY/mf41lN9EXRZg+p
-         KBnQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SoODso8L6sa7HFQHYsZaXkKgSxN03O5HRSF7TAtJ05I=;
+        b=AmFJus8NbOetI0QrnOux4GaQiTNEofANqLpB7A6WRugvw+OiMut0H+jUTEvwyA1mp5
+         anYXLqISWTmYpVLdwOY8UCmXf7mq3ey/Koa/LqhF+d/+x5fUTZ7LpYP1icCHSPTrIXLo
+         lKqFRc5yf05azrnqzYn23KQ1uy1SChcRflCmL6UGtZ7qQAume+Yvkm3+D/AtVaDufuUj
+         v1XsKaV4lNwI6MzK/Y0sQT0HveaNT6G3VvcEYQn4V1ZjvWNr4irj1LwCemc6FnKx/fKd
+         WbhiGR/OQwbW0pdJC8F6sOuclj/WGeFCj9nmG8cHT9xtNeJfQFAaOtoksFwu6XbBGK2G
+         xSpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ziux6H1iLdKChog2LcoH/mwRGV3UHnm4TrKgNzHGB+Y=;
-        b=br6fla2kTjkDBTbcqJvGWKWK5NIeQ2W3FqvLqnCwXOtcg1cGCiB+x57ALwU1W4+9fH
-         DDJT3t0XKQ+xAcDq6OeJ5EWHx0vVod8ZDuIXKjfoq10xKIhclVgUMr5rtHrgZ+48qXUC
-         9fKL2ZwiJMm5FwrFcCk4UK/pPi0zvaIlbXZmN9/lCZeuJWCyLvYH3CwwV6OmvkSr8r0E
-         Fs0wvQxU2ZOCw5lOntSskB4QPKoKlLgeh+tYTHlBVB+B4mVg864uq9/Q2avRheusI92F
-         NgyET2dzFfWCCTwJz5tP6Blr/T1KGS7lu2/wm66/6W8J7LOcg9OQP3n/13M2bWD/Ca1N
-         sWxQ==
-X-Gm-Message-State: AOAM531TVV+OC3l07olB9UeAK1PtVH2BzkL0A58mD4b8HzoJM/2YbXva
-        d9WBOfra04TmwKGPy6AXZ5VT5x9LR5OU7w==
-X-Google-Smtp-Source: ABdhPJzujY14uToMLyUEAG86n0bBqui6bGO2OL8eT/pm1rS8QShVq7yUKJnKWXsajeDT7fQJaEQmww==
-X-Received: by 2002:a17:907:86ab:b0:6e8:d60e:d6c3 with SMTP id qa43-20020a17090786ab00b006e8d60ed6c3mr14968501ejc.346.1650871501416;
-        Mon, 25 Apr 2022 00:25:01 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SoODso8L6sa7HFQHYsZaXkKgSxN03O5HRSF7TAtJ05I=;
+        b=6kLm9VBL/uZmFwpWZ08D5yy0EYvAtEJcF5N4/LkCU9DZPPk4X7dsSQxUQswvZtpqjg
+         8WDmBPFznonjm3To1LqkYw9fd1bBeC0lYAXZ7XSVpn5S9PIl4OlaDqkTwsc65rT7AZ6P
+         5Bn/poToeFWcs0SF5Km1jcylnK3PL49Tfk88WXh7XlKyiO3rtVg3OiF26jlVXtykULCt
+         L1malevswElsiea6hviN0xnHw4Z12CP4RFQzgJ3ouhsjgdnr9Q2sYPIOuU3aVw0bBCor
+         wcItWl+G1l5kpqIfY3TBxiAjgG6Ot6vFEfXmvZfJBd6KI31UfDx3k/Y/L1eQ3OX2iHTz
+         aoYg==
+X-Gm-Message-State: AOAM533W2saQFniN7ApGRiBunbzEtrKMkjKAGN9S2GyLF0koGQsN3jDs
+        6GjBVZNvqu81C2LBKtyuEqhnHA==
+X-Google-Smtp-Source: ABdhPJzKnpdptt08dU79kDGzwycj/X+olIfJ/74b/VfkbElhCem+dohAecEIbqRw08tw5aKsrtzVOQ==
+X-Received: by 2002:a17:907:2cc4:b0:6ef:8108:ad11 with SMTP id hg4-20020a1709072cc400b006ef8108ad11mr14851775ejc.20.1650871502729;
+        Mon, 25 Apr 2022 00:25:02 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ew15-20020a170907950f00b006f3a3d60b9csm44328ejc.63.2022.04.25.00.24.59
+        by smtp.gmail.com with ESMTPSA id ew15-20020a170907950f00b006f3a3d60b9csm44328ejc.63.2022.04.25.00.25.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 00:25:00 -0700 (PDT)
+        Mon, 25 Apr 2022 00:25:02 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -54,11 +54,14 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         ChiYuan Huang <cy_huang@richtek.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 0/2] regulator: richtek,rt4801: parse GPIOs per regulator
-Date:   Mon, 25 Apr 2022 09:24:53 +0200
-Message-Id: <20220425072455.27356-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] regulator: dt-bindings: richtek,rt4801: use existing ena_gpiod feature
+Date:   Mon, 25 Apr 2022 09:24:54 +0200
+Message-Id: <20220425072455.27356-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220425072455.27356-1-krzysztof.kozlowski@linaro.org>
+References: <20220425072455.27356-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -70,35 +73,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The binding and driver duplicated regulator core feature of controlling
+regulators with GPIOs (of_parse_cb + ena_gpiod) and created its own
+enable-gpios property with multiple GPIOs.
 
-Not tested.
+This is a less preferred way, because enable-gpios should enable only one
+element, not multiple. It also duplicates existing solution.
 
-Follow up of discussion:
-https://lore.kernel.org/all/2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org/#t
+Deprecate the original 'enable-gpios' and add per-regulator property.
 
-Changes since v2
-================
-Patch 2: Do not use core's ena_gpiod feature because of lost voltage issue
-         (ChiYuan Huang).
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../regulator/richtek,rt4801-regulator.yaml        | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-Changes since v1
-================
-Patch 1: add review tag.
-Patch 2: Check for ena_gpio_state before accessing I2C (issue pointed out by
-         ChiYuan Huang).
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (2):
-  regulator: dt-bindings: richtek,rt4801: use existing ena_gpiod feature
-  regulator: richtek,rt4801: parse GPIOs per regulator
-
- .../regulator/richtek,rt4801-regulator.yaml   | 14 +++++-
- drivers/regulator/rt4801-regulator.c          | 49 ++++++++++++++-----
- 2 files changed, 51 insertions(+), 12 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
+index 4a4dfa7d9d09..091150c4e579 100644
+--- a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
+@@ -32,8 +32,11 @@ properties:
+       If only one gpio is specified, only one gpio used to control ENP/ENM.
+       Else if both are specified, DSVP/DSVN could be controlled individually.
+       If this property not specified, treat both as always-on regulators.
++
++      Property is deprecated. Use enable-gpios in each regulator.
+     minItems: 1
+     maxItems: 2
++    deprecated: true
+ 
+ patternProperties:
+   "^DSV(P|N)$":
+@@ -42,6 +45,14 @@ patternProperties:
+     description:
+       Properties for single display bias regulator.
+ 
++    properties:
++      enable-gpios:
++        description:
++          GPIO to use to enable DSVP/DSVN regulator. One GPIO can be configured
++          for controlling both regulators.  If this property not specified for
++          any regulator, treat both as always-on regulators.
++        maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -57,19 +68,20 @@ examples:
+         rt4801@73 {
+             compatible = "richtek,rt4801";
+             reg = <0x73>;
+-            enable-gpios = <&gpio26 2 0>, <&gpio26 3 0>;
+ 
+             dsvp: DSVP {
+                 regulator-name = "rt4801,dsvp";
+                 regulator-min-microvolt = <4000000>;
+                 regulator-max-microvolt = <6000000>;
+                 regulator-boot-on;
++                enable-gpios = <&gpio26 2 0>;
+             };
+             dsvn: DSVN {
+                 regulator-name = "rt4801,dsvn";
+                 regulator-min-microvolt = <4000000>;
+                 regulator-max-microvolt = <6000000>;
+                 regulator-boot-on;
++                enable-gpios = <&gpio26 3 0>;
+             };
+ 
+         };
 -- 
 2.32.0
 
