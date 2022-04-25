@@ -2,114 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EFD650DF37
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 13:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 061CB50DF5F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 13:51:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240823AbiDYLtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 07:49:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58292 "EHLO
+        id S232664AbiDYLyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 07:54:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238987AbiDYLtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 07:49:06 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF83F289BC;
-        Mon, 25 Apr 2022 04:45:36 -0700 (PDT)
+        with ESMTP id S229779AbiDYLyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 07:54:15 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59EFD1BA;
+        Mon, 25 Apr 2022 04:51:07 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id q23so7575158wra.1;
+        Mon, 25 Apr 2022 04:51:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650887137; x=1682423137;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=Qnj3SyhLLaXfmPzPA+zkwNWdJ+d+Aa4qqr65H2FSVXA=;
-  b=EAknslpBh/kGNGG0hYa6blq1cUrJXGaOAHHRrhCc/CoC/O1MGPMcK5Ig
-   I0omAsc+ntuz41YacnHcnMxzWRr+L0JZcwqivSGA/DZmIkplIcgxT7T9H
-   8DWQ1VIz4xrjosLiq2O4vkMPI74X9XuKpvqejeVusrEDnBC4foH7fFv1f
-   U=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 25 Apr 2022 04:45:36 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2022 04:45:36 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 25 Apr 2022 04:45:35 -0700
-Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 25 Apr 2022 04:45:29 -0700
-From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <robdclark@gmail.com>, <seanpaul@chromium.org>,
-        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
-        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
-        <quic_khsieh@quicinc.com>, <bjorn.andersson@linaro.org>,
-        <sean@poorly.run>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dmitry.baryshkov@linaro.org>, <quic_vproddut@quicinc.com>,
-        <quic_aravindh@quicinc.com>, <steev@kali.org>
-Subject: [PATCH v10 4/4] drm/msm/dp: Support the eDP modes given by panel
-Date:   Mon, 25 Apr 2022 17:14:32 +0530
-Message-ID: <1650887072-16652-5-git-send-email-quic_sbillaka@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1650887072-16652-1-git-send-email-quic_sbillaka@quicinc.com>
-References: <1650887072-16652-1-git-send-email-quic_sbillaka@quicinc.com>
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=9EscMvNq76GeUom/FtzlsqDl8sdOCj3rZo00CWoiuwA=;
+        b=F7CeinsqS7wotCIbiDe0PSdED/m/nEhij5VdSZwAPlpQo/wUAA6kvkSFvCh1Sj7DoG
+         I+Y/7wtJdsRBk/txmwJv+E+Jmm+RvsNoCjLEWMfZ6zj7g4L1DW0nQMZlFOK+vH9eE3zq
+         PJP4gOEJ5i2+IuFKrf6eIJZTX0yRiYqn7rfAjkQF58tv3+sA2KEIRxqACfhrn5gXjgc2
+         k3zdEaAuqNa2jxuwV3XYiLwM97lJ50Y6uUEYvTs+v/RjlVbOxHs3ND35GqFby9PFQU9g
+         qNUJJ7URS8t+02Dh+OAf2PxXIXKq/oNOlq+B29sD6fa37eTGVJTR9pDnIw+Cl1yXMVRd
+         lbMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=9EscMvNq76GeUom/FtzlsqDl8sdOCj3rZo00CWoiuwA=;
+        b=Yd9Pj8S6jzE+SY1y1fWhMUj2rbmKMU9W9HycXt7OjtU7d5dlV5Y9DSfmN1UI3uq31t
+         fC8M0jcoxVIsZXMwSEjB+n0zoyT1YLcqGTrF7wDy4h1caU76eXZQ3M8HiHPW1f+UHen5
+         /e1vSrzkYUEcShL9vJzJwbdh4YMOk3T7Vm7evVB8mNDuUbHeXEYzGLIm6hhNhIOeeKkQ
+         yauXNZFGcvnIUZmmxAZn9Hdn3SuZ5l6lo+9ipNxPDRjCXdCzArMEmJ9TQnTkkN5BM9pd
+         A8d+BzxK7LolkUM7eUsYiqOII7sIwn2FyokX8Xz2qI560cbki+laHa4Jxt6NNWCgFOaG
+         /bng==
+X-Gm-Message-State: AOAM533e16/Dn7T2HAmX8l80WP5NxKpTcd1LVymryqeQhRWsaJOWjPIL
+        tNtNubAh7zDGoyWitGalgXw=
+X-Google-Smtp-Source: ABdhPJx5UVMEI7qk+X/GYHCw8s1oJwyJxDKu2qUGV9WU7GKqAoeY+izqW35kJFgowSEYipjDWNs+cA==
+X-Received: by 2002:a5d:4a0a:0:b0:20a:c899:cb7b with SMTP id m10-20020a5d4a0a000000b0020ac899cb7bmr13446037wrq.618.1650887465776;
+        Mon, 25 Apr 2022 04:51:05 -0700 (PDT)
+Received: from [192.168.0.43] (static-35-180-85-188.ipcom.comunitel.net. [188.85.180.35])
+        by smtp.gmail.com with ESMTPSA id p125-20020a1c2983000000b0038e5ca446bcsm11573603wmp.5.2022.04.25.04.51.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 04:51:05 -0700 (PDT)
+Message-ID: <20650a35-5392-43fa-8b70-902eea860d92@gmail.com>
+Date:   Mon, 25 Apr 2022 13:51:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v10 3/6] ARM: dts: add clock support for Airoha EN7523
+Content-Language: en-US
+To:     Felix Fietkau <nbd@nbd.name>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220314084409.84394-1-nbd@nbd.name>
+ <20220314084409.84394-4-nbd@nbd.name>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220314084409.84394-4-nbd@nbd.name>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The eDP controller does not have a reliable way keep panel
-powered on to read the sink capabilities. So, the controller
-driver cannot validate if a mode can be supported by the
-source. We will rely on the panel driver to populate only
-the supported modes for now.
 
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-Changes in v10:
-  - none 
 
-Changes in v9:
-  - none
+On 14/03/2022 09:44, Felix Fietkau wrote:
+> This driver only registers fixed rate clocks, since the clocks are fully
+> initialized by the boot loader and should not be changed later, according
+> to Airoha.
+> 
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
-Changes in v8:
-  - add the drm/msm/dp tag in the commit title
+Applied, thanks!
 
- drivers/gpu/drm/msm/dp/dp_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index fd1dddb9..637fb63 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -998,6 +998,14 @@ enum drm_mode_status dp_bridge_mode_valid(struct drm_bridge *bridge,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * The eDP controller currently does not have a reliable way of
-+	 * enabling panel power to read sink capabilities. So, we rely
-+	 * on the panel driver to populate only supported modes for now.
-+	 */
-+	if (dp->is_edp)
-+		return MODE_OK;
-+
- 	if ((dp->max_pclk_khz <= 0) ||
- 			(dp->max_pclk_khz > DP_MAX_PIXEL_CLK_KHZ) ||
- 			(mode->clock > dp->max_pclk_khz))
--- 
-2.7.4
-
+> ---
+>   arch/arm/boot/dts/en7523.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/en7523.dtsi b/arch/arm/boot/dts/en7523.dtsi
+> index 36597f587f46..2e705b87b6c1 100644
+> --- a/arch/arm/boot/dts/en7523.dtsi
+> +++ b/arch/arm/boot/dts/en7523.dtsi
+> @@ -3,6 +3,7 @@
+>   #include <dt-bindings/interrupt-controller/irq.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/clock/en7523-clk.h>
+>   
+>   / {
+>   	interrupt-parent = <&gic>;
+> @@ -83,6 +84,13 @@ L2_0: l2-cache0 {
+>   		};
+>   	};
+>   
+> +	scu: system-controller@1fa20000 {
+> +		compatible = "airoha,en7523-scu";
+> +		reg = <0x1fa20000 0x400>,
+> +		      <0x1fb00000 0x1000>;
+> +		#clock-cells = <1>;
+> +	};
+> +
+>   	gic: interrupt-controller@9000000 {
+>   		compatible = "arm,gic-v3";
+>   		interrupt-controller;
