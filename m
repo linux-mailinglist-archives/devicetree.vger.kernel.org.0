@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF1FA50E819
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C9AA50E845
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:31:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244351AbiDYS0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 14:26:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42528 "EHLO
+        id S244419AbiDYScs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 14:32:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244361AbiDYS0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:26:13 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34519112D86;
-        Mon, 25 Apr 2022 11:23:05 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id g20so19487696edw.6;
-        Mon, 25 Apr 2022 11:23:05 -0700 (PDT)
+        with ESMTP id S244280AbiDYScq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:32:46 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 830E5126340;
+        Mon, 25 Apr 2022 11:29:41 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-e67799d278so13172646fac.11;
+        Mon, 25 Apr 2022 11:29:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=skFtK8ncz5bLZC06oqy32h7OgmhSsmfTgt/itwzobJE=;
-        b=dwRQLvdu6XNrpRRZMbEGioslLD2l3FZDjYQUVE6jvecnieVuQ/DBGDTQ1mnBuAkmCX
-         ci1z0BpH9hSRLYWoLG6OxQGaJWx6Aj5OcezkTVpR/kAEWtx9OSgpvOl/iZ6B7MZb9pWz
-         EDVp1s1DbbZnAUVGS/hNccs3xUjeXOOZKPBZ4v1kkxCUB52HGNid31eyeHq1DSBKdL11
-         N38m3Frn0OJTMsp6LTxjt+yFmiHfKRaPTAKOTnzki1To8McjxmI3AvDGslKJLunuBCDY
-         09G/a7YBiNE6f/seRgVhIRKiMWKr1XLLrPpL0T31bs7WeRzUuqafnyC4Z12N7nWgZle6
-         /tAQ==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3nXayCuus+0Y6qgslSzmhxQ64gNyfx3yJnoJIyHNR1s=;
+        b=FIINtMByAR9bcyXh9qSk8x7cRJ/2lmzbYJGFnLzVKMGf1bzFO5TdXuN34WyMCslbwC
+         Yo+2532aBO9Y70fsT9wu5qqKWdrrv2SWrrdb0BqJ+C1y/YuZOQUf6MVqDFyFMuC4OmyJ
+         HkKNE9tOI/dpZseL55FW6+oLfklH8+sKXdhFagUkf500X03eijt/ohLrz1bbHXox/XGw
+         7GlAm19x+Lb2/9SlnUPBZlpkP+MA/iAniXjf7zMk044bTx4VQr8Bc6dAGEtK7afMCDkG
+         yCzyedEEihmiPh16l8SwZVJxnAfEQQIakRsFpgfQ8MMnRPbHri6Uwwnni7GOEVt8SfV0
+         A/9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=skFtK8ncz5bLZC06oqy32h7OgmhSsmfTgt/itwzobJE=;
-        b=2S9kYFK0rLBQtkKpt+FnGeIdWl+NFykSPHY27MPPtYF6fhBTf6Ztl8b3bguEXF7pEW
-         euX9POwk6eqmMy8g2LLFMMjStPkexbH+99858uovtOgkLWCjnERVaXW4PBJHOUDfKcPc
-         kaEP5OOI2IwCqkmxNY9GCZa3bsDTkqMhGcnoswJXnEK5ZyIYLbACWX00pOw/s73s96TZ
-         RiQJsOIS6YsYUOGe73tkCdm/ysvnImxTSM3L3Jz6a53NFj4y9MQwwWcjwKeyq2vPTLBE
-         XuaPPnaWHuTqMvnI9dpHXvMneVyuxc/T4zlWwi+r+md6+vMd0djsB4UoRXe7I9TF7lSM
-         fWsw==
-X-Gm-Message-State: AOAM530LF+jmFHsgHcIT5lbjnjYZc8O8WMIGgCOyMPlUk8psUZV1CfWe
-        F2xq6a6Tm+vxMJtg/RqnGSg=
-X-Google-Smtp-Source: ABdhPJxaljTXaNgBN3bYcRjbPSiSTMx4+U+v5Egsu66uRc/+ybXlZidl56pqtndCU45GhBwlMyXlrw==
-X-Received: by 2002:a05:6402:3593:b0:425:dfd4:2947 with SMTP id y19-20020a056402359300b00425dfd42947mr9098632edc.137.1650910983810;
-        Mon, 25 Apr 2022 11:23:03 -0700 (PDT)
-Received: from fedora.robimarko.hr (cpe-94-253-165-91.zg.cable.xnet.hr. [94.253.165.91])
-        by smtp.googlemail.com with ESMTPSA id h13-20020a170906590d00b006f39021e683sm1677210ejq.12.2022.04.25.11.23.02
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=3nXayCuus+0Y6qgslSzmhxQ64gNyfx3yJnoJIyHNR1s=;
+        b=rAwIXbi5n/aQI6wkPmjDdwVFSWDAP4WfsXpcaEtxMnLI84rSVlJNs8NKa3zBFrSIC9
+         dObQpjDRLf1rCgUoJCdGWcltJUrebB6QaMfsPRVV8l+M6DDAnpqHGpMGqN7wkhFG29VP
+         2rcEWEZOAAfo3mabc3n+lnfZJrt4l3TrWn4tv2dPpiAfC1Ziw9e/3WOqnoMvEJnbsecw
+         LxmYiMzY1GxZ2/H0WTdDfwGcdIcYuFrK4Z7LWGjZnuzRXMbNRC3jVUCIfFk6EYJVELZ8
+         IZdSxQSgEuOu/aVrwdop5fmCZBsQb9D5Wp1FfFtJJfoozrDIUvOCZG/z4GSAVfWwftwE
+         ai/w==
+X-Gm-Message-State: AOAM531WQmhGGFqRfMw1VQ6ZMUit2E08cd5rdm6TXWq9AQrJ/6cXmR03
+        dbov8ilf1UUf7pVRvLAattVBuu8g7fE=
+X-Google-Smtp-Source: ABdhPJz0XMNoSwdLCNXkq7XgZ5bmm+FFHPuBtSBnKyin5S+OUlxW5flluKYmtNQrG9yfIRLAa9bCHg==
+X-Received: by 2002:a05:6870:2053:b0:e9:3c2f:23d9 with SMTP id l19-20020a056870205300b000e93c2f23d9mr2889907oad.158.1650911380851;
+        Mon, 25 Apr 2022 11:29:40 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id cr15-20020a056870ebcf00b000e912a7b843sm2710470oab.6.2022.04.25.11.29.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 11:23:03 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, absahu@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 7/7] clk: qcom: ipq8074: set BRANCH_HALT_DELAY flag for UBI clocks
-Date:   Mon, 25 Apr 2022 20:22:49 +0200
-Message-Id: <20220425182249.2753690-7-robimarko@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220425182249.2753690-1-robimarko@gmail.com>
-References: <20220425182249.2753690-1-robimarko@gmail.com>
+        Mon, 25 Apr 2022 11:29:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 25 Apr 2022 11:29:38 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] hwmon: (lm75) Add Atmel AT30TS74 support
+Message-ID: <20220425182938.GA4176298@roeck-us.net>
+References: <e4c15f1c-b2a3-4371-d2de-8205d3dfe972@axentia.se>
+ <7160dc31-1429-1206-ec4b-1d8cc0652b27@axentia.se>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7160dc31-1429-1206-ec4b-1d8cc0652b27@axentia.se>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,104 +74,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, attempting to enable the UBI clocks will cause the stuck at
-off warning to be printed and clk_enable will fail.
+Peter,
 
-[   14.936694] gcc_ubi1_ahb_clk status stuck at 'off'
+On Mon, Apr 25, 2022 at 07:59:18AM +0200, Peter Rosin wrote:
+> Atmel (now Microchip) AT30TS74 is an LM75 compatible sensor. Add it.
+> 
+> Signed-off-by: Peter Rosin <peda@axentia.se>
 
-Downstream 5.4 QCA kernel has fixed this by seting the BRANCH_HALT_DELAY
-flag on UBI clocks, so lets do the same.
+This and the previous patch of the series fail to apply with
 
-Fixes: 5736294aef83 ("clk: qcom: ipq8074: add NSS clocks")
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- drivers/clk/qcom/gcc-ipq8074.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+error: patch failed: drivers/hwmon/Kconfig:1248
+error: drivers/hwmon/Kconfig: patch does not apply
+error: patch failed: drivers/hwmon/lm75.c:26
+error: drivers/hwmon/lm75.c: patch does not apply
+error: Did you hand edit your patch?
+It does not apply to blobs recorded in its index.
 
-diff --git a/drivers/clk/qcom/gcc-ipq8074.c b/drivers/clk/qcom/gcc-ipq8074.c
-index e6625b9fab35..54f292ab1f0d 100644
---- a/drivers/clk/qcom/gcc-ipq8074.c
-+++ b/drivers/clk/qcom/gcc-ipq8074.c
-@@ -3372,6 +3372,7 @@ static struct clk_branch gcc_nssnoc_ubi1_ahb_clk = {
- 
- static struct clk_branch gcc_ubi0_ahb_clk = {
- 	.halt_reg = 0x6820c,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x6820c,
- 		.enable_mask = BIT(0),
-@@ -3389,6 +3390,7 @@ static struct clk_branch gcc_ubi0_ahb_clk = {
- 
- static struct clk_branch gcc_ubi0_axi_clk = {
- 	.halt_reg = 0x68200,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68200,
- 		.enable_mask = BIT(0),
-@@ -3406,6 +3408,7 @@ static struct clk_branch gcc_ubi0_axi_clk = {
- 
- static struct clk_branch gcc_ubi0_nc_axi_clk = {
- 	.halt_reg = 0x68204,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68204,
- 		.enable_mask = BIT(0),
-@@ -3423,6 +3426,7 @@ static struct clk_branch gcc_ubi0_nc_axi_clk = {
- 
- static struct clk_branch gcc_ubi0_core_clk = {
- 	.halt_reg = 0x68210,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68210,
- 		.enable_mask = BIT(0),
-@@ -3440,6 +3444,7 @@ static struct clk_branch gcc_ubi0_core_clk = {
- 
- static struct clk_branch gcc_ubi0_mpt_clk = {
- 	.halt_reg = 0x68208,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68208,
- 		.enable_mask = BIT(0),
-@@ -3457,6 +3462,7 @@ static struct clk_branch gcc_ubi0_mpt_clk = {
- 
- static struct clk_branch gcc_ubi1_ahb_clk = {
- 	.halt_reg = 0x6822c,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x6822c,
- 		.enable_mask = BIT(0),
-@@ -3474,6 +3480,7 @@ static struct clk_branch gcc_ubi1_ahb_clk = {
- 
- static struct clk_branch gcc_ubi1_axi_clk = {
- 	.halt_reg = 0x68220,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68220,
- 		.enable_mask = BIT(0),
-@@ -3491,6 +3498,7 @@ static struct clk_branch gcc_ubi1_axi_clk = {
- 
- static struct clk_branch gcc_ubi1_nc_axi_clk = {
- 	.halt_reg = 0x68224,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68224,
- 		.enable_mask = BIT(0),
-@@ -3508,6 +3516,7 @@ static struct clk_branch gcc_ubi1_nc_axi_clk = {
- 
- static struct clk_branch gcc_ubi1_core_clk = {
- 	.halt_reg = 0x68230,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68230,
- 		.enable_mask = BIT(0),
-@@ -3525,6 +3534,7 @@ static struct clk_branch gcc_ubi1_core_clk = {
- 
- static struct clk_branch gcc_ubi1_mpt_clk = {
- 	.halt_reg = 0x68228,
-+	.halt_check = BRANCH_HALT_DELAY,
- 	.clkr = {
- 		.enable_reg = 0x68228,
- 		.enable_mask = BIT(0),
--- 
-2.35.1
+when I try to apply with "git am -s -3".
 
+This is probably because MS Exchange tries to be intelligent.
+In the first patch, it added a space at the beginning of each
+unchanged line. It looks like it did the same or something
+similar here. I tried but failed to fix it up.
+
+Please resend as clean patch.
+
+Thanks,
+Guenter
+
+> ---
+>   drivers/hwmon/Kconfig |  1 +
+>   drivers/hwmon/lm75.c  | 14 ++++++++++++++
+>   2 files changed, 15 insertions(+)
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 68a8a27ab3b7..d8dc58b2c55a 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -1248,6 +1248,7 @@ config SENSORS_LM75
+>   	  temperature sensor chip, with models including:
+>   
+>   		- Analog Devices ADT75
+> +		- Atmel (now Microchip) AT30TS74
+>   		- Dallas Semiconductor DS75, DS1775 and DS7505
+>   		- Global Mixed-mode Technology (GMT) G751
+>   		- Maxim MAX6625 and MAX6626
+> diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
+> index afdbb63237b9..66dc826f7962 100644
+> --- a/drivers/hwmon/lm75.c
+> +++ b/drivers/hwmon/lm75.c
+> @@ -26,6 +26,7 @@
+>   
+>   enum lm75_type {		/* keep sorted in alphabetical order */
+>   	adt75,
+> +	at30ts74,
+>   	ds1775,
+>   	ds75,
+>   	ds7505,
+> @@ -128,6 +129,14 @@ static const struct lm75_params device_params[] = {
+>   		.default_resolution = 12,
+>   		.default_sample_time = MSEC_PER_SEC / 10,
+>   	},
+> +	[at30ts74] = {
+> +		.set_mask = 3 << 5,	/* 12-bit mode*/
+> +		.default_resolution = 12,
+> +		.default_sample_time = 200,
+> +		.num_sample_times = 4,
+> +		.sample_times = (unsigned int []){ 25, 50, 100, 200 },
+> +		.resolutions = (u8 []) {9, 10, 11, 12 },
+> +	},
+>   	[ds1775] = {
+>   		.clr_mask = 3 << 5,
+>   		.set_mask = 2 << 5,	/* 11-bit mode */
+> @@ -645,6 +654,7 @@ static int lm75_probe(struct i2c_client *client)
+>   
+>   static const struct i2c_device_id lm75_ids[] = {
+>   	{ "adt75", adt75, },
+> +	{ "at30ts74", at30ts74, },
+>   	{ "ds1775", ds1775, },
+>   	{ "ds75", ds75, },
+>   	{ "ds7505", ds7505, },
+> @@ -680,6 +690,10 @@ static const struct of_device_id __maybe_unused lm75_of_match[] = {
+>   		.compatible = "adi,adt75",
+>   		.data = (void *)adt75
+>   	},
+> +	{
+> +		.compatible = "atmel,at30ts74",
+> +		.data = (void *)at30ts74
+> +	},
+>   	{
+>   		.compatible = "dallas,ds1775",
+>   		.data = (void *)ds1775
