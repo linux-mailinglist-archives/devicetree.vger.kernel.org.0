@@ -2,76 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E1450DFBA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 14:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D79E950E03E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 14:28:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbiDYMPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 08:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57894 "EHLO
+        id S239359AbiDYMa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 08:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbiDYMPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 08:15:20 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4FC7671;
-        Mon, 25 Apr 2022 05:12:16 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id f6so2760255wma.0;
-        Mon, 25 Apr 2022 05:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hfArQsxLDPbKG60y1rxFfA0sfKPu7Sy6y67SgmgIDrE=;
-        b=iKLWQ9RN5FcUHXptcwQFmAdmvwIU3KnwEGu5UpxeO9JXNTSe3gp+26wEWZZEn5BQIq
-         wR8QcQCsrte9lOhLzIs3d3io2ZkLfjJgnaClODcWcuaLazGmGRaIk5ZgbrxXqZskRrTx
-         TNOg54m/cAcrSJ9JkRhMVds+iwi8Op28FKGrbxTbbyd6ydOMU1oBzQS269oJY6a1AV/b
-         +NGk4n2xim63lbf1rNYH28dNDkiCkhqROanJXG9sqozfYDYuQL5nQjneoEXOofM5JNTN
-         WDLtYUYXzjwmIwH2rrQUR3fmkPcGxBtVt6R+aGVMi3brstrzrM71YbKy4aymCbLmejXH
-         prAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hfArQsxLDPbKG60y1rxFfA0sfKPu7Sy6y67SgmgIDrE=;
-        b=WoaGjX0G6D1cp049o3JovjoWyu9TiPOeHchfunRAOaVnYDeJo+crf3SUolHc/3RMLe
-         U+NGejlhWv0yaWKOJqRqUzThexcsQvB1VHWv4pCbdL3BA1/k0x+m1jsmClOU5y+L5Kz2
-         e9IvguY1ddp4DTQHrmnyzUsSZE0zQzpL0jLyjx6DvhVAR4rHxk14By4R1ftqdhIwLDWn
-         kYiGM9c3xCv57ZtcCXutHcKKO5F6vjgK2doTVaFZ9Ofqr3ZJJQuHYT7aJ6GfMuzUghY8
-         L+ygMVw4HPTXpisxvJBlbh49D1Bgn0MO0kSK6vLoxBx0BAyQQzAWYWCm7VCXUm8FKfhu
-         QK5A==
-X-Gm-Message-State: AOAM532cQJHt5gxcj6uQcqU7bXvvq94PfQ/LxmHL6Mk3mOVynp3Htodh
-        WB6ZxHD2ZATHRzO5LcKtu00=
-X-Google-Smtp-Source: ABdhPJxe6gi+jX3wdAk0cAwQiWsNQPehHNbGOPia8YoJj3YwqOp+9rGFjzm4NWMcpiS5q9Eb6YAqTw==
-X-Received: by 2002:a05:600c:1e1f:b0:38e:c3eb:2d9 with SMTP id ay31-20020a05600c1e1f00b0038ec3eb02d9mr16898851wmb.90.1650888734942;
-        Mon, 25 Apr 2022 05:12:14 -0700 (PDT)
-Received: from [192.168.0.43] (static-35-180-85-188.ipcom.comunitel.net. [188.85.180.35])
-        by smtp.gmail.com with ESMTPSA id l14-20020a05600c1d0e00b00393ed37f63bsm2017780wms.26.2022.04.25.05.12.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 05:12:14 -0700 (PDT)
-Message-ID: <562f65b6-033b-9dc5-10e5-b665b7b83267@gmail.com>
-Date:   Mon, 25 Apr 2022 14:12:13 +0200
+        with ESMTP id S242139AbiDYMaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 08:30:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B0E1B7EE;
+        Mon, 25 Apr 2022 05:25:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 12115B81607;
+        Mon, 25 Apr 2022 12:25:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CF4DC385A4;
+        Mon, 25 Apr 2022 12:25:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650889507;
+        bh=6GrE4NWT57K7czTKp7ru4wzIZWD6o9ArIieCTvXxaTE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gz1V7yk8c6K7MiFjBSSxV6qtIy6DDMy+HAPCGj9Ixxl8JOX44rM2EQF8KscugLMyJ
+         BD2rViz7o/zR649dKviwIwUSg1U+hg84qvs0L4abD3hHR+AFZtZzipCD1+oKeIRTdi
+         h6L8q97SxDCW0Hj7Jrpj0CswJcXt+9DBtQ0mtDZllWjmgrsH669j5+GzW8F6Q4q7N4
+         nyeHoDGjle1jNO3OLOTdHYEym9AWzvJy/Ohsi6Hw8mB/0aTRmGaRT9LPK3ZJJrI3Mx
+         6dDyVYCUd+gC8tggiYxlH4q3GkRg42btwhdC3j524PNnSUv8aftrrZjDZKsIsim8Hv
+         zIw/NsAm+2mVQ==
+Date:   Mon, 25 Apr 2022 13:25:01 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
+Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [RFC PATCH 3/5] HACK: ASoC: Tolerate N-cpus-to-M-codecs links
+Message-ID: <YmaTHTKWAfM7FCcY@sirena.org.uk>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <20220331000449.41062-4-povik+lin@cutebit.org>
+ <YkrkbBNYULLgeS5w@sirena.org.uk>
+ <904EB8A1-5561-4555-8030-B85703E24F2E@cutebit.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] arm64: dts: mediatek: pumpkin: Remove input-name property
-Content-Language: en-US
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Dang Huynh <danct12@riseup.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220425064850.246228-1-danct12@riseup.net>
- <87tuah7cwg.fsf@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <87tuah7cwg.fsf@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="b1F3yj0YVHTi5nws"
+Content-Disposition: inline
+In-Reply-To: <904EB8A1-5561-4555-8030-B85703E24F2E@cutebit.org>
+X-Cookie: An apple a day makes 365 apples a year.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,47 +66,59 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--b1F3yj0YVHTi5nws
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 25/04/2022 11:03, Mattijs Korpershoek wrote:
-> On lun., avril 25, 2022 at 13:48, Dang Huynh <danct12@riseup.net> wrote:
-> 
->> This property doesn't seem to exist in the documentation nor
->> in source code, but for some reason it is defined in a bunch
->> of device trees.
->>
->> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> 
-> Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-> 
+On Fri, Apr 22, 2022 at 04:06:06PM +0200, Martin Povi=C5=A1er wrote:
+> > On 4. 4. 2022, at 14:28, Mark Brown <broonie@kernel.org> wrote:
 
-Applied, thanks!
+> > We need to figure out an interface for describing which CODEC/CPU
+> > combinations are connected to each other.  I'm not seeing a great way to
+> > do that right now, probably some side data table is going to be needed,
+> > or perhaps the CPU DAI drivers can be persuaded to only have one DAI
+> > actually register and claim to support more channels?  I'm not sure how
+> > a configuraiton like this is going to work at userspace level if the
+> > multiple CPU DAIs end up being visible...
 
->> ---
->> This patch is a split of this treewide patch [1] to ease the
->> maintainers.
->>
->> [1]: https://patchwork.kernel.org/patch/12633497/
->>
->>   arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
->> index fcddec14738d..7a717f926929 100644
->> --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
->> @@ -25,7 +25,6 @@ optee: optee@4fd00000 {
->>   
->>   	gpio-keys {
->>   		compatible = "gpio-keys";
->> -		input-name = "gpio-keys";
->>   		pinctrl-names = "default";
->>   		pinctrl-0 = <&gpio_keys_default>;
->>   
->> -- 
->> 2.36.0
->>
->>
->> _______________________________________________
->> Linux-mediatek mailing list
->> Linux-mediatek@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> To understand the issue better: How could the multiple CPU DAIs be
+> visible from userspace?
+
+If you register two separate DAIs (well, links) with the API without
+doing anything else the API will just expose them to userspace as two
+separate things with no indication that they're related.
+
+> What about this interim solution: In case of N-to-M links we put in
+> the most restrictive condition for checking capture/playback stream
+> validity: we check all of the CPU DAIs. Whatever ends up being the
+> proper solution later can only be less restrictive than this.
+
+That's not the issue here? =20
+
+> As a reminder what happens on the Macs: the platform driver drives
+> all the CPU-side I2S ports that belong to the link with the same data,
+> so the particular CPU/CODEC wiring doesn=E2=80=99t matter.
+
+Oh, that's not something I was aware of.  In that case this is the wrong
+API - you should be using DPCM to map one front end onto multiple back
+ends (Kirkwood does something similar IIRC, there will be other examples
+but that's probably the simplest).  The back ends probably don't really
+need to know that they're on the same physical bus (if indeed they are).
+
+--b1F3yj0YVHTi5nws
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJmkx0ACgkQJNaLcl1U
+h9AXZQf/TTU2DnW1ZuWYtCiYoQytNm53DGhJatv03n1CX5CEQnTpF2SqtDQXWV7P
+FFaj07c+6IYGLOqLmA6TrABjGUoF5YgAmHBesHfS7uLK1pT/dz3c2wB8Dz3agqh5
+qSh562UKa7k6eXV17jANpgVJSBoWf/XjQTc031lOcsV1SPT6Z+if6WTBuXu+JGRt
+IBk9JY4WLK+c2eQUXKeaV2sPISK9CQObtHXr8CVBlgYuUIGnNTUarF19Vdoyq+2y
+QUsZDshFnfBtx/ArsyDMfgX9wO84Ids6rjPSe4pQ0WdRp+TsUiUk1useAx87UMd1
+JkINblZc68f3bqMDmN1HJoVYVFHa1g==
+=9iG+
+-----END PGP SIGNATURE-----
+
+--b1F3yj0YVHTi5nws--
