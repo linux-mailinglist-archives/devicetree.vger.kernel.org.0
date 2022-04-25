@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC6C650E972
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF2A550E988
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244924AbiDYT2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 15:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
+        id S244958AbiDYTgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 15:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbiDYT2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:28:53 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32CA3A734;
-        Mon, 25 Apr 2022 12:25:47 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id 7FA761F433C4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1650914745;
-        bh=4H8Tfxb/3HJv6jwhxuDK6+J5KJ7dxxiuti0TYw1hEQU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ooUjr6rItVPGVXDDyvwTK/dgopIHGw+ney8faEy327qHUHQOjUtf/k+cRyuRjv+1D
-         skhxbu4RRsQbOFTBKHELhnBnMCJDIs1tGifySGd1UsT9eusiUJTNlSkw2RSt+JaRXP
-         UUA6hxeYFqy4d/N5tKF9O3erEPcdJlgD0VUazz1PDdlgxX7tNcowj6IdXqKsjSbVdv
-         JwBFP2rNCNnGmZ2vztvcyH73H3siH3HQj34R34QaSOXXuVWCZuLRoYT55rDit0nB8X
-         JtU53YwJbqauSVR2/9LC+8isohL2n5hw/vlsrGw0PlPKCgsJWBIBNW9VvoqN5OpBNF
-         YsY830QxEVvCg==
-Message-ID: <5ddaf113-c8f6-7c9c-5bf6-27f2f7855d24@collabora.com>
-Date:   Mon, 25 Apr 2022 22:25:40 +0300
+        with ESMTP id S242465AbiDYTgA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:36:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB5F11114B;
+        Mon, 25 Apr 2022 12:32:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 64A68B81A2B;
+        Mon, 25 Apr 2022 19:32:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06828C385A4;
+        Mon, 25 Apr 2022 19:32:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650915173;
+        bh=+Ldmjo2nOkdw5AcH6ZzgLglBh0fhTCqRCzAYPRBrJ2k=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=dn8bgOUj9DkwKFWUn6Rk8A0RTJrf8u4iAM9vb9E4FSVQEb57hveL2yyjljPehhFHP
+         pGdEZ9pEvyE23cnIrKcY5PxUmkoRdoRZvYMZBhrawVkDL8i0T32y1YinycXywWddh8
+         g47bGhux2twSn7n4+lk864+gxJiOizDVPU7fu+o8VtvC3XWwGViGJTsmgp26eWqOPi
+         AFgXl9hZP6Rg/nXCQx3G0A6UMVOMyqW66BceiGY3Aofm3Yj8lyYI72sKzfhrUwef8L
+         49kvuox9ef5ytd1V8d6ngt0pudXu1qbGFSm5c4DoKkmRIZzWgw/M62VF9BGtmSoPEB
+         oxExbf8gd61WA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [Patch v8 1/4] memory: tegra: Add memory controller channels
- support
-Content-Language: en-US
-To:     Ashish Mhetre <amhetre@nvidia.com>, krzysztof.kozlowski@linaro.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, digetx@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220425075036.30098-1-amhetre@nvidia.com>
- <20220425075036.30098-2-amhetre@nvidia.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220425075036.30098-2-amhetre@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220425133527.3723233-1-robh@kernel.org>
+References: <20220425133527.3723233-1-robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible string
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>, Taniya Das <tdas@codeaurora.org>
+Date:   Mon, 25 Apr 2022 12:32:51 -0700
+User-Agent: alot/0.10
+Message-Id: <20220425193253.06828C385A4@smtp.kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/25/22 10:50, Ashish Mhetre wrote:
-> +static int tegra186_mc_map_regs(struct tegra_mc *mc)
-> +{
-> +	struct platform_device *pdev = to_platform_device(mc->dev);
-> +	int i;
-> +
-> +	mc->bcast_ch_regs = devm_platform_ioremap_resource_byname(pdev, "broadcast");
-> +	if (IS_ERR(mc->bcast_ch_regs)) {
-> +		if (PTR_ERR(mc->bcast_ch_regs) == -EINVAL) {
-> +			dev_warn(&pdev->dev, "Broadcast channel is missing, please update your device-tree\n");
-> +			mc->bcast_ch_regs = NULL;
-> +			return 0;
-> +		}
-> +		return PTR_ERR(mc->bcast_ch_regs);
-> +	}
-> +
-> +	mc->ch_regs = devm_kcalloc(mc->dev, mc->soc->num_channels,
-> +				   sizeof(void __iomem *), GFP_KERNEL);
+Quoting Rob Herring (2022-04-25 06:35:27)
+> The compatible string should be 'qcom,gcc-apq8064', not
+> 'qcom,gcc-apq8084'. Found by enabling undocumented compatible checks.
+>=20
+> Cc: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yam=
+l b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> index 97936411b6b4..9910a3e033bb 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> @@ -25,7 +25,7 @@ description: |
+> =20
+>  properties:
+>    compatible:
+> -    const: qcom,gcc-apq8084
+> +    const: qcom,gcc-apq8064
 
-You should use sizeof(*mc->ch_regs) in general to prevent mistakes.
-
-> +	if (!mc->ch_regs)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < mc->soc->num_channels; i++) {
-> +		char name[5];
-> +
-> +		snprintf(name, sizeof(name), "ch%u", i);
-
-The type of "i" variable is int, change it to unsigned int.
-
-With that:
-
-Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+This file has dt-bindings/clock/qcom,gcc-apq8084.h referenced. Should
+that be removed? It looks like commit a469bf89a009 ("dt-bindings: clock:
+simplify qcom,gcc-apq8064 Documentation") took the more than just the
+compatible for apq8084 from qcom,gcc-other.yaml and put it in here while
+removing gcc-apq8064. Probably the apq8084 part needs to be a copy of
+the apq8064 file with the single compatible changed.
