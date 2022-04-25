@@ -2,99 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FDEA50E276
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 15:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83A2650E28F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 16:02:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236332AbiDYN6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 09:58:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59204 "EHLO
+        id S231881AbiDYOFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 10:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235351AbiDYN6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 09:58:42 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2EB2018A;
-        Mon, 25 Apr 2022 06:55:35 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1650894932; bh=Mp3nuT0PzmWhzqqEzvPIZpiHN6vPDTUyd5pO9HIeeQE=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=ZhKh5Zpv/e7gcY9lFUXrmj4qBfrN5wGHNLlS0qLvcK7ucxitGfOZj2+edVgt61Qkv
-         QtJC2BWkOb6nJy2iL8Bg5jwW1Nx9Xvawuw8/NMFuVNbeSuANWERn39FQoX1v4xTRTv
-         PQGWAj7ofOlRGmNiePsij2NrYN+2qIs5TGD91Vgg=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [RFC PATCH 3/5] HACK: ASoC: Tolerate N-cpus-to-M-codecs links
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <YmamSZKNtNai7KyM@sirena.org.uk>
-Date:   Mon, 25 Apr 2022 15:55:32 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <5C42BB2F-EED6-4F6E-A29E-B43768760244@cutebit.org>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-4-povik+lin@cutebit.org>
- <YkrkbBNYULLgeS5w@sirena.org.uk>
- <904EB8A1-5561-4555-8030-B85703E24F2E@cutebit.org>
- <YmaTHTKWAfM7FCcY@sirena.org.uk>
- <9F8BCBA8-5EE3-4F87-9518-91CB7AB4E077@cutebit.org>
- <YmaaPa8A03rWV7HE@sirena.org.uk>
- <4CF6B0A7-F218-4798-BB21-18D563309D5C@cutebit.org>
- <YmamSZKNtNai7KyM@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230398AbiDYOFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 10:05:31 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E447C8BF21;
+        Mon, 25 Apr 2022 07:02:25 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 146A022246;
+        Mon, 25 Apr 2022 16:02:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650895343;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=jp57dIVExTBYOFH5u8qjTvs5w4CxGPSFpn5RQoFRCE4=;
+        b=EqpkE5HtM8/VXMFbhvVPoirUhwzWMTMJAT1wrhnc+6NoVMyPk5q1oco/cfXkezkRWYofRy
+        J7/TGBZna99K2MQqUFAasg+ZN9STod4oo4gGfA/aQktce/B1nosGgGw0h/SyrLXJj0ZnaA
+        8cnWQHai0YuG9B2H4GaUPUljfIYxTQQ=
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: interrupt-controller: fsl,ls-extirq: convert to YAML
+Date:   Mon, 25 Apr 2022 16:02:13 +0200
+Message-Id: <20220425140214.32448-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the fsl,ls-extirq binding to the new YAML format.
 
-> On 25. 4. 2022, at 15:46, Mark Brown <broonie@kernel.org> wrote:
->=20
-> On Mon, Apr 25, 2022 at 03:11:14PM +0200, Martin Povi=C5=A1er wrote:
->>> On 25. 4. 2022, at 14:55, Mark Brown <broonie@kernel.org> wrote:
->=20
->>> I am surprised that doesn't otherwise explode TBH - at the very =
-least
->>> I'd expect it to show two PCMs to userspace which if I'm =
-understanding
->>> your description correctly isn't really what's going on.
->=20
->> I fill in a single snd_soc_dai_link, it exposes a single PCM and =
-works
->> like a charm. That is as long as I patch the playback/capture check =
-in
->> question.
->=20
->> I read that to be the clear intention of ASoC code: a DAI link =
-becomes
->> one snd_soc_pcm_runtime.
->=20
-> Yes, so long as you boil it down to a single link it works fine but =
-the
-> bit on top of the binding where you tie the two CPU DAIs to what is
-> actually exposed is all in code.  The reason this stuff isn't filled =
-in
-> is that connecting the thing that applications see to the physical =
-links
-> isn't at all obvious and needs at least some driver sitting in the
-> middle to make the links - I'd imagine there's a DSP sitting there =
-which
-> probably has quite a bit of flexability about how the various hardware
-> components available are actually related.  This makes figuring out =
-what
-> to do with the relationship between the multiple CPU DAIs hard.
+In contrast to the original binding documentation, there are three
+compatibles which are used in their corresponding device trees which
+have a specific compatible and the (already documented) fallback
+compatible:
+ - "fsl,ls1046a-extirq", "fsl,ls1043a-extirq"
+ - "fsl,ls2080a-extirq", "fsl,ls1088a-extirq"
+ - "fsl,lx2160a-extirq", "fsl,ls1088a-extirq"
 
-I get the gist. Anyway unless you tell me otherwise I will assume I need
-to move to DPCM with the platform/machine driver.
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+changes since v1:
+ - new patch, because it's reference in patch 2/2
+
+ .../interrupt-controller/fsl,ls-extirq.txt    | 53 -----------
+ .../interrupt-controller/fsl,ls-extirq.yaml   | 88 +++++++++++++++++++
+ 2 files changed, 88 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+deleted file mode 100644
+index 4d47df1a5c91..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Freescale Layerscape external IRQs
+-
+-Some Layerscape SOCs (LS1021A, LS1043A, LS1046A
+-LS1088A, LS208xA, LX216xA) support inverting
+-the polarity of certain external interrupt lines.
+-
+-The device node must be a child of the node representing the
+-Supplemental Configuration Unit (SCFG).
+-
+-Required properties:
+-- compatible: should be "fsl,<soc-name>-extirq", e.g. "fsl,ls1021a-extirq".
+-  "fsl,ls1043a-extirq": for LS1043A, LS1046A.
+-  "fsl,ls1088a-extirq": for LS1088A, LS208xA, LX216xA.
+-- #interrupt-cells: Must be 2. The first element is the index of the
+-  external interrupt line. The second element is the trigger type.
+-- #address-cells: Must be 0.
+-- interrupt-controller: Identifies the node as an interrupt controller
+-- reg: Specifies the Interrupt Polarity Control Register (INTPCR) in
+-  the SCFG or the External Interrupt Control Register (IRQCR) in
+-  the ISC.
+-- interrupt-map: Specifies the mapping from external interrupts to GIC
+-  interrupts.
+-- interrupt-map-mask: Must be <0xffffffff 0>.
+-
+-Example:
+-	scfg: scfg@1570000 {
+-		compatible = "fsl,ls1021a-scfg", "syscon";
+-		reg = <0x0 0x1570000 0x0 0x10000>;
+-		big-endian;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges = <0x0 0x0 0x1570000 0x10000>;
+-
+-		extirq: interrupt-controller@1ac {
+-			compatible = "fsl,ls1021a-extirq";
+-			#interrupt-cells = <2>;
+-			#address-cells = <0>;
+-			interrupt-controller;
+-			reg = <0x1ac 4>;
+-			interrupt-map =
+-				<0 0 &gic GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
+-				<1 0 &gic GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
+-				<2 0 &gic GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
+-				<3 0 &gic GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+-				<4 0 &gic GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+-				<5 0 &gic GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-map-mask = <0xffffffff 0x0>;
+-		};
+-	};
+-
+-
+-	interrupts-extended = <&gic GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+-			      <&extirq 1 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+new file mode 100644
+index 000000000000..39d120ad7549
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+@@ -0,0 +1,88 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/fsl,ls-extirq.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale Layerscape External Interrupt Controller
++
++maintainers:
++  - Shawn Guo <shawnguo@kernel.org>
++  - Li Yang <leoyang.li@nxp.com>
++
++description: |
++  Some Layerscape SOCs (LS1021A, LS1043A, LS1046A LS1088A, LS208xA,
++  LX216xA) support inverting the polarity of certain external interrupt
++  lines.
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,ls1021a-extirq
++          - fsl,ls1043a-extirq
++          - fsl,ls1088a-extirq
++      - items:
++          - enum:
++              - fsl,ls1046a-extirq
++          - const: fsl,ls1043a-extirq
++      - items:
++          - enum:
++              - fsl,ls2080a-extirq
++              - fsl,lx2160a-extirq
++          - const: fsl,ls1088a-extirq
++
++  '#interrupt-cells':
++    const: 2
++
++  '#address-cells':
++    const: 0
++
++  interrupt-controller: true
++
++  reg:
++    maxItems: 1
++    description:
++      Specifies the Interrupt Polarity Control Register (INTPCR) in the
++      SCFG or the External Interrupt Control Register (IRQCR) in the ISC.
++
++  interrupt-map:
++    description: Specifies the mapping from external interrupts to GIC interrupts.
++
++  interrupt-map-mask:
++    items:
++      - const: 0xffffffff
++      - const: 0
++
++required:
++  - compatible
++  - '#interrupt-cells'
++  - '#address-cells'
++  - interrupt-controller
++  - reg
++  - interrupt-map
++  - interrupt-map-mask
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    interrupt-controller@1ac {
++            compatible = "fsl,ls1021a-extirq";
++            #interrupt-cells = <2>;
++            #address-cells = <0>;
++            interrupt-controller;
++            reg = <0x1ac 4>;
++            interrupt-map =
++                    <0 0 &gic GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
++                    <1 0 &gic GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
++                    <2 0 &gic GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
++                    <3 0 &gic GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
++                    <4 0 &gic GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
++                    <5 0 &gic GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-map-mask = <0xffffffff 0x0>;
++    };
+-- 
+2.30.2
 
