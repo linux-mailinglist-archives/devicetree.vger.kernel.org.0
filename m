@@ -2,96 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B3350E921
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D52250E939
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 21:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244845AbiDYTHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 15:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36548 "EHLO
+        id S240254AbiDYTO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 15:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244700AbiDYTHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:07:47 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2C612C6A1
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 12:04:42 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id a1so13955623edt.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 12:04:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dkJK/bIXn+MjYWm2XRzMDddvE/wybEFyuqEkS+yBujQ=;
-        b=w2hlctq3j0qr6JmyRLhuyLCwiyKXnEGlMGtrwDINRO5qUUg7AP3r/DE+QY8iz+289K
-         9UnbpwX6BVc3ryyYMIK9dlsTjGrfHX0OnuJfe3w2Dwxk+MZLH3YlomnC76yxuiHIT82n
-         7cNw7m1Jc0osEfCPcsjUYmsqv9OZ5dtkoA3Fk8aUyJHf2sw30WeBRVJR/ADQ+wSu65py
-         TqR0/yydhPPvNuoxOYJSOXwD1irZR4r7s8SrysTYxthYTxi9zs9N4eh4SUszu2aGGSgm
-         AW7mneB8qxrK92xEO4RpB/svfdOF7ag8G/dsMF9Qh8z4+0YVfv7WgquuTplHgCM/Hyq1
-         kJmw==
+        with ESMTP id S244893AbiDYTOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 15:14:21 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6016E2F3BA;
+        Mon, 25 Apr 2022 12:11:15 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id s21-20020a0568301e1500b006054da8e72dso11470331otr.1;
+        Mon, 25 Apr 2022 12:11:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dkJK/bIXn+MjYWm2XRzMDddvE/wybEFyuqEkS+yBujQ=;
-        b=kF5Hh3pzjHSbnwqRteEUJfBytko1dm5yxhx2yMB6yygXpNzEYANZuMEiB/l82hT4/y
-         eIIdZ0wg+mfGFzx/TqnOrSAPmHY+ys8pGtfU3FcyJiUKD1xN1wMsDkWpWuck0Ih7FTtY
-         0hTfntXkhGVEuLQftmyv+vJ07JEBLvCWrjgCVPR/ki+hLIeCqQnfEfH1qF9hjLperzpG
-         +kHY8U4R7mDHEmhdnKL2SmBhGUh1p/4YRy5PIXrUGxO+1QkAUz5FEFlndGglFRkIrRwH
-         yHQJOxAbj8zCy0dy/z5oax7aksKaSurnS2TZhrAP+fWcaErZEu+pncpilvyVeEhc6I8q
-         iLNQ==
-X-Gm-Message-State: AOAM531jK8hHdzPe9EO6WJAM8PXvxMICINm8qIDeQV4TpYRqxq0Ok4Ye
-        tJDjMbVUlYYlZtyalHjzZcC4+Q==
-X-Google-Smtp-Source: ABdhPJx9ZZG4M6AYqL/6gLcP9gmx1DMtXiCtvOZldKX8Fm4IY4JLn4h8Lxwf+bdbC7O3xNQVDZZitA==
-X-Received: by 2002:a50:9f06:0:b0:425:c1ba:5037 with SMTP id b6-20020a509f06000000b00425c1ba5037mr17765566edf.285.1650913478943;
-        Mon, 25 Apr 2022 12:04:38 -0700 (PDT)
-Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z14-20020a170906944e00b006f38c33b6e3sm1894061ejx.68.2022.04.25.12.04.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 12:04:37 -0700 (PDT)
-Message-ID: <377a84e8-504f-7716-937a-4c97d8a04a2a@linaro.org>
-Date:   Mon, 25 Apr 2022 21:04:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/3] clk: qcom: gcc-msm8976: Set floor ops for SDCC
-Content-Language: en-US
-To:     Adam Skladowski <a39.skl@gmail.com>, phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KfvsdaNrqzE1BZExO2gpU9gM5Zw3mrEmzjGsDm/IN7Y=;
+        b=zz5caVfHghNswkFwZTDIF9TLg4iqUZDC266wt2z+Pnkn4OLLPEK8fChgsfPgRNAyaz
+         g+GtzOwR+e4vB0Va0sSHi6zeozHckSNs1SnzWHCLSELVXh4Bd5nPsKiDWzinavrlxo9c
+         RM3zjKxldq1C0WjZYtx2kFF4O5w8RU4ceAmdoRCoKZhaTQjB+Onqsy+/Aa1JkqnwkQ7e
+         RfqywunEM8laY5yx5jm3GMj8DwoeaLb1KkTcSM5GCcV/csjw6qrWSC6FvLIqWkW0gXoE
+         V9I8JjrLbNxUuSnjfzboPhvq+YJYz3aE+MWnDUFuERYPOS08uPjaAVAxNgwaVHceDttl
+         0amA==
+X-Gm-Message-State: AOAM531mphJOpbOAxlUaSuewTSG1PUV+2G4/SVoFop1ABau+4ifqTCCe
+        pPXoYRgAf/7vAYiOpYln7oJ+gotNCg==
+X-Google-Smtp-Source: ABdhPJw9uxpUO9LKnG040QuMwHyOzS4tHc0WimyBmaTy2/e4n1V3ST1BXyUY9YaMQrHV8DrvaiVaAQ==
+X-Received: by 2002:a05:6830:18f:b0:605:433b:c568 with SMTP id q15-20020a056830018f00b00605433bc568mr6954877ota.46.1650913874611;
+        Mon, 25 Apr 2022 12:11:14 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e26-20020a056820061a00b0035e46250f56sm4020495oow.13.2022.04.25.12.11.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Apr 2022 12:11:14 -0700 (PDT)
+Received: (nullmailer pid 83469 invoked by uid 1000);
+        Mon, 25 Apr 2022 19:11:13 -0000
+Date:   Mon, 25 Apr 2022 14:11:13 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>, arnd@arndb.de,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, soc@kernel.org,
         Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220425185140.15154-1-a39.skl@gmail.com>
- <20220425185140.15154-2-a39.skl@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220425185140.15154-2-a39.skl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>, etienne.carriere@st.com
+Subject: Re: [PATCH 2/8] dt-bindings: clock: stm32mp1: describes clocks if
+ "st,stm32mp1-rcc-secure"
+Message-ID: <YmbyUc5uTXoTD/nt@robh.at.kernel.org>
+References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
+ <20220422150952.20587-3-alexandre.torgue@foss.st.com>
+ <dd48a7b5-ce08-5fb2-8236-8802ac91d827@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dd48a7b5-ce08-5fb2-8236-8802ac91d827@denx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for your patch. There is something to discuss/improve.
+On Fri, Apr 22, 2022 at 06:31:25PM +0200, Marek Vasut wrote:
+> On 4/22/22 17:09, Alexandre Torgue wrote:
+> > In case of "st,stm32mp1-rcc-secure" (stm32mp1 clock driver with RCC
+> > security support hardened), "clocks" and "clock-names" describe oscillators
+> > and are required.
+> > 
+> > Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+> > index 7a251264582d..bb0e0b92e907 100644
+> > --- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+> > @@ -58,14 +58,8 @@ properties:
+> >             - st,stm32mp1-rcc-secure
+> >             - st,stm32mp1-rcc
+> >         - const: syscon
+> > -
+> > -  clocks:
+> > -    description:
+> > -      Specifies the external RX clock for ethernet MAC.
+> > -    maxItems: 1
+> > -
+> > -  clock-names:
+> > -    const: ETH_RX_CLK/ETH_REF_CLK
+> > +  clocks: true
+> > +  clock-names: true
+> 
+> It looks like this should rather be a property than a compatible string --
+> the compatible string is used by the OS to determine which hardware is
+> represented by a node, but here it is the same hardware in either case,
+> "st,stm32mp1-rcc" and "st,stm32mp1-rcc-secure", it is still the same
+> STM32MP1 RCC block, just configured differently by some bootloader stage.
+> 
+> So why not just add one-liner property of the RCC block like ?
+> st,rcc-in-secure-configuration
 
-On 25/04/2022 20:51, Adam Skladowski wrote:
-> Just like in case of other SoCs change SDCC1/SDCC2 ops to floor to avoid overclocking controller.
-> This commit only sets SDCC1/SDCC2 which are used for EMMC/SDCARD.
-> It leaves SDCC3 because on this platform it's mostly used for WIFI/BT chips like on Sony Loire family devices.
+Because using compatible was already decided.
 
-You need to wrap your commit msg.
-
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-
-
-Best regards,
-Krzysztof
+Rob
