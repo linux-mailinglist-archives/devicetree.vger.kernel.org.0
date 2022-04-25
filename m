@@ -2,205 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5355850E44B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 17:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF9850E45E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 17:27:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236853AbiDYP0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 11:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
+        id S242801AbiDYPam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 11:30:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233952AbiDYP0J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 11:26:09 -0400
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5B3E1245;
-        Mon, 25 Apr 2022 08:23:04 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 88251DF69E;
-        Mon, 25 Apr 2022 08:22:34 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id ykxmL21nwvSi; Mon, 25 Apr 2022 08:22:33 -0700 (PDT)
-Message-ID: <d6c5c5663f8ae904d409240063295cf516e17dd1.camel@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
-        t=1650900153; bh=PoAhs4rC8s2VNE3r6xYLUglE7+vVgjEdcfrBZL7HIYw=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=TwWQx10+OrU5+LF4ic3BCkWUrj/bBD5KMY098Yi8iUApqrklehSe05vVv8EPRVqUb
-         RWUi3fVqmTLK9uO7dolTzkIjwbG6BY4TCw7U0y/nzutY6qdNqZ+LK+qS5xZnCEkJEL
-         AefHq+1F6sbK5QHuHFKO3j4SgtDT2hD6HNDFjIwUmdL29WqGUcKVF3OQtCIYWBxmKT
-         +q4h9vT0Eay/TRIzdS6xvcFgzoN3UNppXHLBC/YZnD7gH0dxOsXVS6bPM/L1UMG6Jx
-         yZonZuU3caMCSVPm+4QLnTH7SpYampk4ZgzpjFalBtPyZiB5K9+LtRJfKH/wtdDw9o
-         QJHtNAjnwXevA==
-Subject: Re: [PATCH V4 07/11] arm64: dts: imx8mq: Enable both G1 and G2
- VPU's with vpu-blk-ctrl
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
-Cc:     aford@beaconembedded.com, cphealy@gmail.com,
-        kernel test robot <lkp@intel.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Date:   Mon, 25 Apr 2022 17:22:24 +0200
-In-Reply-To: <20220125171129.472775-8-aford173@gmail.com>
-References: <20220125171129.472775-1-aford173@gmail.com>
-         <20220125171129.472775-8-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S235864AbiDYPai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 11:30:38 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82FFA103DF4;
+        Mon, 25 Apr 2022 08:27:34 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id 79so16221784iou.7;
+        Mon, 25 Apr 2022 08:27:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=nYsiunOUmFwZ8o8GT74juEfa6oLm3zN9Ibj3gVa3bhU=;
+        b=i77OZZbZby0nwayMxGseETzr9Nj7J6fX5a++xq03SVhVqRw1UzRVEFc2taTVeAwKIx
+         bpvm7uM3vRs39zX0rrxk5JDfUWPopToIhRBrDI+o4mAuHvh3vFBZupK5zorHVe/CmH+u
+         vyFzmNAsKrnn+xdUsiFFpZlPY+NZEygZg5XCeHV51KiCqTj00m5DiEP+e+DnYHXQHART
+         h1Zphjo3zCVJueWZVhkfeYvQk2BGyHdlT/ujK+BZc6F7STAC3GVIK4fd389QU+E3CWYZ
+         WgAQhDs9ANzbCD4mOfXtByWpJFFyk+yN6QxirF8aFCaVelBhgkxpLlYf5lARzkvP5tZT
+         cS0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nYsiunOUmFwZ8o8GT74juEfa6oLm3zN9Ibj3gVa3bhU=;
+        b=2ZnaUvU1ZRWMMMvvJPFIs3IrabZJzetqfGThA+EiV+RFShuQ+WU4fbXduJrYIkYLR7
+         2hv3CAs3w74UXsSj0Kl6BqeaMdU3HOdOcOeyqaifsHiukG6l+41ry2Gd2cbRCY0fUb4v
+         ue+AdILsEerbcjkEWrpbcXjbGajzJFkL8eNNhnpIzxXa59prhYB62ABRaiQmtiG1xTxd
+         ZF9P0oTV896Ok4dyooxX1eSPWTxwP7JtkrqleLa4/5V/VJW/VjiSO7q8MCOv3xVxiApD
+         lUhg4WsiTMXaeL1/rvrHJd+SOs5ozaTCz5MwuQALdjy8uGq1YP2SvpO4wjfOkmu+U/AZ
+         VToA==
+X-Gm-Message-State: AOAM530YSiw/uhKh2J/+YylDcrh7hPMTChrjyuiykDCNG7ZfYq9qpnDH
+        EeyZIWSA0UdGJRyNFFW9axs=
+X-Google-Smtp-Source: ABdhPJzaOOhKV4BPWVeNOg0tWQ6bvh+gsUzBd/G0AXF40GnUFg0YdN6YZlGg+EFWAsS/57V61YrvNQ==
+X-Received: by 2002:a05:6638:1352:b0:321:547b:daa2 with SMTP id u18-20020a056638135200b00321547bdaa2mr7317700jad.128.1650900453788;
+        Mon, 25 Apr 2022 08:27:33 -0700 (PDT)
+Received: from [192.168.0.43] (static-35-180-85-188.ipcom.comunitel.net. [188.85.180.35])
+        by smtp.gmail.com with ESMTPSA id b11-20020a6be70b000000b00654b3a46b5esm7499151ioh.53.2022.04.25.08.27.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 08:27:33 -0700 (PDT)
+Message-ID: <7faa6c9a-9ace-d1eb-0bca-8e8d7c3ae7ec@gmail.com>
+Date:   Mon, 25 Apr 2022 17:27:27 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v17 11/21] drm/mediatek: add display merge start/stop API
+ for cmdq support
+Content-Language: en-US
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        llvm@lists.linux.dev, singo.chang@mediatek.com,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20220416020749.29010-1-nancy.lin@mediatek.com>
+ <20220416020749.29010-12-nancy.lin@mediatek.com>
+ <2cd07faf-e903-e55b-85c1-ce7a823ddb8b@gmail.com>
+ <CAAOTY_8Ei1e+Y==y+e7LoHBH3-SZEiz4M0SSqecRfWVMsLKH3Q@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <CAAOTY_8Ei1e+Y==y+e7LoHBH3-SZEiz4M0SSqecRfWVMsLKH3Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 25.01.2022 um 11:11 -0600 schrieb Adam Ford:
-> With the Hantro G1 and G2 now setup to run independently, update
-> the device tree to allow both to operate.  This requires the
-> vpu-blk-ctrl node to be configured.  Since vpu-blk-ctrl needs
-> certain clock enabled to handle the gating of the G1 and G2
-> fuses, the clock-parents and clock-rates for the various VPU's
-> to be moved into the pgc_vpu because they cannot get re-parented
-> once enabled, and the pgc_vpu is the highest in the chain.
+
+
+On 25/04/2022 15:32, Chun-Kuang Hu wrote:
+> Hi, Matthias:
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+> Matthias Brugger <matthias.bgg@gmail.com> 於 2022年4月22日 週五 下午7:48寫道：
+>>
+>>
+>>
+>> On 16/04/2022 04:07, Nancy.Lin wrote:
+>>> Add merge start/stop API for cmdq support. The ovl_adaptor merges
+>>> are configured with each drm plane update. Need to enable/disable
+>>> merge with cmdq making sure all the settings taken effect in the
+>>> same vblank.
+>>>
+>>> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+>>> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>> ---
+>>>    drivers/gpu/drm/mediatek/mtk_disp_drv.h   |  2 ++
+>>>    drivers/gpu/drm/mediatek/mtk_disp_merge.c | 20 +++++++++++++++++---
+>>>    2 files changed, 19 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+>>> index 53aa988dde3b..43a412525b75 100644
+>>> --- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+>>> +++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+>>> @@ -66,6 +66,8 @@ void mtk_merge_stop(struct device *dev);
+>>>    void mtk_merge_advance_config(struct device *dev, unsigned int l_w, unsigned int r_w,
+>>>                              unsigned int h, unsigned int vrefresh, unsigned int bpc,
+>>>                              struct cmdq_pkt *cmdq_pkt);
+>>> +void mtk_merge_start_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt);
+>>> +void mtk_merge_stop_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt);
+>>>
+>>>    void mtk_ovl_bgclr_in_on(struct device *dev);
+>>>    void mtk_ovl_bgclr_in_off(struct device *dev);
+>>> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_merge.c b/drivers/gpu/drm/mediatek/mtk_disp_merge.c
+>>> index 40da0555416d..c0d9b43b2a66 100644
+>>> --- a/drivers/gpu/drm/mediatek/mtk_disp_merge.c
+>>> +++ b/drivers/gpu/drm/mediatek/mtk_disp_merge.c
+>>> @@ -67,17 +67,31 @@ struct mtk_disp_merge {
+>>>    };
+>>>
+>>>    void mtk_merge_start(struct device *dev)
+>>
+>> Probably not my call, but wouldn't it make sense to enhance mtk_merge_start to
+>> pass 'struct cmdq_pkt *cmdq_pkt' directly instead of adding this 'adapter'?
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 2df2510d0118..549b2440f55d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -737,7 +737,21 @@ pgc_gpu: power-domain@5 {
->                                         pgc_vpu: power-domain@6 {
->                                                 #power-domain-cells =
-> <0>;
->                                                 reg =
-> <IMX8M_POWER_DOMAIN_VPU>;
-> -                                               clocks = <&clk
-> IMX8MQ_CLK_VPU_DEC_ROOT>;
-> +                                               clocks = <&clk
-> IMX8MQ_CLK_VPU_DEC_ROOT>,
-> +                                                        <&clk
-> IMX8MQ_CLK_VPU_G1_ROOT>,
-> +                                                        <&clk
-> IMX8MQ_CLK_VPU_G2_ROOT>;
-> +                                               assigned-clocks =
-> <&clk IMX8MQ_CLK_VPU_G1>,
-> +                                                                
-> <&clk IMX8MQ_CLK_VPU_G2>,
-> +                                                                
-> <&clk IMX8MQ_CLK_VPU_BUS>,
-> +                                                                
-> <&clk IMX8MQ_VPU_PLL_BYPASS>;
-> +                                               assigned-clock-
-> parents = <&clk IMX8MQ_VPU_PLL_OUT>,
-> +                                                                    
->     <&clk IMX8MQ_VPU_PLL_OUT>,
-> +                                                                    
->     <&clk IMX8MQ_SYS1_PLL_800M>,
-> +                                                                    
->     <&clk IMX8MQ_VPU_PLL>;
-> +                                               assigned-clock-rates
-> = <600000000>,
-> +                                                                    
->   <600000000>,
-> +                                                                    
->   <800000000>,
-> +                                                                    
->   <0>;
->                                         };
->  
->                                         pgc_disp: power-domain@7 {
-> @@ -1457,30 +1471,31 @@ usb3_phy1: usb-phy@382f0040 {
->                         status = "disabled";
->                 };
->  
-> -               vpu: video-codec@38300000 {
-> -                       compatible = "nxp,imx8mq-vpu";
-> -                       reg = <0x38300000 0x10000>,
-> -                             <0x38310000 0x10000>,
-> -                             <0x38320000 0x10000>;
-> -                       reg-names = "g1", "g2", "ctrl";
-> -                       interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> -                                    <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> -                       interrupt-names = "g1", "g2";
-> +               vpu_g1: video-codec@38300000 {
-> +                       compatible = "nxp,imx8mq-vpu-g1";
-> +                       reg = <0x38300000 0x10000>;
-> +                       interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
-> +                       power-domains = <&vpu_blk_ctrl
-> IMX8MQ_VPUBLK_PD_G1>;
-> +               };
-> +
-> +               vpu_g2: video-codec@38310000 {
-> +                       compatible = "nxp,imx8mq-vpu-g2";
-> +                       reg = <0x38310000 0x10000>;
-> +                       interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> +                       power-domains = <&vpu_blk_ctrl
-> IMX8MQ_VPUBLK_PD_G2>;
-> +               };
-> +
-> +               vpu_blk_ctrl: blk-ctrl@38320000 {
-> +                       compatible = "fsl,imx8mq-vpu-blk-ctrl";
-> +                       reg = <0x38320000 0x100>;
-> +                       power-domains = <&pgc_vpu>, <&pgc_vpu>,
-> <&pgc_vpu>;
-> +                       power-domain-names = "bus", "g1", "g2";
->                         clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-> -                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-> -                                <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-> -                       clock-names = "g1", "g2", "bus";
-> -                       assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
-> -                                         <&clk IMX8MQ_CLK_VPU_G2>,
-> -                                         <&clk IMX8MQ_CLK_VPU_BUS>,
-> -                                         <&clk
-> IMX8MQ_VPU_PLL_BYPASS>;
-> -                       assigned-clock-parents = <&clk
-> IMX8MQ_VPU_PLL_OUT>,
-> -                                                <&clk
-> IMX8MQ_VPU_PLL_OUT>,
-> -                                                <&clk
-> IMX8MQ_SYS1_PLL_800M>,
-> -                                                <&clk
-> IMX8MQ_VPU_PLL>;
-> -                       assigned-clock-rates = <600000000>,
-> <600000000>,
-> -                                              <800000000>, <0>;
-> -                       power-domains = <&pgc_vpu>;
-> +                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> +                       clock-names = "g1", "g2";
-> +                       #power-domain-cells = <1>;
->                 };
->  
->                 pcie0: pcie@33800000 {
+> In [1], mtk_merge_start() should match the function prototype of
+> mtk_ddp_comp_funcs.start, so keep the non-cmdq interface.
 
-With this update, when testing suspend to ram on imx8mq, I get:
+Well other callbacks, namely config hass cmdq_pkt. So we could change the 
+callback in a similar way is was done in
+d0afe37f5209 ("drm/mediatek: support CMDQ interface in ddp component")
 
-buck4: failed to disable: -ETIMEDOUT
 
-where buck4 is power-supply of pgc_vpu. And thus the transition to
-suspend (and resuming) fails.
+But as i said it's up to you. You are the maintainer.
 
-Have you tested system suspend after the imx8m-blk-ctrl update on
-imx8mq?
+Regards,
+Matthias
 
-thank you,
-
-                                 martin
-
+> 
+> static const struct mtk_ddp_comp_funcs ddp_merge = {
+>   .clk_enable = mtk_merge_clk_enable,
+>   .clk_disable = mtk_merge_clk_disable,
+>   .start = mtk_merge_start,
+>   .stop = mtk_merge_stop,
+>   .config = mtk_merge_config,
+> };
+> 
+> [1] https://patchwork.kernel.org/project/linux-mediatek/patch/20220419094143.9561-5-jason-jh.lin@mediatek.com/
+> 
+> Regards,
+> Chun-Kuang.
+> 
+>>
+>> In the end this is up to Chun-Kuang.
+>>
+>> Regards,
+>> Matthias
+>>
+>>> +{
+>>> +     mtk_merge_start_cmdq(dev, NULL);
+>>> +}
+>>> +
+>>> +void mtk_merge_stop(struct device *dev)
+>>>    {
+>>>        struct mtk_disp_merge *priv = dev_get_drvdata(dev);
+>>>
+>>> -     writel(MERGE_EN, priv->regs + DISP_REG_MERGE_CTRL);
+>>> +     mtk_merge_stop_cmdq(dev, NULL);
+>>>    }
+>>>
+>>> -void mtk_merge_stop(struct device *dev)
+>>> +void mtk_merge_start_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt)
+>>> +{
+>>> +     struct mtk_disp_merge *priv = dev_get_drvdata(dev);
+>>> +
+>>> +     mtk_ddp_write(cmdq_pkt, 1, &priv->cmdq_reg, priv->regs,
+>>> +                   DISP_REG_MERGE_CTRL);
+>>> +}
+>>> +
+>>> +void mtk_merge_stop_cmdq(struct device *dev, struct cmdq_pkt *cmdq_pkt)
+>>>    {
+>>>        struct mtk_disp_merge *priv = dev_get_drvdata(dev);
+>>>
+>>> -     writel(0x0, priv->regs + DISP_REG_MERGE_CTRL);
+>>> +     mtk_ddp_write(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
+>>> +                   DISP_REG_MERGE_CTRL);
+>>>    }
+>>>
+>>>    static void mtk_merge_fifo_setting(struct mtk_disp_merge *priv,
