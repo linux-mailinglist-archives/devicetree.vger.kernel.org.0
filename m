@@ -2,119 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A657150E2C0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 16:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B123F50E2CA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 16:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236178AbiDYOO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 10:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57870 "EHLO
+        id S237886AbiDYORQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 10:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232514AbiDYOO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 10:14:28 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8FF1FCC7
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 07:11:24 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id u15so29805117ejf.11
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 07:11:24 -0700 (PDT)
+        with ESMTP id S239014AbiDYORL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 10:17:11 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 398BFEE4D1
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 07:14:07 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id q185so8810326ljb.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 07:14:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hbNq8UvBnN7+r4Fd2yWxDnQ9hsYwZngmugC9ubWuoPM=;
-        b=tM68+Ax+c59zekowsoZDmmi4d+26x0+qsaJ+zYByavNorx6Uq9ihBhPkrjYGueEand
-         YbXMfFOq9veOveoLIodGDVBpDL1InoOVXLlB8n5GOcTVlN9jC6FG1YQZh2/AsoDVpHhU
-         LOvw3okgzu+aa3brpJxC5a0sT1LJNVySGwT9X+9k5Y1Le8GmmHJffJzjJGI+71L0fUKp
-         30LTUUICVyXh6EQIQCXxjCo7jmuq9Ih2n0+QDYhTQnxbyCLpwLvoi2qo6RZKN+pw622R
-         ecGpGQTPbtkRYZ5tEOZDOKQeO7pDs+IsKLr9KoUveEgJOmQ2iFaN+/l1etXZPfS874bu
-         zGhQ==
+        d=ventanamicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8D+pks1GFQ5YyPwAFgL3FkCx021NEMaCoEqCvexljR4=;
+        b=o5yHSni7byMq9Mrb1tFx49HsuhpnGjLxECFuj4lPhHigsZkEfQ5XC+y9Q4kq+7AKxR
+         LN981iJ5nTQXs1KWNB/9AnpmW/uzDr5TiomFJBA9v+FuJ81uwssrElWcB/flb4VWj5vr
+         xoOhWzUbFs78dkNRXf5N7dbexgO64Ewws5ZntoktFq1VblsNLHgbahwlOKulQS0qOYc7
+         VLLI3xbyny4aMSAcRozZ9hMIIjBkBsGG7pLzI5qTOwXq41J7knrxkNUiNK+FyVSJ6oXK
+         jGCGCslHJauXbW+nkV6Qw5/zEGpqtmc6RoAE7z0/oGVW71IJ4zhaYJW5n8n81yBZXQ2H
+         N5IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hbNq8UvBnN7+r4Fd2yWxDnQ9hsYwZngmugC9ubWuoPM=;
-        b=AVuBkGkPWsoQNT4TsNoF3NK6rEdArzLsW7oTUGlFJ9/YVqw5XVc6bZSx8rG5rEedWD
-         gyphC+X9WQuXlrI/YWfjgGarP+svCPUWNIxwvJWzMNb2W3Gi8TXpFrsl9fVSb0N2EafL
-         aGvc+hanR7P7zlwE0Szn9eKvgk5K3N/hUQLuFqH3q3JcGdyBim+iiyEPP0fy5O23hrDF
-         2GwlvzO9hzgMUe0uJblCS32bDNbH052Z/kwee9Q9I01zIEIqoJFdViAvZilQSvRm8vJZ
-         rMyuRCoTxjKxj68DaIyDxN/FsypD70kfBFdDjEU5o+Arvb0QWTr6+BGFmcSnwZNiSvus
-         U9fg==
-X-Gm-Message-State: AOAM5325tR/IwggWX0z9fKxM6o9aSAsrTJFpzSHwgk1QqxgNg/vQh7eP
-        M3HRJZfFCIPOpKxxzRmKfkiGoA==
-X-Google-Smtp-Source: ABdhPJxbhn3boE1o3X/8j8VbZQ/AXjtkDwzYBO0vBbDatkzQ9OM04+IR/v3GrPVceJO4HphUCbP7IQ==
-X-Received: by 2002:a17:907:6d08:b0:6f3:9c6a:d82f with SMTP id sa8-20020a1709076d0800b006f39c6ad82fmr3326924ejc.632.1650895883017;
-        Mon, 25 Apr 2022 07:11:23 -0700 (PDT)
-Received: from [192.168.0.243] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id f1-20020a056402194100b00416b174987asm4775820edz.35.2022.04.25.07.11.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 07:11:22 -0700 (PDT)
-Message-ID: <6ce4f8a6-42c0-2f49-bd19-744d8cca716b@linaro.org>
-Date:   Mon, 25 Apr 2022 16:11:21 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8D+pks1GFQ5YyPwAFgL3FkCx021NEMaCoEqCvexljR4=;
+        b=FQTIIlclWi+FlSjO2CWkWhUqi8LUxUZi7m4fS40n+TBtr6Lf4vYxZoqSme9dI/lAsQ
+         1x1xbfnL0dI+FhQ8FVfQbVxUavZI1NnZ6el4TyUh3XWorsvg+qOXzOxFx/+W9STuA80d
+         BQdamtuDiHNBu85eUPdoN7b4Sf79w0qLIo0p6AzVjIKLn/KYmpxrAKfr/MAjPso8pQXz
+         BtyXDuAf7H2qy8HjobzzPKtxbdzFtHwKu4APGLtosiNCRI3ndPlr1FqL6ZxJICmPr4jZ
+         v3iXbfDJB28E0XunvWeRpNbq8IwWz00JmarchDIJw8uG4n1iXsw/d+Esk44aN0bafmlY
+         /9Qg==
+X-Gm-Message-State: AOAM532rG+DOAZ1NQBrQwQ1CFuUz1rW8D+5NnziR+keIsPj31XavpHgZ
+        rhx5MwnHdKHg9TFoupzUszxhDHA2jc06d332Pq/N8w==
+X-Google-Smtp-Source: ABdhPJwCAqzqIHox5d9Fipy+SZTjtLhmdrSkjUgWcJvdgeg9P4Xd8L/xFYISPzRrvadDQs5OUppkb3ifg3SYQwhg6qI=
+X-Received: by 2002:a2e:8799:0:b0:24f:ada:4b2d with SMTP id
+ n25-20020a2e8799000000b0024f0ada4b2dmr5914438lji.260.1650896045459; Mon, 25
+ Apr 2022 07:14:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: qcom-ipcc: add missing
- compatible for SM8450
-Content-Language: en-US
-To:     David Heidelberg <david@ixit.cz>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+References: <20220422211055.9278-1-palmer@rivosinc.com> <CAMuHMdV7d4XfStMiSmU3eZBb3mdHdsvqJZff358Rf3Cb-Kzx+Q@mail.gmail.com>
+ <CAK9=C2WTY8+-98XuxRYTaRe4aVJufaB5wr35KRoTKEttUM7JzQ@mail.gmail.com> <CAMuHMdV4aZ1U2CGjSOSvFsq-rHKq34wyS-TMvR=7kX68YQHFjQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdV4aZ1U2CGjSOSvFsq-rHKq34wyS-TMvR=7kX68YQHFjQ@mail.gmail.com>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Mon, 25 Apr 2022 19:43:54 +0530
+Message-ID: <CAK9=C2X5qvWEwwMJK52+UFC8DJBDbZBPY0_iXVHdBA0Y5Ps19w@mail.gmail.com>
+Subject: Re: [PATCH] RISC-V: Allow the used to downgrade to sv48 when HW
+ supports sv57
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Palmer Dabbelt <palmer@rivosinc.com>,
+        Alexandre Ghiti <alexandre.ghiti@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220425134717.55418-1-david@ixit.cz>
- <6f72be3c-c907-bc7a-6b64-6becfc76934e@linaro.org>
- <33da014b-bfb0-a39f-aba7-f469fcb5cfbb@ixit.cz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <33da014b-bfb0-a39f-aba7-f469fcb5cfbb@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 16:05, David Heidelberg wrote:
-> On 25/04/2022 15:51, Krzysztof Kozlowski wrote:
->> On 25/04/2022 15:47, David Heidelberg wrote:
->>> Adds forgotten compatible and update SPDX header.
->> You need to explain what is this "forgotten compatible". It's to vague.
-> Forgotten by someone who implemented it in driver. Hope that clarify it 
-> for you and possibly other readers. Btw. qcom,*sm8450* compatibles are 
-> widely used and fact that `make dtbs_check` noticed it missing here 
-> isn't suprising..
+On Mon, Apr 25, 2022 at 7:06 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Anup,
+>
+> On Mon, Apr 25, 2022 at 3:14 PM Anup Patel <apatel@ventanamicro.com> wrote:
+> > On Mon, Apr 25, 2022 at 6:12 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Fri, Apr 22, 2022 at 11:42 PM Palmer Dabbelt <palmer@rivosinc.com> wrote:
+> > > > Similar to the previous patch, this allows a dt-selected downgrade to
+> > > > sv48 on systems that support sv57 in case users don't need the extra VA
+> > > > bits and want to save memory or improve performance.
+> > > >
+> > > > Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > > > ---
+> > > > This is on top of the patches from Alex's set that I dropped.
+> > >
+> > > You mean "[PATCH v3 13/13] riscv: Allow user to downgrade to sv39
+> > > when hw supports sv48 if !KASAN"?
+> > > 20211206104657.433304-14-alexandre.ghiti@canonical.com
+> > >
+> > > For both: "DT describes hardware, not software policy"?
+> >
+> > It is possible that HW is designed to support both Sv48 and Sv39 but
+> > there is some errata due to which Sv48 does not work correctly ?
+>
+> In that case, I assume the software has to disable Sv48 on its own?
+> Fixed hardware should use a different compatible value, so software
+> will know when the issue is fixed, and the feature can be used.
+> How else is DTB backwards-compatibility supposed to work?
 
-This has to be in the commit msg, that you document compatibles already
-being used. "forgotten" does not explain that.
+Usually, HW vendors will use different names for incrementally
+improving implementations so they will tend to create separate
+dts/dtsi files for newer implementations with some sharing via
+common dtsi files.
 
->>
->> The SPDX update lacks answer to "why". There is no reason to do it, so
->> please explain why it is needed.
-> 
-> Please read https://spdx.org/licenses/GPL-2.0.html (red colored text).
+>
+> > We should allow users to downgrade the MMU mode, due to
+> > their own reasons. In fact, users can also disable an extension
+> > by not showing it in the DT ISA string.
+>
+> That sounds like a software policy, too.
+> What is wrong with a kernel command line option?
 
-The kernel lists it as valid SPDX and we did not deprecate it. For the
-kernel it is still considered valid.
+The MMU modes are detected very early and even before the kernel
+command-line is parsed.
 
-Feel free to propose otherwise but then you need to explain it in commit
-msg and update LICENSES/preferred/GPL-2.0.
+> If you want it in your DTB, you can add it to chosen/bootargs.
 
-> 
-> I personally encountered situation, where usage GPL license without 
-> specific `-only` or `-or-later` caused unnecessary confusion and 
-> uncertainty.
+If HW vendor describe complete details in DT and disables few
+things in chosen/bootargs then it means there is some issue with
+those things disabled via chosen/bootargs.
 
-Could be, I am not arguing with it. Yet kernel explicitly makes it a
-valid SPDX.
+A HW vendor might never want to advertise broken extensions in
+their implementation so the ISA string and various HART features
+in DT will be set based on working functionality on real hardware.
 
-Best regards,
-Krzysztof
+Regards,
+Anup
+
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
