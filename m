@@ -2,90 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F3550D7C9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 05:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4274650D7E0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 05:50:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240774AbiDYDqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Apr 2022 23:46:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57134 "EHLO
+        id S240634AbiDYDxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Apr 2022 23:53:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240807AbiDYDqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 23:46:06 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B31618349;
-        Sun, 24 Apr 2022 20:42:38 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id b15so13640902pfm.5;
-        Sun, 24 Apr 2022 20:42:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XJLiJZg5HG+ikEwaPWe7uEs1eOW08mcHB25PbbYNgpE=;
-        b=Ps0zz82ktE7Sh2Vjle8I9BjPsQFxR7boyq1mTpomJGYUyyqlPFScxz4ijYuZcK0vxn
-         me8y3q/aPtVKPG3L9FXZy4juMxVkvTek9NieNYaRKA6RzKfG6SyBto/PUXiAo1cPnp90
-         3p6Xcz1WCZ70rML3a56N7/ddbsKvEKrPHi5ta/5oftx0xj2bNUijny1LJ+LrYxqsVR/5
-         wWadMMFbDoHmWjX3ckF3XnuS7r6ud0vkWHlsaziNrUzcatdw7nnxb2h+EEqsC+bqo/iO
-         xMeEQ3FCNRuVTXjl8IuUSCO3WLM7WOiVFEQQ/5pzV0qVM78jUqASTVEBbdM9Zld8wEdI
-         hNlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XJLiJZg5HG+ikEwaPWe7uEs1eOW08mcHB25PbbYNgpE=;
-        b=5i7N6fw4GLtxag71U3ACuhCp9w8UQ8oive4IMuei+YLdKphWoNSVXePhaZJwfJ22+5
-         sQAsozGRAClAVNRiUvH7sltdoUFjuHCWkduHq9hYvHxDnFrguPKZlyu93sx8RkeKhnZ6
-         64jXwD3icq4qlyMKUlPY2/qVO+/05wqQ1d5JkdKD6VwOxnA4AfqWLhFbgNFdwe13K4xI
-         FaTwxAzHeOlkrUjhp2MP7ytIzUkLEzJIBWJEU7hcP/P0aJy5QJuWTSXefzP9TiY2NZ94
-         QeEVYtZjFgkmoa1JxYRZdhhshy+F8JJ+bBKOqtpPJoczVv/7bAZpFDw/vDSpgMQjbzeT
-         5Chw==
-X-Gm-Message-State: AOAM533Q/MMwF/5fz8izSw1Fa2nG4HnSQ3dMbQq4BI1g7SnPiq8Hrtho
-        UOXhHdaSDiYvBfLDcKrJm4M=
-X-Google-Smtp-Source: ABdhPJxkHTJzliONgUSJai4NnWk0TzAOhlUBTml/InhrGu34T+oNrz4tjBmW7Ox8B8RxuNsN0dP8GQ==
-X-Received: by 2002:a63:290:0:b0:3aa:8b8b:1a3d with SMTP id 138-20020a630290000000b003aa8b8b1a3dmr13119908pgc.208.1650858157511;
-        Sun, 24 Apr 2022 20:42:37 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:282a:d50e:e0fc:c145])
-        by smtp.gmail.com with ESMTPSA id k15-20020a63ab4f000000b00381eef69bfbsm8025429pgp.3.2022.04.24.20.42.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 20:42:36 -0700 (PDT)
-Date:   Sun, 24 Apr 2022 20:42:33 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Hans de Goede <hdegoede@redhat.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 3/3] Input: sun4i-lradc-keys: Add support for R329 and
- D1
-Message-ID: <YmYYqZLrymMzcLaH@google.com>
-References: <20220414002349.24332-1-samuel@sholland.org>
- <20220414002349.24332-3-samuel@sholland.org>
+        with ESMTP id S232131AbiDYDxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Apr 2022 23:53:02 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6C8A12F008
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 20:49:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1650858597;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=6+BjK5j3p07NV8YTOKQRJe/TLrsI/cMPaYzFnvSMXsY=;
+        b=UXwKT+x++UrA1pHaW0qlVOL1AYrLcZnnOCo5hIQ66DLbvqz7NZtihuiOJO+aXmIkuY9bLi
+        9tyX+FMQz5iiQhb64OJjIuPpgZrTOJcyGgQadKK/9az8XYF3d+xGX5oiwW8CeoofeKxW4o
+        sv6Fp40TLbyjlhlFz9ARZmLOIu8J+gk=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-671-66BGPX6ZN3KzlUNj4q2GrQ-1; Sun, 24 Apr 2022 23:49:54 -0400
+X-MC-Unique: 66BGPX6ZN3KzlUNj4q2GrQ-1
+Received: from smtp.corp.redhat.com (int-mx09.intmail.prod.int.rdu2.redhat.com [10.11.54.9])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 4C3E13810D40;
+        Mon, 25 Apr 2022 03:49:53 +0000 (UTC)
+Received: from localhost (ovpn-12-73.pek2.redhat.com [10.72.12.73])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id C317755105D;
+        Mon, 25 Apr 2022 03:49:51 +0000 (UTC)
+Date:   Mon, 25 Apr 2022 11:49:48 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v22 1/9] kdump: return -ENOENT if required cmdline option
+ does not exist
+Message-ID: <YmYaXDrEYOXLzT5H@MiWiFi-R3L-srv>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220414002349.24332-3-samuel@sholland.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220414115720.1887-2-thunder.leizhen@huawei.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.9
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 13, 2022 at 07:23:48PM -0500, Samuel Holland wrote:
-> This LRADC variant uses the same 3/4*AVCC reference voltage as the A83T
-> variant. The R329 and D1 LRADCs appear to be identical, so D1 support is
-> accomplished through having the R329 LRADC as a fallback compatible.
+On 04/14/22 at 07:57pm, Zhen Lei wrote:
+> According to the current crashkernel=Y,low support in other ARCHes, it's
+> an optional command-line option. When it doesn't exist, kernel will try
+> to allocate minimum required memory below 4G automatically.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> However, __parse_crashkernel() returns '-EINVAL' for all error cases. It
+> can't distinguish the nonexistent option from invalid option.
+> 
+> Change __parse_crashkernel() to return '-ENOENT' for the nonexistent option
+> case. With this change, crashkernel,low memory will take the default
+> value if crashkernel=,low is not specified; while crashkernel reservation
+> will fail and bail out if an invalid option is specified.
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 
-Applied, thank you.
+Acked-by: Baoquan He <bhe@redhat.com>
 
--- 
-Dmitry
+> ---
+>  kernel/crash_core.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+> index 256cf6db573cd09..4d57c03714f4e13 100644
+> --- a/kernel/crash_core.c
+> +++ b/kernel/crash_core.c
+> @@ -243,9 +243,8 @@ static int __init __parse_crashkernel(char *cmdline,
+>  	*crash_base = 0;
+>  
+>  	ck_cmdline = get_last_crashkernel(cmdline, name, suffix);
+> -
+>  	if (!ck_cmdline)
+> -		return -EINVAL;
+> +		return -ENOENT;
+>  
+>  	ck_cmdline += strlen(name);
+>  
+> -- 
+> 2.25.1
+> 
+
