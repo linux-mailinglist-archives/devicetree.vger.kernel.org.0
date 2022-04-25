@@ -2,175 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9E150DA93
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF8550DAB1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241568AbiDYH44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 03:56:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59022 "EHLO
+        id S232527AbiDYH6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233801AbiDYH40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:56:26 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1F12A707
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:52:43 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id a21so5167991edb.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:52:43 -0700 (PDT)
+        with ESMTP id S241604AbiDYH4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:56:55 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF4A2718
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:53:46 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id k27so2188115edk.4
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:53:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=G1EEwSPV9OR3PwrucirkIopsjrE2Zt+VuxuH1o+sws0=;
-        b=g4oAlia2jlJQAi6qpWUu/xsE6u6TzsW6fzAmcXqSR/a0DZEdffoSguPFsw2/59X1JQ
-         GhxsVbccqmFL8GVI3lNN5/thcSv+hm4AU2JDKDO3P5ooYDuRddd7CmD37OHUgMYcTzfV
-         19fp2um13sYkYrwR2LF4CJfEy0zY2mH7PtX2q4C2a9+aRWTf4or1/zDQ5UaHK6y6ddcv
-         t7IyseTxXOyTIPHVo0fWC7dCTd88BRteCe57eoT/5jlNaCH/ZTKyLb0pssxspCLRuhPv
-         JVi4QPs/MT/GKoSPvyL2b8gp/CqFKmycYR7Jmq9SMrWSHvJ97dC5dfl9tQmH5xBOWPKx
-         OBBw==
+        bh=OiK9CfJmGobcKXoR/dSPps5LgKGx0NOgsw4L8/dJuus=;
+        b=ExJdKICN8IBJk5lwYIf06MEy9FFprcu4zkW60YPGX6p5vrEl4y6eoYg//8OShTJ+EV
+         5BFiUh4ElVofGoJWGYwh6kAvauwtOVwvj1bDQ5fpxQnxbYMtLCsUEdQmRehE4BfbOeJO
+         I1lk1lxK2gfmG2JOlToGQc1nJE9kMgWwVwFFjuiYBYkEN/mrljIFDlkA6OMxU8B+ENxH
+         dNI7FczHVKl4YnTIdMlFeQ0rHuynNZ3HngnLGBF4KLOoY5HM6LObpbIyn39YSvbyh8Fk
+         64NwKlZRZ/m3/4z/hhD9OWrOHzRaF9f3kUGQgW/xlqw0/HzZ84G4/2AoqlLbTdzXAAhT
+         fE7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=G1EEwSPV9OR3PwrucirkIopsjrE2Zt+VuxuH1o+sws0=;
-        b=kEUNHDLG3njg9ySUIfShid+Lok0KL+psErSS4U6OK+560tAn4ELCSNRSZC/HqZ+1kP
-         BgOKGY46odPUT7O5UDCcZYlNvO0WEtmFcCBzYMCKus1Dzy5VQ5YcFalxQKHMkDNTeW+T
-         1mIs7WIu1cbv1vcm3JdkVWbeQn+E2DjMzeSlZt70yOpjdxKsqeysSd9UwXPteb0lUfoW
-         LjWMirta8m90jRIp2EjbXnC+zRI9zLiS/sbx4JdHNnN6/5VHhs0oK1Z5JLNEJlsb4ym2
-         0Jqb0F/1mxlPY/Pmv1m4JHCUdEFsB+HJ4ZGTCqEYjdsy5jxQhMoZSJ3P4JpQy0axkoOF
-         CwwA==
-X-Gm-Message-State: AOAM533kjD5ETDy6Zh1G8RR9r+2/XywzAmy6dSbyBI0+JbMWdG+IM8o2
-        jSVeLD/SRxr6JIJ0zf1T4FqqTA==
-X-Google-Smtp-Source: ABdhPJxz3kWZkDl6FSThVokLJ4bTIeDew2DPyUD21w07yOl/NVskqg/AQ1XoobmWhZKSghrmtLVXmg==
-X-Received: by 2002:a05:6402:1148:b0:413:11e0:1f58 with SMTP id g8-20020a056402114800b0041311e01f58mr17119200edw.113.1650873162160;
-        Mon, 25 Apr 2022 00:52:42 -0700 (PDT)
+        bh=OiK9CfJmGobcKXoR/dSPps5LgKGx0NOgsw4L8/dJuus=;
+        b=jvrNtdNpts2UkjOk2N2Aa4IwNuuI7WK/STXEci1LEPRV1NDZ1Rof8R66PhG44MAJDu
+         tWMxwlfALpLlufZnD2feG5cnMNKIRMldqYSRbui3WDn1jA01t7+ruKQNwHPQyXOBgCLJ
+         Voor/qcMYnQoKDFpRff1Wh74hDFLcnIHj85anpfyRSFb7fHzir3JoriB3s9nlfWC6Q2S
+         NGqTlYCkpYBP9EMp7i6e+jIhX/33fO0bimYozHfZYjdwKd4KL4LQh8HGG4VPBvdor3Qs
+         o/L+RFKw73S+jjcjEFFheJMST07A0BVvKTC1AIbCfuS2D7ir6R7WlafuatzBcxBeF7U7
+         LRBQ==
+X-Gm-Message-State: AOAM5308qOCs5p5UL7OZihobp5MQ4PCQuwep2qCGL5ISRN1fw+AgVcS8
+        zgvogA0hFx+4to8VwhgHB/nFCg==
+X-Google-Smtp-Source: ABdhPJztHTkEpB7MVHqX/Ny1SZCOSlStNRQ6mr3ZjdYNdrfB6wI15Hl3ZlezTmilaoywtLjJooZh9A==
+X-Received: by 2002:aa7:da43:0:b0:425:cd4c:e43f with SMTP id w3-20020aa7da43000000b00425cd4ce43fmr10883182eds.106.1650873225101;
+        Mon, 25 Apr 2022 00:53:45 -0700 (PDT)
 Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05640204d000b0042062f9f0e1sm4154445edw.15.2022.04.25.00.52.40
+        by smtp.gmail.com with ESMTPSA id t19-20020a508d53000000b00425c9fd2b10sm3129190edt.68.2022.04.25.00.53.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 00:52:41 -0700 (PDT)
-Message-ID: <418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org>
-Date:   Mon, 25 Apr 2022 09:52:40 +0200
+        Mon, 25 Apr 2022 00:53:44 -0700 (PDT)
+Message-ID: <5175fe30-0449-ac5f-7e37-53c07adc433a@linaro.org>
+Date:   Mon, 25 Apr 2022 09:53:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH V3 12/17] dt-binding: mt8192: Add infra_ao reset bit
+Subject: Re: [PATCH 2/2] dt-bindings: watchdog: mediatek: Convert binding to
+ YAML
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?Q2h1bi1KaWUgQ2hlbiAo6Zmz5rWa5qGAKQ==?= 
-        <Chun-Jie.Chen@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        =?UTF-8?B?UnVueWFuZyBDaGVuICjpmYjmtqbmtIsp?= 
-        <Runyang.Chen@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
- <20220422060152.13534-13-rex-bc.chen@mediatek.com>
- <e5b18654-ce83-44ee-e4c8-4cdfc4ceaa1d@linaro.org>
- <5ec37a01b0b84140a7d171b9a5cff7ad8f9fbe87.camel@mediatek.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+References: <20220422121017.23920-1-allen-kh.cheng@mediatek.com>
+ <20220422121017.23920-3-allen-kh.cheng@mediatek.com>
+ <e2e4ead0-d8eb-1302-93e9-f330807d811e@linaro.org>
+ <b850f88f5044eb6cd57bec4fb864e5670618c9e7.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5ec37a01b0b84140a7d171b9a5cff7ad8f9fbe87.camel@mediatek.com>
+In-Reply-To: <b850f88f5044eb6cd57bec4fb864e5670618c9e7.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 07:01, Rex-BC Chen wrote:
-> On Sat, 2022-04-23 at 18:28 +0800, Krzysztof Kozlowski wrote:
->> On 22/04/2022 08:01, Rex-BC Chen wrote:
->>> To support reset of infra_ao, add the bit definition for
->>> thermal/PCIe/SVS.
->>>
->>> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
->>> ---
->>>  include/dt-bindings/reset/mt8192-resets.h | 10 ++++++++++
->>>  1 file changed, 10 insertions(+)
->>>
->>> diff --git a/include/dt-bindings/reset/mt8192-resets.h
->>> b/include/dt-bindings/reset/mt8192-resets.h
->>> index be9a7ca245b9..d5f3433175c1 100644
->>> --- a/include/dt-bindings/reset/mt8192-resets.h
->>> +++ b/include/dt-bindings/reset/mt8192-resets.h
->>> @@ -27,4 +27,14 @@
->>>  
->>>  #define MT8192_TOPRGU_SW_RST_NUM				23
->>>  
->>> +/* INFRA RST0 */
->>> +#define MT8192_INFRA_RST0_LVTS_AP_RST				
->>> 0
->>> +/* INFRA RST2 */
->>> +#define MT8192_INFRA_RST2_PCIE_PHY_RST				
->>> 15
->>> +/* INFRA RST3 */
->>> +#define MT8192_INFRA_RST3_PTP_RST				5
->>> +/* INFRA RST4 */
->>> +#define MT8192_INFRA_RST4_LVTS_MCU				12
->>> +#define MT8192_INFRA_RST4_PCIE_TOP				1
+On 25/04/2022 09:37, allen-kh.cheng wrote:
+
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +    watchdog@10007000 {
+>>> +        compatible = "mediatek,mt8183-wdt",
+>>> +                     "mediatek,mt6589-wdt";
+>>> +        mediatek,disable-extrst;
 >>
->> These should be the IDs of reset, not some register values/offsets.
->> Therefore it is expected to have them incremented by 1.
->>
+>> Did you test your bindings? Does not look like. Please run
+>> dt_binding_check (see writing-schema for instructions).
 >>
 > 
-> Hello Krzysztof,
+> Yes, I have run dt_binding_check.
 > 
-> This is define bit.
+> But example is from original binding txt file.
 > 
-> There is serveral reset set for infra_ao while it's not serial.
-> For MT8192, it's 0x120/0x130/0x140/0x150/0x730.
-> We are implement #reset-cells = <2>, and we can use this reset drive
-> more easier.
-> 
-> For example, in dts, we can define
-> infra_ao: syscon {
-> 	compatible = "mediatek,mt8192-infracfg", "syscon";
->  	reg = <0 0x10001000 0 0x1000>;
->  	#clock-cells = <1>;
-> 	#reset-cells = <2>;
-> };
-> 
-> thermal {
-> 	...
-> 	resets = <&infra_ao 0x730 MT8192_INFRA_RST4_LVTS_MCU>;
-> 	...
-> };
-> 
-> If it's acceptabel, I can update all bit difinition from 0 to 15 for
-> all reset set.
+> Is it ok I can write a new expample?
 
-Bits are not acceptable, because you embed specific device programming
-model (register bits) into the binding.
+Yes, please. Correct the example in the conversion so it is
+reasonable/proper.
 
-These should be IDs, so decimal numbers incremented from 0, so:
-#define MT8192_INFRA_RST0_LVTS_AP_RST				0
-#define MT8192_INFRA_RST4_LVTS_MCU				1
-#define MT8192_INFRA_RST4_PCIE_TOP				2
-
-And what is 0x730 in your example? It does not look like ID of a reset...
-
-Entire changeset look wrong from DT point of view.
 
 Best regards,
 Krzysztof
