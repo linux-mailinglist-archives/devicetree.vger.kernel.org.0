@@ -2,130 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7256B50E702
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 19:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4406750E749
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 19:29:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240584AbiDYRYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 13:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34456 "EHLO
+        id S243924AbiDYR3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 13:29:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240400AbiDYRYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 13:24:54 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B028344E7;
-        Mon, 25 Apr 2022 10:21:48 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23PBOxh9026633;
-        Mon, 25 Apr 2022 19:21:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Aleh7166rh9D1CmXqz7MI/E+eg7HPpeG/MxMJeFQSsM=;
- b=kJsqvJYBRQqqU9XDdwl18vaz1jVFYpTYb47kTfUsHumkTHAzWJibNIrpmP/txG+L7YEq
- 3+EH0khKDBLVO6d+JqbJetuBXOaf4wi+mtuVdby3YU04bg1VcDIyCNp3NAcXmtnr7gUv
- p6HVC9c9cYVHgB/pFhcyUHiSEp58LTAii4nMbLG9imoBcutlztv6X3JVUuVr+apeegP6
- kKG/P67N7fjo1RLpftCaIC3aqN10pyKysadS+xCqoDUag2FMtV09ygCksyhnqhXtWCda
- y/yyURSLZhzQfoyp3l7uMzy4XL7qGN5yfHrjjcnWI+mme1xbbZJTZJldA6gTKdJB4LVi kg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3fm6k92fqw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 25 Apr 2022 19:21:20 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CE57410002A;
-        Mon, 25 Apr 2022 19:21:19 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A982524551E;
-        Mon, 25 Apr 2022 19:21:19 +0200 (CEST)
-Received: from [10.211.4.234] (10.75.127.51) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 25 Apr
- 2022 19:21:18 +0200
-Message-ID: <c8f0436d-3389-04bb-089d-aca4b4d8d7fd@foss.st.com>
-Date:   Mon, 25 Apr 2022 19:21:17 +0200
+        with ESMTP id S244074AbiDYR2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 13:28:39 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2B620190
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 10:25:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1650907528; x=1682443528;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jGcTuSTntuAHYCdhP0sz0aVcA3gK8ccr+Nxg4lSLwFk=;
+  b=MIlyUPahu92EiZUmiqwO/JR/fZ0hx1Dl6rccLGJB8vp+8R7budp/VsJX
+   goZztBC6FgkeHQvjZ0j20qvbERYsWsUUFFZqQeAH28LMmV+jnG/RjwBzo
+   xpOx+cZvFAMsU2bdLJLv7fR7Un62UItVJ8UrEehKl/9IUBFfkfHz4BcOS
+   Sp/KbHgztA2h8aTg+gI4d7UfS4INwYIk6ZZqX1sfvuEPNoEzmu6ybQi6w
+   al+wWxTgc/BQsm4FtuNTejtaWHuvjuk3SZjoRNKEuu4DLO2dwlDW7KPUn
+   ir6nZ2EnxDsL44Cw0aBex00ecsZj4okkWppv9vDOv37jwu5NriY9ebDtC
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="245239590"
+X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; 
+   d="scan'208";a="245239590"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Apr 2022 10:25:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; 
+   d="scan'208";a="579392827"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 25 Apr 2022 10:25:23 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nj2Sh-0002jU-0O;
+        Mon, 25 Apr 2022 17:25:23 +0000
+Date:   Tue, 26 Apr 2022 01:24:46 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Daniel Kaehn <kaehndan@gmail.com>, tiwai@suse.com
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] Add generic serial MIDI driver using serial bus API
+Message-ID: <202204260120.TIXTqkq1-lkp@intel.com>
+References: <20220420194747.490542-3-kaehndan@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/8] dt-bindings: rcc: Add optional external ethernet RX
- clock properties
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <arnd@arndb.de>, <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, <soc@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        <etienne.carriere@st.com>
-References: <20220422150952.20587-1-alexandre.torgue@foss.st.com>
- <20220422150952.20587-2-alexandre.torgue@foss.st.com>
- <7d365d28-66ac-93d4-72b5-87d0b36ba017@denx.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <7d365d28-66ac-93d4-72b5-87d0b36ba017@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-25_09,2022-04-25_03,2022-02-23_01
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220420194747.490542-3-kaehndan@gmail.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek
+Hi Daniel,
 
-On 4/22/22 18:28, Marek Vasut wrote:
-> On 4/22/22 17:09, Alexandre Torgue wrote:
->> From: Marek Vasut <marex@denx.de>
->>
->> Describe optional external ethernet RX clock in the DT binding
->> to fix dtbs_check warnings like:
->>
->> arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dt.yaml: rcc@50000000: 
->> 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks', 
->> 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
->> Cc: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> To: devicetree@vger.kernel.org
->> Acked-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml 
->> b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
->> index a0ae4867ed27..7a251264582d 100644
->> --- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
->> @@ -59,6 +59,14 @@ properties:
->>             - st,stm32mp1-rcc
->>         - const: syscon
->> +  clocks:
->> +    description:
->> +      Specifies the external RX clock for ethernet MAC.
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    const: ETH_RX_CLK/ETH_REF_CLK
->> +
->>     reg:
->>       maxItems: 1
-> 
-> Should this patch be part of this series, maybe this was re-sent by 
-> accident ?
+Thank you for the patch! Perhaps something to improve:
 
-Not by accident. As your patch is already merged in Rob tree (I guess), 
-I added it in this series to avoid merge conflict later. I added a late 
-note in the cover-letter.
+[auto build test WARNING on tiwai-sound/for-next]
+[also build test WARNING on v5.18-rc4 next-20220422]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-regards
-alex
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Kaehn/Add-generic-serial-MIDI-driver-using-serial-bus-API/20220421-035024
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git for-next
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20220426/202204260120.TIXTqkq1-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 1cddcfdc3c683b393df1a5c9063252eb60e52818)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/65e00db0913a4019c3158e31aa6b2fd2c28ba03f
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Daniel-Kaehn/Add-generic-serial-MIDI-driver-using-serial-bus-API/20220421-035024
+        git checkout 65e00db0913a4019c3158e31aa6b2fd2c28ba03f
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash arch/arm64/kernel/ drivers/acpi/arm64/ sound/drivers/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> sound/drivers/serial-generic.c:192:6: warning: no previous prototype for function 'snd_serial_generic_write_wakeup' [-Wmissing-prototypes]
+   void snd_serial_generic_write_wakeup(struct serdev_device *serdev)
+        ^
+   sound/drivers/serial-generic.c:192:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void snd_serial_generic_write_wakeup(struct serdev_device *serdev)
+   ^
+   static 
+   1 warning generated.
+
+
+vim +/snd_serial_generic_write_wakeup +192 sound/drivers/serial-generic.c
+
+   191	
+ > 192	void snd_serial_generic_write_wakeup(struct serdev_device *serdev)
+   193	{
+   194		struct snd_serial_generic *drvdata = serdev_device_get_drvdata(serdev);
+   195	
+   196		if (!snd_rawmidi_transmit_empty(drvdata->midi_output))
+   197			snd_serial_generic_output_write(drvdata->midi_output);
+   198	}
+   199	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
