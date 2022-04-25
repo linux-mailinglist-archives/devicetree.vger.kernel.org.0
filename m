@@ -2,84 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E50250E7F5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:18:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A0C50E800
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 20:21:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244291AbiDYSUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 14:20:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49398 "EHLO
+        id S244302AbiDYSYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 14:24:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244294AbiDYSUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:20:37 -0400
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED020473B0;
-        Mon, 25 Apr 2022 11:17:29 -0700 (PDT)
-Received: by mail-oo1-f49.google.com with SMTP id n22-20020a4ae1d6000000b0033a6eedbc7bso2933417oot.11;
-        Mon, 25 Apr 2022 11:17:29 -0700 (PDT)
+        with ESMTP id S244297AbiDYSYV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 14:24:21 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6587EA3C
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:21:16 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id el3so14660580edb.11
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 11:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wLhrlS1biKXpq5R4CE1YOn/L6FhykNWvxC4seQ/LW7U=;
+        b=Fdw8tEJ7RzBEPPkeLkKiIRIonHGhUX5ZA2Ot4Xn7/Yf6h0e59AOylh6JysSNkqVKKz
+         yeVOsu0matmwSl2qhR5pORhklf/+jvhzgB2PvcZyAbBmumv8gfAqge0Ufny3JDw0W9Wh
+         fRXYNNTn+1W6VCYwgRbuxg4bQuC+nfFjpA7SgNRay92xwXG8bTDNw5l7E8oUhTFNhq2O
+         bN67RgacYBXUua0id/Z0rSQXJNw+oK2jnAbWuWerE6tFYB52XBIBho1mVKC7OrSzlsi+
+         DU26J+WDV0VSAUxCbrymNsH5yDPP8207EqHb5qqGGK/ec+v1O40t2OC3ropUGVruR2VX
+         or1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4rJiDQtT2Kr6DvbEmZOVS6E8qO0XbKUrOt2r4t7PCms=;
-        b=3NoYjBiyjHlH+1PDzqT9HwaFr/mp1a6zR3i7QLonIm9oBybSThUDGt+oWsaRdq3zJn
-         K96v4N+tDRhx5OQNQj6ZxG12mXu+z/VaqLofxs3osoD7cuPtGKJqQmTwnJbvuzAn7lir
-         +Y5i3XV5hNFkYi9lLk5BxO+0bCtV/E1FTjzr0TcqPeu5xbADpeY5cIuwin9yIvTUEihm
-         2t1aFmVZBp8LVeiw8HXAkaJuBrQlostAgHbxVEYZ+9KrJFfwUTBa6dh7WOSGmdimsOcj
-         RlbcdwsUxqr2G/q12k34a9OuPngMm4uHyjnKp9/3RiQfToxqVjGN3bGeTlrZW2hy53F7
-         O+UQ==
-X-Gm-Message-State: AOAM531HsXNYuU8nDk1De2ugXOP1grfe+JyBMzwa1QlXKzoMSWd5jhlO
-        n6bepk0imkvD02thx21XeQ==
-X-Google-Smtp-Source: ABdhPJy0sH5LDDGTkYImy+b4nC/tu7YBKEVoi9LDSgWyWQA75TWi8anRIDY4X6qWQX2nXTQd+nM+XA==
-X-Received: by 2002:a4a:87:0:b0:35e:7494:4afe with SMTP id 129-20020a4a0087000000b0035e74944afemr1283672ooh.60.1650910649258;
-        Mon, 25 Apr 2022 11:17:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v5-20020a0568301bc500b00604fdc97d31sm4110930ota.39.2022.04.25.11.17.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 11:17:28 -0700 (PDT)
-Received: (nullmailer pid 4186964 invoked by uid 1000);
-        Mon, 25 Apr 2022 18:17:27 -0000
-Date:   Mon, 25 Apr 2022 13:17:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     phone-devel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 2/5] dt-bindings: regulator: Add bindings for Silicon
- Mitus SM5703 regulators
-Message-ID: <Ymblt4+v/PaUZlxw@robh.at.kernel.org>
-References: <20220423085319.483524-1-markuss.broks@gmail.com>
- <20220423085319.483524-3-markuss.broks@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wLhrlS1biKXpq5R4CE1YOn/L6FhykNWvxC4seQ/LW7U=;
+        b=7MkIJO20o7gf28W+RMW1B5QDiLAcmtshpyaausdetaVCmjE8Exl4qGln/2mYiYpN3V
+         PYg5Z1B1ZaIg4DLsc7fw476E4wlfLqmIL1rCqTb38ajlFLZYrvhG06dmGA2Bg2SfhinN
+         QCxzV0y87GXyQ9NEeSawP7RgSo8DGc5S0jAZyeI7/eJNipoOlHaRoHQ1VEZupePWOdpA
+         P5sSmbgBQCrbh+3SodZYM3HjRHBu0VKRbL8hz5Tsm8dPfxA9stzdXIylFzCKOhSFmTtR
+         cSJimrQ2vfYKIsRluplNnxSEobpx/tcl8fcrrrrDQ9ZQyZg6G1brIEKjVmhzn/4tJ3Tl
+         /PGw==
+X-Gm-Message-State: AOAM532SN98++dVQRGwFh9JptACrhiH2YP8R5DW+FGGCO/wT/Pkv4LXn
+        VX0gSCL1FuurUr8zGSZRjKEYXA==
+X-Google-Smtp-Source: ABdhPJwFoDnOLO0ckjGSwySlRYkY5M6AxkwPge7ifg3C7ch3KjrcUQD9X+CEAmNNCNFRJ3zcSLN5lg==
+X-Received: by 2002:a05:6402:1450:b0:425:e43f:7ccd with SMTP id d16-20020a056402145000b00425e43f7ccdmr7717463edx.299.1650910874949;
+        Mon, 25 Apr 2022 11:21:14 -0700 (PDT)
+Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id kb9-20020a1709070f8900b006e889aad94esm3894075ejc.128.2022.04.25.11.21.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 11:21:14 -0700 (PDT)
+Message-ID: <edcd5a65-26ef-a8de-be44-56aa63e485c3@linaro.org>
+Date:   Mon, 25 Apr 2022 20:21:13 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220423085319.483524-3-markuss.broks@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: fsl: convert fsl,layerscape-scfg to
+ YAML
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220425140214.32448-1-michael@walle.cc>
+ <20220425140214.32448-2-michael@walle.cc>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220425140214.32448-2-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 23 Apr 2022 11:53:15 +0300, Markuss Broks wrote:
-> This patch adds device-tree bindings for regulators on Silicon Mitus
-> SM5703 MFD.
+On 25/04/2022 16:02, Michael Walle wrote:
+> Convert the fsl,layerscape-scfg binding to the new YAML format.
 > 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> In the device trees, the device node always have a "syscon"
+> compatible, which wasn't mentioned in the previous binding.
+> 
+> Also added, compared to the original binding, is the
+> interrupt-controller subnode as used in arch/arm/boot/dts/ls1021a.dtsi
+> as well as the litte-endian and big-endian properties.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
 > ---
->  .../siliconmitus,sm5703-regulator.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
-> 
+> changes since v1:
+>  - moved to soc/fsl/fsl,layerscape-scfg.yaml
+>  - generic name for node in example
+>  - mention added "syscon" compatible in commit message
+>  - reference specific interrupt controller
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
