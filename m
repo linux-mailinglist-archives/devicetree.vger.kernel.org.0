@@ -2,153 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01B6950E51A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 18:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4137A50E522
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 18:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238337AbiDYQFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 12:05:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
+        id S236824AbiDYQIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 12:08:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238782AbiDYQFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 12:05:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7221010FF6;
-        Mon, 25 Apr 2022 09:02:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EA7E2612E6;
-        Mon, 25 Apr 2022 16:02:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 546ECC385B0;
-        Mon, 25 Apr 2022 16:02:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650902557;
-        bh=ibAp6Qdurhq2UaINptVowpGDRoELicExS9BcLP47wrw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bPprMwkwmyDxvOqb490NX6HiwrlcOOMNTSO7fdIBQ97pBBEw2PoHYFF1CbPEg6yko
-         6To47/fpvROzmLuJFip3Ofa8QjXz+esrwMWOIO1e9PonXm8OPPkYw0wO/iwqy0Ld3T
-         l3bYbwrFtDWJqts4QENV31+xfaA/kdTxrNBHp3GxHocbcFN/0ue77gZs/XHZe54FIb
-         6sddFMEi7Fa/uO2YQVi4bTlN36o9kfXqBz5tNA2HGuSrdYeA8vUnZOWbC141HH4Ych
-         loBINSTeTh34pG3/nffGd/gJRMOF+XkOMhi9NhJ5/vzxJrQ0vhcOlmca6Oghs6wupo
-         di39+Eg3a4YQw==
-Received: by mail-pl1-f180.google.com with SMTP id n8so27683156plh.1;
-        Mon, 25 Apr 2022 09:02:37 -0700 (PDT)
-X-Gm-Message-State: AOAM533UVqQU1lA/3bvhgFm5xov5k9Ni4JtBkrj8ZBXFFsxGzPYqV6+N
-        Wou68RSFfpW9Jm4h0sckVXrpCyQnCWTW+ig9sg==
-X-Google-Smtp-Source: ABdhPJwiET3dMMmtNpcl3m0Jao6U9LdDUHuMBgi/c2Wo3MntkfVL4gztMAOSkvWGxBOAgFL47WvVLxfV4VMa5JbKeaU=
-X-Received: by 2002:a17:90b:1e08:b0:1d2:8bb4:f565 with SMTP id
- pg8-20020a17090b1e0800b001d28bb4f565mr32241726pjb.4.1650902556770; Mon, 25
- Apr 2022 09:02:36 -0700 (PDT)
+        with ESMTP id S235505AbiDYQIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 12:08:51 -0400
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D0E93D490;
+        Mon, 25 Apr 2022 09:05:47 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id e17so12096911qvj.11;
+        Mon, 25 Apr 2022 09:05:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WBB3hJAHggg/Ymff4O89TctaqpmLz5c/VRSvQSPD6EU=;
+        b=Parj+JdMS+7P/atDGKVlzVylPEIdEQeItI0RPe4FKg/lcrpLysFz7UIoFTp9vCdMHu
+         pqQBb/XjKSK5qctQxA6Bo4o2LskF55SYQn5YBkySGAq2NAAUZLZanRe3xWib6oCBG4IS
+         ijMMG9jQWUx9+kbQC4LdUq9jEGt1VS+pD+V6Nh7l+Pa6JqI2v2VuXmst5yfSQAI4hIUx
+         U/lfUSOf6p7Tjso4Jm0rS2RKrvXvM6L76bROgYOZJ/PU3YMAxVOoRvO6XVy8LXqcOZQy
+         97fIRxJDW5Kf/dBAzDJF9ootnOYCECjIRLmNgI9W8Eei6HyK4CAwcCwtCPEhNuM3CG4P
+         HC/g==
+X-Gm-Message-State: AOAM531qm6Z6ixXBfCin138O/dUPvOSdO/3sGsN8UQrwXPXWzsHlGyp/
+        xwCkP2h/td/ql5Kr1ZX644K2abfdjGaaQQ==
+X-Google-Smtp-Source: ABdhPJzgvTjHlgO41b046TZZXPUlZ1cbIJMoPrw3ADSVutUEaYSOUrknjJdHiD6A2ezNJuVoAGuPqg==
+X-Received: by 2002:a05:6214:e64:b0:446:3d57:d320 with SMTP id jz4-20020a0562140e6400b004463d57d320mr13034649qvb.87.1650902745825;
+        Mon, 25 Apr 2022 09:05:45 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id 2-20020a05620a06c200b0069ea498aec7sm5176862qky.16.2022.04.25.09.05.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 09:05:45 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id r189so27907232ybr.6;
+        Mon, 25 Apr 2022 09:05:45 -0700 (PDT)
+X-Received: by 2002:a5b:24e:0:b0:63d:cba0:3d55 with SMTP id
+ g14-20020a5b024e000000b0063dcba03d55mr16307751ybp.613.1650902745080; Mon, 25
+ Apr 2022 09:05:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220422121017.23920-1-allen-kh.cheng@mediatek.com>
- <20220422121017.23920-3-allen-kh.cheng@mediatek.com> <e2e4ead0-d8eb-1302-93e9-f330807d811e@linaro.org>
-In-Reply-To: <e2e4ead0-d8eb-1302-93e9-f330807d811e@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 25 Apr 2022 11:02:24 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKU98F0wD=cmayq_k-uwP=M5nQrjmG1kd5SJtdv41nsCg@mail.gmail.com>
-Message-ID: <CAL_JsqKU98F0wD=cmayq_k-uwP=M5nQrjmG1kd5SJtdv41nsCg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: watchdog: mediatek: Convert binding to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>
+References: <20220421085112.78858-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20220421085112.78858-1-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 25 Apr 2022 18:05:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU6Mb9k_g7yBCknmL9DMjUSzk=W_5wiMNDMsTN6RpkcLg@mail.gmail.com>
+Message-ID: <CAMuHMdU6Mb9k_g7yBCknmL9DMjUSzk=W_5wiMNDMsTN6RpkcLg@mail.gmail.com>
+Subject: Re: [PATCH v11 0/9] RZN1 DMA support
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 10:44 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/04/2022 14:10, Allen-KH Cheng wrote:
-> > Convert Mediatek watchdog devicetree binding to YAML.
-> >
-> > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/watchdog/mtk-wdt.txt  | 42 ----------
-> >  .../devicetree/bindings/watchdog/mtk-wdt.yaml | 76 +++++++++++++++++++
-> >  2 files changed, 76 insertions(+), 42 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> >  create mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> > deleted file mode 100644
-> > index 762c62e428ef..000000000000
-> > --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> > +++ /dev/null
-> > @@ -1,42 +0,0 @@
-> > -Mediatek SoCs Watchdog timer
-> > -
-> > -The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
-> > -before the expiry.
-> > -
-> > -Required properties:
-> > -
-> > -- compatible should contain:
-> > -     "mediatek,mt2701-wdt", "mediatek,mt6589-wdt": for MT2701
-> > -     "mediatek,mt2712-wdt": for MT2712
-> > -     "mediatek,mt6582-wdt", "mediatek,mt6589-wdt": for MT6582
-> > -     "mediatek,mt6589-wdt": for MT6589
-> > -     "mediatek,mt6797-wdt", "mediatek,mt6589-wdt": for MT6797
-> > -     "mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
-> > -     "mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
-> > -     "mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
-> > -     "mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
-> > -     "mediatek,mt8183-wdt": for MT8183
-> > -     "mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
-> > -     "mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
-> > -     "mediatek,mt8192-wdt": for MT8192
-> > -     "mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
-> > -
-> > -- reg : Specifies base physical address and size of the registers.
-> > -
-> > -Optional properties:
-> > -- mediatek,disable-extrst: disable send output reset signal
-> > -- interrupts: Watchdog pre-timeout (bark) interrupt.
-> > -- timeout-sec: contains the watchdog timeout in seconds.
-> > -- #reset-cells: Should be 1.
-> > -
-> > -Example:
-> > -
-> > -watchdog: watchdog@10007000 {
-> > -     compatible = "mediatek,mt8183-wdt",
-> > -                  "mediatek,mt6589-wdt";
-> > -     mediatek,disable-extrst;
-> > -     reg = <0 0x10007000 0 0x100>;
-> > -     interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
-> > -     timeout-sec = <10>;
-> > -     #reset-cells = <1>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
-> > new file mode 100644
-> > index 000000000000..5788617027c8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.yaml
-> > @@ -0,0 +1,76 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/mtk-wdt.yaml#
->
-> File name: mtk,wdt.yaml
+Hi Miquel,
 
-mediatek,wdt.yaml
+On Thu, Apr 21, 2022 at 10:51 AM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+> This is the series bringing DMA support to RZN1 platforms.
+> Other series follow with eg. UART and RTC support as well.
+
+Thanks for your series!
+
+> There is no other conflicting dependency with the other series, so this
+> series can now entirely be merged in the dmaengine tree I believe.
+>
+> Changes in v11:
+> * Renamed two defines.
+> * Changed the way the bitmap is declared.
+> * Updated the cover letter: this series can now go in through the
+>   dmaengine tree.
+
+/me confused
+
+> Miquel Raynal (9):
+>   dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
+>   dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
+>   dt-bindings: dmaengine: Introduce RZN1 DMA compatible
+>   soc: renesas: rzn1-sysc: Export function to set dmamux
+>   dmaengine: dw: dmamux: Introduce RZN1 DMA router support
+>   clk: renesas: r9a06g032: Probe possible children
+>   dmaengine: dw: Add RZN1 compatible
+>   ARM: dts: r9a06g032: Add the two DMA nodes
+>   ARM: dts: r9a06g032: Describe the DMA router
+
+The last two DTS parts have to go in through the renesas-arm-dt and
+soc trees.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
