@@ -2,69 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C0C50DA07
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2EF350DA0A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 09:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234533AbiDYH2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 03:28:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41974 "EHLO
+        id S236063AbiDYH23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 03:28:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234643AbiDYH2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:28:09 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341E065B4
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:25:05 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id u15so27778597ejf.11
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 00:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7qcayQ5d+q+z0ZKjKvnlBCT5f3rdCkuSENpIujOsc0c=;
-        b=j28TisVZ2eT3sOJZncj07IR4bq8jZH1b1KVQSn7oSDMBujfba1freM1yBmN7k9x022
-         MfW8wvNQMjRwjRWudZRG5Aq0yKg2Co18HGFDzkB4UR4j+DVpGyxyB2EMTFK/jPcoxlRV
-         KLbsw4R0AvTbQKhuKiOMb9ZDIG1tv4Zp89R0SKR7Grjiow3jQAVZsCUh8EjepGXLX2Bl
-         Qp2tteh8r4J1IpNCSm9iTyrpbLmlF74fSv26kmcDSuChX/JkQoU0XfjA9STDC393R/JZ
-         oW+04/T8M7gxo6HAjlivUpncEBeZSGPy9PVtThATQNvy2fZaDTffylgmn+WXAmoWYoS2
-         Ji0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7qcayQ5d+q+z0ZKjKvnlBCT5f3rdCkuSENpIujOsc0c=;
-        b=V0pa5+U6DAsR8DVGRKvDutdoYy29g0m4k4RPFsgyCdo0R26y20HhjwsCqv4nvIHsPH
-         dWfJO8fT3ct+R4OCcBX0XXIEoU+yPThnUOLFdcZ3fiw/AWrF006ItZJLc0I+cznF6V3/
-         hp6PUJqjnefXjQz5Cr1Xa7MiCkNwmhDhHgo9Jt4gt3F8XjcJPnm9PmY3Sx/j2l1eRkSg
-         2kO8puaUfMBCgPBYgMq+lH9gAeyfi839PKGAIKjcY5aie3SnfSO25dnuDcfNTNYAlcVX
-         38hy7Ltv0CYKjMM5n4/wNDiiUouRUuudTOkVBI37sTKgh0+PyhXjMr30F2x1m+VEdr6s
-         p4EA==
-X-Gm-Message-State: AOAM532ndykP4Bvh1Y2TvAZYLI8D0Yo2hLET/moXAkOFVQQrOp7HXLeF
-        NmMJw4DJqmjm0il0729zJuSfRQ==
-X-Google-Smtp-Source: ABdhPJxpB/sCZmdWbBjVSuQvAoFh6WcfY3j2pf5h5M0oR5V4ZOYHULDGhysVA5ec+hzKW8dQRqzc7w==
-X-Received: by 2002:a17:907:9005:b0:6da:81ae:a798 with SMTP id ay5-20020a170907900500b006da81aea798mr15152563ejc.699.1650871503792;
-        Mon, 25 Apr 2022 00:25:03 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ew15-20020a170907950f00b006f3a3d60b9csm44328ejc.63.2022.04.25.00.25.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 00:25:03 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 2/2] regulator: richtek,rt4801: parse GPIOs per regulator
-Date:   Mon, 25 Apr 2022 09:24:55 +0200
-Message-Id: <20220425072455.27356-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220425072455.27356-1-krzysztof.kozlowski@linaro.org>
-References: <20220425072455.27356-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S235687AbiDYH2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 03:28:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0E3A65AD;
+        Mon, 25 Apr 2022 00:25:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DEE0612B5;
+        Mon, 25 Apr 2022 07:25:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D60CC385A7;
+        Mon, 25 Apr 2022 07:25:14 +0000 (UTC)
+Message-ID: <50ffcfdc-97b0-29ea-1f08-dd5b778bad73@xs4all.nl>
+Date:   Mon, 25 Apr 2022 09:25:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 0/9] i.MX8MP DW100 dewarper driver
+Content-Language: en-US
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
+        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
+        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
+        nicolas@ndufresne.ca, alexander.stein@ew.tq-group.com
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.5 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,127 +47,286 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having one enable-gpios property for all regulators is discouraged and
-instead, similarly to regulator core ena_gpiod feature, each GPIO should
-be present in each regulator node.  Add support for parsing such GPIOs,
-keeping backwards compatibility.
+On 28/03/2022 16:13, Xavier Roumegue wrote:
+> This patchset depends on the series "imx8mp: Add media block control"[1] and
+> "i.MX8MP GPC and blk-ctrl"[2] which provide the power driver infrastructure.
+> 
+> Previous series can now be marked as superseded.
+> v1:
+> https://patchwork.linuxtv.org/project/linux-media/list/?series=7443
+> v2:
+> https://patchwork.linuxtv.org/project/linux-media/list/?series=7472
+> v3:
+> https://patchwork.linuxtv.org/project/linux-media/list/?series=7473
+> 
+> Patches [1-3/9] add support for dynamic array control imported from the
+> "Move HEVC stateless controls out of staging"[3] currently under review.
+> 
+> Patches [4-7/9] document the driver interfaces, and export its v4l2 custom
+> control to uapi headers.
+> 
+> Patches [8/9] adds the v4l2 m2m driver.
+> Patches [9/9] adds the driver to MAINTAINERS.
+> 
+> The patch baseline is linuxtv-tree/master.
+> 
+> The Vivante DW100 Dewarp Engine, found on i.MX8MP SoC, provides high-performance
+> dewarp processing for the correction of the distortion that is introduced in
+> images produced by fisheye and wide angle lenses. The engine can be used for
+> accelerating scaling, cropping and pixel format conversion operations
+> independently of the dewarping feature.
+> 
+> A script example [4] has been published to generate the dewarping blob from
+> outgoing openCV 3d calibration process parameters. This scrict can generate
+> identity map with h/v flip, dewarping and stereo rectification mappings.
+> 
+> The driver has been tested with:
+> - v4l2-ctl (from master with [6]) for testing pixel format conversion, scaling
+>   and crop features using builtin driver identity map.
+> - OpenCV stereo application using dedicated dw100 openCV module [5] to implement
+>   stereo rectification stage.
+> - GStreamer v4l2convert (patched to support dewarping blob map injection)
+> - v4l2-compliance (test report added after changelog)
+> 
+> [1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=626781
+> [2] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=618869
+> [3] https://patchwork.linuxtv.org/project/linux-media/list/?series=7418
+> [4] https://github.com/NXPmicro/vtec-cv/tree/main/bin
+> [5] https://github.com/NXPmicro/vtec-opencv
+> [6] https://patchwork.linuxtv.org/project/linux-media/list/?series=7595
+> 
+> ---
+> Changelog:
+> 
+> v4:
+> - Move dw100 driver to NXP platform media drivers folder
+> - Change dt compatible string to "nxp,imx8mp-dw100"
+> - Rename V4L2_CID_DW100_MAPPING to V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP
+> - Add more verbose description of V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP
+> - Handle v4l2 controls as an array in driver.
+> 
+> v3:
+> - Fix incorrect i.MX8MP Reference Manual link in documentation
+> 
+> v2:
+> - Fix yaml dt-bindings errors
+> - Drop assigned-clocks properties from dt-bindings example
+> - Add dw100 driver documentation
+> - Rework V4L2 LUT assignment with v4l2 dynamic array control
+> - Rename V4L2_CID_DW100_LUT to V4L2_CID_DW100_MAPPING
+> - Export V4L2_CID_DW100_MAPPING to kernel headers
+> 
+> Hans Verkuil (3):
+>   videodev2.h: add V4L2_CTRL_FLAG_DYNAMIC_ARRAY
+>   v4l2-ctrls: add support for dynamically allocated arrays.
+>   vivid: add dynamic array test control
+> 
+> Xavier Roumegue (6):
+>   media: Documentation: dw100: Add user documentation for the DW100
+>     driver
+>   media: v4l: uapi: Add user control base for DW100 controls
+>   media: uapi: Add a control for DW100 driver
+>   media: dt-bindings: media: Add i.MX8MP DW100 binding
+>   media: dw100: Add i.MX8MP dw100 dewarper driver
+>   media: MAINTAINERS: add entry for i.MX8MP DW100 v4l2 mem2mem driver
+> 
+>  .../devicetree/bindings/media/nxp,dw100.yaml  |   69 +
+>  .../userspace-api/media/drivers/dw100.rst     |   35 +
+>  .../userspace-api/media/drivers/index.rst     |    1 +
+>  .../media/v4l/vidioc-queryctrl.rst            |    8 +
+>  MAINTAINERS                                   |    9 +
+>  drivers/media/platform/nxp/Kconfig            |    1 +
+>  drivers/media/platform/nxp/Makefile           |    1 +
+>  drivers/media/platform/nxp/dw100/Kconfig      |   16 +
+>  drivers/media/platform/nxp/dw100/Makefile     |    3 +
+>  drivers/media/platform/nxp/dw100/dw100.c      | 1763 +++++++++++++++++
+>  drivers/media/platform/nxp/dw100/dw100_regs.h |  118 ++
+>  .../media/test-drivers/vivid/vivid-ctrls.c    |   15 +
+>  drivers/media/v4l2-core/v4l2-ctrls-api.c      |  103 +-
+>  drivers/media/v4l2-core/v4l2-ctrls-core.c     |  182 +-
+>  drivers/media/v4l2-core/v4l2-ctrls-priv.h     |    3 +-
+>  drivers/media/v4l2-core/v4l2-ctrls-request.c  |   13 +-
+>  include/media/v4l2-ctrls.h                    |   42 +-
+>  include/uapi/linux/dw100.h                    |   11 +
+>  include/uapi/linux/v4l2-controls.h            |    6 +-
+>  include/uapi/linux/videodev2.h                |    1 +
+>  20 files changed, 2328 insertions(+), 72 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,dw100.yaml
+>  create mode 100644 Documentation/userspace-api/media/drivers/dw100.rst
+>  create mode 100644 drivers/media/platform/nxp/dw100/Kconfig
+>  create mode 100644 drivers/media/platform/nxp/dw100/Makefile
+>  create mode 100644 drivers/media/platform/nxp/dw100/dw100.c
+>  create mode 100644 drivers/media/platform/nxp/dw100/dw100_regs.h
+>  create mode 100644 include/uapi/linux/dw100.h
+> 
+> ============
+> Compliance
+> ============
+> # v4l2-compliance -d 0
+> v4l2-compliance 1.23.0, 64 bits, 64-bit time_t
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/regulator/rt4801-regulator.c | 49 +++++++++++++++++++++-------
- 1 file changed, 38 insertions(+), 11 deletions(-)
+This isn't compiled from the v4l-utils repository since I am missing
+a 'SHA' line.
 
-diff --git a/drivers/regulator/rt4801-regulator.c b/drivers/regulator/rt4801-regulator.c
-index 7a87788d3f09..563d79196fdd 100644
---- a/drivers/regulator/rt4801-regulator.c
-+++ b/drivers/regulator/rt4801-regulator.c
-@@ -29,11 +29,33 @@
- 
- struct rt4801_priv {
- 	struct device *dev;
--	struct gpio_descs *enable_gpios;
-+	struct gpio_desc *enable_gpios[DSV_OUT_MAX];
- 	unsigned int enable_flag;
- 	unsigned int volt_sel[DSV_OUT_MAX];
- };
- 
-+static int rt4801_of_parse_cb(struct device_node *np,
-+			      const struct regulator_desc *desc,
-+			      struct regulator_config *config)
-+{
-+	struct rt4801_priv *priv = config->driver_data;
-+	int id = desc->id;
-+
-+	if (priv->enable_gpios[id]) {
-+		dev_warn(priv->dev, "duplicated enable-gpios property\n");
-+		return 0;
-+	}
-+	priv->enable_gpios[id] = devm_fwnode_gpiod_get_index(priv->dev,
-+							     of_fwnode_handle(np),
-+							     "enable", 0,
-+							     GPIOD_OUT_HIGH,
-+							     "rt4801");
-+	if (IS_ERR(priv->enable_gpios[id]))
-+		priv->enable_gpios[id] = NULL;
-+
-+	return 0;
-+}
-+
- static int rt4801_set_voltage_sel(struct regulator_dev *rdev, unsigned int selector)
- {
- 	struct rt4801_priv *priv = rdev_get_drvdata(rdev);
-@@ -63,15 +85,14 @@ static int rt4801_get_voltage_sel(struct regulator_dev *rdev)
- static int rt4801_enable(struct regulator_dev *rdev)
- {
- 	struct rt4801_priv *priv = rdev_get_drvdata(rdev);
--	struct gpio_descs *gpios = priv->enable_gpios;
- 	int id = rdev_get_id(rdev), ret;
- 
--	if (!gpios || gpios->ndescs <= id) {
-+	if (!priv->enable_gpios[id]) {
- 		dev_warn(&rdev->dev, "no dedicated gpio can control\n");
- 		goto bypass_gpio;
- 	}
- 
--	gpiod_set_value(gpios->desc[id], 1);
-+	gpiod_set_value(priv->enable_gpios[id], 1);
- 
- bypass_gpio:
- 	ret = regmap_write(rdev->regmap, rdev->desc->vsel_reg, priv->volt_sel[id]);
-@@ -85,15 +106,14 @@ static int rt4801_enable(struct regulator_dev *rdev)
- static int rt4801_disable(struct regulator_dev *rdev)
- {
- 	struct rt4801_priv *priv = rdev_get_drvdata(rdev);
--	struct gpio_descs *gpios = priv->enable_gpios;
- 	int id = rdev_get_id(rdev);
- 
--	if (!gpios || gpios->ndescs <= id) {
-+	if (!priv->enable_gpios[id]) {
- 		dev_warn(&rdev->dev, "no dedicated gpio can control\n");
- 		goto bypass_gpio;
- 	}
- 
--	gpiod_set_value(gpios->desc[id], 0);
-+	gpiod_set_value(priv->enable_gpios[id], 0);
- 
- bypass_gpio:
- 	priv->enable_flag &= ~BIT(id);
-@@ -122,6 +142,7 @@ static const struct regulator_desc rt4801_regulator_descs[] = {
- 		.name = "DSVP",
- 		.ops = &rt4801_regulator_ops,
- 		.of_match = of_match_ptr("DSVP"),
-+		.of_parse_cb = rt4801_of_parse_cb,
- 		.type = REGULATOR_VOLTAGE,
- 		.id = DSV_OUT_POS,
- 		.min_uV = MIN_UV,
-@@ -135,6 +156,7 @@ static const struct regulator_desc rt4801_regulator_descs[] = {
- 		.name = "DSVN",
- 		.ops = &rt4801_regulator_ops,
- 		.of_match = of_match_ptr("DSVN"),
-+		.of_parse_cb = rt4801_of_parse_cb,
- 		.type = REGULATOR_VOLTAGE,
- 		.id = DSV_OUT_NEG,
- 		.min_uV = MIN_UV,
-@@ -172,10 +194,15 @@ static int rt4801_probe(struct i2c_client *i2c)
- 		return PTR_ERR(regmap);
- 	}
- 
--	priv->enable_gpios = devm_gpiod_get_array_optional(&i2c->dev, "enable", GPIOD_OUT_HIGH);
--	if (IS_ERR(priv->enable_gpios)) {
--		dev_err(&i2c->dev, "Failed to get gpios\n");
--		return PTR_ERR(priv->enable_gpios);
-+	for (i = 0; i < DSV_OUT_MAX; i++) {
-+		priv->enable_gpios[i] = devm_gpiod_get_index_optional(&i2c->dev,
-+								      "enable",
-+								      i,
-+								      GPIOD_OUT_HIGH);
-+		if (IS_ERR(priv->enable_gpios[i])) {
-+			dev_err(&i2c->dev, "Failed to get gpios\n");
-+			return PTR_ERR(priv->enable_gpios[i]);
-+		}
- 	}
- 
- 	for (i = 0; i < DSV_OUT_MAX; i++) {
--- 
-2.32.0
+As of today you should see something like this:
+
+$ v4l2-compliance --version
+v4l2-compliance 1.23.0-4922, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 6de743337007 2022-04-07 11:29:29
+
+And running 'v4l2-compliance -d 0' should show that SHA as well.
+
+The compliance test of a driver must always use the latest v4l2-compliance
+compiled from the repository, that way I know all the latest tests are
+run.
+
+Regards,
+
+	Hans
+
+> 
+> Compliance test for dw100 device /dev/video0:
+> 
+> Driver Info:
+>     Driver name      : dw100
+>     Card type        : DW100 dewarper
+>     Bus info         : platform:dw100
+>     Driver version   : 5.17.0
+>     Capabilities     : 0x84208000
+>         Video Memory-to-Memory
+>         Streaming
+>         Extended Pix Format
+>         Device Capabilities
+>     Device Caps      : 0x04208000
+>         Video Memory-to-Memory
+>         Streaming
+>         Extended Pix Format
+> Media Driver Info:
+>     Driver name      : dw100
+>     Model            : dw100
+>     Serial           :
+>     Bus info         : platform:dw100
+>     Media version    : 5.17.0
+>     Hardware revision: 0x00000000 (0)
+>     Driver version   : 5.17.0
+> Interface Info:
+>     ID               : 0x0300000c
+>     Type             : V4L Video
+> Entity Info:
+>     ID               : 0x00000001 (1)
+>     Name             : dw100-source
+>     Function         : V4L2 I/O
+>     Pad 0x01000002   : 0: Source
+>       Link 0x02000008: to remote pad 0x1000004 of entity 'dw100-proc' (Video Scaler): Data, Enabled, Immutable
+> 
+> Required ioctls:
+>     test MC information (see 'Media Driver Info' above): OK
+>     test VIDIOC_QUERYCAP: OK
+>     test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+>     test second /dev/video0 open: OK
+>     test VIDIOC_QUERYCAP: OK
+>     test VIDIOC_G/S_PRIORITY: OK
+>     test for unlimited opens: OK
+> 
+> Debug ioctls:
+>     test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>     test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+>     test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>     test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>     test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>     test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>     test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>     test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>     Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+>     test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>     test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>     test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>     test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>     test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>     Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+>     test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>     test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>     test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>     test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+>     test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>     test VIDIOC_QUERYCTRL: OK
+>     test VIDIOC_G/S_CTRL: OK
+>     test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>     test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>     test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>     Standard Controls: 1 Private Controls: 1
+>     Standard Compound Controls: 0 Private Compound Controls: 1
+> 
+> Format ioctls:
+>     test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+>     test VIDIOC_G/S_PARM: OK (Not Supported)
+>     test VIDIOC_G_FBUF: OK (Not Supported)
+>     test VIDIOC_G_FMT: OK
+>     test VIDIOC_TRY_FMT: OK
+>     test VIDIOC_S_FMT: OK
+>     test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>     test Cropping: OK
+>     test Composing: OK
+>     test Scaling: OK
+> 
+> Codec ioctls:
+>     test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>     test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>     test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+>     test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>     test VIDIOC_EXPBUF: OK
+>     test Requests: OK (Not Supported)
+> 
+> Total for dw100 device /dev/video0: 46, Succeeded: 46, Failed: 0, Warnings: 0
+> 
+> ==============
+> Media controller
+> ==============
+> # media-ctl -d 0 -p
+> Media controller API version 5.17.0
+> 
+> Media device information
+> ------------------------
+> driver          dw100
+> model           dw100
+> serial
+> bus info        platform:dw100
+> hw revision     0x0
+> driver version  5.17.0
+> 
+> Device topology
+> - entity 1: dw100-source (1 pad, 1 link, 0 route)
+>             type Node subtype V4L flags 0
+>             device node name /dev/video0
+>     pad0: Source
+>         -> "dw100-proc":0 [ENABLED,IMMUTABLE]
+> 
+> - entity 3: dw100-proc (2 pads, 2 links, 0 route)
+>             type Node subtype Unknown flags 0
+>     pad0: Sink
+>         <- "dw100-source":0 [ENABLED,IMMUTABLE]
+>     pad1: Source
+>         -> "dw100-sink":0 [ENABLED,IMMUTABLE]
+> 
+> - entity 6: dw100-sink (1 pad, 1 link, 0 route)
+>             type Node subtype V4L flags 0
+>             device node name /dev/video0
+>     pad0: Sink
+>         <- "dw100-proc":1 [ENABLED,IMMUTABLE]
+> 
+> --
+> 2.35.1
+> 
 
