@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5AD350D8A8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 07:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 723EF50D8AB
+	for <lists+devicetree@lfdr.de>; Mon, 25 Apr 2022 07:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240462AbiDYFOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 01:14:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
+        id S241071AbiDYFOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 01:14:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241117AbiDYFNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 01:13:55 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CBEE1
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:10:52 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id bo5so13783969pfb.4
-        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:10:52 -0700 (PDT)
+        with ESMTP id S241171AbiDYFOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 01:14:32 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C295112
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:11:28 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id b12so9677563plg.4
+        for <devicetree@vger.kernel.org>; Sun, 24 Apr 2022 22:11:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=84kR6Ne3XN+sltkcwh/T1Tej1sQ2efwbcDr/K859dsI=;
-        b=dN9wtsmeLae7F6wFK9gX7zDkbC7pO8fi49NOzAvN+FziFaQvJhVvGOXMvUzJ49ooDA
-         IdHJ2hyB/xWo75MODlma39ciKNYlcH1DewSz/WIgv48sTW4Wjnm5ES4qowXDin+mSH8/
-         guf0HP0LtYcsMkGJO5h8hWR5CtVhQQd93CZhutXYyOu+RFLzbuLgXS9fGM+Q33q3KocU
-         EiGrkNh9QMKmERnZW9xog+piIG8uYQHpOTuQ6BvS+mUPbKFolqqGOga+USvw1wx4CQxq
-         7IlNgYP4lNDmtkHO3PxzjdhdQb3i6r3qh8ng223W3HM3ullv5Cnc03p0QbyzgZmeKOm+
-         SqZg==
+        bh=ZvxV9ZnERABhl2EIWB3iaKqhZLjFPNeceIsyVrSRWvs=;
+        b=MOb+NOSkcuxT3iC2OB4nNFe+rcsvXi1TPBgskPY2Z1FrXEtiVy0Ae9bKmiSUyhlwFZ
+         MKnxDTN8lUxZ0Xnn7sl6JIfqOunMo/O2GdxNQn/yEHo8LJ9w2ViWjmBYj1lUkAbPoWj3
+         msXeQ6FbQQu/UCEM5kNMLKIjlvMFAY4dJxzA5fRdTJPo6KJlxN744Uted6jPb9BON+19
+         JDw5C4GZrMpSYIOxY1D/yKT/4IL4o3YC/jSc6lgC6TS/IImuYnrXT94nFVunT8RBCM9Q
+         tumG4gZfNJSAYacyc6P1SwAlsQZob2Zvop5Z64UFacg+iYaghM/f2HeyDLK4amlAIUUi
+         kJ9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=84kR6Ne3XN+sltkcwh/T1Tej1sQ2efwbcDr/K859dsI=;
-        b=aK4+SAc154hR0BLpUaY4CqYcswWv3uWxCSYULpplE4Ke1Nv7qyJiaZV68A2sTuzhG1
-         2XmesimGp05R27RnL3XBG0YkZBDWqQElj5yf8G2OSqBzmMiOw77jGCA9bwxL8kEkGwKJ
-         7PE4EIxL6UwelS/yoGK4rszHQXqO1jciTRhyuWbVLJVv3UijlhN/KKi+cDh9ONh7C8cJ
-         qp/cfT+/I/yIcUzUWwd0h6XzW4bB4Nt1q/To4JYWElKqjcJT796G/dxwyEv3rfzGvURB
-         AdNL1dePFxvBktyXHL6ytBrAg1ufX6D/U0RtJ25GlKlwmT5o+YRydgCONHweDv3qwt5Y
-         ikWg==
-X-Gm-Message-State: AOAM531/XHlYY+8AFhgAnIPBB5D0cbmDhIl93f/vK/y2ZtEfbLhi+xkd
-        olAEQzMdF6Co9884JSr245GBsA==
-X-Google-Smtp-Source: ABdhPJzGGW+GIrQOBy6BDvyB6yPlv6juol7Eg18fNiB0YyJ6APP5kw4YfaBWqD0Z9BK/KWxa2RwHqA==
-X-Received: by 2002:a63:7d4a:0:b0:398:dad:6963 with SMTP id m10-20020a637d4a000000b003980dad6963mr13585899pgn.329.1650863452300;
-        Sun, 24 Apr 2022 22:10:52 -0700 (PDT)
+        bh=ZvxV9ZnERABhl2EIWB3iaKqhZLjFPNeceIsyVrSRWvs=;
+        b=5Co7plL7NmNhWKENkjS1DwTKXtuIZBD2CjAaE7BvsDlzvDmti/1Kjs2VMxxIXzDHci
+         vKC68voh5pFQmvRNlUGbU33kU97L3xcRd0OvQ9TWeyKd/xghv7q/Zzh4ooQK7KtUqb3f
+         0gf5WDCMQEBlkFA9GfXqRshuWFPsdlBRHsF3e585pueZaDj2/D0vrmKJSdOq8norBtc9
+         jZJHklzrgA6BRwuDzjwL9a8oRNCc3sNV1osnKIzdFeFjfSgXc+ERBqjeRUG1luvamUwD
+         o5zuiuYvoPM0yV04R+hXdYwLzaZryYTtVLxnv3Y7O9uelExvdiCrJokNXIN77L/B0qnj
+         Wp8Q==
+X-Gm-Message-State: AOAM533oSiqj05FnTesuxM/9BEMEehojgSayRLGpMPjWk7BdHPc3nayv
+        uftoojnMg5XzKrpFO72xAHIBWA==
+X-Google-Smtp-Source: ABdhPJyMuAnIZMhsEBRUbqrq8jrM/dXAU1QVX+cJ7FJJI9aelTLzI6ZCuHEkflMcb/yh3jFoW48t3g==
+X-Received: by 2002:a17:90a:4a8a:b0:1d5:a3df:ab5 with SMTP id f10-20020a17090a4a8a00b001d5a3df0ab5mr23699773pjh.64.1650863487809;
+        Sun, 24 Apr 2022 22:11:27 -0700 (PDT)
 Received: from localhost ([122.171.250.232])
-        by smtp.gmail.com with ESMTPSA id f127-20020a62db85000000b0050d3dd1138csm2207570pfg.126.2022.04.24.22.10.51
+        by smtp.gmail.com with ESMTPSA id n64-20020a622743000000b0050acf41bde9sm9778362pfn.117.2022.04.24.22.11.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 22:10:51 -0700 (PDT)
-Date:   Mon, 25 Apr 2022 10:40:50 +0530
+        Sun, 24 Apr 2022 22:11:27 -0700 (PDT)
+Date:   Mon, 25 Apr 2022 10:41:25 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
 Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
@@ -58,19 +58,18 @@ Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH V4 02/14] cpufreq: mediatek: Use device print to show logs
-Message-ID: <20220425051050.6azd3izcuoa3ybj4@vireshk-i7>
+Subject: Re: [PATCH V4 03/14] cpufreq: mediatek: Replace old_* with pre_*
+Message-ID: <20220425051125.r6k55uqnkgnpm2sm@vireshk-i7>
 References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
- <20220422075239.16437-3-rex-bc.chen@mediatek.com>
+ <20220422075239.16437-4-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220422075239.16437-3-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220422075239.16437-4-rex-bc.chen@mediatek.com>
 User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,14 +77,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22-04-22, 15:52, Rex-BC Chen wrote:
-> - Replace pr_* with dev_* to show logs.
-> - Remove usage of __func__.
+> To make driver more readable, replace old_* with pre_*.
 > 
 > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  drivers/cpufreq/mediatek-cpufreq.c | 54 ++++++++++++++++--------------
->  1 file changed, 28 insertions(+), 26 deletions(-)
+>  drivers/cpufreq/mediatek-cpufreq.c | 84 +++++++++++++++---------------
+>  1 file changed, 42 insertions(+), 42 deletions(-)
 
 Applied. Thanks.
 
