@@ -2,92 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1878F50EBA6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 00:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809D150EBC9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 00:22:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235546AbiDYWYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 18:24:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50620 "EHLO
+        id S237215AbiDYWZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 18:25:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343640AbiDYV6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 17:58:18 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92D16169;
-        Mon, 25 Apr 2022 14:55:13 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id l203so7834476oif.0;
-        Mon, 25 Apr 2022 14:55:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PHOr5dyluXuuaUOHVdQfwFJR1c6TSUho1dnJi41C4k4=;
-        b=k3aNEFOKqPf8RrUcfoKAOOWEct0pLFR06xIVMVIaw2ssAMI/mDOI8okE2RxgrAny1M
-         ht+tTdn29xzCy7X7ksxvnPXVCX06/ykXK7ORDu0DGZBvuMqRNlARcr3he4Rubw2lFU4X
-         rCelX/WzQacLTdCiwr9d3PWmgmXtxrFys/GRIwOuZ/2v0yBYcjB5ipKsax9tFXloUcFi
-         twbDZPyUyXL8FcGqnly4AehSgyI5KJ/CcryQ67PmgzD8cxI1fspeWJc/JZBXLgCjrjCf
-         awhSiAqQ/G0eUsemijDy4cmi+P2HglpLsatpLs0OwZ0bvnsJvnJ/2awQ+V4Jxp1/HXcQ
-         GaTg==
-X-Gm-Message-State: AOAM531tf98eeCDDlWiW9w3cZQTJAXMg3389K4f3uPTStbNGvV/kZK0D
-        x3DZRcQKHPyMAi+cdvlY7Q==
-X-Google-Smtp-Source: ABdhPJyaLrR6RBBm/YXv+uX+05CwhxM13Mp41zXMj6FR2Pb1k8S2s0+Jq+EHAEJElxDM9/Ha1uIMFQ==
-X-Received: by 2002:a05:6808:13d4:b0:324:f835:d2e4 with SMTP id d20-20020a05680813d400b00324f835d2e4mr7259087oiw.262.1650923713297;
-        Mon, 25 Apr 2022 14:55:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h26-20020a9d799a000000b00604d35aa374sm4256284otm.35.2022.04.25.14.55.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 14:55:12 -0700 (PDT)
-Received: (nullmailer pid 361250 invoked by uid 1000);
-        Mon, 25 Apr 2022 21:55:12 -0000
-Date:   Mon, 25 Apr 2022 16:55:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Keerthy <j-keerthy@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 2/2] dt-bindings: timer: Add compatible for am6 for TI
- timer-dm
-Message-ID: <YmcYwD6f/I59ucTR@robh.at.kernel.org>
-References: <20220414085807.7389-1-tony@atomide.com>
- <20220414085807.7389-3-tony@atomide.com>
+        with ESMTP id S1343643AbiDYWBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 18:01:48 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D64C3298E;
+        Mon, 25 Apr 2022 14:58:42 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 59D0A22246;
+        Mon, 25 Apr 2022 23:58:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650923920;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=DCsEa7zKkDqLZy+dB+iRWtTIDIbRaSE/8JLGg5kT/lA=;
+        b=B/vwdgRY9J8Xn903h4fqbxkT2zuHxf9NoV56Bh8CqE8Dl1vwTDZAOU1KeUM8lrBWj3aI4f
+        erzbaLdSRTNVVYNve2Netuuwp5dhYr5GymSXePHQ2Rp9z9X7vgzQhcxDny0aYJ1hqFbKSq
+        prT3Gz1uWzqH7Qd2crngmBYYeblCQ9Q=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220414085807.7389-3-tony@atomide.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 25 Apr 2022 23:58:39 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: fsl,ls-extirq:
+ convert to YAML
+In-Reply-To: <658851ed-33fd-8e2b-7db7-ef1ca9e31c33@linaro.org>
+References: <20220425140214.32448-1-michael@walle.cc>
+ <658851ed-33fd-8e2b-7db7-ef1ca9e31c33@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <83b596d0570c779c61c3c37c6f512679@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Apr 2022 11:58:07 +0300, Tony Lindgren wrote:
-> Let's add compatible for ti,am654-timer for TI am64, am65 and j72 SoCs.
-> As the timer hardware is the same between am64, am65 and j72 we use the
-> compatible name for the earliest SoC with this timer.
+Am 2022-04-25 20:36, schrieb Krzysztof Kozlowski:
+> On 25/04/2022 16:02, Michael Walle wrote:
+>> Convert the fsl,ls-extirq binding to the new YAML format.
+>> 
 > 
-> The timer interrupts are not routable for the operating system for some
-> timers on am6. Let's make sure the interrupts are configured for the
-> timers on all other SoCs.
+> (...)
 > 
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  .../devicetree/bindings/timer/ti,timer-dm.yaml       | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+>> diff --git 
+>> a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml 
+>> b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+>> new file mode 100644
+>> index 000000000000..39d120ad7549
+>> --- /dev/null
+>> +++ 
+>> b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+>> @@ -0,0 +1,88 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: 
+>> http://devicetree.org/schemas/interrupt-controller/fsl,ls-extirq.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Freescale Layerscape External Interrupt Controller
+>> +
+>> +maintainers:
+>> +  - Shawn Guo <shawnguo@kernel.org>
+>> +  - Li Yang <leoyang.li@nxp.com>
+>> +
+>> +description: |
+>> +  Some Layerscape SOCs (LS1021A, LS1043A, LS1046A LS1088A, LS208xA,
+>> +  LX216xA) support inverting the polarity of certain external 
+>> interrupt
+>> +  lines.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/interrupt-controller.yaml#
 > 
+> I have doubts whether this is here applicable. See also Rob's comment:
+> https://lore.kernel.org/all/YjjJpxLWJ%2FYOe0OX@robh.at.kernel.org/
+> 
+> This device does not have children, so the interrupt-controller schema
+> should be probably skipped.
 
-Applied, thanks!
+ok.
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - enum:
+>> +          - fsl,ls1021a-extirq
+>> +          - fsl,ls1043a-extirq
+>> +          - fsl,ls1088a-extirq
+>> +      - items:
+>> +          - enum:
+>> +              - fsl,ls1046a-extirq
+>> +          - const: fsl,ls1043a-extirq
+>> +      - items:
+>> +          - enum:
+>> +              - fsl,ls2080a-extirq
+>> +              - fsl,lx2160a-extirq
+>> +          - const: fsl,ls1088a-extirq
+>> +
+>> +  '#interrupt-cells':
+>> +    const: 2
+>> +
+>> +  '#address-cells':
+>> +    const: 0
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description:
+>> +      Specifies the Interrupt Polarity Control Register (INTPCR) in 
+>> the
+>> +      SCFG or the External Interrupt Control Register (IRQCR) in the 
+>> ISC.
+>> +
+>> +  interrupt-map:
+
+btw.
+
+minItems: 12
+maxItems: 12
+
+Isn't working here, is that expected? The validator seem to get the 
+count
+of the elements of one tuple wrong.
+
+I.e.
+arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dtb: 
+interrupt-controller@14: interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 
+0, 1, 4, 2, 0, 1, 0], [2, 4, 3, 0, 1, 0, 3, 4], [4, 0, 1, 0, 4, 4, 5, 
+0], [1, 0, 5, 4, 6, 0, 1, 0], [6, 4, 7, 0, 1, 0, 7, 4], [8, 0, 1, 0, 8, 
+4, 9, 0], [1, 0, 9, 4, 10, 0, 1, 0], [10, 4, 11, 0, 1, 0, 11, 4]] is too 
+short
+
+>> +    description: Specifies the mapping from external interrupts to 
+>> GIC interrupts.
+>> +
+>> +  interrupt-map-mask:
+>> +    items:
+>> +      - const: 0xffffffff
+> 
+> This looks highly permissive mask and should be instead defined per
+> variant, for example (quickly looking at DTS):
+> 0x7 for ls1021
+> 0xf for ls1043a and ls1088a
+
+Just that I understand it correctly, the result of the AND with that
+mask is then looked up in the interrupt-map (the first entry there)?
+
+> You might need to correct the DTS. Some confirmation from someone with
+> datasheet would be good.
+
+According to their datasheets they have the following number of external
+IRQs:
+- ls1021a has 6,
+- ls1043a has 12,
+- ls1046a has 12,
+- ls1088a has 12,
+- ls2080a has 12,
+- lx2160a has 12.
+
+That is what I need to confirm, right?
+
+Is there a better way than the following snippet:
+
+properties:
+   interrupt-map-mask: true
+
+allOf:
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
+               - fsl,ls1021a-extirq
+     then:
+       properties:
+         interrupt-map-mask:
+           items:
+             - const: 0x7
+             - const: 0
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
+               - fsl,ls1043a-extirq
+               - fsl,ls1046a-extirq
+               - fsl,ls1088a-extirq
+               - fsl,ls2080a-extirq
+               - fsl,lx2160a-extirq
+     then:
+       properties:
+         interrupt-map-mask:
+           items:
+             - const: 0xf
+             - const: 0
+
+-michael
