@@ -2,132 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0521F510AA2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B56510ABB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354955AbiDZUkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 16:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59988 "EHLO
+        id S1355139AbiDZUuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 16:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350728AbiDZUkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:40:17 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932CE31208;
-        Tue, 26 Apr 2022 13:37:09 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id w27-20020a056830061b00b00604cde931a0so13879181oti.2;
-        Tue, 26 Apr 2022 13:37:09 -0700 (PDT)
+        with ESMTP id S230505AbiDZUuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:50:20 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773364D251
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:47:11 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id v65so17323966oig.10
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:47:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QzB3Bdi4TZ2Nws2HCQQhwkIjzXxft3C3e6a003vLbvE=;
+        b=vvdly9VcW+FAd/BRUYEN8pLSa18CiNt5rOAYy02F79PncC/cyELUr+kTRLEVjoCkGa
+         k9KSZCcXnphk9wvuD4zWOPN4X9m9maHjKdcZ9ip7EL4paaEKbK2y+b+ELiNGUcJT8Fge
+         7u6HxblMgLQ2RHnGNu7+9GQcJsO06eb9PaEeGnFlug6AXrG9Kw1g2fFN65GQFMIVfPuX
+         sK2XxmONL1F5NzcNC1epk4czsWVBA4KNxAPTKwHdrc5WlBBJnz1wb3dwNtJZSVSN1s65
+         FKNrAfb0hgm428AFl6BDNWA0EXOwTIj2GkGKx6gEcztMfaCrr+2CG3fFcDS0C9w/b9xB
+         YtEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8Ua/QldL7pC5LZXWxffOFe8RnQhvpw8c3zNSB5ycwY8=;
-        b=laD/A1Y9qM3A0QFtpeYgmWXfcJPEnX/53nM4pGL/+soqTQvjubrjkK3cs/Y8ZcrCx5
-         O6iWzLWcLdynMR0qPHnlvPGEXRuFMSBsZFhG/OJ6pO4L1iAR341bR+2dwzZJkZqPRWWF
-         eggx+Q5XsbXgcroz7t6civ9aG+sWYIRVd72lPalhYuOCK/GowhpdUQ9/ug0qwXSVx5js
-         f+5/jdeZzQhJhmYDaBPtQFV8iYus8m4YcPW6Vz2vYlnQOXVtZ2FsBd5qbAJSMyN0vEug
-         pqvKb2eEtY54DtFFCurGd8TRBKE+etRsI4uKfBjWtcsf37qPL0H7SHPrMYXrYTSo9nye
-         FyBw==
-X-Gm-Message-State: AOAM5317+w6BNNfzQp3uKRrlHig12xfMtyh47HVqGFp5/4tBnmlfSSDF
-        Q5MrrHmz1MeRz+yBrGa//w==
-X-Google-Smtp-Source: ABdhPJzV94dg7hlsrdCIRh48Q/JHhKt1BGntT/HsErX1a5fw7wvJMn0OMxu04NvUD/iPdux9O8sz9w==
-X-Received: by 2002:a9d:4e8d:0:b0:605:4f04:4863 with SMTP id v13-20020a9d4e8d000000b006054f044863mr9009729otk.204.1651005428916;
-        Tue, 26 Apr 2022 13:37:08 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q4-20020a4a3004000000b0035e974ec923sm282663oof.2.2022.04.26.13.37.07
+        bh=QzB3Bdi4TZ2Nws2HCQQhwkIjzXxft3C3e6a003vLbvE=;
+        b=wvJb+CAPRg9wYCox+neXhNYZ6dHPz4kKPzlBjXgIYCt0MJEJXByTGKWOVPYi+fahbg
+         xAaOVVQOLNUGMDO4LHEfZCpy1jgGv19Z853cSxHnN8em1R36Voph932WDZUgpLaXmuHx
+         oE8KPr1fNQ+nWo5OwW04mNdfS17H9abGCTB/iQawOb1wa7Dme5dpiw+sKkC/uYlLqQ+w
+         QDxoTnKZnxEprToAyB3UkHlUEFIL2ayKg6jNo4IF4QWMHlkzA9LZuvYG+R5dvKSW2rrm
+         9qAFYR5DJk5xavBkCY+0SRybMctKnz5L2qLT7NVPbg0Du7sIa6afRlH3L5gO/e1ApEBd
+         B0tA==
+X-Gm-Message-State: AOAM533dNNXqeRe+G7RYnSd32Rp/9tAKi5U9IPywhS8VLsfZBn6DlWag
+        cCTK2wuH5Xgi2OXb9scKTaUJ9rchnzZeePyB
+X-Google-Smtp-Source: ABdhPJytkLIz0yPUD72X91npy9NSOKrvOFG9hQCViddsQAVjI6xY6tpbOieUx0/M7QRqK/nF1xwQ1w==
+X-Received: by 2002:aca:1004:0:b0:322:8ac2:a1ef with SMTP id 4-20020aca1004000000b003228ac2a1efmr14892914oiq.239.1651006030834;
+        Tue, 26 Apr 2022 13:47:10 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id e26-20020a056820061a00b0035e46250f56sm5331987oow.13.2022.04.26.13.47.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 13:37:08 -0700 (PDT)
-Received: (nullmailer pid 2493275 invoked by uid 1000);
-        Tue, 26 Apr 2022 20:37:07 -0000
-Date:   Tue, 26 Apr 2022 15:37:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        allen-kh.cheng@mediatek.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH] dt-bindings: media: mtk-vcodec: Adds encoder power
- domain property
-Message-ID: <YmhX89nQjkwt5qb3@robh.at.kernel.org>
-References: <20220420073440.31649-1-irui.wang@mediatek.com>
+        Tue, 26 Apr 2022 13:47:09 -0700 (PDT)
+Date:   Tue, 26 Apr 2022 13:49:05 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] ARM: dts: qcom: apq8064: Use generic node name
+ for DMA
+Message-ID: <YmhawW3wAn7HAUVC@ripper>
+References: <20220421171809.32722-1-singh.kuldeep87k@gmail.com>
+ <20220421171809.32722-2-singh.kuldeep87k@gmail.com>
+ <YmQjW4OYe5rTBP/Q@ripper>
+ <20220423180934.GA35431@9a2d8922b8f1>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220420073440.31649-1-irui.wang@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220423180934.GA35431@9a2d8922b8f1>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 20, 2022 at 03:34:39PM +0800, Irui Wang wrote:
-> Adds encoder power domain property
+On Sat 23 Apr 11:09 PDT 2022, Kuldeep Singh wrote:
 
-Why? You can't add new, required properties as that breaks compatibility 
-with existing DTs.
+> On Sat, Apr 23, 2022 at 09:03:39AM -0700, Bjorn Andersson wrote:
+> > On Thu 21 Apr 10:18 PDT 2022, Kuldeep Singh wrote:
+> > 
+> > > Qcom BAM DT spec expects generic DMA controller node name as
+> > > "dma-controller" to enable validations.
+> > > 
+> > > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > It seems that I picked up v3, but patchwork-bot didn't send out any
+> > notifications.
+> 
+> Yes, somehow there was no notification for this series as well as geni
+> uart/i2c patches also.
+> 
+> >
+> > Please double check linux-next to confirm that we got them all sorted
+> > out.
+> 
+> I checked dma dts patches[1] and they are in next/linux-next.
+> I hope I checked the right tree, please correct me if it's wrong.
+> 
+> Please note, there was one small typo fix from v3->v4 in commit
+> header(s/User/Use). Not sure if it's worth updating as it's already in
+> next tree, upto you. Thanks!
+> 
 
-> 
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> ---
->  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> index deb5b657a2d5..3c069c965992 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> @@ -41,6 +41,9 @@ properties:
->  
->    assigned-clock-parents: true
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
->    iommus:
->      minItems: 1
->      maxItems: 32
-> @@ -72,6 +75,7 @@ required:
->    - iommus
->    - assigned-clocks
->    - assigned-clock-parents
-> +  - power-domains
->  
->  allOf:
->    - if:
-> @@ -132,6 +136,7 @@ examples:
->      #include <dt-bindings/clock/mt8173-clk.h>
->      #include <dt-bindings/memory/mt8173-larb-port.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/power/mt8173-power.h>
->  
->      vcodec_enc_avc: vcodec@18002000 {
->        compatible = "mediatek,mt8173-vcodec-enc";
-> @@ -153,6 +158,7 @@ examples:
->        clock-names = "venc_sel";
->        assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
->        assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
-> +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC>;
->      };
->  
->      vcodec_enc_vp8: vcodec@19002000 {
-> @@ -173,4 +179,5 @@ examples:
->        clock-names = "venc_lt_sel";
->        assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
->        assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL_370P5>;
-> +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC_LT>;
->      };
-> -- 
-> 2.18.0
-> 
-> 
+I generally never rebase my trees, as that's causing issues for anyone
+references commits in my tree. So we'll have to live with this typo.
+
+Thanks,
+Bjorn
