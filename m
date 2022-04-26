@@ -2,352 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9B550F573
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 10:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B0F50F8BD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 11:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231913AbiDZIwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 04:52:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59894 "EHLO
+        id S1346156AbiDZJGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 05:06:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346298AbiDZIos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 04:44:48 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09DE8595F;
-        Tue, 26 Apr 2022 01:34:33 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id y19so9727928ljd.4;
-        Tue, 26 Apr 2022 01:34:33 -0700 (PDT)
+        with ESMTP id S1347777AbiDZJGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 05:06:10 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E93718B2E;
+        Tue, 26 Apr 2022 01:45:44 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id q13so4669870qvk.3;
+        Tue, 26 Apr 2022 01:45:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FInGpHNCcK/TD9SeWZQkc/p1sMIqORL6XIEEOHsCc5Y=;
-        b=CLHRbStTr+GP4H1R32XYex1OOt6UMLD5DVs8Y8EppitDdNDDEv0K1BqpOO1nDGDLMg
-         hJUmM6Ct1NCX9Y/dkzc9REBoM5lxcvFeqQxnHg80MVzrsD8euorL5+x4rx9dTAKtpQbv
-         ill+cLT7m/IGnGVSKzNglJwi1X6rpeCyAQd1j1+GBdy2wgoTh0NGPUJ9fGWS0KZokdH4
-         /OsnqYPGkXtpFRbJ89GF22UABmikkL8DZNS0NNfTlireooayv+sMOgC/kZ8LAs1sDnc7
-         TjjWm1xCrlXJNyfL5uatUqV7peHIfAgYeAMsWncycgiRKl2w0EQQU2X9yBpc91yYyJ95
-         l+2A==
+         :cc;
+        bh=s8JC263FgFy3jyxA285+ySjFZq/wFTiKMNVDc/5kVhk=;
+        b=nt1HXhudCOieSH/ymuSaNTnhqUd/Yn/oVUEEYb3qthVUMbdwFvIw1v0rc1C1Tp+WPw
+         UJWxenWHUbFlqtiaar8qbKkHXa6imluukeApPMlTrfLlhVpvNewvoHvuIml4/HByW/yT
+         SbUZp/GU+AxFM2GbY9mOu3wrneuQnRKWo1rNg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FInGpHNCcK/TD9SeWZQkc/p1sMIqORL6XIEEOHsCc5Y=;
-        b=XknsHJIYonIwDZ2e9Yz+K2ctJW6E7tMKmaf1qfsD6AhDCcnWAAKQUEjr/UBAA5s1ni
-         enho2CW/gIJhrT5fSxBKPNGEQunZ54WdI5coYrcX1M8Oyi8QF4Y6KRoDIx+TgabkcLo+
-         JkX/66MruvfA1jHEHBmw2oH0IhOCzozyZIEpzpJZQJBYasCB8X0W7xk10xbGjpT69X8j
-         +WvShIvu7k4IocIyH+GyMubNDT13ycCFn5gi2cnPrPUb1c7lL3QywggIznLGsGcIiO/P
-         KhssPIPhPxbiQxzsmfYEf16BCgvxXGkCCQvqFrjseuyUH/9YDGsysW/Ze0+QnyWCaQZa
-         Es3Q==
-X-Gm-Message-State: AOAM531oJ4Kas0iZz/iLUPUeWn7I9kNK+XETvhIIPYZMxSNgcU1sput1
-        tcu8pwxaiwo5ioLFH5jTSCCaVxn7l34+2p9XXqI=
-X-Google-Smtp-Source: ABdhPJxeMid+gRhAqzBjhRPHQFzn6lFG1yCpNvUP7oiHdtWHc0z7NiIkWEb0UaQ2oPUse7gCnz2myidtn5jCf4tPuwk=
-X-Received: by 2002:a2e:8e91:0:b0:24d:aac1:f855 with SMTP id
- z17-20020a2e8e91000000b0024daac1f855mr14178666ljk.28.1650962072007; Tue, 26
- Apr 2022 01:34:32 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=s8JC263FgFy3jyxA285+ySjFZq/wFTiKMNVDc/5kVhk=;
+        b=A7006gB/6uliZT16r9BmaNo704b/t6cFMbHSqFSeZSY2xZ67WboSGS6bTNtSV2NsT6
+         /zMFp+spygDQ9c1VnvRwbXDI4Lja8Og4y7OKuRKs126Lp+RB48VcZvgdu3bi4j5L1dka
+         S+A84qGNhmCAamq+UDihY8q7W/picAo2v4vABIr/HW4g1dBpoBt3FWMcHcupp88gNVvR
+         gpgwuJ1XZzKnZYnlrH5LKmNabsURZJPu+iWfXAWqtzfb1LG0Ty4b3QYdjazKrTVRFzDE
+         y07kqCfWI1SSTR0UKoIBibEq1l5gU0va4F18nkqKV4VgbsUN89YRUeFtDiM75EsI7bZy
+         iUDQ==
+X-Gm-Message-State: AOAM532JRvuIN5iKnS5id8qLkOKdWsZ9awQAkf+hUIcD9o3WUG32A8EQ
+        vHfatmv0uzzoo1U1sQcNhKvBzg8lNewzXOhzTAk=
+X-Google-Smtp-Source: ABdhPJy/a7R5QcfkDGNvXevfex9gGYiGDw8Vgm3NWqkPXA+VHo8PUgOW+SRHNkzWV1ncHmUfOz8hiw4ynmpzy6AWqSo=
+X-Received: by 2002:ad4:53c5:0:b0:42d:7bb4:a8e8 with SMTP id
+ k5-20020ad453c5000000b0042d7bb4a8e8mr15201215qvv.8.1650962743952; Tue, 26 Apr
+ 2022 01:45:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <1646393418-26421-1-git-send-email-vincent.sunplus@gmail.com>
- <1646393418-26421-2-git-send-email-vincent.sunplus@gmail.com> <YlactHJyZ6QnNV5j@matsya>
-In-Reply-To: <YlactHJyZ6QnNV5j@matsya>
-From:   =?UTF-8?B?5pa96YyV6bS7?= <vincent.sunplus@gmail.com>
-Date:   Tue, 26 Apr 2022 16:37:08 +0800
-Message-ID: <CAPvp3RgEic_mR1meQqyg1JR3vuuRpsNHMGqyvu3d63TGhn-k6Q@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] phy: usb: Add USB2.0 phy driver for Sunplus SP7021
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     kishon@ti.com, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, wells.lu@sunplus.com
+References: <20220426071848.11619-1-zev@bewilderbeest.net> <YmetYjSKFs+WWwYz@hatter.bewilderbeest.net>
+In-Reply-To: <YmetYjSKFs+WWwYz@hatter.bewilderbeest.net>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 26 Apr 2022 08:45:32 +0000
+Message-ID: <CACPK8Xf2a2tC-u_9CjLVoh9iJmUdOKveLfjy1UNKQbqYPr0Zhw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] hwmon: (nct6775) Convert to regmap, add i2c support
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>, webmaster@kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksandr Natalenko <oleksandr@natalenko.name>,
+        Rob Herring <robh+dt@kernel.org>,
+        Renze Nicolai <renze@rnplus.nl>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vinod Koul <vkoul@kernel.org> =E6=96=BC 2022=E5=B9=B44=E6=9C=8813=E6=97=A5 =
-=E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:49=E5=AF=AB=E9=81=93=EF=BC=9A
+On Tue, 26 Apr 2022 at 08:29, Zev Weiss <zev@bewilderbeest.net> wrote:
 >
-> On 04-03-22, 19:30, Vincent Shih wrote:
-> > Add USB2.0 phy driver for Sunplus SP7021
+> [Adding korg webmaster re: list infrastructure]
+>
+> On Tue, Apr 26, 2022 at 12:18:42AM PDT, Zev Weiss wrote:
+> >Hello,
 > >
-> > Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
-> > ---
-> >  MAINTAINERS                            |   8 ++
-> >  drivers/phy/Kconfig                    |   1 +
-> >  drivers/phy/Makefile                   |   1 +
-> >  drivers/phy/sunplus/Kconfig            |  12 ++
-> >  drivers/phy/sunplus/Makefile           |   2 +
-> >  drivers/phy/sunplus/phy-sunplus-usb2.c | 248 +++++++++++++++++++++++++=
-++++++++
-> >  6 files changed, 272 insertions(+)
-> >  create mode 100644 drivers/phy/sunplus/Kconfig
-> >  create mode 100644 drivers/phy/sunplus/Makefile
-> >  create mode 100644 drivers/phy/sunplus/phy-sunplus-usb2.c
+> >This is v3 of my effort to add i2c support to the nct6775 hwmon
+> >driver.
 > >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 80eebc1..a3bb35e 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -17947,6 +17947,14 @@ L:   netdev@vger.kernel.org
-> >  S:   Maintained
-> >  F:   drivers/net/ethernet/dlink/sundance.c
-> >
-> > +SUNPLUS USB2 PHY DRIVER
-> > +M:   Vincent Shih <vincent.sunplus@gmail.com>
-> > +L:   linux-usb@vger.kernel.org
-> > +S:   Maintained
-> > +F:   drivers/phy/sunplus/Kconfig
-> > +F:   drivers/phy/sunplus/Makefile
-> > +F:   drivers/phy/sunplus/phy-sunplus-usb2.c
-> > +
-> >  SUPERH
-> >  M:   Yoshinori Sato <ysato@users.sourceforge.jp>
-> >  M:   Rich Felker <dalias@libc.org>
-> > diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> > index 82b63e6..d97e22e 100644
-> > --- a/drivers/phy/Kconfig
-> > +++ b/drivers/phy/Kconfig
-> > @@ -90,6 +90,7 @@ source "drivers/phy/rockchip/Kconfig"
-> >  source "drivers/phy/samsung/Kconfig"
-> >  source "drivers/phy/socionext/Kconfig"
-> >  source "drivers/phy/st/Kconfig"
-> > +source "drivers/phy/sunplus/Kconfig"
-> >  source "drivers/phy/tegra/Kconfig"
-> >  source "drivers/phy/ti/Kconfig"
-> >  source "drivers/phy/intel/Kconfig"
-> > diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> > index 01e9eff..ed88b6f 100644
-> > --- a/drivers/phy/Makefile
-> > +++ b/drivers/phy/Makefile
-> > @@ -31,6 +31,7 @@ obj-y                                       +=3D allw=
-inner/   \
-> >                                          samsung/     \
-> >                                          socionext/   \
-> >                                          st/          \
-> > +                                        sunplus/             \
-> >                                          tegra/       \
-> >                                          ti/          \
-> >                                          xilinx/
-> > diff --git a/drivers/phy/sunplus/Kconfig b/drivers/phy/sunplus/Kconfig
-> > new file mode 100644
-> > index 0000000..beb85f4
-> > --- /dev/null
-> > +++ b/drivers/phy/sunplus/Kconfig
-> > @@ -0,0 +1,12 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +
-> > +config PHY_SUNPLUS_USB
-> > +     tristate "Sunplus USB2 PHY driver"
-> > +     depends on OF && (SOC_SP7021 || COMPILE_TEST)
-> > +     select GENERIC_PHY
-> > +     help
-> > +       Enable this to support the USB 2.0 PHY on Sunplus SP7021
-> > +       SoC. The USB 2.0 PHY controller supports battery charger
-> > +       and synchronous signals, various power down modes including
-> > +       operating, partial and suspend modes, and high-speed,
-> > +       full-speed and low-speed data transfer.
-> > diff --git a/drivers/phy/sunplus/Makefile b/drivers/phy/sunplus/Makefil=
-e
-> > new file mode 100644
-> > index 0000000..71754d5
-> > --- /dev/null
-> > +++ b/drivers/phy/sunplus/Makefile
-> > @@ -0,0 +1,2 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +obj-$(CONFIG_PHY_SUNPLUS_USB)        +=3D phy-sunplus-usb2.o
-> > diff --git a/drivers/phy/sunplus/phy-sunplus-usb2.c b/drivers/phy/sunpl=
-us/phy-sunplus-usb2.c
-> > new file mode 100644
-> > index 0000000..a2c17ca
-> > --- /dev/null
-> > +++ b/drivers/phy/sunplus/phy-sunplus-usb2.c
-> > @@ -0,0 +1,248 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +/*
-> > + * Sunplus SP7021 USB 2.0 phy driver
-> > + *
-> > + * Copyright (C) 2021 Sunplus Technology Inc., All rights reserved.
+> >Changes since v2 [0]:
+> > ...
+> > - Renamed drivers and Kconfig symbols to keep existing platform
+> >   driver as "nct6775" (SENSORS_NCT6775) and the core module as
+> >   "nct6775-core" (SENSORS_NCT6775_CORE) [Guenter]
 >
-> 2022
->
+> Unfortunately while this was a simple enough change to make (a few 'git
+> mv' commands and a handful of actual text changes), it ballooned the
+> size of the diff for patch 5 to the point that vger bounced it for
+> exceeding the 100K message-size limit.  As far as I can tell it looks
+> like it went through elsewhere, but does leave a bit of a gap in the
+> public list archives -- please let me know if there's anything I should
+> try in terms of re-sending it.  (The only combination of 'git
+> format-patch' flags I've been able to find that gets it back down to
+> approximately its previous size is '-B -D', which isn't so useful for
+> actually applying.)
 
-I will modify it.
+FWIW, I moderated it through to the openbmc list, which is on lore:
 
-> > + *
-> > + * Note 1 : non-posted write command for the registers accesses of
-> > + * Sunplus SP7021.
-> > + *
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/nvmem-consumer.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/reset.h>
-> > +
-> > +#define RF_MASK_V(_mask, _val)                       (((_mask) << 16) =
-| (_val))
-> > +#define RF_MASK_V_CLR(_mask)                 (((_mask) << 16) | 0)
->
-> Please use FIELD_PREP and FIELD_GET macros for these
->
+ https://lore.kernel.org/openbmc/YmetYjSKFs+WWwYz@hatter.bewilderbeest.net/
 
-I will modify it.
+So the series can be fetched with eg. b4.
 
-> > +
-> > +#define MASK_BITS                            0xffff
-> > +#define OTP_DISC_LEVEL_DEFAULT                       0xd
-> > +
-> > +// GROUP UPHY
-> > +#define CONFIG1                                      0x4
-> > +#define J_HS_TX_PWRSAV                               BIT(5)
-> > +#define CONFIG3                                      0xc
->
-> GENAMSK() ?
->
+Aside from the mega-diff in patch 5 the changes look good to me (If
+you can think of a way that makes patch 5 easier to review then let me
+know).
 
-I will modify it.
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
 >
-> > +#define J_FORCE_DISC_ON                              BIT(5)
-> > +#define J_DEBUG_CTRL_ADDR_MACRO                      BIT(0)
-> > +#define CONFIG7                                      0x1c
-> > +#define J_DISC                                       0X1f
-> > +#define CONFIG9                                      0x24
-> > +#define J_ECO_PATH                           BIT(6)
-> > +#define CONFIG16                             0x40
-> > +#define J_TBCWAIT_MASK                               GENMASK(6, 5)
-> > +#define J_TBCWAIT_1P1_MS                     FIELD_PREP(J_TBCWAIT_MASK=
-, 0)
-> > +#define J_TVDM_SRC_DIS_MASK                  GENMASK(4, 3)
-> > +#define J_TVDM_SRC_DIS_8P2_MS                        FIELD_PREP(J_TVDM=
-_SRC_DIS_MASK, 3)
-> > +#define J_TVDM_SRC_EN_MASK                   GENMASK(2, 1)
-> > +#define J_TVDM_SRC_EN_1P6_MS                 FIELD_PREP(J_TVDM_SRC_EN_=
-MASK, 0)
-> > +#define J_BC_EN                                      BIT(0)
-> > +#define CONFIG17                             0x44
-> > +#define IBG_TRIM0_MASK                               GENMASK(7, 5)
-> > +#define IBG_TRIM0_SSLVHT                     FIELD_PREP(IBG_TRIM0_MASK=
-, 4)
-> > +#define J_VDATREE_TRIM_MASK                  GENMASK(4, 1)
-> > +#define J_VDATREE_TRIM_DEFAULT                       FIELD_PREP(J_VDAT=
-REE_TRIM_MASK, 9)
-> > +#define CONFIG23                             0x5c
-> > +#define PROB_MASK                            GENMASK(5, 3)
-> > +#define PROB                                 FIELD_PREP(PROB_MASK, 7)
-> > +
-> > +// GROUP MOON4
+> I'm not sure how critical a limit that 100K is, or if it's something we
+> might consider raising a bit?
 >
-> wrong comments style
 >
-
-I will modify it.
-
-> > +static int sp_uphy_init(struct phy *phy)
-> > +{
-> > +     struct sp_usbphy *usbphy =3D phy_get_drvdata(phy);
-> > +     struct nvmem_cell *cell;
-> > +     char *disc_name =3D "disc_vol";
-> > +     ssize_t otp_l =3D 0;
-> > +     char *otp_v;
-> > +     u32 val, set, pll_pwr_on, pll_pwr_off;
-> > +
-> > +     /* Default value modification */
-> > +     writel(RF_MASK_V(MASK_BITS, 0x4002), usbphy->moon4_regs + UPHY_CO=
-NTROL0);
-> > +     writel(RF_MASK_V(MASK_BITS, 0x8747), usbphy->moon4_regs + UPHY_CO=
-NTROL1);
-> > +
-> > +     /* PLL power off/on twice */
-> > +     pll_pwr_off =3D (readl(usbphy->moon4_regs + UPHY_CONTROL3) & ~MAS=
-K_BITS)
-> > +                     | MO1_UPHY_PLL_POWER_OFF_SEL | MO1_UPHY_PLL_POWER=
-_OFF;
-> > +     pll_pwr_on =3D (readl(usbphy->moon4_regs + UPHY_CONTROL3) & ~MASK=
-_BITS)
-> > +                     | MO1_UPHY_PLL_POWER_OFF_SEL;
-> > +
-> > +     writel(RF_MASK_V(MASK_BITS, pll_pwr_off), usbphy->moon4_regs + UP=
-HY_CONTROL3);
-> > +     mdelay(1);
-> > +     writel(RF_MASK_V(MASK_BITS, pll_pwr_on), usbphy->moon4_regs + UPH=
-Y_CONTROL3);
-> > +     mdelay(1);
-> > +     writel(RF_MASK_V(MASK_BITS, pll_pwr_off), usbphy->moon4_regs + UP=
-HY_CONTROL3);
-> > +     mdelay(1);
-> > +     writel(RF_MASK_V(MASK_BITS, pll_pwr_on), usbphy->moon4_regs + UPH=
-Y_CONTROL3);
-> > +     mdelay(1);
+> Thanks,
+> Zev
 >
-> why delay on each register write?
->
-
-They are for the stabilities of capacitors charge/discharge in the PCB boar=
-d.
-
-> > +     writel(RF_MASK_V(MASK_BITS, 0x0), usbphy->moon4_regs + UPHY_CONTR=
-OL3);
-> > +
-> > +     /* board uphy 0 internal register modification for tid certificat=
-ion */
-> > +     cell =3D nvmem_cell_get(usbphy->dev, disc_name);
-> > +     if (IS_ERR_OR_NULL(cell)) {
-> > +             if (PTR_ERR(cell) =3D=3D -EPROBE_DEFER)
-> > +                     return -EPROBE_DEFER;
-> > +     }
-> > +
-> > +     otp_v =3D nvmem_cell_read(cell, &otp_l);
-> > +     nvmem_cell_put(cell);
-> > +
-> > +     if (otp_v) {
-> > +             set =3D *(otp_v + 1);
-> > +             set =3D (set << (sizeof(char) * 8)) | *otp_v;
-> > +             set =3D (set >> usbphy->disc_vol_addr_off) & J_DISC;
-> > +     }
-> > +
-> > +     if (!otp_v || set =3D=3D 0)
-> > +             set =3D OTP_DISC_LEVEL_DEFAULT;
-> > +
-> > +     val =3D readl(usbphy->phy_regs + CONFIG7);
-> > +     val =3D (val & ~J_DISC) | set;
-> > +     writel(val, usbphy->phy_regs + CONFIG7);
->
-> maybe add a updatel() macro
-
-I will add it.
-
->
-> > +static const struct phy_ops sp_uphy_ops =3D {
-> > +     .init           =3D sp_uphy_init,
->
-> no power_on/off/exit routines??
-
-I will implement them.
-
->
-> > +static const struct of_device_id sp_uphy_dt_ids[] =3D {
-> > +     {.compatible =3D "sunplus,sp7021-usb2-phy",
-> > +      .data =3D &sp_uphy_ops,},
->
-> why should the ops be in driver data?
-
-I will modify it.
-
->
-> --
-> ~Vinod
-
-Thanks for your review.
