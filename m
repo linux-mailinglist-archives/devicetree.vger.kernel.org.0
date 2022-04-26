@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA182510460
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 18:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02E7251049F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 18:52:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353446AbiDZQve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 12:51:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44734 "EHLO
+        id S230436AbiDZQyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 12:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353381AbiDZQvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 12:51:25 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C70488B5
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 09:46:16 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id u3so26316427wrg.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 09:46:16 -0700 (PDT)
+        with ESMTP id S1353489AbiDZQw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 12:52:28 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B661419B644
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 09:48:12 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id e2so20025146wrh.7
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 09:48:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hDUErSF+n1k4cG7IQv0rQoHbdfQHDvgwLI/ub82oI98=;
-        b=kN1kjMj3AUcIxo+isiGbvhu7TC4PV+So7N1BvAQzcaE48QfCfbPjXiHPKOG6zQliuA
-         ER+yoD75Uc33LlmE99guO8c7Ubxx8haampaZds46hwE/b6ZhPM5C3oAdiylNdirL+STx
-         pSbXgv5rwilHw+43iW3IOCZJ0Hmt1GDZULXi0LPGK6KEPf6JUVJ3OuyEUn/EgoZin51p
-         1JNHrR9MhvYCpXQ060nrxpEA7dqfa+hPyl/+5eFJlGKlyns+DEyoSsL6NAU5g/Drtpp2
-         IQIvnM7ReE15C7n+NtMbu4ig2qJLOtcMrAOu8/xnFtvC0Gxa1duo6KQVTWkylLVfcnvm
-         EQ4w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P4ciD6HIPd+5KM3dYGEOIb5g49z+4yJDjMPc1UvrfkU=;
+        b=IJZs0rJxdFFgeK0qhrf9rXUqCycI5k/9aihNZmVD0Pm7hmJYgN98EhRFb8/56KGxsW
+         CmQ5FLvhRT4+RAs64ooR2h5jeA/sWjQd/rmBfezKcTvUEIrNPcxYGtb8HYbbwPrK3LYD
+         Yr7ZgIq2JOarZPyr9GVegHztUbpfnLqoABb3C/ZOaC376RFckBFWhGra/jOo8/25KYwX
+         ipklu/+JHJHG15T+ehqtCqTvzkbDJQvlrFRjEJokElNDaeLVCTfowAlwUaaeEa4xNdzO
+         kUNbuBJ5j5knBsDJwIROJHpa5v/PYiYNACjfXHM/1lUsbWYOHqnUz0kffnT2idz5N2LI
+         YsPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hDUErSF+n1k4cG7IQv0rQoHbdfQHDvgwLI/ub82oI98=;
-        b=5Rr8OLbjiuaSefab6dgocRDaYnVHo8yse6An010yLc/guOLBwDDjFBR0zsnvmBrZ1A
-         4HmK3XN819UlLed2TRwahpV1CLIAYkwhD7Nd0nwGrM4Ltrx2Q2i7PY6RbUThJr+ytwHB
-         Dtw2knJdG4peksE/J7Lkr1zVSNK36fHqRn6Lp8209mn7rN5wVk5EV9GraFwA4ZNIVH1M
-         AN2HmO4hDEB7SIm9Tgz1cQkpE04CJEGsnnrb2iFye1X3QLNtZh6qvrhg4bqVErD4XfuA
-         yXMdYSICW1qyGlC6wbkna8+1qk/ihetVc1Soa3uGdpvPaS+bcFo1URDThQq0Ijlhc3mF
-         jzhQ==
-X-Gm-Message-State: AOAM533CF0hClN4of2Qh3pCi7mtKhDsMF4rY4/5wcs0e95bJa3o7j8Kz
-        fsZwxp0SPwJ4g5LhGNGYhdRMbQ==
-X-Google-Smtp-Source: ABdhPJwDpUz3osm/6WMOLqtZWzpqkpSglRhHXyNOzKVIBhSeAfIer9VL6SBEZjBTZd3EB5JnlNnqcw==
-X-Received: by 2002:adf:fe47:0:b0:20a:c899:829f with SMTP id m7-20020adffe47000000b0020ac899829fmr18600290wrs.165.1650991575214;
-        Tue, 26 Apr 2022 09:46:15 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P4ciD6HIPd+5KM3dYGEOIb5g49z+4yJDjMPc1UvrfkU=;
+        b=2uOQiyCShCMEiYUK02kM739w9Qnt8hyOmmg5Svexmxnwdb1MgaPyAo2ifM9/3xCVMg
+         4/DTrAQL77L0YwX3cBTKQDULyjk2MnNdm2H1RopLH7mGXlUsV5xya0n1t5uLQZ/sdAPW
+         FoP8AaaBwgvC0VZa1N0qloIVpPBL/gCopVQFqBVoszIJOa/vPixEcd/AfdP9PEE0Xecx
+         4oLJMVjKBto2NBxZeek9ttihjcgKU8gDWu6QkD5036efcJLCL2q1N9xIDbraGkt7ec3E
+         4pA8M6A8wnwR0qlxEeq4RG4qmdops6AqYo+GIsP60Ev34dFcn30Q4+e03DzkEHcwh+TF
+         4TxQ==
+X-Gm-Message-State: AOAM5320i7Z/fcPQvFt9kdxAUxEHWfI6GaI9nuUEw9i78Sjgtj+yMaVO
+        CIKvqNp7s3gKckmbbsSvpqB0WA==
+X-Google-Smtp-Source: ABdhPJxxUshafCrpaa0LIgdqChjnIZ0fYu0cr2UYUDQ5TDdi5wXwhZ8aLoRJtA4XGbiS68e8+yiZFQ==
+X-Received: by 2002:a5d:6752:0:b0:20a:ce1f:2ceb with SMTP id l18-20020a5d6752000000b0020ace1f2cebmr16099080wrw.715.1650991691348;
+        Tue, 26 Apr 2022 09:48:11 -0700 (PDT)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id l6-20020a1c2506000000b0038e6fe8e8d8sm14499539wml.5.2022.04.26.09.46.14
+        by smtp.gmail.com with ESMTPSA id f1-20020a1c6a01000000b0038c9f6a3634sm14012661wmc.7.2022.04.26.09.48.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 09:46:14 -0700 (PDT)
+        Tue, 26 Apr 2022 09:48:10 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -54,185 +54,43 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: mediatek: mt8183-pumpkin: add HDMI support
-Date:   Tue, 26 Apr 2022 18:45:47 +0200
-Message-Id: <20220426164547.434324-2-fparent@baylibre.com>
+Subject: [PATCH] arm64: dts: mediatek: mt8183-pumpkin: fix bad thermistor node name
+Date:   Tue, 26 Apr 2022 18:47:55 +0200
+Message-Id: <20220426164755.435372-1-fparent@baylibre.com>
 X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220426164547.434324-1-fparent@baylibre.com>
-References: <20220426164547.434324-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MT8183 Pumpkin board has a micro-HDMI connector. HDMI support is
-provided by an IT66121 DPI <-> HDMI bridge.
-
-This commit enables DPI and add the node for the IT66121 bridge.
+Fix the following dtbs_check error by using the correct node name:
+/home/fabo/build/linux/mt8183-pumpkin/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dtb: ntc: $nodename:0: 'ntc' does not match '^thermistor(.*)?$'
+	From schema: /home/fabo/devel/baylibre/linux-mainline/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
-v2: rename pinctrl node names to not include any underscore
-
- .../boot/dts/mediatek/mt8183-pumpkin.dts      | 121 ++++++++++++++++++
- 1 file changed, 121 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index ee912825cfc6..10b2c0500219 100644
+index 10b2c0500219..3d6da7efe31b 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
 +++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -62,6 +62,18 @@ ntc {
- 		pulldown-ohm = <0>;
- 		io-channels = <&auxadc 0>;
- 	};
-+
-+	connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "d";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_connector_out>;
-+			};
-+		};
-+	};
- };
- 
- &auxadc {
-@@ -120,6 +132,41 @@ &i2c6 {
- 	pinctrl-0 = <&i2c6_pins>;
- 	status = "okay";
- 	clock-frequency = <100000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	it66121hdmitx: hdmitx@4c {
-+		compatible = "ite,it66121";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ite_pins>;
-+		vcn33-supply = <&mt6358_vcn33_wifi_reg>;
-+		vcn18-supply = <&mt6358_vcn18_reg>;
-+		vrf12-supply = <&mt6358_vrf12_reg>;
-+		reset-gpios = <&pio 160 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-+		reg = <0x4c>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				it66121_in: endpoint {
-+					bus-width = <12>;
-+					remote-endpoint = <&dpi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				hdmi_connector_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &mmc0 {
-@@ -332,6 +379,67 @@ pins_clk {
- 			input-enable;
+@@ -55,7 +55,7 @@ led-green {
  		};
  	};
-+
-+	ite_pins: ite-pins {
-+		pins-irq {
-+			pinmux = <PINMUX_GPIO4__FUNC_GPIO4>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		pins-rst {
-+			pinmux = <PINMUX_GPIO160__FUNC_GPIO160>;
-+			output-high;
-+		};
-+	};
-+
-+	dpi_func_pins: dpi-func-pins {
-+		pins-dpi {
-+			pinmux = <PINMUX_GPIO12__FUNC_I2S5_BCK>,
-+				 <PINMUX_GPIO46__FUNC_I2S5_LRCK>,
-+				 <PINMUX_GPIO47__FUNC_I2S5_DO>,
-+				 <PINMUX_GPIO13__FUNC_DBPI_D0>,
-+				 <PINMUX_GPIO14__FUNC_DBPI_D1>,
-+				 <PINMUX_GPIO15__FUNC_DBPI_D2>,
-+				 <PINMUX_GPIO16__FUNC_DBPI_D3>,
-+				 <PINMUX_GPIO17__FUNC_DBPI_D4>,
-+				 <PINMUX_GPIO18__FUNC_DBPI_D5>,
-+				 <PINMUX_GPIO19__FUNC_DBPI_D6>,
-+				 <PINMUX_GPIO20__FUNC_DBPI_D7>,
-+				 <PINMUX_GPIO21__FUNC_DBPI_D8>,
-+				 <PINMUX_GPIO22__FUNC_DBPI_D9>,
-+				 <PINMUX_GPIO23__FUNC_DBPI_D10>,
-+				 <PINMUX_GPIO24__FUNC_DBPI_D11>,
-+				 <PINMUX_GPIO25__FUNC_DBPI_HSYNC>,
-+				 <PINMUX_GPIO26__FUNC_DBPI_VSYNC>,
-+				 <PINMUX_GPIO27__FUNC_DBPI_DE>,
-+				 <PINMUX_GPIO28__FUNC_DBPI_CK>;
-+		};
-+	};
-+
-+	dpi_idle_pins: dpi-idle-pins {
-+		pins-idle {
-+			pinmux = <PINMUX_GPIO12__FUNC_GPIO12>,
-+				 <PINMUX_GPIO46__FUNC_GPIO46>,
-+				 <PINMUX_GPIO47__FUNC_GPIO47>,
-+				 <PINMUX_GPIO13__FUNC_GPIO13>,
-+				 <PINMUX_GPIO14__FUNC_GPIO14>,
-+				 <PINMUX_GPIO15__FUNC_GPIO15>,
-+				 <PINMUX_GPIO16__FUNC_GPIO16>,
-+				 <PINMUX_GPIO17__FUNC_GPIO17>,
-+				 <PINMUX_GPIO18__FUNC_GPIO18>,
-+				 <PINMUX_GPIO19__FUNC_GPIO19>,
-+				 <PINMUX_GPIO20__FUNC_GPIO20>,
-+				 <PINMUX_GPIO21__FUNC_GPIO21>,
-+				 <PINMUX_GPIO22__FUNC_GPIO22>,
-+				 <PINMUX_GPIO23__FUNC_GPIO23>,
-+				 <PINMUX_GPIO24__FUNC_GPIO24>,
-+				 <PINMUX_GPIO25__FUNC_GPIO25>,
-+				 <PINMUX_GPIO26__FUNC_GPIO26>,
-+				 <PINMUX_GPIO27__FUNC_GPIO27>,
-+				 <PINMUX_GPIO28__FUNC_GPIO28>;
-+		};
-+	};
- };
  
- &mfg {
-@@ -381,3 +489,16 @@ &scp {
- &dsi0 {
- 	status = "disabled";
- };
-+
-+&dpi0 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&dpi_func_pins>;
-+	pinctrl-1 = <&dpi_idle_pins>;
-+	status = "okay";
-+
-+	port {
-+		dpi_out: endpoint {
-+			remote-endpoint = <&it66121_in>;
-+		};
-+	};
-+};
+-	ntc {
++	thermistor {
+ 		compatible = "murata,ncp03wf104";
+ 		pullup-uv = <1800000>;
+ 		pullup-ohm = <390000>;
 -- 
 2.36.0
 
