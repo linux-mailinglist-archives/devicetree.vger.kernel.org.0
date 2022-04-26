@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13ED250FB87
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6667F50FB89
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346703AbiDZK6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:58:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
+        id S1349326AbiDZK6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:58:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346980AbiDZK6T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:58:19 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44B2D25E0
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:12 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id g6so12412902ejw.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:12 -0700 (PDT)
+        with ESMTP id S1347090AbiDZK6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:58:22 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9A7813F4A
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:13 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id gh6so11182871ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Fsyz5ZToGmQmv6dlGuAH0sbjP/ZPOEclqu+9e81ehqc=;
-        b=ZC7J8KWdlR5bBeQ7039WgFRYtdkbpOKCzBgU2rtRAHxSPj3FgqNYBHk6BtuCqIdtJr
-         1tvD6JAt+hFaXNYVSEP3ZiX1REnDThd/iXruA7FY6rPPZK/9x/SOsOn6o43r3tWrBKEL
-         gjrRue51CYllwKcebR7+Rgl7gjWMiv+hoIXFG3Jnlsa2k9OGR+LYOliNtwmY5fowFBDA
-         Ib/Qg5pU0YJZSeF2ySU5YMTnXTRoT98n0x8Or6XYu0Q/bon+uU6QbGJIDQjQjJ9rtjyg
-         HdFnkDzHO8OzITUzc6d/0KQMSM1Y1+7bMYB1EbQgiavrFJ/7+fSEEJQO0Ui/1FTQmKxR
-         uSqw==
+        bh=0m5ZZfG1YF2A40apHuhZaDOYLmk1gRk32TzITEEDGDI=;
+        b=Sj4lS5VAzOQWv+TQxwwUvECq3rxmplzfBmjrZe5aKAF7b8hDpfF+lRipnxkDq0Y5A6
+         jFgby37Ulk4+z/NsxQQRcHrbB3bmt4abfSjOPgu6zkse+wPSVdmS0xe9MPXLwPsC/S3c
+         BJ7cJEOy+vzS/vz7Ubfef1c/ehj4FTlDBwQxmdKjxG4DyT2yw2x0UOHDy4k63XsI8yt9
+         aXKjkFopVKwUTwocjytCYjsx9EaPfnl/ul9Czu9jz8OpW8qeeqIWHc/WiRl9qRKuBuB0
+         zZdcuezjbsT3Z8gGc28kWBc0BItP4FUxlnol2dRTTIbVyXEAu5tEo09QlG93jcLbKOyA
+         TnHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Fsyz5ZToGmQmv6dlGuAH0sbjP/ZPOEclqu+9e81ehqc=;
-        b=SGp+GC15Nth2ga9vfLOb7nW7sjAsTJ8vR6UES9elHkkTFDL1J+Ux3FYlcJbpd2yZCw
-         z8/pxiipo/f6kzSbJVHMYUkv3xSsumNEIU94hNl7FtkcAC3ePyP9bALKbX+TSum+OWLw
-         huEjdbM+YOFOXq64YpLvud71PBIBN/RnE/aDx4TLnSmeZ02T2gsdkpqvoabgIWZZUux7
-         PwNOiSUqUNLQv8DajzniaTjNdFWsCUFrOFQDwI+iRUNm+OuuQAo0ir7L8CvaOttVIh5G
-         ciAwL4j89pgcBu3PBqJOnBPEwAusGc03OVl6JSRnRnJYq0nK5Ls5TTDNr5eOydOpJ3du
-         3G9Q==
-X-Gm-Message-State: AOAM531/R1B0QPFwmvjP+yw5aa+i015kB6seQjMTF7jhNg4aPKGS19QP
-        m8FRzIOQXeoCVRMG/nfHJIFdpA==
-X-Google-Smtp-Source: ABdhPJx1gFynf4wyj4NpoFYI6Ways6KwCZk65KA3ehQOfAl1BFhMBlXOsRng1brf637amrHB1t0OnQ==
-X-Received: by 2002:a17:907:6eac:b0:6f0:a57:dfaf with SMTP id sh44-20020a1709076eac00b006f00a57dfafmr20749291ejc.105.1650970510790;
-        Tue, 26 Apr 2022 03:55:10 -0700 (PDT)
+        bh=0m5ZZfG1YF2A40apHuhZaDOYLmk1gRk32TzITEEDGDI=;
+        b=gOxyHwNqxGaDeP/JMNgOnOD0TvvD7JLT8F63Gcz9crYeMxg6PJO1XD8UxUdh2jIUYj
+         wKbuM2n+ueK8J3zfeYxxcNCiM7MoVnKbShmePHeBcJWWQbxCt00X5tbKhXnCNpPbYYIh
+         l1GZwdN3oqqDHublBt0KQI9NC5AZ4CCAc+B0TMXFgs3zYizU1jLj5SmXVToHZ7/UAfAC
+         YmXpuQy9x30eIdW6SwTfy7ChIZ9A7ZY1dRh6GzgpBrc0s5kbn8D8s/FGSVKFq286WIyO
+         w5R8IEKY1bddeHraMgcb7fb2E6Sg9SzlQvZ7QZVUuvDcHm3zdFS2ZojB3V6MMF2/lBQB
+         HD7A==
+X-Gm-Message-State: AOAM533X+unLubGHMyQfsTERGV7Qy5Pp+RPhdxA3sRgqFMUP3sZowuC9
+        ikBRJFYwmRSw8atDUTIjoCnmrw==
+X-Google-Smtp-Source: ABdhPJwzco/w60SSupURIzYxoiPHR7O0hkeySk1FSa+XINU2RjSsH+0aJ4xgXXn/8T/1vSpoNH44Og==
+X-Received: by 2002:a17:907:e8d:b0:6f3:9721:dbf6 with SMTP id ho13-20020a1709070e8d00b006f39721dbf6mr9134713ejc.448.1650970512188;
+        Tue, 26 Apr 2022 03:55:12 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s5-20020a508dc5000000b004241a4abbdfsm6062843edh.45.2022.04.26.03.55.09
+        by smtp.gmail.com with ESMTPSA id s5-20020a508dc5000000b004241a4abbdfsm6062843edh.45.2022.04.26.03.55.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 03:55:10 -0700 (PDT)
+        Tue, 26 Apr 2022 03:55:11 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 2/3] regulator: dt-bindings: qcom,rpmh: document supplies per variant
-Date:   Tue, 26 Apr 2022 12:55:00 +0200
-Message-Id: <20220426105501.73200-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 3/3] regulator: dt-bindings: qcom,rpmh: document vdd-l7-bob-supply on PMR735A
+Date:   Tue, 26 Apr 2022 12:55:01 +0200
+Message-Id: <20220426105501.73200-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
 References: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
@@ -67,308 +67,34 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RPMH regulator binding covers several devices with different
-regulator supplies, so it uses patterns matching broad range of these
-supplies.  This works fine but is not specific and might miss actual
-mistakes when a wrong supply property is used for given variant.
-
-Describe the supplies depending on the compatible, using a defs-allOf
-method.
+The PMR735A comes with vdd-l7-bob-supply supply which was previously not
+documented.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../regulator/qcom,rpmh-regulator.yaml        | 256 +++++++++++++++++-
- 1 file changed, 242 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-index 842ccef691b8..6b99897fa404 100644
+index 6b99897fa404..9a36bee750af 100644
 --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-@@ -95,35 +95,263 @@ properties:
-   vdd-rgb-supply:
-     description: Input supply phandle of rgb.
+@@ -313,6 +313,7 @@ allOf:
+         vdd-l3-supply: true
+         vdd-l4-supply: true
+         vdd-l5-l6-supply: true
++        vdd-l7-bob-supply: true
+       patternProperties:
+         "^vdd-s[1-3]-supply$": true
  
--  vin-lvs-1-2-supply:
--    description: Input supply phandle of one or more regulators.
--
--  vdd-bob-supply:
--    description: BOB regulator parent supply phandle.
--
-   bob:
-     type: object
-     $ref: "regulator.yaml#"
-     description: BOB regulator node.
- 
- patternProperties:
--  "^vdd-s([0-9]+)-supply$":
--    description: Input supply phandle(s) of one or more regulators.
--
--  "^vdd-(l[0-9]+[-]){1,5}supply$":
--    description: Input supply phandle(s) of one or more regulators.
--
-   "^(smps|ldo|lvs)[0-9]+$":
-     type: object
-     $ref: "regulator.yaml#"
-     description: smps/ldo regulator nodes(s).
- 
--additionalProperties: false
--
- required:
-   - compatible
-   - qcom,pmic-id
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm6150-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l2-l3-supply: true
-+        vdd-l4-l7-l8-supply: true
-+        vdd-l5-l16-l17-l18-l19-supply: true
-+        vdd-l10-l14-l15-supply: true
-+        vdd-l11-l12-l13-supply: true
-+      patternProperties:
-+        "^vdd-l[169]-supply$": true
-+        "^vdd-s[1-5]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm6150l-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-bob-supply:
-+          description: BOB regulator parent supply phandle.
-+        vdd-l1-l8-supply: true
-+        vdd-l2-l3-supply: true
-+        vdd-l4-l5-l6-supply: true
-+        vdd-l7-l11-supply: true
-+        vdd-l9-l10-supply: true
-+      patternProperties:
-+        "^vdd-s[1-8]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm7325-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l4-l12-l15-supply: true
-+        vdd-l2-l7-supply: true
-+        vdd-l6-l9-l10-supply: true
-+        vdd-l11-l17-l18-l19-supply: true
-+        vdd-l13-supply: true
-+        vdd-l14-l16-supply: true
-+      patternProperties:
-+        "^vdd-l[358]-supply$": true
-+        "^vdd-s[1-8]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8005-rpmh-regulators
-+    then:
-+      patternProperties:
-+        "^vdd-s[1-4]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8009-rpmh-regulators
-+            - qcom,pm8009-1-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l5-l6-supply: true
-+      patternProperties:
-+        "^vdd-l[1-47]-supply$": true
-+        "^vdd-s[1-2]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8150-rpmh-regulators
-+            - qcom,pmm8155au-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l8-l11-supply: true
-+        vdd-l2-l10-supply: true
-+        vdd-l3-l4-l5-l18-supply: true
-+        vdd-l6-l9-supply: true
-+        vdd-l7-l12-l14-l15-supply: true
-+        vdd-l13-l16-l17-supply: true
-+      patternProperties:
-+        "^vdd-s([1-9]|10)-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8150l-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-bob-supply:
-+          description: BOB regulator parent supply phandle.
-+        vdd-l1-l8-supply: true
-+        vdd-l2-l3-supply: true
-+        vdd-l4-l5-l6-supply: true
-+        vdd-l7-l11-supply: true
-+        vdd-l9-l10-supply: true
-+      patternProperties:
-+        "^vdd-s[1-8]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8350-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l4-supply: true
-+        vdd-l2-l7-supply: true
-+        vdd-l3-l5-supply: true
-+        vdd-l6-l9-l10-supply: true
-+        vdd-l8-supply: true
-+      patternProperties:
-+        "^vdd-s([1-9]|1[0-2])-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8350c-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-bob-supply:
-+          description: BOB regulator parent supply phandle.
-+        vdd-l1-l12-supply: true
-+        vdd-l2-l8-supply: true
-+        vdd-l3-l4-l5-l7-l13-supply: true
-+        vdd-l6-l9-l11-supply: true
-+        vdd-l10-supply: true
-+      patternProperties:
-+        "^vdd-s([1-9]|10)-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8450-rpmh-regulators
-+    then:
-+      patternProperties:
-+        "^vdd-l[1-4]-supply$": true
-+        "^vdd-s[1-6]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pm8998-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l27-supply: true
-+        vdd-l2-l8-l17-supply: true
-+        vdd-l3-l11-supply: true
-+        vdd-l4-l5-supply: true
-+        vdd-l6-supply: true
-+        vdd-l7-l12-l14-l15-supply: true
-+        vdd-l9-supply: true
-+        vdd-l10-l23-l25-supply: true
-+        vdd-l13-l19-l21-supply: true
-+        vdd-l16-l28-supply: true
-+        vdd-l18-l22-supply: true
-+        vdd-l20-l24-supply: true
-+        vdd-l26-supply: true
-+        vin-lvs-1-2-supply: true
-+      patternProperties:
-+        "^vdd-s([1-9]|1[0-3])-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmg1110-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-s1-supply: true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmi8998-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-bob-supply:
-+          description: BOB regulator parent supply phandle.
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmr735a-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l2-supply: true
-+        vdd-l3-supply: true
-+        vdd-l4-supply: true
-+        vdd-l5-l6-supply: true
-+      patternProperties:
-+        "^vdd-s[1-3]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmx55-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l2-supply: true
-+        vdd-l3-l9-supply: true
-+        vdd-l4-l12-supply: true
-+        vdd-l5-l6-supply: true
-+        vdd-l7-l8-supply: true
-+        vdd-l10-l11-l13-supply: true
-+      patternProperties:
-+        "^vdd-l1[4-6]-supply$": true
-+        "^vdd-s[1-7]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmx65-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l2-l18-supply: true
-+        vdd-l5-l6-l16-supply: true
-+        vdd-l8-l9-supply: true
-+        vdd-l11-l13-supply: true
-+      patternProperties:
-+        "^vdd-l[1347]-supply$": true
-+        "^vdd-l1[0245789]-supply$": true
-+        "^vdd-l2[01]-supply$": true
-+        "^vdd-s[1-8]-supply$": true
-+
-+unevaluatedProperties: false
-+
- examples:
-   - |
-     #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
 -- 
 2.32.0
 
