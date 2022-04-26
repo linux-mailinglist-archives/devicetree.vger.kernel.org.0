@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3C750FF2A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4132A50FF45
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbiDZNjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 09:39:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
+        id S239468AbiDZNnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 09:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351043AbiDZNig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:38:36 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4F86380;
-        Tue, 26 Apr 2022 06:35:27 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id a10so20648591oif.9;
-        Tue, 26 Apr 2022 06:35:27 -0700 (PDT)
+        with ESMTP id S245174AbiDZNnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:43:03 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6AD866AEF;
+        Tue, 26 Apr 2022 06:39:55 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-deb9295679so19374681fac.6;
+        Tue, 26 Apr 2022 06:39:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OygyeH4rfmUuZsXmWAEGnr/ZlA2kUw1LkTJEURaNg9M=;
-        b=ak6JwVWG8OHulFUMcWJkL3kMLQ2pwk5zPc4oM587uF1nXrI2rEUTerGW0IrnabexEs
-         /LPqEm4MnEv8diLzX+xI9ID7W5nCNlLdWaG3CRgasG6wpRFqYAkr6ctYkxt5vy5CN1Vs
-         RTVv/2pqx5R81kj65Yt/zSNKaXJObsEFtIG7ZFWMlT8ME8WS36+85ho5rr06+9CF1lxt
-         5u7JQXi1Ba28DPoa3Sv3FHq+y96+KhcRaQl+qaJyasDyi42uE8hmt0g0Z/XobJoVao8y
-         nYm73WaSdpyH/oOVBP00xkt/254qJTEOYBQj/wN3ZIW13Mb76F83nGTHeDld57HkTZ+U
-         XMKg==
-X-Gm-Message-State: AOAM533ZCVTn8kee9cq5evQNG1Xo3KZICjEdQ4cwrfIlmnYKVUE6di7h
-        Cug+sWyGM9pOKJ+v5opurg==
-X-Google-Smtp-Source: ABdhPJxh7Jprs4lrGBymoDiRReBL7R7uytG+LGnCHdclTxGBoQgU9QJ18XdD5KDldb2alZ+K9kVR2w==
-X-Received: by 2002:a05:6808:124a:b0:2da:3588:6d35 with SMTP id o10-20020a056808124a00b002da35886d35mr10804716oiv.269.1650980126381;
-        Tue, 26 Apr 2022 06:35:26 -0700 (PDT)
-Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.googlemail.com with ESMTPSA id 65-20020aca0544000000b002f980b50140sm4891611oif.18.2022.04.26.06.35.25
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=QrQ9VqE2GYBUqLfXHq7kE29EKoA/X/hQON4fu6hD7zM=;
+        b=Q6HmwT6x9gND+Fx5TSCy1XlVyzSFmryjgnfOPJHzyVx2T1YYqRqfhURUHELPeDd11F
+         K6roCcGK/RVq4lOUi37RL+PWfipJzHaiKhHixM+brJ5xpcRAAHa+TQUdfLndniJUqfMr
+         M53DNRkY+G5gmL0lvzv0FIUgiHHQR4OZ10BpIC+3L5goCnPXAPU+WoGyQ5BThR+KtNvP
+         QRNN+ABEVg71JJMXJfeoRAi15wFFiadzviptb93DaRiNgIMWxHCakBRUZXN0wiuEmH3H
+         wDNZgLm92IDHKJqSOrpCnFlWUgWBKAKHTT9Rk19v5cG49JfajBO/+UOygQjSpgSBpOMe
+         225Q==
+X-Gm-Message-State: AOAM5302EVwvfnaSQ9QeEYS3JszD3Dkz6o/E+jmntW6opz+4AzcwFQJX
+        esU+Iq216pBsTaHLpZy6+mTNN5U1pw==
+X-Google-Smtp-Source: ABdhPJy5hrZuALWcshnidC+ZyuM8Ji1w2mi/OyZokRnpLnmUn4Ia4cRlyuHR7vMBPaiesqxb5h9sLw==
+X-Received: by 2002:a05:6870:f29a:b0:de:eaa4:233a with SMTP id u26-20020a056870f29a00b000deeaa4233amr9206354oap.137.1650980395073;
+        Tue, 26 Apr 2022 06:39:55 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id dv8-20020a056870d88800b000e92d5a54ffsm805426oab.26.2022.04.26.06.39.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 06:35:25 -0700 (PDT)
+        Tue, 26 Apr 2022 06:39:54 -0700 (PDT)
+Received: (nullmailer pid 1856414 invoked by uid 1000);
+        Tue, 26 Apr 2022 13:39:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Gene Chen <gene_chen@richtek.com>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: leds-mt6360: Drop redundant 'unevaluateProperties'
-Date:   Tue, 26 Apr 2022 08:35:08 -0500
-Message-Id: <20220426133508.1849580-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To:     Changming Huang <jerry.huang@nxp.com>
+Cc:     linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+        linux-spi@vger.kernel.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20220426022413.885092-1-jerry.huang@nxp.com>
+References: <20220426022413.885092-1-jerry.huang@nxp.com>
+Subject: Re: [PATCH 1/3 v5] dt-bindings: dspi: added for MikcroBus socket
+Date:   Tue, 26 Apr 2022 08:39:53 -0500
+Message-Id: <1650980393.789726.1856413.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -60,29 +60,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The binding has both 'unevaluateProperties: false' and
-'additionalProperties: false' which is redundant. 'additionalProperties'
-is the stricter of the two, so drop 'unevaluateProperties'.
+On Tue, 26 Apr 2022 10:24:11 +0800, Changming Huang wrote:
+> Signed-off-by: Changming Huang <jerry.huang@nxp.com>
+> ---
+> changes in v5:
+>   - rename compatible name to mikcroe,mikcroe-socket
+> changes in v4:
+>   - rename example node, adjust description
+> changes in v3:
+>   - add the dt-bindings
+> 
+>  .../bindings/spi/mikcroe,mikcroe-socket.yaml  | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml
+> 
 
-Fixes: e05cab34e417 ("dt-bindings: leds: Add bindings for MT6360 LED")
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/leds/leds-mt6360.yaml | 2 --
- 1 file changed, 2 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-index b2fe6eb89389..10f95bf1d666 100644
---- a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-@@ -43,8 +43,6 @@ patternProperties:
-           - 4 # LED output FLASH1
-           - 5 # LED output FLASH2
- 
--unevaluatedProperties: false
--
- required:
-   - compatible
-   - "#address-cells"
--- 
-2.34.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: $id: 'http://devicetree.org/schemas/spi/mikcroe,mikcroe-spi#' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: properties:fsl,spi-cs-sck-delay: True is not of type 'object'
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: properties:fsl,spi-cs-sck-delay: More than one condition true in oneOf schema:
+	{'description': 'Vendor specific properties must have a type and '
+	                'description unless they have a defined, common '
+	                'suffix.',
+	 'oneOf': [{'additionalProperties': False,
+	            'description': 'A vendor boolean property can use "type: '
+	                           'boolean"',
+	            'properties': {'deprecated': True,
+	                           'description': True,
+	                           'type': {'const': 'boolean'}},
+	            'required': ['type', 'description']},
+	           {'additionalProperties': False,
+	            'description': 'A vendor string property with exact values '
+	                           'has an implicit type',
+	            'oneOf': [{'required': ['enum']}, {'required': ['const']}],
+	            'properties': {'const': {'type': 'string'},
+	                           'deprecated': True,
+	                           'description': True,
+	                           'enum': {'items': {'type': 'string'}}},
+	            'required': ['description']},
+	           {'description': 'A vendor property needs a $ref to '
+	                           'types.yaml',
+	            'oneOf': [{'required': ['$ref']}, {'required': ['allOf']}],
+	            'properties': {'$ref': {'pattern': 'types.yaml#/definitions/'},
+	                           'allOf': {'items': [{'properties': {'$ref': {'pattern': 'types.yaml#/definitions/'}},
+	                                                'required': ['$ref']}]}},
+	            'required': ['description']},
+	           {'description': 'A vendor property can have a $ref to a a '
+	                           '$defs schema',
+	            'properties': {'$ref': {'pattern': '^#/(definitions|$defs)/'}},
+	            'required': ['$ref']}],
+	 'type': 'object'}
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: properties:fsl,spi-sck-cs-delay: True is not of type 'object'
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: properties:fsl,spi-sck-cs-delay: More than one condition true in oneOf schema:
+	{'description': 'Vendor specific properties must have a type and '
+	                'description unless they have a defined, common '
+	                'suffix.',
+	 'oneOf': [{'additionalProperties': False,
+	            'description': 'A vendor boolean property can use "type: '
+	                           'boolean"',
+	            'properties': {'deprecated': True,
+	                           'description': True,
+	                           'type': {'const': 'boolean'}},
+	            'required': ['type', 'description']},
+	           {'additionalProperties': False,
+	            'description': 'A vendor string property with exact values '
+	                           'has an implicit type',
+	            'oneOf': [{'required': ['enum']}, {'required': ['const']}],
+	            'properties': {'const': {'type': 'string'},
+	                           'deprecated': True,
+	                           'description': True,
+	                           'enum': {'items': {'type': 'string'}}},
+	            'required': ['description']},
+	           {'description': 'A vendor property needs a $ref to '
+	                           'types.yaml',
+	            'oneOf': [{'required': ['$ref']}, {'required': ['allOf']}],
+	            'properties': {'$ref': {'pattern': 'types.yaml#/definitions/'},
+	                           'allOf': {'items': [{'properties': {'$ref': {'pattern': 'types.yaml#/definitions/'}},
+	                                                'required': ['$ref']}]}},
+	            'required': ['description']},
+	           {'description': 'A vendor property can have a $ref to a a '
+	                           '$defs schema',
+	            'properties': {'$ref': {'pattern': '^#/(definitions|$defs)/'}},
+	            'required': ['$ref']}],
+	 'type': 'object'}
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+./Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/spi/mikcroe,mikcroe-socket.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.yaml: ignoring, error in schema: $id
+Error: Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.example.dts:20.9-15 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/spi/mikcroe,mikcroe-socket.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
