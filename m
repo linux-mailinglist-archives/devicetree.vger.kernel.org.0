@@ -2,167 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4C97510CB4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 01:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240C2510CEC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 01:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356129AbiDZXg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 19:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45174 "EHLO
+        id S1356253AbiD0AAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 20:00:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240844AbiDZXgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 19:36:24 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D0629837
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 16:33:15 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-e93ff05b23so271904fac.9
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 16:33:15 -0700 (PDT)
+        with ESMTP id S1356358AbiD0AA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 20:00:29 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA784E3A2;
+        Tue, 26 Apr 2022 16:57:17 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id k23so206393ejd.3;
+        Tue, 26 Apr 2022 16:57:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mPLQqqv78H4vpATnizZrr8k/pThUI48bHzxuZTk6fwo=;
-        b=wX1c0JS3y92QFPGUeiWHj+woXNrE7erTJk1Ex1Fdj0oLhGeW9WijdzMooVfBdRU8/w
-         xsy7sCPjHKmvPO6vxB5Gj0LrX9a4k5539SnsgDlw9uIP/3YZSbfSfPOODmfkhe+xjtuB
-         qNDjL4sT24F6tM7p+iqXuUJk/mMzofIPrc/1ZZojc77kJmhbZuiKPWZrKvwALm3tqiBB
-         yyi/tKSqfNHHhA7CmBivBsydaiVENxDTGhckVAMknF2PZIIkGxbkhyTDJZrwWs43AmUx
-         4riM15Fj3ccawuBPlYgeJt4IiZZUo/LvlxRCzE0qA9SXNCYbwcn1XLtmRJxkK6+cOoab
-         u7ow==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=226dFbtrPQIoFHWbTajhuZZyDWbBc2bREA3l7+aGRpU=;
+        b=Jyzw4HuxsKM7Hu+oPvA2i5DvNqRk3iJheUk8PsqA2PIrvnvNCRSR1hzW0XzAc4d3Le
+         r086uigB4IgWOAazr7oCU9tIV0vsFl06lDNlg18LnTCGFDA852D5XoskoSHo8ejGhIWC
+         xi2CzU6rAlrTnAzIs7Zd2LqyjaSpLSL3McpZMconGThl3h091s0deH9lAok66IdeNwmE
+         VbyNguKPd5AiQxpyicpPG5HbyJn2NqXd7lgVhrW/yaDlv4e2kocDGkfPzhMO7McgROyK
+         wyn/6fOfCWxVtCtS/1yoy3m3RTFFc3tFxTZkbbr18tQ4wQCGzNorRBFZQ+qXcWDvgwqr
+         3bgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mPLQqqv78H4vpATnizZrr8k/pThUI48bHzxuZTk6fwo=;
-        b=yF4CGGuQfdFFAXVqWT0f9AucV4QYXOsHR4vgOaMI2OWQxLFrXXkxXsBv9OROEuievj
-         Ve0XId3uAvhj+tGG2JwsPrpkE2ZBVYuQ4tbZk0tWYYJTHtdOMMyfw6D+FlxDFVQTdPs9
-         LtUv6I1pdfGN9Pv/cyIZDpkZWgkbZjI8bLq3tPW26gOG5fmEox1XzsMefd0OSSZT+ef9
-         HecU3/XdK5W5K7tbKAuWEH2Qne2xbzrHjDAoKpr6TqiMlBNNyzszz/PQ8D0LnUdZxN8H
-         2mbNJqGZelw7wPj6mfc9xU8fJH+URUDMdyYyECXcvHAtDbwDIdAnpQVBPSniQimFj8A0
-         dGlQ==
-X-Gm-Message-State: AOAM530qICX1sw3UD0EEFKpY8SoTj6K+2+oF+v9gS03kr+iuCp3kXfVW
-        9jJGnsjAfHnAaSuLrveDN1np3ZWX+E8OzBj2
-X-Google-Smtp-Source: ABdhPJyFzx5w7Bc5hjOwS1ur3aTP5yIT4qlqeVoSB/Ri8LWJ2hKuoMOgzDxIeA7qxam0MS/2BSW8mg==
-X-Received: by 2002:a05:6870:471f:b0:e9:5b13:3881 with SMTP id b31-20020a056870471f00b000e95b133881mr3603134oaq.106.1651015994714;
-        Tue, 26 Apr 2022 16:33:14 -0700 (PDT)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id k2-20020a4adfa2000000b0033a3381a7f1sm6151658ook.44.2022.04.26.16.33.13
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=226dFbtrPQIoFHWbTajhuZZyDWbBc2bREA3l7+aGRpU=;
+        b=lC+QzYNemueBQZ4g0jPnSDBFX5rUyw3C1NutDt6lKRKGRWnu/5l/EIf6o8a8qKzdR6
+         PiBFyEpLR7p0C/LIDtG83clAEqxA2Dsf3nGpgub9HyzLpeePHua5SyUUz0rAdJFlYrze
+         6eywIgb9D76LkKFII4t02pjkAcjZ8jYq3L6IYLlCK1NJuoaLr9SKdHmTsy/YE16dwKHN
+         4EzNXYO56Bwy+6v8AdezI9sQgOzjLnNICI+gJYLm8/hS5Wn6UsrGefFB2YGbAs5DsSEu
+         4Kp8S/Kn/F0EMbDLsvQpvHrULckn+nHUYHN/39c6uybtyjpMEa9lSSCG605oarBoVW9Y
+         9Cpg==
+X-Gm-Message-State: AOAM533chH8iRpfUZDuAfmED6poevwKujD1yUwItM2AMksaFok6VV+Rv
+        UnD5wCyY+NZ1vPa4koPpmxE=
+X-Google-Smtp-Source: ABdhPJyMFeRbcOlg0p93A4LH81VJTxOaIx6gVJpFUK3HMs+pAGtQLor2HZVvCnGiP8TcxEb+T95y8Q==
+X-Received: by 2002:a17:906:7c96:b0:6f3:b6c4:7b2 with SMTP id w22-20020a1709067c9600b006f3b6c407b2mr4497132ejo.676.1651017436376;
+        Tue, 26 Apr 2022 16:57:16 -0700 (PDT)
+Received: from skbuf ([188.25.160.86])
+        by smtp.gmail.com with ESMTPSA id r13-20020a508d8d000000b00425d3555fc6sm5934416edh.30.2022.04.26.16.57.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 16:33:14 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Tue, 26 Apr 2022 16:57:15 -0700 (PDT)
+Date:   Wed, 27 Apr 2022 02:57:13 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] soc: qcom: rpmhpd: add sc8280xp & sa8540p rpmh power-domains
-Date:   Tue, 26 Apr 2022 16:35:08 -0700
-Message-Id: <20220426233508.1762345-4-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220426233508.1762345-1-bjorn.andersson@linaro.org>
-References: <20220426233508.1762345-1-bjorn.andersson@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [RFC v1 1/3] net: dsa: mt753x: make reset optional
+Message-ID: <20220426235713.engzue7ujwqjdyjc@skbuf>
+References: <20220426134924.30372-1-linux@fw-web.de>
+ <20220426134924.30372-2-linux@fw-web.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220426134924.30372-2-linux@fw-web.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm sc8280xp platform has 13 and the sa8540p platform has 11
-power-domains. Add compatibles, the typically used ones power-domains
-and their relevant active-only variants, to the RPMh power-domain
-driver.
+On Tue, Apr 26, 2022 at 03:49:22PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Currently a reset line is required, but on BPI-R2-Pro board
+> this reset is shared with the gmac and prevents the switch to
+> be initialized because mdio is not ready fast enough after
+> the reset.
+> 
+> So make the reset optional to allow shared reset lines.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+What does it mean "to allow shared reset lines"? Allow as in "allow them
+to sit there, unused"?
 
-Changes since v1:
-- Added QPHY
-- Split out sa8540
-- Sorted the entries alphabetically
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  drivers/net/dsa/mt7530.c | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/net/dsa/mt7530.c b/drivers/net/dsa/mt7530.c
+> index 19f0035d4410..ccf4cb944167 100644
+> --- a/drivers/net/dsa/mt7530.c
+> +++ b/drivers/net/dsa/mt7530.c
+> @@ -2134,7 +2134,7 @@ mt7530_setup(struct dsa_switch *ds)
+>  		reset_control_assert(priv->rstc);
+>  		usleep_range(1000, 1100);
+>  		reset_control_deassert(priv->rstc);
+> -	} else {
+> +	} else if (priv->reset) {
 
- drivers/soc/qcom/rpmhpd.c | 53 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+I don't really understand this patch. gpiod_set_value_cansleep() can
+tolerate NULL GPIO descriptors.
 
-diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-index f8d28e902942..05fff8691ee3 100644
---- a/drivers/soc/qcom/rpmhpd.c
-+++ b/drivers/soc/qcom/rpmhpd.c
-@@ -180,6 +180,36 @@ static struct rpmhpd mxc_ao = {
- 	.res_name = "mxc.lvl",
- };
- 
-+static struct rpmhpd nsp = {
-+	.pd = { .name = "nsp", },
-+	.res_name = "nsp.lvl",
-+};
-+
-+static struct rpmhpd qphy = {
-+	.pd = { .name = "qphy", },
-+	.res_name = "qphy.lvl",
-+};
-+
-+/* SA8540P RPMH powerdomains */
-+static struct rpmhpd *sa8540p_rpmhpds[] = {
-+	[SC8280XP_CX] = &cx,
-+	[SC8280XP_CX_AO] = &cx_ao,
-+	[SC8280XP_EBI] = &ebi,
-+	[SC8280XP_GFX] = &gfx,
-+	[SC8280XP_LCX] = &lcx,
-+	[SC8280XP_LMX] = &lmx,
-+	[SC8280XP_MMCX] = &mmcx,
-+	[SC8280XP_MMCX_AO] = &mmcx_ao,
-+	[SC8280XP_MX] = &mx,
-+	[SC8280XP_MX_AO] = &mx_ao,
-+	[SC8280XP_NSP] = &nsp,
-+};
-+
-+static const struct rpmhpd_desc sa8540p_desc = {
-+	.rpmhpds = sa8540p_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sa8540p_rpmhpds),
-+};
-+
- /* SDM845 RPMH powerdomains */
- static struct rpmhpd *sdm845_rpmhpds[] = {
- 	[SDM845_CX] = &cx_w_mx_parent,
-@@ -378,10 +408,33 @@ static const struct rpmhpd_desc sc8180x_desc = {
- 	.num_pds = ARRAY_SIZE(sc8180x_rpmhpds),
- };
- 
-+/* SC8280xp RPMH powerdomains */
-+static struct rpmhpd *sc8280xp_rpmhpds[] = {
-+	[SC8280XP_CX] = &cx,
-+	[SC8280XP_CX_AO] = &cx_ao,
-+	[SC8280XP_EBI] = &ebi,
-+	[SC8280XP_GFX] = &gfx,
-+	[SC8280XP_LCX] = &lcx,
-+	[SC8280XP_LMX] = &lmx,
-+	[SC8280XP_MMCX] = &mmcx,
-+	[SC8280XP_MMCX_AO] = &mmcx_ao,
-+	[SC8280XP_MX] = &mx,
-+	[SC8280XP_MX_AO] = &mx_ao,
-+	[SC8280XP_NSP] = &nsp,
-+	[SC8280XP_QPHY] = &qphy,
-+};
-+
-+static const struct rpmhpd_desc sc8280xp_desc = {
-+	.rpmhpds = sc8280xp_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
-+};
-+
- static const struct of_device_id rpmhpd_match_table[] = {
-+	{ .compatible = "qcom,sa8540p-rpmhpd", .data = &sa8540p_desc },
- 	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
- 	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
- 	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
-+	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
- 	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
- 	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
- 	{ .compatible = "qcom,sdx65-rpmhpd", .data = &sdx65_desc},
--- 
-2.35.1
+>  		gpiod_set_value_cansleep(priv->reset, 0);
+>  		usleep_range(1000, 1100);
+>  		gpiod_set_value_cansleep(priv->reset, 1);
+> @@ -2276,7 +2276,7 @@ mt7531_setup(struct dsa_switch *ds)
+>  		reset_control_assert(priv->rstc);
+>  		usleep_range(1000, 1100);
+>  		reset_control_deassert(priv->rstc);
+> -	} else {
+> +	} else if (priv->reset) {
+>  		gpiod_set_value_cansleep(priv->reset, 0);
+>  		usleep_range(1000, 1100);
+>  		gpiod_set_value_cansleep(priv->reset, 1);
+> @@ -3272,8 +3272,7 @@ mt7530_probe(struct mdio_device *mdiodev)
+>  		priv->reset = devm_gpiod_get_optional(&mdiodev->dev, "reset",
+>  						      GPIOD_OUT_LOW);
+>  		if (IS_ERR(priv->reset)) {
+> -			dev_err(&mdiodev->dev, "Couldn't get our reset line\n");
+> -			return PTR_ERR(priv->reset);
+> +			dev_warn(&mdiodev->dev, "Couldn't get our reset line\n");
 
+I certainly don't understand why you're suppressing the pointer-encoded
+errors here. The function used is devm_gpiod_get_optional(), which
+returns NULL for a missing reset-gpios, not IS_ERR(something). The
+IS_ERR(something) is actually important to not ignore, maybe it's
+IS_ERR(-EPROBE_DEFER). And this change breaks waiting for the descriptor
+to become available.
+
+>  		}
+>  	}
+>  
+> -- 
+> 2.25.1
+> 
+
+So what doesn't work without this patch, exactly?
