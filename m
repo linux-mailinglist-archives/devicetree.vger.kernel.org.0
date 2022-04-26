@@ -2,100 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F350750F095
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A4E50F105
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241938AbiDZGFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 02:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46812 "EHLO
+        id S235756AbiDZGeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 02:34:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235519AbiDZGFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:05:37 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF6876295;
-        Mon, 25 Apr 2022 23:02:29 -0700 (PDT)
+        with ESMTP id S245292AbiDZGeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:34:22 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89EBE140AD
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:31:16 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id z19so7783224edx.9
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:31:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1650952951; x=1682488951;
-  h=from:to:cc:subject:date:message-id;
-  bh=amARuMpJBWtf7g90334aANQiHnLqYqTFsIkho2bxSdw=;
-  b=lgtg5CPrApKwxqMXF37qbcewbUbMq+OJtzGEVH4kU3n4VeHWANqOfs7M
-   Ei0ly4HbEldb2DV3hhwBtdQXScLdKU0VotCvI5HhHxQIwLyK5t3YKXCce
-   Ecw3hgMj5BkaAc8Pi7ooDzY9P+Uqc0mTTEzhXsislQqLhkIJIa5s6S0NS
-   M=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 25 Apr 2022 23:02:30 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 25 Apr 2022 23:02:27 -0700
-X-QCInternal: smtphost
-Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 26 Apr 2022 11:32:14 +0530
-Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
-        id 91B9D55F7; Tue, 26 Apr 2022 11:32:13 +0530 (IST)
-From:   Vinod Polimera <quic_vpolimer@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dmitry.baryshkov@linaro.org, dianders@chromium.org,
-        quic_kalyant@quicinc.com
-Subject: [PATCH] drm/msm/disp/dpu1: avoid clearing hw interrupts if hw_intr is null during drm uninit
-Date:   Tue, 26 Apr 2022 11:32:11 +0530
-Message-Id: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=o60Xdt5/lIQwm3L1GGhGdikwdOr9Y2T0obDjUUJBvKM=;
+        b=J5JP8COoziPIOC17a1AheYKEJ74nJMdOvTMVfjYEI62ywlbIffHES6TQyJ5BFbsjaK
+         tY9ZyUKyb9v4HGphUo/lSTdBB3cioJKtkzd6i+n7lg4Zn1uTju1dAIwnS3f2Q+qzDS6d
+         cB8OUjlNse0gs68Usif4169gsBrvcoKvNWM8ShCNQC9l8ns943iDaQO1cp3erX75a8q5
+         ME5XfexVA2CzmiLdNs8XgcRIwqWsxTAHjM98eosxAtu5ovZ/VcuaouLPy5I2Ey+//Ok9
+         jebbYJa9e/jOJ4HAf1lBwWUvCRN7R4R2a3BaaOlV82IOVI6z/tVhzK2TuFQyOtcY/jFQ
+         KRGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=o60Xdt5/lIQwm3L1GGhGdikwdOr9Y2T0obDjUUJBvKM=;
+        b=6ZNuCIhuYuskibr/wPOi1h7csGPEYIeKpKrr+0AxMNMfhn+xB85j8FxIdaOP/Hz/Q4
+         V7bf/PDUypiBasDQLyzrnptFcas7LHpvxz4AJib5bV2a6Q06bFYyINi3VYUDUibdNRSs
+         x2eTpaVSmrlikJxHLzEUHvujqmPMtgekSM09EcPlKWFlWUo5locXziKeFgeD8jkIyOM4
+         W9o3lsQfsNI1Goia4Q/LAJwkXUICtRcHmnWpNDIaCw+qfnzNNg+O1GONv0QUIen92luR
+         2G0EdrSTiXpfJsRTkrGEWCb+zLCUsoA6I+3NtWDhHcRvLQ3xRnm8bjIMWd8/IeGD1IVn
+         u+tQ==
+X-Gm-Message-State: AOAM533VK3D301cGGBA3gW6ukonTzTvo/slhm/DveTlHxIlOxWWDcbhy
+        rega9WoHdBMmid3pOMZtNXfRPA==
+X-Google-Smtp-Source: ABdhPJwxSeWO8cf9PYw5+0di2Y79/EaTY+pCk5EE82cxph/Dq3q5Z8dUFxTXDfTKxIZkq+xt1jrpKA==
+X-Received: by 2002:a50:cd8c:0:b0:41c:bb5a:1c7b with SMTP id p12-20020a50cd8c000000b0041cbb5a1c7bmr22624009edi.351.1650954675180;
+        Mon, 25 Apr 2022 23:31:15 -0700 (PDT)
+Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id lb18-20020a170907785200b006efe7bb40b0sm4347749ejc.74.2022.04.25.23.31.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 23:31:14 -0700 (PDT)
+Message-ID: <0169c4ac-fdce-29b7-553a-14dc7df532d1@linaro.org>
+Date:   Tue, 26 Apr 2022 08:31:13 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/1] dt-bindings: nvmem: mediatek: Convert mtk-efuse
+ binding to YAML
+Content-Language: en-US
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Lala Lin <lala.lin@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+References: <20220425084800.2021-1-allen-kh.cheng@mediatek.com>
+ <20220425084800.2021-2-allen-kh.cheng@mediatek.com>
+ <e64bdca8-7b18-b450-830c-ca07946a73fb@linaro.org>
+ <9d65b713e3ffdd34dcca532c4c97fa98b124bde4.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9d65b713e3ffdd34dcca532c4c97fa98b124bde4.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
+On 26/04/2022 08:23, allen-kh.cheng wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - enum:
+>>> +          - mediatek,mt8173-efuse
+>>> +          - mediatek,efuse
+>>
+>> Still no changes...
+>>
+> 
+> I just want to confirm again.
+> 
+> "Generic compatibles should not be used standalone"
+> 
+> It seems we should remove mediatek,efuse and keep "mediatek,mt8173-
+> efuse"in binding. have I got that right?
 
-BUG: Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+You should comment for which chipsets this compatible is and add a
+deprecated:true. In such case it cannot be part of enum but separate
+item in this oneOf.
 
-Call trace:
- dpu_core_irq_uninstall+0x50/0xb0
- dpu_irq_uninstall+0x18/0x24
- msm_drm_uninit+0xd8/0x16c
- msm_drm_bind+0x580/0x5fc
- try_to_bring_up_master+0x168/0x1c0
- __component_add+0xb4/0x178
- component_add+0x1c/0x28
- dp_display_probe+0x38c/0x400
- platform_probe+0xb0/0xd0
- really_probe+0xcc/0x2c8
- __driver_probe_device+0xbc/0xe8
- driver_probe_device+0x48/0xf0
- __device_attach_driver+0xa0/0xc8
- bus_for_each_drv+0x8c/0xd8
- __device_attach+0xc4/0x150
- device_initial_probe+0x1c/0x28
 
-Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into dpu_hw_interrupts")
-Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-index c515b7c..ab28577 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
-@@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
- {
- 	int i;
- 
-+	if (!dpu_kms->hw_intr)
-+		return;
-+
- 	pm_runtime_get_sync(&dpu_kms->pdev->dev);
- 	for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
- 		if (!list_empty(&dpu_kms->hw_intr->irq_cb_tbl[i]))
--- 
-2.7.4
-
+Best regards,
+Krzysztof
