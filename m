@@ -2,98 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF2BE50FCE4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 14:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7226E50FD22
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 14:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242366AbiDZMac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 08:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33180 "EHLO
+        id S1350018AbiDZMi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 08:38:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346338AbiDZMaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 08:30:19 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 875CE689BB;
-        Tue, 26 Apr 2022 05:27:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1650976032; x=1682512032;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dWJ3/7cdmA0pgFsitZuEUw3jz9OX5cH4BT7oF2UsM8c=;
-  b=SfWUDtC3YfnsmsilBsKAZkukokEz3xifK7eCSKiclox5jaaG7tQVYfF5
-   kmgdRD9HdkI7sVvfj3SUBaB8Zpv5Plxcye+/AZyg6gIdiKLearmJXqHs5
-   SZBJPi2l4j4BCCXa0EaWADsyu0dKtwqRzB5sgnZ4y2ZinitKpzqPHYql7
-   BNF6olYQaaAszZ6CZpLq3U90zXraUQj7xx3pR58p7J63LScsnI+CEUNlt
-   bZ3I/B8ZMfLimd+x3Hed4znkTpnrO/VbZ3SLQq/NWd5DpKiKtHyUbW92H
-   o+ytgDgVTFyAurKcdEkVM2sOpAv+82/1ZuAffPP2pFQOSNh3/MKzgypqQ
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="265724736"
-X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; 
-   d="scan'208";a="265724736"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 05:27:12 -0700
-X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; 
-   d="scan'208";a="579864855"
-Received: from mmilkovx-mobl.amr.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.249.47.245])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 05:27:08 -0700
-From:   =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     linux-serial@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>
-Cc:     Jiri Slaby <jirislaby@kernel.org>, Lukas Wunner <lukas@wunner.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Johan Hovold <johan@kernel.org>, heiko@sntech.de,
-        giulio.benetti@micronovasrl.com,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 03/10] dt_bindings: rs485: Add receiver enable polarity
-Date:   Tue, 26 Apr 2022 15:24:41 +0300
-Message-Id: <20220426122448.38997-4-ilpo.jarvinen@linux.intel.com>
+        with ESMTP id S1349998AbiDZMi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 08:38:27 -0400
+Received: from pnkfpffh.outbound-mail.sendgrid.net (pnkfpffh.outbound-mail.sendgrid.net [50.31.63.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7A442676
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 05:35:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+        h=from:subject:mime-version:to:cc:content-transfer-encoding:
+        content-type;
+        s=s1; bh=UM3WO5Rdk0FcgGPqPdNTy1fKqZIy1X8oS4grG46SWpM=;
+        b=Uj27L54v5UJZd+nIrTr4gHzf7s2/JOP14jrNhg0FOkAJt84Tp4DSavGlIui9gubu/PHH
+        h1Zl7dPGVR00Rm82sbBjBZD8fpDrwRrmRzgDASQ6QhS5zVfg1z0+kDA6yRzbiKQ2dwLezV
+        D9vp7JYlDeWICRSY8HeY3WMr+wDEU0aIKdAp9IgukkT4V+zGBYAhNIJmxAFlWD1Jzq+vbE
+        6Vx182UVIPekWLCtjcThw4C1SiWJKRjW1DyJa4lUOjSY2V/hb9Yr8xzqyDyD/i3/DdgZvE
+        97WxDGvoCtZ+uZ5E6qEcRhTP+bV2cERaGGG5N2niMNPmMxFhOuCqDS/gNRNvBiBA==
+Received: by filterdrecv-5645d9c87f-64zxs with SMTP id filterdrecv-5645d9c87f-64zxs-1-6267E6A6-2B
+        2022-04-26 12:33:42.514119269 +0000 UTC m=+1694971.141824537
+Received: from midgard.internal.axentia.se (unknown)
+        by geopod-ismtpd-3-0 (SG) with ESMTP
+        id Mn_eKhEkRuKJd9Z74ebuYQ
+        Tue, 26 Apr 2022 12:33:42.128 +0000 (UTC)
+From:   Daniels Umanovskis <du@axentia.se>
+Subject: [PATCH 0/2] usb: usb251xb: configurable reset delay
+Date:   Tue, 26 Apr 2022 12:33:42 +0000 (UTC)
+Message-Id: <20220426123329.775-1-du@axentia.se>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220426122448.38997-1-ilpo.jarvinen@linux.intel.com>
-References: <20220426122448.38997-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-SG-EID: =?us-ascii?Q?Q0J120W4ZU2dvxvzBhStZcyp23eAYLPzAz2fSUg6MjfeWGicT4FGxyT7O14zxp?=
+ =?us-ascii?Q?kiRPCLaCzZjS7wquF0+OL7XucdVdgT6qp07OX2r?=
+ =?us-ascii?Q?vbce6gwmHuPZm5HUQjLGS+z18dTumHYZcrqhLKO?=
+ =?us-ascii?Q?Ho=2FXSnbo7U2PM5Ou4ZBNeIE0FjZC=2FfsGltWL8bK?=
+ =?us-ascii?Q?ETJSyi745hA0=2Fi0wHzo8Rm1ylWHDod5cV3AO9Oa?=
+ =?us-ascii?Q?jG2CCKwgD09km4JMbffEybMnLlqRVIinpxkXAl?=
+To:     richard.leitner@skidata.com, linux-usb@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     Daniels Umanovskis <du@axentia.se>
+X-Entity-ID: eEMfc9IaaDEroFpbtZJ/HA==
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add polarity property for receiver enable. Some UARTs have separate
-enable pins for tx (RTS or DE) and rx (RE). As most RS485 transceivers
-have !RE pin, the default is active low in contrast to
-rs485-rts-active-low that defaults to active high.
+The Microchip USB251xB hub, according to its datasheet, is operational
+500us after deasserting reset on startup and can then be attached or
+configured.
 
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+I ran into a batch of such hubs, of the 2512Bi variant,
+that didn't appear to work or only worked sporadically. Debugging the
+issue revealed that these specific hubs do not typically manage to
+reset within 500us. Instead they become operational 800us
+or so after deasserting the RESET_N signal.
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index 0c9fa694f85c..f2c9c9fe6aa7 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -33,6 +33,11 @@ properties:
-     description: drive RTS low when sending (default is high).
-     $ref: /schemas/types.yaml#/definitions/flag
- 
-+  rs485-rx-active-high:
-+    description: Polarity of receiver enable signal (when separate from RTS).
-+      True indicates active high (default is low).
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-   linux,rs485-enabled-at-boot-time:
-     description: enables the rs485 feature at boot time. It can be disabled
-       later with proper ioctl.
+This is probably a faulty batch of the chips but making the reset delay
+configurable through dt bindings allows these chips to be used.
+
+Daniels Umanovskis (2):
+  dt-bindings: usb: usb251xb: add documentation for reset-delay-us
+  usb: usb251xb: make power-up reset delay configurable in device tree
+
+ Documentation/devicetree/bindings/usb/usb251xb.txt | 2 ++
+ drivers/usb/misc/usb251xb.c                        | 6 +++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
 -- 
 2.30.2
 
