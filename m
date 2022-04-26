@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A25350EDE2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 02:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A27F950EDE8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 03:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230240AbiDZA7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 20:59:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40722 "EHLO
+        id S230338AbiDZBC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 21:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbiDZA7d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 20:59:33 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67BFF2A27E;
-        Mon, 25 Apr 2022 17:56:27 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-e67799d278so14095016fac.11;
-        Mon, 25 Apr 2022 17:56:27 -0700 (PDT)
+        with ESMTP id S237558AbiDZBC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 21:02:59 -0400
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A2AD3AFE;
+        Mon, 25 Apr 2022 17:59:52 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id e7-20020a4aaac7000000b00330e3ddfd4bso3109894oon.8;
+        Mon, 25 Apr 2022 17:59:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=U/mTnYUQ6pZqCz9Eu3IYpCeJl6Jh6nhN/yx/cgzIAyc=;
-        b=MANmK4hVLj0CnFuVC+B/8diz6ZvufpLozHdHuXKi4zshBMOlgImoF556yce28hNj4J
-         x1Gwf87tT9U8xHkG8g9GY+eQAUSW79VNFAJBP/kNnBhdfpejYD3adL6qGM0mJ+UT/wEW
-         6hoz5Ej/lu6Vscvo531/42/Z9dDcWi5CsgDZnX870heWiwu7C5aA0KAaUxBVHyFsuO9c
-         /h5c5S0eiov8JzhljY/pvEwkYZMCYWTjj/nHXX7ghbHCsiQdDYiGs/HyBozctEliCLv2
-         dJ60rUTDYeSrCWwzQj3KZUXp+hwdKvTdCZ45LADjpo74Ci3CIZAq4B4T8K4UeTYXZcgQ
-         27HA==
-X-Gm-Message-State: AOAM530oMDk25lwzpetdwZJuVV6Mgoy0eX/3NAsJ3FTeaog3Eg4rCbK1
-        2bU3FeXxwZMrot9nCtAUQA==
-X-Google-Smtp-Source: ABdhPJxyx3J68XofDMvRr2IMaFZEVqAi9bkYtA1l1FETzILj3JsvgXUd1OQnFJY5HJlTknU0eJHU+w==
-X-Received: by 2002:a05:6870:15cf:b0:e2:6c7a:69fe with SMTP id k15-20020a05687015cf00b000e26c7a69femr8088818oad.257.1650934586697;
-        Mon, 25 Apr 2022 17:56:26 -0700 (PDT)
+        bh=BH7vmV60pq07t1GAA5YZvFkzgwzKmGX6FaF8nF3TCVY=;
+        b=m5/o6J5bGRW/+SkrXKsB0dn0UnqKyMIjOfNQxqDP/AuSk6fAnsLd0KFspY1Lx/rtPU
+         BCwa99OFzR5yCsTp3fyv/+S0kn879eFblyAhvJEJ1OGbWaJVS0hWggKQElSyCYeGIN2s
+         XI8M1qEL+JNYQkmobl+N/oHcYhQVwpa1l1PFjbxP8gKy1QrVs0RvXQI/X/SzdlHZYg4Z
+         4TeM4uFr1Y2LXTCrTK1ZxMI1PrmsHmKrVLDkoqLXFpVvIC4wfI9Mk4gQunjrBaNIcOV7
+         Nk+O3BZxTlLqOw8crW/3QIqkY+EYT4OV5jmlAnVNVTGqLS1SxEsNpM3y0AHzX8CNQnJD
+         ZrbA==
+X-Gm-Message-State: AOAM533I52NLeNjC0bFs9P7PVtrYR//PSYzNbueTjjcdOQNNIbijShJ+
+        eZOIpGSPCk6+YUfpIv66KA==
+X-Google-Smtp-Source: ABdhPJzWGYxJLnYY0ELBcT5LlXMJyLGiZQ9E8DZQVDqDcgdXUUm8igxTVXHcPgf2xbRJaVFiyccqpg==
+X-Received: by 2002:a4a:c294:0:b0:329:2fed:ad3f with SMTP id b20-20020a4ac294000000b003292fedad3fmr7311432ooq.4.1650934791766;
+        Mon, 25 Apr 2022 17:59:51 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g8-20020a056830160800b0060548e5f69csm4344925otr.2.2022.04.25.17.56.25
+        by smtp.gmail.com with ESMTPSA id 30-20020a9d0ba1000000b005e95b29b95dsm4323883oth.5.2022.04.25.17.59.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 17:56:26 -0700 (PDT)
-Received: (nullmailer pid 659909 invoked by uid 1000);
-        Tue, 26 Apr 2022 00:56:25 -0000
-Date:   Mon, 25 Apr 2022 19:56:25 -0500
+        Mon, 25 Apr 2022 17:59:51 -0700 (PDT)
+Received: (nullmailer pid 665368 invoked by uid 1000);
+        Tue, 26 Apr 2022 00:59:50 -0000
+Date:   Mon, 25 Apr 2022 19:59:50 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Sven Peter <sven@svenpeter.dev>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-nvme@lists.infradead.org, Christoph Hellwig <hch@lst.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc:     Sagi Grimberg <sagi@grimberg.me>, devicetree@vger.kernel.org,
         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sagi Grimberg <sagi@grimberg.me>, Jens Axboe <axboe@fb.com>,
-        Keith Busch <kbusch@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v2 1/6] dt-bindings: iommu: Add Apple SART DMA address
- filter
-Message-ID: <YmdDOeD31VZkMvv4@robh.at.kernel.org>
+        Jens Axboe <axboe@fb.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
+        Christoph Hellwig <hch@lst.de>, Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-nvme@lists.infradead.org, Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v2 2/6] dt-bindings: nvme: Add Apple ANS NVMe
+Message-ID: <YmdEBvMtO0PIfxCo@robh.at.kernel.org>
 References: <20220415142055.30873-1-sven@svenpeter.dev>
- <20220415142055.30873-2-sven@svenpeter.dev>
+ <20220415142055.30873-3-sven@svenpeter.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220415142055.30873-2-sven@svenpeter.dev>
+In-Reply-To: <20220415142055.30873-3-sven@svenpeter.dev>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,23 +68,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Apr 2022 16:20:50 +0200, Sven Peter wrote:
-> Apple SoCs such as the M1 come with a simple DMA address filter called
-> SART. Unlike a real IOMMU no pagetables can be configured but instead
-> DMA transactions can be allowed for up to 16 paddr regions. The consumer
-> also needs special support since not all DMA allocations have to be
-> added to this filter.
+On Fri, 15 Apr 2022 16:20:51 +0200, Sven Peter wrote:
+> Apple SoCs such as the M1 come with an embedded NVMe coprocessor called
+> ANS2.
 > 
 > Signed-off-by: Sven Peter <sven@svenpeter.dev>
 > ---
 > v1 -> v2:
->   - Moved to bindings/iommu since it is "Close enough to an IOMMU in
->     terms of its purpose" (Rob Herring)
+>   - Moved to bindings/nvme (Krzysztof Kozlowski)
+>   - Added power-domains and power-domain-names min/maxItems
+>     (Krzysztof Kozlowski)
 > 
->  .../devicetree/bindings/iommu/apple,sart.yaml | 52 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/apple,sart.yaml
+>  .../bindings/nvme/apple,nvme-ans.yaml         | 111 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
