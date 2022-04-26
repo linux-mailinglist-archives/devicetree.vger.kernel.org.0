@@ -2,197 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 362FD50EF86
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 06:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 601A550EFB1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 06:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229825AbiDZEIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 00:08:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
+        id S243111AbiDZEVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 00:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238503AbiDZEI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 00:08:28 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647596559
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 21:05:21 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 6209D3200946;
-        Tue, 26 Apr 2022 00:05:18 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 26 Apr 2022 00:05:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1650945917; x=
-        1651032317; bh=kk7eWmSE5SMkshDwRFhMdI5C76SkJ5u1WBRC4dxAVTc=; b=W
-        QkGYuJ3S7otdLGJT8Eg3kBOAXCjyReU6FdM+fHUgC8XJWof5snHI+OVRchRKrCGr
-        skaK+G84NAuhYye+Th4ObXmxqlXx5jt+VqRSWOCN7HtagnbulFq+J+Dlz+uffHVv
-        7/X6KfknjORa4KTj4IKZ3T/fSPdb1jg50KAochI09dWfF9aaTMoeaP3ta02X7ikm
-        3UkxRjuX9O9ALcc0XiQ6blHxpjeqGqga5J0ZfHsV5gOWqAMNAHte4wF/f+KuDq/N
-        z4fyx4IR2za7r7+TveUkAv69PwXnhT5lbBJMEvNTs3RKirMgjVlEItI3DAcw8LKl
-        7rAp869tuNdfTrEPsw9/Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1650945917; x=1651032317; bh=kk7eWmSE5SMks
-        hDwRFhMdI5C76SkJ5u1WBRC4dxAVTc=; b=Nq0wqIA0WiF6GErD87V0bUM/kgY4M
-        N5aXguMJF6sAaZ3lBRiDpKr73yPU5RrkpG0tfbDG6KRRbE+vqB4cNyCZF2Z7nKzq
-        EI2xtPjHtsvAK1ky5UgYK87ycCpwy3gnCPNbFYBEHbktgee1m/VoXCY9aZQs04Rd
-        SHMDXvihKH5MFe5pkzM8iI8soEgQNfXhgwv1ORbYgmnWg3Day5qJg54zRXpBURNi
-        1l8IyS1PCRD0VZ2XzJ98bhnlClZf5CUvHctyfyknSD0/httYTzIY4D20aiwUVvMt
-        5gqNEdrBdggzbJ3ThhLTagzr3bF+2L3fO0UMgRUA4cpE2kEt5Z9gFxWOg==
-X-ME-Sender: <xms:fW9nYsLsHb0FFwgMMa5D58F0P5K8wjAYYXPxIYwOPGkjdWHYILVdnA>
-    <xme:fW9nYsI2Qi9MboqBbjUQw5PWHwVxmJVW2_B7S7TmGJ-F9_maWq4H0cHdFnnFwWCyW
-    6EJBH45Zei2YJ4JBg>
-X-ME-Received: <xmr:fW9nYsv0m0rsU5OgYKTort4HsX4QYxLAVf97pvj7nFky6F1IyvP1gCybPmH1EJmlWSC8L-LTMVMCnH-lxP3kMBVTA89eQXbVYKbYx2olYXJ8LNq7-FSYkBg84g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvgdejjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfevfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnheptdevhfehhefgvdekteffleduueduheduuedvtdevleelkeevvdeu
-    vdeihfekueehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:fW9nYpYIXdwFVz9Y10FSfz0QAvqKIR8Y8m90BS2dxsgl_WFpcjXYqA>
-    <xmx:fW9nYjYw36OVmpjZFdJzRGebzohn1Pi6MB2sekpjswrNM2Wrm56xRA>
-    <xmx:fW9nYlCnBhItpHNahr3_89b0FsQRcL0bASo_v3KRbTJCU6s30duwLg>
-    <xmx:fW9nYiU6KctnBKP8UB_fpvuD5pVqFeSvvAWl06b9VkHyuTzkVN2mUQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 26 Apr 2022 00:05:16 -0400 (EDT)
-Subject: Re: [PATCH] arm64: dts: allwinner: teres-i: Add GPIO port regulators
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        Harald Geyer <harald@ccbib.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, Torsten Duwe <duwe@suse.de>
-References: <20220415165605.28560-1-harald@ccbib.org>
- <336f8b96-6eee-16a5-e896-e90c4020f740@sholland.org>
- <462969fd722eec45aa5f142de48b7fbd@ccbib.org> <5259899.Sb9uPGUboI@kista>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <71e61e41-712f-3f5d-74d6-46b01d672e7b@sholland.org>
-Date:   Mon, 25 Apr 2022 23:05:16 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S244076AbiDZEVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 00:21:05 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A91342E683
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 21:17:58 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id g21so18079275iom.13
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 21:17:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=LkVzGmjin4oQm9POhirtBv43WQcTLvdJ9RmTDocLdTY=;
+        b=NoYQO+N+pvIAZY44NBFB4SB+4uejGoZOKH6o5lQQ8O/8xDnHcPyVm6GpfoVDB6H9rq
+         RU3G9no6Qv73tejYhiPbRchitOhg53tza5KX2DhM9hL+VRaotymOek+HMuG5B1LW20kb
+         HBOaM9HsiqQWh9/a2CHNzkqdbPYaREpPDbjnYU9cRV36+tpDTGkY+gJceYW4k6cRJxfy
+         qMXITvI71jVEL5f2GVnqbbpw06RQUbuUKRshgEYK3zOxD3NXssXv22qV18FCOzkrpKr/
+         u++E5GhCl7bSHZg9RjEyGxhoBVPXjy8Wkfo+4OiCW/48uQqVcmav0hxOFB/5k4mubSPX
+         0ovw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=LkVzGmjin4oQm9POhirtBv43WQcTLvdJ9RmTDocLdTY=;
+        b=tKt7sNSyFjWkhBpoGFfE3gU8oHAleFq6Leickmpd+tKN1AHup4Y+mT2daCJ5mokYQx
+         IEH3fsmHCPxG1oaA2cg2xz+dtZmhKmRHCsvMDubP958RHTnT3Jfu+vJAPv6EyGBZa+RL
+         XP/be0RzuyqtxSyUdHWEMBihIbuDyiHhEVNTRsCyiL1D0Lg3lVx28Tm5SmXJevYR7DzC
+         QwOhCf1dn5/+9vUFcPaLdJIIFPZ32wFw1z8tL85mm3BMFwOBS25SQ5apX2sslAOskJIM
+         noOjQ6xaQo0E9r1wagA1enDpViVYoq1yUvJHRI0K1Bmv+/DdLmy/zxcsv6xr439cwY+D
+         0yHA==
+X-Gm-Message-State: AOAM530R1yPtOrBH8+I/T0mYlZ2nuPJkEdR7hIKFxk3laWNulht9NuJR
+        b9dGKTTbAaPKN90DkHKMpIWl6paT+QbP2DYUgkk=
+X-Google-Smtp-Source: ABdhPJwInbbAFHLVlk7mWcgiGiLEkkW8GdQ/bRFo8XeJOJfNyghoh1XogAknmKRJsVAxP081pROOWMhf8jryeyCexro=
+X-Received: by 2002:a05:6638:1a0f:b0:32a:98bb:64e4 with SMTP id
+ cd15-20020a0566381a0f00b0032a98bb64e4mr8484103jab.38.1650946677864; Mon, 25
+ Apr 2022 21:17:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5259899.Sb9uPGUboI@kista>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:6e02:1946:0:0:0:0 with HTTP; Mon, 25 Apr 2022 21:17:57
+ -0700 (PDT)
+Reply-To: mrskarimmikael@gmail.com
+From:   "Mrs.Karine Mikael" <tepalmer2@gmail.com>
+Date:   Mon, 25 Apr 2022 21:17:57 -0700
+Message-ID: <CAG08HJe0y9FR4QGtqh3Y3X06fpXHZ7HhLdasoy8Kdkx3bUYf-A@mail.gmail.com>
+Subject: Hello Dear
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_HK_NAME_FM_MR_MRS,UNDISC_FREEM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:d2c listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5001]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [tepalmer2[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [tepalmer2[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        *  3.6 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/25/22 11:28 AM, Jernej Škrabec wrote:
-> Hi Harald!
-> 
-> Dne ponedeljek, 25. april 2022 ob 13:01:54 CEST je Harald Geyer napisal(a):
->> On 24.04.2022 03:56, Samuel Holland wrote:
->>> On 4/15/22 11:56 AM, Harald Geyer wrote:
->>>> Allwinner A64 SoC has separate supplies for PC, PD, PE, PG and PL.
->>>>
->>>> Usually supplies are linked via the 'regulator-name' property of
->>>> regulator nodes. However when regulators are shared we need to
->>>> declare the additional links in the pinctrl node.
->>>>
->>>> Signed-off-by: Harald Geyer <harald@ccbib.org>
->>>
->>> I'm curious if this solved an issue for you, or if this is just for 
->>> accuracy.
->>> Both of these regulators have the regulator-always-on property, so
->>> they should have been enabled already.
->>
->> You are right, there shouldn't be any change in functionality. It is 
->> mostly
->> for extra correctness. However the pincontrol driver started spewing 
->> lot's
->> of warnings about missing regulator nodes a few versions back. The 
->> visible
->> effect of this change is to silence those warnings. Also make the DTS 
->> more
->> future proof in case the driver is made even more picky in the future.
->>
->>> If it's the latter reason, why not add the other
->>> ports? Regardless:
->>
->> PD, PE and PL have dedicated regulators, that can be matched via the
->> 'regulator-name' property. I didn't want to specify the same 
->> information
->> in two places.
-> 
-> "regulator-name" is only a label, while phandle is actual regulator reference 
-> that can be used by the driver. While DT files reside in Linux kernel source, 
-> they are used by other OSes and bootloaders, so you can't really assume what 
-> is good or not just by judging based on Linux behaviour. So please add PD and 
-> PL regulators too.
+Hello
+This is one bizarre letter all my years of existence, I got your
+e-mail address online while searching for someone reliable that will
+assist me to carry out an urgent  assignment.
 
-Yes, agreed, except for VCC-PL, which (as the comments in several devicetrees
-note) will cause a circular dependency when loading drivers.
+I have been living with leukemia since I was 19 and fifteen years ago
+was diagnosed with serious, adrenocortical carcinoma cancer, which has
+rendered me utterly useless.
 
->> For the PF supply, I couldn't find any connection information in the
->> board schematic. I could have added a dummy regulator. But since there 
->> is
->> only one warning about pf-supply during driver initialization and not 
->> the
->> dozens of warnings I see about PC and PG, I figured, I'd rather not add
->> information of dubious use or qualiy.
-> 
-> You mean PE right? There is no PF supply on A64. Anyway, if it's not on 
-> schematic, it can be assumed unconnected and thus you shouldn't define that 
-> property. Messages like "using dummy regulator" are fine in such cases .
-
-All of the ports without a separate VCC-Px input are powered by VCC-IO, which in
-this case is supplied from DCDC1.
-
-Regards,
-Samuel
-
-> There is no issue of "dubious quality" if schematic is clear. Also don't worry 
-> about usefulness. DT files are hardware description files. They should reflect 
-> hardware configuration, no matter how useful information seems.
-> 
-> FYI, information in this case is useful to the driver. If you check sunxi 
-> pinctrl driver, you can see that port bias is set according to regulator 
-> voltage.
-> 
-> Best regards,
-> Jernej
-> 
->>
->> best regards,
->> Harald
->>
->>
->>> Reviewed-by: Samuel Holland <samuel@sholland.org>
->>>
->>>> ---
->>>>  arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts | 5 +++++
->>>>  1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts 
->>>> b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
->>>> index aff0660b899c..cc316ef2e2d6 100644
->>>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
->>>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
->>>> @@ -197,6 +197,11 @@ &ohci1 {
->>>>  	status = "okay";
->>>>  };
->>>>
->>>> +&pio {
->>>> +	vcc-pc-supply = <&reg_dcdc1>;
->>>> +	vcc-pg-supply = <&reg_aldo2>;
->>>> +};
->>>> +
->>>>  &pwm {
->>>>  	status = "okay";
->>>>  };
->>>>
->>
->>
-> 
-> 
-
+I will gladly give you more details on your responses to my  mail
+Regards
+Mrs. Karine Mikael
