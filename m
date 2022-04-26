@@ -2,114 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8729451059F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 19:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DAFC510625
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353059AbiDZRpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 13:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33214 "EHLO
+        id S1349675AbiDZSD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 14:03:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347849AbiDZRpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 13:45:06 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F521AF2D
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 10:41:57 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id k2so6057975wrd.5
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 10:41:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QQA23ghBxeAWrg+1pTuG+EIpzKydBoAGm6JxIISmz68=;
-        b=k3ePSYdc/oMFI8zzl1Ck2yhC1E/Jbn9NSPODTh/jCaB75hYUB4RUnVAylJ32pERmyW
-         zShZu08Cwn8JV+Mr2IuxMH0jNdh9h/ipjh+GGkF8fVSgj0uxKNB7RP8vbQkSxIBtDaLs
-         2YC5xTY1klMyg6x7J01UZFwkT5O/nTYpwZlz9vCY0wRiFg3EhQZ/H506Rl9Kbag0m5hy
-         QULhN8LIr98ALYBHOFJCqr1qaEVSUFWD663pBj4/pnIgGtp6s8HJZFPeBHde2RNXeeo7
-         Z/wR/ct1JvIkj592CtgaVlnj4MDQT/+D2coCXcSzuqqWfh0E39OQvlb4sVOBvacmv6GA
-         mNEg==
+        with ESMTP id S1350596AbiDZSDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:03:25 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59EE13F6F;
+        Tue, 26 Apr 2022 11:00:16 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-e9027efe6aso12882450fac.10;
+        Tue, 26 Apr 2022 11:00:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=QQA23ghBxeAWrg+1pTuG+EIpzKydBoAGm6JxIISmz68=;
-        b=TCAUwiiaNjvFRC5GMkKqlwQYv5JaAsy4Tp2TxhzKznYiIdA3LmpsKmcDsQ241QA6Xj
-         qsOlPViztEc27tcrwf7wOTR9VibM6zsErkKbz4Nl4fARuMgkPcLIBd8+qH08OZyUtUkI
-         Ip9hWs6/jkJBny8UTng2gUogePC48REuvvKkn41m9MWV6WB4FXvoawfe9Ly4lnas0N8J
-         x0CA0HrhAbIFu8DuCHRqvdVxDK5PqFq2I6V7BC9pRj1+Jmjss6EyGe0Q49vp0xK5fD6K
-         1+wOaF6p/twmo3y3zvxW/F8OVhtZHBVKzEa8FHqO6q6oTjdoyG/MY5vMeRk/IQKdZWYN
-         URlg==
-X-Gm-Message-State: AOAM531WnwA7D+HqxdIcTSryGOfoWSMy9IPMZYFl0YNTRZ6KuHrQymoZ
-        ujd7qrEeUZv257otMh/2IHCvPw==
-X-Google-Smtp-Source: ABdhPJwt90fodsf0OiUB4eqoLjLOvhGcW/S/Y1bclGSbPT/V6AE1gAQWmdiwV/0T4GMToMHwE2gluA==
-X-Received: by 2002:a05:6000:1547:b0:20a:79dd:28bf with SMTP id 7-20020a056000154700b0020a79dd28bfmr18728266wry.505.1650994916368;
-        Tue, 26 Apr 2022 10:41:56 -0700 (PDT)
-Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id s30-20020adf979e000000b0020adfb1292fsm4374036wrb.16.2022.04.26.10.41.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 10:41:55 -0700 (PDT)
-Message-ID: <10f7cb8e-4c2a-0bba-df55-16b56d429147@linaro.org>
-Date:   Tue, 26 Apr 2022 18:41:54 +0100
+        bh=SkneqWq9FDny4rMtUcZ44P/OejiG2SCIexlA/0LO6kM=;
+        b=ZYhVtHQVq5lkLxxAp29Das27NkddJ9VXolcmurcMsHPr9eEtLpcq/CDUe0pyChBlbK
+         5FfpGYJ1Rmy4NGOlBmHR5VURqn4VJrYdEX+4tLWEFjA2N6sA8JIG21D0LLRX+iWu0Zek
+         T8TLi0UuCAABjR7VWC6fNKNjPIt0/aAFP4f976+ispmEJo073HfTO7ke33QnxEr01xbq
+         zAIfToYRoC26QV7XMU7/IgHJlCqgFc6PLqWInB3bw6fuWUUa5sM5TFaCF5GJAN09xA2T
+         Pceyncgf+RBZWQ0lIVX8PXDRZdLUReT0gnP1GnjSxLR9TWFg50xsfZQslTfZJhtJCdFl
+         mNIA==
+X-Gm-Message-State: AOAM531kiLg7nBv8cVHra31ebbRDOby5stWyOD8nXkOPKRA4slnP5YNI
+        JjkJmS/Hyj4qiF9NP1O9ig==
+X-Google-Smtp-Source: ABdhPJzlFNfKsmBnTcOItHrKkQhyv1JiJiGqQa16jK+6PcJrp7RHk9StcPftCzLIwKnUKvS04f7WaA==
+X-Received: by 2002:a05:6870:b39c:b0:d1:4a9f:35f9 with SMTP id w28-20020a056870b39c00b000d14a9f35f9mr9164098oap.119.1650996016098;
+        Tue, 26 Apr 2022 11:00:16 -0700 (PDT)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id y23-20020a056808061700b00322e73cd18bsm5028505oih.16.2022.04.26.11.00.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 11:00:15 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: eeprom/at24: Add samsung,s524ad0xd1 compatible
+Date:   Tue, 26 Apr 2022 12:59:39 -0500
+Message-Id: <20220426175938.2262966-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v13 3/9] mfd: qcom-spmi-pmic: read fab id on supported
- PMICs
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20220323162820.110806-1-caleb@connolly.tech>
- <20220323162820.110806-4-caleb@connolly.tech> <Yma4tXvPQ+U89Whr@google.com>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <Yma4tXvPQ+U89Whr@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The samsung,s524ad0xd1 compatible is in use, but not documented. According
+to arch/arm/mach-s3c/mach-smdk6410.c, the samsung,s524ad0xd1 is compatible
+with the 24c128. As the schema requires a fallback compatible to the
+corresponding Atmel compatible, 'atmel,24c128' is added as a fallback.
 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2:
+ - Fix the example in samsung,s3c2410-i2c.yaml
 
-On 25/04/2022 16:05, Lee Jones wrote:
-> On Wed, 23 Mar 2022, Caleb Connolly wrote:
-> 
->> From: Caleb Connolly <caleb.connolly@linaro.org>
->>
->> The PMI8998 and PM660 expose the fab_id, this is needed by drivers like
->> the RRADC to calibrate ADC values.
->>
->> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   drivers/mfd/qcom-spmi-pmic.c      | 7 +++++++
->>   include/soc/qcom/qcom-spmi-pmic.h | 1 +
->>   2 files changed, 8 insertions(+)
-> 
-> Please change the Subject line to match the style of the sub-system?
-Hi, sorry if this is a silly question, I don't quite understand what you want me 
-to change here, the subject line is in the same "mfd: driver:" format as other 
-patches in the subsystem?
-> 
-> Once changed:
-> 
->    Acked-by: Lee Jones <lee.jones@linaro.org>
-> 
+ Documentation/devicetree/bindings/eeprom/at24.yaml            | 4 +++-
+ .../devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml          | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+index 6b61a8cf6137..d14e0accbda8 100644
+--- a/Documentation/devicetree/bindings/eeprom/at24.yaml
++++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+@@ -120,7 +120,9 @@ properties:
+           - const: giantec,gt24c32a
+           - const: atmel,24c32
+       - items:
+-          - const: renesas,r1ex24128
++          - enum:
++              - renesas,r1ex24128
++              - samsung,s524ad0xd1
+           - const: atmel,24c128
+ 
+   label:
+diff --git a/Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml b/Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml
+index c26230518957..3d5782deb97d 100644
+--- a/Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml
+@@ -123,7 +123,7 @@ examples:
+         samsung,i2c-slave-addr = <0x66>;
+ 
+         eeprom@50 {
+-            compatible = "samsung,s524ad0xd1";
++            compatible = "samsung,s524ad0xd1", "atmel,24c128";
+             reg = <0x50>;
+         };
+     };
 -- 
-Kind Regards,
-Caleb (they/he)
+2.34.1
+
