@@ -2,82 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF5DA50EE0E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 03:23:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DD550EE1E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 03:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240796AbiDZB0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 21:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59434 "EHLO
+        id S240656AbiDZBlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 21:41:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbiDZB0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 21:26:32 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA650939A5;
-        Mon, 25 Apr 2022 18:23:26 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (174-21-187-98.tukw.qwest.net [174.21.187.98])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id CFE121B3;
-        Mon, 25 Apr 2022 18:23:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1650936206;
-        bh=nMPCdQ5YICk6b3UizKU0CL3dpjIZCdCxutVbgMKfh5s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SmUQiZcdTo4s2cU2D1R7/36+bmOZLfzMoSJZ/1tcBqAkDIf8/CEjSSRcI7aM0cqUT
-         10DbMiRvCdnTFBxQ9LTNvVGsRPIBdA0J03udYTHlRJF6CJuvuvaZsYRr4uaaOon3T8
-         Yd6JClM7orwtr30CWvfVpMWlhgJcptNJHQKA6llM=
-Date:   Mon, 25 Apr 2022 18:23:21 -0700
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: hwmon: Add nuvoton,nct6775
-Message-ID: <YmdJibUk2cfOamMk@hatter.bewilderbeest.net>
-References: <20220309005047.5107-1-zev@bewilderbeest.net>
- <20220309005047.5107-2-zev@bewilderbeest.net>
- <20220425150748.GA4165124@roeck-us.net>
+        with ESMTP id S240343AbiDZBlV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 21:41:21 -0400
+Received: from mg.sunplus.com (mswedge2.sunplus.com [60.248.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D514713FA0;
+        Mon, 25 Apr 2022 18:38:12 -0700 (PDT)
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(12336:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Tue, 26 Apr 2022 09:37:47 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Tue, 26 Apr 2022 09:37:42 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Tue, 26 Apr 2022 09:37:42 +0800
+From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+To:     Stephen Hemminger <stephen@networkplumber.org>,
+        Wells Lu <wellslutw@gmail.com>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "roopa@nvidia.com" <roopa@nvidia.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "edumazet@google.com" <edumazet@google.com>
+Subject: RE: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Thread-Topic: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Thread-Index: AQHYWI+jS4JtiaXpFUyrVgs1l1MK560ASrgAgAEfemA=
+Date:   Tue, 26 Apr 2022 01:37:42 +0000
+Message-ID: <3b9a6b2ce9e84b82963ad9a46b871b35@sphcmbx02.sunplus.com.tw>
+References: <1650882640-7106-1-git-send-email-wellslutw@gmail.com>
+        <1650882640-7106-3-git-send-email-wellslutw@gmail.com>
+ <20220425092446.477bd8f5@hermes.local>
+In-Reply-To: <20220425092446.477bd8f5@hermes.local>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220425150748.GA4165124@roeck-us.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 08:07:48AM PDT, Guenter Roeck wrote:
->On Tue, Mar 08, 2022 at 04:50:42PM -0800, Zev Weiss wrote:
->> These Super I/O chips have an i2c interface that some systems expose
->> to a BMC; the BMC's device tree can now describe that via this
->> binding.
->>
->> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->
->This is still waiting for DT maintainer approval.
->
->Do you expect to add further properties along the line ?
->If not, you might consider adding the chips to trivial devices instead.
->
-
-Additional properties seem possible, though at the moment I don't know 
-exactly what they might be, so trivial-devices.yml probably makes more 
-sense.
-
-I'll send a v3 soon with that change and the Kconfig fixes in the other 
-patches.
-
-
-Thanks,
-Zev
-
+SGkgU3RlcGhlbiwNCg0KDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L2V0aGVybmV0L3N1
+bnBsdXMvc3BsMnN3X2RyaXZlci5oDQo+ID4gYi9kcml2ZXJzL25ldC9ldGhlcm5ldC9zdW5wbHVz
+L3NwbDJzd19kcml2ZXIuaA0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAw
+MDAwMDAwLi41ZjE3N2IzYWYNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9u
+ZXQvZXRoZXJuZXQvc3VucGx1cy9zcGwyc3dfZHJpdmVyLmgNCj4gPiBAQCAtMCwwICsxLDEyIEBA
+DQo+ID4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wICovDQo+ID4gKy8qIENv
+cHlyaWdodCBTdW5wbHVzIFRlY2hub2xvZ3kgQ28uLCBMdGQuDQo+ID4gKyAqICAgICAgIEFsbCBy
+aWdodHMgcmVzZXJ2ZWQuDQo+ID4gKyAqLw0KPiA+ICsNCj4gPiArI2lmbmRlZiBfX1NQTDJTV19E
+UklWRVJfSF9fDQo+ID4gKyNkZWZpbmUgX19TUEwyU1dfRFJJVkVSX0hfXw0KPiA+ICsNCj4gPiAr
+I2RlZmluZSBTUEwyU1dfUlhfTkFQSV9XRUlHSFQJMTYNCj4gPiArI2RlZmluZSBTUEwyU1dfVFhf
+TkFQSV9XRUlHSFQJMTYNCj4gDQo+IFdoeSBkZWZpbmUgeW91ciBvd24/IHRoZXJlIGlzIE5BUElf
+UE9MTF9XRUlHSFQgYWxyZWFkeSBkZWZpbmVkIGluIG5ldGRldmljZS5oDQoNCkkgZGlkbid0IGtu
+b3cgdGhlcmUgaXMgTkFQSV9QT0xMX1dFSUdIVCBkZWZpbmVkIGluIG5ldGRldmljZS5oLg0KSSds
+bCByZW1vdmUgbXkgb3duIGRlZmluZSBhbmQgdXNlIGl0IG5leHQgcGF0Y2guDQoNClRoYW5rIHlv
+dSBmb3IgeW91ciByZXZpZXcuDQoNCg0KQmVzdCByZWdhcmRzLA0KV2VsbHMNCg==
