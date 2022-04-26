@@ -2,112 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C72B510566
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 19:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8729451059F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 19:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244957AbiDZRbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 13:31:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36642 "EHLO
+        id S1353059AbiDZRpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 13:45:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238782AbiDZRbT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 13:31:19 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A7E6F499;
-        Tue, 26 Apr 2022 10:28:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1650994054;
-        bh=Ji+YlFlgCJoaZr9s7YJfnFKefy+/b9Uqn2Dl6qplgqs=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=PvlYceu8Uw36m7FLf8OmUfJ0plYzd9gG4Vk1xj7VhqKa7DiQ6hYZaAaT9vt1Ac4jQ
-         MkAhYUu6CK2oXBB2uAW/jFJZW+IFXkCdTm1RqzMwWKUw+Ib4cdGWeAhk3h2lU/oQkK
-         mc4+eIpkQbEQXmNYd/H6M0lEEq5Fshz0mt1/ucnc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.77.37] ([80.245.77.37]) by web-mail.gmx.net
- (3c-app-gmx-bs69.server.lan [172.19.170.214]) (via HTTP); Tue, 26 Apr 2022
- 19:27:34 +0200
+        with ESMTP id S1347849AbiDZRpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 13:45:06 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F521AF2D
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 10:41:57 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id k2so6057975wrd.5
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 10:41:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QQA23ghBxeAWrg+1pTuG+EIpzKydBoAGm6JxIISmz68=;
+        b=k3ePSYdc/oMFI8zzl1Ck2yhC1E/Jbn9NSPODTh/jCaB75hYUB4RUnVAylJ32pERmyW
+         zShZu08Cwn8JV+Mr2IuxMH0jNdh9h/ipjh+GGkF8fVSgj0uxKNB7RP8vbQkSxIBtDaLs
+         2YC5xTY1klMyg6x7J01UZFwkT5O/nTYpwZlz9vCY0wRiFg3EhQZ/H506Rl9Kbag0m5hy
+         QULhN8LIr98ALYBHOFJCqr1qaEVSUFWD663pBj4/pnIgGtp6s8HJZFPeBHde2RNXeeo7
+         Z/wR/ct1JvIkj592CtgaVlnj4MDQT/+D2coCXcSzuqqWfh0E39OQvlb4sVOBvacmv6GA
+         mNEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QQA23ghBxeAWrg+1pTuG+EIpzKydBoAGm6JxIISmz68=;
+        b=TCAUwiiaNjvFRC5GMkKqlwQYv5JaAsy4Tp2TxhzKznYiIdA3LmpsKmcDsQ241QA6Xj
+         qsOlPViztEc27tcrwf7wOTR9VibM6zsErkKbz4Nl4fARuMgkPcLIBd8+qH08OZyUtUkI
+         Ip9hWs6/jkJBny8UTng2gUogePC48REuvvKkn41m9MWV6WB4FXvoawfe9Ly4lnas0N8J
+         x0CA0HrhAbIFu8DuCHRqvdVxDK5PqFq2I6V7BC9pRj1+Jmjss6EyGe0Q49vp0xK5fD6K
+         1+wOaF6p/twmo3y3zvxW/F8OVhtZHBVKzEa8FHqO6q6oTjdoyG/MY5vMeRk/IQKdZWYN
+         URlg==
+X-Gm-Message-State: AOAM531WnwA7D+HqxdIcTSryGOfoWSMy9IPMZYFl0YNTRZ6KuHrQymoZ
+        ujd7qrEeUZv257otMh/2IHCvPw==
+X-Google-Smtp-Source: ABdhPJwt90fodsf0OiUB4eqoLjLOvhGcW/S/Y1bclGSbPT/V6AE1gAQWmdiwV/0T4GMToMHwE2gluA==
+X-Received: by 2002:a05:6000:1547:b0:20a:79dd:28bf with SMTP id 7-20020a056000154700b0020a79dd28bfmr18728266wry.505.1650994916368;
+        Tue, 26 Apr 2022 10:41:56 -0700 (PDT)
+Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id s30-20020adf979e000000b0020adfb1292fsm4374036wrb.16.2022.04.26.10.41.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Apr 2022 10:41:55 -0700 (PDT)
+Message-ID: <10f7cb8e-4c2a-0bba-df55-16b56d429147@linaro.org>
+Date:   Tue, 26 Apr 2022 18:41:54 +0100
 MIME-Version: 1.0
-Message-ID: <trinity-645b0d5b-4366-492c-9cdb-71d9e8664d31-1650994054170@3c-app-gmx-bs69>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v13 3/9] mfd: qcom-spmi-pmic: read fab id on supported
+ PMICs
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Aw: Re: [RFC/RFT v2 09/11] dt-bindings: pci: add lane-map to
- rockchip PCIe binding
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 26 Apr 2022 19:27:34 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220426160409.GA1731042@bhelgaas>
-References: <20220426132139.26761-10-linux@fw-web.de>
- <20220426160409.GA1731042@bhelgaas>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:1rhhhhwJUPynO1hGrbADbceOZiAPFPYXAkcyO4s521P1UX6wtPdRfIHJy4WiMKxdAl9Ga
- GZ036BRlqUZgnEmkKqpDYX10GXbjs7L7gj77aheAhHIJ4WhJQAEKJqna8qKGVMGnDu9UDoumdOQT
- jjis+uJsD/gDlM3RfgRLoo6M+sFc8wmx0Gvy2QV84L4tYdvHno4qokH1GLC1vMM0XIJka0HR8wlS
- 7+fTOSkAPhiU4QTyr4LuIZmXLg0SIlDvdIe5iqorZl41D5rOBZTYkdzBbAAWoSSyOFfjDiqtaMwq
- jY=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:ojw4Vv6ZXVk=:EcxcpbnZ5B5Qr+pY1IynEG
- HH4mjHal3oseLf72R3WAZEcL/SuJ/yx8lZpb86KWRYFS9a5rxZVjLU6LKBqVGv5ox2CIn1f01
- zdpazMYqLhnAWqlezZj9eyhc2THUi1xpIZ3UNgg8tIlSGA8WVYjfzTyq6FbElu5nDhN+OQR2T
- lNoCp4oy5jb7QKDtcjL4b2RKbHkzw0di4mzCalljbLq41w3xuANAd9s+bjd4mXsjCRYywZKke
- ZXdQ2MAbfdRZubwuqVgBCE+gIeTMZZmFGZhVHuZtorufufPF1mOjsVCpYuBvezvy9eEUR1z5r
- gDJofj9bBKvlK9VKZCDgYyZwBQ3Q14wdEF4SLcl6kxZIpNtQN/ZlCgqqlwhxN+94HtB8X3QyN
- ZQKTVn3FxCGyKY7tt8AY2PSvtNxL0FWSOY7z9INBhnaTIy3Ul0o2F0YgH+dxhcpAnLr8qEmET
- rnp1BV762m7kZJhzPyJl35gWC+bmHTEZhOE83O2a30DBmt64E/RS9dUbg/9QE4VJxbXEBVi9q
- Be1w1LHwPJwJgKGxYsaLQRQt1J8zz84p0IuGU0vzkLcINXeytxDsA1cmQXeBahH/CdosgylEw
- OLia6Xzw52zK+uwGm4Ri3/3Lbt5N4s8w6b5h0mm902JHSj1F6jrTUfdK3wQZrCno/H2AyP2R4
- //pXv6VwHSLc0Nr0h8n3OscVtmrTC+wrCx/jffY5fv+b/DMRB/3BQ7o4zawD2qlTAAqKrONLh
- sgACckEnTD4Mcjdn+2UoLcdYbC+S8aoaHUtbjJL11j5Sh5L5g1VK/yNdez9R9F7sT34Kz+STn
- KI/Arl9
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20220323162820.110806-1-caleb@connolly.tech>
+ <20220323162820.110806-4-caleb@connolly.tech> <Yma4tXvPQ+U89Whr@google.com>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <Yma4tXvPQ+U89Whr@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-> Gesendet: Dienstag, 26. April 2022 um 18:04 Uhr
-> Von: "Bjorn Helgaas" <helgaas@kernel.org>
 
-> > -  bifurcation: true
-> > -
->
-> Why are you adding "bifurcation" earlier in the series, then
-> immediately removing it?  Why not just add "lane-map" directly and
-> never mention "bifurcation" in the DT at all?
+On 25/04/2022 16:05, Lee Jones wrote:
+> On Wed, 23 Mar 2022, Caleb Connolly wrote:
+> 
+>> From: Caleb Connolly <caleb.connolly@linaro.org>
+>>
+>> The PMI8998 and PM660 expose the fab_id, this is needed by drivers like
+>> the RRADC to calibrate ADC values.
+>>
+>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/mfd/qcom-spmi-pmic.c      | 7 +++++++
+>>   include/soc/qcom/qcom-spmi-pmic.h | 1 +
+>>   2 files changed, 8 insertions(+)
+> 
+> Please change the Subject line to match the style of the sub-system?
+Hi, sorry if this is a silly question, I don't quite understand what you want me 
+to change here, the subject line is in the same "mfd: driver:" format as other 
+patches in the subsystem?
+> 
+> Once changed:
+> 
+>    Acked-by: Lee Jones <lee.jones@linaro.org>
+> 
 
-The original driver used the bifurcation property with vendor prefix which=
- i have dropped.
-
-In v1 there was an Idea to replace this bifurcation setting by something m=
-ore
-generic supporting more that just true/false. So i added lane-map to start
-discussion if this is the right way or if i should leave the bifurcation p=
-roperty.
-
-if the lane-map is right, i squash the commits before the commits should l=
-and in linux...
-this is one cause i tagged the series as RFC.
-
-regards Frank
+-- 
+Kind Regards,
+Caleb (they/he)
