@@ -2,105 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A22451095F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 21:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A838F510985
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:07:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353018AbiDZUCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 16:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43450 "EHLO
+        id S1346341AbiDZUKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 16:10:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350224AbiDZUCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:02:47 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FFF7E5AC
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 12:59:39 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 74EEE83D9C;
-        Tue, 26 Apr 2022 21:59:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1651003177;
-        bh=jxGxnnxrfONYS1XSxvG0YskLttoR7zlnu6KRTS0Dpu0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=za8E8wxYE3Z5hggA0pt2Ed/nNY8cp48EfV1FjxSprSwsfFxMaE6o7BT0gGt6ip64A
-         4aBxIXxOIlCl/i/NpMcINGyxhNjnsG0pRdlq1DvjNMXxaY0ni1XVt4S2+NTk86sHH+
-         qRjLD7LSJIeANUZ8dNulWXb292lZTGIxwFJn58gNFCEGj0lhLu/RkX3Wu07XcDWwjO
-         kkrZs8jMNO+9CYSlsue572vXisnUtEujq2zCOB/Ui/FkplCN0zS8BBmlt5s1c+GqRb
-         cN1eS9AOqxFd2lMX1AkNWLyQIzpTFpeSQRcolAY9NVqZ0ZU8q24/HzsLHpFspMVKP7
-         hpcNa5OKCP1jg==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm: Add CPLD on MX8Menlo board
-Date:   Tue, 26 Apr 2022 21:59:01 +0200
-Message-Id: <20220426195901.252611-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1345868AbiDZUKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:10:07 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51D3156E11
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:06:57 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id iq2-20020a17090afb4200b001d93cf33ae9so3107355pjb.5
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:06:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XYZny63Olqdg6ug0jPC0IStZPSKLknIicaEuGEKKAA8=;
+        b=veF8bU8ZuY4+7L01tnkAqnvnIS105JuIyOIc9jEjB2riL9bUNDkywylOlBB9cZ7alg
+         aYHfxFvJn/kPoxsuT4AF/LLIK37UKhDWs5cY8ow5krN42QIvpj+xt9duHH8PwI2F6gMU
+         WQNP0iIq3XlbYhsY04ueU6IU+1pHigr2y5mgo0RAt/awM0logn4wMW/2p7/HXGVAfc0h
+         apCilHYRzF4k/lZh700CN/IGer3dnVLBvkSecCKJLRMjHJHpnseTtm+Fpe4DQkDeHo5X
+         FO7ctl/cV8eo6zuLvl5g6miMsFcEhLNamYo7SY42XDD/fA73pG7gaRa1v1HURA99tO4c
+         rc9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XYZny63Olqdg6ug0jPC0IStZPSKLknIicaEuGEKKAA8=;
+        b=C0qWozoQ1T6ejq6VvKqIBJ0ZGAh3ffD83UueNRNvRKdw1MyvItYTUvyz2Qe4zoFR/q
+         4brEdq59gZzY5ZHAkgt6BJu8iczxndsRbwwSfGcOT57GMR5OHkzX9s+GVRnOHAoi32em
+         Mq8mOBC6PInfnVExnxrUrTmpNQzpxgLsbCpRt8pp/yn7T3oZs2Q6vRwluX8+mFu/4edp
+         OMr++U+QMf2eRo+DEgOyT+thoxLMyGqFCOe8jxqAw4/pykSUHf9b6ZriZti4mzlgKd+T
+         Ryn2DZNmTSg9U7CKOS67ooYEOR5vYoT0w0mTThT37qNoDZBKzLBD0eVVzXYWTNdBywMh
+         jqHg==
+X-Gm-Message-State: AOAM532CwVbW98JjCcTVK1nRT3rSGpWJTwUDkprfup1ORfgJ004oq52W
+        tn+z6dA9K2Mmc52rJXU2YwMJig==
+X-Google-Smtp-Source: ABdhPJwGioRwBB+ZEDr03SJUKywxCI2kMXKUwm+5HMD5y9n1SXucNrhUMQ5dzztjaBew2CyWlubH0A==
+X-Received: by 2002:a17:902:b941:b0:14d:af72:3f23 with SMTP id h1-20020a170902b94100b0014daf723f23mr25933783pls.6.1651003617294;
+        Tue, 26 Apr 2022 13:06:57 -0700 (PDT)
+Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:9bcd:e060:b370:70d8])
+        by smtp.gmail.com with ESMTPSA id o5-20020a62f905000000b0050b5b5efa47sm16203839pfh.191.2022.04.26.13.06.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 13:06:56 -0700 (PDT)
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH v3 0/2]  soc: ti: wkup_m3_ipc: support i2c voltage scaling
+Date:   Tue, 26 Apr 2022 13:07:40 -0700
+Message-Id: <20220426200741.712842-1-dfustini@baylibre.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CPLD on MX8Menlo board is used to operate custom hardware,
-the CPLD content is compatible with previous M53Menlo CPLD,
-add the bindings.
+Allow loading of a binary file containing i2c scaling sequences to be
+provided to the Cortex-M3 firmware in order to properly scale voltage
+rails on the PMIC during low power modes like DeepSleep0.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
-NOTE: Depends on
-      https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=for-next&id=b61b76dfef30945f175d4acfecb9beb862174f01
----
- arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+The 'firmware-name' property which contains the name of a binary file.
+    
+A prerequisite for this series is:
+[PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+https://lore.kernel.org/linux-devicetree/20220414192722.2978837-1-dfustini@baylibre.com/
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-index c20db0c550da..92eaf4ef4563 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-@@ -71,7 +71,20 @@ canfd: can@0 {
- &ecspi2 {
- 	pinctrl-0 = <&pinctrl_ecspi2 &pinctrl_gpio1>;
- 	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>, <&gpio3 4 GPIO_ACTIVE_LOW>;
--	status = "disabled";
-+	status = "okay";
-+
-+	spidev@0 {
-+		compatible = "menlo,m53cpld";
-+		reg = <0>;
-+		spi-max-frequency = <25000000>;
-+	};
-+
-+	spidev@1 {
-+		compatible = "menlo,m53cpld";
-+		reg = <1>;
-+		spi-max-frequency = <25000000>;
-+	};
-+
- };
- 
- &ethphy0 {
+Changes from v2:
+- correct the name of the property in the commit message of the bindings
+  patch to firmware-name instead of the old ti,scale-data-fw property
+
+Changes from v1:
+- change 'ti,scale-data-fw' to 'firmware-name'
+- add 'firmware-name' property to the examples
+
+Dave Gerlach (2):
+  dt-bindings: wkup-m3-ipc: Add firmware-name property
+  soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling
+
+ .../bindings/soc/ti/wkup-m3-ipc.yaml          | 12 +++
+ drivers/soc/ti/wkup_m3_ipc.c                  | 93 ++++++++++++++++++-
+ include/linux/wkup_m3_ipc.h                   |  9 ++
+ 3 files changed, 113 insertions(+), 1 deletion(-)
+
 -- 
-2.35.1
+2.32.0
 
