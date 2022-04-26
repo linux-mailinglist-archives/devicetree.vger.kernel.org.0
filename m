@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28BF850FF25
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3C750FF2A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:36:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242642AbiDZNhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 09:37:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
+        id S229725AbiDZNjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 09:39:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236182AbiDZNhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:37:50 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04C703D1E3
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:34:43 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id d6so17280657ede.8
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:34:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5zRT5sllSsaGeFvu1yaUlRoHxNiWR89igSrOyjo1FG4=;
-        b=AfK1/zrk/APNctf5T9jianFlu/dOwBeL60VvN0e/AUy20xraPdotq4gHXNjA82CwJr
-         ASxbJYqu/egWXvhpdKoCATOneKWXEB28QPFqU/ljIv7xIVAyep8++QsrKalLELi38q10
-         K0gVVa4FyK1t8583z4ZcRnHTJDFCo4aXPEOnCMQPKOVFVeYZy3rM/h2kAQSa7PPkoHke
-         gXsnm8Yy78EAhDlPM8YcMa30cLGqmBSUZGqsijkjXNayacWiKkU1T55DciCPfdIoS15v
-         /r8zAhYkcEExrX6vnIyglxCze6PJY288k25AKszUJPG1oADUV5q4y7/jD/hKEuA12URa
-         AyFw==
+        with ESMTP id S1351043AbiDZNig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:38:36 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4F86380;
+        Tue, 26 Apr 2022 06:35:27 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id a10so20648591oif.9;
+        Tue, 26 Apr 2022 06:35:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=5zRT5sllSsaGeFvu1yaUlRoHxNiWR89igSrOyjo1FG4=;
-        b=yXWylwi4WiNz5oemLBBGDcRePGvQp34uM0eS6yTYUE0fMUGL18NmkE64/pJS+kxrlC
-         jtVzduxDdFmbkXCMTKl58cBJ2RurTqMK5fMETV4OB9YR1cQtO3J258e4jn3wUTGH7Sdl
-         fWlG6E/RjmCibUX+aNVXNl7tao7pXRJ407WlXgsPKeV/c0GkqNdxuP1xCgGacK15lU1l
-         MeWgPilph8PGx5IxiPonLwmj7ZCqfOUiie7dbHRZf/HnWPFXeJRlfpHK3gxea+gNUIaP
-         GZsDnj+FR+tsVMfWNpL5f1dJ3pZ+ThVgyIuRI7PElWHMYUtM0+wTtO7+Yc1unUge7LO3
-         yxnQ==
-X-Gm-Message-State: AOAM533PI4UVgrs9ZLdnJsxS0cCcLJdQT3CRjZ09tPgys0arHd7Wdh93
-        ymgSmjYITNsl8z7aVqXYq9XnMA==
-X-Google-Smtp-Source: ABdhPJxrkUCfsREmZu2hMfXwSgf00eMictV7sH2Jynsq9vkfWIIiY5pr9thcID2PxdIUiCu86TY+jQ==
-X-Received: by 2002:a05:6402:27cb:b0:423:d386:42be with SMTP id c11-20020a05640227cb00b00423d38642bemr24839191ede.227.1650980081504;
-        Tue, 26 Apr 2022 06:34:41 -0700 (PDT)
-Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id lf5-20020a170907174500b006f3806fc9cdsm3416854ejc.39.2022.04.26.06.34.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 06:34:40 -0700 (PDT)
-Message-ID: <b9d68100-c6f3-4f58-fe42-63f4cdf1dc50@linaro.org>
-Date:   Tue, 26 Apr 2022 15:34:39 +0200
+        bh=OygyeH4rfmUuZsXmWAEGnr/ZlA2kUw1LkTJEURaNg9M=;
+        b=ak6JwVWG8OHulFUMcWJkL3kMLQ2pwk5zPc4oM587uF1nXrI2rEUTerGW0IrnabexEs
+         /LPqEm4MnEv8diLzX+xI9ID7W5nCNlLdWaG3CRgasG6wpRFqYAkr6ctYkxt5vy5CN1Vs
+         RTVv/2pqx5R81kj65Yt/zSNKaXJObsEFtIG7ZFWMlT8ME8WS36+85ho5rr06+9CF1lxt
+         5u7JQXi1Ba28DPoa3Sv3FHq+y96+KhcRaQl+qaJyasDyi42uE8hmt0g0Z/XobJoVao8y
+         nYm73WaSdpyH/oOVBP00xkt/254qJTEOYBQj/wN3ZIW13Mb76F83nGTHeDld57HkTZ+U
+         XMKg==
+X-Gm-Message-State: AOAM533ZCVTn8kee9cq5evQNG1Xo3KZICjEdQ4cwrfIlmnYKVUE6di7h
+        Cug+sWyGM9pOKJ+v5opurg==
+X-Google-Smtp-Source: ABdhPJxh7Jprs4lrGBymoDiRReBL7R7uytG+LGnCHdclTxGBoQgU9QJ18XdD5KDldb2alZ+K9kVR2w==
+X-Received: by 2002:a05:6808:124a:b0:2da:3588:6d35 with SMTP id o10-20020a056808124a00b002da35886d35mr10804716oiv.269.1650980126381;
+        Tue, 26 Apr 2022 06:35:26 -0700 (PDT)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id 65-20020aca0544000000b002f980b50140sm4891611oif.18.2022.04.26.06.35.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 06:35:25 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Gene Chen <gene_chen@richtek.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: leds-mt6360: Drop redundant 'unevaluateProperties'
+Date:   Tue, 26 Apr 2022 08:35:08 -0500
+Message-Id: <20220426133508.1849580-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 06/11] dt-bindings: watchdog: Add HPE GXP Watchdog
- timer binding
-Content-Language: en-US
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "joel@jms.id.au" <joel@jms.id.au>, "arnd@arndb.de" <arnd@arndb.de>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220421192132.109954-1-nick.hawkins@hpe.com>
- <20220421192132.109954-7-nick.hawkins@hpe.com>
- <YmcbCgjD85lIRMSf@robh.at.kernel.org>
- <PH0PR84MB171845F606BC40AD653BEC8888FB9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PH0PR84MB171845F606BC40AD653BEC8888FB9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/2022 15:21, Hawkins, Nick wrote:
->> How is this h/w controlled? I'm guessing it's part of the timer? If so, you don't need this node. A single node can implement multiple functions.
-> 
-> It is associated with the timer because of the shared register set. Based on feedback from Krzysztof I need to create a child node for gxp-timer. I therefore will remove this file and move gxp-wdt to the hpe,gxp-timer.yaml as a child node.
+The binding has both 'unevaluateProperties: false' and
+'additionalProperties: false' which is redundant. 'additionalProperties'
+is the stricter of the two, so drop 'unevaluateProperties'.
 
-I have impression my feedback was about mapping entire address space,
-not few registers of watchdog:
-https://lore.kernel.org/all/c6309ed8-6e74-67d3-304a-f5399d16cc37@canonical.com/
+Fixes: e05cab34e417 ("dt-bindings: leds: Add bindings for MT6360 LED")
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/leds/leds-mt6360.yaml | 2 --
+ 1 file changed, 2 deletions(-)
 
-However later during talks it turned out that the address space is
-heavily shared.
+diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+index b2fe6eb89389..10f95bf1d666 100644
+--- a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+@@ -43,8 +43,6 @@ patternProperties:
+           - 4 # LED output FLASH1
+           - 5 # LED output FLASH2
+ 
+-unevaluatedProperties: false
+-
+ required:
+   - compatible
+   - "#address-cells"
+-- 
+2.34.1
 
-Nick,
-BTW, do you see my comments in the email I linked above? This v5 makes
-the same mistake. We talked about this already, so please make note of
-comments you receive and implement them.
-
-Best regards,
-Krzysztof
