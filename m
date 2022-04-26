@@ -2,69 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6667F50FB89
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB7B550FB91
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349326AbiDZK6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:58:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43580 "EHLO
+        id S242988AbiDZK70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:59:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347090AbiDZK6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:58:22 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9A7813F4A
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:13 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id gh6so11182871ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:13 -0700 (PDT)
+        with ESMTP id S1349524AbiDZK7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:59:07 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C2225584
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:57 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id w187so22834083ybe.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:55:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0m5ZZfG1YF2A40apHuhZaDOYLmk1gRk32TzITEEDGDI=;
-        b=Sj4lS5VAzOQWv+TQxwwUvECq3rxmplzfBmjrZe5aKAF7b8hDpfF+lRipnxkDq0Y5A6
-         jFgby37Ulk4+z/NsxQQRcHrbB3bmt4abfSjOPgu6zkse+wPSVdmS0xe9MPXLwPsC/S3c
-         BJ7cJEOy+vzS/vz7Ubfef1c/ehj4FTlDBwQxmdKjxG4DyT2yw2x0UOHDy4k63XsI8yt9
-         aXKjkFopVKwUTwocjytCYjsx9EaPfnl/ul9Czu9jz8OpW8qeeqIWHc/WiRl9qRKuBuB0
-         zZdcuezjbsT3Z8gGc28kWBc0BItP4FUxlnol2dRTTIbVyXEAu5tEo09QlG93jcLbKOyA
-         TnHw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lh5N6ri51DwailKzgb/YH7eZd1DrCqE9K7kDsBRnCI8=;
+        b=MosuzLtso6KHR9pDz87Eixe6qoHv4im/6cc42kO/SRJWqs9F9epFnC2MC48Pm2G5AW
+         8kAsaxmVVjIPkKGGnWIjZTrh5HdB3rSNmGEs3sgXa8piAnXQFKBIEa06SY6nKTakMdXw
+         pTvSadqvQs9lC2sjz/VQaa4BLE59sFjeAcc25ShL1RkHfxVPMk+/dqYtAKc5hwIAqaAB
+         Hnw2tV8ss+8gHN73H5SIDnHQSPPu8OC7/+rpyO60wG7GHL3o87iCcAVKisvav+PRWQGu
+         3mft9wL8oYf6xmGv2l+bXfnY8W7ySGTR2HkhVfdrtdgtVUQN7ytKKTCCNKX62zSlHyuT
+         S0zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0m5ZZfG1YF2A40apHuhZaDOYLmk1gRk32TzITEEDGDI=;
-        b=gOxyHwNqxGaDeP/JMNgOnOD0TvvD7JLT8F63Gcz9crYeMxg6PJO1XD8UxUdh2jIUYj
-         wKbuM2n+ueK8J3zfeYxxcNCiM7MoVnKbShmePHeBcJWWQbxCt00X5tbKhXnCNpPbYYIh
-         l1GZwdN3oqqDHublBt0KQI9NC5AZ4CCAc+B0TMXFgs3zYizU1jLj5SmXVToHZ7/UAfAC
-         YmXpuQy9x30eIdW6SwTfy7ChIZ9A7ZY1dRh6GzgpBrc0s5kbn8D8s/FGSVKFq286WIyO
-         w5R8IEKY1bddeHraMgcb7fb2E6Sg9SzlQvZ7QZVUuvDcHm3zdFS2ZojB3V6MMF2/lBQB
-         HD7A==
-X-Gm-Message-State: AOAM533X+unLubGHMyQfsTERGV7Qy5Pp+RPhdxA3sRgqFMUP3sZowuC9
-        ikBRJFYwmRSw8atDUTIjoCnmrw==
-X-Google-Smtp-Source: ABdhPJwzco/w60SSupURIzYxoiPHR7O0hkeySk1FSa+XINU2RjSsH+0aJ4xgXXn/8T/1vSpoNH44Og==
-X-Received: by 2002:a17:907:e8d:b0:6f3:9721:dbf6 with SMTP id ho13-20020a1709070e8d00b006f39721dbf6mr9134713ejc.448.1650970512188;
-        Tue, 26 Apr 2022 03:55:12 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s5-20020a508dc5000000b004241a4abbdfsm6062843edh.45.2022.04.26.03.55.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 03:55:11 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lh5N6ri51DwailKzgb/YH7eZd1DrCqE9K7kDsBRnCI8=;
+        b=T+1OhOvxDu/Cy2ZBejlzs8vChNwtHRSEQr6I/qHdynyFyFBRiU6vMHXybOVHbSZzPJ
+         ohUWkj7m1mXOzn1VQjuusl/mME+ZR8kIw/bo7M2+9cdC/v7oAZCYopZy3OVZqtMPfBSA
+         SjDBDg7u4Z0mSnd4ACyyNKrHVV1om10MALSMsGfO17z3Wn/8dcAstMgIdNwlW0BlwvQ+
+         DOFuzqNIEnjEoY2IVtnU2YDpLA0qSRRNe14jYAaibDC1IQokU9UWm7nBiaQkugTD+JXL
+         KP2QifPIGkdNOFm97NpXR2I7MZ/k+81yB1pQyQC9H2OuixXSS5vtjTzNUYJRxxkzmO7h
+         iCVA==
+X-Gm-Message-State: AOAM53052hLMWlgpqoRrTm0VhZe4CnJW6gl3XwjNITnrv74GcPXgpb3i
+        OT2iWYPmNl8zBwyWuSgx/i1PV6DiYqDqJ/HcsK/4Gw==
+X-Google-Smtp-Source: ABdhPJzDXVR59f9aiyGdxgYUxXv/+cLIiJGepw6UdhCQNJNbQvyGUEBaQY1Mzw3p2w7ydHt+/xavSIrqAInjliqkC5A=
+X-Received: by 2002:a05:6902:1547:b0:641:fb0b:4830 with SMTP id
+ r7-20020a056902154700b00641fb0b4830mr21286407ybu.175.1650970557008; Tue, 26
+ Apr 2022 03:55:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220426101837.16201-1-david@ixit.cz>
+In-Reply-To: <20220426101837.16201-1-david@ixit.cz>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 26 Apr 2022 13:55:46 +0300
+Message-ID: <CAA8EJppPg9nQVSV-STyz6TWmX-R45xZqp=UDgsWnyMa6VsdCzw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: mailbox: qcom-ipcc: add missing
+ compatible for SM8450
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 3/3] regulator: dt-bindings: qcom,rpmh: document vdd-l7-bob-supply on PMR735A
-Date:   Tue, 26 Apr 2022 12:55:01 +0200
-Message-Id: <20220426105501.73200-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
-References: <20220426105501.73200-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -75,26 +73,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PMR735A comes with vdd-l7-bob-supply supply which was previously not
-documented.
+On Tue, 26 Apr 2022 at 13:34, David Heidelberg <david@ixit.cz> wrote:
+>
+> Fill missing compatible already used in SM8450 DTS.
+>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml       | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-index 6b99897fa404..9a36bee750af 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-@@ -313,6 +313,7 @@ allOf:
-         vdd-l3-supply: true
-         vdd-l4-supply: true
-         vdd-l5-l6-supply: true
-+        vdd-l7-bob-supply: true
-       patternProperties:
-         "^vdd-s[1-3]-supply$": true
- 
+> ---
+>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> index 866efb278813..c57dd423e98c 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> @@ -27,6 +27,7 @@ properties:
+>            - qcom,sm6350-ipcc
+>            - qcom,sm8250-ipcc
+>            - qcom,sm8350-ipcc
+> +          - qcom,sm8450-ipcc
+>            - qcom,sc7280-ipcc
+>        - const: qcom,ipcc
+>
+> --
+> 2.35.1
+>
+
+
 -- 
-2.32.0
-
+With best wishes
+Dmitry
