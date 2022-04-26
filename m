@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D90AE50F139
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A945250F13C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239221AbiDZGnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S245449AbiDZGnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 26 Apr 2022 02:43:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241728AbiDZGnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:43:19 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5E6526260;
-        Mon, 25 Apr 2022 23:40:12 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,290,1643641200"; 
-   d="scan'208";a="119179064"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 26 Apr 2022 15:40:12 +0900
-Received: from localhost.localdomain (unknown [10.226.92.117])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id C8FAD400C4FD;
-        Tue, 26 Apr 2022 15:40:08 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 2/2] arm64: dts: renesas: r9a07g054: Fix external clk node names
-Date:   Tue, 26 Apr 2022 07:40:02 +0100
-Message-Id: <20220426064002.9411-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220426064002.9411-1-biju.das.jz@bp.renesas.com>
-References: <20220426064002.9411-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S245399AbiDZGnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:43:20 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F16F76374
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:40:12 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id g6so11176963ejw.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:40:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=YQBirjcHw1XssjMgenO6HRfRZsWWatGT2BxMsOHFYCE=;
+        b=IBjeDJUQPPgNrNiqtJATmu07ecSQmbmK+jJQ9Qkqm68KYBT2mZNkWUVJVPy5PP28iC
+         ZZ5YiSPdZxmlFb9F21Hv6A+edHNDWn1wc2SnbnTRFUMJQVRVZYnI6etGe9iHNhOZg5fG
+         RMKKEG/rXDg2iKI6iDxzFMiZH+w+BxAN7X+a15HLRXcrIZBPXGDDzgfbFlnhh5Mo+Xwc
+         5QLsw9I2ampq1hTraxXnKTLSoGq6LkPZCV7WBSQhuah3W2lWXHHgu1iftsIPNLV/YbGG
+         MGepN8bjr7Iauo5KoUBkHqk4ReN7oFG+cfLmxYq0peiDALMtxKCbbfG3TQ89HGsNxOcy
+         k0qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=YQBirjcHw1XssjMgenO6HRfRZsWWatGT2BxMsOHFYCE=;
+        b=fLN7WfJojOVvhF+5+PHC1qeEkvYOOQ8/QCQBVr2drK+IwL4LMI5VtW01aZO0Bh/SB8
+         cGE2LcN0ULhXJTpZ3oZd6a7aCvD9PNXGU50ybiU5NDLulUd6+ZUa1l2cr/KUIxzGLJ7y
+         5Ij0vMCwSM8ZYZ3uP6mbCcOSN3WQBenkhZ75PfTAUp/beONYH5k/iuY7+v7stk3Qtupa
+         CBg482vi7DQm9eOkvuhwk2RslWyGud+xUHcTMiPgqcjZtsOf+ibsr3GQ2iw3o5Ae2qE1
+         SKIphA9ukQBHiDyxoXsXBXJdMWLWZX+je++Xy9uv7fn07wklO79dBpf3iKuc4lecBy/C
+         jnWw==
+X-Gm-Message-State: AOAM533/g7Fg6fJZUkLKOoDmxmiiPxv6qh4Yh+2Dj+o/Gy9+qkmzK9/a
+        LQYrmnWcZNNVKlDQ09lqeo8q48x5G8H1xQ==
+X-Google-Smtp-Source: ABdhPJxZhXFQhcEzCB8B5dlgOiWdecKG+rf6v1oIMQ4/m9NvZbzVShnAUy6VkZ6totD6LEgaHzmIYQ==
+X-Received: by 2002:a17:907:8a0d:b0:6f3:a595:6136 with SMTP id sc13-20020a1709078a0d00b006f3a5956136mr4544804ejc.54.1650955211482;
+        Mon, 25 Apr 2022 23:40:11 -0700 (PDT)
+Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id r13-20020a508d8d000000b00425d3555fc6sm4309024edh.30.2022.04.25.23.40.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Apr 2022 23:40:11 -0700 (PDT)
+Message-ID: <8498c0b4-ed1f-b4a0-d53c-a7addf75ea66@linaro.org>
+Date:   Tue, 26 Apr 2022 08:40:09 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in
+ compatible and split apq8084
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20220425204001.710238-1-krzysztof.kozlowski@linaro.org>
+ <20220425224000.CB7F3C385A4@smtp.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220425224000.CB7F3C385A4@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add suffix '-clk' for can and extal clk node names and replace the
-clk node names audio_clk{1,2} with clk-{1,2} as per the device
-tree specification.
+On 26/04/2022 00:39, Stephen Boyd wrote:
+> Quoting Krzysztof Kozlowski (2022-04-25 13:40:01)
+>> The qcom,gcc-apq8064.yaml was meant to describe only APQ8064 and APQ8084
+>> should have slightly different bindings (without Qualcomm thermal sensor
+>> device).
+>>
+>> Fixes: a469bf89a009 ("dt-bindings: clock: simplify qcom,gcc-apq8064 Documentation")
+>> Reported-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/clock/qcom,gcc-apq8064.yaml      |  4 +-
+>>  .../bindings/clock/qcom,gcc-apq8084.yaml      | 42 +++++++++++++++++++
+>>  2 files changed, 43 insertions(+), 3 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+> 
+> If it's generated with 'format-patch -C -M' does it detect the copy?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Sorted clk node-names alphabetically
-v1->v2:
- * Replaced clk node names audio_clk{1,2} with clk-{1,2}.
----
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Nope, and I think these are default. The files are not that similar,
+because while copying I cleaned it up.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index f35aa0311e9c..8bc164d7b61e 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -13,29 +13,29 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
--	audio_clk1: audio_clk1 {
-+	/* External CAN clock - to be overridden by boards that provide it */
-+	can_clk: can-clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		/* This value must be overridden by boards that provide it */
- 		clock-frequency = <0>;
- 	};
- 
--	audio_clk2: audio_clk2 {
-+	audio_clk1: clk-1 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by boards that provide it */
- 		clock-frequency = <0>;
- 	};
- 
--	/* External CAN clock - to be overridden by boards that provide it */
--	can_clk: can {
-+	audio_clk2: clk-2 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-+		/* This value must be overridden by boards that provide it */
- 		clock-frequency = <0>;
- 	};
- 
- 	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
--	extal_clk: extal {
-+	extal_clk: extal-clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by the board */
--- 
-2.25.1
+format-patch -C20% -M20% also does not detect it. Only `git format-patch
+-1 -C20% -M20% --find-copies-harder` detects a copy. I will use it, but
+you won't see nice copy-patch.
 
+> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+>> new file mode 100644
+>> index 000000000000..63d08e82b3d8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,gcc-apq8084.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Global Clock & Reset Controller Binding for APQ8084
+>> +
+>> +maintainers:
+>> +  - Stephen Boyd <sboyd@kernel.org>
+>> +  - Taniya Das <tdas@codeaurora.org>
+> 
+> Please fix Taniya's email quic_tdas@quicinc.com
+
+I wished Codeaurora/QUIC folks updated their emails all over the tree
+because otherwise it looks like they do not want or cannot maintain
+these files.
+
+Best regards,
+Krzysztof
