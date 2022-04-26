@@ -2,104 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23114510139
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 16:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C2E510140
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 17:01:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351851AbiDZPBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 11:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40438 "EHLO
+        id S1347939AbiDZPEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 11:04:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351834AbiDZPBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 11:01:44 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DCA5B1A9B;
-        Tue, 26 Apr 2022 07:58:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1650985071;
-        bh=KLCjLhfQTgA0oKxUS8a8HV/nxwOxtsyC4o79WkTfje8=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=IIcY48H9YK8/QDBNpiRiNIjM5ijvX9dPgdmCPggiTIq7XwNedhwHy18OxeYmKHEoF
-         aTWxmr4FQ9c9f1+BSP3KA3mTvOPXFvrXnR56rwSg8opVpkVDmlW5t7ss7YGXvUhPii
-         MK5BlLt3w1SEQLCrqBWvI62kQpytjOvDD7ZZPMaA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.77.37] ([80.245.77.37]) by web-mail.gmx.net
- (3c-app-gmx-bs69.server.lan [172.19.170.214]) (via HTTP); Tue, 26 Apr 2022
- 16:57:50 +0200
+        with ESMTP id S1351874AbiDZPEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 11:04:04 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EA83AA6D;
+        Tue, 26 Apr 2022 08:00:56 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id s4so13462057qkh.0;
+        Tue, 26 Apr 2022 08:00:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8u2BCnP+IT5NHEoYZZRGH2WaaPF7J5QqhEMq961Y7b0=;
+        b=G+t/DfgZ1HCj2cFLwFgJ+4Q/DNBqIzCz8nCAfZ0kpi00Lhid4kW9CpxmQEG1vOjiZQ
+         kxSG8yt3XEfurKER1/fhDbBY/1/Z1QctkH+TImjA3qzEK/QPOFRfcbiOXwzTEL1Fdc0j
+         ESwMbEWyrnRhWiUO5MM67GXDxOxILPdXjqcqndPYKKpF58xZoDTirZmzO0LhDolbqStZ
+         L3tS5vIYRex0o6zKljiaoNZ7ocN8ommApEp0wrO9x4n+WOXVtWDMEDpLXHY+2aiWInW6
+         VL93fU4u8oGtwTKaUGCNwnczZWc8phVSlOKbqJvQVWzMJAPEzY9ip8Y5DgS4sh+Cqyol
+         IPlw==
+X-Gm-Message-State: AOAM531cID0hZ8ITD5ODAM3p3RBHAZUR2mclACGqPMhUe4Bna1AX5Ro/
+        PHGM83U+c21dgoR3d6PiNwBJxkMTPjbTLg==
+X-Google-Smtp-Source: ABdhPJzPaVuXsmDcbzHzyAz5bcenDR++AiVpblgp23UuJH6IBGlF0FsYumLB8q5kWFhRBvxlzB9xHQ==
+X-Received: by 2002:a05:620a:440e:b0:69e:a751:109b with SMTP id v14-20020a05620a440e00b0069ea751109bmr13376549qkp.469.1650985255493;
+        Tue, 26 Apr 2022 08:00:55 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id o14-20020a05622a044e00b002f3656df6f6sm4410589qtx.78.2022.04.26.08.00.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Apr 2022 08:00:55 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-2f7d621d1caso73827097b3.11;
+        Tue, 26 Apr 2022 08:00:55 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr22406962ywb.132.1650985254804; Tue, 26
+ Apr 2022 08:00:54 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-8ceec42c-8705-4808-b37b-9e9849ba774e-1650985070928@3c-app-gmx-bs69>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
+References: <20220330154024.112270-1-phil.edworthy@renesas.com>
+ <20220330154024.112270-5-phil.edworthy@renesas.com> <CAMuHMdWErGQuE+ESi3ZGVgyW5ouUthr5XsmnwLJD0VX6D3QVPA@mail.gmail.com>
+ <TYYPR01MB7086454DB14FF78DD09EAB7DF5FB9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYYPR01MB7086454DB14FF78DD09EAB7DF5FB9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 26 Apr 2022 17:00:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVE-DAWaSia_iBkjrB86v=kDG2bwrTP9kJmkzgkgvEQ+A@mail.gmail.com>
+Message-ID: <CAMuHMdVE-DAWaSia_iBkjrB86v=kDG2bwrTP9kJmkzgkgvEQ+A@mail.gmail.com>
+Subject: Re: [PATCH v2 04/13] dt-bindings: clock: renesas,rzg2l: Document
+ RZ/V2M SoC
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Aw: [RFC v1 3/3] arm64: dts: rockchip: Add mt7531 dsa node to
- BPI-R2-Pro board
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 26 Apr 2022 16:57:50 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220426134924.30372-4-linux@fw-web.de>
-References: <20220426134924.30372-1-linux@fw-web.de>
- <20220426134924.30372-4-linux@fw-web.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:wBW5QJYpMHdq3PrMhGinR1AdioQG5dT+v1AUhYrsDygj5o2ETBmB7lzitdogghO9fUJ34
- 7C+S+3eGXblSF48OoeX01rSKkoLZx+5zlIPitqd/reCb/PRwuR3znVtcbV6WiXGQw9fKCED9pXjl
- Yqa7X5QsU8EBNE1dsh3kVNkMGRtDKOoHGLkrRf7GTn8z0SY+JQ6juNUXpn1GZl+laWiX/FtsqqgA
- Ye27fCi0B2ZSew4gY/X1gzmzAfDOgUNCH3qY9mTUMWRxlDCIDxa1Wg084wN8Bg56b4e0IO/LVl4D
- Qc=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:41kc6tKK5sg=:EDOaU6bOsIT1ZaYJ+7rZT4
- ul8RUcVdFNTJTPhR0EmciMDWP/g6o5NGLfUZmDgSUNOU8LhvXxvfMQVPT8xvM5No8QyQIbn8p
- WMKpXo9jDASBQp5oAj0e+GrzTnpb5vgLTshGaXlYY3HoKQ8wAfMaejoi/1ZxTv84/iGtHUGSY
- /G6B35z0oyXoPDsU1l56EIMFgjGcCm183owIWmaTlTRBwLA0GVTzC4JsHMyxRP1gfzIxj22B8
- O/D50GXl1IFfPc01KMVhe04uv3tzA6QtQQVgtRFqxnXtllj2fRbmUos/0Fm/ann/0wlOpOAtZ
- EqUzTxAlRXhQdKgIpYjjYkzfiMcAbUs+oIVACxTJcUBBzzCygQQPs5nhdvhf0E7TZaOjV7oTG
- RXa/eCwTZCoXO/XYcyAZC86TrMQ2sfzX2WRS0uiiEMEUzJt8xYokLe4p79IjT8zZa87WinMsl
- QyFLU1u8cGd1nm5XZ/St9Ujq5DnuhwN67mNGTj+ieasHZSPWubsLPAHfmFtAwIG37FKgvckQn
- KkRLuySR8bhQ99HM8D1hiPo3RvV3NsbQxWxb311FPu0Eh6OSNrZbUE3bxgTHx+HKnDxcV3f35
- tVlt1abs3yLoH4Z3CbvTXV8g8mzJCPirOCEwhH0yv/EtSa+8tmhEsUTZ6TyZaKWp7E8j4+dFv
- CABs6rKSUkmCf6VeZozZk0q83zD29Nep3MjfI1n60J2xSBoq0WVp0ATaLKsXCgso9g5LsjY0a
- z251OrYA/UMD62CBfDskbdcjm/W52tCy/N+3PGEqj/65yPZIeG6Xj8rVvf9/LFDVKHFIN0y5l
- wmiNiYq
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Dienstag, 26. April 2022 um 15:49 Uhr
-> Von: "Frank Wunderlich" <linux@fw-web.de>
+Hi Phil,
 
-> +&mdio0 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	switch@0 {
-> +		compatible = "mediatek,mt7531";
-> +		reg = <0>;
-> +		status = "disabled";
+On Tue, Apr 26, 2022 at 4:39 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
+> On 26 April 2022 15:21
+> > On Wed, Mar 30, 2022 at 5:41 PM Phil Edworthy wrote:
+> > > Document the device tree binding for the Renesas RZ/V2M (r9a09g011) SoC.
+> > >
+> > > Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >
+> > > --- a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+> > > @@ -42,9 +44,10 @@ properties:
+> > >      description: |
+> > >        - For CPG core clocks, the two clock specifier cells must be
+> > "CPG_CORE"
+> > >          and a core clock reference, as defined in
+> > > -        <dt-bindings/clock/r9a07g*-cpg.h>
+> > > +        <dt-bindings/clock/r9a07g*-cpg.h> or <dt-
+> > bindings/clock/r9a09g011-cpg.h>
+> >
+> > I guess we can simplify to dt-bindings/clock/r9a0*-cpg.h?
+> We can, it was just to ensure we don't ever catch a file related
+> to rz/n1 (r9a06g032). However, r9a06g032 has -sysctrl.h suffix.
 
-seems i had missed to delete this, but it looks like it was ignored as switch was probed
+Even if RZ/N1 had the -cpg.h suffix, it would fall under different
+bindings. Not much we can do anyway, when people include the wrong
+header file ;-)
 
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+> I'm easy either way...
 
+I'm trying to avoid having to update (too) many places when
+adding support for a new SoC.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
