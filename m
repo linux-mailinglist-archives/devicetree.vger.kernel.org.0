@@ -2,134 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6046D50FBB1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 13:08:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 724C850FBC4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 13:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231545AbiDZLLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 07:11:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36112 "EHLO
+        id S1346888AbiDZLQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 07:16:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241466AbiDZLLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 07:11:10 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35412AC5D
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 04:08:02 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id g6so12478348ejw.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 04:08:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ned8K4/DJ2jNNS3XJQ8BysZeLMLkezd228hF2G2kCNA=;
-        b=bTzMeiMzvnJ3igj9/EPAnoT0quEcrRMVvqCDZt7cjChZ8FiuQ/qBSYrjp5PYDLkLWo
-         2SJmgwBnp3mw5dAZs3zQSAePI4r7nI080cK0vfhJ3h28Zfn+UsLBULlJWOrEuVhD26ci
-         49c9pisJKDnip5uKtRqycy+80CjOB5TToP62ADTblfIuz9SA/WTd8MxWS3Z34gmYNVAe
-         iRiC4jlHpBdMH+/xinuSSb9HR7euPV9h50b9bRRjIsYEsg22s4dS0MyLr5CfNNV20zln
-         UngdE00lUseRPe1/B7XlCPMjANoQWsZaxUo9eLKc4jjKssCl6xY5k6OQDaJgxbjZxsU3
-         jseQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ned8K4/DJ2jNNS3XJQ8BysZeLMLkezd228hF2G2kCNA=;
-        b=1kBTWYGbACn6Q/+5KoWMKYHvJlqi1jMU2TwnedIFElzx5/KQp7frnb8FPGwE0ANFq4
-         z6eR1c85V4HPQbH5a/oALbxmbYuQxSxY/gNxi+3WUexCoP25zL3Rogp3N9Y06Tcib1v2
-         H2B5JhyvSBJ4wPhook1c+xxj1OsQicKiobOYf0SJrH7FOcKud1eEhd0ir/rd67CPZw0V
-         pmnlTDO57Njws1NdmyoPOZ9Azc/WnC0nPlyzVfEkNioDxKwMzdn4muBOKSvKOJ4NkIo6
-         CjUNiv6thMWYTfXpQkjvbv0IHBq/EGLGqlrCDHwnnpcgfSdIw/T1FdGTFUqNkFhiND0Y
-         1aiA==
-X-Gm-Message-State: AOAM5325QgbEeSdKYygTXRplnE8lEO/cx/fIp21YXa8a1i4dg/I4XKR9
-        BEo4DLhObRWhGhH8qsxYLS2wZg==
-X-Google-Smtp-Source: ABdhPJza9w19lgcQbzmc9lPFuOGcElTa3Uz0iMCiD7XPluXEE1inm+3i4eVNdXCAWTodwZoCvhYasQ==
-X-Received: by 2002:a17:907:c07:b0:6f3:a3b2:9582 with SMTP id ga7-20020a1709070c0700b006f3a3b29582mr6148248ejc.91.1650971281249;
-        Tue, 26 Apr 2022 04:08:01 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05640204d000b0042062f9f0e1sm5926033edw.15.2022.04.26.04.07.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 04:08:00 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
-Date:   Tue, 26 Apr 2022 13:07:57 +0200
-Message-Id: <20220426110757.80603-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S232473AbiDZLQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 07:16:47 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D4A155718;
+        Tue, 26 Apr 2022 04:13:35 -0700 (PDT)
+X-UUID: d7dfa7577f97488fa3da5b91bcbc977d-20220426
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:0a80d0a3-5084-49e1-be28-af18ac120d1e,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:790689c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: d7dfa7577f97488fa3da5b91bcbc977d-20220426
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1466788043; Tue, 26 Apr 2022 19:13:28 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 26 Apr 2022 19:13:27 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 26 Apr
+ 2022 19:13:26 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Apr 2022 19:13:26 +0800
+Message-ID: <078b1f9b39690da98cbd3c4528ba28374a097083.camel@mediatek.com>
+Subject: Re: [PATCH V4 07/14] cpufreq: mediatek: Add .get function
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <rafael@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <khilman@baylibre.com>, <angelogioacchino.delregno@collabora.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 26 Apr 2022 19:13:26 +0800
+In-Reply-To: <20220425100058.4kbvmpi63ygni6k5@vireshk-i7>
+References: <20220422075239.16437-1-rex-bc.chen@mediatek.com>
+         <20220422075239.16437-8-rex-bc.chen@mediatek.com>
+         <20220425053548.72w2jh2g6lpzgz6g@vireshk-i7>
+         <64c690e8edf493ec0a4a14e0fdaad2d8e88e6da7.camel@mediatek.com>
+         <20220425100058.4kbvmpi63ygni6k5@vireshk-i7>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The schema for "qcom,tcs-config" property can be a little bit simpler,
-without the need of defining each item.  Also move the description of
-each part of "qcom,tcs-config" tupple to the tupple items description.
+On Mon, 2022-04-25 at 15:30 +0530, Viresh Kumar wrote:
+> On 25-04-22, 17:34, Rex-BC Chen wrote:
+> > We found that the pulses of cpu voltage could be observed when
+> > frequency is fixed (scaling_max_freq == scaling_min_freq) if using
+> > cpufreq_generic_get as '.get' callback in MT8186.
+> > cpufreq framework will constantly (~ 1 sec) call 'update' if the
+> > policy
+> 
+> Which function gets called here in that case ? I would expect
+> cpufreq_driver_target() to not make a call to MTK driver in that
+> case, after it
+> finds that new and old frequency are same (it will check the
+> corresponding freq
+> from cpufreq table).
+> 
+> > frequency is NOT equal to hardware frequency in
+> > cpufreq_verify_current_freq.
+> > The problem is that there might be a tiny difference between the
+> > policy
+> > frequency and the hardware frequency even they are very close.
+> > e.g. policy frequency is 500,000,000 Hz however, hardware frequency
+> > is
+> > 499,999,726 Hz for MT8186 opp15.
+> > 
+> > To prevent the voltage pulses, we currently use the software cached
+> > values as you pointed out.
+> > I wonder is it possible to add a tolerence for checking difference
+> > between policy frequency and hardware frequency in cpufreq
+> > framework so
+> > that we can use cpufreq_generic_get as callback without pulse
+> > issue.
+> > Or any suggestion would be appreciated.
+> 
+> 
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/soc/qcom/qcom,rpmh-rsc.yaml      | 33 +++++++------------
- 1 file changed, 11 insertions(+), 22 deletions(-)
+Hello Viresh,
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
-index f5ecf4a8c377..4a50f1d27724 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
-@@ -65,33 +65,22 @@ properties:
- 
-   qcom,tcs-config:
-     $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    minItems: 4
-+    maxItems: 4
-     items:
--      - items:
--          - description: TCS type
--            enum: [ 0, 1, 2, 3 ]
--          - description: Number of TCS
--      - items:
--          - description: TCS type
--            enum: [ 0, 1, 2, 3 ]
--          - description: Number of TCS
--      - items:
--          - description: TCS type
--            enum: [ 0, 1, 2, 3]
--          - description: Numbe r of TCS
--      - items:
--          - description: TCS type
--            enum: [ 0, 1, 2, 3 ]
--          - description: Number of TCS
-+      items:
-+        - description: |
-+            TCS type::
-+             - ACTIVE_TCS
-+             - SLEEP_TCS
-+             - WAKE_TCS
-+             - CONTROL_TCS
-+          enum: [ 0, 1, 2, 3 ]
-+        - description: Number of TCS
-     description: |
-       The tuple defining the configuration of TCS. Must have two cells which
-       describe each TCS type.  The order of the TCS must match the hardware
-       configuration.
--      Cell 1 (TCS Type):: TCS types to be specified::
--       - ACTIVE_TCS
--       - SLEEP_TCS
--       - WAKE_TCS
--       - CONTROL_TCS
--      Cell 2 (Number of TCS):: <u32>
- 
-   qcom,tcs-offset:
-     $ref: /schemas/types.yaml#/definitions/uint32
--- 
-2.32.0
+We have a non-upstream driver which tries to get frequency by
+'cpufreq_get'.
+When we use that non-upstream driver, 'cpufreq_verify_current_freq'
+will be further invoked by 'cpufreq_get' and it would cause voltage
+pulse issue as I described previously.
+Therefore, we apply the solution in this series.
+
+Recently, we found that using 'cpufreq_generic_get' directly in our
+non-upstream driver can do the same thing without pulse issue.
+It can meet your request as well.
+
+So here, for cpufreq, I think it is proper to drop this patch and I
+will do it in the next version.
+
+Thanks for your review.
+
+BRs,
+Rex
 
