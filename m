@@ -2,91 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C65050F216
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779E950F236
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343818AbiDZHWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 03:22:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60932 "EHLO
+        id S232548AbiDZHYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 03:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbiDZHWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:22:11 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030519A9BD;
-        Tue, 26 Apr 2022 00:19:03 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (174-21-187-98.tukw.qwest.net [174.21.187.98])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 3BAEC3BA;
-        Tue, 26 Apr 2022 00:19:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1650957543;
-        bh=a7d5HgjSck+kLktoYQpx+Gz8Wrhd4xbxiVJ4ra53z1E=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PgomL2EtKY8sddCwJYlXrDU6iQeZq8/91wez6jWg+8WRmBsvFrzwliIPUxudzNhPf
-         J32+fgUONeILnv3lrChcLoAeAOEDVSfm3AuAXiGBJI7pVsv6dT2cVYURj5FLPsz9QA
-         3rjPoJ7H7+4KcsFf0trgbRG3vlLt0RtL/6E6yo6Q=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Zev Weiss <zev@bewilderbeest.net>, Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 1/6] dt-bindings: trivial-devices: Add Nuvoton Super I/O chips
-Date:   Tue, 26 Apr 2022 00:18:43 -0700
-Message-Id: <20220426071848.11619-2-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220426071848.11619-1-zev@bewilderbeest.net>
-References: <20220426071848.11619-1-zev@bewilderbeest.net>
+        with ESMTP id S1343902AbiDZHYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:24:41 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE5BDF1B;
+        Tue, 26 Apr 2022 00:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650957694; x=1682493694;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=0ucwVlpscpdQ5Ufmgu+kNlv/rwMKi8SndF3Ds24Os8k=;
+  b=KGf0guSRh7HFApSuMqwbEZnEN1qygoMSWG4bY5q3HGGqyyTGNfDoCx9u
+   +7kaQgdS7LoVnUNJNLOdnL+aPRlu1fkL9YtNEdSS6BUduc8Sdp3qB/eWV
+   U2H47ipFmGf6z1zZu9ypGfQTIGlzf8k/REX8HZBJ4jEbhh5zy8Bis4syK
+   c=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 Apr 2022 00:21:33 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 00:21:33 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 26 Apr 2022 00:21:32 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 26 Apr 2022 00:21:28 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v11 0/4] Add lpass pin control support for audio on sc7280 based targets
+Date:   Tue, 26 Apr 2022 12:51:02 +0530
+Message-ID: <1650957666-6266-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These Super I/O chips have an i2c interface that some systems expose
-to a BMC, which may have it described in its device tree.
+This patch set is to add lpass pin control support for Audio over I2S,
+wcd codec and digital mics.
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- .../devicetree/bindings/trivial-devices.yaml       | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Changes Since V10:
+    -- Add lpass lpi pinmux and MI2S pinmux support for rev5+ boards.
+    -- Remove dependency patches link in the cover-letter as it is merged.
+Changes Since V9:
+    -- Remove redundant prefix in node name.
+Changes Since V8:
+    -- Modify label and node names to lpass specific.
+    -- Sort nodes as per node names and kind of nodes like pinctrl and device nodes.
+Changes Since V7:
+    -- Sort mi2s pincontrol nodes as per node name.
+    -- Fix typo errors.
+Changes Since V6:
+    -- Move amp_en node to corresponding consumer patch.
+    -- Update label and node names.
+    -- Remove redundant drive-strengths.
+    -- Remove herobrine crd specific mi2s configuration.
+Changes Since V5:
+    -- Remove redundant function property in amp_en node.
+    -- Move board specific properties of lpass pin control node to board specific file.
+    -- Remove redundant properties in pin control nodes.
+    -- Move wcd938x codec reset and CTIA/OMTP pin control patches to other series.
+Changes Since V4:
+    -- Add primary and secondary I2S pinmux nodes for herobrine specific targets.
+Changes Since V3:
+    -- Add pinctrl nodes for wcd codec reset and CTIA/OMTP headset selection.
+Changes Since V2:
+    -- Move lpass pin control node to main dtsi file.
+    -- Sort nodes alphabetically.
+    -- Remove redundant wcd reset gpio nodes.
+    -- Remove redundant input-enable field in dmic pin control nodes.
+    -- Update amp_en node. 
+    -- Fix typo errors.
+    -- Modify node names.
+    -- Create patches on latest kernel.    
+Changes Since V1:
+    -- Merge pinmux and pinconf properties in amp_en and wcd pin reset node.
+    -- Split common i2s pin control nodes to functionality specific nodes.
+    -- Move board specific properties to board specific dtsi file.
+    -- Update dmic pin control node name.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 550a2e5c9e05..2262dec4289e 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -277,6 +277,20 @@ properties:
-           - national,lm85
-             # I2C ±0.33°C Accurate, 12-Bit + Sign Temperature Sensor and Thermal Window Comparator
-           - national,lm92
-+            # Nuvoton Super I/O chips
-+          - nuvoton,nct6775
-+          - nuvoton,nct6106
-+          - nuvoton,nct6116
-+          - nuvoton,nct6775
-+          - nuvoton,nct6776
-+          - nuvoton,nct6779
-+          - nuvoton,nct6791
-+          - nuvoton,nct6792
-+          - nuvoton,nct6793
-+          - nuvoton,nct6795
-+          - nuvoton,nct6796
-+          - nuvoton,nct6797
-+          - nuvoton,nct6798
-             # i2c trusted platform module (TPM)
-           - nuvoton,npct501
-             # i2c trusted platform module (TPM2)
+Srinivasa Rao Mandadapu (4):
+  arm64: dts: qcom: sc7280: Add pinmux for I2S speaker and Headset
+  arm64: dts: qcom: sc7280: Add MI2S pinmux specifications for CRD
+    3.0/3.1
+  arm64: dts: qcom: sc7280: add lpass lpi pin controller node
+  arm64: dts: qcom: sc7280-herobrine: Add lpi pinmux properties for CRD
+    3.0/3.1
+
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 118 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       |  98 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi           | 147 +++++++++++++++++++++++++
+ 3 files changed, 363 insertions(+)
+
 -- 
-2.36.0
+2.7.4
 
