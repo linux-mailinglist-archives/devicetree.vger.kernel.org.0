@@ -2,94 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 517DB510777
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27AFA5108C8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 21:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345568AbiDZSvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:51:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41342 "EHLO
+        id S243674AbiDZTSt convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 26 Apr 2022 15:18:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346077AbiDZSvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:51:22 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D22589CC0;
-        Tue, 26 Apr 2022 11:48:14 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-e922e68b0fso9242943fac.1;
-        Tue, 26 Apr 2022 11:48:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ttz5iN0TvNdjWEd4hEUb+jVX0qC+pWXJcgQnjnfIYWw=;
-        b=YSTDuiS93rN9ZJGiwN/s0Jdi0P5DpTFQh69DWvdpf88W6Ykx29gx6F/0ETy354E4u3
-         y2iLhMWR2gvHMb/pPfx5OSaKydatzPjkN7MI4yWkdOUnzIR/7PyDGblKda+qrcY83HU2
-         qmf7xKIR6f7kkhu2xWHkGXFz5V85Wb/MJcxNjHqsN70N3OXDZOhfFHeGUzWimSFHRZVO
-         95bTAjZeX7m8QSrNeZ7bJE+kxtAI7AD5K+Yn+3973RKhbHXg1wBbNWHxM3N21VsVcfGL
-         SEANWjWlybrbck12UtiD9w0PDEjQ2hWmjvdvIglUi3nUxS8Irnc5sPh+GEXK7ya+oemT
-         u5hw==
-X-Gm-Message-State: AOAM532CMalelwAb5k+i6KR15Aq0clkFOP/5P+6p+75McsRFfApL06s3
-        AKllDLASR7QvLTztxAEH3w==
-X-Google-Smtp-Source: ABdhPJypHAPkwkyLPzMGSjlzD5vSYoYbqKCnWoCG0SmPVI7ccWto1ocJxBrpGkYFYFA5bRk8hXvL7w==
-X-Received: by 2002:a05:6870:c5aa:b0:e5:8e03:d40f with SMTP id ba42-20020a056870c5aa00b000e58e03d40fmr10251405oab.264.1650998893902;
-        Tue, 26 Apr 2022 11:48:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e18-20020a9d7312000000b006054dfa7eb6sm5128438otk.78.2022.04.26.11.48.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 11:48:13 -0700 (PDT)
-Received: (nullmailer pid 2340564 invoked by uid 1000);
-        Tue, 26 Apr 2022 18:48:12 -0000
-Date:   Tue, 26 Apr 2022 13:48:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc:     linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Sam Shih <sam.shih@mediatek.com>, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: arm: mediatek: infracfg: Convert to
- DT schema
-Message-ID: <Ymg+bOwe3g2ngUHq@robh.at.kernel.org>
-References: <20220424084647.76577-1-y.oudjana@protonmail.com>
- <20220424084647.76577-4-y.oudjana@protonmail.com>
+        with ESMTP id S1349485AbiDZTSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 15:18:47 -0400
+X-Greylist: delayed 1476 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 26 Apr 2022 12:15:37 PDT
+Received: from dedi2375.your-server.de (dedi2375.your-server.de [85.10.215.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE52193EC
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 12:15:36 -0700 (PDT)
+Received: from localhost ([127.0.0.1] helo=dedi2375.your-server.de)
+        by dedi2375.your-server.de with esmtps (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <no-reply@phoenixoktoberfest.com>)
+        id 1njQH4-0008M2-Ki
+        for devicetree@vger.kernel.org; Tue, 26 Apr 2022 20:50:58 +0200
+To:     devicetree@vger.kernel.org
+Subject: Phoenixoktoberfest Newsletter
+Message-ID: <1650999058.62683f128ecfb@www.ac4gc.org>
+Date:   Tue, 26 Apr 2022 20:50:58 +0200
+From:   Phoenixoktoberfest <no-reply@phoenixoktoberfest.com>
+Reply-To: Phoenixoktoberfest <no-reply@phoenixoktoberfest.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220424084647.76577-4-y.oudjana@protonmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Mailer: TYPO3
+X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_50,RCVD_IN_VALIDITY_RPBL,
+        SPF_FAIL,SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 24 Apr 2022 12:46:47 +0400, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Convert infracfg bindings to DT schema format. Not all drivers
-> currently implement resets, so #reset-cells is made a required
-> property only for those that do. Using power-controller in the
-> example node name makes #power-domain-cells required causing
-> a dt_binding_check error. To solve this, the node is renamed to
-> syscon@10001000.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  .../arm/mediatek/mediatek,infracfg.txt        | 42 ----------
->  .../arm/mediatek/mediatek,infracfg.yaml       | 81 +++++++++++++++++++
->  2 files changed, 81 insertions(+), 42 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> 
+Dear 
 
-Applied, thanks!
+You're now subscribed to the Phoenixoktoberfest newsletter.
+
+IMPORTANT:
+
+Before your subscriptions is fully enabled, you must click this link:
+https://www.ac4gc.org/newsletter.html??1=1&cmd=setfixed&sFK=approve&rU=91918&fD%5B_FIELDLIST%5D=hidden%2Cuid&fD%5Bhidden%5D=0&aC=cdeddb20
+
+If you cannot accept the subscription (eg. if somebody else subscribed you!) just click this link and you're deleted from the database:
+https://www.ac4gc.org/newsletter.html?&cmd=setfixed&sFK=DELETE&rU=91918&fD%5B_FIELDLIST%5D=uid&aC=78e5442c
+
+If you wish to edit your personal data, click this link:
+https://www.ac4gc.org/newsletter.html??cmd=edit&aC=78e5442c&rU=91918
