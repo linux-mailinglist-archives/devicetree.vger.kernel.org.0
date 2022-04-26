@@ -2,158 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 147E2510B7C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 23:44:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 633B9510B85
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 23:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355537AbiDZVsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 17:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39628 "EHLO
+        id S1355557AbiDZVxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 17:53:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233752AbiDZVsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 17:48:04 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F77863BD4;
-        Tue, 26 Apr 2022 14:44:55 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CF88030B;
-        Tue, 26 Apr 2022 23:44:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1651009494;
-        bh=RhvrIhNLWO946ehassDhyFnuzXpvyHWUxAtfQ5WEoqs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BEHUGc2JhUEYnYLUHbn5IkOzuwjjYrr/tNG44x1daI1Z0alGbA9/z2M6Xz7lIhcKI
-         47Z7Asw96+HL7zjUnTfd3wW33Tw48tUHBEEPY5/M/8C58mwXnbCYbL+i/TBbYqzOxa
-         NBiQtFC40pxI6zNdRF+QgDAJddQz1uFOjrGVG1lo=
-Date:   Wed, 27 Apr 2022 00:44:53 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "Xavier Roumegue (OSS)" <xavier.roumegue@oss.nxp.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>, mchehab@kernel.org,
-        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
-        robh+dt@kernel.org, nicolas@ndufresne.ca,
-        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 6/9] media: uapi: Add a control for DW100 driver
-Message-ID: <Ymhn1dwXgHVROm/H@pendragon.ideasonboard.com>
-References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com>
- <20220328141309.177611-7-xavier.roumegue@oss.nxp.com>
- <dba106ac-cee1-2493-13c7-ad9aef556a49@xs4all.nl>
- <b3fb75bc-301c-823a-4779-964bce95d051@oss.nxp.com>
+        with ESMTP id S1355562AbiDZVxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 17:53:53 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519BB3B555
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 14:50:44 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id v65so75767oig.10
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 14:50:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=pjo5mXaYQ8tuJfJZuu4TdSNcsnRgj5B9DLZVepdghWQ=;
+        b=CQiwaHLvsuJ+ikXqofBkW8jrqC5ybJyYGda2ADk6TuRwRak/ZZrAWQr+Oc3GoIyUxL
+         jAiQC84FRkg0/xIgPZYwLmYHAR/MiaTGiJk7wDC3ByWcpz0mVRL0o5yr3i5GeTh9YxTq
+         TczVSgufsKZt2Yp2vNv7WM6j9VMoK+ZRTN5VI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=pjo5mXaYQ8tuJfJZuu4TdSNcsnRgj5B9DLZVepdghWQ=;
+        b=51uvqNajikuDbe/OvHK2Vdbvcf7eQziDCsbWRQIoJ6pqyIUBj2iCA5MkbWPxU/eUhx
+         XB0q5DteDO1tVnjy2hDbVtqq9nHgsyR693n7shOWG/Osak3FLXUcCFBD5f/YAwqAH4kW
+         Qe6XJvIlrhxjSFbCt2SC3exdz7Efw8AaUeowIF+skD2ySKL8FIoTKKFjbJUMU/4WojBL
+         DbOoqrlL4n4DsayfJD2em7gH2nikQq0GyJLeRAC7E9QDXzn7/LEha8jGwcmt3ytHkwSb
+         g1Y5Y7IVUvqcafPdlGYmflpc2CmtWLZHGJtmyB65anYNvRsRYM2/8uGDKgsRspbkkIa3
+         hrow==
+X-Gm-Message-State: AOAM532ZeWNu7GuIPXreNHioiHvmqNUUK17oSCgYeVKaFQ1PKHrbXJON
+        GRE7+B8ZQWUN/mIg6b4lOAkTvmwSUZIvj2Q25kUhAA==
+X-Google-Smtp-Source: ABdhPJwyMTUw/mtFu6agjAsPIJW+iWTJHYIxIVvFs4+GRM3nbBnWOJM3vPKxiLw52uQ1xwjfjvHgiiuMneQ854bVIsM=
+X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
+ n62-20020acabd41000000b002ecff42814fmr11888453oif.63.1651009843704; Tue, 26
+ Apr 2022 14:50:43 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 26 Apr 2022 14:50:43 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b3fb75bc-301c-823a-4779-964bce95d051@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
+References: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 26 Apr 2022 14:50:43 -0700
+Message-ID: <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
+Subject: Re: [PATCH] drm/msm/disp/dpu1: avoid clearing hw interrupts if
+ hw_intr is null during drm uninit
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dmitry.baryshkov@linaro.org, dianders@chromium.org,
+        quic_kalyant@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xavier,
+Quoting Vinod Polimera (2022-04-25 23:02:11)
+> Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
 
-On Tue, Apr 26, 2022 at 11:34:55PM +0200, Xavier Roumegue (OSS) wrote:
-> On 4/25/22 08:57, Hans Verkuil wrote:
-> > On 28/03/2022 16:13, Xavier Roumegue wrote:
-> >> The DW100 driver gets the dewarping mapping as a binary blob from the
-> >> userspace application through a custom control.
-> >> The blob format is hardware specific so create a dedicated control for
-> >> this purpose.
-> >>
-> >> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> >> ---
-> >>   Documentation/userspace-api/media/drivers/dw100.rst | 12 ++++++++++++
-> >>   include/uapi/linux/dw100.h                          | 11 +++++++++++
-> >>   2 files changed, 23 insertions(+)
-> >>   create mode 100644 include/uapi/linux/dw100.h
-> >>
-> >> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
-> >> index 4cd55c75628e..f6d684cadf26 100644
-> >> --- a/Documentation/userspace-api/media/drivers/dw100.rst
-> >> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
-> >> @@ -20,4 +20,16 @@ match the expected size inherited from the destination image resolution.
-> >>   More details on the DW100 hardware operations can be found in
-> >>   *chapter 13.15 DeWarp* of IMX8MP_ reference manuel.
-> >>   
-> >> +The Vivante DW100 m2m driver implements the following driver-specific control:
-> >> +
-> >> +``V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (integer)``
-> > 
-> > (integer) -> (__u32 array)
-> > 
-> > But should this be a __u32 array at all? Wouldn't a __u16 array make more sense?
+Presumably this is only the case when the display driver doesn't fully
+probe and something probe defers? Can you clarify how this situation
+happens?
+
 >
-> This is indeed debatable. But the array is describing vertices positions 
-> on a 2D dimension space, and thus its size is always even.
-> More importantly, the array must follow the format imposed by the 
-> hardware which expects __u16 pairs packed in a __u32.
-> Lastly, the lut (map) register size unit is __u32.
-> 
-> Hence, IMHO, using __u32 might make more sense to highlight its hardware 
-> dependency.
-
-Agreed.
-
-As mentioned in a reply to another patch, I think it would be useful to
-explain this a bit more clearly. Hans mentioned in the review of the
-driver itself that there was a bug as an image width of 16 bits results
-in a grid width of 2. I think that's correct (a width between 1 and 16
-pixels results in a single grid cell horizontally, and thus two
-vertices, on the left and right side of the cell), but it would benefit
-from an explanation. A small ascii art diagram could help.
-
-> >> +    Specifies to DW100 driver its dewarping map (aka LUT) blob as described in
-> >> +    *chapter 13.15.2.3 Dewarping Remap* of IMX8MP_ reference manual as an U32
-> >> +    dynamic array. The image is divided into many small 16x16 blocks. If the
-> >> +    width of the image is not divisible by 16, the size of the rightmost block
-> >> +    is the remainder.
-> > 
-> > Isn't the same true for the height?
-> 
-> Yes, will update accordingly.
+> BUG: Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
 >
-> > The dewarping map only saves the vertex coordinates of the
-> > 
-> >> +    block. The dewarping grid map is comprised of vertex coordinates for x and y.
-> >> +    Each x, y coordinate register uses 16 bits (UQ12.4) to record the coordinate
-> > 
-> > As mentioned before, UQ12.4 is not necessarily a standard notation. 'unsigned 12.4
-> > fixed point' is better, but you also need to specify exactly where the bits are
-> > stored inside the __u16. I.e.: 'the integer part is stored in the 12 most significant
-> > bits, and the fractional part is stored in the 4 least significant bits of the __u16.'
-> > 
-> >> +    address, with the Y coordinate in the upper bits and X in the lower bits.
-> > 
-> > And with a __u16 array this becomes: 'The array contains pairs of X, Y coordinates.'
-> > Or something along those lines.
-> > 
-> >> +
-> >>   .. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
-> >> diff --git a/include/uapi/linux/dw100.h b/include/uapi/linux/dw100.h
-> >> new file mode 100644
-> >> index 000000000000..7fdcf2bf42e5
-> >> --- /dev/null
-> >> +++ b/include/uapi/linux/dw100.h
-> >> @@ -0,0 +1,11 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
-> >> +/* Copyright 2022 NXP */
-> >> +
-> >> +#ifndef __UAPI_DW100_H__
-> >> +#define __UAPI_DW100_H__
-> >> +
-> >> +#include <linux/v4l2-controls.h>
-> >> +
-> > 
-> > Add a comment referring to the Documentation/userspace-api/media/drivers/dw100.rst
-> > documentation so users of this control know where to find the associated
-> > documentation.
-> > 
-> >> +#define V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (V4L2_CID_USER_DW100_BASE + 1)
-> >> +
-> >> +#endif
+> Call trace:
+>  dpu_core_irq_uninstall+0x50/0xb0
+>  dpu_irq_uninstall+0x18/0x24
+>  msm_drm_uninit+0xd8/0x16c
+>  msm_drm_bind+0x580/0x5fc
+>  try_to_bring_up_master+0x168/0x1c0
+>  __component_add+0xb4/0x178
+>  component_add+0x1c/0x28
+>  dp_display_probe+0x38c/0x400
+>  platform_probe+0xb0/0xd0
+>  really_probe+0xcc/0x2c8
+>  __driver_probe_device+0xbc/0xe8
+>  driver_probe_device+0x48/0xf0
+>  __device_attach_driver+0xa0/0xc8
+>  bus_for_each_drv+0x8c/0xd8
+>  __device_attach+0xc4/0x150
+>  device_initial_probe+0x1c/0x28
+>
+> Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into dpu_hw_interrupts")
 
--- 
-Regards,
+The fixes tag looks odd. In dpu_core_irq_uninstall() at that commit it
+is dealing with 'irq_obj' which isn't a pointer. After commit
+f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
+dpu_hw_intr") dpu_core_irq_uninstall() starts using 'hw_intr' which is
+allocated on the heap. If we backported this patch to a place that had
+a73033619ea without f25f656608e3 it wouldn't make any sense.
 
-Laurent Pinchart
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> index c515b7c..ab28577 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+> @@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
+>  {
+>         int i;
+>
+> +       if (!dpu_kms->hw_intr)
+> +               return;
+> +
+>         pm_runtime_get_sync(&dpu_kms->pdev->dev);
+>         for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
