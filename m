@@ -2,142 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D54D050FAC7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0429A50FAB5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348930AbiDZKbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:31:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38448 "EHLO
+        id S1349128AbiDZKfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348928AbiDZKbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:31:18 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7237310FB68;
-        Tue, 26 Apr 2022 03:09:27 -0700 (PDT)
-X-UUID: 050b537f769f40438074f36db6dfec54-20220426
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:3798cf81-1371-49dc-969a-76c1733bdd15,OB:20,L
-        OB:0,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_Ham,
-        ACTION:release,TS:42
-X-CID-INFO: VERSION:1.1.4,REQID:3798cf81-1371-49dc-969a-76c1733bdd15,OB:20,LOB
-        :0,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:42
-X-CID-META: VersionHash:faefae9,CLOUDID:db7abf2e-6199-437e-8ab4-9920b4bc5b76,C
-        OID:2fe14de8a9b9,Recheck:0,SF:13|15|28|100|17|19|48|101,TC:nil,Content:0,E
-        DM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 050b537f769f40438074f36db6dfec54-20220426
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 383492399; Tue, 26 Apr 2022 18:09:25 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 26 Apr 2022 18:09:23 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 26 Apr 2022 18:09:21 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v10, 17/17] media: mediatek: vcodec: prevent kernel crash when rmmod mtk-vcodec-dec.ko
-Date:   Tue, 26 Apr 2022 18:08:28 +0800
-Message-ID: <20220426100828.13429-18-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220426100828.13429-1-yunfei.dong@mediatek.com>
-References: <20220426100828.13429-1-yunfei.dong@mediatek.com>
+        with ESMTP id S1349166AbiDZKfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:35:03 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C166E8C4;
+        Tue, 26 Apr 2022 03:14:12 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id k23so35056037ejd.3;
+        Tue, 26 Apr 2022 03:14:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Qz5RSrvROhmFAod9m9cY+vK4Aq4/SnLehvmOeU3zDWU=;
+        b=FdIHPCZX9WaSrko7Vtgn0upm4gBnH3l+alc3Mv7C6n9LfwIOWhalo/qHnkWrdcYlCA
+         Ebz1HuvGorUIYnEBFx/4ij4iH94sEHzt3mGW3hATFqf/GtnUzKJ0Vy1Wy9/jmYeIkoTi
+         xI5S9ecpF4mZDUoHnqQeNYOuZsaJS6M8Eh0K33Y7ele3goZfXb5t3h21g4BV4cAYu6gN
+         MMj+fubyXcxVHOb91Gi+f7zdsCSQr5y9xznKq4e/7ZUrpriZVkWdaYagecOz0R6alge8
+         LsiucjraPi8zSQ6g28qksOCfWMaTMu7EGiZgkzNjo35rOHKXyqRxhELIjtMFy7GSmsf0
+         C7hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Qz5RSrvROhmFAod9m9cY+vK4Aq4/SnLehvmOeU3zDWU=;
+        b=fA+o1X8ZUCLaxgQ7Cg+B0tMmtBpBSHPFLNQ2cWmpE6pYQiiWXa0LXeJJTuDhLLcC0/
+         X6x5kyHbx6/2pTDLNgl1Z4E25azDSeHEWQcBVKl/BPVv3Y/6DcMCzP7WM5li//zBCYu5
+         KKo9RtlH405G00oQf4tVSZdl1ARri+dHIJRTcf5yuxp/x+0PKLAn6Ggt8DGE/3tFLEea
+         6xNCfD7vYC/m2gElX27xYHxj8mR1b0+ljOrxU7Ce0dQanLo/I/q3QIJYgrZFmrTLsGSt
+         ioYBvRhCV2dHdD1rXHVZlD3AEcpLBsqtVOsV/W8meCJxkFuuMnhJmF/82SQfTaV01s39
+         VuzQ==
+X-Gm-Message-State: AOAM531m+bihXc6kb/KpdUzfGL6aOxB5mxoM09Mtj8nK9bFwviTp3Ivd
+        cGivyxT1QFSnyGTN784+Nf/FDkvCNZ1PuEWFg4A=
+X-Google-Smtp-Source: ABdhPJyqN1ZErxhsIK+txK0CUqN74jbit9o4azskJha+4UbYysFNAN2+1c40MFg3TvTzg64L+uzyvh0W1rJma7dE+RY=
+X-Received: by 2002:a17:906:3ce9:b0:6ef:a8aa:ab46 with SMTP id
+ d9-20020a1709063ce900b006efa8aaab46mr20132385ejh.579.1650968051046; Tue, 26
+ Apr 2022 03:14:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220422222351.1297276-1-bjorn.andersson@linaro.org> <20220422222351.1297276-4-bjorn.andersson@linaro.org>
+In-Reply-To: <20220422222351.1297276-4-bjorn.andersson@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 26 Apr 2022 12:13:31 +0200
+Message-ID: <CAHp75VcYJYYUQxb6xhFiP_aG389ifte0RRBNN+M7tq3N9-nS1A@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] usb: typec: mux: Check dev_set_name() return value
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        USB <linux-usb@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the driver support subdev mode, the parameter "dev->pm.dev" will be
-NULL in mtk_vcodec_dec_remove. Kernel will crash when try to rmmod
-mtk-vcodec-dec.ko.
+On Sat, Apr 23, 2022 at 1:25 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> It's possible that dev_set_name() returns -ENOMEM, catch and handle this.
 
-[ 4380.702726] pc : do_raw_spin_trylock+0x4/0x80
-[ 4380.707075] lr : _raw_spin_lock_irq+0x90/0x14c
-[ 4380.711509] sp : ffff80000819bc10
-[ 4380.714811] x29: ffff80000819bc10 x28: ffff3600c03e4000 x27: 0000000000000000
-[ 4380.721934] x26: 0000000000000000 x25: 0000000000000000 x24: 0000000000000000
-[ 4380.729057] x23: ffff3600c0f34930 x22: ffffd5e923549000 x21: 0000000000000220
-[ 4380.736179] x20: 0000000000000208 x19: ffffd5e9213e8ebc x18: 0000000000000020
-[ 4380.743298] x17: 0000002000000000 x16: ffffd5e9213e8e90 x15: 696c346f65646976
-[ 4380.750420] x14: 0000000000000000 x13: 0000000000000001 x12: 0000000000000040
-[ 4380.757542] x11: 0000000000000000 x10: 0000000000000000 x9 : 0000000000000000
-[ 4380.764664] x8 : 0000000000000000 x7 : ffff3600c7273ae8 x6 : ffffd5e9213e8ebc
-[ 4380.771786] x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000000000
-[ 4380.778908] x2 : 0000000000000000 x1 : ffff3600c03e4000 x0 : 0000000000000208
-[ 4380.786031] Call trace:
-[ 4380.788465]  do_raw_spin_trylock+0x4/0x80
-[ 4380.792462]  __pm_runtime_disable+0x2c/0x1b0
-[ 4380.796723]  mtk_vcodec_dec_remove+0x5c/0xa0 [mtk_vcodec_dec]
-[ 4380.802466]  platform_remove+0x2c/0x60
-[ 4380.806204]  __device_release_driver+0x194/0x250
-[ 4380.810810]  driver_detach+0xc8/0x15c
-[ 4380.814462]  bus_remove_driver+0x5c/0xb0
-[ 4380.818375]  driver_unregister+0x34/0x64
-[ 4380.822288]  platform_driver_unregister+0x18/0x24
-[ 4380.826979]  mtk_vcodec_dec_driver_exit+0x1c/0x888 [mtk_vcodec_dec]
-[ 4380.833240]  __arm64_sys_delete_module+0x190/0x224
-[ 4380.838020]  invoke_syscall+0x48/0x114
-[ 4380.841760]  el0_svc_common.constprop.0+0x60/0x11c
-[ 4380.846540]  do_el0_svc+0x28/0x90
-[ 4380.849844]  el0_svc+0x4c/0x100
-[ 4380.852975]  el0t_64_sync_handler+0xec/0xf0
-[ 4380.857148]  el0t_64_sync+0x190/0x194
-[ 4380.860801] Code: 94431515 17ffffca d503201f d503245f (b9400004)
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Fixes: 3370db35193b ("usb: typec: Registering real device entries for the muxes")
+> Reported-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>
+> Changes since v4:
+> - Added Fixes tag
+>
+>  drivers/usb/typec/mux.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
+> index c8340de0ed49..d2aaf294b649 100644
+> --- a/drivers/usb/typec/mux.c
+> +++ b/drivers/usb/typec/mux.c
+> @@ -131,8 +131,11 @@ typec_switch_register(struct device *parent,
+>         sw->dev.class = &typec_mux_class;
+>         sw->dev.type = &typec_switch_dev_type;
+>         sw->dev.driver_data = desc->drvdata;
+> -       dev_set_name(&sw->dev, "%s-switch",
+> -                    desc->name ? desc->name : dev_name(parent));
+> +       ret = dev_set_name(&sw->dev, "%s-switch", desc->name ? desc->name : dev_name(parent));
+> +       if (ret) {
+> +               put_device(&sw->dev);
+> +               return ERR_PTR(ret);
+> +       }
+>
+>         ret = device_add(&sw->dev);
+>         if (ret) {
+> @@ -338,8 +341,11 @@ typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
+>         mux->dev.class = &typec_mux_class;
+>         mux->dev.type = &typec_mux_dev_type;
+>         mux->dev.driver_data = desc->drvdata;
+> -       dev_set_name(&mux->dev, "%s-mux",
+> -                    desc->name ? desc->name : dev_name(parent));
+> +       ret = dev_set_name(&mux->dev, "%s-mux", desc->name ? desc->name : dev_name(parent));
+> +       if (ret) {
+> +               put_device(&mux->dev);
+> +               return ERR_PTR(ret);
+> +       }
+>
+>         ret = device_add(&mux->dev);
+>         if (ret) {
+> --
+> 2.35.1
+>
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-index a84df6596aaa..5da4572c5b14 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-@@ -482,7 +482,8 @@ static int mtk_vcodec_dec_remove(struct platform_device *pdev)
- 		video_unregister_device(dev->vfd_dec);
- 
- 	v4l2_device_unregister(&dev->v4l2_dev);
--	pm_runtime_disable(dev->pm.dev);
-+	if (!dev->vdec_pdata->is_subdev_supported)
-+		pm_runtime_disable(dev->pm.dev);
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return 0;
- }
+
 -- 
-2.18.0
-
+With Best Regards,
+Andy Shevchenko
