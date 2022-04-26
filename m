@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB41510A79
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0521F510AA2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354892AbiDZUeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 16:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
+        id S1354955AbiDZUkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 16:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349201AbiDZUeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:34:15 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115DA2CE01;
-        Tue, 26 Apr 2022 13:31:07 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id t6-20020a056830224600b00605491a5cd7so13831238otd.13;
-        Tue, 26 Apr 2022 13:31:07 -0700 (PDT)
+        with ESMTP id S1350728AbiDZUkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:40:17 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932CE31208;
+        Tue, 26 Apr 2022 13:37:09 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id w27-20020a056830061b00b00604cde931a0so13879181oti.2;
+        Tue, 26 Apr 2022 13:37:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wXjPKtNZTtKNBuOy/a9KKwId4T2O7MJMpPr2sIf2PbY=;
-        b=U12n1SP9zIMrH0YG+APnlncHzWREQSEJH2W4zoFKtreAW5wpxisVc21qQTBX/cMS06
-         iT4MXRr/Rw14oZ7dJnqdWvh64mqVnmhWcmeMgz3Z/LpKz1kKuUZ1Sd1tkiugBndoeCDL
-         lg7XoHeZPigLciWAvpPL6uuRNIODb04/9ExnHVnVhnaRA4MoeVWYD0GIdLfqzTdYuma7
-         HuaqHcUb7AihjH1TSy7d45cQzmZGIpL/5/EOW16v9wxtfadnrVvgqtvXn0JLMX+FCVXo
-         TDwFP/dSRxOtSttxjGLw9oovnvEe44E9Z2NdZrHMHXXw781RtXV0MefDtPN5tACVa7NN
-         6S7w==
-X-Gm-Message-State: AOAM530E6VKI/xBcma7dcJhD4zGe9bpv3sOCFz3PVBIJ4XtLmzej+7Ie
-        OkpEutzxaw6yfkz3a+bfXA==
-X-Google-Smtp-Source: ABdhPJwYoKqpVwgCbbe2QW9WNBJvChNr9GEFiXHGCjmCGqjpyaWklBOqdUhhYuhF5A2I8esCGPeyHQ==
-X-Received: by 2002:a05:6830:8d:b0:605:4b4f:cdf7 with SMTP id a13-20020a056830008d00b006054b4fcdf7mr9324809oto.45.1651005066307;
-        Tue, 26 Apr 2022 13:31:06 -0700 (PDT)
+        bh=8Ua/QldL7pC5LZXWxffOFe8RnQhvpw8c3zNSB5ycwY8=;
+        b=laD/A1Y9qM3A0QFtpeYgmWXfcJPEnX/53nM4pGL/+soqTQvjubrjkK3cs/Y8ZcrCx5
+         O6iWzLWcLdynMR0qPHnlvPGEXRuFMSBsZFhG/OJ6pO4L1iAR341bR+2dwzZJkZqPRWWF
+         eggx+Q5XsbXgcroz7t6civ9aG+sWYIRVd72lPalhYuOCK/GowhpdUQ9/ug0qwXSVx5js
+         f+5/jdeZzQhJhmYDaBPtQFV8iYus8m4YcPW6Vz2vYlnQOXVtZ2FsBd5qbAJSMyN0vEug
+         pqvKb2eEtY54DtFFCurGd8TRBKE+etRsI4uKfBjWtcsf37qPL0H7SHPrMYXrYTSo9nye
+         FyBw==
+X-Gm-Message-State: AOAM5317+w6BNNfzQp3uKRrlHig12xfMtyh47HVqGFp5/4tBnmlfSSDF
+        Q5MrrHmz1MeRz+yBrGa//w==
+X-Google-Smtp-Source: ABdhPJzV94dg7hlsrdCIRh48Q/JHhKt1BGntT/HsErX1a5fw7wvJMn0OMxu04NvUD/iPdux9O8sz9w==
+X-Received: by 2002:a9d:4e8d:0:b0:605:4f04:4863 with SMTP id v13-20020a9d4e8d000000b006054f044863mr9009729otk.204.1651005428916;
+        Tue, 26 Apr 2022 13:37:08 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x21-20020a4a6215000000b0033993dc1d65sm6006125ooc.8.2022.04.26.13.31.05
+        by smtp.gmail.com with ESMTPSA id q4-20020a4a3004000000b0035e974ec923sm282663oof.2.2022.04.26.13.37.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 13:31:05 -0700 (PDT)
-Received: (nullmailer pid 2484879 invoked by uid 1000);
-        Tue, 26 Apr 2022 20:31:05 -0000
-Date:   Tue, 26 Apr 2022 15:31:05 -0500
+        Tue, 26 Apr 2022 13:37:08 -0700 (PDT)
+Received: (nullmailer pid 2493275 invoked by uid 1000);
+        Tue, 26 Apr 2022 20:37:07 -0000
+Date:   Tue, 26 Apr 2022 15:37:07 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Rokosov Dmitry Dmitrievich <DDRokosov@sberdevices.ru>
-Cc:     "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 3/3] dt-bindings: iio: accel: add dt-binding schema
- for msa311 accel driver
-Message-ID: <YmhWic3rG8ERtCYY@robh.at.kernel.org>
-References: <20220419154555.24191-1-ddrokosov@sberdevices.ru>
- <20220419154555.24191-4-ddrokosov@sberdevices.ru>
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        allen-kh.cheng@mediatek.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH] dt-bindings: media: mtk-vcodec: Adds encoder power
+ domain property
+Message-ID: <YmhX89nQjkwt5qb3@robh.at.kernel.org>
+References: <20220420073440.31649-1-irui.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220419154555.24191-4-ddrokosov@sberdevices.ru>
+In-Reply-To: <20220420073440.31649-1-irui.wang@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,110 +71,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 19, 2022 at 03:45:58PM +0000, Rokosov Dmitry Dmitrievich wrote:
-> Introduce devicetree binding json-schema for MSA311 tri-axial,
-> low-g accelerometer driver.
+On Wed, Apr 20, 2022 at 03:34:39PM +0800, Irui Wang wrote:
+> Adds encoder power domain property
+
+Why? You can't add new, required properties as that breaks compatibility 
+with existing DTs.
+
 > 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
 > ---
->  .../bindings/iio/accel/memsensing,msa311.yaml      | 64 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
+>  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
-> new file mode 100644
-> index 00000000..3e4660f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/iio/accel/memsensing,msa311.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MEMSensing digital 3-Axis accelerometer
-> +
-> +maintainers:
-> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> +
-> +description: |
-> +  MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
-> +  sensitivity consumer applications. It has dynamical user selectable full
-> +  scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measurements
-> +  with output data rates from 1Hz to 1000Hz.
-> +  Datasheet can be found at following URL
-> +  https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: memsensing,msa311
-> +
-
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-
-These apply to 'reg' in a child node, but you don't have child nodes so 
-drop them.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C registers address
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: optional I2C int pin can be freely mapped to specific func
-> +
-> +  interrupt-names:
-> +    const: irq
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c0 {
-
-i2c {
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        msa311: msa311@62 {
-
-accelerometer@62 {
-
-> +            compatible = "memsensing,msa311";
-> +            reg = <0x62>;
-> +            interrupt-parent = <&gpio_intc>;
-> +            interrupts = <29 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "irq";
-> +            status = "okay";
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c75be17..4227914 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12482,6 +12482,7 @@ MEMSENSING MICROSYSTEMS MSA311 ACCELEROMETER DRIVER
->  M:	Dmitry Rokosov <ddrokosov@sberdevices.ru>
->  L:	linux-iio@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
->  F:	drivers/iio/accel/msa311.c
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> index deb5b657a2d5..3c069c965992 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> @@ -41,6 +41,9 @@ properties:
 >  
->  MEN A21 WATCHDOG DRIVER
+>    assigned-clock-parents: true
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    iommus:
+>      minItems: 1
+>      maxItems: 32
+> @@ -72,6 +75,7 @@ required:
+>    - iommus
+>    - assigned-clocks
+>    - assigned-clock-parents
+> +  - power-domains
+>  
+>  allOf:
+>    - if:
+> @@ -132,6 +136,7 @@ examples:
+>      #include <dt-bindings/clock/mt8173-clk.h>
+>      #include <dt-bindings/memory/mt8173-larb-port.h>
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/mt8173-power.h>
+>  
+>      vcodec_enc_avc: vcodec@18002000 {
+>        compatible = "mediatek,mt8173-vcodec-enc";
+> @@ -153,6 +158,7 @@ examples:
+>        clock-names = "venc_sel";
+>        assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
+>        assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
+> +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC>;
+>      };
+>  
+>      vcodec_enc_vp8: vcodec@19002000 {
+> @@ -173,4 +179,5 @@ examples:
+>        clock-names = "venc_lt_sel";
+>        assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
+>        assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL_370P5>;
+> +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC_LT>;
+>      };
 > -- 
-> 2.9.5
+> 2.18.0
+> 
 > 
