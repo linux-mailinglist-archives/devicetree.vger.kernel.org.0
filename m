@@ -2,182 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 726BD5101FD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 17:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6433B510216
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 17:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346484AbiDZPjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 11:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51758 "EHLO
+        id S1348579AbiDZPpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 11:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352403AbiDZPjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 11:39:23 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EECFD25;
-        Tue, 26 Apr 2022 08:36:15 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23QFa2fQ095166;
-        Tue, 26 Apr 2022 10:36:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1650987362;
-        bh=pE01LlepLn5P9pAdXaezuYxpflC2yPhfl2ruFXlenkk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ay/7sTLlOBJXMWgPOrL+QhhBFsYo5zenazlhExMA2PYV+SqgfzvwPvtukAz4A8+Z7
-         Yi8CtKWpTSxCwNIm5YH059uzjP+Vy+677ulV7rsjGEvWRQ6GeWvzuy7xnTDx5yeowS
-         sneZSbO9JN8Bf/0Xf5ItqcKOhzAIIi3vXCNKp2D8=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23QFa229130816
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 26 Apr 2022 10:36:02 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 26
- Apr 2022 10:36:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 26 Apr 2022 10:36:01 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23QFa0qR016838;
-        Tue, 26 Apr 2022 10:36:01 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@canonical.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>,
-        <r-ravikumar@ti.com>
-Subject: [PATCH v4 2/2] arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
-Date:   Tue, 26 Apr 2022 21:05:53 +0530
-Message-ID: <20220426153553.18474-3-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220426153553.18474-1-r-ravikumar@ti.com>
-References: <20220426153553.18474-1-r-ravikumar@ti.com>
+        with ESMTP id S1348561AbiDZPpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 11:45:43 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E25F74850;
+        Tue, 26 Apr 2022 08:42:36 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id p6so3435363pjm.1;
+        Tue, 26 Apr 2022 08:42:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mkAiWyPhdlD7e1Z/gpT9jMCqV3vsrhfRYPhRMfnvJO0=;
+        b=TaHATRTJwJHqsCqS2xEBlv6yBrYs0VJr0ClZJaLQBGwXZBJagebc+1vGjE+iPkNmEu
+         AfQg/LzWmCdvqI1dDWaDBGJYfmGPOQ2HJWGzcp2EneKB5omeAPGrlvMsiTly0xwPOl9+
+         ZtJ4gZm1iZQpFGDYYtTUjn6XoMfZjg0f3ILxFQ0HkXlL4vsGaHlJrZiGol2Kf9z7+YK4
+         KFQlKVFZp73718XauWKHrGCVSAsh33cMygLQ7ka4LZKHM5nmcsf86L23B/nl/H/t6SIc
+         xsvqrdf07KEtHyfU5EoRjvP9XkDcJZgW0zl/gX1h4DBYTpTYQCqRpo9EaRX9QeJdLNPN
+         JgZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=mkAiWyPhdlD7e1Z/gpT9jMCqV3vsrhfRYPhRMfnvJO0=;
+        b=MGJAAgDEHQ9tmWgiqJqq2/sURs/G3xUdNpkNwsmaE1TG7Qqi/9OMS+yqOqvnVPcNf4
+         nbFFbVZ/7KZJAKD87Rah4dQez5CPDcEPFaJnXO1vmq/E2RsRmNdQFRQ0+UpGw7NNgMXH
+         8yYfOeq9nSpUEThtrKXueZF9sp5inH0EXQdjj5i6cDFv2sOBAndMt3sKo4v8yuGH7FOl
+         AkySP20JlhxG/uKa+eAhc2dhJxrCHOXji61EU934xIOvRGiIE1QzWql6/4nrbkLZvWXi
+         3MPa2LaranPlqoUc1N/sl9L2jRkVcT7DecYrgDOCOudjDFv9piidKtRAX0sW/eH4uxzG
+         H9VA==
+X-Gm-Message-State: AOAM533AQM7kIl172zjDpYUikN4a0ZmXOiXOypfQq57kEyzDc8LlMfMQ
+        9jpGI0WqVZJMKdRagPdTFgE=
+X-Google-Smtp-Source: ABdhPJyo24E6WK3N7Y00h2mZM57XuguDl+o2a2UTKmV8d5ty3eJrQIQ9E7G31XihG1HfqrPrfocGrw==
+X-Received: by 2002:a17:902:d545:b0:15d:4a7:d3c1 with SMTP id z5-20020a170902d54500b0015d04a7d3c1mr13148473plf.52.1650987755650;
+        Tue, 26 Apr 2022 08:42:35 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id j9-20020aa78009000000b004fde2dd78b0sm15040858pfi.109.2022.04.26.08.42.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Apr 2022 08:42:35 -0700 (PDT)
+Message-ID: <b2f06a62-6ad7-ea92-7035-2a29f0e6affd@gmail.com>
+Date:   Tue, 26 Apr 2022 08:42:32 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC v1 1/3] net: dsa: mt753x: make reset optional
+Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20220426134924.30372-1-linux@fw-web.de>
+ <20220426134924.30372-2-linux@fw-web.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220426134924.30372-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tomi Valkeinen <tomi.valkeinen@ti.com>
+On 4/26/22 06:49, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Currently a reset line is required, but on BPI-R2-Pro board
+> this reset is shared with the gmac and prevents the switch to
+> be initialized because mdio is not ready fast enough after
+> the reset.
+> 
+> So make the reset optional to allow shared reset lines.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Add the endpoint nodes to describe connection from
-DSS => MHDP => DisplayPort connector.
-Also add the required pinmux nodes for hotplug.
-
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- .../dts/ti/k3-j721e-common-proc-board.dts     | 61 +++++++++++++++++--
- 1 file changed, 57 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 2f119e94e783..4b9e3f671781 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -148,6 +148,28 @@
- 		pinctrl-0 = <&main_mcan2_gpio_pins_default>;
- 		standby-gpios = <&main_gpio0 127 GPIO_ACTIVE_HIGH>;
- 	};
-+
-+	dp_pwr_3v3: regulator-dp-prw {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dp-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>; /* P0 - DP0_PWR_SW_EN */
-+		enable-active-high;
-+	};
-+
-+	dp0: connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+		dp-pwr-supply = <&dp_pwr_3v3>;
-+
-+		port {
-+			dp_connector_in: endpoint {
-+				remote-endpoint = <&dp0_out>;
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -190,6 +212,12 @@
- 		>;
- 	};
- 
-+	dp0_pins_default: dp0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
-+		>;
-+	};
-+
- 	main_i2c1_exp4_pins_default: main-i2c1-exp4-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x230, PIN_INPUT, 7) /* (U2) ECAP0_IN_APWM_OUT.GPIO1_11 */
-@@ -658,6 +686,33 @@
- 				 <&k3_clks 152 18>;	/* PLL23_HSDIV0 */
- };
- 
-+&dss_ports {
-+	port {
-+		dpi0_out: endpoint {
-+			remote-endpoint = <&dp0_in>;
-+		};
-+	};
-+};
-+
-+&dp0_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0 {
-+		reg = <0>;
-+		dp0_in: endpoint {
-+			remote-endpoint = <&dpi0_out>;
-+		};
-+	};
-+
-+	port@4 {
-+		reg = <4>;
-+		dp0_out: endpoint {
-+			remote-endpoint = <&dp_connector_in>;
-+		};
-+	};
-+};
-+
- &mcasp0 {
- 	status = "disabled";
- };
-@@ -807,6 +862,8 @@
- &mhdp {
- 	phys = <&torrent_phy_dp>;
- 	phy-names = "dpphy";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0_pins_default>;
- };
- 
- &pcie0_rc {
-@@ -859,10 +916,6 @@
- 	status = "disabled";
- };
- 
--&dss {
--	status = "disabled";
--};
--
- &icssg0_mdio {
- 	status = "disabled";
- };
+This looks fine however 
+Documentation/devicetree/bindings/net/dsa/mt7530.txt still has some 
+verbiage that suggests that the 'reset' property is mandatory, so you 
+might need to update the binding (and as a separate patch we should make 
+it YAML).
 -- 
-2.17.1
-
+Florian
