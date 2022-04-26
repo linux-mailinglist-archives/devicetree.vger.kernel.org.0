@@ -2,190 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A29F50F150
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB99750F14F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343497AbiDZGp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 02:45:59 -0400
+        id S245657AbiDZGqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 02:46:00 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245658AbiDZGp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:45:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276B213E1A;
-        Mon, 25 Apr 2022 23:42:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C630DB81C58;
-        Tue, 26 Apr 2022 06:42:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60CB6C385A0;
-        Tue, 26 Apr 2022 06:42:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650955360;
-        bh=Qj1iBgDmQNO80MoLSfQRprtZnwXJZ3zOv82xv0l0JOk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Nyia3qPWjSPOI+GpHMP1BShry0rDvyRrd+RsE8vQ4OOFPjybgraCtD/fqtcN6yOCV
-         iqV9edZMMR5kNTVGkliDraRWGpYShEGd2G/s1oG6z+Oo3rirv+UjwI2TSwUeVc1xeX
-         5QIWFlKOad1wTwqb9Dp6X5yvz3LX/Vuv94P0Sb3VwIk/SHovMVa/qRGG3GQlRRwDqO
-         7i2xC5b4+jWfRwHo3hCC4wPeyxaDRVOp70wRXvbc8kwFeLb0USLzAfXknK03R7WTS0
-         TtkaGeKOi1FTVQD8AfonZD17tzZVqAtd/hrPDoBgvERjJI5CoaxrgOnd21BBucm6kw
-         0GGKivNxOCnCA==
-Message-ID: <89f7d69a-4fc8-33cc-d9ca-5c50dc5381ab@kernel.org>
-Date:   Tue, 26 Apr 2022 09:42:31 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: usb: tps6598x: Make the interrupts
- property optional
-Content-Language: en-US
-To:     Aswath Govindraju <a-govindraju@ti.com>,
-        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S245726AbiDZGp7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:45:59 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5F31BE9C
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:42:46 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id m20so13281443ejj.10
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:42:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vEOSnXjfcH/l5Es8VtB/ak1K3hreA1C3eDBJ8dHARyo=;
+        b=bASAClY6Ytda/4xUhup8MUSUMsRpRAR50cqsJ0XAhppisIw/yr3Xf8wWEbZ5+xFHAI
+         TOHWNUaLKHbhBnYaZ2Q9x9tGRWB0zFVJFafT2ODZVUTXhAMONRvUCRUf2QdJ7NOT3Xdi
+         GtfHjgDwHJKBPP6tvv+uw318ezvkJt13nlj2HrLqud15LIUkl+IzyVCZ7DJ0QlV2CrcQ
+         G9fFDlVrRM3nHlVe/lfOa6Oq+iQuNKfkFOs6uC/DXvxAtb6pVhPTws9BjtCfeQW/AXxm
+         /t2ybFAayhGpTecMphERvHj25Qx0POiUlJLQe2OOQUCoeXGzWX9AFfPMTBWMvmKmPCaX
+         u4Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vEOSnXjfcH/l5Es8VtB/ak1K3hreA1C3eDBJ8dHARyo=;
+        b=KGk8uTPLtpDUvYRbTEl+/8HXnqca565tJ7abPyi5mXuv4oteJaZuLNz3Rha8j0zyUH
+         AUm2Zn3BNqBPf/2z5hb6ENSMCQfrCWNG1zFkiU2Cl0g5f14w0xd8ocFcYJgpEt67Bmw2
+         aZlsp1b4pDZAXl077/BNQf997zyu6dBN13U5W98IBMzLkJcYxiwvMsX31+LT8mNDMlvK
+         LlGjTRJ/06kpxdeCbojnSYT+9V832UsPJ2MDqJtYfQwL/tRClevLM1Jx4tYA62ftN/gB
+         Ujj8b4dChbXZnVJuSYLGjxX1UMPV58X5NVzWL+Pcfa9ZhLTbxNXl+3MulokcTgri+4Bd
+         B2Hg==
+X-Gm-Message-State: AOAM531taWH9Fv+nhTnXhuzXcRfV9N9/roTSptwWEmo+H2vqBbHWo4sY
+        R5GOBVbJCmSIJWTNTEkGi4d4ww==
+X-Google-Smtp-Source: ABdhPJyQuE+1pRBGE66dl8vawhJjRk0oRMEc2gZhd7SNDASBfF96iGQsJRh6XDctSdl8wKwtt+jiWw==
+X-Received: by 2002:a17:906:1315:b0:6ef:5903:c5d1 with SMTP id w21-20020a170906131500b006ef5903c5d1mr19635606ejb.537.1650955365291;
+        Mon, 25 Apr 2022 23:42:45 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id fx3-20020a170906b74300b006daecedee44sm4386885ejb.220.2022.04.25.23.42.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Apr 2022 23:42:44 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>,
-        Martin Kepplinger <martink@posteo.de>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220414083120.22535-1-a-govindraju@ti.com>
- <20220414083120.22535-2-a-govindraju@ti.com>
- <be8ab691-98f1-5fb9-fec8-7213a2288d07@kernel.org>
- <56c72151-af5f-366b-b17f-24b9fb6264da@ti.com>
- <ae54dbb1-2b02-cba2-5de2-cf3d9a4e35f5@kernel.org>
- <c1de4293-a058-5e25-9be2-b61ac39f43a3@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <c1de4293-a058-5e25-9be2-b61ac39f43a3@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Taniya Das <tdas@codeaurora.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible and split apq8084
+Date:   Tue, 26 Apr 2022 08:42:41 +0200
+Message-Id: <20220426064241.6379-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The qcom,gcc-apq8064.yaml was meant to describe only APQ8064 and APQ8084
+should have slightly different bindings (without Qualcomm thermal sensor
+device).  Add new bindings for APQ8084.
 
-On 22/04/2022 08:07, Aswath Govindraju wrote:
-> Hi Roger,
-> 
-> On 21/04/22 00:46, Roger Quadros wrote:
->> Hi,
->>
->> On 18/04/2022 08:19, Aswath Govindraju wrote:
->>> Hi Roger,
->>>
->>> On 14/04/22 23:40, Roger Quadros wrote:
->>>> Hi,
->>>>
->>>> On 14/04/2022 11:31, Aswath Govindraju wrote:
->>>>> Support for polling has been added in the driver, which will be used by
->>>>> default if interrupts property is not populated. Therefore, remove
->>>>> interrupts and interrupt-names from the required properties and add a note
->>>>> under interrupts property describing the above support in driver.
->>>>>
->>>>> Suggested-by: Roger Quadros <rogerq@kernel.org>
->>>>
->>>> I did not suggest to make interrupts optional by default.
->>>>
->>>> What I suggested was that if a DT property exists to explicitly
->>>> indicate polling mode then interrupts are not required.
->>>>
->>>
->>> ohh okay, got it. However, may I know if adding a dt property to
->>> indicate polling for aiding the driver, is the correct approach to model it?
->>>
->>> In terms of modelling hardware, as interrupts are not connected we are
->>> not populating the interrupts property. Shouldn't that be all. If we are
->>> adding a property explicitly to indicate polling that can be used by
->>> driver, wouldn't that be a software aid being added in the device tree?
->>
->> The hardware (tps6598x chip) has an interrupt pin and is expected to be used
->> in normal case.
->>
->> Some buggy boards might have forgot to connect it. We are adding polling mode only for these buggy boards. ;)
->> So polling mode is an exception.
->>
-> 
-> Yes as you mentioned the interrupt line is expected to connected but
-> there could be cases where there are not enough pins on the SoC and
-> polling is used intentionally. In these cases this would be a feature
-> rather than a bug.
+Fixes: a469bf89a009 ("dt-bindings: clock: simplify qcom,gcc-apq8064 Documentation")
+Reported-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I do not agree that this is a feature but a board defect. You can always use
-a GPIO expander to add more GPIOs than the SoC can provide.
+---
 
-Type-C events are asynchronous and polling is a waste of CPU time.
-What will you do if system suspends and you need to wake up on Type-C
-status change?
-So polling mode is just an exception for the defective boards or could
-be used for debugging.
+Changes since v1:
+1. Correct Taniya's email.
+2. Correct chipset name in description.
+3. Extend commit msg.
+---
+ .../bindings/clock/qcom,gcc-apq8064.yaml      |  4 +-
+ ...gcc-apq8064.yaml => qcom,gcc-apq8084.yaml} | 57 +++++--------------
+ 2 files changed, 16 insertions(+), 45 deletions(-)
+ copy Documentation/devicetree/bindings/clock/{qcom,gcc-apq8064.yaml => qcom,gcc-apq8084.yaml} (31%)
 
-> 
-> Also, I feel like not adding interrupts property in the dt nodes will
-> indicate polling. My question is why are we adding an extra property
-> (which is being used only as an aid in the driver) when this feature can
-> be modeled by making interrupts property optional.
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+index 97936411b6b4..9fafcb080069 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+@@ -20,12 +20,10 @@ description: |
+   See also:
+   - dt-bindings/clock/qcom,gcc-msm8960.h
+   - dt-bindings/reset/qcom,gcc-msm8960.h
+-  - dt-bindings/clock/qcom,gcc-apq8084.h
+-  - dt-bindings/reset/qcom,gcc-apq8084.h
+ 
+ properties:
+   compatible:
+-    const: qcom,gcc-apq8084
++    const: qcom,gcc-apq8064
+ 
+   nvmem-cells:
+     minItems: 1
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+similarity index 31%
+copy from Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+copy to Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+index 97936411b6b4..397fb918e032 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+@@ -1,69 +1,42 @@
+-# SPDX-License-Identifier: GPL-2.0-only
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/clock/qcom,gcc-apq8064.yaml#
++$id: http://devicetree.org/schemas/clock/qcom,gcc-apq8084.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Qualcomm Global Clock & Reset Controller Binding for APQ8064
+-
+-allOf:
+-  - $ref: qcom,gcc.yaml#
++title: Qualcomm Global Clock & Reset Controller Binding for APQ8084
+ 
+ maintainers:
+   - Stephen Boyd <sboyd@kernel.org>
+-  - Taniya Das <tdas@codeaurora.org>
++  - Taniya Das <quic_tdas@quicinc.com>
+ 
+ description: |
+   Qualcomm global clock control module which supports the clocks, resets and
+-  power domains on APQ8064.
++  power domains on APQ8084.
+ 
+-  See also:
+-  - dt-bindings/clock/qcom,gcc-msm8960.h
+-  - dt-bindings/reset/qcom,gcc-msm8960.h
++  See also::
+   - dt-bindings/clock/qcom,gcc-apq8084.h
+   - dt-bindings/reset/qcom,gcc-apq8084.h
+ 
++allOf:
++  - $ref: qcom,gcc.yaml#
++
+ properties:
+   compatible:
+     const: qcom,gcc-apq8084
+ 
+-  nvmem-cells:
+-    minItems: 1
+-    maxItems: 2
+-    description:
+-      Qualcomm TSENS (thermal sensor device) on some devices can
+-      be part of GCC and hence the TSENS properties can also be part
+-      of the GCC/clock-controller node.
+-      For more details on the TSENS properties please refer
+-      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+-
+-  nvmem-cell-names:
+-    minItems: 1
+-    items:
+-      - const: calib
+-      - const: calib_backup
+-
+-  '#thermal-sensor-cells':
+-    const: 1
+-
+ required:
+   - compatible
+-  - nvmem-cells
+-  - nvmem-cell-names
+-  - '#thermal-sensor-cells'
+ 
+ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-    clock-controller@900000 {
+-      compatible = "qcom,gcc-apq8064";
+-      reg = <0x00900000 0x4000>;
+-      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
+-      nvmem-cell-names = "calib", "calib_backup";
+-      #clock-cells = <1>;
+-      #reset-cells = <1>;
+-      #power-domain-cells = <1>;
+-      #thermal-sensor-cells = <1>;
++    clock-controller@fc400000 {
++        compatible = "qcom,gcc-apq8084";
++        reg = <0xfc400000 0x4000>;
++        #clock-cells = <1>;
++        #reset-cells = <1>;
++        #power-domain-cells = <1>;
+     };
+ ...
+-- 
+2.32.0
 
-Because interrupt property was not originally optional for this driver.
-
-I would like to hear what Heikki has to say about this.
-
-Any thoughts Heikki?
-
-cheers,
--roger
-
-> 
-> Thanks,
-> Aswath
-> 
->> cheers,
->> -roger
->>
->>>
->>> Thanks,
->>> Aswath
->>>
->>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++--
->>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
->>>>> index a4c53b1f1af3..1c4b8c6233e5 100644
->>>>> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
->>>>> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
->>>>> @@ -25,6 +25,8 @@ properties:
->>>>>  
->>>>>    interrupts:
->>>>>      maxItems: 1
->>>>> +    description:
->>>>> +      If interrupts are not populated then by default polling will be used.
->>>>>  
->>>>>    interrupt-names:
->>>>>      items:
->>>>> @@ -33,8 +35,6 @@ properties:
->>>>>  required:
->>>>>    - compatible
->>>>>    - reg
->>>>> -  - interrupts
->>>>> -  - interrupt-names
->>>>>  
->>>>>  additionalProperties: true
->>>>>  
->>>>
->>>> cheers,
->>>> -roger
-> 
-> 
