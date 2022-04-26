@@ -2,98 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5A155107BB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73C15107CB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241040AbiDZS7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:59:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
+        id S1345663AbiDZTCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 15:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239545AbiDZS7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:59:31 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DB3180EFD;
-        Tue, 26 Apr 2022 11:56:22 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id q129so21729732oif.4;
-        Tue, 26 Apr 2022 11:56:22 -0700 (PDT)
+        with ESMTP id S231493AbiDZTCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 15:02:42 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E701D198C74;
+        Tue, 26 Apr 2022 11:59:33 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id v12-20020a9d7d0c000000b006054b51c3d4so13685273otn.8;
+        Tue, 26 Apr 2022 11:59:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9ei3BSZiog9LkRAtvF1SQZsTuwUP4ipk5oz/aGgGqOw=;
-        b=GRpz3DMHqdsZYoYe5dIWt82Kea3YVk1mjzfQ1QK1NPH5mJcY5164sVlUU+EN+O3iug
-         9d6KvM9l8Ieq1ANIAQYJVpncXvNreDxEAYMQzyR7h6NClVtZbgbiMOYO6IqOOOco7nmz
-         UkWonUOMdi3EdqiS7TwfIvDUx7vZx70KtbCypXBvCLEw8EsJwY02g9uBUONszbNQcstj
-         9hNB8P9bQswudKaJMiKQBTA9nv0XxUNrhQdhvI9wQOfbgrTHzYUv3YRhGesauaSRvdjW
-         9aiVjfX1r/iqybsu6TXc2IlTuKjkX1elJRmZSeb6YaJp+fVUt76Q7+nvkd3+2JXEpLeA
-         JcKg==
-X-Gm-Message-State: AOAM532ter332QGK6f9TKZLAAt1YvocVS5ffrLgkfkoXqBB+eDF5A0qP
-        9BYw6mwab/3daJfCAlL5Sg==
-X-Google-Smtp-Source: ABdhPJy7H8Hc56wwVMCMu1mrBG+OoGpuJtDsOfJzHeQKsSvt4Lr9D3OcWmwGuPvEU3gK+C7RCL6XJg==
-X-Received: by 2002:a05:6808:f88:b0:323:c50f:8442 with SMTP id o8-20020a0568080f8800b00323c50f8442mr10711648oiw.160.1650999381417;
-        Tue, 26 Apr 2022 11:56:21 -0700 (PDT)
+        bh=KBAsRSlI5kfF827D6uZ20E48AKeiISaoDfHd2SYry2c=;
+        b=34hw1vCs/6W+9fV15tQq9cheJt1dZN/NVzxYjXwiFpyLiWCI1OcOaAaJQ/2zJxlM9O
+         8roSLKAeqOJ3hu4JE1+pkEhKdHOJb88QKfqJk3+km281VhtvVVnt+smCWe+T+E83vfLB
+         Q4y6QSRwQfyPjrX3jDbxNflgOVmq3Lvb0Hv9S/fFxSFFi+0/uukonOt4M8VIja+e8caU
+         7l08aIOXjTSjiFBPVFhxdy0FGgeApIDVjCY6RY4p82IS/bJ+E8X+/OOnwYHwrsGwt7zh
+         fHuplPGEhIATWXjWt8s3szyundZVS36nu37xscDw7mmKP/SOgAxQfqKPpjcNTSdF98jC
+         QE/A==
+X-Gm-Message-State: AOAM5310CRqwW4jJ1sH7uN8Nbm1Z+MJYocovK3pUy7mKfFgM0ocQuhX3
+        WKKGZ6Xr/duIKKqdxLSkhQ==
+X-Google-Smtp-Source: ABdhPJwTxcgP/rmXRz69W2nYrZhXJ4foSfebPmXAvMZ8QYnHXAV1DWgVRH8w6+rLGzU7kQWD+4exPQ==
+X-Received: by 2002:a05:6830:10d:b0:605:7db9:85f6 with SMTP id i13-20020a056830010d00b006057db985f6mr9017248otp.145.1650999573228;
+        Tue, 26 Apr 2022 11:59:33 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x16-20020a056808145000b00323371f6935sm5277370oiv.15.2022.04.26.11.56.20
+        by smtp.gmail.com with ESMTPSA id n18-20020a056870349200b000e686d13898sm1116146oah.50.2022.04.26.11.59.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 11:56:20 -0700 (PDT)
-Received: (nullmailer pid 2353993 invoked by uid 1000);
-        Tue, 26 Apr 2022 18:56:20 -0000
-Date:   Tue, 26 Apr 2022 13:56:20 -0500
+        Tue, 26 Apr 2022 11:59:32 -0700 (PDT)
+Received: (nullmailer pid 2358549 invoked by uid 1000);
+        Tue, 26 Apr 2022 18:59:31 -0000
+Date:   Tue, 26 Apr 2022 13:59:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: i2c-gpio: Add property
- i2c-gpio,sda-output-only
-Message-ID: <YmhAVKOCccvt/moH@robh.at.kernel.org>
-References: <bc229e73-52aa-9f5d-c6fd-e84b64a589ba@gmail.com>
- <ff31e0c7-6a59-72c3-0e46-9231ec90ce9a@gmail.com>
+To:     Leo Yan <leo.yan@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] dt-bindings: interconnect: Update property for
+ icc-rpm path tag
+Message-ID: <YmhBE/JDV66qQIBv@robh.at.kernel.org>
+References: <20220416154013.1357444-1-leo.yan@linaro.org>
+ <20220416154013.1357444-2-leo.yan@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ff31e0c7-6a59-72c3-0e46-9231ec90ce9a@gmail.com>
+In-Reply-To: <20220416154013.1357444-2-leo.yan@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 15, 2022 at 03:32:47PM +0200, Heiner Kallweit wrote:
-> This documents new property i2c-gpio,sda-output-only.
-
-The diff tells me that. The commit message needs the same 
-justification(s) as you have in the cover letter or patch 3.
-
+On Sat, Apr 16, 2022 at 11:40:09PM +0800, Leo Yan wrote:
+> To support path tag in icc-rpm driver, the "#interconnect-cells"
+> property is updated as enumerate values: 1 or 2.  Setting to 1 means
+> it is compatible with old DT binding that interconnect path doesn't
+> contain tag, if set to 2 for "#interconnect-cells" property, then the
+> second specifier in the interconnect path indicates the voting is for
+> which buckets.
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Leo Yan <leo.yan@linaro.org>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-gpio.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
-> index fd0402845..25cd1b260 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
-> @@ -33,6 +33,10 @@ properties:
->        open drain.
->      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+> index 89853b482513..7464a50804db 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+> @@ -118,7 +118,7 @@ allOf:
+>                    - qcom,msm8939-snoc-mm
 >  
-> +  i2c-gpio,sda-output-only:
-> +    description: sda as output only
-> +    type: boolean
-> +
->    i2c-gpio,scl-output-only:
->      description: scl as output only
->      type: boolean
+>                '#interconnect-cells':
+> -                const: 1
+> +                enum: [ 1, 2 ]
+
+Describe what each cell value is here.
+
+>  
+>                clock-names:
+>                  items:
 > -- 
-> 2.35.3
-> 
+> 2.25.1
 > 
 > 
