@@ -2,78 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12576510694
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE3251069B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232688AbiDZSUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
+        id S1353708AbiDZSVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 14:21:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242823AbiDZSUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:20:49 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF9810FF1E;
-        Tue, 26 Apr 2022 11:17:41 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id e189so21593068oia.8;
-        Tue, 26 Apr 2022 11:17:41 -0700 (PDT)
+        with ESMTP id S1353681AbiDZSVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:21:14 -0400
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA743112DBE;
+        Tue, 26 Apr 2022 11:18:03 -0700 (PDT)
+Received: by mail-qv1-f51.google.com with SMTP id b17so14697713qvf.12;
+        Tue, 26 Apr 2022 11:18:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CB/Ylur2MfTUL54h1HXtuBMWo5JMW5NkG1ljhszE54U=;
-        b=y0Sbnk4leMTGtNlKHqJCtjXvW9hrJOBIYw/PNadfmK6ybjoqVIUGB6zpL8p7h92HeS
-         704khUiJqtaZhWgtXZkHQxhW/578Ht3Oa2eWKimN0UyY51yKqYctSXMQL8EQkb+w1Ty6
-         ZoZp7ujCSJWXs+iTltehk+6GmV9GCUOFYabe0kzW2Lmo3kg+V8+bNBvE4Yu7RDxHvPF/
-         IY7BlwF/DjmJJbV0NfWhXPFq05IogL9MerUp1PwthB26hJ2A6dduTdELSfQ+j2jymmGf
-         maLVbQB+ZpvIsQu7c6xT5blneLE39tJIVxzFQH+yG9YRcI7P71QZ4XqNt+EN1S4KZ90I
-         kFJg==
-X-Gm-Message-State: AOAM533k3VB+UB1HE3w7LBSqEIJWp3UWbZxVG/BkhoBGpv6cLRqQVagz
-        v67E16xiREHUrGNhEicTG1iHiHmr1g==
-X-Google-Smtp-Source: ABdhPJwHTxECFuE7IdvpuMgxCNsyBH85CjGrMYHLZK+phE73v8SGX403eziLFOPf9ZETwBVzt9B2bA==
-X-Received: by 2002:a05:6808:14ca:b0:324:a58:80f3 with SMTP id f10-20020a05680814ca00b003240a5880f3mr10415044oiw.44.1650997060963;
-        Tue, 26 Apr 2022 11:17:40 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a14-20020a544e0e000000b002f9c00dc626sm5008250oiy.28.2022.04.26.11.17.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 11:17:40 -0700 (PDT)
-Received: (nullmailer pid 2293135 invoked by uid 1000);
-        Tue, 26 Apr 2022 18:17:39 -0000
-Date:   Tue, 26 Apr 2022 13:17:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
-Message-ID: <Ymg3QxBug4tSLee2@robh.at.kernel.org>
-References: <20220426110757.80603-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qrDtpTWYEh6BgxA1tNfogOLR/qVKjTGoMsxRjOgUmis=;
+        b=YUjIg2wPYj4XTTY5cTHqGyexjoHpKmhxqRW5auuum75ajFTIz/y9nsvwiCcFgXHnlS
+         uFQZ7HHMJnXosYWNev3dw5bHF9EQJa6z/aoyiK7egR5hXz4Q1frTmZdAfZl74W/R0t6a
+         Q/wRXUkyMmxN5PbGgDTYhri3C5YkCKKJdHu/xyfe6eh2mN/vS7JVaVXAD/PiK7CrlbbE
+         AIlJ4w5GEmyF3JfmK9HDSW71+P+pOJG13bsswP4UNgX8oxH5Pegge5QLXSv07E9Ysynu
+         XUyzSOjurQD/n/L1B8gXHnjPuRwf31B1j0X4OU9bfaUlvEnZNgD7ANU/uz1JaTy2Qm5o
+         6RXw==
+X-Gm-Message-State: AOAM530MQY3tZjStu9Az40mvC45UXGHrBDA7d9xuRk4q09aDtoxOY9YO
+        HLS7aoNQISN/gE0Z2puq8zTcoqu6BTs2qQ==
+X-Google-Smtp-Source: ABdhPJymR6pNRl+f81UPvSdMCryQeUMgIsylSFl2HkNmYRLAg9IuEZTc1P0JFaFDd/dcRWctKayn2g==
+X-Received: by 2002:a05:6214:27c9:b0:446:5771:397b with SMTP id ge9-20020a05621427c900b004465771397bmr17032066qvb.75.1650997082706;
+        Tue, 26 Apr 2022 11:18:02 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id j128-20020a37a086000000b0069f7c7d6517sm1028240qke.13.2022.04.26.11.18.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Apr 2022 11:18:02 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id s30so6489306ybi.8;
+        Tue, 26 Apr 2022 11:18:02 -0700 (PDT)
+X-Received: by 2002:a25:3492:0:b0:645:6f78:b3b4 with SMTP id
+ b140-20020a253492000000b006456f78b3b4mr23087982yba.546.1650997081694; Tue, 26
+ Apr 2022 11:18:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220426110757.80603-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20220330154024.112270-1-phil.edworthy@renesas.com> <20220330154024.112270-14-phil.edworthy@renesas.com>
+In-Reply-To: <20220330154024.112270-14-phil.edworthy@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 26 Apr 2022 20:17:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV0GRBDk9Kv_ezkczwq4EhZUh5PhaYM0DVOXTzvVrGQYQ@mail.gmail.com>
+Message-ID: <CAMuHMdV0GRBDk9Kv_ezkczwq4EhZUh5PhaYM0DVOXTzvVrGQYQ@mail.gmail.com>
+Subject: Re: [PATCH v2 13/13] arm64: dts: renesas: Add initial device tree for
+ RZ/V2M EVK
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 13:07:57 +0200, Krzysztof Kozlowski wrote:
-> The schema for "qcom,tcs-config" property can be a little bit simpler,
-> without the need of defining each item.  Also move the description of
-> each part of "qcom,tcs-config" tupple to the tupple items description.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/soc/qcom/qcom,rpmh-rsc.yaml      | 33 +++++++------------
->  1 file changed, 11 insertions(+), 22 deletions(-)
-> 
+Hi Phil,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Wed, Mar 30, 2022 at 5:43 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
+> Add basic support for RZ/V2M EVK (based on R9A09G011):
+> - memory
+> - External input clock
+> - UART
+>
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+> @@ -0,0 +1,45 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the RZ/V2M (r9a09g011) Evaluation Kit Board
+> + *
+> + * Copyright (C) 2022 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +#include "r9a09g011.dtsi"
+> +
+> +/ {
+> +       model = "RZ/V2M Evaluation Kit 2.0";
+> +       compatible = "renesas,rzv2mevk2", "renesas,r9a09g011";
+> +
+> +       aliases {
+> +               serial0 = &uart0;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path = "serial0:115200n8";
+> +       };
+> +
+> +       memory@58000000 {
+> +               device_type = "memory";
+> +               /* first 128MB is reserved for secure area. */
+
+I guess there's much more reserved for the ISP firmware (1408 MiB?).
+
+> +               reg = <0x0 0x58000000 0x0 0x28000000>;
+> +       };
+> +
+> +       memory@180000000 {
+> +               device_type = "memory";
+> +               reg = <0x1 0x80000000 0x0 0x80000000>;
+> +       };
+> +};
+> +
+> +&extal_clk {
+> +       clock-frequency = <48000000>;
+> +};
+> +
+> +&sys {
+> +       status = "okay";
+> +};
+
+No need to enable sys if it would be enabled by default.
+
+> +
+> +&uart0 {
+> +       status = "okay";
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
