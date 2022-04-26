@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 376FC50FA02
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BE9C50F9FC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:17:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238782AbiDZKUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:20:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
+        id S1349472AbiDZKUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:20:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348516AbiDZKSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:18:07 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D820135B24
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 02:41:51 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id x17so30910741lfa.10
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 02:41:50 -0700 (PDT)
+        with ESMTP id S1348710AbiDZKSJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:18:09 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73156139981
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 02:41:52 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id v1so17800253ljv.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 02:41:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=QXxEWz9ph7hZzty+IVLu4r/Lu3ntcZ7V7lGeIzMptng=;
-        b=E2/HluKgyiXLdYDOfyHAwmCOrwxVIALwLVbKlkUwybwaWhxG3LMJSEBcvxOnhFoTzO
-         xBQ6LdB0XjW6T5nRyOnD/xI0bqmF91VSknBrvxcthquxT+aWVH31JiuIeawtmenTx19P
-         OTsutZW0a9fGyaNlpl9abIZPaEJUCrwsG9boAJ8Cxp1ZUjIsSDuj6unKFv7+xxIXXf66
-         iUt0jbtAMQDBXkVGCTrLlJ5JVYFns0VnbhbeJYKAyAIdDBr1vLmd8ydiV/VcighzftXz
-         eqvP0MYWjwB4r5q25bxp32ZbxCw9oyAqUOXYaezEE/Ot/hZoOXEfea/btqCErcPMEhNp
-         lecQ==
+        bh=oPLNTV7n0Ijb4QN5+/ZP2G9taYmSFsaYJE9s/1u9hZM=;
+        b=IT9mK2eoGUOIpdf1Q2IMc+OQyH3OeGKt1vz56WDGc8UWW1sxqL2BYBk4sECBkmNuCq
+         6Ws0vp6DOahvYB9133CJYMBwrPPD15dKg/bnu9Y8K0W4DFJN9jvYS+5QEEFfWpjnJUxd
+         rHOvUcGrXyCeMQaPtATLWwBSut3HR/GZNXQ3D1uaJpZaO7f88E1axyvlQHgKtKzoVif7
+         BmAMHIiijOdTbe760WL+8a8bnmBD2x802Kdx3FSsGI9GiZounpJ47jxk0yuc3v0XgVmo
+         RtcFCuSsNYeDE0xvMWSbGngpPJv5oBw7Z35/LjtIkvKEjdBXXnFyZRSjs7pGRbSd3Tt+
+         EVgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=QXxEWz9ph7hZzty+IVLu4r/Lu3ntcZ7V7lGeIzMptng=;
-        b=SkqbwzdrsJjVmsuQNQeDkp5AqgQnbpGDeLJnt2LDaJUEWU4JMqB5gAxuI/cDJlnRBg
-         wYx4w+2/wet7NjZ8SqYXuUXtY1x/WLZ9J7qXfqA/BImJL63srBCuISZqJVsHLRQUS8oO
-         FhCcBVi7oLgC4OeHrXUrj5GQ6CPBdLbYQoBeqvPXDZAilSLtKbMf4tLCX31OqcYbyYq9
-         HsjmXxApFg5jHtkgk5EqB2fQkyz3UINlw+7rNQH2hMOrvGNV90ZIURbPMvcbLyk4nq0w
-         EEVoy28GRZm/xg9yLsw0pa38QPlhu91/nLDmVYYngbG2/r4wrbWPxFjOwXNgWuRLfOUg
-         NSDg==
-X-Gm-Message-State: AOAM533fuE0EOxsZsn2OqHSYCfGu41QZ+AV7NI6YlTdK9t8hdHzT437Z
-        5qJu0Eh9DXnNpL8h1rrSvdEObQ==
-X-Google-Smtp-Source: ABdhPJx560TnpZorQwQp+vKzzMme+Q/ceGs74CziC3q96vrIc2i+zuav7ucgFyWa7lFsEX+rb5AgkQ==
-X-Received: by 2002:a05:6512:2311:b0:472:c48:5b3b with SMTP id o17-20020a056512231100b004720c485b3bmr5250125lfu.159.1650966109269;
-        Tue, 26 Apr 2022 02:41:49 -0700 (PDT)
+        bh=oPLNTV7n0Ijb4QN5+/ZP2G9taYmSFsaYJE9s/1u9hZM=;
+        b=jzcGFWV766SeI5Ar4XK8Ldvilq8AJ5eoPDPpE+afuYk5p9Mu3RY+1juT5z/R5ZAupc
+         svP05/ue+1NzUA2ChfiBjQd2pJq3TxyayPNAeCzWLICW/SPtKcd3sAUBhwMSmcsQWgGf
+         ANPdQjdfEhUqgATsPJAQU+3SB0JfOKoTUuN+MfTIDiHDNiFbqrzKDmHLuDXTriispxd/
+         aYnFKzogiPVhKtiHw2OzFwgbRm6PPbU0WISi8inSv5vcFXeMB0PPJQgDij1FO9yEy5nl
+         RfYiTofbRTSfDPHpnxFSPMFk3MC0fkm5NaY+Q/4uee9TwBOPXcPlKVfA1NHBVrKPTn9B
+         uylw==
+X-Gm-Message-State: AOAM532xd1GxjofqlXNfH7Z6cCjF5/wwRA88lfV4cCmddB5IObTYPQAS
+        CWVQtH9GrjCuWm8BBnBZWcg45g==
+X-Google-Smtp-Source: ABdhPJxgDm/fyRI4MiY9vpmBbhCagFjJGzxR3PP62y4dLAuol0ngRjqo5SRL31C8w7+svvwwsfoQgA==
+X-Received: by 2002:a2e:b8cc:0:b0:24d:c4a0:7ff4 with SMTP id s12-20020a2eb8cc000000b0024dc4a07ff4mr13947382ljp.378.1650966110734;
+        Tue, 26 Apr 2022 02:41:50 -0700 (PDT)
 Received: from eriador.lumag.spb.ru ([188.162.64.30])
-        by smtp.gmail.com with ESMTPSA id y28-20020a19641c000000b00471f6806403sm1330117lfb.16.2022.04.26.02.41.48
+        by smtp.gmail.com with ESMTPSA id y28-20020a19641c000000b00471f6806403sm1330117lfb.16.2022.04.26.02.41.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 02:41:48 -0700 (PDT)
+        Tue, 26 Apr 2022 02:41:50 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         quic_tdas@quicinc.com
-Subject: [PATCH v4 2/3] arm: dts: qcom-apq8064: create tsens device node
-Date:   Tue, 26 Apr 2022 12:41:43 +0300
-Message-Id: <20220426094144.2958416-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 3/3] dt-bindings: clock: qcom,gcc-apq8064: split tsens to the child node
+Date:   Tue, 26 Apr 2022 12:41:44 +0300
+Message-Id: <20220426094144.2958416-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220426094144.2958416-1-dmitry.baryshkov@linaro.org>
 References: <20220426094144.2958416-1-dmitry.baryshkov@linaro.org>
@@ -77,84 +77,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create separate device node for thermal sensors on apq8064 platform.
-Move related properties to the newly created device tree node.
-This harmonizes apq8064 and ipq8064 device trees and allows gcc device
-to be probed earlier by removing dependency on QFPROM nodes.
+Split tsens properties to the child node of the gcc. This follows the
+lead of ipq8064 (which also uses a separate node for tsens) and makes
+device tree closer to other platforms, where tsens is a completely
+separate device.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 25 +++++++++++++++++--------
- 1 file changed, 17 insertions(+), 8 deletions(-)
+ .../bindings/clock/qcom,gcc-apq8064.yaml      | 45 +++++++------------
+ 1 file changed, 17 insertions(+), 28 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index a1c8ae516d21..389191ca5a69 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -105,7 +105,7 @@ cpu0-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+index b867da12761e..f2762599f679 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+@@ -23,47 +23,36 @@ description: |
  
--			thermal-sensors = <&gcc 7>;
-+			thermal-sensors = <&tsens 7>;
- 			coefficients = <1199 0>;
+ properties:
+   compatible:
+-    enum:
+-      - qcom,gcc-apq8064
+-      - qcom,gcc-msm8060
+-
+-  nvmem-cells:
+-    minItems: 1
+-    maxItems: 2
+-    description:
+-      Qualcomm TSENS (thermal sensor device) on some devices can
+-      be part of GCC and hence the TSENS properties can also be part
+-      of the GCC/clock-controller node.
+-      For more details on the TSENS properties please refer
+-      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+-
+-  nvmem-cell-names:
+-    minItems: 1
+     items:
+-      - const: calib
+-      - const: calib_backup
+-
+-  '#thermal-sensor-cells':
+-    const: 1
++      - enum:
++          - qcom,gcc-apq8064
++          - qcom,gcc-msm8060
++      - const: syscon
  
- 			trips {
-@@ -126,7 +126,7 @@ cpu1-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
+ required:
+   - compatible
+-  - nvmem-cells
+-  - nvmem-cell-names
+-  - '#thermal-sensor-cells'
  
--			thermal-sensors = <&gcc 8>;
-+			thermal-sensors = <&tsens 8>;
- 			coefficients = <1132 0>;
+ unevaluatedProperties: false
  
- 			trips {
-@@ -147,7 +147,7 @@ cpu2-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 9>;
-+			thermal-sensors = <&tsens 9>;
- 			coefficients = <1199 0>;
- 
- 			trips {
-@@ -168,7 +168,7 @@ cpu3-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 10>;
-+			thermal-sensors = <&tsens 10>;
- 			coefficients = <1132 0>;
- 
- 			trips {
-@@ -810,14 +810,23 @@ tsens_backup: backup_calib {
- 		};
- 
- 		gcc: clock-controller@900000 {
--			compatible = "qcom,gcc-apq8064";
-+			compatible = "qcom,gcc-apq8064", "syscon";
- 			reg = <0x00900000 0x4000>;
--			nvmem-cells = <&tsens_calib>, <&tsens_backup>;
--			nvmem-cell-names = "calib", "calib_backup";
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
- 			#reset-cells = <1>;
--			#thermal-sensor-cells = <1>;
+ examples:
+   - |
+     clock-controller@900000 {
+-      compatible = "qcom,gcc-apq8064";
++      compatible = "qcom,gcc-apq8064", "syscon";
+       reg = <0x00900000 0x4000>;
+-      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
+-      nvmem-cell-names = "calib", "calib_backup";
+       #clock-cells = <1>;
+       #reset-cells = <1>;
+       #power-domain-cells = <1>;
+-      #thermal-sensor-cells = <1>;
 +
-+			tsens: thermal-sensor {
-+				compatible = "qcom,msm8960-tsens";
++      thermal-sensor {
++        compatible = "qcom,msm8960-tsens";
 +
-+				nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-+				nvmem-cell-names = "calib", "calib_backup";
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "uplow";
++        nvmem-cells = <&tsens_calib>, <&tsens_backup>;
++        nvmem-cell-names = "calib", "calib_backup";
++        interrupts = <0 178 4>;
++        interrupt-names = "uplow";
 +
-+				#qcom,sensors = <11>;
-+				#thermal-sensor-cells = <1>;
-+			};
- 		};
- 
- 		lcc: clock-controller@28000000 {
++        #qcom,sensors = <11>;
++        #thermal-sensor-cells = <1>;
++        };
+     };
+ ...
 -- 
 2.35.1
 
