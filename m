@@ -2,154 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 153B550EF83
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 06:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 362FD50EF86
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 06:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbiDZEH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 00:07:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46030 "EHLO
+        id S229825AbiDZEIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 00:08:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiDZEHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 00:07:55 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam08on2071.outbound.protection.outlook.com [40.107.100.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3387415838;
-        Mon, 25 Apr 2022 21:04:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=goDG1Bdv8P2MzzjgG9ShGxhfH9jmP7wY+fvvc0XqAWpPVWrOYzCj3zZiaPb9vKWdIdzoz4Ybr0h1XmaOjLGciIPlaA8ZpZlnGXpEH5/heeAK1X6yJOBPRamEmobWov0zIXU82Yc8hC1ULKT//PfCpQ2nD9AOUVjKydENmDJiU6byGRtK2KORTjSb5Hkmb/HLnOaozpaS7ffQoEKApM0FzOmJXpEF+H/+19iWf8ov0V3N93giSiIhB2+pFoMwK20+nFebHm1Q2jBFHHZhXYyjC8ey47DUGoqLrjwCtfYPSDjVnXT1RcDxKbHEOqM3lV8BZrlKT1oVUaS0+/QmiHHiLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jO/EBd4yD0DdTvuPUPbejn3xs96QXJgYQoUNf3UdIag=;
- b=NQ3cmehpKFc+Efv0DE/a6HxzP6qNJlLxsBegJ0tTPy9urAsANcBqUsamJBoDrhkZ8wM6MWDfVfQmoexDVFdf3TA4K96EEMXigzcHWD6bfiOq7G92wpMVrQbZDcriQ0iHjKKiVdMHu19uN6clXoVRwZh84O1J7i6uJr6GEdF8bSEvYFnOwfEe320d7yCZS2ptXbyCIs1VL7tCflQoOt/UcudZfslu1rLt1ZIeBK3StdQSbfrQEZ+VcrIo/EzSRcK/Cx+KDwONZtg9uSkuKNAd8JQtDymiIpOcIR2kcdx2mlE4yFGK70BUr+KqJhGiP6VC6j6KpRk6pkIY2uSBHSa2Sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jO/EBd4yD0DdTvuPUPbejn3xs96QXJgYQoUNf3UdIag=;
- b=qjeg6SYQcgDCP7zAq7VI37gIMtooyCg9fl9hBUopkmy08TPP2Zx9o3vF99kVqqufggxROTIvch3TqAcNXEXGlWE5iEgOjWGsBxmXeGTFLSP9Lmwc63GGDvIm/05aUC56qvUs9NFphVKO1FeB0GvxeqwSen0zeMIUyh9z/XeQ8pY=
-Received: from BY5PR02MB6947.namprd02.prod.outlook.com (2603:10b6:a03:23e::12)
- by DM6PR02MB5580.namprd02.prod.outlook.com (2603:10b6:5:31::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.20; Tue, 26 Apr
- 2022 04:04:45 +0000
-Received: from BY5PR02MB6947.namprd02.prod.outlook.com
- ([fe80::c855:d17b:5648:9bda]) by BY5PR02MB6947.namprd02.prod.outlook.com
- ([fe80::c855:d17b:5648:9bda%8]) with mapi id 15.20.5186.021; Tue, 26 Apr 2022
- 04:04:45 +0000
-From:   Bharat Kumar Gogada <bharatku@xilinx.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Helgaas <helgaas@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>
-Subject: RE: [PATCH v1 1/3] dt-bindings: PCI: xilinx-cpm: Remove version
- number in compatible string
-Thread-Topic: [PATCH v1 1/3] dt-bindings: PCI: xilinx-cpm: Remove version
- number in compatible string
-Thread-Index: AQHYT+E9/sV+4/r6Vk6Qc10RFN72kqzvW4qAgABCswCABwmPgIAAp44AgApWUZA=
-Date:   Tue, 26 Apr 2022 04:04:45 +0000
-Message-ID: <BY5PR02MB6947AE68AD2FB3C56E8619DCA5FB9@BY5PR02MB6947.namprd02.prod.outlook.com>
-References: <91ef84f9-4cac-c0aa-c717-7f1b3bc566fb@xilinx.com>
- <20220414164508.GA753109@bhelgaas>
- <CH2PR02MB6952D1D0E6FA89ED25110AFFA5F29@CH2PR02MB6952.namprd02.prod.outlook.com>
- <CAL_JsqJynvpmdF2cBFDQ3og4zgrx9UFtj4NkGUV20f61yc+YtA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJynvpmdF2cBFDQ3og4zgrx9UFtj4NkGUV20f61yc+YtA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=xilinx.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2bde8d62-908c-417e-f3ad-08da2739e609
-x-ms-traffictypediagnostic: DM6PR02MB5580:EE_
-x-microsoft-antispam-prvs: <DM6PR02MB5580EDCA83829427BB0C6717A5FB9@DM6PR02MB5580.namprd02.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: D1A9Vlwp4moAcplYF7BYys+ZyOG+K8+UAL8gXNaXaoOndKBf4DCQAnh3eSLU3YFzo4zranuHUBOXSP8qT/7GFBCWe5EN2WcZqvzVokpOFe8YrbXvu17s5CIZiBOpu2DepMHZpm3mcwhzO4W60PQ7Az3rRRdoky5/vnX35NfxtaU/03OrET/8fAbsLkkk+KgzMlTfOdcB/x0koaLGUm1YvslyXpQyvbw9dGtyvxF6m++zLHEFwq7Iw0WyE2Kgnizjh5J0Do5x3hTf6FpNBUi8eHvSdPmBnWDCp6/t0W7nsqEiwZ67kNeGtLdsaQm9wbBL8I/7fqHCmkl7UCvO9OjBc9AY5acJPung2L0qmqZpSqFz8Ih0DDxMxwbQ/RApasMQ1UqKi/wUQPSTjXOMYNdWLMkhM6V80MxaRZlPZA/o3vVrQT8ybDl0JVUfN7N8VF0ojZN68Vns7goOVT+KKQAxwBZyD6vdsikgwMbU+Q/aw7rA0Iengwn6BfQM4JxRvLW0vd5Ezb6P+Rto1oOYbAgcKt2jXL+ZqLP193AWXGF/CQlvsuVTSyCXr1qAGkJdUFXeNzc02dnJT/aAWjx1VIBQb8sWcwS/envcZDIg3rTjWOqXqfxcd6vBtxBz2j4Z60Id875aB4kyS3k+B9fBea6FXoW+YWnsHiifaFi/fPPwJq+xSjQMt+6QcwNgrYezcXORyQS9YFpzQp9VMgYsw5oeIg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6947.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6506007)(53546011)(52536014)(33656002)(5660300002)(86362001)(9686003)(26005)(7696005)(2906002)(4744005)(122000001)(38100700002)(38070700005)(508600001)(8936002)(55016003)(186003)(83380400001)(66556008)(64756008)(8676002)(66476007)(66446008)(54906003)(316002)(71200400001)(6916009)(4326008)(66946007)(76116006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RXNDVjVueVJ4Y2IwTUxJajFna1h5ak52QzV2Q0l0TkFrNXFzdWpLZ0RJUENn?=
- =?utf-8?B?dkdRQVcwbkVTTmJTS1hucmM1NDlxKzN4VDBIZm9sU1R2VXg4TDhGQVJxdncv?=
- =?utf-8?B?K2V6RkMwb2lLWElCNEs4VldSaHh6enorNnJEZGlTV1pjSkZKWjBrR1A2TGpu?=
- =?utf-8?B?eDZPWnA0NnZBT1ZVS2pnSURlU1pZVzQ4VWxHMXNZZ2xHL0czN2xiOURIa3pI?=
- =?utf-8?B?cVlwOEF5UlNjMk1MNXRMMFRVaExydmFqSC85STZkN1piZVlKRlVyNkNhaTJ6?=
- =?utf-8?B?ZVhueUt2VTFJNHZVQXBwSXpMMlIveWxOaFNjWnhqWGxWMW53d0Y4OHlSbWN5?=
- =?utf-8?B?aU0wYUtyc09sbWRuRWdiSTIyQUtlRU1sRHBTL1U2cmVCc29RNkZsODJqdWta?=
- =?utf-8?B?R3FkUndBN1RnV2pHeHR6SHVJQTA3MmIvVjJ4eGxvWlRxck4zelBaS1ZuaTZl?=
- =?utf-8?B?TlZVci9YeUowL3QvbDN0dDVsbmtiVUV3TGdJYnYrMlhIZU11cDRPMS8vZ2xx?=
- =?utf-8?B?b2R1K1o4ZGJuMmF5am1zV2h3U04vR2kzSlhld2szbmlER2JpbFBjdWU3WXlt?=
- =?utf-8?B?MXhhNlBXak90VTNRNVVFMVlDbU9RbWNVcjFBNmVrcVo4NHVRdjBDZVBsVkVx?=
- =?utf-8?B?YjBTczdLU1NSRG13V2l5RWxSaFN3UXFacVl0Tk5rMU0xM0dJN2dtMURQRmIz?=
- =?utf-8?B?Rk1QMjBXR3p4MHM4SEYxYWtKVzZYU1ZBVk1jWVJoVE1velpxMG4yRTlHMk1x?=
- =?utf-8?B?QXQ5aW5ITmY4citLSG9vSmNzeTJiemJOZjlJMGpXeWhNK3FzODQwSmQwMm9N?=
- =?utf-8?B?V2hFS0hMRGxCY09UN1Foc3ZUeWpacEEzMHRRbkc3WndxMnFhWjJHQlJxRmhv?=
- =?utf-8?B?OXdDWXZLVlV6b0NJVEtReU8yYjBjanJDTjJnUWxDVmhtNElqbXVRTGwzdzZF?=
- =?utf-8?B?MlFwWHR3ZEJNdVpZbUZvMkRRS2tMZXE2aXdaa0MrS1l2ZkpmRTAwUWhObG9H?=
- =?utf-8?B?SlVYaXhhMWNLQkFPUk9RRmZNMGdEOENyVzJQTUJmUVdGUVFxdEF5QzE1Z2tF?=
- =?utf-8?B?bHhXM0tBUVZPUjZ3SnRWZ3BFeUVGZlc5KzllSkh1OXZrSDJvSWJtVlZMYTZ3?=
- =?utf-8?B?YnlLRDN2RWp1UWxCYitERnBpU1BKR09CcGlPT1ZDT3NSaG9iUXdCeE1oVUhP?=
- =?utf-8?B?YTNCWWkyT2tSRUZHTFNKKzNzMlAxcEtNRW1SdVpDL3p1aHlWdG9DMy9jNFZu?=
- =?utf-8?B?WGx3Z3pWM3loa0FyOHNqYWhpNVRVYlprQWFGaklxREJZUUoreDRDRGhHOGFo?=
- =?utf-8?B?SFB2eVN6NXNkYzNRVmRaejNVU1A2KzRiWGlBYmhhb2k1VytwWm4rVUJ6ZHpZ?=
- =?utf-8?B?QnFwWHd4dDhkeW1mTHo0aTN5dDBtaWRBQ0pOaDk5MHRZRWVnY3hkYjl6c3pu?=
- =?utf-8?B?emZPZVlwRndTcWRzUjlrOTAxNThhNzViTmhkUGRQTFhVSmlxR3hyVlNyNWho?=
- =?utf-8?B?TWhkaXpEYnRjL1llcGdqamNJcTduRWlLZ255ZUtJeGFhOUQzVE1tZWJYaWdy?=
- =?utf-8?B?aTYyZnVGM1Zac3lNMmZpd0lsYkJzLyt5NEJYbXZaeVNzUWZOc1ErODZVRTJk?=
- =?utf-8?B?V0ZSbGFsVnZ5d2xTdkNtaVQyd2RvZmgvZU03YzNFSG95WUNJOXRaSHNJQjY2?=
- =?utf-8?B?amQ1VW15MUgxWW1UUE5iaDNWYWF6TUVuZzNwdnlzdndwRnZvYnVYcnA2MW8x?=
- =?utf-8?B?OXNNZ2RBQ1JQYTJ0NnBHd0pWWVBSMTVoNHZPNWFxMlI3Y2JVMFJJNU1Dekpw?=
- =?utf-8?B?NWdPTmxLL2VQTmJuRjZtNXBKd290eXBYRURpZFNXQ0o4UlRISjhiRFhSVGJ1?=
- =?utf-8?B?TnpXUzd3QmFXb1l3UFZGWlBGRnJqUlRDNmhpUnNQcW10R1hreUpnSnAvbkFE?=
- =?utf-8?B?cGgyeTljdjF2UlJJdlpEeVZhQ0xzK1FrMmtiOWx1SGR0eHY4TDRHazBlOFN2?=
- =?utf-8?B?N1hQblhyc1JOdDN3NzhYQU4zYm8yWDJaUTZZTVZGbFVEd1BoNXBCcDQ3ZFBi?=
- =?utf-8?B?QTZ1L05vbnBnM0JlSmJTSEtFQUQ4TCttZVhlbU02WXd6WTFjZjdINU4rYVNy?=
- =?utf-8?B?S21TNFlpVzYzQUxMOUwyTVB1Ym91VjVwUlI3b1kvaTlVYzRuS3kvVjB6cGQy?=
- =?utf-8?B?aXhGY2UvWWU2b0lzZ2cybXdHdVpQWm9sdFVFakdqSlBvL2MyQUpObDBLNGNE?=
- =?utf-8?B?YWlNcDI2VlIyQnplMHYycXAvczIrV09COEVHVk9SQWRmcncvaEF0REkwZk1l?=
- =?utf-8?B?c1dVVGJTbUJUMHZwZVF4RTNUVFZDMENjbVM1YVZhZjFTUlM1NWIxUT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S238503AbiDZEI2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 00:08:28 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647596559
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 21:05:21 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 6209D3200946;
+        Tue, 26 Apr 2022 00:05:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Tue, 26 Apr 2022 00:05:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1650945917; x=
+        1651032317; bh=kk7eWmSE5SMkshDwRFhMdI5C76SkJ5u1WBRC4dxAVTc=; b=W
+        QkGYuJ3S7otdLGJT8Eg3kBOAXCjyReU6FdM+fHUgC8XJWof5snHI+OVRchRKrCGr
+        skaK+G84NAuhYye+Th4ObXmxqlXx5jt+VqRSWOCN7HtagnbulFq+J+Dlz+uffHVv
+        7/X6KfknjORa4KTj4IKZ3T/fSPdb1jg50KAochI09dWfF9aaTMoeaP3ta02X7ikm
+        3UkxRjuX9O9ALcc0XiQ6blHxpjeqGqga5J0ZfHsV5gOWqAMNAHte4wF/f+KuDq/N
+        z4fyx4IR2za7r7+TveUkAv69PwXnhT5lbBJMEvNTs3RKirMgjVlEItI3DAcw8LKl
+        7rAp869tuNdfTrEPsw9/Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1650945917; x=1651032317; bh=kk7eWmSE5SMks
+        hDwRFhMdI5C76SkJ5u1WBRC4dxAVTc=; b=Nq0wqIA0WiF6GErD87V0bUM/kgY4M
+        N5aXguMJF6sAaZ3lBRiDpKr73yPU5RrkpG0tfbDG6KRRbE+vqB4cNyCZF2Z7nKzq
+        EI2xtPjHtsvAK1ky5UgYK87ycCpwy3gnCPNbFYBEHbktgee1m/VoXCY9aZQs04Rd
+        SHMDXvihKH5MFe5pkzM8iI8soEgQNfXhgwv1ORbYgmnWg3Day5qJg54zRXpBURNi
+        1l8IyS1PCRD0VZ2XzJ98bhnlClZf5CUvHctyfyknSD0/httYTzIY4D20aiwUVvMt
+        5gqNEdrBdggzbJ3ThhLTagzr3bF+2L3fO0UMgRUA4cpE2kEt5Z9gFxWOg==
+X-ME-Sender: <xms:fW9nYsLsHb0FFwgMMa5D58F0P5K8wjAYYXPxIYwOPGkjdWHYILVdnA>
+    <xme:fW9nYsI2Qi9MboqBbjUQw5PWHwVxmJVW2_B7S7TmGJ-F9_maWq4H0cHdFnnFwWCyW
+    6EJBH45Zei2YJ4JBg>
+X-ME-Received: <xmr:fW9nYsv0m0rsU5OgYKTort4HsX4QYxLAVf97pvj7nFky6F1IyvP1gCybPmH1EJmlWSC8L-LTMVMCnH-lxP3kMBVTA89eQXbVYKbYx2olYXJ8LNq7-FSYkBg84g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvgdejjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfevfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnheptdevhfehhefgvdekteffleduueduheduuedvtdevleelkeevvdeu
+    vdeihfekueehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:fW9nYpYIXdwFVz9Y10FSfz0QAvqKIR8Y8m90BS2dxsgl_WFpcjXYqA>
+    <xmx:fW9nYjYw36OVmpjZFdJzRGebzohn1Pi6MB2sekpjswrNM2Wrm56xRA>
+    <xmx:fW9nYlCnBhItpHNahr3_89b0FsQRcL0bASo_v3KRbTJCU6s30duwLg>
+    <xmx:fW9nYiU6KctnBKP8UB_fpvuD5pVqFeSvvAWl06b9VkHyuTzkVN2mUQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 26 Apr 2022 00:05:16 -0400 (EDT)
+Subject: Re: [PATCH] arm64: dts: allwinner: teres-i: Add GPIO port regulators
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Harald Geyer <harald@ccbib.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, Torsten Duwe <duwe@suse.de>
+References: <20220415165605.28560-1-harald@ccbib.org>
+ <336f8b96-6eee-16a5-e896-e90c4020f740@sholland.org>
+ <462969fd722eec45aa5f142de48b7fbd@ccbib.org> <5259899.Sb9uPGUboI@kista>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <71e61e41-712f-3f5d-74d6-46b01d672e7b@sholland.org>
+Date:   Mon, 25 Apr 2022 23:05:16 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6947.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bde8d62-908c-417e-f3ad-08da2739e609
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2022 04:04:45.1752
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dPgrMberAVHCmTfX19XlMFB11NGpjXBQdGnPp/vDdabHFYFvoqCYVK2o9WMQ5rDChmKOKUvwcJLLayhEZm4QMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5580
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <5259899.Sb9uPGUboI@kista>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IA0KPiBPbiBUdWUsIEFwciAxOSwgMjAyMiBhdCA3OjIyIEFNIEJoYXJhdCBLdW1hciBHb2dhZGEN
-Cj4gPGJoYXJhdGt1QHhpbGlueC5jb20+IHdyb3RlOg0KPiA+DQo+ID4gPiBPbiBUaHUsIEFwciAx
-NCwgMjAyMiBhdCAwMjo0NjoyNVBNICswMjAwLCBNaWNoYWwgU2ltZWsgd3JvdGU6DQo+ID4gPiA+
-IE9uIDQvMTQvMjIgMTE6MjIsIEJoYXJhdCBLdW1hciBHb2dhZGEgd3JvdGU6DQo+ID4gPiA+ID4g
-UmVtb3ZpbmcgdW5uZWNlc3NhcnkgdmVyc2lvbiBudW1iZXIgaW4gY29tcGF0aWJsZSBzdHJpbmcu
-DQo+ID4gPiA+DQo+ID4gPiA+IEkgYW0gbWlzc2luZyByZWFzb24gZm9yIHRoaXMgaW4gY29tbWl0
-IG1lc3NhZ2UuDQo+ID4gPg0KPiA+ID4gQWdyZWVkLiAgVGhlIGNvbW1pdCBsb2cgZm9yIHRoZSBw
-Y2llLXhpbGlueC1jcG0uYyBjaGFuZ2UgYWxzbyBuZWVkcw0KPiA+ID4gdG8gZXhwbGFpbiB3aHkg
-cmVtb3ZpbmcgdGhlIHZlcnNpb24gaXMgdXNlZnVsIGFuZCBzYWZlLg0KPiA+DQo+ID4gSEkgQmpv
-cm4sIE1pY2hhbCwNCj4gPg0KPiA+IFRoZSBDUE0gYmxvY2sgaXMgaGFyZCBibG9jaywgUm9iIHBv
-aW50ZWQgb3V0IHRoYXQgdmVyc2lvbmluZyBoYXMgbm8gdmFsdWUNCj4gaGVyZS4NCj4gPiBXaWxs
-IHJlc2VuZCBwYXRjaCB3aXRoIHRoaXMgZGV0YWlsLg0KPiANCj4gSSBkaWQgbm90IHNheSB0byBy
-ZW1vdmUgdGhlIGV4aXN0aW5nIHZlcnNpb24gYnJlYWtpbmcgY29tcGF0aWJpbGl0eS4NCj4gSnVz
-dCBkb24ndCBjb250aW51ZSB0byBhZGQgbmV3IHZlcnNpb24gbnVtYmVycy4NCj4gDQpUaGFua3Mg
-Um9iLg0K
+On 4/25/22 11:28 AM, Jernej Škrabec wrote:
+> Hi Harald!
+> 
+> Dne ponedeljek, 25. april 2022 ob 13:01:54 CEST je Harald Geyer napisal(a):
+>> On 24.04.2022 03:56, Samuel Holland wrote:
+>>> On 4/15/22 11:56 AM, Harald Geyer wrote:
+>>>> Allwinner A64 SoC has separate supplies for PC, PD, PE, PG and PL.
+>>>>
+>>>> Usually supplies are linked via the 'regulator-name' property of
+>>>> regulator nodes. However when regulators are shared we need to
+>>>> declare the additional links in the pinctrl node.
+>>>>
+>>>> Signed-off-by: Harald Geyer <harald@ccbib.org>
+>>>
+>>> I'm curious if this solved an issue for you, or if this is just for 
+>>> accuracy.
+>>> Both of these regulators have the regulator-always-on property, so
+>>> they should have been enabled already.
+>>
+>> You are right, there shouldn't be any change in functionality. It is 
+>> mostly
+>> for extra correctness. However the pincontrol driver started spewing 
+>> lot's
+>> of warnings about missing regulator nodes a few versions back. The 
+>> visible
+>> effect of this change is to silence those warnings. Also make the DTS 
+>> more
+>> future proof in case the driver is made even more picky in the future.
+>>
+>>> If it's the latter reason, why not add the other
+>>> ports? Regardless:
+>>
+>> PD, PE and PL have dedicated regulators, that can be matched via the
+>> 'regulator-name' property. I didn't want to specify the same 
+>> information
+>> in two places.
+> 
+> "regulator-name" is only a label, while phandle is actual regulator reference 
+> that can be used by the driver. While DT files reside in Linux kernel source, 
+> they are used by other OSes and bootloaders, so you can't really assume what 
+> is good or not just by judging based on Linux behaviour. So please add PD and 
+> PL regulators too.
+
+Yes, agreed, except for VCC-PL, which (as the comments in several devicetrees
+note) will cause a circular dependency when loading drivers.
+
+>> For the PF supply, I couldn't find any connection information in the
+>> board schematic. I could have added a dummy regulator. But since there 
+>> is
+>> only one warning about pf-supply during driver initialization and not 
+>> the
+>> dozens of warnings I see about PC and PG, I figured, I'd rather not add
+>> information of dubious use or qualiy.
+> 
+> You mean PE right? There is no PF supply on A64. Anyway, if it's not on 
+> schematic, it can be assumed unconnected and thus you shouldn't define that 
+> property. Messages like "using dummy regulator" are fine in such cases .
+
+All of the ports without a separate VCC-Px input are powered by VCC-IO, which in
+this case is supplied from DCDC1.
+
+Regards,
+Samuel
+
+> There is no issue of "dubious quality" if schematic is clear. Also don't worry 
+> about usefulness. DT files are hardware description files. They should reflect 
+> hardware configuration, no matter how useful information seems.
+> 
+> FYI, information in this case is useful to the driver. If you check sunxi 
+> pinctrl driver, you can see that port bias is set according to regulator 
+> voltage.
+> 
+> Best regards,
+> Jernej
+> 
+>>
+>> best regards,
+>> Harald
+>>
+>>
+>>> Reviewed-by: Samuel Holland <samuel@sholland.org>
+>>>
+>>>> ---
+>>>>  arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts | 5 +++++
+>>>>  1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts 
+>>>> b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+>>>> index aff0660b899c..cc316ef2e2d6 100644
+>>>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+>>>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+>>>> @@ -197,6 +197,11 @@ &ohci1 {
+>>>>  	status = "okay";
+>>>>  };
+>>>>
+>>>> +&pio {
+>>>> +	vcc-pc-supply = <&reg_dcdc1>;
+>>>> +	vcc-pg-supply = <&reg_aldo2>;
+>>>> +};
+>>>> +
+>>>>  &pwm {
+>>>>  	status = "okay";
+>>>>  };
+>>>>
+>>
+>>
+> 
+> 
+
