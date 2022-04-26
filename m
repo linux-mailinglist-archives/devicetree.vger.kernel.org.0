@@ -2,198 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA48450F259
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B3650F266
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:28:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244796AbiDZH3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 03:29:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
+        id S1343916AbiDZHbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 03:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344024AbiDZH3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:29:12 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BB7BC26
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:26:05 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id v4so8642471ljd.10
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:26:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Ip4yKprUwa5CWGfKSGf6LxYHkAhSkHn2zyYdRVkuKYU=;
-        b=lM/cGyNPCgOlRbQmCDv2N0LFI8Z/V1E3GPTN3qhv6IeGaKXN89UYs3/xI2kcwElbtG
-         g4o7WQ9jIP5pxzL9gWHSBOjFqAIZilmXBnEWYQbWRlG+Vvr6Uu2mZXDNgx7F6qhoP6p7
-         KaIajNLuJH6vtSFd0Cptuqa6QLdml1zWy9D/S4XCiWhQOyKo2zKpYW8fOhzah8JTnb86
-         byhACWCLlrYEWu40468Fal0BIm0Ber8W91ukxTecLm6UqPyfCBNLhBWoewva5Gu7p9wu
-         q6TWpnHeZ36EqEBakXDRlUbSiJXMjItpxV2Ynu6tgFrxGp+jmdY5mQuKU/zP36H7BgBq
-         q9kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ip4yKprUwa5CWGfKSGf6LxYHkAhSkHn2zyYdRVkuKYU=;
-        b=lvJEdH11e9VjhcCLuY6/eZAJz6uv8r3f/0tmwUOa6z1Hd15w7x16JV05nyDnhVn4bg
-         ArvaOF7wdedpIpcQLQumeBFcAzskAd4rhDrUwCM280U929kdRpM5KK1He55IL5NBP41b
-         gl+QDA1TCXpi2dW4LFbpOE3LDzmcCjp4zwgClFGOmw4EkRRwQhDdZ3EYF35umTz38+S+
-         bUCTDVprbxBGyvnX3So3WyeHDQWo49C65y5Nr7bEFqqXRHHg00u1e2JNnBL3yoQkQJIe
-         AwvYBFMfyT5R0oRQtNHgKQvXcpKTx86yjiCcn1be/GkVLw+JfWWaB+FjEb3OS1549lyY
-         1naQ==
-X-Gm-Message-State: AOAM530VZHOd/JGSmGWvw4KNUuWhDwZu5sc33hVkFO1OqOwRXvVP4LeL
-        gXIM/wXHHLmMYS/n7D4HcMx5wg==
-X-Google-Smtp-Source: ABdhPJwYgtV/i5ybL48Y+kjThwzp8oCL1bzTgORpgBsO3BcnlY+Ccb/X9tyWeGjjIRdQU0g/NK/9JQ==
-X-Received: by 2002:a2e:bf12:0:b0:249:3a3b:e91a with SMTP id c18-20020a2ebf12000000b002493a3be91amr13833393ljr.343.1650957963192;
-        Tue, 26 Apr 2022 00:26:03 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h13-20020a056512338d00b0047203470747sm795653lfg.245.2022.04.26.00.26.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 00:26:02 -0700 (PDT)
-Message-ID: <3f407912-be75-19a8-d406-ae042d23fd9e@linaro.org>
-Date:   Tue, 26 Apr 2022 10:26:02 +0300
+        with ESMTP id S1343917AbiDZHbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:31:37 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FD8C9B72;
+        Tue, 26 Apr 2022 00:28:30 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id B6E0A2223A;
+        Tue, 26 Apr 2022 09:28:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1650958108;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=mzzsrtLgDhH/mUpZ95LPe7yFWgFVICtJRss1dScu0l4=;
+        b=WLsMfwV0KL/FIMULQI396eMh2JgmUNPuLtROTi2Uf6+MI9kKJWGfdOy3upRieZ36tH/mnF
+        UaB7LffD+miuwmjsCrhJXFO1MhRqJ9Gm1Uq82AvQIUUNm09Avl31g13lar3POnut6X7d8L
+        yJx48P/MaJpQ/trOFQcS6gGsy9TIAJo=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v3 3/3] dt-bindings: clock: qcom,gcc-apq8064: split tsens
- to the child node
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220425212750.2749135-1-dmitry.baryshkov@linaro.org>
- <20220425212750.2749135-4-dmitry.baryshkov@linaro.org>
- <8579a3df-1a1d-c258-f65e-531cf0731949@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <8579a3df-1a1d-c258-f65e-531cf0731949@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Date:   Tue, 26 Apr 2022 09:28:27 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: fsl,ls-extirq:
+ convert to YAML
+In-Reply-To: <c324eec7-79b1-33da-c38e-4a480fe23126@linaro.org>
+References: <20220425140214.32448-1-michael@walle.cc>
+ <658851ed-33fd-8e2b-7db7-ef1ca9e31c33@linaro.org>
+ <83b596d0570c779c61c3c37c6f512679@walle.cc>
+ <c324eec7-79b1-33da-c38e-4a480fe23126@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <6fec63c911c88a375fc024f6ca0e946d@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/2022 10:08, Krzysztof Kozlowski wrote:
-> On 25/04/2022 23:27, Dmitry Baryshkov wrote:
->> Split tsens properties to the child node of the gcc. This follows the
->> lead of ipq8064 (which also uses a separate node for tsens) and makes
->> device tree closer to other platforms, where tsens is a completely
->> separate device.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/clock/qcom,gcc-apq8064.yaml      | 45 +++++++------------
->>   1 file changed, 17 insertions(+), 28 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
->> index b867da12761e..f2762599f679 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
->> @@ -23,47 +23,36 @@ description: |
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - qcom,gcc-apq8064
->> -      - qcom,gcc-msm8060
+Am 2022-04-26 08:53, schrieb Krzysztof Kozlowski:
+> On 25/04/2022 23:58, Michael Walle wrote:
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +    description:
+>>>> +      Specifies the Interrupt Polarity Control Register (INTPCR) in
+>>>> the
+>>>> +      SCFG or the External Interrupt Control Register (IRQCR) in 
+>>>> the
+>>>> ISC.
+>>>> +
+>>>> +  interrupt-map:
+>> 
+>> btw.
+>> 
+>> minItems: 12
+>> maxItems: 12
+>> 
+>> Isn't working here, is that expected? The validator seem to get the
+>> count
+>> of the elements of one tuple wrong.
+>> 
+>> I.e.
+>> arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dtb:
+>> interrupt-controller@14: interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1,
+>> 0, 1, 4, 2, 0, 1, 0], [2, 4, 3, 0, 1, 0, 3, 4], [4, 0, 1, 0, 4, 4, 5,
+>> 0], [1, 0, 5, 4, 6, 0, 1, 0], [6, 4, 7, 0, 1, 0, 7, 4], [8, 0, 1, 0, 
+>> 8,
+>> 4, 9, 0], [1, 0, 9, 4, 10, 0, 1, 0], [10, 4, 11, 0, 1, 0, 11, 4]] is 
+>> too
+>> short
 > 
-> Hm, such list does not exist in mainline, so is your set rebased on
-> something? See also:
-> https://lore.kernel.org/linux-devicetree/20220425133527.3723233-1-robh@kernel.org/
-> https://lore.kernel.org/linux-devicetree/20220426064241.6379-1-krzysztof.kozlowski@linaro.org/
+> 
+> Works for me (in different schema)... maybe update your dtschema?
 
-Ugh, yes. I missed a patch during git send-email. I've sent it 
-separately (dt-bindings: clock: gcc-apq8064: move qcom,apq8084 back to 
-gcc-other.yaml)
+Just updated to the latest one. But I'm still getting the same errors.
 
-> 
-> 
->> -
->> -  nvmem-cells:
->> -    minItems: 1
->> -    maxItems: 2
->> -    description:
->> -      Qualcomm TSENS (thermal sensor device) on some devices can
->> -      be part of GCC and hence the TSENS properties can also be part
->> -      of the GCC/clock-controller node.
->> -      For more details on the TSENS properties please refer
->> -      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> -
->> -  nvmem-cell-names:
->> -    minItems: 1
->>       items:
->> -      - const: calib
->> -      - const: calib_backup
-> 
-> I see the removal of tsens properties, but I do not see the other part
-> of split - adding them as child. It does not come from qcom,gcc.yaml,
-> either.
-> 
->> -
->> -  '#thermal-sensor-cells':
->> -    const: 1
->> +      - enum:
->> +          - qcom,gcc-apq8064
->> +          - qcom,gcc-msm8060
->> +      - const: syscon
->>   
->>   required:
->>     - compatible
->> -  - nvmem-cells
->> -  - nvmem-cell-names
->> -  - '#thermal-sensor-cells'
->>   
->>   unevaluatedProperties: false
->>   
->>   examples:
->>     - |
->>       clock-controller@900000 {
->> -      compatible = "qcom,gcc-apq8064";
->> +      compatible = "qcom,gcc-apq8064", "syscon";
->>         reg = <0x00900000 0x4000>;
->> -      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
->> -      nvmem-cell-names = "calib", "calib_backup";
->>         #clock-cells = <1>;
->>         #reset-cells = <1>;
->>         #power-domain-cells = <1>;
->> -      #thermal-sensor-cells = <1>;
->> +
->> +      thermal-sensor {
->> +        compatible = "qcom,msm8960-tsens";
->> +
->> +        nvmem-cells = <&tsens_calib>, <&tsens_backup>;
->> +        nvmem-cell-names = "calib", "calib_backup";
->> +        interrupts = <0 178 4>;
-> 
-> 0 and 4 look like GIC/interrupt flags, so please use defines.
-> 
->> +        interrupt-names = "uplow";
->> +
->> +        #qcom,sensors = <11>;
->> +        #thermal-sensor-cells = <1>;
->> +        };
-> 
-> Indentation looks weird here.
-> 
->>       };
->>   ...
-> 
-> 
-> Best regards,
-> Krzysztof
+$ dt-validate -V
+2022.4
 
+/home/mwalle/repos/b-linux-arm64/arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb: 
+interrupt-controller@14: interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 
+0, 1, 4, 2, 0, 1, 0], [2, 4, 3, 0, 1, 0, 3, 4], [4, 0, 1, 0, 4, 4, 5, 
+0], [1, 0, 5, 4, 6, 0, 1, 0], [6, 4, 7, 0, 1, 0, 7, 4], [8, 0, 1, 0, 8, 
+4, 9, 0], [1, 0, 9, 4, 10, 0, 1, 0], [10, 4, 11, 0, 1, 0, 11, 4]] is too 
+short
+	From schema: 
+/home/mwalle/repos/linux-mw/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
 
--- 
-With best wishes
-Dmitry
+How is the length of one entry calculated?
+
+-michael
