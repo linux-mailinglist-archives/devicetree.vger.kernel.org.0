@@ -2,115 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77B4E50EF2D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 05:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7F050EF2F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 05:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235208AbiDZDaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 23:30:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43488 "EHLO
+        id S235959AbiDZDaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 23:30:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232958AbiDZD36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 23:29:58 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF812018A
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 20:26:52 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id s70so12312841qke.8
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 20:26:52 -0700 (PDT)
+        with ESMTP id S232958AbiDZDaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 23:30:35 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9522182D;
+        Mon, 25 Apr 2022 20:27:28 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id jt15so7273135qvb.13;
+        Mon, 25 Apr 2022 20:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=dKcUIpiaOihT4R5jeXs4xTqFm8l6J3OzRyPekvqQPa8=;
-        b=H0v46YcWDUk9cjHr5S21H5RfzY0mXoxCcQlN8wRu05KyL/joOl4OiMUdtnkl/1EMaV
-         b/IaVRGeUhNnA8xv6Aoo/5P11fkel9xRRryMexHDKvvII9Ai/jmu+0ZMixMi/j96BA8p
-         umy4gLcEkjjAzZaU/O6uEekgzJjJ8BpmgcW+UOlM9cYhqXU3IFtuQO0BlCVItM5BySEj
-         hXAZbU1nLpbBlc1tLm0BStj/iU5rrTWbwK9ODwLiABoC/EWIT88+hQ5D1ZTsZENvo4tL
-         bpWyq/pEv36gjoeePUk6Z7260839G9F4t2L12rZbqyOB7d2slt0ZLz/9rxRQQMmddiG8
-         KyBg==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oxvTmypBBV1dcA5LKBfYnuJggK+6LDF/F/EDctPMfhg=;
+        b=lpvJnznv8Wt7AE6DkzPZ8wyC84hrbIv3ngWbpuZypeTEcnGM+CTX0J9XT9A+tanY06
+         TNLpZPKUYECXDFT5YQa6TE9ixMK72mxm8OCG+yEJB9giQt63+yV1qjRh/rFiKC6yMTHT
+         U7K+teoWg0vlcH9D8ozYmHuBKLnr6o4vlucPw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=dKcUIpiaOihT4R5jeXs4xTqFm8l6J3OzRyPekvqQPa8=;
-        b=GB/4d9aSpQBf3545p95SBJ9df+0XuophaFEoHDozKYv7/K1IVWK59fCOvT+H2ubjZO
-         0/bcnES+ZLU7q6vwRwaPOKPkVaVW1B34p7oTYjc6YTTHJ8f0HYVBUJRRPKzcx8M9Hne3
-         QxL5R6p/Ba8e+Xw2bmhd1zBtW+HF7xG/KoAHa5S9W6Zg8oMU9UeRjlkKghjb2gvXXids
-         +gzjWee3ebI4DChYEq/EQzrV3ODOR4aga2tz2Av93fb1Dd4JLwPgkpt0nqGwOKJ2k7Y+
-         MuBOis8btvm2I/+0c+eBkbVA08F6SL/JmHwQgHKIhn34PrAJXUflrENTGEUS5yjwe5vY
-         FyUQ==
-X-Gm-Message-State: AOAM5310BTsjGPf878jy1nP6bc3LwEfxSYxnC1LaeXNE4DZAx7kvFdor
-        8K3IeUx+sar7B8Wtywz34gTcL2IA5MI7nC/Ob/8=
-X-Google-Smtp-Source: ABdhPJzMwBr2q/+OaboevHrwyXdd5NgmQBU9A1QKtdZambUsbltonGLF5R7XL83by3TzT7cle0OhZC2hG+aw4wJ5ctw=
-X-Received: by 2002:a05:620a:e06:b0:69e:e402:477d with SMTP id
- y6-20020a05620a0e0600b0069ee402477dmr11961144qkm.716.1650943611276; Mon, 25
- Apr 2022 20:26:51 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oxvTmypBBV1dcA5LKBfYnuJggK+6LDF/F/EDctPMfhg=;
+        b=CuT0jbticD2N97Rvk3Nr7XwWjPNgx5GWFsqsYmZpIsFYJ0OVYvbHhNAog4GTE3zNtQ
+         xe8h+Jsdx2ZSnLJqjfyZNQUlBZWCxQKQXrXeDJXJjqycpwyTNNQd7kQ3D8HgiC58Gmwd
+         aTFNv31zJ5xc8RZ0s6laOx4qijzUSV48ZRCZealhUtT6KXA9+sBPpQRGwS4ipjpbW1Be
+         pTSYycg9oorg/daULEgX0HeYdW+uw7vLXamvFUgYBJbEIlgb6C5JVWuohqtgAq+cbAka
+         BtSjUWTWKqhqLVgqqMBV57aTSTJ/WHEgiCJ6wkFP8zezPGwsaJ3RgSMDFH7TIW9iS1/G
+         XMZQ==
+X-Gm-Message-State: AOAM532tN22ECFt+hicsX6p94AA78SGWU2I9PZEK60dat2Tj4VX6wv4P
+        CIh61vREB/eQlRyhVdBlp6tR+rGXkKXrI8NzU1Y=
+X-Google-Smtp-Source: ABdhPJxBFhrNYmM1RYhKhzeRze/BwTn7OXbQYrKNsL7mqiE5bOcX72wExIw7Ok4LXU8qVZD+F4qIg3T2gUTomr3axnA=
+X-Received: by 2002:ad4:5dea:0:b0:452:6009:844b with SMTP id
+ jn10-20020ad45dea000000b004526009844bmr13646167qvb.121.1650943647552; Mon, 25
+ Apr 2022 20:27:27 -0700 (PDT)
 MIME-Version: 1.0
-Sender: mrsmelaniat@gmail.com
-Received: by 2002:a05:620a:12cf:0:0:0:0 with HTTP; Mon, 25 Apr 2022 20:26:49
- -0700 (PDT)
-From:   Aisha Al-Qaddafi <aishaqaddafi633@gmail.com>
-Date:   Tue, 26 Apr 2022 03:26:49 +0000
-X-Google-Sender-Auth: C8-rZmo_BJhNQn_mOZ2MkNz47_0
-Message-ID: <CANL8XDs3QHr+Dx3XW1GhRKsV2ydZ_83QhDiAJ1UoWyUbV5ir6A@mail.gmail.com>
-Subject: Investment Proposal
-To:     undisclosed-recipients:;
+References: <20220304063137.12970-1-tommy_huang@aspeedtech.com> <20220304063137.12970-3-tommy_huang@aspeedtech.com>
+In-Reply-To: <20220304063137.12970-3-tommy_huang@aspeedtech.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 26 Apr 2022 03:27:15 +0000
+Message-ID: <CACPK8Xc92tStUOAgU9_XPGK7bQwJ_hutV16U+otUZkswrOumeA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] drm/aspeed: Add 1024x768 mode for AST2600
+To:     Tommy Haung <tommy_huang@aspeedtech.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.0 required=5.0 tests=BAYES_99,BAYES_999,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        LOTS_OF_MONEY,MILLION_HUNDRED,MILLION_USD,MONEY_FRAUD_5,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_MONEY,US_DOLLARS_3
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:732 listed in]
-        [list.dnswl.org]
-        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
-        *      [score: 1.0000]
-        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
-        *      [score: 1.0000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [aishaqaddafi633[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 MILLION_USD BODY: Talks about millions of dollars
-        *  0.9 MILLION_HUNDRED BODY: Million "One to Nine" Hundred
-        *  0.0 US_DOLLARS_3 BODY: Mentions millions of $ ($NN,NNN,NNN.NN)
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  2.2 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  0.4 MONEY_FRAUD_5 Lots of money and many fraud phrases
-X-Spam-Level: *******
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  Investment Proposal,
+On Fri, 4 Mar 2022 at 06:32, Tommy Haung <tommy_huang@aspeedtech.com> wrote:
+>
+> Update the aspeed_gfx_set_clk with display width.
+> At AST2600, the display clock could be coming from
+> HPLL clock / 16 = 75MHz. It would fit 1024x768@70Hz.
+> Another chip will still keep 800x600.
+>
+> Signed-off-by: Tommy Haung <tommy_huang@aspeedtech.com>
+> ---
+>  drivers/gpu/drm/aspeed/aspeed_gfx.h      | 12 ++++++----
+>  drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c | 29 ++++++++++++++++++++----
+>  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c  | 16 +++++++++++--
+>  drivers/gpu/drm/aspeed/aspeed_gfx_out.c  | 14 +++++++++++-
+>  4 files changed, 60 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx.h b/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> index eb4c267cde5e..c7aefee0657a 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> @@ -109,11 +109,15 @@ int aspeed_gfx_create_output(struct drm_device *drm);
+>  #define CRT_THROD_HIGH(x)              ((x) << 8)
+>
+>  /* SCU control */
+> -#define SCU_G6_CLK_COURCE              0x300
+> +#define G6_CLK_SOURCE                  0x300
+> +#define G6_CLK_SOURCE_MASK             (BIT(8) | BIT(9) | BIT(10))
+> +#define G6_CLK_SOURCE_HPLL             (BIT(8) | BIT(9) | BIT(10))
+> +#define G6_CLK_SOURCE_USB              BIT(9)
+> +#define G6_CLK_SEL3                    0x308
+> +#define G6_CLK_DIV_MASK                        0x3F000
+> +#define G6_CLK_DIV_16                  (BIT(16)|BIT(15)|BIT(13)|BIT(12))
+> +#define G6_USB_40_CLK                  BIT(9)
+>
+>  /* GFX FLAGS */
+>  #define CLK_MASK                       BIT(0)
+>  #define CLK_G6                         BIT(0)
+> -
+> -#define G6_CLK_MASK                    (BIT(8) | BIT(9) | BIT(10))
+> -#define G6_USB_40_CLK                  BIT(9)
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> index a24fab22eac4..5829be9c7c67 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> @@ -23,6 +23,28 @@ drm_pipe_to_aspeed_gfx(struct drm_simple_display_pipe *pipe)
+>         return container_of(pipe, struct aspeed_gfx, pipe);
+>  }
+>
+> +static void aspeed_gfx_set_clock_source(struct aspeed_gfx *priv, int mode_width)
+> +{
+> +       regmap_update_bits(priv->scu, G6_CLK_SOURCE, G6_CLK_SOURCE_MASK, 0x0);
+> +       regmap_update_bits(priv->scu, G6_CLK_SEL3, G6_CLK_DIV_MASK, 0x0);
+> +
+> +       switch (mode_width) {
+> +       case 1024:
+> +               /* hpll div 16 = 75Mhz */
+> +               regmap_update_bits(priv->scu, G6_CLK_SOURCE,
+> +               G6_CLK_SOURCE_MASK, G6_CLK_SOURCE_HPLL);
+> +               regmap_update_bits(priv->scu, G6_CLK_SEL3,
+> +               G6_CLK_DIV_MASK, G6_CLK_DIV_16);
+> +               break;
+> +       case 800:
+> +       default:
+> +               /* usb 40Mhz */
+> +               regmap_update_bits(priv->scu, G6_CLK_SOURCE,
+> +               G6_CLK_SOURCE_MASK, G6_CLK_SOURCE_USB);
+> +               break;
+> +       }
 
-With sincerity of purpose I wish to communicate with you seeking your
-acceptance towards investing in your country under your Management as
-my foreign investor/business partner.
-I'm Mrs. Aisha Gaddafi-Al, the only biological Daughter of the late
-Libyan President (Late Colonel Muammar Gaddafi) I'm a single Mother
-and a widow with three Children, presently residing herein Oman the
-Southeastern coast of the Arabian Peninsula in Western Asia. I have
-investment funds worth Twenty Seven Million Five Hundred Thousand
-United State Dollars ($27.500.000.00 ) which I want to entrust to you
-for the investment project in your country.
+I'm not familiar with this area, but I think this belongs in the clock driver.
 
-I am willing to negotiate an investment/business profit sharing ratio
-with you based on the future investment earning profits. If you are
-willing to handle this project kindly reply urgently to enable me to
-provide you more information about the investment funds.
+We want to be able to call clk_set_rate() from the drm driver and have
+the clock driver update the correct bits in the SCU.
+
+Instead of specialising the 2600 vs others, could clk_set_rate() fail
+on the others, and cause the driver to stay at 800x600. If the set
+succeeds it can then run at the higher resolution. If this is not how
+the APIs work, we could instead have a clock_rate in struct aspeed_gfx
+and each platform can define its expected clock rate. It would then
+need a corresponding resolution.
+
+Please take a look at other drivers and see what they do.
 
 
-Best Regards
 
-Mrs. Aisha Gaddafi-Al.
+> +}
+> +
+>  static int aspeed_gfx_set_pixel_fmt(struct aspeed_gfx *priv, u32 *bpp)
+>  {
+>         struct drm_crtc *crtc = &priv->pipe.crtc;
+> @@ -77,12 +99,11 @@ static void aspeed_gfx_disable_controller(struct aspeed_gfx *priv)
+>         regmap_update_bits(priv->scu, priv->dac_reg, BIT(16), 0);
+>  }
+>
+> -static void aspeed_gfx_set_clk(struct aspeed_gfx *priv)
+> +static void aspeed_gfx_set_clk(struct aspeed_gfx *priv, int mode_width)
+>  {
+>         switch (priv->flags & CLK_MASK) {
+>         case CLK_G6:
+> -               regmap_update_bits(priv->scu, SCU_G6_CLK_COURCE, G6_CLK_MASK, 0x0);
+> -               regmap_update_bits(priv->scu, SCU_G6_CLK_COURCE, G6_CLK_MASK, G6_USB_40_CLK);
+> +               aspeed_gfx_set_clock_source(priv, mode_width);
+>                 break;
+>         default:
+>                 break;
+> @@ -99,7 +120,7 @@ static void aspeed_gfx_crtc_mode_set_nofb(struct aspeed_gfx *priv)
+>         if (err)
+>                 return;
+>
+> -       aspeed_gfx_set_clk(priv);
+> +       aspeed_gfx_set_clk(priv, m->hdisplay);
+>
+>  #if 0
+>         /* TODO: we have only been able to test with the 40MHz USB clock. The
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> index af56ffdccc65..e1a814aebc2d 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> @@ -110,6 +110,7 @@ static const struct drm_mode_config_funcs aspeed_gfx_mode_config_funcs = {
+>
+>  static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
+>  {
+> +       struct aspeed_gfx *priv = to_aspeed_gfx(drm);
+>         int ret;
+>
+>         ret = drmm_mode_config_init(drm);
+> @@ -118,8 +119,18 @@ static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
+>
+>         drm->mode_config.min_width = 0;
+>         drm->mode_config.min_height = 0;
+> -       drm->mode_config.max_width = 800;
+> -       drm->mode_config.max_height = 600;
+> +
+> +       switch (priv->flags & CLK_MASK) {
+> +       case CLK_G6:
+> +               drm->mode_config.max_width = 1024;
+> +               drm->mode_config.max_height = 768;
+> +               break;
+> +       default:
+> +               drm->mode_config.max_width = 800;
+> +               drm->mode_config.max_height = 600;
+> +               break;
+> +       }
+> +
+>         drm->mode_config.funcs = &aspeed_gfx_mode_config_funcs;
+>
+>         return ret;
+> @@ -167,6 +178,7 @@ static int aspeed_gfx_load(struct drm_device *drm)
+>         priv->vga_scratch_reg = config->vga_scratch_reg;
+>         priv->throd_val = config->throd_val;
+>         priv->scan_line_max = config->scan_line_max;
+> +       priv->flags = config->gfx_flags;
+>
+>         priv->scu = syscon_regmap_lookup_by_phandle(np, "syscon");
+>         if (IS_ERR(priv->scu)) {
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_out.c b/drivers/gpu/drm/aspeed/aspeed_gfx_out.c
+> index 6759cb88415a..5d5e04f15c59 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_out.c
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_out.c
+> @@ -10,7 +10,19 @@
+>
+>  static int aspeed_gfx_get_modes(struct drm_connector *connector)
+>  {
+> -       return drm_add_modes_noedid(connector, 800, 600);
+> +       struct aspeed_gfx *priv = container_of(connector, struct aspeed_gfx, connector);
+> +       int mode_count = 0;
+> +
+> +       switch (priv->flags & CLK_MASK) {
+> +       case CLK_G6:
+> +               mode_count = drm_add_modes_noedid(connector, 1024, 768);
+> +               break;
+> +       default:
+> +               mode_count = drm_add_modes_noedid(connector, 800, 600);
+> +               break;
+> +       }
+> +
+> +       return mode_count;
+>  }
+>
+>  static const struct
+> --
+> 2.17.1
+>
