@@ -2,210 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB99750F14F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC2050F16A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 08:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245657AbiDZGqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 02:46:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
+        id S234564AbiDZGs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 02:48:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245726AbiDZGp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:45:59 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5F31BE9C
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:42:46 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id m20so13281443ejj.10
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 23:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vEOSnXjfcH/l5Es8VtB/ak1K3hreA1C3eDBJ8dHARyo=;
-        b=bASAClY6Ytda/4xUhup8MUSUMsRpRAR50cqsJ0XAhppisIw/yr3Xf8wWEbZ5+xFHAI
-         TOHWNUaLKHbhBnYaZ2Q9x9tGRWB0zFVJFafT2ODZVUTXhAMONRvUCRUf2QdJ7NOT3Xdi
-         GtfHjgDwHJKBPP6tvv+uw318ezvkJt13nlj2HrLqud15LIUkl+IzyVCZ7DJ0QlV2CrcQ
-         G9fFDlVrRM3nHlVe/lfOa6Oq+iQuNKfkFOs6uC/DXvxAtb6pVhPTws9BjtCfeQW/AXxm
-         /t2ybFAayhGpTecMphERvHj25Qx0POiUlJLQe2OOQUCoeXGzWX9AFfPMTBWMvmKmPCaX
-         u4Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vEOSnXjfcH/l5Es8VtB/ak1K3hreA1C3eDBJ8dHARyo=;
-        b=KGk8uTPLtpDUvYRbTEl+/8HXnqca565tJ7abPyi5mXuv4oteJaZuLNz3Rha8j0zyUH
-         AUm2Zn3BNqBPf/2z5hb6ENSMCQfrCWNG1zFkiU2Cl0g5f14w0xd8ocFcYJgpEt67Bmw2
-         aZlsp1b4pDZAXl077/BNQf997zyu6dBN13U5W98IBMzLkJcYxiwvMsX31+LT8mNDMlvK
-         LlGjTRJ/06kpxdeCbojnSYT+9V832UsPJ2MDqJtYfQwL/tRClevLM1Jx4tYA62ftN/gB
-         Ujj8b4dChbXZnVJuSYLGjxX1UMPV58X5NVzWL+Pcfa9ZhLTbxNXl+3MulokcTgri+4Bd
-         B2Hg==
-X-Gm-Message-State: AOAM531taWH9Fv+nhTnXhuzXcRfV9N9/roTSptwWEmo+H2vqBbHWo4sY
-        R5GOBVbJCmSIJWTNTEkGi4d4ww==
-X-Google-Smtp-Source: ABdhPJyQuE+1pRBGE66dl8vawhJjRk0oRMEc2gZhd7SNDASBfF96iGQsJRh6XDctSdl8wKwtt+jiWw==
-X-Received: by 2002:a17:906:1315:b0:6ef:5903:c5d1 with SMTP id w21-20020a170906131500b006ef5903c5d1mr19635606ejb.537.1650955365291;
-        Mon, 25 Apr 2022 23:42:45 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fx3-20020a170906b74300b006daecedee44sm4386885ejb.220.2022.04.25.23.42.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 23:42:44 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2] dt-bindings: clock: qcom,gcc-apq8064: Fix typo in compatible and split apq8084
-Date:   Tue, 26 Apr 2022 08:42:41 +0200
-Message-Id: <20220426064241.6379-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S1343493AbiDZGs0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 02:48:26 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C0ED2B86C;
+        Mon, 25 Apr 2022 23:45:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 7325A80CF;
+        Tue, 26 Apr 2022 06:42:13 +0000 (UTC)
+Date:   Tue, 26 Apr 2022 09:45:13 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Message-ID: <YmeU+aSxQdixAESi@atomide.com>
+References: <20220414192722.2978837-1-dfustini@baylibre.com>
+ <YmEAA7kc4jNHSkGm@atomide.com>
+ <YmI4rjkpX9krZAGn@x1>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YmI4rjkpX9krZAGn@x1>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The qcom,gcc-apq8064.yaml was meant to describe only APQ8064 and APQ8084
-should have slightly different bindings (without Qualcomm thermal sensor
-device).  Add new bindings for APQ8084.
+* Drew Fustini <dfustini@baylibre.com> [220422 05:06]:
+> Do you know what revision of the am437x-gp-evm that you have?
 
-Fixes: a469bf89a009 ("dt-bindings: clock: simplify qcom,gcc-apq8064 Documentation")
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Not sure, it seems to be some early revision the last time I looked.
 
----
+> The AM437X_GP_EVM_3K0006_SCHEMATIC_REV1_5B schematic [1] for the
+> AM437x-GP-EVM shows that the EN pin on the TPS51200 is connected to SoC
+> ball N25 which is GPIO5_7.
 
-Changes since v1:
-1. Correct Taniya's email.
-2. Correct chipset name in description.
-3. Extend commit msg.
----
- .../bindings/clock/qcom,gcc-apq8064.yaml      |  4 +-
- ...gcc-apq8064.yaml => qcom,gcc-apq8084.yaml} | 57 +++++--------------
- 2 files changed, 16 insertions(+), 45 deletions(-)
- copy Documentation/devicetree/bindings/clock/{qcom,gcc-apq8064.yaml => qcom,gcc-apq8084.yaml} (31%)
+OK
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-index 97936411b6b4..9fafcb080069 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-@@ -20,12 +20,10 @@ description: |
-   See also:
-   - dt-bindings/clock/qcom,gcc-msm8960.h
-   - dt-bindings/reset/qcom,gcc-msm8960.h
--  - dt-bindings/clock/qcom,gcc-apq8084.h
--  - dt-bindings/reset/qcom,gcc-apq8084.h
- 
- properties:
-   compatible:
--    const: qcom,gcc-apq8084
-+    const: qcom,gcc-apq8064
- 
-   nvmem-cells:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-similarity index 31%
-copy from Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-copy to Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-index 97936411b6b4..397fb918e032 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-@@ -1,69 +1,42 @@
--# SPDX-License-Identifier: GPL-2.0-only
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/clock/qcom,gcc-apq8064.yaml#
-+$id: http://devicetree.org/schemas/clock/qcom,gcc-apq8084.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Qualcomm Global Clock & Reset Controller Binding for APQ8064
--
--allOf:
--  - $ref: qcom,gcc.yaml#
-+title: Qualcomm Global Clock & Reset Controller Binding for APQ8084
- 
- maintainers:
-   - Stephen Boyd <sboyd@kernel.org>
--  - Taniya Das <tdas@codeaurora.org>
-+  - Taniya Das <quic_tdas@quicinc.com>
- 
- description: |
-   Qualcomm global clock control module which supports the clocks, resets and
--  power domains on APQ8064.
-+  power domains on APQ8084.
- 
--  See also:
--  - dt-bindings/clock/qcom,gcc-msm8960.h
--  - dt-bindings/reset/qcom,gcc-msm8960.h
-+  See also::
-   - dt-bindings/clock/qcom,gcc-apq8084.h
-   - dt-bindings/reset/qcom,gcc-apq8084.h
- 
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+
- properties:
-   compatible:
-     const: qcom,gcc-apq8084
- 
--  nvmem-cells:
--    minItems: 1
--    maxItems: 2
--    description:
--      Qualcomm TSENS (thermal sensor device) on some devices can
--      be part of GCC and hence the TSENS properties can also be part
--      of the GCC/clock-controller node.
--      For more details on the TSENS properties please refer
--      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
--
--  nvmem-cell-names:
--    minItems: 1
--    items:
--      - const: calib
--      - const: calib_backup
--
--  '#thermal-sensor-cells':
--    const: 1
--
- required:
-   - compatible
--  - nvmem-cells
--  - nvmem-cell-names
--  - '#thermal-sensor-cells'
- 
- unevaluatedProperties: false
- 
- examples:
-   - |
--    clock-controller@900000 {
--      compatible = "qcom,gcc-apq8064";
--      reg = <0x00900000 0x4000>;
--      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
--      nvmem-cell-names = "calib", "calib_backup";
--      #clock-cells = <1>;
--      #reset-cells = <1>;
--      #power-domain-cells = <1>;
--      #thermal-sensor-cells = <1>;
-+    clock-controller@fc400000 {
-+        compatible = "qcom,gcc-apq8084";
-+        reg = <0xfc400000 0x4000>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+        #power-domain-cells = <1>;
-     };
- ...
--- 
-2.32.0
+> Unfortunately, the only AM437x board that I have is the AM437x IDK [2]
+> which unfortunately does not have the TSP51200 EN pin connected to the
+> the SoC. In addition, the am437x-gp-evm is the only board that is
+> allowed to enable off mode due to am43xx_check_off_mode_enable() in
+> arch/arm/mach-omap2/pm33xx-core.c
 
+OK
+
+Thanks,
+
+Tony
+
+
+> [1] https://www.ti.com/lit/zip/tidrc79
+> [2] https://www.ti.com/lit/zip/sprr396
