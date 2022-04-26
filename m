@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84F155107A9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 797635107AE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241792AbiDZS4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32844 "EHLO
+        id S233570AbiDZS4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 14:56:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353076AbiDZS4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:56:21 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B36E1569E0
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 11:53:09 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id fv2so3959304pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 11:53:09 -0700 (PDT)
+        with ESMTP id S1353045AbiDZS4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:56:22 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E835915571E
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 11:53:10 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id k4so19498215plk.7
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 11:53:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Abl0bfYYrLlQ27vYh6a3IKNxFiISaIZQZeWkMU0B+HY=;
-        b=vBrOC+clk/14uoGOtUn6c44gW3HFg6+QeB4YEt2tbdI3Rg4yeq77I+oddnQCUvlydX
-         iqg0VvE+xjRD4sWxZ1mmoMfRyrVxDPrUtXKkDrNRWGiibUU5SffVNYDCOpqXJjxDdfm+
-         /rqFvZzeeyDfpQ76ca7H7LzTLOeXPvHCD/pCuz5pOO8kXPjiAwdv46d+k1hN/PFWNd+S
-         LE/PYTA7+dKF64/xYYMYdLWJgicaGpcdpGKTGGfp30OgMWLTSJq6OCxzp2iLWkNNeiSk
-         DE2Xcjq/QTbTVXOE/59QHyVR17aRUr04hI760rCpzv0eJ487aQJHQthEkwcuJ3xj55vm
-         C22Q==
+        bh=KslgnjbYCZy+RC57ZlL0pYo5UT2utIjDNcmnyodLbb4=;
+        b=mlb9fCc5rb7zG7mTZaJ0VEWPjisdXFLSvYf5s+ONK4bMBESNNjkC9LspUvLeDIH7qg
+         KJWqNCNtmrDhGwSK8WWziE2vvMlKPHdrhOkxTNKqVrH4bzYAGPS3JOAcgn9uJq2U7GIc
+         rqsSRnlpOfMuOq6EQMF6XQB3zL1qkroK77mrAmkPgolCGxAEvrggowjCIMTKALEz7O5L
+         T0apibn7Lov23G7OW7GMaHKpIMQhO9kHaeUhCdh6NwztivMdV78PW8DemC/NYlrXYNCa
+         Tbvw8tsT61VlPxpax/4JEuuCl543oeV9N3N8bh+s/UR7NZ4AcjNRTV5pmDrO2xmEU0Yu
+         0vVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Abl0bfYYrLlQ27vYh6a3IKNxFiISaIZQZeWkMU0B+HY=;
-        b=V0fhBdhdTpHKWMCXDBLy/YCiIMv3lVfMgPqIIgle82fTmYulCHdxXf+QMIaCFjSgKo
-         lkEt6bGx8jbd5X9kKZhE9vucPaPrqNcYzdICvjGLTmiK+GNJH/KClok2gauv7R9VhdG5
-         BjOj15F6W5wt+F8XGolEmWYiUjUM+5hMmpdvmth1v3aArzj/m+i4KZv1pa3lLnwGw/Or
-         luUIVY0BfGsYUou4vSeSIQTaAv13uZfwbGfJd+2t8r45X7YHQh6Kv8VohNei+7rzBzT+
-         HB96YyxC/v/PWGMMOvbVeuDNINmObVHYbIEZYAbPYpiuQpy9mdnTXvEQKSPofSQ6WaCn
-         M+PQ==
-X-Gm-Message-State: AOAM532b0BW8KQpa8Hulm7HFIA6j8WHfHS8DwYIfzn5OXnNLZaCp11s+
-        Scghugy5LDnKRHbU1r1+fV+MqQ==
-X-Google-Smtp-Source: ABdhPJx/bBDnaGbhRf26Abl87DpdzPlrl9/ustlrU9hsLHOANPcCs60CUmoMIuPL0ZgfMH86wSd+tw==
-X-Received: by 2002:a17:90a:884:b0:1d9:531c:9cd6 with SMTP id v4-20020a17090a088400b001d9531c9cd6mr16498367pjc.211.1650999188661;
-        Tue, 26 Apr 2022 11:53:08 -0700 (PDT)
+        bh=KslgnjbYCZy+RC57ZlL0pYo5UT2utIjDNcmnyodLbb4=;
+        b=zfdI45A5oRJUndi0x6mliAT3S9glooo0CNpHi4Jn28MRRjTsdcN0u1U4ptnKSZuAJU
+         DfEeqRizVRs8TgWl+NfY1Sl33n7nKjByVyzjpqP4JktQvLDKHzCTc5R04Nv7sgiBuOJf
+         Hn12l+ktD6d9EW3R02xr/ZgoKtKYmxOGuMEOEGQdPmJRW6Htx7mFJxNNWrcKSBGMbN/i
+         Pq4dOe8sUa04FCG/zjr2bCFRgx4WHQzrNRrUQV5bVNKq5yNNWQDozPVzankHeC9OpZ0+
+         3K8ohKHcAXN6i66yEr4/T2lYaA5Hsh8S0gr2ZZ2+xbVtYPbvmbJY15z1+QHF2/HVztPT
+         XECQ==
+X-Gm-Message-State: AOAM533nh0zZO3kI+pAoS29ZIidzD3Akuxrs+Zgy1U+gzwf64DTdD2H7
+        Lf2isp7c3eLChls0eDTzNXkgzw==
+X-Google-Smtp-Source: ABdhPJydAWW3DEffEILPWDD4OW996Ze0tqBY9UvoB/z8q/qtxrBuRCzG4CK+M8gIY/YrqzWEtsn8HQ==
+X-Received: by 2002:a17:902:d645:b0:158:f267:83b1 with SMTP id y5-20020a170902d64500b00158f26783b1mr25064870plh.11.1650999190315;
+        Tue, 26 Apr 2022 11:53:10 -0700 (PDT)
 Received: from atishp.ba.rivosinc.com ([66.220.2.162])
-        by smtp.gmail.com with ESMTPSA id cl18-20020a17090af69200b001cd4989ff5asm3839664pjb.33.2022.04.26.11.53.07
+        by smtp.gmail.com with ESMTPSA id cl18-20020a17090af69200b001cd4989ff5asm3839664pjb.33.2022.04.26.11.53.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 11:53:08 -0700 (PDT)
+        Tue, 26 Apr 2022 11:53:09 -0700 (PDT)
 From:   Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Atish Patra <atishp@rivosinc.com>,
@@ -60,74 +60,71 @@ Cc:     Atish Patra <atishp@rivosinc.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v3 1/4] RISC-V: Add SSTC extension CSR details
-Date:   Tue, 26 Apr 2022 11:52:42 -0700
-Message-Id: <20220426185245.281182-2-atishp@rivosinc.com>
+Subject: [PATCH v3 2/4] RISC-V: Enable sstc extension parsing from DT
+Date:   Tue, 26 Apr 2022 11:52:43 -0700
+Message-Id: <20220426185245.281182-3-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220426185245.281182-1-atishp@rivosinc.com>
 References: <20220426185245.281182-1-atishp@rivosinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch just introduces the required CSR fields related to the
-SSTC extension.
+The ISA extension framework now allows parsing any multi-letter
+ISA extension.
+
+Enable that for sstc extension.
 
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/include/asm/csr.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/riscv/include/asm/hwcap.h | 1 +
+ arch/riscv/kernel/cpu.c        | 1 +
+ arch/riscv/kernel/cpufeature.c | 1 +
+ 3 files changed, 3 insertions(+)
 
-diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-index e935f27b10fd..10f4e1c36908 100644
---- a/arch/riscv/include/asm/csr.h
-+++ b/arch/riscv/include/asm/csr.h
-@@ -227,6 +227,9 @@
- #define CSR_SIP			0x144
- #define CSR_SATP		0x180
+diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+index 0734e42f74f2..25915eb60d61 100644
+--- a/arch/riscv/include/asm/hwcap.h
++++ b/arch/riscv/include/asm/hwcap.h
+@@ -52,6 +52,7 @@ extern unsigned long elf_hwcap;
+  */
+ enum riscv_isa_ext_id {
+ 	RISCV_ISA_EXT_SSCOFPMF = RISCV_ISA_EXT_BASE,
++	RISCV_ISA_EXT_SSTC,
+ 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
+ };
  
-+#define CSR_STIMECMP		0x14D
-+#define CSR_STIMECMPH		0x15D
-+
- #define CSR_VSSTATUS		0x200
- #define CSR_VSIE		0x204
- #define CSR_VSTVEC		0x205
-@@ -236,6 +239,8 @@
- #define CSR_VSTVAL		0x243
- #define CSR_VSIP		0x244
- #define CSR_VSATP		0x280
-+#define CSR_VSTIMECMP		0x24D
-+#define CSR_VSTIMECMPH		0x25D
+diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+index ccb617791e56..ca0e4c0db17e 100644
+--- a/arch/riscv/kernel/cpu.c
++++ b/arch/riscv/kernel/cpu.c
+@@ -88,6 +88,7 @@ int riscv_of_parent_hartid(struct device_node *node)
+  */
+ static struct riscv_isa_ext_data isa_ext_arr[] = {
+ 	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
++	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
+ 	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
+ };
  
- #define CSR_HSTATUS		0x600
- #define CSR_HEDELEG		0x602
-@@ -251,6 +256,8 @@
- #define CSR_HTINST		0x64a
- #define CSR_HGATP		0x680
- #define CSR_HGEIP		0xe12
-+#define CSR_HENVCFG		0x60A
-+#define CSR_HENVCFGH		0x61A
- 
- #define CSR_MSTATUS		0x300
- #define CSR_MISA		0x301
-@@ -312,6 +319,10 @@
- #define IE_TIE		(_AC(0x1, UL) << RV_IRQ_TIMER)
- #define IE_EIE		(_AC(0x1, UL) << RV_IRQ_EXT)
- 
-+/* ENVCFG related bits */
-+#define HENVCFG_STCE	63
-+#define HENVCFGH_STCE	31
-+
- #ifndef __ASSEMBLY__
- 
- #define csr_swap(csr, val)					\
+diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+index 1b2d42d7f589..a214537c22f1 100644
+--- a/arch/riscv/kernel/cpufeature.c
++++ b/arch/riscv/kernel/cpufeature.c
+@@ -192,6 +192,7 @@ void __init riscv_fill_hwcap(void)
+ 				set_bit(*ext - 'a', this_isa);
+ 			} else {
+ 				SET_ISA_EXT_MAP("sscofpmf", RISCV_ISA_EXT_SSCOFPMF);
++				SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SSTC);
+ 			}
+ #undef SET_ISA_EXT_MAP
+ 		}
 -- 
 2.25.1
 
