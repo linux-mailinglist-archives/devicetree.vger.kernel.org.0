@@ -2,120 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5C350FCCF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 14:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2BE50FCE4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 14:27:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349946AbiDZMVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 08:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
+        id S242366AbiDZMac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 08:30:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349947AbiDZMVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 08:21:44 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F53C2D1FB;
-        Tue, 26 Apr 2022 05:17:39 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id j2so32669328ybu.0;
-        Tue, 26 Apr 2022 05:17:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D8bMngWVr0tdDN5yiWTr4GCLxeSgF3V3y+tGLoxVCwE=;
-        b=PRM6gHAykZCXpCQH5Wk8cGO282pG77Ww8omQDxG+iNICtf6Y583Iv1oDHwR5jgWxlv
-         hAiVerTzW/WBglfZmwOJeATGGNFIGUeSBqNrcr1+yyGzL+Piy9ke9uKErf72U57iZpfB
-         ajJOW7YzJzLMQxtZiYmfusltKmmh23XSC/j6g0WP7/Xh7aIB6BHo6cqwSSnGcoOO1y+D
-         rjxcH30lURrv6o3dnfN8aydhCKNWBXPMjlg4Kjk+r59/we0DKUZGfhBqhOBpL62mLNDZ
-         VcE0iElzzWysREq918Ia6i8+mbxC9Vc36Lo72l1Q51v6XPgU/C/fZjbh78GsiSqTgAls
-         i+qQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D8bMngWVr0tdDN5yiWTr4GCLxeSgF3V3y+tGLoxVCwE=;
-        b=Epzf7ddvFQ8bmt0gkaZsuPYNWgmaoTFY7vnKNZfgr5TDfgsMGsdKPcGKeIgNJ49Ocm
-         /1WlpnJHXuL0Cw6Me1iWQQcgnvF5dbj+g8lpUM16QrgU2nhbqmzJDVv/BPUpj09Nr69n
-         Ns9j2nxt7/ODq5QCFAwLn0Kxip+YAJt1VEyKOZ256NM231ESAOERnmHOlAlIB3RUZg3H
-         3FjpxPQ7k1ozqxBMrw262F/tAO29rtki7SVlCpYOt42UePPD4eB2d+YYrxgKimZghSBS
-         0f+20cyVq1kEKSw6joUkLMH3+fK9arVW7Rq/vREakhlQ7MrSD5ve0VS7w2vN14UphAvl
-         IBiQ==
-X-Gm-Message-State: AOAM530ybCMvcf6q+BlsGD2iU1G0Jamr5Bj2CVDIrTB5YZHs9wNrHlco
-        NS9nfySUlJih/9OOKDsQm5S4wKSCiawIoUU9Lso=
-X-Google-Smtp-Source: ABdhPJx0rpcQBG6rCBtHajN61Ati9nYNIN0fnUTzxWuvy/zu9z0hhhANAao1ToRixhOUAakqrY5Nme82QpTApzdY0j0=
-X-Received: by 2002:a05:6902:143:b0:628:7cf1:f2a9 with SMTP id
- p3-20020a056902014300b006287cf1f2a9mr19922108ybh.51.1650975458538; Tue, 26
- Apr 2022 05:17:38 -0700 (PDT)
+        with ESMTP id S1346338AbiDZMaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 08:30:19 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 875CE689BB;
+        Tue, 26 Apr 2022 05:27:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1650976032; x=1682512032;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=dWJ3/7cdmA0pgFsitZuEUw3jz9OX5cH4BT7oF2UsM8c=;
+  b=SfWUDtC3YfnsmsilBsKAZkukokEz3xifK7eCSKiclox5jaaG7tQVYfF5
+   kmgdRD9HdkI7sVvfj3SUBaB8Zpv5Plxcye+/AZyg6gIdiKLearmJXqHs5
+   SZBJPi2l4j4BCCXa0EaWADsyu0dKtwqRzB5sgnZ4y2ZinitKpzqPHYql7
+   BNF6olYQaaAszZ6CZpLq3U90zXraUQj7xx3pR58p7J63LScsnI+CEUNlt
+   bZ3I/B8ZMfLimd+x3Hed4znkTpnrO/VbZ3SLQq/NWd5DpKiKtHyUbW92H
+   o+ytgDgVTFyAurKcdEkVM2sOpAv+82/1ZuAffPP2pFQOSNh3/MKzgypqQ
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="265724736"
+X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; 
+   d="scan'208";a="265724736"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 05:27:12 -0700
+X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; 
+   d="scan'208";a="579864855"
+Received: from mmilkovx-mobl.amr.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.249.47.245])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 05:27:08 -0700
+From:   =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     linux-serial@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>
+Cc:     Jiri Slaby <jirislaby@kernel.org>, Lukas Wunner <lukas@wunner.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Vicente Bergas <vicencb@gmail.com>,
+        Johan Hovold <johan@kernel.org>, heiko@sntech.de,
+        giulio.benetti@micronovasrl.com,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 03/10] dt_bindings: rs485: Add receiver enable polarity
+Date:   Tue, 26 Apr 2022 15:24:41 +0300
+Message-Id: <20220426122448.38997-4-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220426122448.38997-1-ilpo.jarvinen@linux.intel.com>
+References: <20220426122448.38997-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-References: <20220423152403.1681222-1-pgwipeout@gmail.com> <20220423152403.1681222-3-pgwipeout@gmail.com>
- <25fbf4763c28af4c73162dec254af6111e05461b.camel@pengutronix.de>
-In-Reply-To: <25fbf4763c28af4c73162dec254af6111e05461b.camel@pengutronix.de>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Tue, 26 Apr 2022 08:17:26 -0400
-Message-ID: <CAMdYzYpw-vUFTM=pmnASNrWvi0X4mM0hFKX7TRLHhJyehfuHkw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/5] PCI: dwc: rockchip: reset core at driver probe
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, PCI <linux-pci@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 5:20 AM Philipp Zabel <p.zabel@pengutronix.de> wrote:
->
-> Hi Peter,
->
-> On Sa, 2022-04-23 at 11:24 -0400, Peter Geis wrote:
-> > The PCIe controller is in an unknown state at driver probe. This can
-> > lead to undesireable effects when the driver attempts to configure the
-> > controller.
-> >
-> > Prevent issues in the future by resetting the core during probe.
-> >
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 22 +++++++------------
-> >  1 file changed, 8 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > index c9b341e55cbb..d67ed811e752 100644
-> > --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > @@ -152,7 +152,13 @@ static int rockchip_pcie_resource_get(struct platform_device *pdev,
-> >       if (IS_ERR(rockchip->rst_gpio))
-> >               return PTR_ERR(rockchip->rst_gpio);
-> >
-> > -     return 0;
-> > +     rockchip->rst = devm_reset_control_array_get_exclusive(&pdev->dev);
-> > +     if (IS_ERR(rockchip->rst))
-> > +             return dev_err_probe(&pdev->dev, PTR_ERR(rockchip->rst),
-> > +                                  "failed to get reset lines\n");
-> > +
-> > +     return reset_control_assert(rockchip->rst);
->
-> This makes "rockchip_pcie_resource_get" a bit of a misnomer, maybe move
-> this out into rockchip_pcie_probe()?
+Add polarity property for receiver enable. Some UARTs have separate
+enable pins for tx (RTS or DE) and rx (RE). As most RS485 transceivers
+have !RE pin, the default is active low in contrast to
+rs485-rts-active-low that defaults to active high.
 
-Ah, yes that does make sense, thanks.
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+---
+ Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
->
-> > +
->
-> Superfluous whitespace.
->
-> regards
-> Philipp
->
+diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
+index 0c9fa694f85c..f2c9c9fe6aa7 100644
+--- a/Documentation/devicetree/bindings/serial/rs485.yaml
++++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+@@ -33,6 +33,11 @@ properties:
+     description: drive RTS low when sending (default is high).
+     $ref: /schemas/types.yaml#/definitions/flag
+ 
++  rs485-rx-active-high:
++    description: Polarity of receiver enable signal (when separate from RTS).
++      True indicates active high (default is low).
++    $ref: /schemas/types.yaml#/definitions/flag
++
+   linux,rs485-enabled-at-boot-time:
+     description: enables the rs485 feature at boot time. It can be disabled
+       later with proper ioctl.
+-- 
+2.30.2
+
