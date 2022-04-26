@@ -2,102 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2DBC50F333
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F10F750F32E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbiDZH6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 03:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43486 "EHLO
+        id S231288AbiDZH7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 03:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240013AbiDZH6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:58:45 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A111015A02
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:55:38 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id m20so13615289ejj.10
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:55:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:references:in-reply-to:content-transfer-encoding;
-        bh=U1WIMsibwKAIR96y0nfN1dWqQ9y7DvH5uIdNqetGlS8=;
-        b=FyZ/TA1R0QE9jseCnsTKYHivHbJbdV3nJ2NWiZVIhMzQOaldbwN8vuAtrdZD/wP6hA
-         89cSdgErVumgQOt1bPWr1jgCFjfDYqE1mbAiDg6qb/D8DdimLrdY3TAGjiK+sqdO39Dx
-         P1ZSzHXILr9emGF2u8Y2vYQPe2rCIgTHDlhzXsl1p4ZquHvKW9KTCFHeH1cZOqYkJhNQ
-         TnfENNrCmpZu10KT0YcRGPaPzHg76g5U5T7tx7iYUfEnrgCBquNxNS+pahzCw9Jg2lgM
-         ULXAjZ79f8mRQMFXU1DDuCcqcugSK+6CTQCEm+9BEMLHOCiJQQ/XzvbZH3eYZX3dsudZ
-         M87g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:references:in-reply-to
-         :content-transfer-encoding;
-        bh=U1WIMsibwKAIR96y0nfN1dWqQ9y7DvH5uIdNqetGlS8=;
-        b=4q868gsTR/dv9eEbdD0LFpkSSHF5WDHI8f9DKdO3ybcD5zi6TTfVWP7+DhLxe8Jo9S
-         4uYw4rXEWT8clqFZuZLQobr8zdpHMbt5EP/s7QHUkLrDihgnVGiIguTLId6zM5+hyr21
-         RPSxOuOpxyZPqoo9jODRAVxt/DwdWUx57y7yNsdeDA8kTrt9p39CsjTLeuSbIkA8cjSY
-         O8EA6xzBWN3TrLqTBmk+049jTehhFkE8GohuFAlJXG6Bd4at9TZxmu7R3C6/dVMSmukF
-         b3EMCAIo6JpGbscqQZacKZ0CKLErBRBzQIH25bXBEgnHF1xJ6HQoi617fKygmOx6KOHP
-         voZQ==
-X-Gm-Message-State: AOAM5311b4qdXLVl6rcNNYDPXO5KcgGlv6JN8QnMcpR5q0KKm+e90ahI
-        bd7aIgWJyerDWV4FO4hFmJRN2A==
-X-Google-Smtp-Source: ABdhPJyl6PyJGE7Jjc6hic8TZ5AB9cjeYf4nSNHBpwP4vGGeYWVVrFn2tuH6oToWF4vr+xPevOz/qQ==
-X-Received: by 2002:a17:906:7948:b0:6da:64ed:178e with SMTP id l8-20020a170906794800b006da64ed178emr20831011ejo.523.1650959737278;
-        Tue, 26 Apr 2022 00:55:37 -0700 (PDT)
-Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o18-20020a1709064f9200b006e7f229b332sm4428329eju.36.2022.04.26.00.55.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 00:55:36 -0700 (PDT)
-Message-ID: <2ac59e59-2516-2bca-9db6-e2cfec671cef@linaro.org>
-Date:   Tue, 26 Apr 2022 09:55:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] riscv: dts: fu540-c000: fix duplicated dma compatible
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Zong Li <zong.li@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Bin Meng <bmeng.cn@gmail.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220421065401.9303-1-krzysztof.kozlowski@linaro.org>
- <f822fc7a-7c47-d8f9-8ef9-fda2c7832926@linaro.org>
-In-Reply-To: <f822fc7a-7c47-d8f9-8ef9-fda2c7832926@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S1344357AbiDZH66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:58:58 -0400
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467291A055;
+        Tue, 26 Apr 2022 00:55:49 -0700 (PDT)
+Received: from fews2.riseup.net (fews2-pn.riseup.net [10.0.1.84])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+         client-signature RSA-PSS (2048 bits) client-digest SHA256)
+        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+        by mx1.riseup.net (Postfix) with ESMTPS id 4KnZ1w3RCzzDqPk;
+        Tue, 26 Apr 2022 00:55:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+        t=1650959748; bh=3aL3yiuRGJLKNdufRrOQc8sWMnykHDqjpt4U7wvTSQo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=laK8x/GpCC/J+8D6qM3woE40/WsrYwHV/7SESR+cQDbDAMCP6akt8VOQFQH8r4GmZ
+         o187u2sGKqD16ja3C60i7UwC9aBf9A0aVzYPRpSEjFZE09wIHNZACeMqLpKs1BwiUI
+         uIxh+maPc2U0QQZx/WHDAgfqfDNXWEccR2eI5ZLU=
+X-Riseup-User-ID: B739F329B21ADAD34223616135E79A0AD14E909BB87821BDF443FC0F821EC23A
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+         by fews2.riseup.net (Postfix) with ESMTPSA id 4KnZ1q1mhzz202J;
+        Tue, 26 Apr 2022 00:55:42 -0700 (PDT)
+Date:   Tue, 26 Apr 2022 14:55:38 +0700
+From:   Danct12 <danct12@riseup.net>
+To:     kholk11@gmail.com
+Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org, rydberg@bitmath.org,
+        priv.luk@gmail.com, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, marijns95@gmail.com,
+        konradybcio@gmail.com, martin.botka1@gmail.com,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk@kernel.org, andy.shevchenko@gmail.com
+Subject: Re: [PATCH v9 0/3] Add Novatek NT36xxx touchscreen driver
+Message-Id: <20220426145538.e2af01d6d648b011a910f3a0@riseup.net>
+In-Reply-To: <20201028221302.66583-1-kholk11@gmail.com>
+References: <20201028221302.66583-1-kholk11@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/2022 09:53, Krzysztof Kozlowski wrote:
-> On 21/04/2022 08:54, Krzysztof Kozlowski wrote:
->> Remove duplicated compatible to fix error:
->>
->>   u540-c000.dtsi:171.4-42: ERROR (duplicate_property_names): /soc/dma@3000000:compatible: Duplicate property name
->>
->> Fixes: 7eba954a8de8 ("riscv: dts: Add dma-channels property and modify compatible")
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Hi everyone,
-> 
-> This is an error which causes compilation to fail. Such patches should
-> be picked up faster than later, because it breaks various builds.
-> 
-> I'll take it via my tree.
+Patch series tested, works fine on the Xiaomi Redmi Note 7 (SDM660, NT36672A IC)
 
-Ah, it seems Palmer rebased his tree after it got accepted to next, so
-patch can be dropped.
+To the whole patch series:
+Tested-by: Dang Huynh <danct12@riseup.net>
 
+On Wed, 28 Oct 2020 23:12:59 +0100
+kholk11@gmail.com wrote:
 
-Best regards,
-Krzysztof
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> 
+> This patch series adds support for the Novatek NT36xxx Series' In-Cell
+> touchscreen (integrated into the DriverIC).
+> 
+> This patch series has been tested against the following devices:
+>  - Sony Xperia 10        (SDM630 Ganges Kirin)
+>  - Sony Xperia 10 Plus   (SDM636 Ganges Mermaid)
+> 
+> Changes in v2:
+> - Fixed sparse warnings from lkp kernel test robot
+> 
+> Changes in v3 (as requested by Dmitry Torokhov):
+> - Using shorthand u16/u32 (sorry for the overlook!)
+> - Now using more input and touchscreen APIs
+> - Fixed useless workqueue involvements
+> - Removed useless locking
+> - Switched reads and writes to use regmap
+> - Moved header contents to nt36xxx.c
+> - Fixed reset gpio handling
+> - Other cleanups
+> - P.S.: Thanks, Dmitry!
+> 
+> Changes in v4:
+> - Fixed regmap read length for CRC_ERR_FLAG final check
+> - Fixed YAML binding, as requested by Krzysztof Kozlowski
+> 
+> Changes in v5:
+> - Replaced subsystem maintainer's name with .. mine,
+>   usage of additionalProperties to unevaluatedProperties
+>   and a typo fix for reset-gpios as per Rob Herring's review
+> - Changed compatible string as per Krzysztof K. request
+> - Renamed the novatek,nt36xxx.yaml file to just nt36xxx.yaml
+>   in order to now reflect the driver name instead of the DT
+>   compatible
+> - Fixed blank line at EOF
+> 
+> Changes in v6:
+> - Removed include of_gpio.h, added mod_devicetable.h and
+>   gpio/consumer.h
+> - Added kerneldoc to relevant functions/enum
+> - Used traditional patterns for error checking where possible
+> - Documented calls to usleep/msleep
+> - Using be16_to_cpu / get_unaligned_be16 where possible
+> - Added helper for CRC error check on retrieved buffer
+> - Decreased indentation in the CRC reboot recovery function
+> - Removed instances of error code sum
+> - Dropped all likely/unlikely optimization as per request
+> - Removed redundant reset_gpio checks
+> - Dropped of_match_ptr and ifdefs for CONFIG_OF
+> 
+> Changes in v7:
+> - Fixed typo in nt36xxx.c
+> 
+> Changes in v8:
+> - Fixed typo reset-gpio -> reset-gpios in dt-bindings
+> 
+> Changes in v9:
+> - Includes are now sorted
+> - Used proposed sizeof variable instead of sizeof type
+> - Fixed a return value check for common pattern
+> - Added NULL check to devm_kasprintf call
+> - Returning ret on probe function to be consistent
+> 
+> AngeloGioacchino Del Regno (3):
+>   dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
+>   Input: Add Novatek NT36xxx touchscreen driver
+>   dt-bindings: touchscreen: Add binding for Novatek NT36xxx series
+>     driver
+> 
+>  .../bindings/input/touchscreen/nt36xxx.yaml   |  59 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  drivers/input/touchscreen/Kconfig             |  12 +
+>  drivers/input/touchscreen/Makefile            |   1 +
+>  drivers/input/touchscreen/nt36xxx.c           | 894 ++++++++++++++++++
+>  drivers/input/touchscreen/nt36xxx.h           | 122 +++
+>  6 files changed, 1090 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
+>  create mode 100644 drivers/input/touchscreen/nt36xxx.c
+>  create mode 100644 drivers/input/touchscreen/nt36xxx.h
+> 
+> -- 
+> 2.28.0
+> 
