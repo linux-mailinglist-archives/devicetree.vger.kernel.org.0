@@ -2,147 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEE3251069B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C46DE5106C5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353708AbiDZSVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
+        id S243582AbiDZS1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 14:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353681AbiDZSVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:21:14 -0400
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA743112DBE;
-        Tue, 26 Apr 2022 11:18:03 -0700 (PDT)
-Received: by mail-qv1-f51.google.com with SMTP id b17so14697713qvf.12;
-        Tue, 26 Apr 2022 11:18:03 -0700 (PDT)
+        with ESMTP id S235205AbiDZS1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:27:22 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B661524B7;
+        Tue, 26 Apr 2022 11:24:14 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id l203so10764556oif.0;
+        Tue, 26 Apr 2022 11:24:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qrDtpTWYEh6BgxA1tNfogOLR/qVKjTGoMsxRjOgUmis=;
-        b=YUjIg2wPYj4XTTY5cTHqGyexjoHpKmhxqRW5auuum75ajFTIz/y9nsvwiCcFgXHnlS
-         uFQZ7HHMJnXosYWNev3dw5bHF9EQJa6z/aoyiK7egR5hXz4Q1frTmZdAfZl74W/R0t6a
-         Q/wRXUkyMmxN5PbGgDTYhri3C5YkCKKJdHu/xyfe6eh2mN/vS7JVaVXAD/PiK7CrlbbE
-         AIlJ4w5GEmyF3JfmK9HDSW71+P+pOJG13bsswP4UNgX8oxH5Pegge5QLXSv07E9Ysynu
-         XUyzSOjurQD/n/L1B8gXHnjPuRwf31B1j0X4OU9bfaUlvEnZNgD7ANU/uz1JaTy2Qm5o
-         6RXw==
-X-Gm-Message-State: AOAM530MQY3tZjStu9Az40mvC45UXGHrBDA7d9xuRk4q09aDtoxOY9YO
-        HLS7aoNQISN/gE0Z2puq8zTcoqu6BTs2qQ==
-X-Google-Smtp-Source: ABdhPJymR6pNRl+f81UPvSdMCryQeUMgIsylSFl2HkNmYRLAg9IuEZTc1P0JFaFDd/dcRWctKayn2g==
-X-Received: by 2002:a05:6214:27c9:b0:446:5771:397b with SMTP id ge9-20020a05621427c900b004465771397bmr17032066qvb.75.1650997082706;
-        Tue, 26 Apr 2022 11:18:02 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id j128-20020a37a086000000b0069f7c7d6517sm1028240qke.13.2022.04.26.11.18.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 11:18:02 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id s30so6489306ybi.8;
-        Tue, 26 Apr 2022 11:18:02 -0700 (PDT)
-X-Received: by 2002:a25:3492:0:b0:645:6f78:b3b4 with SMTP id
- b140-20020a253492000000b006456f78b3b4mr23087982yba.546.1650997081694; Tue, 26
- Apr 2022 11:18:01 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eYGpzVL6z/9v1Xf7+HUnb3XtEpbv7g1nd4l3yujJBqU=;
+        b=g0mQlxclTxCDLMthMXeZxF5RI6PEX2kV3FVg8Oq2chf7qqniHPcRxzNo7VGLRp13/x
+         UQd2tLiBscbDFvpTU7OEaM/CWo0tzVfVixSGmW7s4409hLzUKS+GZ53d/kS56SLoYUF1
+         Jqjrzy2AimgDIBe28bshQQIaRShsnLB1jroVd2D3bJh3TmdKPO9fXCoTaLFv1DPVoKQL
+         ruYOnTo4Iu6W2Iva0pG3rF3UIo1xjFDy0yEhzolZZ/JqIj9FPUz2alOjDhx2bbdeiuZT
+         L/xfZv+HOtD5VxwVnCAQFPNzXGE9yD/9Qxa2hQMZeayLefU26dULjwjJkN8eqHdChlWg
+         XmFg==
+X-Gm-Message-State: AOAM5307WoZD0NL/zX7NI5lbs3ZfSgIZIbPqrW+n7k0+ZsGSDHKNWuRk
+        ZY+GKhiSR4hxceumwpjl8u4kD3gPbQ==
+X-Google-Smtp-Source: ABdhPJwqJ/M/GPcWpn4KFmsYPNq6cn7iuEhMpX3WrbveRkvKdJR+4UP5ufGYG8dqHTiVlMa8p7jzuw==
+X-Received: by 2002:a05:6808:8da:b0:324:be6a:e866 with SMTP id k26-20020a05680808da00b00324be6ae866mr9705228oij.72.1650997453643;
+        Tue, 26 Apr 2022 11:24:13 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l16-20020a9d6a90000000b0060548d240d4sm5160969otq.74.2022.04.26.11.24.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 11:24:13 -0700 (PDT)
+Received: (nullmailer pid 2302730 invoked by uid 1000);
+        Tue, 26 Apr 2022 18:24:12 -0000
+Date:   Tue, 26 Apr 2022 13:24:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, quic_tdas@quicinc.com
+Subject: Re: [PATCH v4 3/3] dt-bindings: clock: qcom,gcc-apq8064: split tsens
+ to the child node
+Message-ID: <Ymg4zFsQB2MAQ/T5@robh.at.kernel.org>
+References: <20220426094144.2958416-1-dmitry.baryshkov@linaro.org>
+ <20220426094144.2958416-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-References: <20220330154024.112270-1-phil.edworthy@renesas.com> <20220330154024.112270-14-phil.edworthy@renesas.com>
-In-Reply-To: <20220330154024.112270-14-phil.edworthy@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 26 Apr 2022 20:17:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV0GRBDk9Kv_ezkczwq4EhZUh5PhaYM0DVOXTzvVrGQYQ@mail.gmail.com>
-Message-ID: <CAMuHMdV0GRBDk9Kv_ezkczwq4EhZUh5PhaYM0DVOXTzvVrGQYQ@mail.gmail.com>
-Subject: Re: [PATCH v2 13/13] arm64: dts: renesas: Add initial device tree for
- RZ/V2M EVK
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220426094144.2958416-4-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Phil,
-
-On Wed, Mar 30, 2022 at 5:43 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
-> Add basic support for RZ/V2M EVK (based on R9A09G011):
-> - memory
-> - External input clock
-> - UART
->
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-> @@ -0,0 +1,45 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the RZ/V2M (r9a09g011) Evaluation Kit Board
-> + *
-> + * Copyright (C) 2022 Renesas Electronics Corp.
-> + */
+On Tue, Apr 26, 2022 at 12:41:44PM +0300, Dmitry Baryshkov wrote:
+> Split tsens properties to the child node of the gcc. This follows the
+> lead of ipq8064 (which also uses a separate node for tsens) and makes
+> device tree closer to other platforms, where tsens is a completely
+> separate device.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/clock/qcom,gcc-apq8064.yaml      | 45 +++++++------------
+>  1 file changed, 17 insertions(+), 28 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> index b867da12761e..f2762599f679 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> @@ -23,47 +23,36 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,gcc-apq8064
+> -      - qcom,gcc-msm8060
+> -
+> -  nvmem-cells:
+> -    minItems: 1
+> -    maxItems: 2
+> -    description:
+> -      Qualcomm TSENS (thermal sensor device) on some devices can
+> -      be part of GCC and hence the TSENS properties can also be part
+> -      of the GCC/clock-controller node.
+> -      For more details on the TSENS properties please refer
+> -      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> -
+> -  nvmem-cell-names:
+> -    minItems: 1
+>      items:
+> -      - const: calib
+> -      - const: calib_backup
+> -
+> -  '#thermal-sensor-cells':
+> -    const: 1
+> +      - enum:
+> +          - qcom,gcc-apq8064
+> +          - qcom,gcc-msm8060
+> +      - const: syscon
+>  
+>  required:
+>    - compatible
+> -  - nvmem-cells
+> -  - nvmem-cell-names
+> -  - '#thermal-sensor-cells'
+>  
+>  unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+>      clock-controller@900000 {
+> -      compatible = "qcom,gcc-apq8064";
+> +      compatible = "qcom,gcc-apq8064", "syscon";
+>        reg = <0x00900000 0x4000>;
+> -      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
+> -      nvmem-cell-names = "calib", "calib_backup";
+>        #clock-cells = <1>;
+>        #reset-cells = <1>;
+>        #power-domain-cells = <1>;
+> -      #thermal-sensor-cells = <1>;
 > +
-> +/dts-v1/;
-> +#include "r9a09g011.dtsi"
-> +
-> +/ {
-> +       model = "RZ/V2M Evaluation Kit 2.0";
-> +       compatible = "renesas,rzv2mevk2", "renesas,r9a09g011";
-> +
-> +       aliases {
-> +               serial0 = &uart0;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial0:115200n8";
-> +       };
-> +
-> +       memory@58000000 {
-> +               device_type = "memory";
-> +               /* first 128MB is reserved for secure area. */
+> +      thermal-sensor {
 
-I guess there's much more reserved for the ISP firmware (1408 MiB?).
+This should throw a warning I think as 'thermal-sensor' needs to be 
+defined. The patch didn't apply for me though.
 
-> +               reg = <0x0 0x58000000 0x0 0x28000000>;
-> +       };
+> +        compatible = "qcom,msm8960-tsens";
 > +
-> +       memory@180000000 {
-> +               device_type = "memory";
-> +               reg = <0x1 0x80000000 0x0 0x80000000>;
-> +       };
-> +};
+> +        nvmem-cells = <&tsens_calib>, <&tsens_backup>;
+> +        nvmem-cell-names = "calib", "calib_backup";
+> +        interrupts = <0 178 4>;
+> +        interrupt-names = "uplow";
 > +
-> +&extal_clk {
-> +       clock-frequency = <48000000>;
-> +};
-> +
-> +&sys {
-> +       status = "okay";
-> +};
-
-No need to enable sys if it would be enabled by default.
-
-> +
-> +&uart0 {
-> +       status = "okay";
-> +};
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +        #qcom,sensors = <11>;
+> +        #thermal-sensor-cells = <1>;
+> +        };
+>      };
+>  ...
+> -- 
+> 2.35.1
+> 
+> 
