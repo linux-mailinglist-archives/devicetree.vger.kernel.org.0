@@ -2,112 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B56510ABB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC25B510ACF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355139AbiDZUuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 16:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39686 "EHLO
+        id S233591AbiDZU7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 16:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230505AbiDZUuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:50:20 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773364D251
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:47:11 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id v65so17323966oig.10
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:47:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QzB3Bdi4TZ2Nws2HCQQhwkIjzXxft3C3e6a003vLbvE=;
-        b=vvdly9VcW+FAd/BRUYEN8pLSa18CiNt5rOAYy02F79PncC/cyELUr+kTRLEVjoCkGa
-         k9KSZCcXnphk9wvuD4zWOPN4X9m9maHjKdcZ9ip7EL4paaEKbK2y+b+ELiNGUcJT8Fge
-         7u6HxblMgLQ2RHnGNu7+9GQcJsO06eb9PaEeGnFlug6AXrG9Kw1g2fFN65GQFMIVfPuX
-         sK2XxmONL1F5NzcNC1epk4czsWVBA4KNxAPTKwHdrc5WlBBJnz1wb3dwNtJZSVSN1s65
-         FKNrAfb0hgm428AFl6BDNWA0EXOwTIj2GkGKx6gEcztMfaCrr+2CG3fFcDS0C9w/b9xB
-         YtEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QzB3Bdi4TZ2Nws2HCQQhwkIjzXxft3C3e6a003vLbvE=;
-        b=wvJb+CAPRg9wYCox+neXhNYZ6dHPz4kKPzlBjXgIYCt0MJEJXByTGKWOVPYi+fahbg
-         xAaOVVQOLNUGMDO4LHEfZCpy1jgGv19Z853cSxHnN8em1R36Voph932WDZUgpLaXmuHx
-         oE8KPr1fNQ+nWo5OwW04mNdfS17H9abGCTB/iQawOb1wa7Dme5dpiw+sKkC/uYlLqQ+w
-         QDxoTnKZnxEprToAyB3UkHlUEFIL2ayKg6jNo4IF4QWMHlkzA9LZuvYG+R5dvKSW2rrm
-         9qAFYR5DJk5xavBkCY+0SRybMctKnz5L2qLT7NVPbg0Du7sIa6afRlH3L5gO/e1ApEBd
-         B0tA==
-X-Gm-Message-State: AOAM533dNNXqeRe+G7RYnSd32Rp/9tAKi5U9IPywhS8VLsfZBn6DlWag
-        cCTK2wuH5Xgi2OXb9scKTaUJ9rchnzZeePyB
-X-Google-Smtp-Source: ABdhPJytkLIz0yPUD72X91npy9NSOKrvOFG9hQCViddsQAVjI6xY6tpbOieUx0/M7QRqK/nF1xwQ1w==
-X-Received: by 2002:aca:1004:0:b0:322:8ac2:a1ef with SMTP id 4-20020aca1004000000b003228ac2a1efmr14892914oiq.239.1651006030834;
-        Tue, 26 Apr 2022 13:47:10 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id e26-20020a056820061a00b0035e46250f56sm5331987oow.13.2022.04.26.13.47.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 13:47:09 -0700 (PDT)
-Date:   Tue, 26 Apr 2022 13:49:05 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] ARM: dts: qcom: apq8064: Use generic node name
- for DMA
-Message-ID: <YmhawW3wAn7HAUVC@ripper>
-References: <20220421171809.32722-1-singh.kuldeep87k@gmail.com>
- <20220421171809.32722-2-singh.kuldeep87k@gmail.com>
- <YmQjW4OYe5rTBP/Q@ripper>
- <20220423180934.GA35431@9a2d8922b8f1>
+        with ESMTP id S1354172AbiDZU7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:59:05 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7804623BDC;
+        Tue, 26 Apr 2022 13:55:56 -0700 (PDT)
+Received: from mail-yw1-f173.google.com ([209.85.128.173]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1Mn2Jj-1oBwtR32BD-00k8AD; Tue, 26 Apr 2022 22:55:54 +0200
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2f7b815ac06so119883017b3.3;
+        Tue, 26 Apr 2022 13:55:54 -0700 (PDT)
+X-Gm-Message-State: AOAM531c/I0RGyxqBLDaVfLZu6TJuKPc6VRH54LNIQzlN53DL9cn5vsO
+        0wocP/GzquO5zE+7873Oz5+kXPlZMU5EgqR4TSc=
+X-Google-Smtp-Source: ABdhPJykVbC51GHiNxSRF22iubyVclEPEIn++KiZqruq+/JC2nxl37pjEPmurLqJ7gUHZrZwTtprNFSeiezKdA6Gjr4=
+X-Received: by 2002:a0d:d804:0:b0:2f4:e47d:1c2c with SMTP id
+ a4-20020a0dd804000000b002f4e47d1c2cmr23664046ywe.320.1651006553470; Tue, 26
+ Apr 2022 13:55:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220423180934.GA35431@9a2d8922b8f1>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220426201539.12829-1-sven@svenpeter.dev> <20220426201539.12829-5-sven@svenpeter.dev>
+In-Reply-To: <20220426201539.12829-5-sven@svenpeter.dev>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 26 Apr 2022 22:55:37 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a39t-yyhtVKiEvD9_FvLiVxySnJRXaOv4E4q77t6mDesw@mail.gmail.com>
+Message-ID: <CAK8P3a39t-yyhtVKiEvD9_FvLiVxySnJRXaOv4E4q77t6mDesw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] soc: apple: Add SART driver
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@fb.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Sagi Grimberg <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>, Janne Grunau <j@jannau.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:aCEZ6RBb3tpXSd8jlPQICSalKhz/lcJThhMJ9qtj94Ow0K3Qwv/
+ pusAWlNyx3fi4froZHrjvIJL7JdWmeXgU+TAOnk4QNw4+tS1+jquXFQJJmY5mWc1eAEk2lz
+ fNPGBZp7Kxbtc1iv2PYOjbQM+OJXdlzDWm9Lr1foO9Yt+3eNWz2gdJjc90sL80MIelVe2m5
+ iwa95pM6GQ4ek+hx0ethg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:A2bn5Um674o=:tIiRX89DHd3lVxumZ100zH
+ eRHmP3e1wCYkbq8MRref0+xJysSUJxebo3I+ufrjeK0AeCcYCCf3K7I5Brc/7n9qKnCWTN2df
+ ahq2FzPtHLRao8HXnPyOPY03EBvyph/NZG0xfFOrKgYq7VZZjJ8l8uuS7P6vr/IwTuv/Fnt07
+ P/DCxz7n+/gQmRKPdOH7eLGyC7Gn2uF18S/8l6Z8TAHanC6MjREjDM3ERj+ZpYXLagJuUpUKz
+ PCcjUuzaOjgPFVnYG7/vS0zq6H/iSUuna+zLmf6DndhTl9xywWebH2du+eLayAA0xB3OjYjv4
+ /nVHH/PbygHzO9IQVZ1aPeQZJPOzuaZtbTcGus/TX82Fi5dPKRRhjASAn2fbqb3Sle+zzyjMS
+ cdWiN3JLmZIU8zi3cLipCmmN/ey4D2BRThMFITT1ChCbjIXP1UujmkkscV06MgJ6II94zr9ti
+ kk9ZwPzzu6Bu1HitHUaZo1i0dvTlNnY41BM9j80YwR5tW0/9S2XeX+4Rc4DycKYjcD77XcMG1
+ F4hFksUdJoBa5Md+cjT62GDsTmFqMp0iJR8fAD3TRO6e8US5P6ycgfldI58wEPQgD0fwbul6O
+ Lj+XKXk9aynDJO5oBDxv1s+IjTQjbqtXfw7T0bbdt7ZzAwYxw40q0p8juRdb/4Tu5HwV2rSGl
+ czqW9IWEIhhT4H1wKaO5dFbULPfqp9WKH2JTjOBLO3WaR2KhZpv6j/4ItUFCX60ZFgiI=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 23 Apr 11:09 PDT 2022, Kuldeep Singh wrote:
+On Tue, Apr 26, 2022 at 10:15 PM Sven Peter <sven@svenpeter.dev> wrote:
+>
+> The NVMe co-processor on the Apple M1 uses a DMA address filter called
+> SART for some DMA transactions. This adds a simple driver used to
+> configure the memory regions from which DMA transactions are allowed.
+>
+> Unlike a real IOMMU, SART does not support any pagetables and can't be
+> implemented inside the IOMMU subsystem using iommu_ops.
+>
+> It also can't be implemented using dma_map_ops since not all DMA
+> transactions of the NVMe controller are filtered by SART.
+> Instead, most buffers have to be registered using the integrated NVMe
+> IOMMU and we can't have two separate dma_map_ops implementations for a
+> single device.
+>
+> Co-developed-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 
-> On Sat, Apr 23, 2022 at 09:03:39AM -0700, Bjorn Andersson wrote:
-> > On Thu 21 Apr 10:18 PDT 2022, Kuldeep Singh wrote:
-> > 
-> > > Qcom BAM DT spec expects generic DMA controller node name as
-> > > "dma-controller" to enable validations.
-> > > 
-> > > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > It seems that I picked up v3, but patchwork-bot didn't send out any
-> > notifications.
-> 
-> Yes, somehow there was no notification for this series as well as geni
-> uart/i2c patches also.
-> 
-> >
-> > Please double check linux-next to confirm that we got them all sorted
-> > out.
-> 
-> I checked dma dts patches[1] and they are in next/linux-next.
-> I hope I checked the right tree, please correct me if it's wrong.
-> 
-> Please note, there was one small typo fix from v3->v4 in commit
-> header(s/User/Use). Not sure if it's worth updating as it's already in
-> next tree, upto you. Thanks!
-> 
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
 
-I generally never rebase my trees, as that's causing issues for anyone
-references commits in my tree. So we'll have to live with this typo.
+One more detail I noticed:
 
-Thanks,
-Bjorn
+> +#if IS_ENABLED(CONFIG_APPLE_SART)
+> +
+> +struct apple_sart;
+> +
+> +/*
+> + * Get a reference to the SART attached to dev.
+> + *
+> + * Looks for the phandle reference in apple,sart and returns a pointer
+> + * to the corresponding apple_sart struct to be used with
+> + * apple_sart_add_allowed_region and apple_sart_remove_allowed_region.
+> + */
+> +struct apple_sart *devm_apple_sart_get(struct device *dev);
+> +
+
+In general, I don't like to hide declarations in a header behind an #if. Unless
+there is a good reason for doing this, just make the declaration unconditional,
+which avoids recompiling when the symbol changes.
+
+The only other effect is that you get a link-time error instead of a
+compile-time
+error if you messed up the Kconfig dependencies, but as long as the dependencies
+are correct it will be fine either way.
+
+      Arnd
