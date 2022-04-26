@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B3650F266
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28BE450F278
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343916AbiDZHbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 03:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
+        id S237966AbiDZHfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 03:35:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343917AbiDZHbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:31:37 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FD8C9B72;
-        Tue, 26 Apr 2022 00:28:30 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id B6E0A2223A;
-        Tue, 26 Apr 2022 09:28:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1650958108;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mzzsrtLgDhH/mUpZ95LPe7yFWgFVICtJRss1dScu0l4=;
-        b=WLsMfwV0KL/FIMULQI396eMh2JgmUNPuLtROTi2Uf6+MI9kKJWGfdOy3upRieZ36tH/mnF
-        UaB7LffD+miuwmjsCrhJXFO1MhRqJ9Gm1Uq82AvQIUUNm09Avl31g13lar3POnut6X7d8L
-        yJx48P/MaJpQ/trOFQcS6gGsy9TIAJo=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 26 Apr 2022 09:28:27 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234454AbiDZHfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:35:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB82F69A7;
+        Tue, 26 Apr 2022 00:32:11 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id g19so30395279lfv.2;
+        Tue, 26 Apr 2022 00:32:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KGVWNZVJs3H4ln7FqWp8hNIQLAnf5hs9n+dr8i9g9tg=;
+        b=VzU/kOlnRRt72ndXE20uRMJGW7pW5wxcTn8B0SnCn0x548hG00MUtin/JiPmRl6Pl9
+         05tBaEBidCN9b0v1jXXX1E1uKr85X2WLyJtnH8JZWradn9WlyRyxrU7pHJXbeWozESUo
+         v2HRWZnnSHpA3V8YgrKitZRByAgdhLgF+nX5OxrL/zX21ugYuDItWLEZTj3OStmHxqFR
+         hdTziQkjgMwwu17DfFP0yJfbQRF9ScMKwEjnHGJqyDmuRcrIUY07Um6jX2haGmCp0eu1
+         qhx+XCkYGPYsxLQe1qkk3xYHzcq8PvzMCNn/wLzmuaKQWUaoXZGml9maux3gYcIJGY/p
+         R0NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KGVWNZVJs3H4ln7FqWp8hNIQLAnf5hs9n+dr8i9g9tg=;
+        b=pQgyrhp/53WICIwBqW0cB9ExdeKw4C5w5iCT+NW4zKJQlF51qE5gS82yMvGHhPOEnU
+         pWeLBPZEb2PEyXE4ypkTqwywVV+01PEiipHnlJHOUsy2Ds9id6YzVAjzmJvr9BkKphCr
+         KDcBbro+ySp109uGa2S4HaQ23hutHrIZa9d3RSIoEuu2jH52Z3Jgc6XG/JpNzyaw/bzQ
+         fivV27TeTpFWWjw+/9GNSi5J9XVRBMnHEfSh1myXTOY8bUu18Z51JWjtx5ldo59sWkYb
+         H1cAZXLW81hqgiml8HWOjRkr3EFZaean3f47eUz4nZ5FrsyoJgdx5RKCE/nO0Q+SNFY3
+         6Hug==
+X-Gm-Message-State: AOAM530Qn7TRF155ovaOBs5cMPbAquzR+clvK4a4LZAOHEismR3p415z
+        TJOa+X1qZtd96B3mEbRFGVbv3SLKLec=
+X-Google-Smtp-Source: ABdhPJzV0w9Ag/2E0pd5HIehjAlfu13I+V9s9zGFXbrSLGznof90bE58xbsYOgL/b6SH5rZ7TbjiOQ==
+X-Received: by 2002:a19:ee05:0:b0:46e:2f8d:db76 with SMTP id g5-20020a19ee05000000b0046e2f8ddb76mr15945835lfb.321.1650958329909;
+        Tue, 26 Apr 2022 00:32:09 -0700 (PDT)
+Received: from localhost.localdomain (adla4.neoplus.adsl.tpnet.pl. [79.185.4.4])
+        by smtp.gmail.com with ESMTPSA id d2-20020a056512320200b004721999f1cesm103509lfe.66.2022.04.26.00.32.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 00:32:09 -0700 (PDT)
+From:   Adam Skladowski <a39.skl@gmail.com>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Adam Skladowski <a39.skl@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: fsl,ls-extirq:
- convert to YAML
-In-Reply-To: <c324eec7-79b1-33da-c38e-4a480fe23126@linaro.org>
-References: <20220425140214.32448-1-michael@walle.cc>
- <658851ed-33fd-8e2b-7db7-ef1ca9e31c33@linaro.org>
- <83b596d0570c779c61c3c37c6f512679@walle.cc>
- <c324eec7-79b1-33da-c38e-4a480fe23126@linaro.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <6fec63c911c88a375fc024f6ca0e946d@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] MSM8976 GCC updates
+Date:   Tue, 26 Apr 2022 09:30:45 +0200
+Message-Id: <20220426073048.11509-1-a39.skl@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-04-26 08:53, schrieb Krzysztof Kozlowski:
-> On 25/04/2022 23:58, Michael Walle wrote:
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +    description:
->>>> +      Specifies the Interrupt Polarity Control Register (INTPCR) in
->>>> the
->>>> +      SCFG or the External Interrupt Control Register (IRQCR) in 
->>>> the
->>>> ISC.
->>>> +
->>>> +  interrupt-map:
->> 
->> btw.
->> 
->> minItems: 12
->> maxItems: 12
->> 
->> Isn't working here, is that expected? The validator seem to get the
->> count
->> of the elements of one tuple wrong.
->> 
->> I.e.
->> arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dtb:
->> interrupt-controller@14: interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1,
->> 0, 1, 4, 2, 0, 1, 0], [2, 4, 3, 0, 1, 0, 3, 4], [4, 0, 1, 0, 4, 4, 5,
->> 0], [1, 0, 5, 4, 6, 0, 1, 0], [6, 4, 7, 0, 1, 0, 7, 4], [8, 0, 1, 0, 
->> 8,
->> 4, 9, 0], [1, 0, 9, 4, 10, 0, 1, 0], [10, 4, 11, 0, 1, 0, 11, 4]] is 
->> too
->> short
-> 
-> 
-> Works for me (in different schema)... maybe update your dtschema?
+This patch series brings small fixes for SDCC clocks
+and adds reset for modem.
 
-Just updated to the latest one. But I'm still getting the same errors.
+Changes since v1
+================
+1. Adjusted comment line length for SDCC patch.
+2. Added Acked-by to dt-bindings patch.
 
-$ dt-validate -V
-2022.4
+Adam Skladowski (3):
+  clk: qcom: gcc-msm8976: Set floor ops for SDCC
+  dt-bindings: clk: qcom: gcc-msm8976: Add modem reset
+  clk: qcom: gcc-msm8976: Add modem reset
 
-/home/mwalle/repos/b-linux-arm64/arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb: 
-interrupt-controller@14: interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 
-0, 1, 4, 2, 0, 1, 0], [2, 4, 3, 0, 1, 0, 3, 4], [4, 0, 1, 0, 4, 4, 5, 
-0], [1, 0, 5, 4, 6, 0, 1, 0], [6, 4, 7, 0, 1, 0, 7, 4], [8, 0, 1, 0, 8, 
-4, 9, 0], [1, 0, 9, 4, 10, 0, 1, 0], [10, 4, 11, 0, 1, 0, 11, 4]] is too 
-short
-	From schema: 
-/home/mwalle/repos/linux-mw/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+ drivers/clk/qcom/gcc-msm8976.c               | 7 ++++---
+ include/dt-bindings/clock/qcom,gcc-msm8976.h | 1 +
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-How is the length of one entry calculated?
+-- 
+2.25.1
 
--michael
