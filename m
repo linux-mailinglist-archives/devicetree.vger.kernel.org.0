@@ -2,147 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 683CF5100E6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 16:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A8E510113
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 16:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347518AbiDZOxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 10:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        id S231894AbiDZO6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 10:58:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351707AbiDZOw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 10:52:56 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55E8640A2B
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 07:49:48 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id ay11-20020a05600c1e0b00b0038eb92fa965so1666930wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 07:49:48 -0700 (PDT)
+        with ESMTP id S1351740AbiDZO6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 10:58:34 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD8713E8D;
+        Tue, 26 Apr 2022 07:55:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RLGWU04c675XlHK6myuRCpBGcz37JKCbqjttUkQFES0=;
-        b=GCHLhzgWRijFMtvDIhvF6Xefj9n/89975AJj1eZC9ENu6LdHtKNuwzPoa4y4msL63j
-         yzqPOcXjls1/Y/kQLIxN61hvrPrHb8QGvYc6LyeqXQtLAsjQSXSTbPL//zBTw+AxvpzZ
-         NeRHRiYvgpmpU8U0pw7bJOsI6pLoWrj/CMpcwUjrzdtMVeOb3BeddCmWS0qx4MAF/F0T
-         H6QKqIvkRTZy0zcKoPxgN39AYWX7PFxwPAdpSeMOQ5QNKvW8SmIJoj5TvTOxVVpZOA8R
-         lUgC95aGT3pPiW/F0hUuKgCShxOKs1TwARYm1yP9fzrtvQDcNlikLsnHA05mROc1Kphl
-         Gk5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RLGWU04c675XlHK6myuRCpBGcz37JKCbqjttUkQFES0=;
-        b=EwjVqbGt7oWr2a7zPCcg5ktayzMxkb5evFtxuAYtrYD03QcjEHG3men3gUVhvuErUc
-         PLJ/N8zovWQX8ROxvWxWLdQpqS7RvTh3Vxqeiq11pJnTihmhQ3BZp1KNC0jlsu06KBsA
-         c+Hrb42uO+SfUwj6ZUz9Nb+a3Pkrs+teMXXES77+oWHsnaZXgpoSR7lWcecuQGutI2/z
-         rp2xgxzyZaicVUYCEDgLlIDHy2Vdv6QpcEYea2jOgbw6UYRFcKfdMdDh7j1nhKN6L8TW
-         kPbi+kWdX3wN94jXw+Mw96qX+VWaoCHqhPmU+PePTwbVSxfCmHV3+ICooy2sLmHK9Ger
-         dRHA==
-X-Gm-Message-State: AOAM531HzbXjhMKbc4FWRTN5tE97AfDnYlTiVBo+yB2B86kOUCwfnenw
-        ne3oBMwuhfupaxeDtKJ+QeXc5A==
-X-Google-Smtp-Source: ABdhPJwpFyU97+6FmiY+PACooSx+7HoLi14xLzDXm/7xn/H2+QjgPDLvDKPlQxqggw2HUQrD3rHqhA==
-X-Received: by 2002:a05:600c:2f0f:b0:393:fbd1:cc94 with SMTP id r15-20020a05600c2f0f00b00393fbd1cc94mr1960732wmn.162.1650984586898;
-        Tue, 26 Apr 2022 07:49:46 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id e12-20020a056000178c00b0020aaf8d351bsm11338068wrg.103.2022.04.26.07.49.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 07:49:46 -0700 (PDT)
-Date:   Tue, 26 Apr 2022 15:49:44 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Rosin <peda@axentia.se>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Drop undocumented i.MX iomuxc-gpr bindings
- in examples
-Message-ID: <YmgGiNCzluNpJOiE@google.com>
-References: <20220422192121.2592030-1-robh@kernel.org>
- <YmZUko/EQkKl6Npl@google.com>
- <Ymf+OmNBaZ+7OrxD@robh.at.kernel.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1650984926; x=1682520926;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=AXJ+Q1Cq1MJB9Nc0sE9oF7CHGZjUKArgFUSRWDve3wA=;
+  b=WZZ49xw8ly7xt4aFnnfFDF/bNcMbS//i8Pd337a2XpYLbaSuue9HIUtC
+   JTmwuTzHTxtHtBC4S5vT1vFNR76sGc3287lHnZL2cdmiE7GOYbZD03DF/
+   NHeRFwpPCIxwfQ4J8YxFGVV4BYTxd3uoobzv/Ma9RQyls+i2IMWpdwVco
+   A=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 Apr 2022 07:55:24 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 07:55:24 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 26 Apr 2022 07:55:23 -0700
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 26 Apr 2022 07:55:21 -0700
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <ath11k@lists.infradead.org>
+CC:     <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <mka@chromium.org>,
+        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH v5 00/12] add support for WCN6750
+Date:   Tue, 26 Apr 2022 20:24:44 +0530
+Message-ID: <20220426145456.8055-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Ymf+OmNBaZ+7OrxD@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022, Rob Herring wrote:
+WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+on one band at any given point.
 
-> On Mon, Apr 25, 2022 at 08:58:10AM +0100, Lee Jones wrote:
-> > On Fri, 22 Apr 2022, Rob Herring wrote:
-> > 
-> > > The i.MX iomuxc-gpr bindings are undocumented and a mess. Drop their use
-> > > from the examples.
-> > > 
-> > > The problem with the binding beyond the just random variations is that
-> > > the iomuxc-gpr is not a separate block, but registers within the iomuxc
-> > > block containing random leftover controls. As a separate DT node, it
-> > > creates nodes with overlapping memory addresses.
-> > > 
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/mfd/syscon.yaml  | 8 --------
-> > >  Documentation/devicetree/bindings/mux/reg-mux.yaml | 1 -
-> > >  2 files changed, 9 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > index 13baa452cc9d..fb784045013f 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > @@ -100,12 +100,4 @@ examples:
-> > >          compatible = "allwinner,sun8i-h3-system-controller", "syscon";
-> > >          reg = <0x01c00000 0x1000>;
-> > >      };
-> > > -
-> > > -  - |
-> > > -    gpr: iomuxc-gpr@20e0000 {
-> > > -        compatible = "fsl,imx6q-iomuxc-gpr", "syscon";
-> > > -        reg = <0x020e0000 0x38>;
-> > > -        hwlocks = <&hwlock1 1>;
-> > > -    };
-> > > -
-> > >  ...
-> > > diff --git a/Documentation/devicetree/bindings/mux/reg-mux.yaml b/Documentation/devicetree/bindings/mux/reg-mux.yaml
-> > > index 60d5746eb39d..df4db96b5391 100644
-> > > --- a/Documentation/devicetree/bindings/mux/reg-mux.yaml
-> > > +++ b/Documentation/devicetree/bindings/mux/reg-mux.yaml
-> > > @@ -96,7 +96,6 @@ examples:
-> > >  
-> > >      #include <dt-bindings/mux/mux.h>
-> > >      syscon@1000 {
-> > > -        compatible = "fsl,imx7d-iomuxc-gpr", "fsl,imx6q-iomuxc-gpr", "syscon", "simple-mfd";
-> > >          reg = <0x1000 0x100>;
-> > 
-> > Is leaving no compatible the correct solution here?
-> 
-> Documenting iomuxc-gpr is really the right one, but as I said it is a 
-> mess and I'm not touching that.
-> 
-> But compatible is not really important in terms of what the example 
-> shows. 
-> 
-> > Do we have another (working) platform that we can use in its place?
-> 
-> Not one for video muxing that I'm aware of.
-> 
-> > Does it make sense to leave the "syscon" and "simple-mfd" entries?
-> 
-> No, because we don't allow those on their own.
+WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+which are directly attached to APSS (Application Processor SubSystem),
+WCN6750 is not attached to APSS, it is attached to the WPSS
+(Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+such a device, it has to be registered as a platform device(AHB) to the
+kernel for device probing. Like other AHB devices, remoteproc APIs are
+used to boot up or shutdown of WCN6750.
 
-Very well.  I applied this for now.
+WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+It uses AHB APIs for device probe and booting of the remote processor.
+Once device is booted up, it uses ATH11K PCIe APIs for initialization
+and register access. Hence, it is referred as hybrid bus device in
+the rest of this series.
 
-... pending any fall-out from the Mux Maintainer. :)
+Since the chip is enumerated by WPSS Q6, device information like
+BAR and BAR size is not known to the APSS processor. A new QMI message
+called device info QMI request will be sent to the target for fetching
+these details.
+
+STA and AP modes are supported; Basic connectivity and ping are
+verified in both the modes.
+
+An important point to note is that though WCN6750 is a PCIe device,
+it cannot be attached to any other platform except on Qualcomm
+Snapdragon SoCs due to the aforementioned reasons.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+
+Manikanta Pubbisetty (12):
+  dt: bindings: net: add bindings of WCN6750 for ath11k
+  ath11k: Add HW params for WCN6750
+  ath11k: Add bus params for WCN6750
+  ath11k: Add register access logic for WCN6750
+  ath11k: Fetch device information via QMI for WCN6750
+  ath11k: Add QMI changes for WCN6750
+  ath11k: HAL changes to support WCN6750
+  ath11k: Datapath changes to support WCN6750
+  ath11k: Do not put HW in DBS mode for WCN6750
+  ath11k: WMI changes to support WCN6750
+  ath11k: Update WBM idle ring HP after FW mode on
+  ath11k: Add support for WCN6750 device
+---
+V5:
+ - Rebased on ToT SHAID: 01be26cde012478db958d9bde530877c46031e76
+
+V4:
+ - Addressed comments on DT binding (Matthias Kaehlcke <mka@chromium.org>)
+ - Rebased on ToT SHAID: 607c3dc2750382befa0f3f20063943bd058a2bc1
+
+V3:
+ - Patch series with 19 patches is split in 2 patch series, this is the second one
+ - Rebased on ToT SHAID: 7316a74e54318d0cd648242b18ea83cdef6dda96
+ - Addessed DT binding concerns
+ - PCI common code is moved to ath11k.ko
+ - Added a new HW param for WCN6750 which uses fixed firmware memory, this is
+   needed to differentiate WCN6750 from other ATH11K chipsets
+ - Modified the logic in patch "ath11k: Add support for WCN6750 device" based on the latest DT binding
+
+V2:
+ - Rebased on ToT
+ - Addressed comments on DT binding
+
+ .../bindings/net/wireless/qcom,ath11k.yaml    | 361 ++++++++++++------
+ drivers/net/wireless/ath/ath11k/Makefile      |   5 +-
+ drivers/net/wireless/ath/ath11k/ahb.c         | 162 +++++++-
+ drivers/net/wireless/ath/ath11k/ahb.h         |   1 +
+ drivers/net/wireless/ath/ath11k/ce.c          |   4 +-
+ drivers/net/wireless/ath/ath11k/core.c        | 119 +++++-
+ drivers/net/wireless/ath/ath11k/core.h        |   5 +
+ drivers/net/wireless/ath/ath11k/hal.c         |  15 +-
+ drivers/net/wireless/ath/ath11k/hal.h         |  15 +-
+ drivers/net/wireless/ath/ath11k/hw.c          | 166 ++++++++
+ drivers/net/wireless/ath/ath11k/hw.h          |  11 +
+ drivers/net/wireless/ath/ath11k/pci.c         |   4 +
+ drivers/net/wireless/ath/ath11k/pcic.c        |  76 ++--
+ drivers/net/wireless/ath/ath11k/qmi.c         | 220 +++++++++--
+ drivers/net/wireless/ath/ath11k/qmi.h         |  26 +-
+ drivers/net/wireless/ath/ath11k/wmi.c         |  13 +-
+ 16 files changed, 977 insertions(+), 226 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.35.1
+
