@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A3F8510052
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 16:23:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09BFF510071
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 16:26:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233982AbiDZO0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 10:26:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47298 "EHLO
+        id S1351632AbiDZO3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 10:29:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347196AbiDZO0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 10:26:04 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B1E18E18;
-        Tue, 26 Apr 2022 07:22:57 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id z8so20829165oix.3;
-        Tue, 26 Apr 2022 07:22:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xvzda8Pfpd3wwPcLRsSY8ulA8iZIYiMmmNvBbB50ZBo=;
-        b=eMtzTu+9uo5RpoE29cwdTplDs7/1J23yJE9Pfj9OMPuzbbx+2yLtEYyr2oi2JWlcwK
-         JnF1dVf0VvgaeP9vlxr/bRvjQWsOJEJmffgAcFlsRagXKFtaC4gYAQfWOXV5zFRcql4a
-         mS5DBqzkUxcV/eE1nRqIqtTQy2JLhO5fwkFrok57mckE6EnqUxV+mm2Q3u+vGsivyN5C
-         IMkF9R+jw25h4Zdy8RRp/A5jz6dRgGOEXuspMC49uHQ3AVlX33wJ7TMdAchfHSrjYqA6
-         xjArKKbB7uO1DlCn5Xlk+isirOxoN6j5U5GytQJrZGB52YbIT7nHAQsMqZPSTvBnlA7H
-         eSwA==
-X-Gm-Message-State: AOAM531qEZiePkPLLikWNob41Mv/KZ2XXKph6xyNORB+/3wiC+IS+8Kr
-        xLTU3NJ9OqZRoLfs2g0jJmPoCn70dg==
-X-Google-Smtp-Source: ABdhPJxhcjFhGIM6Fai/2gb+tvQSLuzGNZLP5mUuf7pSQ1nmqeeR538p3fZzoZhebGXVBtICKYmQTw==
-X-Received: by 2002:a54:4f04:0:b0:325:3659:ee90 with SMTP id e4-20020a544f04000000b003253659ee90mr4880405oiy.199.1650982976502;
-        Tue, 26 Apr 2022 07:22:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s6-20020a4ae546000000b0032480834193sm5599150oot.46.2022.04.26.07.22.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 07:22:56 -0700 (PDT)
-Received: (nullmailer pid 1917494 invoked by uid 1000);
-        Tue, 26 Apr 2022 14:22:55 -0000
-Date:   Tue, 26 Apr 2022 09:22:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: eeprom/at24: Add samsung,s524ad0xd1
- compatible
-Message-ID: <YmgAP5yrHWJESq8N@robh.at.kernel.org>
-References: <20220422192355.2597523-1-robh@kernel.org>
- <469d7ac0-7cf6-af91-7e24-1d9df88c9221@linaro.org>
+        with ESMTP id S1351430AbiDZO3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 10:29:45 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C37C60AAB;
+        Tue, 26 Apr 2022 07:26:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 149EBB8204E;
+        Tue, 26 Apr 2022 14:26:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 916BFC385AA;
+        Tue, 26 Apr 2022 14:26:31 +0000 (UTC)
+Date:   Tue, 26 Apr 2022 15:26:28 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v22 4/9] arm64: kdump: Don't force page-level mappings
+ for memory above 4G
+Message-ID: <YmgBFPMbyyOH/52y@arm.com>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-5-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <469d7ac0-7cf6-af91-7e24-1d9df88c9221@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220414115720.1887-5-thunder.leizhen@huawei.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 23, 2022 at 08:44:21PM +0200, Krzysztof Kozlowski wrote:
-> On 22/04/2022 21:23, Rob Herring wrote:
-> > The samsung,s524ad0xd1 compatible is in use, but not documented. According
-> > to arch/arm/mach-s3c/mach-smdk6410.c, the samsung,s524ad0xd1 is compatible
-> > with the 24c128.
-> > 
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/eeprom/at24.yaml | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > 
-> 
-> The compatible - without 24c128 fallback - is used also in
-> arch/arm/boot/dts/exynos5250-smdk5250.dts and
-> Documentation/devicetree/bindings/i2c/samsung,s3c2410-i2c.yaml, so these
-> files should be fixed as well.
+On Thu, Apr 14, 2022 at 07:57:15PM +0800, Zhen Lei wrote:
+> @@ -540,13 +540,31 @@ static void __init map_mem(pgd_t *pgdp)
+>  	for_each_mem_range(i, &start, &end) {
+>  		if (start >= end)
+>  			break;
+> +
+> +#ifdef CONFIG_KEXEC_CORE
+> +		if (eflags && (end >= SZ_4G)) {
+> +			/*
+> +			 * The memory block cross the 4G boundary.
+> +			 * Forcibly use page-level mappings for memory under 4G.
+> +			 */
+> +			if (start < SZ_4G) {
+> +				__map_memblock(pgdp, start, SZ_4G - 1,
+> +					       pgprot_tagged(PAGE_KERNEL), flags | eflags);
+> +				start  = SZ_4G;
+> +			}
+> +
+> +			/* Page-level mappings is not mandatory for memory above 4G */
+> +			eflags = 0;
+> +		}
+> +#endif
 
-The dts file I was aware of and I leave that to the Exynos 
-maintainers/users. :)
+That's a bit tricky if a SoC has all RAM above 4G. IIRC AMD Seattle had
+this layout. See max_zone_phys() for how we deal with this, basically
+extending ZONE_DMA to the whole range if RAM starts above 4GB. In that
+case, crashkernel reservation would fall in the range above 4GB.
 
-For some reason samsung,s3c2410-i2c.yaml is not getting a warning. I'll 
-have to investigate.
+BTW, we changed the max_zone_phys() logic with commit 791ab8b2e3db
+("arm64: Ignore any DMA offsets in the max_zone_phys() calculation").
 
-Rob
+-- 
+Catalin
