@@ -2,106 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 886A550FB2E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F68E50FB36
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349261AbiDZKpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:45:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42730 "EHLO
+        id S1349359AbiDZKqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:46:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349264AbiDZKpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:45:05 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4478C3526A
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:35:02 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id i19so3455881eja.11
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:35:02 -0700 (PDT)
+        with ESMTP id S1349148AbiDZKp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:45:58 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B93DD2
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:36:35 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id m20so14415492ejj.10
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:36:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LHOLjPb0Gd87HYrejyxO3Dkz7va58yAZPFUDJ9tFmx4=;
-        b=JuyytUXtIijlMjojBPasSxCObLn+H2rVGhEM7P2YbYAupd9seWkHRymgjkwYAxLdrE
-         3uiTl1rDAmGb799ZARMjyPe3iTEVogLZxPzVsD69MJ69y1tQ6qHaah5EjZpPCe+GRDZT
-         Vn0EJvA5Q1tUxX6tMqgamhVveIa0k1oUWn0o9rTFAIdnB0xyDwZJvre13s3OKhwCbD7y
-         sOfX/tn+bMjtDzsozFrThShtXHZbO4gGFaN/7H7db2mGKhBUT8ma/xrU8SXqw110HY05
-         7IGYsP+GYfW2LblJpM2DMXAO953d9a05DbWd4qYoEmvbhxL3VK7ApnS0DGYOrWR7fhis
-         KzgQ==
+        bh=03JHyVcnDtVRCT1SZNlsYY6E7LDhShIBmeQH7UCWb5Q=;
+        b=TLmerg/GnvN27In+YodvcDqxMfddqh49b8DPl2i75Ctw7YdreDnekmhoIONxgupBK3
+         cljPnMDHPuHi+TqxLolsnnSvvO5THxbVDg7QIxBJVf+OA5hZ7yfGtDuje2WZf7gQAKt9
+         nOMgs/BZ5KjfMPVQ43XeMYpOMBAJvJM9kOGEPfyXNbcTowT743xsqsfabmWcKwGsrBsS
+         xP7V72u+YQwHg40v3OKtYOGtEjS3HllQvWrXtbxAM0GUMTc/OFZJtR/UYB0oZwfz+BzQ
+         +c4QxCLjqHXATif+W/FxwIi6kgXHwAEJELnuUkE9MCiWiGcO8pm/Vbi5L2mned/HUKn+
+         Nkcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LHOLjPb0Gd87HYrejyxO3Dkz7va58yAZPFUDJ9tFmx4=;
-        b=VAu2+yzRASlSsQPOF6wN1ZVXAb26tg7K8Dth+KZI2gDWqnKQT7oQWaC+WS3lVO03gF
-         oqBa7IyUTfR1RuyTAKM9ncrrxo1mpAQOieDRdl3dcFwhfoIh1qaOnlsPC60sodZ0IWSD
-         SM4ZfnvwTrP7RSM2UI+pkezELqaMG/EbwIM4mZnE8/1GmrGuUIwl4XZOyL/0gD0eq4j5
-         jqKIMThAmje4v9mwya/fItE+Y5JVzdohd8Nee4T26JNF1SpqVKVRqT6qOL50nBYyUSH/
-         T/EK+wFE0QQQmnxPqtzrPlMyfWn1oIgMrF8VID0/XHHwrapRrQCKnDmBQkdJcWoVCye/
-         HuPQ==
-X-Gm-Message-State: AOAM531rUoRgGpn0u96C+Ou1wLytO4imbMcam0BL88rsHoB6Aw5XZLaP
-        c7AhgTZWKuapKmJyfgfSMTV/bQ==
-X-Google-Smtp-Source: ABdhPJxw2pK4EmRfd/xR78vgBtt0JVfot3Kjrzt69s/MPOpmCUNpD31PPUksf+4+gVizgrZES5dl4A==
-X-Received: by 2002:a17:906:b0c5:b0:6f3:bb5e:54a8 with SMTP id bk5-20020a170906b0c500b006f3bb5e54a8mr477383ejb.534.1650969300701;
-        Tue, 26 Apr 2022 03:35:00 -0700 (PDT)
+        bh=03JHyVcnDtVRCT1SZNlsYY6E7LDhShIBmeQH7UCWb5Q=;
+        b=huOOJa7zd23UWI/unl7rqmxXWqGeVunkOwg1jutQ1wZx+J96cTOA+359UVuNmP2iKa
+         VQN9kNBb+m0FKwMikrhKMBQXTTW9VW+fzoXwnUKM3Xhl4FfwFLFlLU8QbZEH45p2XfMP
+         zCPSgYsgyRhEHbsGp0DnF2nzo4S5caLEMa87wjIF+1NmLR7mSMxLKkHdvghQekRCJ+oj
+         BG057YhfvoreWzT7ugTSnYso3CVfjZa4rQ3Ym2yN5yrinO/DHVtUPnJx3NrBaHvDhrSx
+         Ny2dwDC9OINyY4UowlPKLcZA+76eMiRJcqonUStOPotLiYsAd9sJ0Crj74nbNQwzXv/g
+         EZQQ==
+X-Gm-Message-State: AOAM532d5uLpt4cZ3jPPjovUgWR7EK6kzTajXpSBMHAEHrUMPtAov0xi
+        mTtel06TAum3dYkZCRz+tHkPxw==
+X-Google-Smtp-Source: ABdhPJw6DaMltbJJc7Yzq1Tp0x7WQkv+N3L4u8ibEqiMFEoXnXRu3hTBOVsKOG02p9gMJClHF/WxHg==
+X-Received: by 2002:a17:907:a425:b0:6f3:6b5d:a29c with SMTP id sg37-20020a170907a42500b006f36b5da29cmr15857758ejc.144.1650969393687;
+        Tue, 26 Apr 2022 03:36:33 -0700 (PDT)
 Received: from [192.168.0.249] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id x19-20020a05640226d300b004228faf83desm6338221edd.12.2022.04.26.03.34.59
+        by smtp.gmail.com with ESMTPSA id i12-20020a05640200cc00b00421058b175esm5978605edu.53.2022.04.26.03.36.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 03:34:59 -0700 (PDT)
-Message-ID: <0f522c24-36b5-67f1-e282-2d6f5b81645d@linaro.org>
-Date:   Tue, 26 Apr 2022 12:34:58 +0200
+        Tue, 26 Apr 2022 03:36:33 -0700 (PDT)
+Message-ID: <d1cd8e2c-d882-5f6b-863a-2c623fa38edb@linaro.org>
+Date:   Tue, 26 Apr 2022 12:36:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: mailbox: qcom-ipcc: add missing
- properties into example
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: qcom-ipcc: simplify the example
 Content-Language: en-US
-To:     David Heidelberg <david@ixit.cz>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220426101837.16201-1-david@ixit.cz>
- <20220426101837.16201-2-david@ixit.cz>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, Alex Elder <elder@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20220402155551.16509-1-krzysztof.kozlowski@linaro.org>
+ <a3edf0e1-644a-38b2-b23d-30cc01005786@linaro.org>
+ <CABb+yY3uRxKdQ_Q-yvWipmOqLNbJXmJ141oYJnq1di_Yu66T_Q@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220426101837.16201-2-david@ixit.cz>
+In-Reply-To: <CABb+yY3uRxKdQ_Q-yvWipmOqLNbJXmJ141oYJnq1di_Yu66T_Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/2022 12:18, David Heidelberg wrote:
-> These missing required properties are needed for
-> smp2p binding reference checks.
-> 
-> Also includes cosmetic change to the example formatting.
-> 
+On 20/04/2022 16:22, Jassi Brar wrote:
+> On Wed, Apr 20, 2022 at 3:42 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 02/04/2022 17:55, Krzysztof Kozlowski wrote:
+>>> Consumer examples in the bindings of resource providers are trivial,
+>>> useless and duplicating code.  Additionally the incomplete qcom,smp2p
+>>> example triggers DT schema warnings.
+>>>
+>>> Cleanup the example by removing the consumer part and fixing the
+>>> indentation to DT schema convention.
+>>>
+>>> Reported-by: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Jassi,
+>> Do you plan to pick this mailbox patch?
+>>
+> Yes, I do.  I am ok too, if you want it through some other tree as a
+> part of some bigger patchset.
 
-Missing reported-by:
-Reported-by: Rob Herring <robh@kernel.org>
-
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v3:
->  - add Krzysztof R-b
-
-BTW, this patch confuses me a bit... You sent it some time after I sent
-a fix:
-https://lore.kernel.org/all/20220402155551.16509-1-krzysztof.kozlowski@linaro.org/
-
+It's not going through any other tree, so please pick it up.
 
 Best regards,
 Krzysztof
