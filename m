@@ -2,243 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 955B850EF18
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 05:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77B4E50EF2D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 05:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242286AbiDZDV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 23:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44966 "EHLO
+        id S235208AbiDZDaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 23:30:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbiDZDV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 23:21:26 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6735939B2
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 20:18:18 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id y2so11692694ybi.7
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 20:18:18 -0700 (PDT)
+        with ESMTP id S232958AbiDZD36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 23:29:58 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF812018A
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 20:26:52 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id s70so12312841qke.8
+        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 20:26:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ymvQGhwLD6LrQR70e/w6ZPsiExN1hAhcmAPj4jy8dAs=;
-        b=hl9cabfzvJuk6NdpihUW2V6JgM6pg6VorWRkIKdEdXpq9fhgiWK1MzSd5HZrlZyDu5
-         y9jb2HFJ4/ItQpenFhNgKyZCt9bfvcDzFEb6/J/2Mhi6v4gBi67b/bpNwZpHbDJcmNjE
-         yxZ8PbmBCRO+dNafHrM8EWAipoRe7jmCdoCeg=
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=dKcUIpiaOihT4R5jeXs4xTqFm8l6J3OzRyPekvqQPa8=;
+        b=H0v46YcWDUk9cjHr5S21H5RfzY0mXoxCcQlN8wRu05KyL/joOl4OiMUdtnkl/1EMaV
+         b/IaVRGeUhNnA8xv6Aoo/5P11fkel9xRRryMexHDKvvII9Ai/jmu+0ZMixMi/j96BA8p
+         umy4gLcEkjjAzZaU/O6uEekgzJjJ8BpmgcW+UOlM9cYhqXU3IFtuQO0BlCVItM5BySEj
+         hXAZbU1nLpbBlc1tLm0BStj/iU5rrTWbwK9ODwLiABoC/EWIT88+hQ5D1ZTsZENvo4tL
+         bpWyq/pEv36gjoeePUk6Z7260839G9F4t2L12rZbqyOB7d2slt0ZLz/9rxRQQMmddiG8
+         KyBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ymvQGhwLD6LrQR70e/w6ZPsiExN1hAhcmAPj4jy8dAs=;
-        b=Nq03qwaIF5FmU/BBT5djHbwpFG+M9nOWHWqx8AZ31PMJtVYME1Ib4myb6vPPg9S2xH
-         25pVphc6yy5QNTMWV2iZBKPXmF6pdlCFqoAp/U48J9IfYNfKGpW1C6jQmEQKWB0y/gLu
-         jT38UsRygl7kuQvQk4XLWuTr/1aW1lOnPJ+HlIQF/tBl304H/XS07o4S5QFbVJuuZfIW
-         SHEodHr1xa/WkRmuySj3ujLw/fF+wo0oXKtPszbSi7qArhwZDYQ298g87ZAdiaCPPyfR
-         bvBVovraf4643rAXsR1/jvcQ/8z29Q3+BYySvT9XUj3YZ+lqIfUBXk7YDMgVIBv+a09P
-         TzCA==
-X-Gm-Message-State: AOAM5308T2TvlMbxxWe95TxyQ11NZnAo+6qY9sji+SXeL49QXbDZLEHd
-        xcgb2PC6ND6AD/HGzLMZMrWZtYW7LG9B5LwOj99sww==
-X-Google-Smtp-Source: ABdhPJyhHmusCSOHXNUImfAEEzGb8B8HQK3f3IeirnXiVrdZPW5jq5AEGz0c4s9rGNFdKqdnfg94FcKxSxPYMEgzAMs=
-X-Received: by 2002:a5b:34a:0:b0:645:4966:b5d3 with SMTP id
- q10-20020a5b034a000000b006454966b5d3mr18130893ybp.461.1650943097894; Mon, 25
- Apr 2022 20:18:17 -0700 (PDT)
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=dKcUIpiaOihT4R5jeXs4xTqFm8l6J3OzRyPekvqQPa8=;
+        b=GB/4d9aSpQBf3545p95SBJ9df+0XuophaFEoHDozKYv7/K1IVWK59fCOvT+H2ubjZO
+         0/bcnES+ZLU7q6vwRwaPOKPkVaVW1B34p7oTYjc6YTTHJ8f0HYVBUJRRPKzcx8M9Hne3
+         QxL5R6p/Ba8e+Xw2bmhd1zBtW+HF7xG/KoAHa5S9W6Zg8oMU9UeRjlkKghjb2gvXXids
+         +gzjWee3ebI4DChYEq/EQzrV3ODOR4aga2tz2Av93fb1Dd4JLwPgkpt0nqGwOKJ2k7Y+
+         MuBOis8btvm2I/+0c+eBkbVA08F6SL/JmHwQgHKIhn34PrAJXUflrENTGEUS5yjwe5vY
+         FyUQ==
+X-Gm-Message-State: AOAM5310BTsjGPf878jy1nP6bc3LwEfxSYxnC1LaeXNE4DZAx7kvFdor
+        8K3IeUx+sar7B8Wtywz34gTcL2IA5MI7nC/Ob/8=
+X-Google-Smtp-Source: ABdhPJzMwBr2q/+OaboevHrwyXdd5NgmQBU9A1QKtdZambUsbltonGLF5R7XL83by3TzT7cle0OhZC2hG+aw4wJ5ctw=
+X-Received: by 2002:a05:620a:e06:b0:69e:e402:477d with SMTP id
+ y6-20020a05620a0e0600b0069ee402477dmr11961144qkm.716.1650943611276; Mon, 25
+ Apr 2022 20:26:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220425125546.4129-1-johnson.wang@mediatek.com> <20220425125546.4129-2-johnson.wang@mediatek.com>
-In-Reply-To: <20220425125546.4129-2-johnson.wang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 26 Apr 2022 11:18:06 +0800
-Message-ID: <CAGXv+5HgyN+kp86M2GgFtbruXSAMSLxsh9vf8zVE5TxRMyTyaA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add MediaTek CCI dt-bindings
-To:     Johnson Wang <johnson.wang@mediatek.com>, krzk+dt@kernel.org
-Cc:     cw00.choi@samsung.com, robh+dt@kernel.org,
-        kyungmin.park@samsung.com, khilman@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+Sender: mrsmelaniat@gmail.com
+Received: by 2002:a05:620a:12cf:0:0:0:0 with HTTP; Mon, 25 Apr 2022 20:26:49
+ -0700 (PDT)
+From:   Aisha Al-Qaddafi <aishaqaddafi633@gmail.com>
+Date:   Tue, 26 Apr 2022 03:26:49 +0000
+X-Google-Sender-Auth: C8-rZmo_BJhNQn_mOZ2MkNz47_0
+Message-ID: <CANL8XDs3QHr+Dx3XW1GhRKsV2ydZ_83QhDiAJ1UoWyUbV5ir6A@mail.gmail.com>
+Subject: Investment Proposal
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: Yes, score=7.0 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        LOTS_OF_MONEY,MILLION_HUNDRED,MILLION_USD,MONEY_FRAUD_5,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_MONEY,US_DOLLARS_3
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:732 listed in]
+        [list.dnswl.org]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [aishaqaddafi633[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 MILLION_USD BODY: Talks about millions of dollars
+        *  0.9 MILLION_HUNDRED BODY: Million "One to Nine" Hundred
+        *  0.0 US_DOLLARS_3 BODY: Mentions millions of $ ($NN,NNN,NNN.NN)
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  2.2 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+        *  0.4 MONEY_FRAUD_5 Lots of money and many fraud phrases
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 8:56 PM Johnson Wang <johnson.wang@mediatek.com> wrote:
->
-> Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
->
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> ---
->  .../bindings/interconnect/mediatek,cci.yaml   | 139 ++++++++++++++++++
->  1 file changed, 139 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
->
-> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> new file mode 100644
-> index 000000000000..e5221e17d11b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Cache Coherent Interconnect (CCI) frequency and voltage scaling
-> +
-> +maintainers:
-> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> +
-> +description: |
-> +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine used by
-> +  MT8183 and MT8186 SoCs to scale the frequency and adjust the voltage in
-> +  hardware. It can also optimize the voltage to reduce the power consumption.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8183-cci
-> +      - mediatek,mt8186-cci
-> +
-> +  clocks:
-> +    items:
-> +      - description:
-> +          The multiplexer for clock input of CPU cluster.
+  Investment Proposal,
 
-of the bus, not CPU cluster.
+With sincerity of purpose I wish to communicate with you seeking your
+acceptance towards investing in your country under your Management as
+my foreign investor/business partner.
+I'm Mrs. Aisha Gaddafi-Al, the only biological Daughter of the late
+Libyan President (Late Colonel Muammar Gaddafi) I'm a single Mother
+and a widow with three Children, presently residing herein Oman the
+Southeastern coast of the Arabian Peninsula in Western Asia. I have
+investment funds worth Twenty Seven Million Five Hundred Thousand
+United State Dollars ($27.500.000.00 ) which I want to entrust to you
+for the investment project in your country.
 
-> +      - description:
-> +          A parent of "cpu" clock which is used as an intermediate clock source
-> +          when the original CPU is under transition and not stable yet.
+I am willing to negotiate an investment/business profit sharing ratio
+with you based on the future investment earning profits. If you are
+willing to handle this project kindly reply urgently to enable me to
+provide you more information about the investment funds.
 
-This really should be handled in the clk controller, and not by every device
-that happens to take a clock from a mux with upstream PLLs that can change
-in clock rate. The end device hardware only takes one clock input. That's it.
 
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cci
-> +      - const: intermediate
-> +
-> +  operating-points-v2: true
-> +  opp-table: true
-> +
-> +  proc-supply:
-> +    description:
-> +      Phandle of the regulator for CCI that provides the supply voltage.
-> +
-> +  sram-supply:
-> +    description:
-> +      Phandle of the regulator for sram of CCI that provides the supply
-> +      voltage. When it presents, the cci devfreq driver needs to do
+Best Regards
 
-When it is present, the implementation needs to ...
-
-ChenYu
-
-> +      "voltage tracking" to step by step scale up/down Vproc and Vsram to fit
-> +      SoC specific needs. When absent, the voltage scaling flow is handled by
-> +      hardware, hence no software "voltage tracking" is needed.
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - operating-points-v2
-> +  - proc-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    cci: cci {
-> +        compatible = "mediatek,mt8183-cci";
-> +        clocks = <&mcucfg CLK_MCU_BUS_SEL>,
-> +                 <&topckgen CLK_TOP_ARMPLL_DIV_PLL1>;
-> +        clock-names = "cci", "intermediate";
-> +        operating-points-v2 = <&cci_opp>;
-> +        proc-supply = <&mt6358_vproc12_reg>;
-> +    };
-> +
-> +    cci_opp: opp-table-cci {
-> +        compatible = "operating-points-v2";
-> +        opp-shared;
-> +        opp2_00: opp-273000000 {
-> +            opp-hz = /bits/ 64 <273000000>;
-> +            opp-microvolt = <650000>;
-> +        };
-> +        opp2_01: opp-338000000 {
-> +            opp-hz = /bits/ 64 <338000000>;
-> +            opp-microvolt = <687500>;
-> +        };
-> +        opp2_02: opp-403000000 {
-> +            opp-hz = /bits/ 64 <403000000>;
-> +            opp-microvolt = <718750>;
-> +        };
-> +        opp2_03: opp-463000000 {
-> +            opp-hz = /bits/ 64 <463000000>;
-> +            opp-microvolt = <756250>;
-> +        };
-> +        opp2_04: opp-546000000 {
-> +            opp-hz = /bits/ 64 <546000000>;
-> +            opp-microvolt = <800000>;
-> +        };
-> +        opp2_05: opp-624000000 {
-> +            opp-hz = /bits/ 64 <624000000>;
-> +            opp-microvolt = <818750>;
-> +        };
-> +        opp2_06: opp-689000000 {
-> +            opp-hz = /bits/ 64 <689000000>;
-> +            opp-microvolt = <850000>;
-> +        };
-> +        opp2_07: opp-767000000 {
-> +            opp-hz = /bits/ 64 <767000000>;
-> +            opp-microvolt = <868750>;
-> +        };
-> +        opp2_08: opp-845000000 {
-> +            opp-hz = /bits/ 64 <845000000>;
-> +            opp-microvolt = <893750>;
-> +        };
-> +        opp2_09: opp-871000000 {
-> +            opp-hz = /bits/ 64 <871000000>;
-> +            opp-microvolt = <906250>;
-> +        };
-> +        opp2_10: opp-923000000 {
-> +            opp-hz = /bits/ 64 <923000000>;
-> +            opp-microvolt = <931250>;
-> +        };
-> +        opp2_11: opp-962000000 {
-> +            opp-hz = /bits/ 64 <962000000>;
-> +            opp-microvolt = <943750>;
-> +        };
-> +        opp2_12: opp-1027000000 {
-> +            opp-hz = /bits/ 64 <1027000000>;
-> +            opp-microvolt = <975000>;
-> +        };
-> +        opp2_13: opp-1092000000 {
-> +            opp-hz = /bits/ 64 <1092000000>;
-> +            opp-microvolt = <1000000>;
-> +        };
-> +        opp2_14: opp-1144000000 {
-> +            opp-hz = /bits/ 64 <1144000000>;
-> +            opp-microvolt = <1025000>;
-> +        };
-> +        opp2_15: opp-1196000000 {
-> +            opp-hz = /bits/ 64 <1196000000>;
-> +            opp-microvolt = <1050000>;
-> +        };
-> +    };
-> --
-> 2.18.0
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Mrs. Aisha Gaddafi-Al.
