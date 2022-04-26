@@ -2,90 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5DA50F1F4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4687350F1FD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 09:16:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343737AbiDZHQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 03:16:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36410 "EHLO
+        id S1343758AbiDZHTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 03:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241770AbiDZHQj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:16:39 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A0540934
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:13:30 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id y3so13778434ejo.12
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:13:30 -0700 (PDT)
+        with ESMTP id S1343784AbiDZHS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 03:18:59 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5343762A3
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:15:51 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-2f16645872fso172349137b3.4
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 00:15:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=796okj7fUhfEo6Z+Bxk5e2KE1IFo6Dc7db5MBQ6gCi4=;
-        b=Xg8xaGl3qOynNGE6l19Z5REqd7o4IHyJY6pnHNqA2NQsZ4xuKKdM1MOZnQkyw5w+VL
-         uY9s5qBh0MgEdIl6r8Yf0gT9CeJpbE4TX73rynqCDd7GkJBn5mhNSyDDHlH4B0qoXJCw
-         SHZFY47RNajDkrMT+nMKMGyjSNdEg1lJ7Iun3uHI0FfbdgbQpXn7tZrCTC5VDWguNnGY
-         Cv4Kms5dcMhE0XTNVOEN1OYATjIVXwBS0Zc8qsFuuIgal5KQHmx9yrWxDSQbXwbXPGBF
-         /gI3vMXFNJrnUlR3CxzLcvIOswGFemjF+HqCsOBWXAomC1nyc00/T4tB4Oedxl77m/w4
-         IDiQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W48mPmCEODAeKCo4cYR/TrFD4JfPLTSWRwhqTfeCiJA=;
+        b=gb90e2Jc05v2CZzab1gHuWlQZ7mOLM72uzZFGtD2dQ9ITduk47VqRyMZSqLQBpMOdA
+         nFLeuRNpSqERdwglV+kmc4yo4Q1h4a/lvVcQQQimgkzRm1zMQHkM/eHTlmBATFoWbcYf
+         yi57ZBCATFUH0Z7H/An1LTnNVoGM6AkOemwmY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=796okj7fUhfEo6Z+Bxk5e2KE1IFo6Dc7db5MBQ6gCi4=;
-        b=1Iz/rpo2pu2cNg4q90xZCgHRBGaPjcLMvvviW8XajI+io5WbGbfyFriYZEKfSRhYVF
-         Gjws6ot9xGKgJ3G0Ytd5CAurBGgwUfSBqjuUVOBKUcZ/2vAm37/MMcfzssSMQjGzVwEg
-         f7bsAIwdGvGmzX7jqmNKr5WbQpJN0UO8hVawD9orkq/5+4nZpZlYN1NuZjkZ/9NOR2Xv
-         zQfPWK20B4QV68bNab21ge4++beAkWIpdVl7/AN2b+8KB2XJmRpb9dvT7iDZZfaq+peR
-         2SDDfRhQxdR8N4qfF6Dg863EUWgWGUfnH3+ApTIZ+1eag7NH00RI8o97emUK8vR94pw5
-         hE6g==
-X-Gm-Message-State: AOAM5314e8yV43qbtJWwmJKvqTg1N/3aP1WK4Y+OS9Ep8WTvVwVhwaZv
-        Yk7Z55AbmhBiiYkIhNMLZJ7vew==
-X-Google-Smtp-Source: ABdhPJzX1cqLrcHhd4KQ3AKjehHP29V8LYMhJeuJd1XE420U3ovR0yd62G4tmz9dpqk/GrepN+5mwg==
-X-Received: by 2002:a17:907:c243:b0:6f3:953d:6e2 with SMTP id tj3-20020a170907c24300b006f3953d06e2mr8363720ejc.506.1650957209401;
-        Tue, 26 Apr 2022 00:13:29 -0700 (PDT)
-Received: from [192.168.0.244] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id kx5-20020a170907774500b006e1382b8192sm4499892ejc.147.2022.04.26.00.13.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 00:13:28 -0700 (PDT)
-Message-ID: <ebdc9fe8-f54c-9b11-a167-54219b124cde@linaro.org>
-Date:   Tue, 26 Apr 2022 09:13:27 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W48mPmCEODAeKCo4cYR/TrFD4JfPLTSWRwhqTfeCiJA=;
+        b=kjHjM91CTrLa1m2UyWxuBcaPAH2+g4LqGrokvPayrmznLeYdNorOqqb6+IH+UQX3YF
+         EeVGAZyNUybd+nxwrrz+w9nrQR2ij54Q/pxXvKzn3s9CdK2fTz/kLfGkcCOzbJRi0Cv8
+         44JaGIaUcKs4rzR4BSzr4AUoRK788dkggsI/pyob877YKKDKWIGr53Q1U+YsWcUMDWjb
+         6eL6Ld8DN27fWpGoteMA6t/EiBkmAu6WVblX04or/SryUTTRaHFK0U++byqdN7dBNxNn
+         AMh/x/6w9V8HFEZta03Il/RjaYR4i4ZTujT3memAWdhvsOUA9DHA6cs9Xqy/TAQd2xfK
+         lPzw==
+X-Gm-Message-State: AOAM533jEQ4Jg6+AXQWBaywi6SSKKO/QsbPcCGgeqdDjtuD+CyB/4ait
+        14yJMC8kRh4LxW1PqN9QE8KiBBN2XYdh0o00k192Kg==
+X-Google-Smtp-Source: ABdhPJz7mWph1YxLYcWICwibet7gNS3uzR3x+TVoftrHCaq7u1jn0mZA1c/96IclyLrgvQXvXMO9rZu6QlzK9rbUOSE=
+X-Received: by 2002:a81:ad1f:0:b0:2f4:da5b:5133 with SMTP id
+ l31-20020a81ad1f000000b002f4da5b5133mr20961896ywh.105.1650957350928; Tue, 26
+ Apr 2022 00:15:50 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v6 24/33] dt-bindings: crypto: convert rockchip-crypto to
- YAML
-Content-Language: en-US
-To:     Corentin Labbe <clabbe@baylibre.com>, heiko@sntech.de,
-        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20220425202119.3566743-1-clabbe@baylibre.com>
- <20220425202119.3566743-25-clabbe@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220425202119.3566743-25-clabbe@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220420102044.10832-1-roger.lu@mediatek.com> <7hczhbe3wn.fsf@baylibre.com>
+ <3d463c8b099fdb1c9a0df9e615a8ca1d8a034120.camel@mediatek.com>
+ <7hsfq6ql4v.fsf@baylibre.com> <d67d5f4f2ec96ade2398e7c0897dbb16bf5fb145.camel@mediatek.com>
+ <ca127f7f-0620-1c03-4f39-206945b0e612@gmail.com>
+In-Reply-To: <ca127f7f-0620-1c03-4f39-206945b0e612@gmail.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 26 Apr 2022 15:15:39 +0800
+Message-ID: <CAGXv+5HtMVCUdV=kNfOTCp3-1gEzTWtZ1xapgw=L-C2nTC0yag@mail.gmail.com>
+Subject: Re: [PATCH v24 0/7] soc: mediatek: SVS: introduce MTK SVS
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Roger Lu <roger.lu@mediatek.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <rex-bc.chen@mediatek.com>
+Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 22:21, Corentin Labbe wrote:
-> Convert rockchip-crypto to YAML.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
+On Fri, Apr 22, 2022 at 11:38 PM Matthias Brugger
+<matthias.bgg@gmail.com> wrote:
+>
+>
+>
+> On 22/04/2022 04:24, Roger Lu wrote:
+> > Hi Kevin,
+> >
+> > On Thu, 2022-04-21 at 12:41 -0700, Kevin Hilman wrote:
+> >> Hi Roger,
+> >>
+> >> Roger Lu <roger.lu@mediatek.com> writes:
+> >>
+> >>> On Wed, 2022-04-20 at 16:22 -0700, Kevin Hilman wrote:
+> >>
+> >> [...]
+> >>
+> >>>> That being said, it would be really nice to see an integration tree
+> >>>> where this was all tested on mainline (e.g. v5.17, or v5.18-rc)
+> >>>>
+> >>>> For example, I can apply this to v5.18-rc2 and boot on my mt8183-pumpkin
+> >>>> board, it fails to probe[1] because there is no CCI node in the upstream
+> >>>> mt8183.dtsi.
+> >>>>
+> >>>> I'm assuming this series is also not very useful without the CPUfreq
+> >>>> series from Rex, so being able to test this, CCI and CPUfreq together on
+> >>>> MT8183 on a mainline kernel would be very helpful.
+> >>>>
+> >>>> Kevin
+> >>>>
+> >>>> [1]
+> >>>> [    0.573332] mtk-svs 1100b000.svs: cannot find cci node
+> >>>> [    0.574061] mtk-svs 1100b000.svs: error -ENODEV: svs platform probe
+> >>>> fail
+> >>>
+> >>> Just share. I've tested this series on below two platforms and it works as
+> >>> expected.
+> >>> - mt8183-Krane (kernel-v5.10)
+> >>> - mt8192-Hayato (kernel-v5.4)
+> >>
+> >> Unfortunately testing on v5.4 and v5.10 with lots of other additional
+> >> out-of-tree patches does not give much confidence that this series works
+> >> with upstream, especially when I've given a few reasons why it will not
+> >> work uptream.
+> >>
+> >> The examples I gave above for CCI and CPUs/cluster disable are good
+> >> examples, but another one I forgot to mention is the dependency on Mali.
+> >> The SVS driver will never probe because it also depens on a "mali" node,
+> >> which doesn't exist upstream either (but panfrost does, and acutually
+> >> loads/probes fine on v5.17/v5.18) so this should be fixed to work with
+> >> upstream panfrost.
+> >>
+> >> IMO, in order for this to be merged upstream, it should at least have
+> >> some basic validation with upstream, and so far I have not even been
+> >> able to make it successfuly probe.  To do that, you will need to either
+> >> provide a list of the dependencies for testing this with mainline
+> >> (e.g. CCI series, CPUfreq series, any DT changes), or even better, an
+> >> integration tree based on recent mainline (e.g. v5.17 stable, or
+> >> v5.18-rc) which shows all the patches (in addition to this series) used
+> >> to validate this on mainline.
+> >
+> > No problem. We'll find a machine that can be run correctly with recent mainline
+> > (e.g. v5.17 stable, or v5.18-rc) and add patches (CCI series + CPUfreq series +
+> > any DT changes) to test this SVS series. Thanks very much.
+> >
+>
+> Thanks Roger. I'll wait until this got tested with upstream Linux, before I will
+> apply all the patches.
+
+Hi everyone,
+
+I've put together an integration test branch:
+
+https://github.com/wens/linux/commits/mt8183-cpufreq-cci-svs-test
+
+This branch is based on next-20220422 and includes the following series:
+
+- ANX7625 DPI support v2
+  https://lore.kernel.org/all/20220422084720.959271-1-xji@analogixsemi.com/
+- MTK SVS v24
+  https://lore.kernel.org/all/20220420102044.10832-1-roger.lu@mediatek.com/
+- MTK cpufreq v4
+  https://lore.kernel.org/all/20220422075239.16437-1-rex-bc.chen@mediatek.com/
+- PM / devfreq core patches from
+  http://git.kernel.org/chanwoo/h/devfreq-testing
+  PM / devfreq: Export devfreq_get_freq_range symbol within devfreq
+  PM / devfreq: Add cpu based scaling support to passive governor
+  PM / devfreq: passive: Reduce duplicate code when passive_devfreq case
+  PM / devfreq: passive: Update frequency when start governor
+- CCI devfreq v2
+  https://lore.kernel.org/all/20220408052150.22536-1-johnson.wang@mediatek.com/
+
+And some patches of my own to fix some errors. See the last handful of
+patches including and after the fixup! one.
+
+This was tested on Juniper (Acer Chromebook Spin 311) that has MT8183.
+Looking at the mcu_*_sel clocks from /sys/kernel/debug/clk/clk_summary ,
+it does seem like things are happening, though I'm not sure how to
+thoroughly test this, especially SVS.
+
+Hope this unblocks things for everyone involved.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Regards
+ChenYu
