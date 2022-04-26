@@ -2,69 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C2950FE8B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BAD550FEC3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350731AbiDZNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 09:14:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43158 "EHLO
+        id S1350846AbiDZNZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 09:25:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350742AbiDZNOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:14:34 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A3960AB4;
-        Tue, 26 Apr 2022 06:11:24 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso1460282wme.5;
-        Tue, 26 Apr 2022 06:11:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VbIqYrl/j/4f2JpJRwKTfog5CMhMNsgfur6sJmAAYyM=;
-        b=hXqzTTps2HVRXHQSYmBwN2XN1rYAupQNRApRyMp0zDmiOZ1aSMIAart17L/C3E5oUb
-         2cqHPJ65BoShl2+SSbrHxQTpiVHUFQVzc0G9WgtTgh6TR+8lrewvVjsOYXffalfAh1Lo
-         AhKGn/So5VWuhfINEeZlYKEZoYJ9R8k+1xxRfPjEKnylgVGNkOgwIrY1bpfu0aCreWYG
-         jXkW4Lq5VKZMsgThNJNyy6tLN+l+7PqVscCKFwWi+duJGWHH8ZBqMRvBsSG/fWkESXUg
-         5Bh68MZuWKh7nKJNXDILYPDfR7DTbYS5jfy6sbuTuExQ75Oo0EfqqYkd49X9Px5kfJ8f
-         ny3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VbIqYrl/j/4f2JpJRwKTfog5CMhMNsgfur6sJmAAYyM=;
-        b=EyaQfLvim7GzkbXC4ry/d97Homs6CqkxfI2uZstGTObm36oka1eKwaF5cpDMP89V+M
-         wICpqfHXGoysRhehlBRF2qk0IADOagS9X/OaLggHp5Ha0o9G5pdzfk76+jqs0i3wbxs5
-         4iqsZOYuvS/JI9I1WvJxY5QwqiaspP2okB6xVU0aG/Qe2VQfqn81gy2cdMQBTwYTTKgd
-         sq+NxGPZfI1rvjdnrHWGjcF6Pu7nhuzRaXmLDVDndGqQxcMtE0ItngEyJbKT+DdWFHt0
-         LXmPXdJSYDLfJBPfmOW4AvLqNRYdbVo7uAiSHtIAn9+RZr4lnH5g8BReoPBlVXVh8hll
-         UhQA==
-X-Gm-Message-State: AOAM5334OqqjHXOiA6rj27zMzxnV8+pfxPFQxT50JQu7ZcsaVABKw/es
-        ZhkyR4YtZ5pvlsbdh301IrA=
-X-Google-Smtp-Source: ABdhPJyJx3p6eMl28pdya7q+rrOr3vzQaeqoVn0kIgN543h8VeoLjAyDSIjI3OLtkLU797eb8wrEHA==
-X-Received: by 2002:a05:600c:3b02:b0:393:e7d4:b660 with SMTP id m2-20020a05600c3b0200b00393e7d4b660mr12637839wms.183.1650978682527;
-        Tue, 26 Apr 2022 06:11:22 -0700 (PDT)
-Received: from poker.lan (static.2-229-210-222.ip198.fastwebnet.it. [2.229.210.222])
-        by smtp.gmail.com with ESMTPSA id h9-20020a05600c350900b00393f01c8f00sm3262910wmq.47.2022.04.26.06.11.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 06:11:22 -0700 (PDT)
-From:   Andrea Merello <andrea.merello@gmail.com>
-To:     jic23@kernel.org, mchehab+huawei@kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
-        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
-        jacopo@jmondi.org, Andrea Merello <andrea.merello@iit.it>
-Subject: [v5 14/14] docs: iio: add documentation for BNO055 driver
-Date:   Tue, 26 Apr 2022 15:11:02 +0200
-Message-Id: <20220426131102.23966-15-andrea.merello@gmail.com>
+        with ESMTP id S1350844AbiDZNZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:25:05 -0400
+Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB0F15737;
+        Tue, 26 Apr 2022 06:21:57 -0700 (PDT)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout2.routing.net (Postfix) with ESMTP id EFACD5FBBE;
+        Tue, 26 Apr 2022 13:21:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1650979315;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=3MPG+xGmR4VMjoWP9SmdGX2PEI83rfYf+MZ3I3FUJrI=;
+        b=gDHOiM3w+YaLFxLLc1F70fyqbPq93DIDUQzzsn/TEwBbqKfZc2s1wlBSzwaR28BRe1qmSb
+        hUBPgzGEpH+idDN1yKP5VTHdpm1l5ck2rlPlaldXQ/DtKoExmkubxJQ5WK4rBCog0ewUO0
+        6iRf3wiGhn+7BCRnZAASp/VZNDIJYQQ=
+Received: from localhost.localdomain (fttx-pool-80.245.77.37.bambit.de [80.245.77.37])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id B7B49401C9;
+        Tue, 26 Apr 2022 13:21:53 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: [RFC/RFT v2 00/11] RK3568 PCIe V3 support
+Date:   Tue, 26 Apr 2022 15:21:28 +0200
+Message-Id: <20220426132139.26761-1-linux@fw-web.de>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220426131102.23966-1-andrea.merello@gmail.com>
-References: <20220426131102.23966-1-andrea.merello@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Mail-ID: 6ee0f1ac-3381-46d2-9e26-38a02835f5ee
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,84 +63,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrea Merello <andrea.merello@iit.it>
+From: Frank Wunderlich <frank-w@public-files.de>
 
-The bno055 driver is rather complex and have some oddities and not-obvious
-things that worth to document (e.g. calibration files).
+This series adds Rockchip PCIe V3 support found on rk3568 SOC.
 
-Signed-off-by: Andrea Merello <andrea.merello@iit.it>
----
- Documentation/iio/bno055.rst | 50 ++++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst  |  2 ++
- 2 files changed, 52 insertions(+)
- create mode 100644 Documentation/iio/bno055.rst
+It is based on "Enable rk356x PCIe controller" series of Peter Geis
+v8: https://patchwork.kernel.org/project/linux-rockchip/list/?series=634925
 
-diff --git a/Documentation/iio/bno055.rst b/Documentation/iio/bno055.rst
-new file mode 100644
-index 000000000000..af21376d7a25
---- /dev/null
-+++ b/Documentation/iio/bno055.rst
-@@ -0,0 +1,50 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+==============================
-+BNO055 driver
-+==============================
-+
-+1. Overview
-+===========
-+
-+This driver supports Bosch BNO055 IMUs (on both serial and I2C busses).
-+
-+Accelerometer, magnetometer and gyroscope measures are always provided.
-+When "fusion_enable" sysfs attribute is set to 1, orientation (both Euler
-+angles and quaternion), linear velocity and gravity vector are also
-+provided, but some sensor settings (e.g. low pass filtering and range)
-+became locked (the IMU firmware controls them).
-+
-+This driver supports also IIO buffers.
-+
-+2. Calibration
-+==============
-+
-+The IMU continuously performs an autocalibration procedure if (and only if)
-+operating in fusion mode. The magnetometer autocalibration can however be
-+disabled writing 0 in the sysfs in_magn_calibration_fast_enable attribute.
-+
-+The driver provides access to autocalibration flags (i.e. you can known if
-+the IMU has successfully autocalibrated) and to the calibration data blob.
-+
-+The user can save this blob in a firmware file (i.e. in /lib/firmware) that
-+the driver looks for at probe time. If found, then the IMU is initialized
-+with this calibration data. This saves the user from performing the
-+calibration procedure every time (which consist of moving the IMU in
-+various way).
-+
-+The driver looks for calibration data file using two different names: first
-+a file whose name is suffixed with the IMU unique ID (exposed in sysfs as
-+serial_number) is searched for; this is useful when there is more than one
-+IMU instance. If this file is not found, then a "generic" calibration file
-+is searched for (which can be used when only one IMU is present, without
-+struggling with fancy names, that change on each device).
-+
-+Valid calibration file names would be e.g.
-+ bno055-caldata-0e7c26a33541515120204a35342b04ff.dat
-+ bno055-caldata.dat
-+
-+In non-fusion mode the IIO 'offset' attributes provide access to the
-+offsets from calibration data (if any), so that the user can apply them to
-+the accel, angvel and magn IIO attributes. In fusion mode they are not
-+needed (the IMU firmware internally applies those corrections) and they
-+read as zero.
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 58b7a4ebac51..1b7292c58cd0 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -10,3 +10,5 @@ Industrial I/O
-    iio_configfs
- 
-    ep93xx_adc
-+
-+   bno055
+Compared to PCIeV2 which uses the Naneng combphy, pciev3
+uses a dedicated pci-phy.
+
+This Version is still an RFC/RFT because i cannot only test PCIe-slot on R2Pro
+as the other is a M.2 Key-E where i don't have any Hardware.
+
+last 3 Patches show a replacement for bifurcation setting to make it more
+useful for vendor-indepent lane-mapping.
+
+Frank Wunderlich (11):
+  dt-bindings: phy: rockchip: add PCIe v3 phy
+  dt-bindings: soc: grf: add pcie30-{phy,pipe}-grf
+  dt-bindings: phy: rockchip: add PCIe v3 constants
+  phy: rockchip: Support PCIe v3
+  dt-bindings: pci: add bifurcation option to Rockchip DesignWare
+    binding
+  PCI: rockchip-dwc: add PCIe bifurcation
+  arm64: dts: rockchip: rk3568: Add PCIe v3 nodes
+  arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro
+  dt-bindings: pci: add lane-map to rockchip PCIe binding
+  PCI: rockchip: add a lane-map to rockchip pcie driver
+  arm64: dts: rockchip: add basic lane-map and drop bifurcation from
+    r2pro
+
+ .../bindings/pci/rockchip-dw-pcie.yaml        |   3 +
+ .../bindings/phy/rockchip,pcie3-phy.yaml      |  84 ++++++
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   3 +
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   |  79 +++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 122 ++++++++
+ drivers/pci/controller/dwc/pcie-dw-rockchip.c |  22 ++
+ drivers/phy/rockchip/Kconfig                  |   9 +
+ drivers/phy/rockchip/Makefile                 |   1 +
+ .../phy/rockchip/phy-rockchip-snps-pcie3.c    | 278 ++++++++++++++++++
+ include/dt-bindings/phy/phy-rockchip-pcie3.h  |  21 ++
+ include/linux/phy/pcie.h                      |  12 +
+ 11 files changed, 634 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-snps-pcie3.c
+ create mode 100644 include/dt-bindings/phy/phy-rockchip-pcie3.h
+ create mode 100644 include/linux/phy/pcie.h
+
 -- 
-2.17.1
+2.25.1
 
