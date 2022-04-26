@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F38E45109F3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB9785109ED
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354665AbiDZUPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 16:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57846 "EHLO
+        id S1354735AbiDZUP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 16:15:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354721AbiDZUN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:13:28 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB7C13D32;
-        Tue, 26 Apr 2022 13:10:18 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-e5e433d66dso20580896fac.5;
-        Tue, 26 Apr 2022 13:10:18 -0700 (PDT)
+        with ESMTP id S1354791AbiDZUPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:15:23 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F778188060
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:12:06 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id a10so21932126oif.9
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 13:12:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=w8+fJjcBbHiW0+J6Lz4r0NNKe8qN9LuJDE5FR5Ki9SQ=;
-        b=zlmZRphwQKl2yiO0FkEXjGNP1BqYK0aN5EhLSHy2oEy1NzPacPqLkkA0h/t5MzaaUK
-         44W1Q2BNBdm8Vj0wIrOluJJFo3JwUhgU/MtkAleH1nNmedBUsNiAF4yV5UcUASbmkAqS
-         6uEGCErpXK+QpoIFZorLZnCQHSVflw4ASumHPboJNF7RO3+1jb40KeXTpSI5lAiPHh0o
-         Way9NxcJ4+bW4BWOQ3+QKcyph8gAzjMo78JHP7eZ2Bc0nxJI46FBJ6M3Av/fWAvCM/cy
-         EiVRTP7rxXNNAHSnrxTQt4F0MXWnKzIhmvzmdj31h/0kulS+f9fW+Xr+yFHJV94b51F0
-         q7rw==
-X-Gm-Message-State: AOAM532lUBMZg/56Ki2YeGAFuxULRODwRtah6LlKSg4DEqYgIWtHfFGq
-        LCGTS1XtqBXxDmpASuJAVQ==
-X-Google-Smtp-Source: ABdhPJxn23CXTl4kn0pFn2RQIWE9e7wNSGhpZDSA5KQ9BfdG6/Wt38p4/wVxfXY99e0wYOXuqrblTw==
-X-Received: by 2002:a05:6870:79a:b0:e9:109a:1391 with SMTP id en26-20020a056870079a00b000e9109a1391mr7671334oab.105.1651003818223;
-        Tue, 26 Apr 2022 13:10:18 -0700 (PDT)
+        bh=zf/FJrgcWaKnbhEyzrN4beJp4PeyDCaP1eq9pJ0Plhg=;
+        b=1G9NzxGt6vI4/xJz26eo+LfyXNlmhfT7j9qdA5OWMP6frAGvoQXPNGyk58aTJ1hZIN
+         roR0fFi07OwXlWn6i5prBDEDtltVeAERlzptm50SDCr16uiJbLEytcxdCQkgTOPXv0ZO
+         qQuvunCUMArLlLFM4dpHFFGca5e0Rc8/GTk7NDHeaLE/e8UNcpIfG7wMo6UeoUw9bsnf
+         cgdtm8KTjOuG8KdzV6hcJlr0gR3ZvKfKHbYz3vN3GR2Brcr+dJyfFQUhcLacpRmcUPPd
+         KVYgitdtGKpf0STD41wRjw/kgXAPSCjXR4PBYXbV07uxVga19Ss3atnneJc1ohLwu8xW
+         lL7Q==
+X-Gm-Message-State: AOAM530e2BzxbJGy4IPzhUQaCxmtdaX0iMSfGHlcrevFHEu4K5erD1jy
+        UM3muwBn33jlG7pVkuQHoQ==
+X-Google-Smtp-Source: ABdhPJw9x96z6HkNiq9vI0d4v8C2uVW6u6mIqj482niSiY37rQUlwA8ARFZpbyt28gza5FvDfQ4o7Q==
+X-Received: by 2002:a05:6808:170d:b0:2f7:338b:1fc2 with SMTP id bc13-20020a056808170d00b002f7338b1fc2mr11555896oib.60.1651003925607;
+        Tue, 26 Apr 2022 13:12:05 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s2-20020a05687087c200b000e686d1386asm1169997oam.4.2022.04.26.13.10.17
+        by smtp.gmail.com with ESMTPSA id o13-20020a4ae58d000000b00324dfcc5bcfsm6082281oov.12.2022.04.26.13.12.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 13:10:17 -0700 (PDT)
-Received: (nullmailer pid 2456245 invoked by uid 1000);
-        Tue, 26 Apr 2022 20:10:17 -0000
-Date:   Tue, 26 Apr 2022 15:10:17 -0500
+        Tue, 26 Apr 2022 13:12:05 -0700 (PDT)
+Received: (nullmailer pid 2458919 invoked by uid 1000);
+        Tue, 26 Apr 2022 20:12:04 -0000
+Date:   Tue, 26 Apr 2022 15:12:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        ilia.lin@kernel.org, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, rafael@kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: opp: Add msm8939 to the compatible list
-Message-ID: <YmhRqZ7wuzYr2GAy@robh.at.kernel.org>
-References: <20220418162226.2983117-1-bryan.odonoghue@linaro.org>
- <20220418162226.2983117-3-bryan.odonoghue@linaro.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: perf: arm-cmn: Add CMN-650 and CMN-700
+Message-ID: <YmhSFO2fJ4cwPeUl@robh.at.kernel.org>
+References: <cover.1650320598.git.robin.murphy@arm.com>
+ <9b4dc0c82c91adff62b6f92eec5f61fb25b9db87.1650320598.git.robin.murphy@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220418162226.2983117-3-bryan.odonoghue@linaro.org>
+In-Reply-To: <9b4dc0c82c91adff62b6f92eec5f61fb25b9db87.1650320598.git.robin.murphy@arm.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Apr 2022 17:22:23 +0100, Bryan O'Donoghue wrote:
-> msm8939 will uses this driver instead of the generic dt-cpufreq. Add to the
-> compatible list.
+On Mon, 18 Apr 2022 23:57:38 +0100, Robin Murphy wrote:
+> If you were to guess from the product names that CMN-650 and CMN-700 are
+> the next two evolutionary steps of Arm's enterprise-level interconnect
+> following on from CMN-600, you'd be pleasantly correct. Add them to the
+> DT binding.
 > 
-> Cc: ilia.lin@kernel.org
-> Cc: robh+dt@kernel.org
-> Cc: krzk+dt@kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> CC: devicetree@vger.kernel.org
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
->  .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml          | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/perf/arm,cmn.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
