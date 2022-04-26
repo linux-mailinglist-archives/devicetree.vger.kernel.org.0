@@ -2,97 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 721F250FF63
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:42:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C07A350FF67
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235454AbiDZNo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 09:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53178 "EHLO
+        id S1351066AbiDZNpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 09:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345745AbiDZNo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:44:58 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE58F3CFF7
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:48 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id u9-20020a05600c00c900b00393e729e655so1591890wmm.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:48 -0700 (PDT)
+        with ESMTP id S1351058AbiDZNpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:45:00 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 732EF3D1E2
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:50 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id x18so25590629wrc.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=xXQbkkr1OF+Ro+dWXJqCAX6WABW7vUg3V8zjyeYbcCY=;
-        b=x6zFqf+/EmVz0TvduZBvJRSfkSVefrxagUAWXYZ0+kEwhEkh+cUuE6WBr5+Xi11Weo
-         XharkEOrZUMOBUft5Pv+xdS/UaSk/wc614P6T+6Cb/KTf7l0/qDb6pR4M+CoiEBiVD6d
-         4JBsW0uyko9MjgeHfrkjb0WX6urHDMz5KD7Z1P5fL5srgFIwtNGepM8/NXuSRm6nijje
-         ebuZqO1/tuUI/CfGb1zqRXbYJUkKNndqsC+WdAzORXjojkONvwblAOxJeIUHTj6L9QHc
-         /Sd9AI+osICH/ENT85KECJkgchRVTqu7Jbz39RY8FINgdGBSVGEGH27CWRLxSd4msMcE
-         IUpg==
+        bh=4mq0VAwh5UJJ1ySY2hnGptoqpajh6aCIUVFARZ+YbYg=;
+        b=qv35mZRTWy4Yq+LLwggMnPTsMMY+u2VZ9Z3bl/eMJNp9lafpx7aMAbRUxDUw/a/MvY
+         KNoi+y7rF8RSxvM3fW+d8lblArckFeqPQBo/9kQ+RcmU0WsWdkqEwzsUN3yTZWuxzAPv
+         NjVvlLJ3lB2yAKHHGtSMzpZV1qb+45EwL9jG6QGdCwHhjJ5rHEGiyzKX56NESjJX/FAy
+         q/+VRaz+LZke0pVFwmTtYvkn/iekuRsx/T3bT+Sg6G/Ju/kUKGQ6pfW49dPrgwqHLuCb
+         ZTw2mVihfsGqWc+0LtnIvffEcSkkyoKQup8K+04aTHviR9V+iMZASWEBPxIdYYIftb5A
+         XVYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xXQbkkr1OF+Ro+dWXJqCAX6WABW7vUg3V8zjyeYbcCY=;
-        b=5A6XM5pdcKnzLgL4Bg/dg5HJ6sKCluUAO55FzuyfMQks33VK7rNCG2b9xpIS9+CK7w
-         n1S8bebQHEGk+R+XU89FcFVSUNs9rxZmA9a/BvZqV0ccD/u2uhRGAQtnlphCaOjan7Tm
-         4eZjWNM3MzzfaXppUz9gt0pKzA11kUk3c8vRM0GyfvjcG6ZIguvs/p5obIEyPO7u9+sr
-         HMeUuKGxcYC5ouegOwPJwH04E8lBWwQctUndo+/Puk1hYICmsak3HqabW1k80z/zSlQM
-         RPRE+2yGMxJyhpVZSgoP/v4I3JOfWkJLkBzu1IAViVhuU672OV+HSCBSPSYfOyFstmHs
-         Yi0g==
-X-Gm-Message-State: AOAM533iJf8eQj7CYXJ8UW5G7kMAf2MGo7kbHgq46Efjf670sLnVglmI
-        LOuAUtXNDPxRrYBQU6GiTFizgQ==
-X-Google-Smtp-Source: ABdhPJwjCz5bSKe6Ekot1VUMdiUvbf6MQuP6zLDwMQtDT48tOMws/2TXKGP3aFcjlclS3xlYidSiZQ==
-X-Received: by 2002:a7b:c341:0:b0:37b:c619:c9f4 with SMTP id l1-20020a7bc341000000b0037bc619c9f4mr30559500wmj.38.1650980507577;
-        Tue, 26 Apr 2022 06:41:47 -0700 (PDT)
+        bh=4mq0VAwh5UJJ1ySY2hnGptoqpajh6aCIUVFARZ+YbYg=;
+        b=bY0KgjCgUWhAlBCKhtqnVSPCVKZA2X03OuXmme06VDfBmcc8AwnQLENBkpe4p+7y6o
+         e7fxn3Hsin5dqwChgAxPf/WG0BtiiouwCQ5RartbGXOZqIdZ6jWoE3LQn9orJ4tlNw+u
+         9ptQiaMxCcDp4m9ztrWE/1PekI0FOoGxZIE9fOaThHgb/bJpr7yMSkRZgJRbr7vxAve8
+         9kQ9VVa/E7dvbpCzxMvREgn4XEJpnlvNRUFGmSsxsUg3Gr8KXgprJEKAfIbOfGQSiGuQ
+         bwnZB/CDaxDkw+N0EEvhldFQ1QgVZAQrJsQA/Yvs2/Ts8mLiHlh8Ca1lbCjfCwGWdjMD
+         ErAQ==
+X-Gm-Message-State: AOAM531k+e9zjEt+CQ4dIHQBtOyqf/VehQW+nsainynSFGU2sC81ZzJU
+        cgWDAxCiN4PjJ5fB3JG858iNfw==
+X-Google-Smtp-Source: ABdhPJy18Pi1+TBqaTQhsPwZii6Y2cMmIKGZUbFd1DjvY0HMKv+nke8BfTjEmK9o7Hhd1yxbiQfJxw==
+X-Received: by 2002:a5d:4747:0:b0:20a:c40b:1189 with SMTP id o7-20020a5d4747000000b0020ac40b1189mr17870752wrs.509.1650980509001;
+        Tue, 26 Apr 2022 06:41:49 -0700 (PDT)
 Received: from radium.lan ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id b6-20020adfd1c6000000b0020aac8a9946sm13628475wrd.47.2022.04.26.06.41.46
+        by smtp.gmail.com with ESMTPSA id b6-20020adfd1c6000000b0020aac8a9946sm13628475wrd.47.2022.04.26.06.41.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 06:41:47 -0700 (PDT)
+        Tue, 26 Apr 2022 06:41:48 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>, linux-usb@vger.kernel.org,
+Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: usb: mediatek,mtu3: add binding for MT8195 SoC
-Date:   Tue, 26 Apr 2022 15:40:59 +0200
-Message-Id: <20220426134106.242353-2-fparent@baylibre.com>
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/7] arm64: dts: mediatek: mt8195: add ssusb support
+Date:   Tue, 26 Apr 2022 15:41:00 +0200
+Message-Id: <20220426134106.242353-3-fparent@baylibre.com>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220426134106.242353-1-fparent@baylibre.com>
 References: <20220426134106.242353-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding to support the mtu3 driver on the MT8195 SoC.
+Add SSUSB support for MT8195. In order to not break any boards, this
+commit also enable SSUSB for every board that has xhci0 enabled. The
+boards are configured as host-only, in order to not change the current
+behavior of the interface.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts |  5 +++
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts  |  5 +++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 37 ++++++++++++++------
+ 3 files changed, 36 insertions(+), 11 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-index df766f8de872..37b02a841dc4 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-@@ -25,6 +25,7 @@ properties:
-           - mediatek,mt8173-mtu3
-           - mediatek,mt8183-mtu3
-           - mediatek,mt8192-mtu3
-+          - mediatek,mt8195-mtu3
-       - const: mediatek,mtu3
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+index 66037462263e..08cab3b3943b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+@@ -402,6 +402,11 @@ &pmic {
+ 	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
+ };
  
-   reg:
++&ssusb {
++	dr_mode = "host";
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_pins>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+index db25a515e420..d49ae8605e67 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+@@ -138,6 +138,11 @@ pins {
+ 	};
+ };
+ 
++&ssusb {
++	dr_mode = "host";
++	status = "okay";
++};
++
+ &u3phy0 {
+ 	status="okay";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 2a525c1c74ef..aa05071a80b8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -912,25 +912,40 @@ spis1: spi@1101e000 {
+ 			status = "disabled";
+ 		};
+ 
+-		xhci0: usb@11200000 {
+-			compatible = "mediatek,mt8195-xhci",
+-				     "mediatek,mtk-xhci";
+-			reg = <0 0x11200000 0 0x1000>,
++		ssusb: usb@11201000 {
++			compatible ="mediatek,mt8195-mtu3", "mediatek,mtu3";
++			reg = <0 0x11201000 0 0x2dff>,
+ 			      <0 0x11203e00 0 0x0100>;
+ 			reg-names = "mac", "ippc";
+-			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
++			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH 0>;
+ 			phys = <&u2port0 PHY_TYPE_USB2>,
+ 			       <&u3port0 PHY_TYPE_USB3>;
+-			assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
+-					  <&topckgen CLK_TOP_SSUSB_XHCI>;
+-			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+-						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+ 			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
+ 				 <&topckgen CLK_TOP_SSUSB_REF>,
+-				 <&apmixedsys CLK_APMIXED_USB1PLL>,
+ 				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
++			clock-names = "sys_ck", "ref_ck", "mcu_ck";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
+ 			status = "disabled";
++
++			xhci0: usb@11200000 {
++				compatible = "mediatek,mt8195-xhci",
++					     "mediatek,mtk-xhci";
++				reg = <0 0x11200000 0 0x1000>;
++				reg-names = "mac";
++				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
++				assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
++						  <&topckgen CLK_TOP_SSUSB_XHCI>;
++				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
++							 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++				clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
++					 <&topckgen CLK_TOP_SSUSB_REF>,
++					 <&apmixedsys CLK_APMIXED_USB1PLL>,
++					 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
++				clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		mmc0: mmc@11230000 {
 -- 
 2.36.0
 
