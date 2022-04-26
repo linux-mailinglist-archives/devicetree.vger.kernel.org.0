@@ -2,160 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E12BA510291
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 18:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F1F510471
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 18:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352825AbiDZQKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 12:10:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
+        id S1353441AbiDZQvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 12:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352823AbiDZQKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 12:10:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 617496471F;
-        Tue, 26 Apr 2022 09:07:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 23501B82047;
-        Tue, 26 Apr 2022 16:07:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F804C385AA;
-        Tue, 26 Apr 2022 16:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1650989222;
-        bh=SIWK/mgrwqvjb745XCumZL2zEALgs20U9FUZGDkZgPQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=bDD8Qpj/XMzt4mZm2S8D6NQD6THckGoxgByTgj3daSgFZVM4539iQYEwYMrK9dPlJ
-         VzzeBe2gPmT/q0hqRxKMxeJPpG5HsJFHEG0ETh8C+WVHjSGYThzXg12HdWQFbGpsSZ
-         r5j+rsaD2/QPUdXOcF5pTsoxNr9iJC72Nfv6cRtmBB+N9epJuH1TGMkD3Fia3caX03
-         12JNYyKQCSxnduaISxloJdlOLsUPJ4cTTTMCSwkq/DZPyerS49WLCDqOcHKaPzXG5N
-         /PjXCP/1yBHKGVD3GTwpLffVDYC7u/tVov1UaoyVaBRRqPO+AnPMgWk2mdAWv3WFGB
-         P+E8ag50dBtRw==
-Date:   Tue, 26 Apr 2022 11:07:00 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1353268AbiDZQvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 12:51:24 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A339488A6
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 09:46:15 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id t6so22861265wra.4
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 09:46:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a4Dsh1MIN0xZI+gwJI4fdmqtKhkwKXeMWuLlT5BOjsQ=;
+        b=4RGJ1GWCGaRqYH7/PaHb5ZLmdutMuHjUNGWfkBquGA1U2RooGiMDqO9bvYVUWCYTeS
+         3pgWEyaxGDIyUEW6UYtA1v9zTpn01nmefLwkSVdhQuvHtemFICCmTNhLxkRCOpPxAVL/
+         Qrhk8lyyFac2/hwXxfqOeNV0ujOVdxkxkcPOf8IPAWWTUbcA+5bkhCrxgnFBqCYOTfrA
+         2a9f8sGovPTc+4hS2XPwwRrws22Eu2m78cWLxOCwwSwDoiP12ZvEg3QsIqj6HpceMmVu
+         MrKqwLvcfgXDc2pKVro7BGyQizR52D14IABJKwvfREGIPZF51VRnjwcBjQ8yjm3BHjbj
+         rI4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a4Dsh1MIN0xZI+gwJI4fdmqtKhkwKXeMWuLlT5BOjsQ=;
+        b=hGAd8MwZBYe7mr37DaZgdCXSmj2CEZ0bsHW44/hbRqI/q9fyXG1B+vJAolr14lxDP/
+         XFAYryx6I99etZWd2fwL1QIexHVwgBy6BETwxLD4VnP/htg4d4Liv8g8HQ6I89Ljb3rN
+         rT8JwLTviCSUmfhsAEA8xnMYroj/ztxgb4pRJe88Voc38y3dkepZMEUpgrEIsJFQsAkr
+         nf/zXXj3yF9ghjy0KBq1ps1maaW7Hq4wdV9Be/vQMNoo5paPMFhCXcZUpeJMTHfbNIUb
+         Fe/toM/t0jxiL8mwo0sqdzA3l+Evbt50vAJIyOFmI1F9qizK/aYrBYLi05majsVHO/sn
+         zonw==
+X-Gm-Message-State: AOAM5313ivtTNUaSGnbvRs9xG/uwNt5WlzBHptoFGDqLB89zrq8aHcr+
+        AjqHndpG/TvARr8lBm1sbpIXbg==
+X-Google-Smtp-Source: ABdhPJyQj4nlAzq8f49npdb5BnklLFCtyQ6VIVK795e5133V4LSp0puZE2gqfmU4YR9lWfCCN9WEsw==
+X-Received: by 2002:adf:b34a:0:b0:20a:d6e4:cea4 with SMTP id k10-20020adfb34a000000b0020ad6e4cea4mr12132328wrd.675.1650991573906;
+        Tue, 26 Apr 2022 09:46:13 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id l6-20020a1c2506000000b0038e6fe8e8d8sm14499539wml.5.2022.04.26.09.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 09:46:13 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [RFC/RFT v2 10/11] PCI: rockchip: add a lane-map to rockchip
- pcie driver
-Message-ID: <20220426160700.GA1731141@bhelgaas>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] arm64: dts: mt8183: add dpi node to mt8183
+Date:   Tue, 26 Apr 2022 18:45:46 +0200
+Message-Id: <20220426164547.434324-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220426132139.26761-11-linux@fw-web.de>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The subject line should be "PCI: rockchip-dwc: Add ..." so there's no
-need to mention "rockchip" again.  No need to mention "pcie driver"
-either,  because that's obvious from the context, so just something
-like:
+From: Pi-Hsun Shih <pihsun@chromium.org>
 
-  PCI: rockchip-dwc: Add lane-map support
+Add dpi node to mt8183.
 
-On Tue, Apr 26, 2022 at 03:21:38PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add a basic lane-map to define which PCIe lanes should be
-> used with this controller.
-> 
-> Rockchip driver uses this for bifurcation (true/false) based
-> on lanes should be splitted across controllers or not.
-> 
-> On rk3568 there are 2 PCIe Controllers which share PCIe lanes.
-> 
-> pcie3x1: pcie@fe270000 //lane1 when using 1+1
-> pcie3x2: pcie@fe280000 //lane0 when using 1+1
-> 
-> This ends up in one Controller (pcie3x1) uses lane-map = <0 1>; and
-> the other lane-map = <1 0>; (pcie3x2)
-> 
-> This means there are 2 lanes (count of numbers), one (by position)
-> is mapped to the first controller, the other one is used on the other
-> controller.
-> 
-> In this driver the lane-map is simply converted to the bifurcation
-> bool instead of direct mapping a specific lane to a controller.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v2:
-> - new patch
-> ---
->  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> index 79e909df241c..21cb697a5be1 100644
-> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> @@ -60,6 +60,7 @@ struct rockchip_pcie {
->  	struct regulator                *vpcie3v3;
->  	struct irq_domain		*irq_domain;
->  	bool				bifurcation;
-> +	u32				lane_map[2];
->  };
->  
->  static int rockchip_pcie_readl_apb(struct rockchip_pcie *rockchip,
-> @@ -293,8 +294,10 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct rockchip_pcie *rockchip;
-> +	unsigned int lanecnt = 0;
->  	struct pcie_port *pp;
->  	int ret;
-> +	int len;
->  
->  	rockchip = devm_kzalloc(dev, sizeof(*rockchip), GFP_KERNEL);
->  	if (!rockchip)
-> @@ -327,8 +330,16 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> -	if (device_property_read_bool(dev, "bifurcation"))
-> -		rockchip->bifurcation = true;
+Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+v2: no changes
 
-Skip adding the "bifurcation" DT support completely if you can.
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-> +	len = of_property_read_variable_u32_array(dev->of_node, "lane-map", rockchip->lane_map,
-> +						  2, ARRAY_SIZE(rockchip->lane_map));
-> +
-> +	for (int i = 0; i < len; i++)
-> +		if (rockchip->lane_map[i])
-> +			lanecnt++;
-> +
-> +	rockchip->bifurcation = ((lanecnt > 0) && (lanecnt != len));
-> +
-> +	dev_info(dev, "bifurcation: %s\n", rockchip->bifurcation ? "true" : "false");
->  
->  	ret = rockchip_pcie_phy_init(rockchip);
->  	if (ret)
-> -- 
-> 2.25.1
-> 
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 4b08691ed39e..49e662e34b36 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1507,6 +1507,17 @@ dsi0: dsi@14014000 {
+ 			phy-names = "dphy";
+ 		};
+ 
++		dpi0: dpi@14015000 {
++			compatible = "mediatek,mt8183-dpi";
++			reg = <0 0x14015000 0 0x1000>;
++			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
++			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
++			clocks = <&mmsys CLK_MM_DPI_IF>,
++				 <&mmsys CLK_MM_DPI_MM>,
++				 <&apmixedsys CLK_APMIXED_TVDPLL>;
++			clock-names = "pixel", "engine", "pll";
++		};
++
+ 		mutex: mutex@14016000 {
+ 			compatible = "mediatek,mt8183-disp-mutex";
+ 			reg = <0 0x14016000 0 0x1000>;
+-- 
+2.36.0
+
