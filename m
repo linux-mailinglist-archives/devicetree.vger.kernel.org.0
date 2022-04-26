@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F6A750FF6C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5580D50FF66
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 15:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345745AbiDZNpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 09:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53428 "EHLO
+        id S1351106AbiDZNpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 09:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351068AbiDZNpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:45:01 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636AA3CA77
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:54 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id e2so19259520wrh.7
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:54 -0700 (PDT)
+        with ESMTP id S1351071AbiDZNpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 09:45:03 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C0E3CA58
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:55 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id k2so5106251wrd.5
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 06:41:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=K24pI48bckEH3Y3oSHXKjeqIQ2pS3pf+1QNVp3L1AGk=;
-        b=i08Wa0+I8vFqudmLcKEpFUrwdRPyrrmNGYg9ArqPlVQA/tJVlnOobY+g4E4P6S+h3a
-         R1H604yOHa5tAQ3PBTVTS74d67hDZNWH9/AIcx/LeoAfVE1+xz9gbna3tKAl4ojTqdvq
-         5fCqS2TFR6WdzG6e8JXN9436Js/xK4YQo7zWW80kJ8mIGzxu4Cb/qoBOHtrUib3MC59c
-         3hQLeOBI8OdAsq1BY9dLfVUcN2r1t/hSwEcGDfZKGuR+c38WYBj86mt3jqhVHs3DVfQk
-         L3Mh3OG2rE0gkT0QyrpsxkNvQWBHAkNCFjUOHP/4M5fy+CvoarAXjTvWpO8ZE4i5CKcS
-         bvMg==
+        bh=lRfVC5aaQ4N6y57lWHZ8XzBxGf9B+nlX2tNH+pQF5EY=;
+        b=Ohi3dOa+z+/2uqEnU+QGx15AYZjcV5LG3H81paqeYyTAEYMJCy/MmTBgSVtbIL4nRw
+         yU3+HzaVaQEeG/ya92peeYASG7VtFTWsCVTT21PM+J/8bDS3/wD6G2O5SLVoEIWm61Py
+         Oi5jIDHqqp4P86mP/fIG9bN6grsDjmLLiP5KCcvivwCkzYfhsGFxETfcEOLoa59Y5jhA
+         RNe1MkZ17JrECnn/rQuVNH+7Esp7WumapPaNcDoqVtKYc2TuFkUXY6lQT3t8jddP+dCf
+         7uhZ+z2ZpQ2mOtueekHx1CFNRrZGvs/4Nui1vf9up65ItkK8rh10R/L266I74UkknfeT
+         jV0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=K24pI48bckEH3Y3oSHXKjeqIQ2pS3pf+1QNVp3L1AGk=;
-        b=672SoPmGguotApktZXVnr7Lxvv2ZXTfDxp7mZznIarUz9NaCjTXdqLzBAcnkU17hhX
-         c47g0toAeHhJg8GQtZrz4tPj3p+jtx60CZfeyBiIhsZk//WuoMdBVM/FNJMB+qBOLIvQ
-         V3bUAPCvhFFEeNDVjwzm+XIazNPvH6wXBskXC1SOxaIHkJV4wviTsLALvyIhnKvHoklW
-         PZy+Bk0gbxCRcEvM+o97SU6nmOp1pNWGLObG8p5QgqXGfki3K1OleoVzZpL8+8kRzuUm
-         h/jDp4pxU1YrKoILeKaByhe+ktd0bVK9X5Dj32JRnCewGAjh9vJ6PmjdP8FQU9YQ0m9+
-         3OZg==
-X-Gm-Message-State: AOAM533pcclBGoxtoXbnBFP6rWfsNC3Hwnl2pmWvEO/IjJuTlIyIp70+
-        wtJe6UOlUEZOwpanZZqbXQ3F+g==
-X-Google-Smtp-Source: ABdhPJwTqjD7xukDeJkwtYT17PIwAxavld4VVDUXrUeGccOnlqTLBHELXQALY+5oCYTdLFIgdPaRCg==
-X-Received: by 2002:a5d:6301:0:b0:205:cb42:74a5 with SMTP id i1-20020a5d6301000000b00205cb4274a5mr18242860wru.385.1650980513022;
-        Tue, 26 Apr 2022 06:41:53 -0700 (PDT)
+        bh=lRfVC5aaQ4N6y57lWHZ8XzBxGf9B+nlX2tNH+pQF5EY=;
+        b=13mqgzGyKizXHbiDBFfKCXONH1bGF0ZHZ3GiebOUrIOSVSq9PZ9u1hlC3Sq+3X/TZ7
+         4/VgNcDgRmB1ytGqAQv3RolpFojFXS897KMHWTLwDnrm8DRoJmZkr2jM0OdyJL6K05Z6
+         KpueFFZvyNTTLa/LCDMa3ribjzRHxkQTpJNUNUJEzBQE/dCF0mVWAlbNzZzD1329ZOh1
+         03h1rocerHSBRh+hFS+euilMRVB0KUoABSS+kxnmrCUJLcvzTqVGhnIinNGukVZnEkLE
+         6PzC8WmuBtaSYG581QaYvcnhAX6pMa7QAYNS2C9xMTEPnUDTrxr4WBxB2m7NAMhFBjaB
+         a2Iw==
+X-Gm-Message-State: AOAM5339mt1aptuCqeHlE0znf/uXSTRjCKRsljLCjoIldv647oZtYVC5
+        Mg9zCFYHc2crmOzUW1QLh9q/TA==
+X-Google-Smtp-Source: ABdhPJzBLZfCcm8hoYkEZchekZF0zzr274AwXjGp/5LtIjvGZKDbBEb1QoUBNKaQ+Aixc1sCq9/WyQ==
+X-Received: by 2002:adf:ed8f:0:b0:20a:e2a7:7201 with SMTP id c15-20020adfed8f000000b0020ae2a77201mr3991412wro.26.1650980514411;
+        Tue, 26 Apr 2022 06:41:54 -0700 (PDT)
 Received: from radium.lan ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id b6-20020adfd1c6000000b0020aac8a9946sm13628475wrd.47.2022.04.26.06.41.52
+        by smtp.gmail.com with ESMTPSA id b6-20020adfd1c6000000b0020aac8a9946sm13628475wrd.47.2022.04.26.06.41.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 06:41:52 -0700 (PDT)
+        Tue, 26 Apr 2022 06:41:54 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -54,156 +54,47 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/7] arm64: dts: mediatek: mt8195-demo: enable ethernet
-Date:   Tue, 26 Apr 2022 15:41:03 +0200
-Message-Id: <20220426134106.242353-6-fparent@baylibre.com>
+Subject: [PATCH 6/7] arm64: dts: mediatek: mt8195-demo: Remove input-name property
+Date:   Tue, 26 Apr 2022 15:41:04 +0200
+Message-Id: <20220426134106.242353-7-fparent@baylibre.com>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220426134106.242353-1-fparent@baylibre.com>
 References: <20220426134106.242353-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable ethernet on the MT8195 demo board.
+This property doesn't seem to exist in the documentation nor
+in source code, let's remove it from the device-tree.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 108 +++++++++++++++++++
- 1 file changed, 108 insertions(+)
+This patch is related to [0].
+
+[0] https://lore.kernel.org/all/20211123065158.1383182-1-danct12@riseup.net/
+
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-index 08cab3b3943b..0b7985486e2a 100644
+index 0b7985486e2a..d1f650d99d7e 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
 +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-@@ -80,6 +80,30 @@ optee_reserved: optee@43200000 {
- 	};
- };
+@@ -35,7 +35,6 @@ optee {
  
-+&eth {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&eth_phy>;
-+	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
-+	snps,reset-delays-us = <0 10000 10000>;
-+	mediatek,tx-delay-ps = <2030>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&eth_default_pins>;
-+	pinctrl-1 = <&eth_sleep_pins>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy: phy@1 {
-+			compatible = "ethernet-phy-id001c.c916";
-+			#phy-cells = <0>;
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
- &i2c6 {
- 	clock-frequency = <400000>;
- 	pinctrl-0 = <&i2c6_pins>;
-@@ -260,6 +284,90 @@ &mt6359_vsram_others_ldo_reg {
- };
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pins>;
  
- &pio {
-+	eth_default_pins: eth-default-pins {
-+		pins-cc {
-+			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
-+				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
-+				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
-+				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+
-+		pins-mdio {
-+			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
-+				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
-+			input-enable;
-+		};
-+
-+		pins-phy-reset {
-+			pinmux = <PINMUX_GPIO93__FUNC_GPIO93>;
-+		};
-+
-+		pins-power {
-+			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-+				 <PINMUX_GPIO92__FUNC_GPIO92>;
-+			output-high;
-+		};
-+
-+		pins-rxd {
-+			pinmux = <PINMUX_GPIO81__FUNC_GBE_RXD3>,
-+				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
-+				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
-+				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
-+		};
-+
-+		pins-txd {
-+			pinmux = <PINMUX_GPIO77__FUNC_GBE_TXD3>,
-+				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
-+				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
-+				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+	};
-+
-+	eth_sleep_pins: eth-sleep-pins {
-+		pins-cc {
-+			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
-+				 <PINMUX_GPIO88__FUNC_GPIO88>,
-+				 <PINMUX_GPIO87__FUNC_GPIO87>,
-+				 <PINMUX_GPIO86__FUNC_GPIO86>;
-+		};
-+
-+		pins-mdio {
-+			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
-+				 <PINMUX_GPIO90__FUNC_GPIO90>;
-+			input-disable;
-+			bias-disable;
-+		};
-+
-+		pins-phy-reset {
-+			pinmux = <PINMUX_GPIO93__FUNC_GPIO93>;
-+			input-disable;
-+			bias-disable;
-+		};
-+
-+		pins-power {
-+			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-+				 <PINMUX_GPIO92__FUNC_GPIO92>;
-+			input-disable;
-+			bias-disable;
-+		};
-+
-+		pins-rxd {
-+			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
-+				 <PINMUX_GPIO82__FUNC_GPIO82>,
-+				 <PINMUX_GPIO83__FUNC_GPIO83>,
-+				 <PINMUX_GPIO84__FUNC_GPIO84>;
-+		};
-+
-+		pins-txd {
-+			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
-+				 <PINMUX_GPIO78__FUNC_GPIO78>,
-+				 <PINMUX_GPIO79__FUNC_GPIO79>,
-+				 <PINMUX_GPIO80__FUNC_GPIO80>;
-+		};
-+	};
-+
- 	gpio_keys_pins: gpio-keys-pins {
- 		pins {
- 			pinmux = <PINMUX_GPIO106__FUNC_GPIO106>;
 -- 
 2.36.0
 
