@@ -2,118 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC25B510ACF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 22:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE123510ADD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 23:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233591AbiDZU7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 16:59:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43796 "EHLO
+        id S1348629AbiDZVDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 17:03:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354172AbiDZU7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 16:59:05 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7804623BDC;
-        Tue, 26 Apr 2022 13:55:56 -0700 (PDT)
-Received: from mail-yw1-f173.google.com ([209.85.128.173]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1Mn2Jj-1oBwtR32BD-00k8AD; Tue, 26 Apr 2022 22:55:54 +0200
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2f7b815ac06so119883017b3.3;
-        Tue, 26 Apr 2022 13:55:54 -0700 (PDT)
-X-Gm-Message-State: AOAM531c/I0RGyxqBLDaVfLZu6TJuKPc6VRH54LNIQzlN53DL9cn5vsO
-        0wocP/GzquO5zE+7873Oz5+kXPlZMU5EgqR4TSc=
-X-Google-Smtp-Source: ABdhPJykVbC51GHiNxSRF22iubyVclEPEIn++KiZqruq+/JC2nxl37pjEPmurLqJ7gUHZrZwTtprNFSeiezKdA6Gjr4=
-X-Received: by 2002:a0d:d804:0:b0:2f4:e47d:1c2c with SMTP id
- a4-20020a0dd804000000b002f4e47d1c2cmr23664046ywe.320.1651006553470; Tue, 26
- Apr 2022 13:55:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220426201539.12829-1-sven@svenpeter.dev> <20220426201539.12829-5-sven@svenpeter.dev>
-In-Reply-To: <20220426201539.12829-5-sven@svenpeter.dev>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 26 Apr 2022 22:55:37 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a39t-yyhtVKiEvD9_FvLiVxySnJRXaOv4E4q77t6mDesw@mail.gmail.com>
-Message-ID: <CAK8P3a39t-yyhtVKiEvD9_FvLiVxySnJRXaOv4E4q77t6mDesw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] soc: apple: Add SART driver
+        with ESMTP id S1349114AbiDZVDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 17:03:21 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D1B5BC11;
+        Tue, 26 Apr 2022 14:00:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id A794DCE2193;
+        Tue, 26 Apr 2022 21:00:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C432DC385A0;
+        Tue, 26 Apr 2022 21:00:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651006808;
+        bh=QxPQiDVyvyboQhb7hQg8egZCDBIE9qPfnk2lOel1mkA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hHfywpbDKaiIA+fVMnwKtNcMVk1eg8P8ocioCAYf46wZZ6qFH46Nr4JMwaMpjxbhI
+         59zSmCUibSb6RUX46rByC1vS5y147UwUI9gtevvehdbPKze2VpZJTnpu1yEunlWzr8
+         uMJlquUantp3QdT6iaRubNfhDNaOJgpkdI2DvYEI9B762H8XmbZZPU+kBkiR6Gcg44
+         7h/CRMLmpP1EUIzXExSw0A7OB0mggP/e5NMvEp7yGkVIFXtjXX+V5p/B6NLSVam9sk
+         gXPzTX+EZ3x3ooShAyIzTqU8Koo5mSbB9su7vgkZL4aT1iWdp5N6k4hmkw0TvI77Np
+         iyPC0Regq0J2A==
+Date:   Tue, 26 Apr 2022 15:00:04 -0600
+From:   Keith Busch <kbusch@kernel.org>
 To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Hector Martin <marcan@marcan.st>,
+Cc:     Jens Axboe <axboe@fb.com>, Christoph Hellwig <hch@lst.de>,
+        Sagi Grimberg <sagi@grimberg.me>,
+        Hector Martin <marcan@marcan.st>,
         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@fb.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Sagi Grimberg <sagi@grimberg.me>,
-        Marc Zyngier <maz@kernel.org>, Janne Grunau <j@jannau.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>,
+        Janne Grunau <j@jannau.net>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-nvme@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:aCEZ6RBb3tpXSd8jlPQICSalKhz/lcJThhMJ9qtj94Ow0K3Qwv/
- pusAWlNyx3fi4froZHrjvIJL7JdWmeXgU+TAOnk4QNw4+tS1+jquXFQJJmY5mWc1eAEk2lz
- fNPGBZp7Kxbtc1iv2PYOjbQM+OJXdlzDWm9Lr1foO9Yt+3eNWz2gdJjc90sL80MIelVe2m5
- iwa95pM6GQ4ek+hx0ethg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:A2bn5Um674o=:tIiRX89DHd3lVxumZ100zH
- eRHmP3e1wCYkbq8MRref0+xJysSUJxebo3I+ufrjeK0AeCcYCCf3K7I5Brc/7n9qKnCWTN2df
- ahq2FzPtHLRao8HXnPyOPY03EBvyph/NZG0xfFOrKgYq7VZZjJ8l8uuS7P6vr/IwTuv/Fnt07
- P/DCxz7n+/gQmRKPdOH7eLGyC7Gn2uF18S/8l6Z8TAHanC6MjREjDM3ERj+ZpYXLagJuUpUKz
- PCcjUuzaOjgPFVnYG7/vS0zq6H/iSUuna+zLmf6DndhTl9xywWebH2du+eLayAA0xB3OjYjv4
- /nVHH/PbygHzO9IQVZ1aPeQZJPOzuaZtbTcGus/TX82Fi5dPKRRhjASAn2fbqb3Sle+zzyjMS
- cdWiN3JLmZIU8zi3cLipCmmN/ey4D2BRThMFITT1ChCbjIXP1UujmkkscV06MgJ6II94zr9ti
- kk9ZwPzzu6Bu1HitHUaZo1i0dvTlNnY41BM9j80YwR5tW0/9S2XeX+4Rc4DycKYjcD77XcMG1
- F4hFksUdJoBa5Md+cjT62GDsTmFqMp0iJR8fAD3TRO6e8US5P6ycgfldI58wEPQgD0fwbul6O
- Lj+XKXk9aynDJO5oBDxv1s+IjTQjbqtXfw7T0bbdt7ZzAwYxw40q0p8juRdb/4Tu5HwV2rSGl
- czqW9IWEIhhT4H1wKaO5dFbULPfqp9WKH2JTjOBLO3WaR2KhZpv6j/4ItUFCX60ZFgiI=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 6/6] nvme-apple: Add initial Apple SoC NVMe driver
+Message-ID: <YmhdVJgd6DGRHPXd@kbusch-mbp.dhcp.thefacebook.com>
+References: <20220426201539.12829-1-sven@svenpeter.dev>
+ <20220426201539.12829-7-sven@svenpeter.dev>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220426201539.12829-7-sven@svenpeter.dev>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 26, 2022 at 10:15 PM Sven Peter <sven@svenpeter.dev> wrote:
->
-> The NVMe co-processor on the Apple M1 uses a DMA address filter called
-> SART for some DMA transactions. This adds a simple driver used to
-> configure the memory regions from which DMA transactions are allowed.
->
-> Unlike a real IOMMU, SART does not support any pagetables and can't be
-> implemented inside the IOMMU subsystem using iommu_ops.
->
-> It also can't be implemented using dma_map_ops since not all DMA
-> transactions of the NVMe controller are filtered by SART.
-> Instead, most buffers have to be registered using the integrated NVMe
-> IOMMU and we can't have two separate dma_map_ops implementations for a
-> single device.
->
-> Co-developed-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-
-One more detail I noticed:
-
-> +#if IS_ENABLED(CONFIG_APPLE_SART)
+On Tue, Apr 26, 2022 at 10:15:39PM +0200, Sven Peter wrote:
+> +static enum blk_eh_timer_return apple_nvme_timeout(struct request *req,
+> +						   bool reserved)
+> +{
+> +	struct apple_nvme_iod *iod = blk_mq_rq_to_pdu(req);
+> +	struct apple_nvme_queue *q = iod->q;
+> +	struct apple_nvme *anv = queue_to_apple_nvme(q);
+> +	unsigned long flags;
+> +	u32 csts = readl(anv->mmio_nvme + NVME_REG_CSTS);
 > +
-> +struct apple_sart;
-> +
-> +/*
-> + * Get a reference to the SART attached to dev.
-> + *
-> + * Looks for the phandle reference in apple,sart and returns a pointer
-> + * to the corresponding apple_sart struct to be used with
-> + * apple_sart_add_allowed_region and apple_sart_remove_allowed_region.
-> + */
-> +struct apple_sart *devm_apple_sart_get(struct device *dev);
-> +
+> +	if (anv->ctrl.state != NVME_CTRL_LIVE) {
+> +		/*
+> +		 * From rdma.c:
+> +		 * If we are resetting, connecting or deleting we should
+> +		 * complete immediately because we may block controller
+> +		 * teardown or setup sequence
+> +		 * - ctrl disable/shutdown fabrics requests
+> +		 * - connect requests
+> +		 * - initialization admin requests
+> +		 * - I/O requests that entered after unquiescing and
+> +		 *   the controller stopped responding
+> +		 *
+> +		 * All other requests should be cancelled by the error
+> +		 * recovery work, so it's fine that we fail it here.
+> +		 */
+> +		dev_warn(anv->dev,
+> +			 "I/O %d(aq:%d) timeout while not in live state\n",
+> +			 req->tag, q->is_adminq);
+> +		if (blk_mq_request_started(req) &&
+> +		    !blk_mq_request_completed(req)) {
+> +			nvme_req(req)->status = NVME_SC_HOST_ABORTED_CMD;
+> +			blk_mq_complete_request(req);
 
-In general, I don't like to hide declarations in a header behind an #if. Unless
-there is a good reason for doing this, just make the declaration unconditional,
-which avoids recompiling when the symbol changes.
+I think you need a 'nvme_req(req)->flags |= NVME_REQ_CANCELLED' here to get the
+expected -EINTR for any admin command timeouts during a reset. Without it, the
+resetting task is going to think it got a real response from the controller.
 
-The only other effect is that you get a link-time error instead of a
-compile-time
-error if you messed up the Kconfig dependencies, but as long as the dependencies
-are correct it will be fine either way.
-
-      Arnd
+Other than that, this looks good.
