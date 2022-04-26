@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE9C50F9FC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D23D50FA71
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:28:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349472AbiDZKUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:20:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
+        id S1348879AbiDZKbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:31:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348710AbiDZKSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:18:09 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73156139981
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 02:41:52 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id v1so17800253ljv.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 02:41:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oPLNTV7n0Ijb4QN5+/ZP2G9taYmSFsaYJE9s/1u9hZM=;
-        b=IT9mK2eoGUOIpdf1Q2IMc+OQyH3OeGKt1vz56WDGc8UWW1sxqL2BYBk4sECBkmNuCq
-         6Ws0vp6DOahvYB9133CJYMBwrPPD15dKg/bnu9Y8K0W4DFJN9jvYS+5QEEFfWpjnJUxd
-         rHOvUcGrXyCeMQaPtATLWwBSut3HR/GZNXQ3D1uaJpZaO7f88E1axyvlQHgKtKzoVif7
-         BmAMHIiijOdTbe760WL+8a8bnmBD2x802Kdx3FSsGI9GiZounpJ47jxk0yuc3v0XgVmo
-         RtcFCuSsNYeDE0xvMWSbGngpPJv5oBw7Z35/LjtIkvKEjdBXXnFyZRSjs7pGRbSd3Tt+
-         EVgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oPLNTV7n0Ijb4QN5+/ZP2G9taYmSFsaYJE9s/1u9hZM=;
-        b=jzcGFWV766SeI5Ar4XK8Ldvilq8AJ5eoPDPpE+afuYk5p9Mu3RY+1juT5z/R5ZAupc
-         svP05/ue+1NzUA2ChfiBjQd2pJq3TxyayPNAeCzWLICW/SPtKcd3sAUBhwMSmcsQWgGf
-         ANPdQjdfEhUqgATsPJAQU+3SB0JfOKoTUuN+MfTIDiHDNiFbqrzKDmHLuDXTriispxd/
-         aYnFKzogiPVhKtiHw2OzFwgbRm6PPbU0WISi8inSv5vcFXeMB0PPJQgDij1FO9yEy5nl
-         RfYiTofbRTSfDPHpnxFSPMFk3MC0fkm5NaY+Q/4uee9TwBOPXcPlKVfA1NHBVrKPTn9B
-         uylw==
-X-Gm-Message-State: AOAM532xd1GxjofqlXNfH7Z6cCjF5/wwRA88lfV4cCmddB5IObTYPQAS
-        CWVQtH9GrjCuWm8BBnBZWcg45g==
-X-Google-Smtp-Source: ABdhPJxgDm/fyRI4MiY9vpmBbhCagFjJGzxR3PP62y4dLAuol0ngRjqo5SRL31C8w7+svvwwsfoQgA==
-X-Received: by 2002:a2e:b8cc:0:b0:24d:c4a0:7ff4 with SMTP id s12-20020a2eb8cc000000b0024dc4a07ff4mr13947382ljp.378.1650966110734;
-        Tue, 26 Apr 2022 02:41:50 -0700 (PDT)
-Received: from eriador.lumag.spb.ru ([188.162.64.30])
-        by smtp.gmail.com with ESMTPSA id y28-20020a19641c000000b00471f6806403sm1330117lfb.16.2022.04.26.02.41.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 02:41:50 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
+        with ESMTP id S1348967AbiDZKbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:31:05 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA6E6FBEAC;
+        Tue, 26 Apr 2022 03:08:40 -0700 (PDT)
+X-UUID: 5d8f2d9f91cb4b38a8a823454d2cbfcd-20220426
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:da8296cb-00b4-4e49-a50e-02011575acaa,OB:0,LO
+        B:0,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:-12
+X-CID-META: VersionHash:faefae9,CLOUDID:1576bf2e-6199-437e-8ab4-9920b4bc5b76,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 5d8f2d9f91cb4b38a8a823454d2cbfcd-20220426
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1177833292; Tue, 26 Apr 2022 18:08:32 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Apr 2022 18:08:31 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Apr 2022 18:08:29 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        quic_tdas@quicinc.com
-Subject: [PATCH v4 3/3] dt-bindings: clock: qcom,gcc-apq8064: split tsens to the child node
-Date:   Tue, 26 Apr 2022 12:41:44 +0300
-Message-Id: <20220426094144.2958416-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220426094144.2958416-1-dmitry.baryshkov@linaro.org>
-References: <20220426094144.2958416-1-dmitry.baryshkov@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v10, 00/15] media: mtk-vcodec: support for M8192 decoder
+Date:   Tue, 26 Apr 2022 18:08:11 +0800
+Message-ID: <20220426100828.13429-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,85 +76,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Split tsens properties to the child node of the gcc. This follows the
-lead of ipq8064 (which also uses a separate node for tsens) and makes
-device tree closer to other platforms, where tsens is a completely
-separate device.
+This series adds support for mt8192 h264/vp8/vp9 decoder drivers. Firstly, refactor
+power/clock/interrupt interfaces for mt8192 is lat and core architecture.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Secondly, add new functions to get frame buffer size and resolution according
+to decoder capability from scp side. Then add callback function to get/put
+capture buffer in order to enable lat and core decoder in parallel, need to
+adjust GStreamer at the same time. 
+
+Then add to support MT21C compressed mode and fix v4l2-compliance fail.
+
+Next, extract H264 request api driver to let mt8183 and mt8192 use the same
+code, and adds mt8192 frame based h264 driver for stateless decoder.
+
+Lastly, add vp8 and vp9 stateless decoder drivers.
+
+Patches 1 refactor power/clock/interrupt interface.
+Patches 2~4 get frame buffer size and resolution according to decoder capability.
+Patches 5 set capture queue bytesused.
+Patches 6 adjust GStreamer.
+Patch 7~11 add to support MT21C compressed mode and fix v4l2-compliance fail.
+patch 12 record capture queue format type.
+Patch 13~14 extract h264 driver and add mt8192 frame based driver for h264 decoder.
+Patch 15~16 add vp8 and vp9 stateless decoder drivers.
+Patch 17 prevent kernel crash when rmmod mtk-vcodec-dec.ko
 ---
- .../bindings/clock/qcom,gcc-apq8064.yaml      | 45 +++++++------------
- 1 file changed, 17 insertions(+), 28 deletions(-)
+changes compared with v9:
+- fix kernel robot build fail for patch 16
+changes compared with v8:
+- fix vp9 build error
+- fix kernel-doc fail
+changes compared with v7:
+- adjust GStreamer, separate src buffer done with v4l2_ctrl_request_complete for patch 6.
+- remove v4l2_m2m_set_dst_buffered.
+- add new patch to set each plane bytesused in buf prepare for patch 5.
+- using upstream interface to update vp9 prob tables for patch 16.
+- fix maintainer comments.
+- test the driver with chrome VD and GStreamer(H264/VP9/VP8/AV1).
+changes compared with v6:
+- rebase to the latest media stage and fix conficts
+- fix memcpy to memcpy_fromio or memcpy_toio
+- fix h264 crash when test field bitstream
+changes compared with v5:
+- fix vp9 comments for patch 15
+- fix vp8 comments for patch 14.
+- fix comments for patch 12.
+- fix build errors.
+changes compared with v4:
+- fix checkpatch.pl fail.
+- fix kernel-doc fail.
+- rebase to the latest media codec driver.
+changes compared with v3:
+- remove enum mtk_chip for patch 2.
+- add vp8 stateless decoder drivers for patch 14.
+- add vp9 stateless decoder drivers for patch 15.
+changes compared with v2:
+- add new patch 11 to record capture queue format type.
+- separate patch 4 according to tzung-bi's suggestion.
+- re-write commit message for patch 5 according to tzung-bi's suggestion.
+changes compared with v1:
+- rewrite commit message for patch 12.
+- rewrite cover-letter message.
+---
+Yunfei Dong (17):
+  media: mediatek: vcodec: Add vdec enable/disable hardware helpers
+  media: mediatek: vcodec: Using firmware type to separate different
+    firmware architecture
+  media: mediatek: vcodec: get capture queue buffer size from scp
+  media: mediatek: vcodec: Read max resolution from dec_capability
+  media: mediatek: vcodec: set each plane bytesused in buf prepare
+  media: mediatek: vcodec: Refactor get and put capture buffer flow
+  media: mediatek: vcodec: Refactor supported vdec formats and
+    framesizes
+  media: mediatek: vcodec: Getting supported decoder format types
+  media: mediatek: vcodec: Add format to support MT21C
+  media: mediatek: vcodec: disable vp8 4K capability
+  media: mediatek: vcodec: Fix v4l2-compliance fail
+  media: mediatek: vcodec: record capture queue format type
+  media: mediatek: vcodec: Extract H264 common code
+  media: mediatek: vcodec: support stateless H.264 decoding for mt8192
+  media: mediatek: vcodec: support stateless VP8 decoding
+  media: mediatek: vcodec: support stateless VP9 decoding
+  media: mediatek: vcodec: prevent kernel crash when rmmod
+    mtk-vcodec-dec.ko
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-index b867da12761e..f2762599f679 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-@@ -23,47 +23,36 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - qcom,gcc-apq8064
--      - qcom,gcc-msm8060
--
--  nvmem-cells:
--    minItems: 1
--    maxItems: 2
--    description:
--      Qualcomm TSENS (thermal sensor device) on some devices can
--      be part of GCC and hence the TSENS properties can also be part
--      of the GCC/clock-controller node.
--      For more details on the TSENS properties please refer
--      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
--
--  nvmem-cell-names:
--    minItems: 1
-     items:
--      - const: calib
--      - const: calib_backup
--
--  '#thermal-sensor-cells':
--    const: 1
-+      - enum:
-+          - qcom,gcc-apq8064
-+          - qcom,gcc-msm8060
-+      - const: syscon
- 
- required:
-   - compatible
--  - nvmem-cells
--  - nvmem-cell-names
--  - '#thermal-sensor-cells'
- 
- unevaluatedProperties: false
- 
- examples:
-   - |
-     clock-controller@900000 {
--      compatible = "qcom,gcc-apq8064";
-+      compatible = "qcom,gcc-apq8064", "syscon";
-       reg = <0x00900000 0x4000>;
--      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
--      nvmem-cell-names = "calib", "calib_backup";
-       #clock-cells = <1>;
-       #reset-cells = <1>;
-       #power-domain-cells = <1>;
--      #thermal-sensor-cells = <1>;
-+
-+      thermal-sensor {
-+        compatible = "qcom,msm8960-tsens";
-+
-+        nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-+        nvmem-cell-names = "calib", "calib_backup";
-+        interrupts = <0 178 4>;
-+        interrupt-names = "uplow";
-+
-+        #qcom,sensors = <11>;
-+        #thermal-sensor-cells = <1>;
-+        };
-     };
- ...
+ .../media/platform/mediatek/vcodec/Makefile   |    4 +
+ .../platform/mediatek/vcodec/mtk_vcodec_dec.c |   62 +-
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |    8 +-
+ .../mediatek/vcodec/mtk_vcodec_dec_pm.c       |  166 +-
+ .../mediatek/vcodec/mtk_vcodec_dec_pm.h       |    6 +-
+ .../mediatek/vcodec/mtk_vcodec_dec_stateful.c |   19 +-
+ .../vcodec/mtk_vcodec_dec_stateless.c         |  257 ++-
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |   41 +-
+ .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |    5 -
+ .../platform/mediatek/vcodec/mtk_vcodec_fw.c  |    6 +
+ .../platform/mediatek/vcodec/mtk_vcodec_fw.h  |    1 +
+ .../vcodec/vdec/vdec_h264_req_common.c        |  310 +++
+ .../vcodec/vdec/vdec_h264_req_common.h        |  274 +++
+ .../mediatek/vcodec/vdec/vdec_h264_req_if.c   |  438 +---
+ .../vcodec/vdec/vdec_h264_req_multi_if.c      |  626 +++++
+ .../mediatek/vcodec/vdec/vdec_vp8_req_if.c    |  437 ++++
+ .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 2031 +++++++++++++++++
+ .../platform/mediatek/vcodec/vdec_drv_if.c    |   37 +-
+ .../platform/mediatek/vcodec/vdec_drv_if.h    |    3 +
+ .../platform/mediatek/vcodec/vdec_ipi_msg.h   |   36 +
+ .../platform/mediatek/vcodec/vdec_msg_queue.c |    2 +
+ .../platform/mediatek/vcodec/vdec_msg_queue.h |    2 +
+ .../platform/mediatek/vcodec/vdec_vpu_if.c    |   53 +-
+ .../platform/mediatek/vcodec/vdec_vpu_if.h    |   15 +
+ .../platform/mediatek/vcodec/venc_vpu_if.c    |    2 +-
+ include/linux/remoteproc/mtk_scp.h            |    2 +
+ 26 files changed, 4242 insertions(+), 601 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_common.h
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_vp8_req_if.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+
 -- 
-2.35.1
+2.18.0
 
