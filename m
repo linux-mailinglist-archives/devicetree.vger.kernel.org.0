@@ -2,64 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2135510C5E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 01:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08535510C93
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 01:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355982AbiDZXEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 19:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
+        id S1356054AbiDZXZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 19:25:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234676AbiDZXEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 19:04:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D938D35DD8;
-        Tue, 26 Apr 2022 16:00:58 -0700 (PDT)
-X-UUID: 04a62838dc4c4a3085931d7f0ddfa6f4-20220427
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:ae04e39f-1848-4c54-b543-f650b33a2dba,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.4,REQID:ae04e39f-1848-4c54-b543-f650b33a2dba,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:faefae9,CLOUDID:c36693c6-85ee-4ac1-ac05-bd3f1e72e732,C
-        OID:IGNORED,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil,QS:0
-        ,BEC:nil
-X-UUID: 04a62838dc4c4a3085931d7f0ddfa6f4-20220427
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2046245539; Wed, 27 Apr 2022 07:00:51 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 27 Apr 2022 07:00:50 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Apr
- 2022 07:00:48 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Apr 2022 07:00:48 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <allen-kh.cheng@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>, <hsinyi@chromium.org>,
-        <krzysztof.kozlowski@canonical.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>, <ryder.lee@kernel.org>, <wenst@chromium.org>
-Subject: Re: [PATCH v5 2/2] arm64: dts: Add Mediatek SoC MT8186 dts and evaluation board and Makefile
-Date:   Wed, 27 Apr 2022 07:00:48 +0800
-Message-ID: <20220426230048.20685-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220426125046.17311-3-allen-kh.cheng@mediatek.com>
-References: <20220426125046.17311-3-allen-kh.cheng@mediatek.com>
+        with ESMTP id S1354061AbiDZXZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 19:25:57 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EF7369F0
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 16:22:48 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id w27-20020a056830061b00b00604cde931a0so14952oti.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 16:22:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WYejGanUUZmJvZ2w05Ao6DgRupGl4lL6Qt7fE+MxKI4=;
+        b=RKzjXG8LHJYjtLTBu1AG5FKNpKuXNbma5GQ/URC7EDsjuYp9+RMq5pKyRrnDsl8CMP
+         0xW/ukNJNQ2qXAs9jAC6qDxIb/FrotGQB2Iq2tURl1JUhZpWX7jb0Vnhgja+scyPuIjd
+         6QY91pslLff7CmBeWSFWHRjnwol4hRSHa8iHgQSpX/FDO6uGt+85vkXAirQ78SQkwFr3
+         3By2patjIiz7mxDNQfGaxD0b2BpcCjcK2VSyQD0vqVqqLbtVDJypkTVXJonf+0bxaN9+
+         yRKfbGJwuzpuOIz4Oulxwu+vpLjbznXtcXjS6drrMMNuUIhTf3X4Nmo9OT7j4+giLa1k
+         OLiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WYejGanUUZmJvZ2w05Ao6DgRupGl4lL6Qt7fE+MxKI4=;
+        b=OVSQ8iGmryFNPrw0eN5cpWa3FPsZqnD7cm0RYHW3cznU68xGhJ/GsQAizzYnbwlK1x
+         JZkS6Iji6HTmrDgfL7Whcpjo2LKg5741XskCWkxS3yIjn/dA6cDwp/oY+9IahlU321+m
+         iSWnp6tcC28zIKf6UDyIINdwHeZavn9e95Q3un7YrNqsbcwmZ//659U3kORQLx7tX8Wp
+         Q4pV+wJeSK3LlNWPGdflKmZGOADqRpTnxhQKYgMhEi5R/ppEYtewW9PU0OkPWk/sorX6
+         hKyL27PYg8wwKRCYq6UKPQqLCIUSJO49K/MFXSBsucBzX7J+p8QFafjPO9pigEuY6M2d
+         O//A==
+X-Gm-Message-State: AOAM533zAFgjVgurAPnqVYQwwcHaPn12c+Yqz5IDU4y/6e5rg/zAqZP/
+        Unkg1RNz5RGUTxcLecZ174jw8Q==
+X-Google-Smtp-Source: ABdhPJyjewHB6NMvvEatTOA4sf1nstaF+5jYRdbM69SIxzsjWm3f3tkm4rPBv+x92t1GXyJda9pn2A==
+X-Received: by 2002:a9d:731a:0:b0:605:4e21:cb15 with SMTP id e26-20020a9d731a000000b006054e21cb15mr8984101otk.225.1651015367854;
+        Tue, 26 Apr 2022 16:22:47 -0700 (PDT)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id n28-20020a0568080a1c00b0032578b7e377sm253000oij.26.2022.04.26.16.22.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 16:22:47 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] clk: qcom: Add SC8280XP global clock controller
+Date:   Tue, 26 Apr 2022 16:24:42 -0700
+Message-Id: <20220426232444.1761869-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,54 +71,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen, 
+This adds binding and driver for the global clock controller found in the
+Qualcomm SC8280XP platform.
 
-> Add basic chip support for Mediatek MT8186.
+Bjorn Andersson (2):
+  dt-bindings: clock: Add Qualcomm SC8280XP GCC bindings
+  clk: qcom: add sc8280xp GCC driver
 
-s/Mediatek/MediaTek/
+ .../bindings/clock/qcom,gcc-sc8280xp.yaml     |  129 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sc8280xp.c               | 7488 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sc8280xp.h |  496 ++
+ 5 files changed, 8123 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sc8280xp.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sc8280xp.h
 
-> 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+-- 
+2.35.1
 
-...snip...
-
-> @@ -0,0 +1,232 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-
-I think we should use GPL-2.0-only OR BSD-2-Clause for newly added dts files.
-i.e.,
-// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-
-> +/*
-> + * Copyright (C) 2022 MediaTek Inc.
-> + */
-> +/dts-v1/;
-> +#include "mt8186.dtsi"
-> +
-> +/ {
-
-
-..snip...
-
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> new file mode 100644
-> index 000000000000..e8d8867412e3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -0,0 +1,932 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-
-I think we should use GPL-2.0-only OR BSD-2-Clause for newly added dts files.
-i.e.,
-// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-
-> +/*
-> + * Copyright (C) 2022 MediaTek Inc.
-> + * Author: Allen-KH Cheng <allenn-kh.cheng@mediatek.com>
-> + */
-> +/dts-v1/;
->
-
-
-thanks,
-Miles
