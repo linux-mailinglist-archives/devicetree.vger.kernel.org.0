@@ -2,284 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C427510BFD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 00:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E2B510C54
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 00:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355532AbiDZW01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 18:26:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41584 "EHLO
+        id S243286AbiDZXAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 19:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353420AbiDZW00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 18:26:26 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EFA20180;
-        Tue, 26 Apr 2022 15:23:16 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id b188so136826oia.13;
-        Tue, 26 Apr 2022 15:23:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5NBIzw780L3vUqEM4pQFrZWcHVkKtoPbWVyenZ2nQbk=;
-        b=TQlVI8BPADBw+yw5LoGXk0bK87atg/N+qZmOYKtv/i55JttnPM4PFAvpbMwUMddELU
-         eHSHyjXgUGmda3qqrtFYLuQPBJic3p6+p9XkoMjvhNOY9WPb/+3inP47LHZVa1++SBUl
-         wLbaOJ/C8ycflnsH3B9XThA2N1CcG7t/z2DdQDgtXFk03CyFEOZ8+aA/k1qyBl4Hyp9B
-         Q0CACDE43XxJbqvvMUHH0v/eaopc3y3sZPEE/3CkJqP5VbAlBfch5MxdbJgOAHnMPwP9
-         eiLBqmKeUqy43aemnCXGKKzNaEXnZr+OQJf8wzrIf8w7r75m79YNjNIKGsGjuXb2njdu
-         OGlA==
-X-Gm-Message-State: AOAM530cnrMlefcgIzB2stvNsIqFsN02EKxzcXuL4phBLdWFk63vT3MP
-        q+/GMRfvVlJLhVnCqB9E0g==
-X-Google-Smtp-Source: ABdhPJy6l3JVh3JQGu3dTQPUhXiqD9wKPw9assowMxB1M0xhu00z0mTWayqrcUCVtpfs4SzhYXvzlQ==
-X-Received: by 2002:a05:6808:14d6:b0:322:cbe9:8d31 with SMTP id f22-20020a05680814d600b00322cbe98d31mr11855618oiw.274.1651011796192;
-        Tue, 26 Apr 2022 15:23:16 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g16-20020a4a9250000000b0033a7783dda8sm6179754ooh.48.2022.04.26.15.23.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 15:23:15 -0700 (PDT)
-Received: (nullmailer pid 2638642 invoked by uid 1000);
-        Tue, 26 Apr 2022 22:23:15 -0000
-Date:   Tue, 26 Apr 2022 17:23:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: qcom: convert GLINK binding to yaml
-Message-ID: <Ymhw0wI0bq8Q80fB@robh.at.kernel.org>
-References: <20220424101637.20721-1-david@ixit.cz>
- <1650808073.421000.1284017.nullmailer@robh.at.kernel.org>
+        with ESMTP id S236170AbiDZXAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 19:00:50 -0400
+X-Greylist: delayed 256 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 26 Apr 2022 15:57:40 PDT
+Received: from violet.fr.zoreil.com (violet.fr.zoreil.com [IPv6:2001:4b98:dc0:41:216:3eff:fe56:8398])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89F530540;
+        Tue, 26 Apr 2022 15:57:40 -0700 (PDT)
+Received: from violet.fr.zoreil.com ([127.0.0.1])
+        by violet.fr.zoreil.com (8.17.1/8.17.1) with ESMTP id 23QMqZP6815178;
+        Wed, 27 Apr 2022 00:52:35 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 violet.fr.zoreil.com 23QMqZP6815178
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fr.zoreil.com;
+        s=v20220413; t=1651013555;
+        bh=1A0SRXuIJ+MkXw+cW6tYHcX5DI4mJt6N/DBb9KvzSC4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NRtJF3wqEfKOQjfWHq7zaGMZ3Se7mX4oyHAPUS4AeqepGshELU9tJcvh6hcntdoId
+         W8wHt8lec+/bIhXeMwyD2IK/er1De+/OZyfHHprXJLXSoAtolROoAjayrQ3+960KzX
+         k9U2TgY1ori0qy40kHXNo51gQC0tdMeOBCaOtKYQ=
+Received: (from romieu@localhost)
+        by violet.fr.zoreil.com (8.17.1/8.17.1/Submit) id 23QMqY0W815176;
+        Wed, 27 Apr 2022 00:52:34 +0200
+Date:   Wed, 27 Apr 2022 00:52:34 +0200
+From:   Francois Romieu <romieu@fr.zoreil.com>
+To:     Wells Lu <wellslutw@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        pabeni@redhat.com, krzk+dt@kernel.org, roopa@nvidia.com,
+        andrew@lunn.ch, edumazet@google.com, wells.lu@sunplus.com
+Subject: Re: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Message-ID: <Ymh3si+MTg5i0Bnl@electric-eye.fr.zoreil.com>
+References: <1650882640-7106-1-git-send-email-wellslutw@gmail.com>
+ <1650882640-7106-3-git-send-email-wellslutw@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1650808073.421000.1284017.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <1650882640-7106-3-git-send-email-wellslutw@gmail.com>
+X-Organisation: Land of Sunshine Inc.
+X-Spam-Status: No, score=1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 24, 2022 at 08:47:53AM -0500, Rob Herring wrote:
-> On Sun, 24 Apr 2022 12:16:37 +0200, David Heidelberg wrote:
-> > Convert Qualcomm GLINK binding to the yaml format.
-> > 
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > ---
-> > v1:
-> >  - remove quotes around qcom,intent
-> >  - use additionalProperties
-> > 
-> >  .../bindings/soc/qcom/qcom,glink.txt          |  94 ----------------
-> >  .../bindings/soc/qcom/qcom,glink.yaml         | 103 ++++++++++++++++++
-> >  2 files changed, 103 insertions(+), 94 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
-> >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.yaml
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/
-> 
+Wells Lu <wellslutw@gmail.com> :
+[...]
+> +int spl2sw_rx_poll(struct napi_struct *napi, int budget)
+> +{
+[...]
+> +	wmb();	/* make sure settings are effective. */
+> +	mask = readl(comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +	mask &= ~MAC_INT_RX;
+> +	writel(mask, comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +
+> +	napi_complete(napi);
+> +	return 0;
+> +}
+> +
+> +int spl2sw_tx_poll(struct napi_struct *napi, int budget)
+> +{
+[...]
+> +	wmb();			/* make sure settings are effective. */
+> +	mask = readl(comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +	mask &= ~MAC_INT_TX;
+> +	writel(mask, comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +
+> +	napi_complete(napi);
+> +	return 0;
+> +}
+> +
+> +irqreturn_t spl2sw_ethernet_interrupt(int irq, void *dev_id)
+> +{
+[...]
+> +	if (status & MAC_INT_RX) {
+> +		/* Disable RX interrupts. */
+> +		mask = readl(comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +		mask |= MAC_INT_RX;
+> +		writel(mask, comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+[...]
+> +		napi_schedule(&comm->rx_napi);
+> +	}
+> +
+> +	if (status & MAC_INT_TX) {
+> +		/* Disable TX interrupts. */
+> +		mask = readl(comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +		mask |= MAC_INT_TX;
+> +		writel(mask, comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+> +
+> +		if (unlikely(status & MAC_INT_TX_DES_ERR)) {
+[...]
+> +		} else {
+> +			napi_schedule(&comm->tx_napi);
+> +		}
+> +	}
 
-Seems like a lot of warnings. That's fine if you deem they are 
-all/mostly valid and need to be fixed.
+The readl/writel sequence in rx_poll (or tx_poll) races with the irq
+handler performing MAC_INT_TX (or MAC_INT_RX) work. If the readl
+returns the same value to both callers, one of the writel will be
+overwritten.
 
-> 
-> rpm-glink: glink-channel: Additional properties are not allowed ('compatible', 'pms405-regulators', 'power-controller', 'clock-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-4000.dtb
-> 
-> rpm-glink: glink-channel: Additional properties are not allowed ('compatible', 'regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb
-> 
-> rpm-glink: glink-channel: Additional properties are not allowed ('pms405-regulators', 'clock-controller', 'power-controller', 'compatible' were unexpected)
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-1000.dtb
-> 
-> rpm-glink: 'qcom,local-pid' is a required property
-> 	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
-> 	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
-> 	arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-mtp.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-mtp.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-1000.dtb
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-4000.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
-> 	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
-> 	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
-> 	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dtb
-> 
-> rpm-glink: 'qcom,remote-pid' is a required property
-> 	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
-> 	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
-> 	arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-mtp.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-mtp.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-1000.dtb
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-4000.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
-> 	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
-> 	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
-> 	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dtb
-> 
-> rpm-glink: 'qcom,smem' is a required property
-> 	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
-> 	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
-> 	arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-mtp.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-mtp.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-1000.dtb
-> 	arch/arm64/boot/dts/qcom/qcs404-evb-4000.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
-> 	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
-> 	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
-> 	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('clock-controller', 'compatible', 'pmi8998-regulators', 'pm8998-regulators', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('clock-controller', 'compatible', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('clock-controller', 'pm660l-regulators', 'pm660-regulators', 'compatible', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('clock-controller', 'power-controller', 'pmi8998-regulators', 'pm8998-regulators', 'compatible' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'clock-controller', 'pm8998-regulators', 'power-controller', 'pmi8998-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'clock-controller', 'pmi8998-regulators', 'power-controller', 'pm8998-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'clock-controller', 'power-controller', 'pm660l-regulators', 'pm660-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'pm660-regulators', 'clock-controller', 'pm660l-regulators', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'pm660-regulators', 'pm660l-regulators', 'power-controller', 'clock-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'power-controller', 'qcom,rpmcc', 'pm8994-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'power-controller', 'qcom,rpmcc' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-mtp.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'qcom,rpmcc', 'pm8994-regulators', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('compatible', 'qcom,rpmcc', 'power-controller', 'pm8994-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('pm660-regulators', 'pm660l-regulators', 'power-controller', 'compatible', 'clock-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('pm8994-regulators', 'compatible', 'qcom,rpmcc', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('pm8994-regulators', 'qcom,rpmcc', 'compatible', 'pmi8994-regulators', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('pm8998-regulators', 'compatible', 'clock-controller', 'power-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('pmi8994-regulators', 'compatible', 'pm8994-regulators', 'power-controller', 'qcom,rpmcc' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('pmi8994-regulators', 'compatible', 'power-controller', 'qcom,rpmcc', 'pm8994-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('power-controller', 'compatible', 'clock-controller', 'pm660l-regulators', 'pm660-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('power-controller', 'compatible', 'clock-controller', 'pm8998-regulators', 'pmi8998-regulators' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-mtp.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('power-controller', 'compatible', 'pm8994-regulators', 'qcom,rpmcc' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dtb
-> 	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('power-controller', 'pm8998-regulators', 'clock-controller', 'compatible' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('power-controller', 'pm8998-regulators', 'compatible', 'clock-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('power-controller', 'pm8998-regulators', 'pmi8998-regulators', 'compatible', 'clock-controller' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
-> 
-> rpm-glink: rpm-requests: Additional properties are not allowed ('qcom,rpmcc', 'pm8994-regulators', 'power-controller', 'compatible' were unexpected)
-> 	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
-> 
+-- 
+Ueimor
