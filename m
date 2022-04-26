@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D651950ED79
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 02:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D14BF50ED83
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 02:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232644AbiDZATR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 20:19:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38570 "EHLO
+        id S238351AbiDZAW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 20:22:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232877AbiDZATQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 20:19:16 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D531240E8;
-        Mon, 25 Apr 2022 17:16:11 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 88-20020a9d0ee1000000b005d0ae4e126fso11972071otj.5;
-        Mon, 25 Apr 2022 17:16:11 -0700 (PDT)
+        with ESMTP id S230442AbiDZAW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 20:22:26 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A5A124D87;
+        Mon, 25 Apr 2022 17:19:18 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-e93bbb54f9so5133077fac.12;
+        Mon, 25 Apr 2022 17:19:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qmG4FxwAvEz6wBFjUNLNkTR69mJKypGUFaKOVY8t/50=;
-        b=BQNvLLGulyDaBGec6TBCnfYowmHDhFaj0TNwZBKIK8MoJ/9Gmf01TQSHRBPFwvSCPZ
-         X8NvRZLeLVVHDBEKxfrZRyYeLJ2pPpQpxHgDbk6tMuUXDPPG6DglNETziO6a+07Xhja2
-         Bdwj6P7Bcbo1joNKlVesTfQVW7ih8QtmKcBPRqWmduhxMyJWNvm9Lz65KU96r1PajC7N
-         h9tN5BgzK88d4tIetM0Kek6r8Acv76uop22EPftuvtHV5wGNOK6vX+iKzK3Qxm6Uawrg
-         cHWoSf5xThtC5ex92OvYxEjD2XTWw3yIQpFLvNQNZHw+zxR4orTR7VeQO4bI0XFdal8F
-         Ve+g==
-X-Gm-Message-State: AOAM533jjwtVsVHH638nNSAFGpp6TJkhEK7S4GI2ucS2soLbSQIZG2lD
-        ajwYAU4UqB+/RI7coHl+5w==
-X-Google-Smtp-Source: ABdhPJwZJBlSu2ov0ZfnkPoBaHssVod/BdbYD8pT8ArIst24XfnFgr8LQUVbTgJTFbTQRwyaRorpDQ==
-X-Received: by 2002:a05:6830:4128:b0:605:6729:1ff8 with SMTP id w40-20020a056830412800b0060567291ff8mr7306670ott.143.1650932170611;
-        Mon, 25 Apr 2022 17:16:10 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5qSfY3Lg9ZldVtbZbBmTt420KpgY28iF9xeamtFe6D4=;
+        b=KGNzuzXKACse77jNU1S+5XiB48Zong/O/ke5o3oy2DnkhLl2Ey+ZntcFi9EW2+XTj3
+         xr0wjqYwGU6rh6mzgVw+FX1ZbQvqwaqSYmTR05G+hpL0rketeUIPhQG1LycRwBjRBOyQ
+         bCSKn8z9A8+SplA6Wav3Esj2XHmBlk9p5piqm7h/2SND6CoR0K73//0G3hvy7kQ100vF
+         skkZsg+0Oohxxzx2V1TxRiloIsVZE6IkKqJ1KVnwVWikVQfbWKPrG85OEHg87Pb2XfVN
+         O3NkE4irkAop8kdKt3iJnvlA+N0N80QTw89EnvbHjtrMPX+qQTkfq99hvFiozM7BeX9W
+         LJhQ==
+X-Gm-Message-State: AOAM532bJcSGb5b2UXNrTRTSgibgPlTExqa9V8iFzFa6FvT3ExCxXwmu
+        7ryrPMhVBaBXxesAM7XsEg==
+X-Google-Smtp-Source: ABdhPJweApfZtyPtWsPxNCUtls8rEOJ+zuFQRt41W/mpBVsBtio9nxJ8NUEwHd9tElqIGdDtnw7Iqw==
+X-Received: by 2002:a05:6870:b3a2:b0:e9:f22:5819 with SMTP id w34-20020a056870b3a200b000e90f225819mr6294788oap.293.1650932358167;
+        Mon, 25 Apr 2022 17:19:18 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o3-20020a056870a50300b000e686d13891sm264071oal.43.2022.04.25.17.16.09
+        by smtp.gmail.com with ESMTPSA id p17-20020a4a3651000000b0035d9b838f21sm4970654ooe.10.2022.04.25.17.19.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Apr 2022 17:16:09 -0700 (PDT)
-Received: (nullmailer pid 592755 invoked by uid 1000);
-        Tue, 26 Apr 2022 00:16:09 -0000
-Date:   Mon, 25 Apr 2022 19:16:09 -0500
+        Mon, 25 Apr 2022 17:19:17 -0700 (PDT)
+Received: (nullmailer pid 597729 invoked by uid 1000);
+        Tue, 26 Apr 2022 00:19:16 -0000
+Date:   Mon, 25 Apr 2022 19:19:16 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA
- binding to json format
-Message-ID: <Ymc5yUq0/YDcFd1w@robh.at.kernel.org>
-References: <20220417210436.6203-1-singh.kuldeep87k@gmail.com>
- <20220417210436.6203-7-singh.kuldeep87k@gmail.com>
+To:     Jacky Huang <ychuang3@nuvoton.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        ychuang570808@gmail.com, sboyd@kernel.org, krzk+dt@kernel.org,
+        arnd@arndb.de, olof@lixom.net, will@kernel.org, soc@kernel.org,
+        cfli0@nuvoton.com
+Subject: Re: [PATCH v3 5/5] dt-bindings: arm: Add initial bindings for
+ Nuvoton Platform
+Message-ID: <Ymc6hK0Z/t3IKF3z@robh.at.kernel.org>
+References: <20220418082738.11301-1-ychuang3@nuvoton.com>
+ <20220418082738.11301-6-ychuang3@nuvoton.com>
+ <fd9316a6-7df6-e1fa-50dc-ff50934afb5c@linaro.org>
+ <caf4867f-7f71-9262-f190-463325eb13ab@nuvoton.com>
+ <4e9eaede-2208-bd73-35ae-89e128562653@linaro.org>
+ <80994f4b-136f-7669-4674-0c9826e88248@nuvoton.com>
+ <43cb61ac-461f-e6ff-b495-44f8befde79f@linaro.org>
+ <257d878e-8455-2770-7868-c9445b0eabba@nuvoton.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220417210436.6203-7-singh.kuldeep87k@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <257d878e-8455-2770-7868-c9445b0eabba@nuvoton.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,194 +75,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 18, 2022 at 02:34:36AM +0530, Kuldeep Singh wrote:
-> Convert Qualcomm BAM DMA controller binding to DT schema format using
-> json schema.
+On Thu, Apr 21, 2022 at 04:13:20PM +0800, Jacky Huang wrote:
 > 
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> ---
-> v3:
-> - Address Krzysztof Comments
-> - qcom,ee as required property
-> - Use boolean type instead of flag
-> - Add min/max to qcom,ee
-> - skip clocks, as it's users are not fixed
-> ---
-> v2:
-> - Use dma-cells
-> - Set additionalProperties to false
-> ---
->  .../devicetree/bindings/dma/qcom,bam-dma.yaml | 97 +++++++++++++++++++
->  .../devicetree/bindings/dma/qcom_bam_dma.txt  | 52 ----------
->  2 files changed, 97 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-> new file mode 100644
-> index 000000000000..02393ec2eedd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/qcom,bam-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies Inc BAM DMA controller
-> +
-> +maintainers:
-> +  - Andy Gross <agross@kernel.org>
-> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,bam-v1.3.0
-> +      - qcom,bam-v1.4.0
-> +      - qcom,bam-v1.7.0
+> On 2022/4/21 下午 04:05, Krzysztof Kozlowski wrote:
+> > On 21/04/2022 10:04, Jacky Huang wrote:
+> > > 
+> > > On 2022/4/21 下午 02:56, Krzysztof Kozlowski wrote:
+> > > > On 21/04/2022 08:39, Jacky Huang wrote:
+> > > > > On 2022/4/18 下午 08:11, Krzysztof Kozlowski wrote:
+> > > > > > On 18/04/2022 10:27, Jacky Huang wrote:
+> > > > > > > +properties:
+> > > > > > > +  $nodename:
+> > > > > > > +    const: '/'
+> > > > > > > +  compatible:
+> > > > > > > +    items:
+> > > > > > > +      - enum:
+> > > > > > > +          - nuvoton,ma35d1
+> > > > > > > +          - nuvoton,ma35d1-evb
+> > > > > > > +          - nuvoton,ma35d1-iot
+> > > > > > > +          - nuvoton,ma35d1-som512
+> > > > > > > +          - nuvoton,ma35d1-som1g
+> > > > > > This does not match your DTS and does not look reasonable (SoC
+> > > > > > compatible should not be part of this enum). Check some other board
+> > > > > > bindings for examples.
+> > > > > > 
+> > > > > > 
+> > > > > > Best regards,
+> > > > > > Krzysztof
+> > > > > I would like to modify it as follows:
+> > > > > 
+> > > > > description: |
+> > > > >      Boards with an ARMv8 based Nuvoton SoC shall have the following
+> > > > >      properties.
+> > > > > 
+> > > > > properties:
+> > > > >      $nodename:
+> > > > >        const: '/'
+> > > > >      compatible:
+> > > > >        oneOf:
+> > > > > 
+> > > > >          - description: MA35D1 evaluation board
+> > > > >            items:
+> > > > >              - const: nuvoton,ma35d1-evb
+> > > > >              - const: nuvoton,ma35d1
+> > > > > 
+> > > > >          - description: MA35D1 IoT board
+> > > > >            items:
+> > > > >              - const: nuvoton,ma35d1-iot
+> > > > Instead just enum with all board compatibles.
+> > > How about to modify it as the follows:
+> > > 
+> > >     compatible:
+> > >       oneOf:
+> > > 
+> > >         - description: MA35D1 evaluation board
+> > >           items:
+> > >             - enum:
+> > >                 - nuvoton,ma35d1-evb
+> > >             - const: nuvoton,ma35d1
+> > > 
+> > >         - description: MA35D1 IoT board
+> > >           items:
+> > >             - enum:
+> > >                 - nuvoton,ma35d1-iot
+> > >             - const: nuvoton,ma35d1
+> > > 
+> > >         - description: MA35D1 SOM board
+> > >           items:
+> > >             - enum:
+> > >                 - nuvoton,ma35d1-som512
+> > >                 - nuvoton,ma35d1-som1g
+> > >             - const: nuvoton,ma35d1
+> > > 
+> > It's still almost the same. All boards together. You can add a comment
+> > next to the compatible if you want some user-friendly name.
+> > 
+> > 
+> > Best regards,
+> > Krzysztof
+> 
+> OK, I got it. Like this,
+> 
+>   compatible:
+>     oneOf:
+> 
+>       - description: MA35D1 based boards
+>         items:
+>           - enum:
+>               - nuvoton,ma35d1-evb
+>               - nuvoton,ma35d1-iot
 
-We've lost the mapping to SoCs. Please add as comments.
+>               - nuvoton,ma35d1-som512
+>               - nuvoton,ma35d1-som1g
 
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bam_clk
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  iommus:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  num-channels:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Indicates supported number of DMA channels in a remotely controlled bam.
-> +
-> +  qcom,controlled-remotely:
-> +    type: boolean
-> +    description:
-> +      Indicates that the bam is controlled by remote proccessor i.e. execution
-> +      environment.
-> +
-> +  qcom,ee:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 7
-> +    description:
-> +      Indicates the active Execution Environment identifier (0-7) used in the
-> +      secure world.
-> +
-> +  qcom,num-ees:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Indicates supported number of Execution Environments in a remotely
-> +      controlled bam.
-> +
-> +  qcom,powered-remotely:
-> +    type: boolean
-> +    description:
-> +      Indicates that the bam is powered up by a remote processor but must be
-> +      initialized by the local processor.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#dma-cells"
-> +  - interrupts
-> +  - qcom,ee
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/qcom,gcc-msm8974.h>
-> +
-> +    dma-controller@f9944000 {
-> +        compatible = "qcom,bam-v1.4.0";
-> +        reg = <0xf9944000 0x15000>;
-> +        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&gcc GCC_BLSP2_AHB_CLK>;
-> +        clock-names = "bam_clk";
-> +        #dma-cells = <1>;
-> +        qcom,ee = <0>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> deleted file mode 100644
-> index 6e9a5497b3f2..000000000000
-> --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> +++ /dev/null
-> @@ -1,52 +0,0 @@
-> -QCOM BAM DMA controller
-> -
-> -Required properties:
-> -- compatible: must be one of the following:
-> - * "qcom,bam-v1.4.0" for MSM8974, APQ8074 and APQ8084
-> - * "qcom,bam-v1.3.0" for APQ8064, IPQ8064 and MSM8960
-> - * "qcom,bam-v1.7.0" for MSM8916
-> -- reg: Address range for DMA registers
-> -- interrupts: Should contain the one interrupt shared by all channels
-> -- #dma-cells: must be <1>, the cell in the dmas property of the client device
-> -  represents the channel number
-> -- clocks: required clock
-> -- clock-names: must contain "bam_clk" entry
-> -- qcom,ee : indicates the active Execution Environment identifier (0-7) used in
-> -  the secure world.
-> -- qcom,controlled-remotely : optional, indicates that the bam is controlled by
-> -  remote proccessor i.e. execution environment.
-> -- qcom,powered-remotely : optional, indicates that the bam is powered up by
-> -  a remote processor but must be initialized by the local processor.
-> -- num-channels : optional, indicates supported number of DMA channels in a
-> -  remotely controlled bam.
-> -- qcom,num-ees : optional, indicates supported number of Execution Environments
-> -  in a remotely controlled bam.
-> -
-> -Example:
-> -
-> -	uart-bam: dma@f9984000 = {
-> -		compatible = "qcom,bam-v1.4.0";
-> -		reg = <0xf9984000 0x15000>;
-> -		interrupts = <0 94 0>;
-> -		clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
-> -		clock-names = "bam_clk";
-> -		#dma-cells = <1>;
-> -		qcom,ee = <0>;
-> -	};
-> -
-> -DMA clients must use the format described in the dma.txt file, using a two cell
-> -specifier for each channel.
-> -
-> -Example:
-> -	serial@f991e000 {
-> -		compatible = "qcom,msm-uart";
-> -		reg = <0xf991e000 0x1000>
-> -			<0xf9944000 0x19000>;
-> -		interrupts = <0 108 0>;
-> -		clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
-> -			<&gcc GCC_BLSP1_AHB_CLK>;
-> -		clock-names = "core", "iface";
-> -
-> -		dmas = <&uart-bam 0>, <&uart-bam 1>;
-> -		dma-names = "rx", "tx";
-> -	};
-> -- 
-> 2.25.1
+The memory node distinguishes how much memory. Is the board different 
+for the SoM? If not, combine these to 1.
+
+>           - const: nuvoton,ma35d1
+> 
+> Sincerely,
+> Jacky Huang
+> 
 > 
 > 
