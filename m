@@ -2,72 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 638F350ED25
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 02:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 988C550ED38
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 02:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239387AbiDZAJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Apr 2022 20:09:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55036 "EHLO
+        id S233953AbiDZAPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Apr 2022 20:15:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238956AbiDZAJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 20:09:00 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290891132F1
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 17:05:55 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id t25so29071015lfg.7
-        for <devicetree@vger.kernel.org>; Mon, 25 Apr 2022 17:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=I4wZrpcqpY23HjGTdRVWpcxvWKlwdsGGFL/N6W8CJ2U=;
-        b=UO9vEjaKrcoqWvgG7eshOb470xBd9TV7qtKJw9FOm3/SsdEthQOUpHamqL+aYO+9ty
-         IauEV7r0129/CyoX1opTQjt6dCvpH/kHVkSLujjNFZvGTSfDKq6+ZcpTIrlGkwY4Oa/w
-         Uyr7PvS0/G73+PbJ3XC2NQzVVnaugewgJCzXEFSgixQ58rTnCIS/aNW89FSpMnEKTvgk
-         YLOJDNigCxYBL9z8aXKazwUJngwZFtTAObfGNGh1fP61Td4/5uEh/HYZOxmpDJ1FPZpi
-         nbb4rJ0lJv5y97IQK25pFg/pi06CFse1clI5VloNTRlNQqH1GfSwdRM8Dg7VXQ3m62FW
-         8N9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=I4wZrpcqpY23HjGTdRVWpcxvWKlwdsGGFL/N6W8CJ2U=;
-        b=EKZEy1VymtpeBiz1adDBxzB83/QpovBgVA53PHmlFqM9QSc4RDcVucOiCIRFHuJOkR
-         b+B5Z5KTNUsfQwicLT+rDZ0F6MPN4sPspiIUQ9UP63tzugTVVxp8x6Vwh7jaK7X169Bb
-         mbzEObsr07PxMK58ZeKEqIgiNKEBmxxCx4BIjXec57L3nehoS1i8N4QvhvXWMClupGPm
-         UvbH5pgYBmgDt2u+NdMoXyDJiKD2BibdNANw0336x+6rb/CUOkFwtTYTXmh9CNnKk74U
-         sXPClidnEop5LgCjhj+6j/3WVhpZbemeSLzpXcmBqoTNarYLTShMN4SootQTu7YN4eGH
-         VioA==
-X-Gm-Message-State: AOAM530ZToA2LH9MBaxJSqnrFyL4E0H8nqT4OUn/ukgS4NpJXyAjVirO
-        pEOUJ4nB4T/URC2hMngSUvWrJA==
-X-Google-Smtp-Source: ABdhPJy7QiuGL02pBXE/dt8cSME5KdzlIgZ/vty8ZsP14pDWE/qTuFuSxDNKp6DRPFZBoGZySvRwNw==
-X-Received: by 2002:a19:ad46:0:b0:46b:b1a4:ffd5 with SMTP id s6-20020a19ad46000000b0046bb1a4ffd5mr14627769lfd.103.1650931553470;
-        Mon, 25 Apr 2022 17:05:53 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f22-20020a2e6a16000000b0024f0cf6fdb0sm736179ljc.138.2022.04.25.17.05.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 17:05:53 -0700 (PDT)
-Message-ID: <36150c01-9146-cebf-bd86-8e096135cbcd@linaro.org>
-Date:   Tue, 26 Apr 2022 03:05:51 +0300
+        with ESMTP id S229774AbiDZAPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Apr 2022 20:15:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A47B45504;
+        Mon, 25 Apr 2022 17:12:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A3E616166E;
+        Tue, 26 Apr 2022 00:12:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4623C385A4;
+        Tue, 26 Apr 2022 00:12:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1650931924;
+        bh=2cinohATxPD5jIOjLzdaNPIP5C9FIyAkI8AzF3YNoaU=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=iOUDS1uCgZ5NV/o6YT3TLhIpF/e/JOfqlNY+wqwbvekbkOfCGbRdqFAQlNxegWOOr
+         3xrDpswREEqCUCQVwldihOvYkz+1z3yMWoYH/ZDXBFE2MBu+6b4L0LX+Easoyi+J/S
+         11MIu6JC1QxSpkyxdDm4g8MiKYtDLgirl3T+MDqDCjz3u85UPOu6gYbMgCPkO3+zy/
+         D5XBmvavXxSXG+TnKHQTNQCDlDSKznkWpdD9pHcOyGEmwiJg1k5iULEuJndtOyUYCY
+         OUxZiJxs0mFMPQEDXHkYLzeRIGNc7Vq3xfmfqO8luOKrctWacHzt1NjguVJA1KNq94
+         bQQhhRgTblFoQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH] drm/msm/disp/dpu1: set vbif hw config to NULL to avoid
- use after memory free during pm runtime resume
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, quic_kalyant@quicinc.com
-References: <1650857213-30075-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1650857213-30075-1-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220409132251.31725-2-chun-jie.chen@mediatek.com>
+References: <20220409132251.31725-1-chun-jie.chen@mediatek.com> <20220409132251.31725-2-chun-jie.chen@mediatek.com>
+Subject: Re: [PATCH v5 01/15] dt-bindings: ARM: MediaTek: Add new document bindings of MT8186 clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 25 Apr 2022 17:12:01 -0700
+User-Agent: alot/0.10
+Message-Id: <20220426001203.E4623C385A4@smtp.kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,53 +59,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/04/2022 06:26, Vinod Polimera wrote:
-> BUG: Unable to handle kernel paging request at virtual address 006b6b6b6b6b6be3
-> 
-> Call trace:
->    dpu_vbif_init_memtypes+0x40/0xb8
->    dpu_runtime_resume+0xcc/0x1c0
->    pm_generic_runtime_resume+0x30/0x44
->    __genpd_runtime_resume+0x68/0x7c
->    genpd_runtime_resume+0x134/0x258
->    __rpm_callback+0x98/0x138
->    rpm_callback+0x30/0x88
->    rpm_resume+0x36c/0x49c
->    __pm_runtime_resume+0x80/0xb0
->    dpu_core_irq_uninstall+0x30/0xb0
->    dpu_irq_uninstall+0x18/0x24
->    msm_drm_uninit+0xd8/0x16c
-> 
-> Fixes: 25fdd5933e4 ("drm/msm: Add SDM845 DPU support")
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-Let's merge this fix now. However I think that a proper solution would 
-be to disable pm_runtime once we are in the uninit path.
-
+Quoting Chun-Jie Chen (2022-04-09 06:22:37)
+> This patch adds the new binding documentation for system clock
+> and functional clock on MediaTek MT8186.
+>=20
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index 9c346ce..59982d3 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -793,8 +793,10 @@ static void _dpu_kms_hw_destroy(struct dpu_kms *dpu_kms)
->   		for (i = 0; i < dpu_kms->catalog->vbif_count; i++) {
->   			u32 vbif_idx = dpu_kms->catalog->vbif[i].id;
->   
-> -			if ((vbif_idx < VBIF_MAX) && dpu_kms->hw_vbif[vbif_idx])
-> +			if ((vbif_idx < VBIF_MAX) && dpu_kms->hw_vbif[vbif_idx]) {
->   				dpu_hw_vbif_destroy(dpu_kms->hw_vbif[vbif_idx]);
-> +				dpu_kms->hw_vbif[vbif_idx] = NULL;
-> +			}
->   		}
->   	}
->   
 
-
--- 
-With best wishes
-Dmitry
+Applied to clk-next
