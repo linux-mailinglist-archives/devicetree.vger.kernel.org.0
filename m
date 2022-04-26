@@ -2,267 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20CA150FB50
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5041150FB66
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 12:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343562AbiDZKtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 06:49:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47412 "EHLO
+        id S1349466AbiDZKvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 06:51:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349545AbiDZKs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:48:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB4FD205D9
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 03:44:13 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1njIfg-0000CZ-LM; Tue, 26 Apr 2022 12:43:52 +0200
-Message-ID: <17c5ef22479cfea3f43dce1885f6613f1bef8064.camel@pengutronix.de>
-Subject: Re: [PATCH V4 07/11] arm64: dts: imx8mq: Enable both G1 and G2
- VPU's with vpu-blk-ctrl
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
-Cc:     aford@beaconembedded.com, cphealy@gmail.com,
-        kernel test robot <lkp@intel.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Date:   Tue, 26 Apr 2022 12:43:51 +0200
-In-Reply-To: <c11a58ecc5da2e206fc2b942980223a04a103f19.camel@puri.sm>
-References: <20220125171129.472775-1-aford173@gmail.com>
-         <20220125171129.472775-8-aford173@gmail.com>
-         <d6c5c5663f8ae904d409240063295cf516e17dd1.camel@puri.sm>
-         <4b958892ba788a0e9e73a9135c305aacbe33294d.camel@pengutronix.de>
-         <c11a58ecc5da2e206fc2b942980223a04a103f19.camel@puri.sm>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S1349474AbiDZKud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 06:50:33 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E105676D;
+        Tue, 26 Apr 2022 03:46:59 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id dk23so11885930ejb.8;
+        Tue, 26 Apr 2022 03:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LQ+dR0UOrMeVo1DrEEM2SpNUL4OliZmqjspXFMm8eVs=;
+        b=Xwki4XJKl1bvhU2BAHy1VLInwFSPTDMezYEKLCJfgPuozbREABcQvWUPNqN1ECccUp
+         eIcXgH5K/Rzr2OufjrthDHvzz35YGOLCdrPUB2FDgW5Y2ds4iOuYDHUqRp0H/7s1LobK
+         Y2BjmHgFRaOk8/Y5nkCQLIJ8+flVdFRTEKiGWq8zq5F+1uf5GWotf2lblzhms7FTkQ84
+         PNgiToN0K3ihafgU6clSyjgKbPeBaqtc7rnLDajN0edrBaj5rJ4p5j/VNy9GDTuXMwWI
+         5bZcbmeBGYxOkTTvstU8FZeTQTwh5c9SeH86QTXFP5I7Nm+fr8gflhwXJStRsDpUPj62
+         WtXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=LQ+dR0UOrMeVo1DrEEM2SpNUL4OliZmqjspXFMm8eVs=;
+        b=0rMcPyyfWVyB6z5GqDipSzOvOtBgPT/ryyhJNjMd+dm92oWm1ZKPmjzVSB2TBf4Zl5
+         naEA4erFIONvp1IoKl7YSkNLC1IABUmgNcUZEmQ0joJ4L4g1s9y97RH/0jEZv2V1Dbec
+         49G/pZxG/1mLgy7poy3RCN4l/eY88bWwCU7i6Yc4A/6o1J/YVtchPhI4RTVYLB563zzU
+         jQj8+CKZzNreRxHNG+QCRrnHirx0CfXeo/hgjDVrP1/wr4BOdQW1UycVpkRFRCqCWHah
+         9dWT6FRvBpDT1c6h2/kQDgZArcrUf1G544a5dyT7AoQCFgfIFpA/oypr+BNOP7Lw6XP4
+         GVhA==
+X-Gm-Message-State: AOAM532evFLTwGYqxPcv5gpBChvQHoiGagCO7KQ2C178FZloARRbVPB8
+        7h2jc4vwB0+NRxVliwIiShk=
+X-Google-Smtp-Source: ABdhPJxdSqpjegF02exvsa0Whpl3LQ6ep+nqUMpsWopd9mkam8c4SiNfv8wV44oDB1ez54DB2XYB7Q==
+X-Received: by 2002:a17:907:72d0:b0:6db:4788:66a9 with SMTP id du16-20020a17090772d000b006db478866a9mr21551609ejc.516.1650970018176;
+        Tue, 26 Apr 2022 03:46:58 -0700 (PDT)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709060f4700b006e8d0746969sm4635074ejj.222.2022.04.26.03.46.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 03:46:57 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        Peter Geis <pgwipeout@gmail.com>,
+        Marc Zyngier <maz@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v8 0/5] Enable rk356x PCIe controller
+Date:   Tue, 26 Apr 2022 12:46:56 +0200
+Message-ID: <2599368.pI0oiQkSSZ@archbook>
+In-Reply-To: <20220423152403.1681222-1-pgwipeout@gmail.com>
+References: <20220423152403.1681222-1-pgwipeout@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 26.04.2022 um 09:38 +0200 schrieb Martin Kepplinger:
-> Am Montag, dem 25.04.2022 um 17:34 +0200 schrieb Lucas Stach:
-> > Hi Martin,
-> > 
-> > Am Montag, dem 25.04.2022 um 17:22 +0200 schrieb Martin Kepplinger:
-> > > Am Dienstag, dem 25.01.2022 um 11:11 -0600 schrieb Adam Ford:
-> > > > With the Hantro G1 and G2 now setup to run independently, update
-> > > > the device tree to allow both to operate.  This requires the
-> > > > vpu-blk-ctrl node to be configured.  Since vpu-blk-ctrl needs
-> > > > certain clock enabled to handle the gating of the G1 and G2
-> > > > fuses, the clock-parents and clock-rates for the various VPU's
-> > > > to be moved into the pgc_vpu because they cannot get re-parented
-> > > > once enabled, and the pgc_vpu is the highest in the chain.
-> > > > 
-> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > > Reported-by: kernel test robot <lkp@intel.com>
-> > > > Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > > index 2df2510d0118..549b2440f55d 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > > @@ -737,7 +737,21 @@ pgc_gpu: power-domain@5 {
-> > > >                                         pgc_vpu: power-domain@6 {
-> > > >                                                 #power-domain-
-> > > > cells =
-> > > > <0>;
-> > > >                                                 reg =
-> > > > <IMX8M_POWER_DOMAIN_VPU>;
-> > > > -                                               clocks = <&clk
-> > > > IMX8MQ_CLK_VPU_DEC_ROOT>;
-> > > > +                                               clocks = <&clk
-> > > > IMX8MQ_CLK_VPU_DEC_ROOT>,
-> > > > +                                                        <&clk
-> > > > IMX8MQ_CLK_VPU_G1_ROOT>,
-> > > > +                                                        <&clk
-> > > > IMX8MQ_CLK_VPU_G2_ROOT>;
-> > > > +                                               assigned-clocks =
-> > > > <&clk IMX8MQ_CLK_VPU_G1>,
-> > > > +                                                                
-> > > > <&clk IMX8MQ_CLK_VPU_G2>,
-> > > > +                                                                
-> > > > <&clk IMX8MQ_CLK_VPU_BUS>,
-> > > > +                                                                
-> > > > <&clk IMX8MQ_VPU_PLL_BYPASS>;
-> > > > +                                               assigned-clock-
-> > > > parents = <&clk IMX8MQ_VPU_PLL_OUT>,
-> > > > +                                                                
-> > > >     
-> > > >     <&clk IMX8MQ_VPU_PLL_OUT>,
-> > > > +                                                                
-> > > >     
-> > > >     <&clk IMX8MQ_SYS1_PLL_800M>,
-> > > > +                                                                
-> > > >     
-> > > >     <&clk IMX8MQ_VPU_PLL>;
-> > > > +                                               assigned-clock-
-> > > > rates
-> > > > = <600000000>,
-> > > > +                                                                
-> > > >     
-> > > >   <600000000>,
-> > > > +                                                                
-> > > >     
-> > > >   <800000000>,
-> > > > +                                                                
-> > > >     
-> > > >   <0>;
-> > > >                                         };
-> > > >  
-> > > >                                         pgc_disp: power-domain@7
-> > > > {
-> > > > @@ -1457,30 +1471,31 @@ usb3_phy1: usb-phy@382f0040 {
-> > > >                         status = "disabled";
-> > > >                 };
-> > > >  
-> > > > -               vpu: video-codec@38300000 {
-> > > > -                       compatible = "nxp,imx8mq-vpu";
-> > > > -                       reg = <0x38300000 0x10000>,
-> > > > -                             <0x38310000 0x10000>,
-> > > > -                             <0x38320000 0x10000>;
-> > > > -                       reg-names = "g1", "g2", "ctrl";
-> > > > -                       interrupts = <GIC_SPI 7
-> > > > IRQ_TYPE_LEVEL_HIGH>,
-> > > > -                                    <GIC_SPI 8
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > > -                       interrupt-names = "g1", "g2";
-> > > > +               vpu_g1: video-codec@38300000 {
-> > > > +                       compatible = "nxp,imx8mq-vpu-g1";
-> > > > +                       reg = <0x38300000 0x10000>;
-> > > > +                       interrupts = <GIC_SPI 7
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > > +                       clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
-> > > > +                       power-domains = <&vpu_blk_ctrl
-> > > > IMX8MQ_VPUBLK_PD_G1>;
-> > > > +               };
-> > > > +
-> > > > +               vpu_g2: video-codec@38310000 {
-> > > > +                       compatible = "nxp,imx8mq-vpu-g2";
-> > > > +                       reg = <0x38310000 0x10000>;
-> > > > +                       interrupts = <GIC_SPI 8
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > > +                       clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> > > > +                       power-domains = <&vpu_blk_ctrl
-> > > > IMX8MQ_VPUBLK_PD_G2>;
-> > > > +               };
-> > > > +
-> > > > +               vpu_blk_ctrl: blk-ctrl@38320000 {
-> > > > +                       compatible = "fsl,imx8mq-vpu-blk-ctrl";
-> > > > +                       reg = <0x38320000 0x100>;
-> > > > +                       power-domains = <&pgc_vpu>, <&pgc_vpu>,
-> > > > <&pgc_vpu>;
-> > > > +                       power-domain-names = "bus", "g1", "g2";
-> > > >                         clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-> > > > -                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-> > > > -                                <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-> > > > -                       clock-names = "g1", "g2", "bus";
-> > > > -                       assigned-clocks = <&clk
-> > > > IMX8MQ_CLK_VPU_G1>,
-> > > > -                                         <&clk
-> > > > IMX8MQ_CLK_VPU_G2>,
-> > > > -                                         <&clk
-> > > > IMX8MQ_CLK_VPU_BUS>,
-> > > > -                                         <&clk
-> > > > IMX8MQ_VPU_PLL_BYPASS>;
-> > > > -                       assigned-clock-parents = <&clk
-> > > > IMX8MQ_VPU_PLL_OUT>,
-> > > > -                                                <&clk
-> > > > IMX8MQ_VPU_PLL_OUT>,
-> > > > -                                                <&clk
-> > > > IMX8MQ_SYS1_PLL_800M>,
-> > > > -                                                <&clk
-> > > > IMX8MQ_VPU_PLL>;
-> > > > -                       assigned-clock-rates = <600000000>,
-> > > > <600000000>,
-> > > > -                                              <800000000>, <0>;
-> > > > -                       power-domains = <&pgc_vpu>;
-> > > > +                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> > > > +                       clock-names = "g1", "g2";
-> > > > +                       #power-domain-cells = <1>;
-> > > >                 };
-> > > >  
-> > > >                 pcie0: pcie@33800000 {
-> > > 
-> > > With this update, when testing suspend to ram on imx8mq, I get:
-> > > 
-> > > buck4: failed to disable: -ETIMEDOUT
-> > > 
-> > > where buck4 is power-supply of pgc_vpu. And thus the transition to
-> > > suspend (and resuming) fails.
-> > > 
-> > > Have you tested system suspend after the imx8m-blk-ctrl update on
-> > > imx8mq?
-> > 
-> > I haven't tested system suspend, don't know if anyone else did.
-> > However
-> > I guess that this is just uncovering a preexisting issue in the
-> > system
-> > suspend sequencing, which you would also hit if the video decoders
-> > were
-> > active at system suspend time.
-> > 
-> > My guess is that the regulator disable fails, due to the power
-> > domains
-> > being disabled quite late in the suspend sequence, where i2c
-> > communication with the PMIC is no longer possible due to i2c being
-> > suspended already or something like that. Maybe you can dig in a bit
-> > on
-> > the actual sequence on your system and we can see how we can rework
-> > things to suspend the power domains at a time where communication
-> > with
-> > the PMIC is still possible?
-> 
-> What exactly would you like to see? Here's all gpcv2 regulators
-> disabling on suspend. (gpu (domain 5) is disabled by runtime pm often):
-> 
-> [   47.138700] imx-pgc imx-pgc-domain.5: disabling regulator
-> [   47.298071] Freezing user space processes ... (elapsed 0.008
-> seconds) done.
-> [   47.313432] OOM killer disabled.
-> [   47.316670] Freezing remaining freezable tasks ... (elapsed 2.221
-> seconds) done.
-> [   49.672052] imx8m-blk-ctrl 38320000.blk-ctrl: imx8m_blk_ctrl_suspend
-> start
-> [   49.704417] imx-pgc imx-pgc-domain.0: disabling regulator
-> [   49.711114] imx-pgc imx-pgc-domain.6: disabling regulator
-> [   49.819064] buck4: failed to disable: -ETIMEDOUT
-> 
-> The stack looks pretty much the same for all of them, from pm_suspend()
-> over genpd_suspend_noiry().
+On Samstag, 23. April 2022 17:23:58 CEST Peter Geis wrote:
+> This series enables the DesignWare based PCIe controller on the rk356x
+> series of chips.
+> We drop the fallback to the core driver due to compatibility issues.
+> We reset the PCIe controller at driver probe to prevent issues in the
+> future when firmware / kexec leaves the controller in an unknown state.
+> We add support for legacy interrupts for cards that lack MSI support
+> (which is partially broken currently).
+> We then add the device tree nodes to enable PCIe on the Quartz64 Model
+> A.
 
-So the GPU domain is already suspended before the system suspend,
-probably due to short runtime PM timeouts.
+Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 
-Can you please check at which point the i2c subsystem is suspended? I
-think we are already past that point when running the PM domain suspend
-from a _noirq callback. I'll take a look on how we can properly change
-this ordering.
+Tested on a PINE64 Quartz64 Model A. The series was applied to 5.18-rc4,
+and two devices were tested:
+
+Device #1: ASMedia Technology Inc. ASM1142 USB 3.1 Host Controller
+
+A USB 3.1 flash drive was plugged into the PCIe USB controller card.
+Then, the block device was read. Performance was nominal, no errors
+showed up in dmesg.
+
+Device #2: NEC Corporation uPD720200 USB 3.0 Host Controller (rev 03)
+behind a PLX Technology, Inc. PEX 8608 8-lane, 8-Port PCI Express Gen 2
+(5.0 GT/s) Switch (rev ba) PCIe switch.
+
+(it's a weird card I grabbed off an auction site with both USB and SATA
+behind a PCIe switch, it's best not to worry about the twisted mind
+that came up with it.)
+
+A USB 3.1 flash drive was plugged into the PCIe controller card's
+USB 3.0 port. Then, the block device was read. Performance was nominal,
+no errors appeared in dmesg.
+
+512 megabytes of /dev/urandom were redirected into a file. The file was
+SHA1 checksummed. The file was then copied onto the mounted USB 3.1 drive
+which was connected to the PCIe card. The drive was unmounted, then
+re-mounted, and then a sha1sum of the file on the drive was calculated.
+The checksums matched.
+
+Based on these tests it is my understanding that this patch series is
+functional for the use cases I have covered.
 
 Regards,
-Lucas
+Nicolas Frattaroli
+
 
