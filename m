@@ -2,158 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C46DE5106C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A57F25106C8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243582AbiDZS1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58896 "EHLO
+        id S1351152AbiDZS1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 14:27:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235205AbiDZS1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:27:22 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B661524B7;
-        Tue, 26 Apr 2022 11:24:14 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id l203so10764556oif.0;
-        Tue, 26 Apr 2022 11:24:14 -0700 (PDT)
+        with ESMTP id S243844AbiDZS1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:27:46 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC9D15A42D;
+        Tue, 26 Apr 2022 11:24:38 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-e2fa360f6dso20280927fac.2;
+        Tue, 26 Apr 2022 11:24:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eYGpzVL6z/9v1Xf7+HUnb3XtEpbv7g1nd4l3yujJBqU=;
-        b=g0mQlxclTxCDLMthMXeZxF5RI6PEX2kV3FVg8Oq2chf7qqniHPcRxzNo7VGLRp13/x
-         UQd2tLiBscbDFvpTU7OEaM/CWo0tzVfVixSGmW7s4409hLzUKS+GZ53d/kS56SLoYUF1
-         Jqjrzy2AimgDIBe28bshQQIaRShsnLB1jroVd2D3bJh3TmdKPO9fXCoTaLFv1DPVoKQL
-         ruYOnTo4Iu6W2Iva0pG3rF3UIo1xjFDy0yEhzolZZ/JqIj9FPUz2alOjDhx2bbdeiuZT
-         L/xfZv+HOtD5VxwVnCAQFPNzXGE9yD/9Qxa2hQMZeayLefU26dULjwjJkN8eqHdChlWg
-         XmFg==
-X-Gm-Message-State: AOAM5307WoZD0NL/zX7NI5lbs3ZfSgIZIbPqrW+n7k0+ZsGSDHKNWuRk
-        ZY+GKhiSR4hxceumwpjl8u4kD3gPbQ==
-X-Google-Smtp-Source: ABdhPJwqJ/M/GPcWpn4KFmsYPNq6cn7iuEhMpX3WrbveRkvKdJR+4UP5ufGYG8dqHTiVlMa8p7jzuw==
-X-Received: by 2002:a05:6808:8da:b0:324:be6a:e866 with SMTP id k26-20020a05680808da00b00324be6ae866mr9705228oij.72.1650997453643;
-        Tue, 26 Apr 2022 11:24:13 -0700 (PDT)
+        bh=CvMUDbRmBMULaPrSvy29y8lkb941E3y96qWPYQTdY/Q=;
+        b=Vd2GKGuigIDYqeSthr1XHlGrWmE8278vq0hSC1l9niX2p46MO//wGYhttHa2/tZF2h
+         1GNBAFuJatlePjjOMFIoZaXjMGEdDa2jJGz6idgNO5xfQCF0kvZ7Ql7jKUYzeiGjUvgg
+         5IIQsGpegiT8cauecWPsZCt5fr/rWahKzmZyF0AcAfvHfsH78J8wYH1vLp5XwdrpWonH
+         zdJ2Z2N4X5aV1Zj30sGsDE2DgTeajmCX1uWxCE6K7Sk7rK9AdEpB8F7Jks/pAJtWObr5
+         58TC+5RI8H5VE50BndjjRwR/AT0xta+vBpp7MTXlRB9Niq5GdTt+9CWhx/9hOojvw2eb
+         FGvw==
+X-Gm-Message-State: AOAM531IF5HzSqdMCQVZepCxnygbwl7Skz8PyHZDANJolTZe789xTpdl
+        JDraSFSSHAW4WRVZ4NEKpw==
+X-Google-Smtp-Source: ABdhPJzKDpE4dIDRP2/fyRgrEUEF3RYpW6ouwQg5y1NvFIfAwEReF5gm9xUP3qw/cFdBm6ItJeP73w==
+X-Received: by 2002:a05:6870:51cc:b0:e1:e6ee:448f with SMTP id b12-20020a05687051cc00b000e1e6ee448fmr9706297oaj.136.1650997478038;
+        Tue, 26 Apr 2022 11:24:38 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l16-20020a9d6a90000000b0060548d240d4sm5160969otq.74.2022.04.26.11.24.12
+        by smtp.gmail.com with ESMTPSA id d10-20020a9d51ca000000b00605522f0739sm5225378oth.41.2022.04.26.11.24.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 11:24:13 -0700 (PDT)
-Received: (nullmailer pid 2302730 invoked by uid 1000);
-        Tue, 26 Apr 2022 18:24:12 -0000
-Date:   Tue, 26 Apr 2022 13:24:12 -0500
+        Tue, 26 Apr 2022 11:24:37 -0700 (PDT)
+Received: (nullmailer pid 2303384 invoked by uid 1000);
+        Tue, 26 Apr 2022 18:24:36 -0000
+Date:   Tue, 26 Apr 2022 13:24:36 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, quic_tdas@quicinc.com
-Subject: Re: [PATCH v4 3/3] dt-bindings: clock: qcom,gcc-apq8064: split tsens
- to the child node
-Message-ID: <Ymg4zFsQB2MAQ/T5@robh.at.kernel.org>
-References: <20220426094144.2958416-1-dmitry.baryshkov@linaro.org>
- <20220426094144.2958416-4-dmitry.baryshkov@linaro.org>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     hsinyi@chromium.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Ryder Lee <ryder.lee@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: Add compatible for Mediatek
+ MT8186
+Message-ID: <Ymg45G1QkKY9KkqQ@robh.at.kernel.org>
+References: <20220426125046.17311-1-allen-kh.cheng@mediatek.com>
+ <20220426125046.17311-2-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220426094144.2958416-4-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220426125046.17311-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 26, 2022 at 12:41:44PM +0300, Dmitry Baryshkov wrote:
-> Split tsens properties to the child node of the gcc. This follows the
-> lead of ipq8064 (which also uses a separate node for tsens) and makes
-> device tree closer to other platforms, where tsens is a completely
-> separate device.
+On Tue, 26 Apr 2022 20:50:45 +0800, Allen-KH Cheng wrote:
+> This commit adds dt-binding documentation for the Mediatek MT8186
+> reference board.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > ---
->  .../bindings/clock/qcom,gcc-apq8064.yaml      | 45 +++++++------------
->  1 file changed, 17 insertions(+), 28 deletions(-)
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-> index b867da12761e..f2762599f679 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
-> @@ -23,47 +23,36 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - qcom,gcc-apq8064
-> -      - qcom,gcc-msm8060
-> -
-> -  nvmem-cells:
-> -    minItems: 1
-> -    maxItems: 2
-> -    description:
-> -      Qualcomm TSENS (thermal sensor device) on some devices can
-> -      be part of GCC and hence the TSENS properties can also be part
-> -      of the GCC/clock-controller node.
-> -      For more details on the TSENS properties please refer
-> -      Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> -
-> -  nvmem-cell-names:
-> -    minItems: 1
->      items:
-> -      - const: calib
-> -      - const: calib_backup
-> -
-> -  '#thermal-sensor-cells':
-> -    const: 1
-> +      - enum:
-> +          - qcom,gcc-apq8064
-> +          - qcom,gcc-msm8060
-> +      - const: syscon
->  
->  required:
->    - compatible
-> -  - nvmem-cells
-> -  - nvmem-cell-names
-> -  - '#thermal-sensor-cells'
->  
->  unevaluatedProperties: false
->  
->  examples:
->    - |
->      clock-controller@900000 {
-> -      compatible = "qcom,gcc-apq8064";
-> +      compatible = "qcom,gcc-apq8064", "syscon";
->        reg = <0x00900000 0x4000>;
-> -      nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-> -      nvmem-cell-names = "calib", "calib_backup";
->        #clock-cells = <1>;
->        #reset-cells = <1>;
->        #power-domain-cells = <1>;
-> -      #thermal-sensor-cells = <1>;
-> +
-> +      thermal-sensor {
 
-This should throw a warning I think as 'thermal-sensor' needs to be 
-defined. The patch didn't apply for me though.
-
-> +        compatible = "qcom,msm8960-tsens";
-> +
-> +        nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-> +        nvmem-cell-names = "calib", "calib_backup";
-> +        interrupts = <0 178 4>;
-> +        interrupt-names = "uplow";
-> +
-> +        #qcom,sensors = <11>;
-> +        #thermal-sensor-cells = <1>;
-> +        };
->      };
->  ...
-> -- 
-> 2.35.1
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
