@@ -2,82 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A57F25106C8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5ADB5106CC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Apr 2022 20:24:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351152AbiDZS1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 14:27:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60586 "EHLO
+        id S1351264AbiDZS16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 14:27:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243844AbiDZS1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:27:46 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC9D15A42D;
-        Tue, 26 Apr 2022 11:24:38 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-e2fa360f6dso20280927fac.2;
-        Tue, 26 Apr 2022 11:24:38 -0700 (PDT)
+        with ESMTP id S1351261AbiDZS1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 14:27:52 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2FF2197F9D
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 11:24:43 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id y21so11773078wmi.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 11:24:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=+SCJtuLLPCBIugzhmGROyOenrWlaIWVL1GHx1RKXQ04=;
+        b=nntI83QQTS/o0PgqWKe78Wr/Fs7Rm4Eskmyw6Fc9ZUnLXEOEzdwyZ4D9skbnKDbf1I
+         PaGaX7HxqO4WvGXMqz28D5yOrFtObmRpnP/7aL+ypyEKGi70g+DZBVCB5tuweBllAyOD
+         /vT3/SyWlkJeaeo5SCcoedvh9KBVPgls0+VEecJNwud2dU0fmwnnYG+D4u4o6r+ocx7k
+         Vsn7mz7BQcsEek2QZJqcz2GwyR9Wt16Zkq10n9tiRtM9OKx1ZFI57S0OhQ1ZuNRqiAJy
+         UPQixnwjYm0CiEt5CWRFhEKn0nnI0oPn837Ny7wrD7WzyqK5KzwRqRop4m0ydqI1MnyH
+         LL/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CvMUDbRmBMULaPrSvy29y8lkb941E3y96qWPYQTdY/Q=;
-        b=Vd2GKGuigIDYqeSthr1XHlGrWmE8278vq0hSC1l9niX2p46MO//wGYhttHa2/tZF2h
-         1GNBAFuJatlePjjOMFIoZaXjMGEdDa2jJGz6idgNO5xfQCF0kvZ7Ql7jKUYzeiGjUvgg
-         5IIQsGpegiT8cauecWPsZCt5fr/rWahKzmZyF0AcAfvHfsH78J8wYH1vLp5XwdrpWonH
-         zdJ2Z2N4X5aV1Zj30sGsDE2DgTeajmCX1uWxCE6K7Sk7rK9AdEpB8F7Jks/pAJtWObr5
-         58TC+5RI8H5VE50BndjjRwR/AT0xta+vBpp7MTXlRB9Niq5GdTt+9CWhx/9hOojvw2eb
-         FGvw==
-X-Gm-Message-State: AOAM531IF5HzSqdMCQVZepCxnygbwl7Skz8PyHZDANJolTZe789xTpdl
-        JDraSFSSHAW4WRVZ4NEKpw==
-X-Google-Smtp-Source: ABdhPJzKDpE4dIDRP2/fyRgrEUEF3RYpW6ouwQg5y1NvFIfAwEReF5gm9xUP3qw/cFdBm6ItJeP73w==
-X-Received: by 2002:a05:6870:51cc:b0:e1:e6ee:448f with SMTP id b12-20020a05687051cc00b000e1e6ee448fmr9706297oaj.136.1650997478038;
-        Tue, 26 Apr 2022 11:24:38 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d10-20020a9d51ca000000b00605522f0739sm5225378oth.41.2022.04.26.11.24.37
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=+SCJtuLLPCBIugzhmGROyOenrWlaIWVL1GHx1RKXQ04=;
+        b=Wo5SlG4TNjCcjwCkz73dYP1ZpERtbSOF1T3Vs5FJhFQ/bL7OeR1SZFmAOHoxDZkh38
+         uH2Wq00VzY8kfTxeCANyztnoPIWkAFCDpyPrfMS7B9N4EJzatf/Fc+ZyFpIw0rtnR7ac
+         n9+ykwlGMnhvA0XbBGbo/zNEQEWcGHkZhvGG5nYUxh7oqRRyosr7+6Gs2ds1ItF5OS9C
+         McXqq/ipzQjq8UaCx4STljX3ffBAOynFgq92ZnQhDinZMPjQ0YhzvhsjErHLubG0g+y/
+         2FL48426Fj3OGXvNXVx/rJxd1I+ASu6jdl6EzPqh2s2w1p6zj8UKK632DAUWOC2Cwpqo
+         I58A==
+X-Gm-Message-State: AOAM531TKVQ1OUr8/QsoWxF/yvx+TsDUsH+3kROrNzXrwc3kB7LgrAe/
+        lCpJ/0h0SEzrLRBT4TLZPo7ljA==
+X-Google-Smtp-Source: ABdhPJwz//6x4ICwKAzGCmmXVVYSEtHxdDp9dLUNvkRfLP6WxyjweH5Q18HN37vwRJIIiCxDpbUDqQ==
+X-Received: by 2002:a7b:c0d0:0:b0:392:a02c:28ab with SMTP id s16-20020a7bc0d0000000b00392a02c28abmr31509324wmh.2.1650997482193;
+        Tue, 26 Apr 2022 11:24:42 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id p14-20020a05600c1d8e00b0038ecb2d2feasm11567536wms.4.2022.04.26.11.24.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 11:24:37 -0700 (PDT)
-Received: (nullmailer pid 2303384 invoked by uid 1000);
-        Tue, 26 Apr 2022 18:24:36 -0000
-Date:   Tue, 26 Apr 2022 13:24:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     hsinyi@chromium.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Ryder Lee <ryder.lee@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        linux-mediatek@lists.infradead.org,
+        Tue, 26 Apr 2022 11:24:41 -0700 (PDT)
+Date:   Tue, 26 Apr 2022 19:24:39 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sumit.semwal@linaro.org, amit.pundir@linaro.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: Add compatible for Mediatek
- MT8186
-Message-ID: <Ymg45G1QkKY9KkqQ@robh.at.kernel.org>
-References: <20220426125046.17311-1-allen-kh.cheng@mediatek.com>
- <20220426125046.17311-2-allen-kh.cheng@mediatek.com>
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v13 3/9] mfd: qcom-spmi-pmic: read fab id on supported
+ PMICs
+Message-ID: <Ymg455MYRIJTXgvW@google.com>
+References: <20220323162820.110806-1-caleb@connolly.tech>
+ <20220323162820.110806-4-caleb@connolly.tech>
+ <Yma4tXvPQ+U89Whr@google.com>
+ <10f7cb8e-4c2a-0bba-df55-16b56d429147@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220426125046.17311-2-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <10f7cb8e-4c2a-0bba-df55-16b56d429147@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 20:50:45 +0800, Allen-KH Cheng wrote:
-> This commit adds dt-binding documentation for the Mediatek MT8186
-> reference board.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+On Tue, 26 Apr 2022, Caleb Connolly wrote:
+> On 25/04/2022 16:05, Lee Jones wrote:
+> > On Wed, 23 Mar 2022, Caleb Connolly wrote:
+> > 
+> > > From: Caleb Connolly <caleb.connolly@linaro.org>
+> > > 
+> > > The PMI8998 and PM660 expose the fab_id, this is needed by drivers like
+> > > the RRADC to calibrate ADC values.
+> > > 
+> > > Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >   drivers/mfd/qcom-spmi-pmic.c      | 7 +++++++
+> > >   include/soc/qcom/qcom-spmi-pmic.h | 1 +
+> > >   2 files changed, 8 insertions(+)
+> > 
+> > Please change the Subject line to match the style of the sub-system?
+> Hi, sorry if this is a silly question, I don't quite understand what you
+> want me to change here, the subject line is in the same "mfd: driver:"
+> format as other patches in the subsystem?
+
+mfd: qcom-spmi-pmic: Read fab ID on supported PMICs
+
+What's 'fab' should that be capitalised too?
+
+> > Once changed:
+> > 
+> >    Acked-by: Lee Jones <lee.jones@linaro.org>
+> > 
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
