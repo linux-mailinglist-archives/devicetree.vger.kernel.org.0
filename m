@@ -2,196 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 642CB511775
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D842511753
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234368AbiD0MiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 08:38:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39242 "EHLO
+        id S234359AbiD0Mk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 08:40:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234177AbiD0MiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:38:24 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD3DB52E57;
-        Wed, 27 Apr 2022 05:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651062911; x=1682598911;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=wabwfxq2ea3ScsaUrS8rkQH3XWlo//81jSwv8ow+8jU=;
-  b=r2kbkJRKz8HFzOeF8WxDXR4LZW/2+zgaVtS2fBJHU0voZAWkLfzUjNvB
-   v9PWHEw/A8dLZ4n9k2+nklDdblnbR/+NJVEN8dNQQLaAgXVK2dU7ew7I8
-   +3b1YbzNzqA6dOjUEdwY6IyixFXWAMSwORFXCOBQk+whXSZlItHmCLGp5
-   k=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 27 Apr 2022 05:35:10 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 05:35:10 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 27 Apr 2022 05:35:09 -0700
-Received: from [10.50.15.218] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 27 Apr
- 2022 05:35:07 -0700
-Message-ID: <86da868b-c1d5-0494-ba43-45067c436904@quicinc.com>
-Date:   Wed, 27 Apr 2022 18:05:03 +0530
+        with ESMTP id S234274AbiD0Mk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:40:26 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2B96B53A4B;
+        Wed, 27 Apr 2022 05:37:15 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,292,1643641200"; 
+   d="scan'208";a="118193610"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 27 Apr 2022 21:37:14 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7B326435BBF9;
+        Wed, 27 Apr 2022 21:37:14 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v5 0/7] treewide: scsi: ufs: Add support for Renesas R-Car UFS controller
+Date:   Wed, 27 Apr 2022 21:36:59 +0900
+Message-Id: <20220427123706.555166-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v6 4/9] ath11k: Add register access logic for WCN6750
-Content-Language: en-US
-To:     Kalle Valo <kvalo@kernel.org>
-CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
-References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
- <20220427111848.9257-5-quic_mpubbise@quicinc.com> <87pml2g1c7.fsf@kernel.org>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87pml2g1c7.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/27/2022 5:55 PM, Kalle Valo wrote:
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
-> 
->> WCN6750 uses static window mapping to access the HW registers.
->> Unlike QCN9074 which uses 2nd window for CE and 3rd window
->> for UMAC register accesses, WCN6750 uses 1st window for UMAC
->> and 2nd window for CE registers.
->>
->> Code is refactored so that WCN6750 can use the existing
->> ath11k_pci_read/write() APIs for accessing the registers.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>
->> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->> ---
->>   drivers/net/wireless/ath/ath11k/ahb.c  |  6 +++
->>   drivers/net/wireless/ath/ath11k/core.h |  2 +
->>   drivers/net/wireless/ath/ath11k/pci.c  | 34 ++++++++++++++--
->>   drivers/net/wireless/ath/ath11k/pcic.c | 54 +++++++++-----------------
->>   4 files changed, 58 insertions(+), 38 deletions(-)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
->> index cfdd415f0203..fa12e50f32f4 100644
->> --- a/drivers/net/wireless/ath/ath11k/ahb.c
->> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
->> @@ -34,7 +34,10 @@ static const struct ath11k_bus_params ath11k_ahb_bus_params = {
->>   	.m3_fw_support = false,
->>   	.fixed_bdf_addr = true,
->>   	.fixed_mem_region = true,
->> +	.static_window_map = false,
->>   	.hybrid_bus_type = false,
->> +	.dp_window_idx = 0,
->> +	.ce_window_idx = 0,
->>   };
->>   
->>   const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
->> @@ -42,7 +45,10 @@ const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
->>   	.m3_fw_support = false,
->>   	.fixed_bdf_addr = false,
->>   	.fixed_mem_region = false,
->> +	.static_window_map = true,
->>   	.hybrid_bus_type = true,
->> +	.dp_window_idx = 1,
->> +	.ce_window_idx = 2,
->>   };
->>   
->>   #define ATH11K_IRQ_CE0_OFFSET 4
->> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
->> index 51f313dd7f26..ee0ad93d5843 100644
->> --- a/drivers/net/wireless/ath/ath11k/core.h
->> +++ b/drivers/net/wireless/ath/ath11k/core.h
->> @@ -756,6 +756,8 @@ struct ath11k_bus_params {
->>   	bool fixed_mem_region;
->>   	bool static_window_map;
->>   	bool hybrid_bus_type;
->> +	u8 dp_window_idx;
->> +	u8 ce_window_idx;
->>   };
->>   
->>   struct ath11k_pci_ops {
->> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
->> index ddd1e2de6a2e..9184cb893bd4 100644
->> --- a/drivers/net/wireless/ath/ath11k/pci.c
->> +++ b/drivers/net/wireless/ath/ath11k/pci.c
->> @@ -115,12 +115,26 @@ static const struct ath11k_pci_ops ath11k_pci_ops_qcn9074 = {
->>   	.window_read32 = ath11k_pci_window_read32,
->>   };
->>   
->> -static const struct ath11k_bus_params ath11k_pci_bus_params = {
->> +static const struct ath11k_bus_params ath11k_pci_bus_params_qca6390 = {
->>   	.mhi_support = true,
->>   	.m3_fw_support = true,
->>   	.fixed_bdf_addr = false,
->>   	.fixed_mem_region = false,
->> +	.static_window_map = false,
->>   	.hybrid_bus_type = false,
->> +	.dp_window_idx = 0,
->> +	.ce_window_idx = 0,
->> +};
->> +
->> +static const struct ath11k_bus_params ath11k_pci_bus_params_qcn9074 = {
->> +	.mhi_support = true,
->> +	.m3_fw_support = true,
->> +	.fixed_bdf_addr = false,
->> +	.fixed_mem_region = false,
->> +	.static_window_map = true,
->> +	.hybrid_bus_type = false,
->> +	.dp_window_idx = 3,
->> +	.ce_window_idx = 2,
->>   };
->>   
->>   static const struct ath11k_msi_config msi_config_one_msi = {
->> @@ -704,11 +718,26 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
->>   {
->>   	struct ath11k_base *ab;
->>   	struct ath11k_pci *ab_pci;
->> +	const struct ath11k_bus_params *bus_params;
->>   	u32 soc_hw_version_major, soc_hw_version_minor, addr;
->>   	int ret;
->>   
->> +	switch (pci_dev->device) {
->> +	case QCA6390_DEVICE_ID:
->> +	case WCN6855_DEVICE_ID:
->> +		bus_params = &ath11k_pci_bus_params_qca6390;
->> +		break;
->> +	case QCN9074_DEVICE_ID:
->> +		bus_params = &ath11k_pci_bus_params_qcn9074;
->> +		break;
-> 
-> Now you are making bus_params device specific, that's not really the
-> point of bus params. They are supposed to be _bus_ specific parameters.
-> 
-> Can't you use hw_params like I mentioned in the review?
-> 
+This patch series adds support Renesas R-Car S4-8 UFS controller.
+This controller has some restrictions so adds some quirks for it.
+Before using this driver, we have to initialize a clock generator
+on the environment board (named "Spider") by using the commands of
+U-Boot like below:
+ => i2c dev 0
+ => i2c mw 0x6c 0x26 0x05
+ => i2c olen 0x6c 2
+ => i2c mw 0x6c 0x26c 0x2e
 
-I'm totally confused now, CE & DP window indices are specifics that come 
-in to play when we access the bus registers and they are closely tied to 
-static_window_map variable which is already in bus_params, I'm not sure 
-if it is a good to have them in hw_params. If at all we decide to move 
-them to hw_params, then we can move pretty much everything to hw_params 
-and remove bus_params completely.
+To use the UFS controller, we need the following patch too:
+https://lore.kernel.org/all/20220411124932.3765571-1-yoshihiro.shimoda.uh@renesas.com/
 
-I prefer to keep them in bus_params and make bus_params device specific,
-If you feel it otherwise, then I can move it to hw_params.
+Changes from v4:
+ - Fix ufs_renesas_of_match was not terminated in patch [4/7].
+   (from kernel test robot, thanks!)
+https://lore.kernel.org/all/20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com/
 
-Thanks,
-Manikanta
+Changes from v3:
+ - Fix build warning by clang in patch [4/7].
+https://lore.kernel.org/all/20220419120316.209151-1-yoshihiro.shimoda.uh@renesas.com/
+
+Changes from v2:
+ - Add Reviewed-by in patch [1/7]. (Krzysztof, thanks!)
+ - Use WARN_ON() instead of BUG_ON in patch [4/7].
+https://lore.kernel.org/all/20220414023115.4190736-1-yoshihiro.shimoda.uh@renesas.com/
+
+Changes from v1:
+ - Fix dt-binding doc in patch [1/7].
+ - Add __maybe_unused for compile test on other platforms in patch [4/7].
+ - Fix node names in patch [5/7].
+https://lore.kernel.org/all/20220412073647.3808493-1-yoshihiro.shimoda.uh@renesas.com/
+
+
+*** BLURB HERE ***
+
+Yoshihiro Shimoda (7):
+  dt-bindings: ufs: Document Renesas R-Car UFS host controller
+  ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
+  ufs: add UFSHCD_QUIRK_HIBERN_FASTAUTO
+  scsi: ufs-renesas: Add support for Renesas R-Car UFS controller
+  scsi: MAINTAINERS: Add maintainer for Renesas UFS driver
+  arm64: dts: renesas: r8a779f0: Add UFS node
+  arm64: dts: renesas: r8a779f0: spider-cpu: Enable UFS device
+
+ .../devicetree/bindings/ufs/renesas,ufs.yaml  |  61 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/renesas/r8a779f0-spider-cpu.dtsi |   8 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |  19 +
+ drivers/scsi/ufs/Kconfig                      |  12 +
+ drivers/scsi/ufs/Makefile                     |   1 +
+ drivers/scsi/ufs/ufs-renesas.c                | 419 ++++++++++++++++++
+ drivers/scsi/ufs/ufshcd.c                     |  12 +-
+ drivers/scsi/ufs/ufshcd.h                     |  12 +
+ 9 files changed, 548 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
+ create mode 100644 drivers/scsi/ufs/ufs-renesas.c
+
+-- 
+2.25.1
+
