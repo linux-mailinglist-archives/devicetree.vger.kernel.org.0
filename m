@@ -2,133 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 594675122C1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 21:30:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F3B75122C4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 21:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231933AbiD0TdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 15:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34080 "EHLO
+        id S232509AbiD0TeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 15:34:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232679AbiD0Tcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 15:32:54 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB89B4A
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:29:22 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-e2fa360f6dso3055398fac.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:29:22 -0700 (PDT)
+        with ESMTP id S234874AbiD0TeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 15:34:02 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75931242
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:30:40 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id n8so2457419plh.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:30:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nqHaRTfHThJkqhALCqIT5LeqKtw4VE1vM52q4z/IlSc=;
+        b=SMZS3v8YjUqrZkSPCI7d6K3hmAKcRimgium9aZBybxcLq1tbveraUj7dWHzdXP7i0t
+         xh7dWhI1nMlp1JbdH0Ge8BcDE5OInxMlN3sHeZIwCeWWp9kZz/mbkwtNxs5bys+l8bD6
+         1tQRWQJyzayy6s5kujObAT5jVzswctCcB2p2S+WWRUSaL9aGNbuy6DKNXnU2kCQnCwe8
+         T921ZaJZGoaSl/0JSAHrlBKheRoNZYTuQxgH0TLnwy6Z++J1to049cDDBDc+MK+k0+8K
+         Ioksu8Sa1g7ylWGlxrV4PqDQP0FYRgSgKiBOEvoh5R/jI4Q6WRWSeEi/ViH4LoxwjTp6
+         s4qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y54JJJRAFUg83cYjLhKfKDeEAsFlCqj5+zdDlyIzWwA=;
-        b=YO6XeCgUGRb6mwxCDvTFaZwfiKCj1zyD9KrqentSawmUfPogOAoGM9jdeVM0iBGL9h
-         Llq7VglLBiGISyDBLjiHaAstr/xwY90bdAN/KOE8o/DMBJpfFT9liZU48cwps74XZbR5
-         rirh0fqiNEisSCQBurE+fHEdzSOQqxRkt1w7DtkEei2MX0cCuwvcwtW5XyXUNtwx+MFh
-         qRJkB0b4MLfdQ6TduMG/Ld8bqaJWhmarQKDvHYBmBJUpvRXA/9SDRkntrppM2R64N3pt
-         20nNpBRgq+BfBuh7oOgwvzR+QjS8BYDzU5fJ6N/8PNcRVrfeLDnjjOpsOErM+lr6xAVv
-         +Eiw==
-X-Gm-Message-State: AOAM531eow85FEVx3q9a/kFDqUeyf8Jvavz6Sum43oswYFEwh9h8cCy2
-        NDInlAB0+sBc0GAkK3DDMBMoNPlmlA==
-X-Google-Smtp-Source: ABdhPJzdwZ/OhNkMLSKn5a+ncpKWRmrzCjogPekK5AxVVBvf/Yp5i4oYGAXh5MY3RluVY8DMDqAyEw==
-X-Received: by 2002:a05:6871:79b:b0:d3:4039:7e7c with SMTP id o27-20020a056871079b00b000d340397e7cmr16635088oap.121.1651087762103;
-        Wed, 27 Apr 2022 12:29:22 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l8-20020a056808020800b0032575bca0e5sm1158909oie.46.2022.04.27.12.29.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 12:29:21 -0700 (PDT)
-Received: (nullmailer pid 525198 invoked by uid 1000);
-        Wed, 27 Apr 2022 19:29:20 -0000
-Date:   Wed, 27 Apr 2022 14:29:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH 00/11] dt-bindings: convert various Arm Ltd. IP to DT
- schema
-Message-ID: <YmmZkAvzRx+uhxo1@robh.at.kernel.org>
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nqHaRTfHThJkqhALCqIT5LeqKtw4VE1vM52q4z/IlSc=;
+        b=NTuHb8Zod5v+pfrIxJGk5Z9+SRpmsziKg/C7VDGwNoq5fUoh2Mp/0YDnWdlwtVqL7b
+         wi7SJou0CxF+WZjA9SunjNjZAbJXMoWqeaKC3LPZlnTg0qUnXtfBHw2C1P8U90zNKPWt
+         P1Jqk/pf/44X8WrF6/M5mMYzXKSZMv1sEjKQyyve7yrOO7jHcWF0bs3Q/IC+qcC+2JF/
+         uauu5QJOUwOC2EYmXy7Zu4Mzo6FkwKJQ5FncvT89V9v0u4LZsqo3Hb8HKYLHbBe1aJDi
+         8EMR6Z10bIq8V8SQ0nnljsN6K/p+3HRa7hJ6TNDlRo1W6AtuTzxKw1nST4HHMvyLMBnR
+         iokQ==
+X-Gm-Message-State: AOAM530oU7KipgSsRdKa5ka4Lsx+akYNVYtmri65IBLGTvf3grGZnG/k
+        1XskDmQdzHaBai78X2rhbdlAIh4ZwNFpZPJq6MMpKQ==
+X-Google-Smtp-Source: ABdhPJzPt2me5zAU0/rrKiJB9unrBPzqakZtEinMjw00JI2fGizxCw95qhMp2gcDUpMIssgcgnDYOfYxVS/ePSoGLoU=
+X-Received: by 2002:a17:902:8306:b0:158:ea27:307d with SMTP id
+ bd6-20020a170902830600b00158ea27307dmr29744990plb.164.1651087839950; Wed, 27
+ Apr 2022 12:30:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427112528.4097815-1-andre.przywara@arm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220427161533.647837-1-krzysztof.kozlowski@linaro.org> <YmmLRbb4XNmpEn1b@robh.at.kernel.org>
+In-Reply-To: <YmmLRbb4XNmpEn1b@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date:   Wed, 27 Apr 2022 21:30:27 +0200
+Message-ID: <CAGE=qrrg-9v+4o31ZGDDOZuAHMVTUbo1dNLJDcFYdi0amWeUxA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] dmaengine/ARM: use proper 'dma-channels/requests' properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 12:25:17PM +0100, Andre Przywara wrote:
-> Hi,
-> 
-> in an effort to get the FVP DTs to pass the automated DT bindings checks,
-> this series collects some DT schema binding conversions for various
-> Arm Ltd. IP devices.
-> This is mostly for old IP, but it's still used by the FVP, for which we
-> have a DT in the tree.
-> 
-> Please have a look!
-> 
-> Cheers,
-> Andre
-> 
-> Andre Przywara (11):
->   dt-bindings: iommu: arm,smmu-v3: make PRI IRQ optional
->   dt-bindings: arm: spe-pmu: convert to DT schema
->   dt-bindings: arm: sp810: convert to DT schema
->   dt-bindings: sound: add Arm PL041 AACI DT schema
->   dt-bindings: serio: add Arm PL050 DT schema
->   dt-bindings: arm: convert vexpress-sysregs to DT schema
->   dt-bindings: arm: convert vexpress-config to DT schema
->   dt-bindings: display: convert PL110/PL111 to DT schema
->   dt-bindings: display: convert Arm HDLCD to DT schema
->   dt-bindings: display: convert Arm Mali-DP to DT schema
->   dt-bindings: display: convert Arm Komeda to DT schema
-> 
->  .../devicetree/bindings/arm/sp810.txt         |  46 ---
->  .../devicetree/bindings/arm/sp810.yaml        |  82 ++++++
->  .../devicetree/bindings/arm/spe-pmu.txt       |  20 --
->  .../devicetree/bindings/arm/spe-pmu.yaml      |  40 +++
->  .../bindings/arm/vexpress-config.yaml         | 274 ++++++++++++++++++
->  .../bindings/arm/vexpress-sysreg.txt          | 103 -------
->  .../bindings/arm/vexpress-sysreg.yaml         |  89 ++++++
->  .../devicetree/bindings/display/arm,hdlcd.txt |  79 -----
->  .../bindings/display/arm,hdlcd.yaml           |  91 ++++++
->  .../bindings/display/arm,komeda.txt           |  78 -----
->  .../bindings/display/arm,komeda.yaml          | 130 +++++++++
->  .../bindings/display/arm,malidp.txt           |  68 -----
->  .../bindings/display/arm,malidp.yaml          | 117 ++++++++
->  .../devicetree/bindings/display/arm,pl11x.txt | 110 -------
->  .../bindings/display/arm,pl11x.yaml           | 174 +++++++++++
->  .../bindings/iommu/arm,smmu-v3.yaml           |  21 +-
->  .../devicetree/bindings/serio/amba-pl050.yaml |  67 +++++
->  .../devicetree/bindings/sound/amba-pl041.yaml |  62 ++++
->  18 files changed, 1142 insertions(+), 509 deletions(-)
+On Wed, 27 Apr 2022 at 20:28, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Apr 27, 2022 at 06:15:31PM +0200, Krzysztof Kozlowski wrote:
+> > Hi,
+> >
+> > The core DT schema defines generic 'dma-channels' and 'dma-requests'
+> > properties, so in preparation to moving bindings to DT schema, convert
+> > existing users of '#dma-channels' and '#dma-requests' to the generic
+> > variant.
+> >
+> > Not tested on hardware.
+> >
+> > IMPORTANT
+> > =========
+> > The patchset is not bisectable! The DTS patches should be applied a
+> > release *after* driver change is accepted.
+>
+> There's no driver change though...
 
->  delete mode 100644 Documentation/devicetree/bindings/arm/sp810.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/sp810.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/spe-pmu.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/spe-pmu.yaml
+Indeed, copy paste cover letter. This FSL dma driver does not use the
+properties, so it's only in the bindings and in the DTS. The patchset
+can be taken as-is, without in-kernel ABI break. Only out-of-tree
+users of DTSI will be affected.
 
-This should be moved to bindings/perf/. I guess arm/pmu.yaml should be 
-too.
-
->  create mode 100644 Documentation/devicetree/bindings/arm/vexpress-config.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
-
->  create mode 100644 Documentation/devicetree/bindings/serio/amba-pl050.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/amba-pl041.yaml
-
-Please use the compatible string as the file name where there's a 
-single compatible. Maybe not SPE though. Minimally, use the vendor 
-prefix in the file name ('arm,'). 
-
-Rob
+Best regards,
+Krzysztof
