@@ -2,143 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52BB9511EFD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23212511FD1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241270AbiD0QCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 12:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55290 "EHLO
+        id S241658AbiD0QJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 12:09:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241296AbiD0QC2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:02:28 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF56B1A4315
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:59:05 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id g20so2473620edw.6
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:59:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=76W1cUhpVZ4S1kk1owDY4fNBWLgNIFgf8c4KyIt+188=;
-        b=crGsQu75U2P+YiYm4OLO1RAMBFX+JBucI6Hse1p27B8vuZvTO1eDpVf3XiMTYBL7wf
-         suuQgktoE/OB+Eo1RxJWXW1Bl9Uob8kZWOpCLMnAbbqLejmphreCc5bL+sccVJUfOKY0
-         k77Hn91bAWF/nAUpynIHeo8Z1wtghV35s2Ua4NNuWhpGFKWeTy+8lw1PP8X9eXN9vhGt
-         gWiaHW2XSZBD2+je5N3YWDyJihxaFCz1JZhj1s0Fh2xeuP6j+j5erROZLMHqF3RiCCNS
-         aGKIlmFEX/BcDxzSyLq+r8+hTKDVT6zBUHk+83NXUz/8vq59DaqiwpJiRqwS8Fepgnm1
-         0NNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=76W1cUhpVZ4S1kk1owDY4fNBWLgNIFgf8c4KyIt+188=;
-        b=5bvaBo87eD57r7LBHeBPWyOgEEUht5RnbJihfrDj4TlOfUovqL/R1XMUObGkMQLKWA
-         RHhet3baEwTCFVM4RZV2T1SPUd0r/7q8nytjPjMEZQ7ZYVx9e7/WOj4TqMo/rdmoPbSB
-         Qj/mu1XhLs+PEIieLM5HZhfblmWcrnLgt6eirifKaT/BjjSIouC5jDH0+R3HciqmKw7x
-         f2/MLxb/LwryF4QrDTVqo734rxRBZuI8ewheN1Hso65OVjTyjjjwlWFMplMe/y7mTi/m
-         B3ynaUWVVY6coyiZp4jxA0EbivNcFEVWLZxxg+DWMIFnH3LeG4LA8MJMGByyfRha6mFi
-         tRZQ==
-X-Gm-Message-State: AOAM532oAlxpFx5jfyj/m5Si7SCNMfRVANX7O1K36NesTnXqXmGXLAoZ
-        xKE+ecffSDv6xX4Tm1kRI+padQ==
-X-Google-Smtp-Source: ABdhPJykwglLB5mxEF++h8AEZRS2tUiHCIGL3J/BB834XWnFYca4p+5vl3EQBBArh/CVlfSqzcAmJw==
-X-Received: by 2002:a50:9e61:0:b0:419:d8e5:6236 with SMTP id z88-20020a509e61000000b00419d8e56236mr31130749ede.327.1651075141506;
-        Wed, 27 Apr 2022 08:59:01 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l20-20020a1709062a9400b006ce71a88bf5sm6931993eje.183.2022.04.27.08.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 08:59:01 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH 10/10] arm64: dts: fsd: use proper 'dma-channels/requests' properties
-Date:   Wed, 27 Apr 2022 17:58:40 +0200
-Message-Id: <20220427155840.596535-11-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
-References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S242595AbiD0QJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:09:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A2B3E4FBA;
+        Wed, 27 Apr 2022 09:05:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3663661BE9;
+        Wed, 27 Apr 2022 16:04:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25C52C385A9;
+        Wed, 27 Apr 2022 16:04:25 +0000 (UTC)
+Date:   Wed, 27 Apr 2022 17:04:22 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <YmlphvZVMsGfFksp@arm.com>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-6-thunder.leizhen@huawei.com>
+ <YmgzxsrrMlCDYsWp@arm.com>
+ <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com>
+ <Ymk34NsIFqUgfk3b@arm.com>
+ <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae7211ad-e2ac-f5b1-5aa0-701802132e73@huawei.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pl330 DMA controller bindings documented 'dma-channels' and
-'dma-requests' properties (without leading hash sign), so fix the DTS to
-match the bindings.
+On Wed, Apr 27, 2022 at 09:49:20PM +0800, Leizhen (ThunderTown) wrote:
+> On 2022/4/27 20:32, Catalin Marinas wrote:
+> > I think one could always pass a default command line like:
+> > 
+> > 	crashkernel=1G,high crashkernel=128M,low
+> > 
+> > without much knowledge of the SoC memory layout.
+> 
+> Yes, that's what the end result is. The user specify crashkernel=128M,low
+> and the implementation ensure the 128M low memory is allocated from DMA zone.
+> We use arm64_dma_phys_limit as the upper limit for crash low memory.
+> 
+> +#define CRASH_ADDR_LOW_MAX             arm64_dma_phys_limit
+> +       unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+> +       crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>                                                crash_base, crash_max);
+> 
+> > Another option is to only introduce crashkernel=Y,low and, when that is
+> > passed, crashkernel=Y can go above arm64_dma_phys_limit. We won't need a
+> > 'high' option at all:
+> > 
+> > 	crashkernel=1G				- all within ZONE_DMA
+> > 	crashkernel=1G crashkernel=128M,low	- 128M in ZONE_DMA
+> > 						  1G above ZONE_DMA
+> > 
+> > If ZONE_DMA is not present or it extends to the whole RAM, we can ignore
+> > the 'low' option.
+> 
+> I think although the code is hard to make generic, the interface is better to
+> be relatively uniform. A user might have to maintain both x86 and arm64, and
+> so on. It's not a good thing that the difference is too big.
 
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/tesla/fsd.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+There will be some difference as the 4G limit doesn't always hold for
+arm64 (though it's true in most cases). Anyway, we can probably simplify
+things a bit while following the documented behaviour:
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index 10c217a57a7d..7fba37d860b2 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -432,8 +432,8 @@ mdma0: dma-controller@10100000 {
- 			reg = <0x0 0x10100000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
-+			dma-channels = <8>;
-+			dma-requests = <32>;
- 			clocks = <&clock_imem IMEM_DMA0_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_imem 0x800 0x0>;
-@@ -444,8 +444,8 @@ mdma1: dma-controller@10110000 {
- 			reg = <0x0 0x10110000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
-+			dma-channels = <8>;
-+			dma-requests = <32>;
- 			clocks = <&clock_imem IMEM_DMA1_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_imem 0x801 0x0>;
-@@ -456,8 +456,8 @@ pdma0: dma-controller@14280000 {
- 			reg = <0x0 0x14280000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
-+			dma-channels = <8>;
-+			dma-requests = <32>;
- 			clocks = <&clock_peric PERIC_DMA0_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_peric 0x2 0x0>;
-@@ -468,8 +468,8 @@ pdma1: dma-controller@14290000 {
- 			reg = <0x0 0x14290000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
- 			#dma-cells = <1>;
--			#dma-channels = <8>;
--			#dma-requests = <32>;
-+			dma-channels = <8>;
-+			dma-requests = <32>;
- 			clocks = <&clock_peric PERIC_DMA1_IPCLKPORT_ACLK>;
- 			clock-names = "apb_pclk";
- 			iommus = <&smmu_peric 0x1 0x0>;
+	crashkernel=Y		- current behaviour within ZONE_DMA
+	crashkernel=Y,high	- allocate from above ZONE_DMA
+	crashkernel=Y,low	- allocate within ZONE_DMA
+
+There is no fallback from crashkernel=Y.
+
+The question is whether we still want a default low allocation if
+crashkernel=Y,low is missing but 'high' is present. If we add this, I
+think we'd be consistent with kernel-parameters.txt for the 'low'
+description. A default 'low' is probably not that bad but I'm tempted to
+always mandate both 'high' and 'low'.
+
 -- 
-2.32.0
-
+Catalin
