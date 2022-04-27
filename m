@@ -2,126 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3678E5113FF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 11:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC05511408
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 11:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbiD0JFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 05:05:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42686 "EHLO
+        id S231301AbiD0JGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 05:06:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiD0JFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 05:05:23 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E019F8E45;
-        Wed, 27 Apr 2022 02:02:07 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id 295195FD13;
-        Wed, 27 Apr 2022 12:02:05 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1651050125;
-        bh=FlibZqz6Vs1KJA6OMN0S2VlRcGFGa/xmoTfPjJuhQtg=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=ekZbxxmsobxMJgoGh2uXEX8tsgy6L0NPWFygmbcNWajfzrV7bV80uov37EXsiv3EH
-         dz/ZKapovctI//fIG11BvoygCqTr2jQlG2Y1h4aAt6+dfWh4fsJ4Qsni16AK3pBnC4
-         k5/1BoOoHZDd2I3HlOf3rHkFMSWp/cUlvVGgxpJc0BPuAjUMl+3WPSOFxCSZH/4cee
-         2nY1/b2jBICu6QQwYE4S4caduOctJAdmFlXCxyeuoSc2gkn67I4a8xwx6o1RAbLWq3
-         zbvSVAQmz9LbeNaVCnitaiA7Xc7OvXv8tHfulVc4Xo0qJmoEX6+4ZXSd+rEr4VNNgk
-         AXCjSyNvl18zQ==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Wed, 27 Apr 2022 12:02:05 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/3] dt-bindings: vendor-prefixes: add MEMSensing
- Microsystems Co., Ltd.
-Thread-Topic: [PATCH v1 1/3] dt-bindings: vendor-prefixes: add MEMSensing
- Microsystems Co., Ltd.
-Thread-Index: AQHYVASMsRh3FoyxH0G3KQJPx6YT3q0Cfe6AgADSqIA=
-Date:   Wed, 27 Apr 2022 09:01:13 +0000
-Message-ID: <20220427090201.og6gwed364zr3cmd@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220419154555.24191-1-ddrokosov@sberdevices.ru>
- <20220419154555.24191-2-ddrokosov@sberdevices.ru>
- <YmhV08V2jTeB448O@robh.at.kernel.org>
-In-Reply-To: <YmhV08V2jTeB448O@robh.at.kernel.org>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <E31A6B890C3DC14C992872EDBF3A6437@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S232416AbiD0JGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 05:06:06 -0400
+Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35AD1D70DA;
+        Wed, 27 Apr 2022 02:02:44 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7D56D200003;
+        Wed, 27 Apr 2022 09:02:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651050154;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/+rW5mXOv5sbGat0TDX1wCwn8FAk7uPLtDbpW3WtQ0M=;
+        b=OExvz/fso96rIW52h/+SICEP1ySdo298YEFNftVJH2dwKMIBVt8zG5jFi1yEIUaDWm4HjM
+        97CjSPmMfdXB0Yw2uMVoshEQK0a0shs+vsjEEnUjHPFNW0/EQdjyGOlDTbIqO9wlfcmCjo
+        wqB+2GUfdVhe+copVOqNZg01oV56BIaOWcdUXjmCMMPQIxMTDVkRxgF7a1Qo4Vcx3XpnEB
+        MX7FptvGuTxGYKUYpHB+WGUBcv2kYz5rWMZdmIdzq7lGGclVJ5b5PG/mYu6oHuUYfuOvVt
+        ovyuSTisZL8Wdkpn2ZXhzOtv/ktDmUL5tmMWJAl+OcCZ96CZYJT+iiRteKmYOQ==
+Date:   Wed, 27 Apr 2022 11:02:29 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v11 6/9] clk: renesas: r9a06g032: Probe possible
+ children
+Message-ID: <20220427110229.25825aaa@xps13>
+In-Reply-To: <CAMuHMdWaViDYRnwdpD+m73ZisDSMKESfcGbanf6qXR1M2167EQ@mail.gmail.com>
+References: <20220421085112.78858-1-miquel.raynal@bootlin.com>
+        <20220421085112.78858-7-miquel.raynal@bootlin.com>
+        <CAMuHMdWaViDYRnwdpD+m73ZisDSMKESfcGbanf6qXR1M2167EQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/04/27 03:59:00 #19365489
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
+Hi Geert,
 
-You are right, I've missed memsic definition, sorry for that. I'll move
-memsensing vendor prefix to proper place on the v2 then.
+geert@linux-m68k.org wrote on Mon, 25 Apr 2022 18:18:28 +0200:
 
-On Tue, Apr 26, 2022 at 03:28:03PM -0500, Rob Herring wrote:
-> On Tue, Apr 19, 2022 at 03:45:51PM +0000, Rokosov Dmitry Dmitrievich wrot=
-e:
-> > MEMSensing Microsystems (Suzhou, China) Co., Ltd. operates as a micro
-> > electromechanical system technology company which produces micro
-> > electromechanical system microphones and sensors.
-> > MEMSensing Microsystems (Suzhou, China) Co., Ltd. applies its products
-> > in consumer electronics, industrial control, medical electronics
-> > and automotive, and other fields.
-> >=20
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/D=
-ocumentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 294093d..d8f29ad 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -737,6 +737,8 @@ patternProperties:
-> >      description: Mellanox Technologies
-> >    "^memsic,.*":
-> >      description: MEMSIC Inc.
-> > +  "^memsensing,.*":
-> > +    description: MEMSensing Microsystems Co., Ltd.
+> Hi Miquel,
 >=20
-> Alphabetical order. This needs to be before memsic.
+> On Thu, Apr 21, 2022 at 10:51 AM Miquel Raynal
+> <miquel.raynal@bootlin.com> wrote:
+> > The clock controller device on r9a06g032 takes all the memory range that
+> > is described as being a system controller. This range contains many
+> > different (unrelated?) registers besides the ones belonging to the clock
+> > controller, that can necessitate to be accessed from other peripherals.
+> >
+> > For instance, the dmamux registers are there. The dmamux "device" will
+> > be described as a child node of the clock/system controller node, which
+> > means we need the top device driver (the clock controller driver in this
+> > case) to populate its children manually.
+> >
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > Acked-by: Stephen Boyd <sboyd@kernel.org> =20
 >=20
+> Thanks for your patch!
+>=20
+> > --- a/drivers/clk/renesas/r9a06g032-clocks.c
+> > +++ b/drivers/clk/renesas/r9a06g032-clocks.c
+> > @@ -996,7 +997,7 @@ static int __init r9a06g032_clocks_probe(struct pla=
+tform_device *pdev)
+> >
+> >         sysctrl_priv =3D clocks;
+> >
+> > -       return 0;
+> > +       return of_platform_populate(np, NULL, NULL, dev); =20
+>=20
+> This is a bit dangerous: in the (very unlikely) case that
+> of_platform_populate() fails, the clock driver will fail to probe,
+> and all managed cleanup will be done (not everything will be cleant
+> up, though), while sysctrl_priv will still point to the now-freed
+> r9a06g032_priv structure.
+>=20
+> So I think you just want to ignore the failure from
+> of_platform_populate(), and return zero anyway.
 
-Ack
+That is a very good point. I've changed the logic to just print an
+error message and return 0 anyway.
 
-> >    "^menlo,.*":
-> >      description: Menlo Systems GmbH
-> >    "^mentor,.*":
-> > --=20
-> > 2.9.5
-> >=20
-
---=20
-Thank you,
-Dmitry=
+Thanks,
+Miqu=C3=A8l
