@@ -2,129 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC2DF510DA1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 03:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97238510E21
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 03:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356558AbiD0BFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 21:05:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
+        id S1356809AbiD0BmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 21:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349706AbiD0BFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 21:05:49 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259EB46654;
-        Tue, 26 Apr 2022 18:02:38 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (174-21-163-222.tukw.qwest.net [174.21.163.222])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id E9170531;
-        Tue, 26 Apr 2022 18:02:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1651021358;
-        bh=KjNq5t3ZggJMTEA4a0oXHVCceTPLdKxXT7fm3v60f1w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gafOJureGwkGdS7oF7iP8Cp1CJP2vVttE+zYcskh3RqjGczu0rfVyAJoxigGTN8Wj
-         aY1Hk/8JX2e8n29X59ujcrOWe7B7t4aZEkLa2vKUfQ1nRucOnxnJZGsFhjpwSKEl7R
-         nUs2CGHnWyZdpRZigyon5Gz2eR70mQAbaRrz3NWI=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Zev Weiss <zev@bewilderbeest.net>, Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v4 1/7] dt-bindings: hwmon: Add nuvoton,nct6775
-Date:   Tue, 26 Apr 2022 18:01:48 -0700
-Message-Id: <20220427010154.29749-2-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220427010154.29749-1-zev@bewilderbeest.net>
-References: <20220427010154.29749-1-zev@bewilderbeest.net>
+        with ESMTP id S1356792AbiD0BmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 21:42:16 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C181002C4
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 18:39:06 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id a10so526598oif.9
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 18:39:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=JXmTulGYUsyP176e76/nF1iCXcOh0XmzJ8/VWjdkiR0=;
+        b=RuwVqdMzYiU9T6M3Du19x1/Dyr8DeVrhQUJyEcz6mwyeuj359MkgcJMCgyGATRbzq5
+         QWtjA5RdrWf2PoFmX9Jr3ZVFCPMoqQUHkQ5j1ep8FA4UJGBIrPK8WPFKeDgRJNsdyPCn
+         WkPNzYizGEdxBnubUDPLk1oUy7bm6cDFr0Dy8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=JXmTulGYUsyP176e76/nF1iCXcOh0XmzJ8/VWjdkiR0=;
+        b=RWVcGaN/yHLBURTMNjR2XpVLRtbEaYxtWKlE3GobUPSn40vr4RVB5xxBwkGavYwrNY
+         MIqclPTqFXFaAmztROF5lHYVjWhVF5aGCe1dkmMw+w+YprLJG+MZLVbchTZwtH0Dbe2z
+         qwO8Pp0XItOPV+rfx94N7NW9cmnAXEQFedW87Z48qi0ZV/WLShY5iEHstIYmetXkiY7w
+         b/uqhMUfzmixqdlwQAZ3ogF3Mptjz2p2nB1ElLvtOLwDM7fnVPv3R4L25gsnRAeuVPnn
+         8l3wC8Icc68wiq1lSxMJZnvJQ5svXG/AwDcgSdnuGF+AHPTe9uT6FgVZZsKr7CCrEgst
+         QBzg==
+X-Gm-Message-State: AOAM531gGrk6qeSXgXWLvMUFVQoglrWmp2QyC2JvWqOHy+IpwLaWgCap
+        RgdO9ip7sSx4EoOfxP8SVNW5fx7LlWec7unTNm1+xQ==
+X-Google-Smtp-Source: ABdhPJzsX79g6i+L7fGZ72ubSgkdyIwDZPUr0CTxtVjUYVv1Guf+xHbfosvF2v2Y/M85BpP6wlbTw1rgGLo5LxiWKi8=
+X-Received: by 2002:a05:6808:1296:b0:325:8fb:68f3 with SMTP id
+ a22-20020a056808129600b0032508fb68f3mr8167795oiw.193.1651023546195; Tue, 26
+ Apr 2022 18:39:06 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 26 Apr 2022 18:39:05 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220426151204.1.Id2821de5fde55ebe928e8fc87a71c8d535edb383@changeid>
+References: <20220426151204.1.Id2821de5fde55ebe928e8fc87a71c8d535edb383@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 26 Apr 2022 18:39:05 -0700
+Message-ID: <CAE-0n53juQ8--Sai=wKypj8URw+V1giOOhzd-p13fVbe_vxZ0Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: wormdingler: Add wormdingler
+ dts files.
+To:     "Joseph S. Barrera III" <joebar@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These Super I/O chips have an i2c interface that some systems expose
-to a BMC; the BMC's device tree can now describe that via this
-binding.
+Quoting Joseph S. Barrera III (2022-04-26 15:12:06)
+> Wormdingler is a trogdor-based board, shipping to customers as the Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from the downstream Chrome OS 5.4 kernel, but with the camera (sc7180-trogdor-mipi-camera.dtsi) #include removed.
+>
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- .../bindings/hwmon/nuvoton,nct6775.yaml       | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+Please wrap lines at 75 columns or so.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-new file mode 100644
-index 000000000000..418477374fdb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/nuvoton,nct6775.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NCT6775 and compatible Super I/O chips
-+
-+maintainers:
-+  - Zev Weiss <zev@bewilderbeest.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,nct6106
-+      - nuvoton,nct6116
-+      - nuvoton,nct6775
-+      - nuvoton,nct6776
-+      - nuvoton,nct6779
-+      - nuvoton,nct6791
-+      - nuvoton,nct6792
-+      - nuvoton,nct6793
-+      - nuvoton,nct6795
-+      - nuvoton,nct6796
-+      - nuvoton,nct6797
-+      - nuvoton,nct6798
-+
-+  reg:
-+    maxItems: 1
-+
-+  nuvoton,tsi-channel-mask:
-+    description:
-+      Bitmask indicating which TSI temperature sensor channels are
-+      active.  LSB is TSI0, bit 1 is TSI1, etc.
-+    maximum: 0xff
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        superio@4d {
-+            compatible = "nuvoton,nct6779";
-+            reg = <0x4d>;
-+            nuvoton,tsi-channel-mask = <0x03>;
-+        };
-+    };
--- 
-2.36.0
+> Author: Joseph S. Barrera III <joebar@chromium.org>
 
+This shouldn't be necessary as it matches the From: line of the email.
+
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+> ---
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+> new file mode 100644
+> index 000000000000..945caa21962f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+> @@ -0,0 +1,416 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Wormdingler board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+[...]
+> +
+> +/* PINCTRL - modifications to sc7180-trogdor.dtsi */
+> +
+> +/*
+> + * No eDP on this board but it's logically the same signal so just give it
+> + * a new name and assign the proper GPIO.
+> + */
+> +
+> +tp_en: &en_pp3300_dx_edp {
+> +       pinmux {
+> +               pins = "gpio85";
+> +               };
+
+Please add a newline here and deindent the "};" to match pinconf below.
+
+> +       pinconf {
+> +               pins = "gpio85";
+> +       };
+> +};
+> +
