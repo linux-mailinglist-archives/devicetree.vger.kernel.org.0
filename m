@@ -2,113 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17BE0511B5D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA95A51196F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:55:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234911AbiD0MvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 08:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36596 "EHLO
+        id S235111AbiD0NBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 09:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234905AbiD0Mu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:50:59 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E409726C846;
-        Wed, 27 Apr 2022 05:47:47 -0700 (PDT)
-Received: by mail-qk1-f174.google.com with SMTP id z126so1171854qkb.2;
-        Wed, 27 Apr 2022 05:47:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TMmGS6c32HL6vZEYBwhI0fq95j7k7//2c1xWGzdtpbM=;
-        b=H7q7vn3dsjrd57W/MJdUWX5gCFUekcXixX7qSzdILsAyraHNoeR4TJsKdvF5ScLqOk
-         3Hknm3FZpIrwpnSGnyEniQqhwef/UYgvSVDfPD8IiRGxge3sDxAQM+sLvlDu9KM9bCbW
-         gonPdRYn+1t29TJDGWb9tjmRWiUZeJbe4OlOX8d61WpqlEcXsdkmZgYGn7RkiWo17NNg
-         E2NSkp8aK8cN8/gWJD0Oj++HImEVoCsJALwZYLCXWAu8fVREMfO3vn0yOPcRC8QseCnB
-         +yrRaOVdZp7HQG6QSrptY1SsXW2E2YeH3a9jsh3YzUsHidsaNQGiBowVr23eZNNvwGbt
-         plhA==
-X-Gm-Message-State: AOAM532BK1ulZZfTfJ0Bh4j7ZWDf9sYfXKAcmieMUoyaMoNw4+C3B23t
-        nuaIaec4OD/QNtYWtfBD1SJ9DxaUEtv/XA==
-X-Google-Smtp-Source: ABdhPJzLwqZ0sa7Lrg2FzGercxa52XKA2EsYGkiDjWVk3jDd8LQvJeBkSqYe2ybgvOMwmL7sjocQAQ==
-X-Received: by 2002:a05:620a:d87:b0:67b:311c:ecbd with SMTP id q7-20020a05620a0d8700b0067b311cecbdmr16158763qkl.146.1651063666816;
-        Wed, 27 Apr 2022 05:47:46 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id 2-20020ac84e82000000b002f1f95ce5fbsm9968117qtp.3.2022.04.27.05.47.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 05:47:46 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2ef5380669cso17045617b3.9;
-        Wed, 27 Apr 2022 05:47:46 -0700 (PDT)
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr26953403ywb.132.1651063666063; Wed, 27
- Apr 2022 05:47:46 -0700 (PDT)
+        with ESMTP id S235076AbiD0NBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:01:48 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 417D12C6E10;
+        Wed, 27 Apr 2022 05:58:36 -0700 (PDT)
+X-UUID: 18f6b30eee0d4f45bfcdf202e41777c7-20220427
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:fb2ad7dd-64a7-4742-b634-438b1994c429,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:-20
+X-CID-META: VersionHash:faefae9,CLOUDID:25d9e82e-6199-437e-8ab4-9920b4bc5b76,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: 18f6b30eee0d4f45bfcdf202e41777c7-20220427
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 434883125; Wed, 27 Apr 2022 20:58:30 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 27 Apr 2022 20:48:02 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Apr 2022 20:48:02 +0800
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     John Crispin <john@phrozen.org>, Ryder Lee <ryder.lee@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>
+Subject: [PATCH 2/5] arm64: dts: mt7986: add spi related device nodes
+Date:   Wed, 27 Apr 2022 20:47:38 +0800
+Message-ID: <20220427124741.18245-3-sam.shih@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220427124741.18245-1-sam.shih@mediatek.com>
+References: <20220427124741.18245-1-sam.shih@mediatek.com>
 MIME-Version: 1.0
-References: <20220427095653.91804-1-miquel.raynal@bootlin.com> <20220427095653.91804-7-miquel.raynal@bootlin.com>
-In-Reply-To: <20220427095653.91804-7-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 27 Apr 2022 14:47:34 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXTHxrFHXbFRKQx-dX4z+0OLSZkV+BFGTBVPB_yCTVm-Q@mail.gmail.com>
-Message-ID: <CAMuHMdXTHxrFHXbFRKQx-dX4z+0OLSZkV+BFGTBVPB_yCTVm-Q@mail.gmail.com>
-Subject: Re: [PATCH v12 6/9] clk: renesas: r9a06g032: Probe possible children
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 11:57 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> The clock controller device on r9a06g032 takes all the memory range that
-> is described as being a system controller. This range contains many
-> different (unrelated?) registers besides the ones belonging to the clock
-> controller, that can necessitate to be accessed from other peripherals.
->
-> For instance, the dmamux registers are there. The dmamux "device" will
-> be described as a child node of the clock/system controller node, which
-> means we need the top device driver (the clock controller driver in this
-> case) to populate its children manually. In case of error when
-> populating the children, we do not fail the probe on purpose to keep the
-> clk driver up and running.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
+This patch adds spi support for MT7986.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 35 ++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 28 +++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 37 ++++++++++++++++++++
+ 3 files changed, 100 insertions(+)
 
-Gr{oetje,eeting}s,
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+index 5a1a605a7828..eb14e82d74b1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+@@ -26,6 +26,20 @@
+ };
+ 
+ &pio {
++	spi_flash_pins: spi-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi0", "spi0_wp_hold";
++		};
++	};
++
++	spic_pins: spic-pins {
++		mux {
++			function = "spi";
++			groups = "spi1_2";
++		};
++	};
++
+ 	uart1_pins: uart1-pins {
+ 		mux {
+ 			function = "uart";
+@@ -41,6 +55,27 @@
+ 	};
+ };
+ 
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi_flash_pins>;
++	cs-gpios = <0>, <0>;
++	status = "okay";
++	spi_nand: spi_nand@0 {
++		compatible = "spi-nand";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++		spi-tx-buswidth = <4>;
++		spi-rx-buswidth = <4>;
++	};
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spic_pins>;
++	cs-gpios = <0>, <0>;
++	status = "okay";
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+index 694acf8f5b70..069d3a9bdac9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+@@ -106,6 +106,34 @@
+ 			#clock-cells = <1>;
+ 		};
+ 
++		spi0: spi@1100a000 {
++			compatible = "mediatek,mt7986-spi-ipm", "mediatek,spi-ipm";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0 0x1100a000 0 0x100>;
++			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&topckgen CLK_TOP_MPLL_D2>,
++				 <&topckgen CLK_TOP_SPI_SEL>,
++				 <&infracfg CLK_INFRA_SPI0_CK>,
++				 <&infracfg CLK_INFRA_SPI0_HCK_CK>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk", "hclk";
++			status = "disabled";
++		};
++
++		spi1: spi@1100b000 {
++			compatible = "mediatek,mt7986-spi-ipm", "mediatek,spi-ipm";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0 0x1100b000 0 0x100>;
++			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&topckgen CLK_TOP_MPLL_D2>,
++				 <&topckgen CLK_TOP_SPIM_MST_SEL>,
++				 <&infracfg CLK_INFRA_SPI1_CK>,
++				 <&infracfg CLK_INFRA_SPI1_HCK_CK>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk", "hclk";
++			status = "disabled";
++		};
++
+ 		topckgen: topckgen@1001b000 {
+ 			compatible = "mediatek,mt7986-topckgen", "syscon";
+ 			reg = <0 0x1001B000 0 0x1000>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+index d73467ea3641..f159f1ac618b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+@@ -25,6 +25,43 @@
+ 	};
+ };
+ 
++&pio {
++	spi_flash_pins: spi-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi0", "spi0_wp_hold";
++		};
++	};
++
++	spic_pins: spic-pins {
++		mux {
++			function = "spi";
++			groups = "spi1_2";
++		};
++	};
++};
++
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi_flash_pins>;
++	cs-gpios = <0>, <0>;
++	status = "okay";
++	spi_nand: spi_nand@0 {
++		compatible = "spi-nand";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++		spi-tx-buswidth = <4>;
++		spi-rx-buswidth = <4>;
++	};
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spic_pins>;
++	cs-gpios = <0>, <0>;
++	status = "okay";
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+-- 
+2.18.0
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
