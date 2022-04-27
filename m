@@ -2,111 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 453F15124B1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 908075124B3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:44:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237472AbiD0VrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 17:47:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56500 "EHLO
+        id S237475AbiD0Vra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 17:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234153AbiD0VrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:47:01 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9736F6462;
-        Wed, 27 Apr 2022 14:43:49 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id j17so2630892pfi.9;
-        Wed, 27 Apr 2022 14:43:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=du/c2vhq3VYi9SfdNIrPwaHRFuDCP1aHXk3ODWglX9k=;
-        b=YQsKFg1Y7ZeHToCxOw0GkIM/UDfcd904RmCWkma042dDiM28qwwOTf7HHy4/M87XhK
-         xzGSrPWcuSMjC0RxpCBt3IZuCeowxcsrlzSlfzERsx3RZc8wEWQghLftczcTVqzjrob0
-         9lJeng5YAMpP5Z66v8sTG7AOIR0U93xiFwX//gBkSOAPff/6BYcTQKM750qP5GO+tfOE
-         tHOYHETfmGkuhM7xlZflLLhoncoCiGo62SIbykh81XvrzKqYeTlaHHYAP0EVDpHLrsBH
-         OXxaeTwqGKUCIeMx8Wo7MTM1kMj6Bd07+yFCpl3Ojkzf+3CoL5TeGW9iNAgzR6/pHIgI
-         efCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=du/c2vhq3VYi9SfdNIrPwaHRFuDCP1aHXk3ODWglX9k=;
-        b=ui0HGwgoHmFsVHm9B1X7tDFwwF7QS1023g+6aGM04cRvRPIZ20/0MsM1hQhz8uWz+l
-         R99EbXsZ17mY38QJWtNFhYWQJCovKDyoyzPgNGHng1jGvu2P59KcKrnbTZApekMr3sxR
-         Wo0LBzgl6Va6ZjuH/1MUwUV/00T3YsmBsg2u/fdA+uMter2TvPcsZmCLvBROnZ1DpUqx
-         alhWgqStV3iwD+OXtGECqJwimjTcE/InsVBDT028HravGLwBsiuawiwOK91/D1JiC2Xi
-         OH4NHxsyNjxsDupeAitYyPoVpCs7gPGHTc8Luxdl1kaX6uFjDs2BYE4uoMcGQPDflncx
-         iIHA==
-X-Gm-Message-State: AOAM532x/aEIqzQdoSTxBKm4pfIy64qgycBRiTnqFhwxjRWdJroo2fyL
-        WMm5xgjaJzMZIJSJmBIn8N4=
-X-Google-Smtp-Source: ABdhPJzDqf4wmmACwNJoB16cZAuIolvX5v6xhuvwrSnwo5GaUZ57N3EQLaB9pKF/9o1j5SOgfNFlbg==
-X-Received: by 2002:a63:f058:0:b0:3c1:42e9:eb40 with SMTP id s24-20020a63f058000000b003c142e9eb40mr4936551pgj.236.1651095829006;
-        Wed, 27 Apr 2022 14:43:49 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id y9-20020a17090a1f4900b001cd498dc153sm8015432pjy.3.2022.04.27.14.43.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 14:43:48 -0700 (PDT)
-Message-ID: <96eef806-72df-71bc-8abb-70c26e947b3d@gmail.com>
-Date:   Wed, 27 Apr 2022 14:43:46 -0700
+        with ESMTP id S234217AbiD0Vr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:47:29 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369A96F9D9;
+        Wed, 27 Apr 2022 14:44:16 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id ACF4422249;
+        Wed, 27 Apr 2022 23:44:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1651095855;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=yuw6ibN9HAScxt+7YnLDUvnWFI0/6cH4XqlnH+83wL8=;
+        b=UiqNIOiKsh3pp7R8B0j+n10TTvXSReWpYvBQUnq8abWzNCi52RPgRf2Whcbo8LmT0YYHR3
+        wjRYa0HrAxE0Re8LfWkFvegQypVyoTcgKit9MBUJm3YhWi5AKspolShE9JO0VU62lbDFq6
+        peygjg+TCQzT+729BeKwhvLlvVodD60=
+From:   Michael Walle <michael@walle.cc>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
+Subject: [PATCH net-next v1 0/3] net: phy: micrel: add coma mode support
+Date:   Wed, 27 Apr 2022 23:44:03 +0200
+Message-Id: <20220427214406.1348872-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 2/4] mmc: sdhci-brcmstb: Enable Clock Gating to save
- power
-Content-Language: en-US
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, adrian.hunter@intel.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220427180853.35970-1-kdasu.kdev@gmail.com>
- <20220427180853.35970-3-kdasu.kdev@gmail.com>
- <CAPDyKFrW7DHzc32BYE5ZiPdOdMWqGo1ch4CZZHaM1jVNjpvpWw@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <CAPDyKFrW7DHzc32BYE5ZiPdOdMWqGo1ch4CZZHaM1jVNjpvpWw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/27/22 14:39, Ulf Hansson wrote:
-> On Wed, 27 Apr 2022 at 20:09, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
->>
->> From: Al Cooper <alcooperx@gmail.com>
->>
->> Enabling this feature will allow the controller to stop the bus
->> clock when the bus is idle. The feature is not part of the standard
->> and is unique to newer Arasan cores and is enabled with a bit in a
->> vendor specific register. This feature will only be enabled for
->> non-removable devices because they don't switch the voltage and
->> clock gating breaks SD Card volatge switching.
-> 
-> Rather than using a HW specific thing for this, it may be better to
-> use runtime PM. There are plenty of examples to get inspired from, so
-> it should be rather easy to implement, I think. More importantly, it
-> should work for both (e)MMC and SD cards, unless there are some
-> specific things to manage for this controller.
-> 
-> When it comes to SDIO, some driver simply bumps the runtime PM usage
-> count (pm_runtime_get_noresume()) to prevent the device from being
-> runtime suspended. There are ways to work around this, let me know if
-> you need some guidance around how to fix that too.
-> 
-> That said, I am not entirely opposed to $subject patch, but I wanted
-> to point out that there are better alternatives.
+Add support to disable coma mode by a GPIO line.
 
-This is a good suggestion, I would not consider runtime PM and enabling 
-the clock gating as being alternatives to one another, but rather 
-complementary.
+Michael Walle (3):
+  dt-bindings: net: micrel: add coma-mode-gpios property
+  net: phy: micrel: move the PHY timestamping check
+  net: phy: micrel: add coma mode GPIO
+
+ .../devicetree/bindings/net/micrel.txt        |  9 ++++++
+ drivers/net/phy/micrel.c                      | 32 ++++++++++++++++---
+ 2 files changed, 37 insertions(+), 4 deletions(-)
+
 -- 
-Florian
+2.30.2
+
