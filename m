@@ -2,74 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB00151157C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AADD65115F6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231521AbiD0LFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 07:05:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49586 "EHLO
+        id S232624AbiD0LIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 07:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbiD0LDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:03:33 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9918428541F
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 03:53:04 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id x33so2461618lfu.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 03:53:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/MDg5A9f9rvXZp1xmjZTzHZIeAwlmtx2mQRfLrQsy7E=;
-        b=pIfuPJr7nqblgDaRQ4dMb03d0stbXtuCVITICOO7D+Sw4d+0uljC/gJd1LCHv7Wm9B
-         y2F0N82TJJBYu0rQaIMQKnpmzGNTPTX5A+GLOyh8RADJXlYzT/kGOqQhs7QPP6GHlFJ5
-         kmLGvEhadsTzLtWOODP2aBnJUHIf7Hk/jn1ipAPo0UhWS72L3ZzXTQ+w41iM/nmLTfl8
-         wmzpzsg2qFyv1MxvPC3mFzATo055/Ji8SfudiSp05BcwrRzxyyN/sgMAt6+nNg/dWo5X
-         nzaD0OWmvYHrz0atobccvico61skaUsgrUdBzgcJP3W3slbs/JsbPCWA0WzOuMTUYJcg
-         Qwhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/MDg5A9f9rvXZp1xmjZTzHZIeAwlmtx2mQRfLrQsy7E=;
-        b=8RgWlOWUOkRanW2snh8q4uK7bqlxtKK/YRq0LHZ13Pbz5chLWYa6kPwIYz2Dcrv4TI
-         7WbGiXeCBnN/4zt06QFqQ9xU/BEgITNo+RxmEZR3fmUd9aDWVT+Dn0X5CFxXvfxQq+P+
-         sA5vC8AlE5HxopeDG/9kJR7dOmm4I5ZoaBMjZpyJybxmQAgmfDYjRaPXroJz3g6XinMY
-         EUq1bL5+YSA+jM+hfGfIAXEl8GCJ0VxQsO6YPbEidEyADDzn3yUrG2kmAfbQBtzCwF0X
-         LixJjlvOhIV7P1HSDvpAq6bz4LoF3NAhI0JJ2gwzkg6PbZMylMMXcerPTiQvZdYLf1TR
-         /cyg==
-X-Gm-Message-State: AOAM533AW2xW5FBFT5w1n781VcOfNN1d9z9LiEu3lFnR/bNq5ps2ZG57
-        m2VRFJ+FmVeiZkup2jtQhb7VAA==
-X-Google-Smtp-Source: ABdhPJzYAmcUZabicyvLvDv5FdlC1iUQgJ59NCULUae//BS2fAbM2zBP4v+0xt14oQfazbKVtV3ERA==
-X-Received: by 2002:ac2:4add:0:b0:471:fc6d:a71d with SMTP id m29-20020ac24add000000b00471fc6da71dmr14050863lfp.350.1651056782925;
-        Wed, 27 Apr 2022 03:53:02 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c6-20020a19e346000000b0046b8aac6e16sm2022462lfk.26.2022.04.27.03.53.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 03:53:02 -0700 (PDT)
-Message-ID: <e20d94d7-a865-21f7-0514-706992294614@linaro.org>
-Date:   Wed, 27 Apr 2022 13:53:01 +0300
+        with ESMTP id S232555AbiD0LHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:07:55 -0400
+X-Greylist: delayed 434 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 27 Apr 2022 04:01:48 PDT
+Received: from smtp108.ord1d.emailsrvr.com (smtp108.ord1d.emailsrvr.com [184.106.54.108])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02AC5A2F1
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 04:01:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mev.co.uk;
+        s=20190130-41we5z8j; t=1651056871;
+        bh=ddNlq5a2SOtmxvXApNEVeoZ2XeV9vzsOaLURDCY5Qwo=;
+        h=From:To:Subject:Date:From;
+        b=CVZgAGVEPeKwnPqIFQt62LxJQyN9C2ner9d547kxW3nsR6xV3qHWa00lQXZh+WBqv
+         0LFutu6QbOqzQLOO963fWypXGPPqreDgkgsPE4YCMbo1mQ3xcY1fXbAGTY9S15zhcv
+         Ccv1jetlEEkauYkvCa9nJeZ1YEUoQ8/35tWWKHR8=
+X-Auth-ID: abbotti@mev.co.uk
+Received: by smtp6.relay.ord1d.emailsrvr.com (Authenticated sender: abbotti-AT-mev.co.uk) with ESMTPSA id 96A9BE00E8;
+        Wed, 27 Apr 2022 06:54:30 -0400 (EDT)
+From:   Ian Abbott <abbotti@mev.co.uk>
+To:     stable@vger.kernel.org
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 5.15 0/2] ARM: socfpga: fix broken QuadSPI support
+Date:   Wed, 27 Apr 2022 11:54:05 +0100
+Message-Id: <20220427105407.40167-1-abbotti@mev.co.uk>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH] drm/msm/disp/dpu1: avoid clearing hw interrupts if
- hw_intr is null during drm uninit
-Content-Language: en-GB
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, quic_kalyant@quicinc.com
-References: <1650952931-31988-1-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAE-0n52cSR_xCxF+_UeK8CaHqsu=4HOtfWQ3BMmx2Tx3kmk-ZA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Classification-ID: 3bf3f977-eed8-458c-82a7-dc4c605c474d-1-1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,71 +47,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 00:50, Stephen Boyd wrote:
-> Quoting Vinod Polimera (2022-04-25 23:02:11)
->> Avoid clearing irqs and derefernce hw_intr when hw_intr is null.
-> 
-> Presumably this is only the case when the display driver doesn't fully
-> probe and something probe defers? Can you clarify how this situation
-> happens?
-> 
->>
->> BUG: Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
->>
->> Call trace:
->>   dpu_core_irq_uninstall+0x50/0xb0
->>   dpu_irq_uninstall+0x18/0x24
->>   msm_drm_uninit+0xd8/0x16c
->>   msm_drm_bind+0x580/0x5fc
->>   try_to_bring_up_master+0x168/0x1c0
->>   __component_add+0xb4/0x178
->>   component_add+0x1c/0x28
->>   dp_display_probe+0x38c/0x400
->>   platform_probe+0xb0/0xd0
->>   really_probe+0xcc/0x2c8
->>   __driver_probe_device+0xbc/0xe8
->>   driver_probe_device+0x48/0xf0
->>   __device_attach_driver+0xa0/0xc8
->>   bus_for_each_drv+0x8c/0xd8
->>   __device_attach+0xc4/0x150
->>   device_initial_probe+0x1c/0x28
->>
->> Fixes: a73033619ea ("drm/msm/dpu: squash dpu_core_irq into dpu_hw_interrupts")
-> 
-> The fixes tag looks odd. In dpu_core_irq_uninstall() at that commit it
-> is dealing with 'irq_obj' which isn't a pointer. After commit
-> f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct
-> dpu_hw_intr") dpu_core_irq_uninstall() starts using 'hw_intr' which is
-> allocated on the heap. If we backported this patch to a place that had
-> a73033619ea without f25f656608e3 it wouldn't make any sense.
+Write support on the Cadence QSPI controller on the Intel SoCFPGA
+platform was broken by 9cb2ff111712 ("spi: cadence-quadspi: Disable
+Auto-HW polling) and fixed by 98d948eb8331 ("spi: cadence-quadspi: fix
+write completion support") and 36de991e9390 ("ARM: dts: socfpga: change
+qspi to "intel,socfpga-qspi").
 
-I'd agree here. The following tag would be correct:
+1) spi: cadence-quadspi: fix write completion support
+2) ARM: dts: socfpga: change qspi to "intel,socfpga-qspi"
 
-Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct 
-dpu_hw_intr")
+ arch/arm/boot/dts/socfpga.dtsi                    |  2 +-
+ arch/arm/boot/dts/socfpga_arria10.dtsi            |  2 +-
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi |  2 +-
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi     |  2 +-
+ drivers/spi/spi-cadence-quadspi.c                 | 24 ++++++++++++++++++++---
+ 5 files changed, 25 insertions(+), 7 deletions(-)
 
-
-> 
->> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
->> ---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
->> index c515b7c..ab28577 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
->> @@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
->>   {
->>          int i;
->>
->> +       if (!dpu_kms->hw_intr)
->> +               return;
->> +
->>          pm_runtime_get_sync(&dpu_kms->pdev->dev);
->>          for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
-
-
--- 
-With best wishes
-Dmitry
