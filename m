@@ -2,121 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA754510F8E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 05:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E3CC510FC3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 05:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356588AbiD0Dew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 23:34:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57966 "EHLO
+        id S1357092AbiD0EBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 00:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241363AbiD0Dev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 23:34:51 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044183E5FD;
-        Tue, 26 Apr 2022 20:31:39 -0700 (PDT)
-X-UUID: 61da1a5d0516438bb599e74421a5e0f2-20220427
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:00822b95-e747-4fa7-a0a4-34dcb58f2ebe,OB:0,LO
-        B:0,IP:0,URL:8,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:-12
-X-CID-META: VersionHash:faefae9,CLOUDID:50cd9cc6-85ee-4ac1-ac05-bd3f1e72e732,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 61da1a5d0516438bb599e74421a5e0f2-20220427
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1514958782; Wed, 27 Apr 2022 11:31:34 +0800
-Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 27 Apr 2022 11:31:33 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 27 Apr 2022 11:31:33 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Apr 2022 11:31:32 +0800
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>
-CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        with ESMTP id S1357595AbiD0EBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 00:01:05 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DFA471A07;
+        Tue, 26 Apr 2022 20:57:55 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 23R3gS9v032326;
+        Wed, 27 Apr 2022 11:42:28 +0800 (GMT-8)
+        (envelope-from dylan_hung@aspeedtech.com)
+Received: from DylanHung-PC.aspeed.com (192.168.2.216) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Apr
+ 2022 11:54:58 +0800
+From:   Dylan Hung <dylan_hung@aspeedtech.com>
+To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <p.zabel@pengutronix.de>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2] dt-bindings: media: mtk-vcodec: Adds encoder power domain property
-Date:   Wed, 27 Apr 2022 11:31:30 +0800
-Message-ID: <20220427033130.18497-1-irui.wang@mediatek.com>
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <krzk+dt@kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [PATCH net-next v6 0/3] Add reset deassertion for Aspeed MDIO
+Date:   Wed, 27 Apr 2022 11:54:58 +0800
+Message-ID: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+X-Originating-IP: [192.168.2.216]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 23R3gS9v032326
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds encoder power domain property.
+Add missing reset deassertion for Aspeed MDIO bus controller. The reset
+is asserted by the hardware when power-on so the driver only needs to
+deassert it. To be able to work with the old DT blobs, the reset is
+optional since it may be deasserted by the bootloader or the previous
+kernel.
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
----
-changes compared with v1:
-- set "power-domains" as a non-required property
+V6:
+- fix merge conflict for net-next
 
-The 'make dtbs_check' warnings('mediatek,larb') can be fixed by patch:
-https://patchwork.kernel.org/project/linux-mediatek/list/?series=633993
----
- .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml  | 6 ++++++
- 1 file changed, 6 insertions(+)
+V5:
+- fix error of dt_binding_check
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-index deb5b657a2d5..2d1e0c9bd6ee 100644
---- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-@@ -41,6 +41,9 @@ properties:
- 
-   assigned-clock-parents: true
- 
-+  power-domains:
-+    maxItems: 1
-+
-   iommus:
-     minItems: 1
-     maxItems: 32
-@@ -132,6 +135,7 @@ examples:
-     #include <dt-bindings/clock/mt8173-clk.h>
-     #include <dt-bindings/memory/mt8173-larb-port.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/mt8173-power.h>
- 
-     vcodec_enc_avc: vcodec@18002000 {
-       compatible = "mediatek,mt8173-vcodec-enc";
-@@ -153,6 +157,7 @@ examples:
-       clock-names = "venc_sel";
-       assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
-       assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
-+      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC>;
-     };
- 
-     vcodec_enc_vp8: vcodec@19002000 {
-@@ -173,4 +178,5 @@ examples:
-       clock-names = "venc_lt_sel";
-       assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
-       assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL_370P5>;
-+      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC_LT>;
-     };
+V4:
+- use ASPEED_RESET_MII instead of hardcoding in dt-binding example
+
+V3:
+- remove reset property from the required list of the device tree
+  bindings
+- remove "Cc: stable@vger.kernel.org" from the commit messages
+- add more description in the commit message of the dt-binding
+
+V2:
+- add reset property in the device tree bindings
+- add reset assertion in the error path and driver remove
+
+Dylan Hung (3):
+  dt-bindings: net: add reset property for aspeed, ast2600-mdio binding
+  net: mdio: add reset control for Aspeed MDIO
+  ARM: dts: aspeed: add reset properties into MDIO nodes
+
+ .../bindings/net/aspeed,ast2600-mdio.yaml         |  6 ++++++
+ arch/arm/boot/dts/aspeed-g6.dtsi                  |  4 ++++
+ drivers/net/mdio/mdio-aspeed.c                    | 15 ++++++++++++++-
+ 3 files changed, 24 insertions(+), 1 deletion(-)
+
 -- 
-2.18.0
+2.25.1
 
