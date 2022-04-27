@@ -2,104 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F6A51134F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 10:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46C05511365
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 10:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356055AbiD0IOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 04:14:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45988 "EHLO
+        id S1346787AbiD0IWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 04:22:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359346AbiD0IOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 04:14:47 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE4C25C5E;
-        Wed, 27 Apr 2022 01:11:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651047097; x=1682583097;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6eM5e62oXAvLaa18gkB8bzP55Ven4At3wrVREaGjxkI=;
-  b=Qh7VFSIEpIlWRDmmZG4/Qez7fs7YAdUTtOSHuUfKIsmSp0TdlxMlnuJm
-   5gPyPL9D2hGgiRoPZSdPR6EYQhPNmE5XnJAWSottnCvyLBLGdBZdfzdAn
-   3uyrdp6nLpjub9cSNtadTuWMjNav4XK7iRRseItMJr0jiXcO5DRkWkSKR
-   /522ZJV3fi88hoZ8znUP3LoNJyXgZlXXcScZ5GRdxLGHgT14K/1LXjnhc
-   uz4T/ZJ8UApliZMC4dZ8DGZegXmvCzVyAubpOyFl8zvd7i2lb9ZuTXYvc
-   XhB9WfhACzQTPCrFqZXVuN0WexDNwVeuYs1zB3dbuIfTk5n0zkP64H4hT
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265381666"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
-   d="scan'208";a="265381666"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 01:11:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
-   d="scan'208";a="564976596"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 27 Apr 2022 01:11:33 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1njclo-0004VD-JD;
-        Wed, 27 Apr 2022 08:11:32 +0000
-Date:   Wed, 27 Apr 2022 16:10:37 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andrea Merello <andrea.merello@gmail.com>, jic23@kernel.org,
-        mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, lars@metafoo.de, robh+dt@kernel.org,
-        andy.shevchenko@gmail.com, matt.ranostay@konsulko.com,
-        ardeleanalex@gmail.com, jacopo@jmondi.org,
-        Andrea Merello <andrea.merello@iit.it>
-Subject: Re: [v5 12/14] iio: imu: add BNO055 serdev driver
-Message-ID: <202204271554.EiuIRNPI-lkp@intel.com>
-References: <20220426131102.23966-13-andrea.merello@gmail.com>
+        with ESMTP id S1344335AbiD0IWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 04:22:32 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6E6326D9;
+        Wed, 27 Apr 2022 01:19:21 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id s27so1659704ljd.2;
+        Wed, 27 Apr 2022 01:19:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=thO53jrsOAs+etGPIDbDDOLCF7ipiCwZm4mRmJqCtTU=;
+        b=Qa5dd+ssUqh50/ykcVuGzQ8zbSJEJxchFGwT3Tvcbz/NHtln6T+aFY/sqp47SQx/jH
+         4mw9ChFNbEMUMEwzUNJu5RS3YllnXrxxLfEE5NzghfAJgOmBqk1+8ycZbE8DB6NjW7nF
+         1Qkk8a4zimYUGHHk2Nx4cOMyQPpG3V/utIeolahqKQ7N4bdx3HdQFYYo3OsrWTqVgpqr
+         SSENCdF469BqR4yAxwTqKR+HqbJ/S9eySykyUrcIsNk93CBbprxlGGRnrrPiymDFJw4B
+         0wxLdD/eXmHZ3m3wPOxnN8leLYjVcnal3bdPqJ9gROy+kuefDyC0mNg0dnlnsQs4rNMR
+         jX7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=thO53jrsOAs+etGPIDbDDOLCF7ipiCwZm4mRmJqCtTU=;
+        b=h3Te5Vu4fRstGBGE9zbx0yPsMXXe1EsMiqnir63yTW9kdYaTtcrMzRyalLmK4YnF5E
+         qm8CFLAvDmjvXnnPgJAv4DPd2XBT2cxb987K0a1JKE9mHWmnkjI4EJVuniyZfhSfW4Tq
+         +Q6zCBR7ZLhRKDxTU+Uv2n7jvW8rSLKsF2F5D4Ge8jjzDJgaBZhRFqgVg+J4pCf5Efol
+         5ENmslsYtk8wwDDHdR6jVHCePc8Nzzw7GA1/EkFCYN1O1glxP9yWvr/zPAoljApor4vf
+         nUmEdhFDsQaVOrHEbGB0An09S5itpgkyrEu+yHFAAOzZxCUyG5SRK9LT7FmbuTl64E0F
+         Wa1w==
+X-Gm-Message-State: AOAM530g2azWF7KWAxzoM3RGHckH1+itIT4gEMjX/5l0tp43GMb+1Ypo
+        DCqWpKUe6pNC2HJptm7LMeaXdaDkwj3L8c6tzNH4CQ==
+X-Google-Smtp-Source: ABdhPJzuhkG2f1JAG17NHqxFNJHSMDgu1TKiTs+OPWZDKu3CRibtIRuGxBP8IDLhZMA/92nljuamVw==
+X-Received: by 2002:a2e:8ec6:0:b0:24f:e8c:230f with SMTP id e6-20020a2e8ec6000000b0024f0e8c230fmr11085538ljl.530.1651047559622;
+        Wed, 27 Apr 2022 01:19:19 -0700 (PDT)
+Received: from shc.milas.spb.ru ([188.243.217.78])
+        by smtp.gmail.com with ESMTPSA id y10-20020a2e978a000000b0024f17b6db32sm526092lji.97.2022.04.27.01.19.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Apr 2022 01:19:19 -0700 (PDT)
+From:   Alexander Shiyan <eagle.alexander923@gmail.com>
+To:     linux-omap@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexander Shiyan <eagle.alexander923@gmail.com>
+Subject: [PATCH 1/2] ARM: dts: am335x-myirtech: Add an external clock oscillator for CPU RTC
+Date:   Wed, 27 Apr 2022 11:19:13 +0300
+Message-Id: <20220427081914.6773-1-eagle.alexander923@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220426131102.23966-13-andrea.merello@gmail.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrea,
+The CPU RTC has an external crystal, so to keep time, let's define
+it for devicetree.
 
-Thank you for the patch! Yet something to improve:
+Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
+---
+ arch/arm/boot/dts/am335x-myirtech-myc.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-[auto build test ERROR on jic23-iio/togreg]
-[also build test ERROR on linus/master linux/master v5.18-rc4 next-20220426]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Andrea-Merello/Add-support-for-Bosch-BNO055-IMU/20220426-212132
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220427/202204271554.EiuIRNPI-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/675ca9cd13af45cc5943dd15caad5e866fd7c971
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Andrea-Merello/Add-support-for-Bosch-BNO055-IMU/20220426-212132
-        git checkout 675ca9cd13af45cc5943dd15caad5e866fd7c971
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> make[5]: *** No rule to make target 'drivers/iio/imu/bno055/bno055_ser_trace.o', needed by 'drivers/iio/imu/bno055/built-in.a'.
-   make[5]: Target '__build' not remade because of errors.
-
+diff --git a/arch/arm/boot/dts/am335x-myirtech-myc.dtsi b/arch/arm/boot/dts/am335x-myirtech-myc.dtsi
+index 245c35f41cdf..d94e096983c7 100644
+--- a/arch/arm/boot/dts/am335x-myirtech-myc.dtsi
++++ b/arch/arm/boot/dts/am335x-myirtech-myc.dtsi
+@@ -27,6 +27,13 @@ memory@80000000 {
+ 		reg = <0x80000000 0x10000000>;
+ 	};
+ 
++	clk32k: clk32k {
++		compatible = "fixed-clock";
++		clock-frequency = <32768>;
++
++		#clock-cells = <0>;
++	};
++
+ 	vdd_mod: vdd_mod_reg {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vdd-mod";
+@@ -149,6 +156,8 @@ eeprom: eeprom@50 {
+ };
+ 
+ &rtc {
++	clocks = <&clk32k>;
++	clock-names = "ext-clk";
+ 	system-power-controller;
+ };
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.32.0
+
