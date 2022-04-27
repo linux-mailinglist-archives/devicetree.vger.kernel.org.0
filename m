@@ -2,135 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51952511B08
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB9E511B64
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234664AbiD0Mvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 08:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39312 "EHLO
+        id S234689AbiD0MwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 08:52:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234615AbiD0Mvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:51:39 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391BC26C863;
-        Wed, 27 Apr 2022 05:48:23 -0700 (PDT)
-X-UUID: 5917b268006e45f1976d8b434ea000c7-20220427
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:9e99f4f5-d715-4c70-b744-26556485b26a,OB:10,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:100
-X-CID-INFO: VERSION:1.1.4,REQID:9e99f4f5-d715-4c70-b744-26556485b26a,OB:10,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,A
-        CTION:quarantine,TS:100
-X-CID-META: VersionHash:faefae9,CLOUDID:36a5b0c6-85ee-4ac1-ac05-bd3f1e72e732,C
-        OID:414e160774dc,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 5917b268006e45f1976d8b434ea000c7-20220427
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 224945697; Wed, 27 Apr 2022 20:48:16 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 27 Apr 2022 20:48:15 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Apr 2022 20:48:15 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     John Crispin <john@phrozen.org>, Ryder Lee <ryder.lee@kernel.org>,
-        "Sam Shih" <sam.shih@mediatek.com>, Vic Wu <vic.wu@mediatek.com>
-Subject: [PATCH 5/5] arm64: dts: mt7986: add crypto related device nodes
-Date:   Wed, 27 Apr 2022 20:47:41 +0800
-Message-ID: <20220427124741.18245-6-sam.shih@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220427124741.18245-1-sam.shih@mediatek.com>
-References: <20220427124741.18245-1-sam.shih@mediatek.com>
+        with ESMTP id S234698AbiD0MwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:52:12 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E5EE2BD004;
+        Wed, 27 Apr 2022 05:49:01 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id y3so995468qtn.8;
+        Wed, 27 Apr 2022 05:49:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WFUJPZyPa9jMX7ykKlKZoQbCP5YOPmzPXfT2p0KFBPE=;
+        b=k8Ez6K8RUWcU4bx2QX3wcSVv6oOPCJn3a2uPw04OFoTLctf23HeG2YW4othPi4pPqf
+         mT7RlRW0MK2jY1Sa7TxzL1J1JKo4bmiLYgpU8rPkBrQ+KlFVKni4p/uQsBh83khjmhwA
+         9bHGhTVJQRCqU9w8s43OePXVU3HcCNihvSvJ4/acFJ0+IEpqTjv3g7rq2NJ95mjYsf73
+         C1WuHvIPRbb2EyFf3/H4PMA2znnENEUtpT3ZFP1aN+t6VP59H+qJ5Zahn/WM9+az8oM7
+         M6A1Q2Zkp2xe/lQcuEA6BVAvHY6NtWtqKjny3TlTYPzKyxR3RXaGRBvZ3VK2m6jEwQBL
+         JHcg==
+X-Gm-Message-State: AOAM530kfhdTY15br4arE+YAwX7Z7gWIeK1HtTEKYNQopD7f6vDF9NvD
+        oMdKvPzGnkVvhcUpxvNXXUdzsUMa6sYR5g==
+X-Google-Smtp-Source: ABdhPJwcfFaRxVSdLx0cIC41PNuM+zRikrE0GGcgEeLiqICv++Ke37bBlEgBd9LM3FKSEy287CZKoA==
+X-Received: by 2002:ac8:5f8d:0:b0:2f3:3f9a:d5bb with SMTP id j13-20020ac85f8d000000b002f33f9ad5bbmr18756730qta.314.1651063740304;
+        Wed, 27 Apr 2022 05:49:00 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id h14-20020a05620a21ce00b0069e8c2d2bd9sm7703108qka.42.2022.04.27.05.48.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 05:49:00 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-2f83983782fso17177167b3.6;
+        Wed, 27 Apr 2022 05:48:59 -0700 (PDT)
+X-Received: by 2002:a81:e10d:0:b0:2f7:bb2a:6529 with SMTP id
+ w13-20020a81e10d000000b002f7bb2a6529mr23587238ywh.62.1651063739499; Wed, 27
+ Apr 2022 05:48:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220427095653.91804-1-miquel.raynal@bootlin.com> <20220427095653.91804-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20220427095653.91804-3-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 14:48:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUJOXwsFYTsMv9K+0MnJRnB5q7z4T52=yP_BVS8om6CBQ@mail.gmail.com>
+Message-ID: <CAMuHMdUJOXwsFYTsMv9K+0MnJRnB5q7z4T52=yP_BVS8om6CBQ@mail.gmail.com>
+Subject: Re: [PATCH v12 2/9] dt-bindings: clock: r9a06g032-sysctrl: Reference
+ the DMAMUX subnode
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds crypto engine support for MT7986.
+On Wed, Apr 27, 2022 at 11:57 AM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+> This system controller contains several registers that have nothing to
+> do with the clock handling, like the DMA mux register. Describe this
+> part of the system controller as a subnode.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Stephen Boyd <sboyd@kernel.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Signed-off-by: Vic Wu <vic.wu@mediatek.com>
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  4 ++++
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 15 +++++++++++++++
- arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts |  4 ++++
- 3 files changed, 23 insertions(+)
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-index de6475078568..714a4e73fe0b 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-@@ -43,6 +43,10 @@
- 	};
- };
- 
-+&crypto {
-+	status = "okay";
-+};
-+
- &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_pins>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index ff685900baa4..6de9b941a513 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -200,6 +200,21 @@
- 			status = "disabled";
- 		};
- 
-+		crypto: crypto@10320000 {
-+			compatible = "inside-secure,safexcel-eip97";
-+			reg = <0 0x10320000 0 0x40000>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "ring0", "ring1", "ring2", "ring3";
-+			clocks = <&infracfg CLK_INFRA_EIP97_CK>;
-+			clock-names = "infra_eip97_ck";
-+			assigned-clocks = <&topckgen CLK_TOP_EIP_B_SEL>;
-+			assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>;
-+			status = "disabled";
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt7986-uart",
- 				     "mediatek,mt6577-uart";
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-index 6bd477e1f484..d4078feb4aad 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-@@ -43,6 +43,10 @@
- 	};
- };
- 
-+&crypto {
-+	status = "okay";
-+};
-+
- &pio {
- 	spi_flash_pins: spi-flash-pins {
- 		mux {
--- 
-2.18.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
