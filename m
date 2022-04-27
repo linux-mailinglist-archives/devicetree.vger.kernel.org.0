@@ -2,136 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D64B51103D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 06:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BACA51106B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 07:14:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357726AbiD0Eoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 00:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38708 "EHLO
+        id S1357825AbiD0FRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 01:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357725AbiD0Eog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 00:44:36 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26EE12AAC;
-        Tue, 26 Apr 2022 21:41:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651034486; x=1682570486;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=FOoMj3CV1xNcLvj1+jF+2iIlIlqLKQAJc7bxju62e08=;
-  b=FMTrDcHA4gpSwzb6YlspJC5c2rc83Q+i31lVeyOyZvV3bcuH+n8Q6CPP
-   B57pCnsVPuA/5ck81v4LLcDsF0A5qH9ycPAE3qFek2pCqRmVaFFZkqrcn
-   j+EHJkwubWkVq+pYP8WXfg2oxckiO7IRko2DhuH4KdiLAbn1hc5ZLr2Ce
-   KtY/ZTkT9vdWfOYXcLsw2+ueNIjtMJuES7u8dH9ejl+mbuT/tcuVgYM9e
-   FNKuB70fVRKHXHzB5UXa5kY4jvOlZB1fRGmIS2uhy0aBJfGnNfGsMpWZP
-   cik78XRVC0rfWrPTgI/aln4SSw5E7oP6aBB49oMMrKV4AYTRK6DHH6ndh
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265621348"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
-   d="scan'208";a="265621348"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 21:41:09 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
-   d="scan'208";a="580363700"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.60.122])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 21:41:06 -0700
-Message-ID: <7ef5d473-a3ce-c66e-df33-14c4e91596e2@intel.com>
-Date:   Wed, 27 Apr 2022 07:41:02 +0300
+        with ESMTP id S1344747AbiD0FRF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 01:17:05 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D06A6E39;
+        Tue, 26 Apr 2022 22:13:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 29E26B824B1;
+        Wed, 27 Apr 2022 05:13:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68845C385A9;
+        Wed, 27 Apr 2022 05:13:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651036432;
+        bh=xTF+yKrSWLuvuV03D2dhdn9f/P9hF8bFAdNp1Z38lbw=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=L40PUmY8eS9XKJ0DrkX15ae7Jyw+cxpol+DixnLYhrMkGZDLXv6drWamCka/bYuY2
+         SCib48ZyLvuyWFUxlcmJBiwdkNq7bQ5CEqsoYxIWrhtDWlwZjwVDJgCMZ3So5q6B2r
+         Rx46AvJe7VFdY7D/S9ameshBz3NB2DM/sW+JmZZQCiCSHFY430znzGkWAgvvz92UTA
+         NJ3LcsG3q53fqQKYZENCr6x5w6hDtnckqXXJhA1cWWKpMyqvNRSbkXG/XxooPwu98g
+         HtsR0AMHE92dy51rZttgIVHFaa5jJe3UclOdhE0LkraEnhnF9BFciHl5q2Upwo0DhY
+         IWd5CjyJP+TWw==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     Rob Herring <robh@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <mka@chromium.org>, <ath11k@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 01/12] dt: bindings: net: add bindings of WCN6750 for ath11k
+References: <20220406094107.17878-1-quic_mpubbise@quicinc.com>
+        <20220406094107.17878-2-quic_mpubbise@quicinc.com>
+        <Yk2s+srO9DKP7xW1@robh.at.kernel.org>
+        <e2fd6542-38fe-a855-1d8f-65799970727e@quicinc.com>
+Date:   Wed, 27 Apr 2022 08:13:47 +0300
+In-Reply-To: <e2fd6542-38fe-a855-1d8f-65799970727e@quicinc.com> (Manikanta
+        Pubbisetty's message of "Thu, 7 Apr 2022 10:51:37 +0530")
+Message-ID: <87zgk7hzw4.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.7.0
-Subject: Re: [PATCH 1/5] mmc: sdhci-brcmstb: "mmc1: Internal clock never
- stabilised." seen on 72113
-Content-Language: en-US
-To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
-Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220421182803.6495-1-kdasu.kdev@gmail.com>
- <20220421182803.6495-2-kdasu.kdev@gmail.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20220421182803.6495-2-kdasu.kdev@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/22 21:27, Kamal Dasu wrote:
-> From: Al Cooper <alcooperx@gmail.com>
-> 
-> The problem is in the .shutdown callback that was added to the
-> sdhci-iproc and sdhci-brcmstb drivers to save power in S5. The
-> shutdown callback will just call the sdhci_pltfm_suspend() function
-> to suspend the lower level driver and then stop the sdhci system
-> clock. The problem is that in some cases there can be a worker
-> thread in the "system_freezable_wq" work queue that is scanning
-> for a device every second. In normal system suspend, this queue
-> is suspended before the driver suspend is called. In shutdown the
-> queue is not suspended and the thread my run after we stop the
-> sdhci clock in the shutdown callback which will cause the "clock
-> never stabilised" error. The solution will be to have the shutdown
-> callback cancel the worker thread before calling suspend (and
-> stopping the sdhci clock).
-> 
-> NOTE: This is only happening on systems with the Legacy RPi SDIO
-> core because that's the only controller that doesn't have the
-> presence signal and needs to use a worker thread to do a 1 second
-> poll loop.
-> 
-> Fixes: 5b191dcba719 ("mmc: sdhci-brcmstb: Fix mmc timeout errors on S5 suspend")
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
-> ---
->  drivers/mmc/host/sdhci-brcmstb.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-> index f24623aac2db..11037cd14cfa 100644
-> --- a/drivers/mmc/host/sdhci-brcmstb.c
-> +++ b/drivers/mmc/host/sdhci-brcmstb.c
-> @@ -313,6 +313,10 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  
->  static void sdhci_brcmstb_shutdown(struct platform_device *pdev)
->  {
-> +	struct sdhci_host *host = platform_get_drvdata(pdev);
-> +
-> +	/* Cancel possible rescan worker thread */
-> +	cancel_delayed_work_sync(&host->mmc->detect);
->  	sdhci_pltfm_suspend(&pdev->dev);
->  }
->  
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-I think we fixed that already with the commit below:
+> On 4/6/2022 8:38 PM, Rob Herring wrote:
+>> On Wed, 06 Apr 2022 15:10:55 +0530, Manikanta Pubbisetty wrote:
+>>> WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
+>>> Though being a PCIe based solution, it is not attached to
+>>> the APSS processor (Application Processor SubSystem), it is
+>>> instead attached to another tiny processor called WPSS Q6
+>>> processor (Wireless Processor SubSystem) on the SC7280 MSM,
+>>> where the WLAN firmware runs, and it is the WLAN firmware
+>>> running on the Q6 processor which enumerates WCN6750, as a
+>>> result APPS processor would never know such a device being
+>>> present in the system and would not detect the WCN6750
+>>> hardware unless and otherwise WCN6750 is registered as a
+>>> platform device. This is the reason behind adding WCN6750
+>>> WLAN node in the device tree.
+>>>
+>>> Add WCN6750 wireless driver support, its based on ath11k driver.
+>>>
+>>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+>>> ---
+>>>   .../bindings/net/wireless/qcom,ath11k.yaml    | 361 ++++++++++++------
+>>>   1 file changed, 252 insertions(+), 109 deletions(-)
+>>>
+>>
+>>
+>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+>> there's no need to repost patches *only* to add the tags. The upstream
+>> maintainer will do that for acks received on the version they apply.
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>>
+>
+> There are changes in V4 but nothing significant, I have missed adding
+> the tag, will make sure to add relevant tags going forward.
 
+I added Rob's reviewed-by to patch 1.
 
-commit 66c915d09b942fb3b2b0cb2f56562180901fba17
-Author: Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri Dec 3 15:15:54 2021 +0100
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-    mmc: core: Disable card detect during shutdown
-    
-    It's seems prone to problems by allowing card detect and its corresponding
-    mmc_rescan() work to run, during platform shutdown. For example, we may end
-    up turning off the power while initializing a card, which potentially could
-    damage it.
-    
-    To avoid this scenario, let's add ->shutdown_pre() callback for the mmc host
-    class device and then turn of the card detect from there.
-    
-    Reported-by: Al Cooper <alcooperx@gmail.com>
-    Suggested-by: Adrian Hunter <adrian.hunter@intel.com>
-    Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-    Cc: stable@vger.kernel.org
-    Link: https://lore.kernel.org/r/20211203141555.105351-1-ulf.hansson@linaro.org
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
