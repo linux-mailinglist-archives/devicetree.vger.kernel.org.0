@@ -2,175 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E35511763
+	by mail.lfdr.de (Postfix) with ESMTP id EF6E7511766
 	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233857AbiD0M3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 08:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
+        id S234085AbiD0Mfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 08:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233896AbiD0M2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:28:48 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C90F13D1B;
-        Wed, 27 Apr 2022 05:25:37 -0700 (PDT)
+        with ESMTP id S234069AbiD0Mfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:35:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCD04C7A2;
+        Wed, 27 Apr 2022 05:32:42 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DC214B824E7;
-        Wed, 27 Apr 2022 12:25:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B406C385A9;
-        Wed, 27 Apr 2022 12:25:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651062334;
-        bh=viH9HrpEjudlC+s+Gw6A65xi/FPxOC8IPbCj+JuLc8Y=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=hGN7T5T66vDe8+HYglSqO0dSYsKgdEbfnNwn0Wf31bKf4Nu5GhCWwV0tvc2xYAcEF
-         OekDCKMKPs9HUm9beFh82Mo6bKXHYijjSPta5ygf3f2U7nRusfW/Ua+w0ZPlWNWzuE
-         AhM1/MSaZz8aIG1ij8Ob2FrUDTBFeOdJOMS8pvo/kSqyWmAqEeH18o3ccD3b5iXo4w
-         8v4U0+80IHJ9DwOIQvxn7YgTNetL6nrktxCivk5V6TVdD4CyGTlfh+XCT6hDRQv0/z
-         dQp/WhYnNFMlkl1V5+S3/JN+ZOzrjI6qbOmlnp/dET6dl/0GfEMlqfkm5++m3E8uVX
-         +Sj+3mI82nwWw==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
-Subject: Re: [PATCH v6 4/9] ath11k: Add register access logic for WCN6750
-References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
-        <20220427111848.9257-5-quic_mpubbise@quicinc.com>
-Date:   Wed, 27 Apr 2022 15:25:28 +0300
-In-Reply-To: <20220427111848.9257-5-quic_mpubbise@quicinc.com> (Manikanta
-        Pubbisetty's message of "Wed, 27 Apr 2022 16:48:43 +0530")
-Message-ID: <87pml2g1c7.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A7B3EB82666;
+        Wed, 27 Apr 2022 12:32:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19409C385A9;
+        Wed, 27 Apr 2022 12:32:35 +0000 (UTC)
+Date:   Wed, 27 Apr 2022 13:32:32 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v22 5/9] arm64: kdump: Reimplement crashkernel=X
+Message-ID: <Ymk34NsIFqUgfk3b@arm.com>
+References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
+ <20220414115720.1887-6-thunder.leizhen@huawei.com>
+ <YmgzxsrrMlCDYsWp@arm.com>
+ <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ee8daaa9-3258-e7e8-e5c4-c51dc9841580@huawei.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+On Wed, Apr 27, 2022 at 02:54:52PM +0800, Leizhen (ThunderTown) wrote:
+> On 2022/4/27 2:02, Catalin Marinas wrote:
+> > On Thu, Apr 14, 2022 at 07:57:16PM +0800, Zhen Lei wrote:
+> >>  /*
+> >>   * reserve_crashkernel() - reserves memory for crash kernel
+> >>   *
+> >>   * This function reserves memory area given in "crashkernel=" kernel command
+> >>   * line parameter. The memory reserved is used by dump capture kernel when
+> >>   * primary kernel is crashing.
+> >> + *
+> >> + * NOTE: Reservation of crashkernel,low is special since its existence
+> >> + * is not independent, need rely on the existence of crashkernel,high.
+> >> + * Here, four cases of crashkernel low memory reservation are summarized:
+> >> + * 1) crashkernel=Y,low is specified explicitly, the size of crashkernel low
+> >> + *    memory takes Y;
+> >> + * 2) crashkernel=,low is not given, while crashkernel=,high is specified,
+> >> + *    take the default crashkernel low memory size;
+> >> + * 3) crashkernel=X is specified, while fallback to get a memory region
+> >> + *    in high memory, take the default crashkernel low memory size;
+> >> + * 4) crashkernel='invalid value',low is specified, failed the whole
+> >> + *    crashkernel reservation and bail out.
+> > 
+> > Following the x86 behaviour made sense when we were tried to get that
+> > code generic. Now that we moved the logic under arch/arm64, we can
+> > diverge a bit. I lost track of the original (v1/v2) proposal but I
+> > wonder whether we still need the fallback to high for crashkernel=Y.
+> 
+> I don't think anyone has raised this demand yet! If it weren't for the
+> fact that crashkernel=X appeared earlier, it would probably have been
+> enough for a combination of crashkernel=X,high and crashkernel=Y,low.
+> 
+> In fact, I also tend not to support "fallback to high for crashkernel=Y".
+> I took over this from Chen Zhou. In the absence of any objection, I had
+> to inherit. Now that you've brought it up, I'm happy to delete it.
+> Supporting this feature complicates the code logic a lot. The point is,
+> it's not fully backwards compatible yet. For example, someone may want
+> crashkernel=3G to report failure, but the the new support make it work.
 
-> WCN6750 uses static window mapping to access the HW registers.
-> Unlike QCN9074 which uses 2nd window for CE and 3rd window
-> for UMAC register accesses, WCN6750 uses 1st window for UMAC
-> and 2nd window for CE registers.
->
-> Code is refactored so that WCN6750 can use the existing
-> ath11k_pci_read/write() APIs for accessing the registers.
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath11k/ahb.c  |  6 +++
->  drivers/net/wireless/ath/ath11k/core.h |  2 +
->  drivers/net/wireless/ath/ath11k/pci.c  | 34 ++++++++++++++--
->  drivers/net/wireless/ath/ath11k/pcic.c | 54 +++++++++-----------------
->  4 files changed, 58 insertions(+), 38 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index cfdd415f0203..fa12e50f32f4 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -34,7 +34,10 @@ static const struct ath11k_bus_params ath11k_ahb_bus_params = {
->  	.m3_fw_support = false,
->  	.fixed_bdf_addr = true,
->  	.fixed_mem_region = true,
-> +	.static_window_map = false,
->  	.hybrid_bus_type = false,
-> +	.dp_window_idx = 0,
-> +	.ce_window_idx = 0,
->  };
->  
->  const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
-> @@ -42,7 +45,10 @@ const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
->  	.m3_fw_support = false,
->  	.fixed_bdf_addr = false,
->  	.fixed_mem_region = false,
-> +	.static_window_map = true,
->  	.hybrid_bus_type = true,
-> +	.dp_window_idx = 1,
-> +	.ce_window_idx = 2,
->  };
->  
->  #define ATH11K_IRQ_CE0_OFFSET 4
-> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-> index 51f313dd7f26..ee0ad93d5843 100644
-> --- a/drivers/net/wireless/ath/ath11k/core.h
-> +++ b/drivers/net/wireless/ath/ath11k/core.h
-> @@ -756,6 +756,8 @@ struct ath11k_bus_params {
->  	bool fixed_mem_region;
->  	bool static_window_map;
->  	bool hybrid_bus_type;
-> +	u8 dp_window_idx;
-> +	u8 ce_window_idx;
->  };
->  
->  struct ath11k_pci_ops {
-> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-> index ddd1e2de6a2e..9184cb893bd4 100644
-> --- a/drivers/net/wireless/ath/ath11k/pci.c
-> +++ b/drivers/net/wireless/ath/ath11k/pci.c
-> @@ -115,12 +115,26 @@ static const struct ath11k_pci_ops ath11k_pci_ops_qcn9074 = {
->  	.window_read32 = ath11k_pci_window_read32,
->  };
->  
-> -static const struct ath11k_bus_params ath11k_pci_bus_params = {
-> +static const struct ath11k_bus_params ath11k_pci_bus_params_qca6390 = {
->  	.mhi_support = true,
->  	.m3_fw_support = true,
->  	.fixed_bdf_addr = false,
->  	.fixed_mem_region = false,
-> +	.static_window_map = false,
->  	.hybrid_bus_type = false,
-> +	.dp_window_idx = 0,
-> +	.ce_window_idx = 0,
-> +};
-> +
-> +static const struct ath11k_bus_params ath11k_pci_bus_params_qcn9074 = {
-> +	.mhi_support = true,
-> +	.m3_fw_support = true,
-> +	.fixed_bdf_addr = false,
-> +	.fixed_mem_region = false,
-> +	.static_window_map = true,
-> +	.hybrid_bus_type = false,
-> +	.dp_window_idx = 3,
-> +	.ce_window_idx = 2,
->  };
->  
->  static const struct ath11k_msi_config msi_config_one_msi = {
-> @@ -704,11 +718,26 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
->  {
->  	struct ath11k_base *ab;
->  	struct ath11k_pci *ab_pci;
-> +	const struct ath11k_bus_params *bus_params;
->  	u32 soc_hw_version_major, soc_hw_version_minor, addr;
->  	int ret;
->  
-> +	switch (pci_dev->device) {
-> +	case QCA6390_DEVICE_ID:
-> +	case WCN6855_DEVICE_ID:
-> +		bus_params = &ath11k_pci_bus_params_qca6390;
-> +		break;
-> +	case QCN9074_DEVICE_ID:
-> +		bus_params = &ath11k_pci_bus_params_qcn9074;
-> +		break;
+BTW, prior to v20, this patch had this line:
 
-Now you are making bus_params device specific, that's not really the
-point of bus params. They are supposed to be _bus_ specific parameters.
+	crashk_low_res.name = "Crash kernel (low)";
 
-Can't you use hw_params like I mentioned in the review?
+I can't find it anymore. Do the kexec tools need to distinguish between
+low and high or they can cope with multiple "Crash kernel" entries?
+
+> > Maybe simpler, no fallbacks:
+> > 
+> > 	crashkernel=Y - keep the current behaviour, ignore high,low
+> > 	crashkernel=Y,high - allocate above ZONE_DMA
+> > 	crashkernel=Y,low - allocate within ZONE_DMA
+> > 
+> > From your proposal, the difference is that the Y,high option won't
+> > have any default ZONE_DMA fallback, one would have to explicitly pass
+> > the Y,low option if needed.
+> 
+> I agree with you. Now we don't need code generic, so there is no need to
+> carry the historical burden of other ARCHs. arm64 does not need to delve
+> into that empirical value(the default size of crash low memory).
+> 
+> > Just a thought, maybe it makes the code simpler. But I'm open to
+> > discussion if there are good arguments for the proposed (x86-like)
+> > behaviour. One argument could be for crashkernel=Y to fall back to high
+> > if distros don't want to bother with high/low settings.
+> 
+> I think distros should take precedence over "crashkernel=Y,high". After all,
+> ZONE_DMA memory is more valuable than high memory.
+
+My point is whether an admin configuring the kernel command line needs
+to know the layout of ZONE_DMA etc. to figure out how much to pass in
+high and low. The fallbacks in this case have some value but they also
+complicate the code logic. The 4GB limit does not always make sense
+either for some platforms (RPi4 has a ZONE_DMA limit of 1GB).
+
+I think one could always pass a default command line like:
+
+	crashkernel=1G,high crashkernel=128M,low
+
+without much knowledge of the SoC memory layout.
+
+Another option is to only introduce crashkernel=Y,low and, when that is
+passed, crashkernel=Y can go above arm64_dma_phys_limit. We won't need a
+'high' option at all:
+
+	crashkernel=1G				- all within ZONE_DMA
+	crashkernel=1G crashkernel=128M,low	- 128M in ZONE_DMA
+						  1G above ZONE_DMA
+
+If ZONE_DMA is not present or it extends to the whole RAM, we can ignore
+the 'low' option.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Catalin
