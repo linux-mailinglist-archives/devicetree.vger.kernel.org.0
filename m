@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20DC1511D5D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33C21511D23
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235367AbiD0PCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38588 "EHLO
+        id S238870AbiD0PHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:07:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236491AbiD0PCa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:02:30 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF411EAE8;
-        Wed, 27 Apr 2022 07:59:19 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id bz24so1311784qtb.2;
-        Wed, 27 Apr 2022 07:59:19 -0700 (PDT)
+        with ESMTP id S236491AbiD0PHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:07:50 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D204377CE
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:04:38 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id r13so4000074ejd.5
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:04:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=qSFg4Tj5t0iyrEchnrtK0dBSQObqtqTWb9jQH9X+b9o=;
+        b=FcqJ53fMHsoNteWG65OE61cgPXDKxl2TB9xlqpw7d2H0xIFAW3J9jIHgc8D+JVGNXF
+         qAuj2G48nNlSqvwteyPX1018Tbc1wLpjDiRabQstpIxsxku0evzjG/evaCOhbdeI9pq9
+         gJPqELQa39qzlpYqM/JNJ0olZwD5UlrmcqH3RYUG/5rYuKD9ZNRvQQiuZK5S4Z87ZXVX
+         HkVUxfAENgz5hwMOBPx7Gd9WpjQrLgYueyjWQ8T9uPHhK9/vfhjMx2Rw/qQ2OxPedcD+
+         FWmIPna0ib0Y+6n3lkaeWzGijXyJkwbGiepQyfeCGFYu0tBeX6s808iQ8YIDg1htIgWz
+         4A7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/rjfxN9qB9dIcjWXWDFpJ6l3gGV6ETIlBiCqMU15AUo=;
-        b=fOuHLcjNDoZZ2jEryAT69GRTzRBajcz+IjVP9HKMublpvapjTsa2zSh9lr9GeJHUQL
-         DLsQiyp2txQG3ycGcLzpg+f7oQ+JDx3+TH23qnQYV6HpkhUbdLtpRltmdiaAnv0LB3VT
-         cciTms0+2FbHpwuUK4+rkSCm1Q6Sy+rhpKxVQK4OPFSOdHEdY4yY9aE2+IgTfOnMdLA3
-         9ZlCrV28EZij62Y+2KN66QzP6ebUW3YEksYO3ZwjHXpfaQalZQHTKtpzei1NYn2LB/3m
-         TAB6SN0ePc0T8dSv2TIqpvecC52nW7aMefJf2AcH2SNCDU0Uv+rjgpcabcRhES3kmMQy
-         8VRA==
-X-Gm-Message-State: AOAM5314r1lqkR0zlr2gaKnTgu/7YBuBIy2vRD+kU/yEu+R4Ik9VfCI2
-        zE0/ZJX9jXOXWIeiTYxNk+lyKQlD5aqOaA==
-X-Google-Smtp-Source: ABdhPJz92bamSk3aLumZyq4/tocbRsNQp500v0eKEBspexYkUSC3ndxqnTV2mKx7Kvtd/OWJFfM0uQ==
-X-Received: by 2002:ac8:7e88:0:b0:2f1:f942:80bd with SMTP id w8-20020ac87e88000000b002f1f94280bdmr19032346qtj.554.1651071558065;
-        Wed, 27 Apr 2022 07:59:18 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id t186-20020a372dc3000000b0069ec8a9254esm8280614qkh.73.2022.04.27.07.59.17
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=qSFg4Tj5t0iyrEchnrtK0dBSQObqtqTWb9jQH9X+b9o=;
+        b=3RmXwcj6KwITOa5FNzOUe1vXiyJycgeJ92VbfEPIMcg2OCq17nfV/mWMoCco/O5Ufp
+         uWf5v28eb2ArZSqxaWC1fw77d00kKxQ0wAOsiF1bZDy/E2ryROF+itwnVFs3Z7IRCvtg
+         jFuk4emUNq2x9zGgOFrs4QgBXJT09eDOa3Jl26irhschdppE7eH47/B4ISQMv82r/6MP
+         fx5cJ4eF0kVa50Q+H/OEV6ZGjEm0+Vtj6/BKM+edXbBDDMDVY6Ai4DTVpluvfe5clYoC
+         CDlNQZvwOJ4JZn5s9R1FB+gMLZNYCVeUESXpEPYGm6WgpRGZOcCjVlbQEXnty8dIU1ms
+         tbDg==
+X-Gm-Message-State: AOAM532Rw4CsCPaM+y5rPtQTwkzvrVt8RaBRVdh52arykrZmMtwdnDk0
+        9nPKxb7ahB3sROlc5rO7svkTHA==
+X-Google-Smtp-Source: ABdhPJw6xDM1POPST6rczNOf9S7K4mHZOwvxk95MGxUyrktevc3E9tLAv3v4JHjg4digjA0etDk5qA==
+X-Received: by 2002:a17:906:824a:b0:6f3:a07b:2568 with SMTP id f10-20020a170906824a00b006f3a07b2568mr12384434ejx.84.1651071876676;
+        Wed, 27 Apr 2022 08:04:36 -0700 (PDT)
+Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id o2-20020a056402438200b0041fb0f2e155sm4792899edc.20.2022.04.27.08.04.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 07:59:17 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-2ec42eae76bso21698427b3.10;
-        Wed, 27 Apr 2022 07:59:17 -0700 (PDT)
-X-Received: by 2002:a81:4782:0:b0:2eb:1cb1:5441 with SMTP id
- u124-20020a814782000000b002eb1cb15441mr26143387ywa.479.1651071557084; Wed, 27
- Apr 2022 07:59:17 -0700 (PDT)
+        Wed, 27 Apr 2022 08:04:35 -0700 (PDT)
+Message-ID: <fedb56be-f275-aabb-cdf5-dbd394b8a7bd@linaro.org>
+Date:   Wed, 27 Apr 2022 17:04:33 +0200
 MIME-Version: 1.0
-References: <20220422120850.769480-1-herve.codina@bootlin.com> <20220422120850.769480-6-herve.codina@bootlin.com>
-In-Reply-To: <20220422120850.769480-6-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 27 Apr 2022 16:59:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV35uR2qHdmsQVxQuU716h-kkDfLs1bLfCGjedW_Bb3fQ@mail.gmail.com>
-Message-ID: <CAMuHMdV35uR2qHdmsQVxQuU716h-kkDfLs1bLfCGjedW_Bb3fQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/8] ARM: dts: r9a06g032: Add missing '#power-domain-cells'
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: PCI schema accepts unevaluated properties
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <42fbcb55-b6ef-906f-7584-62a6097a8639@linaro.org>
+ <CAL_JsqJ3FiBci1+8oSOHA6GQ8Q3HHM3QcY+GFg=+KVZEQAnb6A@mail.gmail.com>
+ <345716e9-5624-5ba0-09f0-46e9850c546c@linaro.org>
+ <CAL_Jsq+d-RHNnTyy+mrs2L7Zycjwq07vENCH8+SHZBuZGCuq=A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_Jsq+d-RHNnTyy+mrs2L7Zycjwq07vENCH8+SHZBuZGCuq=A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 2:09 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> Without '#power-domain-cells' property, power-domains cannot
-> be used. This property is noted required in the device-tree
-> binding.
->
-> Add '#power-domain-cells' as needed.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+On 27/04/2022 16:53, Rob Herring wrote:
+>> I'll fix the power-domains, but dma-channels/dma-requests should not
+>> fail. This should be accepted through:
+>> arm,pl330.yaml -> dma-controller.yaml -> dma-common.yaml
+> 
+> Except that the standard property names are 'dma-channels' and
+> 'dma-requests' without the '#'.
+> 
+> Thanks for the fixes. Unfortunately, it looks like NAND needs the same
+> parent/child schema split that was done for SPI.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.19.
+Oh, few drivers indeed parse '#dma-xxx' variant. For pl330 schema it was
+introduced with 42cf20980cde ("ARM: dts: pl330: Add #dma-cells for
+generic dma binding support")
+ which clearly defines something different than uses in example. I can
+imagine that editor added '#' automatically after pressing <enter> when
+editing the example.
 
-Gr{oetje,eeting}s,
+This wrong variant spread all over and in practice was not detected
+because pl330 driver does not parse this field.
 
-                        Geert
+I'll fix it.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
