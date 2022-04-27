@@ -2,136 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B31CA5120DB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1D12511DBD
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240050AbiD0Pnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41460 "EHLO
+        id S240077AbiD0Pnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:43:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240052AbiD0Pnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:43:45 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB0EC55;
-        Wed, 27 Apr 2022 08:40:29 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id BB1C332001FC;
-        Wed, 27 Apr 2022 11:40:27 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute2.internal (MEProxy); Wed, 27 Apr 2022 11:40:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1651074027; x=1651160427; bh=lI
-        Wz78PXI7EvKN4ruQoCnzZz8BZ4fRFfgiYMqQWccK0=; b=RmY9+5eB5Vq++BL8o+
-        VTpJ/iDtxGEOKbZCVf5L9Dl7J8kDgqcQ5NgDkGeu7PFLnZFTMEqr8Igp5PQoiRCf
-        k/LUhEfpnP6bcWP3Tp7pLS6ZXZrxJpFQkR42672be7Tt0N2FEinFXijbhFB86KAE
-        Pg7UWBpkPTLYYGIKe+GGmV9Vc6H85+Z2cJASz5GydnbIhFn+QnVZdAwjQOOG5FVZ
-        hQ5rQs/f9vS5CllLbUfFoeCiNTHcBHzjlub59x0fYhG0i8ZigbmkxxLHXx78+aWG
-        udpFvkIX0ldB1QGoTAYf3JZh5b/+s0TQt7NMSAGlHgqLtF3FIUt15jbJAdrLYhXc
-        lPUw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1651074027; x=
-        1651160427; bh=lIWz78PXI7EvKN4ruQoCnzZz8BZ4fRFfgiYMqQWccK0=; b=n
-        kiS0LOiIp8Z8bSpVnvLzNjqYZ2HpMZXUwaUluGM810L5cbAdbhgG+scxzStn4q5j
-        XykjtVrdxHj8ICZGNCQblIk9VmJ0g8BAYNMcWRlV9OQa09D1X1FXPxL31+CWSAH/
-        cz6lZRXxNumweJleksDpQQrhx+iXGXEJbV4jtsDiDpMnYM8zeR/XNknNQmGxp7Nx
-        FyEjH2n98z1jL3NseqzsOX5ALHLUPJWs6G5QMNbEEjsSF5OL2MkVdlTcX8GR136x
-        KkOY7kX6WNvedpDzEemMUw9KePilF1f2AFx7Pw8Cj4ZYjUHCS7PgJuIevNC6J9s0
-        BASKitzX8JL8ZCCMALTuQ==
-X-ME-Sender: <xms:6mNpYkdGwy6wqaWrPpLxCF9nP3aJokd_AGLugP9ORTRsFup6IaRQFw>
-    <xme:6mNpYmPSsv1ByunrT5DX2TRJti0RzB498vc3cthg7c-MoUjs3GPD_OuHH_FG-jYzg
-    RoVJ4ml7ZpP3KyZiHA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgdekkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeelvefggeffheevtdeivefhkeehfeettdejteduveeiheevveeilefghfei
-    veeiueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:6mNpYljezHIxLz1T3ljEI0yTgeJ94PKw11pdL0O-6kpuXrxHuqqPEg>
-    <xmx:6mNpYp8nAX-RmTfq0IcoBHyJW0Amoief1Ti9_63zx00TOsReStiphg>
-    <xmx:6mNpYgt97sFg30IXXBZDFQq3txcVMd_sEA2r_L3uwgPcL6pakvyGxQ>
-    <xmx:62NpYhFnXEuXJrd4act2W5PBc08Qa0Q3jC-LettFmjNwGGtOM9sRfA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E67EC27400F9; Wed, 27 Apr 2022 11:40:26 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-569-g7622ad95cc-fm-20220421.002-g7622ad95
-Mime-Version: 1.0
-Message-Id: <cd6c9623-60c6-44dc-8ff3-addfb31efd6d@www.fastmail.com>
-In-Reply-To: <YmhdVJgd6DGRHPXd@kbusch-mbp.dhcp.thefacebook.com>
-References: <20220426201539.12829-1-sven@svenpeter.dev>
- <20220426201539.12829-7-sven@svenpeter.dev>
- <YmhdVJgd6DGRHPXd@kbusch-mbp.dhcp.thefacebook.com>
-Date:   Wed, 27 Apr 2022 17:40:06 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Keith Busch" <kbusch@kernel.org>
-Cc:     "axboe@fb.com" <axboe@fb.com>, "hch@lst.de" <hch@lst.de>,
-        "sagi@grimberg.me" <sagi@grimberg.me>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        "Arnd Bergmann" <arnd@arndb.de>, "Marc Zyngier" <maz@kernel.org>,
-        "Janne Grunau" <j@jannau.net>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-nvme@lists.infradead.org
-Subject: Re: [PATCH v3 6/6] nvme-apple: Add initial Apple SoC NVMe driver
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S240163AbiD0Pnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:43:51 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E9564DC;
+        Wed, 27 Apr 2022 08:40:40 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id y2so4098557ybi.7;
+        Wed, 27 Apr 2022 08:40:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LunjZ5CB5KTt5EtvVwtJm0bqy5erFaX/HOlxVgLsjJk=;
+        b=fm1FDWTCSUZcXwP6iai9T/Ms5eK051gTDDDgmJYYA5X2uu2lfGJ0plw/6M0qbzG3zG
+         x1CGP34Rj4AIx4I3CSKSe4z/1hIZaM7v0r+RuI4ohf0bCJ5JzrxdykhrCOc0JPQa3iwB
+         gSELM4hbMFOA0K8KGirfVL4unIx+9SnHwNnZ8Tr2YoYxrUd1aiO6KCXwkuPa+FVccgsW
+         wlvqZrumPKaiQYL9BPEpjJeO1dXB7igtjYQq1o0PCKmt0EZPmj7h20s4xWxSHfvb9ZrD
+         V/f5RY4B9QDxPQpgBkGdFbF9ld922s/Ru3Ddt//HAJLfPi/4SzAeeVmMEQJSQ4dyMitk
+         nhXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LunjZ5CB5KTt5EtvVwtJm0bqy5erFaX/HOlxVgLsjJk=;
+        b=JAWkwfHPl4/7QWqcJKf45rT2Cl0+AYuzqDTLmWhrDlqRXKkZqqH3RThlQ0I9wOYNnE
+         ORG9SUHevjO2g9LJxzvcw4K0mkqX9Q0v9GYgBTDnDyhLCUziTgKTAQOj02mgSl6/Uq1k
+         oqB7toDaGfLgcpHxLWGxQbPj3Xb3lOqfYMQdCzM17XQvS4Hk2b1YHb+wHqy43rrv6KUC
+         Gc4EYoSReIYp29GHd0AnhRDxIFPIFKm1Rw1IqYoTj1JDwCYtrkduKXoI7ZY3loXLQTcG
+         BiJkni51sbSqMQgJXiji9rA4gHOTgHEHMD0GYh/wEimqgyzuMWXT0yJkmyS07UTNxPxf
+         05qA==
+X-Gm-Message-State: AOAM531b+9rNU0V99WFGrkb6HgvF9x1Edh9dqEIor/DBKQf6b7V1TfMK
+        IL14TL19mZamyJlYaK3AcJmM8fdt4o3Gczmrasc=
+X-Google-Smtp-Source: ABdhPJxEM6FU9G+ZUeC6TKae8tD1r4cUbc36QcF8D8lCficfFuleOcpKJBEcOKkLDNEGBFR44k4I+MdxfFsbxzbTBbQ=
+X-Received: by 2002:a25:9309:0:b0:648:b52e:4a63 with SMTP id
+ f9-20020a259309000000b00648b52e4a63mr7543035ybo.503.1651074039575; Wed, 27
+ Apr 2022 08:40:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220421182803.6495-1-kdasu.kdev@gmail.com> <20220421182803.6495-5-kdasu.kdev@gmail.com>
+ <857e78dd-b8e8-d55e-3b3c-cbbfb7c98505@linaro.org>
+In-Reply-To: <857e78dd-b8e8-d55e-3b3c-cbbfb7c98505@linaro.org>
+From:   Kamal Dasu <kdasu.kdev@gmail.com>
+Date:   Wed, 27 Apr 2022 11:40:29 -0400
+Message-ID: <CAC=U0a2np9x3QGU8uqwu4RMQXBzvG5dTa91GOLfSh_+96LTPYw@mail.gmail.com>
+Subject: Re: [PATCH 4/5] dt-bindings: mmc: Add Broadcom optional sdio_freq clock
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        krzk+dt@kernel.org, Al Cooper <alcooperx@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Tue, Apr 26, 2022, at 23:00, Keith Busch wrote:
-> On Tue, Apr 26, 2022 at 10:15:39PM +0200, Sven Peter wrote:
->> +static enum blk_eh_timer_return apple_nvme_timeout(struct request *req,
->> +						   bool reserved)
->> +{
->> +	struct apple_nvme_iod *iod = blk_mq_rq_to_pdu(req);
->> +	struct apple_nvme_queue *q = iod->q;
->> +	struct apple_nvme *anv = queue_to_apple_nvme(q);
->> +	unsigned long flags;
->> +	u32 csts = readl(anv->mmio_nvme + NVME_REG_CSTS);
->> +
->> +	if (anv->ctrl.state != NVME_CTRL_LIVE) {
->> +		/*
->> +		 * From rdma.c:
->> +		 * If we are resetting, connecting or deleting we should
->> +		 * complete immediately because we may block controller
->> +		 * teardown or setup sequence
->> +		 * - ctrl disable/shutdown fabrics requests
->> +		 * - connect requests
->> +		 * - initialization admin requests
->> +		 * - I/O requests that entered after unquiescing and
->> +		 *   the controller stopped responding
->> +		 *
->> +		 * All other requests should be cancelled by the error
->> +		 * recovery work, so it's fine that we fail it here.
->> +		 */
->> +		dev_warn(anv->dev,
->> +			 "I/O %d(aq:%d) timeout while not in live state\n",
->> +			 req->tag, q->is_adminq);
->> +		if (blk_mq_request_started(req) &&
->> +		    !blk_mq_request_completed(req)) {
->> +			nvme_req(req)->status = NVME_SC_HOST_ABORTED_CMD;
->> +			blk_mq_complete_request(req);
+On Fri, Apr 22, 2022 at 1:07 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> I think you need a 'nvme_req(req)->flags |= NVME_REQ_CANCELLED' here to get the
-> expected -EINTR for any admin command timeouts during a reset. Without it, the
-> resetting task is going to think it got a real response from the controller.
+> On 21/04/2022 20:28, Kamal Dasu wrote:
+> > The 72116B0 has improved SDIO controllers that allow the max clock
+> > rate to be increased from a max of 100MHz to a max of 150MHz.
+> > Optional "sdio_freq" clock is used to drive the bus clock if present
+> > optional property "clock-frequency" specifies a base clock frequency
+> > in Hz that overrides the base clock frequency in the CAPS registers.
+> >
+> > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> > ---
+> >  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      | 29 +++++++++++++++----
+> >  1 file changed, 24 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> > index dccd5ad96981..1b45a918400a 100644
+> > --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> > @@ -10,8 +10,6 @@ maintainers:
+> >    - Al Cooper <alcooperx@gmail.com>
+> >    - Florian Fainelli <f.fainelli@gmail.com>
+> >
+> > -allOf:
+> > -  - $ref: mmc-controller.yaml#
+> >
+> >  properties:
+> >    compatible:
+> > @@ -42,23 +40,44 @@ properties:
+> >      maxItems: 1
+> >
+> >    clocks:
+> > -    maxItems: 1
+> > -    description:
+> > -      handle to core clock for the sdhci controller.
+> > +    minItems: 1
+> > +    items:
+> > +      - description: handle to core clock for the sdhci controller
+> > +      - description: improved 150Mhz clock for sdhci controller (Optional clock)
+> >
+> >    clock-names:
+> > +    minItems: 1
+> >      items:
+> >        - const: sw_sdio
+> > +      - const: sdio_freq # Optional clock
+> > +
+> > +  clock-frequency:
+> > +    description: Should be the frequency (in Hz) of the base controller clock
+> > +    minimum: 400000
+> > +    maximum: 150000000
+>
+> Why do you need this property? The mmc-controller.yaml already has
+> max-frequency, so maybe that suits your needs?
+>
 
-Makes sense, will add it.
+Yes I can use max-frequency, I will make the changes to patch 4/5 and
+change 5/5 and send a v2 patchset.
 
+>
+> Best regards,
+> Krzysztof
 
-Sven
+Thanks
+Kamal
