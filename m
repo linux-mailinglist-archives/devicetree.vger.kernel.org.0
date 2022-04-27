@@ -2,176 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FB2C511E07
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A976C5120BE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243902AbiD0RNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 13:13:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
+        id S244109AbiD0RiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 13:38:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243833AbiD0RNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 13:13:45 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5E63C71D;
-        Wed, 27 Apr 2022 10:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1651079433; x=1682615433;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=egIN2n6TijBKeNPqyrjghdIHPpJ7CkL7dME+kPSB74c=;
-  b=AyK1tZwHXR6jPxMKoHsq0AhE2GqgzBVDUT8RNLK/CZvUXZSPDFXD9jJM
-   hc8rWk99FWU3UXFUtQ35pMeTE+XKxUcRhKiskp0sgL0iufgyRaH507AMM
-   0FHn5itLp7nY4i9XJlc6DdZO9ehFZa004CM9Ibh3KAegELclF/LL5B8Kk
-   E=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 27 Apr 2022 10:10:33 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 10:10:32 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 27 Apr 2022 10:10:32 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 27 Apr 2022 10:10:28 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v12 4/4] arm64: dts: qcom: sc7280-herobrine: Add lpi pinmux properties for CRD 3.0/3.1
-Date:   Wed, 27 Apr 2022 22:39:43 +0530
-Message-ID: <1651079383-7665-5-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1651079383-7665-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1651079383-7665-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S244102AbiD0RiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 13:38:23 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20AE52F383
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 10:35:12 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id DDB34320083A;
+        Wed, 27 Apr 2022 13:35:08 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 27 Apr 2022 13:35:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1651080908; x=
+        1651167308; bh=t1FY6u46eLL6+Sd8qTZkwZAkzR/S6at6dPU4PPYvYJY=; b=w
+        rPATU8FaMr8NQ5OtpfewkUqiHgWUUUf/d+Zs6jVGXz9OGEqCqqTRIkcvClK6y3tb
+        6kj3s2xNXGqfHSqAzAUEsO87UAZhu8mm8CQ7L1Q5tYBmCiU2VOATbvAmJAgZUmoD
+        y2iZJ2SC7mPuxEzMpg6A3WlyUAff/vcg/e+HM2KS/OwcRARFi53MUR3oRrChFZ6K
+        lijX0ksekDdzFG7srwSS9iNm1KZ2JYB4LqcWAJAIB5SFZfyBu+DYSrq2yFRUwhKJ
+        5L9n3FAqMZKzbePQ3tKD69/XNXA6Vgkfc7WnEhPl5pxd8uwZc/biz5wXe/oy80ii
+        NlBvNSDFFzeCDm6PJ+knw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1651080908; x=1651167308; bh=t1FY6u46eLL6+
+        Sd8qTZkwZAkzR/S6at6dPU4PPYvYJY=; b=CVCrHCgsIa7PEasgE1JKsb+HJudlU
+        9Rh6cm7veYP1KN3bYhcc9MeZNJMmgjhSOqJq8Zl22iY3A7xgxKG379MNLQJk4iMG
+        Mo0mNeJZlwaGs7A+LGpPi+mHlpHMKD3nCYthf+EA7N6sFgu5rczOdI1UG+gRFwT7
+        InqV8Vn3MCeG/WbOl++NH3tX+DGkfEvYpFZ6Am6C1/uxjh2N988+yDc2sT37gf+9
+        KqT3DLRdzbJtikd1Dq3VaCqh/On5SpaKSKH6czVjL2BgKo+gZD+LUm9Bc6LtgQCL
+        AMvDJ+Fq979xiryAETyelpMqyswnsFwu3HFVYIBRAKAjCa8bj8qavfjZQ==
+X-ME-Sender: <xms:y35pYgPFIA7PcGqvAemF6SCigE2GxUmIMiHVh-fuUSTboer-IPrkKQ>
+    <xme:y35pYm-wrvV5UhPtrFVgKlEv3lMmn9bG7C3_JOori_g4ayAk7Ot5ILGIlAo82q0_L
+    tVyXN3sQdg8jcwWCw>
+X-ME-Received: <xmr:y35pYnQxmW0vb8k_d-LKav5knpzi1wWFEQZGhpx8M1GmzMvqG9KeePsZke2mPEqrVvT18pCzGbI6gC7ZKogA8niImTia0ra5w6gQ-L4o3wlyQcCEAI9L9Neijw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgdduuddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
+    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:y35pYouye8D2HLYaQ4HXNT-Zq-2lbcJ4lyGhXSP4HwGxQ4JuHFijLQ>
+    <xmx:y35pYoere3UJ9WG9O64C7c5VqmTZHc-DQJSwCZJ6oJgkhZt_5pH-PQ>
+    <xmx:y35pYs3uHdUVbSVQlFd8jB-oz5Zr_5XYEuogJOKXozC3L2tZPhvhEg>
+    <xmx:zH5pYn4m43sn_eEeyE817o9HEELUKc0_PvBlJ5C42Pb5u-WuEULCrw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 27 Apr 2022 13:35:07 -0400 (EDT)
+Subject: Re: [PATCH] arm64: dts: allwinner: teres-i: Add GPIO port regulators
+To:     Harald Geyer <harald@ccbib.org>
+Cc:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, Torsten Duwe <duwe@suse.de>
+References: <20220415165605.28560-1-harald@ccbib.org>
+ <336f8b96-6eee-16a5-e896-e90c4020f740@sholland.org>
+ <462969fd722eec45aa5f142de48b7fbd@ccbib.org> <5259899.Sb9uPGUboI@kista>
+ <71e61e41-712f-3f5d-74d6-46b01d672e7b@sholland.org>
+ <ff40845f16a7d316fd128b3045b10092@ccbib.org>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <b21aab1f-e48e-5044-b963-02f3a4b3d9da@sholland.org>
+Date:   Wed, 27 Apr 2022 12:35:06 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ff40845f16a7d316fd128b3045b10092@ccbib.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LPASS LPI pinctrl properties, which are required for Audio
-functionality on herobrine based platforms of rev5+
-(aka CRD 3.0/3.1) boards.
+On 4/26/22 9:21 AM, Harald Geyer wrote:
+>>>> PD, PE and PL have dedicated regulators, that can be matched via the 
+>>>> 'regulator-name' property. I didn't want to specify the same 
+>>>> information in two places.
+>>>
+>>> "regulator-name" is only a label, while phandle is actual regulator reference
+>>> that can be used by the driver.
+> 
+> That is clearly not the whole story, as the driver find's the supply
+> for the PD bank just fine. And this even isn't an always-on regulator.
+> 
+> See the attached dmesg logs.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 84 +++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+You are right, the Linux function regulator_dev_lookup() falls back to matching
+by regulator name if no property exists in the devicetree. But again this is a
+Linux-ism that we would rather not rely on.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-index deaea3a..dfc42df 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-@@ -111,6 +111,90 @@ ap_ts_pen_1v8: &i2c13 {
-  * - If a pin is not hooked up on Qcard, it gets no name.
-  */
- 
-+&lpass_dmic01 {
-+	clk {
-+		drive-strength = <8>;
-+	};
-+};
-+
-+&lpass_dmic01_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		pull-down;
-+	};
-+};
-+
-+&lpass_dmic23 {
-+	clk {
-+		drive-strength = <8>;
-+	};
-+};
-+
-+&lpass_dmic23_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		pull-down;
-+	};
-+};
-+
-+&lpass_rx_swr {
-+	clk {
-+		drive-strength = <2>;
-+		slew-rate = <1>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		drive-strength = <2>;
-+		slew-rate = <1>;
-+		bias-bus-hold;
-+	};
-+};
-+
-+&lpass_rx_swr_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	data {
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+};
-+
-+&lpass_tx_swr {
-+	clk {
-+		drive-strength = <2>;
-+		slew-rate = <1>;
-+		bias-disable;
-+	};
-+
-+	data {
-+		slew-rate = <1>;
-+		bias-bus-hold;
-+	};
-+};
-+
-+&lpass_tx_swr_sleep {
-+	clk {
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	data {
-+		bias-bus-hold;
-+	};
-+};
-+
- &mi2s1_data0 {
- 	drive-strength = <6>;
- 	bias-disable;
--- 
-2.7.4
+>>>> For the PF supply, I couldn't find any connection information in the 
+>>>> board schematic. I could have added a dummy regulator. But since there 
+>>>> is only one warning about pf-supply during driver initialization and
+>>>> not the dozens of warnings I see about PC and PG, I figured, I'd rather
+>>>> not add information of dubious use or qualiy.
+>>>
+>>> You mean PE right? There is no PF supply on A64.
+> 
+> I meant PF, but you are right, that this doesn't have a supply on A64
+> at all. However the driver doesn't seem to know this: It emits a
+> warning about missing PF supply at startup.
+> 
+>>> Anyway, if it's not on schematic, it can be assumed unconnected and thus
+>>> you shouldn't define that property. Messages like "using dummy regulator"
+>>> are fine in such cases .
+>>
+>> All of the ports without a separate VCC-Px input are powered by
+>> VCC-IO, which in this case is supplied from DCDC1.
+> 
+> So should I add "vcc-pf-supply = <&reg_dcdc1>;" even though the chip
+> actually doesn't support a dedicated vcc-pf-supply or should I just
+> ignore this?
 
+Yes, you should add this property. The supplies are a bit more abstract than you
+are expecting. Each of these pin banks (unless it is totally unused) has to get
+power from _somewhere_, and that "somewhere" is the supply that should be
+referenced.
+
+There is no need for the supply to be a dedicated pin, or for the supply name to
+match any pin or regulator name. For example, the LRADC needs a reference
+voltage for its comparator, so it has a "vref-supply" property. But there is no
+"VREF" pin. The LRADC's reference voltage is one of several things internally
+connected to the SoC's "AVCC" pin.
+
+So here, vcc-pf-supply just means abstractly "the voltage supply for Port F".
+
+The fact that sometimes there also happens to be a pin named VCC-Px is the
+result of not coming up with a second name for something that has a perfectly
+good name already.
+
+Regards,
+Samuel
