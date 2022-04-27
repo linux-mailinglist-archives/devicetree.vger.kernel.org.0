@@ -2,63 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A545120BC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:39:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E663D512137
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:40:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240606AbiD0P4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:56:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
+        id S241052AbiD0QCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 12:02:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240735AbiD0P4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:56:03 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D830E5B8AC;
-        Wed, 27 Apr 2022 08:52:47 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23RFqeGZ059667;
-        Wed, 27 Apr 2022 10:52:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651074760;
-        bh=iQNR/J2TTO4CXprgVUyWcFOqEc9DDh1c8RUauqT+Jcs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=TJeN4mxqfRUWMiwVSogSPUjZ7Fs7E/6PomW6RzxTdIy3NwaRa4jIq1cok0tFBDk8G
-         5LpHhujgBww6MorDwI6w40bBn3J5j1OX+2OPNwE8mvPiz7+Tnev8wjc2KWCmahKM0C
-         Q8UgLXg2jIE7WKwhlpyrglwuamWSBADDcGoZLDow=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23RFqeZ0085305
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Apr 2022 10:52:40 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 27
- Apr 2022 10:52:39 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 27 Apr 2022 10:52:39 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23RFqc9Q013951;
-        Wed, 27 Apr 2022 10:52:39 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>,
-        <r-ravikumar@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-sk: Enable HDMI
-Date:   Wed, 27 Apr 2022 21:22:32 +0530
-Message-ID: <20220427155232.10659-3-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220427155232.10659-1-r-ravikumar@ti.com>
-References: <20220427155232.10659-1-r-ravikumar@ti.com>
+        with ESMTP id S241054AbiD0QCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:02:08 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993EF14585A
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:58:50 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id d6so2467199ede.8
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:58:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6OVCi3akUJaXXWrQM/eK3YAmsx4+Jbm9nzUSMwO/J0=;
+        b=Mu/QqvJPsDAD3NexJvD8FfRgcmRDKVWYZzG+gwOGBgEaWmbJIAZUz6iNFYQnzER5Qc
+         omotwEkbVemPBfWDR2tX2Q7WOuPD5MFYtBaQww9dCvddcTmSKMmlL6DPfPlnolWwYEUP
+         r6pNMmZocnjijM2ZNqaKXNraZLHqQo2PBlXKsb3AAsto0NgcDL6hM5b45p+uuIC3YIp6
+         2m7csq6m8qOF+QTQA/p74b80ATrGYgF5oOdUijgM9wQY3bquRUCgA+YU16QfI0WsKQr2
+         Nzs9aC2PElZpcUqZz10sSNjxsGasYlB/wzW/pIvP3PlWLm51QIISwtEKI/P7zhZsBmxT
+         PUyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6OVCi3akUJaXXWrQM/eK3YAmsx4+Jbm9nzUSMwO/J0=;
+        b=kCBjwVITfom3c6RGzUEwQCqaaPlXNK0WKlbSEF3/8kMuvEUhGkkntvKxbN+RzalQiO
+         jCSv8kgrTnMPxQNd1a+vi1bG6Rw0HFlr85fP9BCwAxENil+/APRN97agxvVy1xHHS7QS
+         lRInmNh3K1Z1y7eNGMVqldBg4RMaFCfInbPiItXAfdTlK4ChAipaL1ASuTEYa/p2qrPe
+         KQVHHkLcNXyDPKS0QKaedDHG4GkNUJ4EgBBSsRpJ1ycyBvVHC256q/jmC/tWiag0fpJr
+         z6PSblm0d/3ON0JJ3YPNtCtsxXUhRLV/3X/aINfbgH/N3aRd0FqLbMrhUIy4qJSO7rs3
+         K//A==
+X-Gm-Message-State: AOAM531L0Jq0F/3rHk9HygPT+oVWBYVSIWSuvy335vperxdypRRen1lN
+        rafb0VgRrXwfBN8Btu71EL8r9g==
+X-Google-Smtp-Source: ABdhPJwT5Z2kK25hO2pVIZa/UepfpjQgKHrThIEomnFp//g9b8h8gIxcVOzewH6A5cDdKuFhKiP5QQ==
+X-Received: by 2002:a05:6402:198:b0:410:83e3:21d7 with SMTP id r24-20020a056402019800b0041083e321d7mr31474664edv.159.1651075126027;
+        Wed, 27 Apr 2022 08:58:46 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id l20-20020a1709062a9400b006ce71a88bf5sm6931993eje.183.2022.04.27.08.58.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Apr 2022 08:58:45 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/10] ARM/arm64: dts: use proper 'dma-channels/requests' properties
+Date:   Wed, 27 Apr 2022 17:58:30 +0200
+Message-Id: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,126 +78,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node for dvi bridge and the endpoint nodes to
-describe connection from
-DSS => TI TFP410 DPI-to-DVI Bridge => HDMI connector.
-Also add the required pinmux for HDMI hotplug and
-powerdown
+Hi,
 
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 80 +++++++++++++++++++++++++-
- 1 file changed, 79 insertions(+), 1 deletion(-)
+Rob reported [1] that many (all?) PL330 device nodes use wrong dma-channels and
+dma-requests properties.  The proper ones are without leading '#'.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 07b1e40fbc47..27a5911dfa8f 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -225,6 +225,59 @@
- 			};
- 		};
- 	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_hpd_pins_default>;
-+
-+		ddc-i2c-bus = <&main_i2c1>;
-+
-+		/* HDMI_HPD */
-+		hpd-gpios = <&main_gpio1 0 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&tfp410_out>;
-+			};
-+		};
-+	};
-+
-+	dvi-bridge {
-+		compatible = "ti,tfp410";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmi_pdn_pins_default>;
-+
-+		powerdown-gpios = <&main_gpio0 127 GPIO_ACTIVE_LOW>;
-+		ti,deskew = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				tfp410_in: endpoint {
-+					remote-endpoint = <&dpi_out0>;
-+					pclk-sample = <1>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				tfp410_out: endpoint {
-+					remote-endpoint =
-+						<&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -329,6 +382,18 @@
- 		>;
- 	};
- 
-+	hdmi_hpd_pins_default: hdmi-hpd-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x204, PIN_INPUT, 7) /* (AD5) UART1_RTSn.GPIO1_0 */
-+		>;
-+	};
-+
-+	hdmi_pdn_pins_default: hdmi-pdn-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x200, PIN_INPUT, 7) /* (AC4) UART1_CTSn.GPIO0_127 */
-+		>;
-+	};
-+
- 	/* Reset for M.2 E Key slot on PCIe0  */
- 	ekey_reset_pins_default: ekey-reset-pns-pins-default {
- 		pinctrl-single,pins = <
-@@ -733,11 +798,24 @@
- };
- 
- &dss_ports {
--	port {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0  {
-+		reg = <0>;
-+
- 		dpi0_out: endpoint {
- 			remote-endpoint = <&dp0_in>;
- 		};
- 	};
-+
-+	port@1 {
-+		reg = <1>;
-+
-+		dpi_out0: endpoint {
-+			remote-endpoint = <&tfp410_in>;
-+		};
-+	};
- };
- 
- &dp0_ports {
+I guess everything started with 42cf20980cde ("ARM: dts: pl330: Add #dma-cells for
+generic dma binding support").
+
+Patches are independent and can be picked-up as is. Otherwise please ack and
+I'll push it to SoC.
+
+[1] https://lore.kernel.org/linux-devicetree/fedb56be-f275-aabb-cdf5-dbd394b8a7bd@linaro.org/T/#m6235f451045c337d70a62dc65eab9a716618550b
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (10):
+  ARM: dts: zynq-7000: use proper 'dma-channels/requests' properties
+  ARM: dts: socfpga: use proper 'dma-channels/requests' properties
+  arm64: dts: stratix10/agilex: use proper 'dma-channels/requests'
+    properties
+  arm64: dts: juno: use proper 'dma-channels/requests' properties
+  arm64: dts: broadcom: use proper 'dma-channels/requests' properties
+  dt-bindings: mfd: samsung,exynos5433-lpass: fix
+    'dma-channels/requests' properties
+  ARM: dts: s5pv210: use proper 'dma-channels/requests' properties
+  ARM: dts: exynos: use proper 'dma-channels/requests' properties
+  arm64: dts: exynos: use proper 'dma-channels/requests' properties
+  arm64: dts: fsd: use proper 'dma-channels/requests' properties
+
+ .../mfd/samsung,exynos5433-lpass.yaml         |  4 ++--
+ arch/arm/boot/dts/exynos3250.dtsi             |  8 ++++----
+ arch/arm/boot/dts/exynos4.dtsi                | 12 +++++------
+ .../boot/dts/exynos4210-universal_c210.dts    |  4 ++--
+ arch/arm/boot/dts/exynos5250.dtsi             | 16 +++++++--------
+ arch/arm/boot/dts/exynos5410.dtsi             |  8 ++++----
+ arch/arm/boot/dts/exynos5420.dtsi             | 20 +++++++++----------
+ arch/arm/boot/dts/s5pv210.dtsi                | 12 +++++------
+ arch/arm/boot/dts/socfpga.dtsi                |  4 ++--
+ arch/arm/boot/dts/socfpga_arria10.dtsi        |  4 ++--
+ arch/arm/boot/dts/zynq-7000.dtsi              |  4 ++--
+ .../boot/dts/altera/socfpga_stratix10.dtsi    |  4 ++--
+ arch/arm64/boot/dts/arm/juno-base.dtsi        |  4 ++--
+ .../boot/dts/broadcom/northstar2/ns2.dtsi     |  4 ++--
+ .../boot/dts/broadcom/stingray/stingray.dtsi  |  4 ++--
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    | 12 +++++------
+ arch/arm64/boot/dts/exynos/exynos7.dtsi       |  8 ++++----
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  4 ++--
+ arch/arm64/boot/dts/tesla/fsd.dtsi            | 16 +++++++--------
+ 19 files changed, 76 insertions(+), 76 deletions(-)
+
 -- 
-2.17.1
+2.32.0
 
