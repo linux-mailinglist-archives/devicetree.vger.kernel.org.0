@@ -2,35 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 219B35115B5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CD25115CC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232820AbiD0L3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 07:29:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52262 "EHLO
+        id S232859AbiD0L3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 07:29:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232770AbiD0L3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:29:04 -0400
+        with ESMTP id S232822AbiD0L3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:29:07 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DDFD9340F2;
-        Wed, 27 Apr 2022 04:25:53 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4BCBB340F9
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 04:25:55 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AD0691474;
-        Wed, 27 Apr 2022 04:25:53 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E7626ED1;
+        Wed, 27 Apr 2022 04:25:54 -0700 (PDT)
 Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6EE603F5A1;
-        Wed, 27 Apr 2022 04:25:52 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E564B3F5A1;
+        Wed, 27 Apr 2022 04:25:53 -0700 (PDT)
 From:   Andre Przywara <andre.przywara@arm.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Liviu Dudau <liviu.dudau@arm.com>,
         Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Subject: [PATCH 05/11] dt-bindings: serio: add Arm PL050 DT schema
-Date:   Wed, 27 Apr 2022 12:25:22 +0100
-Message-Id: <20220427112528.4097815-6-andre.przywara@arm.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 06/11] dt-bindings: arm: convert vexpress-sysregs to DT schema
+Date:   Wed, 27 Apr 2022 12:25:23 +0100
+Message-Id: <20220427112528.4097815-7-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220427112528.4097815-1-andre.przywara@arm.com>
 References: <20220427112528.4097815-1-andre.przywara@arm.com>
@@ -44,90 +42,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm PL050 "Keyboard/Mouse Interface" is an Arm system IP providing a
-PS/2 compatible serial interface.
+The Arm Versatile Express system control register block provides GPIO
+functionality to some devices and is also used for board identification.
 
-Add a simple DT schema binding, based on the TRM[1], the existing DTs and
-the Linux driver.
-
-[1] https://developer.arm.com/documentation/ddi0143/latest
+Extract the first half of the informal vexpress-sysreg.txt binding and
+make it proper DT schema compliant.
 
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- .../devicetree/bindings/serio/amba-pl050.yaml | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/serio/amba-pl050.yaml
+ .../bindings/arm/vexpress-sysreg.yaml         | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
 
-diff --git a/Documentation/devicetree/bindings/serio/amba-pl050.yaml b/Documentation/devicetree/bindings/serio/amba-pl050.yaml
+diff --git a/Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml b/Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
 new file mode 100644
-index 0000000000000..9732a84550098
+index 0000000000000..b5c03ebba6a6e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/serio/amba-pl050.yaml
-@@ -0,0 +1,67 @@
++++ b/Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
+@@ -0,0 +1,89 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/serio/amba-pl050.yaml#
++$id: http://devicetree.org/schemas/arm/vexpress-sysreg.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Arm Ltd. PrimeCell PL050 PS/2 Keyboard/Mouse Interface
++title: ARM Versatile Express system registers bindings
 +
 +maintainers:
 +  - Andre Przywara <andre.przywara@arm.com>
 +
-+description:
-+  The Arm PrimeCell PS2 Keyboard/Mouse Interface (KMI) is an AMBA compliant
-+  peripheral that can be used to implement a keyboard or mouse interface that
-+  is IBM PS2 or AT compatible.
-+
-+# We need a select here so we don't match all nodes with 'arm,primecell'
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        const: arm,pl050
-+  required:
-+    - compatible
++description: |+
++  This is a system control registers block, providing multiple low level
++  platform functions like board detection and identification, software
++  interrupt generation, MMC and NOR Flash control etc.
 +
 +properties:
 +  compatible:
-+    items:
-+      - const: arm,pl050
-+      - const: arm,primecell
++    const: arm,vexpress-sysreg
 +
 +  reg:
 +    maxItems: 1
 +
-+  interrupts:
-+    maxItems: 1
++  "#address-cells":
++    const: 1
 +
-+  clocks:
-+    items:
-+      - description: KMI reference clock, used to generate the bus timing
-+      - description: APB register access clock
++  "#size-cells":
++    const: 1
 +
-+  clock-names:
-+    items:
-+      - const: KMIREFCLK
-+      - const: apb_pclk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
++  ranges: true
 +
 +additionalProperties: false
 +
++patternProperties:
++  '^gpio@[0-9a-fA-F]+$':
++    type: object
++    description:
++      GPIO children
++
++    properties:
++      compatible:
++        enum:
++          - arm,vexpress-sysreg,sys_led
++          - arm,vexpress-sysreg,sys_mci
++          - arm,vexpress-sysreg,sys_flash
++
++      gpio-controller: true
++
++      "#gpio-cells":
++        const: 2
++        description: |
++          The first cell is the function number:
++          for sys_led : 0..7 = LED 0..7
++          for sys_mci : 0 = MMC CARDIN, 1 = MMC WPROT
++          for sys_flash : 0 = NOR FLASH WPn
++          The second cell can take standard GPIO flags.
++
++      reg:
++        maxItems: 1
++
++    required:
++      - compatible
++      - reg
++      - gpio-controller
++      - "#gpio-cells"
++
++required:
++  - compatible
++  - "#address-cells"
++  - "#size-cells"
++
 +examples:
 +  - |
-+    kmi@70000 {
-+            compatible = "arm,pl050", "arm,primecell";
-+            reg = <0x070000 0x1000>;
-+            interrupts = <8>;
-+            clocks = <&mb_clk24mhz>, <&soc_smc50mhz>;
-+            clock-names = "KMIREFCLK", "apb_pclk";
++    sysreg@0 {
++            compatible = "arm,vexpress-sysreg";
++            reg = <0x00000 0x1000>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++            ranges = <0 0 0x1000>;
++
++            v2m_led_gpios: gpio@8 {
++                    compatible = "arm,vexpress-sysreg,sys_led";
++                    reg = <0x008 4>;
++                    gpio-controller;
++                    #gpio-cells = <2>;
++            };
 +    };
 +
 +...
