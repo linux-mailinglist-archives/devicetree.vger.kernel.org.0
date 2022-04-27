@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB703511941
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:55:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 899595119D3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238600AbiD0Our (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 10:50:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47352 "EHLO
+        id S238728AbiD0Ovp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 10:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238536AbiD0Oup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:50:45 -0400
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8C63BA59;
-        Wed, 27 Apr 2022 07:47:34 -0700 (PDT)
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 23R8jpda029645;
-        Wed, 27 Apr 2022 07:47:31 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=pfpt0220;
- bh=gsxpG4RiXnCTCF6V9lo/7D//jaoYpWLGlyTjAD+8/qk=;
- b=koGcsTh8SpOBk2r6NfOSKOAo4RsmzmAnH5jn03a2QcYMlA9fxXDUpspTfDNk8qjBIS1T
- MnUSAw/JBmQWKSt9j/0gBs09AIQxjWb96zVW+YqZczWukuwwLY7EmJA8J4uvHBrlbKU1
- yiYozr/5xmBdZP2JIrSTF1oxhDNcv3omS+fTrBctxjZpn0GoaH0Bt8gS5ECuBxeIalwm
- UUkvtKWoBi3gpI0AZYaYTJTvodESnxQcwDJ+sselMYF24CPxQALfX+96SSGP2MNikLJj
- yuxML5Wep0pyJ5Ls4TpBxbUBWJbJBteqUYorrdM8rmKFx3yCg3cqCS3WNL2Ny4fqSZG2 XQ== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3fprsqu7ca-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Wed, 27 Apr 2022 07:47:31 -0700
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Apr
- 2022 07:47:30 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Wed, 27 Apr 2022 07:47:30 -0700
-Received: from localhost.localdomain (unknown [10.110.150.250])
-        by maili.marvell.com (Postfix) with ESMTP id ADFAF3F7063;
-        Wed, 27 Apr 2022 07:47:29 -0700 (PDT)
-From:   Piyush Malgujar <pmalgujar@marvell.com>
-To:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <rric@kernel.org>,
-        <cchavva@marvell.com>, <wsadowski@marvell.com>,
-        Piyush Malgujar <pmalgujar@marvell.com>
-Subject: [PATCH 5/5] gpio: thunderx: change handler for level interrupt
-Date:   Wed, 27 Apr 2022 07:46:20 -0700
-Message-ID: <20220427144620.9105-6-pmalgujar@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220427144620.9105-1-pmalgujar@marvell.com>
-References: <20220427144620.9105-1-pmalgujar@marvell.com>
+        with ESMTP id S238747AbiD0Ovo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:51:44 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369B63CFCC;
+        Wed, 27 Apr 2022 07:48:30 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23R5dQms017082;
+        Wed, 27 Apr 2022 09:48:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=vaquiEachYy7Mpe5Ka+lZOH/BZtZThYtXK3LzhM4Uvk=;
+ b=j52O/JvmuWNO8wd1FbQeW6m1LAfZ1g8qfyGyu9lSayevqP8Dar1r9eIffYSG8BnPup7M
+ XbWGGwdsCGFbNGvI/QbcoCI9ySAvWB0o+JXA8sOgrdcxu8cSG5M9CZvdfx7Q3DEsP6Vw
+ sJoi7T1YxBsjOSRtvYuFfIheMDOM/XZUnGhy1biBsk/R2a4OT8rAmA9hzoiNK4rrG8vJ
+ COb844Neih6M5aaH6/jPOrh639/TXgysyGzEkFtrlJFdSrX8qiTciA45x0G/0tYy3W5K
+ 1kI4aSuv94lqmLu1am+veVKnfE7eq8icJ5EefuKxp3Lct+Sm82Dn4FN8Fk2S23xvFITf Qg== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3fprtb0veb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 27 Apr 2022 09:48:27 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 27 Apr
+ 2022 15:48:25 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via Frontend
+ Transport; Wed, 27 Apr 2022 15:48:25 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3910611D1;
+        Wed, 27 Apr 2022 14:48:25 +0000 (UTC)
+Date:   Wed, 27 Apr 2022 14:48:25 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        - <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mfd: wlf,arizona: Add spi-max-frequency
+Message-ID: <20220427144825.GD38351@ediswmail.ad.cirrus.com>
+References: <20220427065102.109046-1-krzysztof.kozlowski@linaro.org>
+ <20220427122143.GB38351@ediswmail.ad.cirrus.com>
+ <20220427125801.GC38351@ediswmail.ad.cirrus.com>
+ <d43d7e40-40d7-a89e-115f-04a305d7239b@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: 0uaggkiGNeQvQqwE58ua4JEIRGRBqzNm
-X-Proofpoint-GUID: 0uaggkiGNeQvQqwE58ua4JEIRGRBqzNm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-04-27_04,2022-04-27_01,2022-02-23_01
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <d43d7e40-40d7-a89e-115f-04a305d7239b@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-ORIG-GUID: Pcz8kFp6kbKi_3FQmQQTVXNeDN2Yg1ui
+X-Proofpoint-GUID: Pcz8kFp6kbKi_3FQmQQTVXNeDN2Yg1ui
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current level interrupt handler is masking the GPIO interrupt
-and not unmasking it, to resolve that, handle_level_irq is used.
+On Wed, Apr 27, 2022 at 03:49:51PM +0200, Krzysztof Kozlowski wrote:
+> On 27/04/2022 14:58, Charles Keepax wrote:
+> > On Wed, Apr 27, 2022 at 12:21:43PM +0000, Charles Keepax wrote:
+> >> On Wed, Apr 27, 2022 at 08:51:02AM +0200, Krzysztof Kozlowski wrote:
+> The Arizona schema has unevaluatedProperties: false, which means unknown
+> properties will not be accepted. Neither Arizona schema nor other
+> referenced schemas define spi-max-frequency, so when the schema is run,
+> the property will be unevaluated, thus cause a warning.
+> 
+> This is visible here at the bottom (with Rob's work-in-progress):
+> https://lore.kernel.org/linux-devicetree/345716e9-5624-5ba0-09f0-46e9850c546c@linaro.org/T/#m4b5d7cfdf34dbd410003b2faae4d840113050c51
+> 
+> Although I think that I did not fix it properly, because I missed
+> 'controller-data', so instead this should be fixed with referencing
+> spi-peripheral-props like here:
+> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=linux-5.17.y&id=f412fe11c1a9d815565f3918c56f3fd02167c734
+> 
 
-Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
-Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
----
- drivers/gpio/gpio-thunderx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ah yes I forgot the unevaluatedProperties didn't work properly,
+sorry was running things on my DTs here with SPI and they were
+all passing but of course I don't have Rob's fix to make the
+unevaluatedProperties actually work.
 
-diff --git a/drivers/gpio/gpio-thunderx.c b/drivers/gpio/gpio-thunderx.c
-index 87ab1ad7e652347a67b7747ea497b944498a8b41..b1063e53ceb8edf26ca1a6ecab8035aad62128a1 100644
---- a/drivers/gpio/gpio-thunderx.c
-+++ b/drivers/gpio/gpio-thunderx.c
-@@ -343,7 +343,7 @@ static int thunderx_gpio_irq_set_type(struct irq_data *d,
- 		irq_set_handler_locked(d, handle_fasteoi_ack_irq);
- 		bit_cfg |= GPIO_BIT_CFG_INT_TYPE;
- 	} else {
--		irq_set_handler_locked(d, handle_fasteoi_mask_irq);
-+		irq_set_handler_locked(d, handle_level_irq);
- 	}
- 
- 	raw_spin_lock_irqsave(&txgpio->lock, flags);
--- 
-2.17.1
+Probably yeah include the spi properties yaml is a better
+solution as that covers all the properties that might get used.
 
+Thanks,
+Charles
