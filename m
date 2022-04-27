@@ -2,132 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF1051200E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 440E8511E01
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242780AbiD0QWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 12:22:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40304 "EHLO
+        id S243248AbiD0QnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 12:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242985AbiD0QVL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:21:11 -0400
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA283122B;
-        Wed, 27 Apr 2022 09:17:46 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 842F2200007;
-        Wed, 27 Apr 2022 16:17:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651076263;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=6bH236ERFtId0dlFB5w7Um+t9YOETlWqFMja0vZdBWM=;
-        b=AhHa/7qYmf+S1v9N7LCIjqXNWFg3Zsj2p8Ht4i3+2f+h3gecumPQjKhkL3rFMr36BKyI2L
-        wN98gSrpn/huAqqnOIKPHnmLNeAI7goURKO/AdFRQd8ctCo/Kczm3czNuZFVgHq1qRB7lg
-        Uws9h5BWmjiwWHVBozum2b6Uep4QEHV0Q26KDuzBr6yAyIcyszlcmUzqlSpKt83+/mKUBd
-        aCDJAi3qmiPk70JSdixfWQAORow32i/3F/Bp3ZT7XpiDH+DSkiNo0E082inMB0D8QJx781
-        adTSstgt8+aTIfEdXTCYwvjeBSDwZFnuhFLP0GBTCoUZPIdKggBdBIC/MOHsdQ==
-Date:   Wed, 27 Apr 2022 18:17:38 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Chuanhong Guo <gch981213@gmail.com>, linux-spi@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Subject: Re: [PATCH v6 0/5] spi: add support for Mediatek SPI-NAND
- controller
-Message-ID: <20220427181738.2ad3e126@xps13>
-In-Reply-To: <YmlPlhKTrRXZo/Sx@sirena.org.uk>
-References: <20220424032527.673605-1-gch981213@gmail.com>
-        <20220427112857.7ddd7fc8@xps13>
-        <CAJsYDV+DfBEmWr7D1aO8F=3WMurAg6aEhf5gY86BXOUSyJ2nXA@mail.gmail.com>
-        <YmlPlhKTrRXZo/Sx@sirena.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S243255AbiD0QnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:43:17 -0400
+X-Greylist: delayed 1008 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 27 Apr 2022 09:40:03 PDT
+Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44FA3674E7
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 09:40:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=s0tSZBlfyGxMTtB3lAr2Q1sYcP0+uGwRUvp3hPCyHzU=; b=TFPJs0il2zNVxAi8U1shUAyTRM
+        20CDsMFiQPGr+uatPGDKZUUZ3j3igMoeq66QfETt/VEkjxS0yY1n2bJfI9Y0P98JRfRj6MRyWwVip
+        v0AtDGfXEVDSfdqkWDDcXYww1VJdGROcpOy/vwS3qM1sBcg+H2nBwP6uk6ntqibxUY0IFXKv7QjQz
+        JBqDiVBo+fKrNMtTiLvq1AZJirhw71UD1C/CgunTu0MigRPqLvuQxIet1uxFDMcUpWitbuSIY2bSk
+        lxhduu8fc43lpM4W0nRpn5jnjv2Vr91PX3fT/KfzpxHHyDicHhJkYxHvUukCb4+5yrvQqGX+OijWG
+        la7YIE/A==;
+Received: from 82-71-190-90.dyn.estpak.ee ([90.190.71.82]:62336 helo=localhost)
+        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <maukka@ext.kapsi.fi>)
+        id 1njkRY-00047C-N0; Wed, 27 Apr 2022 19:23:10 +0300
+Received: by localhost (sSMTP sendmail emulation); Wed, 27 Apr 2022 19:23:07 +0300
+From:   Mauri Sandberg <maukka@ext.kapsi.fi>
+To:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
+        sebastian.hesselbarth@gmail.com,
+        Mauri Sandberg <maukka@ext.kapsi.fi>
+Date:   Wed, 27 Apr 2022 19:21:22 +0300
+Message-Id: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 90.190.71.82
+X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to the Device Tree
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hello all,
 
-broonie@kernel.org wrote on Wed, 27 Apr 2022 15:13:42 +0100:
+I am making an attempt to create a device tree for D-Link DNS-323 devices
+but I am falling short on a few specific details. I am requesting a
+general review of the device tree files. I have access to DNS-323 rev A1
+only and the B1 and C1 need to be tested separately, so I am reaching out
+to people who might have them. The questions that I have at the moment are
+below.
 
-> On Wed, Apr 27, 2022 at 10:04:57PM +0800, Chuanhong Guo wrote:
-> > On Wed, Apr 27, 2022 at 5:29 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:  
-> 
-> > > The patch actually look independent, so if it's fine for you I can take
-> > > the two mtd patches and let you merge the spi/binding changes.  
-> 
-> > Out of curiosity:
-> > Wouldn't that break the build for spi subsystem? Because...  
-> 
-> > > >  rename drivers/mtd/nand/raw/mtk_ecc.h => include/linux/mtd/nand-ecc-mtk.h (100%)  
-> 
-> > The spi driver needs this header file which is moved in the mtd patch.  
-> 
-> Ah, that'll be an issue indeed - if I could get a signed tag with the
-> dependency in it I can go ahead with the SPI bits?
+- some of resulting IRQs are different from what was requested in device tree
+- logs say NR_IRQS is different from mach file one
+- sata_mv fails to initialise with -22 (-EINVAL)
+- there is no concensus on how to get ascii formatted MAC address from mtd
+  partitions so eth is not fully functional without setting the MAC from
+  userspace
+- revs B1 and C1 need testing
+- how to configure RTC to wake system from sleep?
 
-I pulled the two patches, here is a tag with these patches for you,
-Mark.
+What currently works in rev A1
+ - leds
+ - keys
+ - fan
+ - temperature sensor
+ - shutdown
+ - reboot
+ - mtd partitions
+ - ethernet (mac address must be set manually)
 
-The following changes since commit 3123109284176b1532874591f7c81f3837bbdc17:
+I have included relevant parts from boot log to better illustrate what seems
+to be off target
 
-  Linux 5.18-rc1 (2022-04-03 14:08:21 -0700)
+-------------------------------- DT log ---------------------------------------
+...
+NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+...
+sata_mv 0000:00:01.0: Gen-IIE 32 slots 4 ports SCSI mode IRQ via INTx
+sata_mv: probe of 0000:00:01.0 failed with error -22
+...
+mv64xxx_i2c mv64xxx_i2c.0: can't get pinctrl, bus recovery not supported
+...
+-------------------------------------------------------------------------------
 
-are available in the Git repository at:
+Best regards,
+Mauri
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git tags/mtd/mtk-spi-nand-for-5.19
+Mauri Sandberg (1):
+  ARM: orion5x: convert D-Link DNS-323 to the Device Tree
 
-for you to fetch changes up to 4c5bf4b51c9857e20c5f5e9d74b86aa1bd1def40:
+ arch/arm/boot/dts/Makefile                   |   3 +
+ arch/arm/boot/dts/orion5x-dlink-dns323.dtsi  | 217 ++++++
+ arch/arm/boot/dts/orion5x-dlink-dns323a1.dts |  59 ++
+ arch/arm/boot/dts/orion5x-dlink-dns323b1.dts |  38 +
+ arch/arm/boot/dts/orion5x-dlink-dns323c1.dts |  80 ++
+ arch/arm/mach-orion5x/Kconfig                |   6 +-
+ arch/arm/mach-orion5x/Makefile               |   2 +-
+ arch/arm/mach-orion5x/board-dns323.c         | 118 +++
+ arch/arm/mach-orion5x/board-dt.c             |   3 +
+ arch/arm/mach-orion5x/common.h               |   6 +
+ arch/arm/mach-orion5x/dns323-setup.c         | 724 -------------------
+ 11 files changed, 528 insertions(+), 728 deletions(-)
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323.dtsi
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323a1.dts
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323b1.dts
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323c1.dts
+ create mode 100644 arch/arm/mach-orion5x/board-dns323.c
+ delete mode 100644 arch/arm/mach-orion5x/dns323-setup.c
 
-  mtd: nand: mtk-ecc: also parse nand-ecc-engine if available (2022-04-27 18:12:43 +0200)
 
-----------------------------------------------------------------
-Mediatek ECC changes:
-* Also parse the default nand-ecc-engine property if available
-* Make mtk_ecc.c a separated module
-
-----------------------------------------------------------------
-Chuanhong Guo (2):
-      mtd: nand: make mtk_ecc.c a separated module
-      mtd: nand: mtk-ecc: also parse nand-ecc-engine if available
-
- drivers/mtd/nand/Kconfig                                           | 7 +++++++
- drivers/mtd/nand/Makefile                                          | 1 +
- drivers/mtd/nand/{raw/mtk_ecc.c => ecc-mtk.c}                      | 8 +++++---
- drivers/mtd/nand/raw/Kconfig                                       | 1 +
- drivers/mtd/nand/raw/Makefile                                      | 2 +-
- drivers/mtd/nand/raw/mtk_nand.c                                    | 2 +-
- drivers/mtd/nand/raw/mtk_ecc.h => include/linux/mtd/nand-ecc-mtk.h | 0
- 7 files changed, 16 insertions(+), 5 deletions(-)
- rename drivers/mtd/nand/{raw/mtk_ecc.c => ecc-mtk.c} (98%)
- rename drivers/mtd/nand/raw/mtk_ecc.h => include/linux/mtd/nand-ecc-mtk.h (100%)
+base-commit: 46cf2c613f4b10eb12f749207b0fd2c1bfae3088
+--
+2.25.1
