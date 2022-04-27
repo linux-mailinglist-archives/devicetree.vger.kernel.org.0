@@ -2,103 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF48B511D46
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C970F511D20
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239726AbiD0PgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
+        id S239777AbiD0Pha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239742AbiD0PgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:36:23 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972413299C;
-        Wed, 27 Apr 2022 08:33:12 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id t16so1378686qtr.9;
-        Wed, 27 Apr 2022 08:33:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EMs8gAbZ1UvRp3PmAyFulYzj1qVtK1tgKYngal0laac=;
-        b=fF3BrNvu0SSPHFf7gl37pkjG+DvjuxJxyUa3rr7z7hfCLJ0RiOeY4ZRR0UhGyUbWA6
-         m37DW77xcaB91/08rPKaSUbVmzs9STi006+uLx1e9nrI88B6mD9ggqtgWx5dx6z7RCFO
-         EZHfXEXMmePqlzXR/X/Iw4krTI2+yLYX5t9ZkuAv6sMiMrhA3i36/MXXwWmdkUVXPxX8
-         bbJgWFWAWxQvcEHD+tBbrPKoRDrMbjcIvahSv5UBxwIpRSFJ1b9Ld4lZsCy4R1w67Ak9
-         G3iOb1UZQ4j5G832OCqFSk8ZHnSuEFpi2DDyWCUrfXpo/dbEBs1e7fKjya4cxxHhEO6Z
-         K7WA==
-X-Gm-Message-State: AOAM532fZXx64I2VhljtvvhkmTwu8NqfeyXfuQFm6LxiAgfOhCQIjXE4
-        PWox4hMhYYqNFWHdaS7poZasTkLloxBLrw==
-X-Google-Smtp-Source: ABdhPJzngd9/qOSkpctlCyScvHI7/WSg5PvfB23tvV1D9G7PRubakomcjeS/H7eS0q/aOo9Nr1CPcA==
-X-Received: by 2002:ac8:5bc5:0:b0:2f2:457:a706 with SMTP id b5-20020ac85bc5000000b002f20457a706mr19346382qtb.150.1651073591167;
-        Wed, 27 Apr 2022 08:33:11 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id g10-20020ac8580a000000b002f35323f82csm9978541qtg.30.2022.04.27.08.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 08:33:10 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id w187so4088375ybe.2;
-        Wed, 27 Apr 2022 08:33:10 -0700 (PDT)
-X-Received: by 2002:a25:d393:0:b0:648:4871:3b91 with SMTP id
- e141-20020a25d393000000b0064848713b91mr17484020ybf.506.1651073590276; Wed, 27
- Apr 2022 08:33:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220421090016.79517-1-miquel.raynal@bootlin.com> <20220421090016.79517-3-miquel.raynal@bootlin.com>
-In-Reply-To: <20220421090016.79517-3-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 27 Apr 2022 17:32:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUZxAu3vTbyKYu=38OZ2QmFM6S=DrFWbp=Cwt6Ya-o9HQ@mail.gmail.com>
-Message-ID: <CAMuHMdUZxAu3vTbyKYu=38OZ2QmFM6S=DrFWbp=Cwt6Ya-o9HQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/7] soc: renesas: rzn1-sysc: Fix the RTC hclock description
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-rtc@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S239786AbiD0Ph1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:37:27 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD7D40A1A;
+        Wed, 27 Apr 2022 08:34:14 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id CC2763200915;
+        Wed, 27 Apr 2022 11:34:12 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Wed, 27 Apr 2022 11:34:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1651073652; x=1651160052; bh=Au
+        F5uFMP7QhrB3Wdfj3nB5BTEfBwyWP9fZ17HcqAOyw=; b=Nh9Iows123ywZ7ffOl
+        NsYGHH5Y+vPpOFFEpuqErxU0kDNkURL+Ju4SGbZ2wydp0DLfVlWvMro7WQY2WPmW
+        yPr1g/LWwnGB1kP6qaDB3BiaOC6eRHOdhDVnwPUybz5FoVK7KfjF/sy+AbNaJW3o
+        CK1jlqQiXoU8Pn3XlVMGvEOd/ylQbY4yIoVgLytcprnYe78NdbReNvXmMzDD3UVs
+        nBYs05gE+6xeXc5FKT2ad43HCH++PjLts+hTFuIUj+TlY+pk1IkFzbhDtQGpzxG5
+        iPgHYVqJzXJ+6XpraD+RnoxehYXd7w6fC86tgdxIln8Yl4oh1SEMDNv3BBoIUW9Q
+        Wrww==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1651073652; x=
+        1651160052; bh=AuF5uFMP7QhrB3Wdfj3nB5BTEfBwyWP9fZ17HcqAOyw=; b=D
+        oAW/viue9eJ5ma8l/NQoSwEV0msImhgFcZLXHjWOnFe1z3FTo1gC6Z1vjAAvb3QX
+        SK+dO+eJcaaWvMiLq6zuTp56I1bFCnUAshIxuVdqb3N6IKDrWfOmcdWWPEU8SI9v
+        kYJWc7zMM06qdYxhl2AjgBbazQYqvNLD2rBFJ67PaeLQVVH1YKrF4dxbB8IePXgb
+        5+dvGXyii7MByFIepvZQpst+ZCYa5ShgGlXb3iRv2ehqsz1p/h+zlTcE4eorT6wM
+        0tQ8rdxj8PjJ4Ifr7FDAYsNkJFt32VfGYyakT1QwVdwTxc32tMraKr6Qm13OAkaD
+        XGS9/B08kUAjs56frVO9Q==
+X-ME-Sender: <xms:c2JpYsKb65TZFx-zBhxomiB91tb5NqO4jK33HtoOzfzQQDTIbidjjA>
+    <xme:c2JpYsK5DzHJj3kEJyAA3Zj8pl__58SsIkp4hg1VavMyLgks153H4ANFUx3ASU2pB
+    M-0Db8y9RfXoPh809A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgdekjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeekleekudelvddvhfefhfelgffffefgvdehjeegjefhheejjefgffefieej
+    tdetjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdgu
+    vghv
+X-ME-Proxy: <xmx:c2JpYsu7znZ5V62tWFiQEEtRFrcj76dnXKcLKoug1DbDBihUE34CjQ>
+    <xmx:c2JpYpbDxcC3w3vjz9jcgdtD-gSc_MEeHLQrWRGcqAA_RyICMZpTJQ>
+    <xmx:c2JpYjbPeGDHkVYfVTwLDOMkMJwKBSmJ12894doNTvAEjhbatZIO_Q>
+    <xmx:dGJpYnR3ZcrkjmhkG6s-XhnRh3zM7dexQl4_A2_nZJgVKCcI0hytBg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 77AEA2740386; Wed, 27 Apr 2022 11:34:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-569-g7622ad95cc-fm-20220421.002-g7622ad95
+Mime-Version: 1.0
+Message-Id: <0f6ea2c3-586d-4f5a-9cee-688cd73b96b3@www.fastmail.com>
+In-Reply-To: <CAK8P3a1yJkegvgvzHemBd_dowvpyDmxtUnrpiHob8+hiNeO4sw@mail.gmail.com>
+References: <20220426201539.12829-1-sven@svenpeter.dev>
+ <CAK8P3a1yJkegvgvzHemBd_dowvpyDmxtUnrpiHob8+hiNeO4sw@mail.gmail.com>
+Date:   Wed, 27 Apr 2022 17:33:50 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        "Keith Busch" <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
+        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
+        "Marc Zyngier" <maz@kernel.org>, "Janne Grunau" <j@jannau.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v3 0/6] Apple M1 (Pro/Max) NVMe driver
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 21, 2022 at 11:00 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> It needs to be un-gated, but also a reset must be released and an idle
-> flag should also be disabled.
+On Tue, Apr 26, 2022, at 23:15, Arnd Bergmann wrote:
+> On Tue, Apr 26, 2022 at 10:15 PM Sven Peter <sven@svenpeter.dev> wrote:
+>>
+>> Hi,
+>>
+>> This series includes everything[*] required to get NVMe up and running on
+>> Apple's M1, M1 Pro and M1 Max SoCs.
+>>
+>> v1: https://lore.kernel.org/linux-nvme/20220321165049.35985-1-sven@svenpeter.dev/T/
+>> v2: https://lore.kernel.org/linux-nvme/20220415142055.30873-1-sven@svenpeter.dev/T/
+>>
+>> Thanks everyone for the reviews of v2 again! There are just some minor
+>> changes since v2 listed in the individual commits again.
 >
-> The driver already supports all these operations, so update the
-> description of the RTC hclock to fit these requirements.
+> Nice! I had not looked at v2 in much detail, but I'm perfectly happy
+> with this version,
 >
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> I found a few things that could be improved if you do a respin, but
+> nothing important.
 
-Thanks, will queue in renesas-devel for v5.19, with the prefix fixed.
+Thanks, I'll respin it later this week to fix those things!
 
-Gr{oetje,eeting}s,
+>
+>> [*] The only missing part in this series are the device tree updates
+>>     but since these will go through arm-soc anyway I haven't included
+>>     them here but will instead submit them once this series is in a shape
+>>     where it can be merged.
+>
+> Just as a clarification: the drivers/soc/ portion should normally go through the
+> soc tree as well, but I'm happy for those to get merged along with the
+> nvme driver
+> if that helps get it all mainlined more quickly.
 
-                        Geert
+Makes sense!
+I don't think I'll be ready to submit USB3/USB4/Thunderbolt (which also needs
+RTKit) during this cycle but I think there's a decent chance marcan will submit
+SMC which also depends on RTKit and will go through a different subsystem.
+What's the best way to handle the RTKit commits in that case?
+It would be great if we could get both into 5.19.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Sven
+
