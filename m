@@ -2,124 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC23E5110FA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADFA511101
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358014AbiD0GQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 02:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
+        id S1358029AbiD0GUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 02:20:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346600AbiD0GQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 02:16:45 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1AFE3FBCE
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 23:13:35 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id kq17so1332066ejb.4
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 23:13:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=M6ZPQXjtDv6onFD4afq4GkFFVfxEBQyXu2ilHEOk3B0=;
-        b=WXBNan9l5LOdlgI3ht6e86r76ztL3T/1ePM8EyZh5+dGJOPrEACNq6UoxBfBjltjw/
-         sma2OsBA00i4yRkh4sjoyyTSfpRqkpIfVj92QM+oCuqG8PXFCol3OYvd5oXo0+OM0GTE
-         D1EenVi7orLwNp5SrPxrxeyXPvww4xx5tjpjPkQFq6DeEdDOLWPb6GudI8GC197dDITI
-         fF3chFA/Ims/jC9WAUI638aHyR8lkzxp43ZR+fowF16CzFBiug3CnUKEBikwCsia5Cf6
-         kq3L4TKGA29I5UR0E3/Vdmcn1tOnRMI/g4NbIfWE5MhHZpvangpE0zVO+7qd7qVM94HA
-         YhwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=M6ZPQXjtDv6onFD4afq4GkFFVfxEBQyXu2ilHEOk3B0=;
-        b=ZXeo0ZgrQk0utUdDDMg1e+RDInpEzCK7oyynD47UNoLhFFRfITkmsAH2y1t2g1vnOY
-         tvFgMJtvmarho1oDWbCYzt3BWdYqvK7zw2tE6xRr1HhOYgrr3gwAzJGw6walRnTFDvs+
-         zOJ+PYK8XeF9bA8Cx53REsORer1cYeIs/rH0OVR1K4ahei/0lGQUSUuNt0HK4+HZMyT7
-         Boq37kH4wQop3npK3EuZ6rWVvYvjYKNg5UIXP8+5i34d7Og238PxtihBUI1evb9Z977z
-         BUdSWEPKOSQ0vgvTvWhOFssenz8uy/6cKPOMvtAAF8LHHx8Z61tWbNJLuDZBnHdmRBtT
-         x+ow==
-X-Gm-Message-State: AOAM530wL1t2jyIeQeiLvJgxs1LNBlz326eIiV09QKVxhiN50tSuxdzv
-        UuINLiYYmR80fpPFD6N5LbtRgg==
-X-Google-Smtp-Source: ABdhPJzg9VXnth/VzikUzUVBYmYJsgTjrbAA1Nt+6D2ECaWb8uK2+mqVueHqYBaayAlbzhxyWBRHOQ==
-X-Received: by 2002:a17:906:7d5:b0:6f3:a6a5:28c6 with SMTP id m21-20020a17090607d500b006f3a6a528c6mr9472321ejc.11.1651040014283;
-        Tue, 26 Apr 2022 23:13:34 -0700 (PDT)
-Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l19-20020a1709067d5300b006e8488d9a80sm6168456ejp.59.2022.04.26.23.13.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 23:13:33 -0700 (PDT)
-Message-ID: <43e42d72-f195-df67-d6ba-8feea1bc7e26@linaro.org>
-Date:   Wed, 27 Apr 2022 08:13:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V3 1/3] dt-bindings: clk: sprd: Add bindings for ums512
- clock controller
-Content-Language: en-US
-To:     Cixi Geng <gengcixi@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
+        with ESMTP id S229930AbiD0GUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 02:20:02 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A4804617C;
+        Tue, 26 Apr 2022 23:16:52 -0700 (PDT)
+X-UUID: d2924d6d266245b99969b02056fca99e-20220427
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:a758f74d-a4d2-4133-8ff3-b2808168d643,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:faefae9,CLOUDID:9c29a3c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: d2924d6d266245b99969b02056fca99e-20220427
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1965537658; Wed, 27 Apr 2022 14:16:47 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 27 Apr 2022 14:16:46 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Apr 2022 14:16:46 +0800
+Message-ID: <c9bb743907ec5d8eb8465f22db4db4d477ca161f.camel@mediatek.com>
+Subject: Re: [PATCH 3/7] arm64: dts: mediatek: mt8195: add ethernet device
+ node
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Fabien Parent <fparent@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220418125630.2342538-1-gengcixi@gmail.com>
- <20220418125630.2342538-2-gengcixi@gmail.com>
- <714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org>
- <CAF12kFv6uioc7ATtXLpGTTDBFT1wYWZUBoyjQqP1bSUnut0pKA@mail.gmail.com>
- <a5a59f3c-00a3-afc5-24aa-1ae3de2600ec@linaro.org>
- <CAF12kFu5KW+fw=0kP6LrEqOvKYR38mELfPjG64=n+gudRxsZUQ@mail.gmail.com>
- <baa73bda-91af-8a31-67f4-6d5615862c73@linaro.org>
- <CAF12kFsxqdYERwhjC3tq9bNqzWS3P6Sb7VPCwHmQ=StF28Q-+A@mail.gmail.com>
- <5b00db5b-b179-af0f-71e4-e940c6a41018@linaro.org>
- <CAF12kFt=L7CV5RDBViPSNb9Y_Te4JJ-TZrx2N+w_P2px7_FemQ@mail.gmail.com>
- <0423e827-9592-ce6f-74ca-111a099a263f@linaro.org>
- <CAF12kFuwgGJSXpC8e=6L1XgP4zFOjbdLazwuqR0jg=2OJ=RtRA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAF12kFuwgGJSXpC8e=6L1XgP4zFOjbdLazwuqR0jg=2OJ=RtRA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Biao Huang <biao.huang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Wed, 27 Apr 2022 14:16:45 +0800
+In-Reply-To: <20220426134106.242353-4-fparent@baylibre.com>
+References: <20220426134106.242353-1-fparent@baylibre.com>
+         <20220426134106.242353-4-fparent@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/2022 07:40, Cixi Geng wrote:
->> You need to help me here with the naming. What is "global registers"
->> range? Let's focus on sharkl3.dtsi and syscon@4035c000 with "rpll".
->>
->> You have a clock controller @4035c000, which provides several clocks,
->> right? Then you have a rpll also @4035c000, so the register range is the
->> same. The register range is the same, isn't it?
+On Tue, 2022-04-26 at 15:41 +0200, Fabien Parent wrote:
+> From: Biao Huang <biao.huang@mediatek.com>
 > 
-> the anlg_phy_g5_regs is not a clock controller.
-> In fact, this is just to provide an address for other modules to call regmap.
-> not provide a clk interface or device.
-> The clk configuration of rpll is based on the anlg_phy_g5_regs register.
-> The analog_g5 asic document is not only used to configure rpll, but also other
-> functions can be configured, but currently our driver is only used to provide
-> configuration rpll, so the range of the device node of rpll can be less than or
-> equal to the range of anlg_phy_g5_regs.
-> Hope this could explains your question
+> This commit adds device node for mt8195 ethernet.
+> 
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+> This patch comes from 
+> https://urldefense.com/v3/__https://lore.kernel.org/all/20211207015505.16746-7-biao.huang@mediatek.com/__;!!CTRNKA9wMg0ARbw!zMbdbHaOYVgzrhlWiTJyY40dCmVZaK1jStklyKdY5qoDUoA5uoISlYOx9E801CRuEHQ$
+>  
+> 
+> The differences between that patch and this patch is that:
+> * The EVB dts modification has been split into its own commit
+> * The patch was rebased to fix merge conflict with the upstream
+> mt8195.dtsi file
+> * Re-ordered the node to be correctly sorted based on node address
+> 
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 70
+> ++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index aa05071a80b8..a58641d1cab0 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -912,6 +912,76 @@ spis1: spi@1101e000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		eth: ethernet@11021000 {
+> +			compatible = "mediatek,mt8195-gmac",
+> "snps,dwmac-5.10a";
+> +			reg = <0 0x11021000 0 0x4000>;
+> +			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH
+> 0>;
+> +			interrupt-names = "macirq";
+> +			mac-address = [00 55 7b b5 7d f7];
+> +			clock-names = "axi",
+> +				      "apb",
+> +				      "mac_main",
+> +				      "ptp_ref",
+> +				      "rmii_internal",
+> +				      "mac_cg";
+> +			clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
+> +				 <&pericfg_ao
+> CLK_PERI_AO_ETHERNET_BUS>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_250M>,
+> +				 <&topckgen
+> CLK_TOP_SNPS_ETH_62P4M_PTP>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>,
+> +				 <&pericfg_ao
+> CLK_PERI_AO_ETHERNET_MAC>;
+> +			assigned-clocks = <&topckgen
+> CLK_TOP_SNPS_ETH_250M>,
+> +					  <&topckgen
+> CLK_TOP_SNPS_ETH_62P4M_PTP>,
+> +					  <&topckgen
+> CLK_TOP_SNPS_ETH_50M_RMII>;
+> +			assigned-clock-parents = <&topckgen
+> CLK_TOP_ETHPLL_D2>,
+> +						 <&topckgen
+> CLK_TOP_ETHPLL_D8>,
+> +						 <&topckgen
+> CLK_TOP_ETHPLL_D10>;
+> +			power-domains = <&spm
+> MT8195_POWER_DOMAIN_ETHER>;
+> +			mediatek,pericfg = <&infracfg_ao>;
+> +			snps,axi-config = <&stmmac_axi_setup>;
+> +			snps,mtl-rx-config = <&mtl_rx_setup>;
+> +			snps,mtl-tx-config = <&mtl_tx_setup>;
+> +			snps,txpbl = <16>;
+> +			snps,rxpbl = <16>;
+> +			clk_csr = <0>;
+> +			status = "disabled";
+> +
+> +			stmmac_axi_setup: stmmac-axi-config {
+> +				snps,wr_osr_lmt = <0x7>;
+> +				snps,rd_osr_lmt = <0x7>;
+> +				snps,blen = <0 0 0 0 16 8 4>;
+> +			};
+> +
+> +			mtl_rx_setup: rx-queues-config {
+> +				snps,rx-queues-to-use = <1>;
+> +				snps,rx-sched-sp;
+> +				queue0 {
+> +					snps,dcb-algorithm;
+> +					snps,map-to-dma-channel =
+> <0x0>;
+> +					snps,priority = <0x0>;
+> +				};
+> +			};
+> +			mtl_tx_setup: tx-queues-config {
+> +				snps,tx-queues-to-use = <3>;
+> +				snps,tx-sched-wrr;
+> +				queue0 {
+> +					snps,weight = <0x10>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x0>;
+> +				};
+> +				queue1 {
+> +					snps,weight = <0x11>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x1>;
+> +				};
+> +				queue2 {
+> +					snps,weight = <0x12>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x2>;
+> +				};
+> +			};
+> +		};
+> +
+>  		ssusb: usb@11201000 {
+>  			compatible ="mediatek,mt8195-mtu3",
+> "mediatek,mtu3";
+>  			reg = <0 0x11201000 0 0x2dff>,
 
-I see, thanks for explanation. Indeed making entire @4035c000
-(anlg_phy_g5_regs) a clock controller would not match actual hardware,
-since rpll clock is a small part of it. I am afraid though, that you
-will duplicate such pattern even for the cases where that
-design/register range would be suitable to be a clock controller and a
-syscon. In one device.
+Reviewed-by: Macpaul Lin <macpaul.lin@mediatek.com>
 
-Please fix the other comments in my review - except this discussed here,
-the last one from email:
-https://lore.kernel.org/all/714caf6e-5f81-6d73-7629-b2c675f1f1d4@linaro.org/
+Regards,
+Macpaul Lin
 
-
-Best regards,
-Krzysztof
