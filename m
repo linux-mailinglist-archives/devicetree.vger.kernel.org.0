@@ -2,289 +2,801 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D1F5122FE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 21:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A6A9512327
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 21:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234784AbiD0TqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 15:46:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39056 "EHLO
+        id S235024AbiD0T6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 15:58:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234757AbiD0TqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 15:46:01 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C35005DA7C
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:40:01 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id l9-20020a056830268900b006054381dd35so1775312otu.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:40:01 -0700 (PDT)
+        with ESMTP id S235367AbiD0T6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 15:58:08 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BFE774842
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:54:54 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id iq2-20020a17090afb4200b001d93cf33ae9so5809985pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 12:54:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8E62sc2N0xYk98Q3FOi3UWyDPdfpLBQtbjJKAv7vuPg=;
+        b=KkW+uE76IeHP84eZIRugWyuExRU18k3cRDcZWxMZbvOI4181aX++j6tkYUScdI1oYf
+         f4b1ahKKr8BeU12ohUyCvQyombavMRhtlZL0RXmolzCW+nKe+vNdXLSu6Ygm8PoNlxCH
+         q+hP4NyiVWecw4Eh5v2xgfd5LGxyPXKdwQS8s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YRHQEOJeHVUsYJGN9JmtRj/2XBLbMF4FdtpgDTrkOZ0=;
-        b=Ateg7kHVIFYj0MzxGRinPUE2gcEdPSTH/NBRJLS15mo1CNXxZpYkXsLmuOEHO20EkJ
-         zVAuLJBLxnRHYD12SWEmLYK9ld2Ej+Tb59ROxVR2ZVLkJT0Wl4PDf/vX6i0lvc90fj7i
-         d0EhOU/jRZQ0wB08T4DJz/WKork+5BjwwL5NIsVSpLS4W4tqxWXEb9q+npdcLERISSeU
-         LIfcpGLJFEdSh15m9dqBqQdG2l0DQ9rHfoE+E1kWqXqHo60LO9HQYhnXrp9vnY0tL8tZ
-         nw3szb5rWzNmGI/alccc2FjfA1pSWE5Lmo1GXUlNfCvPUTj25GX7+imLTBqeNynIhmV6
-         TKBA==
-X-Gm-Message-State: AOAM530Z40K/HSc7+vR6olrXb9X7FVl7fpF9hEIxibMppswaeozh2g9p
-        uUr5MikoRAUdFOIUl+YJEQaee2iZhg==
-X-Google-Smtp-Source: ABdhPJz2nIDxQYxPCZrHWl4bG6O9R4+laMYXSYYRQjgfy1UrgvWcjQixnE/Tv8wlogmcJRgM1QR9Cg==
-X-Received: by 2002:a05:6830:12d2:b0:605:e67e:edc5 with SMTP id a18-20020a05683012d200b00605e67eedc5mr304412otq.326.1651088400977;
-        Wed, 27 Apr 2022 12:40:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 30-20020a9d0ba1000000b005e95b29b95dsm6132541oth.5.2022.04.27.12.40.00
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8E62sc2N0xYk98Q3FOi3UWyDPdfpLBQtbjJKAv7vuPg=;
+        b=WoagavYGj5KPpU0qfpjfynkw4Fvtiyp203RBdXM8hZev8Tz+542fen7t7+ndpcqWF/
+         gcy8i2rJJnFIp2kKkFba37uHa1MnFUZHk3bpRcvzq/noigKHwR/OQBO7tlkYpDUVMHYG
+         BGdF4rDlb0yILNDok8NmUyseDN/vKRq7Ix9/0SDjlDDMz+rzrErFOV/xmk2Dl4o4QL/g
+         ZaAs3dr8x3jCT25RrmIISKE/90RLl+8cWNdW5YF3HBExRHO2Fc2NtiL0dbXAw0FC28aC
+         zpgmQPDvBsnJEseEmqdj+ew6ZPaekxxK4EXWrzcOQSJlNhdZkC0n2Al77NYyK5TjugBx
+         dxbw==
+X-Gm-Message-State: AOAM531MjRYQt6+EXHQ2hi+qp/2e/R793WWkLnibhDU2HxeVI0Hd563F
+        cD6VSHfOordH6RBhur5yYhmFSw==
+X-Google-Smtp-Source: ABdhPJx+kY8RHjRJM6saR2cjJ2sz7lAcXVrAQr1P20zOkPHVaDPsLPeBR0eDi9hgZC7C1UJB8zbJTQ==
+X-Received: by 2002:a17:90b:4a8a:b0:1d2:bff4:b44f with SMTP id lp10-20020a17090b4a8a00b001d2bff4b44fmr45316356pjb.118.1651089293601;
+        Wed, 27 Apr 2022 12:54:53 -0700 (PDT)
+Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
+        by smtp.gmail.com with ESMTPSA id z13-20020a17090a468d00b001cd4989fedfsm8159683pjf.43.2022.04.27.12.54.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 12:40:00 -0700 (PDT)
-Received: (nullmailer pid 540132 invoked by uid 1000);
-        Wed, 27 Apr 2022 19:39:59 -0000
-Date:   Wed, 27 Apr 2022 14:39:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Brian Starkey <brian.starkey@arm.com>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 10/11] dt-bindings: display: convert Arm Mali-DP to DT
- schema
-Message-ID: <YmmcD66wjghkWXx3@robh.at.kernel.org>
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-11-andre.przywara@arm.com>
+        Wed, 27 Apr 2022 12:54:53 -0700 (PDT)
+From:   "Joseph S. Barrera III" <joebar@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7180: wormdingler: Add wormdingler dts files.
+Date:   Wed, 27 Apr 2022 12:54:49 -0700
+Message-Id: <20220427125423.1.Id2821de5fde55ebe928e8fc87a71c8d535edb383@changeid>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427112528.4097815-11-andre.przywara@arm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 12:25:27PM +0100, Andre Przywara wrote:
-> The Arm Mali Display Processor (DP) 5xx/6xx is a series of IP that scans
-> out a framebuffer and hands the pixels over to a digital signal encoder.
-> It supports multiple layers, scaling and rotation.
-> 
-> Convert the existing DT binding to DT schema.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../bindings/display/arm,malidp.txt           |  68 ----------
->  .../bindings/display/arm,malidp.yaml          | 117 ++++++++++++++++++
->  2 files changed, 117 insertions(+), 68 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/arm,malidp.txt
->  create mode 100644 Documentation/devicetree/bindings/display/arm,malidp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.txt b/Documentation/devicetree/bindings/display/arm,malidp.txt
-> deleted file mode 100644
-> index 7a97a2b48c2a2..0000000000000
-> --- a/Documentation/devicetree/bindings/display/arm,malidp.txt
-> +++ /dev/null
-> @@ -1,68 +0,0 @@
-> -ARM Mali-DP
-> -
-> -The following bindings apply to a family of Display Processors sold as
-> -licensable IP by ARM Ltd. The bindings describe the Mali DP500, DP550 and
-> -DP650 processors that offer multiple composition layers, support for
-> -rotation and scaling output.
-> -
-> -Required properties:
-> -  - compatible: should be one of
-> -	"arm,mali-dp500"
-> -	"arm,mali-dp550"
-> -	"arm,mali-dp650"
-> -    depending on the particular implementation present in the hardware
-> -  - reg: Physical base address and size of the block of registers used by
-> -    the processor.
-> -  - interrupts: Interrupt list, as defined in ../interrupt-controller/interrupts.txt,
-> -    interrupt client nodes.
-> -  - interrupt-names: name of the engine inside the processor that will
-> -    use the corresponding interrupt. Should be one of "DE" or "SE".
-> -  - clocks: A list of phandle + clock-specifier pairs, one for each entry
-> -    in 'clock-names'
-> -  - clock-names: A list of clock names. It should contain:
-> -      - "pclk": for the APB interface clock
-> -      - "aclk": for the AXI interface clock
-> -      - "mclk": for the main processor clock
-> -      - "pxlclk": for the pixel clock feeding the output PLL of the processor.
-> -  - arm,malidp-output-port-lines: Array of u8 values describing the number
-> -    of output lines per channel (R, G and B).
-> -
-> -Required sub-nodes:
-> -  - port: The Mali DP connection to an encoder input port. The connection
-> -    is modelled using the OF graph bindings specified in
-> -    Documentation/devicetree/bindings/graph.txt
-> -
-> -Optional properties:
-> -  - memory-region: phandle to a node describing memory (see
-> -    Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
-> -    to be used for the framebuffer; if not present, the framebuffer may
-> -    be located anywhere in memory.
-> -  - arm,malidp-arqos-high-level: integer of u32 value describing the ARQoS
-> -    levels of DP500's QoS signaling.
-> -
-> -
-> -Example:
-> -
-> -/ {
-> -	...
-> -
-> -	dp0: malidp@6f200000 {
-> -		compatible = "arm,mali-dp650";
-> -		reg = <0 0x6f200000 0 0x20000>;
-> -		memory-region = <&display_reserved>;
-> -		interrupts = <0 168 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <0 168 IRQ_TYPE_LEVEL_HIGH>;
-> -		interrupt-names = "DE", "SE";
-> -		clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
-> -		clock-names = "pxlclk", "mclk", "aclk", "pclk";
-> -		arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
-> -		arm,malidp-arqos-high-level = <0xd000d000>;
-> -		port {
-> -			dp0_output: endpoint {
-> -				remote-endpoint = <&tda998x_2_input>;
-> -			};
-> -		};
-> -	};
-> -
-> -	...
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.yaml b/Documentation/devicetree/bindings/display/arm,malidp.yaml
-> new file mode 100644
-> index 0000000000000..86b636662f803
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/arm,malidp.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/arm,malidp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm Mali Display Processor (Mali-DP) binding
-> +
-> +maintainers:
-> +  - Liviu Dudau <Liviu.Dudau@arm.com>
-> +  - Andre Przywara <andre.przywara@arm.com>
-> +
-> +description: |+
-> +  The following bindings apply to a family of Display Processors sold as
-> +  licensable IP by ARM Ltd. The bindings describe the Mali DP500, DP550 and
-> +  DP650 processors that offer multiple composition layers, support for
-> +  rotation and scaling output.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - arm,mali-dp500
-> +      - arm,mali-dp550
-> +      - arm,mali-dp650
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description:
-> +          The interrupt used by the Display Engine (DE). Can be shared with
-> +          the interrupt for the Scaling Engine (SE), but it will have to be
-> +          listed individually.
-> +      - description:
-> +          The interrupt used by the Scaling Engine (SE). Can be shared with
-> +          the interrupt for the Display Engine (DE), but it will have to be
-> +          listed individually.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: DE
-> +      - const: SE
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pxlclk
-> +      - const: mclk
-> +      - const: aclk
-> +      - const: pclk
-> +
-> +  clocks:
-> +    items:
-> +      - description: the pixel clock feeding the output PLL of the processor
-> +      - description: the main processor clock
-> +      - description: the AXI interface clock
-> +      - description: the APB interface clock
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +    description:
-> +      Phandle to a node describing memory to be used for the framebuffer.
-> +      If not present, the framebuffer may be located anywhere in memory.
-> +
-> +  arm,malidp-output-port-lines:
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    description:
-> +      Number of output lines/bits for each colour channel.
-> +    items:
-> +      - description: number of output lines for the red channel (R)
-> +      - description: number of output lines for the green channel (G)
-> +      - description: number of output lines for the blue channel (B)
-> +
-> +  arm,malidp-arqos-high-level:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      integer describing the ARQoS levels of DP500's QoS signaling
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
+Wormdingler is a trogdor-based board, shipping to customers as the
+Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+the downstream Chrome OS 5.4 kernel, but with the camera
+(sc7180-trogdor-mipi-camera.dtsi) #include removed.
 
-/properties/port
+Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+---
 
-> +    unevaluatedProperties: false
-> +    description:
-> +      Output endpoint of the controller, connecting the LCD panel signals.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +  - arm,malidp-output-port-lines
-> +
-> +examples:
-> +  - |
-> +    dp0: malidp@6f200000 {
-> +            compatible = "arm,mali-dp650";
-> +            reg = <0x6f200000 0x20000>;
-> +            memory-region = <&display_reserved>;
-> +            interrupts = <168>, <168>;
-> +            interrupt-names = "DE", "SE";
-> +            clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
-> +            clock-names = "pxlclk", "mclk", "aclk", "pclk";
-> +            arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
-> +            arm,malidp-arqos-high-level = <0xd000d000>;
-> +
-> +            port {
-> +                    dp0_output: endpoint {
-> +                            remote-endpoint = <&tda998x_2_input>;
-> +                    };
-> +            };
-> +    };
-> +
-> +...
-> -- 
-> 2.25.1
-> 
-> 
+ arch/arm64/boot/dts/qcom/Makefile             |   6 +
+ .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 +
+ .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 +
+ .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  53 +++
+ ...0-trogdor-wormdingler-rev1-boe-rt5682s.dts |  39 ++
+ .../sc7180-trogdor-wormdingler-rev1-boe.dts   |  28 ++
+ ...0-trogdor-wormdingler-rev1-inx-rt5682s.dts |  33 ++
+ .../sc7180-trogdor-wormdingler-rev1-inx.dts   |  22 +
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  | 417 ++++++++++++++++++
+ 9 files changed, 642 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index f9e6343acd03..5f51452e3dc1 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -81,6 +81,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3-lte.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-boe.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-inx.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r0.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+new file mode 100644
+index 000000000000..d6ed7d0afe4a
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x10 => 16
++ *  - bits 7..4: Panel ID: 0x1 (BOE)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler-rev0.dtsi"
++
++/ {
++	model = "Google Wormdingler rev0 BOE panel board";
++	compatible = "google,wormdingler-rev0-sku16", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "boe,tv110c9m-ll3";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+new file mode 100644
+index 000000000000..c03525ea64ca
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0 => 0
++ *  - bits 7..4: Panel ID: 0x0 (INX)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler-rev0.dtsi"
++
++/ {
++	model = "Google Wormdingler rev0 INX panel board";
++	compatible = "google,wormdingler-rev0-sku0", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "innolux,hj110iz-01a";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+new file mode 100644
+index 000000000000..db29e0cba29d
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++&avdd_lcd {
++	gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
++};
++
++&panel {
++	enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
++};
++
++&v1p8_mipi {
++	gpio = <&tlmm 81 GPIO_ACTIVE_HIGH>;
++};
++
++/* PINCTRL - modifications to sc7180-trogdor-wormdingler.dtsi */
++&avdd_lcd_en {
++	pinmux {
++		pins = "gpio80";
++	};
++
++	pinconf {
++		pins = "gpio80";
++	};
++};
++
++&mipi_1800_en {
++	pinmux {
++		pins = "gpio81";
++	};
++
++	pinconf {
++		pins = "gpio81";
++	};
++};
++&vdd_reset_1800 {
++	pinmux {
++		pins = "gpio76";
++	};
++
++	pinconf {
++		pins = "gpio76";
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+new file mode 100644
+index 000000000000..1a921a540075
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x401 => 1025
++ *  - bits 11..8: Panel ID: 0x4 (BOE)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ (BOE, rt5682s)";
++	compatible = "google,wormdingler-sku1025", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "boe,tv110c9m-ll3";
++};
++
++&alc5682 {
++	compatible = "realtek,rt5682s";
++	realtek,dmic1-clk-pin = <2>;
++	realtek,dmic-clk-rate-hz = <2048000>;
++};
++
++&dsi_phy {
++	qcom,phy-rescode-offset-top = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-rescode-offset-bot = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-drive-ldo-level = <450>;
++};
++
++&sound {
++	compatible = "google,sc7180-trogdor";
++	model = "sc7180-rt5682s-max98357a-1mic";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+new file mode 100644
+index 000000000000..c5b0658bd632
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+@@ -0,0 +1,28 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x400 => 1024
++ *  - bits 11..8: Panel ID: 0x4 (BOE)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ BOE panel board";
++	compatible = "google,wormdingler-sku1024", "qcom,sc7180";
++};
++
++&dsi_phy {
++	qcom,phy-rescode-offset-top = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-rescode-offset-bot = /bits/ 8 <31 31 31 31 (-32)>;
++	qcom,phy-drive-ldo-level = <450>;
++};
++
++&panel {
++	compatible = "boe,tv110c9m-ll3";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+new file mode 100644
+index 000000000000..1129e3fed165
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+@@ -0,0 +1,33 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0001 => 1
++ *  - bits 11..8: Panel ID: 0x0 (INX)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ (INX, rt5682s)";
++	compatible = "google,wormdingler-sku1", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "innolux,hj110iz-01a";
++};
++
++&alc5682 {
++	compatible = "realtek,rt5682s";
++	realtek,dmic1-clk-pin = <2>;
++	realtek,dmic-clk-rate-hz = <2048000>;
++};
++
++&sound {
++	compatible = "google,sc7180-trogdor";
++	model = "sc7180-rt5682s-max98357a-1mic";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+new file mode 100644
+index 000000000000..dd34a2297ea0
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ *
++ * SKU: 0x0000 => 0
++ *  - bits 11..8: Panel ID: 0x0 (INX)
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-wormdingler.dtsi"
++
++/ {
++	model = "Google Wormdingler rev1+ INX panel board";
++	compatible = "google,wormdingler-sku0", "qcom,sc7180";
++};
++
++&panel {
++	compatible = "innolux,hj110iz-01a";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+new file mode 100644
+index 000000000000..e947e01d0b3b
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+@@ -0,0 +1,417 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Wormdingler board device tree source
++ *
++ * Copyright 2021 Google LLC.
++ */
++
++/dts-v1/;
++
++#include "sc7180.dtsi"
++
++ap_ec_spi: &spi6 {};
++ap_h1_spi: &spi0 {};
++
++#include "sc7180-trogdor.dtsi"
++
++/ {
++	avdd_lcd: avdd-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "avdd_lcd";
++
++		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&avdd_lcd_en>;
++
++		vin-supply = <&pp5000_a>;
++	};
++
++	avee_lcd: avee-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "avee_lcd";
++
++		gpio = <&tlmm 21 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&avee_lcd_en>;
++
++		vin-supply = <&pp5000_a>;
++	};
++
++	pp1800_ts:
++	v1p8_mipi: v1p8-mipi {
++		compatible = "regulator-fixed";
++		regulator-name = "v1p8_mipi";
++
++		gpio = <&tlmm 86 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mipi_1800_en>;
++
++		vin-supply = <&pp3300_a>;
++	};
++
++	thermal-zones {
++		skin_temp_thermal: skin-temp-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&pm6150_adc_tm 1>;
++			sustainable-power = <574>;
++
++			trips {
++				skin_temp_alert0: trip-point0 {
++					temperature = <58000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++
++				skin_temp_alert1: trip-point1 {
++					temperature = <62500>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++
++				skin-temp-crit {
++					temperature = <68000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&skin_temp_alert0>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++
++				map1 {
++					trip = <&skin_temp_alert1>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
++};
++
++&ap_tp_i2c {
++	status = "disabled";
++};
++
++&backlight {
++	pwms = <&cros_ec_pwm 0>;
++};
++
++&camcc {
++	status = "okay";
++};
++
++&cros_ec {
++	base_detection: cbas {
++		compatible = "google,cros-cbas";
++	};
++};
++
++&dsi0 {
++
++	panel: panel@0 {
++		reg = <0>;
++		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vdd_reset_1800>;
++		avdd-supply = <&avdd_lcd>;
++		avee-supply = <&avee_lcd>;
++		pp1800-supply = <&v1p8_mipi>;
++		pp3300-supply = <&pp3300_dx_edp>;
++		backlight = <&backlight>;
++		rotation = <270>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			port@0 {
++				reg = <0>;
++				panel_in: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++		};
++	};
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&panel_in>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++};
++
++&i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	ap_ts: touchscreen@1 {
++		compatible = "hid-over-i2c";
++		reg = <0x01>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_int_l>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
++
++		post-power-on-delay-ms = <70>;
++		hid-descr-addr = <0x0001>;
++
++		vdd-supply = <&pp3300_ts>;
++		vddl-supply = <&pp1800_ts>;
++	};
++};
++
++&pm6150_adc {
++	skin-temp-thermistor@4d {
++		reg = <ADC5_AMUX_THM1_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++	};
++};
++
++&pm6150_adc_tm {
++	status = "okay";
++
++	skin-temp-thermistor@1 {
++		reg = <1>;
++		io-channels = <&pm6150_adc ADC5_AMUX_THM1_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time-us = <200>;
++	};
++};
++
++&pp1800_uf_cam {
++	status = "okay";
++};
++
++&pp1800_wf_cam {
++	status = "okay";
++};
++
++&pp2800_uf_cam {
++	status = "okay";
++};
++
++&pp2800_wf_cam {
++	status = "okay";
++};
++
++&wifi {
++	qcom,ath10k-calibration-variant = "GO_WORMDINGLER";
++};
++
++/*
++ * No eDP on this board but it's logically the same signal so just give it
++ * a new name and assign the proper GPIO.
++ */
++pp3300_disp_on: &pp3300_dx_edp {
++	gpio = <&tlmm 85 GPIO_ACTIVE_HIGH>;
++};
++
++/* PINCTRL - modifications to sc7180-trogdor.dtsi */
++
++/*
++ * No eDP on this board but it's logically the same signal so just give it
++ * a new name and assign the proper GPIO.
++ */
++
++tp_en: &en_pp3300_dx_edp {
++	pinmux {
++		pins = "gpio85";
++	};
++
++	pinconf {
++		pins = "gpio85";
++	};
++};
++
++/* PINCTRL - board-specific pinctrl */
++
++&tlmm {
++	gpio-line-names = "HUB_RST_L",
++			  "AP_RAM_ID0",
++			  "AP_SKU_ID2",
++			  "AP_RAM_ID1",
++			  "",
++			  "AP_RAM_ID2",
++			  "UF_CAM_EN",
++			  "WF_CAM_EN",
++			  "TS_RESET_L",
++			  "TS_INT_L",
++			  "",
++			  "",
++			  "AP_EDP_BKLTEN",
++			  "UF_CAM_MCLK",
++			  "WF_CAM_CLK",
++			  "",
++			  "",
++			  "UF_CAM_SDA",
++			  "UF_CAM_SCL",
++			  "WF_CAM_SDA",
++			  "WF_CAM_SCL",
++			  "AVEE_LCD_EN",
++			  "",
++			  "AMP_EN",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "HP_IRQ",
++			  "WF_CAM_RST_L",
++			  "UF_CAM_RST_L",
++			  "AP_BRD_ID2",
++			  "",
++			  "AP_BRD_ID0",
++			  "AP_H1_SPI_MISO",
++			  "AP_H1_SPI_MOSI",
++			  "AP_H1_SPI_CLK",
++			  "AP_H1_SPI_CS_L",
++			  "BT_UART_CTS",
++			  "BT_UART_RTS",
++			  "BT_UART_TXD",
++			  "BT_UART_RXD",
++			  "H1_AP_INT_ODL",
++			  "",
++			  "UART_AP_TX_DBG_RX",
++			  "UART_DBG_TX_AP_RX",
++			  "HP_I2C_SDA",
++			  "HP_I2C_SCL",
++			  "FORCED_USB_BOOT",
++			  "AMP_BCLK",
++			  "AMP_LRCLK",
++			  "AMP_DIN",
++			  "",
++			  "HP_BCLK",
++			  "HP_LRCLK",
++			  "HP_DOUT",
++			  "HP_DIN",
++			  "HP_MCLK",
++			  "AP_SKU_ID0",
++			  "AP_EC_SPI_MISO",
++			  "AP_EC_SPI_MOSI",
++			  "AP_EC_SPI_CLK",
++			  "AP_EC_SPI_CS_L",
++			  "AP_SPI_CLK",
++			  "AP_SPI_MOSI",
++			  "AP_SPI_MISO",
++			  /*
++			   * AP_FLASH_WP_L is crossystem ABI. Schematics
++			   * call it BIOS_FLASH_WP_L.
++			   */
++			  "AP_FLASH_WP_L",
++			  "",
++			  "AP_SPI_CS0_L",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "WLAN_SW_CTRL",
++			  "",
++			  "REPORT_E",
++			  "",
++			  "ID0",
++			  "",
++			  "ID1",
++			  "",
++			  "",
++			  "",
++			  "CODEC_PWR_EN",
++			  "HUB_EN",
++			  "TP_EN",
++			  "MIPI_1.8V_EN",
++			  "VDD_RESET_1.8V",
++			  "AVDD_LCD_EN",
++			  "",
++			  "AP_SKU_ID1",
++			  "AP_RST_REQ",
++			  "",
++			  "AP_BRD_ID1",
++			  "AP_EC_INT_L",
++			  "SDM_GRFC_3",
++			  "",
++			  "",
++			  "BOOT_CONFIG_4",
++			  "BOOT_CONFIG_2",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "BOOT_CONFIG_3",
++			  "WCI2_LTE_COEX_TXD",
++			  "WCI2_LTE_COEX_RXD",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "FORCED_USB_BOOT_POL",
++			  "AP_TS_PEN_I2C_SDA",
++			  "AP_TS_PEN_I2C_SCL",
++			  "DP_HOT_PLUG_DET",
++			  "EC_IN_RW_ODL";
++
++	vdd_reset_1800: vdd-reset-1800 {
++		pinmux {
++			pins = "gpio87";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio87";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	avdd_lcd_en: avdd-lcd-en {
++		pinmux {
++			pins = "gpio88";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio88";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	avee_lcd_en: avee-lcd_en {
++		pinmux {
++			pins = "gpio21";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio21";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	mipi_1800_en: mipi-1800-en {
++		pinmux {
++			pins = "gpio86";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio86";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++};
+-- 
+2.31.0
+
