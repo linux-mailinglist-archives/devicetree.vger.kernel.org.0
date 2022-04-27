@@ -2,89 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8BC7512153
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 139A3512158
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiD0SpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 14:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
+        id S229746AbiD0SqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 14:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbiD0SpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:45:06 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEF3D891B;
-        Wed, 27 Apr 2022 11:25:29 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id r1so2716729oie.4;
-        Wed, 27 Apr 2022 11:25:29 -0700 (PDT)
+        with ESMTP id S229655AbiD0SqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:46:03 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A013B7B57E;
+        Wed, 27 Apr 2022 11:26:59 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-e67799d278so2828222fac.11;
+        Wed, 27 Apr 2022 11:26:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FsKq1stserEZzVCN2awh2jKdYumDzZmZFSRvm+soDl8=;
-        b=5BfELmWNRYqbHsGCjprnN+C9Vgt/fPqXY+ksbufbQBuEdvG/YvfVQ37uY0jbrG6M/B
-         AWuglRqKEaq2OjIDutjrdgFK5qDWmNKGb8+r2dPvz+xKNzPppyH9wuInpNF+cm3CdXTz
-         BduZKL5I1gvAyItC8Xv7VvIN7ZW5xhL2yd1n4Lsk1uonQIwYR5539fjsenmurry/uMlh
-         gkhWe87RhEqDrjPeHsWIUM6+8d/rmjh2VZumF/CPcCyRHt7K+7TL3Pf64IDGnIl1bcRT
-         xpnkSYHqA29tApxJyuNO2ScOAw1vV0VsoKvMTi49laeCPl81U3DKTEaUeK/kRKEg9EzC
-         HxRA==
-X-Gm-Message-State: AOAM533o1O/1Qc3sD0iyHr7GcObmFZ3qlbYKn+m4V07nvlxAdf9Yr0JB
-        n1z7D4qPIAuFUjtxow/Mbw==
-X-Google-Smtp-Source: ABdhPJzQ2SbK7Xv9TeZI7HkgxHJNbFyUL2AOTzGbWNmH45NkPY+PWSkKrLbW/xrsnzpPd3c01+s3GA==
-X-Received: by 2002:a05:6808:11cf:b0:2f9:b01b:1800 with SMTP id p15-20020a05680811cf00b002f9b01b1800mr17641981oiv.258.1651083928347;
-        Wed, 27 Apr 2022 11:25:28 -0700 (PDT)
+        bh=pC1H3gQSVhE1zYfEMXMiP8EV077iw37StdCg5LtTNPQ=;
+        b=asjecNBysgBbyXrvRuZuN0eh6bLxpfNP8k4qOZTdAmYCK1zIVPx77Qur7arRXvNpvr
+         5Cy1P48QzfSpLw1/Yq3yZtGpAmJd4gxYx77lLJx7hn+37k8y8JwKEKHWOi0JxTkB6Bhp
+         Bb4TRkjEvo1Xc4Hk/hndK3tKXuk87lGSnf/vbj/Vjbgi0lnU/B1LT4Zuu7ODYboZPuqH
+         HnRxNcRzK4LbkhrXXEzrGGh+XKZpQcZSNbJnkbaURMBik1339QoAiTLGmp3dhNaHy2c8
+         vL75BtWUuOLCGRzpedXA1wCphkpv4u+h8JmalaMImBttAaR4deI1AOhYcME5GLqZUa3C
+         ZQTA==
+X-Gm-Message-State: AOAM530wJF5MFDyA00A7ubY1yhABeO6upnHeCNO5/8qkKWHqj0jHAARs
+        u4r5u0mzr8RIBf+ROAV3rQ==
+X-Google-Smtp-Source: ABdhPJwe9vcxst1opjE36JoQI7jrSaQ3NCspkzUQRETmCJRLZa/X7qNkafHyk3LSObIvXrACyBOKNw==
+X-Received: by 2002:a05:6870:478f:b0:e9:8c5c:3c37 with SMTP id c15-20020a056870478f00b000e98c5c3c37mr1395124oaq.217.1651084018882;
+        Wed, 27 Apr 2022 11:26:58 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p15-20020a4adfcf000000b0033a48bce3afsm6885319ood.18.2022.04.27.11.25.27
+        by smtp.gmail.com with ESMTPSA id z3-20020a056830290300b005b2316db9c9sm6051090otu.30.2022.04.27.11.26.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 11:25:27 -0700 (PDT)
-Received: (nullmailer pid 408056 invoked by uid 1000);
-        Wed, 27 Apr 2022 18:25:27 -0000
-Date:   Wed, 27 Apr 2022 13:25:27 -0500
+        Wed, 27 Apr 2022 11:26:58 -0700 (PDT)
+Received: (nullmailer pid 410278 invoked by uid 1000);
+        Wed, 27 Apr 2022 18:26:57 -0000
+Date:   Wed, 27 Apr 2022 13:26:57 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Ray Jui <rjui@broadcom.com>,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Michal Simek <michal.simek@xilinx.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Broadcom Kernel Team <bcm-kernel-feedback-list@broadcom.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>
-Subject: Re: [PATCH 06/10] dt-bindings: mfd: samsung,exynos5433-lpass: fix
- 'dma-channels/requests' properties
-Message-ID: <YmmKl78AmUQ8JKJF@robh.at.kernel.org>
-References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
- <20220427155840.596535-7-krzysztof.kozlowski@linaro.org>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: dmaengine: sprd: deprecate
+ '#dma-channels'
+Message-ID: <YmmK8WMGI6J1IRQ/@robh.at.kernel.org>
+References: <20220427161423.647534-1-krzysztof.kozlowski@linaro.org>
+ <20220427161423.647534-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220427155840.596535-7-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220427161423.647534-2-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Apr 2022 17:58:36 +0200, Krzysztof Kozlowski wrote:
-> pl330 DMA controller bindings documented 'dma-channels' and
-> 'dma-requests' properties (without leading hash sign), so fix the DTS to
-> match the bindings.
+On Wed, 27 Apr 2022 18:14:21 +0200, Krzysztof Kozlowski wrote:
+> The generic property, used in most of the drivers and defined in generic
+> dma-common DT bindings, is 'dma-channels'.
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Fixes: e18183cefc8b ("mfd: Add DT bindings documentation for Samsung Exynos LPASS")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../devicetree/bindings/mfd/samsung,exynos5433-lpass.yaml     | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/dma/sprd-dma.txt | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
