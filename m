@@ -2,136 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D12511DBD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE55E51207D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240077AbiD0Pnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
+        id S240248AbiD0PqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:46:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240163AbiD0Pnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:43:51 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E9564DC;
-        Wed, 27 Apr 2022 08:40:40 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id y2so4098557ybi.7;
-        Wed, 27 Apr 2022 08:40:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LunjZ5CB5KTt5EtvVwtJm0bqy5erFaX/HOlxVgLsjJk=;
-        b=fm1FDWTCSUZcXwP6iai9T/Ms5eK051gTDDDgmJYYA5X2uu2lfGJ0plw/6M0qbzG3zG
-         x1CGP34Rj4AIx4I3CSKSe4z/1hIZaM7v0r+RuI4ohf0bCJ5JzrxdykhrCOc0JPQa3iwB
-         gSELM4hbMFOA0K8KGirfVL4unIx+9SnHwNnZ8Tr2YoYxrUd1aiO6KCXwkuPa+FVccgsW
-         wlvqZrumPKaiQYL9BPEpjJeO1dXB7igtjYQq1o0PCKmt0EZPmj7h20s4xWxSHfvb9ZrD
-         V/f5RY4B9QDxPQpgBkGdFbF9ld922s/Ru3Ddt//HAJLfPi/4SzAeeVmMEQJSQ4dyMitk
-         nhXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LunjZ5CB5KTt5EtvVwtJm0bqy5erFaX/HOlxVgLsjJk=;
-        b=JAWkwfHPl4/7QWqcJKf45rT2Cl0+AYuzqDTLmWhrDlqRXKkZqqH3RThlQ0I9wOYNnE
-         ORG9SUHevjO2g9LJxzvcw4K0mkqX9Q0v9GYgBTDnDyhLCUziTgKTAQOj02mgSl6/Uq1k
-         oqB7toDaGfLgcpHxLWGxQbPj3Xb3lOqfYMQdCzM17XQvS4Hk2b1YHb+wHqy43rrv6KUC
-         Gc4EYoSReIYp29GHd0AnhRDxIFPIFKm1Rw1IqYoTj1JDwCYtrkduKXoI7ZY3loXLQTcG
-         BiJkni51sbSqMQgJXiji9rA4gHOTgHEHMD0GYh/wEimqgyzuMWXT0yJkmyS07UTNxPxf
-         05qA==
-X-Gm-Message-State: AOAM531b+9rNU0V99WFGrkb6HgvF9x1Edh9dqEIor/DBKQf6b7V1TfMK
-        IL14TL19mZamyJlYaK3AcJmM8fdt4o3Gczmrasc=
-X-Google-Smtp-Source: ABdhPJxEM6FU9G+ZUeC6TKae8tD1r4cUbc36QcF8D8lCficfFuleOcpKJBEcOKkLDNEGBFR44k4I+MdxfFsbxzbTBbQ=
-X-Received: by 2002:a25:9309:0:b0:648:b52e:4a63 with SMTP id
- f9-20020a259309000000b00648b52e4a63mr7543035ybo.503.1651074039575; Wed, 27
- Apr 2022 08:40:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220421182803.6495-1-kdasu.kdev@gmail.com> <20220421182803.6495-5-kdasu.kdev@gmail.com>
- <857e78dd-b8e8-d55e-3b3c-cbbfb7c98505@linaro.org>
-In-Reply-To: <857e78dd-b8e8-d55e-3b3c-cbbfb7c98505@linaro.org>
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-Date:   Wed, 27 Apr 2022 11:40:29 -0400
-Message-ID: <CAC=U0a2np9x3QGU8uqwu4RMQXBzvG5dTa91GOLfSh_+96LTPYw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] dt-bindings: mmc: Add Broadcom optional sdio_freq clock
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        krzk+dt@kernel.org, Al Cooper <alcooperx@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
+        with ESMTP id S240232AbiD0PqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:46:21 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C824160D;
+        Wed, 27 Apr 2022 08:43:04 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 613231C000E;
+        Wed, 27 Apr 2022 15:42:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651074182;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3AxCeZdws5PLSMjseQkyUYQQyjWckmkImOz0yLvcOlo=;
+        b=WLBwWEmQ2Ya1+d7uzVOV3d1FyKPgc/3VXVh8ugQjy4xuka6dwA9zRHoOPlwjnqyY/sF6Pl
+        Zw/sQjAxg4EPEmPBUzwGaA6m8TAEXoLgeg6WmRlLThUn2AHrCJ0KcMnaNyx0dwg7OyQ7Ql
+        NhJ2vYYEnLRanFGtTYrXlgNFwiOpr/gnteBmLIDjJ2x9ndSPsCQmvaCmZlmQ7ib4Gd2z1R
+        g+F2lFQ6w0YCZ92U823YOOmvM20VCnZXgnO19sccr6qv85TFkbe01rSveqf2Et5OnGO9sl
+        Wrlksr+vb5ASvf/IaALA2Zs575HXZ3cG+aLK5H1sozro/ARD/iWXIUDGVq6HuQ==
+Date:   Wed, 27 Apr 2022 17:42:57 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-rtc@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>
+Subject: Re: [PATCH v2 2/7] soc: renesas: rzn1-sysc: Fix the RTC hclock
+ description
+Message-ID: <20220427174257.48d1dd1a@xps13>
+In-Reply-To: <CAMuHMdUZxAu3vTbyKYu=38OZ2QmFM6S=DrFWbp=Cwt6Ya-o9HQ@mail.gmail.com>
+References: <20220421090016.79517-1-miquel.raynal@bootlin.com>
+        <20220421090016.79517-3-miquel.raynal@bootlin.com>
+        <CAMuHMdUZxAu3vTbyKYu=38OZ2QmFM6S=DrFWbp=Cwt6Ya-o9HQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 22, 2022 at 1:07 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 21/04/2022 20:28, Kamal Dasu wrote:
-> > The 72116B0 has improved SDIO controllers that allow the max clock
-> > rate to be increased from a max of 100MHz to a max of 150MHz.
-> > Optional "sdio_freq" clock is used to drive the bus clock if present
-> > optional property "clock-frequency" specifies a base clock frequency
-> > in Hz that overrides the base clock frequency in the CAPS registers.
-> >
-> > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
-> > ---
-> >  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      | 29 +++++++++++++++----
-> >  1 file changed, 24 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> > index dccd5ad96981..1b45a918400a 100644
-> > --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> > @@ -10,8 +10,6 @@ maintainers:
-> >    - Al Cooper <alcooperx@gmail.com>
-> >    - Florian Fainelli <f.fainelli@gmail.com>
-> >
-> > -allOf:
-> > -  - $ref: mmc-controller.yaml#
-> >
-> >  properties:
-> >    compatible:
-> > @@ -42,23 +40,44 @@ properties:
-> >      maxItems: 1
-> >
-> >    clocks:
-> > -    maxItems: 1
-> > -    description:
-> > -      handle to core clock for the sdhci controller.
-> > +    minItems: 1
-> > +    items:
-> > +      - description: handle to core clock for the sdhci controller
-> > +      - description: improved 150Mhz clock for sdhci controller (Optional clock)
-> >
-> >    clock-names:
-> > +    minItems: 1
-> >      items:
-> >        - const: sw_sdio
-> > +      - const: sdio_freq # Optional clock
-> > +
-> > +  clock-frequency:
-> > +    description: Should be the frequency (in Hz) of the base controller clock
-> > +    minimum: 400000
-> > +    maximum: 150000000
->
-> Why do you need this property? The mmc-controller.yaml already has
-> max-frequency, so maybe that suits your needs?
->
+Hi Geert,
 
-Yes I can use max-frequency, I will make the changes to patch 4/5 and
-change 5/5 and send a v2 patchset.
+geert@linux-m68k.org wrote on Wed, 27 Apr 2022 17:32:58 +0200:
 
->
-> Best regards,
-> Krzysztof
+> On Thu, Apr 21, 2022 at 11:00 AM Miquel Raynal
+> <miquel.raynal@bootlin.com> wrote:
+> > It needs to be un-gated, but also a reset must be released and an idle
+> > flag should also be disabled.
+> >
+> > The driver already supports all these operations, so update the
+> > description of the RTC hclock to fit these requirements.
+> >
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com> =20
+>=20
+> Thanks, will queue in renesas-devel for v5.19, with the prefix fixed.
 
-Thanks
-Kamal
+I no longer remember why I chose this one in the first place. Should be
+something like "clk: renesas: r9a06g032:".
+
+Thanks,
+Miqu=C3=A8l
