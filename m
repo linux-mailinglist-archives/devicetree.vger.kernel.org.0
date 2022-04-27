@@ -2,96 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF98511163
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:41:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9043951116B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:44:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238758AbiD0GoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 02:44:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51852 "EHLO
+        id S242894AbiD0Gr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 02:47:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358231AbiD0GoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 02:44:02 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAB591D0CE
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 23:40:52 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id p4so830341edx.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 23:40:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/IgkY60sLZ5va6K7CFzGZoYOec4od+02bA7F+n5qTsg=;
-        b=HbXKwAVYF7rE9LN5gGQcU1gzecSP6eaxw/GOSK6GzXl5DOstDY2RrYO+4JQkXlgmvJ
-         /Lx11lrXNurltKRp9y56w2xiQ1STr1JKeMIbNdlfkwnp9EMJuDSdUnA7Jx7SbFQr79hB
-         35++QFaSynFZpasyp6oUyVSudT70V7IP6Pelt/QTaiTs1QG0E1OGAVdm4H9xLiUdqLOi
-         4rfZQ4CVCoRwO7HPjpwnlRAh0x2njl/3YpEa+DGYy+kTMOKXmMtPA27yGdUCfLAmGvKF
-         uQiZ2CS8cu9mEAX51mYspUxsykXTA71G+2NlNtw/h65djoc1sRYreTX2CvvENsndBWY7
-         GuVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/IgkY60sLZ5va6K7CFzGZoYOec4od+02bA7F+n5qTsg=;
-        b=jsY2E7G7sb1TSooFwOjf9JeuSelignkinwmPX4X1AhhXS2JrO1FA4IStDGqZh32UFM
-         F/fs380cvz+JkVh6oURoCz/ql6RKmXap00DlEBSop7JLBB1AutorQIIqP0X4eLtw8CON
-         Irt+DzDrp1S/vnEpBCZuDopfarSd9Z7vUHvobqvHS0AC1iN/+NIzF6BUOQt6+5NHIMHK
-         0ALYL++8of9a78MztYtxoaYNe5wl27yEoXumJT6w1rWXQhtJoZipAdGJwIza5Ts/emfs
-         yMc7L//iFqxMldHMuYb2xM42G3jsYRC19PdLw0bEINHZ6BlehDEZFWfEbc4VWrYt3VmC
-         afFQ==
-X-Gm-Message-State: AOAM530ZlyMAjrMhYv6O7HoSqLBoPvnHsJHGFgJUBnctlpm0iskfNnpr
-        xDKcWl1wz+51x22KIysgJmQOCQ==
-X-Google-Smtp-Source: ABdhPJx1PvFzUSqLyTieYHsix8g4TVYP2ugzMBddEcwAX02fqPtKHCJCZWty5RZQLszFVuwD6xF+5Q==
-X-Received: by 2002:aa7:d407:0:b0:425:f57e:7ae5 with SMTP id z7-20020aa7d407000000b00425f57e7ae5mr10801445edq.393.1651041651406;
-        Tue, 26 Apr 2022 23:40:51 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u19-20020a17090617d300b006cea86ca384sm6122527eje.40.2022.04.26.23.40.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 23:40:50 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: dma: pl330: Add power-domains
-Date:   Wed, 27 Apr 2022 08:40:48 +0200
-Message-Id: <20220427064048.86635-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S1352922AbiD0GrW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 02:47:22 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADED314AADA;
+        Tue, 26 Apr 2022 23:44:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651041852; x=1682577852;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=re7LN+N41bRnAIzjSbkbrTfuLiFGkUj/O/UB6i31Auc=;
+  b=hfjeGJwRQeb7/O/yEi6fk7PkNoB9ugUYccugweVkUVNpKyflLrcquCgV
+   4uaI9+0XOxT+VUQKKGvrrUiyOF3O3uPccB2rpTR0ZV1v/lGc+PB7894fW
+   H82defWcQhUHMAmkPT2NOQfesw6VAzTtGkMxaDUGgc3eunk3VglK4zCiM
+   qDi7Fw0+Tc+/RZraHR2V27fchYi5qrgGWx5H9Zl16Ur69k1Pg6bdOSpVl
+   9cDy3bLWzuHOCW0R9dW65RJixIHV3GCVU7hMN0O5ICy9LBB2rHVgMnEBK
+   s8YRX25aKaHe52fYysIxZMfUT5CjJpYG+pUkaHcfWm3NsBVVJzNbT4GrU
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="326325004"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
+   d="scan'208";a="326325004"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 23:44:00 -0700
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
+   d="scan'208";a="580413754"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.60.122])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 23:43:57 -0700
+Message-ID: <fcd49d21-7176-4940-e988-a4815ae013f3@intel.com>
+Date:   Wed, 27 Apr 2022 09:43:53 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.7.0
+Subject: Re: [PATCH 2/5] mmc: sdhci-brcmstb: Re-organize flags
+Content-Language: en-US
+To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
+Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220421182803.6495-1-kdasu.kdev@gmail.com>
+ <20220421182803.6495-3-kdasu.kdev@gmail.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20220421182803.6495-3-kdasu.kdev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pl330 DMA controller on Exynos SoC (e.g. dma-controller@3880000 in
-Exynos5420) belongs to power domain, so allow such property.
+On 21/04/22 21:28, Kamal Dasu wrote:
+> From: Al Cooper <alcooperx@gmail.com>
+> 
+> Re-organize the flags by basing the bit names on the flag that they
+> apply to. Also change the "flags" member in the "brcmstb_match_priv"
+> struct to const.
+> 
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
 
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/dma/arm,pl330.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
-diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-index decab185cf4d..2bec69b308f8 100644
---- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-+++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-@@ -55,6 +55,9 @@ properties:
- 
-   dma-coherent: true
- 
-+  power-domains:
-+    maxItems: 1
-+
-   resets:
-     minItems: 1
-     maxItems: 2
--- 
-2.32.0
+> ---
+>  drivers/mmc/host/sdhci-brcmstb.c | 32 ++++++++++++++++----------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+> index 11037cd14cfa..f32aa045c26d 100644
+> --- a/drivers/mmc/host/sdhci-brcmstb.c
+> +++ b/drivers/mmc/host/sdhci-brcmstb.c
+> @@ -18,20 +18,22 @@
+>  #define SDHCI_VENDOR 0x78
+>  #define  SDHCI_VENDOR_ENHANCED_STRB 0x1
+>  
+> -#define BRCMSTB_PRIV_FLAGS_NO_64BIT		BIT(0)
+> -#define BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT	BIT(1)
+> +#define BRCMSTB_MATCH_FLAGS_NO_64BIT		BIT(0)
+> +#define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT	BIT(1)
+> +
+> +#define BRCMSTB_PRIV_FLAGS_HAS_CQE		BIT(0)
+>  
+>  #define SDHCI_ARASAN_CQE_BASE_ADDR		0x200
+>  
+>  struct sdhci_brcmstb_priv {
+>  	void __iomem *cfg_regs;
+> -	bool has_cqe;
+> +	unsigned int flags;
+>  };
+>  
+>  struct brcmstb_match_priv {
+>  	void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
+>  	struct sdhci_ops *ops;
+> -	unsigned int flags;
+> +	const unsigned int flags;
+>  };
+>  
+>  static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
+> @@ -134,13 +136,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+>  };
+>  
+>  static struct brcmstb_match_priv match_priv_7425 = {
+> -	.flags = BRCMSTB_PRIV_FLAGS_NO_64BIT |
+> -	BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
+> +	.flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
+> +	BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+>  	.ops = &sdhci_brcmstb_ops,
+>  };
+>  
+>  static struct brcmstb_match_priv match_priv_7445 = {
+> -	.flags = BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
+> +	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+>  	.ops = &sdhci_brcmstb_ops,
+>  };
+>  
+> @@ -176,7 +178,7 @@ static int sdhci_brcmstb_add_host(struct sdhci_host *host,
+>  	bool dma64;
+>  	int ret;
+>  
+> -	if (!priv->has_cqe)
+> +	if ((priv->flags & BRCMSTB_PRIV_FLAGS_HAS_CQE) == 0)
+>  		return sdhci_add_host(host);
+>  
+>  	dev_dbg(mmc_dev(host->mmc), "CQE is enabled\n");
+> @@ -225,7 +227,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>  	struct sdhci_brcmstb_priv *priv;
+>  	struct sdhci_host *host;
+>  	struct resource *iomem;
+> -	bool has_cqe = false;
+>  	struct clk *clk;
+>  	int res;
+>  
+> @@ -244,10 +245,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>  		return res;
+>  
+>  	memset(&brcmstb_pdata, 0, sizeof(brcmstb_pdata));
+> -	if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
+> -		has_cqe = true;
+> -		match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
+> -	}
+>  	brcmstb_pdata.ops = match_priv->ops;
+>  	host = sdhci_pltfm_init(pdev, &brcmstb_pdata,
+>  				sizeof(struct sdhci_brcmstb_priv));
+> @@ -258,7 +255,10 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>  
+>  	pltfm_host = sdhci_priv(host);
+>  	priv = sdhci_pltfm_priv(pltfm_host);
+> -	priv->has_cqe = has_cqe;
+> +	if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
+> +		priv->flags |= BRCMSTB_PRIV_FLAGS_HAS_CQE;
+> +		match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
+> +	}
+>  
+>  	/* Map in the non-standard CFG registers */
+>  	iomem = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> @@ -287,14 +287,14 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>  	 * properties through mmc_of_parse().
+>  	 */
+>  	host->caps = sdhci_readl(host, SDHCI_CAPABILITIES);
+> -	if (match_priv->flags & BRCMSTB_PRIV_FLAGS_NO_64BIT)
+> +	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_NO_64BIT)
+>  		host->caps &= ~SDHCI_CAN_64BIT;
+>  	host->caps1 = sdhci_readl(host, SDHCI_CAPABILITIES_1);
+>  	host->caps1 &= ~(SDHCI_SUPPORT_SDR50 | SDHCI_SUPPORT_SDR104 |
+>  			 SDHCI_SUPPORT_DDR50);
+>  	host->quirks |= SDHCI_QUIRK_MISSING_CAPS;
+>  
+> -	if (match_priv->flags & BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT)
+> +	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
+>  		host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
+>  
+>  	res = sdhci_brcmstb_add_host(host, priv);
 
