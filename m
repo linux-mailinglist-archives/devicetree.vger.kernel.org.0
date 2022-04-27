@@ -2,88 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA58B511AA2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA925119E9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:56:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235083AbiD0NBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 09:01:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52044 "EHLO
+        id S235177AbiD0NFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 09:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235076AbiD0NBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:01:16 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011134C42C;
-        Wed, 27 Apr 2022 05:58:05 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 23R8mTZq008893;
-        Wed, 27 Apr 2022 07:58:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=cTo4iGCRI0TEr3heseNQsJDxVX4XVWJW4qEdcisdkVQ=;
- b=mapUDoCtKZ+ZPfK7g0JFvMDSp+lT+lA/vZhJm8H6PGwB6XF7C5LSB6MgKr6rI6A0IFdV
- U5UOQsrtKsyVeze7eXHyCGq+FTRrQ78j1V8dR5oKc0taTmjeT75jlREspJfxsCQ/Jtsr
- a2mSfBKHvAxqHUbeELjn7qwFXYnsYI3ASwh+JE4mAEccNlbRlQavj1E70LPMZhZMc4ff
- qoh4veull4nmAg165f/l7o/29godByKpDDyEM3QBLUuA3bVpBcEJMIDu4Ula24g2bKmj
- aLmcVrpXObNQTjeWM4MPAzpcpVd6IKzfuKqGzClpiELieRQNz3h4P62kNsNiVh140RPx Ww== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3fprt60s4s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 27 Apr 2022 07:58:02 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 27 Apr
- 2022 13:58:01 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via Frontend
- Transport; Wed, 27 Apr 2022 13:58:01 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 10EF1B1A;
-        Wed, 27 Apr 2022 12:58:01 +0000 (UTC)
-Date:   Wed, 27 Apr 2022 12:58:01 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mfd: wlf,arizona: Add spi-max-frequency
-Message-ID: <20220427125801.GC38351@ediswmail.ad.cirrus.com>
-References: <20220427065102.109046-1-krzysztof.kozlowski@linaro.org>
- <20220427122143.GB38351@ediswmail.ad.cirrus.com>
+        with ESMTP id S235236AbiD0NFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:05:23 -0400
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9FB31CFD1;
+        Wed, 27 Apr 2022 06:02:10 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id ke5so977460qvb.5;
+        Wed, 27 Apr 2022 06:02:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mmxxwu2hv4yDhUBhV6wvYa5ilUKbOwj8YpY73vElIL4=;
+        b=rE1r4FY0GQMCvpcTRMM8da4MLmf+Hb7o6DR5pqPS05+SsTiueYgz9Q2eE8iVAcWyZ9
+         rE3EFXzeZo7ylnRp9Rk3uw590z3A/m+RT7BmaOgd74nOX6wkEAqy7XDLX/T5i29N2N6W
+         c/QuKTcoVKS7PfNCDQhkQEc+nWgkb1NVrAmbQEz8DXjicq748BJv3yhZortSW3yyAJ6R
+         P5G5xI1wm3To9D+gkmRK6P3AICcZxXtkghU6Hzt06TUnMTUrviJZsNofJGM4rS/lDYGU
+         C48pnAyYqkhH9HuZT0szHNhVu8pORWeN9Xp+V7kEOZRMYnEuDfskmoTX5zhh6ywKUMTh
+         ifXA==
+X-Gm-Message-State: AOAM533qK9i+LCM8iV21yotDJL6JsTvdM+elD6GHe9Sgi58rL8qtSe+m
+        Ixe1KttN/bxyh7NpV2hlvhx89qxnnq4oJw==
+X-Google-Smtp-Source: ABdhPJyV9o9o+0PUWnnTXktTDa6038+ifVqZzyyBUVzN7RyoUgGBouFFYUKRLfJhmCPZ9GzJuU3sZA==
+X-Received: by 2002:a05:6214:ace:b0:446:4c74:749b with SMTP id g14-20020a0562140ace00b004464c74749bmr19607967qvi.3.1651064528079;
+        Wed, 27 Apr 2022 06:02:08 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id c125-20020a37b383000000b0069f96112563sm354751qkf.16.2022.04.27.06.02.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 06:02:07 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id y2so3214504ybi.7;
+        Wed, 27 Apr 2022 06:02:07 -0700 (PDT)
+X-Received: by 2002:a25:3492:0:b0:645:6f78:b3b4 with SMTP id
+ b140-20020a253492000000b006456f78b3b4mr26709791yba.546.1651064527024; Wed, 27
+ Apr 2022 06:02:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220427122143.GB38351@ediswmail.ad.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: 1aNiCFYk_OTQ-KiXfbYWMPbq02RgVaDl
-X-Proofpoint-ORIG-GUID: 1aNiCFYk_OTQ-KiXfbYWMPbq02RgVaDl
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com> <20220420025450.289578-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420025450.289578-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 15:01:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVGbfaNXvy-0ArsE8VDC6ju-6KTeKcz9rziY9ReBGRkyg@mail.gmail.com>
+Message-ID: <CAMuHMdVGbfaNXvy-0ArsE8VDC6ju-6KTeKcz9rziY9ReBGRkyg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: ufs: Document Renesas R-Car UFS host controller
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, avri.altman@wdc.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        scsi <linux-scsi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 12:21:43PM +0000, Charles Keepax wrote:
-> On Wed, Apr 27, 2022 at 08:51:02AM +0200, Krzysztof Kozlowski wrote:
-> > The Wolfson Microelectronics Arizona audio can be connected via SPI bus
-> > (e.g. WM5110 on Exynos5433 TM2 board), so allow spi-max-frequency
-> > property.
-> > 
-> > Reported-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> 
-> Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> 
+Hi Shimoda-san,
 
-Apologies but looking at this again I can't quite see why this is
-necessary. The Arizona schema should allow properties that arn't
-specified. Do you have an example of what failed to warrant this?
+On Wed, Apr 20, 2022 at 3:11 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Document Renesas R-Car UFS host controller for R-Car S4-8 (r8a779f0).
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Charles
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ufs/renesas,ufs.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas R-Car UFS Host Controller
+> +
+> +maintainers:
+> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> +
+> +allOf:
+> +  - $ref: ufs-common.yaml
+
+ufs-common.yaml says just one interrupt, while Renesas UFS has
+two interrupts?
+
+The rest LGTM, so with the above resolved:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
