@@ -2,89 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9449B5117B1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FC5511791
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232926AbiD0Lo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 07:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46540 "EHLO
+        id S233499AbiD0MHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 08:07:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232694AbiD0Lo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:44:57 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4AC4667A
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 04:41:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A8631CE24A3
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:41:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D663C385A9;
-        Wed, 27 Apr 2022 11:41:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651059703;
-        bh=OrIoR6u3SU+h0ZVt5IRQbJw+w4d6a9VMedLf55vc1ek=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fz7BS3ZinelIjDox9N+q2oOXiMsM9r1j06vk4SxEVg8KHvWYHJa+y5o77a0FGYQDg
-         qn190MGwwtSB22raT94F9cLfTYTXJnRBTVIgNiowV1JX/qOvtsn7jVIuVcmwynBZvJ
-         FVLHoJuxq0R5x5knYV7TXewXaAYX0ANe6912MY9i0Fzh3xKfFXcRYUTkzy2atWF4GZ
-         kA2loD2aXqWou39z1LkwMZsn3GTn7afATfJlizN+NeXLtDkbBcd63In602H8+xCYxC
-         WTtqzqWmjuCvNHgUtvyhAKYTDP2TBBYHmKvH2zN433bSp9bbszeb1lo47ft5+Oeba+
-         3kX8/dNibxt3w==
-Date:   Wed, 27 Apr 2022 12:41:37 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 04/11] dt-bindings: sound: add Arm PL041 AACI DT schema
-Message-ID: <Ymkr8dFjbzEonXOO@sirena.org.uk>
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-5-andre.przywara@arm.com>
+        with ESMTP id S233283AbiD0MHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:07:44 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 727432559E
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 05:04:33 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23B24ED1;
+        Wed, 27 Apr 2022 05:04:33 -0700 (PDT)
+Received: from [10.57.80.98] (unknown [10.57.80.98])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6E5AE3F774;
+        Wed, 27 Apr 2022 05:04:31 -0700 (PDT)
+Message-ID: <ffbcf1e0-cf46-186a-3862-9f90415a0ab0@arm.com>
+Date:   Wed, 27 Apr 2022 13:04:26 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xEalpJZfvyrIiHuU"
-Content-Disposition: inline
-In-Reply-To: <20220427112528.4097815-5-andre.przywara@arm.com>
-X-Cookie: Buckle up!
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 01/11] dt-bindings: iommu: arm,smmu-v3: make PRI IRQ
+ optional
+Content-Language: en-GB
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Will Deacon <will@kernel.org>, iommu@lists.linux-foundation.org
+References: <20220427112528.4097815-1-andre.przywara@arm.com>
+ <20220427112528.4097815-2-andre.przywara@arm.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220427112528.4097815-2-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-04-27 12:25, Andre Przywara wrote:
+> The Page Request Interface (PRI) is an optional PCIe feature. As such, a
+> SMMU would not need to handle it if the PCIe host bridge or the SMMU
+> itself do not implement it. Also an SMMU could be connected to a platform
+> device, without any PRI functionality whatsoever.
+> In all cases there would be no SMMU PRI queue interrupt to be wired up
+> to an interrupt controller.
+> 
+> Relax the binding to allow specifying three interrupts, omitting the PRI
+> IRQ. At the moment, with the "eventq,gerror,priq,cmdq-sync" order, we
+> would need to sacrifice the command queue sync interrupt as well, which
+> might not be desired.
+> The Linux driver does not care about any order at all, just picks IRQs
+> based on their names, and treats all (wired) IRQs as optional.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>   .../bindings/iommu/arm,smmu-v3.yaml           | 21 ++++++++++++++-----
+>   1 file changed, 16 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> index e87bfbcc69135..6b3111f1f06ce 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> @@ -37,12 +37,23 @@ properties:
+>             hardware supports just a single, combined interrupt line.
+>             If provided, then the combined interrupt will be used in preference to
+>             any others.
+> -      - minItems: 2
+> +      - minItems: 1
+>           items:
+> -          - const: eventq     # Event Queue not empty
+> -          - const: gerror     # Global Error activated
+> -          - const: priq       # PRI Queue not empty
+> -          - const: cmdq-sync  # CMD_SYNC complete
+> +          - enum:
+> +              - eventq     # Event Queue not empty
+> +              - gerror     # Global Error activated
+> +              - cmdq-sync  # CMD_SYNC complete
+> +              - priq       # PRI Queue not empty
+> +          - enum:
+> +              - gerror
+> +              - cmdq-sync
+> +              - priq
+> +          - enum:
+> +              - cmdq-sync
+> +              - priq
+> +          - enum:
+> +              - cmdq-sync
+> +              - priq
 
---xEalpJZfvyrIiHuU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Nit: the commit message doesn't mention this effective relaxation to 
+allow "eventq, gerror, cmdq-sync, priq" as well - if there's a good 
+reason for that it probably wants calling out, otherwise AFAICS the last 
+item should stay as "- const: cmdq-sync" to preserve the existing 
+canonical order for the 4-item case.
 
-On Wed, Apr 27, 2022 at 12:25:21PM +0100, Andre Przywara wrote:
-> The Arm PrimeCell Advanced Audio CODEC Interface (AACI aka PL041) is
-> a peripheral that provides communication with an audio CODEC.
+Otherwise,
 
-I've got this one individual patch.  What's the story with depenedencies
-and cross tree work?
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 
---xEalpJZfvyrIiHuU
-Content-Type: application/pgp-signature; name="signature.asc"
+Cheers,
+Robin.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJpK/EACgkQJNaLcl1U
-h9BwnAf9ENkVudoH1sxvPKQlVaixc0WFHUv8wulTouE6pJdR0Ol4eirsXbYIR9If
-d3hHsmqdNtSlIdWQXeHuOsGo0Fb0Kdqh9UiU5nXeQOJktVnOvYCoeNa0vpQ9JRiW
-ClNNntQO8hkL0W8ymhiS0oZ2GlFhMgSiAyARTMCIwYV5o2lNvblr0dVabYm+Gzgw
-4Q6heunJnHt+oUZ+18f8Wp5Aq1lLIxd/LD6XoAg3tb9vRyvo4frAPu4CciLRpckt
-cTVzec7tB8fyMfwlcerR0zQG4tXHeuMeALo1hpicYg7WI9XUqzOwvk1Se4mwr68B
-TOERYG0uNDeG6kwVZERNJNZnfUWTHg==
-=rz/g
------END PGP SIGNATURE-----
-
---xEalpJZfvyrIiHuU--
+>   
+>     '#iommu-cells':
+>       const: 1
