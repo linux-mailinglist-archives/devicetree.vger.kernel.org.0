@@ -2,120 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DECA5119CA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2642E511B11
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237616AbiD0Obo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 10:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45194 "EHLO
+        id S237711AbiD0OcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 10:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237691AbiD0Obo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:31:44 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D54013D28;
-        Wed, 27 Apr 2022 07:28:31 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23RESJrn036102;
-        Wed, 27 Apr 2022 09:28:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651069700;
-        bh=mP/yWc581QChcTn+6JQhy5aJqoQd07YWtOKH5vWKUCc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=a5/mRTk2MoJSxRIjnbaN5FQqT2NReX9tNtfflFcH+94Tm0X4A2uXivRBuouZ3qmVQ
-         nvGrfmEtnQ2qYP5e/elovb5EUFYgNfbRDqwk2I2tKwKLXcM66RsP7ONeWs8ldRXVoH
-         ckn3DgGlyUmr1Z2KBJcSCnejC/TS+qd11HDC6hQo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23RESJ6F075916
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Apr 2022 09:28:19 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 27
- Apr 2022 09:28:19 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 27 Apr 2022 09:28:19 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23RESIXX086823;
-        Wed, 27 Apr 2022 09:28:19 -0500
-Date:   Wed, 27 Apr 2022 19:58:17 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S237842AbiD0OcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:32:06 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A64413F03;
+        Wed, 27 Apr 2022 07:28:49 -0700 (PDT)
+X-UUID: 6fa9b53a21d4480a9802f0840ba53415-20220427
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:11a95806-9636-4bc1-97f3-d8bdaff33e80,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,
+        ACTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:11a95806-9636-4bc1-97f3-d8bdaff33e80,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,
+        ACTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:355cb2c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:1c38a6fb229a,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 6fa9b53a21d4480a9802f0840ba53415-20220427
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2146608317; Wed, 27 Apr 2022 22:28:43 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 27 Apr 2022 22:28:41 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Apr 2022 22:28:41 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tomi.valkeinen@ideasonboard.com>,
-        <laurent.pinchart@ideasonboard.com>, <kishon@ti.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: ti: k3-j721e-common-proc-board: add
- DP to j7 evm
-Message-ID: <20220427142817.3dndojgqrwbrnsze@uda0490373>
-References: <20220426153553.18474-1-r-ravikumar@ti.com>
- <20220426153553.18474-3-r-ravikumar@ti.com>
- <20220426181301.z7jojik7zh7flh3h@gummy>
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>, <hsinyi@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v7 0/2] Add basic node support for MediaTek MT8186 SoC
+Date:   Wed, 27 Apr 2022 22:28:37 +0800
+Message-ID: <20220427142839.12598-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220426181301.z7jojik7zh7flh3h@gummy>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:13-20220426, Nishanth Menon wrote:
-> On 21:05-20220426, Rahul T R wrote:
-> > From: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> > 
-> 
-> [...]
-> 
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> > index 2f119e94e783..4b9e3f671781 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> > @@ -148,6 +148,28 @@
-> >  		pinctrl-0 = <&main_mcan2_gpio_pins_default>;
-> >  		standby-gpios = <&main_gpio0 127 GPIO_ACTIVE_HIGH>;
-> >  	};
-> > +
-> > +	dp_pwr_3v3: regulator-dp-prw {
-> 
-> See feedback in https://lore.kernel.org/all/c50819cb-8234-670f-c7c0-0507af2f96df@linaro.org/
+MT8186 is a SoC based on 64bit ARMv8 architecture.
+It contains 6 CA55 and 2 CA78 cores.
+MT8186 share many HW IP with MT65xx series.
 
-Hi Nishanth,
+This patchset was tested on MT8186 evaluation board to shell.
 
-As per the feedback in the above thread
-the name matches with below convention
-"regulator-foo-bar" or "foo-bar-regulator"
+Based on matthias/, v5.18-next/dts64. and add the below PATCHs
+- clk series: 20220409132251.31725-1-chun-jie.chen@mediatek.com
+- mt8186 timer compatible: 20220311130732.22706-2-allen-kh.cheng@mediatek.com
+- mt8186 watchdog compatible from commit 888423f98c8f
+  in linux/kernel/git/groeck/linux-staging.git, watchdog-next 
+- reset header from commit 457ece3a0fbf
+  in linux/kernel/git/groeck/linux-staging.git, watchdog-next
 
-Are you referring to the typo here?
-regulator-dp-prw => regulator-dp-pwr
-will fix this in the respin
+changes since v6:
+ - remove unnecessary blank line
 
-Can you please clarify if you there is
-any issue other than the typo
+changes since v5:
+ - replace Mediatek a to MediaTek
+ - use GPL-2.0-only OR BSD-2-Clause
 
-Regards
-Rahul T R
+changes since v4:
+ - correct driver clock of mt8186
+ - add power domains controller and clock controllers
+ - add pinctrl, usb host, spi and i2c nodes
+ - add node status in mt8186-evb.dts
+ - correct some dtbs_check warnings
 
-> 
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "dp-pwr";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>; /* P0 - DP0_PWR_SW_EN */
-> > +		enable-active-high;
-> > +	};
-> > +
-> -- 
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+changes since v3:
+ - remove serial, mmc and phy patch from series. (already merged)
+ - remove mcusysoff node
+ - move oscillator nodes at the head of dts
+ - change name from usb-phy to t-phy
+
+changes since v2:$
+ - add soc {} in mt8186.dtsi
+
+changes since v1:
+ - add dt-bindings: arm: Add compatible for MediaTek MT8186
+
+Allen-KH Cheng (2):
+  dt-bindings: arm: Add compatible for MediaTek MT8186
+  arm64: dts: Add MediaTek SoC MT8186 dts and evaluation board and
+    Makefile
+
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8186-evb.dts   | 232 +++++
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 932 ++++++++++++++++++
+ 4 files changed, 1169 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+
+-- 
+2.18.0
+
