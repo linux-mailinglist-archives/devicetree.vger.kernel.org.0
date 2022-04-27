@@ -2,219 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A70511501
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 12:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0831951164D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbiD0KuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 06:50:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35474 "EHLO
+        id S231871AbiD0LFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 07:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbiD0KuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 06:50:09 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B194F43AE13
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 03:20:55 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id w19so2262279lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 03:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+uQXRxF8+iECYsyuX3FAGjlPg6lPCQesnoPfKb3uAD0=;
-        b=kXbjCRl/9jCP6u+NnPcF+Y+vLZZ93vjJjPpewfEem9AN45JCCBgFIYmupbdh+RCrDn
-         DfFERC8GbtZ7/LuJ3cwY+2TQ3N/16e3duX+/vbSsSZZfSEKEsClf93+aAu13KB5ccIVo
-         K0Nk1jsbzBUv8hgDNnQGwDyIVtNqazsdhYBhfXcpsrZThCGdxtNa6My9UJie4OOCr85T
-         7h/tLCHC3svkj6kedl/5rD8vmKNyBVKrhg+TOFtKiaU2G0j5J5SH7BvGpjNCjntKaMdN
-         9T8DoOGrmKRBiBISkgr/2kahjg8prXsa5Mmh/UDQWyncfeXG4lRvGE7YABwkArrdn3ql
-         0UWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+uQXRxF8+iECYsyuX3FAGjlPg6lPCQesnoPfKb3uAD0=;
-        b=rb0PqvN3U75Yc+IRZPid2EWNQsHE11upqX8JooX+F8Z1Rl10lL4Zy6X/dUnAsm2pKx
-         Pz5YHGHNB19VTZc6lXsBjhkTmwljYhYMOIsPTy8jlzCYFjqHk4RwURLTJaw2zrptumKT
-         UICZAsrZXiCkjrLrhOBZ0APg1BxF5qyj4WQInnZ1QlEbkjYJm7Drmtxm2HPaHxzCT2YH
-         HWTJzS/P2kaQBRynkSv+3bBCNEmKGlAoPJrwF/VFbmG8Krjq5XGy+tA4wznQK+gwgoXA
-         Zu7q+MrMa6D18rIO5TJVysISOd51d7SDHPHR/PEnKWJzUmj9SGWU0mTzzJko8R2wgisj
-         efjA==
-X-Gm-Message-State: AOAM531iOq2VkefRqHoQKZob+V8eWOYOSg/xSx71JQawMRMkDPftEWWU
-        ojTqcRMk5BE5MUuFQDTrEVD4XxjKMkToJw==
-X-Google-Smtp-Source: ABdhPJwH2qoOAKjvHzPASguxWPUSxx7wD6r6JTmOguOcxLLGBTjoSo5P0ASVcbtW8KFZbarsO1KlnQ==
-X-Received: by 2002:aa7:d916:0:b0:425:d75f:ae68 with SMTP id a22-20020aa7d916000000b00425d75fae68mr20198174edr.270.1651052384008;
-        Wed, 27 Apr 2022 02:39:44 -0700 (PDT)
-Received: from [192.168.0.253] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p27-20020a50cd9b000000b00425d5219372sm6378024edi.50.2022.04.27.02.39.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 02:39:43 -0700 (PDT)
-Message-ID: <0c63c24a-8014-2491-095c-77893d2141d9@linaro.org>
-Date:   Wed, 27 Apr 2022 11:39:42 +0200
+        with ESMTP id S232541AbiD0LE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:04:58 -0400
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D079728CFD4;
+        Wed, 27 Apr 2022 03:54:53 -0700 (PDT)
+Received: from relay1-d.mail.gandi.net (unknown [217.70.183.193])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 3702FC22B9;
+        Wed, 27 Apr 2022 09:47:27 +0000 (UTC)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 46333240002;
+        Wed, 27 Apr 2022 09:46:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1651052807;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=QY22kkywdGz9ZZ9vDCj+AzFscs29dSCG+zCgFSuQoY4=;
+        b=apqfwr3MNvppcLIhApJyjfR8DLf0VDKvYPEk0C92Xc4dHd1/2IHZUeDZIN+BqgeVMXJBLe
+        68KVF6OQE4sfXdyFtdRcjCju9VnSchAPE2vaG57wMDB8Y2TuwQS7THMNdTUzmRwAs0jLak
+        YjNtCTox/wSQMGVK5rdQN6aGsI4lOcys2zaTrjFZL/zCWgE3SGguVjAQcTpwRjXEQkqfTg
+        kNPG7kMtaqyvcc2ugc858c+w903NRJHcsTBzfRnI2+S+DAqqQVSbjngj8a7GvA9JdNzFrB
+        UblHKoUIpNsVXP6fz8DiqtTYu3KAWPwdxw44+I5KkC9u8NvmsUE/69ug+/isZw==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: [PATCH 0/3] add dynamic PCI device of_node creation for overlay
+Date:   Wed, 27 Apr 2022 11:44:59 +0200
+Message-Id: <20220427094502.456111-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/1] dt-bindings: nvmem: mediatek: Convert mtk-efuse
- binding to YAML
-Content-Language: en-US
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Lala Lin <lala.lin@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>
-References: <20220425084800.2021-1-allen-kh.cheng@mediatek.com>
- <20220425084800.2021-2-allen-kh.cheng@mediatek.com>
- <e64bdca8-7b18-b450-830c-ca07946a73fb@linaro.org>
- <9d65b713e3ffdd34dcca532c4c97fa98b124bde4.camel@mediatek.com>
- <0169c4ac-fdce-29b7-553a-14dc7df532d1@linaro.org>
- <a8e212a0e0449e015a33e76b320266376d4b9be6.camel@mediatek.com>
- <89609af9-5feb-0553-5e39-c97c4750b5a1@linaro.org>
- <33c754a7b6e4cd631bb2aeef002d34a6c25d6689.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <33c754a7b6e4cd631bb2aeef002d34a6c25d6689.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 11:28, allen-kh.cheng wrote:
-> Hi Krzysztof,
-> 
-> On Tue, 2022-04-26 at 12:14 +0200, Krzysztof Kozlowski wrote:
->> On 26/04/2022 12:02, allen-kh.cheng wrote:
->>> Hi Krzysztof,
->>>
->>> On Tue, 2022-04-26 at 08:31 +0200, Krzysztof Kozlowski wrote:
->>>> On 26/04/2022 08:23, allen-kh.cheng wrote:
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    oneOf:
->>>>>>> +      - enum:
->>>>>>> +          - mediatek,mt8173-efuse
->>>>>>> +          - mediatek,efuse
->>>>>>
->>>>>> Still no changes...
->>>>>>
->>>>>
->>>>> I just want to confirm again.
->>>>>
->>>>> "Generic compatibles should not be used standalone"
->>>>>
->>>>> It seems we should remove mediatek,efuse and keep
->>>>> "mediatek,mt8173-
->>>>> efuse"in binding. have I got that right?
->>>>
->>>> You should comment for which chipsets this compatible is and add
->>>> a
->>>> deprecated:true. In such case it cannot be part of enum but
->>>> separate
->>>> item in this oneOf.
->>>>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>
->>> Thanks for your suggestions, I would plan to send PATCHs as below,
->>>
->>> We have a PATCH 01 for current accepted dts
->>>
->>> properties:
->>>   compatible:
->>>     oneOf:
->>>       - enum:
->>>         - mediatek,efuse
->>>
->>>         - mediatek,mt8173-efuse
->>>         description: Only mt8173-efuse
->>> with generic fallback should be used
->>>       - items:
->>>           - enum:
->>>     
->>> - mediatek,mt7622-efuse
->>> 			  ...
->>>           - const: mediatek,efuse
->>>
->>> Then add PATCH 02 to deprecate it
->>>
->>> properties:
->>>   compatible:
->>>     oneOf:
->>>       - enum:
->>>         - mediatek,efuse
->>>         - mediatek,mt8173-efuse
->>>         deprecated: true
->>>         description: The mediatek,efuse is a generic fallback for
->>> other
->>> Chipset. Do not use the single compatible such as mediatek,efuse
->>> or mediatek,mt8173-efuse. It is deprecated.
->>>       - items:
->>>           - enum:
->>>               - mediatek,mt7622-efuse
->>>               ...
->>>           - const: mediatek,efuse
->>>
->>>
->>> PATCH 03 for 8173
->>>
->>> update mt8173.dtsi 
->>>
->>> change compatible from "mediatek,mt8173-efuse" to "mediatek,mt8173-
->>> efuse", "mediatek,efuse";
->>>
->>>
->>> Do you think it'd be okay ?
->>
->> The idea is correct, but as I said it cannot be part of enum, but
->> separate item in oneOf. You should see an error when testing your
->> patch.
->>
->>
->> Best regards,
->> Krzysztof
-> 
-> I have tested 
-> make DT_CHECKER_FLAGS=-m dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/nvmem/mtk,efuse.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/nvmem/mtk,efuse.yaml
-> 
-> Is the following correct as final version ?
+This series adds foundation work to support the lan9662 PCIe card. This
+card is meant to be used an ethernet switch with 2 x RJ45 ports and
+2 x 2.5G SFPs. The lan966x SoCs can be used in two different ways:
 
-Almost :)
+ - It can run Linux by itself, on ARM64 cores included in the SoC. This
+   use-case of the lan966x is currently being upstreamed, using a
+   traditional Device Tree representation of the lan996x HW blocks [1]
+   A number of drivers for the different IPs of the SoC have already
+   been merged in upstream Linux.
 
-> 
-> properties:
->   compatible:
->     oneOf:
->       - const: mediatek,mt8173-efuse
-> #Don't use this in new dts files
+ - It can be used as a PCIe endpoint, connected to a separate platform
+   that acts as the PCIe root complex. In this case, all the devices
+   that are embedded on this SoC are exposed through PCIe BARs and the
+   ARM64 cores of the SoC are not used. Since this is a PCIe card, it
+   can be plugged on any platform, of any architecture supporting PCIe.
 
-This compatible above is correct for mt8173, isn't it?
+The problem that arose is that we want to reuse all the existing OF
+compatible drivers that are used when in SoC mode to instantiate the
+PCI device when in PCIe endpoint mode.
 
->         deprecated: true
->       - const:
-> mediatek,efuse
->         deprecated: true
->         description:
->          
-> Please use mediatek,efuse as fallback.
+A previous attempt to tackle this problem was made using fwnode [1].
+However, this proved being way too invasive and it required
+modifications in both subsystems and drivers to support fwnode. First
+series did not lead to a consensus and multiple ideas to support this
+use-case were mentioned (ACPI overlay, fwnode, device-tree overlay).
+Since it only seemed that fwnode was not a totally silly idea, we
+continued on this way.
 
-Description does not match. This should be something like:
-"MediaTek efuse for MT8173. Deprecated, use mediatek,mt8173-efuse instead"
+However, on the series that added fwnode support to the reset subsystem,
+Rob Herring mentioned the fact that OF overlay might actually be the
+best way to probe PCI devices and populate platform drivers using this
+overlay. He also provided a branch containing some commits that helped
+to implement this idea on a x86 setup. Due to the dynamic nature of PCI
+bus enumeration, some other modifications needs to be applied on the
+overlay to apply it correctly. Indeed, it is necessary to modify the
+target node of the fragments to apply them correctly on the PCI device
+that was probed. Moreover, the 'ranges' must be set according to the
+BAR addresses in order to remap devices to the correct PCI addresses.
+These modifications are the located into the driver since the remapping
+is something that is specific to each driver.
 
+After modifications, this proves to be successful and a full support of
+the aforementioned lan966x PCI card was added. The modifications to
+support that (apply an overlay on a dynamically created PCI of_node) are
+actually minimal and only touches a few places (pci/of.c). This series
+contains the 3 commits that are necessary to do that:
 
+- First commit creates the root node if not present on a x86 setup
+  without a firmware provided device-tree.
+- Second one dynamically creates the PCI bus/device device-tree node
+  hierarchy using changeset API.
+- Finally a last commit allows to apply an overlay by targeting a
+  specific device-tree node.
 
-Best regards,
-Krzysztof
+Other problems that might be considered with this series is the fact
+that CONFIG_OF is not enabled by default on x86 configuration and thus
+the driver can't be used without rebuilding a complete kernel with
+CONFIG_OF=y. In order to fully support this PCIe card and allow lambda
+user to use this driver, it would be almost mandatory to enable
+CONFIG_OF by default on such setup.
+
+A driver using this support was added and can be seen at [3]. This
+driver embeds a builtin overlay and applies it to the live tree using
+of_overlay_fdt_apply_to_node(). An interrupt driver is also included and
+associated to a node that is added by the overlay. The driver also
+insert a specific "ranges" property based on the BAR values which allows
+to remap the device-tree node to BAR addresses dynamically. This is
+needed to allow applying the overlay without depending on specific
+enumeration BAR addresses.
+
+This series was tested on a x86 kernel using CONFIG_OF under a virtual
+machine using PCI passthrough.
+
+Link: [1] https://lore.kernel.org/lkml/YhQHqDJvahgriDZK@lunn.ch/t/
+Link: [2] https://lore.kernel.org/lkml/20220408174841.34458529@fixe.home/T/
+Link: [3] https://github.com/clementleger/linux/tree/lan966x/of_support
+
+Clément Léger (3):
+  of: always populate a root node
+  PCI: of: create DT nodes for PCI devices if they do not exists
+  of: overlay: add of_overlay_fdt_apply_to_node()
+
+ drivers/of/base.c    |  16 +++-
+ drivers/of/overlay.c |  21 +++--
+ drivers/pci/of.c     | 184 +++++++++++++++++++++++++++++++++++++++++++
+ include/linux/of.h   |  17 +++-
+ 4 files changed, 224 insertions(+), 14 deletions(-)
+
+-- 
+2.34.1
+
