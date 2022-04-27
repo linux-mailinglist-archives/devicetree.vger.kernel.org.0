@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC61A511E26
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5CE511D29
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241288AbiD0QC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 12:02:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54212 "EHLO
+        id S241284AbiD0QC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 12:02:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241233AbiD0QCX (ORCPT
+        with ESMTP id S241234AbiD0QCX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:02:23 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5D81668D7
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:58:57 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id b24so2456405edu.10
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:58:57 -0700 (PDT)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9178167F31
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:58:58 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id l7so4346318ejn.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:58:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Ngwz3q2zpsd8pn+c3WCkgPU+RQZwoiDX6UsfQMMTgSQ=;
-        b=uh6vYHVpkd2S6gEKQiWeP0+fiBt6JCAWebIv3XdrN3Rb91/msRrhpL8KrGEdrThkGN
-         6KYoegTI5K6neGhQCztoJxWMkqoQz2RUAURn4c0pIgliyAMbLGnNE1rrhLvVtnXaB+5v
-         84y3L9wtizEpOxZEYm7eR+tNRT+SmZ3jR9Qdj7SKm1k2G7ufqxrM7pq/6MA12vgazN2z
-         ROCm5PKCTac+YBCPUo8usJAmeTcvakLi5WjAmRW6C6EZw1wkIxwRz3RiGLVXzg3JgVAe
-         23TDN60HOaWtCdTrlb5dCHtxis2Pp9kQ1ebMmifF7T3Aej6c7RWJeqI/4H/O+xgntUp3
-         tZOQ==
+        bh=MKjLCUlOQvdpI7FmKAK8Um8s2AvYcZEoiKQJO1h/+7Q=;
+        b=jV5dkMpL8DMNsYEhimDMDFrNviKnXilTKfixSFASCo7FkFdj5jGKav2rglWw4a0Tvg
+         LdL1UChY18gfncekKP/RvUMVNuLSOgh6QrNa1QaBSp6pf0Zim0l+HcZJjCyBOHmul2Ik
+         Nk1osJMnmiFIJQKsiu0wNjkQVzEtbLxZgT/n6WNcb0HW/v9b6qdDRgd8CVDiLUYPYbrr
+         8caBZE18NXwy7djZkwvFTFAuVHWvVRWJaSejiCK2+RHaAIaUIqjUj6/wOfTyvfngOBGt
+         01HlL52fAZjRraOEeBGMxlZpvac5ew/gNZ92WVOyfLFCjhErySkyMk6M799fuOaOopOA
+         3qIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Ngwz3q2zpsd8pn+c3WCkgPU+RQZwoiDX6UsfQMMTgSQ=;
-        b=LRhDSw6F+8fPQ1fkbSoaGvOv5G4NSaDe2a1RDApHfIwMmZu7aZHEAol0FplicxAM4/
-         iHyowoyk7Tmz9DBXjaCyCV52t0HzCrX7B4XE3CVVFd9h9sayMoeV+QZjPrFuzOyxlg7b
-         5Y/ltX5RwdjqUiAbRM5e/OrBJ/pvJjZkNJA9gDe94choYYNUWl0j0rm665jB/V2hk61h
-         qoqncfoJKTKE2b0Jec/fkGlHOQI3/3sY3JMoPTagYmlmDQ+ESd04gCHVHI9ly3kmPDBQ
-         QSti7XurZWiDL56/5VyD24MJxD0HN0K6FosJjpWVnghCIPB4oKgjAzWvwxf2PK9Y+Aw+
-         2BYA==
-X-Gm-Message-State: AOAM533s2zUhDsEmKUMQUG/mR66vpFd+Rp/nT0MuMdGvgnNxAhMcRvS7
-        OB21mO62daZ0OXvvw9o8AhpJRg==
-X-Google-Smtp-Source: ABdhPJzd9n2AJH3No5QlSrAvOiQTtyKdLZzv5A2nYegCcOLTkKkmFf/LyoZbk7dTN5lW/SMLXlTvyw==
-X-Received: by 2002:a05:6402:278f:b0:425:e89c:35e with SMTP id b15-20020a056402278f00b00425e89c035emr17275331ede.50.1651075131515;
-        Wed, 27 Apr 2022 08:58:51 -0700 (PDT)
+        bh=MKjLCUlOQvdpI7FmKAK8Um8s2AvYcZEoiKQJO1h/+7Q=;
+        b=lQcG3a7hqjGlSdoJbqNRJZScZmVZJQnC6bH5LaRXlXFHPBWfxbjLZ38Nv54xixKB3n
+         x7BD68QQ2TICxLtDz+hbd5v4DIyY0iDdFwvKDHf9Iwpo+slBJJBBSK6LmH5rTdGEunef
+         1k/7n4Ex7kTR9AB8TsImV1fofDSGAUbS09OqG9PeByqZyUCsuMPZFvT4ewVEdmSPVHu2
+         mP+Gj7A4XpTusFJ3cZHvoTxVSEHCjZOQbudtoxcDdaTmI9TIGG3LINeQtPrhw2d7P3Fv
+         ZZFcmzcZ+SqJsHxa54FoGIS8MuOqmPZsRA+NKh1JwF1jJKSHH/bwKj7CgHd9cQpuWl5w
+         +l1w==
+X-Gm-Message-State: AOAM5302q8usQNEfCttPJfLMygKx5orEKXT9BuVi98tAtav6estrvr5e
+        5tdctB3yZSztGolgl/BBGl6RYg==
+X-Google-Smtp-Source: ABdhPJwgDgUDyTITCSSTY6QkoaxRAdqwIx735kozAEcyj2uLvbYu824QguLZougmsAmYQRNxtRSZYA==
+X-Received: by 2002:a17:907:6d22:b0:6f3:a9e5:d074 with SMTP id sa34-20020a1709076d2200b006f3a9e5d074mr10320453ejc.639.1651075132678;
+        Wed, 27 Apr 2022 08:58:52 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l20-20020a1709062a9400b006ce71a88bf5sm6931993eje.183.2022.04.27.08.58.50
+        by smtp.gmail.com with ESMTPSA id l20-20020a1709062a9400b006ce71a88bf5sm6931993eje.183.2022.04.27.08.58.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 08:58:51 -0700 (PDT)
+        Wed, 27 Apr 2022 08:58:52 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,9 +64,9 @@ To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH 04/10] arm64: dts: juno: use proper 'dma-channels/requests' properties
-Date:   Wed, 27 Apr 2022 17:58:34 +0200
-Message-Id: <20220427155840.596535-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 05/10] arm64: dts: broadcom: use proper 'dma-channels/requests' properties
+Date:   Wed, 27 Apr 2022 17:58:35 +0200
+Message-Id: <20220427155840.596535-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
 References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
@@ -88,24 +88,40 @@ match the bindings.
 Reported-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/arm/juno-base.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 4 ++--
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index 4f40a5c8f565..96ef0ddc0b2d 100644
---- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -829,8 +829,8 @@ dma-controller@7ff00000 {
- 		compatible = "arm,pl330", "arm,primecell";
- 		reg = <0x0 0x7ff00000 0 0x1000>;
- 		#dma-cells = <1>;
--		#dma-channels = <8>;
--		#dma-requests = <32>;
-+		dma-channels = <8>;
-+		dma-requests = <32>;
- 		interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index f59fa3979a04..230ccb685be6 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -289,8 +289,8 @@ dma0: dma-controller@61360000 {
+ 				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
+ 			#dma-cells = <1>;
+-			#dma-channels = <8>;
+-			#dma-requests = <32>;
++			dma-channels = <8>;
++			dma-requests = <32>;
+ 			clocks = <&iprocslow>;
+ 			clock-names = "apb_pclk";
+ 		};
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index 7f1b8efd0883..2a58c1b43f6f 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -556,8 +556,8 @@ dma0: dma-controller@310000 {
+ 				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
+ 			#dma-cells = <1>;
+-			#dma-channels = <8>;
+-			#dma-requests = <32>;
++			dma-channels = <8>;
++			dma-requests = <32>;
+ 			clocks = <&hsls_div2_clk>;
+ 			clock-names = "apb_pclk";
+ 			iommus = <&smmu 0x6000 0x0000>;
 -- 
 2.32.0
 
