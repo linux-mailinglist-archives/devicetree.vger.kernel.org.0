@@ -2,156 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC27510D6B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 02:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77AF3510DA9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 03:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241389AbiD0AvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 20:51:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35816 "EHLO
+        id S1356565AbiD0BFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 21:05:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232169AbiD0AvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 20:51:08 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94F842EDC
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 17:47:59 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id y63so452559oia.7
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 17:47:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7jADvKtwI5abxB+PBQP/9nWBiqZb6jlr8eUfg5UByAo=;
-        b=6U6twhdHJ3yfdgTg/QqZNgFGZKeYF7/gt9iePH7l4pdejl/AbGJPG3Cxoc+Wy2GInh
-         GeFYQDXE+sD8HVq3H+bGB3ylmjr3JItN1DIctL5R6l6O/PDUrPpoOz9ht1hANkyOEQEL
-         Hr/8uILPbpyxT0rlXTd/9LC/Piz+swTqSjg6QbRMejSabRmJ/j6L64JFdX2pUPIhXgc+
-         Pm6zIGocW7F9QaLVutRY/BdvbgVGHepHl4Pr4w2PzV4jG6DzUW6kAwHwhu+BKJBMvhvm
-         oD6tuAIHO2GxOj6fsC4FS0hmm1SnBH+rm5pijq9SJYbCwAzGPAoEDftNlnZWdsirNiMi
-         KBLg==
-X-Gm-Message-State: AOAM531GjxNkwagZNEoKiJEkL0mWcy3AfkzeZsq92GnbxVLg4PnFilN7
-        cGW3UJxdwyYUEDWtie6GJokfMohrdw==
-X-Google-Smtp-Source: ABdhPJz1tp6QAKevUv5cVDmCNzFf63FrVLvVvWCrybhibB6eccqsDL8me03IQhAgh1MhSDCxNboGPA==
-X-Received: by 2002:a05:6808:1304:b0:325:388:2214 with SMTP id y4-20020a056808130400b0032503882214mr8610352oiv.59.1651020479019;
-        Tue, 26 Apr 2022 17:47:59 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x64-20020acae043000000b003222bb3dfb0sm5467281oig.36.2022.04.26.17.47.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 17:47:58 -0700 (PDT)
-Received: (nullmailer pid 2835963 invoked by uid 1000);
-        Wed, 27 Apr 2022 00:47:57 -0000
-Date:   Tue, 26 Apr 2022 19:47:57 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dan K <kaehndan@gmail.com>
-Cc:     tiwai@suse.com, alsa-devel@alsa-project.org,
+        with ESMTP id S1356556AbiD0BFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 21:05:49 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2575845780;
+        Tue, 26 Apr 2022 18:02:38 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (174-21-163-222.tukw.qwest.net [174.21.163.222])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 933D91B3;
+        Tue, 26 Apr 2022 18:02:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1651021357;
+        bh=EeIK9PTg8rt6iLK9xsWDK8s27aTwF2TDPocS/GpHidw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RP4ihxzhTiLuLRHmFcRKfLNc6MiWABggR5EhKClQ/AQCg03BS53P/B1CwLuDOMKEY
+         TKypMdoURE7BoEDEBJppH1ifp9cuskSnYxwsLPiim97InbREi16MIw5+GXEqfl3OGO
+         ZniQuLPOupww1kEarHX+QuthS/MBu/4lEDqnIir0=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org
+Cc:     Zev Weiss <zev@bewilderbeest.net>, Renze Nicolai <renze@rnplus.nl>,
+        Oleksandr Natalenko <oleksandr@natalenko.name>,
+        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: sound: Add generic serial MIDI device
-Message-ID: <YmiSvXCE5Yovvjhd@robh.at.kernel.org>
-References: <20220425191602.770932-1-kaehndan@gmail.com>
- <20220425191602.770932-2-kaehndan@gmail.com>
- <YmcdvcyeJJBB1pqW@robh.at.kernel.org>
- <CAP+ZCCfT8Mm1OECsrKxzq5vtjyaTiF=ML9LJYkHXO0A6Wao32w@mail.gmail.com>
+Subject: [PATCH v4 0/7] hwmon: (nct6775) Convert to regmap, add i2c support
+Date:   Tue, 26 Apr 2022 18:01:47 -0700
+Message-Id: <20220427010154.29749-1-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAP+ZCCfT8Mm1OECsrKxzq5vtjyaTiF=ML9LJYkHXO0A6Wao32w@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 07:49:49PM -0500, Dan K wrote:
-> On Mon, Apr 25, 2022 at 5:16 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Apr 25, 2022 at 02:16:02PM -0500, Daniel Kaehn wrote:
-> > > Adds dt-binding for snd-serial-generic serial MIDI driver
-> >
-> > Bindings are for h/w and there's no such thing as generic h/w. There are
-> > some exceptions but you'll have to justify why this is special.
-> >
-> 
-> Thanks for taking the time to look at this!
-> 
-> Not entirely sure if you mean that I'll need to justify the existence
-> / need for this binding,
-> or the use of the term 'generic' -- just in case, I'll make sure to
-> respond to both. Note that
-> I'm justifying my reasoning for submitting the binding - but I'm
-> uncertain myself if my reasoning
-> is valid, as someone new to kernel development.
+Hello,
 
-'Generic' is really just a red flag.
-
-We've had generic or simple bindings before. The result tends to be a 
-never ending stream of new properties to deal with every new variation 
-in devices. These can be quirks for device behavior, timing for power 
-control, etc.
-
-> The intent of this binding is to signify that a serial port (namely a
-> UART) is connected
-> in hardware to a MIDI decoupling circuit, which then connects to some
-> (any) sort of MIDI device,
-> either directly to an on-board device, or via a jack/connector. In a
-> sense, the MIDI device that this
-> connects to is 'generic', as the identity of the device does not need
-> to be known to interface with it
-> over MIDI for most use cases.
-
-Okay, maybe it is appropriate. The key part is 'most use cases'. What 
-about ones that don't fit into 'most'? It's possible to do both (generic 
-binding and device specific bindings), but we need to define when 
-generic bindings are appropriate or not.
-
-Do devices ever need power controls or other sideband interfaces? 
-Regulators, resets, clocks? If so, you need to describe the specific 
-device.
-
-Is a jack/connector in any way standard and have signals other than UART 
-(or whatever is the other side of the MIDI decoupling circuit)? We have 
-bindings for standard connectors.
-
-I don't really know anything about what this h/w looks like, so any 
-pointers or examples would help. 
-
-> I see how this is a bit of an oddball, since it's not specifically
-> describing a particular hardware
-> device attached to a UART (like some of the bluetooth modules are),
-
-To follow that comparison, all/most BT modules use a standard/generic 
-protocol over the serial port. But we don't have compatibles aligned to 
-the protocol because the devices are more than just a serial protocol. 
-They have GPIOs, regulators, clocks, etc. Furthermore, the serial 
-protocols themselves can have extensions and/or quirks.
-
-
-> but thought this sort of
-> binding might be permissible because of things like the
-> gpio-matrix-keypad binding, which doesn't
-> describe specific switches, just how thoise switches are wired, and
-> what GPIO they use, which is all
-> that is needed to interface with them. Some MIDI devices implement
-> extra low-level features like device
-> multiplexing, but these aren't (to my knowledge) common, and are
-> beyond what this supports.
-
-At some point devices become simple enough to model generically.
-
-> The reason that the corresponding driver written has the name
-> 'generic' is for an entirely
-> different reason. A "serial MIDI" driver already exists in the kernel,
-> however, it  interfaces only with
-> u16550-compatible UARTs. This driver uses the serial bus, making it
-> work with 'generic' serial devices.
-
-Bindings are separate from the kernel (though they live in the same 
-repository for convenience). A 'generic' binding often appears with a 
-'generic' driver. You can have specific bindings with a generic driver. 
-The difference with doing that is the OS can evolve without changing the 
-binding (an ABI). Maybe initially you use a generic driver until there's 
-extra/custom features of the device you want to support with a custom 
+This is v4 of my effort to add i2c support to the nct6775 hwmon
 driver.
 
-Rob
+Changes since v3 [0]:
+ - Reverted to dedicated DT binding file, added
+   nuvoton,tsi-channel-mask property and support for it to the i2c
+   driver
+ - Reverted file names to the ones in v2 [Guenter]
+ - Added patch 5 converting S_I* permissions macros to octal [Guenter]
+ - R-B tags from Joel on patches 2-4
+ - Tiny comment-formatting tweak to appease checkpatch on patch 6
+
+Changes since v2 [1]:
+ - Fixed wrong parenthesization in nct6775_write_value()
+ - Moved DT binding to trivial-devices.yml instead of a dedicated file
+   [Guenter]
+ - Renamed drivers and Kconfig symbols to keep existing platform
+   driver as "nct6775" (SENSORS_NCT6775) and the core module as
+   "nct6775-core" (SENSORS_NCT6775_CORE) [Guenter]
+ - Fixed SENSORS_NCT6775_CORE Kconfig to select REGMAP, removed
+   erroneous REGMAP_I2C selection from SENSORS_NCT6775_I2C [Guenter]
+
+Changes since v1 [2]:
+ - Added preparatory patch converting driver to regmap API [Guenter]
+ - Replaced ENOSPC with ENOBUFS and removed WARN_ON() in
+   nct6775_add_attr_group() [Guenter]
+ - Added dedicated symbol namespace [Guenter]
+ - Removed nct6775_write_temp() and nct6775_update_device() symbol
+   exports [Guenter]
+ - Reordered patches to put dt-bindings patch first [Krzysztof]
+
+[0] https://lore.kernel.org/openbmc/20220426071848.11619-1-zev@bewilderbeest.net/
+[1] https://lore.kernel.org/linux-hwmon/20220309005047.5107-1-zev@bewilderbeest.net/
+[2] https://lore.kernel.org/linux-hwmon/20220226133047.6226-1-zev@bewilderbeest.net/
+
+A slightly edited version of the previous cover letter follows:
+
+
+This patch series augments the existing nct6775 driver with support
+for the hardware's i2c interface; along the way it converts the driver
+to use the regmap API, and splits the LPC-specific platform driver
+into a separate module from the interface-independent core.
+
+Thus far the nct6775 driver has only supported the LPC interface,
+which is the main interface by which the Super-I/O chip is typically
+connected to the host (x86) processor.
+
+However, these chips also provide an i2c interface, which can provide
+a way for a BMC to also monitor sensor readings from them.  On some
+systems (such as the ASRock Rack ROMED8HM3 and X570-D4U) this may be
+the only way for the BMC to monitor host CPU temperatures (e.g. to
+indirectly access a TSI interface); this functionality is thus an
+important component of enabling OpenBMC to support such systems.
+
+In such an arrangement the Super-I/O chip is simultaneously controlled
+by two independent processors (the host and the BMC) which typically
+do not coordinate their accesses with each other.  In order to avoid
+conflicts between the two, the i2c driver avoids all writes to the
+device, since the BMC's needs with the hardware are merely that it be
+able to retrieve sensor readings.  This allows the host processor to
+remain ultimately in control of the chip and unaware of the BMC's use
+of it at all.
+
+The sole exception to the "no writes" rule for the i2c driver is for
+the bank-select register -- while I haven't been able to find any
+explicit statement in the Nuvoton datasheets guaranteeing this,
+testing via manual register accesses (as detailed in [3]) has
+indicated that, as one might hope, the i2c interface has its own
+bank-select register independent of the one used by the LPC interface.
+
+In terms of code structure, the approach taken in this series is to
+first convert the driver's register accesses to the regmap API, and
+then split the LPC-specific parts of it out into a separate module
+(retaining the current "nct6775" name), leaving the
+interface-independent parts in a generic driver (called nct6775-core).
+The nct6775-i2c driver is then added as an additional consumer of the
+nct6775-core module's functionality (essentially just providing its
+own set of regmap read/write callback functions).
+
+The first patch adds the chips supported by the nct6775 driver to
+Documentation/device-tree-bindings/trivial-devices.yml.  The second
+patch contains the change to convert all register accesses to use a
+regmap.  The third and fourth patches make some relatively small
+infrastructural changes to the driver, and the fifth cleans up a bunch
+of checkpatch complaints prior to the main split patch.  The
+core/platform driver split is in the sixth patch, and the final patch
+adds the i2c driver itself.
+
+The nct6775 and nct6775-i2c drivers have both been tested on the
+NCT6779D in an ASRock ROMED8HM3 system and the NCT6798 [4] in an
+ASRock X570-D4U (the latter thanks to Renze, CCed); both seem to work
+as expected on both systems.  I don't have access to any asuswmi
+hardware, so testing of the nct6775-platform driver on that to ensure
+it doesn't break there would be appreciated (Oleksandr, perhaps?).
+
+
+Thanks,
+Zev
+
+[3] https://lore.kernel.org/linux-hwmon/YhttzgDtGpcTniyw@hatter.bewilderbeest.net/
+[4] Though it's physically labeled (mislabeled?) as an NCT6796, for
+    what that's worth.
+
+Zev Weiss (7):
+  dt-bindings: hwmon: Add nuvoton,nct6775
+  hwmon: (nct6775) Convert register access to regmap API
+  hwmon: (nct6775) Rearrange attr-group initialization
+  hwmon: (nct6775) Add read-only mode
+  hwmon: (nct6775) Convert S_I* permissions macros to octal
+  hwmon: (nct6775) Split core and platform driver
+  hwmon: (nct6775) Add i2c driver
+
+ .../bindings/hwmon/nuvoton,nct6775.yaml       |   56 +
+ MAINTAINERS                                   |   12 +-
+ drivers/hwmon/Kconfig                         |   31 +-
+ drivers/hwmon/Makefile                        |    3 +
+ drivers/hwmon/{nct6775.c => nct6775-core.c}   | 2445 +++++------------
+ drivers/hwmon/nct6775-i2c.c                   |  195 ++
+ drivers/hwmon/nct6775-platform.c              | 1226 +++++++++
+ drivers/hwmon/nct6775.h                       |  252 ++
+ 8 files changed, 2455 insertions(+), 1765 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+ rename drivers/hwmon/{nct6775.c => nct6775-core.c} (66%)
+ create mode 100644 drivers/hwmon/nct6775-i2c.c
+ create mode 100644 drivers/hwmon/nct6775-platform.c
+ create mode 100644 drivers/hwmon/nct6775.h
+
+-- 
+2.36.0
+
