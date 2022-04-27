@@ -2,128 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08DF5510CFB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 02:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC27510D6B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 02:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356295AbiD0AGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Apr 2022 20:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43658 "EHLO
+        id S241389AbiD0AvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Apr 2022 20:51:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356260AbiD0AGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 20:06:40 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C2E177CB1
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 17:03:30 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id k4so189918plk.7
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 17:03:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0GmEIX1GlLfTlvVrOCSpfIb3y6H22vbw5n+bX9zbtPk=;
-        b=BpOzaqkng57OfFPssDa8a29JJ2oL8dkDDC1EEN35Qstu7ZxpLy6Erz+S533qY2Pyuv
-         lQ1qbOlLL+JfJXI/mPqlFpZF3d7EJy8x4y3+AyQk9NCcnsw4Mf3muJAxIhJMH+q7fFaQ
-         8LnVp0mDH1rOZ9B2yqKedwTbAeOPUPlOjK7f0=
+        with ESMTP id S232169AbiD0AvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Apr 2022 20:51:08 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94F842EDC
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 17:47:59 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id y63so452559oia.7
+        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 17:47:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0GmEIX1GlLfTlvVrOCSpfIb3y6H22vbw5n+bX9zbtPk=;
-        b=OAd8MbvhB0mIQ7+thPdEoElm5ehMy/5sBBSdimypxEHl3AaVKRmRru/cNZoXjvE7pl
-         BjHcRWVScYuBNB4O1e+zWHT9UNwLs4rHVQqfNVDBfVS879maiY0BeHOGuu8CEviBKTc2
-         7L840BfQKTnbiLU/g6q6CylLgHVZ1olLQeKAuEl30HnVqscLHWmtRRFJ8Na90BQnR1RZ
-         xQsOXMWActTUIGphyk07JpWHIt7Kyc2p7U8N082pG/4MWhgIOqqLlkEHjyFohvajOJMp
-         3d5eMqmPAwZrsr8vj6w65zoyT5NzWO24jcKIS3U/kKraGCfbdLLVh5fJmehclg5AcZoL
-         2r7g==
-X-Gm-Message-State: AOAM532NWqURM2ALDmX0hUPeqP/wFWof3c+6yWWn7Xs/r1mlEHh2SC1f
-        cYB7iOOdyemUKSaAtSuHU8q7fA==
-X-Google-Smtp-Source: ABdhPJy8mmvU8CSUFstqZ4eSmmRZ++ZALKeAMtDS58ZkJvleqjLEopzPJg34ynBpjMxjtzlTbsYmfg==
-X-Received: by 2002:a17:90a:9308:b0:1cb:a048:c140 with SMTP id p8-20020a17090a930800b001cba048c140mr30051370pjo.221.1651017810189;
-        Tue, 26 Apr 2022 17:03:30 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:a9a2:8a58:9d04:ba68])
-        by smtp.gmail.com with UTF8SMTPSA id j1-20020a17090adc8100b001d9424e49c1sm4313819pjv.44.2022.04.26.17.03.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Apr 2022 17:03:29 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v22 2/2] arm64: dts: qcom: sc7280-herobrine: Add nodes for onboard USB hub
-Date:   Tue, 26 Apr 2022 17:03:23 -0700
-Message-Id: <20220426170306.v22.2.I18481b296484eec47bdc292a31fa46fa8c655ca9@changeid>
-X-Mailer: git-send-email 2.36.0.rc2.479.g8af0fa9b8e-goog
-In-Reply-To: <20220426170306.v22.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
-References: <20220426170306.v22.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7jADvKtwI5abxB+PBQP/9nWBiqZb6jlr8eUfg5UByAo=;
+        b=6U6twhdHJ3yfdgTg/QqZNgFGZKeYF7/gt9iePH7l4pdejl/AbGJPG3Cxoc+Wy2GInh
+         GeFYQDXE+sD8HVq3H+bGB3ylmjr3JItN1DIctL5R6l6O/PDUrPpoOz9ht1hANkyOEQEL
+         Hr/8uILPbpyxT0rlXTd/9LC/Piz+swTqSjg6QbRMejSabRmJ/j6L64JFdX2pUPIhXgc+
+         Pm6zIGocW7F9QaLVutRY/BdvbgVGHepHl4Pr4w2PzV4jG6DzUW6kAwHwhu+BKJBMvhvm
+         oD6tuAIHO2GxOj6fsC4FS0hmm1SnBH+rm5pijq9SJYbCwAzGPAoEDftNlnZWdsirNiMi
+         KBLg==
+X-Gm-Message-State: AOAM531GjxNkwagZNEoKiJEkL0mWcy3AfkzeZsq92GnbxVLg4PnFilN7
+        cGW3UJxdwyYUEDWtie6GJokfMohrdw==
+X-Google-Smtp-Source: ABdhPJz1tp6QAKevUv5cVDmCNzFf63FrVLvVvWCrybhibB6eccqsDL8me03IQhAgh1MhSDCxNboGPA==
+X-Received: by 2002:a05:6808:1304:b0:325:388:2214 with SMTP id y4-20020a056808130400b0032503882214mr8610352oiv.59.1651020479019;
+        Tue, 26 Apr 2022 17:47:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x64-20020acae043000000b003222bb3dfb0sm5467281oig.36.2022.04.26.17.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Apr 2022 17:47:58 -0700 (PDT)
+Received: (nullmailer pid 2835963 invoked by uid 1000);
+        Wed, 27 Apr 2022 00:47:57 -0000
+Date:   Tue, 26 Apr 2022 19:47:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dan K <kaehndan@gmail.com>
+Cc:     tiwai@suse.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: sound: Add generic serial MIDI device
+Message-ID: <YmiSvXCE5Yovvjhd@robh.at.kernel.org>
+References: <20220425191602.770932-1-kaehndan@gmail.com>
+ <20220425191602.770932-2-kaehndan@gmail.com>
+ <YmcdvcyeJJBB1pqW@robh.at.kernel.org>
+ <CAP+ZCCfT8Mm1OECsrKxzq5vtjyaTiF=ML9LJYkHXO0A6Wao32w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAP+ZCCfT8Mm1OECsrKxzq5vtjyaTiF=ML9LJYkHXO0A6Wao32w@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on herobrine devices. Remove the
-'always-on' property from the hub regulator, since the regulator
-is now managed by the onboard_usb_hub driver.
+On Mon, Apr 25, 2022 at 07:49:49PM -0500, Dan K wrote:
+> On Mon, Apr 25, 2022 at 5:16 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Apr 25, 2022 at 02:16:02PM -0500, Daniel Kaehn wrote:
+> > > Adds dt-binding for snd-serial-generic serial MIDI driver
+> >
+> > Bindings are for h/w and there's no such thing as generic h/w. There are
+> > some exceptions but you'll have to justify why this is special.
+> >
+> 
+> Thanks for taking the time to look at this!
+> 
+> Not entirely sure if you mean that I'll need to justify the existence
+> / need for this binding,
+> or the use of the term 'generic' -- just in case, I'll make sure to
+> respond to both. Note that
+> I'm justifying my reasoning for submitting the binding - but I'm
+> uncertain myself if my reasoning
+> is valid, as someone new to kernel development.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+'Generic' is really just a red flag.
 
-Changes in v22:
-- patch added to the series
+We've had generic or simple bindings before. The result tends to be a 
+never ending stream of new properties to deal with every new variation 
+in devices. These can be quirks for device behavior, timing for power 
+control, etc.
 
- .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+> The intent of this binding is to signify that a serial port (namely a
+> UART) is connected
+> in hardware to a MIDI decoupling circuit, which then connects to some
+> (any) sort of MIDI device,
+> either directly to an on-board device, or via a jack/connector. In a
+> sense, the MIDI device that this
+> connects to is 'generic', as the identity of the device does not need
+> to be known to interface with it
+> over MIDI for most use cases.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index d58045dd7334..46937d21b229 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -143,8 +143,8 @@ pp3300_hub: pp3300-hub-regulator {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 
-+		/* The BIOS leaves this regulator on */
- 		regulator-boot-on;
--		regulator-always-on;
- 
- 		gpio = <&tlmm 157 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
-@@ -560,6 +560,25 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.x hub on port 1 */
-+	usb_hub_2_x: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_3_x>;
-+	};
-+
-+	/* 3.x hub on port 2 */
-+	usb_hub_3_x: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_2_x>;
-+	};
- };
- 
- &usb_1_hsphy {
--- 
-2.36.0.rc2.479.g8af0fa9b8e-goog
+Okay, maybe it is appropriate. The key part is 'most use cases'. What 
+about ones that don't fit into 'most'? It's possible to do both (generic 
+binding and device specific bindings), but we need to define when 
+generic bindings are appropriate or not.
 
+Do devices ever need power controls or other sideband interfaces? 
+Regulators, resets, clocks? If so, you need to describe the specific 
+device.
+
+Is a jack/connector in any way standard and have signals other than UART 
+(or whatever is the other side of the MIDI decoupling circuit)? We have 
+bindings for standard connectors.
+
+I don't really know anything about what this h/w looks like, so any 
+pointers or examples would help. 
+
+> I see how this is a bit of an oddball, since it's not specifically
+> describing a particular hardware
+> device attached to a UART (like some of the bluetooth modules are),
+
+To follow that comparison, all/most BT modules use a standard/generic 
+protocol over the serial port. But we don't have compatibles aligned to 
+the protocol because the devices are more than just a serial protocol. 
+They have GPIOs, regulators, clocks, etc. Furthermore, the serial 
+protocols themselves can have extensions and/or quirks.
+
+
+> but thought this sort of
+> binding might be permissible because of things like the
+> gpio-matrix-keypad binding, which doesn't
+> describe specific switches, just how thoise switches are wired, and
+> what GPIO they use, which is all
+> that is needed to interface with them. Some MIDI devices implement
+> extra low-level features like device
+> multiplexing, but these aren't (to my knowledge) common, and are
+> beyond what this supports.
+
+At some point devices become simple enough to model generically.
+
+> The reason that the corresponding driver written has the name
+> 'generic' is for an entirely
+> different reason. A "serial MIDI" driver already exists in the kernel,
+> however, it  interfaces only with
+> u16550-compatible UARTs. This driver uses the serial bus, making it
+> work with 'generic' serial devices.
+
+Bindings are separate from the kernel (though they live in the same 
+repository for convenience). A 'generic' binding often appears with a 
+'generic' driver. You can have specific bindings with a generic driver. 
+The difference with doing that is the OS can evolve without changing the 
+binding (an ABI). Maybe initially you use a generic driver until there's 
+extra/custom features of the device you want to support with a custom 
+driver.
+
+Rob
