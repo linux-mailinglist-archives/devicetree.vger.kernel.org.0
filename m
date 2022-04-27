@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FEE51190E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE15511901
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:54:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236496AbiD0Nk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 09:40:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38180 "EHLO
+        id S236565AbiD0Nmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 09:42:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236507AbiD0Nk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:40:26 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56BE54D626;
-        Wed, 27 Apr 2022 06:37:14 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id v65so1949567oig.10;
-        Wed, 27 Apr 2022 06:37:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yhF0G6yyXaul33YQtZP9cS7G8SlHQ9Le2XaQbFcTYvo=;
-        b=SUsmhZGs20++DaCxL7upzoXkA2Dm33XtRqXivIfkZODlAT7QE/Jk/BvTcWT5lLt3/k
-         3TTrDFXoFkdEXyJeApS3tp7MxGMnTq0fL1DWsA+oNzXuQ1jQsD4IHzLGxh9NXRe1pxmN
-         p9NjQJ6LMjrVwVYPxHC6dKs+bb92+jw9o07tNRh97ma9VtjU5yky3hEpOC5+wGlFNPTT
-         g+rI/d+gPXCE+omJagi+o499emwmzpA2273FxrTp91JnXnXIc+dvAhRwurudHiZY3eeY
-         dZ+L6FeAUT0b0B/MfTQ4IIRbTcuCYyxtiDlTlnlNgDcN4HjEIE6en8Ij7V0wEBTKJSM2
-         GYcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :subject:content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yhF0G6yyXaul33YQtZP9cS7G8SlHQ9Le2XaQbFcTYvo=;
-        b=vnMlEQ67y2/ECSIU0V9omFi2M/zBsW6I4j/hvEWiyouab71WkU2q4wmqzKQTF65PkO
-         ugT0yw6o8/7aUGJMZ32xj4ebgCGgFhATXhJ+w93Jxw1kx6zzhs7oxbjnG2bLcLj3zZAr
-         07JRuKVXpAjGTGa6fOOJjbo7U/gZM2xKGjY4l1bf+e3AdyOCuiPRJA6GrU+xVV3wUGBR
-         COk8fBUB+4FFcI2tSgFQ6i6CLcuICmEp+wErqfyqf3mrKOK7xpbvrPGrlTK0mTsbFHWc
-         urVHTcTRo8oPPNI7xC4LthHcnuj3RtC20fHLZRaVYacldWa9aqilU9AIqLx3e3hoW4+c
-         13dg==
-X-Gm-Message-State: AOAM530rH9k+TZycf6iXafgEFIh6z8WJse0yOJ7OZG1sFRfFicFILhhi
-        Ccc7ITe65z7OsXmCCZnzjAa0Ws8BwIg=
-X-Google-Smtp-Source: ABdhPJz2pYe9wnusQC+BCwMLIw1YI1xV8X7qaYNnP2DtrkYyQC4A+AQu40ZHbQRlz8+Z77qeysc4Gw==
-X-Received: by 2002:a05:6808:2209:b0:322:bbb4:4572 with SMTP id bd9-20020a056808220900b00322bbb44572mr17131157oib.182.1651066633500;
-        Wed, 27 Apr 2022 06:37:13 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q13-20020a4ab3cd000000b0032830efe365sm6661469ooo.43.2022.04.27.06.37.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 06:37:11 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <bc46d60e-7c89-ad05-780c-9e9fd19f788e@roeck-us.net>
-Date:   Wed, 27 Apr 2022 06:37:07 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 0/7] hwmon: (nct6775) Convert to regmap, add i2c
- support
-Content-Language: en-US
-To:     Zev Weiss <zev@bewilderbeest.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org
-Cc:     Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S236599AbiD0Nmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:42:31 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4709178FE8;
+        Wed, 27 Apr 2022 06:39:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651066760; x=1682602760;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=dfk3Suit7AqCsR5KJXi6CZ5BVLPLOX8lEzuwltBe4Us=;
+  b=LJZaUItABJB1Lklp6v/3cHi9ouPSbwmaHbgfJLZI6eVbWo1GlFRi/czn
+   tqLRLXdRm4eTkbLDHnTv3MV32XkQQe42Y5trKcjZZPNNo1S3GKuhm3Ysy
+   mvBn3gq2hQYyZ+epfJAT2bbbQ68idOGVA8sH62Le762AphiJ7JigU65h8
+   91LTWUy2HGK/OQ+8bUXYHK3v2azhj44lm0HekgX4ZjHk/19ID+gKTR8ht
+   ymnd6pOGMySovV2llGa9Vv3zKIAGRM3Mn8YMe2AWkJdYa4SY9pjcHkcuV
+   DF/KHOH0u7pk+zz01bu1up/4seDKz3UAay/5qoRLd6wTAerJkW2mWif5D
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="263516435"
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; 
+   d="scan'208";a="263516435"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 06:39:12 -0700
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; 
+   d="scan'208";a="565079399"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 06:39:08 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id CD2562024B;
+        Wed, 27 Apr 2022 16:38:36 +0300 (EEST)
+Date:   Wed, 27 Apr 2022 16:38:36 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20220427010154.29749-1-zev@bewilderbeest.net>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20220427010154.29749-1-zev@bewilderbeest.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v5 0/7] typec: mux: Introduce support for multiple USB
+ TypeC muxes
+Message-ID: <YmlHXKRjzPIAv+iV@paasikivi.fi.intel.com>
+References: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220422222351.1297276-1-bjorn.andersson@linaro.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zev,
+Hi Björn,
 
-On 4/26/22 18:01, Zev Weiss wrote:
-> Hello,
+On Fri, Apr 22, 2022 at 03:23:44PM -0700, Bjorn Andersson wrote:
+> This series introduces a level of indirection between the controller's view of
+> a typec_mux/switch and the implementation and then expands that to support
+> multiple drivers.
 > 
-> This is v4 of my effort to add i2c support to the nct6775 hwmon
-> driver.
-> 
+> This is needed in order to support devices such as the Qualcomm Snapdragon 888
+> HDK, which does muxing and orientation handling in the QMP (USB+DP) PHY and SBU
+> muxing in the external FSA4480 chip.
 
-Thanks a lot for your effort.
+For patches 1 and 2:
 
-I applied patches 2..6 to hwmon-next. The first and the last
-patch of the series will have to wait for DT maintainer approval.
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 
-Thanks,
-Guenter
+-- 
+Sakari Ailus
