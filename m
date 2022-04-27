@@ -2,33 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA695115A8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854615115C4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232594AbiD0L3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 07:29:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52350 "EHLO
+        id S232728AbiD0L3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 07:29:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232820AbiD0L3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:29:07 -0400
+        with ESMTP id S232833AbiD0L3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:29:09 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 72030340F2
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 04:25:56 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 07C26340FC
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 04:25:58 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 410D71474;
-        Wed, 27 Apr 2022 04:25:56 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C93FAED1;
+        Wed, 27 Apr 2022 04:25:57 -0700 (PDT)
 Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 26DC03F5A1;
-        Wed, 27 Apr 2022 04:25:55 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 758EE3F5A1;
+        Wed, 27 Apr 2022 04:25:56 -0700 (PDT)
 From:   Andre Przywara <andre.przywara@arm.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Liviu Dudau <liviu.dudau@arm.com>,
         Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 07/11] dt-bindings: arm: convert vexpress-config to DT schema
-Date:   Wed, 27 Apr 2022 12:25:24 +0100
-Message-Id: <20220427112528.4097815-8-andre.przywara@arm.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH 08/11] dt-bindings: display: convert PL110/PL111 to DT schema
+Date:   Wed, 27 Apr 2022 12:25:25 +0100
+Message-Id: <20220427112528.4097815-9-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220427112528.4097815-1-andre.przywara@arm.com>
 References: <20220427112528.4097815-1-andre.przywara@arm.com>
@@ -42,414 +45,318 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm Versatile Express system features a bridge device that provides
-access to various smaller devices like clocks, reset gates and various
-sensors.
+The Arm PL110 and PL111 are IP blocks that provide a display engine with
+an LCD interface, being able to drive a variety of LC panels.
 
-Extract the second half of the informal vexpress-sysreg.txt binding and
-make it proper DT schema compliant. This makes the old .txt binding
-redundant, so remove it.
-
-This describes both the actual parent configuration bridge, as well as
-all the possible children devices.
+Convert the binding over to DT schema, to the DTs can be automatically
+checked.
+This still contains the deprecated "arm,pl11x,tft-r0g0b0-pads" property,
+because this is used by several DTs in the tree.
 
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- .../bindings/arm/vexpress-config.yaml         | 274 ++++++++++++++++++
- .../bindings/arm/vexpress-sysreg.txt          | 103 -------
- 2 files changed, 274 insertions(+), 103 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/vexpress-config.yaml
- delete mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
+ .../devicetree/bindings/display/arm,pl11x.txt | 110 -----------
+ .../bindings/display/arm,pl11x.yaml           | 174 ++++++++++++++++++
+ 2 files changed, 174 insertions(+), 110 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/arm,pl11x.txt
+ create mode 100644 Documentation/devicetree/bindings/display/arm,pl11x.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/vexpress-config.yaml b/Documentation/devicetree/bindings/arm/vexpress-config.yaml
+diff --git a/Documentation/devicetree/bindings/display/arm,pl11x.txt b/Documentation/devicetree/bindings/display/arm,pl11x.txt
+deleted file mode 100644
+index 3f977e72a2005..0000000000000
+--- a/Documentation/devicetree/bindings/display/arm,pl11x.txt
++++ /dev/null
+@@ -1,110 +0,0 @@
+-* ARM PrimeCell Color LCD Controller PL110/PL111
+-
+-See also Documentation/devicetree/bindings/arm/primecell.yaml
+-
+-Required properties:
+-
+-- compatible: must be one of:
+-	"arm,pl110", "arm,primecell"
+-	"arm,pl111", "arm,primecell"
+-
+-- reg: base address and size of the control registers block
+-
+-- interrupt-names: either the single entry "combined" representing a
+-	combined interrupt output (CLCDINTR), or the four entries
+-	"mbe", "vcomp", "lnbu", "fuf" representing the individual
+-	CLCDMBEINTR, CLCDVCOMPINTR, CLCDLNBUINTR, CLCDFUFINTR interrupts
+-
+-- interrupts: contains an interrupt specifier for each entry in
+-	interrupt-names
+-
+-- clock-names: should contain "clcdclk" and "apb_pclk"
+-
+-- clocks: contains phandle and clock specifier pairs for the entries
+-	in the clock-names property. See
+-	Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Optional properties:
+-
+-- memory-region: phandle to a node describing memory (see
+-	Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
+-	to be used for the framebuffer; if not present, the framebuffer
+-	may be located anywhere in the memory
+-
+-- max-memory-bandwidth: maximum bandwidth in bytes per second that the
+-	cell's memory interface can handle; if not present, the memory
+-	interface is fast enough to handle all possible video modes
+-
+-Required sub-nodes:
+-
+-- port: describes LCD panel signals, following the common binding
+-	for video transmitter interfaces; see
+-	Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-Deprecated properties:
+-	The port's endbpoint subnode had this, now deprecated property
+-	in the past. Drivers should be able to survive without it:
+-
+-	- arm,pl11x,tft-r0g0b0-pads: an array of three 32-bit values,
+-		defining the way CLD pads are wired up; first value
+-		contains index of the "CLD" external pin (pad) used
+-		as R0 (first bit of the red component), second value
+-	        index of the pad used as G0, third value index of the
+-		pad used as B0, see also "LCD panel signal multiplexing
+-		details" paragraphs in the PL110/PL111 Technical
+-		Reference Manuals; this implicitly defines available
+-		color modes, for example:
+-		- PL111 TFT 4:4:4 panel:
+-			arm,pl11x,tft-r0g0b0-pads = <4 15 20>;
+-		- PL110 TFT (1:)5:5:5 panel:
+-			arm,pl11x,tft-r0g0b0-pads = <1 7 13>;
+-		- PL111 TFT (1:)5:5:5 panel:
+-			arm,pl11x,tft-r0g0b0-pads = <3 11 19>;
+-		- PL111 TFT 5:6:5 panel:
+-			arm,pl11x,tft-r0g0b0-pads = <3 10 19>;
+-		- PL110 and PL111 TFT 8:8:8 panel:
+-			arm,pl11x,tft-r0g0b0-pads = <0 8 16>;
+-		- PL110 and PL111 TFT 8:8:8 panel, R & B components swapped:
+-			arm,pl11x,tft-r0g0b0-pads = <16 8 0>;
+-
+-
+-Example:
+-
+-	clcd@10020000 {
+-		compatible = "arm,pl111", "arm,primecell";
+-		reg = <0x10020000 0x1000>;
+-		interrupt-names = "combined";
+-		interrupts = <0 44 4>;
+-		clocks = <&oscclk1>, <&oscclk2>;
+-		clock-names = "clcdclk", "apb_pclk";
+-		max-memory-bandwidth = <94371840>; /* Bps, 1024x768@60 16bpp */
+-
+-		port {
+-			clcd_pads: endpoint {
+-				remote-endpoint = <&clcd_panel>;
+-			};
+-		};
+-
+-	};
+-
+-	panel {
+-		compatible = "panel-dpi";
+-
+-		port {
+-			clcd_panel: endpoint {
+-				remote-endpoint = <&clcd_pads>;
+-			};
+-		};
+-
+-		panel-timing {
+-			clock-frequency = <25175000>;
+-			hactive = <640>;
+-			hback-porch = <40>;
+-			hfront-porch = <24>;
+-			hsync-len = <96>;
+-			vactive = <480>;
+-			vback-porch = <32>;
+-			vfront-porch = <11>;
+-			vsync-len = <2>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/display/arm,pl11x.yaml b/Documentation/devicetree/bindings/display/arm,pl11x.yaml
 new file mode 100644
-index 0000000000000..6471b3fe13a46
+index 0000000000000..43b86c2827723
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/vexpress-config.yaml
-@@ -0,0 +1,274 @@
++++ b/Documentation/devicetree/bindings/display/arm,pl11x.yaml
+@@ -0,0 +1,174 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/vexpress-config.yaml#
++$id: http://devicetree.org/schemas/display/arm,pl11x.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: ARM Versatile Express configuration bus bindings
++title: Arm PrimeCell Color LCD Controller PL110/PL111
 +
 +maintainers:
++  - Liviu Dudau <Liviu.Dudau@arm.com>
 +  - Andre Przywara <andre.przywara@arm.com>
 +
 +description: |+
-+  This is a system control register block, acting as a bridge to the
-+  platform's configuration bus via "system control" interface, addressing
-+  devices with site number, position in the board stack, config controller,
-+  function and device numbers - see motherboard's TRM for more details.
++  The Arm Primcell PL010/PL111 is an LCD controller IP, than scans out
++  a framebuffer region in system memory, and creates timed signals for
++  a variety of LCD panels.
++
++# We need a select here so we don't match all nodes with 'arm,primecell'
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - arm,pl110
++          - arm,pl111
++  required:
++    - compatible
 +
 +properties:
 +  compatible:
-+    const: arm,vexpress,config-bus
++    items:
++      - enum:
++          - arm,pl110
++          - arm,pl111
++      - const: arm,primecell
 +
-+  arm,vexpress,config-bridge:
-+    $ref: /schemas/types.yaml#/definitions/phandle
++  reg:
++    maxItems: 1
++
++  interrupt-names:
++    oneOf:
++      - const: combined
++        description:
++          The IP provides four individual interrupt lines, but also one
++          combined line. If the integration only connects this line to the
++          interrupt controller, this single interrupt is noted here.
++      - items:
++          - const: mbe        # CLCDMBEINTR
++          - const: vcomp      # CLCDVCOMPINTR
++          - const: lnbu       # CLCDLNBUINTR
++          - const: fuf        # CLCDFUFINTR
++
++  interrupts:
++    minItems: 1
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: clcdclk
++      - const: apb_pclk
++
++  clocks:
++    items:
++      - description: The CLCDCLK reference clock for the controller.
++      - description: The HCLK AHB slave clock for the register access.
++
++  memory-region:
++    maxItems: 1
 +    description:
-+      Phandle to the sysreg node.
++      Phandle to a node describing memory to be used for the framebuffer.
++      If not present, the framebuffer may be located anywhere in memory.
 +
-+  muxfpga:
-+    type: object
++  max-memory-bandwidth:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Maximum bandwidth in bytes per second that the cell's memory interface
++      can handle.
++      If not present, the memory interface is fast enough to handle all
++      possible video modes.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    description:
++      Output endpoint of the controller, connecting the LCD panel signals.
++
 +    properties:
-+      compatible:
-+        const: arm,vexpress-muxfpga
++      endpoint:
++        $ref: /schemas/graph.yaml#/$defs/endpoint-base
++        unevaluatedProperties: false
 +
-+      arm,vexpress-sysreg,func:
-+        description: FPGA specifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 7
-+          - description: device number
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  shutdown:
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-shutdown
-+
-+      arm,vexpress-sysreg,func:
-+        description: shutdown identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 8
-+          - description: device number
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  reboot:
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-reboot
-+
-+      arm,vexpress-sysreg,func:
-+        description: reboot identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 9
-+          - description: device number
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  dvimode:
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-dvimode
-+
-+      arm,vexpress-sysreg,func:
-+        description: DVI mode identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 11
-+          - description: device number
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
++        properties:
++          arm,pl11x,tft-r0g0b0-pads:
++            $ref: /schemas/types.yaml#/definitions/uint32-array
++            items:
++              - description: index of CLD pad used for first red bit (R0)
++              - description: index of CLD pad used for first green bit (G0)
++              - description: index of CLD pad used for first blue bit (G0)
++            deprecated: true
++            description: |
++              DEPRECATED. An array of three 32-bit values, defining the way
++              CLD[23:0] pads are wired up.
++              The first value contains the index of the "CLD" external pin (pad)
++              used as R0 (first bit of the red component), the second value for
++              green, the third value for blue.
++              See also "LCD panel signal multiplexing details" paragraphs in the
++              PL110/PL111 Technical Reference Manuals.
++              This implicitly defines available color modes, for example:
++              - PL111 TFT 4:4:4 panel:
++                  arm,pl11x,tft-r0g0b0-pads = <4 15 20>;
++              - PL110 TFT (1:)5:5:5 panel:
++                  arm,pl11x,tft-r0g0b0-pads = <1 7 13>;
++              - PL111 TFT (1:)5:5:5 panel:
++                  arm,pl11x,tft-r0g0b0-pads = <3 11 19>;
++              - PL111 TFT 5:6:5 panel:
++                  arm,pl11x,tft-r0g0b0-pads = <3 10 19>;
++              - PL110 and PL111 TFT 8:8:8 panel:
++                  arm,pl11x,tft-r0g0b0-pads = <0 8 16>;
++              - PL110 and PL111 TFT 8:8:8 panel, R & B components swapped:
++                  arm,pl11x,tft-r0g0b0-pads = <16 8 0>;
 +
 +additionalProperties: false
 +
 +required:
 +  - compatible
-+  - arm,vexpress,config-bridge
-+
-+patternProperties:
-+  '^.*clk[0-9]*$':
-+    type: object
-+    description:
-+      clocks
-+
-+    properties:
-+      compatible:
-+        const: arm,vexpress-osc
-+
-+      arm,vexpress-sysreg,func:
-+        description: clock specifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 1
-+          - description: clock number
-+
-+      freq-range:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - description: minimal clock frequency
-+          - description: maximum clock frequency
-+
-+      "#clock-cells":
-+        const: 0
-+
-+      clock-output-names:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+      - "#clock-cells"
-+
-+  "^volt-.+$":
-+    $ref: /schemas/regulator/regulator.yaml#
-+    properties:
-+      compatible:
-+        const: arm,vexpress-volt
-+
-+      arm,vexpress-sysreg,func:
-+        description: regulator specifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 2
-+          - description: device number
-+
-+      label:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  "^amp-.+$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-amp
-+
-+      arm,vexpress-sysreg,func:
-+        description: current sensor identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 3
-+          - description: device number
-+
-+      label:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  "^temp-.+$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-temp
-+
-+      arm,vexpress-sysreg,func:
-+        description: temperature sensor identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 4
-+          - description: device number
-+
-+      label:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  "^reset[0-9]*$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-reset
-+
-+      arm,vexpress-sysreg,func:
-+        description: reset specifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 5
-+          - description: reset device number
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  "^power-.+$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-power
-+
-+      arm,vexpress-sysreg,func:
-+        description: power sensor identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        items:
-+          - const: 12
-+          - description: device number
-+
-+      label:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
-+
-+  "^energy(-.+)?$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: arm,vexpress-energy
-+
-+      arm,vexpress-sysreg,func:
-+        description: energy sensor identifier
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        oneOf:
-+          - items:
-+              - const: 13
-+              - description: device number
-+          - items:
-+              - const: 13
-+              - description: device number
-+              - const: 13
-+              - description: second device number
-+
-+      label:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - arm,vexpress-sysreg,func
++  - reg
++  - interrupt-names
++  - interrupts
++  - clock-names
++  - clocks
++  - port
 +
 +examples:
 +  - |
-+    mcc {
-+        compatible = "arm,vexpress,config-bus";
-+        arm,vexpress,config-bridge = <&v2m_sysreg>;
++    clcd@10020000 {
++            compatible = "arm,pl111", "arm,primecell";
++            reg = <0x10020000 0x1000>;
++            interrupt-names = "combined";
++            interrupts = <44>;
++            clocks = <&oscclk1>, <&oscclk2>;
++            clock-names = "clcdclk", "apb_pclk";
++            max-memory-bandwidth = <94371840>; /* Bps, 1024x768@60 16bpp */
 +
-+        clk0 {
-+            compatible = "arm,vexpress-osc";
-+            arm,vexpress-sysreg,func = <1 0>;
-+            #clock-cells = <0>;
-+        };
-+
-+        energy {
-+            compatible = "arm,vexpress-energy";
-+            arm,vexpress-sysreg,func = <13 0>, <13 1>;
-+        };
++            port {
++                    clcd_pads: endpoint {
++                            remote-endpoint = <&clcd_panel>;
++                    };
++            };
 +    };
-diff --git a/Documentation/devicetree/bindings/arm/vexpress-sysreg.txt b/Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
-deleted file mode 100644
-index 50095802fb4ac..0000000000000
---- a/Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
-+++ /dev/null
-@@ -1,103 +0,0 @@
--ARM Versatile Express system registers
----------------------------------------
--
--This is a system control registers block, providing multiple low level
--platform functions like board detection and identification, software
--interrupt generation, MMC and NOR Flash control etc.
--
--Required node properties:
--- compatible value : = "arm,vexpress,sysreg";
--- reg : physical base address and the size of the registers window
--
--Deprecated properties, replaced by GPIO subnodes (see below):
--- gpio-controller : specifies that the node is a GPIO controller
--- #gpio-cells : size of the GPIO specifier, should be 2:
--  - first cell is the pseudo-GPIO line number:
--    0 - MMC CARDIN
--    1 - MMC WPROT
--    2 - NOR FLASH WPn
--  - second cell can take standard GPIO flags (currently ignored).
--
--Control registers providing pseudo-GPIO lines must be represented
--by subnodes, each of them requiring the following properties:
--- compatible value : one of
--			"arm,vexpress-sysreg,sys_led"
--			"arm,vexpress-sysreg,sys_mci"
--			"arm,vexpress-sysreg,sys_flash"
--- gpio-controller : makes the node a GPIO controller
--- #gpio-cells : size of the GPIO specifier, must be 2:
--  - first cell is the function number:
--    - for sys_led : 0..7 = LED 0..7
--    - for sys_mci : 0 = MMC CARDIN, 1 = MMC WPROT
--    - for sys_flash : 0 = NOR FLASH WPn
--  - second cell can take standard GPIO flags (currently ignored).
--
--Example:
--	v2m_sysreg: sysreg@10000000 {
-- 		compatible = "arm,vexpress-sysreg";
-- 		reg = <0x10000000 0x1000>;
--
--		v2m_led_gpios: sys_led@8 {
--			compatible = "arm,vexpress-sysreg,sys_led";
--			gpio-controller;
--			#gpio-cells = <2>;
--		};
--
--		v2m_mmc_gpios: sys_mci@48 {
--			compatible = "arm,vexpress-sysreg,sys_mci";
--			gpio-controller;
--			#gpio-cells = <2>;
--		};
--
--		v2m_flash_gpios: sys_flash@4c {
--			compatible = "arm,vexpress-sysreg,sys_flash";
--			gpio-controller;
--			#gpio-cells = <2>;
--		};
-- 	};
--
--This block also can also act a bridge to the platform's configuration
--bus via "system control" interface, addressing devices with site number,
--position in the board stack, config controller, function and device
--numbers - see motherboard's TRM for more details. All configuration
--controller accessible via this interface must reference the sysreg
--node via "arm,vexpress,config-bridge" phandle and define appropriate
--topology properties - see main vexpress node documentation for more
--details. Each child of such node describes one function and must
--define the following properties:
--- compatible value : must be one of (corresponding to the TRM):
--	"arm,vexpress-amp"
--	"arm,vexpress-dvimode"
--	"arm,vexpress-energy"
--	"arm,vexpress-muxfpga"
--	"arm,vexpress-osc"
--	"arm,vexpress-power"
--	"arm,vexpress-reboot"
--	"arm,vexpress-reset"
--	"arm,vexpress-scc"
--	"arm,vexpress-shutdown"
--	"arm,vexpress-temp"
--	"arm,vexpress-volt"
--- arm,vexpress-sysreg,func : must contain a set of two cells long groups:
--  - first cell of each group defines the function number
--    (eg. 1 for clock generator, 2 for voltage regulators etc.)
--  - second cell of each group defines device number (eg. osc 0,
--    osc 1 etc.)
--  - some functions (eg. energy meter, with its 64 bit long counter)
--    are using more than one function/device number pair
--
--Example:
--	mcc {
--		compatible = "arm,vexpress,config-bus";
--		arm,vexpress,config-bridge = <&v2m_sysreg>;
--
--		osc@0 {
--			compatible = "arm,vexpress-osc";
--			arm,vexpress-sysreg,func = <1 0>;
--		};
--
--		energy@0 {
--			compatible = "arm,vexpress-energy";
--			arm,vexpress-sysreg,func = <13 0>, <13 1>;
--		};
--	};
++
++    panel {
++            compatible = "arm,rtsm-display", "panel-dpi";
++            power-supply = <&vcc_supply>;
++
++            port {
++                    clcd_panel: endpoint {
++                            remote-endpoint = <&clcd_pads>;
++                    };
++            };
++
++            panel-timing {
++                    clock-frequency = <25175000>;
++                    hactive = <640>;
++                    hback-porch = <40>;
++                    hfront-porch = <24>;
++                    hsync-len = <96>;
++                    vactive = <480>;
++                    vback-porch = <32>;
++                    vfront-porch = <11>;
++                    vsync-len = <2>;
++            };
++    };
++...
 -- 
 2.25.1
 
