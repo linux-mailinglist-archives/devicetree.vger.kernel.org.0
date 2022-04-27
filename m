@@ -2,101 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D04CD510FC7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 05:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D64B51103D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 06:41:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357595AbiD0EBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 00:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56318 "EHLO
+        id S1357726AbiD0Eoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 00:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357611AbiD0EBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 00:01:12 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0B171A1B;
-        Tue, 26 Apr 2022 20:57:58 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 23R3gTnM032329;
-        Wed, 27 Apr 2022 11:42:29 +0800 (GMT-8)
-        (envelope-from dylan_hung@aspeedtech.com)
-Received: from DylanHung-PC.aspeed.com (192.168.2.216) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Apr
- 2022 11:54:59 +0800
-From:   Dylan Hung <dylan_hung@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <p.zabel@pengutronix.de>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <krzk+dt@kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH net-next v6 3/3] ARM: dts: aspeed: add reset properties into MDIO nodes
-Date:   Wed, 27 Apr 2022 11:55:01 +0800
-Message-ID: <20220427035501.17500-4-dylan_hung@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
-References: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
+        with ESMTP id S1357725AbiD0Eog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 00:44:36 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26EE12AAC;
+        Tue, 26 Apr 2022 21:41:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651034486; x=1682570486;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=FOoMj3CV1xNcLvj1+jF+2iIlIlqLKQAJc7bxju62e08=;
+  b=FMTrDcHA4gpSwzb6YlspJC5c2rc83Q+i31lVeyOyZvV3bcuH+n8Q6CPP
+   B57pCnsVPuA/5ck81v4LLcDsF0A5qH9ycPAE3qFek2pCqRmVaFFZkqrcn
+   j+EHJkwubWkVq+pYP8WXfg2oxckiO7IRko2DhuH4KdiLAbn1hc5ZLr2Ce
+   KtY/ZTkT9vdWfOYXcLsw2+ueNIjtMJuES7u8dH9ejl+mbuT/tcuVgYM9e
+   FNKuB70fVRKHXHzB5UXa5kY4jvOlZB1fRGmIS2uhy0aBJfGnNfGsMpWZP
+   cik78XRVC0rfWrPTgI/aln4SSw5E7oP6aBB49oMMrKV4AYTRK6DHH6ndh
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265621348"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
+   d="scan'208";a="265621348"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 21:41:09 -0700
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
+   d="scan'208";a="580363700"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.60.122])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 21:41:06 -0700
+Message-ID: <7ef5d473-a3ce-c66e-df33-14c4e91596e2@intel.com>
+Date:   Wed, 27 Apr 2022 07:41:02 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.216]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 23R3gTnM032329
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.7.0
+Subject: Re: [PATCH 1/5] mmc: sdhci-brcmstb: "mmc1: Internal clock never
+ stabilised." seen on 72113
+Content-Language: en-US
+To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
+Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220421182803.6495-1-kdasu.kdev@gmail.com>
+ <20220421182803.6495-2-kdasu.kdev@gmail.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20220421182803.6495-2-kdasu.kdev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reset control properties into MDIO nodes.  The 4 MDIO controllers in
-AST2600 SOC share one reset control bit SCU50[3].
+On 21/04/22 21:27, Kamal Dasu wrote:
+> From: Al Cooper <alcooperx@gmail.com>
+> 
+> The problem is in the .shutdown callback that was added to the
+> sdhci-iproc and sdhci-brcmstb drivers to save power in S5. The
+> shutdown callback will just call the sdhci_pltfm_suspend() function
+> to suspend the lower level driver and then stop the sdhci system
+> clock. The problem is that in some cases there can be a worker
+> thread in the "system_freezable_wq" work queue that is scanning
+> for a device every second. In normal system suspend, this queue
+> is suspended before the driver suspend is called. In shutdown the
+> queue is not suspended and the thread my run after we stop the
+> sdhci clock in the shutdown callback which will cause the "clock
+> never stabilised" error. The solution will be to have the shutdown
+> callback cancel the worker thread before calling suspend (and
+> stopping the sdhci clock).
+> 
+> NOTE: This is only happening on systems with the Legacy RPi SDIO
+> core because that's the only controller that doesn't have the
+> presence signal and needs to use a worker thread to do a 1 second
+> poll loop.
+> 
+> Fixes: 5b191dcba719 ("mmc: sdhci-brcmstb: Fix mmc timeout errors on S5 suspend")
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> ---
+>  drivers/mmc/host/sdhci-brcmstb.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+> index f24623aac2db..11037cd14cfa 100644
+> --- a/drivers/mmc/host/sdhci-brcmstb.c
+> +++ b/drivers/mmc/host/sdhci-brcmstb.c
+> @@ -313,6 +313,10 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>  
+>  static void sdhci_brcmstb_shutdown(struct platform_device *pdev)
+>  {
+> +	struct sdhci_host *host = platform_get_drvdata(pdev);
+> +
+> +	/* Cancel possible rescan worker thread */
+> +	cancel_delayed_work_sync(&host->mmc->detect);
+>  	sdhci_pltfm_suspend(&pdev->dev);
+>  }
+>  
 
-Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+I think we fixed that already with the commit below:
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index 3d5ce9da42c3..6aa1fd5c9359 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -181,6 +181,7 @@ mdio0: mdio@1e650000 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio1_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio1: mdio@1e650008 {
-@@ -191,6 +192,7 @@ mdio1: mdio@1e650008 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio2_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio2: mdio@1e650010 {
-@@ -201,6 +203,7 @@ mdio2: mdio@1e650010 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio3_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mdio3: mdio@1e650018 {
-@@ -211,6 +214,7 @@ mdio3: mdio@1e650018 {
- 			status = "disabled";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_mdio4_default>;
-+			resets = <&syscon ASPEED_RESET_MII>;
- 		};
- 
- 		mac0: ftgmac@1e660000 {
--- 
-2.25.1
+
+commit 66c915d09b942fb3b2b0cb2f56562180901fba17
+Author: Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri Dec 3 15:15:54 2021 +0100
+
+    mmc: core: Disable card detect during shutdown
+    
+    It's seems prone to problems by allowing card detect and its corresponding
+    mmc_rescan() work to run, during platform shutdown. For example, we may end
+    up turning off the power while initializing a card, which potentially could
+    damage it.
+    
+    To avoid this scenario, let's add ->shutdown_pre() callback for the mmc host
+    class device and then turn of the card detect from there.
+    
+    Reported-by: Al Cooper <alcooperx@gmail.com>
+    Suggested-by: Adrian Hunter <adrian.hunter@intel.com>
+    Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+    Cc: stable@vger.kernel.org
+    Link: https://lore.kernel.org/r/20211203141555.105351-1-ulf.hansson@linaro.org
 
