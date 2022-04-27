@@ -2,137 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D124511E38
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0BF9512059
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240061AbiD0PTW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 27 Apr 2022 11:19:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45994 "EHLO
+        id S239398AbiD0PVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:21:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239531AbiD0PSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:18:45 -0400
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B30E5839E;
-        Wed, 27 Apr 2022 08:15:29 -0700 (PDT)
-Received: by mail-qv1-f50.google.com with SMTP id kc16so352647qvb.7;
-        Wed, 27 Apr 2022 08:15:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=7+G8Cf9crq/FmkHAa1hmIN8g6GY3mjT1aMgwO4UslU4=;
-        b=b0OW7JAkegRE3wuNJmjgUNjmYa2T/JOjrT9Es9/UJaOFRkSjzVJVy3FIl8zNDWwTpm
-         rUDcvQohwfebUgaj4QXQCZQS+ttDU5ppMLed/h+2mAj8bm03/daj4rgnvL99S5J2oumT
-         vfmzhOP7Rr8L5LXJEgizeatZwQatn9qUwZ/fmKaQX86/7/LTuLoebJuYv9GdWQAETiC2
-         i3jaZxgsUQWxDgdOtAV5JaMqZAVsX8sjjL07nfg1gnt8ij/5vn+C/GDDzhiLnCZBcRAS
-         U3evsAP+JHTM7+WVRAQaOurFcT4jf6QMSXChZ0Jbsw5JuLkWyJgh4gi2xilqvihnFvaB
-         7r7Q==
-X-Gm-Message-State: AOAM530CRuJzMO1K+YNbs0SuCV0sCb9NZarAfdk6TbdWZf0I0WehIyb3
-        H+x7iv94FR4vCQ9GCUWIRWbaA3cywhB9pQ==
-X-Google-Smtp-Source: ABdhPJwejfgEkKFhJu6j1wrVsqZANMB8i6Kt9hkHG9474jg0usCHPWjYuZWKGELEiSA3LcqVssHKMQ==
-X-Received: by 2002:a05:6214:252b:b0:456:3c2b:c910 with SMTP id gg11-20020a056214252b00b004563c2bc910mr9361804qvb.85.1651072528222;
-        Wed, 27 Apr 2022 08:15:28 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id m190-20020a378ac7000000b0069f8d810f16sm890605qkd.85.2022.04.27.08.15.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 08:15:27 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id e12so3920309ybc.11;
-        Wed, 27 Apr 2022 08:15:27 -0700 (PDT)
-X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
- p9-20020a259e89000000b0063cad37a5demr26199241ybq.342.1651072527257; Wed, 27
- Apr 2022 08:15:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220422120850.769480-1-herve.codina@bootlin.com> <20220422120850.769480-3-herve.codina@bootlin.com>
-In-Reply-To: <20220422120850.769480-3-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 27 Apr 2022 17:15:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVB2-Sv1AWFr43erOioui0me5A4TfvazKHp9hTF3gJCwg@mail.gmail.com>
-Message-ID: <CAMuHMdVB2-Sv1AWFr43erOioui0me5A4TfvazKHp9hTF3gJCwg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/8] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
- device tree support for r9a06g032
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S239505AbiD0PVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:21:44 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD1D2DD7D6;
+        Wed, 27 Apr 2022 08:18:30 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23RFII5w050599;
+        Wed, 27 Apr 2022 10:18:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1651072698;
+        bh=IJdKR+ET+Ghctje2gpM3NiDazIvVZBbZnXx3BfvSNwY=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=Su1cb8PQnHJFJ+/apIqvEbVXfqG+vNB7xxk2OyL+3Bda6j2k04vehoCboWapL7cjY
+         ZQEWc9Nj7H6SFMkxZjkoCSLTtKiUwO3bsai/Uii+m/PPoScHyTuwPCub2FhM/blYe9
+         EWNWvNu1Wfp1yuursMHnE+yDMNqp/sndOQl0neHM=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23RFIIML106632
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 27 Apr 2022 10:18:18 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 27
+ Apr 2022 10:18:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 27 Apr 2022 10:18:18 -0500
+Received: from uda0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23RFIETl008620;
+        Wed, 27 Apr 2022 10:18:15 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-mcu: remove incorrect UART base clock rates
+Date:   Wed, 27 Apr 2022 20:47:30 +0530
+Message-ID: <165107250533.1111532.8897601413701499471.b4-ty@ti.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220419075157.189347-1-matthias.schiffer@ew.tq-group.com>
+References: <20220419075157.189347-1-matthias.schiffer@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hervé,
-
-On Fri, Apr 22, 2022 at 2:09 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> Add internal PCI bridge support for the r9a06g032 SOC. The Renesas
-> RZ/N1D (R9A06G032) internal PCI bridge is compatible with the one
-> present in the R-Car Gen2 family.
-> Compared to the R-Car Gen2 family, it needs three clocks instead of
-> one.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-Thanks for your patch!
-
-> --- a/Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml
-> +++ b/Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml
-> @@ -113,6 +113,37 @@ required:
->    - "#size-cells"
->    - "#interrupt-cells"
->
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - renesas,pci-rzn1
-> +
-> +then:
-> +  properties:
-> +    clocks:
-> +      items:
-> +        - description: Internal bus clock (AHB) for HOST
-> +        - description: Internal bus clock (AHB) Power Management
-> +        - description: PCI clock for USB subsystem
-> +    clock-names:
-> +      items:
-> +        - const: hclk_usbh
-> +        - const: hclk_usbpm
-> +        - const: clk_pci_usb
-
-These are the provider names.
-I think they should use the consumer names: usb_hclkh, usb_hclkpm,
-and usb_pciclk.
-
-The rest looks good to me.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Hi Matthias Schiffer,
+ 
+On Tue, 19 Apr 2022 09:51:57 +0200, Matthias Schiffer wrote:
+> We found that (at least some versions of) the sci-fw set the base clock
+> rate for UARTs in the MCU domain to 96 MHz instead of the expected 48 MHz,
+> leading to incorrect baud rates when used from Linux.
+> 
+> As the 8250_omap driver will query the actual clock rate from the clk
+> driver when clock-frequency is unset, removing the incorrect property is
+> sufficient to fix the baud rate.
+> 
+> [...]
+ 
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+ 
+[1/1] arm64: dts: ti: k3-am64-mcu: remove incorrect UART base clock rates
+      commit: 439677d416b17dd39964d5f7d64b742a2e51da5b
+ 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+ 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+ 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+ 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+ 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 --
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Vignesh
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
