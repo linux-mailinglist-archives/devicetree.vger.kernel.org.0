@@ -2,117 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FC5511791
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C59511758
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233499AbiD0MHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 08:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55282 "EHLO
+        id S233670AbiD0MUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 08:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233283AbiD0MHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:07:44 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 727432559E
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 05:04:33 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23B24ED1;
-        Wed, 27 Apr 2022 05:04:33 -0700 (PDT)
-Received: from [10.57.80.98] (unknown [10.57.80.98])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6E5AE3F774;
-        Wed, 27 Apr 2022 05:04:31 -0700 (PDT)
-Message-ID: <ffbcf1e0-cf46-186a-3862-9f90415a0ab0@arm.com>
-Date:   Wed, 27 Apr 2022 13:04:26 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 01/11] dt-bindings: iommu: arm,smmu-v3: make PRI IRQ
- optional
-Content-Language: en-GB
-To:     Andre Przywara <andre.przywara@arm.com>,
+        with ESMTP id S233700AbiD0MUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:20:10 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082463F8B5
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 05:16:58 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id m23so2438044ljc.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 05:16:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D6aOLiTbTHPpwC6/N693jQaBYx382sO4NTvihp2ISpY=;
+        b=um/EGhHwrSYrco330Ra74BaYCYhGUywRCR+/wKFWfV08uq92q3YvAKNtEChhrqDc+d
+         Nn3tT4srhrKWUBYXNV+jDJbtTI7bDbg2DjvTbJGxC5HuSN+KoSqlbeu/kCqYZdPowUXc
+         cyEgCsjtFE/YWIsRk4hp6j7qiyAfO+8ToQjnHUGRLWs/wZ7IsbQN9goHljvwgU5G3n4Y
+         WlLr9+vtfm3CpnUsCWKfx8k/3z67qj0GNuXi0Qd169CN9ZlAdCfko7apEH42sVmPH96F
+         mw+IljZgrKF/vF/b05WT0jz/O+qKcYPIokVhh5zLejYwTQ61OIi0JtLv3s4dDbe7bAe2
+         N9hQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D6aOLiTbTHPpwC6/N693jQaBYx382sO4NTvihp2ISpY=;
+        b=J9CZ34BQhrGQJspEuMErYkpT45+oj/MGQq7vcSSV213F5ZJvUImN7yQERI0GTzoVB3
+         b9oUPJ2gmmROkxLDQnxusyifS5f8SdFH5/69AOC6GYE+dtjvVUBDsKih3RkvcIzNJxdr
+         8qLYZp7CYl4fAD9YvhkdjBSrgoyELphjkRlr1DWNWNjKK0UNoiN+5zUs9DjkUr/BiAK7
+         Sm40nsY0RTuj7N2wcmvF1M2DX+6S+NXHBP+IjJaKtrKVDpXl4Y0T/R+x13U6qF3UfBiy
+         8ubb5xThYly/GsScWflYfdE8NqR0aMYvPMtzDa6PMYlMrfKa29iS8W7vY/BTrqst2z+b
+         DIxw==
+X-Gm-Message-State: AOAM531XKL9U/Cziq+eYXSYNMGv9wrRVgXL+mqPynsuTFUlWEydwIs8w
+        v4VE1jKMsjjvkNDkhT/nWVxVmQ==
+X-Google-Smtp-Source: ABdhPJzeF8/5ARTNhRbUnCJXx+mnzG0w3JO37uiTWrbSLzgPUy84U6expwdcxlyOweEzDpcTrqikeg==
+X-Received: by 2002:a2e:bf1a:0:b0:249:3a3b:e90e with SMTP id c26-20020a2ebf1a000000b002493a3be90emr18605212ljr.317.1651061816116;
+        Wed, 27 Apr 2022 05:16:56 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id y1-20020a0565123f0100b0044584339e5dsm2043388lfa.190.2022.04.27.05.16.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Apr 2022 05:16:55 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Will Deacon <will@kernel.org>, iommu@lists.linux-foundation.org
-References: <20220427112528.4097815-1-andre.przywara@arm.com>
- <20220427112528.4097815-2-andre.przywara@arm.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220427112528.4097815-2-andre.przywara@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/5] PCI: qcom: Fix higher MSI vectors handling
+Date:   Wed, 27 Apr 2022 15:16:48 +0300
+Message-Id: <20220427121653.3158569-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-04-27 12:25, Andre Przywara wrote:
-> The Page Request Interface (PRI) is an optional PCIe feature. As such, a
-> SMMU would not need to handle it if the PCIe host bridge or the SMMU
-> itself do not implement it. Also an SMMU could be connected to a platform
-> device, without any PRI functionality whatsoever.
-> In all cases there would be no SMMU PRI queue interrupt to be wired up
-> to an interrupt controller.
-> 
-> Relax the binding to allow specifying three interrupts, omitting the PRI
-> IRQ. At the moment, with the "eventq,gerror,priq,cmdq-sync" order, we
-> would need to sacrifice the command queue sync interrupt as well, which
-> might not be desired.
-> The Linux driver does not care about any order at all, just picks IRQs
-> based on their names, and treats all (wired) IRQs as optional.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->   .../bindings/iommu/arm,smmu-v3.yaml           | 21 ++++++++++++++-----
->   1 file changed, 16 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> index e87bfbcc69135..6b3111f1f06ce 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> @@ -37,12 +37,23 @@ properties:
->             hardware supports just a single, combined interrupt line.
->             If provided, then the combined interrupt will be used in preference to
->             any others.
-> -      - minItems: 2
-> +      - minItems: 1
->           items:
-> -          - const: eventq     # Event Queue not empty
-> -          - const: gerror     # Global Error activated
-> -          - const: priq       # PRI Queue not empty
-> -          - const: cmdq-sync  # CMD_SYNC complete
-> +          - enum:
-> +              - eventq     # Event Queue not empty
-> +              - gerror     # Global Error activated
-> +              - cmdq-sync  # CMD_SYNC complete
-> +              - priq       # PRI Queue not empty
-> +          - enum:
-> +              - gerror
-> +              - cmdq-sync
-> +              - priq
-> +          - enum:
-> +              - cmdq-sync
-> +              - priq
-> +          - enum:
-> +              - cmdq-sync
-> +              - priq
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 8ae0117418f3 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Nit: the commit message doesn't mention this effective relaxation to 
-allow "eventq, gerror, cmdq-sync, priq" as well - if there's a good 
-reason for that it probably wants calling out, otherwise AFAICS the last 
-item should stay as "- const: cmdq-sync" to preserve the existing 
-canonical order for the 4-item case.
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-Otherwise,
+Patchseries dependecies: [2] (landed in pci-next) and [3] (for the
+schema change).
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
 
-Cheers,
-Robin.
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
 
->   
->     '#iommu-cells':
->       const: 1
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+Dmitry Baryshkov (5):
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: Teach dwc core to parse additional MSI interrupts
+  PCI: qcom: Handle MSI IRQs properly
+  dt-bindings: pci/qcom,pcie: support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 12 ++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 11 +++-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |  2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |  2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 53 ++++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |  3 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |  2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |  1 +
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |  2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |  2 +-
+ 10 files changed, 69 insertions(+), 21 deletions(-)
+
+-- 
+2.35.1
+
