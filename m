@@ -2,151 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18A40511DCC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF48B511D46
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239695AbiD0Pem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58894 "EHLO
+        id S239726AbiD0PgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239694AbiD0Pel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:34:41 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137A9D3AC3;
-        Wed, 27 Apr 2022 08:31:30 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 2ADC532008FD;
-        Wed, 27 Apr 2022 11:31:28 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute2.internal (MEProxy); Wed, 27 Apr 2022 11:31:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1651073487; x=1651159887; bh=c0
-        1znxB8PdUfA3BPO/q7MBKS/blJFAlfcryVXAK3B5E=; b=SwRwqf8PBqfNwsWAXl
-        x/3rqJ7hgBLqIvkK2fTj1cqb3hUssNH05UsWdmVwo7my0m3J/l3EOsGP1hfikN9U
-        SCYsEmpkTf/VROe8CvdHRGZqsqg8GlcXYfofmzgWe1OcCpJtQ3OR7BLXtvGKztbh
-        0L+knZdHKhWDlr62o5KJoGxSUIiC7ioBuxhQlsYxgsNoCjq7Ealh0bgWqNski8H2
-        0yH0jF7SdEASF+Wmc1f8xwVIzwfTCMjkIYXs/kknqVUcySsO9UmzyUerfbqVv2+A
-        XW4ymTycsJxWGxpVBdGlHAeGapabUaoMpVMZ6Vr5enB/XvDcARbff38smwnpSx+6
-        /CFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1651073487; x=
-        1651159887; bh=c01znxB8PdUfA3BPO/q7MBKS/blJFAlfcryVXAK3B5E=; b=m
-        x/LwMkU27wcpM1kqEN74v5WbGct6EZRNGKfjGvxZZD04RjBxmhagHeel06jB7Y3n
-        DEAqtaUoQS9LmmNZwaN5kJ/0RFT803aDX09rfQz8cQB6OElRHAqxAi7IRtEmHaLZ
-        yWknuYb9WbH+OjkagvKN4fsmdTdVASRTlObnjiIzzgspVIvUxNV9CTwBVtROWdC+
-        CTBmYoXO3FF/ATkGbPMLW63MvrPfx1qzQrcH9NQXzfaDRzY/NTlTA41yBF5FEKpO
-        QrSqArfJDh9WzpbL/ywbQf29oth6OhqhIPNmbXJJLrbn1HlaxU454FCr3umRRjnA
-        fKjzKVzipK3bMjhACSL0A==
-X-ME-Sender: <xms:zmFpYqauyfsG3b7P4Yv_o0_phs7oqjcOuuCCtQw6J6XJIVWKGjzdfg>
-    <xme:zmFpYtacxqTYbWFmL0HJIo1zScyYMgA068rdD_UKvzFjwdEkOFkx8pOxJpp_JzRev
-    d2i1lHh8i6XYo1tFWA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudehgdekiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeelvefggeffheevtdeivefhkeehfeettdejteduveeiheevveeilefghfei
-    veeiueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:zmFpYk9jIboH-rnrtNTnmc0DfCRZ6G2z1JYY1WSp_pp5oZXRWjpC5w>
-    <xmx:zmFpYsquJ5Msf2bZxTS_q0RQEglFAeTxjhve5ZGH8eAdIq3jxv-GoQ>
-    <xmx:zmFpYlqsatny_BJJfK97gPmq3FPckyZmAvh0OSt9iZk2sJIz7K5b9g>
-    <xmx:z2FpYjgMi66AEV4kx_r_OjqbpN7G8E-0UKmVYSTWufb-9J4x5ZfixA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 6704E2740386; Wed, 27 Apr 2022 11:31:26 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-569-g7622ad95cc-fm-20220421.002-g7622ad95
-Mime-Version: 1.0
-Message-Id: <c4a9d56e-571b-4ec4-8833-c1e438666264@www.fastmail.com>
-In-Reply-To: <CAK8P3a2UEHfoDe-d=XEoTM=SS+7Lug7V1WQUa285LWdVLxjHYA@mail.gmail.com>
-References: <20220426201539.12829-1-sven@svenpeter.dev>
- <20220426201539.12829-6-sven@svenpeter.dev>
- <CAK8P3a2UEHfoDe-d=XEoTM=SS+7Lug7V1WQUa285LWdVLxjHYA@mail.gmail.com>
-Date:   Wed, 27 Apr 2022 17:31:06 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Arnd Bergmann" <arnd@arndb.de>
-Cc:     "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        "Keith Busch" <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
-        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
-        "Marc Zyngier" <maz@kernel.org>, "Janne Grunau" <j@jannau.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        linux-nvme@lists.infradead.org
-Subject: Re: [PATCH v3 5/6] soc: apple: Add RTKit IPC library
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S239742AbiD0PgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:36:23 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972413299C;
+        Wed, 27 Apr 2022 08:33:12 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id t16so1378686qtr.9;
+        Wed, 27 Apr 2022 08:33:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EMs8gAbZ1UvRp3PmAyFulYzj1qVtK1tgKYngal0laac=;
+        b=fF3BrNvu0SSPHFf7gl37pkjG+DvjuxJxyUa3rr7z7hfCLJ0RiOeY4ZRR0UhGyUbWA6
+         m37DW77xcaB91/08rPKaSUbVmzs9STi006+uLx1e9nrI88B6mD9ggqtgWx5dx6z7RCFO
+         EZHfXEXMmePqlzXR/X/Iw4krTI2+yLYX5t9ZkuAv6sMiMrhA3i36/MXXwWmdkUVXPxX8
+         bbJgWFWAWxQvcEHD+tBbrPKoRDrMbjcIvahSv5UBxwIpRSFJ1b9Ld4lZsCy4R1w67Ak9
+         G3iOb1UZQ4j5G832OCqFSk8ZHnSuEFpi2DDyWCUrfXpo/dbEBs1e7fKjya4cxxHhEO6Z
+         K7WA==
+X-Gm-Message-State: AOAM532fZXx64I2VhljtvvhkmTwu8NqfeyXfuQFm6LxiAgfOhCQIjXE4
+        PWox4hMhYYqNFWHdaS7poZasTkLloxBLrw==
+X-Google-Smtp-Source: ABdhPJzngd9/qOSkpctlCyScvHI7/WSg5PvfB23tvV1D9G7PRubakomcjeS/H7eS0q/aOo9Nr1CPcA==
+X-Received: by 2002:ac8:5bc5:0:b0:2f2:457:a706 with SMTP id b5-20020ac85bc5000000b002f20457a706mr19346382qtb.150.1651073591167;
+        Wed, 27 Apr 2022 08:33:11 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id g10-20020ac8580a000000b002f35323f82csm9978541qtg.30.2022.04.27.08.33.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 08:33:10 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id w187so4088375ybe.2;
+        Wed, 27 Apr 2022 08:33:10 -0700 (PDT)
+X-Received: by 2002:a25:d393:0:b0:648:4871:3b91 with SMTP id
+ e141-20020a25d393000000b0064848713b91mr17484020ybf.506.1651073590276; Wed, 27
+ Apr 2022 08:33:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220421090016.79517-1-miquel.raynal@bootlin.com> <20220421090016.79517-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20220421090016.79517-3-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 17:32:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUZxAu3vTbyKYu=38OZ2QmFM6S=DrFWbp=Cwt6Ya-o9HQ@mail.gmail.com>
+Message-ID: <CAMuHMdUZxAu3vTbyKYu=38OZ2QmFM6S=DrFWbp=Cwt6Ya-o9HQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] soc: renesas: rzn1-sysc: Fix the RTC hclock description
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-rtc@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Tue, Apr 26, 2022, at 23:01, Arnd Bergmann wrote:
-> On Tue, Apr 26, 2022 at 10:15 PM Sven Peter <sven@svenpeter.dev> wrote:
->>
->> Apple SoCs such as the M1 come with multiple embedded co-processors
->> running proprietary firmware. Communication with those is established
->> over a simple mailbox using the RTKit IPC protocol.
->>
->> This cannot be implement inside the mailbox subsystem since on top
->> of communication over channels we also need support for starting,
->> hibernating and resetting these co-processors. We also need to
->> handle shared memory allocations differently depending on the
->> co-processor and don't want to split that across multiple drivers.
->>
->> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+On Thu, Apr 21, 2022 at 11:00 AM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+> It needs to be un-gated, but also a reset must be released and an idle
+> flag should also be disabled.
 >
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+> The driver already supports all these operations, so update the
+> description of the RTC hclock to fit these requirements.
 >
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-thanks!
+Thanks, will queue in renesas-devel for v5.19, with the prefix fixed.
 
->> +bool apple_rtkit_is_running(struct apple_rtkit *rtk)
->> +{
->> +       if (rtk->crashed)
->> +               return false;
->> +       if ((rtk->iop_power_state & 0xff) != APPLE_RTKIT_PWR_STATE_ON)
->> +               return false;
->> +       if ((rtk->ap_power_state & 0xff) != APPLE_RTKIT_PWR_STATE_ON)
->> +               return false;
->> +       return true;
->> +}
->> +EXPORT_SYMBOL_GPL(apple_rtkit_is_running);
->> +
->> +bool apple_rtkit_is_crashed(struct apple_rtkit *rtk)
->> +{
->> +       return rtk->crashed;
->> +}
->> +EXPORT_SYMBOL_GPL(apple_rtkit_is_crashed);
->
-> I noticed that you use EXPORT_SYMBOL_GPL() here, but a more permissive
-> EXPORT_SYMBOL() in the SART driver. Is that intentional?
+Gr{oetje,eeting}s,
 
-No idea why I used both but it wasn't intentional. I'll change all exports
-to EXPORT_SYMBOL_GPL.
+                        Geert
 
->
->> +
->> +#if IS_ENABLED(CONFIG_APPLE_RTKIT)
->> +
->
-> Same comment about the #if as for the SART driver: I'd prefer it without the
-> conditional compilation.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Ok, will remove those #ifs as well.
-
-
-Sven
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
