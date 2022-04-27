@@ -2,532 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41A1151195D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7935051191C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234091AbiD0N0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 09:26:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
+        id S235863AbiD0N3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 09:29:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233146AbiD0N0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:26:47 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3D22E080;
-        Wed, 27 Apr 2022 06:23:34 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id j6so3322271ejc.13;
-        Wed, 27 Apr 2022 06:23:34 -0700 (PDT)
+        with ESMTP id S236065AbiD0N3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:29:52 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 988123CA40;
+        Wed, 27 Apr 2022 06:26:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MDq52gg2S38jY8GvvNKkgYiJaKJ9lQGspuro9WnAZFg=;
-        b=QNK8zs7gmg2UP+y5f47IHIL5U/Nm0NbHPkEjS8O7QFnhb8ybi231TTIx6UfJDQBGSb
-         H/SDRoXW0Awz9AAT+V7+oltV0apQ/aFFox2WVuy9VWFr8PWBOwFxq9rE0QqTijSwe6Co
-         B7epnNx9KG9l4TDXhXH2EAMAZDz+/UHOYwL6KXwdlezL/vpp93gQamVgKv5NLXQWKzR0
-         I0A0UA+Ec/y+0xnT9EKIlcOYNwnafKvY4XQzNuTR0JVDuhdzA/vWRboWBQgHobXFBBix
-         103KSgh7fkRcWg70vqkVxFNuWwaii3GCeIcQi1p0Gwb6inlHvwzWWH0r/WXt322UqS31
-         0zsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MDq52gg2S38jY8GvvNKkgYiJaKJ9lQGspuro9WnAZFg=;
-        b=KioDHUbulDfnvdbzi5xDX3WrFZUij8n7zbDGaZlsQtKJOFv7ex4HUxI8228AvILOQV
-         dqJ5dF1+RG3vUNP6aAgpmdgp+ySEaqn47bt+nS+wzUIpjMQiedhRiRYTArgFk6oEMoLb
-         8Q/12BebcEv35HlwgTMn1yeGaQC4okl2wqBnL9BMwRZc1tPqDXAX/hhRDOKxnelOZqEa
-         vFWDQAeNc5rKoOzaQ4NvH4TzoCp5q21MZ+Jw/kQioPOAWp3L72uet25+dQiCFOesHXms
-         wDffeFPN1lacXLzLkkp3meixlmBxTsBElXK+pInEhGk8gn8AsK0TBtNgcZaL7q9/kEM/
-         vRBg==
-X-Gm-Message-State: AOAM532NxGV8ENPy5g+ABCGullIIovKLray1Oj0K65myIoZllEyenktg
-        1rAZ+grbusYsDCSE+TVvDnTGMUDk0MzkT0wLADU=
-X-Google-Smtp-Source: ABdhPJyj6mlB0EWyd+wFjOfEIqh3Q6vXrOtLzz3fxJ4dKTqYbIdJ94W58ikbzgIQiKJJgJTJKT7F3Q4JmSd8LJUXxn8=
-X-Received: by 2002:a17:906:1cd1:b0:6ec:c59:6a1d with SMTP id
- i17-20020a1709061cd100b006ec0c596a1dmr27039743ejh.77.1651065813236; Wed, 27
- Apr 2022 06:23:33 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1651066001; x=1682602001;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=TCm7Oo7LtecXBT3WIt7p+lqk/BrbGUUBL7loNIVAru4=;
+  b=FPxS+g07b/LTUPbGU4SFQe9gQDdTXSigQz71rPSmYg4j7syPnAbni72Q
+   GeGWMZsVOuoOHEF+t7s/L+8QQ9Cj6Y3P0DBWBAUqSCYFDOzvDqyZqWkLr
+   jFLXdibuZTKWhtxvbQvDgZzMd0b+eZSsk9owjQMajFApcEGP04/gr+gQ4
+   Y=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 27 Apr 2022 06:26:40 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 06:26:39 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 27 Apr 2022 06:26:39 -0700
+Received: from [10.50.15.218] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 27 Apr
+ 2022 06:26:36 -0700
+Message-ID: <6e607455-e42a-a591-f58b-b3b2c83ea2cc@quicinc.com>
+Date:   Wed, 27 Apr 2022 18:56:33 +0530
 MIME-Version: 1.0
-References: <20220426131102.23966-1-andrea.merello@gmail.com> <20220426131102.23966-9-andrea.merello@gmail.com>
-In-Reply-To: <20220426131102.23966-9-andrea.merello@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 27 Apr 2022 15:22:56 +0200
-Message-ID: <CAHp75VdLiBkg100UjFN36rW_vaOObOoJ_Mv9n=4LjSWb+dQWMw@mail.gmail.com>
-Subject: Re: [v5 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
-To:     Andrea Merello <andrea.merello@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v6 4/9] ath11k: Add register access logic for WCN6750
+Content-Language: en-US
+To:     Kalle Valo <kvalo@kernel.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
+References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
+ <20220427111848.9257-5-quic_mpubbise@quicinc.com> <87pml2g1c7.fsf@kernel.org>
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <87pml2g1c7.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 26, 2022 at 3:11 PM Andrea Merello <andrea.merello@gmail.com> wrote:
->
-> From: Andrea Merello <andrea.merello@iit.it>
->
-> Add the core driver for the BNO055 IMU from Bosch. This IMU can be
-> connected via both serial and I2C busses; separate patches will add support
-> for them.
->
-> The driver supports "AMG" (Accelerometer, Magnetometer, Gyroscope) mode,
-> that provides raw data from the said internal sensors, and a couple of
-> "fusion" modes (i.e. the IMU also do calculations in order to provide euler
-
-does
-
-> angles, quaternions, linear acceleration and gravity measurements).
->
-> In fusion modes the AMG data is still available (with some calibration
-> refinements done by the IMU), but certain settings such as low pass filters
-> cut-off frequency and sensors ranges are fixed, while in AMG mode they can
-
-sensor?
-sensors'?
-
-> be customized; this is why AMG mode can still be interesting.
-
-...
-
-> +#include <linux/bitmap.h>
-> +#include <linux/clk.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/device.h>
-> +#include <linux/firmware.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +#include <linux/util_macros.h>
-
-Keep them ordered?
-
-...
-
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/sysfs.h>
-
-Ditto.
-
-...
-
-> +#define BNO055_FW_NAME "bno055-caldata"
-> +#define BNO055_FW_EXT ".dat"
-> +#define BNO055_FW_UID_NAME BNO055_FW_NAME "-%*phN" BNO055_FW_EXT
-
-I believe this should be _FMT prefix, since it's not a name (I don't
-think %*phN is a part of the actual file name).
-
-> +#define BNO055_FW_GENERIC_NAME (BNO055_FW_NAME BNO055_FW_EXT)
-
-And these macros of macros look unreadable, can we just hardcode
-format and generic name?
-
-...
-
-> +#define BNO055_ATTR_VALS(...)          \
-> +       .vals = (int[]){ __VA_ARGS__},  \
-> +       .len = ARRAY_SIZE(((int[]){__VA_ARGS__}))
-
-Not sure this adds any readability to the code. Can we simply have an
-array of int for each case with the explicit ARRAY_SIZE() calls?
-
-...
-
-> +/*
-> + * Theoretically the IMU should return data in a given (i.e. fixed) unit
-> + * regardless the range setting. This happens for the accelerometer, but not for
-
-regardless of
-
-> + * the gyroscope; the gyroscope range setting affects the scale.
-> + * This is probably due to this[0] bug.
-> + * For this reason we map the internal range setting onto the standard IIO scale
-> + * attribute for gyro.
-> + * Since the bug[0] may be fixed in future, we check for the IMU FW version and
-> + * eventually warn the user.
-> + * Currently we just don't care about "range" attributes for gyro.
-> + *
-> + * [0]  https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BNO055-Wrong-sensitivity-resolution-in-datasheet/td-p/10266
-> + */
-
-...
-
-> +       /* calibration data may be updated by the IMU */
-> +       if (reg >= BNO055_CALDATA_START && reg <= BNO055_CALDATA_END)
-> +               return true;
-> +
-> +       return false;
-
-Can be done in one return statement w/o branch, but probably OK taking
-into account other related functions.
-
-> +}
-
-...
-
-> +       {
-> +               .range_min = 0,
-> +               .range_max = 0x7f * 2,
-> +               .selector_reg = BNO055_PAGESEL_REG,
-> +               .selector_mask = GENMASK(7, 0),
-> +               .selector_shift = 0,
-> +               .window_start = 0,
-> +               .window_len = 0x80
-
-In all cases like this, keep the trailing comma.
-
-> +       },
-
-...
-
-> +       msleep(20);
-
-Perhaps a comment why so long sleep is needed.
-
-...
-
-> +static int bno055_system_reset(struct bno055_priv *priv)
-> +{
-> +       int ret;
-> +
-> +       if (priv->reset_gpio) {
-> +               gpiod_set_value_cansleep(priv->reset_gpio, 0);
-> +               usleep_range(5000, 10000);
-> +               gpiod_set_value_cansleep(priv->reset_gpio, 1);
-> +       } else {
-> +               if (!priv->sw_reset)
-> +                       return 0;
-
-Can be unified with the above 'else':
-
-} else if (...) {
-  return 0;
-} else {
-
-> +               ret = regmap_write(priv->regmap, BNO055_SYS_TRIGGER_REG,
-> +                                  BNO055_SYS_TRIGGER_RST_SYS);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       regcache_drop_region(priv->regmap, 0x0, 0xff);
-> +       usleep_range(650000, 700000);
-> +
-> +       return 0;
-> +}
-
-...
-
-> +exit:
-
-exit_unlock: ?
-
-> +       mutex_unlock(&priv->lock);
-> +       return ret;
-> +}
-
-...
-
-> +       .scan_type = {                                                          \
-> +               .sign = 's',                                                    \
-> +               .realbits = 16,                                                 \
-> +               .storagebits = 16,                                              \
-> +               .endianness = IIO_LE,                                           \
-> +               .repeat = IIO_MOD_##_axis == IIO_MOD_QUATERNION ? 4 : 0         \
-
-+ Comma.
-
-> +       },                                                                      \
-
-...
-
-> +       {
-> +               .type = IIO_TEMP,
-> +               .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-> +               .scan_index = -1
-
-+ Comma.
-
-> +       },
-
-...
-
-> +       /*
-> +        * We always get a request in INT_PLUS_MICRO, but we
-> +        * take care of the micro part only when we really have
-> +        * non-integer tables. This prevents 32-bit overflow with
-> +        * larger integers contained in integer tables.
-> +        */
-> +       req_val = val;
-> +       if (attr->type != IIO_VAL_INT) {
-
-
-> +               if (val > 2147)
-> +                       val = 2147;
-
-min() ?
-
-It seems it's not used outside of this branch, so this min() can be
-integrated into below without corrupting val itself.
-
-> +               len /= 2;
-> +               req_val = val * 1000000 + val2;
-> +       }
-
-...
-
-> +               if (first || delta < best_delta) {
-
-In such cases checking 'first' last might slightly be better.
-
-> +                       best_delta = delta;
-> +                       hwval = i;
-> +                       first = false;
-> +               }
-
-...
-
-> +                       /*
-> +                        * IMU reports sensor offests; IIO wants correction
-
-offsets
-
-> +                        * offset, thus we need the 'minus' here.
-> +                        */
-
-...
-
-> +       case IIO_CHAN_INFO_SAMP_FREQ:
-> +               if (chan->type != IIO_MAGN)
-> +                       return -EINVAL;
-
-> +               else
-
-redundant.
-
-> +                       return bno055_get_regmask(priv, val, val2,
-> +                                                 BNO055_MAG_CONFIG_REG,
-> +                                                 BNO055_MAG_CONFIG_ODR_MASK,
-> +                                                 &bno055_mag_odr);
-
-...
-
-> +       for (i = 0; i < bno055_acc_range.len; i++)
-> +               len += sysfs_emit_at(buf, len, "%d%c", bno055_acc_range.vals[i],
-> +                                    (i == bno055_acc_range.len - 1) ? '\n' : ' ');
-
-You may move the condition out of the loop.
-
-...
-
-> +       int ret = 0;
-
-Redundant assignment, see below.
-
-> +       if (indio_dev->active_scan_mask &&
-> +           !bitmap_empty(indio_dev->active_scan_mask, _BNO055_SCAN_MAX))
-> +               return -EBUSY;
-> +
-> +       if (sysfs_streq(buf, "0")) {
-> +               ret = bno055_operation_mode_set(priv, BNO055_OPR_MODE_AMG);
-
-return bno055_operation_mode_set(...);
-
-> +       } else {
-
-...and drop this with the following decreasing indentation.
-
-> +               /*
-> +                * Coming from AMG means the FMC was off, just switch to fusion
-> +                * but don't change anything that doesn't belong to us (i.e let
-> +                * FMC stay off.
-> +                * Coming from any other fusion mode means we don't need to do
-> +                * anything.
-> +                */
-> +               if (priv->operation_mode == BNO055_OPR_MODE_AMG)
-> +                       ret = bno055_operation_mode_set(priv, BNO055_OPR_MODE_FUSION_FMC_OFF);
-> +       }
-> +       if (ret)
-> +               return ret;
-> +       return len;
-
-...
-
-> +       if (count < BNO055_CALDATA_LEN || pos != 0)
-
-Drop ' != 0' part ?
-
-> +               return -EINVAL;
-
-...
-
-> +unlock:
-
-exit_unlock: to be consistent?
-
-> +       mutex_unlock(&priv->lock);
-> +       return ret;
-
-...
-
-> +       /*
-> +        * Walk the bitmap and eventually perform several transfers.
-> +        * Bitmap ones-fileds that are separated by gaps <= xfer_burst_break_thr
-
-ones-fields ?
-
-> +        * will be included in same transfer.
-> +        * Every time the bitmap contains a gap wider than xfer_burst_break_thr
-> +        * then we split the transfer, skipping the gap.
-> +        */
-
-...
-
-> +               /*
-> +                * First transfer will start from the beginnig of the first
-
-beginning
-
-> +                * ones-field in the bitmap
-> +                */
-> +               if (first)
-> +                       xfer_start = start;
-> +
-> +               /*
-> +                * We found the next ones-field; check whether to include it in
-> +                * the current transfer or not (i.e. let's perform the current
-> +                * transfer and prepare for another one).
-> +                */
-
-> +               if (!first) {
-
-'else {' ?
-
-
-> +               }
-
-...
-
-> +static void bno055_clk_disable(void *arg)
-> +{
-> +       clk_disable_unprepare((struct clk *)arg);
-
-Redundant casting.
-
-> +}
-
-...
-
-> +       const u8 *caldata_data = NULL;
-
-> +       int caldata_size = 0;
-
-No need. See below.
-
-...
-
-> +       if (priv->reset_gpio) {
-> +               usleep_range(5000, 10000);
-> +               gpiod_set_value_cansleep(priv->reset_gpio, 1);
-> +               usleep_range(650000, 750000);
-
-> +       } else {
-> +               if (!sw_reset)
-
-} else if () {
-
-> +                       dev_warn(dev, "No usable reset method; IMU may be unreliable");
-> +       }
-
-...
-
-> +       /*
-> +        * Seems that stock FW version conains a bug (see comment at the
-
-the stock
-contains
-
-> +        * beginning of this file) that causes the anglvel scale to be changed
-> +        * depending by the chip range setting. We workaround this, but we don't
-
-on the chip
-
-> +        * know what other FW version might do..
-
-versions
-
-One period at the end is enough, or add another one if there is a
-continuation below.
-
-> +        */
-
-...
-
-> +       ret = request_firmware(&caldata, fw_name_buf, dev);
-> +       kfree(fw_name_buf);
-> +       if (ret)
-> +               ret = request_firmware(&caldata, BNO055_FW_GENERIC_NAME, dev);
-
-> +
-
-Can be removed to group all related checks together.
-
-> +       if (ret)
-> +               dev_notice(dev, "Calibration file load failed. See instruction in kernel Documentation/iio/bno055.rst");
-> +
-> +       if (caldata) {
-> +               caldata_data = caldata->data;
-> +               caldata_size = caldata->size;
-> +       }
-> +       ret = bno055_init(priv, caldata_data, caldata_size);
-
-> +       if (caldata)
-> +               release_firmware(caldata);
-
-> +       if (ret)
-> +               return ret;
-
-Can be rewritten in a form of
-
-if (caldata) {
- ret = bno055_init();
- release_firmware(...);
-} else {
- ret = bno055_init();
-}
-if (ret)
-  return ret;
-
-?
-
-...
-
-> +#include <linux/regmap.h>
-
-Missed types.h.
-
-> +struct device;
-> +int bno055_probe(struct device *dev, struct regmap *regmap,
-> +                int xfer_burst_break_thr, bool sw_reset);
-> +extern const struct regmap_config bno055_regmap_config;
-
--- 
-With Best Regards,
-Andy Shevchenko
+On 4/27/2022 5:55 PM, Kalle Valo wrote:
+> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+> 
+>> WCN6750 uses static window mapping to access the HW registers.
+>> Unlike QCN9074 which uses 2nd window for CE and 3rd window
+>> for UMAC register accesses, WCN6750 uses 1st window for UMAC
+>> and 2nd window for CE registers.
+>>
+>> Code is refactored so that WCN6750 can use the existing
+>> ath11k_pci_read/write() APIs for accessing the registers.
+>>
+>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>>
+>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+>> ---
+>>   drivers/net/wireless/ath/ath11k/ahb.c  |  6 +++
+>>   drivers/net/wireless/ath/ath11k/core.h |  2 +
+>>   drivers/net/wireless/ath/ath11k/pci.c  | 34 ++++++++++++++--
+>>   drivers/net/wireless/ath/ath11k/pcic.c | 54 +++++++++-----------------
+>>   4 files changed, 58 insertions(+), 38 deletions(-)
+>>
+>> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+>> index cfdd415f0203..fa12e50f32f4 100644
+>> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+>> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+>> @@ -34,7 +34,10 @@ static const struct ath11k_bus_params ath11k_ahb_bus_params = {
+>>   	.m3_fw_support = false,
+>>   	.fixed_bdf_addr = true,
+>>   	.fixed_mem_region = true,
+>> +	.static_window_map = false,
+>>   	.hybrid_bus_type = false,
+>> +	.dp_window_idx = 0,
+>> +	.ce_window_idx = 0,
+>>   };
+>>   
+>>   const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
+>> @@ -42,7 +45,10 @@ const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
+>>   	.m3_fw_support = false,
+>>   	.fixed_bdf_addr = false,
+>>   	.fixed_mem_region = false,
+>> +	.static_window_map = true,
+>>   	.hybrid_bus_type = true,
+>> +	.dp_window_idx = 1,
+>> +	.ce_window_idx = 2,
+>>   };
+>>   
+>>   #define ATH11K_IRQ_CE0_OFFSET 4
+>> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+>> index 51f313dd7f26..ee0ad93d5843 100644
+>> --- a/drivers/net/wireless/ath/ath11k/core.h
+>> +++ b/drivers/net/wireless/ath/ath11k/core.h
+>> @@ -756,6 +756,8 @@ struct ath11k_bus_params {
+>>   	bool fixed_mem_region;
+>>   	bool static_window_map;
+>>   	bool hybrid_bus_type;
+>> +	u8 dp_window_idx;
+>> +	u8 ce_window_idx;
+>>   };
+>>   
+>>   struct ath11k_pci_ops {
+>> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+>> index ddd1e2de6a2e..9184cb893bd4 100644
+>> --- a/drivers/net/wireless/ath/ath11k/pci.c
+>> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+>> @@ -115,12 +115,26 @@ static const struct ath11k_pci_ops ath11k_pci_ops_qcn9074 = {
+>>   	.window_read32 = ath11k_pci_window_read32,
+>>   };
+>>   
+>> -static const struct ath11k_bus_params ath11k_pci_bus_params = {
+>> +static const struct ath11k_bus_params ath11k_pci_bus_params_qca6390 = {
+>>   	.mhi_support = true,
+>>   	.m3_fw_support = true,
+>>   	.fixed_bdf_addr = false,
+>>   	.fixed_mem_region = false,
+>> +	.static_window_map = false,
+>>   	.hybrid_bus_type = false,
+>> +	.dp_window_idx = 0,
+>> +	.ce_window_idx = 0,
+>> +};
+>> +
+>> +static const struct ath11k_bus_params ath11k_pci_bus_params_qcn9074 = {
+>> +	.mhi_support = true,
+>> +	.m3_fw_support = true,
+>> +	.fixed_bdf_addr = false,
+>> +	.fixed_mem_region = false,
+>> +	.static_window_map = true,
+>> +	.hybrid_bus_type = false,
+>> +	.dp_window_idx = 3,
+>> +	.ce_window_idx = 2,
+>>   };
+>>   
+>>   static const struct ath11k_msi_config msi_config_one_msi = {
+>> @@ -704,11 +718,26 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+>>   {
+>>   	struct ath11k_base *ab;
+>>   	struct ath11k_pci *ab_pci;
+>> +	const struct ath11k_bus_params *bus_params;
+>>   	u32 soc_hw_version_major, soc_hw_version_minor, addr;
+>>   	int ret;
+>>   
+>> +	switch (pci_dev->device) {
+>> +	case QCA6390_DEVICE_ID:
+>> +	case WCN6855_DEVICE_ID:
+>> +		bus_params = &ath11k_pci_bus_params_qca6390;
+>> +		break;
+>> +	case QCN9074_DEVICE_ID:
+>> +		bus_params = &ath11k_pci_bus_params_qcn9074;
+>> +		break;
+> 
+> Now you are making bus_params device specific, that's not really the
+> point of bus params. They are supposed to be _bus_ specific parameters.
+> 
+> Can't you use hw_params like I mentioned in the review?
+> 
+
+Even without this patch, as of today, bus_params is already device 
+specific with QCN9074 changing the static_window_map in bus_params to 
+true in ath11k_pci_probe(). And if we have to move these device specific 
+bus_params to hw_parmas, then bus_params can be pretty much removed 
+completely with the changes that WCN6750 bring in. Any thoughts on this? 
+I can make the changes that can get along with WCN6750 series.
+
+Thanks,
+Manikanta
