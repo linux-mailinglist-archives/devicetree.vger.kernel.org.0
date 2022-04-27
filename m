@@ -2,117 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 679E151171A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A85A551178F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 14:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233700AbiD0MUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 08:20:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49384 "EHLO
+        id S234044AbiD0MX6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 27 Apr 2022 08:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233752AbiD0MUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:20:13 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7756E8A322
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 05:17:01 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id m23so2351511ljb.8
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 05:17:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
-        b=IcljhcOdPTP29vZlW5X6ro/FUMEN8BihPCMjQ4DLD17n66EQMN3ngucpWlHM/1adsk
-         zJOOSqbDVUtln5M8uXceQPT/9IJop7SWDuLHhQgHRXry6Mv52rZvxaj8FcDWjkkFOWIA
-         OwKFt/UkKddYIlAxdNzXZisw3D8MTb4reAK7fdGijT+pOXIqp75xVLzK+XQh4+MMKxk8
-         SYKMdHh5oDfToYb+vHFJ2QEjWT42q3fAQUUsolFPimdQ107oJfsCMuKz+wH2JBt/hz26
-         8+83hfCjLp3+d2l4sGxgdll5iV4aTlCfffJXiwIdDdKVtcI9lSXFhxPaEN7n9duq9FkP
-         MWKA==
+        with ESMTP id S234001AbiD0MX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 08:23:57 -0400
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBDA3A5DE;
+        Wed, 27 Apr 2022 05:20:46 -0700 (PDT)
+Received: by mail-qv1-f51.google.com with SMTP id a5so915896qvx.1;
+        Wed, 27 Apr 2022 05:20:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ga1FXFUoff60uV1gZjfSxxZrosbrRhkS2aF6jySEeu8=;
-        b=AYEVBalllBPIfnFes4fHQK3beEJG/MyN7MMy387QAAz61DzzXoYeBuk9W5Azs0o6gF
-         s3599DkIKie2OMXl7AMiW3eZcNSJZBBipCm44DHzENcvsk8+GTZJsSz7iqAAwZ/zN9Gq
-         Hjy6meGz2OkEUw2uN8Vp8uhk400+gs04VBvrDIK8jT6OryC0s3qPgnqRGH64xyArhgJN
-         X08U/ZOcRAKQj4oufhn/I4BSsGPk/TfjRA/EVExbwzNML+JRssztqCKXAcxJB/wLlqnJ
-         Pi4EVzHK4nqb/cLqSJwyAIfa9Z99aBoMYTsuLeta4Xlz8KhR9XEe7EsbrYwdRkLy8pt6
-         wZXQ==
-X-Gm-Message-State: AOAM5323/s8aOOfSbwtoO17UQ/prE7mUJjtzYCunaTHslBeI7KFnf2Pi
-        fVPVXfWANrC6ZLLoLk+1uT4pSg==
-X-Google-Smtp-Source: ABdhPJzzpKoE3lHAYhI7agfuzEbxveMnjFO6GHr912Gvl7Gw/JzYOQtHj9siquDy56l3ZF0qn9fusA==
-X-Received: by 2002:a2e:9e50:0:b0:24f:14e0:6a25 with SMTP id g16-20020a2e9e50000000b0024f14e06a25mr7994316ljk.121.1651061819670;
-        Wed, 27 Apr 2022 05:16:59 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id y1-20020a0565123f0100b0044584339e5dsm2043388lfa.190.2022.04.27.05.16.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 05:16:59 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 5/5] arm64: dts: qcom: sm8250: provide additional MSI interrupts
-Date:   Wed, 27 Apr 2022 15:16:53 +0300
-Message-Id: <20220427121653.3158569-6-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220427121653.3158569-1-dmitry.baryshkov@linaro.org>
-References: <20220427121653.3158569-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7IblRXw+IlRsIpma65z+vY+J/pcL54rFKRWppWIp02E=;
+        b=O3CdkQv4cYeQR75NZsj42LjUgccfGNp/y6NotezEn4kTtTka21SMi7uwxsFiN09zpC
+         uahxVZs73d7B2rXBfV1kfzM1A15v1buMS9JMTcUydE8IosadZCvEPiNp3xdC3Zj9PQpn
+         eBrShPkKOaM83wt1IpBSm2N3/XHin+c4nVGdO+jwe/R2nh0oPwpEytjX69GEiByNaZxO
+         Y1qnBPwq8aYIxcKl092guD+Yh5phHs6pkyJ1a0B0EmLy6g5rkxKsSquTUIlLfj0hsBqn
+         teFqNSaGFT80uCa1tpEUpXXMuH/WcSRep726ZKztZScEwAPl1RNmGDnQx4uXLlNENjcf
+         1W+Q==
+X-Gm-Message-State: AOAM533+3++Fou2ASMFTSOIZBBfoeNnsFfoVD3C3IYD7u8ujmwUoHf4Y
+        RGUGdGYXQrES84nr6FdegFjjdTPMClD0yQ==
+X-Google-Smtp-Source: ABdhPJyVQRDiG1YrApjp41wD1Jo0ktqu1HzK4hDe/+jDGHwfNgHMPIkn1Yz+S6jPqiZ9B4gA8gf7IQ==
+X-Received: by 2002:a05:6214:2aa7:b0:446:2f18:d005 with SMTP id js7-20020a0562142aa700b004462f18d005mr19705064qvb.33.1651062045462;
+        Wed, 27 Apr 2022 05:20:45 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id v12-20020a05620a0a8c00b0069eabadd6dasm7711882qkg.41.2022.04.27.05.20.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 05:20:44 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id w17so2993689ybh.9;
+        Wed, 27 Apr 2022 05:20:44 -0700 (PDT)
+X-Received: by 2002:a5b:24e:0:b0:63d:cba0:3d55 with SMTP id
+ g14-20020a5b024e000000b0063dcba03d55mr24895863ybp.613.1651062044076; Wed, 27
+ Apr 2022 05:20:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220414122250.158113-1-clement.leger@bootlin.com> <20220414122250.158113-6-clement.leger@bootlin.com>
+In-Reply-To: <20220414122250.158113-6-clement.leger@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 14:20:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU+kosUPavthyPcWVAC_WhdwXiFKt61oSmgdV6Qxk_0xg@mail.gmail.com>
+Message-ID: <CAMuHMdU+kosUPavthyPcWVAC_WhdwXiFKt61oSmgdV6Qxk_0xg@mail.gmail.com>
+Subject: Re: [PATCH net-next 05/12] dt-bindings: net: dsa: add bindings for
+ Renesas RZ/N1 Advanced 5 port switch
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 each group of MSI interrupts is mapped to the separate host
-interrupt. Describe each of interrupts in the device tree for PCIe0
-host.
+Hi Clément,
 
-Tested on Qualcomm RB5 platform with first group of MSI interrupts being
-used by the PME and attached ath11k WiFi chip using second group of MSI
-interrupts.
+On Thu, Apr 14, 2022 at 2:24 PM Clément Léger <clement.leger@bootlin.com> wrote:
+> Add bindings for Renesas RZ/N1 Advanced 5 port switch. This switch is
+> present on Renesas RZ/N1 SoC and was probably provided by MoreThanIP.
+> This company does not exists anymore and has been bought by Synopsys.
+> Since this IP can't be find anymore in the Synospsy portfolio, lets use
+> Renesas as the vendor compatible for this IP.
+>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+Thanks for your patch!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 410272a1e19b..0659ac45c651 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1807,8 +1807,15 @@ pcie0: pci@1c00000 {
- 			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
- 				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
- 
--			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi", "msi2", "msi3", "msi4", "msi5", "msi6", "msi7", "msi8";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
--- 
-2.35.1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> @@ -0,0 +1,128 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/dsa/renesas,rzn1-a5psw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/N1 Advanced 5 ports ethernet switch
+> +
+> +maintainers:
+> +  - Clément Léger <clement.leger@bootlin.com>
+> +
+> +description: |
+> +  The advanced 5 ports switch is present on the Renesas RZ/N1 SoC family and
+> +  handles 4 ports + 1 CPU management port.
+> +
+> +allOf:
+> +  - $ref: dsa.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,rzn1-a5psw
 
+Please document an SoC-specific compatible value
+"renesas,r9a06g032-a5psw", too, so we can easily handle differences
+between members within the RZ/N1 family, if ever needed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
