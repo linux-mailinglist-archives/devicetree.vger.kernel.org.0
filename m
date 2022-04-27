@@ -2,150 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B3F35120EA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25961512028
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:38:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242637AbiD0QUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 12:20:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45638 "EHLO
+        id S242790AbiD0QUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 12:20:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243196AbiD0QTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:19:11 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF09F2117CB
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 09:15:33 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id kq17so4423289ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 09:15:33 -0700 (PDT)
+        with ESMTP id S243366AbiD0QTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:19:22 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CBC5522F3
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 09:16:03 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id g23so2505538edy.13
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 09:16:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3OS/b7QEPllq3BIYgS2/Shs51nbXZ23JbFURSkhEpp8=;
-        b=gpCYO1nGXIOSpx6PvS4uCMzNFQpwWb7Suc0nEV+AWiiAkTmcfS2NML1B+aoR+hcGXL
-         ZKzI9H2s3nHON/G7KRLPavAoJo3eTcZIB+6OO1mfwh6dIg1hH2CvxTW52hUfuR4ilV4B
-         fkZm+I51kFE8Fa29XS7fziDUhG6CGPiGncqDwtERYHHnpyZOwIiSVzNQLdxaXJ1Zuw8Y
-         bifM0AhDbGTriUN8S6dhbcRJheL/FlxGRHfQvmf6929fWsfFCg2CyNNa1m72Mt+sl/gX
-         PvrGlhTKAqJuDF2jgx+EOAKHqpY4iUal4v2gtrBO+WDp2TLcVPAZ8nq/IbfirhL1okev
-         HRcA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=33Pw1TaQn5DJlFIc1RoNdUwlWVagDgJDIvDiUBnvNZk=;
+        b=M5wZsoVmuMrbDmKmC++nJ7daqVxdtD6VRJyTfHXnb4KhMQRLFAkqT9TNx300qMM1OE
+         24O7eNJCzbyPJCyDr2CrhlMnFFOWD2z3VPhJlER1XVr5Bcj8JGCzf3QWIr1LzEX+yuTq
+         Uh0RrLxtTaQCg5y/W/5zS165UdNwsDoIeJfLpf+VBophS6N81i9C+aLb7EUX93xR1x+d
+         Yu4cVfLiVHN2OxCFd5U3dlsKWYxjKZa1pmcCbhARUiflq86EJiPR1yWaMfG4DPpQoq6Y
+         UykiFMJKA0Zot57+0c0IEGwU6gbKCVGUaNdbvhRzmX8hS6RGZHA1slYmQPlBV2dffbgy
+         EFNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3OS/b7QEPllq3BIYgS2/Shs51nbXZ23JbFURSkhEpp8=;
-        b=owJ1Dt/dGbeOKobcQz2IITu/P22Qm+0HKODOFF7SdBOmcHdJjb/A2zJhyh/vkUqRqE
-         y1NJHcSOyqjrugAvawtjySYKf4uuSU/GeZaoqPpQTGbkl9QnDD+fovmSViSOe3M+vh2Y
-         fe9F+cFIAp+MO+8MHTi5WJMSOa4/8qQeTIls/sC1eyKJi+NQZ7zSNsj6iUFEwZc1sUux
-         UTaJfB8aab5zbNYnvvG9xSvsvfFonaS2eQ/KFygBdD5P7uCh8gXWEGE6M/qFnlrDs1oX
-         fgXP+a5xgK237D+VVVJu2aSfN6lAFap2E/CqhzXjZfJJ957hJ9LmJ4bG2iBuNFOhgy4R
-         VigA==
-X-Gm-Message-State: AOAM533xHoSwbZMzpWHQ+XkQQ7lxU5AsHn56B9bLA0Y1pzIcwUCTmc5Q
-        oCSa81NMNud3Ll7g8K5YdZEDww==
-X-Google-Smtp-Source: ABdhPJxiXIehiQaBDpfXJpnDBoW5bJylGl7VO6kcxOhn9/c1Lz5IZ4VA7YXIH1dAzDS613Am43Wu+g==
-X-Received: by 2002:a17:907:4c8:b0:6f3:beac:260c with SMTP id vz8-20020a17090704c800b006f3beac260cmr5814886ejb.321.1651076110315;
-        Wed, 27 Apr 2022 09:15:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=33Pw1TaQn5DJlFIc1RoNdUwlWVagDgJDIvDiUBnvNZk=;
+        b=v8CeEsqMv+SLtY2xMAjgInp0ZNSO71+YMf4y1d4R88GzqWRxqwwvlRTWQf28EER20w
+         Q1kIX/YAZi/SavlKHOcF5Jkg/21czM6M7Ed+iWJZrpX9DLNE68ih+BvCb25hl9yxmQXn
+         zsTjMnqpjIgR+X8OcaNdM+gRFKIN+GBJyuKPVL8WUh5d9zfV2uZsR0AEGuCaW9GproVZ
+         zc/9SS66vzL4ivm1Q3/1Ur0rB5nz68G4bGVFsSzCk7kuztfqVNcssmhb2jVz4OmIBqag
+         5EXWyT1wjts0thUprink/dYewJUyjGZ8G04FHuqAPiJWojr12B+t7cp6OY0klmG7xlrf
+         fJDw==
+X-Gm-Message-State: AOAM532DVKTP9BVgdvIk0lMrwpvjehUjIaTNuabCqdjQaebGzzp4OnPz
+        0YKpHLM9k/Fg6CaZOzVeFQN9ZA==
+X-Google-Smtp-Source: ABdhPJwtXtQwHMNqbnYGky888kJnbA0Gsd9ufcKCpT9OI5JJpU0hsvaPMD5dKZGuDOi70nXTqUQKfQ==
+X-Received: by 2002:a05:6402:84c:b0:423:e5a2:3655 with SMTP id b12-20020a056402084c00b00423e5a23655mr31479642edz.28.1651076139601;
+        Wed, 27 Apr 2022 09:15:39 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id r19-20020a17090638d300b006d6e4fc047bsm7095015ejd.11.2022.04.27.09.15.08
+        by smtp.gmail.com with ESMTPSA id q17-20020a1709064cd100b006e78206fe2bsm7131192ejt.111.2022.04.27.09.15.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 09:15:09 -0700 (PDT)
+        Wed, 27 Apr 2022 09:15:39 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Daniel Mack <daniel@zonque.org>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] ARM: dts: pxa: use new 'dma-channels/requests' properties
-Date:   Wed, 27 Apr 2022 18:14:59 +0200
-Message-Id: <20220427161459.647676-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/2] dmaengine/ARM: use proper 'dma-channels/requests' properties
+Date:   Wed, 27 Apr 2022 18:15:31 +0200
+Message-Id: <20220427161533.647837-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220427161459.647676-1-krzysztof.kozlowski@linaro.org>
-References: <20220427161459.647676-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The '#dma-channels' and '#dma-requests' properties were deprecated in
-favor of these defined by generic dma-common DT bindings.
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/mmp2.dtsi   | 2 +-
- arch/arm/boot/dts/pxa25x.dtsi | 4 ++--
- arch/arm/boot/dts/pxa27x.dtsi | 4 ++--
- arch/arm/boot/dts/pxa3xx.dtsi | 4 ++--
- 4 files changed, 7 insertions(+), 7 deletions(-)
+The core DT schema defines generic 'dma-channels' and 'dma-requests'
+properties, so in preparation to moving bindings to DT schema, convert
+existing users of '#dma-channels' and '#dma-requests' to the generic
+variant.
 
-diff --git a/arch/arm/boot/dts/mmp2.dtsi b/arch/arm/boot/dts/mmp2.dtsi
-index 46984d4c5224..1a49b58e8048 100644
---- a/arch/arm/boot/dts/mmp2.dtsi
-+++ b/arch/arm/boot/dts/mmp2.dtsi
-@@ -275,7 +275,7 @@ dma-controller@d4000000 {
- 				compatible = "marvell,pdma-1.0";
- 				reg = <0xd4000000 0x10000>;
- 				interrupts = <48>;
--				#dma-channels = <16>;
-+				dma-channels = <16>;
- 				status = "disabled";
- 			};
- 
-diff --git a/arch/arm/boot/dts/pxa25x.dtsi b/arch/arm/boot/dts/pxa25x.dtsi
-index a248bf038033..0d2d09cad059 100644
---- a/arch/arm/boot/dts/pxa25x.dtsi
-+++ b/arch/arm/boot/dts/pxa25x.dtsi
-@@ -38,9 +38,9 @@ pdma: dma-controller@40000000 {
- 			compatible = "marvell,pdma-1.0";
- 			reg = <0x40000000 0x10000>;
- 			interrupts = <25>;
--			#dma-channels = <16>;
- 			#dma-cells = <2>;
--			#dma-requests = <40>;
-+			dma-channels = <16>;
-+			dma-requests = <40>;
- 			status = "okay";
- 		};
- 
-diff --git a/arch/arm/boot/dts/pxa27x.dtsi b/arch/arm/boot/dts/pxa27x.dtsi
-index ccbecad9c5c7..68b940fabe5f 100644
---- a/arch/arm/boot/dts/pxa27x.dtsi
-+++ b/arch/arm/boot/dts/pxa27x.dtsi
-@@ -12,9 +12,9 @@ pdma: dma-controller@40000000 {
- 			compatible = "marvell,pdma-1.0";
- 			reg = <0x40000000 0x10000>;
- 			interrupts = <25>;
--			#dma-channels = <32>;
- 			#dma-cells = <2>;
--			#dma-requests = <75>;
-+			dma-channels = <32>;
-+			dma-requests = <75>;
- 			status = "okay";
- 		};
- 
-diff --git a/arch/arm/boot/dts/pxa3xx.dtsi b/arch/arm/boot/dts/pxa3xx.dtsi
-index d19674812cd2..f1fa7f54a398 100644
---- a/arch/arm/boot/dts/pxa3xx.dtsi
-+++ b/arch/arm/boot/dts/pxa3xx.dtsi
-@@ -122,9 +122,9 @@ pdma: dma-controller@40000000 {
- 			compatible = "marvell,pdma-1.0";
- 			reg = <0x40000000 0x10000>;
- 			interrupts = <25>;
--			#dma-channels = <32>;
- 			#dma-cells = <2>;
--			#dma-requests = <100>;
-+			dma-channels = <32>;
-+			dma-requests = <100>;
- 			status = "okay";
- 		};
- 
--- 
-2.32.0
+Not tested on hardware.
 
+IMPORTANT
+=========
+The patchset is not bisectable! The DTS patches should be applied a
+release *after* driver change is accepted.
+
+See also:
+[1] https://lore.kernel.org/linux-devicetree/fedb56be-f275-aabb-cdf5-dbd394b8a7bd@linaro.org/T/#m6235f451045c337d70a62dc65eab9a716618550b
+
+Best regards,
+Krzysztof
