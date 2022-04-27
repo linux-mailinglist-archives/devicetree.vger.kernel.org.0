@@ -2,133 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1475511E04
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC65D511EBB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244674AbiD0SNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 14:13:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44148 "EHLO
+        id S233537AbiD0SOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 14:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244782AbiD0SNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:13:10 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B89245B5;
-        Wed, 27 Apr 2022 11:09:49 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id i24so2226476pfa.7;
-        Wed, 27 Apr 2022 11:09:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=SC7RZFmFzY1cOQBSZIdDAHzv/8LeJtBuHEGLtHlFN68=;
-        b=qpzCGKxw/occv4Nuka8IWzq7q96NZjmWekn+OP2qa4Nty8SX7WF1zE1e1B4x4tRgVJ
-         u0JTdGcftj7uwIBthE117rEBdHqeAvgTGr2ttmLNqOA5588saUD4H9aAQu7JlXhm5+eH
-         hs5qn12hvTorb8EKjKqOGUUBAxWx3auU2HTA/uhSSvJlKoYse5hX0GszJc56Eb40zvg2
-         yy7vMUtAtscMZ4rNVhN5Paq0qM6mJjvasYgTUyC/oxLrxHUmTxxRmum1W1ZFffjqcOw6
-         40m03OPCHXL0aeMj3ypX0VYluGsePdF8UjTTJHmRVhIy7p55pSV9JllHexou656CxYFn
-         oj2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=SC7RZFmFzY1cOQBSZIdDAHzv/8LeJtBuHEGLtHlFN68=;
-        b=T7agOKUUCy2oMGxktKkUiODWGNdCGndAfYw/Wk3M9UfGGUIHaGIvO8H4mCmc3Nd4vE
-         oC6j7qI09+9bJZqZg4Ibb/mN05xbCtjYtMGRe0otzJ+DLTCCqfNg3niuUzTcu7Bc0RKI
-         y2OjmGxs6TNTWotUK4C7VMu5nue8KQaKWOlUgqbRbOSJycVrp2urs/0gk/mfrrqcd+EN
-         iViJH99w1wDwB8lD1ZkEfg716sfQIqKdw/y3htR7ySCvxGEewKurHp7d67k8ze7qASX1
-         +7vRA+1serPfIWB8cqmTnCo/oSLMa9a01UCkBC5ZUrmWCduaL2YXPdO0xx3uEWNcvWhm
-         02Zg==
-X-Gm-Message-State: AOAM533Ha10v5nK/3xQtbr377Mzwfw8U51vQz2cjeqmbLgowIXk6uJbo
-        AA6CsQFr1DWLwKvc2/qx2ww=
-X-Google-Smtp-Source: ABdhPJyBfRvQK5ucNiOqjWVZwaDGd2EDnvC4GpPivMyaWL78F9cq64AYIKfXWqGw7aWexrgMeOqF6g==
-X-Received: by 2002:a63:4f0b:0:b0:3a9:f4ad:6c30 with SMTP id d11-20020a634f0b000000b003a9f4ad6c30mr24900316pgb.88.1651082989059;
-        Wed, 27 Apr 2022 11:09:49 -0700 (PDT)
-Received: from mail.broadcom.net ([192.19.11.250])
-        by smtp.gmail.com with ESMTPSA id u25-20020aa78399000000b00505f75651e7sm19076859pfm.158.2022.04.27.11.09.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 11:09:48 -0700 (PDT)
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        alcooperx@gmail.com
-Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Subject: [PATCH v2 4/4] mmc: sdhci-brcmstb: Add ability to increase max clock rate for 72116b0
-Date:   Wed, 27 Apr 2022 14:08:53 -0400
-Message-Id: <20220427180853.35970-5-kdasu.kdev@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220427180853.35970-1-kdasu.kdev@gmail.com>
-References: <20220427180853.35970-1-kdasu.kdev@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S244713AbiD0SOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:14:15 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F08115FC6
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:11:03 -0700 (PDT)
+Received: from mail-yb1-f170.google.com ([209.85.219.170]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MplsZ-1oD7Fo13iH-00qAL3 for <devicetree@vger.kernel.org>; Wed, 27 Apr
+ 2022 20:11:01 +0200
+Received: by mail-yb1-f170.google.com with SMTP id y76so4892014ybe.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:11:01 -0700 (PDT)
+X-Gm-Message-State: AOAM531fHGmylo6ibau2R3pcB4U86v9yQzgaxtF/S9+Duc/2OIV8e2vU
+        6zfO02KSn5MRYtPzg4r9lSdUbXunYZbYlZv7tbs=
+X-Google-Smtp-Source: ABdhPJz22H6zLwd+GQ1ANmp6QFVu2RDLvZP9bEbt2PnDoUH1ZGpsMPOKH9dNoFLAzC1zGYNRo02HhlzOZXnr+IAT5X8=
+X-Received: by 2002:a25:cbc9:0:b0:645:879a:cdd3 with SMTP id
+ b192-20020a25cbc9000000b00645879acdd3mr25485724ybg.550.1651083059995; Wed, 27
+ Apr 2022 11:10:59 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+In-Reply-To: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 27 Apr 2022 20:10:44 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
+Message-ID: <CAK8P3a0p-ev50UfGiHCpMM5Jz5Mf8pdfQtNep0M7qi7PANSBVg@mail.gmail.com>
+Subject: Re: [RFC RFT PATCH v1 0/1] ARM: orion5x: convert D-Link DNS-323 to
+ the Device Tree
+To:     Mauri Sandberg <maukka@ext.kapsi.fi>
+Cc:     SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:RtpUKR4vPSkQrfbS98Mcoos8yFM8+7iI4gA89vauOI6NMjX1sEV
+ KBxZ+KgeFFOxIeIWfs6nPhzEiva8CI+Cvf3X/NKkZk2wfzT8NEUo7G6uwJWQAbOfghizyTA
+ 3aGwiqnqSIZ4P4hOXD9h5g4gXxiOLkxaY9utdnHsmr8smLUlCEp5X1LtE3i3Jg1EIFuNmv+
+ 7uCmlgfLFSfKvsMsq3KNQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:k5jXt21ZFHg=:Yaw/aQVJYhgs60zDmurUcX
+ n40fb1tFatZxYYVDw6D759OZ68nwqZIaSGCbE0rhMAHdBFiSVWkh2JgtNIrCoOtU/Byi1xAhK
+ jwM41Rpg51vCZrw3+wvoiYXklGEWM62cAbZgaNKcZyItxnIo8oGB0jN8GW74k7345Wnim+YAP
+ 0znOwcfYfH0UH7h0slt+1Napd6iToM5FGjkjDKZj3u5VvJYx3uQ1xsGfi/2eRrH9NJY7iu4gk
+ NN1SmDjlQyYqnb/IXz9vjV+QICFOvk4RvJYlE1tGD8OI+4K7zTNnjWILbgYrNJotoslWnwkPp
+ TZV7x1VsSnrFUi7uF67hedL21slMH/I+9vT0RrFhrCPU+Y4KKlYj4Uh29DeRN97gIcAag4csD
+ GNlH5wf5pOb9TInJNVtum3oLBNYJ10m42nS0MoR7dLbbPhSP3T0tvk3ekPXS/ABYC4kZp39Gr
+ STdpugNIazs4r4bKGZ4cke/WU3SL9l5YMKs0LO043oUmIED03oZ++EK+v8wsT3pZcUFyj4NkU
+ 9wXic9yiAY5VW+JBmVpguoA+zKLEwSey61TQdXbkoq2rSVftk7nJ1oCwcuTrm3Ty+9Y0bC7Bk
+ 56nPbReSSXi9hqVSN3PIeRp9mmDtQgcJbR1yCqD8q5SmOhGD6bvQyDErhPV18T1DW2ZETHybB
+ Zg0krU69fwyfyF9LAZg2dMx33HYBeyDpUuazYA2iSFkAXDKLpdNYASuiyF+Os8/0BKJxnsR7F
+ sr4wYPx+B4wOC2znAwCTQDmgFL1bWHqMaPsynbEpHmHe5yl2gzisGfcufjDNEVxsGSVETGHBQ
+ Ry/pqc21qFlHWk+9sTLQloQZvpy04IArhW43VVDMjVqoRBF+Xo=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Al Cooper <alcooperx@gmail.com>
+On Wed, Apr 27, 2022 at 6:21 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+>
+> Hello all,
+>
+> I am making an attempt to create a device tree for D-Link DNS-323 devices
+> but I am falling short on a few specific details. I am requesting a
+> general review of the device tree files. I have access to DNS-323 rev A1
+> only and the B1 and C1 need to be tested separately, so I am reaching out
+> to people who might have them.
 
-The 72116B0 has improved SDIO controllers that allow the max clock
-rate to be increased from a max of 100MHz to a max of 150MHz. The
-driver will need to get the clock and increase it's default rate
-and override the caps register, that still indicates a max of 100MHz.
-The new clock will be named "sdio_freq" in the DT node's "clock-names"
-list. The driver will use a DT property, "clock-frequency", to
-enable this functionality and will get the actual rate in MHz
-from the property to allow various speeds to be requested.
+Hi Mauri,
 
-Signed-off-by: Al Cooper <alcooperx@gmail.com>
-Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
----
- drivers/mmc/host/sdhci-brcmstb.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+It's really nice to see some progress on this! I don't have the hardware,
+but I'll try to answer some of your questions anyway.
 
-diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-index 683d0c685748..51a23e9f4535 100644
---- a/drivers/mmc/host/sdhci-brcmstb.c
-+++ b/drivers/mmc/host/sdhci-brcmstb.c
-@@ -250,6 +250,7 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
- 	struct sdhci_pltfm_host *pltfm_host;
- 	const struct of_device_id *match;
- 	struct sdhci_brcmstb_priv *priv;
-+	u32 base_clock_hz = 0;
- 	struct sdhci_host *host;
- 	struct resource *iomem;
- 	struct clk *clk;
-@@ -330,6 +331,30 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
- 	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
- 		host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
- 
-+	/* Change the base clock frequency if the DT property exists */
-+	if (device_property_read_u32(&pdev->dev, "max-frequency",
-+				     &base_clock_hz) == 0) {
-+		struct clk *master_clk;
-+		u32 actual_clock_mhz;
-+
-+		master_clk = devm_clk_get(&pdev->dev, "sdio_freq");
-+		if (IS_ERR(master_clk)) {
-+			dev_warn(&pdev->dev,
-+				 "Clock for \"sdio_freq\" was not found\n");
-+		} else {
-+			clk_set_rate(master_clk, base_clock_hz);
-+			actual_clock_mhz = clk_get_rate(master_clk) / 1000000;
-+
-+			host->caps &= ~SDHCI_CLOCK_V3_BASE_MASK;
-+			host->caps |=
-+				(actual_clock_mhz << SDHCI_CLOCK_BASE_SHIFT);
-+			/* Disable presets because they are now incorrect */
-+			host->quirks2 |= SDHCI_QUIRK2_PRESET_VALUE_BROKEN;
-+			dev_dbg(&pdev->dev,
-+				"Base Clock Frequency changed to %dMHz\n",
-+				actual_clock_mhz);
-+		}
-+	}
- 	res = sdhci_brcmstb_add_host(host, priv);
- 	if (res)
- 		goto err;
--- 
-2.17.1
+> The questions that I have at the moment are below.
+>
+> - some of resulting IRQs are different from what was requested in device tree
+> - logs say NR_IRQS is different from mach file one
 
+This is all normal: with a board file, all on-board IRQs are statically
+assigned to fixed numbers. With DT based boot, IRQ controllers
+usually define their own IRQ domains, which get a number space assigned
+according to probe order, and above the preallocated IRQ numbers.
+
+> - sata_mv fails to initialise with -22 (-EINVAL)
+
+No idea, I'd try inserting a printk in every code path that can return -EINVAL
+from there
+
+> - there is no concensus on how to get ascii formatted MAC address from mtd
+>   partitions so eth is not fully functional without setting the MAC from
+>   userspace
+
+Ideally this is handled by the boot loader, but that requires being
+able to update
+it. If you cannot, this could perhaps be done using something like
+https://github.com/zonque/pxa-impedance-matcher
+
+       Arnd
