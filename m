@@ -2,117 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AC905119BD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47AB5511AB3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237504AbiD0OVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 10:21:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34500 "EHLO
+        id S237820AbiD0O3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 10:29:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237483AbiD0OVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:21:41 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194C76A002;
-        Wed, 27 Apr 2022 07:18:30 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-e5e433d66dso2073800fac.5;
-        Wed, 27 Apr 2022 07:18:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=PhXcDgK09TfJ0k4/TcfwOYlktcKSTjsxAO+dgwid8sU=;
-        b=2xOQh1XR7ym3OsES4idwVUbm/DSVPrsxVdgT0UpOOAb1dEfdsZZU2d3l3yTqksSKPy
-         Y4pESMLMBKnrNC/GGg7inPIsbtNdfr6E1LvMlF2g1J21IZdSIP4pavCyYwEyXMVCfvv2
-         ez+n4FXX1bKijJ9Q4nunRP3EcTTuHpYV8A5R/WrAp9D+vFuHk+ufsciWeg1Rz7Wuir6Q
-         zoFjbhF5rSTaXfgyO+38mLa8ww4KpHDDolMmvmJ/YAYXMxRpTIpX5agxrVdAWxYWzbB8
-         4Z/6ottxix+1Z/XryFLYy9z/SU6JY1V0b7xEQm6AkOImg9aZvchM6R49UIpfPVcByOAC
-         SLEg==
-X-Gm-Message-State: AOAM531lx7ZVuA/YFWgzxEHS/PhBhKB6W33hzGKD0bsXvaFJguF12p7F
-        SaEfjNcJaeiUhIeRjsXtO87Rk0Im8w==
-X-Google-Smtp-Source: ABdhPJzEazdYi+wBumpNxD6+bRTRjB1cnfTbRe3mJ/iYA6rFI8tXYvlUpz6mMwksoa3oLiTqbPubyQ==
-X-Received: by 2002:a05:6870:ea8d:b0:e6:135c:1a2e with SMTP id s13-20020a056870ea8d00b000e6135c1a2emr15718470oap.9.1651069109351;
-        Wed, 27 Apr 2022 07:18:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b14-20020a056870160e00b000e915a9121csm672499oae.52.2022.04.27.07.18.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 07:18:28 -0700 (PDT)
-Received: (nullmailer pid 4142584 invoked by uid 1000);
-        Wed, 27 Apr 2022 14:18:28 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org, Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20220427010154.29749-2-zev@bewilderbeest.net>
-References: <20220427010154.29749-1-zev@bewilderbeest.net> <20220427010154.29749-2-zev@bewilderbeest.net>
-Subject: Re: [PATCH v4 1/7] dt-bindings: hwmon: Add nuvoton,nct6775
-Date:   Wed, 27 Apr 2022 09:18:28 -0500
-Message-Id: <1651069108.145838.4142583.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S237809AbiD0O3K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:29:10 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF38D29F;
+        Wed, 27 Apr 2022 07:25:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651069559; x=1682605559;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gFU2R6wlf2Alrac6+LofoISZC2O4Ez0lIBWYeC9XB9g=;
+  b=WVcSJKpfLInMzj+J2mpYZp1GKmQd64GUvUiegaUHOvDGVQhTlU4sB922
+   EulcWciIRTOfCVNI8urtp+UOjILGdJ9turE5zuGYwDvxTQGLmoYPboULm
+   w0TKhtV3NpWVJyxXIwJYatTqD22cIGPcmGo6cGKLxz3jjNgUC2QhTjsHs
+   S0qkYiIt9hys0QLfnotFjQ9II5Yzl/oMbSOWfNPK/GgoWbjmK2t/Uju3z
+   kxNqSZpqF/JHUsGpwua5R7/FPpqMXQuxzx1/VRUY/sGGGBbGLCIiY9QgV
+   yGRY/teIR9DjMf+DUvvINdHkRDkEiDgifeIOkTUZ17osego3QtuHLBWo1
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="326435323"
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; 
+   d="scan'208";a="326435323"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 07:25:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; 
+   d="scan'208";a="650724525"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 27 Apr 2022 07:25:29 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1njibh-0004i6-7n;
+        Wed, 27 Apr 2022 14:25:29 +0000
+Date:   Wed, 27 Apr 2022 22:24:54 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andrea Merello <andrea.merello@gmail.com>, jic23@kernel.org,
+        mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, lars@metafoo.de, robh+dt@kernel.org,
+        andy.shevchenko@gmail.com, matt.ranostay@konsulko.com,
+        ardeleanalex@gmail.com, jacopo@jmondi.org,
+        Andrea Merello <andrea.merello@iit.it>
+Subject: Re: [v5 12/14] iio: imu: add BNO055 serdev driver
+Message-ID: <202204272204.zqCIf1KV-lkp@intel.com>
+References: <20220426131102.23966-13-andrea.merello@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220426131102.23966-13-andrea.merello@gmail.com>
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 18:01:48 -0700, Zev Weiss wrote:
-> These Super I/O chips have an i2c interface that some systems expose
-> to a BMC; the BMC's device tree can now describe that via this
-> binding.
-> 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  .../bindings/hwmon/nuvoton,nct6775.yaml       | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-> 
+Hi Andrea,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thank you for the patch! Perhaps something to improve:
 
-yamllint warnings/errors:
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master linux/master v5.18-rc4 next-20220427]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml: properties:nuvoton,tsi-channel-mask: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', 'maximum' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml: properties:nuvoton,tsi-channel-mask: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml: properties:nuvoton,tsi-channel-mask: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml: ignoring, error in schema: properties: nuvoton,tsi-channel-mask
-Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.example.dtb:0:0: /example-0/i2c/superio@4d: failed to match any schema with compatible: ['nuvoton,nct6779']
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrea-Merello/Add-support-for-Bosch-BNO055-IMU/20220426-212132
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+config: alpha-randconfig-r036-20220427 (https://download.01.org/0day-ci/archive/20220427/202204272204.zqCIf1KV-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/675ca9cd13af45cc5943dd15caad5e866fd7c971
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Andrea-Merello/Add-support-for-Bosch-BNO055-IMU/20220426-212132
+        git checkout 675ca9cd13af45cc5943dd15caad5e866fd7c971
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash drivers/iio/imu/bno055/
 
-doc reference errors (make refcheckdocs):
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-See https://patchwork.ozlabs.org/patch/
+All warnings (new ones prefixed by >>):
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+>> drivers/iio/imu/bno055/bno055.c:1317:5: warning: no previous prototype for 'bno055_debugfs_reg_access' [-Wmissing-prototypes]
+    1317 | int bno055_debugfs_reg_access(struct iio_dev *iio_dev, unsigned int reg,
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
 
-pip3 install dtschema --upgrade
+vim +/bno055_debugfs_reg_access +1317 drivers/iio/imu/bno055/bno055.c
 
-Please check and re-submit.
+2f40e22369ed70 Andrea Merello 2022-04-26  1316  
+2f40e22369ed70 Andrea Merello 2022-04-26 @1317  int bno055_debugfs_reg_access(struct iio_dev *iio_dev, unsigned int reg,
+2f40e22369ed70 Andrea Merello 2022-04-26  1318  			      unsigned int writeval, unsigned int *readval)
+2f40e22369ed70 Andrea Merello 2022-04-26  1319  {
+2f40e22369ed70 Andrea Merello 2022-04-26  1320  	return 0;
+2f40e22369ed70 Andrea Merello 2022-04-26  1321  }
+2f40e22369ed70 Andrea Merello 2022-04-26  1322  #endif
+2f40e22369ed70 Andrea Merello 2022-04-26  1323  
 
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
