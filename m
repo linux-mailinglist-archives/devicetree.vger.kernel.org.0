@@ -2,106 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D9E9512453
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1033C512466
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237410AbiD0VKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 17:10:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52262 "EHLO
+        id S235490AbiD0VSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 17:18:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238010AbiD0VKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:10:13 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D32D95DE56
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:06:18 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id bv19so5801416ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:06:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jjauEsEHj5sd6R0bf8PubRvrJywSXsRV0wPk6pUL5dM=;
-        b=lqj+aRvM9wHKgYPNZJHCdMN7jqtNcF8wOkGevnc9WIDv+1Uh+iBIxocTBII9pBiT8a
-         GJyn1HWGPh1cAam7gj83EA9YuXCRZZ8IbQ8zjznfC4RczXzNk7R60uGz78vmDBA9KdIj
-         fq78Fg9uk9GVx2GI4ERJEBWCUC+hso/XqgVjY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jjauEsEHj5sd6R0bf8PubRvrJywSXsRV0wPk6pUL5dM=;
-        b=zI2/X9o4nopB7W6jCU1462ZT47u6tULqGS8gva+XUXRX8HHnYsGXYl8EGiItsehpMk
-         YF6Y5fhsvRKlN173MC9xCBQTdHMQaIEBR93WgvomtSDLQcT+wXQ/487RbexLQgLsObkv
-         P8UnjFA3NG28nc2V77GF76EBmimHnVCo2+gXGCzkOOSGIguVt4zvM1+1OzwaLBc+wCjM
-         2LGkgBnIqL0Yop8a/XOIWoFJHoNm14aEmBw7rDMOj5f/uiurrporVTa8Kkg08+3dOFrh
-         flaOq76eAO66ysJsCJQkB8g0JzuMn2RnlUV/vPkOWYWwnlhtL4yQ97UjWtIAAv6S35ar
-         di8w==
-X-Gm-Message-State: AOAM533GHRL81QRW3KIVmURnsujuia5sOVRNroh3lt3D1LFBz/tzkHvD
-        yJ4IwMOZrMVEw5+d/CwAqujCiva5qCTuHM8X
-X-Google-Smtp-Source: ABdhPJyke26SFrpjX8vcC2hU6/oWlFkkg0QwVIFpYYqXYXO9zCG/mjClzyKHLNWj4YgESLBd0c8w1g==
-X-Received: by 2002:a17:907:3d91:b0:6df:a01c:f7cd with SMTP id he17-20020a1709073d9100b006dfa01cf7cdmr28529313ejc.255.1651093577194;
-        Wed, 27 Apr 2022 14:06:17 -0700 (PDT)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
-        by smtp.gmail.com with ESMTPSA id q8-20020aa7cc08000000b0042617ba637esm203439edt.8.2022.04.27.14.06.12
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 14:06:15 -0700 (PDT)
-Received: by mail-wm1-f46.google.com with SMTP id m62so1820242wme.5
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:06:12 -0700 (PDT)
-X-Received: by 2002:a05:600c:502b:b0:38f:f7c6:3609 with SMTP id
- n43-20020a05600c502b00b0038ff7c63609mr27998069wmr.15.1651093572373; Wed, 27
- Apr 2022 14:06:12 -0700 (PDT)
+        with ESMTP id S236962AbiD0VSK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:18:10 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B51FB4EF61;
+        Wed, 27 Apr 2022 14:14:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 63DDAB82AD5;
+        Wed, 27 Apr 2022 21:14:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B6A5C385B2;
+        Wed, 27 Apr 2022 21:14:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651094096;
+        bh=lBUpmhEoCCcZjpNf/2LO2eIK1qQ0KYaM+91u1icRP2g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oU2ztVFjgMvw1+qj1WBS7W9/nmUHjCoVwwscgZzGJxiO3ECAaPQZf1Rx9JEdGenPM
+         ebhN5I2piVZzEi3K7oFpHbXAMkXFYxjOl0jJkZenWlxk0HVLjOYRhKCtqdzfVu5SMM
+         ZF0Vc+cNPrhcDozL+QJWz7TTfMat4l5LNGz3eFuP5OF7M5mEEe5BFby0oCuV71VXU/
+         1h9CwX8oQiAyR3fQWYaqIEtb51x3e+fE4Rh275DplP3iJHWKmF8JyWSXAhiHaqytyW
+         YxnQnsMne9fJw1e3I4q7hLuQuoVLZze3oELQGgHBvE56ytlqo/m3fmFGl8ZbuHMP9i
+         pPqp19p6NDgew==
+Received: by mail-pg1-f181.google.com with SMTP id t13so2386143pgn.8;
+        Wed, 27 Apr 2022 14:14:56 -0700 (PDT)
+X-Gm-Message-State: AOAM530FzQ4k/yLuZ+YHJjuBWyHVdHqJDncTI5ykCsLOp1DClCxgOl3W
+        kTIT26h1oFVEHXpnQJaQkTbbO+JqV0gN05e35w==
+X-Google-Smtp-Source: ABdhPJwV2SaLGU0GX3CnFgdD1fBlxA/qfqRI/BIaQ15BcYYssgYNxiLPcOUt3FKzTZN5Omsgafx0QjIeoktq+JTOgBk=
+X-Received: by 2002:a63:ff4b:0:b0:3aa:3083:5131 with SMTP id
+ s11-20020a63ff4b000000b003aa30835131mr25856825pgk.148.1651094095516; Wed, 27
+ Apr 2022 14:14:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220426170306.v22.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
- <20220426170306.v22.2.I18481b296484eec47bdc292a31fa46fa8c655ca9@changeid>
-In-Reply-To: <20220426170306.v22.2.I18481b296484eec47bdc292a31fa46fa8c655ca9@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 27 Apr 2022 14:06:00 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UWPG6cZ_dcuXSKuO8ZA34J5TE1OJDxs7B3qn34V6n+eg@mail.gmail.com>
-Message-ID: <CAD=FV=UWPG6cZ_dcuXSKuO8ZA34J5TE1OJDxs7B3qn34V6n+eg@mail.gmail.com>
-Subject: Re: [PATCH v22 2/2] arm64: dts: qcom: sc7280-herobrine: Add nodes for
- onboard USB hub
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+References: <20210324223713.1334666-1-frowand.list@gmail.com>
+ <20210327174035.GA291160@robh.at.kernel.org> <3e6710e7-08ac-7d1b-aa69-bcd36f0d932a@gmail.com>
+ <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
+ <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com> <20210526061144.yvoaurpz75a3bsjr@vireshk-i7>
+ <f651e95b-feef-5c86-edba-d6008bc80b34@gmail.com> <YK70Xsl1oXeEQpWZ@yekko>
+ <CAMuHMdWdb2s08a=axC+m88gARSA3enOBnczsN59XL2F9yHXXYA@mail.gmail.com>
+ <YLBnX4PeK51YwUJB@yekko> <CAMuHMdXPn9FHr41xmihuuzNNNKvY-50yAwY4HyuyVo6qBn=Z1w@mail.gmail.com>
+ <CAMuHMdWeL3DOXY3xcPOBW2WDDGW3PxgSM8didt7J1KxSm1ivJg@mail.gmail.com>
+ <CAMuHMdWXXoS9mmX9VWRQyXfmsy8YROgpLZ-xB7zthEdPdM2u4A@mail.gmail.com>
+ <CAMuHMdVWkSnki8VQDaYRzJ8yu8xtEKpXyfQppTtw3wXDQPmYzw@mail.gmail.com>
+ <d4b7ce06-23e7-1c60-cc0c-b6aea07e0a1a@gmail.com> <CAL_JsqKTckMABk6cM8d=boZcHyLdcqYmbzfKDjAHdCXoCPSDtg@mail.gmail.com>
+ <CAMuHMdU4oUKaGxmaPiC=cX0XpHG3KXhr+4MywEfeQ8sq-EG18A@mail.gmail.com> <CAL_JsqL3fHXNdGS=ap6+5Y25T2zmnDYRkt5dNV9mW7hyanVvuw@mail.gmail.com>
+In-Reply-To: <CAL_JsqL3fHXNdGS=ap6+5Y25T2zmnDYRkt5dNV9mW7hyanVvuw@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 27 Apr 2022 16:14:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJn459-8wnwT0N0CKumnvh_gDkVdgVebvMVa13oTxfQ=g@mail.gmail.com>
+Message-ID: <CAL_JsqJn459-8wnwT0N0CKumnvh_gDkVdgVebvMVa13oTxfQ=g@mail.gmail.com>
+Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
+ to .dtso
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     David Gibson <david@gibson.dropbear.id.au>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Apr 26, 2022 at 5:03 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Wed, Jan 26, 2022 at 1:31 PM Rob Herring <robh@kernel.org> wrote:
 >
-> Add nodes for the onboard USB hub on herobrine devices. Remove the
-> 'always-on' property from the hub regulator, since the regulator
-> is now managed by the onboard_usb_hub driver.
+> On Fri, Jan 14, 2022 at 3:25 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Fri, Jan 14, 2022 at 3:10 AM Rob Herring <robh@kernel.org> wrote:
+> > > On Thu, Jan 6, 2022 at 11:23 AM Frank Rowand <frowand.list@gmail.com> wrote:
+> > > > Patient Geert has pinged again.
+> > >
+> > > If it's not a patch to be reviewed, then I'm not going to see it most
+> > > likely. I don't read the DT list regularly...
+> >
+> > Fair enough...
+> >
+> > > > If I remember correctly you guys were not thrilled with this idea, but
+> > > > also did not seem strongly against it.  Are you willing to go along
+> > > > with .dtso for overlay source files?  If so, I will revive this patch
+> > > > series.
+> > > >
+> > > > David, if you are against supporting .dtso in the dtc compiler then
+> > > > the kernel can still support it through make rules.
+> > >
+> > > I'm not really interested in diverging from dtc. I'd suggest moving
+> > > the discussion to dtc list and/or devicetree-spec if you want to get
+> > > more attention on this.
+> >
+> > What needs to be supported in the dtc compiler?
+> > The fallback passed to guess_input_format() is "dts".
+> > So this has been working out-of-the-box since forever?
 >
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
+> Ah, okay.
 >
-> Changes in v22:
-> - patch added to the series
+> > > Also, keep in mind that extensions also affect MIME types which
+> > > someone was also asking about recently.
+> >
+> > You mean "MIME type of Devicetree Blobs and Sources"[1]?
+> > According to [2](2022-01-13), none of that has happened.
 >
->  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 21 ++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
+> This is what I was thinking of:
+>
+> https://github.com/devicetree-org/devicetree-specification/issues/46
+>
+> In any case, given everyone is ambivalent, send me an updated patch
+> and I'll apply it.
 
-Just like on patch #1, I presume it will be moderately annoying if
-this lands in the Qualcomm branch before the driver lands in mainline?
-I guess very few people have herobrine hardware, so maybe not that big
-of a deal...
+Ping! Anyone still want this?
 
-In any case, I'm happy with:
+What I don't want to see is a mixture of .dts and .dtso. And now I'm
+reviewing RPi overlay patches[1] with .dts.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Rob
+
+[1] https://lore.kernel.org/r/20220427185243.173594-3-detlev.casanova@collabora.com
