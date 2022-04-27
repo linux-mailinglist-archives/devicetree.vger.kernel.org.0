@@ -2,189 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9043951116B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7CF3511176
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242894AbiD0Gr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 02:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37320 "EHLO
+        id S236772AbiD0Grx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 02:47:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352922AbiD0GrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 02:47:22 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADED314AADA;
-        Tue, 26 Apr 2022 23:44:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651041852; x=1682577852;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=re7LN+N41bRnAIzjSbkbrTfuLiFGkUj/O/UB6i31Auc=;
-  b=hfjeGJwRQeb7/O/yEi6fk7PkNoB9ugUYccugweVkUVNpKyflLrcquCgV
-   4uaI9+0XOxT+VUQKKGvrrUiyOF3O3uPccB2rpTR0ZV1v/lGc+PB7894fW
-   H82defWcQhUHMAmkPT2NOQfesw6VAzTtGkMxaDUGgc3eunk3VglK4zCiM
-   qDi7Fw0+Tc+/RZraHR2V27fchYi5qrgGWx5H9Zl16Ur69k1Pg6bdOSpVl
-   9cDy3bLWzuHOCW0R9dW65RJixIHV3GCVU7hMN0O5ICy9LBB2rHVgMnEBK
-   s8YRX25aKaHe52fYysIxZMfUT5CjJpYG+pUkaHcfWm3NsBVVJzNbT4GrU
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="326325004"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
-   d="scan'208";a="326325004"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 23:44:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
-   d="scan'208";a="580413754"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.60.122])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2022 23:43:57 -0700
-Message-ID: <fcd49d21-7176-4940-e988-a4815ae013f3@intel.com>
-Date:   Wed, 27 Apr 2022 09:43:53 +0300
+        with ESMTP id S1358230AbiD0Grv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 02:47:51 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A7214AF45;
+        Tue, 26 Apr 2022 23:44:40 -0700 (PDT)
+X-UUID: 1ec1d605330a436cbe742b736efea618-20220427
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:6259bcda-133a-4606-aa7d-8801099abe87,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:75
+X-CID-INFO: VERSION:1.1.4,REQID:6259bcda-133a-4606-aa7d-8801099abe87,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:75
+X-CID-META: VersionHash:faefae9,CLOUDID:1c56a4c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:4ed893b03470,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 1ec1d605330a436cbe742b736efea618-20220427
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2017991267; Wed, 27 Apr 2022 14:44:33 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 27 Apr 2022 14:44:32 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Apr
+ 2022 14:44:30 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Apr 2022 14:44:30 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
+        <randy.wu@mediatek.com>, <moudy.ho@mediatek.com>,
+        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        <river.cheng@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v17 0/6] Add mutex support for MDP
+Date:   Wed, 27 Apr 2022 14:44:19 +0800
+Message-ID: <20220427064425.30383-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.7.0
-Subject: Re: [PATCH 2/5] mmc: sdhci-brcmstb: Re-organize flags
-Content-Language: en-US
-To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com
-Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220421182803.6495-1-kdasu.kdev@gmail.com>
- <20220421182803.6495-3-kdasu.kdev@gmail.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20220421182803.6495-3-kdasu.kdev@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/04/22 21:28, Kamal Dasu wrote:
-> From: Al Cooper <alcooperx@gmail.com>
-> 
-> Re-organize the flags by basing the bit names on the flag that they
-> apply to. Also change the "flags" member in the "brcmstb_match_priv"
-> struct to const.
-> 
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+Change since V16:
+- Rebase on v5.18-rc4
+- Fix misplacement of definition "CONFIG_MTK_CMDQ" which
+  caused compilation error when CMD is not supported.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Change since V15:
+- Rebase on linux-next.
+- As suggested by Angelo, split common parts into independent functions to
+  make functions more concise.
+- Based on safety considerations, increase the returned error number and
+  message to facilitate error handling.
 
-> ---
->  drivers/mmc/host/sdhci-brcmstb.c | 32 ++++++++++++++++----------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-> index 11037cd14cfa..f32aa045c26d 100644
-> --- a/drivers/mmc/host/sdhci-brcmstb.c
-> +++ b/drivers/mmc/host/sdhci-brcmstb.c
-> @@ -18,20 +18,22 @@
->  #define SDHCI_VENDOR 0x78
->  #define  SDHCI_VENDOR_ENHANCED_STRB 0x1
->  
-> -#define BRCMSTB_PRIV_FLAGS_NO_64BIT		BIT(0)
-> -#define BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT	BIT(1)
-> +#define BRCMSTB_MATCH_FLAGS_NO_64BIT		BIT(0)
-> +#define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT	BIT(1)
-> +
-> +#define BRCMSTB_PRIV_FLAGS_HAS_CQE		BIT(0)
->  
->  #define SDHCI_ARASAN_CQE_BASE_ADDR		0x200
->  
->  struct sdhci_brcmstb_priv {
->  	void __iomem *cfg_regs;
-> -	bool has_cqe;
-> +	unsigned int flags;
->  };
->  
->  struct brcmstb_match_priv {
->  	void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
->  	struct sdhci_ops *ops;
-> -	unsigned int flags;
-> +	const unsigned int flags;
->  };
->  
->  static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
-> @@ -134,13 +136,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
->  };
->  
->  static struct brcmstb_match_priv match_priv_7425 = {
-> -	.flags = BRCMSTB_PRIV_FLAGS_NO_64BIT |
-> -	BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
-> +	.flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
-> +	BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
->  	.ops = &sdhci_brcmstb_ops,
->  };
->  
->  static struct brcmstb_match_priv match_priv_7445 = {
-> -	.flags = BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT,
-> +	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
->  	.ops = &sdhci_brcmstb_ops,
->  };
->  
-> @@ -176,7 +178,7 @@ static int sdhci_brcmstb_add_host(struct sdhci_host *host,
->  	bool dma64;
->  	int ret;
->  
-> -	if (!priv->has_cqe)
-> +	if ((priv->flags & BRCMSTB_PRIV_FLAGS_HAS_CQE) == 0)
->  		return sdhci_add_host(host);
->  
->  	dev_dbg(mmc_dev(host->mmc), "CQE is enabled\n");
-> @@ -225,7 +227,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  	struct sdhci_brcmstb_priv *priv;
->  	struct sdhci_host *host;
->  	struct resource *iomem;
-> -	bool has_cqe = false;
->  	struct clk *clk;
->  	int res;
->  
-> @@ -244,10 +245,6 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  		return res;
->  
->  	memset(&brcmstb_pdata, 0, sizeof(brcmstb_pdata));
-> -	if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
-> -		has_cqe = true;
-> -		match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
-> -	}
->  	brcmstb_pdata.ops = match_priv->ops;
->  	host = sdhci_pltfm_init(pdev, &brcmstb_pdata,
->  				sizeof(struct sdhci_brcmstb_priv));
-> @@ -258,7 +255,10 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  
->  	pltfm_host = sdhci_priv(host);
->  	priv = sdhci_pltfm_priv(pltfm_host);
-> -	priv->has_cqe = has_cqe;
-> +	if (device_property_read_bool(&pdev->dev, "supports-cqe")) {
-> +		priv->flags |= BRCMSTB_PRIV_FLAGS_HAS_CQE;
-> +		match_priv->ops->irq = sdhci_brcmstb_cqhci_irq;
-> +	}
->  
->  	/* Map in the non-standard CFG registers */
->  	iomem = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> @@ -287,14 +287,14 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
->  	 * properties through mmc_of_parse().
->  	 */
->  	host->caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-> -	if (match_priv->flags & BRCMSTB_PRIV_FLAGS_NO_64BIT)
-> +	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_NO_64BIT)
->  		host->caps &= ~SDHCI_CAN_64BIT;
->  	host->caps1 = sdhci_readl(host, SDHCI_CAPABILITIES_1);
->  	host->caps1 &= ~(SDHCI_SUPPORT_SDR50 | SDHCI_SUPPORT_SDR104 |
->  			 SDHCI_SUPPORT_DDR50);
->  	host->quirks |= SDHCI_QUIRK_MISSING_CAPS;
->  
-> -	if (match_priv->flags & BRCMSTB_PRIV_FLAGS_BROKEN_TIMEOUT)
-> +	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
->  		host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
->  
->  	res = sdhci_brcmstb_add_host(host, priv);
+Change since V14:
+- Rebase on linux-next.
+- Add new SOF and MOD table for general interface to integrate the requirement
+  of different modules.
+- Remove unnecessary MOD structure.
+- By Rob Herring's suggestion, revise the description of
+  "mediatek,gce-client-reg" in MUTEX dt-bindings.
+- Delete the redundant definition of MTK_MUTEX_ENABLE and modify corresponding
+  function.
+
+Change since V13:
+- Rebase on linux-next tag:next-20220316
+- Adjust the MUTEX MOD table structure and corresponding functions.
+- Adjust the definition style about 8183 MDP MOD.
+- Remove redundant definitions and enumerations.
+- Adjust the CMDQ operation in MUTEX to be backward compatible
+
+Change since V12:
+- Rebase on linux-next
+- Remove ISP related settings in MMSYS
+- Removed CMDQ operations previously used by MDP in MMSYS
+- Move mediatek MUTEX dt-binding path
+- Add additional property in MUTEX for CMDQ operations
+
+Change since V11:
+- Rebase on v5.17-rc6.
+
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.17-next/soc&id=5f9b5b757e44de47ebdc116c14b90e3cc8bc7acb
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.17-next/soc&id=831785f0e5b919c29e1bc5f9a74e9ebd38289e24
+[3]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.17-next/soc&id=15f1768365aed810826a61fef4a744437aa5b426
+
+Change since v10:
+- For some ISP application scenarios, such as preview and recording
+  at the same time.
+  The routing table needs to be discarded, and the calculation result
+  on the SCP side is used to write a suitable mux setting for
+  1 input and 2 output.
+- Adjust the GCE client register parsing method to avoid redundant warning logs.
+
+Change since v9:
+- Add API for MDP getting mutex mod.
+
+Hi,
+
+This patch splits mmsys and mutex settings from Media Data Path 3 (MDP3),
+and original mailling list list below:
+https://patchwork.kernel.org/project/linux-mediatek/cover/20211201095031.31606-1-moudy.ho@mediatek.com/
+Corresponding settings and interfaces are added for MDP operation in the
+mmsys and mutex drivers, which increases the independence of the modules
+
+Moudy Ho (6):
+  soc: mediatek: mutex: add common interface for modules setting
+  soc: mediatek: mutex: add 8183 MUTEX MOD settings for MDP
+  dt-bindings: soc: mediatek: move out common module from display folder
+  dt-bindings: soc: mediatek: add gce-client-reg for MUTEX
+  dts: arm64: mt8183: add GCE client property for Mediatek MUTEX
+  soc: mediatek: mutex: add functions that operate registers by CMDQ
+
+ .../mediatek/mediatek,mutex.yaml              |  14 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   1 +
+ drivers/soc/mediatek/mtk-mutex.c              | 165 +++++++++++++++++-
+ include/linux/soc/mediatek/mtk-mutex.h        |  24 +++
+ 4 files changed, 202 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/{display => soc}/mediatek/mediatek,mutex.yaml (82%)
+
+-- 
+2.18.0
 
