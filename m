@@ -2,101 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C21511D23
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE148511FC7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238870AbiD0PHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 11:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57484 "EHLO
+        id S238882AbiD0PIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 11:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236491AbiD0PHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:07:50 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D204377CE
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:04:38 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id r13so4000074ejd.5
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 08:04:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qSFg4Tj5t0iyrEchnrtK0dBSQObqtqTWb9jQH9X+b9o=;
-        b=FcqJ53fMHsoNteWG65OE61cgPXDKxl2TB9xlqpw7d2H0xIFAW3J9jIHgc8D+JVGNXF
-         qAuj2G48nNlSqvwteyPX1018Tbc1wLpjDiRabQstpIxsxku0evzjG/evaCOhbdeI9pq9
-         gJPqELQa39qzlpYqM/JNJ0olZwD5UlrmcqH3RYUG/5rYuKD9ZNRvQQiuZK5S4Z87ZXVX
-         HkVUxfAENgz5hwMOBPx7Gd9WpjQrLgYueyjWQ8T9uPHhK9/vfhjMx2Rw/qQ2OxPedcD+
-         FWmIPna0ib0Y+6n3lkaeWzGijXyJkwbGiepQyfeCGFYu0tBeX6s808iQ8YIDg1htIgWz
-         4A7w==
+        with ESMTP id S236491AbiD0PIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 11:08:32 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE93CE0F0;
+        Wed, 27 Apr 2022 08:05:20 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id f14so1328515qtq.1;
+        Wed, 27 Apr 2022 08:05:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=qSFg4Tj5t0iyrEchnrtK0dBSQObqtqTWb9jQH9X+b9o=;
-        b=3RmXwcj6KwITOa5FNzOUe1vXiyJycgeJ92VbfEPIMcg2OCq17nfV/mWMoCco/O5Ufp
-         uWf5v28eb2ArZSqxaWC1fw77d00kKxQ0wAOsiF1bZDy/E2ryROF+itwnVFs3Z7IRCvtg
-         jFuk4emUNq2x9zGgOFrs4QgBXJT09eDOa3Jl26irhschdppE7eH47/B4ISQMv82r/6MP
-         fx5cJ4eF0kVa50Q+H/OEV6ZGjEm0+Vtj6/BKM+edXbBDDMDVY6Ai4DTVpluvfe5clYoC
-         CDlNQZvwOJ4JZn5s9R1FB+gMLZNYCVeUESXpEPYGm6WgpRGZOcCjVlbQEXnty8dIU1ms
-         tbDg==
-X-Gm-Message-State: AOAM532Rw4CsCPaM+y5rPtQTwkzvrVt8RaBRVdh52arykrZmMtwdnDk0
-        9nPKxb7ahB3sROlc5rO7svkTHA==
-X-Google-Smtp-Source: ABdhPJw6xDM1POPST6rczNOf9S7K4mHZOwvxk95MGxUyrktevc3E9tLAv3v4JHjg4digjA0etDk5qA==
-X-Received: by 2002:a17:906:824a:b0:6f3:a07b:2568 with SMTP id f10-20020a170906824a00b006f3a07b2568mr12384434ejx.84.1651071876676;
-        Wed, 27 Apr 2022 08:04:36 -0700 (PDT)
-Received: from [192.168.0.155] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o2-20020a056402438200b0041fb0f2e155sm4792899edc.20.2022.04.27.08.04.33
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=agafgRIcyKU96KX9arNKc39rksJmBWgsdHHVPeJSabE=;
+        b=uG55K86Ebxit2/XpbwBAahXZpgZX4byNpCDUtn6K1R6w/2u+Mt8neOoF+sS3+zEciS
+         syGPDX2KrABwtmFUlSmBYT8cQ0WGkby6uQTedBW33y5cee6GSx4y2CY0CVnlszwbfagb
+         jfWPGwz/fCb6otop9yBxXnmS8H071Vc0Zv9U0JXwv/SuVbvgciFcRHNJrMXWX24v4L6U
+         pVAVm+b6Ic/VTh4bgRnPn7JVky8LzAL3ytbsWIWVzBO7Hf7xXm6cc6UwbfRNW9o5ncoG
+         8HC6vbH7K5GnjnJHIvscKxdEbqR9rxSqzL34f0Z4glvfrblQ9d8U8HwxZLPmE3pPt8Mx
+         jG7g==
+X-Gm-Message-State: AOAM531yFzOhinldpEXF54TCxgOVe+LWG1zVyHQ3/huiDeqbUrb5wYNl
+        FFE53VoVCL+Iq4Rg15y8PiNsjIy71E8f1w==
+X-Google-Smtp-Source: ABdhPJywoYYJlCD0rNO39LCYyn49J4PvQ/tUMmDdSANKZwOSr0eX0hJwhsA9rtF9qxOVJrum/ZwF8Q==
+X-Received: by 2002:a05:622a:608c:b0:2f1:e3fa:b603 with SMTP id hf12-20020a05622a608c00b002f1e3fab603mr19200084qtb.48.1651071919469;
+        Wed, 27 Apr 2022 08:05:19 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id r83-20020a37a856000000b0069ed4436a49sm8194957qke.87.2022.04.27.08.05.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 08:04:35 -0700 (PDT)
-Message-ID: <fedb56be-f275-aabb-cdf5-dbd394b8a7bd@linaro.org>
-Date:   Wed, 27 Apr 2022 17:04:33 +0200
+        Wed, 27 Apr 2022 08:05:19 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id d12so3917920ybc.4;
+        Wed, 27 Apr 2022 08:05:18 -0700 (PDT)
+X-Received: by 2002:a5b:984:0:b0:63f:8c38:676c with SMTP id
+ c4-20020a5b0984000000b0063f8c38676cmr26972135ybq.393.1651071918482; Wed, 27
+ Apr 2022 08:05:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: PCI schema accepts unevaluated properties
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <42fbcb55-b6ef-906f-7584-62a6097a8639@linaro.org>
- <CAL_JsqJ3FiBci1+8oSOHA6GQ8Q3HHM3QcY+GFg=+KVZEQAnb6A@mail.gmail.com>
- <345716e9-5624-5ba0-09f0-46e9850c546c@linaro.org>
- <CAL_Jsq+d-RHNnTyy+mrs2L7Zycjwq07vENCH8+SHZBuZGCuq=A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_Jsq+d-RHNnTyy+mrs2L7Zycjwq07vENCH8+SHZBuZGCuq=A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220422120850.769480-1-herve.codina@bootlin.com> <20220422120850.769480-2-herve.codina@bootlin.com>
+In-Reply-To: <20220422120850.769480-2-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 17:05:06 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVk-UkFqqFEeUn+ZqrdSy7u+S6Mz2GeDmx=mr33khzO6A@mail.gmail.com>
+Message-ID: <CAMuHMdVk-UkFqqFEeUn+ZqrdSy7u+S6Mz2GeDmx=mr33khzO6A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: PCI: pci-rcar-gen2: Convert bindings
+ to json-schema
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 16:53, Rob Herring wrote:
->> I'll fix the power-domains, but dma-channels/dma-requests should not
->> fail. This should be accepted through:
->> arm,pl330.yaml -> dma-controller.yaml -> dma-common.yaml
-> 
-> Except that the standard property names are 'dma-channels' and
-> 'dma-requests' without the '#'.
-> 
-> Thanks for the fixes. Unfortunately, it looks like NAND needs the same
-> parent/child schema split that was done for SPI.
+On Fri, Apr 22, 2022 at 2:09 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> Convert Renesas PCI bridge bindings documentation to json-schema.
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Oh, few drivers indeed parse '#dma-xxx' variant. For pl330 schema it was
-introduced with 42cf20980cde ("ARM: dts: pl330: Add #dma-cells for
-generic dma binding support")
- which clearly defines something different than uses in example. I can
-imagine that editor added '#' automatically after pressing <enter> when
-editing the example.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-This wrong variant spread all over and in practice was not detected
-because pl330 driver does not parse this field.
+Gr{oetje,eeting}s,
 
-I'll fix it.
+                        Geert
 
-Best regards,
-Krzysztof
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
