@@ -2,56 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DCD8511623
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA20F51159C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232526AbiD0LX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 07:23:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35252 "EHLO
+        id S232680AbiD0L3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 07:29:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbiD0LX0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:23:26 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317F830F55;
-        Wed, 27 Apr 2022 04:20:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D44ADB8261B;
-        Wed, 27 Apr 2022 11:20:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 64265C385AA;
-        Wed, 27 Apr 2022 11:20:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651058412;
-        bh=l53XzaWwKba3OJW6HFGuebym4/RWTvktNA+PgO3IgHE=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=Ucdokk1b9Bx01ozICt01o0aEmWJxdHNoWij09FFFaYICrGv8rAlH+BpGkter3peOI
-         ktLj3AR4YJspEvkwIGeaUrx/xw7Sh5Z9eGINYAS+ZP/puMfnFO9LUprA1V770EXPxa
-         13NOCczXBJU9dcpWO2gSXzWMsOtpKaNlWOGJhCwZTcrwRbx5DYp/1jGd5OzMDNL45v
-         9JZu0oPhZd6oTH5sjeq9Qvei7NW+JqMgdTjDXS9XQEIxBv5MtyX/rXfw1lksImqeos
-         3Uh7yxKcBDf+hpYS7rCP/4+xkbdSv7R9/AoshJhTpXagRx19a6p4s4AzEPwZ2F6SbS
-         SR+LirWTbODOQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 47353E5D087;
-        Wed, 27 Apr 2022 11:20:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232644AbiD0L25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:28:57 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0B6BF340F4
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 04:25:47 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AAAFCED1;
+        Wed, 27 Apr 2022 04:25:46 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8F4133F5A1;
+        Wed, 27 Apr 2022 04:25:45 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Will Deacon <will@kernel.org>
+Subject: [PATCH 00/11] dt-bindings: convert various Arm Ltd. IP to DT schema
+Date:   Wed, 27 Apr 2022 12:25:17 +0100
+Message-Id: <20220427112528.4097815-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/5] net: lan966x: Add support for PTP
- programmable pins
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165105841228.27586.15571101022871593482.git-patchwork-notify@kernel.org>
-Date:   Wed, 27 Apr 2022 11:20:12 +0000
-References: <20220427065127.3765659-1-horatiu.vultur@microchip.com>
-In-Reply-To: <20220427065127.3765659-1-horatiu.vultur@microchip.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com,
-        richardcochran@gmail.com
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,36 +41,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi,
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+in an effort to get the FVP DTs to pass the automated DT bindings checks,
+this series collects some DT schema binding conversions for various
+Arm Ltd. IP devices.
+This is mostly for old IP, but it's still used by the FVP, for which we
+have a DT in the tree.
 
-On Wed, 27 Apr 2022 08:51:22 +0200 you wrote:
-> Lan966x has 8 PTP programmable pins. The last pin is hardcoded to be used
-> by PHC0 and all the rest are shareable between the PHCs. The PTP pins can
-> implement both extts and perout functions.
-> 
-> v1->v2:
-> - use ptp_find_pin_unlocked instead of ptp_find_pin inside the irq handler.
-> 
-> [...]
+Please have a look!
 
-Here is the summary with links:
-  - [net-next,v2,1/5] dt-bindings: net: lan966x: Extend with the ptp external interrupt.
-    https://git.kernel.org/netdev/net-next/c/c1a519919d04
-  - [net-next,v2,2/5] net: lan966x: Change the PTP pin used to read/write the PHC.
-    https://git.kernel.org/netdev/net-next/c/77f2accb501a
-  - [net-next,v2,3/5] net: lan966x: Add registers used to configure the PTP pin
-    https://git.kernel.org/netdev/net-next/c/3adc11e5fc5f
-  - [net-next,v2,4/5] net: lan966x: Add support for PTP_PF_PEROUT
-    https://git.kernel.org/netdev/net-next/c/2b7ff2588ec2
-  - [net-next,v2,5/5] net: lan966x: Add support for PTP_PF_EXTTS
-    https://git.kernel.org/netdev/net-next/c/f3d8e0a9c28b
+Cheers,
+Andre
 
-You are awesome, thank you!
+Andre Przywara (11):
+  dt-bindings: iommu: arm,smmu-v3: make PRI IRQ optional
+  dt-bindings: arm: spe-pmu: convert to DT schema
+  dt-bindings: arm: sp810: convert to DT schema
+  dt-bindings: sound: add Arm PL041 AACI DT schema
+  dt-bindings: serio: add Arm PL050 DT schema
+  dt-bindings: arm: convert vexpress-sysregs to DT schema
+  dt-bindings: arm: convert vexpress-config to DT schema
+  dt-bindings: display: convert PL110/PL111 to DT schema
+  dt-bindings: display: convert Arm HDLCD to DT schema
+  dt-bindings: display: convert Arm Mali-DP to DT schema
+  dt-bindings: display: convert Arm Komeda to DT schema
+
+ .../devicetree/bindings/arm/sp810.txt         |  46 ---
+ .../devicetree/bindings/arm/sp810.yaml        |  82 ++++++
+ .../devicetree/bindings/arm/spe-pmu.txt       |  20 --
+ .../devicetree/bindings/arm/spe-pmu.yaml      |  40 +++
+ .../bindings/arm/vexpress-config.yaml         | 274 ++++++++++++++++++
+ .../bindings/arm/vexpress-sysreg.txt          | 103 -------
+ .../bindings/arm/vexpress-sysreg.yaml         |  89 ++++++
+ .../devicetree/bindings/display/arm,hdlcd.txt |  79 -----
+ .../bindings/display/arm,hdlcd.yaml           |  91 ++++++
+ .../bindings/display/arm,komeda.txt           |  78 -----
+ .../bindings/display/arm,komeda.yaml          | 130 +++++++++
+ .../bindings/display/arm,malidp.txt           |  68 -----
+ .../bindings/display/arm,malidp.yaml          | 117 ++++++++
+ .../devicetree/bindings/display/arm,pl11x.txt | 110 -------
+ .../bindings/display/arm,pl11x.yaml           | 174 +++++++++++
+ .../bindings/iommu/arm,smmu-v3.yaml           |  21 +-
+ .../devicetree/bindings/serio/amba-pl050.yaml |  67 +++++
+ .../devicetree/bindings/sound/amba-pl041.yaml |  62 ++++
+ 18 files changed, 1142 insertions(+), 509 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/sp810.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/sp810.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/spe-pmu.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/spe-pmu.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/vexpress-config.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/vexpress-sysreg.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/arm,hdlcd.txt
+ create mode 100644 Documentation/devicetree/bindings/display/arm,hdlcd.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/arm,komeda.txt
+ create mode 100644 Documentation/devicetree/bindings/display/arm,komeda.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/arm,malidp.txt
+ create mode 100644 Documentation/devicetree/bindings/display/arm,malidp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/arm,pl11x.txt
+ create mode 100644 Documentation/devicetree/bindings/display/arm,pl11x.yaml
+ create mode 100644 Documentation/devicetree/bindings/serio/amba-pl050.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/amba-pl041.yaml
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.25.1
 
