@@ -2,56 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04E02511E97
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3519951214C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbiD0Sa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 14:30:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55148 "EHLO
+        id S229718AbiD0SoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 14:44:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240155AbiD0SaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:30:11 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 248708148E;
-        Wed, 27 Apr 2022 11:21:45 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id r14-20020a9d750e000000b00605446d683eso1622660otk.10;
-        Wed, 27 Apr 2022 11:21:45 -0700 (PDT)
+        with ESMTP id S229739AbiD0Snl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:43:41 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96117E49FC;
+        Wed, 27 Apr 2022 11:24:32 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-e2fa360f6dso2864024fac.2;
+        Wed, 27 Apr 2022 11:24:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qNkqFtfWIpgg7q9nQFPkAJIRdW96mm2Dj66zabaF1FI=;
-        b=yYP1VJgT7NbDUdGL0+pfrE9bOX5p6XvOFxbM9i3+JX8PoCjhaW2DDGKMsBLY82aPsn
-         fHlBoDNpgJhfMavgzSEnjjHhiwmqp7wBDwC8IvYM92St6umU4Ggc1dGJFlngqfPY7HWC
-         a/e6t8VOkKZOkX26oTa5ehVnjMCg9UX/ZKmZ3xTrqV3Amd2mY+Q5m4jHKVtxqaS7JFv0
-         L/iMM2z7Lun7QvYuDjqz7rKR3UpIkVNr8/RFKP0LvD48KVv7S/0dOCZV2oNKWIa5yR3T
-         fMdNEVCN2sm8TngHEAAHnzf9mghRmDu3tdHB9Lq01pcXV61j5z0d7gCj4I5EaeRfX700
-         MluA==
-X-Gm-Message-State: AOAM530f2VliQyHb30YMtB1RYuQlUF3w89Dq9xnZBdUVfVeJXyQN35Yb
-        IIPfUGRAJTTweHVSAG+cGc4CbgiPTQ==
-X-Google-Smtp-Source: ABdhPJyux0Hlm+XzojBSEe9lEgsQs7GAExFCj6tUC8uAd6UyLMkitUemslG49L02pGfQQa/jnCa2BQ==
-X-Received: by 2002:a05:6830:2414:b0:605:4d82:8d93 with SMTP id j20-20020a056830241400b006054d828d93mr10162244ots.130.1651083704278;
-        Wed, 27 Apr 2022 11:21:44 -0700 (PDT)
+        bh=c/GnVwnwo3swW/L/hGOyOJtE6p0V0pOOR6iVj+FsDdg=;
+        b=cwIdCPKZ91V+jL/RXBOmlwHxXfGYs4sS0tgW9VFwFmAthi+vPyG+9EAiKUOVw+n4pM
+         vDgh4Do5W5nC6uEVU/Yp3G0p5imu7kmEMPY23+0GRmCmur/Aol7QyoUi6xHkivNPshRQ
+         83pOdJCN54ZEL40OfJbJweswbr34eQJI3BLHIgih4UCxgYoNEbuiZtnPw8sRx+2mNsEO
+         iIFO7j+9uYcWZsAoDwwPj31cyDiKBoOS8BUavMDyeRvobt34eQytMSCKU+kmlgUPdlNe
+         Qpw0TCnHH8sm+UjnTbuPTnJc9SgyWhGk7A+CzK3Wg4XhD8j+IqzH9MQSRahc0gT+Qkwt
+         5KHw==
+X-Gm-Message-State: AOAM533TGzqSM+gbLWoA8Ybj+2S/NZkSZoX3/KuTOdkBjsMX8ec8sGzA
+        /cUQirZDh7ZXj2R4H6z4euzRwTW/Mg==
+X-Google-Smtp-Source: ABdhPJy3516HzZA9HqzDNS3+2KEHA9tbv+VMkBH8NqyFmymWYl8qrC2BTdv1Cci5bujI6bC3dRkaCA==
+X-Received: by 2002:a05:6871:89e:b0:e9:5368:10ed with SMTP id r30-20020a056871089e00b000e9536810edmr5840479oaq.182.1651083871893;
+        Wed, 27 Apr 2022 11:24:31 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e18-20020a9d7312000000b006054dfa7eb6sm6089856otk.78.2022.04.27.11.21.43
+        by smtp.gmail.com with ESMTPSA id eg20-20020a056870989400b000e686d1387asm972903oab.20.2022.04.27.11.24.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 11:21:43 -0700 (PDT)
-Received: (nullmailer pid 402242 invoked by uid 1000);
-        Wed, 27 Apr 2022 18:21:43 -0000
-Date:   Wed, 27 Apr 2022 13:21:43 -0500
+        Wed, 27 Apr 2022 11:24:31 -0700 (PDT)
+Received: (nullmailer pid 406603 invoked by uid 1000);
+        Wed, 27 Apr 2022 18:24:30 -0000
+Date:   Wed, 27 Apr 2022 13:24:30 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: dma: pl330: Add power-domains
-Message-ID: <YmmJt29rGZ38w+ie@robh.at.kernel.org>
-References: <20220427064048.86635-1-krzysztof.kozlowski@linaro.org>
+Cc:     Jan Kotas <jank@cadence.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Avri Altman <avri.altman@wdc.com>,
+        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH] dt-bindings: ufs: cdns,ufshc: Add power-domains
+Message-ID: <YmmKXqIRrXWJ1wvD@robh.at.kernel.org>
+References: <20220427065802.110402-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220427064048.86635-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220427065802.110402-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -63,15 +65,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Apr 2022 08:40:48 +0200, Krzysztof Kozlowski wrote:
-> The pl330 DMA controller on Exynos SoC (e.g. dma-controller@3880000 in
-> Exynos5420) belongs to power domain, so allow such property.
+On Wed, 27 Apr 2022 08:58:02 +0200, Krzysztof Kozlowski wrote:
+> The Cadence UFS controller can be part of power domain (as it is in
+> example DTS of TI J721e UFS Host Controller Glue), so allow such
+> property.
 > 
 > Reported-by: Rob Herring <robh@kernel.org>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/dma/arm,pl330.yaml | 3 +++
+>  Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml | 3 +++
 >  1 file changed, 3 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
