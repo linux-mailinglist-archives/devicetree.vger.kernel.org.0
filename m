@@ -2,148 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 945385114F9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 12:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 440D551157A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 13:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbiD0KoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 06:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45744 "EHLO
+        id S232075AbiD0LDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 07:03:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229754AbiD0KoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 06:44:04 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150050.outbound.protection.outlook.com [40.107.15.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98205496D79;
-        Wed, 27 Apr 2022 03:24:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q/UX2QfCwOrkP2gGqaHfe9ThjkZmdeW4LEOetSh/0O2/rVekGOecxCz9CJ7C3nZXqYb7dukcz7ASPrdmVcsLvEcMgV/m00KYBIa8VEVeoG0CT56CqQLueh2Ckg0okVdEDu/ktd69mPV51LUh9+YxLznDllNzI+8RFyEWV56vOYsif15xtF3ng8Fe8wbezwZBuiDiRv8V8d3tCButWy24TOwn8U1LmUJTFxxZfHh2WT15QAtyWR1uNhTEusfIcsvkePsvYlwSVjoIxyk+jTzEGfDtbSah0LEtG2nDto4Jir90JRgbE1+euLvgIf56C2gDZ6JmZWIx+hxnecnAz1WF3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mp0FTaZH9hnb589ga0E1VoHfM/vjPT3caA8LiNs3OT0=;
- b=HaICJMdd53pi+NrtJ2SwlwAKA0D+vv8wMlpQMc1oaRfis2YkS5kG9rFcIFZ0CTwbcecq+yKctyLoO6n302QcmeaowwVQdx4d/cOta1ztavupBy9+f62PyMIaKZAH96OvhZm6Yqwv24JobA34eWw6o+ZSU5Czg722cS2UYCSSWBs+fg0Y8oGuogddzzsTGZFQyKH/LbzHci1PXh3DDdqkZE5NtgBgNTgSQyd3ivWV0W3LnFSVtVT59NwcyQM54CkvNxCXizrnREEmXn+ATmjkXRDQx3xtrAtok+v9VkFBI6DyXdkKZvLu5eh1IobteVj3kwQexDm/+4I22dHWIx3yHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mp0FTaZH9hnb589ga0E1VoHfM/vjPT3caA8LiNs3OT0=;
- b=Xp4SQllnSxuTQDZ0agzA8QqOOem1nJxr9cOpTqW83PIuso8sn6d97DsAPj2WJ7NICv3wUL2xPxuK/jKYobvPeTM09ElH8Xch0syhN91jlCrpeSpzafPM+Ol5KeSUFiXzbl0IWAnPAaVor76dd8GosaOvt9cBNoAjVQCbPmhS+B4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by DBBPR04MB6218.eurprd04.prod.outlook.com (2603:10a6:10:d0::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.21; Wed, 27 Apr
- 2022 09:26:21 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::ed87:b085:802d:2390]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::ed87:b085:802d:2390%6]) with mapi id 15.20.5206.013; Wed, 27 Apr 2022
- 09:26:21 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
-        hverkuil-cisco@xs4all.nl
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] media: imx-jpeg: Don't fill the description field in struct v4l2_fmtdesc
-Date:   Wed, 27 Apr 2022 17:25:58 +0800
-Message-Id: <20220427092558.25607-1-ming.qian@nxp.com>
-X-Mailer: git-send-email 2.36.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0007.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::8)
- To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+        with ESMTP id S231922AbiD0LDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 07:03:19 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E04C3E010C;
+        Wed, 27 Apr 2022 03:52:53 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id ay11so821583qtb.4;
+        Wed, 27 Apr 2022 03:52:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EeLCBbdeC0qD/hBxXlqSXJDGwgSvd3X/uaXmAMqW6zk=;
+        b=t0KBTaCSCYha6Hax/gXynQzxub2+ZyzD/X16Jdu0645zIjcUrtWOQMebkAZOdncBU5
+         tQddXF0hLgTugkA+efgPqJozDNIhQsy5yXynj5tT0cItwxdRuH2PyTiuW6VOwYvCGdb0
+         syhQ5RGaDwlsZ3goZSdVfIwbYuf7kysytl0ZYnqWku/QMukig1BeV4hJhCrb7jKkL1tY
+         JRcbMdeD/tFtK7qT7gWJHwbVhkORHBDdZdhAQwrZg7p6nTxsrmwU5zMvwtrVepQX9AEe
+         sx8FROJPF782NEXJ9DqmX76sjstdvka9HqpZkqxx5l88L01eAfY8lyTlOylm+jMDWUbU
+         /LEQ==
+X-Gm-Message-State: AOAM5324AbiKlLHkFdwYMHUfPAwkb3fjlvewjZSuPViwZzjBPqw7HbKe
+        eOBllBlFwI/t0rv8rW5oSLM0U0YSBpqGaw==
+X-Google-Smtp-Source: ABdhPJzGxz8Io1ttjjHGXiVhAChNio+RmmRO1avG8nIsh3BztxQiSgLBgz6CscLT9CLL3DXUDJOVhg==
+X-Received: by 2002:a05:620a:270d:b0:69f:26e4:15f6 with SMTP id b13-20020a05620a270d00b0069f26e415f6mr12974171qkp.362.1651052196478;
+        Wed, 27 Apr 2022 02:36:36 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id s18-20020a05622a1a9200b002f36470c4f1sm6197201qtc.56.2022.04.27.02.36.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 02:36:35 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id w17so2275068ybh.9;
+        Wed, 27 Apr 2022 02:36:35 -0700 (PDT)
+X-Received: by 2002:a25:d393:0:b0:648:4871:3b91 with SMTP id
+ e141-20020a25d393000000b0064848713b91mr16014133ybf.506.1651052195208; Wed, 27
+ Apr 2022 02:36:35 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6e86810f-f25f-4ec2-8a1e-08da282ffddd
-X-MS-TrafficTypeDiagnostic: DBBPR04MB6218:EE_
-X-Microsoft-Antispam-PRVS: <DBBPR04MB6218B8C347421467B1F51BEDE7FA9@DBBPR04MB6218.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: L1j7RCVn7mnLFzfPqfMrU3gWmHUxL+GErtpG6+y1tHw1Zsx+fBJbkyrQbtaj6RImGPD/caYUuxETNq4ytqykKMmHDy6iX0IEibNGmpFnd+qL06kDZ7VXK6/TsFg35kskiW2nFlQcKHLM08WAF1UESQ3CzoKpEWb8ysIYkt3ufSXjkBLm0Pw8O3rYgcQSfJ/duxzJ+x1BW+X23lsNTtFpDE6z/kdfvx82Gd5zU7zhGAS0I4vCSFO71bABhsgQMB48uhhkux+EvVTIkHEWCbrKVn587kdlyIBWPC1+tOERcIN+/1EQTSmtsKXe2T3ZFIuWT9yi+EXJne/em9YUhbb6dVrWxV7dXMRNaVyjwYiT+FJMw2WB52Ehtw5CEZXUDN22Q1ako5HbywxSY1zwcUITgw4Jfq9K681f2LftZE3hPPWbvzsQn8Rvs6Vql0/OQhpDwtQnQarhn0Bj3ygbQBSgQYD4QRXR3wWVktlCFPqGm+J7/nTPstU8G8In0VakWaJwqxho/dmX813UF3hcVU4i4uOceVfWeMuiTr8fv99kQmAVRjBw2OEE55zFvt/z+ajfpCfi7r0IKnMt1nlmpoTjbg2jyRllPlylZxNdcGfVhg+di7/WS/WrrYU9JbzUjZ7utU8w690KDgnQWvydGmi6cAyGHzWv2aC5sY1r17o2R6ubWWr3tiaZN4ABn8FsLvR20MkfSk7UEmnB6Oa+vcfB7g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(7416002)(6506007)(8936002)(36756003)(83380400001)(5660300002)(4326008)(186003)(2906002)(44832011)(4744005)(1076003)(8676002)(2616005)(26005)(38350700002)(86362001)(508600001)(52116002)(316002)(6486002)(38100700002)(66556008)(66946007)(6666004)(6512007)(66476007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?P8J6Nael8F+0kGnTzMnlWzjrStPIEONMLIvgav8W9y0VIKeSmzufmtf80DHf?=
- =?us-ascii?Q?eQJnc+2oOH2uHpED5m4W1dRZ/Gv9HKGBUk03oTgaYa/GB4W7nzoQjKlCXFFI?=
- =?us-ascii?Q?rUvRFNIvQX7AurC7LPWtdeKiFVU+1E0r+3iWGPmCbIWog9spg60rWXO0/wbC?=
- =?us-ascii?Q?k8yV0knMfQjrhs8hysVfgIpWHov2I98OQ5sI8/hEqUfN8zxNQR4jqQDZDok+?=
- =?us-ascii?Q?b5ySQWtSzx3fs1Qz/sRz3lmbX3mYktSydBfnhMd5UiNoDxr/Mk6PGGoklwdZ?=
- =?us-ascii?Q?OZn1a332uTP/aaElsOA58rKXE1ApOqgr4xMbWcya+btKdZ9nDBP2R1fOaway?=
- =?us-ascii?Q?3SioWWP3NyaWnEeND0lMIL1JoXoLcDF0ivf2GebAAY8cZbqJ4Vpo4YPZmcmd?=
- =?us-ascii?Q?QKsIfMhP9bCQLvS56JJpBlgGymdVw7MLrgtRF/ypHZEqxKzK5Brut3+LLSty?=
- =?us-ascii?Q?sSygbYyrfS+xsDEdL7okg6JVN71tWARBm+oJ5sveEsO8ayayrMCGNiodgScI?=
- =?us-ascii?Q?YkUo3cy1AfoQ3ug5QcQG+IzBg0RpF3a5XxqjZ3ny6MyAU/DyuiQSIBCL5Rml?=
- =?us-ascii?Q?RZAY0nHE9GtBi4ytNghTe6YIuZ02InHey+KFhdX6/fO7xakM8r+/ER6RGXiE?=
- =?us-ascii?Q?nAVcDZctR6Fiw6Y2BnhmRGE6GrNYGW5+cz1xuEvVrKIWQBDokKIBQhL0iJq0?=
- =?us-ascii?Q?wcfxWHHtakgma2VhkxGeAEZ6pQFVii4+1CRLjten/uySoY+iiEOilnGMcp9k?=
- =?us-ascii?Q?F04wrSFIYlzdesSC9zRsIdwvL11rLcHY+6x/NbcaGq3qkoDvCGnasxN+g7kA?=
- =?us-ascii?Q?YJEszn4qMCMiCS8Hi70oHwwAoK0QKUZ3jluOnUKkTKswO6QNx5CX1CMfOuEJ?=
- =?us-ascii?Q?NeW3wgemTGGkvUZxuGIsaEU7/TMumPJb7vbeuN0YsPF3EPB9LZQ+DYZ2qgB0?=
- =?us-ascii?Q?W9m8FbOr/WPAPqYIpWioQ/r6Uac/qfhkpFKN9eXZotsoRaaN69W0ZvIefRCg?=
- =?us-ascii?Q?oVLwze0LyWCLYziXTWpn2engDZ0a+czUNj80szkezi6btgW/8/820+B27T9/?=
- =?us-ascii?Q?UGgVzgH8VdhLGEHr2xwf9ZAvgDXRdaUiMp4uQkfZ+9ACgrhiATN09+7YQdZa?=
- =?us-ascii?Q?Jqo8nn+o8MeXrOnQZWLduoEXzdL0qv/SZm9eQkIc9ixYTrPFjWK+w4U1rWqU?=
- =?us-ascii?Q?YULhUconBcq9ds55o/g4acSzWbpzLy4xyzpH/2HiUeRd5awe3Huh+2iEUAEM?=
- =?us-ascii?Q?qU71UQG9SrmH1DkisJtpChbumBWvqB23PkFHlkffEJsddE8fylTfVG9TQXnd?=
- =?us-ascii?Q?LFEfVZSWYi1n/NcLl6SN1+gH4wcs30uZjDnYkXrz9aMf51HIUBFWEl6OWrPd?=
- =?us-ascii?Q?x95Ltrr9u/Hv55LcOY7MWWFkq9V0zeXJ7kP6CZ/12TTdpE06dUnbYths6nS0?=
- =?us-ascii?Q?MFtfi2KQ2UAIgiuda5bqpUFHsTA/IrK5INLEek/niLgXpAV6cWlRuJ5YS7fO?=
- =?us-ascii?Q?lPQxBXZW+O3WrFgPsPqbtnl7aEwOgOxENwZ5kL756YC35c0i/m0z6fAWtcU1?=
- =?us-ascii?Q?w7f467Hyjdbl8GkLMMEg1gbX+2v7kwwmq1B9ctvwgA8Jn6BUAy1FxlygCRhS?=
- =?us-ascii?Q?dshGBbRNeZVr3pqft+KxCgpqGYnTe2L6xMUqgnFYZnmt79pbmZqWCcp5XPz4?=
- =?us-ascii?Q?jOClukMgwUv2JwvJZsWkQmT6OhiFkDrZw/o6i4KXxrc7WF0qrQh5Eib4HPiT?=
- =?us-ascii?Q?3F32Q9SlBQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e86810f-f25f-4ec2-8a1e-08da282ffddd
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2022 09:26:21.6887
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5l8MdnTxDSPJBaf+ZJxziI4Zp254LHLeLkU4sHqPc6qTDkTJYlyrnkH97F/LHs6xMYOtZLwnY2Jx9qCZkX1o5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB6218
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220421085112.78858-1-miquel.raynal@bootlin.com>
+ <20220421085112.78858-9-miquel.raynal@bootlin.com> <CAMuHMdXkrdjETcgN9yruL_J_mL3q7OEMj2DbY36ppwg1eDU5SA@mail.gmail.com>
+ <20220427111449.338d9579@xps13>
+In-Reply-To: <20220427111449.338d9579@xps13>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 11:36:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUdJtwOkYT86H5TneMmrVRDrsRqhhaxMp3ruyEkiG+XqA@mail.gmail.com>
+Message-ID: <CAMuHMdUdJtwOkYT86H5TneMmrVRDrsRqhhaxMp3ruyEkiG+XqA@mail.gmail.com>
+Subject: Re: [PATCH v11 8/9] ARM: dts: r9a06g032: Add the two DMA nodes
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The core will fill this in v4l_fill_fmtdesc(),
-ensuring consistent format description names.
+Hi Miquel,
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
----
- drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c | 2 --
- 1 file changed, 2 deletions(-)
+On Wed, Apr 27, 2022 at 11:14 AM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+> geert@linux-m68k.org wrote on Mon, 25 Apr 2022 18:29:58 +0200:
+> > On Thu, Apr 21, 2022 at 10:51 AM Miquel Raynal
+> > <miquel.raynal@bootlin.com> wrote:
+> > > Describe the two DMA controllers available on this SoC.
+> > >
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > Still, a few comments below, valid for both instances...
+> >
+> > > --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> > > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> > > @@ -200,6 +200,36 @@ nand_controller: nand-controller@40102000 {
+> > >                         status = "disabled";
+> > >                 };
+> > >
+> > > +               dma0: dma-controller@40104000 {
+> > > +                       compatible = "renesas,r9a06g032-dma", "renesas,rzn1-dma";
+> > > +                       reg = <0x40104000 0x1000>;
+> > > +                       interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                       clock-names = "hclk";
+> > > +                       clocks = <&sysctrl R9A06G032_HCLK_DMA0>;
+> > > +                       dma-channels = <8>;
+> > > +                       dma-requests = <16>;
+> > > +                       dma-masters = <1>;
+> > > +                       #dma-cells = <3>;
+> > > +                       block_size = <0xfff>;
+> > > +                       data_width = <3>;
+> >
+> > This property is deprecated, in favor of "dma-width".
+>
+> Indeed,
+>         data_width = <3>;
+> is deprecated.
+>
+> However, dma-width does not seem to be described anywhere. Do you mean:
+>         data-width = <8>;
+> instead?
 
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-index 869d2c388122..c916cb08b275 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-@@ -389,7 +389,6 @@ static int enum_fmt(const struct mxc_jpeg_fmt *mxc_formats, int n,
- 	if (i >= n)
- 		return -EINVAL;
- 
--	strscpy(f->description, mxc_formats[i].name, sizeof(f->description));
- 	f->pixelformat = mxc_formats[i].fourcc;
- 
- 	return 0;
-@@ -1702,7 +1701,6 @@ static int mxc_jpeg_enum_fmt_vid_cap(struct file *file, void *priv,
- 		if (f->index)
- 			return -EINVAL;
- 		f->pixelformat = q_data->fmt->fourcc;
--		strscpy(f->description, q_data->fmt->name, sizeof(f->description));
- 		return 0;
- 	}
- }
--- 
-2.36.0
+Oops, I did mean "data-width".
 
+> > > +                       status = "disabled";
+> >
+> > Why not keep it enabled?
+>
+> I'm used to always disable all the nodes from the SoC descriptions,
+> but it's true that for a DMA controller it might make sense to keep
+> it enabled.
+>
+> Would dropping the status property be enough or do you prefer a proper
+>         status = "okay";
+> instead?
+
+Please just drop the status property, like is done in other Renesas .dtsi
+files.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
