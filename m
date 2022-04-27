@@ -2,76 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ABC051249B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29EB5124C2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:47:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbiD0VjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 17:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
+        id S229983AbiD0Vua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 17:50:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238594AbiD0VjO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:39:14 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EEBA3A5D7
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:35:59 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id z18so4253564iob.5
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:35:59 -0700 (PDT)
+        with ESMTP id S229928AbiD0Vu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:50:29 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816EF297
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:47:17 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id u3so4269437wrg.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=S8aA3w8iCvlP5xuSHPj2CdcrtIpMGO+/5jUXt8Odelg=;
-        b=oYrLxV0YV3rde7eAUyo1braSxFOs0xHB7P6HFT6VcVOnmqdkPtRilxbv027NKarXpw
-         HCD9TvH/weOFRGsEb8boNQCcxFQ23qcJ1Rg464xY5l6ygQ8QVmbWFG8O649cGb46wjRt
-         TAukZyeI1sxpITeBci+xdQb5FRiKsSbY1lJWakMFGZp0bK7ZRp5KipsQvkvrFisdaOCz
-         F5jMSEYnBv3QyPh/2FKiazckyOwNXowMc32Vjptmjr2vvX78e94JYXW7zaT8jJH1xlUx
-         SpbEQR6QGj822Hp33oh7+c2nNOViV/GRzilM3j1xxrg+9b+ZH0fPe1k8ic4jZ1j78ULh
-         rOEw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QRHuTXzQ+1NgPTdxEopZECMQlox4N1mLnfz6FSwXE2s=;
+        b=ValsQrjZlwAJVkQ/B7AjYoNl5G8MjY1dxVIhU8GcOchvqVG5nKXU9Dz6Lf7iLxurI1
+         YZgF1Erm6Lj/i0AAaQ9wfj1S2MD+hbxO6HiIdeRN8QS4qdlZZ6ckR+j/KnYGbwl04qxC
+         ETvrmT7xBBs2GK50dR+7aQkXnImgGhkjFcq5AT1aj28ldjMsilzv8wQq9I9Qpr0jrblQ
+         DXfYsA24zYmuoDkUHvSh6czS/amSxktjeu4UEIN3I+izksKzhD4cOGh9p0bDsCYhussU
+         sQZkg43ir8epitYexje3eqSs7A9ir5+Lm8h7x0+5Ga4OK19kLJJ/JervSTUVpIKfTAr+
+         khTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=S8aA3w8iCvlP5xuSHPj2CdcrtIpMGO+/5jUXt8Odelg=;
-        b=QzYKvRzmHMjhG/nf5+pFYBuMaI9+SC7Bfn+dzRcMiXw+v0fBtQ8BG7g+sz61gWR1uB
-         toQ+JGfZJhZsPG9IzUVCfwelugRhjen1pVq5c0g66F7h3Ot3fnLlJJp7+qdcDVtKAjfy
-         DOe0tjRt2MgJfXt+a5MOIFz6dhwdY48muVAQBQLegQY+CV8VvarCVdl8OqXBiSE76zRa
-         vlF1c4SzTx5RwZdPBQgyumTvUUtzmOrw5ct9AM0bhvAZDMcgZvgdygdvTIpdZB8Db8DS
-         foAHBM2I6+CNxt2czUA05Cs5Hjqws2qinSpUMwkiK7CU3inr0XZlO5udnspjJJwNduTY
-         vZyA==
-X-Gm-Message-State: AOAM533B1nuym1mjuXPO/A+ukZxpIWfrYkVXdkQLrRbiuebk28+Md8hZ
-        l6ffhK3oa5ld1EJaRjugBOo=
-X-Google-Smtp-Source: ABdhPJykQeUgxF3pjE3vRwOxOMRXpRkCuj4hz+vhBi7WOeaK0VBpIC4/s4zsJO1uByLpljhwO6fipQ==
-X-Received: by 2002:a05:6638:3e99:b0:32b:2a00:5b2e with SMTP id ch25-20020a0566383e9900b0032b2a005b2emr401414jab.112.1651095358836;
-        Wed, 27 Apr 2022 14:35:58 -0700 (PDT)
-Received: from localhost.localdomain (cpe-65-29-252-111.wi.res.rr.com. [65.29.252.111])
-        by smtp.gmail.com with ESMTPSA id y4-20020a92d0c4000000b002cd8a7db5f5sm7396313ila.11.2022.04.27.14.35.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 14:35:58 -0700 (PDT)
-From:   Daniel Kaehn <kaehndan@gmail.com>
-To:     tiwai@suse.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Daniel Kaehn <kaehndan@gmail.com>
-Subject: [PATCH v4 2/2] Add generic serial MIDI driver using serial bus API
-Date:   Wed, 27 Apr 2022 16:35:34 -0500
-Message-Id: <20220427213534.163097-1-kaehndan@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <0220425191602.770932-3-kaehndan@gmail.com>
-References: <0220425191602.770932-3-kaehndan@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QRHuTXzQ+1NgPTdxEopZECMQlox4N1mLnfz6FSwXE2s=;
+        b=nbwgmTBs1YE6NWdoYWZBZY1lDwOe/o3Mnm9rt56JcS6Lo0mUjefqxPBRQX13NSIMWU
+         wa3xhCuWt8lPPL9CBvBEY8NvXDbe/JE6Qfvne0dBixTf+e2BaW1K3KTHB1MDnFE+Zt5D
+         4MQB1zKtqMFJ7ZvGmUS6DuXgqNNp4uEnjFjVXPD03SKWjRxq/pXhML4kEMJdAKou4umP
+         x0pVFYck77Q2nC/0huczcjKQlQQye9aIShB7ptDz/DyLGvHj3MtNBzjMHAH1IV1Mf2lv
+         ptR9zZqpALgQnzUDeWKMSfBjTY6lU0VPusPTqRtHmyf9T82hRi+n4oMKVvdJtC+4gV3Z
+         DNGw==
+X-Gm-Message-State: AOAM53347ym5ll6BFlN1N7cHoUDN9I1S5bEtaRFB2i2w0XCWG+QLYpmK
+        16iO8kDWN3Q/HwRe5NP5yDKceyylIZnRqLxzH6f9mWOWVm0=
+X-Google-Smtp-Source: ABdhPJwei2VlHjpnN+qm7rBYLYKYpsjm747RprjDeYPf53d18B4XDYws47JPSLqDjUEqsjh3Ty40h+O/yzVCUbgYXSI=
+X-Received: by 2002:a05:6512:2627:b0:44a:f55c:ded9 with SMTP id
+ bt39-20020a056512262700b0044af55cded9mr22157634lfb.373.1651095624849; Wed, 27
+ Apr 2022 14:40:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220427180853.35970-1-kdasu.kdev@gmail.com> <20220427180853.35970-3-kdasu.kdev@gmail.com>
+In-Reply-To: <20220427180853.35970-3-kdasu.kdev@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 27 Apr 2022 23:39:47 +0200
+Message-ID: <CAPDyKFrW7DHzc32BYE5ZiPdOdMWqGo1ch4CZZHaM1jVNjpvpWw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mmc: sdhci-brcmstb: Enable Clock Gating to save power
+To:     Kamal Dasu <kdasu.kdev@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
+        f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just discovered a fairly severe concurrency bug with the MIDI output
-in this version of the driver - write_wakeup and output_write
-can end in a deadlock with the serial device. Replying here just to
-ensure this isn't merged before I send a fix.
+On Wed, 27 Apr 2022 at 20:09, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
+>
+> From: Al Cooper <alcooperx@gmail.com>
+>
+> Enabling this feature will allow the controller to stop the bus
+> clock when the bus is idle. The feature is not part of the standard
+> and is unique to newer Arasan cores and is enabled with a bit in a
+> vendor specific register. This feature will only be enabled for
+> non-removable devices because they don't switch the voltage and
+> clock gating breaks SD Card volatge switching.
 
-Daniel Kaehn
+Rather than using a HW specific thing for this, it may be better to
+use runtime PM. There are plenty of examples to get inspired from, so
+it should be rather easy to implement, I think. More importantly, it
+should work for both (e)MMC and SD cards, unless there are some
+specific things to manage for this controller.
+
+When it comes to SDIO, some driver simply bumps the runtime PM usage
+count (pm_runtime_get_noresume()) to prevent the device from being
+runtime suspended. There are ways to work around this, let me know if
+you need some guidance around how to fix that too.
+
+That said, I am not entirely opposed to $subject patch, but I wanted
+to point out that there are better alternatives.
+
+Kind regards
+Uffe
+
+>
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> ---
+>  drivers/mmc/host/sdhci-brcmstb.c | 35 +++++++++++++++++++++++++++++++-
+>  1 file changed, 34 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+> index 244780481193..683d0c685748 100644
+> --- a/drivers/mmc/host/sdhci-brcmstb.c
+> +++ b/drivers/mmc/host/sdhci-brcmstb.c
+> @@ -17,11 +17,14 @@
+>
+>  #define SDHCI_VENDOR 0x78
+>  #define  SDHCI_VENDOR_ENHANCED_STRB 0x1
+> +#define  SDHCI_VENDOR_GATE_SDCLK_EN 0x2
+>
+>  #define BRCMSTB_MATCH_FLAGS_NO_64BIT           BIT(0)
+>  #define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT     BIT(1)
+> +#define BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE     BIT(2)
+>
+>  #define BRCMSTB_PRIV_FLAGS_HAS_CQE             BIT(0)
+> +#define BRCMSTB_PRIV_FLAGS_GATE_CLOCK          BIT(1)
+>
+>  #define SDHCI_ARASAN_CQE_BASE_ADDR             0x200
+>
+> @@ -36,6 +39,27 @@ struct brcmstb_match_priv {
+>         const unsigned int flags;
+>  };
+>
+> +static inline void enable_clock_gating(struct sdhci_host *host)
+> +{
+> +       u32 reg;
+> +
+> +       reg = sdhci_readl(host, SDHCI_VENDOR);
+> +       reg |= SDHCI_VENDOR_GATE_SDCLK_EN;
+> +       sdhci_writel(host, reg, SDHCI_VENDOR);
+> +}
+> +
+> +void brcmstb_reset(struct sdhci_host *host, u8 mask)
+> +{
+> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +       struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
+> +
+> +       sdhci_reset(host, mask);
+> +
+> +       /* Reset will clear this, so re-enable it */
+> +       if (priv->flags & BRCMSTB_PRIV_FLAGS_GATE_CLOCK)
+> +               enable_clock_gating(host);
+> +}
+> +
+>  static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
+>  {
+>         struct sdhci_host *host = mmc_priv(mmc);
+> @@ -131,7 +155,7 @@ static struct sdhci_ops sdhci_brcmstb_ops = {
+>  static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+>         .set_clock = sdhci_brcmstb_set_clock,
+>         .set_bus_width = sdhci_set_bus_width,
+> -       .reset = sdhci_reset,
+> +       .reset = brcmstb_reset,
+>         .set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
+>  };
+>
+> @@ -147,6 +171,7 @@ static struct brcmstb_match_priv match_priv_7445 = {
+>  };
+>
+>  static const struct brcmstb_match_priv match_priv_7216 = {
+> +       .flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
+>         .hs400es = sdhci_brcmstb_hs400es,
+>         .ops = &sdhci_brcmstb_ops_7216,
+>  };
+> @@ -273,6 +298,14 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+>         if (res)
+>                 goto err;
+>
+> +       /*
+> +        * Automatic clock gating does not work for SD cards that may
+> +        * voltage switch so only enable it for non-removable devices.
+> +        */
+> +       if ((match_priv->flags & BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE) &&
+> +           (host->mmc->caps & MMC_CAP_NONREMOVABLE))
+> +               priv->flags |= BRCMSTB_PRIV_FLAGS_GATE_CLOCK;
+> +
+>         /*
+>          * If the chip has enhanced strobe and it's enabled, add
+>          * callback
+> --
+> 2.17.1
+>
