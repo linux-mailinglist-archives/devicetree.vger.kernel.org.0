@@ -2,79 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F866512177
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B77EB5121B2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbiD0SsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 14:48:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49532 "EHLO
+        id S231862AbiD0SzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 14:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231537AbiD0Srt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:47:49 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EAB98F52;
-        Wed, 27 Apr 2022 11:29:43 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id s131so2928591oie.1;
-        Wed, 27 Apr 2022 11:29:43 -0700 (PDT)
+        with ESMTP id S233740AbiD0Syk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 14:54:40 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44E6E7F4D
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:41:16 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id e2so3710393wrh.7
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:41:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xT6txhcZ4EAYI9nKnuJpvrA0CPSdpDykVcMt05FEgHg=;
+        b=EswJAvgjaKozP6htlI/2qYoE8tJVhxcnL/Cm6agqSaL8bFMdpp+q0oFRGze+oL9mgo
+         /121Tbm74STe1XQcUStNRDslRQ4sUrMlYVqVLVlbIf3OpJLEufsVDjHMhndoaNhJwByO
+         wI5e3Wf7qOtwf/AEPZUSRRw+kEJuJbSJg7NvfGts0uohsnQgOhUdzZ7TBS2rD+x5rmE7
+         7wBmk4HBbRKtxLaS8NaIajD+9KL+ZLU3V9JxB06Xjo0O/meaZ7yEA9AXxGhuA6Cmam4U
+         nJkhed3MbLkIqA4vmCzot0NkSHAkos3jsIkZUZZVPKtLxWUYio55iyThoc+jpWpCK3tJ
+         ce5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vjPJA+HsT3O8e7pT007nOpwyAA0Fc4ItG808mQNfBcI=;
-        b=Ua4a/O69UXJkOAiGSGXufHJOmtV6AFe/P2N2TceLzdkAWFqO4DLoZucNNE+ICfNNZN
-         lqE4Xv2brsxzVDtjoHybRazaH5oadsUyJURPZZO155aiMIvuxevoRNPPyx2Z2D4smieW
-         DK5tu5bsSMwUIaqqvXjzSUDdINJS3Icj3HBSdWpFuCMRo3ck/6ZJrepxxGXWMdN4ippj
-         uZqHI4QWpFtO966jTVze6iNnmIyDoo+5RifQR97DZ6AtT0gzeRkP6ah8tYlAGjsVAOoK
-         DRfOr4YSywDQ9VovakanKeKkYIsZqYNfK5jZn5CBsjgEEASAyjimIAItC8MTme4sdpo0
-         XepA==
-X-Gm-Message-State: AOAM533DjfkoRqlllLcWoT3ZTgc9fVQ+5FHpVcHYJ2dCdMbNOVcoTYAT
-        a0Aci3daYfq0A+BPFZz5CQ==
-X-Google-Smtp-Source: ABdhPJxZ3SeCvrv8dS2qxIX+0bcfLBlYMQ95fdA79/7DvoLxrCcOHN1VHc6+L5T34OAY+/zprWp1dg==
-X-Received: by 2002:a05:6808:11c9:b0:2f9:b01b:17f0 with SMTP id p9-20020a05680811c900b002f9b01b17f0mr13800053oiv.233.1651084182549;
-        Wed, 27 Apr 2022 11:29:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e4-20020a0568301e4400b006054dca5442sm6229280otj.28.2022.04.27.11.29.41
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xT6txhcZ4EAYI9nKnuJpvrA0CPSdpDykVcMt05FEgHg=;
+        b=AIX3sxdQOwyovE8z5plRFk43x1+8RLTmN3fW27K/FXGGdIwdBHhbRy1F7N8NVO/8Sg
+         S2i26a6Y69zg1BmiioaW1ewMXoMexxjlRcvFzD6XrjonORqMpy/dPJOICjiG2O3mOKAb
+         eD+HZzUijKyv/UTK3FBUhaBOp5GWTvjhp1qea7o49gpaVpNhPPdycLtsrjXHG+mFRzsq
+         2rhnhwF7BU72bhTRFhl365/lEleFgGF7RoCHvxc58fGap/uOeSDGuNZUO9GzYLw7+c4P
+         b8wFqMQ9dGdpQGJp3Zo7ANXiooEZdUTHe991Kudu90cMxyCr2WfiH6g/vPtZeGVNJVcE
+         UyjQ==
+X-Gm-Message-State: AOAM5307jCqDTbGjoNgS0fmSy/L2MFDdu6q+xX0jpJW13n5crOaj75Xf
+        i3WemO2xKICuTKxonYTRkfNzcg==
+X-Google-Smtp-Source: ABdhPJzvbaV+wwo7MxJ0teCNB2ZGmw4TVSxz76aUQwyPZh37nT/hcqzCXeDhNTeUICS6Nt/IrG4TfQ==
+X-Received: by 2002:a5d:64ce:0:b0:20a:e769:d282 with SMTP id f14-20020a5d64ce000000b0020ae769d282mr7143577wri.655.1651084875133;
+        Wed, 27 Apr 2022 11:41:15 -0700 (PDT)
+Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id f3-20020a5d64c3000000b0020aef267950sm1992798wri.49.2022.04.27.11.41.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 11:29:41 -0700 (PDT)
-Received: (nullmailer pid 414596 invoked by uid 1000);
-        Wed, 27 Apr 2022 18:29:41 -0000
-Date:   Wed, 27 Apr 2022 13:29:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Gene Chen <gene_chen@richtek.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: leds-mt6360: Drop redundant
- 'unevaluateProperties'
-Message-ID: <YmmLldJcJ2tOOCO7@robh.at.kernel.org>
-References: <20220426133508.1849580-1-robh@kernel.org>
+        Wed, 27 Apr 2022 11:41:13 -0700 (PDT)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     caleb.connolly@linaro.org, Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Amit Pundir <amit.pundir@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: [PATCH 0/6] power: supply: introduce support for the Qualcomm smb2 charger
+Date:   Wed, 27 Apr 2022 19:40:25 +0100
+Message-Id: <20220427184031.2569442-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220426133508.1849580-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Apr 2022 08:35:08 -0500, Rob Herring wrote:
-> The binding has both 'unevaluateProperties: false' and
-> 'additionalProperties: false' which is redundant. 'additionalProperties'
-> is the stricter of the two, so drop 'unevaluateProperties'.
-> 
-> Fixes: e05cab34e417 ("dt-bindings: leds: Add bindings for MT6360 LED")
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/leds/leds-mt6360.yaml | 2 --
->  1 file changed, 2 deletions(-)
-> 
+Add a driver for the Qualcomm PMI8998/PM660 Switch-Mode Battery Charger.
+This is the second generation SMB charger, and replaces the previous
+SMBB hardware found in older PMICs.
 
-Applied, thanks!
+This driver provides basic support for initialising the hardware,
+configuring the USB input current limit and reporting information about
+the state of the charger. Features like type-c dual role support and OTG
+switching will be added in future patches.
+
+This patch series depends on my previous series adding support for
+the Round Robin ADC which is used for reading the USB voltage and
+current, it can be found here:
+https://lore.kernel.org/linux-arm-msm/20220323162820.110806-1-caleb@connolly.tech/
+
+Changes since v1:
+ * Rename the driver to pmi8998_charger
+ * Drop unnecessary (and very broken) mutex
+ * Rework the driver based on feedback to v1
+ * Fix some minor bugs and improve Automatic Input Current Limit support
+
+---
+Caleb Connolly (6):
+  power: supply: add Qualcomm PMI8998 SMB2 Charger driver
+  arm64: dts: qcom: pmi8998: add charger node
+  arm64: dts: sdm845-oneplus: enable pmi8998 charger
+  arm64: dts: qcom: sdm845-db845c: enable pmi8998 charger
+  arm64: dts: qcom: sdm845-xiaomi-beryllium enable pmi8998 charger
+  dt-bindings: power: supply: qcom,pmi8998-charger: add bindings for
+    smb2 driver
+
+ .../power/supply/qcom,pmi8998-charger.yaml    |   83 ++
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |   17 +
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |   18 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |    4 +
+ .../dts/qcom/sdm845-oneplus-enchilada.dts     |    4 +
+ .../boot/dts/qcom/sdm845-oneplus-fajita.dts   |    4 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |   13 +
+ drivers/power/supply/Kconfig                  |    9 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/qcom_pmi8998_charger.c   | 1070 +++++++++++++++++
+ 10 files changed, 1223 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+ create mode 100644 drivers/power/supply/qcom_pmi8998_charger.c
+
+-- 
+2.36.0
+
