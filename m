@@ -2,351 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23FC8511334
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 10:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F6A51134F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 10:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359302AbiD0IH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 04:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45592 "EHLO
+        id S1356055AbiD0IOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 04:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359275AbiD0IHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 04:07:43 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD006522E0;
-        Wed, 27 Apr 2022 01:04:30 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id k14so894774pga.0;
-        Wed, 27 Apr 2022 01:04:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OOkWlT5TtgSr3f5WTjCqUYVthsAQ04wJKZJ02py4e7s=;
-        b=GJdQ8dVzSoTnnqJXvNPDDfKYf1IkcuQx2fkKljfGAaWhVmlEf3wM4Pqxm4j+EvYTzQ
-         U0nv2tcjNDhwLrb6rIrm5RadlxTvhZkp+FkiZGEowo9WwlFVJzErSC2POBnUGS7V1ovs
-         3tOs16OpYc30wXrq943yJtggObGFkL5xUb9ss00aquYt04lhCnOfhsWuw9XWCxhs3A3R
-         hR6JtkzVHEdNcBPf1bb0A8Fze5gr+D3uOBHEoQsCzqvkdC3caFC7eI+KsbryNrfKNbRN
-         k8p7kI/2AWTSO9oKqg1h2jLtqDLKUArshZTkt8luaJR6cLWp+thq+QGSyzeiUGcNpdGJ
-         EuWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OOkWlT5TtgSr3f5WTjCqUYVthsAQ04wJKZJ02py4e7s=;
-        b=iJT7ZWaI0z+nmiyVVhqal8H63OMlURz3RR7+l+WHl8GWiNdx4RETzvusSCgw5k4Evp
-         LtjiAPaaGUjpreiOP/AuO5LOoVahMYsIJS4Nb4VNf4apylgarR7skfX2Yjl0MlIwkrNK
-         DNog5Qjlt4hrI3xbw2k5l01s76lqsJN0I/NXmFj+ZY1b9dVRFNYqpXd8bbn0lluy2li2
-         +k46WKm3/h9bEFfHXE117CVNOJmWlcexN7l80yChuLBYnxS2mZwiCCKyV/isZxgD2sIN
-         17vBdJaMHjxQMsTBh1px8T8Wa7ChPX8Z3whZneyUR344q+yYwmo4ATxYv0XktcrTVQ6x
-         ccwA==
-X-Gm-Message-State: AOAM5329Fnfpwxr/IshGHKfJtWHrCWEWieZS8fBHpgZrfsTGUTuWeyIF
-        gKbqm1OFxqFJM8XgZAAxcmY=
-X-Google-Smtp-Source: ABdhPJzihmyoo54arIgiz4u7SYLof9thbDPOiEhHsmeweCBIJiuI9zUmUX5kiDY/tyF8hghBIfv/0w==
-X-Received: by 2002:a63:6cc5:0:b0:3ab:7a48:af2b with SMTP id h188-20020a636cc5000000b003ab7a48af2bmr8619907pgc.302.1651046670336;
-        Wed, 27 Apr 2022 01:04:30 -0700 (PDT)
-Received: from genechen-System-Product-Name.richtek.com ([2402:7500:469:f77c:f4fa:b753:7807:4e40])
-        by smtp.gmail.com with ESMTPSA id a11-20020a17090a70cb00b001cd4989ff50sm1746750pjm.23.2022.04.27.01.04.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Apr 2022 01:04:30 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        pavel@ucw.cz
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, cy_huang@richtek.com
-Subject: [PATCH 2/2] dt-bindings: mfd: Add bindings for the Mediatek MT6360
-Date:   Wed, 27 Apr 2022 16:03:30 +0800
-Message-Id: <20220427080330.40136-3-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220427080330.40136-1-gene.chen.richtek@gmail.com>
-References: <20220427080330.40136-1-gene.chen.richtek@gmail.com>
+        with ESMTP id S1359346AbiD0IOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 04:14:47 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE4C25C5E;
+        Wed, 27 Apr 2022 01:11:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1651047097; x=1682583097;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6eM5e62oXAvLaa18gkB8bzP55Ven4At3wrVREaGjxkI=;
+  b=Qh7VFSIEpIlWRDmmZG4/Qez7fs7YAdUTtOSHuUfKIsmSp0TdlxMlnuJm
+   5gPyPL9D2hGgiRoPZSdPR6EYQhPNmE5XnJAWSottnCvyLBLGdBZdfzdAn
+   3uyrdp6nLpjub9cSNtadTuWMjNav4XK7iRRseItMJr0jiXcO5DRkWkSKR
+   /522ZJV3fi88hoZ8znUP3LoNJyXgZlXXcScZ5GRdxLGHgT14K/1LXjnhc
+   uz4T/ZJ8UApliZMC4dZ8DGZegXmvCzVyAubpOyFl8zvd7i2lb9ZuTXYvc
+   XhB9WfhACzQTPCrFqZXVuN0WexDNwVeuYs1zB3dbuIfTk5n0zkP64H4hT
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265381666"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
+   d="scan'208";a="265381666"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Apr 2022 01:11:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; 
+   d="scan'208";a="564976596"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 27 Apr 2022 01:11:33 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1njclo-0004VD-JD;
+        Wed, 27 Apr 2022 08:11:32 +0000
+Date:   Wed, 27 Apr 2022 16:10:37 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andrea Merello <andrea.merello@gmail.com>, jic23@kernel.org,
+        mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, lars@metafoo.de, robh+dt@kernel.org,
+        andy.shevchenko@gmail.com, matt.ranostay@konsulko.com,
+        ardeleanalex@gmail.com, jacopo@jmondi.org,
+        Andrea Merello <andrea.merello@iit.it>
+Subject: Re: [v5 12/14] iio: imu: add BNO055 serdev driver
+Message-ID: <202204271554.EiuIRNPI-lkp@intel.com>
+References: <20220426131102.23966-13-andrea.merello@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220426131102.23966-13-andrea.merello@gmail.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Hi Andrea,
 
-Add bindings for the Mediatek MT6360
+Thank you for the patch! Yet something to improve:
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
----
- .../devicetree/bindings/mfd/mt6360.yaml       | 258 ++++++++++++++++++
- 1 file changed, 258 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/mt6360.yaml
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on linus/master linux/master v5.18-rc4 next-20220426]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-diff --git a/Documentation/devicetree/bindings/mfd/mt6360.yaml b/Documentation/devicetree/bindings/mfd/mt6360.yaml
-new file mode 100644
-index 000000000000..2c0c5df16b00
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/mt6360.yaml
-@@ -0,0 +1,258 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/mt6360.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MT6360 PMIC from MediaTek Integrated IC
-+
-+maintainers:
-+  - Gene Chen <gene_chen@richtek.com>
-+
-+description: |
-+  MT6360 is a PMIC device with the following sub modules.
-+  It is interfaced to host controller using I2C interface.
-+
-+  This document describes the binding for PMIC device and its sub module.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6360
-+
-+  reg:
-+    description: I2C device address.
-+    maxItems: 1
-+
-+  wakeup-source: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    enum:
-+      - IRQB
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 1
-+    description:
-+      The first cell is the IRQ number.
-+
-+  regulators:
-+    $ref: ../regulator/mt6360-regulator.yaml
-+
-+  charger:
-+    $ref: ../power/supply/mt6360_charger.yaml
-+
-+  tcpc:
-+    $ref: ../usb/mediatek,mt6360-tcpc.yaml
-+
-+  led-controller:
-+    $ref: ../leds/leds-mt6360.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
-+    #include <dt-bindings/leds/common.h>
-+    #include <dt-bindings/usb/pd.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      mt6360@34 {
-+        compatible = "mediatek,mt6360";
-+        reg = <0x34>;
-+        wakeup-source;
-+        interrupts-extended = <&gpio26 0 IRQ_TYPE_LEVEL_LOW>;
-+        interrupt-names = "IRQB";
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        mt6360_charger: charger {
-+          compatible = "mediatek,mt6360-chg";
-+          richtek,vinovp-microvolt = <14500000>;
-+
-+          otg_vbus_regulator: usb-otg-vbus-regulator {
-+            regulator-compatible = "usb-otg-vbus";
-+            regulator-name = "usb-otg-vbus";
-+            regulator-min-microvolt = <4425000>;
-+            regulator-max-microvolt = <5825000>;
-+          };
-+        };
-+
-+        led-controller {
-+          compatible = "mediatek,mt6360-led";
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          multi-led@0 {
-+            reg = <0>;
-+            function = LED_FUNCTION_INDICATOR;
-+            color = <LED_COLOR_ID_RGB>;
-+            led-max-microamp = <24000>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            led@0 {
-+              reg = <0>;
-+              color = <LED_COLOR_ID_RED>;
-+            };
-+            led@1 {
-+              reg = <1>;
-+              color = <LED_COLOR_ID_GREEN>;
-+            };
-+            led@2 {
-+              reg = <2>;
-+              color = <LED_COLOR_ID_BLUE>;
-+            };
-+          };
-+          led@3 {
-+            reg = <3>;
-+            function = LED_FUNCTION_INDICATOR;
-+            color = <LED_COLOR_ID_WHITE>;
-+            led-max-microamp = <150000>;
-+          };
-+          led@4 {
-+            reg = <4>;
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            function-enumerator = <1>;
-+            led-max-microamp = <200000>;
-+            flash-max-microamp = <500000>;
-+            flash-max-timeout-us = <1024000>;
-+          };
-+          led@5 {
-+            reg = <5>;
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            function-enumerator = <2>;
-+            led-max-microamp = <200000>;
-+            flash-max-microamp = <500000>;
-+            flash-max-timeout-us = <1024000>;
-+          };
-+        };
-+
-+        regulators {
-+          compatible = "mediatek,mt6360-regulator";
-+          LDO_VIN3-supply = <&BUCK2>;
-+          buck1 {
-+            regulator-compatible = "BUCK1";
-+            regulator-name = "mt6360,buck1";
-+            regulator-min-microvolt = <300000>;
-+            regulator-max-microvolt = <1300000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP
-+                 MT6360_OPMODE_ULP>;
-+          };
-+          BUCK2: buck2 {
-+            regulator-compatible = "BUCK2";
-+            regulator-name = "mt6360,buck2";
-+            regulator-min-microvolt = <300000>;
-+            regulator-max-microvolt = <1300000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP
-+                 MT6360_OPMODE_ULP>;
-+          };
-+          ldo6 {
-+            regulator-compatible = "LDO6";
-+            regulator-name = "mt6360,ldo6";
-+            regulator-min-microvolt = <500000>;
-+            regulator-max-microvolt = <2100000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo7 {
-+            regulator-compatible = "LDO7";
-+            regulator-name = "mt6360,ldo7";
-+            regulator-min-microvolt = <500000>;
-+            regulator-max-microvolt = <2100000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo1 {
-+            regulator-compatible = "LDO1";
-+            regulator-name = "mt6360,ldo1";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+            ldo2 {
-+            regulator-compatible = "LDO2";
-+            regulator-name = "mt6360,ldo2";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo3 {
-+            regulator-compatible = "LDO3";
-+            regulator-name = "mt6360,ldo3";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+          ldo5 {
-+            regulator-compatible = "LDO5";
-+            regulator-name = "mt6360,ldo5";
-+            regulator-min-microvolt = <2700000>;
-+            regulator-max-microvolt = <3600000>;
-+            regulator-allowed-modes = <MT6360_OPMODE_NORMAL
-+                 MT6360_OPMODE_LP>;
-+          };
-+        };
-+
-+        tcpc {
-+          compatible = "mediatek,mt6360-tcpc";
-+          interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
-+          interrupt-names = "PD_IRQB";
-+
-+          connector {
-+            compatible = "usb-c-connector";
-+            label = "USB-C";
-+            data-role = "dual";
-+            power-role = "dual";
-+            try-power-role = "sink";
-+            source-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+            sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_DUAL_ROLE | PDO_FIXED_DATA_SWAP)>;
-+            op-sink-microwatt = <10000000>;
-+
-+            ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              port@0 {
-+                reg = <0>;
-+                endpoint {
-+                  remote-endpoint = <&usb_hs>;
-+                };
-+              };
-+              port@1 {
-+                reg = <1>;
-+                endpoint {
-+                  remote-endpoint = <&usb_ss>;
-+                };
-+              };
-+              port@2 {
-+                reg = <2>;
-+                endpoint {
-+                  remote-endpoint = <&dp_aux>;
-+                };
-+              };
-+            };
-+          };
-+        };
-+
-+      };
-+    };
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrea-Merello/Add-support-for-Bosch-BNO055-IMU/20220426-212132
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220427/202204271554.EiuIRNPI-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/675ca9cd13af45cc5943dd15caad5e866fd7c971
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Andrea-Merello/Add-support-for-Bosch-BNO055-IMU/20220426-212132
+        git checkout 675ca9cd13af45cc5943dd15caad5e866fd7c971
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> make[5]: *** No rule to make target 'drivers/iio/imu/bno055/bno055_ser_trace.o', needed by 'drivers/iio/imu/bno055/built-in.a'.
+   make[5]: Target '__build' not remade because of errors.
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
