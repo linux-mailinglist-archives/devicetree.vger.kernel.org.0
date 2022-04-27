@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F300D5124AE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 453F15124B1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 23:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233921AbiD0Vq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 17:46:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56032 "EHLO
+        id S237472AbiD0VrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 17:47:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234135AbiD0Vqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:46:55 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F90D90CF6;
-        Wed, 27 Apr 2022 14:43:43 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id cx11-20020a17090afd8b00b001d9fe5965b3so4093917pjb.3;
-        Wed, 27 Apr 2022 14:43:43 -0700 (PDT)
+        with ESMTP id S234153AbiD0VrB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 17:47:01 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9736F6462;
+        Wed, 27 Apr 2022 14:43:49 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id j17so2630892pfi.9;
+        Wed, 27 Apr 2022 14:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fK8ie2EVzVXoUL/CWYGjwnNVixgs+iO/GFvY62KiDxQ=;
-        b=BC/OG6PuUD2/8Qqlqp4KrTYo1g6ZKwfhdiKtjDS7LgNOJabHlYX6x7TI+3TmNxXikJ
-         +BFFj7Zx45HhnZm30RnPXSGJUdgeddxVi/j4/Hsab2a8U7sGwrezKv7gA/PtW4g5QfbX
-         kMMAAI8AvbugNak41XERlIvfFpyx/HC8ctxD8xEV0txKGIKcDuJ+0O7w4ySki/A2cUSd
-         l1qIdN5+UfZqmMF3tZk5cgiXQz3/wi6WB7TxL/PQSnNtokKfo4oIi7+gacV+rQi6dDU5
-         mDMN3Q+Mim9iwuAipMOQ5uDIwtl6kPdt3heS7MY0ded8iEixIJr2dR34dN0rD4SsK3NS
-         wASw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=du/c2vhq3VYi9SfdNIrPwaHRFuDCP1aHXk3ODWglX9k=;
+        b=YQsKFg1Y7ZeHToCxOw0GkIM/UDfcd904RmCWkma042dDiM28qwwOTf7HHy4/M87XhK
+         xzGSrPWcuSMjC0RxpCBt3IZuCeowxcsrlzSlfzERsx3RZc8wEWQghLftczcTVqzjrob0
+         9lJeng5YAMpP5Z66v8sTG7AOIR0U93xiFwX//gBkSOAPff/6BYcTQKM750qP5GO+tfOE
+         tHOYHETfmGkuhM7xlZflLLhoncoCiGo62SIbykh81XvrzKqYeTlaHHYAP0EVDpHLrsBH
+         OXxaeTwqGKUCIeMx8Wo7MTM1kMj6Bd07+yFCpl3Ojkzf+3CoL5TeGW9iNAgzR6/pHIgI
+         efCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fK8ie2EVzVXoUL/CWYGjwnNVixgs+iO/GFvY62KiDxQ=;
-        b=D6ZwS/h4jj6krLzzv/qEgtIlgIIwCbI5NIV0Yd/jmL0NzfaQD/6kNS8/a9qL3nXBlO
-         JMHopcMcmZH4d+5BBMxzqFhxMZOGWqbC3CeqVM940Oq9e5JbfIxqoG8m+sWmsw8tXXV+
-         T8UCei3M3Wm5pQGVkqIS+43MfQVQTrLAah+Ww9hy53FkKc/dqo7htoTZy7MpZqzqkvgh
-         6ArG91ByLDInQGGlMDySJ9xI6b3lBFXchhnn/Qa4zgC4ambtjxY/Qczx8i2DUxvAvca2
-         zd/VDtnB0ugV0AB6GzvB7s+uDbN6I8l3A1UUOEPpE/3nxiDA34tMUqUBHd/gaO4F5FqN
-         JZFg==
-X-Gm-Message-State: AOAM531oZ+wI3F6w6YjTaGFIwqWMEdMTjnIM+DkHk5af+1H8CI31GV85
-        zY66mUwqcDpSCeSiZNlw3ADoaZk3qbqFpf8jZCHhjKnRQRY=
-X-Google-Smtp-Source: ABdhPJytXBsy/12vkMd15iuOeFr6Xo9JIav33CyBdBuMu8Ek0cQ9eyrD6l0bJu8VC7NsoKBVqGSf+pLoMe2NyERtQUY=
-X-Received: by 2002:a17:90a:3486:b0:1d9:3abd:42ed with SMTP id
- p6-20020a17090a348600b001d93abd42edmr26745345pjb.32.1651095822600; Wed, 27
- Apr 2022 14:43:42 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=du/c2vhq3VYi9SfdNIrPwaHRFuDCP1aHXk3ODWglX9k=;
+        b=ui0HGwgoHmFsVHm9B1X7tDFwwF7QS1023g+6aGM04cRvRPIZ20/0MsM1hQhz8uWz+l
+         R99EbXsZ17mY38QJWtNFhYWQJCovKDyoyzPgNGHng1jGvu2P59KcKrnbTZApekMr3sxR
+         Wo0LBzgl6Va6ZjuH/1MUwUV/00T3YsmBsg2u/fdA+uMter2TvPcsZmCLvBROnZ1DpUqx
+         alhWgqStV3iwD+OXtGECqJwimjTcE/InsVBDT028HravGLwBsiuawiwOK91/D1JiC2Xi
+         OH4NHxsyNjxsDupeAitYyPoVpCs7gPGHTc8Luxdl1kaX6uFjDs2BYE4uoMcGQPDflncx
+         iIHA==
+X-Gm-Message-State: AOAM532x/aEIqzQdoSTxBKm4pfIy64qgycBRiTnqFhwxjRWdJroo2fyL
+        WMm5xgjaJzMZIJSJmBIn8N4=
+X-Google-Smtp-Source: ABdhPJzDqf4wmmACwNJoB16cZAuIolvX5v6xhuvwrSnwo5GaUZ57N3EQLaB9pKF/9o1j5SOgfNFlbg==
+X-Received: by 2002:a63:f058:0:b0:3c1:42e9:eb40 with SMTP id s24-20020a63f058000000b003c142e9eb40mr4936551pgj.236.1651095829006;
+        Wed, 27 Apr 2022 14:43:49 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id y9-20020a17090a1f4900b001cd498dc153sm8015432pjy.3.2022.04.27.14.43.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 14:43:48 -0700 (PDT)
+Message-ID: <96eef806-72df-71bc-8abb-70c26e947b3d@gmail.com>
+Date:   Wed, 27 Apr 2022 14:43:46 -0700
 MIME-Version: 1.0
-References: <20220418233558.13541-1-luizluca@gmail.com> <Ymbs9ri8JJXTM8XO@robh.at.kernel.org>
-In-Reply-To: <Ymbs9ri8JJXTM8XO@robh.at.kernel.org>
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date:   Wed, 27 Apr 2022 18:43:31 -0300
-Message-ID: <CAJq09z4aHS5aZz2U-=GtMfqc+QjOaX937DYHK7aUWii=GcDvwA@mail.gmail.com>
-Subject: Re: [PATCH net v2 1/2] dt-bindings: net: dsa: realtek: cleanup
- compatible strings
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, krzk+dt@kernel.org,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 2/4] mmc: sdhci-brcmstb: Enable Clock Gating to save
+ power
+Content-Language: en-US
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Kamal Dasu <kdasu.kdev@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com, adrian.hunter@intel.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220427180853.35970-1-kdasu.kdev@gmail.com>
+ <20220427180853.35970-3-kdasu.kdev@gmail.com>
+ <CAPDyKFrW7DHzc32BYE5ZiPdOdMWqGo1ch4CZZHaM1jVNjpvpWw@mail.gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <CAPDyKFrW7DHzc32BYE5ZiPdOdMWqGo1ch4CZZHaM1jVNjpvpWw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,29 +79,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Mon, Apr 18, 2022 at 08:35:57PM -0300, Luiz Angelo Daros de Luca wrote:
-> > Compatible strings are used to help the driver find the chip ID/version
-> > register for each chip family. After that, the driver can setup the
-> > switch accordingly. Keep only the first supported model for each family
-> > as a compatible string and reference other chip models in the
-> > description.
->
-> The power supplies needing power before you can actually read the ID
-> registers are the same for all the variations?
->
-> The RTL8366s has a serdes power supply while the RTL8370 does not. Maybe
-> that doesn't matter as the PHYs probably don't need power to access
-> registers, but I didn't look at more than 2 datasheets. If there's *any*
-> differences in power sequencing then you need specific compatibles.
+On 4/27/22 14:39, Ulf Hansson wrote:
+> On Wed, 27 Apr 2022 at 20:09, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
+>>
+>> From: Al Cooper <alcooperx@gmail.com>
+>>
+>> Enabling this feature will allow the controller to stop the bus
+>> clock when the bus is idle. The feature is not part of the standard
+>> and is unique to newer Arasan cores and is enabled with a bit in a
+>> vendor specific register. This feature will only be enabled for
+>> non-removable devices because they don't switch the voltage and
+>> clock gating breaks SD Card volatge switching.
+> 
+> Rather than using a HW specific thing for this, it may be better to
+> use runtime PM. There are plenty of examples to get inspired from, so
+> it should be rather easy to implement, I think. More importantly, it
+> should work for both (e)MMC and SD cards, unless there are some
+> specific things to manage for this controller.
+> 
+> When it comes to SDIO, some driver simply bumps the runtime PM usage
+> count (pm_runtime_get_noresume()) to prevent the device from being
+> runtime suspended. There are ways to work around this, let me know if
+> you need some guidance around how to fix that too.
+> 
+> That said, I am not entirely opposed to $subject patch, but I wanted
+> to point out that there are better alternatives.
 
-Hi Rob,
-
-I don't believe we would need to deal with any special power sequences
-in order to read the switch registers.
-Anyway, if we face a situation where we do need to handle a special
-device differently, it is always less drastic to add a new compatible
-string than to remove one already in use.
-
-Regards,
-
-Luiz
+This is a good suggestion, I would not consider runtime PM and enabling 
+the clock gating as being alternatives to one another, but rather 
+complementary.
+-- 
+Florian
