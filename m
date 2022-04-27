@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DF55119F7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF674511AA5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237804AbiD0OcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 10:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47270 "EHLO
+        id S238015AbiD0Ogp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 10:36:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237766AbiD0OcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:32:10 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5974E13F61;
-        Wed, 27 Apr 2022 07:28:54 -0700 (PDT)
-X-UUID: f8cabb3c388948e9b8de570297e2d4a3-20220427
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:9ccbd8d1-4f8e-4b51-9185-88ca8c1d42e2,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:95
-X-CID-INFO: VERSION:1.1.4,REQID:9ccbd8d1-4f8e-4b51-9185-88ca8c1d42e2,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
-        ION:quarantine,TS:95
-X-CID-META: VersionHash:faefae9,CLOUDID:bf5bea2e-6199-437e-8ab4-9920b4bc5b76,C
-        OID:62fd576a1818,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: f8cabb3c388948e9b8de570297e2d4a3-20220427
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 974290569; Wed, 27 Apr 2022 22:28:49 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 27 Apr 2022 22:28:47 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 27 Apr 2022 22:28:47 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Apr 2022 22:28:47 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        "Chen-Yu Tsai" <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>, <hsinyi@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        "Allen-KH Cheng" <Allen-KH.Cheng@mediatek.com>
-Subject: [PATCH v7 2/2] arm64: dts: Add MediaTek SoC MT8186 dts and evaluation board and Makefile
-Date:   Wed, 27 Apr 2022 22:28:39 +0800
-Message-ID: <20220427142839.12598-3-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220427142839.12598-1-allen-kh.cheng@mediatek.com>
-References: <20220427142839.12598-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S238193AbiD0Ogl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:36:41 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D3831C4
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 07:33:27 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id l19so2893698ljb.7
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 07:33:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=m2TZ0GM5ZLcNaS6BsmO5iNxwn8FLCjui+O6drF9GVdg=;
+        b=zToBF7hCE2CC3ZiOsicXmvdQXDsvjP1Oyw7b7Cp7wI7y5kqih5h33qei9h5G4zouLw
+         7NYpvXxfz/B2pYWzmQq4tlqP6S8figSZswOqD7RXiEdqWLd7djzb4uVzSd7keuLQdHUj
+         I0MZmU3/ECUHJBkL0bMr+2XOCNu9dCPU2lhe9aPjIVKpHDxdDxKcmHhpvxfO4HjNjSqF
+         5TEaSwo4KNWXkAzqJKdQ+DE/bw4fUg1D29X4yPlb4WcrqEPLteuTQTuuavXOlq5OxFV9
+         wIxO00KP8YUJxRmXuCl8pz6yQNlanncrjTx8CV3XWXOqSSip08+kz9LyOyOlLO3XtFAj
+         QaAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=m2TZ0GM5ZLcNaS6BsmO5iNxwn8FLCjui+O6drF9GVdg=;
+        b=6LhDjQwB3dgItaP01sI/4K08jnBd04I7Eng+UIQyWdu9XTPDNpQG32Q5KkAoQ2PtoA
+         zl7gBZm1ZXmD2o+hE8Hk/kO63QLj2a8P5Mi0x/EUEYuJkRVHWFecHJvkUYHIZPxnXXpk
+         HMHXVn+zLxR1KkUAoQD5eMipDXApcLdcwRf9lf5qv29oq7DzAkuRfVq8gtr2yXzcY9RJ
+         xRr3UG/BDH5LR0SDNIqwQC9sNsfUQFJddty+mVxTAzJE/PhTX5S8P7CSVVvMSBCs3IBk
+         r4spEomBEcN1iux+BRaXV7lCMfimMEQdPjgQ/5DeZ1e085T11oTmzDAZnKSg5Lynz6TB
+         VVug==
+X-Gm-Message-State: AOAM532at2CBgZEbSnotzJWrN26IuLhNUzUvtrpObG82t8swjmWMJEOm
+        YMZo9P8Kf65s1XrFYaGeczWBab+JSzvmNYkW1yhDNA==
+X-Google-Smtp-Source: ABdhPJxbVQImxxDI35r9nj9Ue5E3K7Yperwje2qUp3CxuMx2lnP8gvqhDuIFWxM/E+9PWE/Vd5dPWAHvN9lt9kdafvE=
+X-Received: by 2002:a2e:a4cc:0:b0:24f:2719:5c84 with SMTP id
+ p12-20020a2ea4cc000000b0024f27195c84mr3372349ljm.463.1651070005137; Wed, 27
+ Apr 2022 07:33:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+References: <cover.1649903900.git.tonyhuang.sunplus@gmail.com> <277f6b2d87d703274699e9b1eea1a2ae17f88739.1649903900.git.tonyhuang.sunplus@gmail.com>
+In-Reply-To: <277f6b2d87d703274699e9b1eea1a2ae17f88739.1649903900.git.tonyhuang.sunplus@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 27 Apr 2022 16:32:48 +0200
+Message-ID: <CAPDyKFpdtpaLebHEaK6y8GoeTHZZ9TMWCjXKaPa1zpR-HLhtcw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] mmc: Add mmc driver for Sunplus SP7021
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, kuba@kernel.org, davem@davemloft.net,
+        vladimir.oltean@nxp.com, colin.foster@in-advantage.com,
+        wells.lu@sunplus.com, tony.huang@sunplus.com, lh.Kuo@sunplus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,1205 +68,1313 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic chip support for MediaTek MT8186.
+()
 
-Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/Makefile       |   1 +
- arch/arm64/boot/dts/mediatek/mt8186-evb.dts | 232 +++++
- arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 932 ++++++++++++++++++++
- 3 files changed, 1165 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+On Thu, 14 Apr 2022 at 05:45, Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
+>
+> Addressed comments from kernel test robot.
+> Remove unused vairable. Add previous prototype.
+> Addressed make error and warning in kernel 5.18-rc1.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index c7d4636a2cb7..50a2c58c5f56 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -37,6 +37,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-new file mode 100644
-index 000000000000..6bf5b81e3e6b
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-@@ -0,0 +1,232 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2022 MediaTek Inc.
-+ */
-+/dts-v1/;
-+#include "mt8186.dtsi"
-+
-+/ {
-+	model = "MediaTek MT8186 evaluation board";
-+	compatible = "mediatek,mt8186-evb", "mediatek,mt8186";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+	};
-+
-+	memory {
-+		device_type = "memory";
-+		reg = <0 0x40000000 0 0x80000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	i2c-scl-internal-delay-ns = <8000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	i2c-scl-internal-delay-ns = <10000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c5_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c6_pins>;
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c7_pins>;
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c8_pins>;
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c9_pins>;
-+	status = "okay";
-+};
-+
-+&pio {
-+	i2c0_pins: i2c0{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO128__FUNC_SDA0>,
-+				 <PINMUX_GPIO127__FUNC_SCL0>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c1_pins: i2c1{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO130__FUNC_SDA1>,
-+				 <PINMUX_GPIO129__FUNC_SCL1>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c2_pins: i2c2{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO132__FUNC_SDA2>,
-+				 <PINMUX_GPIO131__FUNC_SCL2>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c3_pins: i2c3{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO134__FUNC_SDA3>,
-+				 <PINMUX_GPIO133__FUNC_SCL3>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c4_pins: i2c4{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO136__FUNC_SDA4>,
-+				 <PINMUX_GPIO135__FUNC_SCL4>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c5_pins: i2c5{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO138__FUNC_SDA5>,
-+				 <PINMUX_GPIO137__FUNC_SCL5>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c6_pins: i2c6{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO140__FUNC_SDA6>,
-+				 <PINMUX_GPIO139__FUNC_SCL6>;
-+			bias-pull-up = <MTK_PULL_SET_RSEL_001>;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c7_pins: i2c7{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO142__FUNC_SDA7>,
-+				 <PINMUX_GPIO141__FUNC_SCL7>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c8_pins: i2c8{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO144__FUNC_SDA8>,
-+				 <PINMUX_GPIO143__FUNC_SCL8>;
-+			bias-disable;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+
-+	i2c9_pins: i2c9{
-+		pins_bus {
-+			pinmux = <PINMUX_GPIO146__FUNC_SDA9>,
-+				 <PINMUX_GPIO145__FUNC_SCL9>;
-+			bias-pull-up = <MTK_PULL_SET_RSEL_001>;
-+			mediatek,drive-strength-adv =<0>;
-+			drive-strength = <MTK_DRIVE_4mA>;
-+			input-enable;
-+		};
-+	};
-+};
-+
-+&u3phy0 {
-+	status="okay";
-+};
-+
-+&u3phy1 {
-+	status="okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&xhci0 {
-+	status = "okay";
-+};
-+
-+&xhci1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-new file mode 100644
-index 000000000000..2471d68e18dc
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -0,0 +1,932 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2022 MediaTek Inc.
-+ * Author: Allen-KH Cheng <allenn-kh.cheng@mediatek.com>
-+ */
-+/dts-v1/;
-+#include <dt-bindings/clock/mt8186-clk.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pinctrl/mt8186-pinfunc.h>
-+#include <dt-bindings/power/mt8186-power.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/reset/mt8186-resets.h>
-+
-+/ {
-+	compatible = "mediatek,mt8186";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x000>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x400>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x500>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75";
-+			reg = <0x600>;
-+			enable-method = "psci";
-+			clock-frequency = <2050000000>;
-+			cpu-idle-states = <&cpu_off_b &cluster_off_b>;
-+			next-level-cache = <&l2_1>;
-+		};
-+
-+		cpu7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75";
-+			reg = <0x700>;
-+			enable-method = "psci";
-+			clock-frequency = <2050000000>;
-+			cpu-idle-states = <&cpu_off_b &cluster_off_b>;
-+			next-level-cache = <&l2_1>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+
-+				core4 {
-+					cpu = <&cpu4>;
-+				};
-+
-+				core5 {
-+					cpu = <&cpu5>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu6>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu7>;
-+				};
-+			};
-+		};
-+
-+		idle-states {
-+			entry-method = "psci";
-+
-+			cpu_off_l: cpu-off-l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010001>;
-+				local-timer-stop;
-+				entry-latency-us = <50>;
-+				exit-latency-us = <100>;
-+				min-residency-us = <1600>;
-+			};
-+
-+			cpu_off_b: cpu-off-b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010001>;
-+				local-timer-stop;
-+				entry-latency-us = <50>;
-+				exit-latency-us = <100>;
-+				min-residency-us = <1400>;
-+			};
-+
-+			cluster_off_l: cluster-off-l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x01010001>;
-+				local-timer-stop;
-+				entry-latency-us = <100>;
-+				exit-latency-us = <250>;
-+				min-residency-us = <2100>;
-+			};
-+
-+			cluster_off_b: cluster-off-b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x01010001>;
-+				local-timer-stop;
-+				entry-latency-us = <100>;
-+				exit-latency-us = <250>;
-+				min-residency-us = <1900>;
-+			};
-+		};
-+
-+		l2_0: l2-cache0 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l2_1: l2-cache1 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l3_0: l3-cache {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	clk13m: oscillator-13m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <13000000>;
-+		clock-output-names = "clk13m";
-+	};
-+
-+	clk26m: oscillator-26m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "clk26m";
-+	};
-+
-+	clk32k: oscillator-32k {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "clk32k";
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	timer: timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	soc {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		compatible = "simple-bus";
-+		ranges;
-+
-+		gic: interrupt-controller@c000000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <3>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			#redistributor-regions = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupt-controller;
-+			reg = <0 0x0c000000 0 0x40000>,
-+			      <0 0x0c040000 0 0x200000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		mcusys: syscon@c53a000 {
-+			compatible = "mediatek,mt8186-mcusys", "syscon";
-+			reg = <0 0xc53a000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		topckgen: syscon@10000000 {
-+			compatible = "mediatek,mt8186-topckgen", "syscon";
-+			reg = <0 0x10000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		infracfg_ao: syscon@10001000 {
-+			compatible = "mediatek,mt8186-infracfg_ao", "syscon";
-+			reg = <0 0x10001000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		pio: pinctrl@10005000 {
-+			compatible = "mediatek,mt8186-pinctrl";
-+			reg = <0 0x10005000 0 0x1000>,
-+			      <0 0x10002000 0 0x0200>,
-+			      <0 0x10002200 0 0x0200>,
-+			      <0 0x10002400 0 0x0200>,
-+			      <0 0x10002600 0 0x0200>,
-+			      <0 0x10002A00 0 0x0200>,
-+			      <0 0x10002c00 0 0x0200>,
-+			      <0 0x1000b000 0 0x1000>;
-+			reg-names = "iocfg0", "iocfg_lt", "iocfg_lm", "iocfg_lb",
-+				    "iocfg_bl", "iocfg_rb", "iocfg_rt", "eint";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&pio 0 0 185>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		scpsys: syscon@10006000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0 0x10006000 0 0x1000>;
-+			#power-domain-cells = <1>;
-+
-+			/* System Power Manager */
-+			spm: power-controller {
-+				compatible = "mediatek,mt8186-power-controller";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				#power-domain-cells = <1>;
-+
-+				/* power domain of the SoC */
-+				mfg0: mfg0@MT8186_POWER_DOMAIN_MFG0 {
-+					reg = <MT8186_POWER_DOMAIN_MFG0>;
-+					clocks = <&topckgen CLK_TOP_MFG>;
-+					clock-names= "mfg00";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					mfg1@MT8186_POWER_DOMAIN_MFG1 {
-+						reg = <MT8186_POWER_DOMAIN_MFG1>;
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						mfg2@MT8186_POWER_DOMAIN_MFG2 {
-+							reg = <MT8186_POWER_DOMAIN_MFG2>;
-+							#power-domain-cells = <0>;
-+						};
-+
-+						mfg3@MT8186_POWER_DOMAIN_MFG3 {
-+							reg = <MT8186_POWER_DOMAIN_MFG3>;
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+				};
-+
-+				csirx_top@MT8186_POWER_DOMAIN_CSIRX_TOP {
-+					reg = <MT8186_POWER_DOMAIN_CSIRX_TOP>;
-+					clocks = <&topckgen CLK_TOP_SENINF>,
-+						 <&topckgen CLK_TOP_SENINF1>;
-+					clock-names= "csirx_top0", "csirx_top1";
-+					#power-domain-cells = <0>;
-+				};
-+
-+				ssusb@MT8186_POWER_DOMAIN_SSUSB {
-+					reg = <MT8186_POWER_DOMAIN_SSUSB>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				ssusb_p1@MT8186_POWER_DOMAIN_SSUSB_P1 {
-+					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				adsp_ao@MT8186_POWER_DOMAIN_ADSP_AO {
-+					reg = <MT8186_POWER_DOMAIN_ADSP_AO>;
-+					clocks = <&topckgen CLK_TOP_AUDIODSP>,
-+						 <&topckgen CLK_TOP_ADSP_BUS>;
-+					clock-names= "adsp_ao0", "adsp_ao1";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					adsp_infra@MT8186_POWER_DOMAIN_ADSP_INFRA {
-+						reg = <MT8186_POWER_DOMAIN_ADSP_INFRA>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						adsp_top@MT8186_POWER_DOMAIN_ADSP_TOP {
-+							reg = <MT8186_POWER_DOMAIN_ADSP_TOP>;
-+							mediatek,infracfg = <&infracfg_ao>;
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+				};
-+
-+				conn_on@MT8186_POWER_DOMAIN_CONN_ON {
-+					reg = <MT8186_POWER_DOMAIN_CONN_ON>;
-+					mediatek,infracfg = <&infracfg_ao>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				dis@MT8186_POWER_DOMAIN_DIS {
-+					reg = <MT8186_POWER_DOMAIN_DIS>;
-+					clocks = <&topckgen CLK_TOP_DISP>,
-+						 <&topckgen CLK_TOP_MDP>,
-+						 <&mmsys CLK_MM_SMI_INFRA>,
-+						 <&mmsys CLK_MM_SMI_COMMON>,
-+						 <&mmsys CLK_MM_SMI_GALS>,
-+						 <&mmsys CLK_MM_SMI_IOMMU>;
-+					clock-names= "dis0", "dis1",
-+						     "dis-0", "dis-1", "dis-2", "dis-3";
-+					mediatek,infracfg = <&infracfg_ao>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					vdec@MT8186_POWER_DOMAIN_VDEC {
-+						reg = <MT8186_POWER_DOMAIN_VDEC>;
-+						clocks = <&topckgen CLK_TOP_VDEC>,
-+							 <&vdecsys CLK_VDEC_LARB1_CKEN>;
-+						clock-names= "vdec0", "vdec-0";
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					cam@MT8186_POWER_DOMAIN_CAM {
-+						reg = <MT8186_POWER_DOMAIN_CAM>;
-+						clocks = <&topckgen CLK_TOP_CAM>,
-+							 <&topckgen CLK_TOP_SENINF>,
-+							 <&topckgen CLK_TOP_SENINF1>,
-+							 <&topckgen CLK_TOP_SENINF2>,
-+							 <&topckgen CLK_TOP_SENINF3>,
-+							 <&topckgen CLK_TOP_CAMTM>,
-+							 <&camsys CLK_CAM2MM_GALS>;
-+						clock-names= "cam0", "cam1", "cam2", "cam3",
-+							     "cam4", "cam5", "cam-0";
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						cam_rawb@MT8186_POWER_DOMAIN_CAM_RAWB {
-+							reg = <MT8186_POWER_DOMAIN_CAM_RAWB>;
-+							#power-domain-cells = <0>;
-+						};
-+
-+						cam_rawa@MT8186_POWER_DOMAIN_CAM_RAWA {
-+							reg = <MT8186_POWER_DOMAIN_CAM_RAWA>;
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+
-+					img@MT8186_POWER_DOMAIN_IMG {
-+						reg = <MT8186_POWER_DOMAIN_IMG>;
-+						clocks = <&topckgen CLK_TOP_IMG1>,
-+							 <&imgsys1 CLK_IMG1_GALS_IMG1>;
-+						clock-names = "img0", "img-0";
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						img2@MT8186_POWER_DOMAIN_IMG2 {
-+							reg = <MT8186_POWER_DOMAIN_IMG2>;
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+
-+					ipe@MT8186_POWER_DOMAIN_IPE {
-+						reg = <MT8186_POWER_DOMAIN_IPE>;
-+						clocks = <&topckgen CLK_TOP_IPE>,
-+							 <&ipesys CLK_IPE_LARB19>,
-+							 <&ipesys CLK_IPE_LARB20>,
-+							 <&ipesys CLK_IPE_SMI_SUBCOM>,
-+							 <&ipesys CLK_IPE_GALS_IPE>;
-+						clock-names= "ipe0", "ipe-0", "ipe-1", "ipe-2",
-+							     "ipe-3";
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					venc@MT8186_POWER_DOMAIN_VENC {
-+						reg = <MT8186_POWER_DOMAIN_VENC>;
-+						clocks = <&topckgen CLK_TOP_VENC>,
-+							 <&vencsys CLK_VENC_CKE1_VENC>;
-+						clock-names= "venc0", "venc-0";
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					wpe@MT8186_POWER_DOMAIN_WPE {
-+						reg = <MT8186_POWER_DOMAIN_WPE>;
-+						clocks = <&topckgen CLK_TOP_WPE>,
-+							 <&wpesys CLK_WPE_SMI_LARB8_CK_EN>,
-+							 <&wpesys CLK_WPE_SMI_LARB8_PCLK_EN>;
-+						clock-names= "wpe0", "wpe-0", "wpe-1";
-+						mediatek,infracfg = <&infracfg_ao>;
-+						#power-domain-cells = <0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		watchdog: watchdog@10007000 {
-+			compatible = "mediatek,mt8186-wdt",
-+				     "mediatek,mt6589-wdt";
-+			mediatek,disable-extrst;
-+			reg = <0 0x10007000 0 0x1000>;
-+			#reset-cells = <1>;
-+		};
-+
-+		apmixedsys: syscon@1000c000 {
-+			compatible = "mediatek,mt8186-apmixedsys", "syscon";
-+			reg = <0 0x1000c000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		systimer: timer@10017000 {
-+			compatible = "mediatek,mt8186-timer",
-+				     "mediatek,mt6765-timer";
-+			reg = <0 0x10017000 0 0x1000>;
-+			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk13m>;
-+		};
-+
-+		nor_flash: spi@11000000 {
-+			compatible = "mediatek,mt8186-nor", "mediatek,mt8173-nor";
-+			reg = <0 0x11000000 0 0x1000>;
-+			clocks = <&topckgen CLK_TOP_SPINOR>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPINOR>,
-+				 <&infracfg_ao CLK_INFRA_AO_FLASHIF_133M>,
-+				 <&infracfg_ao CLK_INFRA_AO_FLASHIF_66M>;
-+			clock-names = "spi", "sf", "axi", "axi_s";
-+			assigned-clocks = <&topckgen CLK_TOP_SPINOR>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D3_D8>;
-+			interrupts = <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		uart0: serial@11002000 {
-+			compatible = "mediatek,mt8186-uart",
-+				     "mediatek,mt6577-uart";
-+			reg = <0 0x11002000 0 0x1000>;
-+			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART0>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		uart1: serial@11003000 {
-+			compatible = "mediatek,mt8186-uart",
-+				     "mediatek,mt6577-uart";
-+			reg = <0 0x11003000 0 0x1000>;
-+			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART1>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		i2c0: i2c0@11007000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11007000 0 0x1000>,
-+			      <0 0x10200100 0 0x100>;
-+			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C0>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c1@11008000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11008000 0 0x1000>,
-+			      <0 0x10200200 0 0x100>;
-+			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C1>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c2@11009000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11009000 0 0x1000>,
-+			      <0 0x10200300 0 0x180>;
-+			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C2>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c3: i2c3@1100f000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x1100f000 0 0x1000>,
-+			      <0 0x10200480 0 0x100>;
-+			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C3>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c4: i2c4@11011000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11011000 0 0x1000>,
-+			      <0 0x10200580 0 0x180>;
-+			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C4>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c5: i2c5@11016000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11016000 0 0x1000>,
-+			      <0 0x10200700 0 0x100>;
-+			interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C5>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c6: i2c6@1100d000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x1100d000 0 0x1000>,
-+			      <0 0x10200800 0 0x100>;
-+			interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C6>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c7: i2c7@11004000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11004000 0 0x1000>,
-+			      <0 0x10200900 0 0x180>;
-+			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C7>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		i2c8: i2c8@11005000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11005000 0 0x1000>,
-+			      <0 0x10200A80 0 0x180>;
-+			interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C8>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		spi0: spi@1100a000 {
-+			compatible = "mediatek,mt8186-spi", "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0 0x1100a000 0 0x1000>;
-+			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPI0>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@11010000 {
-+			compatible = "mediatek,mt8186-spi", "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0 0x11010000 0 0x1000>;
-+			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPI1>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+			status = "disabled";
-+		};
-+
-+		spi2: spi@11012000 {
-+			compatible = "mediatek,mt8186-spi", "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0 0x11012000 0 0x1000>;
-+			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPI2>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+			status = "disabled";
-+		};
-+
-+		spi3: spi@11013000 {
-+			compatible = "mediatek,mt8186-spi", "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0 0x11013000 0 0x1000>;
-+			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPI3>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@11014000 {
-+			compatible = "mediatek,mt8186-spi", "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0 0x11014000 0 0x1000>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPI4>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+			status = "disabled";
-+		};
-+
-+		spi5: spi@11015000 {
-+			compatible = "mediatek,mt8186-spi", "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0 0x11015000 0 0x1000>;
-+			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SPI5>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+			status = "disabled";
-+		};
-+
-+		imp_iic_wrap: clock-controller@11017000 {
-+			compatible = "mediatek,mt8186-imp_iic_wrap";
-+			reg = <0 0x11017000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		uart2: serial@11018000 {
-+			compatible = "mediatek,mt8186-uart",
-+				     "mediatek,mt6577-uart";
-+			reg = <0 0x11018000 0 0x1000>;
-+			interrupts = <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART2>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		i2c9: i2c9@11019000 {
-+			compatible = "mediatek,mt8186-i2c";
-+			reg = <0 0x11019000 0 0x1000>,
-+			      <0 0x10200c00 0 0x180>;
-+			interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&imp_iic_wrap CLK_IMP_IIC_WRAP_AP_CLOCK_I2C9>,
-+				 <&infracfg_ao CLK_INFRA_AO_AP_DMA>;
-+			clock-names = "main", "dma";
-+			clock-div = <1>;
-+			status = "disabled";
-+		};
-+
-+		xhci0: usb@11200000 {
-+			compatible = "mediatek,mt8186-xhci",
-+				     "mediatek,mtk-xhci";
-+			reg = <0 0x11200000 0 0x1000>,
-+			      <0 0x11203e00 0 0x0100>;
-+			reg-names = "mac", "ippc";
-+			interrupts = <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&u2port0 PHY_TYPE_USB2>;
-+			clocks = <&topckgen CLK_TOP_USB_TOP>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_HCLK>,
-+				 <&infracfg_ao CLK_INFRA_AO_ICUSB>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>;
-+			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-+			power-domains = <&spm MT8186_POWER_DOMAIN_SSUSB>;
-+			status = "disabled";
-+		};
-+
-+		mmc0: mmc@11230000 {
-+			compatible = "mediatek,mt8186-mmc",
-+				     "mediatek,mt8183-mmc";
-+			reg = <0 0x11230000 0 0x1000>,
-+			      <0 0x11cd0000 0 0x1000>;
-+			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MSDC50_0>,
-+				 <&infracfg_ao CLK_INFRA_AO_MSDC0>,
-+				 <&infracfg_ao CLK_INFRA_AO_MSDC0_SRC>,
-+				 <&infracfg_ao CLK_INFRA_AO_MSDCFDE>;
-+			clock-names = "source", "hclk", "source_cg", "ahb_cg";
-+			assigned-clocks = <&topckgen CLK_TOP_MSDC50_0>;
-+			assigned-clock-parents = <&apmixedsys CLK_APMIXED_MSDCPLL>;
-+			status = "disabled";
-+		};
-+
-+		mmc1: mmc@11240000 {
-+			compatible = "mediatek,mt8186-mmc",
-+				     "mediatek,mt8183-mmc";
-+			reg = <0 0x11240000 0 0x1000>,
-+			      <0 0x11c90000 0 0x1000>;
-+			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&topckgen CLK_TOP_MSDC30_1>,
-+				 <&infracfg_ao CLK_INFRA_AO_MSDC1>,
-+				 <&infracfg_ao CLK_INFRA_AO_MSDC1_SRC>;
-+			clock-names = "source", "hclk", "source_cg";
-+			assigned-clocks = <&topckgen CLK_TOP_MSDC30_1>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
-+			status = "disabled";
-+		};
-+
-+		xhci1: usb@11280000 {
-+			compatible = "mediatek,mt8186-xhci",
-+				     "mediatek,mtk-xhci";
-+			reg = <0 0x11280000 0 0x1000>,
-+			      <0 0x11283e00 0 0x0100>;
-+			reg-names = "mac", "ippc";
-+			interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&u2port1 PHY_TYPE_USB2>,
-+			       <&u3port1 PHY_TYPE_USB3>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_SYS>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_HCLK>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_REF>;
-+			clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
-+			power-domains = <&spm MT8186_POWER_DOMAIN_SSUSB_P1>;
-+			status = "disabled";
-+		};
-+
-+		u3phy0: t-phy@11c80000 {
-+			compatible = "mediatek,mt8186-tphy",
-+				     "mediatek,generic-tphy-v2";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x11c80000 0x1000>;
-+			status = "disabled";
-+
-+			u2port1: usb-phy@0 {
-+				reg = <0x0 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+
-+			u3port1: usb-phy@700 {
-+				reg = <0x700 0x900>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+		};
-+
-+		u3phy1: t-phy@11ca0000 {
-+			compatible = "mediatek,mt8186-tphy",
-+				     "mediatek,generic-tphy-v2";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x11ca0000 0x1000>;
-+			status = "disabled";
-+
-+			u2port0: usb-phy@0 {
-+				reg = <0x0 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+				mediatek,discth = <0x8>;
-+			};
-+		};
-+
-+		mfgsys: clock-controller@13000000 {
-+			compatible = "mediatek,mt8186-mfgsys";
-+			reg = <0 0x13000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		mmsys: syscon@14000000 {
-+			compatible = "mediatek,mt8186-mmsys", "syscon";
-+			reg = <0 0x14000000 0 0x1000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
-+		wpesys: clock-controller@14020000 {
-+			compatible = "mediatek,mt8186-wpesys";
-+			reg = <0 0x14020000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imgsys1: clock-controller@15020000 {
-+			compatible = "mediatek,mt8186-imgsys1";
-+			reg = <0 0x15020000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imgsys2: clock-controller@15820000 {
-+			compatible = "mediatek,mt8186-imgsys2";
-+			reg = <0 0x15820000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vdecsys: clock-controller@1602f000 {
-+			compatible = "mediatek,mt8186-vdecsys";
-+			reg = <0 0x1602f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vencsys: clock-controller@17000000 {
-+			compatible = "mediatek,mt8186-vencsys";
-+			reg = <0 0x17000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys: clock-controller@1a000000 {
-+			compatible = "mediatek,mt8186-camsys";
-+			reg = <0 0x1a000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_rawa: clock-controller@1a04f000 {
-+			compatible = "mediatek,mt8186-camsys_rawa";
-+			reg = <0 0x1a04f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_rawb: clock-controller@1a06f000 {
-+			compatible = "mediatek,mt8186-camsys_rawb";
-+			reg = <0 0x1a06f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		mdpsys: clock-controller@1b000000 {
-+			compatible = "mediatek,mt8186-mdpsys";
-+			reg = <0 0x1b000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		ipesys: clock-controller@1c000000 {
-+			compatible = "mediatek,mt8186-ipesys";
-+			reg = <0 0x1c000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+	};
-+};
--- 
-2.18.0
+I think a new driver deserves some information about the HW in the
+commit message. We don't need details, but some top level information
+would be good.
 
+Can you please add this?
+
+>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> ---
+> Changes in v5:
+>  - Addressed comments from Krzysztof.
+>  - Remove the relevant sdcard code.
+>  - Submit the emmc code only.
+>
+> Changes in v6:
+>  - Addressed comments from Arnd.
+>  - Use SYSTEM_SLEEP_PM_OPS instead of SET_SYSTEM_SLEEP_PM_OPS.
+>  - Use RUNTIME_PM_OPS instead of SET_RUNTIME_PM_OPS.
+>  - Remove #ifdef check.
+>  - Fixed mutex lock and unlock imbalance issue.
+>
+> Changes in v7:
+>  - Addressed comments from kernel test robot.
+>  - Remove unused vairable.
+>  - Add previous prototype.
+>  - Addressed make error and warning in kernel 5.18-rc1.
+>
+>  MAINTAINERS                    |    1 +
+>  drivers/mmc/host/Kconfig       |    9 +
+>  drivers/mmc/host/Makefile      |    1 +
+>  drivers/mmc/host/sunplus-mmc.c | 1183 ++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 1194 insertions(+)
+>  create mode 100644 drivers/mmc/host/sunplus-mmc.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index cdd809a..2439234 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18874,6 +18874,7 @@ M:      Tony Huang <tonyhuang.sunplus@gmail.com>
+>  M:     Li-hao Kuo <lhjeff911@gmail.com>
+>  S:     Maintained
+>  F:     Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+> +F:     drivers/mmc/host/sunplus-mmc.c
+>
+>  SUNPLUS OCOTP DRIVER
+>  M:     Vincent Shih <vincent.sunplus@gmail.com>
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index af6c3c3..d99ee3b 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -14,6 +14,15 @@ config MMC_DEBUG
+>           added host drivers please don't invent their private macro for
+>           debugging.
+>
+> +config MMC_SUNPLUS
+> +       tristate "Sunplus SP7021 MMC Controller"
+> +       depends on ARCH_SUNPLUS || COMPILE_TEST
+> +       help
+> +         If you say yes here, you will get support for eMMC host interface
+> +         on Sunplus SoCs.
+> +
+> +         If unsure, say N
+> +
+>  config MMC_ARMMMCI
+>         tristate "ARM AMBA Multimedia Card Interface support"
+>         depends on ARM_AMBA
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index 4e4ceb3..ba0c6d0 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -97,6 +97,7 @@ obj-$(CONFIG_MMC_SDHCI_MICROCHIP_PIC32)       += sdhci-pic32.o
+>  obj-$(CONFIG_MMC_SDHCI_BRCMSTB)                += sdhci-brcmstb.o
+>  obj-$(CONFIG_MMC_SDHCI_OMAP)           += sdhci-omap.o
+>  obj-$(CONFIG_MMC_SDHCI_SPRD)           += sdhci-sprd.o
+> +obj-$(CONFIG_MMC_SUNPLUS)              += sunplus-mmc.o
+>  obj-$(CONFIG_MMC_CQHCI)                        += cqhci.o
+>  cqhci-y                                        += cqhci-core.o
+>  cqhci-$(CONFIG_MMC_CRYPTO)             += cqhci-crypto.o
+> diff --git a/drivers/mmc/host/sunplus-mmc.c b/drivers/mmc/host/sunplus-mmc.c
+> new file mode 100644
+> index 0000000..9183437
+> --- /dev/null
+> +++ b/drivers/mmc/host/sunplus-mmc.c
+> @@ -0,0 +1,1183 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Sunplus Inc.
+> + * Author: Tony Huang <tonyhuang.sunplus@gmail.com>
+> + * Author: Li-hao Kuo <lhjeff911@gmail.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mmc/core.h>
+> +#include <linux/mmc/host.h>
+> +#include <linux/mmc/mmc.h>
+> +#include <linux/mmc/sdio.h>
+> +#include <linux/mmc/slot-gpio.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +
+> +#define SPMMC_MIN_CLK                  400000
+> +#define SPMMC_MAX_CLK                  52000000
+> +#define SPMMC_MAX_BLK_COUNT            65536
+> +#define SPMMC_MAX_TUNABLE_DLY  7
+> +
+> +#define SPMMC_CARD_MEDIATYPE_SRCDST_REG 0x0000
+> +#define SPMMC_MEDIA_TYPE               GENMASK(2, 0)
+> +#define SPMMC_DMA_SOURCE               GENMASK(6, 4)
+> +#define SPMMC_DMA_DESTINATION          GENMASK(10, 8)
+> +#define SPMMC_MEDIA_NONE       0
+> +#define SPMMC_MEDIA_SD         6
+> +#define SPMMC_MEDIA_MS         7
+> +
+> +#define SPMMC_SDRAM_SECTOR_0_SIZE_REG  0x0008
+> +#define SPMMC_DMA_BASE_ADDR_REG                0x000C
+> +#define SPMMC_HW_DMA_CTRL_REG          0x0010
+> +#define SPMMC_HW_DMA_RST       BIT(9)
+> +#define SPMMC_DMAIDLE          BIT(10)
+> +
+> +#define SPMMC_MAX_DMA_MEMORY_SECTORS   8
+> +
+> +#define SPMMC_SDRAM_SECTOR_1_ADDR_REG 0x0018
+> +
+> +#define SPMMC_SD_INT_REG       0x0088
+> +#define SPMMC_SDINT_SDCMPEN    BIT(0)
+> +#define SPMMC_SDINT_SDCMP      BIT(1)
+> +#define SPMMC_SDINT_SDCMPCLR   BIT(2)
+> +#define SPMMC_SDINT_SDIOEN     BIT(3)
+> +#define SPMMC_SDINT_SDIO       BIT(4)
+> +#define SPMMC_SDINT_SDIOCLR    BIT(5)
+> +
+> +#define SPMMC_SD_PAGE_NUM_REG  0x008C
+> +
+> +#define SPMMC_SD_CONFIG0_REG   0x0090
+> +#define SPMMC_SD_PIO_MODE      BIT(0)
+> +#define SPMMC_SD_DDR_MODE      BIT(1)
+> +#define SPMMC_SD_LEN_MODE      BIT(2)
+> +#define SPMMC_SD_TRANS_MODE    GENMASK(5, 4)
+> +#define SPMMC_SD_AUTO_RESPONSE BIT(6)
+> +#define SPMMC_SD_CMD_DUMMY     BIT(7)
+> +#define SPMMC_SD_RSP_CHK_EN    BIT(8)
+> +#define SPMMC_SDIO_MODE                BIT(9)
+> +#define SPMMC_SD_MMC_MODE      BIT(10)
+> +#define SPMMC_SD_DATA_WD       BIT(11)
+> +#define SPMMC_RX4_EN           BIT(14)
+> +#define SPMMC_SD_RSP_TYPE      BIT(15)
+> +#define SPMMC_MMC8_EN          BIT(18)
+> +#define SPMMC_CLOCK_DIVISION   GENMASK(31, 20)
+> +
+> +#define SPMMC_SDIO_CTRL_REG            0x0094
+> +#define SPMMC_INT_MULTI_TRIG           BIT(6)
+> +
+> +#define SPMMC_SD_RST_REG               0x0098
+> +#define SPMMC_SD_CTRL_REG              0x009C
+> +#define SPMMC_NEW_COMMAND_TRIGGER      BIT(0)
+> +#define SPMMC_DUMMY_CLOCK_TRIGGER      BIT(1)
+> +
+> +#define SPMMC_SD_STATUS_REG                                            0x00A0
+> +#define SPMMC_SDSTATUS_DUMMY_READY                             BIT(0)
+> +#define SPMMC_SDSTATUS_RSP_BUF_FULL                            BIT(1)
+> +#define SPMMC_SDSTATUS_TX_DATA_BUF_EMPTY               BIT(2)
+> +#define SPMMC_SDSTATUS_RX_DATA_BUF_FULL                        BIT(3)
+> +#define SPMMC_SDSTATUS_CMD_PIN_STATUS                  BIT(4)
+> +#define SPMMC_SDSTATUS_DAT0_PIN_STATUS                 BIT(5)
+> +#define SPMMC_SDSTATUS_RSP_TIMEOUT                             BIT(6)
+> +#define SPMMC_SDSTATUS_CARD_CRC_CHECK_TIMEOUT  BIT(7)
+> +#define SPMMC_SDSTATUS_STB_TIMEOUT                             BIT(8)
+> +#define SPMMC_SDSTATUS_RSP_CRC7_ERROR                  BIT(9)
+> +#define SPMMC_SDSTATUS_CRC_TOKEN_CHECK_ERROR   BIT(10)
+> +#define SPMMC_SDSTATUS_RDATA_CRC16_ERROR               BIT(11)
+> +#define SPMMC_SDSTATUS_SUSPEND_STATE_READY             BIT(12)
+> +#define SPMMC_SDSTATUS_BUSY_CYCLE                              BIT(13)
+> +#define SPMMC_SDSTATUS_DAT1_PIN_STATUS                 BIT(14)
+> +#define SPMMC_SDSTATUS_SD_SENSE_STATUS                 BIT(15)
+> +#define SPMMC_SDSTATUS_BOOT_ACK_TIMEOUT                        BIT(16)
+> +#define SPMMC_SDSTATUS_BOOT_DATA_TIMEOUT               BIT(17)
+> +#define SPMMC_SDSTATUS_BOOT_ACK_ERROR                  BIT(18)
+> +
+> +#define SPMMC_SD_STATE_REG             0x00A4
+> +#define SPMMC_CRCTOKEN_CHECK_RESULT    GENMASK(6, 4)
+> +#define SPMMC_SDSTATE_ERROR            BIT(13)
+> +#define SPMMC_SDSTATE_FINISH   BIT(14)
+> +
+> +#define SPMMC_SD_HW_STATE_REG          0x00A8
+> +#define SPMMC_SD_BLOCKSIZE_REG         0x00AC
+> +
+> +#define SPMMC_SD_CONFIG1_REG           0x00B0
+> +#define SPMMC_TX_DUMMY_NUM             GENMASK(8, 0)
+> +#define SPMMC_SD_HIGH_SPEED_EN         BIT(31)
+> +
+> +#define SPMMC_SD_TIMING_CONFIG0_REG 0x00B4
+> +#define SPMMC_SD_CLOCK_DELAY   GENMASK(2, 0)
+> +#define SPMMC_SD_WRITE_DATA_DELAY      GENMASK(6, 4)
+> +#define SPMMC_SD_WRITE_COMMAND_DELAY   GENMASK(10, 8)
+> +#define SPMMC_SD_READ_RESPONSE_DELAY   GENMASK(14, 12)
+> +#define SPMMC_SD_READ_DATA_DELAY       GENMASK(18, 16)
+> +#define SPMMC_SD_READ_CRC_DELAY        GENMASK(22, 20)
+> +
+> +#define SPMMC_SD_PIODATATX_REG         0x00BC
+> +#define SPMMC_SD_PIODATARX_REG         0x00C0
+> +#define SPMMC_SD_CMDBUF0_3_REG         0x00C4
+> +#define SPMMC_SD_CMDBUF4_REG           0x00C8
+> +#define SPMMC_SD_RSPBUF0_3_REG         0x00CC
+> +#define SPMMC_SD_RSPBUF4_5_REG         0x00D0
+> +
+> +#define SPMMC_MAX_RETRIES (8 * 8)
+> +
+> +struct spmmc_tuning_info {
+> +       int enable_tuning;
+> +       int need_tuning;
+> +       int retried; /* how many times has been retried */
+> +       u32 rd_crc_dly:3;
+> +       u32 rd_dat_dly:3;
+> +       u32 rd_rsp_dly:3;
+> +       u32 wr_cmd_dly:3;
+> +       u32 wr_dat_dly:3;
+> +       u32 clk_dly:3;
+> +};
+> +
+> +static const u8 tuning_blk_pattern_4bit[] = {
+> +       0xff, 0x0f, 0xff, 0x00, 0xff, 0xcc, 0xc3, 0xcc,
+> +       0xc3, 0x3c, 0xcc, 0xff, 0xfe, 0xff, 0xfe, 0xef,
+> +       0xff, 0xdf, 0xff, 0xdd, 0xff, 0xfb, 0xff, 0xfb,
+> +       0xbf, 0xff, 0x7f, 0xff, 0x77, 0xf7, 0xbd, 0xef,
+> +       0xff, 0xf0, 0xff, 0xf0, 0x0f, 0xfc, 0xcc, 0x3c,
+> +       0xcc, 0x33, 0xcc, 0xcf, 0xff, 0xef, 0xff, 0xee,
+> +       0xff, 0xfd, 0xff, 0xfd, 0xdf, 0xff, 0xbf, 0xff,
+> +       0xbb, 0xff, 0xf7, 0xff, 0xf7, 0x7f, 0x7b, 0xde,
+> +};
+> +
+> +static const u8 tuning_blk_pattern_8bit[] = {
+> +       0xff, 0xff, 0x00, 0xff, 0xff, 0xff, 0x00, 0x00,
+> +       0xff, 0xff, 0xcc, 0xcc, 0xcc, 0x33, 0xcc, 0xcc,
+> +       0xcc, 0x33, 0x33, 0xcc, 0xcc, 0xcc, 0xff, 0xff,
+> +       0xff, 0xee, 0xff, 0xff, 0xff, 0xee, 0xee, 0xff,
+> +       0xff, 0xff, 0xdd, 0xff, 0xff, 0xff, 0xdd, 0xdd,
+> +       0xff, 0xff, 0xff, 0xbb, 0xff, 0xff, 0xff, 0xbb,
+> +       0xbb, 0xff, 0xff, 0xff, 0x77, 0xff, 0xff, 0xff,
+> +       0x77, 0x77, 0xff, 0x77, 0xbb, 0xdd, 0xee, 0xff,
+> +       0xff, 0xff, 0xff, 0x00, 0xff, 0xff, 0xff, 0x00,
+> +       0x00, 0xff, 0xff, 0xcc, 0xcc, 0xcc, 0x33, 0xcc,
+> +       0xcc, 0xcc, 0x33, 0x33, 0xcc, 0xcc, 0xcc, 0xff,
+> +       0xff, 0xff, 0xee, 0xff, 0xff, 0xff, 0xee, 0xee,
+> +       0xff, 0xff, 0xff, 0xdd, 0xff, 0xff, 0xff, 0xdd,
+> +       0xdd, 0xff, 0xff, 0xff, 0xbb, 0xff, 0xff, 0xff,
+> +       0xbb, 0xbb, 0xff, 0xff, 0xff, 0x77, 0xff, 0xff,
+> +       0xff, 0x77, 0x77, 0xff, 0x77, 0xbb, 0xdd, 0xee,
+> +};
+
+The tuning pattern should not be needed in a host driver. Please drop them.
+
+> +
+> +enum {
+> +       SPMMC_DMA_MODE = 0,
+> +       SPMMC_PIO_MODE = 1,
+
+Looks like a bool is better than enum with two values. Please convert.
+
+> +};
+> +
+> +struct spmmc_host {
+> +       void __iomem *base;
+> +       struct clk *clk;
+> +       struct reset_control *rstc;
+> +       spinlock_t lock; /* Prevent races with irq handler */
+> +       struct mutex mrq_lock; /* protect spmmc_set_ios() context and spmmc_request() */
+> +       /* tasklet used to handle error then finish the request */
+> +       struct tasklet_struct tsklet_finish_req;
+
+We are moving away from tasklets for mmc hosts. Please use a threaded
+IRQ handler instead.
+
+> +       struct mmc_host *mmc;
+> +       struct mmc_request *mrq; /* current mrq */
+> +       int irq;
+> +       int use_int; /* should raise irq when done? */
+> +       int power_state; /* current power state: off/up/on */
+> +       int ddr_enabled;
+> +       int signal_voltage;
+> +       int dmapio_mode;
+> +       /*
+> +        * for purpose of reducing context switch, only when transfer data that
+> +        * length is greater than `dma_int_threshold' should use interrupt
+> +        */
+> +       int dma_int_threshold;
+> +       struct sg_mapping_iter sg_miter; /* for pio mode to access sglist */
+> +       int dma_use_int; /* should raise irq when dma done */
+> +       struct spmmc_tuning_info tuning_info;
+> +};
+> +
+> +/*
+> + * wait for transaction done, return -1 if error.
+> + */
+> +static inline int spmmc_wait_finish(struct spmmc_host *host)
+> +{
+> +       /* Wait for transaction finish */
+> +       unsigned long timeout = jiffies + msecs_to_jiffies(5000);
+
+Is there a specific reason why you have chosen 5000ms for this
+timeout? At least add a define for it.
+
+> +
+> +       while (!time_after(jiffies, timeout)) {
+> +               if (readl(host->base + SPMMC_SD_STATE_REG) & SPMMC_SDSTATE_FINISH)
+> +                       return 0;
+> +               if (readl(host->base + SPMMC_SD_STATE_REG) & SPMMC_SDSTATE_ERROR)
+> +                       return -EIO;
+> +       }
+
+Please replace this with readl_poll_timeout() - or with one of its variants.
+
+> +
+> +       return -ETIMEDOUT;
+> +}
+> +
+> +static inline int spmmc_wait_sdstatus(struct spmmc_host *host, unsigned int status_bit)
+> +{
+> +       unsigned long timeout = jiffies + msecs_to_jiffies(5000);
+
+Why 5000ms?
+
+> +
+> +       while (!time_after(jiffies, timeout)) {
+> +               if (readl(host->base + SPMMC_SD_STATUS_REG) & status_bit)
+> +                       return 0;
+> +               if (readl(host->base + SPMMC_SD_STATE_REG) & SPMMC_SDSTATE_ERROR)
+> +                       return -EIO;
+> +       }
+
+readl_poll_timeout()
+
+> +
+> +       return -ETIMEDOUT;
+> +}
+> +
+> +#define spmmc_wait_rspbuf_full(host) spmmc_wait_sdstatus(host, SPMMC_SDSTATUS_RSP_BUF_FULL)
+> +#define spmmc_wait_rxbuf_full(host) spmmc_wait_sdstatus(host, SPMMC_SDSTATUS_RX_DATA_BUF_FULL)
+> +#define spmmc_wait_txbuf_empty(host) spmmc_wait_sdstatus(host, SPMMC_SDSTATUS_TX_DATA_BUF_EMPTY)
+> +
+> +static void spmmc_get_rsp(struct spmmc_host *host, struct mmc_command *cmd)
+> +{
+> +       u32 value0_3, value4_5;
+> +
+> +       if (unlikely(!(cmd->flags & MMC_RSP_PRESENT)))
+> +               return;
+> +       if (unlikely(cmd->flags & MMC_RSP_136)) {
+
+I think the two "unlikely"  here are questionable. Can you explain why
+they are improving things - or let's just drop them!?
+
+> +               if (spmmc_wait_rspbuf_full(host))
+> +                       return;
+> +               value0_3 = readl(host->base + SPMMC_SD_RSPBUF0_3_REG);
+> +               value4_5 = readl(host->base + SPMMC_SD_RSPBUF4_5_REG) & 0xffff;
+> +               cmd->resp[0] = (value0_3 << 8) | (value4_5 >> 8);
+> +               cmd->resp[1] = value4_5 << 24;
+> +               value0_3 = readl(host->base + SPMMC_SD_RSPBUF0_3_REG);
+> +               value4_5 = readl(host->base + SPMMC_SD_RSPBUF4_5_REG) & 0xffff;
+> +               cmd->resp[1] |= value0_3 >> 8;
+> +               cmd->resp[2] = value0_3 << 24;
+> +               cmd->resp[2] |= value4_5 << 8;
+> +               value0_3 = readl(host->base + SPMMC_SD_RSPBUF0_3_REG);
+> +               value4_5 = readl(host->base + SPMMC_SD_RSPBUF4_5_REG) & 0xffff;
+> +               cmd->resp[2] |= value0_3 >> 24;
+> +               cmd->resp[3] = value0_3 << 8;
+> +               cmd->resp[3] |= value4_5 >> 8;
+> +       } else {
+> +               if (spmmc_wait_rspbuf_full(host))
+> +                       return;
+> +               value0_3 = readl(host->base + SPMMC_SD_RSPBUF0_3_REG);
+> +               value4_5 = readl(host->base + SPMMC_SD_RSPBUF4_5_REG) & 0xffff;
+> +               cmd->resp[0] = (value0_3 << 8) | (value4_5 >> 8);
+> +               cmd->resp[1] = value4_5 << 24;
+> +       }
+> +}
+> +
+> +static void spmmc_set_bus_clk(struct spmmc_host *host, int clk)
+> +{
+> +       unsigned int clkdiv;
+> +       int f_min = host->mmc->f_min;
+> +       int f_max = host->mmc->f_max;
+> +       u32 value = readl(host->base + SPMMC_SD_CONFIG0_REG);
+> +
+> +       if (clk < f_min)
+> +               clk = f_min;
+> +       if (clk > f_max)
+> +               clk = f_max;
+> +
+> +       clkdiv = (clk_get_rate(host->clk) + clk) / clk - 1;
+> +       if (clkdiv > 0xfff)
+> +               clkdiv = 0xfff;
+> +
+> +       value |= FIELD_PREP(SPMMC_CLOCK_DIVISION, clkdiv);
+> +       writel(value, host->base + SPMMC_SD_CONFIG0_REG);
+> +
+> +       /*
+> +        * In order to reduce the frequency of context switch,
+> +        * if it is high speed or upper, we do not use interrupt
+> +        * when send a command that without data transferring.
+> +        */
+
+This seems questionable to me. Not using IRQs, means that we will do
+polling instead, right?
+
+Polling means hogging the CPU, which certainly should be avoided,
+unless it's necessary. Therefore, I suggest you drop this feature for
+now. Let's instead consider this as a future improvement that can be
+done on top of the initial support - if it can be proven to be better.
+
+> +       if (clk > 25000000)
+> +               host->use_int = 0;
+> +       else
+> +               host->use_int = 1;
+> +}
+
+[...]
+
+> +/*
+> + * select the working mode of controller: sd/sdio/emmc
+> + */
+> +static void spmmc_select_mode(struct spmmc_host *host)
+
+I guess you intend to extend this to be able to set the SDIO mode too,
+as a patch on top?
+
+In any case, I suggest you rename this function to spmmc_set_
+sdmmc_mode() for now, to better reflect what the function does. Then
+when adding SDIO support we can change this, if needed.
+
+> +{
+> +       u32 value = readl(host->base + SPMMC_SD_CONFIG0_REG);
+> +
+> +       value |= SPMMC_SD_MMC_MODE;
+> +       value &= ~SPMMC_SDIO_MODE;
+> +       writel(value, host->base + SPMMC_SD_CONFIG0_REG);
+> +}
+> +
+> +static void spmmc_sw_reset(struct spmmc_host *host)
+> +{
+> +       u32 value;
+> +
+> +       /*
+> +        * Must reset dma operation first, or it will
+> +        * be stuck on sd_state == 0x1c00 because of
+> +        * a controller software reset bug
+> +        */
+> +       value = readl(host->base + SPMMC_HW_DMA_CTRL_REG);
+> +       value |= SPMMC_DMAIDLE;
+> +       writel(value, host->base + SPMMC_HW_DMA_CTRL_REG);
+> +       value &= ~SPMMC_DMAIDLE;
+> +       writel(value, host->base + SPMMC_HW_DMA_CTRL_REG);
+> +       value = readl(host->base + SPMMC_HW_DMA_CTRL_REG);
+> +       value |= SPMMC_HW_DMA_RST;
+> +       writel(value, host->base + SPMMC_HW_DMA_CTRL_REG);
+> +       writel(0x7, host->base + SPMMC_SD_RST_REG);
+> +       while (readl(host->base + SPMMC_SD_HW_STATE_REG) & BIT(6))
+> +               ;
+
+White space.
+
+> +}
+> +
+> +static void spmmc_prepare_cmd(struct spmmc_host *host, struct mmc_command *cmd)
+> +{
+> +       u32 value;
+> +
+> +       /* add start bit, according to spec, command format */
+> +       value = ((cmd->opcode | 0x40) << 24) | (cmd->arg >> 8);
+> +       writel(value, host->base + SPMMC_SD_CMDBUF0_3_REG);
+> +       writeb(cmd->arg & 0xff, host->base + SPMMC_SD_CMDBUF4_REG);
+> +
+> +       /* disable interrupt if needed */
+> +       value = readl(host->base + SPMMC_SD_INT_REG);
+> +       value |= SPMMC_SDINT_SDCMPCLR; /* sd_cmp_clr */
+
+The comment seems a bit superfluous, please drop it.
+
+> +       if (likely(!host->use_int || cmd->flags & MMC_RSP_136))
+> +               value &= ~SPMMC_SDINT_SDCMPEN; /* sdcmpen */
+
+Ditto.
+
+> +       else
+> +               value |= SPMMC_SDINT_SDCMPEN;
+> +
+> +       writel(value, host->base + SPMMC_SD_INT_REG);
+> +
+> +       value = readl(host->base + SPMMC_SD_CONFIG0_REG);
+> +       value &= ~SPMMC_SD_TRANS_MODE; /* sd_trans_mode */
+
+Ditto.
+
+> +       value |= SPMMC_SD_CMD_DUMMY; /* sdcmddummy */
+
+Ditto.
+
+Or, perhaps this actually deserves a comment. What is this bit for?
+
+> +       if (likely(cmd->flags & MMC_RSP_PRESENT)) {
+
+Again, I think using "likely" here is questionable. Please explain how
+it helps - or drop it.
+
+> +               value |= SPMMC_SD_AUTO_RESPONSE; /* sdautorsp */
+> +       } else {
+> +               value &= ~SPMMC_SD_AUTO_RESPONSE;
+> +               writel(value, host->base + SPMMC_SD_CONFIG0_REG);
+> +
+> +               return;
+> +       }
+> +       /*
+> +        * Currently, host is not capable of checking R2's CRC7,
+> +        * thus, enable crc7 check only for 48 bit response commands
+> +        */
+> +       if (likely(cmd->flags & MMC_RSP_CRC && !(cmd->flags & MMC_RSP_136)))
+
+Ditto.
+
+> +               value |= SPMMC_SD_RSP_CHK_EN; /* sdrspchk_en */
+
+Here's another comment that doesn't add anything. Please drop this and
+all following similar types of comments. I will stop commenting on
+them from now on.
+
+I will also stop commenting on "likely/unlikely", as the similar
+comments that have already been made, apply to the rest of the code
+too.
+
+> +       else
+> +               value &= ~SPMMC_SD_RSP_CHK_EN;
+> +
+> +       if (unlikely(cmd->flags & MMC_RSP_136))
+> +               value |= SPMMC_SD_RSP_TYPE; /* sdrsptype */
+> +       else
+> +               value &= ~SPMMC_SD_RSP_TYPE;
+> +       writel(value, host->base + SPMMC_SD_CONFIG0_REG);
+> +}
+> +
+> +static void spmmc_prepare_data(struct spmmc_host *host, struct mmc_data *data)
+> +{
+> +       u32 value, srcdst;
+> +
+> +       writel(data->blocks - 1, host->base + SPMMC_SD_PAGE_NUM_REG);
+> +       writel(data->blksz - 1, host->base + SPMMC_SD_BLOCKSIZE_REG);
+> +       value = readl(host->base + SPMMC_SD_CONFIG0_REG);
+> +       if (data->flags & MMC_DATA_READ) {
+> +               value |= FIELD_PREP(SPMMC_SD_TRANS_MODE, 2); /* sd_trans_mode */
+> +               value &= ~SPMMC_SD_AUTO_RESPONSE; /* sdautorsp */
+> +               value &= ~SPMMC_SD_CMD_DUMMY; /* sdcmddummy */
+> +               srcdst = readl(host->base + SPMMC_CARD_MEDIATYPE_SRCDST_REG);
+> +               srcdst |= FIELD_PREP(SPMMC_DMA_SOURCE, 0x2);
+> +               srcdst |= FIELD_PREP(SPMMC_DMA_DESTINATION, 0x1);
+> +               writel(srcdst, host->base + SPMMC_CARD_MEDIATYPE_SRCDST_REG);
+> +       } else {
+> +               value |= FIELD_PREP(SPMMC_SD_TRANS_MODE, 1);
+> +               srcdst = readl(host->base + SPMMC_CARD_MEDIATYPE_SRCDST_REG);
+> +               srcdst |= FIELD_PREP(SPMMC_DMA_SOURCE, 0x1);
+> +               srcdst |= FIELD_PREP(SPMMC_DMA_DESTINATION, 0x2);
+> +               writel(srcdst, host->base + SPMMC_CARD_MEDIATYPE_SRCDST_REG);
+> +       }
+> +
+> +       value |= SPMMC_SD_LEN_MODE;
+> +       if (likely(host->dmapio_mode == SPMMC_DMA_MODE)) {
+> +               struct scatterlist *sg;
+> +               dma_addr_t dma_addr;
+> +               unsigned int dma_size;
+> +               u32 *reg_addr;
+> +               int dma_direction = data->flags & MMC_DATA_READ ? DMA_FROM_DEVICE : DMA_TO_DEVICE;
+
+Feel free to use mmc_get_dma_dir() instead.
+
+> +               int i, count = 1;
+> +
+> +               count = dma_map_sg(host->mmc->parent, data->sg, data->sg_len, dma_direction);
+> +               if (unlikely(!count || count > SPMMC_MAX_DMA_MEMORY_SECTORS)) {
+> +                       data->error = -EINVAL;
+> +
+> +                       return;
+> +               }
+> +               for_each_sg(data->sg, sg, count, i) {
+> +                       dma_addr = sg_dma_address(sg);
+> +                       dma_size = sg_dma_len(sg) / data->blksz - 1;
+> +                       if (i == 0) {
+> +                               writel(dma_addr, host->base + SPMMC_DMA_BASE_ADDR_REG);
+> +                               writel(dma_size, host->base + SPMMC_SDRAM_SECTOR_0_SIZE_REG);
+> +                       } else {
+> +                               reg_addr = host->base + SPMMC_SDRAM_SECTOR_1_ADDR_REG + (i - 1) * 2;
+> +                               writel(dma_addr, reg_addr);
+> +                               writel(dma_size, reg_addr + 1);
+> +                       }
+> +               }
+> +               value &= ~SPMMC_SD_PIO_MODE; /* sdpiomode */
+> +               writel(value, host->base + SPMMC_SD_CONFIG0_REG);
+> +               /* enable interrupt if needed */
+> +               if (!host->use_int && data->blksz * data->blocks > host->dma_int_threshold) {
+> +                       host->dma_use_int = 1;
+> +                       value = readl(host->base + SPMMC_SD_INT_REG);
+> +                       value |= SPMMC_SDINT_SDCMPEN; /* sdcmpen */
+> +                       writel(value, host->base + SPMMC_SD_INT_REG);
+> +               }
+> +       } else {
+> +               value |= SPMMC_SD_PIO_MODE;
+> +               value |= SPMMC_RX4_EN; /* rx4_en */
+> +               writel(value, host->base + SPMMC_SD_CONFIG0_REG);
+> +       }
+> +}
+> +
+> +static inline void spmmc_trigger_transaction(struct spmmc_host *host)
+> +{
+> +       u32 value = readl(host->base + SPMMC_SD_CTRL_REG);
+> +
+> +       value |= SPMMC_NEW_COMMAND_TRIGGER; /* trigger transaction */
+> +       writel(value, host->base + SPMMC_SD_CTRL_REG);
+> +}
+> +
+> +static void spmmc_send_stop_cmd(struct spmmc_host *host)
+> +{
+> +       struct mmc_command stop = {};
+> +       u32 value;
+> +
+> +       stop.opcode = MMC_STOP_TRANSMISSION;
+> +       stop.arg = 0;
+> +       stop.flags = MMC_RSP_R1B;
+> +       spmmc_prepare_cmd(host, &stop);
+> +       value = readl(host->base + SPMMC_SD_INT_REG);
+> +       value &= ~SPMMC_SDINT_SDCMPEN;
+> +       value |= FIELD_PREP(SPMMC_SDINT_SDCMPEN, 0); /* sdcmpen */
+> +       writel(value, host->base + SPMMC_SD_INT_REG);
+> +       spmmc_trigger_transaction(host);
+> +       spmmc_wait_finish(host);
+> +}
+> +
+> +/*
+> + * check if error occurred during transaction.
+> + * @host -  host
+> + * @mrq - the mrq
+> + * @return 0 if no error otherwise the error number.
+
+It looks a bit weird that we suddenly start documenting functions like
+this. Perhaps a simple comment is sufficient?
+
+> + */
+> +static int spmmc_check_error(struct spmmc_host *host, struct mmc_request *mrq)
+> +{
+> +       int ret = 0;
+> +       struct mmc_command *cmd = mrq->cmd;
+> +       struct mmc_data *data = mrq->data;
+> +
+> +       u32 value = readl(host->base + SPMMC_SD_STATE_REG);
+> +       u32 crc_token = FIELD_GET(SPMMC_CRCTOKEN_CHECK_RESULT, value);
+> +
+> +       if (unlikely(value & SPMMC_SDSTATE_ERROR)) {
+> +               u32 timing_cfg0 = 0;
+> +
+> +               value = readl(host->base + SPMMC_SD_STATUS_REG);
+> +
+> +               if (host->tuning_info.enable_tuning) {
+> +                       timing_cfg0 = readl(host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +                       host->tuning_info.rd_crc_dly = FIELD_GET(SPMMC_SD_READ_CRC_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.rd_dat_dly = FIELD_GET(SPMMC_SD_READ_DATA_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.rd_rsp_dly = FIELD_GET(SPMMC_SD_READ_RESPONSE_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.wr_cmd_dly = FIELD_GET(SPMMC_SD_WRITE_COMMAND_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.wr_dat_dly = FIELD_GET(SPMMC_SD_WRITE_DATA_DELAY,
+> +                                                                timing_cfg0);
+> +               }
+> +
+> +               if (value & SPMMC_SDSTATUS_RSP_TIMEOUT) {
+> +                       ret = -ETIMEDOUT;
+> +                       host->tuning_info.wr_cmd_dly++;
+> +               } else if (value & SPMMC_SDSTATUS_RSP_CRC7_ERROR) {
+> +                       ret = -EILSEQ;
+> +                       host->tuning_info.rd_rsp_dly++;
+> +               } else if (data) {
+> +                       if ((value & SPMMC_SDSTATUS_STB_TIMEOUT)) {
+> +                               ret = -ETIMEDOUT;
+> +                               host->tuning_info.rd_dat_dly++;
+> +                       } else if (value & SPMMC_SDSTATUS_RDATA_CRC16_ERROR) {
+> +                               ret = -EILSEQ;
+> +                               host->tuning_info.rd_dat_dly++;
+> +                       } else if (value & SPMMC_SDSTATUS_CARD_CRC_CHECK_TIMEOUT) {
+> +                               ret = -ETIMEDOUT;
+> +                               host->tuning_info.rd_crc_dly++;
+> +                       } else if (value & SPMMC_SDSTATUS_CRC_TOKEN_CHECK_ERROR) {
+> +                               ret = -EILSEQ;
+> +                               if (crc_token == 0x5)
+> +                                       host->tuning_info.wr_dat_dly++;
+> +                               else
+> +                                       host->tuning_info.rd_crc_dly++;
+> +                       }
+> +               }
+> +               cmd->error = ret;
+> +               if (data) {
+> +                       data->error = ret;
+> +                       data->bytes_xfered = 0;
+> +               }
+> +               if (!host->tuning_info.need_tuning && host->tuning_info.enable_tuning)
+> +                       cmd->retries = SPMMC_MAX_RETRIES; /* retry it */
+> +               spmmc_sw_reset(host);
+> +               usleep_range(5000, 5250);
+
+Why these values? Can you please add a comment about why?
+
+> +
+> +               if (host->tuning_info.enable_tuning) {
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_READ_CRC_DELAY,
+> +                                                      host->tuning_info.rd_crc_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_READ_DATA_DELAY,
+> +                                                      host->tuning_info.rd_dat_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_READ_RESPONSE_DELAY,
+> +                                                      host->tuning_info.rd_rsp_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_WRITE_COMMAND_DELAY,
+> +                                                      host->tuning_info.wr_cmd_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_WRITE_DATA_DELAY,
+> +                                                      host->tuning_info.wr_dat_dly);
+> +                       writel(timing_cfg0, host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +               }
+> +       } else if (data) {
+> +               data->error = 0;
+> +               data->bytes_xfered = data->blocks * data->blksz;
+> +       }
+> +       host->tuning_info.need_tuning = ret;
+> +    /* controller will not send cmd 12 automatically if error occurred */
+> +       if (cmd->opcode == MMC_READ_MULTIPLE_BLOCK ||
+> +           cmd->opcode == MMC_WRITE_MULTIPLE_BLOCK) {
+> +               spmmc_send_stop_cmd(host);
+> +               spmmc_sw_reset(host);
+> +       }
+> +
+> +       return ret;
+> +}
+> +
+> +/*
+> + * the strategy is:
+> + * 1. if several continuous delays are acceptable, we choose a middle one;
+> + * 2. otherwise, we choose the first one.
+> + */
+> +static inline int __find_best_delay(u8 candidate_dly)
+> +{
+> +       int f, w, value;
+> +
+> +       if (!candidate_dly)
+> +               return 0;
+> +       f = ffs(candidate_dly) - 1;
+> +       w = hweight8(candidate_dly);
+> +       value = ((1 << w) - 1) << f;
+> +       if (0xff == (value & ~candidate_dly))
+> +               return (f + w / 2);
+> +       else
+> +               return (f);
+> +}
+> +
+> +static inline __maybe_unused void spmmc_txdummy(struct spmmc_host *host, int count)
+
+It's certainly unused. Please drop it.
+
+> +{
+> +       u32 value;
+> +
+> +       count &= 0x1ff;
+> +       value = readl(host->base + SPMMC_SD_CONFIG1_REG);
+> +       value |= FIELD_PREP(SPMMC_TX_DUMMY_NUM, count);
+> +       writel(value, host->base + SPMMC_SD_CONFIG1_REG);
+> +       value = readl(host->base + SPMMC_SD_CTRL_REG);
+> +       value |= SPMMC_DUMMY_CLOCK_TRIGGER; /* trigger tx dummy */
+> +       writel(value, host->base + SPMMC_SD_CTRL_REG);
+> +}
+> +
+> +static void spmmc_xfer_data_pio(struct spmmc_host *host, struct mmc_data *data)
+> +{
+> +       u32 *buf; /* tx/rx 4 bytes one time in pio mode */
+
+Please move the comments to separate lines.
+
+> +       int data_left = data->blocks * data->blksz;
+> +       int consumed, remain;
+> +
+> +       struct sg_mapping_iter *sg_miter = &host->sg_miter;
+> +       unsigned int flags = 0;
+> +
+> +       if (data->flags & MMC_DATA_WRITE)
+> +               flags |= SG_MITER_FROM_SG;
+> +       else
+> +               flags |= SG_MITER_TO_SG;
+> +       sg_miter_start(&host->sg_miter, data->sg, data->sg_len, flags);
+> +       while (data_left > 0) {
+> +               consumed = 0;
+> +               if (!sg_miter_next(sg_miter))
+> +                       break;
+> +               buf = sg_miter->addr;
+> +               remain = sg_miter->length;
+> +               do {
+> +                       if (data->flags & MMC_DATA_WRITE) {
+> +                               if (spmmc_wait_txbuf_empty(host))
+> +                                       goto done;
+> +                               writel(*buf, host->base + SPMMC_SD_PIODATATX_REG);
+> +                       } else {
+> +                               if (spmmc_wait_rxbuf_full(host))
+> +                                       goto done;
+> +                               *buf = readl(host->base + SPMMC_SD_PIODATARX_REG);
+> +                       }
+> +                       buf++;
+> +                       consumed += 4;
+> +                       remain -= 4;
+> +               } while (remain);
+> +               sg_miter->consumed = consumed;
+> +               data_left -= consumed;
+> +       }
+> +done:
+> +       sg_miter_stop(sg_miter);
+> +}
+> +
+> +static void spmmc_controller_init(struct spmmc_host *host)
+> +{
+> +       u32 value;
+> +       int ret = reset_control_assert(host->rstc);
+> +
+> +       if (!ret) {
+> +               usleep_range(1000, 1250);
+> +               ret = reset_control_deassert(host->rstc);
+> +       }
+> +
+> +       value = readl(host->base + SPMMC_CARD_MEDIATYPE_SRCDST_REG);
+> +       value |= FIELD_PREP(SPMMC_MEDIA_TYPE, SPMMC_MEDIA_SD);
+> +       writel(value, host->base + SPMMC_CARD_MEDIATYPE_SRCDST_REG);
+> +       host->signal_voltage = MMC_SIGNAL_VOLTAGE_330;
+
+I don't see where host->signal_voltage is being used. Please drop it.
+
+> +}
+> +
+> +static void spmmc_set_power_mode(struct spmmc_host *host, struct mmc_ios *ios)
+> +{
+> +       if (host->power_state == ios->power_mode)
+> +               return;
+> +
+> +       switch (ios->power_mode) {
+> +               /* power off->up->on */
+
+Actually we have MMC_POWER_UNDEFINED too, which is what we start with
+from the mmc core point of view.
+
+> +       case MMC_POWER_ON:
+> +               spmmc_controller_init(host);
+> +               pm_runtime_get_sync(host->mmc->parent);
+
+Why are you controlling the runtime PM from here? Is the controller
+itself powering the SD/eMMC card?
+
+In most cases we have external regulators for that, see" vmmc" and
+mmc_regulator_get_supply().
+
+> +               break;
+> +       case MMC_POWER_UP:
+> +               break;
+> +       case MMC_POWER_OFF:
+> +               pm_runtime_put(host->mmc->parent);
+> +               break;
+> +       }
+> +       host->power_state = ios->power_mode;
+> +}
+> +
+> +/*
+> + * 1. unmap scatterlist if needed;
+> + * 2. get response & check error conditions;
+> + * 3. unlock host->mrq_lock
+> + * 4. notify mmc layer the request is done
+> + */
+> +static void spmmc_finish_request(struct spmmc_host *host, struct mmc_request *mrq)
+> +{
+> +       struct mmc_command *cmd;
+> +       struct mmc_data *data;
+> +
+> +       if (!mrq)
+> +               return;
+> +
+> +       cmd = mrq->cmd;
+> +       data = mrq->data;
+> +
+> +       if (data && SPMMC_DMA_MODE == host->dmapio_mode) {
+> +               int dma_direction = data->flags & MMC_DATA_READ ? DMA_FROM_DEVICE : DMA_TO_DEVICE;
+
+mmc_get_dma_dir()
+
+> +
+> +               dma_unmap_sg(host->mmc->parent, data->sg, data->sg_len, dma_direction);
+> +               host->dma_use_int = 0;
+> +       }
+> +       spmmc_get_rsp(host, cmd);
+> +       spmmc_check_error(host, mrq);
+> +       host->mrq = NULL;
+> +       mmc_request_done(host->mmc, mrq);
+> +}
+> +
+> +/* Interrupt Service Routine */
+> +static irqreturn_t spmmc_irq(int irq, void *dev_id)
+> +{
+> +       struct spmmc_host *host = dev_id;
+> +       u32 value = readl(host->base + SPMMC_SD_INT_REG);
+> +
+> +       spin_lock(&host->lock);
+> +       if ((value & SPMMC_SDINT_SDCMP) && (value & SPMMC_SDINT_SDCMPEN)) {
+> +               value &= ~SPMMC_SDINT_SDCMPEN; /* disable sdcmp */
+> +               value |= SPMMC_SDINT_SDCMPCLR; /* sd_cmp_clr */
+> +               writel(value, host->base + SPMMC_SD_INT_REG);
+> +               /*
+> +                * if error occurred, we my need send cmd 12 to stop data transaction,
+> +                * which is time consuming, so make use of tasklet to handle this.
+> +                */
+> +               if (unlikely(readl(host->base + SPMMC_SD_STATE_REG) & SPMMC_SDSTATE_ERROR))
+> +                       tasklet_schedule(&host->tsklet_finish_req);
+
+As I stated earlier, please use a threaded IRQ instead.
+
+> +               else
+> +                       spmmc_finish_request(host, host->mrq);
+> +       }
+> +       if (value & SPMMC_SDINT_SDIO &&
+> +           (value & SPMMC_SDINT_SDIOEN)) {
+> +               mmc_signal_sdio_irq(host->mmc);
+
+I was under the impression that SDIO support was going to be added on
+top. I suggest we drop this for now.
+
+Moreover, mmc_signal_sdio_irq() is the legacy interface. Please use
+sdio_signal_irq() instead, which also comes along with a few new host
+callbacks that need to be implemented.
+
+> +       }
+> +       spin_unlock(&host->lock);
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +
+
+[...]
+
+> +/*
+> + * Return values for the get_cd callback should be:
+> + *   0 for a absent card
+> + *   1 for a present card
+> + *   -ENOSYS when not supported (equal to NULL callback)
+> + *   or a negative errno value when something bad happened
+> + */
+> +static int spmmc_get_cd(struct mmc_host *mmc)
+> +{
+> +       int ret = 0;
+> +
+> +       if (mmc_can_gpio_cd(mmc))
+> +               ret = mmc_gpio_get_cd(mmc);
+> +
+> +       if (ret < 0)
+> +               ret = 0;
+> +
+> +       return ret;
+> +}
+> +
+> +static int spmmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
+> +{
+> +       struct spmmc_host *host = mmc_priv(mmc);
+> +       const u8 *blk_pattern;
+> +       u8 *blk_test;
+> +       int blksz;
+> +       u8 smpl_dly = 0, candidate_dly = 0;
+> +       u32 value;
+> +
+> +       if (mmc->ios.bus_width == MMC_BUS_WIDTH_8) {
+> +               blk_pattern = tuning_blk_pattern_8bit;
+> +               blksz = sizeof(tuning_blk_pattern_8bit);
+> +       } else if (mmc->ios.bus_width == MMC_BUS_WIDTH_4) {
+> +               blk_pattern = tuning_blk_pattern_4bit;
+> +               blksz = sizeof(tuning_blk_pattern_4bit);
+> +       } else {
+> +               return -EINVAL;
+> +       }
+> +
+> +       blk_test = kmalloc(blksz, GFP_KERNEL);
+> +       if (!blk_test)
+> +               return -ENOMEM;
+> +
+> +       host->tuning_info.enable_tuning = 0;
+> +       do {
+> +               struct mmc_request mrq = {NULL};
+> +               struct mmc_command cmd = {0};
+> +               struct mmc_command stop = {0};
+> +               struct mmc_data data = {0};
+> +               struct scatterlist sg;
+> +
+> +               cmd.opcode = opcode;
+> +               cmd.arg = 0;
+> +               cmd.flags = MMC_RSP_R1 | MMC_CMD_ADTC;
+> +
+> +               stop.opcode = MMC_STOP_TRANSMISSION;
+> +               stop.arg = 0;
+> +               stop.flags = MMC_RSP_R1B | MMC_CMD_AC;
+> +
+> +               data.blksz = blksz;
+> +               data.blocks = 1;
+> +               data.flags = MMC_DATA_READ;
+> +               data.sg = &sg;
+> +               data.sg_len = 1;
+> +
+> +               sg_init_one(&sg, blk_test, blksz);
+> +               mrq.cmd = &cmd;
+> +               mrq.stop = &stop;
+> +               mrq.data = &data;
+> +               host->mrq = &mrq;
+
+Please convert this code into using mmc_send_tuning() and
+mmc_send_abort_tuning() instead.
+
+> +
+> +               value = readl(host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +               value |= FIELD_PREP(SPMMC_SD_READ_RESPONSE_DELAY, smpl_dly);
+> +               value |= FIELD_PREP(SPMMC_SD_READ_DATA_DELAY, smpl_dly);
+> +               value |= FIELD_PREP(SPMMC_SD_READ_CRC_DELAY, smpl_dly);
+> +               writel(value, host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +
+> +               mmc_wait_for_req(mmc, &mrq);
+> +               if (!cmd.error && !data.error) {
+> +                       if (!memcmp(blk_pattern, blk_test, blksz))
+> +                               candidate_dly |= (1 << smpl_dly);
+> +               }
+> +       } while (smpl_dly++ <= SPMMC_MAX_TUNABLE_DLY);
+> +       host->tuning_info.enable_tuning = 1;
+> +
+> +       if (candidate_dly) {
+> +               smpl_dly = __find_best_delay(candidate_dly);
+> +               value = readl(host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +               value |= FIELD_PREP(SPMMC_SD_READ_RESPONSE_DELAY, smpl_dly);
+> +               value |= FIELD_PREP(SPMMC_SD_READ_DATA_DELAY, smpl_dly);
+> +               value |= FIELD_PREP(SPMMC_SD_READ_CRC_DELAY, smpl_dly);
+> +               writel(value, host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +               return 0;
+> +       }
+> +
+> +       return -EIO;
+> +}
+> +
+> +static void spmmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+
+Let's drop SDIO support for now.
+
+> +{
+> +       struct spmmc_host *host = mmc_priv(mmc);
+> +       u32 value = readl(host->base + SPMMC_SD_INT_REG);
+> +
+> +       value &= ~SPMMC_SDINT_SDIOCLR;
+> +       value |= FIELD_PREP(SPMMC_SDINT_SDIOCLR, 1); /* sdio_int_clr */
+> +       if (enable)
+> +               value |= SPMMC_SDINT_SDIOEN;
+> +       else
+> +               value &= ~SPMMC_SDINT_SDIOEN;
+> +       writel(value, host->base + SPMMC_SD_INT_REG);
+> +}
+> +
+
+[...]
+
+> +
+> +static int spmmc_drv_probe(struct platform_device *pdev)
+> +{
+> +       struct mmc_host *mmc;
+> +       struct resource *res;
+> +       struct spmmc_host *host;
+> +       int ret = 0;
+> +
+> +       mmc = mmc_alloc_host(sizeof(*host), &pdev->dev);
+> +       if (!mmc) {
+> +               ret = -ENOMEM;
+> +               goto probe_free_host;
+> +       }
+> +
+> +       host = mmc_priv(mmc);
+> +       host->mmc = mmc;
+> +       host->power_state = MMC_POWER_OFF;
+> +       host->dma_int_threshold = 1024;
+> +       host->dmapio_mode = SPMMC_DMA_MODE;
+> +
+> +       host->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +       if (IS_ERR(host->base))
+> +               return PTR_ERR(host->base);
+> +
+> +       host->clk = devm_clk_get(&pdev->dev, NULL);
+> +       if (IS_ERR(host->clk))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(host->clk), "clk get fail\n");
+> +
+> +       host->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> +       if (IS_ERR(host->rstc))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(host->rstc), "rst get fail\n");
+> +
+> +       host->irq = platform_get_irq(pdev, 0);
+> +       if (host->irq <= 0)
+> +               return host->irq;
+> +
+> +       ret = devm_request_irq(&pdev->dev, host->irq, spmmc_irq, IRQF_SHARED,
+> +                              dev_name(&pdev->dev), host);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = clk_prepare_enable(host->clk);
+> +       if (ret)
+> +               return dev_err_probe(&pdev->dev, ret, "failed to enable clk\n");
+> +
+> +       ret = mmc_of_parse(mmc);
+> +       if (ret)
+> +               goto probe_free_host;
+> +
+> +       spin_lock_init(&host->lock);
+> +       mutex_init(&host->mrq_lock);
+> +       tasklet_init(&host->tsklet_finish_req, tsklet_func_finish_req, (unsigned long)host);
+> +       mmc->ops = &spmmc_ops;
+> +       mmc->f_min = SPMMC_MIN_CLK;
+> +       if (mmc->f_max > SPMMC_MAX_CLK)
+> +               mmc->f_max = SPMMC_MAX_CLK;
+> +
+> +       mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
+
+Please use mmc_regulator_get_supply() to get the ocr_avail mask
+instead of hardcoding it.
+
+> +       mmc->max_seg_size = SPMMC_MAX_BLK_COUNT * 512;
+> +       /* Host controller supports up to "SPMMC_MAX_DMA_MEMORY_SECTORS"*/
+> +       /* a.k.a. max scattered memory segments per request*/
+> +       mmc->max_segs = SPMMC_MAX_DMA_MEMORY_SECTORS;
+> +       mmc->max_req_size = SPMMC_MAX_BLK_COUNT * 512;
+> +       /* Limited by the max value of dma_size & data_length, set it to 512 bytes for now */
+> +       mmc->max_blk_size = 512;
+> +       mmc->max_blk_count = SPMMC_MAX_BLK_COUNT; /* Limited by sd_page_num */
+
+Please re-format the code and comment above so it becomes it more
+readable. Perhaps a few newlines would help.
+
+> +
+> +       dev_set_drvdata(&pdev->dev, host);
+> +       spmmc_controller_init(host);
+> +       spmmc_select_mode(host);
+> +       mmc_add_host(mmc);
+> +       host->tuning_info.enable_tuning = 1;
+> +       pm_runtime_set_active(&pdev->dev);
+> +       pm_runtime_enable(&pdev->dev);
+
+To be safe, I suggest you call mmc_add_host() as the last thing in
+->probe(). Otherwise you end up enabling runtime PM, when the host is
+already up and running from the core point of view.
+
+> +
+> +       return ret;
+> +
+> +probe_free_host:
+> +       if (mmc)
+> +               mmc_free_host(mmc);
+> +
+> +       return ret;
+> +}
+> +
+> +static int spmmc_drv_remove(struct platform_device *dev)
+> +{
+> +       struct spmmc_host *host = platform_get_drvdata(dev);
+> +
+> +       mmc_remove_host(host->mmc);
+> +       clk_disable(host->clk);
+> +       clk_unprepare(host->clk);
+
+clk_disable_unprepare().
+
+> +       pm_runtime_disable(&dev->dev);
+> +       platform_set_drvdata(dev, NULL);
+> +       mmc_free_host(host->mmc);
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_drv_suspend(struct platform_device *dev, pm_message_t state)
+
+This is a legacy PM callback, please drop it.
+
+> +{
+> +       struct spmmc_host *host;
+> +
+> +       host = platform_get_drvdata(dev);
+> +       mutex_lock(&host->mrq_lock); /* Make sure that no one is holding the controller */
+> +       mutex_unlock(&host->mrq_lock);
+> +       clk_disable(host->clk);
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_drv_resume(struct platform_device *dev)
+
+Ditto.
+
+> +{
+> +       struct spmmc_host *host;
+> +
+> +       host = platform_get_drvdata(dev);
+> +
+> +       return clk_enable(host->clk);
+> +}
+> +
+> +static int spmmc_pm_suspend(struct device *dev)
+> +{
+> +       pm_runtime_force_suspend(dev);
+
+Just point the PM callback to pm_runtime_force_suspend() instead of
+adding an unessary wrapper function.
+
+ > +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_pm_resume(struct device *dev)
+> +{
+> +       pm_runtime_force_resume(dev);
+
+Just point the PM callback to pm_runtime_force_resume() instead of
+adding an unessary wrapper function.
+
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_pm_runtime_suspend(struct device *dev)
+
+You proably need __maybe_unused here.
+
+> +{
+> +       struct spmmc_host *host;
+> +
+> +       host = dev_get_drvdata(dev);
+> +       clk_disable(host->clk);
+
+clk_disable_unprepare()
+
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_pm_runtime_resume(struct device *dev)
+
+You proably need __maybe_unused here.
+
+> +{
+> +       struct spmmc_host *host;
+> +
+> +       host = dev_get_drvdata(dev);
+> +
+> +       return clk_enable(host->clk);
+
+clk_prepare_enable().
+
+> +}
+> +
+> +static const struct dev_pm_ops spmmc_pm_ops = {
+> +       SYSTEM_SLEEP_PM_OPS(spmmc_pm_suspend, spmmc_pm_resume)
+> +       RUNTIME_PM_OPS(spmmc_pm_runtime_suspend, spmmc_pm_runtime_resume, NULL)
+> +};
+> +
+> +static const struct of_device_id spmmc_of_table[] = {
+> +       {
+> +               .compatible = "sunplus,sp7021-mmc",
+> +       },
+> +       {/* sentinel */}
+> +};
+> +MODULE_DEVICE_TABLE(of, spmmc_of_table);
+> +
+> +static struct platform_driver spmmc_driver = {
+> +       .probe = spmmc_drv_probe,
+> +       .remove = spmmc_drv_remove,
+> +       .suspend = spmmc_drv_suspend,
+> +       .resume = spmmc_drv_resume,
+> +       .driver = {
+> +               .name = "spmmc",
+> +               .pm = pm_ptr(&spmmc_pm_ops),
+> +               .of_match_table = spmmc_of_table,
+> +       },
+> +};
+> +module_platform_driver(spmmc_driver);
+> +
+> +MODULE_AUTHOR("Tony Huang <tonyhuang.sunplus@gmail.com>");
+> +MODULE_AUTHOR("Li-hao Kuo <lhjeff911@gmail.com>");
+> +MODULE_DESCRIPTION("Sunplus MMC controller driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.7.4
+>
+
+Kind regards
+Uffe
