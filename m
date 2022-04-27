@@ -2,177 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DE95112FD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 09:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C15051131B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 10:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359122AbiD0H5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 03:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34358 "EHLO
+        id S242395AbiD0ID3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 04:03:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359142AbiD0H5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 03:57:01 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E808814585A;
-        Wed, 27 Apr 2022 00:53:48 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id DD49C2224E;
-        Wed, 27 Apr 2022 09:53:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1651046027;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bHj8Kou7jO8BNYgik9QQT7XahJy0bju+c9x5EmPkq+Y=;
-        b=K41lDRsp12VRgR/KMTqpEQY6DXk/ODC8VQLswwqFjFoVaVZAgh7vKd0E4rngFNFvjRBfOH
-        FxCJUwcQhwzBb2tlcRrLaX4juliKKH0HW/QkuL0GbCeLlh73K0KugFVKpQ43Ehoo5LiMSE
-        d8RV4NLT65Jzvd3oOPVY7Q5eZCU3/JE=
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 4/4] dt-bindings: fsl: convert fsl,layerscape-scfg to YAML
-Date:   Wed, 27 Apr 2022 09:53:38 +0200
-Message-Id: <20220427075338.1156449-5-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220427075338.1156449-1-michael@walle.cc>
-References: <20220427075338.1156449-1-michael@walle.cc>
+        with ESMTP id S1359203AbiD0ID1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 04:03:27 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F99A13F91;
+        Wed, 27 Apr 2022 01:00:14 -0700 (PDT)
+X-UUID: e5a4726522b74573a51c0f3c7dcb237e-20220427
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:53aad087-300b-419b-ba44-baeba704f0c7,OB:0,LO
+        B:0,IP:0,URL:8,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:8
+X-CID-META: VersionHash:faefae9,CLOUDID:159aa7c6-85ee-4ac1-ac05-bd3f1e72e732,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
+X-UUID: e5a4726522b74573a51c0f3c7dcb237e-20220427
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 206080323; Wed, 27 Apr 2022 16:00:09 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 27 Apr 2022 16:00:06 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Apr
+ 2022 16:00:06 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Apr 2022 16:00:05 +0800
+Message-ID: <ec53cb218ab313cc6bd76660c9bd5c0ac46ad5d9.camel@mediatek.com>
+Subject: Re: [PATCH v2] dt-bindings: media: mtk-vcodec: Adds encoder power
+ domain property
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>
+CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 27 Apr 2022 16:00:05 +0800
+In-Reply-To: <98a01f46-7fb0-6201-c9db-14e15d7e30c4@xs4all.nl>
+References: <20220427033130.18497-1-irui.wang@mediatek.com>
+         <98a01f46-7fb0-6201-c9db-14e15d7e30c4@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the fsl,layerscape-scfg binding to the new YAML format.
+Dear Hans,
 
-In the device trees, the device node always have a "syscon"
-compatible, which wasn't mentioned in the previous binding.
+On Wed, 2022-04-27 at 09:43 +0200, Hans Verkuil wrote:
+> Hi Irui,
+> 
+> I'm merging this patch from Nícolas F. R. A. Prado, which has already
+> been Acked by Rob:
+> 
+> 
+https://patchwork.linuxtv.org/project/linux-media/patch/20220225225854.81038-4-nfraprado@collabora.com/
+> 
+> If you still want the other changes you made in this patch merged,
+> then please make
+> a v3 on top of Nícolas' patch.
 
-Also added, compared to the original binding, is the
-interrupt-controller subnode as used in arch/arm/boot/dts/ls1021a.dtsi
-as well as the litte-endian and big-endian properties.
+Thanks for your information and Nícolas' patch, we will check it and
+would send a v3 patch if needed.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-changes since v2:
- - none
-
-changes since v1:
- - moved to soc/fsl/fsl,layerscape-scfg.yaml
- - generic name for node in example
- - mention added "syscon" compatible in commit message
- - reference specific interrupt controller
-
- .../arm/freescale/fsl,layerscape-scfg.txt     | 19 ------
- .../bindings/soc/fsl/fsl,layerscape-scfg.yaml | 58 +++++++++++++++++++
- 2 files changed, 58 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
-deleted file mode 100644
-index 0ab67b0b216d..000000000000
---- a/Documentation/devicetree/bindings/arm/freescale/fsl,layerscape-scfg.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Freescale SCFG
--
--SCFG is the supplemental configuration unit, that provides SoC specific
--configuration and status registers for the chip. Such as getting PEX port
--status.
--
--Required properties:
--  - compatible: Should contain a chip-specific compatible string,
--	Chip-specific strings are of the form "fsl,<chip>-scfg",
--	The following <chip>s are known to be supported:
--	ls1012a, ls1021a, ls1043a, ls1046a, ls2080a.
--
--  - reg: should contain base address and length of SCFG memory-mapped registers
--
--Example:
--	scfg: scfg@1570000 {
--		compatible = "fsl,ls1021a-scfg";
--		reg = <0x0 0x1570000 0x0 0x10000>;
--	};
-diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-new file mode 100644
-index 000000000000..8d088b5fe823
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/fsl/fsl,layerscape-scfg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Layerscape Supplemental Configuration Unit
-+
-+maintainers:
-+  - Shawn Guo <shawnguo@kernel.org>
-+  - Li Yang <leoyang.li@nxp.com>
-+
-+description: |
-+  SCFG is the supplemental configuration unit, that provides SoC specific
-+  configuration and status registers for the chip. Such as getting PEX port
-+  status.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - fsl,ls1012a-scfg
-+          - fsl,ls1021a-scfg
-+          - fsl,ls1028a-scfg
-+          - fsl,ls1043a-scfg
-+          - fsl,ls1046a-scfg
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  little-endian: true
-+  big-endian: true
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^interrupt-controller@[a-z0-9]+$":
-+    $ref: /schemas/interrupt-controller/fsl,ls-extirq.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    syscon@1570000 {
-+        compatible = "fsl,ls1021a-scfg", "syscon";
-+        reg = <0x1570000 0x10000>;
-+    };
--- 
-2.30.2
+Thanks
+Best Regards.
+> 
+> Regards,
+> 
+> 	Hans
+> 
+> On 27/04/2022 05:31, Irui Wang wrote:
+> > Adds encoder power domain property.
+> > 
+> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> > ---
+> > changes compared with v1:
+> > - set "power-domains" as a non-required property
+> > 
+> > The 'make dtbs_check' warnings('mediatek,larb') can be fixed by
+> > patch:
+> > 
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=633993
+> > ---
+> >  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml  | 6
+> > ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > index deb5b657a2d5..2d1e0c9bd6ee 100644
+> > --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > encoder.yaml
+> > @@ -41,6 +41,9 @@ properties:
+> >  
+> >    assigned-clock-parents: true
+> >  
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> >    iommus:
+> >      minItems: 1
+> >      maxItems: 32
+> > @@ -132,6 +135,7 @@ examples:
+> >      #include <dt-bindings/clock/mt8173-clk.h>
+> >      #include <dt-bindings/memory/mt8173-larb-port.h>
+> >      #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/power/mt8173-power.h>
+> >  
+> >      vcodec_enc_avc: vcodec@18002000 {
+> >        compatible = "mediatek,mt8173-vcodec-enc";
+> > @@ -153,6 +157,7 @@ examples:
+> >        clock-names = "venc_sel";
+> >        assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
+> >        assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
+> > +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC>;
+> >      };
+> >  
+> >      vcodec_enc_vp8: vcodec@19002000 {
+> > @@ -173,4 +178,5 @@ examples:
+> >        clock-names = "venc_lt_sel";
+> >        assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
+> >        assigned-clock-parents = <&topckgen
+> > CLK_TOP_VCODECPLL_370P5>;
+> > +      power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC_LT>;
+> >      };
+> 
+> 
 
