@@ -2,106 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B486511B72
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40938511B0E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235495AbiD0NOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 09:14:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42484 "EHLO
+        id S235665AbiD0NTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 09:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235466AbiD0NOm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:14:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BCD1C1DC9;
-        Wed, 27 Apr 2022 06:11:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9304F61B98;
-        Wed, 27 Apr 2022 13:11:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7FC1C385A9;
-        Wed, 27 Apr 2022 13:11:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1651065090;
-        bh=tpIYWICrW+Xe2NYo9+47DtMMvdK4RGp2TzuVJyjTpZk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b7unDFzV3JJ93notz6nFF8qVCFjJ34yZONp6aEjymzwqcKThuj8hPwyIEQp4oyGjH
-         Nc8Jwo6xRw7wqIP7Ns8of9TW2BnweRHUiYUyrMjQd1DIb/sLx9hQOnbS/xVOVBlv5D
-         jpweLVNSIvktWp6sp2qD0AeGPbAvvsw9GSj5Ubo+mhE7jJs0Z6hnFu8O2reeakEaLB
-         nPLS2QiotHoSXJ2c9gVDgnvYgW4X9HhFztis9wB6kcWMjX6hXOyg4MLlwCCTNp8Lsd
-         AB4wZIhMFlANHQU5JDN2+CIqPmx13fGtsyUgPL929Tsl5VD/ZlR4FVRmhmN8ti2Q2M
-         0XpGV3FuVmuYw==
-Date:   Wed, 27 Apr 2022 14:11:22 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Chuanhong Guo <gch981213@gmail.com>, linux-spi@vger.kernel.org,
+        with ESMTP id S235417AbiD0NTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 09:19:33 -0400
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E96C1C129;
+        Wed, 27 Apr 2022 06:16:03 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id e128so1207474qkd.7;
+        Wed, 27 Apr 2022 06:16:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NWpDKmO96yHGs1kChCwXWQfLDFtY2YOgofhCN7WDdyA=;
+        b=KqC+qLOxcvc7iB/gCaWMOwVy4qsxHn5cmXd4W9kam18HJZAMsgTJQ+IbRsOpitwYnU
+         bRsaTW6oLodfWgCiY9itCKmAsdJs2zF5FJ3/oAI4S7thmht8/O2ur3QJV6Pl6SDhE55B
+         kyh0IJvvPHy0hwWBwWyqbDHS6xuO2cBKGao3BdykYBc/7hAiggxQ+fdkdu8OD6HtGccD
+         bqwzy8ncYdVEHgIIj9ZNs3xF1h/KIJU3N81A86oC5VnMJfXVXmGyTTzl6KkRntJb1AJL
+         UGnqe/10JoRTV7vo+xlEkHIbZkqxpBIft9/Vgz4Siztqex6lUqP1j2E/6e9Bsv43U60u
+         SPGw==
+X-Gm-Message-State: AOAM530Hej6RNz7p+S3ijdJvz5G5BcHt3sEolj1uJ/BCD3KmjC3+cv6W
+        xboMsdye2CKUhswsZTssMdEH3H1Q2URfpQ==
+X-Google-Smtp-Source: ABdhPJwGc8ef7iVzo7D/ZEQKrDRx+i8DdwMWs0dof3p+FfFBymMTbNUzj99kKkc5iPBsgDbpXLb/LA==
+X-Received: by 2002:a37:f518:0:b0:680:a811:1ef7 with SMTP id l24-20020a37f518000000b00680a8111ef7mr15841763qkk.765.1651065273447;
+        Wed, 27 Apr 2022 06:14:33 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id r83-20020a37a856000000b0069ed4436a49sm8065103qke.87.2022.04.27.06.14.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 06:14:33 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id w17so3259787ybh.9;
+        Wed, 27 Apr 2022 06:14:33 -0700 (PDT)
+X-Received: by 2002:a25:9e89:0:b0:63c:ad37:a5de with SMTP id
+ p9-20020a259e89000000b0063cad37a5demr25600842ybq.342.1651065272892; Wed, 27
+ Apr 2022 06:14:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com> <20220420025450.289578-7-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220420025450.289578-7-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Apr 2022 15:14:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU7_nqwT8J_OKLez9GDU8sCiP_PB1ioZBK5YvevToOsXg@mail.gmail.com>
+Message-ID: <CAMuHMdU7_nqwT8J_OKLez9GDU8sCiP_PB1ioZBK5YvevToOsXg@mail.gmail.com>
+Subject: Re: [PATCH v4 6/7] arm64: dts: renesas: r8a779f0: Add UFS node
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, avri.altman@wdc.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        scsi <linux-scsi@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Subject: Re: [PATCH v6 0/5] spi: add support for Mediatek SPI-NAND controller
-Message-ID: <YmlA+tqqigjkRyMZ@sirena.org.uk>
-References: <20220424032527.673605-1-gch981213@gmail.com>
- <20220427112857.7ddd7fc8@xps13>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3/axAlvjop7jo6tE"
-Content-Disposition: inline
-In-Reply-To: <20220427112857.7ddd7fc8@xps13>
-X-Cookie: Buckle up!
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shimoda-san,
 
---3/axAlvjop7jo6tE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, Apr 20, 2022 at 10:31 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add UFS node for R-Car S4-8 (r8a779f0).
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-On Wed, Apr 27, 2022 at 11:28:57AM +0200, Miquel Raynal wrote:
+> --- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> @@ -40,6 +40,13 @@ extalr_clk: extalr {
+>                 clock-frequency = <0>;
+>         };
+>
+> +       ufs30_clk: ufs30-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
 
-> The patch actually look independent, so if it's fine for you I can take
-> the two mtd patches and let you merge the spi/binding changes.
+This matches what we typically do for the PCIe reference clock,
+but relies on the currently-missing clock generator initialization
+in the boot loader stack.
 
-> Would this work for you?
+> +
+>         pmu_a55 {
+>                 compatible = "arm,cortex-a55-pmu";
+>                 interrupts-extended = <&gic GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> @@ -258,6 +265,18 @@ i2c5: i2c@e66e0000 {
+>                         status = "disabled";
+>                 };
+>
+> +               ufs: ufs@e6860000 {
+> +                       compatible = "renesas,r8a779f0-ufs";
+> +                       reg = <0 0xe6860000 0 0x100>;
+> +                       interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
 
-That sounds great.
+The R-Car S4-8 interrupt mapping spreadsheet lists two interrupts.
 
---3/axAlvjop7jo6tE
-Content-Type: application/pgp-signature; name="signature.asc"
+> +                       clocks = <&cpg CPG_MOD 1514>, <&ufs30_clk>;
+> +                       clock-names = "fck", "ref_clk";
+> +                       freq-table-hz = <200000000 200000000>, <38400000 38400000>;
+> +                       power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
+> +                       resets = <&cpg 1514>;
+> +                       status = "disabled";
+> +               };
+> +
+>                 scif3: serial@e6c50000 {
+>                         compatible = "renesas,scif-r8a779f0",
+>                                      "renesas,rcar-gen4-scif", "renesas,scif";
 
------BEGIN PGP SIGNATURE-----
+The rest LGTM, so with the above resolved:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJpQPkACgkQJNaLcl1U
-h9D1ngf/VxXyRrmMrFHXOQIT/K9jzEroGCHRoT3IkpzG2UwCERVkL3XY1VX8Bem6
-oeIQERn5z5pFMCvgeLOWDvW4LuV0J0E2Wp9IjvFxdX8fA5K7Tbg3albH0isMfcUp
-FZcnMXUynnhcg/dTJYMXHunlQH+8yv84MjxSqq1wDmrHWCy76vraVev5n2eoBdo9
-fQ06pKoqMEgkf1ICdUnlW8i9Y8LgmlZSyj7iGRhfw3H2MxBIHVmi2TOdAYM2u/eC
-sanKESRfPqRjsbK6kkTy4oePpH0uR+aRLqzqtX9qcF/Wnw+A+WZBc8gQPZZqLvjX
-9YGhLRk4sIgGwjyxbojuoeAw+pqSrA==
-=3uM/
------END PGP SIGNATURE-----
+Gr{oetje,eeting}s,
 
---3/axAlvjop7jo6tE--
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
