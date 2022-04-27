@@ -2,90 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 939CB511A89
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25AF4511A63
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 16:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238719AbiD0O4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 10:56:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
+        id S238641AbiD0O41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 10:56:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238641AbiD0Oz7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:55:59 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B5D41F8A;
-        Wed, 27 Apr 2022 07:52:48 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id e15so1291954qtp.3;
-        Wed, 27 Apr 2022 07:52:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H90oGEfoz8l6kJ1E0LHARHNPa/nAVse3+GW5j3Vf2lI=;
-        b=4+lKiQZQDUkr7qy6zuF/sdSzpX0DtsREoYiK0y/dBnTHOWkA2tl22Ojh2as0izICJw
-         NjAcrb+F/bc3MmkRWI8YNcON0adxb3uxlxgF8zLyXYAZIui7kBMFhzgj/CGL7IzipXKA
-         7w6nx4RSIjhkkGQcNodM+inzutBki6cvUKYlYPIp0QPYDsabazw+/h69yEH6LnyK+QWG
-         HR6C3uV8FyIpjzXneTMuvncjuyNGBSyWcUcqPHf/kFb0oH4YUfgOCWXoAYpIJ/bAfxop
-         pRFjUUtz+mzvvtQPdsDKzOKtyACvGqgDvUSRzhBMVKzke7FpU3NORf6Ggk4CkZbZ1h6a
-         YTkA==
-X-Gm-Message-State: AOAM530oYw+dGno4hOKFEyP5lwOAgLFUR/M2pO7aR4esLtihqd/N9L2G
-        AISyvc2CrqjwQjMHRrLgB3aa//52GRBlCA==
-X-Google-Smtp-Source: ABdhPJyPI4S4ttg53jN2A4YML+nKmXnpxbT1C99X4M6FzEKJN4JISkp+D5QyFIWemVd8pODB0t/Nlw==
-X-Received: by 2002:ac8:5e07:0:b0:2f3:6db4:5c8a with SMTP id h7-20020ac85e07000000b002f36db45c8amr8714543qtx.31.1651071167472;
-        Wed, 27 Apr 2022 07:52:47 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id c4-20020a37b304000000b0069ec13803adsm8057005qkf.7.2022.04.27.07.52.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 07:52:47 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ef5380669cso21505797b3.9;
-        Wed, 27 Apr 2022 07:52:46 -0700 (PDT)
-X-Received: by 2002:a81:5210:0:b0:2ef:21e3:54dd with SMTP id
- g16-20020a815210000000b002ef21e354ddmr27670349ywb.438.1651071166740; Wed, 27
- Apr 2022 07:52:46 -0700 (PDT)
+        with ESMTP id S238741AbiD0O41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 10:56:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56704474B
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 07:53:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4379761E38
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:53:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F49C385A9
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 14:53:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651071194;
+        bh=K2BT9nvM0txvu/mpPgCIsEDNx+HgT5+eAlbnZzBcxjk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aIki7odr3jCLzrZB9yyGFNbHCaiCaIfgLtbKiWz+BNrP/2Dt3dyY2PuK27xmdzvki
+         9rj/QfEb19kBVcUWgkMvd1jmWYBjqYloVIKl17b+5JKtPbBGuO8qwx+6dVxAqBF2R6
+         kufvRFexcBedcnNX695u25luuxxyhsQXuFQFNDZds0ppo2mUlx6gzbR8uefYIqq8A7
+         vgkoOxKg6BQuQ+puF1H7PcP9BQI8PeHlCM8hugP/LAnQwjTqm2TfeEssNtUxdpJAEb
+         GBXT+e+DeZufhZMW6qhnqxPUT0TG+oGHYTAdIx6o0cUmUIu83VJMlZ1n23M6GKkUSg
+         7KqpdzxzshgFQ==
+Received: by mail-pl1-f182.google.com with SMTP id s14so1744118plk.8
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 07:53:14 -0700 (PDT)
+X-Gm-Message-State: AOAM533vlt2j7p48Fiu8FMbMUiSqKvDkMk3sEdYIi63TNXFGrZaBzS/i
+        1+pDf/9eq9LXSTtFF7rDmYxG7vES6L+r+q5xNw==
+X-Google-Smtp-Source: ABdhPJzQLzrO/rWqEwm4LpJdIYTG15IizaPe3t4FpBG0tdHujdbJei6lR6Icmf4Ct4C8MwzCW00/ad0PKtChVuuDwS8=
+X-Received: by 2002:a17:902:6a8a:b0:156:8ff6:daf0 with SMTP id
+ n10-20020a1709026a8a00b001568ff6daf0mr29154966plk.117.1651071194038; Wed, 27
+ Apr 2022 07:53:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220425064201.459633-1-yoshihiro.shimoda.uh@renesas.com> <20220425064201.459633-8-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220425064201.459633-8-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 27 Apr 2022 16:52:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUBhm7ANxDYT21_3vW40u0QbLRQcQz0eKROTcnwoKY4dA@mail.gmail.com>
-Message-ID: <CAMuHMdUBhm7ANxDYT21_3vW40u0QbLRQcQz0eKROTcnwoKY4dA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] arm64: dts: renesas: Add Renesas White Hawk boards support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <42fbcb55-b6ef-906f-7584-62a6097a8639@linaro.org>
+ <CAL_JsqJ3FiBci1+8oSOHA6GQ8Q3HHM3QcY+GFg=+KVZEQAnb6A@mail.gmail.com> <345716e9-5624-5ba0-09f0-46e9850c546c@linaro.org>
+In-Reply-To: <345716e9-5624-5ba0-09f0-46e9850c546c@linaro.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 27 Apr 2022 09:53:02 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+d-RHNnTyy+mrs2L7Zycjwq07vENCH8+SHZBuZGCuq=A@mail.gmail.com>
+Message-ID: <CAL_Jsq+d-RHNnTyy+mrs2L7Zycjwq07vENCH8+SHZBuZGCuq=A@mail.gmail.com>
+Subject: Re: PCI schema accepts unevaluated properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 25, 2022 at 8:42 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Initial support for the Renesas White Hawk CPU and BreakOut boards.
+On Wed, Apr 27, 2022 at 1:29 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On 27/04/2022 04:36, Rob Herring wrote:
+> > On Sat, Apr 23, 2022 at 5:46 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> Hi Rob,
+> >>
+> >> Dmitry pointed out interesting issue when writing PCI schema. Consider
+> >> the patch for Exynos PCI schema (which includes SNPS schema and
+> >> unevaluatedProperties:false):
+> >> https://pastebin.ubuntu.com/p/4SzxVP4N3j/
+> >>
+> >> This passes `make dt_binding_check
+> >> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/` without a
+> >> problem. It should not. The property is nowhere described, so
+> >> unevaluatedProperties should scream.
+> >>
+> >> Other bindings using unevaluated:false and some ref, also has this
+> >> issue. The additionalProperties:false (when there is no ref for other
+> >> schema) works correct.
+> >
+> > This is because I never committed the fix for all this which explains the issue:
+> >
+> >     dtschema: Strip 'additionalProperties: true' from schemas
+> >
+> >     An 'additionalProperties: true' makes all properties evaluated, so an
+> >     'unevaluatedProperties: false' schema doesn't work when referencing a
+> >     schema with 'additionalProperties: true'.
+> >
+> >     Really, 'additionalProperties: true' should be dropped, but it is used as
+> >     a flag for common schemas which are usually incomplete and included by
+> >     device specific schemas. Removing it would mean dropping the meta-schema
+> >     requiring either 'additionalProperties' or 'unevaluatedProperties'.
+> >
+> >     Signed-off-by: Rob Herring <robh@kernel.org>
+> >
+> > Since snps,dw-pcie.yaml defines 'additionalProperties: true',
+> > everything is evaluated...
+>
+> Thanks for explanation.
+>
+> >
+> > This fix needed schema fixes to land before I committed this, but it
+> > was the end of the year and I guess I forgot about it. Now, it looks
+> > like we have more to fix. :(  25 to be exact:
+> >
+> > Documentation/devicetree/bindings/mfd/samsung,exynos5433-lpass.example.dtb:
+> > audio-subsystem@11400000: dma-controller@11420000: Unevaluated
+> > properties are not allowed ('#dma-channels', '#dma-requests',
+> > 'power-domains' were unexpected)
+>
+> I'll fix the power-domains, but dma-channels/dma-requests should not
+> fail. This should be accepted through:
+> arm,pl330.yaml -> dma-controller.yaml -> dma-common.yaml
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Except that the standard property names are 'dma-channels' and
+'dma-requests' without the '#'.
 
-Gr{oetje,eeting}s,
+Thanks for the fixes. Unfortunately, it looks like NAND needs the same
+parent/child schema split that was done for SPI.
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
