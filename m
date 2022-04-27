@@ -2,99 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7635111CF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 08:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2667F5111D7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 09:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357845AbiD0HBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 03:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39710 "EHLO
+        id S1358499AbiD0HDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 03:03:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356295AbiD0HBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 03:01:17 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E1516582
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 23:58:07 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id d6so816967ede.8
-        for <devicetree@vger.kernel.org>; Tue, 26 Apr 2022 23:58:07 -0700 (PDT)
+        with ESMTP id S1353899AbiD0HDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 03:03:50 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB9EC220FC
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 00:00:39 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id bv19so1506718ejb.6
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 00:00:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ocARHRASAyy5ekahF2LGjwlLKqc2XinQEkZtryZtbDg=;
-        b=qdEAEjgJNuV9dtRj9apfVr6pewWgkwnSa880J5qM7FtcNLOWg+qr6CKXP1OKgi1NlH
-         xHRnwe4EWAjW4wcd517OohN6aqWy8DL3GqFmJVZqzC/SNR5KbSP9DDLxx54fFbcVRAgF
-         qwOVy8xv0LFKkl2NUQpgn5iSiippkxiBWSm9RBJABML8MvUn/xECJ6g7BQGlAvl/HifN
-         A5+AqGfnx3bd3gizs+4HGtnkb0CaECJTZrnhEaRNO5a0UGUB+NRnrgbHTv7HN6hYu4r/
-         t8ezU+0BgVAtm8aoHn7xZ9RBveUGzy0IydKBl2kiJYmhgbxxEp9YovyVL6nKRsu9Eqe2
-         9tVQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=knB5re2yE+knNYDwWLwV5oj9zfgG60eQTuuGICfcavo=;
+        b=c3w0b4MoE63PeggJZgNSDCaIH6w9y7ctbyjC63+q6frBaZhU1HZvhDLJnumNuLC5u4
+         Nom3enBsHvBvXVYwcflIWz5ouuAp0idEknyYRARXXG4rjRntZCpRwOtsqBnDB4TAfLEf
+         r2Lnae9ns34uBM2GarNe07PaIw6KiCNkM4+I9D/Fv4rmkCXUEVfZxKuoeBmjGXV6gReW
+         c49FxJSSDom/8zrKN9OB0FNklDPH9QDZZ19SAc61MAjWGZADreyaxIsn4AWtkWGuC3ue
+         gzsMFhQanpPLoglKdHGfJptXIr+Jx61vIfGynY7IYeqvqrdM70GtgZ4Ywc9roPGKEQfs
+         Ld1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ocARHRASAyy5ekahF2LGjwlLKqc2XinQEkZtryZtbDg=;
-        b=qk8gHKCD6CXf/frTqaBsCMEaHz5CpW7k2hkYpQbmnqMbIpLlahd2Gk9A1o4mPk65ak
-         0K+zkWseE/KuM3cdq5obmF0o7bFdlIs5qkdZyjAsykZ4eG8XnmGFxP5nZPL9wjtarRdp
-         uSDKrXjjIQWxr9rAyXpIJ/7NeZhZhoVgWVI7uCWGnUEntY1i4p+tAbDPt9HoMHt3a6ou
-         86ZRQyT20zoWekABcyPnvxDnzl/udZ9zGUqKe+NNEpwZ6EownI0EhA+w0UirC+XrQFO6
-         IYfn26p3Flgp4luDIq1RltDY9XmEN6ddNPOLUnrf8FzId/XWPEr7pL6yeJ1R+mV0vtHY
-         X9/w==
-X-Gm-Message-State: AOAM532M6kJ52mqfmUNq0XEp9uvyvVcPVfScuPcVxIQeKb1KwLLNkvCK
-        420Kf1nQXwJPGDTZhWzPEZrrzw==
-X-Google-Smtp-Source: ABdhPJy5D5/RNHf18wBa0Eg+t5e86Md66zOvKYCYi1Q/E6sb0yZTNAjy6T3W8kbfcazX8IhaNqcHHA==
-X-Received: by 2002:a50:99c7:0:b0:419:225:80b6 with SMTP id n7-20020a5099c7000000b00419022580b6mr28917945edb.240.1651042686278;
-        Tue, 26 Apr 2022 23:58:06 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id dc16-20020a170906c7d000b006f391eafd1esm3948648ejb.67.2022.04.26.23.58.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 23:58:05 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jan Kotas <jank@cadence.com>, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: ufs: cdns,ufshc: Add power-domains
-Date:   Wed, 27 Apr 2022 08:58:02 +0200
-Message-Id: <20220427065802.110402-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        bh=knB5re2yE+knNYDwWLwV5oj9zfgG60eQTuuGICfcavo=;
+        b=P2Ac2FfR3NVfYoOE+wNt4xt25Jn2/vmJsP9T3lbyVc1J3os/8NqrZVL5+hvmjQ/ske
+         CinRfwjCjxAaWEc/mP6YsmK0PNIj/Gnwmxudh7GL0AvpMdQRBiU5lbseKxFvk7AypO0w
+         MNnZm0uJzxC+KArR0fS1eZDvkfY91zGYiFy2Y7pLaVtrl53MGp2S84Cj+qRHEvijj7oF
+         Be3dcwx5PnxO9yX7BpyP2coBAEn9mJsSNVI54K4ti+0eLujtwu4YXASEkqbt8sasbn6W
+         2/24gnc5UB5f3AAAtJAJw6djiVhhl0zWRSIwVtEe0TbYbW7KOiiBHkF0GpsJPFpmTOy3
+         PVew==
+X-Gm-Message-State: AOAM532JcDrtLjWdQgbKo4yDO9Ftpm65Jrj646i3qVpkhhe6+nDQpLO5
+        RBpcP5eV+Wz0ZtIvJFS/ILOURg==
+X-Google-Smtp-Source: ABdhPJy42PnL5k6WxDMHs9qpbs1kW+ltaQb338xJc6J452058yJtzF813cfMVtTrgpuVYaW3axL7/g==
+X-Received: by 2002:a17:906:8982:b0:6f3:95f4:4adf with SMTP id gg2-20020a170906898200b006f395f44adfmr13223466ejc.524.1651042838202;
+        Wed, 27 Apr 2022 00:00:38 -0700 (PDT)
+Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id x14-20020a1709064bce00b006f006948581sm6267366ejv.170.2022.04.27.00.00.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 00:00:37 -0700 (PDT)
+Message-ID: <a3d9f68d-9101-2749-a7cd-5a4b3595a07a@linaro.org>
+Date:   Wed, 27 Apr 2022 09:00:36 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 1/7] dt-bindings: hwmon: Add nuvoton,nct6775
+Content-Language: en-US
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Renze Nicolai <renze@rnplus.nl>,
+        Oleksandr Natalenko <oleksandr@natalenko.name>,
+        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20220427010154.29749-1-zev@bewilderbeest.net>
+ <20220427010154.29749-2-zev@bewilderbeest.net>
+ <178b9310-a854-dfa6-a4f3-f971b608abe3@linaro.org>
+ <YmjmWNUpCAFYesyk@hatter.bewilderbeest.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YmjmWNUpCAFYesyk@hatter.bewilderbeest.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Cadence UFS controller can be part of power domain (as it is in
-example DTS of TI J721e UFS Host Controller Glue), so allow such
-property.
+On 27/04/2022 08:44, Zev Weiss wrote:
+> 
+>>> +    maximum: 0xff
+>>> +    default: 0
+>>
+>> Since by default it is disabled, doesn't it make a required property?
+>> IOW, if you add a node without this mask, will the device operate
+>> properly and usefully?
+>>
+> 
+> Yeah, zero active TSI channels is a totally legitimate way for these 
+> devices to operate.  TSI is just an optional source of additional 
+> temperature readings that's used on some (AMD) systems; all the basic 
+> Super I/O functionality works fine without it.
 
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml b/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
-index d227dea368be..fb45f66d6454 100644
---- a/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
-+++ b/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
-@@ -43,6 +43,9 @@ properties:
-       - const: phy_clk
-       - const: ref_clk
- 
-+  power-domains:
-+    maxItems: 1
-+
-   reg:
-     maxItems: 1
- 
--- 
-2.32.0
+OK, thanks.
 
+
+Best regards,
+Krzysztof
