@@ -2,112 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34DFC511225
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 09:12:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED496511253
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 09:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358643AbiD0HPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 03:15:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
+        id S1358754AbiD0H31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 03:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352012AbiD0HPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 03:15:45 -0400
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44B90433BB;
-        Wed, 27 Apr 2022 00:12:33 -0700 (PDT)
-Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.53])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4Kp90T16Bpz1JBm0;
-        Wed, 27 Apr 2022 15:11:37 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Wed, 27 Apr 2022 15:12:30 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Wed, 27 Apr 2022 15:12:29 +0800
-Subject: Re: [PATCH v22 4/9] arm64: kdump: Don't force page-level mappings for
- memory above 4G
-To:     Catalin Marinas <catalin.marinas@arm.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220414115720.1887-1-thunder.leizhen@huawei.com>
- <20220414115720.1887-5-thunder.leizhen@huawei.com> <YmgBFPMbyyOH/52y@arm.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <b635e4e8-a05d-36e5-9274-885452fd0a06@huawei.com>
-Date:   Wed, 27 Apr 2022 15:12:29 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <YmgBFPMbyyOH/52y@arm.com>
+        with ESMTP id S1358759AbiD0H30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 03:29:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D2644771;
+        Wed, 27 Apr 2022 00:26:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EB5F961ADE;
+        Wed, 27 Apr 2022 07:26:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D10FEC385AF;
+        Wed, 27 Apr 2022 07:26:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651044374;
+        bh=F6qI68i8z8l7t3NoHSf81x8+WLlXe4rKy/juqO44zaA=;
+        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+        b=qymtwT65aE4xSJbJTku1nlJrWbZnmwD/IveqmK7Qfhv4V7ZPCLkC6N5LEZjS8TavI
+         dpv8ihHFl48Aq6br4n3N43bW2MIuQ18eiKmZx3kSx4ZWFmJQl1XVFOl6YsVbskB4TS
+         vneEn2fKUP+9cZpgtuzbMxrH8f8sacGi9hb2WZgbdPlmrKKUC1KPwLtN3r4EQlbHB9
+         FDkdUlcmyImUY2fKoCOYqkkGB2Yak8N0fYxxVLD2q3SZQk891UxhBIMzE+RrePzw6p
+         X8C1ydmAcfgdWuPhbgUXQASlFMXPIGSMG997L6LcI0Olo55m+D50VngemF06QnT+MH
+         AxGY9Phzl8ALQ==
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v4 09/12] ath11k: Do not put HW in DBS mode for WCN6750
+From:   Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220406094107.17878-10-quic_mpubbise@quicinc.com>
+References: <20220406094107.17878-10-quic_mpubbise@quicinc.com>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>,
+        <mka@chromium.org>,
+        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <165104436845.23965.9240232763822798831.kvalo@kernel.org>
+Date:   Wed, 27 Apr 2022 07:26:12 +0000 (UTC)
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-
-On 2022/4/26 22:26, Catalin Marinas wrote:
-> On Thu, Apr 14, 2022 at 07:57:15PM +0800, Zhen Lei wrote:
->> @@ -540,13 +540,31 @@ static void __init map_mem(pgd_t *pgdp)
->>  	for_each_mem_range(i, &start, &end) {
->>  		if (start >= end)
->>  			break;
->> +
->> +#ifdef CONFIG_KEXEC_CORE
->> +		if (eflags && (end >= SZ_4G)) {
->> +			/*
->> +			 * The memory block cross the 4G boundary.
->> +			 * Forcibly use page-level mappings for memory under 4G.
->> +			 */
->> +			if (start < SZ_4G) {
->> +				__map_memblock(pgdp, start, SZ_4G - 1,
->> +					       pgprot_tagged(PAGE_KERNEL), flags | eflags);
->> +				start  = SZ_4G;
->> +			}
->> +
->> +			/* Page-level mappings is not mandatory for memory above 4G */
->> +			eflags = 0;
->> +		}
->> +#endif
+> Though WCN6750 is a single PDEV device, it is not a
+> DBS solution. So, do not put HW in DBS mode for WCN6750.
 > 
-> That's a bit tricky if a SoC has all RAM above 4G. IIRC AMD Seattle had
-> this layout. See max_zone_phys() for how we deal with this, basically
-> extending ZONE_DMA to the whole range if RAM starts above 4GB. In that
-> case, crashkernel reservation would fall in the range above 4GB.
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
 > 
-> BTW, we changed the max_zone_phys() logic with commit 791ab8b2e3db
-> ("arm64: Ignore any DMA offsets in the max_zone_phys() calculation").
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Okay, thanks for your correction. I'll dig into it after I've done the original requirement.
+3 patches applied to ath-next branch of ath.git, thanks.
 
-> 
+b6f6301041a3 ath11k: Do not put HW in DBS mode for WCN6750
+95959d702ede ath11k: WMI changes to support WCN6750
+33b67a4b4e64 ath11k: Update WBM idle ring HP after FW mode on
 
 -- 
-Regards,
-  Zhen Lei
+https://patchwork.kernel.org/project/linux-wireless/patch/20220406094107.17878-10-quic_mpubbise@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
