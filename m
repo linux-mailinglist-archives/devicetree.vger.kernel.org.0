@@ -2,226 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C9B511D97
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26813511FD9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243600AbiD0Qw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 12:52:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37066 "EHLO
+        id S243711AbiD0RDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 13:03:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243567AbiD0QwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 12:52:25 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C3B4152C8
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 09:49:12 -0700 (PDT)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220427164910epoutp049f711ce6c65592ab9dc2ac6d0d2bd9b6~pztSAKgFj3094930949epoutp04b
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 16:49:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220427164910epoutp049f711ce6c65592ab9dc2ac6d0d2bd9b6~pztSAKgFj3094930949epoutp04b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1651078150;
-        bh=hfmxlpSd4s66M6K+y/P55B2vsCALexeN0z+2FCrLRVY=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=cht35jZskVpfWgMxVKGxxAped7eKtmbBTdMVpCXAoBJwVwiBleNkRQL3xjvxRKjdY
-         32XjJCoosr2RL2ZYy/gFAwkh3zm2tzu14auXn0dFcEHLvph786p/9WV+SM6WcRlghu
-         apJsJjLJ6ZEANQoD9AdqdBNZDJbg8OhuHGJQIv5k=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20220427164908epcas5p2007b5f6e30352956b962890836a21be7~pztQj1u_V0970809708epcas5p2E;
-        Wed, 27 Apr 2022 16:49:08 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.176]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4KpPpn0wy4z4x9Ps; Wed, 27 Apr
-        2022 16:49:05 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        31.E7.10063.00479626; Thu, 28 Apr 2022 01:49:05 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220427164904epcas5p173aa5dc3b68e38cd7ce8466d29d38393~pztMoc3QH1651516515epcas5p1X;
-        Wed, 27 Apr 2022 16:49:04 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220427164904epsmtrp119ae13a1aed879a53d55f57eb61552d0~pztMnk5HI3058730587epsmtrp1i;
-        Wed, 27 Apr 2022 16:49:04 +0000 (GMT)
-X-AuditID: b6c32a49-4b5ff7000000274f-99-626974006c90
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6F.EB.08924.00479626; Thu, 28 Apr 2022 01:49:04 +0900 (KST)
-Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220427164902epsmtip1f47598e5fa2a204d0c05377443300017~pztKGiL5F1379913799epsmtip1e;
-        Wed, 27 Apr 2022 16:49:01 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Lee Jones'" <lee.jones@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        "'Dinh Nguyen'" <dinguyen@kernel.org>,
-        "'Michal Simek'" <michal.simek@xilinx.com>,
-        "'Liviu Dudau'" <liviu.dudau@arm.com>,
-        "'Sudeep Holla'" <sudeep.holla@arm.com>,
-        "'Lorenzo Pieralisi'" <lorenzo.pieralisi@arm.com>,
-        "'Ray Jui'" <rjui@broadcom.com>,
-        "'Scott Branden'" <sbranden@broadcom.com>,
-        "'Broadcom Kernel Team'" <bcm-kernel-feedback-list@broadcom.com>,
-        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Cc:     "'Rob Herring'" <robh@kernel.org>
-In-Reply-To: <20220427155840.596535-11-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 10/10] arm64: dts: fsd: use proper
- 'dma-channels/requests' properties
-Date:   Wed, 27 Apr 2022 22:19:00 +0530
-Message-ID: <000401d85a56$b43a8150$1caf83f0$@samsung.com>
+        with ESMTP id S243725AbiD0RDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 13:03:15 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52405523C
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 10:00:00 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 16so3436503lju.13
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 10:00:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=4FZ9hDjEcrk8be9d2zNWEXFxSZgfw87crWXMioTKU1A=;
+        b=EJP/VS7885RHBzli5b87Pgg7bycneG9Dwxm0Wn3nIHgtxFq8I5f0D/S2PSrNi/AbI2
+         haTMVZ+kMsJr5jpDQwG6AeGOmaoXDWJzpOKbk/pPZpVFLznvxat1OIP+blqYTAcQSHDn
+         X+X8Dlmnlz1Vwm9lXrC1nVns3MjQtqiuNg/f1P2RCbqqo6+jJPTeQYA8ezXqIKfN2k35
+         X21Nk1irP3/8eI1zS83Ilu5EQpEjRrZA2SuOPg0XrC9Do4/U4WayBOBwM2vqVnocsSVw
+         SD4Lb0qOFQFg3+cT34W2b2O54Zib1Kw0dd51KK+dMzutAQGAtpGCE7OFO8Q+9GNpdDaG
+         cWHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4FZ9hDjEcrk8be9d2zNWEXFxSZgfw87crWXMioTKU1A=;
+        b=NcNqMtzP12JMDjumSn+U0Sh0iGTohccsT4cxbcpT/oV/vWWBRopxpQ03NKK4Eftgf5
+         zupV4wKTOe08awMD/1TRsygKJk5ezf+2jST1GgEAyzgE1K7eBol89uCv70r//XVRu2jK
+         PndH9b0BS8UOS0fR4gG8qTVoOgwuVBSIljJ99A3dr5vRx9CMgiLhoCljvfdJFmdiTGbQ
+         zJjWhvcScllBEhIFn3dZzq/Ne+eZhqSolNrjZEXKXxytahls8YH3cBw3+1JGCXaGwh5B
+         WTmwofSMaHXgD3xk92gbTPBHkED+YAZOB7i2HiBC9VrzYOBiBU/PLLd3SOn/54FM4q/Y
+         MHGg==
+X-Gm-Message-State: AOAM530amdOmXCVtPsXlrpljh3mIaKc7DhZrOWNCQaOVMomg64fSzUGX
+        +UVKgDiPZZaQC9KVj0ltzOJ07w==
+X-Google-Smtp-Source: ABdhPJwyqcNvcyyhVnLvWPxCOWHgdrKf4PO/5x8I28DFcbLJlvVw5CiJMw5DQ4dGrELBoamgx15zAw==
+X-Received: by 2002:a2e:a786:0:b0:24f:2db0:b16f with SMTP id c6-20020a2ea786000000b0024f2db0b16fmr789013ljf.416.1651078799095;
+        Wed, 27 Apr 2022 09:59:59 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id z9-20020a196509000000b0046b8cab5b9esm2102598lfb.293.2022.04.27.09.59.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 09:59:58 -0700 (PDT)
+Message-ID: <b9d81916-10e6-94f9-78b2-b2198620e66a@linaro.org>
+Date:   Wed, 27 Apr 2022 19:59:57 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v3 1/5] PCI: dwc: Convert msi_irq to the array
+Content-Language: en-GB
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220427121653.3158569-1-dmitry.baryshkov@linaro.org>
+ <20220427121653.3158569-2-dmitry.baryshkov@linaro.org>
+ <20220427141329.GA4161@thinkpad>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220427141329.GA4161@thinkpad>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGQnzfwuAxkOYqHux9KbyQb5tlOAgHmAJxPAngHFiutcH5BUA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLJsWRmVeSWpSXmKPExsWy7bCmpi5jSWaSQc9CRou1vUdZLOYfOcdq
-        cfT8biaLvhcPmS32vt7KbnH/61FGi02Pr7FaXN41h81ixvl9TBYHlrazWLz5/YLd4t3LCIun
-        MzezWbTuPcJu8X/PDnaLw2/aWS3erX7CaLH81A4WByGPNfPWMHrMun+WzWPTqk42jzvX9rB5
-        bF5S79G3ZRWjx+dNch57P/9mCeCIyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQw
-        V1LIS8xNtVVy8QnQdcvMAXpFSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgUqBX
-        nJhbXJqXrpeXWmJlaGBgZApUmJCdcWjHXeaCPqmKs8/uszQwPhDtYuTkkBAwkdjUvIe1i5GL
-        Q0hgN6PErUPboZxPjBJNz1ezQTifGSV2fz3LBNNy9uNGZhBbSGAXo8Tdd/oQ9ktGia9H7UBs
-        NgFdiR2L28CaRQR+skrsal7AApJgFlCVmPPnF1gzp4CbxL5vr8FsYYFoibsnF4AtYAGqmXj2
-        FDuIzStgKfFv3Uc2CFtQ4uTMJ1Bz5CW2v53DDHGQgsTPp8tYQWwRASeJ+y8fMULUiEu8PHqE
-        HeQICYEfHBL7ns1lgWhwkVjVvwnKFpZ4dXwLO4QtJfGyvw3I5gCyPSQW/ZGCCGdIvF2+nhHC
-        tpc4cGUOC0gJs4CmxPpd+hCr+CR6fz9hgujklehoE4KoVpVofncVapG0xMTublYI20Piwfcf
-        zBMYFWcheWwWksdmIXlgFsKyBYwsqxglUwuKc9NTi00LDPNSy+HRnZyfu4kRnM61PHcw3n3w
-        Qe8QIxMH4yFGCQ5mJRHeL7szkoR4UxIrq1KL8uOLSnNSiw8xmgJDeyKzlGhyPjCj5JXEG5pY
-        GpiYmZmZWBqbGSqJ855O35AoJJCeWJKanZpakFoE08fEwSnVwJR6RFy6zSlRe9thVtdYrnsB
-        6ZvqUyx9r//Iv5F8I/0PD3uMRWqZYKNajcPGnDW8FeuZjPYrK7Uqv3kjt1+qQO0GU8H70NVf
-        pBd0C29aa7KvLT3h8IalF+US35ovXM68d97OSQsfXtYruLpJ9fNrvpf7OrIX7PN9W3/Dp82r
-        g6XO6Nn1dL0XTOUuszU3bf7++t1lHpbVXKaNt/Ny5Y9Nn5xokibyocyjizn6+XTBuONZ3uwF
-        ea8UDDUyn3mmb/W7cXSH/SXH0u76My6X4qXTbByWlrFNDEjxm8t85qvzfOXQLMkvTy/vVS6/
-        L3O8+f9y5V3hYl2MK40XW3y5URheWfI4UP3cIb3ceJ53IdPNlFiKMxINtZiLihMB247xanAE
-        AAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOIsWRmVeSWpSXmKPExsWy7bCSnC5DSWaSwYK5qhZre4+yWMw/co7V
-        4uj53UwWfS8eMlvsfb2V3eL+16OMFpseX2O1uLxrDpvFjPP7mCwOLG1nsXjz+wW7xbuXERZP
-        Z25ms2jde4Td4v+eHewWh9+0s1q8W/2E0WL5qR0sDkIea+atYfSYdf8sm8emVZ1sHneu7WHz
-        2Lyk3qNvyypGj8+b5Dz2fv7NEsARxWWTkpqTWZZapG+XwJVxaMdd5oI+qYqzz+6zNDA+EO1i
-        5OSQEDCROPtxI3MXIxeHkMAORolzn04wQiSkJa5vnMAOYQtLrPz3nB2i6DmjxNMZ05lBEmwC
-        uhI7FrexgSREBFrZJFZ+6GUBSTALqErM+fMLauwFRokTb66zgiQ4Bdwk9n17DdYtLBAp8fTd
-        XrAVLEANE8+eArN5BSwl/q37yAZhC0qcnPkEaCgH0FA9ibaNjBDz5SW2v53DDHGdgsTPp8vA
-        xosIOEncf/kIqkZc4uXRI+wTGIVnIZk0C2HSLCSTZiHpWMDIsopRMrWgODc9t9iwwCgvtVyv
-        ODG3uDQvXS85P3cTIziutbR2MO5Z9UHvECMTB+MhRgkOZiUR3i+7M5KEeFMSK6tSi/Lji0pz
-        UosPMUpzsCiJ817oOhkvJJCeWJKanZpakFoEk2Xi4JRqYLog/HVnxrbr0xc8KUxOmmO8+nPb
-        K77zzw2OTJyxhMHhU8Y/z8JftX8Ud0Z6OCx8xb83iiskQeCkzN45wfJm93jfaO+071rf4z/X
-        Yc6lMof47J2bLn1hb/iZoBjo55hiUtz+VX5x/UM71UOi91k8ndY9tylRVfIJlDjipTr11KOd
-        HyPD3rxyKImPUeEqn6af/fOgR372ExvPBS+atTmn679s92gs8I69reTEIfl49aS3imoq/iEH
-        tz6dJ+wns83FVKzNaLf26o7XsicU8n4m7FUN9GU7/Uvf/mbAl9sM05Mus+9/sdOv88sNCadv
-        NTxK76Z8T55m8kbPM6g/V+dxQ1FNz+yjgdODclSW3PG3VmIpzkg01GIuKk4EADFgLWtaAwAA
-X-CMS-MailID: 20220427164904epcas5p173aa5dc3b68e38cd7ce8466d29d38393
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220427155905epcas5p2a902af86ad3f08f96de4da0d5affec43
-References: <20220427155840.596535-1-krzysztof.kozlowski@linaro.org>
-        <CGME20220427155905epcas5p2a902af86ad3f08f96de4da0d5affec43@epcas5p2.samsung.com>
-        <20220427155840.596535-11-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/04/2022 17:13, Manivannan Sadhasivam wrote:
+> On Wed, Apr 27, 2022 at 03:16:49PM +0300, Dmitry Baryshkov wrote:
+>> Qualcomm version of DWC PCIe controller supports more than 32 MSI
+>> interrupts, but they are routed to separate interrupts in groups of 32
+>> vectors. To support such configuration, change the msi_irq field into an
+>> array. Let the DWC core handle all interrupts that were set in this
+>> array.
+>>
+> 
+> Instead of defining it as an array, can we allocate it dynamically in the
+> controller drivers instead? This has two benefits:
+> 
+> 1. There is no need of using a dedicated flag.
+> 2. Controller drivers that don't support MSIs can pass NULL and in the core we
+> can use platform_get_irq_byname_optional() to get supported number of MSIs from
+> devicetree.
+
+I think using dynamic allocation would make code worse. It would add 
+additional checks here and there.
+
+If you don't like this design. I have an alternative suggestion: export 
+the dw_chained_msi_irq() and move allocation of all MSIs to the 
+pcie-qcom code. Would that be better? I'm not sure whether this 
+multi-host-IRQ design is used on other DWC platforms or not.
+
+> 
+> Thanks,
+> Mani
+> 
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/pci/controller/dwc/pci-dra7xx.c       |  2 +-
+>>   drivers/pci/controller/dwc/pci-exynos.c       |  2 +-
+>>   .../pci/controller/dwc/pcie-designware-host.c | 30 +++++++++++--------
+>>   drivers/pci/controller/dwc/pcie-designware.h  |  2 +-
+>>   drivers/pci/controller/dwc/pcie-keembay.c     |  2 +-
+>>   drivers/pci/controller/dwc/pcie-spear13xx.c   |  2 +-
+>>   drivers/pci/controller/dwc/pcie-tegra194.c    |  2 +-
+>>   7 files changed, 24 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
+>> index dfcdeb432dc8..0919c96dcdbd 100644
+>> --- a/drivers/pci/controller/dwc/pci-dra7xx.c
+>> +++ b/drivers/pci/controller/dwc/pci-dra7xx.c
+>> @@ -483,7 +483,7 @@ static int dra7xx_add_pcie_port(struct dra7xx_pcie *dra7xx,
+>>   		return pp->irq;
+>>   
+>>   	/* MSI IRQ is muxed */
+>> -	pp->msi_irq = -ENODEV;
+>> +	pp->msi_irq[0] = -ENODEV;
+>>   
+>>   	ret = dra7xx_pcie_init_irq_domain(pp);
+>>   	if (ret < 0)
+>> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
+>> index 467c8d1cd7e4..4f2010bd9cd7 100644
+>> --- a/drivers/pci/controller/dwc/pci-exynos.c
+>> +++ b/drivers/pci/controller/dwc/pci-exynos.c
+>> @@ -292,7 +292,7 @@ static int exynos_add_pcie_port(struct exynos_pcie *ep,
+>>   	}
+>>   
+>>   	pp->ops = &exynos_pcie_host_ops;
+>> -	pp->msi_irq = -ENODEV;
+>> +	pp->msi_irq[0] = -ENODEV;
+>>   
+>>   	ret = dw_pcie_host_init(pp);
+>>   	if (ret) {
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> index 2fa86f32d964..5d90009a0f73 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> @@ -257,8 +257,11 @@ int dw_pcie_allocate_domains(struct pcie_port *pp)
+>>   
+>>   static void dw_pcie_free_msi(struct pcie_port *pp)
+>>   {
+>> -	if (pp->msi_irq)
+>> -		irq_set_chained_handler_and_data(pp->msi_irq, NULL, NULL);
+>> +	u32 ctrl;
+>> +
+>> +	for (ctrl = 0; ctrl < MAX_MSI_CTRLS; ctrl++)
+>> +		if (pp->msi_irq[ctrl])
+>> +			irq_set_chained_handler_and_data(pp->msi_irq[ctrl], NULL, NULL);
+>>   
+>>   	irq_domain_remove(pp->msi_domain);
+>>   	irq_domain_remove(pp->irq_domain);
+>> @@ -368,13 +371,15 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>>   			for (ctrl = 0; ctrl < num_ctrls; ctrl++)
+>>   				pp->irq_mask[ctrl] = ~0;
+>>   
+>> -			if (!pp->msi_irq) {
+>> -				pp->msi_irq = platform_get_irq_byname_optional(pdev, "msi");
+>> -				if (pp->msi_irq < 0) {
+>> -					pp->msi_irq = platform_get_irq(pdev, 0);
+>> -					if (pp->msi_irq < 0)
+>> -						return pp->msi_irq;
+>> +			if (!pp->msi_irq[0]) {
+>> +				int irq = platform_get_irq_byname_optional(pdev, "msi");
+>> +
+>> +				if (irq < 0) {
+>> +					irq = platform_get_irq(pdev, 0);
+>> +					if (irq < 0)
+>> +						return irq;
+>>   				}
+>> +				pp->msi_irq[0] = irq;
+>>   			}
+>>   
+>>   			pp->msi_irq_chip = &dw_pci_msi_bottom_irq_chip;
+>> @@ -383,10 +388,11 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>>   			if (ret)
+>>   				return ret;
+>>   
+>> -			if (pp->msi_irq > 0)
+>> -				irq_set_chained_handler_and_data(pp->msi_irq,
+>> -							    dw_chained_msi_isr,
+>> -							    pp);
+>> +			for (ctrl = 0; ctrl < num_ctrls; ctrl++)
+>> +				if (pp->msi_irq[ctrl] > 0)
+>> +					irq_set_chained_handler_and_data(pp->msi_irq[ctrl],
+>> +									 dw_chained_msi_isr,
+>> +									 pp);
+>>   
+>>   			ret = dma_set_mask(pci->dev, DMA_BIT_MASK(32));
+>>   			if (ret)
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+>> index 7d6e9b7576be..9c1a38b0a6b3 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware.h
+>> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+>> @@ -187,7 +187,7 @@ struct pcie_port {
+>>   	u32			io_size;
+>>   	int			irq;
+>>   	const struct dw_pcie_host_ops *ops;
+>> -	int			msi_irq;
+>> +	int			msi_irq[MAX_MSI_CTRLS];
+>>   	struct irq_domain	*irq_domain;
+>>   	struct irq_domain	*msi_domain;
+>>   	u16			msi_msg;
+>> diff --git a/drivers/pci/controller/dwc/pcie-keembay.c b/drivers/pci/controller/dwc/pcie-keembay.c
+>> index 1ac29a6eef22..297e6e926c00 100644
+>> --- a/drivers/pci/controller/dwc/pcie-keembay.c
+>> +++ b/drivers/pci/controller/dwc/pcie-keembay.c
+>> @@ -338,7 +338,7 @@ static int keembay_pcie_add_pcie_port(struct keembay_pcie *pcie,
+>>   	int ret;
+>>   
+>>   	pp->ops = &keembay_pcie_host_ops;
+>> -	pp->msi_irq = -ENODEV;
+>> +	pp->msi_irq[0] = -ENODEV;
+>>   
+>>   	ret = keembay_pcie_setup_msi_irq(pcie);
+>>   	if (ret)
+>> diff --git a/drivers/pci/controller/dwc/pcie-spear13xx.c b/drivers/pci/controller/dwc/pcie-spear13xx.c
+>> index 1569e82b5568..cc7776833810 100644
+>> --- a/drivers/pci/controller/dwc/pcie-spear13xx.c
+>> +++ b/drivers/pci/controller/dwc/pcie-spear13xx.c
+>> @@ -172,7 +172,7 @@ static int spear13xx_add_pcie_port(struct spear13xx_pcie *spear13xx_pcie,
+>>   	}
+>>   
+>>   	pp->ops = &spear13xx_pcie_host_ops;
+>> -	pp->msi_irq = -ENODEV;
+>> +	pp->msi_irq[0] = -ENODEV;
+>>   
+>>   	ret = dw_pcie_host_init(pp);
+>>   	if (ret) {
+>> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> index b1b5f836a806..e75712db85b0 100644
+>> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+>> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> @@ -2271,7 +2271,7 @@ static void tegra194_pcie_shutdown(struct platform_device *pdev)
+>>   
+>>   	disable_irq(pcie->pci.pp.irq);
+>>   	if (IS_ENABLED(CONFIG_PCI_MSI))
+>> -		disable_irq(pcie->pci.pp.msi_irq);
+>> +		disable_irq(pcie->pci.pp.msi_irq[0]);
+>>   
+>>   	tegra194_pcie_pme_turnoff(pcie);
+>>   	tegra_pcie_unconfig_controller(pcie);
+>> -- 
+>> 2.35.1
+>>
 
 
->-----Original Message-----
->From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->Sent: Wednesday, April 27, 2022 9:29 PM
->To: Lee Jones <lee.jones@linaro.org>; Rob Herring <robh+dt@kernel.org>;
->Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
-><alim.akhtar@samsung.com>; Dinh Nguyen <dinguyen@kernel.org>; Michal
->Simek <michal.simek@xilinx.com>; Liviu Dudau <liviu.dudau@arm.com>;
->Sudeep Holla <sudeep.holla@arm.com>; Lorenzo Pieralisi
-><lorenzo.pieralisi@arm.com>; Ray Jui <rjui@broadcom.com>; Scott Branden
-><sbranden@broadcom.com>; Broadcom Kernel Team <bcm-kernel-feedback-
->list@broadcom.com>; Sylwester Nawrocki <s.nawrocki@samsung.com>;
->devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org
->Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Rob Herring
-><robh@kernel.org>
->Subject: [PATCH 10/10] arm64: dts: fsd: use proper 'dma-channels/requests'
->properties
->
->pl330 DMA controller bindings documented 'dma-channels' and 'dma-
->requests' properties (without leading hash sign), so fix the DTS to match
-the
->bindings.
->
->Reported-by: Rob Herring <robh@kernel.org>
->Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->---
-
-Acked-by: Alim Akhtar <alim.akhtar@samsung.com>
-
-> arch/arm64/boot/dts/tesla/fsd.dtsi | 16 ++++++++--------
-> 1 file changed, 8 insertions(+), 8 deletions(-)
->
->diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
->b/arch/arm64/boot/dts/tesla/fsd.dtsi
->index 10c217a57a7d..7fba37d860b2 100644
->--- a/arch/arm64/boot/dts/tesla/fsd.dtsi
->+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
->@@ -432,8 +432,8 @@ mdma0: dma-controller@10100000 {
-> 			reg = <0x0 0x10100000 0x0 0x1000>;
-> 			interrupts = <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>;
-> 			#dma-cells = <1>;
->-			#dma-channels = <8>;
->-			#dma-requests = <32>;
->+			dma-channels = <8>;
->+			dma-requests = <32>;
-> 			clocks = <&clock_imem
->IMEM_DMA0_IPCLKPORT_ACLK>;
-> 			clock-names = "apb_pclk";
-> 			iommus = <&smmu_imem 0x800 0x0>;
->@@ -444,8 +444,8 @@ mdma1: dma-controller@10110000 {
-> 			reg = <0x0 0x10110000 0x0 0x1000>;
-> 			interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
-> 			#dma-cells = <1>;
->-			#dma-channels = <8>;
->-			#dma-requests = <32>;
->+			dma-channels = <8>;
->+			dma-requests = <32>;
-> 			clocks = <&clock_imem
->IMEM_DMA1_IPCLKPORT_ACLK>;
-> 			clock-names = "apb_pclk";
-> 			iommus = <&smmu_imem 0x801 0x0>;
->@@ -456,8 +456,8 @@ pdma0: dma-controller@14280000 {
-> 			reg = <0x0 0x14280000 0x0 0x1000>;
-> 			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-> 			#dma-cells = <1>;
->-			#dma-channels = <8>;
->-			#dma-requests = <32>;
->+			dma-channels = <8>;
->+			dma-requests = <32>;
-> 			clocks = <&clock_peric
->PERIC_DMA0_IPCLKPORT_ACLK>;
-> 			clock-names = "apb_pclk";
-> 			iommus = <&smmu_peric 0x2 0x0>;
->@@ -468,8 +468,8 @@ pdma1: dma-controller@14290000 {
-> 			reg = <0x0 0x14290000 0x0 0x1000>;
-> 			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
-> 			#dma-cells = <1>;
->-			#dma-channels = <8>;
->-			#dma-requests = <32>;
->+			dma-channels = <8>;
->+			dma-requests = <32>;
-> 			clocks = <&clock_peric
->PERIC_DMA1_IPCLKPORT_ACLK>;
-> 			clock-names = "apb_pclk";
-> 			iommus = <&smmu_peric 0x1 0x0>;
->--
->2.32.0
-
-
+-- 
+With best wishes
+Dmitry
