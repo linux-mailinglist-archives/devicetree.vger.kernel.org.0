@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA2D5121D8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B45F5121EF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Apr 2022 20:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbiD0TA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 15:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41446 "EHLO
+        id S231713AbiD0TCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 15:02:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232086AbiD0TAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 15:00:21 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2D57306C
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:45:55 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id t6so3738203wra.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:45:55 -0700 (PDT)
+        with ESMTP id S231288AbiD0TCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 15:02:35 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5711AB7C53
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:49:26 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id l203so3014015oif.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 11:49:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=f6A2106wpv8FyptFj0CXPhRPGyQFfkvsvlQQIXuralk=;
-        b=USObKSJ2kUmKR31NngLz5pIhR33a1ZqcyGnNJvvYxbtjXLPQ7/hNFRSGycWBoFt1nc
-         N59r9GCtKEmYZj+ib5amTDGDj14ILlYXGFtMVNvOyhmi5HMcGMWTx3wGdr9Kaa/Xd8Pv
-         JFg5T4JrpfTKFMvZurcH4H0qA/oFeuochOGfzpSJEYbSxIlXdWL0a6Ht91kjt5uiL5Vm
-         9MRD1gGbh3/YwNuS3P35nfQ97q+CWsojhI5X/qzkWKSGTLr3Wotx67sIZmRB9kBuy9QQ
-         ds6kBFj6Va/Tv0NYAzeJIwu+5RdbvIdSZZ7GeNN45cRktvWeQnnXVX1umxvn6He7Op+1
-         xCCg==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=ELW/tf+z/1Ae63zOagnlWVkh4PSOlMUTlo/HVvH7uaM=;
+        b=Dgy3mKUtoNPc4Iqgr22Pa3IK6L6cNQqoX6GR7sg3iFFzKy/yMoF7rVIPvv303q8zc8
+         uonfRGS2gKFrTwkO3T3j6WLMqJdBXJCDoENXqDdiBbR3KXCxC116joPNCkVNplsy0Pxb
+         8i45xwI0lF72jZhYwTDYX+avjz0RG9Hhj2VDg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=f6A2106wpv8FyptFj0CXPhRPGyQFfkvsvlQQIXuralk=;
-        b=6S2Df/JV1gCx3c12vug9MGsl6FNjfOTTGz5goPYnNzNeoRt5+nWezmOuy/yqVhW0GG
-         G4jtSMVQWSq9SNe5Fa07m/us1SyUTLtHiNV1/ssHywlU7XKUCuMPYq2bCf14idDVyFO5
-         hWq89gM8azQDuN4tkHq2VwfpiBDMnnEXBbRUo+jsrHq7flyH5xO7+9+JnTDoa8vpeoT+
-         3Cte4GF2S8zTzKhhqhBFKU0W3NTiZb13bKAxvXBWWNYorbk2kJFYoYjVW9+DdJf1HbQE
-         iptxQ2HcovHIn42m9x2MwCdtPUGKGuUzYUHT7D6oeYbgpVG+ZRrsEHfLbasi6s3MlbR6
-         IN2w==
-X-Gm-Message-State: AOAM531iGGDUXzCRJUu/4flcv4olgrL2IM4SwCfnmYKxrOPlSkBuBSNa
-        To/KsmVIUVTA2lST0AbGrV45lxhlt4imvg==
-X-Google-Smtp-Source: ABdhPJxx/6zywqLRr3upfT6X/fKMN9/MUALq+nXlNuxuHRehXy0gUkKXOtbbfTTNa2tlTpDBgcRNkA==
-X-Received: by 2002:a5d:47c4:0:b0:20a:e090:8590 with SMTP id o4-20020a5d47c4000000b0020ae0908590mr10237714wrc.465.1651085154133;
-        Wed, 27 Apr 2022 11:45:54 -0700 (PDT)
-Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id n13-20020a5d51cd000000b0020af0706b9csm1774340wrv.53.2022.04.27.11.45.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 11:45:52 -0700 (PDT)
-Message-ID: <850d2c2d-9531-ed4c-48fc-2daa0311e3e6@linaro.org>
-Date:   Wed, 27 Apr 2022 19:45:51 +0100
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=ELW/tf+z/1Ae63zOagnlWVkh4PSOlMUTlo/HVvH7uaM=;
+        b=QotEr9vvLxwIf90RH2QpcHH37p5GSRtB7Y0hLb2RztosBNzl0c99fGz5vVhN3ngKNe
+         dp0kOZdr6zhvq0hNIsQsyuvny/F++xCeD/LpIQPtvTkH7N9teJvTnmeZeFXgQWfYaA4M
+         s2rdnFHsUCWE7usih4rla4FkFy0HPV6ahT8OZN0jcJgAuXgag9QOYBIbdjVaTrIVa4hj
+         n4ibAJ0LUoJAoJX3Ye14pUSprdGykdtrn3gyWtekywzzMykLwkhU769SuV2L0ZqnjMyK
+         lws452y+f3JiAKGfBA85KbWMBkYnK01Ua+2nXW7ZJvMVZpS/Ug15LvioX+ArKct6vhr4
+         G4sw==
+X-Gm-Message-State: AOAM531aPAn9t53lpY8Arkq0WlfG0evd5/DSyiFT0Fapy4kdaHLnPq6p
+        HRMv/+5ZxFStbrIjNSqsjsq38rrSLSUDu+9BwgqWKg==
+X-Google-Smtp-Source: ABdhPJwBZc4Xq0O073eFjKmpGc3WTQxpzFxv1yR2Wgae5nOcQVpcCOXvbI96rlyTiEjgefh4ntPJFnlnNmq8jdYb4qQ=
+X-Received: by 2002:a05:6808:1296:b0:325:8fb:68f3 with SMTP id
+ a22-20020a056808129600b0032508fb68f3mr9887308oiw.193.1651085365678; Wed, 27
+ Apr 2022 11:49:25 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 27 Apr 2022 11:49:25 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v13 3/9] mfd: qcom-spmi-pmic: read fab id on supported
- PMICs
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+In-Reply-To: <CAD=FV=Wey2P_=3Lp6M8GEaoyCn1XcYFhfJwfx43a5f_8H0obwg@mail.gmail.com>
+References: <20220426225748.324759-1-swboyd@chromium.org> <CAD=FV=WMf0Jc9oD7CGoLthguzt2aV31sZmFoenbjn72MfwFYEA@mail.gmail.com>
+ <CAD=FV=Wey2P_=3Lp6M8GEaoyCn1XcYFhfJwfx43a5f_8H0obwg@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 27 Apr 2022 11:49:25 -0700
+Message-ID: <CAE-0n53sfUMiCzEgRwVRuxwnf_BLJi+cL-PoZ_ha_3EfEW1X_A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Remove cros-ec keyboard
+ from detachables
+To:     Doug Anderson <dianders@chromium.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20220323162820.110806-1-caleb@connolly.tech>
- <20220323162820.110806-4-caleb@connolly.tech> <Yma4tXvPQ+U89Whr@google.com>
- <10f7cb8e-4c2a-0bba-df55-16b56d429147@linaro.org>
- <Ymg455MYRIJTXgvW@google.com>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <Ymg455MYRIJTXgvW@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,48 +75,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Doug Anderson (2022-04-27 08:09:59)
+> Hi,
+>
+> On Tue, Apr 26, 2022 at 5:17 PM Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Tue, Apr 26, 2022 at 3:57 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > >
+> > > Trogdor devices that have a detachable keyboard still have a
+> > > non-detachable keyboard input device present because we include the
+> > > cros-ec-keyboard.dtsi snippet in the top-level sc7180-trogdor.dtsi file
+> > > that every variant board includes. We do this because the
+> > > keyboard-controller node also provides some buttons like the power
+> > > button and volume buttons. Unfortunately, this means we register a
+> > > keyboard input device that doesn't do anything on boards with a
+> > > detachable keyboard. Let's delete the rows/columns properties of the
+> > > device node to indicate that there isn't a matrix keyboard on these
+> > > boards.
+> > >
+> > > Cc: Benson Leung <bleung@chromium.org>
+> > > Cc: Guenter Roeck <groeck@chromium.org>
+> > > Cc: Douglas Anderson <dianders@chromium.org>
+> > > Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+> > > Cc: "Joseph S. Barrera III" <joebar@chromium.org>
+> > > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi   | 5 +++++
+> > >  arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi | 5 +++++
+> > >  2 files changed, 10 insertions(+)
+> >
+> > Presumably we need to do this same thing for wormdingler [1]
+> >
+> > [1] https://lore.kernel.org/r/20220426151204.1.Id2821de5fde55ebe928e8fc87a71c8d535edb383@changeid
+> >
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>
+> Do we need to delay landing this patch for a release? I haven't tested
+> myself, but from re-reading through the code it looks as if
+> cros_ec_keyb_register_matrix() will return an error code if we have
+> the device tree patch _without_ commit 4352e23a7ff2 ("Input:
+> cros-ec-keyb - only register keyboard if rows/columns exist"). That
+> will cause it to skip registering the buttons/switches, right?
 
+Yes, if the driver patch isn't applied then we'll skip registering
+switches when these properties are removed. I suppose a better way to
+gracefully migrate the logic here would be to add another compatible
+string. Then we could make the compatible be
 
-On 26/04/2022 19:24, Lee Jones wrote:
-> On Tue, 26 Apr 2022, Caleb Connolly wrote:
->> On 25/04/2022 16:05, Lee Jones wrote:
->>> On Wed, 23 Mar 2022, Caleb Connolly wrote:
->>>
->>>> From: Caleb Connolly <caleb.connolly@linaro.org>
->>>>
->>>> The PMI8998 and PM660 expose the fab_id, this is needed by drivers like
->>>> the RRADC to calibrate ADC values.
->>>>
->>>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    drivers/mfd/qcom-spmi-pmic.c      | 7 +++++++
->>>>    include/soc/qcom/qcom-spmi-pmic.h | 1 +
->>>>    2 files changed, 8 insertions(+)
->>>
->>> Please change the Subject line to match the style of the sub-system?
->> Hi, sorry if this is a silly question, I don't quite understand what you
->> want me to change here, the subject line is in the same "mfd: driver:"
->> format as other patches in the subsystem?
-> 
-> mfd: qcom-spmi-pmic: Read fab ID on supported PMICs
-> 
-> What's 'fab' should that be capitalised too?
-"fab" is short for fabrication I think, the register value can be used to 
-determine which factory the chip was manufactured in.
+	compatible = "google,cros-ec-keyb-switches", "google,cros-ec-keyb";
 
-I can make it clearer and go for
+on detachables and the driver can skip registering the keyboard if the more
+specific "google,cros-ec-keyb-switches" compatible is present. The
+driver will continue to probe and we don't have to remove any
+properties.
 
-mfd: qcom-spmi-pmic: Read fabrication ID on supported PMICs
-> 
->>> Once changed:
->>>
->>>     Acked-by: Lee Jones <lee.jones@linaro.org>
->>>
->>
-> 
+The driver patch has been accepted[1] so in theory this patch can be
+applied and when the two meet up in linux-next things will work but when
+bisecting down the DTS the switches won't work. Not a huge problem but
+sort of annoying that the switches are busted.
 
--- 
-Kind Regards,
-Caleb (they/he)
+[1] https://lore.kernel.org/all/Ymh1J9zQ+5EyQadE@google.com/
