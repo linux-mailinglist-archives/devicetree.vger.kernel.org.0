@@ -2,120 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C29FF513152
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66240513167
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 12:39:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234232AbiD1Kdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 06:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49004 "EHLO
+        id S229722AbiD1KnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 06:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234079AbiD1Kdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:33:42 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5444256C31;
-        Thu, 28 Apr 2022 03:30:23 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 77031E0011;
-        Thu, 28 Apr 2022 10:30:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1651141822;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XvY8OOcprZelkc7qvA2buNfCCfNWJDnZiew6EWVnFa0=;
-        b=pPcXOa7GQZjUQ1heIeDHrbr8vB4aD8YeZFWhXuiSNZn1klG/R6vUgnyRuQLaPAI9SzjcJF
-        YWkbMJDGbIknCDy9Jbvem2KKwH/nyr7hhMghPNwMsCXsRp+3lxPVlKyq+/zJvYJwgYEIJd
-        rJlgyPz8tFFYAuFPn7V7UYUgYR1UA6giuBCpvTCHqHZ9kd0Fa0jBBVDxY4yhJKQF2FwHxc
-        +7eFMq29GU4A6mzc4qAd8zcOPfGitVvf0n7t52Mvr5HFt+rriH7GScC0WljdyVDdeoWr/G
-        SqB9vom0+legpzZc+kL1FOZyFJbebv7rCy8Gn+/+mBWwgIGKL0g5y2qa6G7Cyw==
-Date:   Thu, 28 Apr 2022 12:30:18 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v3 7/8] ARM: dts: r9a06g032: Add USB PHY DT support
-Message-ID: <20220428123018.11cd054f@bootlin.com>
-In-Reply-To: <CAMuHMdXYpntR6QpJTRMPtE_RjNq+vwfCVRViXCc8DhNRMMjqJQ@mail.gmail.com>
-References: <20220422120850.769480-1-herve.codina@bootlin.com>
-        <20220422120850.769480-8-herve.codina@bootlin.com>
-        <CAMuHMdXYpntR6QpJTRMPtE_RjNq+vwfCVRViXCc8DhNRMMjqJQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
+        with ESMTP id S238851AbiD1KnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 06:43:03 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9E86A075
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:39:49 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id kq17so8699956ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 03:39:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XreYXHdj5GUywvUvOHNYSnATh/KLGPy94j+XuPVD3j0=;
+        b=m1zjC7wTi82Snz5yieUbOWn6q7W6bAD55dY92ttNzYSN71T9BY+yUKEX0pc3yB0FDQ
+         fSjLscTFq0VVNtOFPL4vXbdEL62VAhMd5RaWa9I0/+ryolv8NZxUavHpEg+qTeNReFVZ
+         GSJDzTlj+fdyuftuiAcA1vE8XzwYYBsYGOQ5+SS4BgsUF9ki4Vo2g2a9x6lyxboHHilr
+         FQzEviln03feIbHXx0HnThw1vO8x7VC5zYZQ0oqJwTrUXPXMHY1SuMGx/3mdC4stkYUy
+         CH/G55wSttWL2i0tLAc090LKt1WD9mUdVYufZf4hZrdT+VD7qlQ/IeBZqdRYCg9m0mep
+         TrTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XreYXHdj5GUywvUvOHNYSnATh/KLGPy94j+XuPVD3j0=;
+        b=QTioC6mNjOfKiUnX0k8vDVE3V6uY7YqaXl4aXaiw3rKdKjzGOVv1rBSVWCZsN8TOBk
+         9SwCWNmngY3Rd4nlw/jglR/+PbEl8cKQAc04IEiwmyuUEOj3+UtbtpdR40yUQKd1LE3S
+         BpydirnJmL6mGNWn0QwOsC+eTmhhcBPFgt1IYtDIdCRXj0RPLGcomkL2Fz066urX8byf
+         eW3TNpR99IOtQXrcyMaaSSB3ovMnaJ6q/SL+XTDM6tHu8EJBtua2zrp1VmbX46J7rAxC
+         XYHab3VsGNZue1JGrcutjvorSVG7Jzago0dUGqJM3JKVdGA5jiMUOAbNzgLZWxGzkP24
+         /FrA==
+X-Gm-Message-State: AOAM531x5JUS63a7AzXHcywnuibtngkwUxuw3KHCbMg42N5N3RxMjIul
+        Ti0fVP61NNlyo6/Ap+Ap6XHcwZ+LmQF3hw==
+X-Google-Smtp-Source: ABdhPJzEDwDg3E7Df6+q43rZTTLIdab+VvuqKnSKT5KDytDtKNiUEFPn2HwJWhSfCB6p3tbQ+j71Zg==
+X-Received: by 2002:a17:907:d20:b0:6f3:be6a:ece8 with SMTP id gn32-20020a1709070d2000b006f3be6aece8mr9819968ejc.503.1651142387803;
+        Thu, 28 Apr 2022 03:39:47 -0700 (PDT)
+Received: from [192.168.0.33] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id y13-20020aa7cccd000000b0042617ba639asm1341057edt.36.2022.04.28.03.39.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 03:39:46 -0700 (PDT)
+Message-ID: <4e25e146-d57a-7df7-1b97-e63eb7431a1b@linaro.org>
+Date:   Thu, 28 Apr 2022 11:39:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 6/6] dt-bindings: power: supply: qcom,pmi8998-charger: add
+ bindings for smb2 driver
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Amit Pundir <amit.pundir@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+References: <20220427184031.2569442-1-caleb.connolly@linaro.org>
+ <20220427184031.2569442-7-caleb.connolly@linaro.org>
+ <192d76cd-1d4c-c11a-874e-543e86cd7b64@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <192d76cd-1d4c-c11a-874e-543e86cd7b64@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-On Thu, 28 Apr 2022 11:51:44 +0200
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-> Hi Herv=C3=A9,
->=20
-> On Fri, Apr 22, 2022 at 2:09 PM Herve Codina <herve.codina@bootlin.com> w=
-rote:
-> > Define the r9a06g032 generic part of the USB PHY device node.
-> >
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
->=20
-> Thanks for your patch!
->=20
-> > --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> > @@ -59,6 +59,12 @@ ext_rtc_clk: extrtcclk {
-> >                 clock-frequency =3D <0>;
-> >         };
-> >
-> > +       usbphy: usbphy { =20
->=20
-> Please preserve sort order (by node name).
 
-Ok, will be done.
+On 28/04/2022 07:49, Krzysztof Kozlowski wrote:
+> On 27/04/2022 20:40, Caleb Connolly wrote:
+>> Add devicetree bindings for the Qualcomm PMI8998/PM660 SMB2 charger
+>> driver.
+>>
+>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> 
+> This should be a v2, because you already sent a patchset. You make it
+> for example with:
+Argh, thanks, I'll resend.
+> 
+> `git format-patch -6 -v2`
+> 
+> and add changelog to cover-letter (which actually you did...).
+> 
+>> ---
+>>   .../power/supply/qcom,pmi8998-charger.yaml    | 83 +++++++++++++++++++
+>>   1 file changed, 83 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+>> new file mode 100644
+>> index 000000000000..41b471713364
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+>> @@ -0,0 +1,83 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/supply/qcom,pmi8998-charger.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm PMI8998/PM660 Switch-Mode Battery Charger "2"
+>> +
+>> +maintainers:
+>> +  - Caleb Connolly <caleb.connolly@linaro.org>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,pmi8998-charger
+>> +      - qcom,pm660-charger
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    minItems: 4
+>> +    maxItems: 4
+> 
+> No need for minItems if it is equal to max. Skip the minItems, please.
+> 
+> Best regards,
+> Krzysztof
 
->=20
-> > +               #phy-cells =3D <0>;
-> > +               compatible =3D "usb-nop-xceiv";
-> > +               status =3D "disabled";
-> > +       };
-> > +
-> >         soc {
-> >                 compatible =3D "simple-bus";
-> >                 #address-cells =3D <1>; =20
->=20
-> The rest LGTM, so with the above fixed:
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->=20
-
-Regards,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+Kind Regards,
+Caleb (they/he)
