@@ -2,161 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E4451394E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 18:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C57AA513945
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 17:59:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239286AbiD1QEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 12:04:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34032 "EHLO
+        id S1349746AbiD1QCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 12:02:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233925AbiD1QEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:04:20 -0400
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A735B3EF
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:01:05 -0700 (PDT)
-Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-deb9295679so5577059fac.6
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 09:01:05 -0700 (PDT)
+        with ESMTP id S1349737AbiD1QCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 12:02:43 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A58ADD75
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:59:27 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-e5e433d66dso5563359fac.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 08:59:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=tOYccIv/dT6lmvXGvSUCI6aiul062Sk35pOpE7VAjd0=;
-        b=Ex6/5YgKwQwxJsHj/38OfN7VSZ9xWcLyNJp10OPA38dwexhh4dcxsgFm+gKmIQrHT2
-         heh+TkkcCjKabzzpa1XHSCH0xJcaXx6BPHOTeQN/CgXhRQMW5IIcIYHBBSISK6LxBiL3
-         EeHbhgLa2oEI+/KrsNHKR84JcasSP1EXgv5SQ=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=RA5VF4RpL+61fXTh4Gfb3qkFwZI/LPrSMrG3g+d0iY4=;
+        b=tNO44O0A62NXKxNx7Jlp/mB7cZJdyYrl8dtt4xWYmRSg6gWx9uCVh+z57vfuH1b2Uh
+         9Z8SueFxPCJ2g5ClOArf3S5f66/6YZOCXrprhfAioy3U5dBCSSndbekFjfii2DGUBqaR
+         /KPNkR4QGy3idrCl7vK8wxhlVoF+r/6BxG7qhxoLIpg96r7gJTLSMCdupHEZz+pSmn8B
+         XIr9fossAvwQR67bxd4yLMhm4qD49McjTgbOSm3xc26BsnaMnkAD/y91WnYwy+PZQiOS
+         1mKTkPYRCCvj9binmHztJiVs5/fPG7fiU7BoeI7JulJGPKgYSvymyxg3p4/C9/fsg/KI
+         8X2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=tOYccIv/dT6lmvXGvSUCI6aiul062Sk35pOpE7VAjd0=;
-        b=Lf5WBBWHmUVT8JF0shzyKjnCpAlJZvYOCvmEM7f5ixS9RB9aQCD+WlnMxMMsT/vhc3
-         z6gWUIJlsoMgpw/mY/xTAAD5ybAHZunX6+BXMnCSEsSxdXcFD6BVNvdrPaK6CkT4dp9n
-         MQreBuvCzH0fvT/ZTSiyAwQ6MYhpivhHNR+E7ha3yPjdldAfju6OZluQAhCEnuqFH0Aq
-         juv9Xs2pqsqfW/pU8Hy7NNGGaUvAmaREO9U1kOCG9dKQAMZ2560xszQAXbC4Nch6XayV
-         SyWjisicYITyZwo3Z6BHJrVxmIOMD/oOT7f9DdoClRlYB5ob/8z8t3YCy1pbmJqSzVAV
-         VjPQ==
-X-Gm-Message-State: AOAM531r4eaAA+W490hX7xnpIpCZL2zTGp7DgqVFEhZG0LlnhegwSP3e
-        yTlGVVooKeFvN5E0cEU4AuY91CL9aV9VnXSbObeJ8w==
-X-Google-Smtp-Source: ABdhPJwz7phB9NwKRasAF0gUvyiUVCir6b2Zp6/7BWPtZe+hBjgdurJmcapC5XhcW8uNYD8Ad2BBWtxaRynOJC4aapY=
-X-Received: by 2002:a05:6870:558e:b0:e1:db7c:26aa with SMTP id
- n14-20020a056870558e00b000e1db7c26aamr14473277oao.63.1651161664179; Thu, 28
- Apr 2022 09:01:04 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 28 Apr 2022 09:01:03 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RA5VF4RpL+61fXTh4Gfb3qkFwZI/LPrSMrG3g+d0iY4=;
+        b=XLXgf+tdkiu0dlYMwf/mAht3iNDEix5l8wlkoBLcrqQH8ZScEz0iv1cE/dcSPkVaqW
+         Y5BUzknoEYu3F5mU3ZuYhbfCWypn1ePB0v8c2j1F6hofO/NYwzkM/5Eg1PHE7ceeRv5x
+         qpWZrBOxOJIxP4Kvn/OrEa34LJaz0xV2LhCDjh0raSzBZMwSKx87T0Uq0XibeWm246mS
+         FpDM6XRg4fcwH4ikq5xXKSe54+6R39UzcEQ9BqvhL9XbsDvkJ3rNFCJ4L5PCXLmyc4G+
+         WOH1/1t0S+3PXEBCIOobqjTPorU3Upe9NDKRoL+NbvojzR3hsYCiuixN8FYMS/r19WV5
+         g4vw==
+X-Gm-Message-State: AOAM532h1O3mI6eJNZm2yAaNnwrwNtcTRWla5H1/RSWod6gDFX+jIg1e
+        hNb+q4NCnZbafzr13/YvhhuEgQ==
+X-Google-Smtp-Source: ABdhPJxhWKDV59y7XG07sok41TBFgDXIymy0jBtyvCQaoaeW7aHYiAkZVx9RK1PIFvCFrrvrFvDUQw==
+X-Received: by 2002:a05:6871:78b:b0:d4:2636:b26 with SMTP id o11-20020a056871078b00b000d426360b26mr14114234oap.14.1651161567048;
+        Thu, 28 Apr 2022 08:59:27 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id c30-20020a4a9c5e000000b0035e9d4fc486sm150270ook.39.2022.04.28.08.59.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 08:59:25 -0700 (PDT)
+Date:   Thu, 28 Apr 2022 09:01:20 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_tdas@quicinc.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add Qualcomm SC8280XP GCC
+ bindings
+Message-ID: <Ymq6UOjrYgFlzl/W@ripper>
+References: <20220422230013.1332993-1-bjorn.andersson@linaro.org>
+ <20220423014824.912ACC385A0@smtp.kernel.org>
+ <YmNsYSxLtwLpw98t@ripper>
+ <20220423031350.01299C385A0@smtp.kernel.org>
+ <YmN11qt/PqogYruQ@ripper>
+ <20220425223426.BE973C385A4@smtp.kernel.org>
+ <3fb043e6-2748-24f8-0115-b5372c747a12@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <29cc62aa-2995-ea96-0e7e-242f9ddaa87e@linaro.org>
-References: <20220427203026.828183-1-swboyd@chromium.org> <20220427203026.828183-2-swboyd@chromium.org>
- <9248da4f-ca04-82f0-2840-a20797c25d2a@linaro.org> <CAE-0n52Y=3EEZ6qguNx=hM44BahbH3cuq7x6Bbe5HELKkkvrUw@mail.gmail.com>
- <29cc62aa-2995-ea96-0e7e-242f9ddaa87e@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 28 Apr 2022 09:01:03 -0700
-Message-ID: <CAE-0n50ORzU52KpSPUNeEke-16uWo+Vn8WVhcdtdCc6WJiji6A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: google,cros-ec-keyb: Introduce switches
- only compatible
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3fb043e6-2748-24f8-0115-b5372c747a12@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2022-04-28 00:27:52)
-> On 28/04/2022 08:24, Stephen Boyd wrote:
-> > Quoting Krzysztof Kozlowski (2022-04-27 23:12:47)
-> >> On 27/04/2022 22:30, Stephen Boyd wrote:
-> >>> If the device is a detachable, this device won't have a matrix keyboard
-> >>> but it may have some button switches, e.g. volume buttons and power
-> >>> buttons. Let's add a more specific compatible for this type of device
-> >>> that indicates to the OS that there are only switches and no matrix
-> >>> keyboard present.
-> >>>
-> >>> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> >>> Cc: Rob Herring <robh+dt@kernel.org>
-> >>> Cc: <devicetree@vger.kernel.org>
-> >>> Cc: Benson Leung <bleung@chromium.org>
-> >>> Cc: Guenter Roeck <groeck@chromium.org>
-> >>> Cc: Douglas Anderson <dianders@chromium.org>
-> >>> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-> >>> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
-> >>> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> >>> ---
-> >>>  .../bindings/input/google,cros-ec-keyb.yaml          | 12 +++++++++---
-> >>>  1 file changed, 9 insertions(+), 3 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> >>> index e8f137abb03c..edc1194d558d 100644
-> >>> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> >>> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> >>> @@ -15,14 +15,20 @@ description: |
-> >>>    Google's ChromeOS EC Keyboard is a simple matrix keyboard
-> >>>    implemented on a separate EC (Embedded Controller) device. It provides
-> >>>    a message for reading key scans from the EC. These are then converted
-> >>> -  into keycodes for processing by the kernel.
-> >>> +  into keycodes for processing by the kernel. This device also supports
-> >>> +  switches/buttons like power and volume buttons.
-> >>>
-> >>>  allOf:
-> >>>    - $ref: "/schemas/input/matrix-keymap.yaml#"
-> >>>
-> >>>  properties:
-> >>>    compatible:
-> >>> -    const: google,cros-ec-keyb
-> >>> +    oneOf:
-> >>> +      - items:
-> >>> +          - const: google,cros-ec-keyb-switches
-> >>> +          - const: google,cros-ec-keyb
-> >>> +      - items:
-> >>> +          - const: google,cros-ec-keyb
-> >>>
-> >>
-> >> In such case matrix-keymap properties are not valid, right? The
-> >> matrix-keymap should not be referenced, IOW, you need to move allOf
-> >> below "required" and add:
-> >> if:not:...then: $ref: "/schemas/input/matrix-keymap.yaml
-> >>
-> >
-> > Eventually that sounds doable, but for the time being I want to merely
-> > add this new compatible in front of the original compatible so that
-> > updated DTBs still work with older kernels, i.e. the switches still get
-> > registered because the driver works with the original
-> > google,cros-ec-keyb compatible.
->
-> The bindings here do not invalidate (break) existing DTBs. Old DTBs can
-> work in old way, we talk only about binding.
+On Thu 28 Apr 08:44 PDT 2022, Dmitry Baryshkov wrote:
 
-Ok, got it.
+> On 26/04/2022 01:34, Stephen Boyd wrote:
+> > Quoting Bjorn Andersson (2022-04-22 20:43:18)
+> > > On Fri 22 Apr 20:13 PDT 2022, Stephen Boyd wrote:
+> > > > 
+> > > > I'd really rather not have clock-names at all because we spend a bunch
+> > > > of time comparing strings with them when we could just as easily use
+> > > > a number.
+> > > 
+> > > I know that you would like to get rid of the clock-names for the clock
+> > > controllers. I've looked at it since and while it will be faster to
+> > > execute I still feel that it's going to be harder to write and maintain.
+> > > 
+> > > E.g. look at gcc_pcie_4_pipe_clk_src, its parents today are
+> > > pcie_4_pipe_clk and bi_tcxo. Something I can reason about being correct
+> > > or not.
+> > > 
+> > > If we ditch the clock-names I will have:
+> > > 
+> > > static const struct clk_parent_data gcc_parent_data_14[] = {
+> > >          { .index = 30 },
+> > >          { .index = 0 },
+> > 
+> > Those numbers could have some #define.
+> > 
+> > 	{ .index = PCIE_4_PIPE_CLK_DT }
+> > 	{ .index = BI_TCXO_DT }
+> > 
+> > > };
+> > > 
+> > > Generally we would perhaps use some compile time constant, but that
+> > > won't work here because we're talking about the index in the clocks
+> > > array in the yaml.
+> > > 
+> > > 
+> > > But perhaps I'm missing something that would make this manageable?
+> > 
+> > I dunno. Maybe a macro in the dt-binding header could be used to specify
+> > the 'clocks' property of the DT node that is providing the other side?
+> > The idea is to make a bunch of macros that insert the arguments of the
+> > macro in the right place for the clocks property and then define the
+> > order of arguments otherwise. It would be similar to how
+> > CREATE_TRACE_POINTS is used in include/trace/define_trace.h
+> > 
+> > In the dt-bindings/qcom,gcc-soc.h file:
+> > 
+> > 	#ifdef IN_DTSI
+> > 
+> > 	#undef GCC_DT_NODE_CLOCKS
+> > 	#define GCC_DT_NODE_CLOCKS
+> > 		clocks = <BI_TCXO_DT>,
+> > 			 <SLEEP_CLK_DT>;
+> > 
+> > 	#endif /* IN_DTSI */
+> > 
+> > 	#define BI_TCXO_DT 0
+> > 	#define SLEEP_CLK_DT 1
 
->
-> > Given that none of the properties are
-> > required for google,cros-ec-keyb it didn't seem necessary to make having
-> > the google,cros-ec-keyb-switches compatible deny the existence of the
-> > matrix-keymap properties.
->
-> Maybe I misunderstood the commit msg. Are the
-> "google,cros-ec-keyb-switches" devices coming with matrix keyboard or
-> not? I mean physically.
->
+BI_TCXO_DT is not the value, its the index of the entry in the clocks
+array. And the actual values of the clock controller's clocks
+property is not a property of the clock controller, but the system
+definition.
 
-The answer is "sometimes, physically". Sometimes there are switches like
-volume buttons and power buttons and also a matrix keyboard (convertible
-and clamshells). Other times there are volume buttons and power buttons
-and no matrix keyboard (detachable). This device node represents both
-the keyboard and the switches.
+I.e. that should be clear and explicitly expressed in the dts.
 
-Unfortunately the EC firmware on older Chromebooks that don't have a
-matrix keyboard still report that they have some number of columns and
-rows. I was hoping to make this fully dynamic by querying the EC but
-that isn't possible.
+> 
+> Isn't this being an overkill, to define exact properties in the bindings
+> header? Also this would mean that we'd have to add dt-binding headers for
+> all _consumers_ of clocks. And to make things more complex, e.g. for PCIe
+> devices different instances of the device would use different amount of
+> clocks. This would mean that we'd have to define SM8250_PCI0_CLOCKS,
+> SM8250_PCIE1_CLOCKS and SM8250_PCIE2_CLOCKS.
+> 
+> 
+> If we were to switch to this fragile path of using indices (yes I consider
+> it to be very fragile), I'd consider something like the following to work in
+> the platform dtsi file:
+> 
+> clocks =
+> BEGIN_CLOCK
+> CLOCK(BI_TCXO_DT, &bi_tcxo)
+> CLOCK(SLEEP_CLK_DT, &sleep_clk)
+> END_CLOCK;
+> 
+> While the following should give an error:
+> clocks =
+> BEGIN_CLOCK
+> CLOCK(SLEEP_CLK_DT, &sleep_clk)
+> CLOCK(BI_TCXO_DT, &bi_tcxo)
+> END_CLOCK;
+> 
+> I think we can make this error out by using some additional tool (or
+> additional preprocessor pass over the sources)
+> 
+
+Let's not invent some magical syntax for describing the clocks in the
+DT.
+
+These macros can't expand to sparse arrays anyways, so iiuc this would
+give a sense that the ordering might not be significant, when it really
+is.
+
+> > And then in the SoC.dtsi file have
+> > 
+> > 	#define IN_DTSI
+> > 	#include <dt-bindings/qcom,gcc-soc.h>
+> > 
+> > 	#define BI_TCXO_DT	&xo_board
+> > 	#define SLEEP_CLK_DT	&sleep_clk
+> > 
+> > 	...
+> > 
+> > 	clock-controller@a000000 {
+> > 		compatible = "qcom,gcc-soc";
+> > 		reg = <0xa000000 0x10000>;
+> > 		GCC_DT_NODE_CLOCKS
+> > 	};
+> > 
+> > 
+> > and then in drivers/clk/qcom/gcc-soc.c file:
+> > 
+> > 	#include <dt-bindings/qcom,gcc-soc.h>
+> > 
+> > 	static const struct clk_parent_data gcc_parent_data_14[] = {
+> > 		{ .index = PCIE_4_PIPE_CLK_DT },
+> > 		{ .index = BI_TCXO_DT },
+> > 	};
+> > 
+> > The benefit I see to this is that the index for each clock is in the
+> > header file (BI_TCXO_DT is 0) and it's next to the clocks property.
+> > Someone could still mess up the index based on where the macro is used
+> > in the clocks property though.
+> 
+> And actually might I suggest an alternative approach to manually using
+> indices everywhere? What about spending the time once during the boot to
+> convert .fw_name and clock_names to parent indices during clock registration
+> and then using them for all the further operations?
+> 
+
+I'm pretty sure that's what clk_core_fill_parent_index() already does.
+
+Regards,
+Bjorn
