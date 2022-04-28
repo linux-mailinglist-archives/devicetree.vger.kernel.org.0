@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2D7512D71
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51331512D9E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 10:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343560AbiD1H4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:56:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36428 "EHLO
+        id S244693AbiD1IDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 04:03:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343534AbiD1H4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:56:45 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF34C7CDDA
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:53:30 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id g20so4540064edw.6
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:53:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7imria7AOBpaNTcOn+sNIMNFLxOEbQktxf1OYV+mCb4=;
-        b=oBowMauFsKiWlMKoUFjyn0tQc0cXzAUCM6P9dHhlgL92tclsRV4WUlyxpCbFrqdUQV
-         f72EXv37YQX7++jcHgvGug7uOJZMjXKPknstXCPo8mdnQ6W/yjWJA8+FSAdOsX32NYYZ
-         fsXyvOfb0Nom1+G58YXrxnPZ3GGu1sPmlSt0HCNJfQmpEu9sQLfnkLoHg1velrva+EF7
-         k1gnG95qwNsq5wyis8alM2bRH9lboBDlg0gaLToO7nrIZzpbt/bIB0fx8fvduysn1dav
-         gS3stFU86bS/wAC2R6fWE+9PpjsZze00EBMkZcAXA//4EV7ZsKUnZe6D3R780BeNX3hH
-         0WnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7imria7AOBpaNTcOn+sNIMNFLxOEbQktxf1OYV+mCb4=;
-        b=j9lphfcAgnbwYgfPpssGkwnPHD5zgLqDC9QjM9XDm+EfNn5liVqDmkSR3M842IEZS+
-         zOoduuCyx5RCfpXhpSzeu6WUE9NbWKydyYUveQelN7M2boHJac8JkXNeuWcPiozbXRac
-         CSHfXyYT9Pk9R9kQ0Ej74Oy7yWCY4afy2/KdSJkXfqknVFXDBt7464QGLd3PGUd9tvKb
-         IX49EaUh06f1aMw1Q8LhQAyONS/MnWMa8iC1uCJZBwqIWxvNVguLoHV/0BajUQqQNk3v
-         pcUuZ74StqIkh9q511pUsS4zfNacf5kqV5hS28v1z/ljB53YSU3Q8KMNvQt3rH7ikU+N
-         CfeQ==
-X-Gm-Message-State: AOAM533RjctCtQ4fJPkvOXiKAPYE+VmcG7RC+QUjhvs4I9V1LvB00bFZ
-        v4YcV0cs6s2U4km7jPUngnOqFw==
-X-Google-Smtp-Source: ABdhPJzviV5gS3KcyKsb8SDPBhzT7DiiOIR0C4FkBQNdYrbgZ3rUvu1yMYOzUNHDjnYGGQYf33IU4g==
-X-Received: by 2002:aa7:c442:0:b0:425:ebed:4782 with SMTP id n2-20020aa7c442000000b00425ebed4782mr19873545edr.168.1651132409299;
-        Thu, 28 Apr 2022 00:53:29 -0700 (PDT)
-Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l21-20020a056402345500b0042617ba6393sm1081334edc.29.2022.04.28.00.53.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:53:28 -0700 (PDT)
-Message-ID: <1e3afa05-2e2f-fb0a-19a3-5a7a6af50863@linaro.org>
-Date:   Thu, 28 Apr 2022 09:53:27 +0200
+        with ESMTP id S1343710AbiD1ID3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 04:03:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89EB140A0;
+        Thu, 28 Apr 2022 01:00:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCDC361F44;
+        Thu, 28 Apr 2022 08:00:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E8E82C385AF;
+        Thu, 28 Apr 2022 08:00:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1651132814;
+        bh=NhzxeaiPtX29P/RQ1EZRDWoQ85Ud+xmKkVGCgk4axRo=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=oWYnxOyhqwu9+DDI3nBKx2MYv9VAjqFHY9gZOLYQ7YbVsFEJJ2BlN+VLth0CqxAyY
+         D0RIbVuZISIqam72WMojOrEbtuuJdeLTxWIr43XBLUrTSMM2wU/0RzZackNVo+znSv
+         R6xYwOZN1ILqAXOmQIokF4HdL9m9mlh+R8axr5NmhzBn9QeibT6HhjaCGKK1akD++I
+         NBTcWhpdT+1XK/N7PyiRmtUfZa7W7KdR4uGcZqGvrhrpcSrRk59ctb4UQJCVcsumFV
+         19vY9gHiNU+PyLvznLounOc8CRMJIXkVSL5tZc5i52KP24cLttIjQg4U8PR/1U/Rq6
+         L4srSq1YfbLYg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CC6A6F03848;
+        Thu, 28 Apr 2022 08:00:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/8] dt-bindings: input: mtk-pmic-keys: add MT6359
- binding definition
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v6 0/3] Add reset deassertion for Aspeed MDIO
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165113281383.18320.4392733597031620759.git-patchwork-notify@kernel.org>
+Date:   Thu, 28 Apr 2022 08:00:13 +0000
+References: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
+In-Reply-To: <20220427035501.17500-1-dylan_hung@aspeedtech.com>
+To:     Dylan Hung <dylan_hung@aspeedtech.com>
+Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        p.zabel@pengutronix.de, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220426135313.245466-1-fparent@baylibre.com>
- <20220426135313.245466-2-fparent@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220426135313.245466-2-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, krzk+dt@kernel.org, BMC-SW@aspeedtech.com
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/2022 15:53, Fabien Parent wrote:
-> Add binding definition for the support of the MT6359 keyboard driver.
+Hello:
+
+This series was applied to netdev/net-next.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Wed, 27 Apr 2022 11:54:58 +0800 you wrote:
+> Add missing reset deassertion for Aspeed MDIO bus controller. The reset
+> is asserted by the hardware when power-on so the driver only needs to
+> deassert it. To be able to work with the old DT blobs, the reset is
+> optional since it may be deasserted by the bootloader or the previous
+> kernel.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
-> v2: no changes
+> V6:
+> - fix merge conflict for net-next
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v6,1/3] dt-bindings: net: add reset property for aspeed, ast2600-mdio binding
+    https://git.kernel.org/netdev/net-next/c/65e42ad98e22
+  - [net-next,v6,2/3] net: mdio: add reset control for Aspeed MDIO
+    https://git.kernel.org/netdev/net-next/c/1585362250fe
+  - [net-next,v6,3/3] ARM: dts: aspeed: add reset properties into MDIO nodes
+    https://git.kernel.org/netdev/net-next/c/a8db203db05c
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
