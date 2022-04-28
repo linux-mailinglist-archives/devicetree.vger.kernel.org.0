@@ -2,75 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17A6F512D01
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15572512D21
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 09:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245474AbiD1Hil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 03:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
+        id S245546AbiD1HkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 03:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245420AbiD1Hif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:38:35 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA90109F
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:35:19 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id gh6so7884905ejb.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 00:35:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=5c6uwqXlBRU9bpJ9pSPHIXx5eNprORPrld9pozTs8Tw=;
-        b=H75j/3VRi9fqMtQbn+w04QsT6K235C5ROMHuhSVSFmFZ/koa2PILvH3Ept+2Sr0mYO
-         WSOqyZXTv2PlXVd3TVxfSGINFtTlQic8/pEjyg8PSWB9elu9fPZV1grj2ULvGOXndrZX
-         C9jJxsSXlWkhLIGVEqHfye8ciAa4iIuahGDIvYsa3ersPJ+sACW2zT14sAKrhyEwgZ5a
-         nDqxMaGXDvxTvbcBKuOqaQKsmGt8JHV1XOv7Zi/8Wlf+gOnA/37yWHKfRL69pktHOX8s
-         uK0plqWDOlwXYG1uzhfDSiTs1GShXhFLCm9QGVWSQ9sBHhqFQA05pE5maHX4pcy0NtGU
-         xYfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5c6uwqXlBRU9bpJ9pSPHIXx5eNprORPrld9pozTs8Tw=;
-        b=lNTMSZLgjrvyHxt2tLxdX+1WmzqtgqCX3/BmTtGOZDXD8cYDzR7qoRNufL6lceDaEa
-         KGiIo+RXg9StAEm5VnYoonUREM1X8cGj1UtQ/Wsnnt1JYlzjY4SRL6sIsbn0HCTFtbuj
-         9/4qVDGnMjUA7NmAIymMov6jYrPldipMRU50uUzrnGBeGuEc0XA3kITHndq8E3Nffbfe
-         klstk0muWsW3ad4+p7420Ut2/W7mxd8OpPBYNnmDIssgZjZwT344AckqrjETPqJt/S5m
-         5ZZ1Snrdlk35Unw5Pm2OjgCZ2AtjrWym8JJFtO04Z8xqm0ox7cRVsR+okeI6B6tFZctl
-         4jew==
-X-Gm-Message-State: AOAM532YxdXf/YaNXMXV0XtlsjhBwOR7ydfANsdBWL7Hrzgkfo00yQBB
-        2aaMhG06fTxBgKr3kDsIeagk7Q==
-X-Google-Smtp-Source: ABdhPJxQABhDMXxKQC9B69m+aqrtRZFN3sKdbOUkg4a5i6dj/makIccAEAbNy2MqAD8h+bIFQVIExQ==
-X-Received: by 2002:a17:906:c113:b0:6e8:89f7:56da with SMTP id do19-20020a170906c11300b006e889f756damr30833813ejc.174.1651131318027;
-        Thu, 28 Apr 2022 00:35:18 -0700 (PDT)
-Received: from [192.168.0.160] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n10-20020a170906378a00b006f3cd3e7b94sm2127377ejc.213.2022.04.28.00.35.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Apr 2022 00:35:17 -0700 (PDT)
-Message-ID: <703d4811-e46a-202e-c4ca-578ecdbd3e35@linaro.org>
-Date:   Thu, 28 Apr 2022 09:35:16 +0200
+        with ESMTP id S245720AbiD1HkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 03:40:03 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE079D06B;
+        Thu, 28 Apr 2022 00:36:45 -0700 (PDT)
+X-UUID: 1300981bc8cb41678a376a278a13a03b-20220428
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.4,REQID:e0690bd6-be61-466d-a8a8-bfc9ca3048ac,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.4,REQID:e0690bd6-be61-466d-a8a8-bfc9ca3048ac,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:faefae9,CLOUDID:cf1a032f-6199-437e-8ab4-9920b4bc5b76,C
+        OID:IGNORED,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil,QS:0
+        ,BEC:nil
+X-UUID: 1300981bc8cb41678a376a278a13a03b-20220428
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 258828951; Thu, 28 Apr 2022 15:36:38 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 28 Apr 2022 15:36:36 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Apr 2022 15:36:14 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Apr 2022 15:36:14 +0800
+Message-ID: <eeef5e391b76e62e36892a82a5d7189569cd3ce0.camel@mediatek.com>
+Subject: Re: [PATCH V3 12/17] dt-binding: mt8192: Add infra_ao reset bit
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        Chun-Jie Chen =?UTF-8?Q?=28=E9=99=B3=E6=B5=9A=E6=A1=80=29?= 
+        <Chun-Jie.Chen@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        Runyang Chen =?UTF-8?Q?=28=E9=99=88=E6=B6=A6=E6=B4=8B=29?= 
+        <Runyang.Chen@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 28 Apr 2022 15:36:14 +0800
+In-Reply-To: <93c0c4d7-1e3a-56d6-de22-aa2c948403e2@linaro.org>
+References: <20220422060152.13534-1-rex-bc.chen@mediatek.com>
+         <20220422060152.13534-13-rex-bc.chen@mediatek.com>
+         <e5b18654-ce83-44ee-e4c8-4cdfc4ceaa1d@linaro.org>
+         <5ec37a01b0b84140a7d171b9a5cff7ad8f9fbe87.camel@mediatek.com>
+         <418c5f0c-5279-41f5-3705-345ec9a97ea2@linaro.org>
+         <9547368870f6a8d5c5e6bd5dd497ddbe04c51b93.camel@mediatek.com>
+         <49dd007b-f6f6-0278-8f06-f81cf951fcd3@linaro.org>
+         <9b42b402be2b0ed065d176238ac2c41f2ec677ef.camel@mediatek.com>
+         <93c0c4d7-1e3a-56d6-de22-aa2c948403e2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/3] arm64: dts: sprd: use new 'dma-channels' property
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220427161423.647534-1-krzysztof.kozlowski@linaro.org>
- <20220427161423.647534-4-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220427161423.647534-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,34 +92,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2022 18:14, Krzysztof Kozlowski wrote:
-> The '#dma-channels' property was deprecated in favor of one defined by
-> generic dma-common DT bindings.
+On Thu, 2022-04-28 at 15:23 +0800, Krzysztof Kozlowski wrote:
+> On 28/04/2022 08:48, Rex-BC Chen wrote:
+> > On Thu, 2022-04-28 at 14:40 +0800, Krzysztof Kozlowski wrote:
+> > > On 26/04/2022 10:23, Rex-BC Chen wrote:
+> > > > On Mon, 2022-04-25 at 15:52 +0800, Krzysztof Kozlowski wrote:
+> > > > > On 25/04/2022 07:01, Rex-BC Chen wrote:
+> > > > > > On Sat, 2022-04-23 at 18:28 +0800, Krzysztof Kozlowski
+> > > > > > wrote:
+> > > > > > > On 22/04/2022 08:01, Rex-BC Chen wrote:
+> > > > > > > > To support reset of infra_ao, add the bit definition
+> > > > > > > > for
+> > > > > > > > thermal/PCIe/SVS.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > > > > > > > ---
+> > > > > > > >  include/dt-bindings/reset/mt8192-resets.h | 10
+> > > > > > > > ++++++++++
+> > > > > > > >  1 file changed, 10 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/include/dt-bindings/reset/mt8192-resets.h
+> > > > > > > > b/include/dt-bindings/reset/mt8192-resets.h
+> > > > > > > > index be9a7ca245b9..d5f3433175c1 100644
+> > > > > > > > --- a/include/dt-bindings/reset/mt8192-resets.h
+> > > > > > > > +++ b/include/dt-bindings/reset/mt8192-resets.h
+> > > > > > > > @@ -27,4 +27,14 @@
+> > > > > > > >  
+> > > > > > > >  #define MT8192_TOPRGU_SW_RST_NUM			
+> > > > > > > > 	
+> > > > > > > > 23
+> > > > > > > >  
+> > > > > > > > +/* INFRA RST0 */
+> > > > > > > > +#define MT8192_INFRA_RST0_LVTS_AP_RST			
+> > > > > > > > 	
+> > > > > > > > 0
+> > > > > > > > +/* INFRA RST2 */
+> > > > > > > > +#define MT8192_INFRA_RST2_PCIE_PHY_RST			
+> > > > > > > > 	
+> > > > > > > > 15
+> > > > > > > > +/* INFRA RST3 */
+> > > > > > > > +#define MT8192_INFRA_RST3_PTP_RST			
+> > > > > > > > 	
+> > > > > > > > 5
+> > > > > > > > +/* INFRA RST4 */
+> > > > > > > > +#define MT8192_INFRA_RST4_LVTS_MCU			
+> > > > > > > > 	
+> > > > > > > > 12
+> > > > > > > > +#define MT8192_INFRA_RST4_PCIE_TOP			
+> > > > > > > > 	
+> > > > > > > > 1
+> > > > > > > 
+> > > > > > > These should be the IDs of reset, not some register
+> > > > > > > values/offsets.
+> > > > > > > Therefore it is expected to have them incremented by 1.
+> > > > > > > 
+> > > > > > > 
+> > > > > > 
+> > > > > > Hello Krzysztof,
+> > > > > > 
+> > > > > > This is define bit.
+> > > > > > 
+> > > > > > There is serveral reset set for infra_ao while it's not
+> > > > > > serial.
+> > > > > > For MT8192, it's 0x120/0x130/0x140/0x150/0x730.
+> > > > > > We are implement #reset-cells = <2>, and we can use this
+> > > > > > reset
+> > > > > > drive
+> > > > > > more easier.
+> > > > > > 
+> > > > > > For example, in dts, we can define
+> > > > > > infra_ao: syscon {
+> > > > > > 	compatible = "mediatek,mt8192-infracfg", "syscon";
+> > > > > >  	reg = <0 0x10001000 0 0x1000>;
+> > > > > >  	#clock-cells = <1>;
+> > > > > > 	#reset-cells = <2>;
+> > > > > > };
+> > > > > > 
+> > > > > > thermal {
+> > > > > > 	...
+> > > > > > 	resets = <&infra_ao 0x730 MT8192_INFRA_RST4_LVTS_MCU>;
+> > > > > > 	...
+> > > > > > };
+> > > > > > 
+> > > > > > If it's acceptabel, I can update all bit difinition from 0
+> > > > > > to
+> > > > > > 15
+> > > > > > for
+> > > > > > all reset set.
+> > > > > 
+> > > > > Bits are not acceptable, because you embed specific device
+> > > > > programming
+> > > > > model (register bits) into the binding.
+> > > > > 
+> > > > > These should be IDs, so decimal numbers incremented from 0,
+> > > > > so:
+> > > > > #define MT8192_INFRA_RST0_LVTS_AP_RST				
+> > > > > 0
+> > > > > #define MT8192_INFRA_RST4_LVTS_MCU				
+> > > > > 1
+> > > > > #define MT8192_INFRA_RST4_PCIE_TOP				
+> > > > > 2
+> > > > > 
+> > > > > And what is 0x730 in your example? It does not look like ID
+> > > > > of a
+> > > > > reset...
+> > > > > 
+> > > > > Entire changeset look wrong from DT point of view.
+> > > > > 
+> > > > > Best regards,
+> > > > > Krzysztof
+> > > > 
+> > > > Hello Krzysztof,
+> > > > 
+> > > > Got it. I will modify them to reset index.
+> > > > And the dts in my next version would somthing like this:
+> > > > 
+> > > > ----
+> > > > #define MT8192_INFRA_THERMAL_CTRL_RST			0
+> > > > #define MT8192_INFRA_PEXTP_PHY_RST			79
+> > > > #define MT8192_INFRA_PTP_RST				101
+> > > > #define MT8192_INFRA_RST4_PCIE_TOP			129
+> > > > #define MT8192_INFRA_THERMAL_CTRL_MCU_RST		140
+> > > 
+> > > These are still not IDs, incremented by one.
+> > > 
+> > > So again from beginning:
+> > > 0
+> > > 1
+> > > 2
+> > > ...
+> > > 
+> > > Do not encode hardware register bits into the binding.
+> > > 
+> > > Best regards,
+> > > Krzysztof
+> > 
+> > Hello Krzysztof,
+> > 
+> > It's not bit definiton, and it's index for our reset.
+> > We have 32*5 reset bits for infra.
+> > But we only use these 5 index currently, I do not list all of them.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/sprd/whale2.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> You do not have to list all of them. You can list three, e.g.:
 > 
-> diff --git a/arch/arm64/boot/dts/sprd/whale2.dtsi b/arch/arm64/boot/dts/sprd/whale2.dtsi
-> index 79b9591c37aa..945f0e02d364 100644
-> --- a/arch/arm64/boot/dts/sprd/whale2.dtsi
-> +++ b/arch/arm64/boot/dts/sprd/whale2.dtsi
-> @@ -126,7 +126,7 @@ ap_dma: dma-controller@20100000 {
->  				reg = <0 0x20100000 0 0x4000>;
->  				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
->  				#dma-cells = <1>;
-> -				#dma-channels = <32>;
-> +				dma-channels = <32>;
+> #define MT8192_INFRA_THERMAL_CTRL_RST			0
+> #define MT8192_INFRA_PEXTP_PHY_RST			1
+> #define MT8192_INFRA_PTP_RST				2
+> 
+> and you will add all further later. This is how all dt-binding
+> headers
+> are created.
+> 
+> > 
+> > The implementation is in [1].
+> > -----
+> > static int mtk_reset_update_set_clr(struct reset_controller_dev
+> > *rcdev,
+> >  	unsigned int deassert_ofs = deassert ? 0x4 : 0;
+> >  
+> >  	return regmap_write(data->regmap,
+> > 			    data->desc->rst_bank_ofs[id /          
+> >  					RST_NR_PER_BANK] +
+> > 			    deassert_ofs,
+> > 			    BIT(id % RST_NR_PER_BANK));
+> >  }
+> 
+> Exactly, you hard-code the hardware programming model - register
+> values/bits/whatever - in the ID, which is not correct. Additionally,
+> bindings are (mostly) independent of Linux implementation.
+> 
+> 
+> Best regards,
+> Krzysztof
 
+Hello Krzysztof,
 
-As Rob proposed, the removal of old property does not have to happen in
-this patch (but much later). This would allow merging DTS change
-immediately.
+The rest bits could be used in the future.
+I am not sure who will use them.
+I will list all 5*32 index in next version.
 
-I will resend in that spirit, unless SoC maintainers prefer the original
-approach (where DTS has to wait for next release)?
+BRs,
+Rex
 
-
-Best regards,
-Krzysztof
