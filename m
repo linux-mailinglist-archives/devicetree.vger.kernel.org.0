@@ -2,204 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E951051299F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 04:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F15445129EF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 05:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241580AbiD1Crk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Apr 2022 22:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32920 "EHLO
+        id S238565AbiD1DZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Apr 2022 23:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbiD1Crh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 22:47:37 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02C398595;
-        Wed, 27 Apr 2022 19:44:23 -0700 (PDT)
-X-UUID: 5d275f5e07fc473ba8fc34dc29e3db9d-20220428
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:03caaec2-f4b7-4835-ad41-3d6e698b9029,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:-20
-X-CID-META: VersionHash:faefae9,CLOUDID:39f6f82e-6199-437e-8ab4-9920b4bc5b76,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,File:nil,QS:0,BEC:nil
-X-UUID: 5d275f5e07fc473ba8fc34dc29e3db9d-20220428
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 746298693; Thu, 28 Apr 2022 10:44:17 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 28 Apr 2022 10:44:15 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Apr 2022 10:44:14 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
-Subject: [PATCH v2, 1/1] drm/mediatek: add lut diff flag for new gamma hardware support
-Date:   Thu, 28 Apr 2022 10:44:11 +0800
-Message-ID: <20220428024411.10133-2-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220428024411.10133-1-yongqiang.niu@mediatek.com>
-References: <20220428024411.10133-1-yongqiang.niu@mediatek.com>
+        with ESMTP id S235825AbiD1DZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Apr 2022 23:25:55 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5874814B9
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 20:22:41 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id g28so6733753ybj.10
+        for <devicetree@vger.kernel.org>; Wed, 27 Apr 2022 20:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=g5T8P+kiwzKbHbXXuLnNjVtw9eTjQ8tWYWXfsKxWX2Y=;
+        b=j3gCeQqNxowTu8OnwF4Ebbbrtla6hLPGYF0RnmUD8stsAvP+OSQ0v9ChwY2L96CgDl
+         gKBCk0MvClFyHE1tlicoLvpuR9oMCgVJrTCmxKpf3XwnluLIl2Kiq2rF6AxE08x1ITlW
+         pkwOZuuWLmJ5Xlg8uFwvTsBacO49iT/8YMJ1zQiPDi4NZWPJL3DJIy853Tr4H29J1AFE
+         y1GttrAeA70YrLJt705JSrc1YYdlqoT1a8JxPzzg0EQAIHrwi5arWR6qlDdlE/q14JC6
+         40hGplO/RAflA9VBHQwbXHWFvSWH8UFWHix94ikd8F0FZgenbLajiFBXFHLueTDlfKhi
+         v/Mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=g5T8P+kiwzKbHbXXuLnNjVtw9eTjQ8tWYWXfsKxWX2Y=;
+        b=ScrpAhjtjxZGu1N7uwXw2YmgExjinAgmA2AWlHCYmvS1eT3dlyVVx5fTCTAHFNKotq
+         RZpm9TKXkQjDRHqLseYGF3NjKng5M4sFoFjs2AIi47tIQz9pDnmnSLjhwnk6/ajZskOd
+         rin5uZMAvayDCl8y3qeAHaRSQKJT9oguqEs4e6R6U/N4VrRGgpkUAQXyGOBHAfUr/UjE
+         de8foNkP9Hg0WeywvTOKisfJmcvXdIZ/fZoIgMYqrDmzARIZs8fkszwn2Y/gc5o8/cZJ
+         tISaMA0duYzo38f8f0j933BY/AdXWGqrHE9xJ7XPSUd0qUGrGTmQMXGsvbFFqKVl/ak9
+         aLzg==
+X-Gm-Message-State: AOAM531ar34Vp8IHC4Ns7bhlfFNTB7gD8uSGEuXyI2FZ1Vd2uslHxMxV
+        DUsEteVNGivml1JPstjTt+fsvBvt3uUr4A9+ZWk=
+X-Google-Smtp-Source: ABdhPJzlDGClHD4rOxv1BpiTno3SWMO3x3MwxIFZMTEzXU51rj09f/EINql6e4FTKoRziSMXxeY3nnTDsY3DTtd/7uc=
+X-Received: by 2002:a25:bb43:0:b0:645:43cf:736c with SMTP id
+ b3-20020a25bb43000000b0064543cf736cmr28644188ybk.493.1651116161128; Wed, 27
+ Apr 2022 20:22:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220425191602.770932-1-kaehndan@gmail.com> <20220425191602.770932-2-kaehndan@gmail.com>
+ <YmcdvcyeJJBB1pqW@robh.at.kernel.org> <CAP+ZCCfT8Mm1OECsrKxzq5vtjyaTiF=ML9LJYkHXO0A6Wao32w@mail.gmail.com>
+ <YmiSvXCE5Yovvjhd@robh.at.kernel.org> <CAP+ZCCc0YBSMU1XXoTVxNRaQ6V76D2=zNJzoduLnG2pn16hHjQ@mail.gmail.com>
+ <Ymn00nbRkkfoUh/Y@robh.at.kernel.org>
+In-Reply-To: <Ymn00nbRkkfoUh/Y@robh.at.kernel.org>
+From:   Dan K <kaehndan@gmail.com>
+Date:   Wed, 27 Apr 2022 22:22:30 -0500
+Message-ID: <CAP+ZCCfhRn0dQpM8ve0PmMg_fmvQJBwSSeS=cnM2ak9OY8CAKA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: sound: Add generic serial MIDI device
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
+Will do, thanks.
 
-mt8183 gamma module usage is different with before soc,
-gamma odd(index start from 0) lut value set to hardware
-register should be
-the difference of current lut value with last lut value.
-
-for example, chrome os user space set lut
-like this(only r chanel for example):
-2 4 6 8 10 12.
-1) mt8183 gamma driver should set the gamma lut to hardware
-register like this:
-2 [2] 6 [8] 10 [2]
-the value with [] is the difference value
-2)gamma hardware process display data with original lut
-
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.corp-partner.google.com>
----
- drivers/gpu/drm/mediatek/mtk_disp_aal.c   |  2 +-
- drivers/gpu/drm/mediatek/mtk_disp_drv.h   |  2 +-
- drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 34 +++++++++++++++++++----
- 3 files changed, 30 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_aal.c b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-index f46d4ab73d6a..0f9d7efb61d7 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-@@ -66,7 +66,7 @@ void mtk_aal_gamma_set(struct device *dev, struct drm_crtc_state *state)
- 	struct mtk_disp_aal *aal = dev_get_drvdata(dev);
- 
- 	if (aal->data && aal->data->has_gamma)
--		mtk_gamma_set_common(aal->regs, state);
-+		mtk_gamma_set_common(aal->regs, state, false);
- }
- 
- void mtk_aal_start(struct device *dev)
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index 86c3068894b1..3380651c6707 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -51,7 +51,7 @@ void mtk_gamma_config(struct device *dev, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- void mtk_gamma_set(struct device *dev, struct drm_crtc_state *state);
--void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state);
-+void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state, bool lut_diff);
- void mtk_gamma_start(struct device *dev);
- void mtk_gamma_stop(struct device *dev);
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-index 3a5815ab4079..bbd558a036ec 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-@@ -27,6 +27,7 @@
- 
- struct mtk_disp_gamma_data {
- 	bool has_dither;
-+	bool lut_diff;
- };
- 
- /*
-@@ -53,12 +54,13 @@ void mtk_gamma_clk_disable(struct device *dev)
- 	clk_disable_unprepare(gamma->clk);
- }
- 
--void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state)
-+void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state, bool lut_diff)
- {
- 	unsigned int i, reg;
- 	struct drm_color_lut *lut;
- 	void __iomem *lut_base;
- 	u32 word;
-+	u32 diff[3] = {0};
- 
- 	if (state->gamma_lut) {
- 		reg = readl(regs + DISP_GAMMA_CFG);
-@@ -67,9 +69,20 @@ void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state)
- 		lut_base = regs + DISP_GAMMA_LUT;
- 		lut = (struct drm_color_lut *)state->gamma_lut->data;
- 		for (i = 0; i < MTK_LUT_SIZE; i++) {
--			word = (((lut[i].red >> 6) & LUT_10BIT_MASK) << 20) +
--				(((lut[i].green >> 6) & LUT_10BIT_MASK) << 10) +
--				((lut[i].blue >> 6) & LUT_10BIT_MASK);
-+
-+			if (!lut_diff || (i % 2 == 0)) {
-+				word = (((lut[i].red >> 6) & LUT_10BIT_MASK) << 20) +
-+					(((lut[i].green >> 6) & LUT_10BIT_MASK) << 10) +
-+					((lut[i].blue >> 6) & LUT_10BIT_MASK);
-+			} else {
-+				diff[0] = (lut[i].red >> 6) - (lut[i - 1].red >> 6);
-+				diff[1] = (lut[i].green >> 6) - (lut[i - 1].green >> 6);
-+				diff[2] = (lut[i].blue >> 6) - (lut[i - 1].blue >> 6);
-+
-+				word = ((diff[0] & LUT_10BIT_MASK) << 20) +
-+					((diff[1] & LUT_10BIT_MASK) << 10) +
-+					(diff[2] & LUT_10BIT_MASK);
-+			}
- 			writel(word, (lut_base + i * 4));
- 		}
- 	}
-@@ -78,8 +91,12 @@ void mtk_gamma_set_common(void __iomem *regs, struct drm_crtc_state *state)
- void mtk_gamma_set(struct device *dev, struct drm_crtc_state *state)
- {
- 	struct mtk_disp_gamma *gamma = dev_get_drvdata(dev);
-+	bool lut_diff = false;
-+
-+	if (gamma->data)
-+		lut_diff = gamma->data->lut_diff;
- 
--	mtk_gamma_set_common(gamma->regs, state);
-+	mtk_gamma_set_common(gamma->regs, state, lut_diff);
- }
- 
- void mtk_gamma_config(struct device *dev, unsigned int w,
-@@ -176,10 +193,15 @@ static const struct mtk_disp_gamma_data mt8173_gamma_driver_data = {
- 	.has_dither = true,
- };
- 
-+static const struct mtk_disp_gamma_data mt8183_gamma_driver_data = {
-+	.lut_diff = true,
-+};
-+
- static const struct of_device_id mtk_disp_gamma_driver_dt_match[] = {
- 	{ .compatible = "mediatek,mt8173-disp-gamma",
- 	  .data = &mt8173_gamma_driver_data},
--	{ .compatible = "mediatek,mt8183-disp-gamma"},
-+	{ .compatible = "mediatek,mt8183-disp-gamma",
-+	  .data = &mt8183_gamma_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_gamma_driver_dt_match);
--- 
-2.25.1
-
+Daniel Kaehn
