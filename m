@@ -2,182 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B325135C9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE385135CD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 15:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235821AbiD1N4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 09:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34976 "EHLO
+        id S233868AbiD1N5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 09:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243521AbiD1N4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:56:32 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A12762B6;
-        Thu, 28 Apr 2022 06:53:17 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23SDr4Hk059239;
-        Thu, 28 Apr 2022 08:53:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651153984;
-        bh=SXWfGs93paC8+JGjukuUl/knJsXUK1oO0tYrUkQvlY0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=vzgnbKqtApo9qDz7kUQyaEwuvgz4vqkAQWomCJsBZ13+tuuQnoZJDR5wlcoitBrQE
-         Frd5pbaKFXGJxyjhnFjWUmH4GrTy2QSFvvx0Q4Ar0Xr8ADp15CXYVbiz80oSaMhKMt
-         Bvq//eSJTmY+B+FRyI5fK8dT/WqMfEPig7qAxPIA=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23SDr3MJ069887
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 Apr 2022 08:53:03 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
- Apr 2022 08:53:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 28 Apr 2022 08:53:02 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23SDr14w086090;
-        Thu, 28 Apr 2022 08:53:02 -0500
-Date:   Thu, 28 Apr 2022 19:23:01 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: dts: ti: k3-am625-sk: Add DSS ports, HDMI tx
- & peripherals
-Message-ID: <20220428135300.rxu435u6yb2v5x3s@uda0490373>
-References: <20220427090850.32280-1-a-bhatia1@ti.com>
- <20220427090850.32280-5-a-bhatia1@ti.com>
+        with ESMTP id S232046AbiD1N5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 09:57:44 -0400
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B03B53C2;
+        Thu, 28 Apr 2022 06:54:29 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id f186so3590494qke.8;
+        Thu, 28 Apr 2022 06:54:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4wOoKdyRe9+2JC+t4n9LJkHjakWvFtD3qMudsoGOQrs=;
+        b=nhm9KIIYXWree4nNxSCDVQUMhhFOiQxgvY608rxXB8bbryZ4wArTwfwJPfjgQPIlLA
+         GayskvPezqeeEV7pAIYkrdTJlwfflJGCLFAJcPF/mg03cgNq883hJ8iSLpnX4LrGJCly
+         ReFLZbUfoErN4X6OUu7SdJsHJnIKZbyNrrUVYNmRVznUpDTerrq5WcGCHB5kJDP2FOeN
+         O8ozCK1oAtw3Yv9RAi9iVZKcF8XtRgoOw5XAr4X9FPGFVOwD9saecqO4M9oaBvofFORu
+         VTfB1LRtY1WV40aFStcgfR6euBqaYkq/YLebWzekueETzkOFYLw/UwmUjcEnbUVdwzIX
+         6wzw==
+X-Gm-Message-State: AOAM530JM921HGNUtQqwv9P6gAzpCpPwbRGDMS3VEOmh6BRszAtw6aW9
+        frEP+zOi4rDISoynLctYt8AW+9ZxmZ5yOA==
+X-Google-Smtp-Source: ABdhPJzOWPSydeGvtyCvYFzWWaKqH6MBXxlO05Qob28vQ6n/y08MA+uuL9Y5x5dthsv/b+bB/QrJmw==
+X-Received: by 2002:a37:a689:0:b0:69f:9e41:1381 with SMTP id p131-20020a37a689000000b0069f9e411381mr2650671qke.21.1651154068683;
+        Thu, 28 Apr 2022 06:54:28 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id v3-20020a05622a014300b002e1dcd4cfa9sm32603qtw.64.2022.04.28.06.54.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 06:54:28 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-2f7c57ee6feso53922457b3.2;
+        Thu, 28 Apr 2022 06:54:28 -0700 (PDT)
+X-Received: by 2002:a81:4782:0:b0:2eb:1cb1:5441 with SMTP id
+ u124-20020a814782000000b002eb1cb15441mr30966882ywa.479.1651154068071; Thu, 28
+ Apr 2022 06:54:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220427090850.32280-5-a-bhatia1@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220425170530.200921-1-biju.das.jz@bp.renesas.com> <20220425170530.200921-10-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220425170530.200921-10-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 15:54:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWKw9fEEN-DpmMbQGwrHEx2s5d2yPTDUtKyB5rvtur48Q@mail.gmail.com>
+Message-ID: <CAMuHMdWKw9fEEN-DpmMbQGwrHEx2s5d2yPTDUtKyB5rvtur48Q@mail.gmail.com>
+Subject: Re: [PATCH 09/13] arm64: dts: renesas: rzg2ul-smarc: Enable Audio
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:38-20220427, Aradhya Bhatia wrote:
-> Add DT nodes for sil9022 HDMI transmitter (tx), HDMI connector and the
-> HDMI fixed master clock on the am625-sk board.
-> 
-> Additionally, add and connect output port for DSS (vp2), input and output
-> ports for the sil9022 HDMI tx and the input port for the HDMI connector.
-> 
-> The sil9022 HDMI tx is connected on the i2c1 bus. The HDMI connector on
-> the board is of type "a". The clock frequency of the master clock that
-> supports the HDMI tx is 12.288 MHz.
-> 
-> The dpi output signals from the vp2 of DSS are fed into the sil9022 HDMI
-> transmitter. These signals are converted into HDMI signals which are
-> further passed on to the HDMI connector on the board, on which display
-> can be connected via appropriate HDMI cables.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 63 ++++++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> index 96414c5dacf7..9567fa4a447b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> @@ -134,6 +134,23 @@ led-0 {
->  			default-state = "off";
->  		};
->  	};
-> +
-> +	hdmi_mstrclk: hdmi-mstrclk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12288000>;
-> +	};
-> +
-> +	hdmi: connector {
-> +		compatible = "hdmi-connector";
-> +		label = "hdmi";
-> +		type = "a";
-> +		port {
-> +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&sii9022_out>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &main_pmx0 {
-> @@ -385,6 +402,38 @@ exp1: gpio@22 {
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
->  	};
-> +
-> +	sii9022: sii9022@3b {
-> +		compatible = "sil,sii9022";
-> +		reg = <0x3b>;
-> +
-> +		clocks = <&hdmi_mstrclk>;
-> +		clock-names = "mclk";
-> +
-> +		interrupt-parent = <&exp1>;
-> +		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				sii9022_in: endpoint {
-> +					remote-endpoint = <&dpi1_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				sii9022_out: endpoint {
-> +					remote-endpoint = <&hdmi_connector_in>;
-> +				};
-> +			};
-> +		};
-> +	};
->  };
->  
->  &main_i2c2 {
-> @@ -450,6 +499,20 @@ &dss {
->  	pinctrl-0 = <&main_dss0_pins_default>;
->  };
->  
-> +&dss_ports {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	/* VP2: DPI Output */
-> +	port@1 {
-> +		reg = <1>;
-> +
-> +		dpi1_out: endpoint {
-> +			remote-endpoint = <&sii9022_in>;
-> +		};
-> +	};
-> +};
-> +
->  &mailbox0_cluster0 {
->  	mbox_m4_0: mbox-m4-0 {
->  		ti,mbox-rx = <0 0 0>;
-> -- 
-> 2.36.0
->
+Hi Biju,
 
-Reviewed-by: Rahul T R <r-ravikumar@ti.com>
+On Mon, Apr 25, 2022 at 7:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable Audio on RZ/G2LC SMARC EVK by adding ssi1 pincontrol entries
+> to the soc-pinctrl dtsi and ssi1 and cpu_dai nodes to the board dtsi.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> @@ -27,6 +27,31 @@ wm8978: codec@1a {
+>         };
+>  };
+>
+> +#if (SW_ET0_EN_N)
+> +&snd_rzg2l {
+> +       cpu_dai: simple-audio-card,cpu {
+
+You can just refer to &cpu_dai instead?
+
+> +               sound-dai = <&ssi1>;
+> +       };
+> +};
+
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
