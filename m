@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7584151330F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7217A51332E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 14:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345892AbiD1L74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:59:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36666 "EHLO
+        id S241683AbiD1MCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 08:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345850AbiD1L7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:59:50 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D9788B22;
-        Thu, 28 Apr 2022 04:56:33 -0700 (PDT)
-X-UUID: 223a3ca3df354217a7b1a2fea560289f-20220428
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.4,REQID:b3597e68-7571-4e0b-b7eb-82f56f96b7fb,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:95
-X-CID-INFO: VERSION:1.1.4,REQID:b3597e68-7571-4e0b-b7eb-82f56f96b7fb,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
-        ION:quarantine,TS:95
-X-CID-META: VersionHash:faefae9,CLOUDID:2d5a0c2f-6199-437e-8ab4-9920b4bc5b76,C
-        OID:865956aaf4d8,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 223a3ca3df354217a7b1a2fea560289f-20220428
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1107191612; Thu, 28 Apr 2022 19:56:26 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 28 Apr 2022 19:56:24 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 28 Apr 2022 19:56:24 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Apr 2022 19:56:24 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <p.zabel@pengutronix.de>,
-        <angelogioacchino.delregno@collabora.com>,
-        <chun-jie.chen@mediatek.com>, <wenst@chromium.org>,
-        <runyang.chen@mediatek.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH V5 16/16] arm64: dts: mediatek: Add infra #reset-cells property for MT8195
-Date:   Thu, 28 Apr 2022 19:56:19 +0800
-Message-ID: <20220428115620.13512-17-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
-References: <20220428115620.13512-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S1343553AbiD1MCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 08:02:54 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF1B98F65
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:59:37 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id p10so8148379lfa.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Apr 2022 04:59:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B5+zPIoSBjlgURgVp9wtOYZR1bJTq6eewKu1uVP6YhU=;
+        b=c/VJanwMlti5J5yVKfOURvmGJ7fdqY4Omar4Wc9K2ajzGa3ZaIgqtJFsI4ZEfH3NZH
+         fOx1TizjiY2ceK/3N1pgDwAtNvNDdoanrJFnzzlA6MeF5WDNuqWBrxaeJ2ENT5KqtOeh
+         7O1jw9bFWst4+41jSjZPVaxfj+jtPVV6620KXi2qnfARLD4UMJog7IsUMe9lHAIA73XW
+         XgbafcfLxAH6Q6DfQbjTMFeeLd4Os9UkqwGkoC3p6b7sQRPKgim/W5tDJ9v4ePlY8S7k
+         l8ACpRoUewJdwuTf2gMKfzYmPUrcyjyWObBb5a9ZZfpBXOOfnqbYMxcC6hWugLsB5i7o
+         +jIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B5+zPIoSBjlgURgVp9wtOYZR1bJTq6eewKu1uVP6YhU=;
+        b=Cbz6EKZ7iChqKFzieCnEn5BL7MCKSFK0cQNSiRUVSSQ3Pl+erEH1z1ThE2r781TYJ3
+         y3+RhQkidKT7TzHidsQ/F+XWLYBXaG4SB48zA9BUUjKK+26PLLoQuJjCqUocHbh5eAew
+         8sVFBLGRMFUlA43KqKGHqgXXi/AgQf1tyHsG0RzpA+aSMPRzk9kv8GaRntIcm/bqCXlL
+         8xvRPrhp/fAze09Mzm9jU3j+jojI3+8g8WFJyCBqkRZ68ZqEYcPjDKvqqTF3pOf/uEvj
+         MPr1QVi14RmEEr+m4BUgjIwaH7AwFN9GGnIrPzo43au/IMtEBGkzVwIl9HNWR0rymxM4
+         UTuQ==
+X-Gm-Message-State: AOAM5337WpgVsTQ0qA/4JpHuUuHxkWDl/mf1/bY5Bk9/6Z+Yrpg/SQOy
+        CZRzGyn0eWf6gM3gOzS/RLHPQA==
+X-Google-Smtp-Source: ABdhPJxWluFAEwayYWdZ18Igbd7n13o+2+04LTbINdT9ndVp5iJRzsIn9nW0A4Uo+Fjj+zJ08Qvr6Q==
+X-Received: by 2002:a05:6512:320c:b0:472:1060:ca29 with SMTP id d12-20020a056512320c00b004721060ca29mr12011273lfe.280.1651147175742;
+        Thu, 28 Apr 2022 04:59:35 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id f1-20020a2e1f01000000b0024602522b5dsm2069137ljf.120.2022.04.28.04.59.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Apr 2022 04:59:35 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/7] PCI: qcom: Fix higher MSI vectors handling
+Date:   Thu, 28 Apr 2022 14:59:27 +0300
+Message-Id: <20220428115934.3414641-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,47 +76,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We will use mediatek clock reset as infracfg_ao reset instead of
-ti-syscon. To support this, remove property of ti reset and add
-property of #reset-cells for mediatek clock reset.
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Fixes: 4c78814a1f46ac0 (arm64: dts: Add mediatek SoC mt8195 and evaluation board)
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index b57e620c2c72..8e5ac11b19f1 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -10,7 +10,6 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
--#include <dt-bindings/reset/ti-syscon.h>
- 
- / {
- 	compatible = "mediatek,mt8195";
-@@ -295,17 +294,7 @@
- 			compatible = "mediatek,mt8195-infracfg_ao", "syscon", "simple-mfd";
- 			reg = <0 0x10001000 0 0x1000>;
- 			#clock-cells = <1>;
--
--			infracfg_rst: reset-controller {
--				compatible = "ti,syscon-reset";
--				#reset-cells = <1>;
--				ti,reset-bits = <
--					0x140 18 0x144 18 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* pcie */
--					0x120 0  0x124 0  0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* thermal */
--					0x730 10 0x734 10 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* thermal */
--					0x150 5  0x154 5  0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* svs gpu */
--				>;
--			};
-+			#reset-cells = <1>;
- 		};
- 
- 		pericfg: syscon@10003000 {
+Patchseries dependecies: [2] (landed in pci-next) and [3] (for the
+schema change).
+
+Since we can not expect that other platforms will use multi-IRQ scheme
+for MSI mapping (e.g. iMX and Tegra map all 256 MSI interrupts to single
+IRQ), it's support is implemented directly in pcie-qcom rather than in
+the core driver.
+
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
+
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+Dmitry Baryshkov (7):
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Add msi_host_deinit callback
+  PCI: dwc: Export several functions useful for MSI implentations
+  PCI: qcom: Handle MSI IRQs properly
+  dt-bindings: pci/qcom,pcie: support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  51 ++++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  11 +-
+ .../pci/controller/dwc/pcie-designware-host.c |  72 +++++----
+ drivers/pci/controller/dwc/pcie-designware.h  |  12 ++
+ drivers/pci/controller/dwc/pcie-qcom.c        | 138 +++++++++++++++++-
+ 5 files changed, 252 insertions(+), 32 deletions(-)
+
 -- 
-2.18.0
+2.35.1
 
