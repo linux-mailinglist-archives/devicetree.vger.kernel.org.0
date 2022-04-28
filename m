@@ -2,179 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75CC5512BCB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5866F512BCE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 08:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244348AbiD1GqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 02:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35810 "EHLO
+        id S230231AbiD1Grs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 02:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244320AbiD1GqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:46:16 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2103.outbound.protection.outlook.com [40.107.114.103])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C901B98584;
-        Wed, 27 Apr 2022 23:43:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ebCGzsP2PllsQMqwx+BMMt3sau6FX2YSuiv4QkNa8ac+ipkNhCz7MjqR8TDsj8EnH9x8o2EUPYWQm9LggN/+BfRAuW/TwrqqMZXY+FVjRXNbcaXLd1AchPs5d2GG/vBRpiFrjQs/5VSVtkBh0KU1MsF3s3B3KKWo+bP7KYfsbVp8uxEta/VHK+jvC1DlkEPeOVDlrfMrpPVMJZ/uln0cGdm2+ggVRBaoL8aFIK4tlhUoRdM1vpkVhsLkQhFwZrZ3hofIms49sFUPQ3TxGA1XzpKxMe+MMbSyD58JyeQqul30pFZf9jimil0TQ47hWpuJMA0eYdJzDYGOOHt0uF02mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M8a3UKRDTybKR9lKNgZOi7140yqkiH9soCebEc1yenc=;
- b=XNudrP99yGNfGyy2vQRPeC7GplEeraLkf6B8kwcRErDwaXfMttrmXREURkmNlcWH6J5gmn85BgzIDfMiH5hC3F9vpJC/D7g8FlQCHYSY+VpnxJJQyzsne/0Tyuw/UeG1LI6sKHEb0Y/xLy4eyph9o/hUG1b+QB/8O3VpieKY8HL13RakT5RqNecjXomEfyqmbbyEo7sLFcZVVcOdGfw7Qnz6YjK9wGJHUa1f7wIiOLZtFex27J4LmzJPWNNqcZtBm3X9wLQ7F1UjU1C4300NiIuD3Dc4qzMJjuIk3UgP/DGpk/SmfJ+lasRuR2fiIr6cdfofnTnoH7rfI4yk5fQraA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M8a3UKRDTybKR9lKNgZOi7140yqkiH9soCebEc1yenc=;
- b=f+jwJCDJEn2OOfMQBUDDKPsHRQdMAlUVbSvJGdsEwm5/1v590rp43Lj2yjgZx3erJOqTI6ECxxNPy9WQwmNRkkfO3kdfPerBOH9U+RvKxH8FdBk2pOTuQhBgk35BNjElpLmqXdU96//bvRvfleP2dSM+F6L7KzxvOLjww6wrID4=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYCPR01MB6884.jpnprd01.prod.outlook.com
- (2603:1096:400:b7::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.12; Thu, 28 Apr
- 2022 06:43:00 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::205e:c981:34d8:dbcf%9]) with mapi id 15.20.5206.014; Thu, 28 Apr 2022
- 06:43:00 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Alim Akhtar <alim.akhtar@samsung.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        scsi <linux-scsi@vger.kernel.org>,
+        with ESMTP id S233790AbiD1Grq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 02:47:46 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426B798584;
+        Wed, 27 Apr 2022 23:44:32 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id t16so2789359qtr.9;
+        Wed, 27 Apr 2022 23:44:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j6lRX8HkbDGmeYmMR2pBv8oehQI8eucp0kVSXCaIj8U=;
+        b=EYipAnCJWn/V7fK7OzwN2lFkpdkHW3LatWZL+KYXzAmse8QyRaAfPq4eXaMxdIqZBw
+         xwuTt95hCVm4sruj9GVEqry56JGrwiTaEzH0KCEMFLoLJRRCwG54dg65SZOVQSlM03yr
+         0+lv7+YiwLMBXI5Z0c/tr+V51DBewflveGbdbUcdDDeT/qcXfvUAU/WiTxquiXRBOxWz
+         AY/8l4d8xlU+GMtrsAEJJC5wRv1lcBYvWLGmS/VJnQUBJ/d8mdN58lHoh0ZrY4NOmdPL
+         NBDaaMKAhkAy+9QXf0acPDEHZccLBv8qKGstbpZOVQRe69kE2WpzruoxnOfpHiSxPIKq
+         uqTA==
+X-Gm-Message-State: AOAM5319prsWXsBSM48+HlJZoUMbn/ExxS2nNX7W5f+1ukqPhpOta/BA
+        Zh50aHvfxe98/cpXMXzaZfqzTW7USrFDqQ==
+X-Google-Smtp-Source: ABdhPJyNN5Kh2wZfhYrGV+bRy1P+svCyp2xoPHqH1RX1bQyfD071DbeUEXOipID/OxYjjPBM/h7KlA==
+X-Received: by 2002:a05:622a:5d0:b0:2e1:d430:a5c9 with SMTP id d16-20020a05622a05d000b002e1d430a5c9mr21872100qtb.639.1651128271086;
+        Wed, 27 Apr 2022 23:44:31 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id o134-20020a37a58c000000b0069f8e381167sm1796158qke.76.2022.04.27.23.44.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Apr 2022 23:44:30 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-2f7d7e3b5bfso42417197b3.5;
+        Wed, 27 Apr 2022 23:44:29 -0700 (PDT)
+X-Received: by 2002:a81:c703:0:b0:2d0:cc6b:3092 with SMTP id
+ m3-20020a81c703000000b002d0cc6b3092mr30791811ywi.449.1651128269435; Wed, 27
+ Apr 2022 23:44:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220427185243.173594-1-detlev.casanova@collabora.com>
+ <20220427185243.173594-4-detlev.casanova@collabora.com> <YmmyvdjiG7s/Qil4@robh.at.kernel.org>
+In-Reply-To: <YmmyvdjiG7s/Qil4@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Apr 2022 08:44:17 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXHRQOOrmUO1AyDXye+nnRtpzx7WHiC__whcg0aBtzAmw@mail.gmail.com>
+Message-ID: <CAMuHMdXHRQOOrmUO1AyDXye+nnRtpzx7WHiC__whcg0aBtzAmw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 3/3] ARM: dto: Add bcm2711-rpi-7-inches-ts.dts overlay
+To:     Rob Herring <robh@kernel.org>
+Cc:     Detlev Casanova <detlev.casanova@collabora.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH v4 1/7] dt-bindings: ufs: Document Renesas R-Car UFS host
- controller
-Thread-Topic: [PATCH v4 1/7] dt-bindings: ufs: Document Renesas R-Car UFS host
- controller
-Thread-Index: AQHYVGIIg5FJ0f9aNUGoWO97h322/q0DxSyAgAEn7NA=
-Date:   Thu, 28 Apr 2022 06:42:59 +0000
-Message-ID: <TYBPR01MB5341A5AB5F2AD117320824D9D8FD9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220420025450.289578-1-yoshihiro.shimoda.uh@renesas.com>
- <20220420025450.289578-2-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdVGbfaNXvy-0ArsE8VDC6ju-6KTeKcz9rziY9ReBGRkyg@mail.gmail.com>
-In-Reply-To: <CAMuHMdVGbfaNXvy-0ArsE8VDC6ju-6KTeKcz9rziY9ReBGRkyg@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7d53356e-442c-4205-3ae5-08da28e25633
-x-ms-traffictypediagnostic: TYCPR01MB6884:EE_
-x-microsoft-antispam-prvs: <TYCPR01MB68847836A1D7A336ABDD8EA8D8FD9@TYCPR01MB6884.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LL21p2SEKp32SeLzjarRxYF0LBBJLdd0LrZgrDs8LPHLlZVFd6bzMXM/5bS7TEdt+ULZyGMw6B+RpFWzKZZtyXQ3OnjPbQbdE3o873Pv+lIG7cNMUraDi3L3i099BOWpkc654dAn2O7MLUD7G80HaFuo6hrmiN2WxL2k2n8h9pPphUGrtfRLcvo54DNG5INC1VT+ce+tBJEuagiTSAHFYju+UC+flDUyGKZHQMuXXwYioqU96brlBkeG5QKo40vrhZWYBy3QRiYyVs2Ctt3ikTxCI5E79cI0eWvRV92c7GNFrvmKb0iIkWvV918brMMHFQrpuuzxo4lcveagXhtTpbugL5nTu35D1tfns1/44OKlzX/izYBhHntHin63RgDS1GW1anOWhhUMSpNYCd7cwT8gzHDWU2ByH2m/rY+BgflgAQRnFYRkPFkRjQEFYdP+5nncy5pO7mv4iEDtB4QOjY2kFbArIqFV2xBsEQnYOHI8iXQ+bmOIn7C7qwkyeuB+Nh3GC8/DFpOU5G+Vcq+Pslh0wv9aZ9IHjn5siYZGij/88kE4nQN5LQV5LCmXKt5STKTa90BeuINWp8PQma/BWl5gm4njWA5n19AwKDXpuTvojXbLNnYqfyNp4g46VHKt9uPVJY66IcFqzQMSDuI+5+h62kdEmm+DJbfdOOzep2SfxD6b2J+FChJDsan15MUEBPTCYs/AR80shs1QJ2R+Yw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(9686003)(53546011)(6506007)(186003)(86362001)(38070700005)(122000001)(38100700002)(54906003)(66446008)(66476007)(6916009)(316002)(2906002)(33656002)(4744005)(8676002)(4326008)(55016003)(64756008)(7416002)(52536014)(5660300002)(76116006)(66946007)(66556008)(8936002)(508600001)(7696005)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZBqH5YY2jxDp1RHUkdmcQBU60QPD95HPQebyg0F3qgpDTxemPVyRJDZsae0C?=
- =?us-ascii?Q?Qa7BhUmQbc381Qiq2BAoQn3IBKqCz/M3SGxWIn8vFVIC/psFteVFb50oRs7x?=
- =?us-ascii?Q?DQ/SvqqgVEX8g9P6QBy5jEtUzO/v44sTHI+Rw/Gqz+iGWp2glDEMaLlvDv9h?=
- =?us-ascii?Q?5MQx+78HwZ5qiZZEWRRXf2qjTiOOGSv3SEWDiJ87DwwVSj8llQY/6Twl8NhG?=
- =?us-ascii?Q?q7iLXShZqAMQmLr035wuFBryz+tepP1eMkCjOV9hP3QsbiC892wv5Xirv+4G?=
- =?us-ascii?Q?jLeD8vTWNAnZafOaLb/j7VwPiJjS9irlurYD+kxkb3yUo5wPJejHvOU1rjAK?=
- =?us-ascii?Q?PFWS4vusHSQYi1aqB1162maak6vvxqBfpvDouw+pR8ZGyRgd/mI3xHHfmNvH?=
- =?us-ascii?Q?Gn+Og7EKrLa1I6sWwJIjJQxoogrXk+60qXMNmqQAUZDaeg4cNBUS2SRNgMoZ?=
- =?us-ascii?Q?1O1rrG/J1m81RJ5TcpYEO72wvI9Ms2iFo6We1quoi4eDbx/QRV7PBA2lpjr/?=
- =?us-ascii?Q?0KYIaSe19ogFH4RKD59BGyfnSyzkoyreKSpXi//RC11vsPxAGheBLtnQMTng?=
- =?us-ascii?Q?jalu8vCfsnUiKzuBzjR1fdvgU9iNARPMJctYOrKAkk59lwV5+n7DZR6enE0o?=
- =?us-ascii?Q?aaBI3iOdPDS1+NI16zKqq9ElJi+kgqfPh4gypATYG83eXTXZgo59Qgwv4V5V?=
- =?us-ascii?Q?7tQWa8JC2q57KCm1bubR6fhsnXVc5LqFfh+O9DpiYqeXLSvqMpF86n7zxINR?=
- =?us-ascii?Q?yC2StZ05AFCJhPOEdO3zCKKA+1HIbw4WQxesSUSlhOm2+kgvWriZN6hlUZKy?=
- =?us-ascii?Q?aeNyJVB4qHYgu9bzwpCZtEF6z0oqJEI5TEBsaSbeyBiQ2GLJCKtpnZYHwLKP?=
- =?us-ascii?Q?Df6ZfIuHVZJMWNLLq8SJhL4H7FnnO1dJEBVZ1ZvshugmS/M+5Do2Ws3i8aUv?=
- =?us-ascii?Q?mKi6brBhFH9ZzrNMQcmo5iQ+8yHOHmtwYlZrOtc9cc5GALUgQSdhUEXmfJX9?=
- =?us-ascii?Q?vcClYV68BkcHtmtLC7Reimtk0hlhntmct8V8sD7vofn77hq3W1MdMStBpZFT?=
- =?us-ascii?Q?cpJKYiTPhpW1hZqBsCOMTX1vu+hzsdTqIKRtrXphs0K38648i1tAqEnGVKG/?=
- =?us-ascii?Q?cY+mTYrcBB0aHSZrqlBZW2nSMYwPO9cQjlFUyu0BgmkLBHWqRzrY5L9QeMOp?=
- =?us-ascii?Q?zoRS/BAEY27SHlZCLiau/0Xxf+c2M7FHdAp3aEWVOEZIhSoRx0bQnSw8AmPh?=
- =?us-ascii?Q?HrfYyGCmOH3995VTZ/rE2Yg+aPrGjNLwwk045HdD2SPKSxZJSjKkiWIwj2AG?=
- =?us-ascii?Q?qQSB7bZ0ifUDAd1D1KKFooLFvdso8WK9Imk0HkGjI7lVG8bLZ7i3YBG0aP4O?=
- =?us-ascii?Q?MW2iqrYT5Nez7pASnMaI6co5d3kkde9VZpGr/14uT+rRAqcvZpWzi7n1vt52?=
- =?us-ascii?Q?MlQ/veaDEQA0jFLEhbXcuA+cXK5Q1HIvGY/kPQe6Vpx147eMnzlwP7JjjoiY?=
- =?us-ascii?Q?3vPprpYv+WC22wZ6M4Koiog8R8Q0TydW+6kN+epp/Os070upIai2grm+x5YW?=
- =?us-ascii?Q?kLahYz2U4wdUbYqHEB9z8WLHxu8tc9mntj1bfx1+QF3HTFXNrpOM8pkU679E?=
- =?us-ascii?Q?ndnNKlpctqKBoGbhfXDld22nnN6xJIPaGdt73fwtQecLlX2oCLtGh4n/AsSx?=
- =?us-ascii?Q?ACJuVE0X5lTqy2lRD3Gzt+zmhrK/Iu5TuYcyOkOvsGlEgI4BQAI9wFolkv1d?=
- =?us-ascii?Q?uSlvXDYEUkDYm8mUPlz6NSV3C2/w+tkuzfZ7oc+fy2M/VuIOOKvRxNZxeND6?=
-x-ms-exchange-antispam-messagedata-1: E9QgE96N6LRbvYNGcuUnCLSh6rgfrTP1X4o=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d53356e-442c-4205-3ae5-08da28e25633
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2022 06:42:59.9795
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: u64CY1ayWsWE/FXzNqVGmTYXPwDJLz4oWzl9pbeNtdB8uUbS6ND11WBf9CD/IbSWcy4Rew4kJeM0tFaTltunNY03OKTPuSzs5+R23Ai5BiZkWIfzCIUG5+NAKrJ+LQvC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6884
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Olof Johansson <olof@lixom.net>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        arm-soc <soc@kernel.org>, Stefan Wahren <stefan.wahren@i2se.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert-san,
+Hi Rob,
 
-Thank you for the review!
-
-> From: Geert Uytterhoeven, Sent: Wednesday, April 27, 2022 10:02 PM
->=20
-> On Wed, Apr 20, 2022 at 3:11 PM Yoshihiro Shimoda
-> <yoshihiro.shimoda.uh@renesas.com> wrote:
-> > Document Renesas R-Car UFS host controller for R-Car S4-8 (r8a779f0).
+On Wed, Apr 27, 2022 at 11:23 PM Rob Herring <robh@kernel.org> wrote:
+> On Wed, Apr 27, 2022 at 02:52:43PM -0400, Detlev Casanova wrote:
+> > Add a device tree overlay to support the official Raspberrypi 7" touchscreen for
+> > the bcm2711 devices.
 > >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> Thanks for your patch!
->=20
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/ufs/renesas,ufs.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id:
-> > +$schema:
-> > +
-> > +title: Renesas R-Car UFS Host Controller
-> > +
-> > +maintainers:
-> > +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > +
-> > +allOf:
-> > +  - $ref: ufs-common.yaml
->=20
-> ufs-common.yaml says just one interrupt, while Renesas UFS has
-> two interrupts?
+> > The panel is connected on the DSI 1 port and uses the simple-panel
+> > driver.
+> >
+> > The device tree also makes sure to activate the pixelvalve[0-4] CRTC modules
+> >
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> >  arch/arm/boot/dts/Makefile                    |   4 +
+> >  arch/arm/boot/dts/overlays/Makefile           |   3 +
+> >  .../dts/overlays/bcm2711-rpi-7-inches-ts.dts  | 125 ++++++++++++++++++
+>
+> .dtso is preferred. I think... It was discussed, but I never got an
+> updated patch to switch.
 
-I got it. I'll fix it.
+Unfortunately that switch indeed hasn't happened yet.
+My main gripe with .dts for overlays is that you cannot know whether
+it's an overlay or not without reading the file's contents.
+Hence tools like make also cannot know, and you need to e.g. list
+all files explicitly in a Makefile.
 
-> The rest LGTM, so with the above resolved:
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >  arch/arm64/boot/dts/broadcom/Makefile         |   4 +
+> >  .../arm64/boot/dts/broadcom/overlays/Makefile |   3 +
+> >  .../overlays/bcm2711-rpi-7-inches-ts.dts      |   2 +
+> >  6 files changed, 141 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/overlays/Makefile
+> >  create mode 100644 arch/arm/boot/dts/overlays/bcm2711-rpi-7-inches-ts.dts
+>
+> A global (to arm) 'overlays' directory will create the same mess that we
+> have in arch/arm/boot/dts/. IMO, first you should move all the Broadcom
+> dts files to a 'broadcom' subdirectory like we have for arm64.
 
-Thanks!
+As I believe this display is not only used with real Raspberry Pi
+devices, it makes sense to not have it a broadcom directory.
+In fact it may be used on other architectures than arm, too, so I
+think we need an arch-agnostic directory for overlays[1]?
+This may need remapping of labels. I'm aware the rpi infrastructure has
+support for remapping labels when applying overlays during boot, but
+AFAIK this is not yet supported by fdtoverlay (or perhaps by a fork?)?
+Note that the remapping is also needed if you want to apply two
+instances of the same overlay.
 
-Best regards,
-Yoshihiro Shimoda
+> >  create mode 100644 arch/arm64/boot/dts/broadcom/overlays/Makefile
+> >  create mode 100644 arch/arm64/boot/dts/broadcom/overlays/bcm2711-rpi-7-inches-ts.dts
 
+And this one just includes the former, and thus sort-of serves as an
+example of my point above ;-)
+
+[1] Note that this does not only apply to overlays: soon we will
+    have a full SoC peripheral description in r9a07g043.dtsi to
+    share between RZ/G2UL (arm64) and RZ/Five (riscv)).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
