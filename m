@@ -2,142 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C4E513269
-	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBEB513289
+	for <lists+devicetree@lfdr.de>; Thu, 28 Apr 2022 13:33:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345541AbiD1L1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Apr 2022 07:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34430 "EHLO
+        id S233545AbiD1Lgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Apr 2022 07:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245064AbiD1L1B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:27:01 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1266D971;
-        Thu, 28 Apr 2022 04:23:46 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23SBNRXm112466;
-        Thu, 28 Apr 2022 06:23:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1651145007;
-        bh=5t3OzA0Rw/NGVThHMxQu6xew1IgZchZszoPZC/r7wwY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=U3WwLaFQKcA8juoBzoJ6Y6E5ReyXXClgnmOv/P5Wr+nyQehNI/8L0F0MTE8pKV8eS
-         3D9gHclMZ2i5RG26Kvpp+Vkw4rtfUK5sfXAm+C3plcXYfLmBrAZ/x9bq7l66npIImz
-         Wo5aZCw9wmOgBy+CebCN6trSVY8+u4AF8UySDj40=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23SBNRFQ011008
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 Apr 2022 06:23:27 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
- Apr 2022 06:23:27 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 28 Apr 2022 06:23:27 -0500
-Received: from [10.24.69.24] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23SBNNd4068230;
-        Thu, 28 Apr 2022 06:23:23 -0500
-Message-ID: <ee1c1601-6db9-70d7-401a-8f67ec406ffc@ti.com>
-Date:   Thu, 28 Apr 2022 16:53:22 +0530
+        with ESMTP id S231983AbiD1Lgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Apr 2022 07:36:44 -0400
+Received: from mg.sunplus.com (mswedge1.sunplus.com [60.248.182.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 10C361DA46;
+        Thu, 28 Apr 2022 04:33:27 -0700 (PDT)
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(27732:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Thu, 28 Apr 2022 19:33:01 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Thu, 28 Apr 2022 19:32:56 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Thu, 28 Apr 2022 19:32:56 +0800
+From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+To:     Francois Romieu <romieu@fr.zoreil.com>,
+        Wells Lu <wellslutw@gmail.com>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "roopa@nvidia.com" <roopa@nvidia.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "edumazet@google.com" <edumazet@google.com>
+Subject: RE: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Thread-Topic: [PATCH net-next v9 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Thread-Index: AQHYWI+jS4JtiaXpFUyrVgs1l1MK560CSWcAgALotYA=
+Date:   Thu, 28 Apr 2022 11:32:56 +0000
+Message-ID: <ff2077684c4c45fca929a8f61447242b@sphcmbx02.sunplus.com.tw>
+References: <1650882640-7106-1-git-send-email-wellslutw@gmail.com>
+ <1650882640-7106-3-git-send-email-wellslutw@gmail.com>
+ <Ymh3si+MTg5i0Bnl@electric-eye.fr.zoreil.com>
+In-Reply-To: <Ymh3si+MTg5i0Bnl@electric-eye.fr.zoreil.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 0/5] Introduce PRU remoteproc consumer API
-Content-Language: en-US
-To:     <linux-kernel@vger.kernel.org>
-CC:     <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>,
-        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>
-References: <20220418104118.12878-1-p-mohan@ti.com>
-From:   Puranjay Mohan <p-mohan@ti.com>
-In-Reply-To: <20220418104118.12878-1-p-mohan@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-Hi Mathieu,
-
-I am writing to follow up on this patch series.
-This has been on the list for the last 10 days and I have not received
-any comments on it. So, does this look good to everyone?
-
-I had solved the minor checkpatch issues from v2 so I guess this series
-should be good now?
-
-Looking forward to your comments.
-
-Thanks
-Puranjay Mohan
-
-On 18/04/22 16:11, Puranjay Mohan wrote:
-> This is the v3 of the patch series [1]. The v2 had some minor comments
-> which have been addressed here.
-> 
-> I will be posting two more patch series which depend on this series, one to
-> the soc tree and another to the networking tree. I had sent all the 3
-> series, including this one as RFC [2] to get comments and to explain the
-> dependencies.
-> 
-> The Programmable Real-Time Unit and Industrial Communication Subsystem
-> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
-> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
-> 
-> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
-> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
-> already merged and can be found under:
-> 1) drivers/soc/ti/pruss.c
->    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> 2) drivers/irqchip/irq-pruss-intc.c
->    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-> 3) drivers/remoteproc/pru_rproc.c
->    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-> 
-> The programmable nature of the PRUs provide flexibility to implement custom
-> peripheral interfaces, fast real-time responses, or specialized data handling.
-> Example of a PRU consumer drivers will be:
->   - Software UART over PRUSS
->   - PRU-ICSS Ethernet EMAC
-> 
-> In order to make usage of common PRU resources and allow the consumer drivers to
-> configure the PRU hardware for specific usage the PRU API is introduced.
-> 
-> [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20201216165239.2744-1-grzegorz.jaszczyk@linaro.org/
-> [2] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
-> 
-> Thanks,
-> Puranjay Mohan
-> 
-> Roger Quadros (1):
->   remoteproc: pru: Add pru_rproc_set_ctable() function
-> 
-> Suman Anna (2):
->   dt-bindings: remoteproc: Add PRU consumer bindings
->   remoteproc: pru: Make sysfs entries read-only for PRU client driven
->     boots
-> 
-> Tero Kristo (2):
->   remoteproc: pru: Add APIs to get and put the PRU cores
->   remoteproc: pru: Configure firmware based on client setup
-> 
->  .../bindings/remoteproc/ti,pru-consumer.yaml  |  70 ++++++
->  drivers/remoteproc/pru_rproc.c                | 234 +++++++++++++++++-
->  include/linux/pruss.h                         |  78 ++++++
->  3 files changed, 377 insertions(+), 5 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->  create mode 100644 include/linux/pruss.h
-> 
+SGkgRnJhbmNvaXMsDQoNCg0KPiBbLi4uXQ0KPiA+ICtpbnQgc3BsMnN3X3J4X3BvbGwoc3RydWN0
+IG5hcGlfc3RydWN0ICpuYXBpLCBpbnQgYnVkZ2V0KSB7DQo+IFsuLi5dDQo+ID4gKwl3bWIoKTsJ
+LyogbWFrZSBzdXJlIHNldHRpbmdzIGFyZSBlZmZlY3RpdmUuICovDQo+ID4gKwltYXNrID0gcmVh
+ZGwoY29tbS0+bDJzd19yZWdfYmFzZSArIEwyU1dfU1dfSU5UX01BU0tfMCk7DQo+ID4gKwltYXNr
+ICY9IH5NQUNfSU5UX1JYOw0KPiA+ICsJd3JpdGVsKG1hc2ssIGNvbW0tPmwyc3dfcmVnX2Jhc2Ug
+KyBMMlNXX1NXX0lOVF9NQVNLXzApOw0KPiA+ICsNCj4gPiArCW5hcGlfY29tcGxldGUobmFwaSk7
+DQo+ID4gKwlyZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4gPiAraW50IHNwbDJzd190eF9wb2xs
+KHN0cnVjdCBuYXBpX3N0cnVjdCAqbmFwaSwgaW50IGJ1ZGdldCkgew0KPiBbLi4uXQ0KPiA+ICsJ
+d21iKCk7CQkJLyogbWFrZSBzdXJlIHNldHRpbmdzIGFyZSBlZmZlY3RpdmUuICovDQo+ID4gKwlt
+YXNrID0gcmVhZGwoY29tbS0+bDJzd19yZWdfYmFzZSArIEwyU1dfU1dfSU5UX01BU0tfMCk7DQo+
+ID4gKwltYXNrICY9IH5NQUNfSU5UX1RYOw0KPiA+ICsJd3JpdGVsKG1hc2ssIGNvbW0tPmwyc3df
+cmVnX2Jhc2UgKyBMMlNXX1NXX0lOVF9NQVNLXzApOw0KPiA+ICsNCj4gPiArCW5hcGlfY29tcGxl
+dGUobmFwaSk7DQo+ID4gKwlyZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4gPiAraXJxcmV0dXJu
+X3Qgc3BsMnN3X2V0aGVybmV0X2ludGVycnVwdChpbnQgaXJxLCB2b2lkICpkZXZfaWQpIHsNCj4g
+Wy4uLl0NCj4gPiArCWlmIChzdGF0dXMgJiBNQUNfSU5UX1JYKSB7DQo+ID4gKwkJLyogRGlzYWJs
+ZSBSWCBpbnRlcnJ1cHRzLiAqLw0KPiA+ICsJCW1hc2sgPSByZWFkbChjb21tLT5sMnN3X3JlZ19i
+YXNlICsgTDJTV19TV19JTlRfTUFTS18wKTsNCj4gPiArCQltYXNrIHw9IE1BQ19JTlRfUlg7DQo+
+ID4gKwkJd3JpdGVsKG1hc2ssIGNvbW0tPmwyc3dfcmVnX2Jhc2UgKyBMMlNXX1NXX0lOVF9NQVNL
+XzApOw0KPiBbLi4uXQ0KPiA+ICsJCW5hcGlfc2NoZWR1bGUoJmNvbW0tPnJ4X25hcGkpOw0KPiA+
+ICsJfQ0KPiA+ICsNCj4gPiArCWlmIChzdGF0dXMgJiBNQUNfSU5UX1RYKSB7DQo+ID4gKwkJLyog
+RGlzYWJsZSBUWCBpbnRlcnJ1cHRzLiAqLw0KPiA+ICsJCW1hc2sgPSByZWFkbChjb21tLT5sMnN3
+X3JlZ19iYXNlICsgTDJTV19TV19JTlRfTUFTS18wKTsNCj4gPiArCQltYXNrIHw9IE1BQ19JTlRf
+VFg7DQo+ID4gKwkJd3JpdGVsKG1hc2ssIGNvbW0tPmwyc3dfcmVnX2Jhc2UgKyBMMlNXX1NXX0lO
+VF9NQVNLXzApOw0KPiA+ICsNCj4gPiArCQlpZiAodW5saWtlbHkoc3RhdHVzICYgTUFDX0lOVF9U
+WF9ERVNfRVJSKSkgew0KPiBbLi4uXQ0KPiA+ICsJCX0gZWxzZSB7DQo+ID4gKwkJCW5hcGlfc2No
+ZWR1bGUoJmNvbW0tPnR4X25hcGkpOw0KPiA+ICsJCX0NCj4gPiArCX0NCj4gDQo+IFRoZSByZWFk
+bC93cml0ZWwgc2VxdWVuY2UgaW4gcnhfcG9sbCAob3IgdHhfcG9sbCkgcmFjZXMgd2l0aCB0aGUg
+aXJxIGhhbmRsZXIgcGVyZm9ybWluZw0KPiBNQUNfSU5UX1RYIChvciBNQUNfSU5UX1JYKSB3b3Jr
+LiBJZiB0aGUgcmVhZGwgcmV0dXJucyB0aGUgc2FtZSB2YWx1ZSB0byBib3RoIGNhbGxlcnMsDQo+
+IG9uZSBvZiB0aGUgd3JpdGVsIHdpbGwgYmUgb3ZlcndyaXR0ZW4uDQo+IA0KPiAtLQ0KPiBVZWlt
+b3INCg0KSSB3aWxsIGFkZCBkaXNhYmxlX2lycSgpIGFuZCBlbmFibGVfaXJxKCkgZm9yIHNwbDJz
+d19yeF9wb2xsKCkgYW5kIHNwbDJzd190eF9wb2xsKCkgYXMgc2hvd24gYmVsb3c6DQoNCnNwbDJz
+d19yeF9wb2xsKCk6DQoNCgl3bWIoKTsJLyogbWFrZSBzdXJlIHNldHRpbmdzIGFyZSBlZmZlY3Rp
+dmUuICovDQoJZGlzYWJsZV9pcnEoY29tbS0+aXJxKTsNCgltYXNrID0gcmVhZGwoY29tbS0+bDJz
+d19yZWdfYmFzZSArIEwyU1dfU1dfSU5UX01BU0tfMCk7DQoJbWFzayAmPSB+TUFDX0lOVF9SWDsN
+Cgl3cml0ZWwobWFzaywgY29tbS0+bDJzd19yZWdfYmFzZSArIEwyU1dfU1dfSU5UX01BU0tfMCk7
+DQoJZW5hYmxlX2lycShjb21tLT5pcnEpOw0KDQpzcGwyc3dfdHhfcG9sbCgpOg0KDQoJd21iKCk7
+CQkJLyogbWFrZSBzdXJlIHNldHRpbmdzIGFyZSBlZmZlY3RpdmUuICovDQoJZGlzYWJsZV9pcnEo
+Y29tbS0+aXJxKTsNCgltYXNrID0gcmVhZGwoY29tbS0+bDJzd19yZWdfYmFzZSArIEwyU1dfU1df
+SU5UX01BU0tfMCk7DQoJbWFzayAmPSB+TUFDX0lOVF9UWDsNCgl3cml0ZWwobWFzaywgY29tbS0+
+bDJzd19yZWdfYmFzZSArIEwyU1dfU1dfSU5UX01BU0tfMCk7DQoJZW5hYmxlX2lycShjb21tLT5p
+cnEpOw0KDQoNCklzIHRoZSBtb2RpZmljYXRpb24gb2s/DQoNCg0KVGhhbmsgeW91IGZvciB5b3Vy
+IHJldmlldy4NCg0KQmVzdCByZWdhcmRzLA0KV2VsbHMNCg0K
